@@ -1,0 +1,3 @@
+import type { Metadata } from "next";import { profile } from "@/content/profile";
+export const metadata:Metadata={title:"About",description:"Biography of Arjan Singh Puniani, neural engineer, founder, researcher, and educator.",alternates:{canonical:"/about"}};
+export default function About(){return <><header className="page-hero"><div className="shell"><p className="eyebrow">Biography</p><h1>About</h1><p>{profile.headline}</p></div></header><section className="section"><div className="shell bio-grid"><aside><p className="eyebrow">Working position</p><h2>{profile.descriptor}</h2></aside><article>{profile.biography.map(p=><p className="large" style={{fontSize:"22px"}} key={p}>{p}</p>)}</article></div></section></>}
