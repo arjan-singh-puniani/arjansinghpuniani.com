@@ -16,7 +16,7 @@ export default function Home() {
         </div>
         <div className="v2-visual">
           <div className="v2-photo-index">ASP / 001</div>
-          <Image src="/images/hero/arjan-kuzneski-hero.png" alt="Arjan Singh Puniani holding the Kuzneski Innovation Cup" fill priority sizes="(max-width: 800px) 100vw, 44vw" />
+          <Image src="/images/hero/arj_kuzneski-hero.png" alt="Arjan Singh Puniani holding the Kuzneski Innovation Cup" fill priority sizes="(max-width: 800px) 100vw, 44vw" />
 <div className="v2-photo-caption"><span>Kuzneski Innovation Cup</span><span>Pittsburgh, PA</span></div>
           <div className="v2-signal" aria-hidden="true"><svg viewBox="0 0 440 80" preserveAspectRatio="none"><path d="M0 44h66l12-2 8 2h36l8-20 12 46 13-64 15 38h36l8-4 10 4h70l13-12 14 27 13-36 14 21h83" /></svg></div>
         </div>
