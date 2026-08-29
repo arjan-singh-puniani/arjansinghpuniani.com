@@ -1,18 +1,16 @@
 export const profile = {
   name: "Arjan Singh Puniani",
-  descriptor: "Neural engineer. Neurotechnology founder. Researcher and educator.",
-  headline: "Building practical systems for neural engineering, clinical translation, and human performance.",
-  intro: "Arjan develops research tools, medical-device concepts, and educational systems that connect rigorous engineering with real clinical and human needs.",
+  descriptor: "Neural engineer pursuing medicine.",
+  headline: "Engineering systems around the person who must live with their consequences.",
+  intro: "Arjan develops research tools, early medical-device concepts, and educational systems across neural engineering, clinical reasoning, rehabilitation, and motorsport safety.",
   location: "California, United States",
   email: "arjan.singh.puniani.main@gmail.com",
   domain: "https://arjansinghpuniani.com",
   linkedin: "",
   biography: [
-    "Arjan Singh Puniani began in chemical engineering at the University of California, Berkeley, where he learned to reduce complex systems to mechanisms, constraints, and measurable tradeoffs.",
-    "He later earned a Master of Science in Bioengineering from the University of Pittsburgh. His graduate training focused on neural engineering, neural-signal analysis, medical devices, movement science, and quantitative systems neuroscience.",
-    "At the University of Pittsburgh’s Rehab Neural Engineering Labs, he worked on psychophysical calibration, neural-interface research, and software for experimental workflows. His work included analyzing more than 940 calibration sessions and redesigning demanding tasks into more usable, game-like paradigms.",
-    "He founded Cyberpunk Reality to explore focal cortical cooling for drug-resistant epilepsy. The project remains an early translational device program. Its public description distinguishes concept development, provisional intellectual property, thermal modeling, and prototype work from clinical validation.",
-    "Earlier, Arjan supported clinical-research operations at the University of California, San Francisco’s Eureka platform. He also teaches Medical College Admission Test content and mentors students by translating abstract science into concrete mental models.",
-    "His current directions include translational neurotechnology, physician-engineer training, and motorsport neurotrauma. He is developing a conservative crash-documentation toolkit for grassroots motorsport and seeking expert review before any operational use."
+    "At the University of Pittsburgh’s Rehab Neural Engineering Labs, Arjan helped redesign repetitive psychophysical calibration as an interactive game while preserving the task’s measurement requirements. A participant living with quadriplegia described wanting to play video games again. That ordinary goal changed how Arjan judged technical work: by what it could help a person reclaim.",
+    "Emergency-department service exposed a different responsibility. Physicians often had to act before every uncertainty could be resolved. Arjan saw that technical capability matters, but medicine requires someone to interpret incomplete evidence for a particular person and remain accountable for the decision.",
+    "That distinction shapes his projects. ReasonOS records observations, evidence, contradictions, and revisions instead of preserving only an answer. SeizeFreeze explores focal cortical cooling while clearly separating engineering development from clinical validation. His motorsport work organizes crash mechanism, neurological findings, and medical handoff without replacing track medical leadership.",
+    "Arjan earned a Master of Science in Bioengineering from the University of Pittsburgh after studying chemical engineering at the University of California, Berkeley. He is a neural engineer and medical-school applicant, not a physician."
   ]
 } as const;
