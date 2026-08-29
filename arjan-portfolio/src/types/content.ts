@@ -1,5 +1,5 @@
 export type Evidence = { label: string; url?: string; sourceFile?: string; verified: boolean };
-export type ProjectStatus = "Published" | "Active" | "Prototype" | "Proposed" | "Completed" | "Under development";
+export type ProjectStatus = "Published" | "Prototype" | "Proposed" | "Completed" | "Under development" | "Academic study" | "Exploratory";
 export type Project = {
   slug: string; title: string; shortDescription: string; category: string[]; status: ProjectStatus;
   yearStart?: number; yearEnd?: number | "Present"; role: string; problem: string; approach: string[];

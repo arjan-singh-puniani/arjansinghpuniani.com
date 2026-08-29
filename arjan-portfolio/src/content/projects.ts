@@ -50,13 +50,22 @@ export const projects: Project[] = [
     evidence: [{ label: "Portfolio résumé", sourceFile: "ArjanSinghPuniani_2026.pdf", verified: true }]
   },
   {
-    slug: "motorsport-neurotrauma-toolkit", title: "Mechanism-to-Medical Center", shortDescription: "A draft crash and concussion documentation toolkit for grassroots motorsport.",
-    category: ["Motorsport Medicine", "Education"], status: "Under development", yearStart: 2026, yearEnd: "Present", role: "Designer and technical writer",
-    problem: "Local motorsport response teams need concise documentation that connects crash mechanism, occupant protection, neurological red flags, and disposition.",
-    approach: ["Mapped fields to the operational sequence from incident to medical handoff.", "Used FIA Appendix H, SCAT6 concepts, and venue safety rules as reference points.", "Requested review from experienced motorsport physicians and safety professionals."],
-    results: ["Draft materials were circulated by the International Council of Motorsport Sciences executive director for expert feedback."],
-    limitations: ["Not validated, not a sanctioning-body standard, and not a substitute for trained clinical judgment."], featured: true,
-    evidence: [{ label: "ICMS correspondence", sourceFile: "Trackside crash and concussion toolkit in grassroots motorsports.pdf", verified: true }]
+    slug: "motorsport-neurotrauma-toolkit", title: "Mechanism-to-Medical Center", shortDescription: "An exploratory documentation and escalation framework connecting crash mechanics with acute neurologic assessment.",
+    category: ["Motorsport Medicine", "Education"], status: "Exploratory", yearStart: 2026, yearEnd: "Present", role: "Systems analysis and technical writing",
+    problem: "A trackside handoff can lose the relationship between crash mechanism, occupant-protection context, observed neurologic signs, and initial disposition.",
+    approach: ["Structured the concept around four linked information groups: crash mechanism, occupant protection, acute neurologic red flags, and initial disposition.", "Designed the output as a documentation and escalation aid rather than a clinical protocol.", "Prepared the draft for external expert feedback."],
+    results: ["A Version 0.2 pilot draft, intake card, disposition algorithm, and external-review record were prepared.", "March 2026 correspondence documents substantive critique from two physicians working in motorsport medicine."],
+    limitations: ["Pilot draft and not validated.", "Not a sanctioning-body standard, deployed protocol, clinical decision-support system, or substitute for licensed clinical judgment.", "External review is evidence of critique, not endorsement, adoption, or operational performance."], featured: true,
+    evidence: [{ label: "Pilot toolkit and algorithm", sourceFile: "BELMONT.zip: Mechanism to Medical Center Crash and Concussion Card.pdf; Red Flag and Dispo Algorithm.pdf", verified: true }, { label: "External review correspondence", sourceFile: "BELMONT.zip: ChipWilliams Feedback; Morgan Sweere feedback; Trackside toolkit grassroots motorsports email chain", verified: true }]
+  },
+  {
+    slug: "sonoma-emergency-operations", title: "Emergency operations at Sonoma", shortDescription: "A role-based emergency-operations proposal for a complex road-course race weekend.",
+    category: ["Motorsport Medicine", "Clinical Research"], status: "Academic study", yearStart: 2026, yearEnd: 2026, role: "Systems analysis / academic study",
+    problem: "A major race weekend requires medical, rescue, race-control, security, operations, public-information, and external-agency decisions to remain coordinated under time pressure.",
+    approach: ["Framed response as a linked command, communications, medical-handoff, and recovery system.", "Modeled multiple incident families to expose coordination and escalation requirements.", "Separated immediate hazard control from recovery and return-to-operations decisions."],
+    results: ["Produced a course-use, role-based proposal for Belmont Abbey College MM 685: Risk Management in Motorsport, Assignment 6."],
+    limitations: ["Academic study only; not an official Sonoma Raceway or NASCAR emergency plan.", "Not operationally validated, exercised, adopted, or approved.", "Proposed thresholds are not published as operating criteria; private contacts, radio assignments, agreements, and agency details remain excluded."], featured: true,
+    evidence: [{ label: "Primary course paper", sourceFile: "BELMONT.zip: Jul13 Assignment 6 Emergency Disaster Planning Sonoma Raceway Exceptional.pdf", verified: true }, { label: "Supporting risk analyses", sourceFile: "BELMONT.zip: MM 685 Assignments 3 and 4", verified: true }]
   },
   {
     slug: "reasonos-vector-ecg", title: "ReasonOS Vector ECG", shortDescription: "A working educational interface for structured electrocardiogram measurement and reasoning.",

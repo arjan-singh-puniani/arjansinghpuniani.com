@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { MobileNav } from "@/components/MobileNav";
 
-const nav = [["Work", "/work"], ["Research", "/research"], ["About", "/about"], ["CV", "/cv"], ["Contact", "/contact"]] as const;
+const nav = [["Work", "/work"], ["Motorsport", "/motorsport"], ["Research", "/research"], ["About", "/about"], ["CV", "/cv"], ["Contact", "/contact"]] as const;
 
 export function Header() {
   return (

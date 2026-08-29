@@ -1,39 +1,61 @@
 # Content audit
 
-Public content follows a conservative rule: a source must support the exact wording, and sensitive records never become public evidence.
+Audit date: 2026-08-28
 
-| Proposed claim | Source | Status | Public safety | Action |
-|---|---|---:|---:|---|
-| B.S. Chemical Engineering, UC Berkeley, 2013 | AACOMAS verified academic history | Verified | Safe | Published |
-| M.S. Bioengineering, University of Pittsburgh, 2023 | AACOMAS academic history; degree record | Verified | Safe | Published |
-| 940+ neural-interface calibration sessions analyzed | Current résumé | Supported, primary lab record not supplied | Safe with attribution | Published conservatively |
-| Founded Cyberpunk Reality | Current résumé and essays | Supported | Safe | Published |
-| SeizeFreeze is clinically validated | No source | False/unsupported | Unsafe | Omitted |
-| SeizeFreeze patent status | Essay says “patented”; other records indicate provisional filing | Conflicting | Safe only with caveat | Public page says provisional status requires confirmation |
-| Total non-dilutive funding | Résumé says over $15,000; broader personal records suggest more | Incomplete | Safe only at documented floor | Exact total omitted from public page |
-| BCI engagement increased threefold | Résumé only | Needs primary study record | Safe with caution | Numerical claim withheld from project result |
-| UCSF deployment improved by 30% and protocol adopted by Johns Hopkins | Résumé only | Needs primary corroboration | Safe with caution | Numerical and adoption claims withheld |
-| Quantum active inference publication metadata | User record references publication | Incomplete | Safe only as provisional bibliography | Venue, DOI, author order marked TODO |
-| Doctors Without Reservations is operating | HCOP essay describes vision/proposal | Not verified | Unsafe | Presented only as proposed |
-| Motorsport toolkit is validated | Correspondence expressly denies validation | Verified negative | Safe | Explicit limitation published |
-| Current medical-school status and graduation year | Records conflict and include private legal/disciplinary matters | Uncertain and sensitive | Unsafe | Omitted from public pages |
-| MOSAIC award status | Résumé asserts scholar status; scholarship essay alone does not prove award | Needs award notice | Safe only after confirmation | Omitted |
-| Student outcome score gains | Essay gives one example; names and permission unclear | Needs consent and documentation | Privacy risk | Omitted |
-| Personal phone, home address, birth date, student IDs | Applications and transcripts | Verified private data | Unsafe | Omitted |
-| ReasonOS Vector ECG prototype exists | Uploaded source repository | Verified | Safe | Published as educational prototype, not diagnostic device |
+Public content follows a conservative rule: the source must support the wording, project status must remain visible, and absent records cannot be replaced by inference. “Verified” below means verified against materials available in this workspace or exact source metadata supplied for this implementation; it does not mean operational validation.
 
-## Required publication assets
+## Motorsport claims
 
-- Final professional portrait.
-- Durable LinkedIn URL.
-- Final public résumé with current, approved wording.
-- Publication DOI or publisher PDF.
-- Primary award notices for Kuzneski, Randall Big Idea, and other funding.
-- Patent application number and approved status wording.
-- Approved project images or diagrams with rights confirmed.
-| Conscious active inference publication metadata | Supplied publisher PDF, DOI 10.1016/j.csbj.2025.09.017 | Verified | Safe | Published with exact title, authors, venue, pages, and DOI |
-| Gamified BCI manuscript title and first authorship | Supplied manuscript `Gamifying BCI Calibration v8 _ preprint.pdf` | Verified as manuscript | Safe with status label | Published as preprint/manuscript, not peer-reviewed publication |
-| Curated laboratory and award images | `ASSET_MANIFEST.md` and supplied asset files | Asset verified; rights still require owner review | Conditional | Only single-subject or technical images enabled; team image publication remains disabled |
-| Randall Family Big Idea Competition award | Official 2023 winners document and award-check photograph | Verified: third place, $5,000 | Safe | Published |
-| Kuzneski Innovation Cup award | Official winner graphic naming Cyberpunk Reality and $7,500 | Verified | Safe | Published |
-| Combined documented competition awards | $5,000 Randall + $7,500 Kuzneski | Verified floor of $12,500 | Safe | Published as documented awards, not total lifetime funding |
+| Public wording | Source | Exact evidence available | Status | Limitations | Safe for public display |
+|---|---|---|---|---|---|
+| “Emergency operations at Sonoma” is an academic systems study for the 2026 Toyota/Save Mart 350 at Sonoma Raceway. | `BELMONT.zip` → `Risk Management/Jul13+Assignment_6_Emergency_Disaster_Planning_Sonoma_Raceway_Exceptional.pdf` | Cover identifies Arjan Puniani, Belmont Abbey College, MM 685, July 13, 2026, and “Proposed Emergency and Medical Operations Annex.” Plan Status calls it an “Academic, role-based proposal.” | A — directly verified | Course work, not professional track experience. | Yes, with `ACADEMIC STUDY` label |
+| The planning environment included a 1.99-mile road course, more than 160 feet of elevation change, hillside seating, pit/garage operations, campgrounds, a heliport, and a population across State Route 121. | Assignment 6, executive summary and §2, pp. 2–3 | These characteristics are stated in the paper and attributed there to Sonoma Raceway public materials. | A — directly verified in the authored source | Public venue context only; no current operational capability is implied. | Yes, with attribution and no sensitive detail |
+| The study organized the venue into five planning zones. | Assignment 6, §2, p. 3 | Zone table lists West ingress, Competition core, North hillside, East hillside, and 50 Acres, with planning consequences. | A — directly verified | An academic planning abstraction, not an official venue zoning system. | Yes, qualified |
+| The proposal connected race control, fire/rescue, medical command, security, operations, public information, and external mutual aid. | Assignment 6, executive summary and §4, pp. 2, 4–5 | Role and decision tables define the interfaces and acknowledge public-agency unified command. | A — directly verified | Public visualization is a portfolio abstraction, not a staffing chart or grant of authority. | Yes, qualified |
+| The proposal used three incident levels: Minor, Serious, and Major. | Assignment 6, §3, p. 4 | The table defines each level by consequence and coordination need and gives minimum actions. | A — directly verified | These are the author’s proposed course-use classifications—not Sonoma Raceway or NASCAR classifications. Numeric or venue operating thresholds are not published. | Yes, with explicit boundary |
+| The study modeled high-energy crash, heat/medical surge, fire/hazardous material, wildfire/severe weather, security threat, and communications/utility failure. | Assignment 6, §7, pp. 7–10 | Six scenario procedures are present as §§7.1 and 7.3–7.7; §7.2 separately addresses medical-resource depletion. | A — directly verified | No claim the scenarios were exercised or validated. | Yes |
+| The public medical workflow is incident → scene stabilization → medical access → triage → structured handoff → transport decision → recovery/reporting. | Assignment 6, §7.1 and Appendices A–C, pp. 7, 13 | The crash table covers recognition/stop, hazard control, medical response, handoff, transport/surge, evidence/recovery; appendices specify handoff fields and recovery checks. | A — directly verified as a faithful abstraction | Not a clinical protocol; full treatment criteria and proposed numeric thresholds are not published. | Yes, qualified |
+| Communications were treated as redundant, closed-loop, and time logged. | Assignment 6, §5, pp. 5–6 | The paper specifies approved event radio plus backup categories, plain language, read-back, precise location, protected medical traffic, and recorded time points. | A — directly verified | No frequencies, call signs, contacts, or private system details reproduced. | Yes |
+| Return to operations required positive recovery gates beyond immediate hazard control. | Assignment 6, §9 and Appendix C, pp. 10–11, 13 | Recovery table covers people, hazards, course/containment, communications, medical/rescue coverage, access/egress, records/evidence, staff readiness, public messaging, and decision record. | A — directly verified | Proposed criteria only; no claim of operational adoption. | Yes |
+| The Sonoma proposal was official, validated, exercised, adopted, deployed, or approved. | Assignment 6 Plan Status and absence of implementation evidence | The paper requires reconciliation before operational use and defers to official procedures and lawful authority. No exercise or implementation record was supplied. | C — unsupported / contradicted | Academic work must not be presented as venue or sanctioning-body experience. | No; explicit negative statement published |
+| “Mechanism-to-Medical Center” is a Version 0.2 pilot documentation toolkit for grassroots and regional motorsport. | `BELMONT.zip` → `Mechanism to Medical Center Crash and Concussion Card.pdf` | Cover states Version 0.2 and “Trackside Neurotrauma Documentation for Grassroots and Regional Motorsport”; scope names club racing, drift, amateur circuit events, and regional pro weekends. | A — directly verified | Intended context does not establish actual use, adoption, or suitability. | Yes, with `EXPLORATORY` label |
+| The toolkit links crash mechanism, occupant-protection context, acute neurologic warning signs, and initial disposition. | Toolkit pp. 1–2 and intake-card sections B–F | Purpose lists four domains; the card separately records mechanism, occupant protection, trauma/neuro status, warning signs, and disposition. | A — directly verified | Information architecture only; not evidence that the links predict injury or improve care. | Yes |
+| The toolkit includes a pilot intake card and a disposition algorithm. | Toolkit p. 2; `Red Flag and Dispo Algorithm.pdf` | “Current contents” lists the two artifacts; the separate four-page algorithm is labeled Version 0.2 Pilot Draft. | A — directly verified | The portfolio does not reproduce the full algorithm for independent clinical use. | Yes |
+| External expert critique was requested and received. | `Trackside toolkit grassroots motorsports email+chain.pdf`; `ChipWilliams+Feedback...pdf`; `Morgan Sweere feedback...pdf` | March 2026 correspondence documents ICMS-facilitated outreach and detailed feedback from two physicians working in motorsport medicine. | A — directly verified | Review establishes critique, not consensus, validation, endorsement, adoption, or implementation. Private contact data and direct quotations are excluded. | Yes, carefully qualified |
+| Feedback raised terminology, workflow-location, user-definition, observational-reliability, and series-rule questions. | March 25–26, 2026 review correspondence | Reviewers specifically addressed “red flag” ambiguity, scene vs later documentation, intended users, reliability of observation-only fields, race-control authority, and series return rules. | A — directly verified | Presented as unresolved design critique, not as reviewer-approved revisions. | Yes |
+| Arjan was an ICMS medical-student member in March 2026. | `Touro College Mail - Re_ ICMS Medical Student Shadowing Opportunity.pdf`, March 23, 2026 | ICMS Executive Director identifies “ICMS medical student member, Arjan Puniani.” | A — directly verified | Membership does not establish physician status, track credentialing, employment, operational authority, or participation at a specific event. | Yes, exact wording only |
+| Arjan shadowed or worked with a NASCAR/Sonoma/Laguna Seca medical team. | Shadowing outreach email and event waiver records | The email requests an opportunity; waiver completion shows paperwork for an event but not attendance, role, duties, or credential issuance. | C — unsupported | Request, registration, and waiver are not proof of participation or work. | No |
+| Belmont risk work used a 16-item qualitative register, ranked heat illness critical, and mapped priority risks to prevention, corrective action, accountable roles, timing, and recovery. | `Week 3 ARJAN+Assignment_3_Analyzing_Risk...pdf`; `Week 4 ARJAN+Assignment_4_Techniques...pdf`; Assignment 6 | Assignment 3 defines the 5×5 method and 16 ranked risks; Assignment 4 develops controls for the top three; Assignment 6 integrates response and recovery. | A — directly verified | Scores are qualitative planning judgments, not actuarial predictions or operational findings. | Yes, with academic label |
+| The toolkit is clinical decision support, a validated protocol, or a sanctioning-body standard. | Toolkit disclaimer repeated on every page | It states: not a validated diagnostic instrument; not a sanctioning-body standard; does not replace licensed clinical judgment; intended for pilot review. | C — explicitly unsupported | Publishing a stronger status would create clinical and operational misrepresentation. | No; explicit negative boundary published |
+| Arjan has trackside employment, physician authority, credentialing, deployment responsibility, consulting outcomes, or Sonoma/NASCAR affiliation. | No supporting source | None of the supplied records establishes these claims. | C — unsupported | Academic and exploratory work cannot establish field authority or affiliation. | No |
+
+## Other current public claims
+
+| Public claim | Source | Status | Publication decision |
+|---|---|---|---|
+| B.S. Chemical Engineering, UC Berkeley, 2013 | AACOMAS verified academic history | Verified | Published |
+| M.S. Bioengineering, University of Pittsburgh, 2023 | Academic history and degree record | Verified | Published |
+| More than 940 neural-interface calibration sessions analyzed | Current résumé; primary lab record not supplied | Supported with source limitation | Published conservatively |
+| Founded Cyberpunk Reality | Current résumé and essays | Supported | Published |
+| SeizeFreeze is clinically validated | No source | Unsupported | Omitted |
+| SeizeFreeze patent status | Records conflict between “patented” and provisional filing | Conflicting | Published only as provisional status requiring confirmation |
+| Combined $12,500 competition awards | Official Randall record and Kuzneski winner graphic | Verified floor | Published; not described as total lifetime funding |
+| BCI engagement increased threefold | Résumé only | Needs primary study record | Numerical claim withheld |
+| UCSF deployment improved by 30% or was adopted elsewhere | Résumé only | Needs primary corroboration | Numerical and adoption claims withheld |
+| Conscious active inference publication metadata | Publisher PDF and DOI 10.1016/j.csbj.2025.09.017 | Verified | Published |
+| Gamified BCI manuscript title and first authorship | Supplied manuscript | Verified as manuscript | Published as manuscript/preprint, not peer-reviewed publication |
+| Doctors Without Reservations is operating | Essay describes a proposal | Unsupported as operating program | Published only as proposed |
+| ReasonOS Vector ECG prototype exists | Uploaded source repository | Verified | Published as educational prototype, not diagnostic device |
+
+## Deliberately excluded sensitive or private material
+
+- Phone numbers, home addresses, birth date, student identifiers, radio frequencies, hospital agreements, private operational contacts, and recovery codes.
+- Unverified medical-school status, graduation dates, sanctions, awards, affiliations, credentials, and personal correspondence.
+- Names of proposed reviewers, agencies, hospitals, venues, or officials unless a public source and permission support the exact wording.
+
+## Sources still required
+
+- Current official venue, sanctioning-body, public-agency, hospital, or series procedures would be required before any operational comparison or use claim.
+- Exercise records, field data, and a defined validation protocol would be required before any performance, reliability, or clinical-utility claim.
+- Attendance, credential, or supervisor confirmation would be required before any event-participation or trackside-experience claim.
+- Final approved public résumé and primary records remain required for claims expanded beyond current non-motorsport wording.

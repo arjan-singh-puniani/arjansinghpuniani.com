@@ -1,49 +1,35 @@
 import Image from "next/image";
 import Link from "next/link";
+import { OrbitField } from "@/components/OrbitField";
 
-const disciplines = ["Neural engineering", "Clinical translation", "Human performance", "Motorsport medicine"];
+const disciplines = ["Medicine", "Neural engineering", "Reasoning systems", "Human performance"];
 
 export default function Home() {
   return <>
-    <section className="v2-hero">
-      <div className="v2-orbit" aria-hidden="true"><span>01</span><i /><span>26</span></div>
-      <div className="shell v2-hero-grid">
-        <div className="v2-hero-copy">
-          <p className="v2-label"><span /> Physician-engineer in formation</p>
-          <h1>Build what<br />care needs<br /><em>next.</em></h1>
-          <p className="v2-intro">Arjan Singh Puniani works where neural signals, clinical judgment, and high-performance systems meet.</p>
-          <div className="v2-actions"><Link href="/work">Enter the work <b>↗</b></Link><Link href="/about">The person behind it</Link></div>
-        </div>
-        <div className="v2-visual">
-          <div className="v2-photo-index">ASP / 001</div>
-          <Image src="/images/hero/arj_kuzneski-hero.png" alt="Arjan Singh Puniani holding the Kuzneski Innovation Cup" fill priority sizes="(max-width: 800px) 100vw, 44vw" />
-<div className="v2-photo-caption"><span>Kuzneski Innovation Cup</span><span>Pittsburgh, PA</span></div>
-          <div className="v2-signal" aria-hidden="true"><svg viewBox="0 0 440 80" preserveAspectRatio="none"><path d="M0 44h66l12-2 8 2h36l8-20 12 46 13-64 15 38h36l8-4 10 4h70l13-12 14 27 13-36 14 21h83" /></svg></div>
-        </div>
+    <section className="home-hero">
+      <OrbitField />
+      <div className="hero-axis" aria-hidden="true"><span>OBSERVE</span><span>ACT</span></div>
+      <div className="shell home-hero-inner">
+        <p className="overline"><span /> Physician-engineer in formation</p>
+        <h1>Systems for decisions<br /><em>under uncertainty.</em></h1>
+        <p className="home-deck">Arjan Singh Puniani works across neural engineering, clinical translation, and high-consequence human performance.</p>
+        <div className="hero-actions"><Link className="button" href="/work">Explore selected work <span aria-hidden="true">↗</span></Link><Link className="quiet-link" href="/motorsport">Motorsport systems <span aria-hidden="true">→</span></Link></div>
       </div>
-      <div className="v2-ticker" aria-label="Areas of work">{[...disciplines, ...disciplines].map((item, i) => <span key={`${item}-${i}`}>{item}<b>✦</b></span>)}</div>
+      <div className="discipline-rail shell" aria-label="Areas of work">{disciplines.map((item, index) => <span key={item}><b>{String(index + 1).padStart(2, "0")}</b>{item}</span>)}</div>
     </section>
 
-    <section className="v2-manifesto">
-      <div className="shell v2-manifesto-grid"><p className="v2-section-number">[ 01 — Thesis ]</p><div><h2>Engineering is most consequential when the system is human.</h2><p>I turn difficult signals, constrained environments, and incomplete evidence into tools people can understand and use.</p></div></div>
-    </section>
+    <section className="thesis-section section-rule"><div className="shell split-intro"><p className="section-index">01 / Working architecture</p><div><h2>Signal becomes useful only when it changes a decision.</h2><div className="logic-chain" aria-label="Shared systems architecture"><span>Signal</span><i>→</i><span>Interpretation</span><i>→</i><span>Decision</span><i>→</i><span>Action</span><i>→</i><span>Feedback</span></div></div></div></section>
 
-    <section className="v2-work">
-      <div className="shell v2-work-head"><p className="v2-section-number">[ 02 — Selected systems ]</p><h2>Work with a pulse.</h2><Link href="/work">View all projects ↗</Link></div>
-      <article className="v2-feature v2-feature-dark">
-        <div className="v2-feature-image v2-device"><Image src="/images/neurotechnology/seizefreeze-exploded-concept.png" alt="Exploded concept rendering of the SeizeFreeze cortical-cooling device" fill sizes="(max-width: 800px) 100vw, 50vw" /></div>
-        <div className="v2-feature-copy"><p>01 / Neurotechnology</p><h3>SeizeFreeze</h3><p className="v2-feature-lead">A focal cortical-cooling concept for drug-resistant epilepsy.</p><dl><div><dt>Role</dt><dd>Founder + device lead</dd></div><div><dt>State</dt><dd>Prototype</dd></div><div><dt>Evidence</dt><dd>$12.5K documented awards</dd></div></dl><Link href="/work/seizefreeze">Open case study <span>↗</span></Link></div>
-      </article>
-      <article className="v2-feature v2-feature-light">
-        <div className="v2-feature-copy"><p>02 / Brain-computer interfaces</p><h3>Making calibration worth finishing.</h3><p className="v2-feature-lead">Gamified psychophysics, neural recording interfaces, and patterns found across more than 940 sessions.</p><dl><div><dt>Role</dt><dd>R&amp;D neural engineer</dd></div><div><dt>State</dt><dd>Completed research</dd></div></dl><Link href="/work/bci-calibration">Open case study <span>↗</span></Link></div>
-        <div className="v2-feature-image"><Image src="/images/research/rnel-gamified-bci-task.jpg" alt="Gamified brain-computer interface calibration task in a research laboratory" fill sizes="(max-width: 800px) 100vw, 56vw" /></div>
-      </article>
-    </section>
+    <section className="selected-work section-rule"><div className="shell">
+      <header className="editorial-head"><div><p className="section-index">02 / Selected work</p><h2>Evidence, not adjectives.</h2></div><Link href="/work">Complete project index ↗</Link></header>
+      <div className="home-projects">
+        <article className="home-project home-project-featured"><div className="project-visual device-visual"><Image src="/images/neurotechnology/seizefreeze-exploded-concept.png" alt="Exploded concept rendering of the SeizeFreeze focal cortical-cooling device" fill sizes="(max-width: 800px) 100vw, 55vw" /></div><div className="home-project-copy"><div className="project-kicker"><span>Neurotechnology</span><span className="status">PROTOTYPE</span></div><h3>SeizeFreeze</h3><p>An early-stage focal cortical-cooling concept for drug-resistant epilepsy.</p><dl><div><dt>Role</dt><dd>Founder + device lead</dd></div><div><dt>Evidence</dt><dd>$12.5K in documented competition awards</dd></div></dl><Link href="/work/seizefreeze">Open case study ↗</Link></div></article>
+        <article className="home-project motorsport-feature"><div className="home-project-copy"><div className="project-kicker"><span>Motorsport / safety systems</span><span className="status status-gold">ACADEMIC STUDY</span></div><h3>Emergency operations at Sonoma</h3><p>A role-based system for coordinating response during a complex road-course race weekend.</p><dl><div><dt>Role</dt><dd>Systems analysis / academic study</dd></div><div><dt>Status</dt><dd>Course-use proposal</dd></div></dl><Link href="/work/sonoma-emergency-operations">View case study ↗</Link></div><div className="command-mini" aria-label="Compact coordination schematic"><span>Race control</span><span>Rescue</span><strong>Shared operating picture</strong><span>Medical</span><span>Operations</span></div></article>
+        <article className="home-project research-feature"><div className="project-visual"><Image src="/images/research/rnel-gamified-bci-task.jpg" alt="Gamified brain-computer interface calibration task in a research laboratory" fill sizes="(max-width: 800px) 100vw, 48vw" /></div><div className="home-project-copy"><div className="project-kicker"><span>Brain-computer interfaces</span><span className="status">COMPLETED</span></div><h3>Calibration worth finishing</h3><p>Gamified psychophysics, neural-recording interfaces, and analysis across more than 940 sessions.</p><Link href="/work/bci-calibration">Open case study ↗</Link></div></article>
+      </div>
+    </div></section>
 
-    <section className="v2-crossroads">
-      <div className="shell"><p className="v2-section-number">[ 03 — Current trajectory ]</p><div className="v2-crossroads-grid"><h2>Medicine.<br />Engineering.<br /><em>At speed.</em></h2><div><p>Current work extends into physician training and trackside neurotrauma: places where decisions must remain rigorous under pressure.</p><Link href="/work/motorsport-neurotrauma-toolkit">Explore the motorsport toolkit ↗</Link></div></div></div>
-    </section>
-
-    <section className="v2-contact"><div className="shell"><p>Have a difficult system worth building?</p><Link href="/contact">Let’s work on it. <span>↗</span></Link></div></section>
+    <section className="trajectory section-rule"><div className="shell trajectory-grid"><p className="section-index">03 / Current trajectory</p><h2>Medicine<br />at speed.</h2><div><p>Current study focuses on crash and neurotrauma documentation, emergency operations, risk systems, and human performance—without presenting academic work as field authority.</p><Link className="button button-ivory" href="/motorsport">Enter the motorsport work ↗</Link></div></div></section>
+    <section className="contact-band"><div className="shell"><p>Have a difficult system worth structuring?</p><Link href="/contact">Start with the problem. <span aria-hidden="true">↗</span></Link></div></section>
   </>;
 }
