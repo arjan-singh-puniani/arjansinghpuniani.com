@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./reasonos.css";
+import "./systems.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SiteAnalytics } from "@/components/SiteAnalytics";

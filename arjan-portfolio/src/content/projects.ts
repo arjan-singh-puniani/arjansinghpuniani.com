@@ -13,7 +13,7 @@ export const projects: Project[] = [
   },
   {
     slug: "bci-calibration", title: "Gamified BCI calibration", shortDescription: "Experimental interfaces that made repetitive neural-perception calibration easier to complete and analyze.",
-    category: ["Neurotechnology", "Software and Simulation"], status: "Completed", yearStart: 2022, yearEnd: 2024, role: "R&D neural engineer",
+    category: ["Neurotechnology", "Software and Simulation"], status: "Completed research", yearStart: 2022, yearEnd: 2024, role: "R&D neural engineer",
     problem: "Brain-computer interface calibration can be repetitive, cognitively demanding, and vulnerable to disengagement.",
     approach: ["Redesigned psychophysical tasks as game-like experimental paradigms.", "Built real-time interfaces for neural recording and behavioral response.", "Analyzed more than 940 calibration sessions for longitudinal patterns."],
     results: ["Produced reusable experimental software and structured calibration datasets.", "Identified systematic signal degradation that warranted further multi-site investigation."],
@@ -33,7 +33,7 @@ export const projects: Project[] = [
   },
   {
     slug: "doctors-without-reservations", title: "Doctors Without Reservations", shortDescription: "A proposed community-led clinical and public-health learning model with tribal nations.",
-    category: ["Public Health", "Education"], status: "Proposed", yearStart: 2025, yearEnd: "Present", role: "Concept originator",
+    category: ["Public Health", "Education"], status: "Proposal", yearStart: 2025, yearEnd: "Present", role: "Concept originator",
     problem: "Clinical education often treats tribal health as a short module rather than a sustained relationship shaped by sovereignty and local priorities.",
     approach: ["Outlined a longitudinal, culturally humble rotation model.", "Centered tribal sovereignty and community-defined needs.", "Sought faculty guidance and external dialogue before implementation."],
     results: ["Developed an initial concept and educational rationale."],
@@ -42,7 +42,7 @@ export const projects: Project[] = [
   },
   {
     slug: "ucsf-eureka", title: "Clinical research systems at UCSF Eureka", shortDescription: "Operational tools and protocols for remote and digital clinical studies.",
-    category: ["Clinical Research", "Public Health"], status: "Completed", yearStart: 2021, yearEnd: 2021, role: "Clinical research coordinator",
+    category: ["Clinical Research", "Public Health"], status: "Completed research", yearStart: 2021, yearEnd: 2021, role: "Clinical research coordinator",
     problem: "Digital studies need reliable participant operations, clear protocols, and rapid deployment without sacrificing research integrity.",
     approach: ["Supported study operations and participant workflows.", "Authored and refined standard operating procedures.", "Coordinated cross-functional deployment work."],
     results: ["Improved operational readiness; exact percentage and adoption claims remain withheld pending primary evidence."],
@@ -50,17 +50,17 @@ export const projects: Project[] = [
     evidence: [{ label: "Portfolio résumé", sourceFile: "ArjanSinghPuniani_2026.pdf", verified: true }]
   },
   {
-    slug: "motorsport-neurotrauma-toolkit", title: "Mechanism-to-Medical Center", shortDescription: "A draft crash and concussion documentation toolkit for grassroots motorsport.",
-    category: ["Motorsport Medicine", "Education"], status: "Under development", yearStart: 2026, yearEnd: "Present", role: "Designer and technical writer",
+    slug: "motorsport-neurotrauma-toolkit", title: "Mechanism-to-Medical Center", shortDescription: "An exploratory documentation and escalation framework connecting crash mechanics with acute neurologic assessment.",
+    category: ["Motorsport Medicine", "Education"], status: "Exploratory", yearStart: 2026, yearEnd: "Present", role: "Designer and technical writer",
     problem: "Concussion tools document symptoms and medical warning signs, while motorsport safety records document the crash and occupant-protection system. Those records often remain disconnected during the handoff from trackside response to medical care.",
-    approach: ["Designed a four-domain intake structure covering crash mechanism, occupant protection, acute neurological findings, and initial disposition.", "Built a companion triage and escalation algorithm for four-wheeled racing, separating clinical decisions from Race Control authority.", "Mapped fields and terminology against SCAT6 concepts, FIA Appendix H, venue rules, and local-protocol constraints.", "Created a literature-gap matrix to distinguish supported fields from unresolved evidence questions.", "Sought criticism from motorsport physicians and safety professionals, then revised the scope, terminology, and handoff sequence."],
-    results: ["Produced a version 0.3 pilot intake card and trackside escalation framework.", "Draft materials were circulated by the International Council of Motorsport Sciences executive director for expert feedback.", "External feedback clarified which information belongs at the scene, which belongs in after-action review, and where clinical judgment must remain controlling."],
+    approach: ["Designed a four-domain intake structure covering crash mechanism, occupant protection, acute neurological observations, and initial disposition.", "Built a companion pilot disposition algorithm for four-wheeled racing, separating clinical decisions from Race Control authority.", "Mapped fields and terminology against cited concussion and motorsport-safety references while preserving local-protocol constraints.", "Sought criticism from motorsport physicians and safety professionals, then recorded unresolved questions about terminology, users, observation reliability, workflow location, and series rules."],
+    results: ["Produced a Version 0.2 pilot intake card and disposition algorithm.", "External expert critique was requested and received through documented March 2026 correspondence.", "The critique identified design questions for a future revision; it did not validate, endorse, adopt, or deploy the toolkit."],
     limitations: ["Unvalidated pilot material. It is not a clinical protocol, sanctioning-body standard, or substitute for trained medical judgment.", "The current scope is four-wheeled racing only; motorcycle events require different governance and return-to-competition rules.", "Operational use would require review by the responsible medical director, sanctioning body, venue, emergency medical services agency, and local protocol authority."], featured: true,
-    evidence: [{ label: "Version 0.3 Crash Neurotrauma Intake Card", sourceFile: "Crash Neurotrauma Intake Card.pdf", verified: true }, { label: "Trackside Triage and Escalation Algorithm", sourceFile: "Trackside Triage & Escalation Algorithm.pdf", verified: true }, { label: "Motorsport concussion literature-gap matrix", sourceFile: "Motorsport_Concussion_Literature_Gap_Matrix_v0.3a.xlsx", verified: true }, { label: "ICMS expert-review correspondence", sourceFile: "Trackside toolkit grassroots motorsports email chain.pdf", verified: true }]
+    evidence: [{ label: "Version 0.2 pilot documentation toolkit", sourceFile: "Mechanism to Medical Center Crash and Concussion Card.pdf", verified: true }, { label: "Version 0.2 pilot disposition algorithm", sourceFile: "Red Flag and Dispo Algorithm.pdf", verified: true }, { label: "March 2026 expert-review correspondence", sourceFile: "Trackside toolkit grassroots motorsports email chain.pdf", verified: true }]
   },
   {
     slug: "belmont-motorsport-systems", title: "Belmont motorsport systems", shortDescription: "Academic risk, mitigation, and emergency-operations studies for a major road-racing weekend.",
-    category: ["Motorsport Medicine", "Public Health"], status: "Completed", yearStart: 2026, yearEnd: 2026, role: "Risk analyst and plan author",
+    category: ["Motorsport Medicine", "Public Health"], status: "Academic systems study", yearStart: 2026, yearEnd: 2026, role: "Risk analyst and plan author",
     problem: "A major road-racing weekend combines high-energy crashes, heat exposure, hillside crowds, restricted competition areas, temporary systems, and limited emergency-access routes. A useful plan must coordinate those risks without obstructing Race Control or public-safety authority.",
     approach: ["Built and ranked a 16-item event risk register using consistent likelihood and impact criteria.", "Developed controls for heat illness, medical surge, high-energy crashes, fire, hazardous materials, severe weather, security threats, and technology failure.", "Assigned decision roles across Race Control, fire-rescue, medical leadership, security, operations, and public information.", "Defined recovery gates for track condition, containment, communications, medical coverage, responder access, security, and required records."],
     results: ["Produced an integrated academic portfolio consisting of a risk analysis, mitigation plan, and proposed emergency and medical operations annex.", "Converted a static risk matrix into triggers, decision ownership, communications requirements, and conditions for resuming operations."],
@@ -69,7 +69,7 @@ export const projects: Project[] = [
   },
   {
     slug: "vector-ekg-reasonos", title: "Vector EKG and ReasonOS", shortDescription: "An educational prototype that preserves ECG observations, calculations, competing pathways, contradictions, provenance, and revisions.",
-    category: ["Software and Simulation", "Education"], status: "Prototype", yearStart: 2026, yearEnd: "Present", role: "Independent product designer and developer",
+    category: ["Software and Simulation", "Education"], status: "Tested educational prototype", yearStart: 2026, yearEnd: "Present", role: "Independent product designer and developer",
     problem: "Electrocardiogram teaching tools often show conclusions without preserving measurement provenance or the reasoning path.",
     approach: ["Separated a domain-independent event-sourced kernel from ECG-specific meaning.", "Built calibration, axis, corrected QT, lead-group, comparison, provenance, and evidence-ledger modules.", "Preserved accepted and rejected transformations for deterministic replay.", "Represented alternative candidate pathways without labeling them validated expert consensus."],
     results: ["The archived v0.5.0 source reports 15 kernel tests, 8 ECG-plugin tests, 27 integrated application tests, TypeScript checks, and a production build passing on August 2, 2026.", "The portfolio includes a smaller independently tested executable vertical slice."],

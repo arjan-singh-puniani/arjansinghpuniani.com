@@ -1,0 +1,280 @@
+:root {
+  --bg: #f3f0e8;
+  --paper: #fbfaf6;
+  --ink: #0a0f1c;
+  --muted: #566177;
+  --line: #c7ccd6;
+  --accent: #2c3e91;
+  --accent2: #dce2f3;
+}
+
+body { overflow-x: clip; }
+
+@media (max-width: 800px) {
+  .site-header .mobile-menu { display: block; }
+}
+
+/* Decision-system case studies */
+.motorsport-case { background: var(--bg); }
+.motorsport-hero { background: linear-gradient(118deg, #f3f0e8 0 72%, #dce2f3 72%); }
+.motorsport-hero h1 { max-width: 1000px; margin: 28px 0; }
+.status-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.status-row .status { background: rgba(251, 250, 246, .7); border-color: #8d96aa; letter-spacing: .05em; }
+.status-row .status-caution { border-color: #8b4b55; color: #702f3b; }
+.boundary-section-light { padding: 52px 0; border-top: 8px solid var(--accent); background: #e7eaf3; }
+.boundary-section-light h2 { font-size: clamp(32px, 4.5vw, 58px); }
+.boundary-section-light p { max-width: 850px; font-size: 19px; }
+
+.system-sequence {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 0;
+  margin: 42px 0 0;
+  list-style: none;
+  border: 1px solid var(--line);
+}
+.system-sequence li { position: relative; min-height: 190px; padding: 23px; border-right: 1px solid var(--line); }
+.system-sequence li:last-child { border-right: 0; }
+.system-sequence li:not(:last-child)::after { content: "→"; position: absolute; right: -9px; top: 48%; z-index: 1; padding: 0 2px; background: var(--bg); color: var(--accent); }
+.system-sequence span,
+.decision-lanes span,
+.critique-grid span { font: 10px var(--font-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--accent); }
+.system-sequence strong { display: block; margin: 34px 0 12px; font-size: 16px; }
+.system-sequence p { margin: 0; color: var(--muted); font-size: 13px; }
+.system-sequence-dark { grid-template-columns: repeat(7, 1fr); border-color: #65666a; }
+.system-sequence-dark li { min-height: 140px; border-color: #65666a; }
+.system-sequence-dark li:not(:last-child)::after { background: #303033; color: #9cabe0; }
+.system-sequence-dark span { color: #9cabe0; }
+
+.section-split-heading { display: grid; grid-template-columns: 1.1fr .9fr; gap: 80px; align-items: end; margin-bottom: 45px; }
+.section-split-heading p { color: var(--muted); font-size: 18px; }
+.risk-register,
+.ownership-map,
+.evidence-table { border: 1px solid var(--line); }
+.risk-register > div,
+.ownership-map > div,
+.evidence-table > div { display: grid; grid-template-columns: 1fr .6fr 1.4fr; border-bottom: 1px solid var(--line); }
+.risk-register > div:last-child,
+.ownership-map > div:last-child,
+.evidence-table > div:last-child { border-bottom: 0; }
+.risk-register span,
+.risk-register strong,
+.ownership-map span,
+.ownership-map strong,
+.evidence-table span,
+.evidence-table strong { padding: 17px 19px; border-right: 1px solid var(--line); }
+.risk-register span:last-child,
+.ownership-map span:last-child,
+.evidence-table span:last-child { border-right: 0; }
+.risk-head,
+.ownership-head,
+.evidence-head { background: #e1e5f0; text-transform: uppercase; font: 10px var(--font-mono); letter-spacing: .08em; }
+.dark-caption { color: var(--muted); }
+.evidence-surface { background: #e2e6f0; }
+
+.escalation-ladder { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 42px; border: 1px solid #aeb5c4; }
+.escalation-ladder article { padding: 28px; border-right: 1px solid #aeb5c4; }
+.escalation-ladder article:last-child { border-right: 0; }
+.escalation-ladder span { font: 10px var(--font-mono); color: var(--accent); }
+.escalation-ladder h3 { margin: 38px 0 14px; font-size: 34px; }
+.escalation-ladder p { color: var(--muted); }
+.ownership-map > div { grid-template-columns: .8fr 1.4fr .8fr; }
+
+.handoff-flow { display: grid; grid-template-columns: repeat(7, 1fr); padding: 0; margin: 44px 0; list-style: none; border: 1px solid #65666a; overflow-x: auto; }
+.handoff-flow li { position: relative; min-width: 130px; padding: 22px 17px; border-right: 1px solid #65666a; }
+.handoff-flow li:last-child { border-right: 0; }
+.handoff-flow li:not(:last-child)::after { content: "→"; position: absolute; right: -8px; top: 50%; z-index: 1; background: #303033; color: #9cabe0; }
+.handoff-flow span { font: 9px var(--font-mono); color: #9cabe0; }
+.handoff-flow strong { display: block; margin-top: 28px; font-size: 13px; }
+.communication-loop { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; margin-top: 55px; }
+.communication-loop > div { padding: 25px; border: 1px solid #65666a; }
+.communication-loop span { display: block; margin-bottom: 20px; font: 10px var(--font-mono); color: #9cabe0; text-transform: uppercase; }
+.communication-loop i { padding: 10px; color: #d4af37; font-style: normal; }
+
+.recovery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; margin: 28px 0; list-style: none; border: 1px solid var(--line); }
+.recovery-grid li { display: flex; gap: 12px; padding: 15px 17px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.recovery-grid li:nth-child(2n) { border-right: 0; }
+.recovery-grid li:nth-last-child(-n+2) { border-bottom: 0; }
+.recovery-grid span { color: var(--accent); }
+
+.decision-lanes { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 45px; border: 1px solid #65666a; }
+.decision-lanes article { padding: 28px; border-right: 1px solid #65666a; }
+.decision-lanes article:last-child { border-right: 0; }
+.decision-lanes h3 { margin: 38px 0 15px; font-size: 30px; }
+.decision-lanes p { color: #afb2b6; }
+.review-state { display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--line); margin-bottom: 28px; }
+.review-state div { padding: 15px; border-right: 1px solid var(--line); }
+.review-state div:last-child { border-right: 0; }
+.review-state strong { display: block; font: 9px var(--font-mono); text-transform: uppercase; color: var(--muted); }
+.review-state span { display: block; margin-top: 14px; font-weight: 800; color: #702f3b; }
+.review-state span.yes { color: #233979; }
+.critique-grid { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 55px; border: 1px solid var(--line); }
+.critique-grid article { padding: 22px; border-right: 1px solid var(--line); }
+.critique-grid article:last-child { border-right: 0; }
+.critique-grid p { margin: 28px 0 0; color: var(--muted); font-size: 14px; }
+.evidence-table > div { grid-template-columns: .75fr 1.25fr 1fr; }
+
+/* Homepage causal connections and quiet playground discovery */
+.home-motorsport-sequence { display: grid; grid-template-columns: repeat(5, 1fr); padding: 0; margin: 90px 0 0; list-style: none; border-top: 1px solid rgba(243,240,232,.6); border-bottom: 1px solid rgba(243,240,232,.6); }
+.home-motorsport-sequence li { position: relative; padding: 18px 12px; border-right: 1px solid rgba(243,240,232,.35); }
+.home-motorsport-sequence li:last-child { border-right: 0; }
+.home-motorsport-sequence span { display: block; font: 9px var(--font-mono); opacity: .7; }
+.home-motorsport-sequence strong { display: block; margin-top: 16px; font-size: 14px; }
+.home-motorsport-sequence li:not(:last-child)::after { content: "→"; position: absolute; right: -8px; top: 50%; z-index: 1; background: #647bc4; color: #f3f0e8; }
+.v2-playground-teaser { padding: 95px 0; background: #0a0f1c; color: #f3f0e8; }
+.v2-playground-teaser > .shell { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: end; }
+.v2-playground-teaser h2 { font-size: clamp(52px, 7vw, 96px); margin: 32px 0 0; }
+.v2-playground-teaser h2 em { font-family: Georgia, serif; font-weight: 400; }
+.v2-playground-teaser p { max-width: 590px; color: #a8b2c3; font-size: 19px; }
+.v2-playground-teaser a { display: inline-block; margin-top: 30px; color: #f3f0e8; font-weight: 800; }
+.mini-causal-chain { display: flex; flex-wrap: wrap; gap: 7px; margin: 27px 0; }
+.mini-causal-chain span { display: inline-flex; align-items: center; gap: 7px; font: 9px var(--font-mono); text-transform: uppercase; letter-spacing: .06em; }
+.mini-causal-chain span:not(:last-child)::after { content: "→"; color: #d4af37; }
+
+/* Playground */
+.playground-hero { background: #0a0f1c; color: #f3f0e8; }
+.playground-hero p { color: #a8b2c3; }
+.playground-card { display: grid; grid-template-columns: 1fr 260px; gap: 60px; padding: 50px; background: #111a30; color: #f3f0e8; border: 1px solid #34415d; overflow: hidden; }
+.playground-card h2 { max-width: 760px; margin: 28px 0 20px; }
+.playground-card > div > p:not(.eyebrow) { max-width: 680px; color: #a8b2c3; font-size: 18px; }
+.playground-card .button { margin-top: 20px; background: #f3f0e8; color: #0a0f1c; border-color: #f3f0e8; }
+.racket-mark { position: relative; min-height: 330px; }
+.racket-mark i { position: absolute; left: 50%; top: 20px; width: 120px; height: 190px; border: 10px solid #f3f0e8; border-radius: 50%; transform: rotate(32deg); }
+.racket-mark i::after { content: ""; position: absolute; left: 48px; bottom: -145px; width: 10px; height: 145px; background: #f3f0e8; }
+.racket-mark b { position: absolute; right: 0; top: 0; color: #d4af37; font-size: 90px; font-weight: 400; }
+
+/* Vector Tennis */
+.vector-tennis-page { background: #0a0f1c; color: #f3f0e8; }
+.tennis-hero { padding: 54px 0 48px; border-bottom: 1px solid #34415d; background: radial-gradient(circle at 82% 20%, rgba(44,62,145,.55), transparent 34%); }
+.tennis-hero h1 { max-width: none; margin: 22px 0; font-size: clamp(58px, 7.2vw, 102px); }
+.tennis-hero > div > p:last-child { max-width: 780px; color: #a8b2c3; font-size: 22px; }
+.back-link { display: inline-block; margin-bottom: 34px; color: #a8b2c3; font: 11px var(--font-mono); text-transform: uppercase; text-decoration: none; }
+.tennis-lab-section { padding: 70px 0 85px; background: #111a30; }
+.lab-title-row { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 28px; }
+.lab-title-row h2 { font-size: clamp(40px, 5vw, 68px); }
+.lab-title-row > p { max-width: 370px; color: #a8b2c3; font: 11px/1.6 var(--font-mono); text-transform: uppercase; }
+.tennis-lab { border: 1px solid #34415d; background: #0a0f1c; }
+.tennis-toolbar { display: flex; gap: 10px; align-items: center; padding: 12px; border-bottom: 1px solid #34415d; }
+.tennis-toolbar button,
+.touch-controls button { min-height: 44px; border: 1px solid #4c5a79; background: #111a30; color: #f3f0e8; padding: 0 14px; cursor: pointer; text-transform: uppercase; font: 10px var(--font-mono); letter-spacing: .05em; }
+.tennis-toolbar button[aria-pressed=true] { background: #2c3e91; border-color: #8fa6ff; }
+.shot-modes { display: flex; gap: 7px; margin-right: auto; }
+.tennis-stage { position: relative; aspect-ratio: 16/8.7; min-height: 340px; outline: none; touch-action: pan-y; cursor: crosshair; background: #0a0f1c; }
+.tennis-stage:focus-visible { outline: 3px solid #8fa6ff; outline-offset: -3px; }
+.tennis-stage canvas { display: block; width: 100%; height: 100%; pointer-events: none; }
+.stage-focus-hint { position: absolute; left: 14px; top: 14px; padding: 6px 8px; background: rgba(10,15,28,.78); color: #a8b2c3; font: 9px var(--font-mono); text-transform: uppercase; }
+.tennis-status { min-height: 52px; margin: 0; padding: 15px 18px; border-top: 1px solid #34415d; border-bottom: 1px solid #34415d; color: #d4af37; font: 11px/1.5 var(--font-mono); }
+.tennis-console { display: grid; grid-template-columns: 1fr 280px; gap: 0; border-bottom: 1px solid #34415d; }
+.tennis-readouts { display: grid; grid-template-columns: repeat(4, 1fr); }
+.tennis-readouts > div { padding: 17px; border-right: 1px solid #34415d; }
+.tennis-readouts span,
+.face-control { font: 9px var(--font-mono); text-transform: uppercase; color: #a8b2c3; }
+.tennis-readouts strong { display: block; margin-top: 13px; font-size: 20px; color: #f3f0e8; }
+.tennis-readouts small { display: block; margin-top: 4px; color: #74809b; font: 9px var(--font-mono); }
+.face-control { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; padding: 17px; }
+.face-control strong { color: #f3f0e8; }
+.face-control input { grid-column: 1/-1; width: 100%; accent-color: #d4af37; }
+.touch-controls { display: flex; justify-content: space-between; align-items: center; padding: 13px; border-bottom: 1px solid #34415d; }
+.touch-dpad { display: grid; grid-template-columns: repeat(4, 44px); gap: 6px; }
+.touch-controls .swing-button { min-width: 160px; background: #d4af37; color: #0a0f1c; border-color: #d4af37; font-weight: 800; }
+.tennis-instructions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 18px; color: #a8b2c3; font-size: 12px; }
+.tennis-instructions p { margin: 0; }
+.tennis-model { background: #f3f0e8; color: #0a0f1c; }
+.relationship-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 45px; border: 1px solid var(--line); }
+.relationship-grid article { display: grid; grid-template-columns: 1fr auto; align-items: start; min-height: 165px; padding: 23px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.relationship-grid article:nth-child(3n) { border-right: 0; }
+.relationship-grid article:nth-child(n+4) { border-bottom: 0; }
+.relationship-grid span { color: var(--accent); }
+.relationship-grid p { grid-column: 1/-1; align-self: end; margin: 28px 0 0; color: var(--muted); }
+
+@media (max-width: 900px) {
+  .motorsport-hero { background: #f3f0e8; }
+  .system-sequence-dark { grid-template-columns: repeat(7, 150px); overflow-x: auto; }
+  .critique-grid { grid-template-columns: 1fr 1fr; }
+  .critique-grid article,
+  .critique-grid article:last-child { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .critique-grid article:nth-child(2n) { border-right: 0; }
+  .critique-grid article:last-child { grid-column: 1/-1; border-right: 0; border-bottom: 0; }
+  .tennis-console { grid-template-columns: 1fr; }
+  .face-control { border-top: 1px solid #34415d; }
+}
+
+@media (max-width: 700px) {
+  .system-sequence { grid-template-columns: 1fr; }
+  .system-sequence li,
+  .system-sequence-dark li { min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .system-sequence-dark { display: grid; overflow: visible; }
+  .system-sequence-dark li { border-color: #65666a; }
+  .system-sequence li:last-child { border-bottom: 0; }
+  .system-sequence li:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -11px; background: var(--bg); }
+  .system-sequence-dark li:not(:last-child)::after { background: #303033; }
+  .section-split-heading { grid-template-columns: 1fr; gap: 22px; }
+  .risk-register > div,
+  .ownership-map > div,
+  .evidence-table > div { grid-template-columns: 1fr; }
+  .risk-register span,
+  .risk-register strong,
+  .ownership-map span,
+  .ownership-map strong,
+  .evidence-table span,
+  .evidence-table strong { border-right: 0; border-bottom: 1px solid var(--line); }
+  .risk-register > div > *:last-child,
+  .ownership-map > div > *:last-child,
+  .evidence-table > div > *:last-child { border-bottom: 0; }
+  .risk-head,
+  .ownership-head,
+  .evidence-head { display: none !important; }
+  .escalation-ladder,
+  .decision-lanes { grid-template-columns: 1fr; }
+  .escalation-ladder article,
+  .decision-lanes article { border-right: 0; border-bottom: 1px solid #aeb5c4; }
+  .decision-lanes article { border-color: #65666a; }
+  .escalation-ladder article:last-child,
+  .decision-lanes article:last-child { border-bottom: 0; }
+  .communication-loop { grid-template-columns: 1fr; }
+  .communication-loop i { transform: rotate(90deg); text-align: center; }
+  .review-state { grid-template-columns: 1fr 1fr; }
+  .review-state div { border-bottom: 1px solid var(--line); }
+  .review-state div:nth-child(2n) { border-right: 0; }
+  .review-state div:last-child { grid-column: 1/-1; border-right: 0; border-bottom: 0; }
+  .home-motorsport-sequence { grid-template-columns: 1fr; margin-top: 60px; }
+  .home-motorsport-sequence li { border-right: 0; border-bottom: 1px solid rgba(243,240,232,.35); }
+  .home-motorsport-sequence li:last-child { border-bottom: 0; }
+  .home-motorsport-sequence li:not(:last-child)::after { content: "↓"; right: 20px; background: #647bc4; }
+  .v2-playground-teaser > .shell { grid-template-columns: 1fr; gap: 36px; }
+  .playground-card { grid-template-columns: 1fr; padding: 28px; }
+  .racket-mark { display: none; }
+  .lab-title-row { align-items: start; flex-direction: column; }
+  .tennis-toolbar { align-items: stretch; flex-wrap: wrap; }
+  .shot-modes { width: 100%; margin: 0; }
+  .shot-modes button { flex: 1; }
+  .tennis-toolbar > .learning-toggle { margin-right: auto; }
+  .tennis-stage { aspect-ratio: 1/1; min-height: 330px; }
+  .tennis-readouts { grid-template-columns: 1fr 1fr; }
+  .tennis-readouts > div { border-bottom: 1px solid #34415d; }
+  .touch-dpad { grid-template-columns: repeat(4, 40px); }
+  .touch-controls .swing-button { min-width: 120px; }
+  .tennis-instructions { grid-template-columns: 1fr; }
+  .relationship-grid { grid-template-columns: 1fr; }
+  .relationship-grid article,
+  .relationship-grid article:nth-child(3n),
+  .relationship-grid article:nth-child(n+4) { border-right: 0; border-bottom: 1px solid var(--line); }
+  .relationship-grid article:last-child { border-bottom: 0; }
+}
+
+@media (max-width: 430px) {
+  .recovery-grid { grid-template-columns: 1fr; }
+  .recovery-grid li,
+  .recovery-grid li:nth-child(2n),
+  .recovery-grid li:nth-last-child(-n+2) { border-right: 0; border-bottom: 1px solid var(--line); }
+  .recovery-grid li:last-child { border-bottom: 0; }
+  .critique-grid { grid-template-columns: 1fr; }
+  .critique-grid article,
+  .critique-grid article:nth-child(2n),
+  .critique-grid article:last-child { grid-column: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  .critique-grid article:last-child { border-bottom: 0; }
+  .tennis-readouts strong { font-size: 16px; }
+  .touch-controls { align-items: stretch; flex-direction: column; gap: 10px; }
+  .touch-dpad { grid-template-columns: repeat(4, 1fr); }
+  .touch-controls .swing-button { width: 100%; }
+}
