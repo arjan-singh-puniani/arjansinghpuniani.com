@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { COURT_GROUND, createBall, isFiniteBall, resolveRacketContact, stepBall } from "@/lib/vector-tennis";
+import { COURT_GROUND, createArcadeBall, createBall, isFiniteArcadeBall, isFiniteBall, resolveRacketContact, stepArcadeBallInPlace, stepBall, strikeArcadeBall } from "@/lib/vector-tennis";
 
 describe("vector tennis physics", () => {
   it("keeps a normal feed finite", () => {
@@ -28,5 +28,27 @@ describe("vector tennis physics", () => {
     expect(result).not.toBeNull();
     expect(result?.ball.vx).toBeGreaterThan(0);
     expect(result?.ball.spin).toBeGreaterThan(0);
+  });
+
+  it("curves a slice and keeps the arcade model finite", () => {
+    const sliced = strikeArcadeBall(createArcadeBall(), "player", "slice", -0.7, 0.8, 0.9);
+    const noCurve = { ...sliced, sidespin: 0 };
+    for (let frame = 0; frame < 20; frame += 1) {
+      stepArcadeBallInPlace(sliced, 1 / 120);
+      stepArcadeBallInPlace(noCurve, 1 / 120);
+    }
+    expect(isFiniteArcadeBall(sliced)).toBe(true);
+    expect(Math.abs(sliced.vx - noCurve.vx)).toBeGreaterThan(0.03);
+  });
+
+  it("makes topspin dip more aggressively than a flat ball", () => {
+    const flat = strikeArcadeBall(createArcadeBall(), "player", "flat", 0, 0.7, 1);
+    const topspin = strikeArcadeBall(createArcadeBall(), "player", "topspin", 0, 0.7, 1);
+    flat.vy = topspin.vy;
+    for (let frame = 0; frame < 25; frame += 1) {
+      stepArcadeBallInPlace(flat, 1 / 120);
+      stepArcadeBallInPlace(topspin, 1 / 120);
+    }
+    expect(topspin.vy).toBeLessThan(flat.vy);
   });
 });

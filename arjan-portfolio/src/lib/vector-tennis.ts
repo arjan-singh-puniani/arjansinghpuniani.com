@@ -125,3 +125,102 @@ export function fillTrajectory(ball: BallState, buffer: Float32Array, steps = 70
   }
   return count;
 }
+
+export type ArcadeSide = "player" | "rival";
+export type ArcadeShot = "flat" | "topspin" | "slice";
+
+export type ArcadeBallState = {
+  x: number;
+  z: number;
+  height: number;
+  vx: number;
+  vz: number;
+  vy: number;
+  topspin: number;
+  sidespin: number;
+  bounces: number;
+  lastHit: ArcadeSide;
+  active: boolean;
+};
+
+export function createArcadeBall(server: ArcadeSide = "rival"): ArcadeBallState {
+  const direction = server === "player" ? -1 : 1;
+  return {
+    x: server === "player" ? -0.18 : 0.18,
+    z: server === "player" ? 0.7 : -0.7,
+    height: 0.5,
+    vx: 0.16 * direction,
+    vz: 1.42 * direction,
+    vy: 0.82,
+    topspin: 1.1,
+    sidespin: 0,
+    bounces: 0,
+    lastHit: server,
+    active: true,
+  };
+}
+
+export function isFiniteArcadeBall(ball: ArcadeBallState) {
+  return Object.values(ball).every((value) => typeof value === "boolean" || typeof value === "string" || Number.isFinite(value));
+}
+
+export function stepArcadeBallInPlace(ball: ArcadeBallState, dt: number) {
+  if (!ball.active) return ball;
+  if (!isFiniteArcadeBall(ball) || !Number.isFinite(dt) || dt <= 0) {
+    Object.assign(ball, createArcadeBall());
+    return ball;
+  }
+
+  // Compact arcade model: Magnus-like curve, topspin dip, drag, and spin-sensitive bounce.
+  const drag = Math.pow(0.998, dt * 120);
+  ball.vx += ball.sidespin * 0.075 * dt;
+  ball.vy -= (3.05 + Math.max(0, ball.topspin) * 0.12) * dt;
+  ball.vx *= drag;
+  ball.vz *= drag;
+  ball.x += ball.vx * dt;
+  ball.z += ball.vz * dt;
+  ball.height += ball.vy * dt;
+
+  if (ball.height <= 0 && ball.vy < 0) {
+    ball.height = 0;
+    ball.vy = -ball.vy * Math.max(0.52, 0.72 - Math.abs(ball.topspin) * 0.018);
+    ball.vx += ball.sidespin * 0.045;
+    ball.vz *= 1 + Math.max(0, ball.topspin) * 0.012;
+    ball.topspin *= 0.74;
+    ball.sidespin *= 0.76;
+    ball.bounces += 1;
+  }
+
+  if (Math.abs(ball.x) > 1.32 || Math.abs(ball.z) > 1.38 || ball.bounces > 1) ball.active = false;
+  if (!isFiniteArcadeBall(ball)) Object.assign(ball, createArcadeBall());
+  return ball;
+}
+
+export function strikeArcadeBall(
+  ball: ArcadeBallState,
+  side: ArcadeSide,
+  shot: ArcadeShot,
+  aimX: number,
+  charge: number,
+  timing: number,
+): ArcadeBallState {
+  const direction = side === "player" ? -1 : 1;
+  const cleanTiming = Math.max(0, Math.min(1, timing));
+  const cleanCharge = Math.max(0, Math.min(1, charge));
+  const pace = (1.58 + cleanCharge * 0.72 + cleanTiming * 0.28) * (shot === "flat" ? 1.12 : shot === "slice" ? 0.9 : 1);
+  const target = Math.max(-0.84, Math.min(0.84, aimX));
+  const distance = side === "player" ? ball.z + 0.76 : 0.76 - ball.z;
+  const travel = Math.max(1.15, Math.abs(distance));
+  const next = {
+    ...ball,
+    vx: (target - ball.x) * (pace / travel) + (shot === "slice" ? (side === "player" ? -0.22 : 0.22) : 0),
+    vz: pace * direction,
+    vy: shot === "flat" ? 0.62 : shot === "topspin" ? 0.9 : 0.72,
+    topspin: shot === "topspin" ? 7.2 + cleanCharge * 3.2 : shot === "slice" ? -2.8 : 1.1,
+    sidespin: shot === "slice" ? (side === "player" ? 4.7 : -4.7) : (target - ball.x) * 1.2,
+    bounces: 0,
+    lastHit: side,
+    active: true,
+  } satisfies ArcadeBallState;
+  return isFiniteArcadeBall(next) ? next : createArcadeBall(side);
+}

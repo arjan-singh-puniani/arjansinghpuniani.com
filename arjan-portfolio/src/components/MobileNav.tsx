@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-const nav = [["Work", "/work"], ["Research", "/research"], ["About", "/about"], ["CV", "/cv"], ["Notes", "/notes"], ["Contact", "/contact"]] as const;
+const nav = [["Work", "/work"], ["Research", "/research"], ["Playground", "/playground"], ["About", "/about"], ["CV", "/cv"], ["Notes", "/notes"], ["Contact", "/contact"]] as const;
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);

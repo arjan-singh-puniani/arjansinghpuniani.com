@@ -143,42 +143,65 @@ body { overflow-x: clip; }
 .racket-mark i::after { content: ""; position: absolute; left: 48px; bottom: -145px; width: 10px; height: 145px; background: #f3f0e8; }
 .racket-mark b { position: absolute; right: 0; top: 0; color: #d4af37; font-size: 90px; font-weight: 400; }
 
-/* Vector Tennis */
-.vector-tennis-page { background: #0a0f1c; color: #f3f0e8; }
-.tennis-hero { padding: 54px 0 48px; border-bottom: 1px solid #34415d; background: radial-gradient(circle at 82% 20%, rgba(44,62,145,.55), transparent 34%); }
-.tennis-hero h1 { max-width: none; margin: 22px 0; font-size: clamp(58px, 7.2vw, 102px); }
-.tennis-hero > div > p:last-child { max-width: 780px; color: #a8b2c3; font-size: 22px; }
-.back-link { display: inline-block; margin-bottom: 34px; color: #a8b2c3; font: 11px var(--font-mono); text-transform: uppercase; text-decoration: none; }
-.tennis-lab-section { padding: 70px 0 85px; background: #111a30; }
+/* Vector Tennis: cyberpunk arcade court */
+.vector-tennis-page { background: #080715; color: #f8fbff; --tennis-cyan: #35ecff; --tennis-pink: #ff39cf; --tennis-yellow: #ffeb49; }
+.tennis-hero { position: relative; overflow: hidden; padding: 62px 0 58px; border-bottom: 1px solid #35355d; background: radial-gradient(circle at 82% 28%, rgba(255,57,207,.25), transparent 25%), radial-gradient(circle at 68% 70%, rgba(53,236,255,.12), transparent 30%), linear-gradient(135deg,#080715,#17123d); }
+.tennis-hero::after { content: ""; position: absolute; inset: 0; opacity: .18; pointer-events: none; background-image: linear-gradient(rgba(53,236,255,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(53,236,255,.18) 1px,transparent 1px); background-size: 44px 44px; mask-image: linear-gradient(to bottom,transparent,#000); }
+.tennis-hero .shell { position: relative; z-index: 1; }
+.tennis-hero h1 { max-width: none; margin: 22px 0; font-size: clamp(64px, 9vw, 132px); line-height: .82; text-transform: uppercase; text-shadow: 5px 5px 0 rgba(255,57,207,.28); }
+.tennis-hero > div > p:last-child { max-width: 820px; color: #b9c4df; font-size: 22px; }
+.tennis-hero .eyebrow,.tennis-lab-section .eyebrow { color: var(--tennis-cyan); }
+.tennis-hero .status { border-color: rgba(53,236,255,.45); color: var(--tennis-cyan); background: rgba(8,7,21,.55); }
+.back-link { display: inline-block; margin-bottom: 34px; color: #b9c4df; font: 11px var(--font-mono); text-transform: uppercase; text-decoration: none; }
+.tennis-lab-section { padding: 70px 0 90px; background: linear-gradient(180deg,#11102d,#080715); }
 .lab-title-row { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 28px; }
-.lab-title-row h2 { font-size: clamp(40px, 5vw, 68px); }
-.lab-title-row > p { max-width: 370px; color: #a8b2c3; font: 11px/1.6 var(--font-mono); text-transform: uppercase; }
-.tennis-lab { border: 1px solid #34415d; background: #0a0f1c; }
-.tennis-toolbar { display: flex; gap: 10px; align-items: center; padding: 12px; border-bottom: 1px solid #34415d; }
-.tennis-toolbar button,
-.touch-controls button { min-height: 44px; border: 1px solid #4c5a79; background: #111a30; color: #f3f0e8; padding: 0 14px; cursor: pointer; text-transform: uppercase; font: 10px var(--font-mono); letter-spacing: .05em; }
-.tennis-toolbar button[aria-pressed=true] { background: #2c3e91; border-color: #8fa6ff; }
-.shot-modes { display: flex; gap: 7px; margin-right: auto; }
-.tennis-stage { position: relative; aspect-ratio: 16/8.7; min-height: 340px; outline: none; touch-action: pan-y; cursor: crosshair; background: #0a0f1c; }
-.tennis-stage:focus-visible { outline: 3px solid #8fa6ff; outline-offset: -3px; }
+.lab-title-row h2 { font-size: clamp(46px, 6vw, 78px); text-transform: uppercase; }
+.lab-title-row > p { max-width: 370px; color: #aab6d2; font: 11px/1.6 var(--font-mono); text-transform: uppercase; }
+.tennis-lab { border: 1px solid #3d406d; background: #090817; box-shadow: 0 40px 100px rgba(0,0,0,.45),0 0 60px rgba(53,236,255,.06); }
+.arcade-marquee { display: grid; grid-template-columns: 1fr minmax(220px,1.2fr) 1fr; align-items: stretch; min-height: 82px; border-bottom: 1px solid #3d406d; background: #0e0c22; }
+.arcade-marquee > div { display: flex; align-items: center; gap: 18px; padding: 10px 22px; }
+.arcade-marquee > div:last-child { justify-content: flex-end; }
+.arcade-marquee > div strong { color: var(--tennis-yellow); font-size: 48px; line-height: 1; font-style: italic; }
+.arcade-marquee > div span { color: #f8fbff; font: 800 11px var(--font-mono); letter-spacing: .12em; }
+.arcade-marquee > p { display: grid; place-content: center; margin: 0; border-inline: 1px solid #3d406d; text-align: center; text-transform: uppercase; }
+.arcade-marquee > p span { color: var(--tennis-pink); font: 9px var(--font-mono); letter-spacing: .14em; }
+.arcade-marquee > p b { margin-top: 4px; font: 800 15px var(--font-mono); }
+.tennis-toolbar { display: flex; gap: 8px; align-items: center; padding: 10px 12px; border-bottom: 1px solid #3d406d; background: #0c0b1e; }
+.tennis-toolbar button,.touch-controls button { min-height: 40px; border: 1px solid #454973; background: #151432; color: #f8fbff; padding: 0 13px; cursor: pointer; text-transform: uppercase; font: 9px var(--font-mono); letter-spacing: .06em; }
+.tennis-toolbar button:hover,.touch-controls button:hover { border-color: var(--tennis-cyan); }
+.tennis-toolbar button[aria-pressed=true] { color: #070915; background: var(--tennis-cyan); border-color: var(--tennis-cyan); box-shadow: 0 0 18px rgba(53,236,255,.3); }
+.difficulty-modes { display: flex; align-items: center; gap: 6px; margin-right: auto; }
+.difficulty-modes > span { margin-right: 4px; color: #8895b8; font: 9px var(--font-mono); text-transform: uppercase; }
+.tennis-stage { position: relative; aspect-ratio: 16/9.2; min-height: 420px; outline: none; touch-action: pan-y; cursor: crosshair; background: #070617; overflow: hidden; }
+.tennis-stage:focus-visible { outline: 3px solid var(--tennis-cyan); outline-offset: -3px; }
 .tennis-stage canvas { display: block; width: 100%; height: 100%; pointer-events: none; }
-.stage-focus-hint { position: absolute; left: 14px; top: 14px; padding: 6px 8px; background: rgba(10,15,28,.78); color: #a8b2c3; font: 9px var(--font-mono); text-transform: uppercase; }
-.tennis-status { min-height: 52px; margin: 0; padding: 15px 18px; border-top: 1px solid #34415d; border-bottom: 1px solid #34415d; color: #d4af37; font: 11px/1.5 var(--font-mono); }
-.tennis-console { display: grid; grid-template-columns: 1fr 280px; gap: 0; border-bottom: 1px solid #34415d; }
-.tennis-readouts { display: grid; grid-template-columns: repeat(4, 1fr); }
-.tennis-readouts > div { padding: 17px; border-right: 1px solid #34415d; }
-.tennis-readouts span,
-.face-control { font: 9px var(--font-mono); text-transform: uppercase; color: #a8b2c3; }
-.tennis-readouts strong { display: block; margin-top: 13px; font-size: 20px; color: #f3f0e8; }
-.tennis-readouts small { display: block; margin-top: 4px; color: #74809b; font: 9px var(--font-mono); }
-.face-control { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; padding: 17px; }
-.face-control strong { color: #f3f0e8; }
-.face-control input { grid-column: 1/-1; width: 100%; accent-color: #d4af37; }
-.touch-controls { display: flex; justify-content: space-between; align-items: center; padding: 13px; border-bottom: 1px solid #34415d; }
-.touch-dpad { display: grid; grid-template-columns: repeat(4, 44px); gap: 6px; }
-.touch-controls .swing-button { min-width: 160px; background: #d4af37; color: #0a0f1c; border-color: #d4af37; font-weight: 800; }
-.tennis-instructions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 18px; color: #a8b2c3; font-size: 12px; }
+.stage-focus-hint { position: absolute; right: 14px; top: 14px; padding: 7px 9px; border: 1px solid rgba(53,236,255,.3); background: rgba(7,6,23,.78); color: #aab6d2; font: 9px var(--font-mono); text-transform: uppercase; }
+.overdrive-meter { position: absolute; left: 18px; bottom: 16px; display: grid; grid-template-columns: auto minmax(100px,180px) auto; align-items: center; gap: 9px; padding: 8px 10px; border: 1px solid rgba(255,235,73,.35); background: rgba(7,6,23,.82); color: var(--tennis-yellow); font: 8px var(--font-mono); text-transform: uppercase; }
+.overdrive-meter i { display: block; width: clamp(80px,15vw,180px); height: 7px; background: rgba(255,255,255,.1); overflow: hidden; }
+.overdrive-meter i b { display: block; height: 100%; background: var(--tennis-yellow); box-shadow: 0 0 12px var(--tennis-yellow); transition: width .15s; }
+.tennis-status { display: flex; gap: 14px; min-height: 52px; margin: 0; padding: 15px 18px; border-top: 1px solid #3d406d; border-bottom: 1px solid #3d406d; color: #bec8e0; font: 11px/1.5 var(--font-mono); }
+.tennis-status span { flex: 0 0 auto; color: var(--tennis-yellow); font-weight: 800; }
+.arcade-console { display: grid; grid-template-columns: 1fr 250px; border-bottom: 1px solid #3d406d; }
+.shot-deck { display: grid; grid-template-columns: repeat(3,1fr); }
+.shot-card { position: relative; display: grid; gap: 5px; min-height: 104px; padding: 17px 18px; color: #f8fbff; text-align: left; border: 0; border-right: 1px solid #3d406d; background: #0d0c20; cursor: pointer; text-transform: uppercase; }
+.shot-card > span { position: absolute; right: 10px; top: 10px; display: grid; place-items: center; width: 24px; height: 24px; border: 1px solid #4c527d; color: #8895b8; font: 10px var(--font-mono); }
+.shot-card strong { font-size: 18px; letter-spacing: -.02em; }
+.shot-card small { color: #8895b8; font: 9px var(--font-mono); }
+.shot-card[aria-pressed=true] { background: linear-gradient(135deg,rgba(53,236,255,.2),rgba(255,57,207,.1)); box-shadow: inset 0 -3px var(--tennis-cyan); }
+.shot-flat[aria-pressed=true] { box-shadow: inset 0 -3px var(--tennis-yellow); }
+.shot-slice[aria-pressed=true] { box-shadow: inset 0 -3px var(--tennis-pink); }
+.arcade-readouts { display: grid; grid-template-columns: 1fr 1fr; }
+.arcade-readouts div { display: grid; align-content: center; padding: 15px; border-right: 1px solid #3d406d; }
+.arcade-readouts div:last-child { border-right: 0; }
+.arcade-readouts span,.arcade-readouts small { color: #8895b8; font: 8px var(--font-mono); text-transform: uppercase; }
+.arcade-readouts strong { margin: 6px 0 2px; color: var(--tennis-cyan); font-size: 22px; }
+.touch-controls { display: flex; justify-content: space-between; align-items: center; padding: 13px; border-bottom: 1px solid #3d406d; }
+.touch-dpad { display: grid; grid-template-columns: repeat(4,44px); gap: 6px; }
+.arcade-touch p { margin: 0; max-width: 480px; color: #8995b6; font: 10px/1.5 var(--font-mono); text-transform: uppercase; }
+.tennis-instructions { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; padding: 18px 18px 10px; color: #aab6d2; font-size: 12px; }
 .tennis-instructions p { margin: 0; }
+.tennis-instructions strong { color: #f8fbff; }
+.model-units-note { margin: 0; padding: 0 18px 18px; color: #626e91; font: 9px var(--font-mono); }
 .tennis-model { background: #f3f0e8; color: #0a0f1c; }
 .relationship-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 45px; border: 1px solid var(--line); }
 .relationship-grid article { display: grid; grid-template-columns: 1fr auto; align-items: start; min-height: 165px; padding: 23px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -195,8 +218,8 @@ body { overflow-x: clip; }
   .critique-grid article:last-child { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .critique-grid article:nth-child(2n) { border-right: 0; }
   .critique-grid article:last-child { grid-column: 1/-1; border-right: 0; border-bottom: 0; }
-  .tennis-console { grid-template-columns: 1fr; }
-  .face-control { border-top: 1px solid #34415d; }
+  .arcade-console { grid-template-columns: 1fr; }
+  .arcade-readouts { border-top: 1px solid #3d406d; }
 }
 
 @media (max-width: 700px) {
@@ -245,15 +268,21 @@ body { overflow-x: clip; }
   .playground-card { grid-template-columns: 1fr; padding: 28px; }
   .racket-mark { display: none; }
   .lab-title-row { align-items: start; flex-direction: column; }
+  .arcade-marquee { grid-template-columns: 1fr auto 1fr; }
+  .arcade-marquee > p { min-width: 150px; }
+  .arcade-marquee > p span { display: none; }
+  .arcade-marquee > div { padding: 10px 14px; }
+  .arcade-marquee > div strong { font-size: 38px; }
   .tennis-toolbar { align-items: stretch; flex-wrap: wrap; }
-  .shot-modes { width: 100%; margin: 0; }
-  .shot-modes button { flex: 1; }
+  .difficulty-modes { width: 100%; margin: 0; }
+  .difficulty-modes button { flex: 1; }
   .tennis-toolbar > .learning-toggle { margin-right: auto; }
-  .tennis-stage { aspect-ratio: 1/1; min-height: 330px; }
-  .tennis-readouts { grid-template-columns: 1fr 1fr; }
-  .tennis-readouts > div { border-bottom: 1px solid #34415d; }
+  .tennis-stage { aspect-ratio: 1/1.08; min-height: 0; }
+  .stage-focus-hint { display: none; }
+  .shot-card { min-height: 96px; padding: 14px 11px; }
+  .shot-card > span { display: none; }
   .touch-dpad { grid-template-columns: repeat(4, 40px); }
-  .touch-controls .swing-button { min-width: 120px; }
+  .arcade-touch { align-items: flex-start; gap: 15px; }
   .tennis-instructions { grid-template-columns: 1fr; }
   .relationship-grid { grid-template-columns: 1fr; }
   .relationship-grid article,
@@ -273,8 +302,17 @@ body { overflow-x: clip; }
   .critique-grid article:nth-child(2n),
   .critique-grid article:last-child { grid-column: auto; border-right: 0; border-bottom: 1px solid var(--line); }
   .critique-grid article:last-child { border-bottom: 0; }
-  .tennis-readouts strong { font-size: 16px; }
+  .arcade-marquee > p { min-width: 116px; }
+  .arcade-marquee > p b { font-size: 10px; }
+  .arcade-marquee > div { gap: 8px; padding: 8px; }
+  .arcade-marquee > div span { font-size: 8px; }
+  .arcade-marquee > div strong { font-size: 32px; }
+  .tennis-stage { min-height: 0; }
+  .overdrive-meter { right: 10px; left: 10px; grid-template-columns: auto 1fr auto; }
+  .shot-card strong { font-size: 13px; }
+  .shot-card small { font-size: 7px; }
+  .arcade-readouts strong { font-size: 18px; }
   .touch-controls { align-items: stretch; flex-direction: column; gap: 10px; }
   .touch-dpad { grid-template-columns: repeat(4, 1fr); }
-  .touch-controls .swing-button { width: 100%; }
+  .arcade-touch p { max-width: none; }
 }
