@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { TennisAudio } from "@/lib/tennis/audio";
 import { ENDLESS_RALLY_CONFIG } from "@/lib/tennis/config";
-import { evaluateContact, type ContactEvaluation, type ContactLabel, type FailureCause } from "@/lib/tennis/contact";
+import { evaluateRallyContact, type ContactEvaluation, type ContactLabel, type FailureCause } from "@/lib/tennis/contact";
 import {
   applyContactToScore,
   canAcceptSwing,
@@ -23,7 +23,7 @@ import {
   saveEndlessRallyStats,
   type EndlessRallyStats,
 } from "@/lib/tennis/persistence";
-import { createArcadeBall, stepArcadeBallInPlace, strikeArcadeBall, type ArcadeBallState, type ArcadeShot } from "@/lib/vector-tennis";
+import { createArcadeBall, ensureArcadeNetClearance, stepArcadeBallInPlace, strikeArcadeBall, type ArcadeBallState, type ArcadeShot } from "@/lib/vector-tennis";
 
 type InputType = "keyboard" | "pointer" | "touch";
 type RallyView = {
@@ -272,6 +272,12 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
       ball.vz *= contact.restitution * contact.paceScale;
       ball.vx *= 0.8 + contact.spinTransfer * 0.35;
       if (contact.label === "DEFENSIVE") ball.vy += 0.3;
+      const minimumNetClearance = contact.label === "PERFECT"
+        ? ENDLESS_RALLY_CONFIG.contact.perfectNetClearance
+        : contact.label === "CLEAN"
+          ? ENDLESS_RALLY_CONFIG.contact.cleanNetClearance
+          : ENDLESS_RALLY_CONFIG.contact.defensiveNetClearance;
+      ball = ensureArcadeNetClearance(ball, minimumNetClearance);
       playerReturnedBall = true;
       swingPending = false;
       audio.impact(contact.label);
@@ -283,7 +289,7 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
       const timingErrorMs = swingImpactSimMs - expectedContactSimMs;
       lastTimingErrorMs = timingErrorMs;
       const stringOffset = (ball.x - player.x) / ENDLESS_RALLY_CONFIG.contact.racketReachX + timingErrorMs / 520;
-      const contact = evaluateContact({
+      const contact = evaluateRallyContact({
         timingErrorMs,
         ballX: ball.x,
         ballHeight: ball.height,
@@ -294,7 +300,7 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
         stringBedOffset: stringOffset,
         incomingSpeed: Math.hypot(ball.vx, ball.vz, ball.vy),
         incomingSpin: ball.topspin + ball.sidespin,
-      });
+      }, score.rally);
       if (!contact.successful) {
         audio.impact(contact.label);
         finishRun(contact.failureCause ?? "frame", contact.label, timingErrorMs);
@@ -643,7 +649,7 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
       <canvas ref={canvasRef} aria-hidden="true" />
       <p className="endless-score" aria-hidden="true"><span>Rally</span><strong>{view.rally}</strong></p>
       {view.feedback ? <p className={`endless-feedback feedback-${view.feedback.toLowerCase()}`}>{view.feedback}</p> : null}
-      {active ? <div className="endless-live-meta" aria-hidden="true"><span>Precision {view.precisionScore}</span><span>{view.multiplier.toFixed(2)}×</span><span>Tier {view.tier + 1}</span></div> : null}
+      {active ? <div className="endless-live-meta" aria-hidden="true"><span>Precision {view.precisionScore}</span><span>{view.multiplier.toFixed(2)}×</span><span>{view.rally < ENDLESS_RALLY_CONFIG.openingAssistance.successfulReturns ? "Opening assist" : `Tier ${view.tier + 1}`}</span></div> : null}
 
       {(view.state === "READY" || view.state === "TITLE") && <div className="endless-overlay endless-title">
         <p className="eyebrow">Vector Tennis</p>
@@ -668,6 +674,6 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
     </div>
 
     <p className="sr-only" aria-live="polite">{active ? `Rally ${view.rally}. ${view.feedback}` : view.result ? `Run ended at rally ${view.result.rally}. ${view.result.failureCause}.` : "Ready to play."}</p>
-    <div className="endless-footer" id="endless-how"><p><strong>One input.</strong> Space, click, or tap swings. The player handles footwork; you own the timing.</p><p><strong>Timing bands.</strong> Perfect ≤35 ms · Clean ≤80 ms · Defensive ≤130 ms. The windows never shrink.</p><p><strong>Difficulty.</strong> Ball speed, placement, depth, and spin rise every four returns.</p></div>
+    <div className="endless-footer" id="endless-how"><p><strong>One input.</strong> Space, click, or tap swings. The player handles footwork; you own the timing.</p><p><strong>Opening assist.</strong> The first four returns use a generous sweet spot; centered Clean timing is upgraded to Perfect.</p><p><strong>Timing bands.</strong> Perfect ≤35 ms · Clean ≤80 ms · Defensive ≤130 ms. The windows never shrink.</p><p><strong>Difficulty.</strong> Ball speed, placement, depth, and spin rise every four returns.</p></div>
   </section>;
 }

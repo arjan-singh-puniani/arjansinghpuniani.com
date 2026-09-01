@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { COURT_GROUND, createArcadeBall, createBall, isFiniteArcadeBall, isFiniteBall, resolveRacketContact, stepArcadeBallInPlace, stepBall, strikeArcadeBall } from "@/lib/vector-tennis";
+import { ARCADE_NET_HEIGHT, COURT_GROUND, createArcadeBall, createBall, ensureArcadeNetClearance, isFiniteArcadeBall, isFiniteBall, resolveRacketContact, stepArcadeBallInPlace, stepBall, strikeArcadeBall } from "@/lib/vector-tennis";
 
 describe("vector tennis physics", () => {
   it("keeps a normal feed finite", () => {
@@ -56,6 +56,14 @@ describe("vector tennis physics", () => {
     const ball = strikeArcadeBall({ ...createArcadeBall(), x: 0, z: 0.48, height: 0 }, "player", shot, 0.2, 0.7, 0.75);
     while (ball.z > 0 && ball.active) stepArcadeBallInPlace(ball, 1 / 240);
     expect(ball.height).toBeGreaterThan(0.2);
+  });
+
+  it("recalculates clearance after a defensive return loses pace", () => {
+    let ball = strikeArcadeBall({ ...createArcadeBall(), x: 0.15, z: 0.72, height: 0.12 }, "player", "slice", -0.2, 0.42, 0.48);
+    ball.vz *= 0.55;
+    ball = ensureArcadeNetClearance(ball, 0.3);
+    while (ball.z > 0 && ball.active) stepArcadeBallInPlace(ball, 1 / 240);
+    expect(ball.height).toBeGreaterThan(ARCADE_NET_HEIGHT);
   });
 
   it("makes the three arcade shots measurably distinct", () => {

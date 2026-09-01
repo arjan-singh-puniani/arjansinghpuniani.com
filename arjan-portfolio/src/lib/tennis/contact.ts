@@ -56,3 +56,33 @@ export function evaluateContact(input: ContactEvaluationInput, config: EndlessRa
   if (label === "CLEAN") return { label, successful: true, timingErrorMs: input.timingErrorMs, restitution: 0.82 + incomingLoad, spinTransfer: 0.58, paceScale: 1 };
   return { label, successful: true, timingErrorMs: input.timingErrorMs, restitution: 0.7 + incomingLoad, spinTransfer: 0.42, paceScale: 0.78 };
 }
+
+export function evaluateRallyContact(input: ContactEvaluationInput, successfulReturns: number, config: EndlessRallyConfig = ENDLESS_RALLY_CONFIG): ContactEvaluation {
+  const openingAssist = successfulReturns < config.openingAssistance.successfulReturns;
+  if (!openingAssist) return evaluateContact(input, config);
+
+  const assistedConfig: EndlessRallyConfig = {
+    ...config,
+    contact: {
+      ...config.contact,
+      racketReachX: config.openingAssistance.racketReachX,
+      racketReachHeight: config.openingAssistance.racketReachHeight,
+      sweetSpotMaxOffset: config.openingAssistance.sweetSpotMaxOffset,
+      frameMinOffset: config.openingAssistance.frameMinOffset,
+      minFaceNormalZ: config.openingAssistance.minFaceNormalZ,
+      minRacketHeadSpeed: config.openingAssistance.minRacketHeadSpeed,
+    },
+  };
+  const evaluation = evaluateContact(input, assistedConfig);
+  const assistedSweetSpot = evaluation.successful
+    && evaluation.label === "CLEAN"
+    && Math.abs(input.stringBedOffset) <= config.openingAssistance.sweetSpotMaxOffset;
+  if (!assistedSweetSpot) return evaluation;
+  return {
+    ...evaluation,
+    label: "PERFECT",
+    restitution: Math.max(evaluation.restitution, 0.94),
+    spinTransfer: Math.max(evaluation.spinTransfer, 0.7),
+    paceScale: Math.max(evaluation.paceScale, 1.08),
+  };
+}

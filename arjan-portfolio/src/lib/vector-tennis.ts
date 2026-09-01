@@ -144,6 +144,9 @@ export type ArcadeBallState = {
   active: boolean;
 };
 
+export const ARCADE_NET_HEIGHT = 0.2;
+export const DEFAULT_ARCADE_NET_CLEARANCE = 0.34;
+
 export function createArcadeBall(server: ArcadeSide = "rival"): ArcadeBallState {
   const direction = server === "player" ? -1 : 1;
   return {
@@ -164,6 +167,22 @@ export function createArcadeBall(server: ArcadeSide = "rival"): ArcadeBallState 
 
 export function isFiniteArcadeBall(ball: ArcadeBallState) {
   return Object.values(ball).every((value) => typeof value === "boolean" || typeof value === "string" || Number.isFinite(value));
+}
+
+/**
+ * Adds only the upward velocity required to clear the net. The ball still follows
+ * the ordinary fixed-step trajectory, including drag, gravity, spin, and bounce.
+ */
+export function ensureArcadeNetClearance(ball: ArcadeBallState, minimumHeight = DEFAULT_ARCADE_NET_CLEARANCE): ArcadeBallState {
+  const next = { ...ball };
+  if (!next.active || !isFiniteArcadeBall(next) || next.z * next.vz >= 0 || Math.abs(next.vz) < 0.05) return next;
+  const travelSeconds = Math.abs(next.z / next.vz);
+  if (!Number.isFinite(travelSeconds) || travelSeconds > 2.2) return next;
+  const downwardAcceleration = 3.05 + Math.max(0, next.topspin) * 0.12;
+  const requiredVy = (minimumHeight - next.height + 0.5 * downwardAcceleration * travelSeconds ** 2) / travelSeconds;
+  // The analytic estimate ignores drag, so retain a small deterministic safety margin.
+  next.vy = Math.max(next.vy, requiredVy * 1.08 + 0.08);
+  return isFiniteArcadeBall(next) ? next : { ...ball };
 }
 
 export function stepArcadeBallInPlace(ball: ArcadeBallState, dt: number) {
@@ -227,5 +246,5 @@ export function strikeArcadeBall(
     lastHit: side,
     active: true,
   } satisfies ArcadeBallState;
-  return isFiniteArcadeBall(next) ? next : createArcadeBall(side);
+  return isFiniteArcadeBall(next) ? ensureArcadeNetClearance(next) : createArcadeBall(side);
 }

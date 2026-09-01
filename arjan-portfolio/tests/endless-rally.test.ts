@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { ENDLESS_RALLY_CONFIG } from "@/lib/tennis/config";
-import { classifyTiming, evaluateContact } from "@/lib/tennis/contact";
+import { classifyTiming, evaluateContact, evaluateRallyContact } from "@/lib/tennis/contact";
 import { applyContactToScore, canAcceptSwing, createRunScore, endRun, transitionEndlessRally } from "@/lib/tennis/endless-rally-machine";
 import { dailyRallySeed, difficultyTierForRally, generatePatternSequence, generateRallyPattern, isPatternReachable } from "@/lib/tennis/rally-generator";
 import { DEFAULT_ENDLESS_RALLY_STATS, loadEndlessRallyStats, mergeRunIntoStats, parseEndlessRallyStats, saveEndlessRallyStats } from "@/lib/tennis/persistence";
@@ -38,6 +38,15 @@ describe("Endless Rally contact", () => {
     expect(evaluateContact({ ...physicalContact, timingErrorMs: 0 }).label).toBe("PERFECT");
     expect(evaluateContact({ ...physicalContact, timingErrorMs: 0, stringBedOffset: 0.86 }).label).toBe("FRAME");
     expect(evaluateContact({ ...physicalContact, timingErrorMs: 0, ballX: 0.8 }).label).toBe("UNREACHABLE");
+  });
+
+  it("makes the opening sweet spot generous without changing the timing bands", () => {
+    const opening = evaluateRallyContact({ ...physicalContact, timingErrorMs: 60, stringBedOffset: 0.65 }, 0);
+    const standard = evaluateRallyContact({ ...physicalContact, timingErrorMs: 60, stringBedOffset: 0.65 }, 4);
+    expect(opening.label).toBe("PERFECT");
+    expect(opening.successful).toBe(true);
+    expect(standard.label).toBe("CLEAN");
+    expect(classifyTiming(60)).toBe("CLEAN");
   });
 });
 

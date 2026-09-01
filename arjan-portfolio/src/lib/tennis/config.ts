@@ -13,6 +13,18 @@ export type EndlessRallyConfig = {
     frameMinOffset: number;
     minFaceNormalZ: number;
     minRacketHeadSpeed: number;
+    perfectNetClearance: number;
+    cleanNetClearance: number;
+    defensiveNetClearance: number;
+  };
+  openingAssistance: {
+    successfulReturns: number;
+    racketReachX: number;
+    racketReachHeight: number;
+    sweetSpotMaxOffset: number;
+    frameMinOffset: number;
+    minFaceNormalZ: number;
+    minRacketHeadSpeed: number;
   };
   difficulty: {
     returnsPerTier: number;
@@ -51,17 +63,29 @@ export const ENDLESS_RALLY_CONFIG: EndlessRallyConfig = {
     swingLeadMs: 54,
   },
   contact: {
-    racketReachX: 0.3,
-    racketReachHeight: 0.34,
-    sweetSpotMaxOffset: 0.34,
-    frameMinOffset: 0.78,
-    minFaceNormalZ: 0.58,
-    minRacketHeadSpeed: 0.72,
+    racketReachX: 0.34,
+    racketReachHeight: 0.4,
+    sweetSpotMaxOffset: 0.44,
+    frameMinOffset: 0.84,
+    minFaceNormalZ: 0.52,
+    minRacketHeadSpeed: 0.62,
+    perfectNetClearance: 0.42,
+    cleanNetClearance: 0.36,
+    defensiveNetClearance: 0.3,
+  },
+  openingAssistance: {
+    successfulReturns: 4,
+    racketReachX: 0.42,
+    racketReachHeight: 0.48,
+    sweetSpotMaxOffset: 0.72,
+    frameMinOffset: 0.96,
+    minFaceNormalZ: 0.44,
+    minRacketHeadSpeed: 0.52,
   },
   difficulty: {
     returnsPerTier: 4,
     speedIncreasePerTier: 0.035,
-    baseIncomingSpeed: 1.48,
+    baseIncomingSpeed: 1.36,
     maxIncomingSpeed: 2.22,
     maxPlacementX: 0.78,
     maxTopspin: 7.4,
@@ -73,7 +97,7 @@ export const ENDLESS_RALLY_CONFIG: EndlessRallyConfig = {
     maxContactHeight: 0.94,
     minContactHeight: 0.06,
     courtLimitX: 0.88,
-    assistance: 0.92,
+    assistance: 0.96,
   },
   feedback: {
     impactEmphasisMs: 58,
