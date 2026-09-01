@@ -51,4 +51,20 @@ describe("vector tennis physics", () => {
     }
     expect(topspin.vy).toBeLessThan(flat.vy);
   });
+
+  it.each(["flat", "topspin", "slice"] as const)("gives a normal %s enough net clearance", (shot) => {
+    const ball = strikeArcadeBall({ ...createArcadeBall(), x: 0, z: 0.48, height: 0 }, "player", shot, 0.2, 0.7, 0.75);
+    while (ball.z > 0 && ball.active) stepArcadeBallInPlace(ball, 1 / 240);
+    expect(ball.height).toBeGreaterThan(0.2);
+  });
+
+  it("makes the three arcade shots measurably distinct", () => {
+    const source = { ...createArcadeBall(), x: 0, z: 0.55, height: 0.18 };
+    const flat = strikeArcadeBall(source, "player", "flat", 0.5, 0.8, 0.9);
+    const topspin = strikeArcadeBall(source, "player", "topspin", 0.5, 0.8, 0.9);
+    const slice = strikeArcadeBall(source, "player", "slice", 0.5, 0.8, 0.9);
+    expect(Math.abs(flat.vz)).toBeGreaterThan(Math.abs(topspin.vz));
+    expect(topspin.topspin).toBeGreaterThan(10);
+    expect(Math.abs(slice.sidespin)).toBeGreaterThan(8);
+  });
 });

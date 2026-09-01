@@ -1,4 +1,4 @@
-import type { Publication } from "@/types/content";
+import type { Publication, ScienceArticle } from "@/types/content";
 export const publications: Publication[] = [
   {
     title: "Conscious active inference I: A quantum model naturally implements the path integral needed for real-time planning and control",
@@ -22,6 +22,24 @@ export const publications: Publication[] = [
     evidence: [{ label: "Supplied manuscript", sourceFile: "Gamifying BCI Calibration v8 _ preprint.pdf", verified: true }]
   }
 ];
+
+export const scienceWriting: ScienceArticle[] = [
+  {
+    title: "Deep neural networks track eye movements during MRI scans",
+    venue: "Physics World",
+    publishedAt: "25 January 2022",
+    summary: "A reported research feature on DeepMReye, a neural-network approach that reconstructs gaze behaviour directly from MRI signals without a camera.",
+    href: "https://physicsworld.com/a/deep-neural-networks-track-eye-movements-during-mri-scans/"
+  },
+  {
+    title: "Novel decoder helps people with paralysis click-and-drag a computer cursor using just their thoughts",
+    venue: "Physics World",
+    publishedAt: "8 October 2021",
+    summary: "A reported research feature on a brain–computer-interface decoder designed to make point-and-click and click-and-drag computer control more accessible.",
+    href: "https://physicsworld.com/a/novel-decoder-helps-people-with-paralysis-click-and-drag-a-computer-cursor-using-just-their-thoughts/"
+  }
+];
+
 export const researchProjects = [
   "Psychophysical calibration for intracortical brain-computer interfaces",
   "Signal degradation and possible electrode-interface biofouling",

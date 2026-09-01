@@ -138,6 +138,7 @@ export type ArcadeBallState = {
   vy: number;
   topspin: number;
   sidespin: number;
+  shot: ArcadeShot;
   bounces: number;
   lastHit: ArcadeSide;
   active: boolean;
@@ -154,6 +155,7 @@ export function createArcadeBall(server: ArcadeSide = "rival"): ArcadeBallState 
     vy: 0.82,
     topspin: 1.1,
     sidespin: 0,
+    shot: "topspin",
     bounces: 0,
     lastHit: server,
     active: true,
@@ -183,9 +185,10 @@ export function stepArcadeBallInPlace(ball: ArcadeBallState, dt: number) {
 
   if (ball.height <= 0 && ball.vy < 0) {
     ball.height = 0;
-    ball.vy = -ball.vy * Math.max(0.52, 0.72 - Math.abs(ball.topspin) * 0.018);
+    const rebound = ball.shot === "slice" ? 0.46 : ball.shot === "topspin" ? 0.6 : 0.72;
+    ball.vy = -ball.vy * rebound;
     ball.vx += ball.sidespin * 0.045;
-    ball.vz *= 1 + Math.max(0, ball.topspin) * 0.012;
+    ball.vz *= ball.shot === "topspin" ? 1.11 : ball.shot === "slice" ? 0.91 : 0.98;
     ball.topspin *= 0.74;
     ball.sidespin *= 0.76;
     ball.bounces += 1;
@@ -207,7 +210,7 @@ export function strikeArcadeBall(
   const direction = side === "player" ? -1 : 1;
   const cleanTiming = Math.max(0, Math.min(1, timing));
   const cleanCharge = Math.max(0, Math.min(1, charge));
-  const pace = (1.58 + cleanCharge * 0.72 + cleanTiming * 0.28) * (shot === "flat" ? 1.12 : shot === "slice" ? 0.9 : 1);
+  const pace = (1.72 + cleanCharge * 0.66 + cleanTiming * 0.25) * (shot === "flat" ? 1.16 : shot === "slice" ? 0.86 : 1);
   const target = Math.max(-0.84, Math.min(0.84, aimX));
   const distance = side === "player" ? ball.z + 0.76 : 0.76 - ball.z;
   const travel = Math.max(1.15, Math.abs(distance));
@@ -215,9 +218,11 @@ export function strikeArcadeBall(
     ...ball,
     vx: (target - ball.x) * (pace / travel) + (shot === "slice" ? (side === "player" ? -0.22 : 0.22) : 0),
     vz: pace * direction,
-    vy: shot === "flat" ? 0.62 : shot === "topspin" ? 0.9 : 0.72,
-    topspin: shot === "topspin" ? 7.2 + cleanCharge * 3.2 : shot === "slice" ? -2.8 : 1.1,
-    sidespin: shot === "slice" ? (side === "player" ? 4.7 : -4.7) : (target - ball.x) * 1.2,
+    height: Math.max(ball.height, 0.16),
+    vy: shot === "flat" ? 1.02 : shot === "topspin" ? 1.38 : 1.08,
+    topspin: shot === "topspin" ? 10.8 + cleanCharge * 3.8 : shot === "slice" ? -4.4 : 0.8,
+    sidespin: shot === "slice" ? (side === "player" ? 8.4 : -8.4) : (target - ball.x) * (shot === "topspin" ? 1.6 : 0.7),
+    shot,
     bounces: 0,
     lastHit: side,
     active: true,
