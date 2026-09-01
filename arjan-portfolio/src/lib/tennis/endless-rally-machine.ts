@@ -1,3 +1,4 @@
+import { ENDLESS_RALLY_CONFIG } from "@/lib/tennis/config";
 import type { ContactEvaluation, ContactLabel, FailureCause } from "@/lib/tennis/contact";
 
 export type EndlessRallyState = "TITLE" | "READY" | "PLAYING" | "IMPACT" | "RUN_END" | "RESULTS" | "PAUSED";
@@ -19,6 +20,10 @@ export function transitionEndlessRally(state: EndlessRallyState, event: EndlessR
 
 export function canAcceptSwing(state: EndlessRallyState, swingPending: boolean) {
   return state === "PLAYING" && !swingPending;
+}
+
+export function canAcceptRestart(state: EndlessRallyState, primaryInputConsumed: boolean) {
+  return (state === "RUN_END" || state === "RESULTS") && !primaryInputConsumed;
 }
 
 export type RunScore = {
@@ -43,10 +48,11 @@ export function applyContactToScore(score: RunScore, contact: ContactEvaluation)
   const perfect = contact.label === "PERFECT";
   const nextStreak = perfect ? score.perfectStreak + 1 : 0;
   const nextMultiplier = perfect ? Math.min(5, 1 + nextStreak * 0.25) : 1;
+  const qualityPoints = contact.label === "SCRAMBLE" ? 50 : contact.label === "DEFENSIVE" ? 75 : 100;
   return {
     ...score,
     rally: score.rally + 1,
-    precisionScore: score.precisionScore + Math.round(100 * nextMultiplier),
+    precisionScore: score.precisionScore + Math.round(qualityPoints * nextMultiplier),
     precisionMultiplier: nextMultiplier,
     perfectContacts: score.perfectContacts + (perfect ? 1 : 0),
     perfectStreak: nextStreak,
@@ -64,15 +70,62 @@ export function meanAbsoluteTimingError(score: RunScore) {
   return score.timingSamples ? Math.round(score.timingErrorTotalMs / score.timingSamples) : 0;
 }
 
-export function coachObservation(failure: FailureCause, timingErrorMs: number, score: RunScore) {
+export type FailureTelemetry = {
+  ballX: number;
+  ballHeight: number;
+  racketX: number;
+  racketHeight: number;
+  racketFaceNormalZ: number;
+  racketHeadSpeed: number;
+  stringBedOffset: number;
+  incomingSpeed: number;
+  incomingSpin: number;
+  difficultyTier: number;
+  reachabilityPassed: boolean;
+  resultingBallX?: number;
+  resultingBallZ?: number;
+  resultingBallHeight?: number;
+};
+
+export function coachObservation(failure: FailureCause, timingErrorMs: number, score: RunScore, telemetry?: FailureTelemetry) {
   const error = Math.round(Math.abs(timingErrorMs));
-  if (failure === "early") return `You swung ${error} ms early. Let the ball enter the front hip before committing.`;
+  if (failure === "early") return `You swung ${error} ms early. Let the ball enter the front-hip contact zone.`;
   if (failure === "late") return `You swung ${error} ms late. Begin preparation before the bounce reaches you.`;
-  if (failure === "frame") return "The ball met the frame. Wait for the string bed to square behind the ball.";
-  if (failure === "net") return "The return stayed too low. Contact slightly earlier to create more launch clearance.";
-  if (failure === "long") return "The return carried long. A later contact will trade pace for safer shape.";
-  if (score.rally >= 8) return "The ball moved beyond the assisted contact zone. Read the lateral pattern one exchange earlier.";
-  return "The ball was unreachable from recovery. Prepare toward center immediately after contact.";
+  if (failure === "frame" && telemetry) {
+    const faceDegrees = Math.round(Math.acos(Math.max(-1, Math.min(1, telemetry.racketFaceNormalZ))) * 180 / Math.PI);
+    if (telemetry.racketFaceNormalZ < ENDLESS_RALLY_CONFIG.contact.minFaceNormalZ) return `Timing was playable, but the racket face was ${faceDegrees}° open.`;
+    return `You reached the ball, but a ${Math.round(Math.abs(telemetry.stringBedOffset) * 100)}% string-bed offset found the frame.`;
+  }
+  if (failure === "frame") return "You reached the ball, but frame contact deflected the return.";
+  if (failure === "net") return "The return stayed too low. Meet the next ball farther in front for safer clearance.";
+  if (failure === "long") return "You reached the ball, but unstable contact sent the return long.";
+  if (telemetry && !telemetry.reachabilityPassed) return `You arrived late to a ball ${Math.abs(telemetry.ballX - telemetry.racketX).toFixed(2)} court units outside the racket zone.`;
+  if (score.rally < 4) return "Recover toward center as soon as the racket finishes across your body.";
+  return "The ball moved beyond the reachable contact zone. Read the placement one exchange earlier.";
+}
+
+export type PersonalBestStatus = "BEST IN 2" | "BEST IN 1" | "TIED BEST" | "NEW BEST" | null;
+
+export function personalBestStatus(rally: number, best: number): PersonalBestStatus {
+  if (best <= 0) return rally > 0 ? "NEW BEST" : null;
+  if (rally > best) return "NEW BEST";
+  if (rally === best) return "TIED BEST";
+  const remaining = best - rally;
+  if (remaining === 1) return "BEST IN 1";
+  if (remaining === 2) return "BEST IN 2";
+  return null;
+}
+
+export function impactFeedback(label: ContactLabel, reducedMotion: boolean) {
+  const durationMs = label === "PERFECT"
+    ? ENDLESS_RALLY_CONFIG.feedback.perfectImpactMs
+    : label === "CLEAN"
+      ? ENDLESS_RALLY_CONFIG.feedback.cleanImpactMs
+      : label === "DEFENSIVE"
+        ? ENDLESS_RALLY_CONFIG.feedback.defensiveImpactMs
+        : ENDLESS_RALLY_CONFIG.feedback.scrambleImpactMs;
+  const cameraImpulsePx = reducedMotion ? 0 : label === "PERFECT" ? 4 : label === "CLEAN" ? 1.5 : label === "DEFENSIVE" ? 0.75 : 0.35;
+  return { durationMs, cameraImpulsePx };
 }
 
 export type RunResult = {
@@ -85,9 +138,10 @@ export type RunResult = {
   timingLabel: ContactLabel | "NET" | "LONG";
   timingErrorMs: number;
   coach: string;
+  telemetry?: FailureTelemetry;
 };
 
-export function createRunResult(score: RunScore, failureCause: FailureCause, timingLabel: RunResult["timingLabel"], timingErrorMs: number): RunResult {
+export function createRunResult(score: RunScore, failureCause: FailureCause, timingLabel: RunResult["timingLabel"], timingErrorMs: number, telemetry?: FailureTelemetry): RunResult {
   const measuredSamples = score.timingSamples + (Number.isFinite(timingErrorMs) ? 1 : 0);
   const measuredErrorTotalMs = score.timingErrorTotalMs + (Number.isFinite(timingErrorMs) ? Math.abs(timingErrorMs) : 0);
   return {
@@ -99,6 +153,7 @@ export function createRunResult(score: RunScore, failureCause: FailureCause, tim
     failureCause,
     timingLabel,
     timingErrorMs,
-    coach: coachObservation(failureCause, timingErrorMs, score),
+    coach: coachObservation(failureCause, timingErrorMs, score, telemetry),
+    telemetry,
   };
 }

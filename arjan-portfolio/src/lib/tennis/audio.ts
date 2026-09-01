@@ -41,6 +41,9 @@ export class TennisAudio {
     } else if (label === "FRAME") {
       this.tone(142, 0.12, 0.09, "square", 75);
       this.tone(1740, 0.035, 0.035, "square", 620);
+    } else if (label === "SCRAMBLE") {
+      this.tone(330, 0.095, 0.075, "sawtooth", 170);
+      this.tone(1280, 0.04, 0.028, "square", 430);
     } else {
       this.tone(label === "DEFENSIVE" ? 520 : 690, 0.075, 0.085, "triangle", 390);
       this.tone(165, 0.1, 0.07, "sine", 88);

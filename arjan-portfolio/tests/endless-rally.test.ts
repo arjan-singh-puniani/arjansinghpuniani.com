@@ -1,8 +1,29 @@
 import { describe, expect, it } from "vitest";
 import { ENDLESS_RALLY_CONFIG } from "@/lib/tennis/config";
 import { classifyTiming, evaluateContact, evaluateRallyContact } from "@/lib/tennis/contact";
-import { applyContactToScore, canAcceptSwing, createRunScore, endRun, transitionEndlessRally } from "@/lib/tennis/endless-rally-machine";
-import { dailyRallySeed, difficultyTierForRally, generatePatternSequence, generateRallyPattern, isPatternReachable } from "@/lib/tennis/rally-generator";
+import {
+  applyContactToScore,
+  canAcceptRestart,
+  canAcceptSwing,
+  coachObservation,
+  createRunScore,
+  endRun,
+  impactFeedback,
+  personalBestStatus,
+  transitionEndlessRally,
+  type FailureTelemetry,
+} from "@/lib/tennis/endless-rally-machine";
+import {
+  createSafeFallbackPattern,
+  capIncomingSpeedForReadability,
+  dailyRallySeed,
+  difficultyForRally,
+  generatePatternSequence,
+  generateRallyPattern,
+  isPatternReachable,
+  maxReachableDistance,
+  smootherstep,
+} from "@/lib/tennis/rally-generator";
 import { DEFAULT_ENDLESS_RALLY_STATS, loadEndlessRallyStats, mergeRunIntoStats, parseEndlessRallyStats, saveEndlessRallyStats } from "@/lib/tennis/persistence";
 
 const physicalContact = {
@@ -17,62 +38,142 @@ const physicalContact = {
   incomingSpin: 2.2,
 };
 
-describe("Endless Rally contact", () => {
-  it("uses the exact published contact-window boundaries", () => {
-    expect(classifyTiming(35)).toBe("PERFECT");
-    expect(classifyTiming(-35)).toBe("PERFECT");
-    expect(classifyTiming(36)).toBe("CLEAN");
-    expect(classifyTiming(80)).toBe("CLEAN");
-    expect(classifyTiming(81)).toBe("DEFENSIVE");
-    expect(classifyTiming(130)).toBe("DEFENSIVE");
-    expect(classifyTiming(-131)).toBe("EARLY");
-    expect(classifyTiming(131)).toBe("LATE");
+describe("Endless Rally fixed contact model", () => {
+  it("uses the exact published Standard timing boundaries", () => {
+    expect(classifyTiming(45)).toBe("PERFECT");
+    expect(classifyTiming(-45)).toBe("PERFECT");
+    expect(classifyTiming(46)).toBe("CLEAN");
+    expect(classifyTiming(100)).toBe("CLEAN");
+    expect(classifyTiming(101)).toBe("DEFENSIVE");
+    expect(classifyTiming(175)).toBe("DEFENSIVE");
+    expect(classifyTiming(176)).toBe("SCRAMBLE");
+    expect(classifyTiming(220)).toBe("SCRAMBLE");
+    expect(classifyTiming(-221)).toBe("EARLY");
+    expect(classifyTiming(221)).toBe("LATE");
   });
 
-  it("distinguishes early from late using signed simulation error", () => {
-    expect(evaluateContact({ ...physicalContact, timingErrorMs: -150 }).failureCause).toBe("early");
-    expect(evaluateContact({ ...physicalContact, timingErrorMs: 150 }).failureCause).toBe("late");
+  it("classifies a physically valid 138 ms early swing as Defensive", () => {
+    const contact = evaluateContact({ ...physicalContact, timingErrorMs: -138 });
+    expect(contact.label).toBe("DEFENSIVE");
+    expect(contact.successful).toBe(true);
   });
 
-  it("requires physical intersection and distinguishes strings from frame", () => {
-    expect(evaluateContact({ ...physicalContact, timingErrorMs: 0 }).label).toBe("PERFECT");
-    expect(evaluateContact({ ...physicalContact, timingErrorMs: 0, stringBedOffset: 0.86 }).label).toBe("FRAME");
-    expect(evaluateContact({ ...physicalContact, timingErrorMs: 0, ballX: 0.8 }).label).toBe("UNREACHABLE");
+  it("requires physical contact for Scramble and every timing-valid return", () => {
+    expect(evaluateContact({ ...physicalContact, timingErrorMs: 190 }).label).toBe("SCRAMBLE");
+    expect(evaluateContact({ ...physicalContact, timingErrorMs: 190, ballX: 0.8 }).label).toBe("UNREACHABLE");
+    expect(evaluateContact({ ...physicalContact, timingErrorMs: 30, ballX: 0.8 }).successful).toBe(false);
   });
 
-  it("makes the opening sweet spot generous without changing the timing bands", () => {
-    const opening = evaluateRallyContact({ ...physicalContact, timingErrorMs: 60, stringBedOffset: 0.65 }, 0);
-    const standard = evaluateRallyContact({ ...physicalContact, timingErrorMs: 60, stringBedOffset: 0.65 }, 4);
-    expect(opening.label).toBe("PERFECT");
-    expect(opening.successful).toBe(true);
-    expect(standard.label).toBe("CLEAN");
-    expect(classifyTiming(60)).toBe("CLEAN");
+  it("turns marginal frame contact into Scramble but rejects severe frame contact", () => {
+    expect(evaluateContact({ ...physicalContact, timingErrorMs: 20, stringBedOffset: 0.9 }).label).toBe("SCRAMBLE");
+    expect(evaluateContact({ ...physicalContact, timingErrorMs: 20, stringBedOffset: 1.12 }).label).toBe("FRAME");
+  });
+
+  it("uses opening assistance only for physical reach, not hidden timing changes", () => {
+    const wideContact = { ...physicalContact, timingErrorMs: 70, ballX: 0.48, stringBedOffset: 0.6 };
+    expect(evaluateRallyContact(wideContact, 0).label).toBe("CLEAN");
+    expect(evaluateRallyContact(wideContact, 4).label).toBe("UNREACHABLE");
+    expect(classifyTiming(70)).toBe("CLEAN");
   });
 });
 
-describe("Endless Rally generator", () => {
-  it("is deterministic for the same seed and sequence", () => {
-    expect(generatePatternSequence(73421, 32)).toEqual(generatePatternSequence(73421, 32));
+describe("Endless Rally smooth difficulty", () => {
+  it("uses the named seven-phase emotional progression", () => {
+    expect(difficultyForRally(1).phase).toBe("ORIENTATION");
+    expect(difficultyForRally(8).phase).toBe("RHYTHM");
+    expect(difficultyForRally(12).phase).toBe("CONFIDENCE");
+    expect(difficultyForRally(20).phase).toBe("PRESSURE");
+    expect(difficultyForRally(32).phase).toBe("MASTERY");
+    expect(difficultyForRally(48).phase).toBe("HIGH PRESSURE");
+    expect(difficultyForRally(49).phase).toBe("SURVIVAL");
+  });
+
+  it("stays shallow through Rally 8 and preserves readable flight time", () => {
+    for (let rally = 1; rally <= 8; rally += 1) {
+      const difficulty = difficultyForRally(rally);
+      expect(difficulty.paceMultiplier).toBeLessThanOrEqual(0.82);
+      expect(difficulty.placementRangeX).toBeLessThanOrEqual(ENDLESS_RALLY_CONFIG.difficulty.maxPlacementX * 0.2);
+      expect(difficulty.minimumTimeToContactMs).toBeGreaterThanOrEqual(1050);
+    }
+    const cappedSpeed = capIncomingSpeedForReadability(1.44, 2.2, 1150);
+    expect(1.44 / cappedSpeed).toBeGreaterThanOrEqual(1.15);
+  });
+
+  it("keeps spin absent through Rally 8 and strong spin out until Rally 21", () => {
+    const patterns = generatePatternSequence(918273, 20);
+    for (const pattern of patterns.slice(0, 8)) {
+      expect(pattern.topspin).toBe(0);
+      expect(pattern.sidespin).toBe(0);
+    }
+    for (const pattern of patterns) {
+      expect(Math.abs(pattern.topspin) / ENDLESS_RALLY_CONFIG.difficulty.maxTopspin).toBeLessThanOrEqual(0.3);
+      expect(Math.abs(pattern.sidespin) / ENDLESS_RALLY_CONFIG.difficulty.maxSlice).toBeLessThanOrEqual(0.3);
+    }
+  });
+
+  it("increases monotonically with no consecutive pace jump above 6%", () => {
+    const values = Array.from({ length: 100 }, (_, index) => difficultyForRally(index + 1));
+    for (let index = 1; index < values.length; index += 1) {
+      expect(values[index].paceMultiplier).toBeGreaterThanOrEqual(values[index - 1].paceMultiplier);
+      expect(values[index].placementRangeX).toBeGreaterThanOrEqual(values[index - 1].placementRangeX);
+      expect(values[index].spinIntensity).toBeGreaterThanOrEqual(values[index - 1].spinIntensity);
+      expect(values[index].minimumTimeToContactMs).toBeLessThanOrEqual(values[index - 1].minimumTimeToContactMs);
+      expect((values[index].paceMultiplier - values[index - 1].paceMultiplier) / values[index - 1].paceMultiplier).toBeLessThanOrEqual(ENDLESS_RALLY_CONFIG.difficulty.maximumConsecutivePaceDelta);
+    }
+  });
+
+  it("approaches capped late-game values without introducing placement and spin maxima together", () => {
+    const placementPlateau = difficultyForRally(ENDLESS_RALLY_CONFIG.difficulty.survivalPlateauRally);
+    const final = difficultyForRally(200);
+    expect(placementPlateau.placementRangeX).toBeCloseTo(ENDLESS_RALLY_CONFIG.difficulty.maxPlacementX * 0.78);
+    expect(placementPlateau.spinIntensity).toBeLessThan(1);
+    expect(final.paceMultiplier).toBeCloseTo(1.26);
+    expect(final.spinIntensity).toBe(1);
+    expect(final.minimumTimeToContactMs).toBe(620);
+    expect(ENDLESS_RALLY_CONFIG.difficulty.standardIncomingSpeedPerSecond * final.paceMultiplier).toBeLessThanOrEqual(ENDLESS_RALLY_CONFIG.difficulty.maxIncomingSpeedPerSecond);
+  });
+
+  it("uses a bounded smootherstep curve", () => {
+    expect(smootherstep(-1)).toBe(0);
+    expect(smootherstep(0.5)).toBeCloseTo(0.5);
+    expect(smootherstep(2)).toBe(1);
+  });
+});
+
+describe("Endless Rally deterministic pattern safety", () => {
+  it("reproduces identical sequences for the same seed", () => {
+    expect(generatePatternSequence(73421, 80)).toEqual(generatePatternSequence(73421, 80));
     expect(generatePatternSequence(73421, 8)).not.toEqual(generatePatternSequence(73422, 8));
   });
 
-  it("progresses every four returns without changing timing bands", () => {
-    expect(difficultyTierForRally(0)).toBe(0);
-    expect(difficultyTierForRally(3)).toBe(0);
-    expect(difficultyTierForRally(4)).toBe(1);
-    expect(difficultyTierForRally(12)).toBe(3);
-    expect(ENDLESS_RALLY_CONFIG.timing).toEqual({ perfectMaxMs: 35, cleanMaxMs: 80, defensiveMaxMs: 130, swingLeadMs: 54 });
+  it("keeps every generated pattern inside caps and reachable", () => {
+    const patterns = generatePatternSequence(918273, 120);
+    let playerX = 0;
+    for (let index = 0; index < patterns.length; index += 1) {
+      const pattern = patterns[index];
+      const availableSeconds = index === 0 ? 1.2 : patterns[index - 1].recoverySeconds;
+      expect(pattern.incomingSpeed).toBeLessThanOrEqual(ENDLESS_RALLY_CONFIG.difficulty.maxIncomingSpeedPerSecond);
+      expect(Math.abs(pattern.targetX)).toBeLessThanOrEqual(ENDLESS_RALLY_CONFIG.reachability.courtLimitX);
+      expect(isPatternReachable(pattern, { playerX, availableSeconds })).toBe(true);
+      playerX = pattern.targetX;
+    }
   });
 
-  it("caps speed, placement, spin, and filters every generated ball for reachability", () => {
-    const patterns = generatePatternSequence(918273, 120);
-    for (const pattern of patterns) {
-      expect(pattern.incomingSpeed).toBeLessThanOrEqual(ENDLESS_RALLY_CONFIG.difficulty.maxIncomingSpeed);
-      expect(Math.abs(pattern.targetX)).toBeLessThanOrEqual(ENDLESS_RALLY_CONFIG.reachability.courtLimitX);
-      expect(Math.abs(pattern.topspin)).toBeLessThanOrEqual(ENDLESS_RALLY_CONFIG.difficulty.maxTopspin);
-    }
-    const pattern = generateRallyPattern(7, 40, { playerX: -0.8, availableSeconds: 0.7 });
-    expect(isPatternReachable(pattern, { playerX: -0.8, availableSeconds: 0.7 })).toBe(true);
+  it("uses a deterministic fixed-attempt fallback that is reachable", () => {
+    const fallbackConfig = { ...ENDLESS_RALLY_CONFIG, difficulty: { ...ENDLESS_RALLY_CONFIG.difficulty, maxRegenerationAttempts: 0 } };
+    const state = { playerX: 0, availableSeconds: 0.2 };
+    const first = generateRallyPattern(7, 35, state, fallbackConfig);
+    const second = generateRallyPattern(7, 35, state, fallbackConfig);
+    expect(first).toEqual(second);
+    expect(first.usedFallback).toBe(true);
+    expect(isPatternReachable(first, state, fallbackConfig)).toBe(true);
+    expect(createSafeFallbackPattern(35, state)).toEqual(createSafeFallbackPattern(35, state));
+  });
+
+  it("accounts for recovery direction in reachability", () => {
+    const movingToward = maxReachableDistance(0.75, ENDLESS_RALLY_CONFIG, 0.8);
+    const movingAway = maxReachableDistance(0.75, ENDLESS_RALLY_CONFIG, -0.8);
+    expect(movingToward).toBeGreaterThan(movingAway);
   });
 
   it("derives a stable daily seed from the local calendar date", () => {
@@ -81,27 +182,26 @@ describe("Endless Rally generator", () => {
   });
 });
 
-describe("Endless Rally scoring and state", () => {
-  it("increments score and streak only for successful contacts", () => {
+describe("Endless Rally scoring, feedback, and state", () => {
+  it("lets Defensive and Scramble preserve the run while resetting the multiplier", () => {
     const perfect = evaluateContact({ ...physicalContact, timingErrorMs: 12 });
-    const clean = evaluateContact({ ...physicalContact, timingErrorMs: 55 });
+    const defensive = evaluateContact({ ...physicalContact, timingErrorMs: 138 });
+    const scramble = evaluateContact({ ...physicalContact, timingErrorMs: 190 });
     const first = applyContactToScore(createRunScore(), perfect);
-    expect(first.rally).toBe(1);
-    expect(first.perfectStreak).toBe(1);
-    const second = applyContactToScore(first, clean);
-    expect(second.rally).toBe(2);
-    expect(second.perfectStreak).toBe(0);
+    const second = applyContactToScore(first, defensive);
+    const third = applyContactToScore(second, scramble);
+    expect([first.rally, second.rally, third.rally]).toEqual([1, 2, 3]);
     expect(second.precisionMultiplier).toBe(1);
+    expect(third.precisionMultiplier).toBe(1);
   });
 
-  it("does not score after run termination", () => {
+  it("ends on one miss and prevents scoring afterward", () => {
     const ended = endRun(createRunScore());
     const contact = evaluateContact({ ...physicalContact, timingErrorMs: 0 });
     expect(applyContactToScore(ended, contact)).toBe(ended);
   });
 
-  it("enforces valid transitions, duplicate-input prevention, and immediate restart", () => {
-    expect(transitionEndlessRally("TITLE", "ARM")).toBe("READY");
+  it("enforces transitions, duplicate swings, immediate restart, and restart isolation", () => {
     expect(transitionEndlessRally("READY", "START")).toBe("PLAYING");
     expect(transitionEndlessRally("PLAYING", "CONTACT")).toBe("IMPACT");
     expect(transitionEndlessRally("IMPACT", "IMPACT_DONE")).toBe("PLAYING");
@@ -111,6 +211,28 @@ describe("Endless Rally scoring and state", () => {
     expect(canAcceptSwing("PLAYING", false)).toBe(true);
     expect(canAcceptSwing("PLAYING", true)).toBe(false);
     expect(canAcceptSwing("RESULTS", false)).toBe(false);
+    expect(canAcceptRestart("RESULTS", false)).toBe(true);
+    expect(canAcceptRestart("RESULTS", true)).toBe(false);
+    expect(ENDLESS_RALLY_CONFIG.feedback.resultsDelayMs).toBeLessThan(ENDLESS_RALLY_CONFIG.feedback.maximumRestartDelayMs);
+  });
+
+  it("removes camera impulse for reduced motion", () => {
+    expect(impactFeedback("PERFECT", false).cameraImpulsePx).toBeGreaterThan(0);
+    expect(impactFeedback("PERFECT", true).cameraImpulsePx).toBe(0);
+  });
+
+  it("reports exact personal-best pressure states", () => {
+    expect(personalBestStatus(8, 10)).toBe("BEST IN 2");
+    expect(personalBestStatus(9, 10)).toBe("BEST IN 1");
+    expect(personalBestStatus(10, 10)).toBe("TIED BEST");
+    expect(personalBestStatus(11, 10)).toBe("NEW BEST");
+    expect(personalBestStatus(3, 10)).toBeNull();
+  });
+
+  it("uses measured telemetry in Coach Brain", () => {
+    const telemetry: FailureTelemetry = { ballX: 0.8, ballHeight: 0.3, racketX: 0.1, racketHeight: 0.3, racketFaceNormalZ: 0.4, racketHeadSpeed: 1.1, stringBedOffset: 0.2, incomingSpeed: 1.8, incomingSpin: 2, difficultyTier: 2, reachabilityPassed: true };
+    expect(coachObservation("early", -138, createRunScore(), telemetry)).toContain("138 ms early");
+    expect(coachObservation("frame", 40, createRunScore(), telemetry)).toMatch(/racket face was \d+° open/);
   });
 });
 

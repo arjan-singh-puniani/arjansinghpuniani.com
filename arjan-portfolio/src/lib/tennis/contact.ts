@@ -1,6 +1,6 @@
 import { ENDLESS_RALLY_CONFIG, type EndlessRallyConfig } from "@/lib/tennis/config";
 
-export type ContactLabel = "PERFECT" | "CLEAN" | "DEFENSIVE" | "EARLY" | "LATE" | "FRAME" | "UNREACHABLE";
+export type ContactLabel = "PERFECT" | "CLEAN" | "DEFENSIVE" | "SCRAMBLE" | "EARLY" | "LATE" | "FRAME" | "UNREACHABLE";
 export type FailureCause = "early" | "late" | "frame" | "net" | "long" | "unreachable";
 
 export type ContactEvaluationInput = {
@@ -24,43 +24,61 @@ export type ContactEvaluation = {
   restitution: number;
   spinTransfer: number;
   paceScale: number;
+  directionalControl: number;
 };
+
+const failedContact = (label: "EARLY" | "LATE" | "FRAME" | "UNREACHABLE", input: ContactEvaluationInput, failureCause: FailureCause): ContactEvaluation => ({
+  label,
+  successful: false,
+  timingErrorMs: input.timingErrorMs,
+  failureCause,
+  restitution: label === "FRAME" ? 0.28 : 0,
+  spinTransfer: label === "FRAME" ? 0.12 : 0,
+  paceScale: label === "FRAME" ? 0.24 : 0,
+  directionalControl: 0,
+});
 
 export function classifyTiming(timingErrorMs: number, config: EndlessRallyConfig = ENDLESS_RALLY_CONFIG): ContactLabel {
   const absoluteErrorMs = Math.abs(timingErrorMs);
   if (absoluteErrorMs <= config.timing.perfectMaxMs) return "PERFECT";
   if (absoluteErrorMs <= config.timing.cleanMaxMs) return "CLEAN";
   if (absoluteErrorMs <= config.timing.defensiveMaxMs) return "DEFENSIVE";
+  if (absoluteErrorMs <= config.timing.scrambleMaxMs) return "SCRAMBLE";
   return timingErrorMs < 0 ? "EARLY" : "LATE";
 }
 
 export function evaluateContact(input: ContactEvaluationInput, config: EndlessRallyConfig = ENDLESS_RALLY_CONFIG): ContactEvaluation {
   const timingLabel = classifyTiming(input.timingErrorMs, config);
   if (timingLabel === "EARLY" || timingLabel === "LATE") {
-    return { label: timingLabel, successful: false, timingErrorMs: input.timingErrorMs, failureCause: timingLabel === "EARLY" ? "early" : "late", restitution: 0, spinTransfer: 0, paceScale: 0 };
+    return failedContact(timingLabel, input, timingLabel === "EARLY" ? "early" : "late");
   }
 
   const unreachable = Math.abs(input.ballX - input.racketX) > config.contact.racketReachX
     || Math.abs(input.ballHeight - input.racketHeight) > config.contact.racketReachHeight;
-  if (unreachable) return { label: "UNREACHABLE", successful: false, timingErrorMs: input.timingErrorMs, failureCause: "unreachable", restitution: 0, spinTransfer: 0, paceScale: 0 };
+  if (unreachable) return failedContact("UNREACHABLE", input, "unreachable");
 
-  const frame = Math.abs(input.stringBedOffset) >= config.contact.frameMinOffset
+  const severeFrame = Math.abs(input.stringBedOffset) >= config.contact.severeFrameMinOffset
+    || input.racketFaceNormalZ < config.contact.severeFaceNormalZ
+    || input.racketHeadSpeed < config.contact.severeRacketHeadSpeed;
+  if (severeFrame) return failedContact("FRAME", input, "frame");
+
+  const marginalFrame = Math.abs(input.stringBedOffset) >= config.contact.frameMinOffset
     || input.racketFaceNormalZ < config.contact.minFaceNormalZ
     || input.racketHeadSpeed < config.contact.minRacketHeadSpeed;
-  if (frame) return { label: "FRAME", successful: false, timingErrorMs: input.timingErrorMs, failureCause: "frame", restitution: 0.28, spinTransfer: 0.12, paceScale: 0.24 };
+  const incomingLoad = Math.min(0.12, input.incomingSpeed * 0.025 + Math.abs(input.incomingSpin) * 0.003);
+  if (marginalFrame || timingLabel === "SCRAMBLE") {
+    return { label: "SCRAMBLE", successful: true, timingErrorMs: input.timingErrorMs, restitution: 0.52 + incomingLoad * 0.35, spinTransfer: 0.24, paceScale: 0.56, directionalControl: 0.34 };
+  }
 
   const sweetSpot = Math.abs(input.stringBedOffset) <= config.contact.sweetSpotMaxOffset;
   const label = timingLabel === "PERFECT" && sweetSpot ? "PERFECT" : timingLabel === "DEFENSIVE" ? "DEFENSIVE" : "CLEAN";
-  const incomingLoad = Math.min(0.12, input.incomingSpeed * 0.025 + Math.abs(input.incomingSpin) * 0.003);
-  if (label === "PERFECT") return { label, successful: true, timingErrorMs: input.timingErrorMs, restitution: 0.91 + incomingLoad, spinTransfer: 0.72, paceScale: 1.12 };
-  if (label === "CLEAN") return { label, successful: true, timingErrorMs: input.timingErrorMs, restitution: 0.82 + incomingLoad, spinTransfer: 0.58, paceScale: 1 };
-  return { label, successful: true, timingErrorMs: input.timingErrorMs, restitution: 0.7 + incomingLoad, spinTransfer: 0.42, paceScale: 0.78 };
+  if (label === "PERFECT") return { label, successful: true, timingErrorMs: input.timingErrorMs, restitution: 0.91 + incomingLoad, spinTransfer: 0.72, paceScale: 1.12, directionalControl: 1 };
+  if (label === "CLEAN") return { label, successful: true, timingErrorMs: input.timingErrorMs, restitution: 0.82 + incomingLoad, spinTransfer: 0.58, paceScale: 1, directionalControl: 0.88 };
+  return { label, successful: true, timingErrorMs: input.timingErrorMs, restitution: 0.72 + incomingLoad, spinTransfer: 0.42, paceScale: 0.8, directionalControl: 0.66 };
 }
 
 export function evaluateRallyContact(input: ContactEvaluationInput, successfulReturns: number, config: EndlessRallyConfig = ENDLESS_RALLY_CONFIG): ContactEvaluation {
-  const openingAssist = successfulReturns < config.openingAssistance.successfulReturns;
-  if (!openingAssist) return evaluateContact(input, config);
-
+  if (successfulReturns >= config.openingAssistance.successfulReturns) return evaluateContact(input, config);
   const assistedConfig: EndlessRallyConfig = {
     ...config,
     contact: {
@@ -73,16 +91,5 @@ export function evaluateRallyContact(input: ContactEvaluationInput, successfulRe
       minRacketHeadSpeed: config.openingAssistance.minRacketHeadSpeed,
     },
   };
-  const evaluation = evaluateContact(input, assistedConfig);
-  const assistedSweetSpot = evaluation.successful
-    && evaluation.label === "CLEAN"
-    && Math.abs(input.stringBedOffset) <= config.openingAssistance.sweetSpotMaxOffset;
-  if (!assistedSweetSpot) return evaluation;
-  return {
-    ...evaluation,
-    label: "PERFECT",
-    restitution: Math.max(evaluation.restitution, 0.94),
-    spinTransfer: Math.max(evaluation.spinTransfer, 0.7),
-    paceScale: Math.max(evaluation.paceScale, 1.08),
-  };
+  return evaluateContact(input, assistedConfig);
 }
