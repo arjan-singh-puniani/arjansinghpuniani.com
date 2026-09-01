@@ -3,6 +3,8 @@ import { ENDLESS_RALLY_CONFIG } from "@/lib/tennis/config";
 import { classifyTiming, evaluateContact, evaluateRallyContact } from "@/lib/tennis/contact";
 import { bufferPrimarySwing, consumeBufferedSwing, createContactTimeline, cuePresentation, hasBallPassedContactVolume, timingTrace } from "@/lib/tennis/contact-cue";
 import { driveCueFollowingRun } from "@/lib/tennis/endless-rally-driver";
+import { canRobotReturnBall, isLegalOpponentBounce, resolveDeadReturnedBall } from "@/lib/tennis/rally-contact-physics";
+import { createArcadeBall } from "@/lib/vector-tennis";
 import {
   applyContactToScore,
   canAcceptRestart,
@@ -134,12 +136,11 @@ describe("Endless Rally smooth difficulty", () => {
       // consecutive pace cap after that special onboarding transition.
       if (index > 1) {
         const paceDelta =
-  (values[index].paceMultiplier - values[index - 1].paceMultiplier) /
-  values[index - 1].paceMultiplier;
-
-expect(paceDelta).toBeLessThanOrEqual(
-  ENDLESS_RALLY_CONFIG.difficulty.maximumConsecutivePaceDelta + 1e-10
-);
+          (values[index].paceMultiplier - values[index - 1].paceMultiplier) /
+          values[index - 1].paceMultiplier;
+        expect(paceDelta).toBeLessThanOrEqual(
+          ENDLESS_RALLY_CONFIG.difficulty.maximumConsecutivePaceDelta + 1e-10,
+        );
       }
     }
   });
@@ -261,6 +262,28 @@ describe("Endless Rally scoring, feedback, and state", () => {
     const telemetry: FailureTelemetry = { ballX: 0.8, ballHeight: 0.3, racketX: 0.1, racketHeight: 0.3, racketFaceNormalZ: 0.4, racketHeadSpeed: 1.1, stringBedOffset: 0.2, incomingSpeed: 1.8, incomingSpin: 2, difficultyTier: 2, reachabilityPassed: true };
     expect(coachObservation("early", -138, createRunScore(), telemetry)).toContain("138 ms early");
     expect(coachObservation("frame", 40, createRunScore(), telemetry)).toMatch(/racket face was \d+° open/);
+  });
+});
+
+
+describe("Endless Rally opponent-side resolution", () => {
+  it("judges legality from the first bounce rather than post-bounce curve", () => {
+    expect(isLegalOpponentBounce({ x: 0.98, z: -0.72 })).toBe(true);
+    expect(isLegalOpponentBounce({ x: 1.08, z: -0.72 })).toBe(false);
+    expect(isLegalOpponentBounce({ x: 0.2, z: -1.08 })).toBe(false);
+  });
+
+  it("allows the rival to return only a reachable legal post-bounce ball", () => {
+    const ball = { ...createArcadeBall("player"), x: 0.2, z: -0.52, height: 0.38, bounces: 1, lastHit: "player" as const, active: true };
+    expect(canRobotReturnBall(ball, 0.02)).toBe(true);
+    expect(canRobotReturnBall({ ...ball, x: 0.72 }, 0.02)).toBe(false);
+    expect(canRobotReturnBall({ ...ball, bounces: 0 }, 0.02)).toBe(false);
+  });
+
+  it("resolves every dead returned ball as winner or out instead of freezing", () => {
+    const dead = { ...createArcadeBall("player"), active: false, lastHit: "player" as const, bounces: 2, x: 1.18, z: -0.8 };
+    expect(resolveDeadReturnedBall(dead, true)).toBe("winner");
+    expect(resolveDeadReturnedBall({ ...dead, bounces: 0 }, null)).toBe("out");
   });
 });
 

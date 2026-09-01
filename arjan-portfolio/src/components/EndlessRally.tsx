@@ -32,7 +32,7 @@ import {
   type RunScore,
 } from "@/lib/tennis/endless-rally-machine";
 import { dailyRallySeed, generateRallyPattern, hashSeed, type RallyPattern } from "@/lib/tennis/rally-generator";
-import { strikeEndlessRallyBall } from "@/lib/tennis/rally-contact-physics";
+import { canRobotReturnBall, isLegalOpponentBounce, resolveDeadReturnedBall, strikeEndlessRallyBall } from "@/lib/tennis/rally-contact-physics";
 import {
   DEFAULT_ENDLESS_RALLY_STATS,
   loadEndlessRallyStats,
@@ -59,7 +59,7 @@ type RallyView = {
   multiplier: number;
   perfectStreak: number;
   tier: number;
-  feedback: ContactLabel | "NET" | "LONG" | "";
+  feedback: ContactLabel | "NET" | "LONG" | "WINNER" | "";
   result: RunResult | null;
   personalBest: boolean;
   daily: boolean;
@@ -171,6 +171,7 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
     let lastTimingErrorMs = 0;
     let lastInputType: InputType = "keyboard";
     let playerReturnedBall = false;
+    let opponentFirstBounceLegal: boolean | null = null;
     let cameraImpulse = 0;
     let lastContactLabel: ContactLabel | null = null;
     let lastFailureTelemetry: FailureTelemetry | undefined;
@@ -220,6 +221,7 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
       predictedIntercept = predictRacketBallIntercept(ball, player, nextPattern.contactZ);
       contactTimeline = createContactTimeline(simTimeMs, predictedIntercept.delayMs);
       playerReturnedBall = false;
+      opponentFirstBounceLegal = null;
       swingPending = false;
       bufferedSwing = null;
     };
@@ -289,6 +291,7 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
       ball = strikeEndlessRallyBall(ball, contact, robot.x);
       if (lastFailureTelemetry) lastFailureTelemetry = { ...lastFailureTelemetry, resultingBallX: ball.x, resultingBallZ: ball.z, resultingBallHeight: ball.height };
       playerReturnedBall = true;
+      opponentFirstBounceLegal = null;
       swingPending = false;
       bufferedSwing = null;
       audio.impact(contact.label);
@@ -357,10 +360,26 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
 
     const robotReturn = () => {
       const nextPattern = generateRallyPattern(seed, score.rally, { playerX: player.x, playerVelocityX: player.vx, racketHeight: player.racketHeight, availableSeconds: pattern.recoverySeconds });
-      robot.x = clamp(ball.x, -0.8, 0.8);
       robot.swing = 1;
       const struck = strikeArcadeBall(ball, "rival", nextPattern.shot, nextPattern.targetX, Math.min(0.9, 0.5 + nextPattern.difficulty.paceMultiplier * 0.24), 0.82);
       configureIncomingBall(nextPattern, struck);
+    };
+
+    const awardWinner = () => {
+      const nextPattern = generateRallyPattern(seed, score.rally, {
+        playerX: player.x,
+        playerVelocityX: player.vx,
+        racketHeight: player.racketHeight,
+        availableSeconds: Math.max(0.9, pattern.recoverySeconds),
+      });
+      feedback = "WINNER";
+      feedbackEndsSimMs = simTimeMs + 720;
+      cameraImpulse = reducedMotionRef.current ? 0 : 2.4;
+      robot.swing = 0;
+      analytics("tennis_winner", { rally_length_bucket: Math.floor(score.rally / 5) * 5, difficulty_tier: pattern.tier });
+      configureIncomingBall(nextPattern);
+      machine = "PLAYING";
+      publish(true);
     };
 
     const primaryAction = (inputType: InputType) => {
@@ -457,6 +476,12 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
       player.x = clamp(player.x + player.vx * dtSeconds, -0.88, 0.88);
       player.racketHeight += (clamp(ball.height, 0.16, 0.72) - player.racketHeight) * Math.min(1, dtSeconds * 5.8);
 
+      if (playerReturnedBall && ball.lastHit === "player" && ball.active) {
+        const robotTargetX = clamp(ball.x, -0.82, 0.82);
+        const robotMaxStep = (1.15 + Math.min(0.55, pattern.difficulty.paceMultiplier * 0.28)) * dtSeconds;
+        robot.x += clamp(robotTargetX - robot.x, -robotMaxStep, robotMaxStep);
+      }
+
       const priorBounceCount = ball.bounces;
       const priorZ = ball.z;
       stepArcadeBallInPlace(ball, dtSeconds);
@@ -500,12 +525,43 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
         finishRun("net", "NET", lastTimingErrorMs, lastFailureTelemetry ? { ...lastFailureTelemetry, resultingBallX: ball.x, resultingBallZ: ball.z, resultingBallHeight: ball.height } : undefined);
         return;
       }
-      if (playerReturnedBall && (Math.abs(ball.x) > 1.06 || ball.z < -1.14)) {
+
+      // Tennis legality is decided at the first bounce. A ball may curve beyond the
+      // sideline after landing in and still be a legal shot. The old loop judged the
+      // ball's later position instead, which could turn legal curved shots into dead
+      // states or false LONG calls.
+      if (playerReturnedBall && ball.bounces > priorBounceCount) {
+        if (ball.bounces === 1) {
+          opponentFirstBounceLegal = isLegalOpponentBounce(ball);
+          if (!opponentFirstBounceLegal) {
+            finishRun("long", "LONG", lastTimingErrorMs, lastFailureTelemetry ? { ...lastFailureTelemetry, resultingBallX: ball.x, resultingBallZ: ball.z, resultingBallHeight: ball.height } : undefined);
+            return;
+          }
+        } else if (opponentFirstBounceLegal) {
+          awardWinner();
+          return;
+        }
+      }
+
+      if (playerReturnedBall && opponentFirstBounceLegal && canRobotReturnBall(ball, robot.x)) {
+        robotReturn();
+        return;
+      }
+
+      if (playerReturnedBall && !ball.active) {
+        const resolution = resolveDeadReturnedBall(ball, opponentFirstBounceLegal);
+        if (resolution === "winner") {
+          awardWinner();
+          return;
+        }
         finishRun("long", "LONG", lastTimingErrorMs, lastFailureTelemetry ? { ...lastFailureTelemetry, resultingBallX: ball.x, resultingBallZ: ball.z, resultingBallHeight: ball.height } : undefined);
         return;
       }
-      if (playerReturnedBall && ball.z < -0.4) robotReturn();
-      if (!ball.active && !playerReturnedBall) finishRun("unreachable", "UNREACHABLE", lastTimingErrorMs);
+
+      if (!ball.active && !playerReturnedBall) {
+        finishRun("unreachable", "UNREACHABLE", lastTimingErrorMs);
+        return;
+      }
       publish();
     };
 
