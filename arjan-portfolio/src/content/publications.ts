@@ -28,6 +28,7 @@ export const scienceWriting: ScienceArticle[] = [
     title: "Deep neural networks track eye movements during MRI scans",
     venue: "Physics World",
     publishedAt: "25 January 2022",
+    publishedAtISO: "2022-01-25",
     summary: "A reported research feature on DeepMReye, a neural-network approach that reconstructs gaze behaviour directly from MRI signals without a camera.",
     href: "https://physicsworld.com/a/deep-neural-networks-track-eye-movements-during-mri-scans/"
   },
@@ -35,6 +36,7 @@ export const scienceWriting: ScienceArticle[] = [
     title: "Novel decoder helps people with paralysis click-and-drag a computer cursor using just their thoughts",
     venue: "Physics World",
     publishedAt: "8 October 2021",
+    publishedAtISO: "2021-10-08",
     summary: "A reported research feature on a brain–computer-interface decoder designed to make point-and-click and click-and-drag computer control more accessible.",
     href: "https://physicsworld.com/a/novel-decoder-helps-people-with-paralysis-click-and-drag-a-computer-cursor-using-just-their-thoughts/"
   }

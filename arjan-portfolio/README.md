@@ -62,6 +62,22 @@ No analytics load by default. Add a privacy-conscious provider only after consen
 
 Preview deployments do not change canonical URLs. Canonicals always point to the production domain.
 
+
+## Search visibility / Google Search Console
+
+The site already exposes crawlable HTML, canonical URLs, `robots.txt`, `sitemap.xml`, Person/WebSite/ProfilePage structured data, and Google verification metadata. Ranking for a new personal domain still depends on discovery, indexing, and external authority.
+
+After deployment:
+
+1. Add `arjansinghpuniani.com` as a **Domain property** in Google Search Console and verify it by DNS.
+2. If you use the HTML-tag verification method instead, set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` in Vercel to the token value only, then redeploy.
+3. Submit `https://arjansinghpuniani.com/sitemap.xml` in Search Console → Sitemaps.
+4. Use URL Inspection on the homepage and `/about`, test the live URL, then request indexing.
+5. Confirm `site:arjansinghpuniani.com` begins returning the homepage and key pages. Indexing can take days or weeks and submission does not guarantee ranking.
+6. Where appropriate, link this official domain from authoritative profiles and publications that already identify Arjan Singh Puniani. Do not create spammy or purchased backlinks.
+
+The homepage intentionally uses the exact full name in the primary heading and the site uses consistent `Arjan Singh Puniani` / `Arjan Puniani` entity markup. Do not add keyword-stuffed hidden text or duplicate doorway pages for name variants.
+
 ## Known limitations
 
 - Curated portrait and project imagery are integrated. Confirm institutional and participant permissions before public deployment.

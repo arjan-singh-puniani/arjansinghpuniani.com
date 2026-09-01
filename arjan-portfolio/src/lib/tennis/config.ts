@@ -1,4 +1,4 @@
-export type RallyPhaseName = "ORIENTATION" | "RHYTHM" | "CONFIDENCE" | "PRESSURE" | "MASTERY" | "HIGH PRESSURE" | "SURVIVAL";
+export type RallyPhaseName = "CALIBRATION" | "ORIENTATION" | "RHYTHM" | "CONFIDENCE" | "PRESSURE" | "MASTERY" | "HIGH PRESSURE" | "SURVIVAL";
 
 export type RallyPhaseConfig = {
   name: RallyPhaseName;
@@ -20,10 +20,13 @@ export type EndlessRallyConfig = {
     cleanMaxMs: number;
     defensiveMaxMs: number;
     scrambleMaxMs: number;
-    swingLeadMs: number;
+    inputBufferEarlyMs: number;
+    swingPreparationMs: number;
+    minimumLateSwingMs: number;
   };
   contact: {
     racketReachX: number;
+    racketReachZ: number;
     racketReachHeight: number;
     sweetSpotMaxOffset: number;
     frameMinOffset: number;
@@ -40,6 +43,7 @@ export type EndlessRallyConfig = {
   openingAssistance: {
     successfulReturns: number;
     racketReachX: number;
+    racketReachZ: number;
     racketReachHeight: number;
     sweetSpotMaxOffset: number;
     frameMinOffset: number;
@@ -88,6 +92,15 @@ export type EndlessRallyConfig = {
     trailPoints: number;
     personalBestProximity: number;
   };
+  cue: {
+    completeThroughRally: number;
+    ringThroughRally: number;
+    fadedThroughRally: number;
+    preparationColor: string;
+    viableColor: string;
+    idealColor: string;
+    preparatoryPulseLeadMs: number;
+  };
 };
 
 /**
@@ -98,14 +111,17 @@ export type EndlessRallyConfig = {
 export const ENDLESS_RALLY_CONFIG: EndlessRallyConfig = {
   fixedStepSeconds: 1 / 120,
   timing: {
-    perfectMaxMs: 45,
-    cleanMaxMs: 100,
-    defensiveMaxMs: 175,
-    scrambleMaxMs: 220,
-    swingLeadMs: 54,
+    perfectMaxMs: 70,
+    cleanMaxMs: 150,
+    defensiveMaxMs: 260,
+    scrambleMaxMs: 360,
+    inputBufferEarlyMs: 420,
+    swingPreparationMs: 180,
+    minimumLateSwingMs: 16,
   },
   contact: {
     racketReachX: 0.36,
+    racketReachZ: 0.2,
     racketReachHeight: 0.42,
     sweetSpotMaxOffset: 0.46,
     frameMinOffset: 0.86,
@@ -120,9 +136,10 @@ export const ENDLESS_RALLY_CONFIG: EndlessRallyConfig = {
     scrambleNetClearance: 0.4,
   },
   openingAssistance: {
-    successfulReturns: 4,
-    racketReachX: 0.44,
-    racketReachHeight: 0.5,
+    successfulReturns: 6,
+    racketReachX: 0.56,
+    racketReachZ: 0.34,
+    racketReachHeight: 0.62,
     sweetSpotMaxOffset: 0.72,
     frameMinOffset: 0.98,
     minFaceNormalZ: 0.42,
@@ -139,11 +156,12 @@ export const ENDLESS_RALLY_CONFIG: EndlessRallyConfig = {
     spinPlateauRally: 76,
     maxRegenerationAttempts: 4,
     phases: [
-      { name: "ORIENTATION", startRally: 1, endRally: 4, incomingPaceMultiplierMin: 0.72, incomingPaceMultiplierMax: 0.76, lateralReachFractionMax: 0.12, spinIntensityMax: 0, minimumTimeToContactMs: 1150, contactDepthMin: 0.66, contactDepthMax: 0.7 },
-      { name: "RHYTHM", startRally: 5, endRally: 8, incomingPaceMultiplierMin: 0.77, incomingPaceMultiplierMax: 0.82, lateralReachFractionMax: 0.2, spinIntensityMax: 0.05, minimumTimeToContactMs: 1050, contactDepthMin: 0.64, contactDepthMax: 0.72 },
-      { name: "CONFIDENCE", startRally: 9, endRally: 12, incomingPaceMultiplierMin: 0.83, incomingPaceMultiplierMax: 0.89, lateralReachFractionMax: 0.3, spinIntensityMax: 0.15, minimumTimeToContactMs: 950, contactDepthMin: 0.6, contactDepthMax: 0.76 },
-      { name: "PRESSURE", startRally: 13, endRally: 20, incomingPaceMultiplierMin: 0.9, incomingPaceMultiplierMax: 0.99, lateralReachFractionMax: 0.42, spinIntensityMax: 0.3, minimumTimeToContactMs: 850, contactDepthMin: 0.56, contactDepthMax: 0.8 },
-      { name: "MASTERY", startRally: 21, endRally: 32, incomingPaceMultiplierMin: 1, incomingPaceMultiplierMax: 1.09, lateralReachFractionMax: 0.55, spinIntensityMax: 0.5, minimumTimeToContactMs: 750, contactDepthMin: 0.52, contactDepthMax: 0.82 },
+      { name: "CALIBRATION", startRally: 1, endRally: 1, incomingPaceMultiplierMin: 0.5, incomingPaceMultiplierMax: 0.5, lateralReachFractionMax: 0, spinIntensityMax: 0, minimumTimeToContactMs: 1400, contactDepthMin: 0.68, contactDepthMax: 0.68 },
+      { name: "ORIENTATION", startRally: 2, endRally: 4, incomingPaceMultiplierMin: 0.56, incomingPaceMultiplierMax: 0.62, lateralReachFractionMax: 0.1, spinIntensityMax: 0, minimumTimeToContactMs: 1300, contactDepthMin: 0.66, contactDepthMax: 0.7 },
+      { name: "RHYTHM", startRally: 5, endRally: 8, incomingPaceMultiplierMin: 0.63, incomingPaceMultiplierMax: 0.72, lateralReachFractionMax: 0.2, spinIntensityMax: 0, minimumTimeToContactMs: 1180, contactDepthMin: 0.64, contactDepthMax: 0.72 },
+      { name: "CONFIDENCE", startRally: 9, endRally: 12, incomingPaceMultiplierMin: 0.73, incomingPaceMultiplierMax: 0.82, lateralReachFractionMax: 0.3, spinIntensityMax: 0.1, minimumTimeToContactMs: 1050, contactDepthMin: 0.6, contactDepthMax: 0.76 },
+      { name: "PRESSURE", startRally: 13, endRally: 20, incomingPaceMultiplierMin: 0.83, incomingPaceMultiplierMax: 0.96, lateralReachFractionMax: 0.45, spinIntensityMax: 0.3, minimumTimeToContactMs: 900, contactDepthMin: 0.56, contactDepthMax: 0.8 },
+      { name: "MASTERY", startRally: 21, endRally: 32, incomingPaceMultiplierMin: 0.97, incomingPaceMultiplierMax: 1.1, lateralReachFractionMax: 0.6, spinIntensityMax: 0.5, minimumTimeToContactMs: 760, contactDepthMin: 0.52, contactDepthMax: 0.82 },
       { name: "HIGH PRESSURE", startRally: 33, endRally: 48, incomingPaceMultiplierMin: 1.1, incomingPaceMultiplierMax: 1.18, lateralReachFractionMax: 0.68, spinIntensityMax: 0.72, minimumTimeToContactMs: 680, contactDepthMin: 0.5, contactDepthMax: 0.84 },
       { name: "SURVIVAL", startRally: 49, endRally: null, incomingPaceMultiplierMin: 1.19, incomingPaceMultiplierMax: 1.26, lateralReachFractionMax: 0.78, spinIntensityMax: 1, minimumTimeToContactMs: 620, contactDepthMin: 0.48, contactDepthMax: 0.86 },
     ],
@@ -151,16 +169,16 @@ export const ENDLESS_RALLY_CONFIG: EndlessRallyConfig = {
       leftCenterRightRally: 5,
       depthVariationRally: 9,
       alternatingPlacementRally: 9,
-      topspinRally: 12,
+      topspinRally: 9,
       sliceRally: 17,
       paceDepthCombinationRally: 21,
-      wideSpinCombinationRally: 33,
+      wideSpinCombinationRally: 25,
       advancedSequenceRally: 49,
     },
   },
   reachability: {
-    playerAccelerationPerSecond2: 5.4,
-    playerMaxSpeedPerSecond: 1.48,
+    playerAccelerationPerSecond2: 7.4,
+    playerMaxSpeedPerSecond: 1.86,
     maxContactHeight: 0.94,
     minContactHeight: 0.08,
     courtLimitX: 0.88,
@@ -173,9 +191,18 @@ export const ENDLESS_RALLY_CONFIG: EndlessRallyConfig = {
     cleanImpactMs: 34,
     defensiveImpactMs: 30,
     scrambleImpactMs: 26,
-    resultsDelayMs: 180,
-    maximumRestartDelayMs: 400,
+    resultsDelayMs: 160,
+    maximumRestartDelayMs: 250,
     trailPoints: 42,
     personalBestProximity: 2,
+  },
+  cue: {
+    completeThroughRally: 4,
+    ringThroughRally: 8,
+    fadedThroughRally: 12,
+    preparationColor: "#35ecff",
+    viableColor: "#ffeb49",
+    idealColor: "#ffffff",
+    preparatoryPulseLeadMs: 520,
   },
 };

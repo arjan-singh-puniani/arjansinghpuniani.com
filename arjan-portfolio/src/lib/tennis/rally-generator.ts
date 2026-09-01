@@ -86,11 +86,17 @@ export function difficultyForRally(rally: number, config: EndlessRallyConfig = E
   const placementStart = phaseIndex === 0 ? phase.lateralReachFractionMax * 0.75 : priorPhase.lateralReachFractionMax;
   const spinStart = phaseIndex === 0 ? 0 : priorPhase.spinIntensityMax;
   const readableStart = phaseIndex === 0 ? phase.minimumTimeToContactMs : priorPhase.minimumTimeToContactMs;
+  const desiredPaceMultiplier = mix(phase.incomingPaceMultiplierMin, phase.incomingPaceMultiplierMax, progress);
+  const priorPaceMultiplier = safeRally > 2 ? difficultyForRally(safeRally - 1, config).paceMultiplier : desiredPaceMultiplier;
+  const paceMultiplier = safeRally > 2
+    ? Math.min(desiredPaceMultiplier, priorPaceMultiplier * (1 + config.difficulty.maximumConsecutivePaceDelta))
+    : desiredPaceMultiplier;
+
   return {
     rally: safeRally,
     phaseIndex,
     phase: phase.name,
-    paceMultiplier: mix(phase.incomingPaceMultiplierMin, phase.incomingPaceMultiplierMax, progress),
+    paceMultiplier,
     placementRangeX: config.difficulty.maxPlacementX * mix(placementStart, phase.lateralReachFractionMax, progress),
     spinIntensity: mix(spinStart, phase.spinIntensityMax, spinProgress),
     minimumTimeToContactMs: mix(readableStart, phase.minimumTimeToContactMs, progress),
@@ -157,7 +163,7 @@ function createCandidate(seed: number, index: number, attempt: number, state: Re
   const spinRoll = random01(seed, stream + 3);
   const side = index % 2 === 0 ? -1 : 1;
   let targetX = lateralRoll * difficulty.placementRangeX;
-  if (rally <= 4) targetX *= 0.42;
+  if (rally === 1) targetX = 0;
   else if (rally < unlocks.alternatingPlacementRally) targetX = (index % 3 - 1) * difficulty.placementRangeX * 0.58;
   else if (rally < unlocks.advancedSequenceRally) targetX = side * difficulty.placementRangeX * (0.55 + Math.abs(lateralRoll) * 0.45);
 
@@ -198,12 +204,12 @@ export function createSafeFallbackPattern(index: number, state: ReachabilityStat
     targetX,
     contactZ: 0.68,
     contactHeight: 0.3,
-    incomingSpeed: config.difficulty.standardIncomingSpeedPerSecond * 0.72,
+    incomingSpeed: config.difficulty.standardIncomingSpeedPerSecond * difficulty.paceMultiplier,
     topspin: 0,
     sidespin: 0,
     shot: "flat",
-    recoverySeconds: Math.max(1.15, difficulty.minimumTimeToContactMs / 1000),
-    minimumTimeToContactMs: Math.max(1150, difficulty.minimumTimeToContactMs),
+    recoverySeconds: Math.max(1.18, difficulty.minimumTimeToContactMs / 1000),
+    minimumTimeToContactMs: Math.max(1180, difficulty.minimumTimeToContactMs),
     generatedAttempt: config.difficulty.maxRegenerationAttempts,
     usedFallback: true,
     difficulty,

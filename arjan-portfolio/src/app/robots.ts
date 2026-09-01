@@ -1,1 +1,13 @@
-import type { MetadataRoute } from "next";import { siteUrl } from "@/lib/site";export default function robots():MetadataRoute.Robots{return{rules:{userAgent:"*",allow:"/"},sitemap:`${siteUrl}/sitemap.xml`,host:siteUrl}}
+import type { MetadataRoute } from "next";
+import { siteUrl } from "@/lib/site";
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: [
+      { userAgent: "*", allow: "/" },
+      { userAgent: "Googlebot", allow: "/" },
+    ],
+    sitemap: `${siteUrl}/sitemap.xml`,
+    host: siteUrl,
+  };
+}

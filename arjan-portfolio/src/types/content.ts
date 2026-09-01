@@ -18,4 +18,11 @@ export type Project = {
   media?: { src: string; alt: string; caption?: string }[];
 };
 export type Publication = { title: string; authors: string; venue: string; year: number; type: string; summary: string; href?: string; role?: string; evidence: Evidence[] };
-export type ScienceArticle = { title: string; venue: string; publishedAt: string; summary: string; href: string };
+export type ScienceArticle = {
+  title: string;
+  venue: string;
+  publishedAt: string;
+  publishedAtISO: string;
+  summary: string;
+  href: string;
+};

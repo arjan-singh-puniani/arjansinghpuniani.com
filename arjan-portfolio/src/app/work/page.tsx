@@ -1,3 +1,3 @@
 import type { Metadata } from "next";import { ProjectFilter } from "@/components/ProjectFilter";
-export const metadata:Metadata={title:"Work",description:"Selected neurotechnology, clinical research, public health, education, motorsport medicine, and software projects.",alternates:{canonical:"/work"}};
+export const metadata:Metadata={title:"Work",description:"Selected work by Arjan Singh Puniani across neurotechnology, clinical research, medical education, motorsport safety, and software.",alternates:{canonical:"/work"}};
 export default function Work(){return <><header className="page-hero"><div className="shell"><p className="eyebrow">Project index</p><h1>Work</h1><p>Filter by field. Open any project for its evidence, limitations, and current status.</p></div></header><section className="section"><div className="shell"><ProjectFilter/></div></section></>}

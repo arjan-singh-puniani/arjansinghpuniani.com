@@ -72,8 +72,10 @@ export function meanAbsoluteTimingError(score: RunScore) {
 
 export type FailureTelemetry = {
   ballX: number;
+  ballZ: number;
   ballHeight: number;
   racketX: number;
+  racketZ: number;
   racketHeight: number;
   racketFaceNormalZ: number;
   racketHeadSpeed: number;
@@ -85,12 +87,18 @@ export type FailureTelemetry = {
   resultingBallX?: number;
   resultingBallZ?: number;
   resultingBallHeight?: number;
+  inputTimestampMs?: number;
+  displayedIdealInputTimestampMs?: number;
+  swingStartTimestampMs?: number;
+  racketPeakVelocityTimestampMs?: number;
+  predictedInterceptTimestampMs?: number;
+  actualCollisionTimestampMs?: number;
 };
 
 export function coachObservation(failure: FailureCause, timingErrorMs: number, score: RunScore, telemetry?: FailureTelemetry) {
   const error = Math.round(Math.abs(timingErrorMs));
-  if (failure === "early") return `You swung ${error} ms early. Let the ball enter the front-hip contact zone.`;
-  if (failure === "late") return `You swung ${error} ms late. Begin preparation before the bounce reaches you.`;
+  if (failure === "early") return `You swung ${error} ms early. Wait for the racket sweet-spot glow, then hit.`;
+  if (failure === "late") return `You swung ${error} ms late. Hit as the ball reaches the glowing racket zone.`;
   if (failure === "frame" && telemetry) {
     const faceDegrees = Math.round(Math.acos(Math.max(-1, Math.min(1, telemetry.racketFaceNormalZ))) * 180 / Math.PI);
     if (telemetry.racketFaceNormalZ < ENDLESS_RALLY_CONFIG.contact.minFaceNormalZ) return `Timing was playable, but the racket face was ${faceDegrees}° open.`;
@@ -124,8 +132,14 @@ export function impactFeedback(label: ContactLabel, reducedMotion: boolean) {
       : label === "DEFENSIVE"
         ? ENDLESS_RALLY_CONFIG.feedback.defensiveImpactMs
         : ENDLESS_RALLY_CONFIG.feedback.scrambleImpactMs;
-  const cameraImpulsePx = reducedMotion ? 0 : label === "PERFECT" ? 4 : label === "CLEAN" ? 1.5 : label === "DEFENSIVE" ? 0.75 : 0.35;
+  const cameraImpulsePx = reducedMotion ? 0 : label === "PERFECT" ? 6.5 : label === "CLEAN" ? 2.8 : label === "DEFENSIVE" ? 1.35 : 0.9;
   return { durationMs, cameraImpulsePx };
+}
+
+export type ResultsPresentation = "COMPACT" | "FULL";
+
+export function resultsPresentation(rally: number): ResultsPresentation {
+  return rally < 4 ? "COMPACT" : "FULL";
 }
 
 export type RunResult = {

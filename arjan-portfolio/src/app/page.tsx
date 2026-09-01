@@ -10,7 +10,7 @@ export default function Home() {
       <div className="shell v2-hero-grid">
         <div className="v2-hero-copy">
           <p className="v2-label"><span /> Neural engineer pursuing medicine</p>
-          <h1>Engineering for<br />decisions that affect<br /><em>human lives.</em></h1>
+          <h1><span className="v2-hero-name">Arjan Singh Puniani</span>Engineering for<br />decisions that affect<br /><em>human lives.</em></h1>
           <p className="v2-intro">Arjan Singh Puniani builds evidence-aware systems across neurotechnology, clinical reasoning, rehabilitation, and motorsport safety. He is pursuing medicine to connect technical capability with responsibility for the person affected by it.</p>
           <div className="v2-actions"><Link href="/work" data-analytics-event="hero_project_click">Explore the work <b>↗</b></Link><Link href="/about">Read the approach</Link></div>
         </div>

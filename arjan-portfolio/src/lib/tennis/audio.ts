@@ -36,18 +36,25 @@ export class TennisAudio {
 
   impact(label: ContactLabel) {
     if (label === "PERFECT") {
-      this.tone(920, 0.09, 0.11, "triangle", 610);
-      this.tone(205, 0.14, 0.12, "sine", 92);
+      // Perfect should be recognizable with your eyes closed: a crisp string snap,
+      // a short bright overtone, and a deeper body transient.
+      this.tone(1080, 0.075, 0.13, "triangle", 690);
+      this.tone(1760, 0.04, 0.055, "sine", 1180);
+      this.tone(220, 0.16, 0.14, "sine", 86);
     } else if (label === "FRAME") {
       this.tone(142, 0.12, 0.09, "square", 75);
       this.tone(1740, 0.035, 0.035, "square", 620);
     } else if (label === "SCRAMBLE") {
-      this.tone(330, 0.095, 0.075, "sawtooth", 170);
-      this.tone(1280, 0.04, 0.028, "square", 430);
+      this.tone(330, 0.12, 0.09, "sawtooth", 155);
+      this.tone(1280, 0.05, 0.035, "square", 430);
     } else {
-      this.tone(label === "DEFENSIVE" ? 520 : 690, 0.075, 0.085, "triangle", 390);
-      this.tone(165, 0.1, 0.07, "sine", 88);
+      this.tone(label === "DEFENSIVE" ? 520 : 720, 0.095, label === "DEFENSIVE" ? 0.1 : 0.105, "triangle", 390);
+      this.tone(165, 0.12, 0.085, "sine", 88);
     }
+  }
+
+  cuePulse() {
+    this.tone(440, 0.045, 0.018, "sine", 520);
   }
 
   bounce() {

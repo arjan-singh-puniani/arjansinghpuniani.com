@@ -6,8 +6,10 @@ export type FailureCause = "early" | "late" | "frame" | "net" | "long" | "unreac
 export type ContactEvaluationInput = {
   timingErrorMs: number;
   ballX: number;
+  ballZ: number;
   ballHeight: number;
   racketX: number;
+  racketZ: number;
   racketHeight: number;
   racketFaceNormalZ: number;
   racketHeadSpeed: number;
@@ -54,6 +56,7 @@ export function evaluateContact(input: ContactEvaluationInput, config: EndlessRa
   }
 
   const unreachable = Math.abs(input.ballX - input.racketX) > config.contact.racketReachX
+    || Math.abs(input.ballZ - input.racketZ) > config.contact.racketReachZ
     || Math.abs(input.ballHeight - input.racketHeight) > config.contact.racketReachHeight;
   if (unreachable) return failedContact("UNREACHABLE", input, "unreachable");
 
@@ -79,11 +82,29 @@ export function evaluateContact(input: ContactEvaluationInput, config: EndlessRa
 
 export function evaluateRallyContact(input: ContactEvaluationInput, successfulReturns: number, config: EndlessRallyConfig = ENDLESS_RALLY_CONFIG): ContactEvaluation {
   if (successfulReturns >= config.openingAssistance.successfulReturns) return evaluateContact(input, config);
+
+  // The opening is a discovery phase: the player should actually encounter the sweet
+  // spot before the game asks for precision. These wider *quality* bands apply only
+  // to the first five successful returns. Physical intersection, face angle, racket
+  // speed, and string-bed position still gate the result. After Rally 5, Standard
+  // immediately returns to the published 70 / 150 / 260 / 360 ms bands.
+  const discoveryTiming = successfulReturns < 5
+    ? {
+        ...config.timing,
+        perfectMaxMs: 105,
+        cleanMaxMs: 185,
+        defensiveMaxMs: 300,
+        scrambleMaxMs: 380,
+      }
+    : config.timing;
+
   const assistedConfig: EndlessRallyConfig = {
     ...config,
+    timing: discoveryTiming,
     contact: {
       ...config.contact,
       racketReachX: config.openingAssistance.racketReachX,
+      racketReachZ: config.openingAssistance.racketReachZ,
       racketReachHeight: config.openingAssistance.racketReachHeight,
       sweetSpotMaxOffset: config.openingAssistance.sweetSpotMaxOffset,
       frameMinOffset: config.openingAssistance.frameMinOffset,

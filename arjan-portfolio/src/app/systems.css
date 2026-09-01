@@ -351,6 +351,9 @@ body { overflow-x: clip; }
 .endless-score span { color: #99a6c5; font: 8px var(--font-mono); letter-spacing: .12em; }
 .endless-score strong { color: #fff; font-size: 38px; line-height: 1; }
 .endless-feedback { position: absolute; z-index: 4; left: 50%; top: 28%; transform: translate(-50%,-50%); margin: 0; padding: 7px 12px; border: 1px solid currentColor; background: rgba(7,6,23,.83); color: #fff; font: 900 clamp(15px,2.3vw,27px) var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+.contact-cue-instruction { position: absolute; z-index: 4; left: 50%; top: 18px; display: grid; justify-items: center; gap: 3px; transform: translateX(-50%); margin: 0; padding: 8px 13px; border: 1px solid rgba(53,236,255,.42); color: #f8fbff; background: rgba(7,6,23,.78); text-align: center; pointer-events: none; }
+.contact-cue-instruction span { color: var(--tennis-cyan); font: 7px var(--font-mono); text-transform: uppercase; letter-spacing: .12em; }
+.contact-cue-instruction strong { font: 900 11px var(--font-mono); letter-spacing: .08em; }
 .feedback-perfect { color: var(--tennis-yellow); }
 .feedback-clean { color: var(--tennis-cyan); }
 .feedback-defensive { color: #ffad6e; }
@@ -365,14 +368,21 @@ body { overflow-x: clip; }
 .endless-overlay h2 { font-size: clamp(48px,8vw,88px); }
 .endless-best-line { margin: 5px 0 22px; color: #aab6d2; font: 12px var(--font-mono); text-transform: uppercase; }
 .endless-best-line strong { color: var(--tennis-yellow); font-size: 18px; }
-.endless-overlay > button:not(.share-result) { display: grid; gap: 3px; min-width: 230px; min-height: 66px; place-content: center; border: 1px solid var(--tennis-cyan); color: #071017; background: var(--tennis-cyan); cursor: pointer; font-size: 21px; font-weight: 900; text-transform: uppercase; box-shadow: 0 0 26px rgba(53,236,255,.23); }
-.endless-overlay > button span { font: 8px var(--font-mono); letter-spacing: .1em; }
+.endless-overlay > button:not(.share-result),.result-panel > button:not(.share-result) { display: grid; gap: 3px; min-width: 230px; min-height: 66px; place-content: center; border: 1px solid var(--tennis-cyan); color: #071017; background: var(--tennis-cyan); cursor: pointer; font-size: 21px; font-weight: 900; text-transform: uppercase; box-shadow: 0 0 26px rgba(53,236,255,.23); }
+.endless-overlay > button span,.result-panel > button span { font: 8px var(--font-mono); letter-spacing: .1em; }
 .endless-title > p:nth-last-of-type(1) { color: #c3cbe0; font: 11px var(--font-mono); text-transform: uppercase; }
 .endless-title nav { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 16px; }
 .endless-title nav button,.endless-title nav a,.share-result { min-height: 40px; border: 1px solid #454973; padding: 0 12px; color: #aab6d2; background: #11102b; cursor: pointer; text-decoration: none; font: 9px var(--font-mono); text-transform: uppercase; }
 .endless-title nav a { display: inline-flex; align-items: center; }
 .endless-title nav button[aria-pressed=true] { color: #071017; border-color: var(--tennis-yellow); background: var(--tennis-yellow); }
 .endless-results { place-content: center; }
+.result-panel { display: grid; justify-items: center; width: min(760px,100%); }
+.endless-results.is-compact { place-content: end center; padding: 20px; background: linear-gradient(180deg,rgba(7,6,23,.05) 0%,rgba(7,6,23,.32) 42%,rgba(7,6,23,.92) 100%); }
+.endless-results.is-compact .result-panel { width: min(520px,100%); margin-bottom: 4px; padding: 16px; border: 1px solid #4a4f7c; background: rgba(9,9,31,.94); box-shadow: 0 0 30px rgba(53,236,255,.12); }
+.endless-results.is-compact h2 { margin: 4px 0; font-size: 38px; }
+.endless-results.is-compact .result-cause { margin-bottom: 8px; }
+.endless-results.is-compact .coach-brain { margin-bottom: 10px; }
+.endless-results.is-compact .result-panel > button { min-height: 58px; }
 .endless-results .result-cause { margin: 0 0 15px; color: #aab6d2; font: 11px var(--font-mono); text-transform: uppercase; }
 .endless-results .result-cause strong { color: #ff8fa9; }
 .endless-results dl { display: grid; grid-template-columns: repeat(4,minmax(100px,1fr)); width: min(680px,100%); margin: 10px 0 16px; border: 1px solid #3d406d; }
@@ -465,4 +475,82 @@ body { overflow-x: clip; }
 
 @media (prefers-reduced-motion: reduce) {
   .endless-feedback,.endless-overlay,.start-prompt { transition: none; }
+}
+
+/* Endless Rally 3 — play-first arcade surface. Physics stays underneath; the UI stops teaching milliseconds. */
+.endless-rally { border-color: #c9c2b5; background: #eee9df; box-shadow: 0 18px 55px rgba(20,25,28,.16); }
+.endless-topbar { min-height: 58px; border-bottom-color: #d2cabd; background: #f4f0e7; }
+.endless-topbar > div { padding: 8px 14px; }
+.endless-topbar span { color: #6d6b65; }
+.endless-topbar strong { color: #17262b; }
+.endless-best { min-width: 190px; border-inline-color: #d2cabd; }
+.endless-best strong { color: #c84e3b; }
+.endless-best b { color: #17262b; background: #f4c84a; }
+.endless-actions button { border-color: #bdb5a8; color: #313a3d; background: #ebe5da; }
+.endless-stage { height: clamp(500px,55vw,650px); background: #e9e4d8; cursor: crosshair; }
+.endless-rally.is-active .endless-stage { touch-action: none; }
+.endless-score { left: 26px; top: 20px; min-width: 0; padding: 0; border: 0; background: transparent; text-shadow: 0 1px 0 rgba(255,255,255,.55); }
+.endless-score span { color: #47565a; font-size: 9px; }
+.endless-score strong { color: #17262b; font-size: clamp(52px,7vw,86px); line-height: .82; letter-spacing: -.05em; }
+.contact-cue-instruction { left: 50%; top: auto; bottom: 22px; gap: 2px; padding: 8px 13px; border: 0; border-radius: 999px; color: #17262b; background: rgba(244,240,231,.9); box-shadow: 0 5px 24px rgba(20,25,28,.12); }
+.contact-cue-instruction span { display: none; }
+.contact-cue-instruction strong { font: 800 10px var(--font-mono); letter-spacing: .08em; }
+.endless-feedback { top: 22%; border: 0; border-radius: 999px; background: rgba(23,38,43,.9); box-shadow: 0 6px 20px rgba(20,25,28,.18); }
+.feedback-perfect { color: #f4c84a; }
+.feedback-clean { color: #cbe9e3; }
+.feedback-defensive { color: #ffd09a; }
+.feedback-scramble { color: #d9c8f1; }
+.endless-overlay { color: #17262b; background: linear-gradient(180deg,rgba(244,240,231,.78),rgba(233,228,216,.94)); }
+.endless-overlay .eyebrow { color: #c84e3b; }
+.endless-overlay h1 { color: #17262b; text-shadow: none; letter-spacing: -.055em; }
+.endless-overlay h2 { color: #17262b; }
+.endless-best-line { color: #6d6b65; }
+.endless-best-line strong { color: #c84e3b; }
+.endless-overlay > button:not(.share-result),.result-panel > button:not(.share-result) { border: 0; color: #17262b; background: #f4c84a; box-shadow: 0 8px 30px rgba(127,98,22,.18); }
+.endless-title > p:nth-last-of-type(1) { color: #5c6465; }
+.endless-title nav button,.endless-title nav a,.share-result { border-color: #bdb5a8; color: #313a3d; background: #f0ebe2; }
+.endless-title nav button[aria-pressed=true] { color: #17262b; border-color: #f4c84a; background: #f4c84a; }
+.endless-results.is-compact { place-content: end center; padding: 16px; background: linear-gradient(180deg,transparent 0%,transparent 56%,rgba(23,38,43,.18) 100%); }
+.endless-results.is-compact .result-panel { width: min(430px,calc(100% - 18px)); margin-bottom: 4px; padding: 12px 14px; border: 0; border-radius: 16px; background: rgba(244,240,231,.97); box-shadow: 0 12px 34px rgba(20,25,28,.22); }
+.endless-results.is-compact .eyebrow { margin: 0; }
+.endless-results.is-compact h2 { margin: 2px 0; font-size: 30px; }
+.endless-results.is-compact .result-cause { margin: 0 0 5px; }
+.endless-results.is-compact .result-panel > button { min-height: 50px; }
+.endless-results .result-cause { color: #596366; }
+.endless-results .result-cause strong { color: #c84e3b; }
+.quick-retry-note { margin: 0 0 8px; color: #596366; font-size: 12px; }
+.coach-brain { color: #3f4d50; background: rgba(23,44,52,.07); }
+.coach-brain span { color: #c84e3b; }
+.endless-footer { border-top-color: #d2cabd; background: #f4f0e7; }
+.endless-footer p { border-right-color: #d2cabd; color: #606a6c; }
+.endless-footer strong { color: #17262b; }
+
+@media (max-width: 800px) {
+  .endless-stage { min-height: 500px; }
+  .endless-score { left: 14px; top: 14px; }
+  .endless-score strong { font-size: 58px; }
+  .contact-cue-instruction { bottom: 14px; }
+  .endless-results.is-compact { padding: 10px; }
+}
+
+/* Endless Rally 4 — make the sweet spot discoverable, then get out of the way. */
+.endless-feedback.feedback-perfect {
+  padding: 11px 18px;
+  color: #17262b;
+  background: #f4c84a;
+  box-shadow: 0 8px 28px rgba(127,98,22,.28);
+  font-size: clamp(18px,2.8vw,34px);
+  letter-spacing: .045em;
+}
+.endless-feedback.feedback-clean {
+  padding-inline: 15px;
+  font-size: clamp(15px,2.2vw,25px);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .endless-feedback.feedback-perfect { animation: endless-perfect-pop 320ms cubic-bezier(.2,.8,.2,1) both; }
+}
+@keyframes endless-perfect-pop {
+  0% { transform: translate(-50%,-50%) scale(.72); }
+  55% { transform: translate(-50%,-50%) scale(1.08); }
+  100% { transform: translate(-50%,-50%) scale(1); }
 }
