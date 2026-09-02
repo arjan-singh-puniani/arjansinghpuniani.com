@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { ENDLESS_RALLY_CONFIG } from "@/lib/tennis/config";
-import { classifyTiming, evaluateContact, evaluateRallyContact, openingAssistanceForRally } from "@/lib/tennis/contact";
-import { autoFootworkForPattern, bufferPrimarySwing, consumeBufferedSwing, createContactTimeline, cuePresentation, hasBallPassedContactVolume, timingTrace } from "@/lib/tennis/contact-cue";
+import { assistedConfigForRally, classifyTiming, evaluateContact, evaluateRallyContact, openingAssistanceForRally } from "@/lib/tennis/contact";
+import { autoFootworkForPattern, bufferPrimarySwing, consumeBufferedSwing, createContactTimeline, cuePresentation, hasBallPassedContactVolume, predictRacketBallIntercept, prepareIncomingBall, timingTrace } from "@/lib/tennis/contact-cue";
 import { driveCueFollowingRun, traceOpeningExchanges } from "@/lib/tennis/endless-rally-driver";
 import { TennisAudio } from "@/lib/tennis/audio";
 import { canRobotReturnBall, isLegalOpponentBounce, resolveDeadReturnedBall, strikeEndlessRallyBall, validateLegalReturn } from "@/lib/tennis/rally-contact-physics";
@@ -204,8 +204,9 @@ describe("Endless Rally opening trace and one-input control", () => {
 
   it("smoothly fades the opening buffer and racket assistance", () => {
     const values = Array.from({ length: 13 }, (_, index) => openingAssistanceForRally(index + 1));
-    expect(values[0].earlyBufferMs).toBe(500);
-    expect(values[3].earlyBufferMs).toBe(420);
+    expect(values[0].earlyBufferMs).toBe(560);
+    expect(values[3].earlyBufferMs).toBe(540);
+    expect(values[7].earlyBufferMs).toBe(500);
     expect(values[12].racketReachX).toBe(ENDLESS_RALLY_CONFIG.contact.racketReachX);
     for (let index = 1; index < values.length; index += 1) {
       expect(values[index].earlyBufferMs).toBeLessThanOrEqual(values[index - 1].earlyBufferMs);
@@ -217,6 +218,8 @@ describe("Endless Rally opening trace and one-input control", () => {
     const timeline = createContactTimeline(0, 1400, ENDLESS_RALLY_CONFIG, 500);
     const first = bufferPrimarySwing(timeline.displayedIdealInputSimMs - 400, timeline, false);
     expect(first).not.toBeNull();
+    expect(first?.swingStartSimMs).toBe(first?.inputSimMs);
+    expect(first?.racketPeakVelocitySimMs).toBe(timeline.predictedInterceptSimMs);
     expect(bufferPrimarySwing(timeline.displayedIdealInputSimMs - 390, timeline, first !== null)).toBeNull();
     expect(consumeBufferedSwing(first!, first!.swingStartSimMs - 1).consumed).toBe(false);
     expect(consumeBufferedSwing(first!, first!.swingStartSimMs).consumed).toBe(true);
@@ -233,6 +236,39 @@ describe("Endless Rally opening trace and one-input control", () => {
     expect(buffered.displayedIdealInputSimMs).toBe(timeline.displayedIdealInputSimMs);
     expect(buffered.inputErrorMs).toBe(0);
     expect(timingTrace(buffered, timeline.predictedInterceptSimMs).predictedInterceptTimestampMs).toBe(timeline.predictedInterceptSimMs);
+  });
+
+  it("does not remove the explicit timing cue after the fourth return", () => {
+    const timeline = createContactTimeline(500, 1400, ENDLESS_RALLY_CONFIG, 500);
+    const fifthBallCue = cuePresentation(timeline.displayedIdealInputSimMs, timeline, 5, false, false);
+    const lateGameCue = cuePresentation(timeline.displayedIdealInputSimMs, timeline, 40, false, false);
+    expect(fifthBallCue.showTap).toBe(true);
+    expect(fifthBallCue.showRing).toBe(true);
+    expect(lateGameCue.showTap).toBe(true);
+    expect(lateGameCue.showRing).toBe(true);
+  });
+
+  it("keeps human-early taps playable through the former Rally 4 wall", () => {
+    const run = driveCueFollowingRun(73421, Array.from({ length: 8 }, () => -480));
+    expect(run).toHaveLength(8);
+    expect(run.every((exchange) => exchange.contact.label === "SCRAMBLE")).toBe(true);
+    expect(run.every((exchange) => exchange.legalReturn)).toBe(true);
+  });
+
+  it("does not inherit an ankle-low ball state when Rally 9 unlocks spin", () => {
+    const pattern = generateRallyPattern(73421, 8, { playerX: 0, playerVelocityX: 0, racketHeight: 0.32, availableSeconds: 1.18 });
+    const source = { ...createArcadeBall("player"), z: -0.58, height: 0.08, vy: -0.4, bounces: 1 };
+    const incoming = prepareIncomingBall(pattern, source);
+    const footwork = autoFootworkForPattern(0, pattern);
+    const intercept = predictRacketBallIntercept(
+      incoming,
+      { x: 0, vx: 0, targetX: footwork.targetX, z: 0.78, racketHeight: 0.32, forehand: footwork.forehand },
+      pattern.contactZ,
+      assistedConfigForRally(9),
+    );
+    expect(incoming.height).toBeGreaterThanOrEqual(0.56);
+    expect(incoming.bounces).toBe(0);
+    expect(intercept.reachable).toBe(true);
   });
 
   it("drives a legal twelve-return run by following the cue", () => {

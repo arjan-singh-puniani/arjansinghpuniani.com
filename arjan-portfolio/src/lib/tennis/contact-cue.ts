@@ -1,5 +1,5 @@
 import { ENDLESS_RALLY_CONFIG, type EndlessRallyConfig } from "@/lib/tennis/config";
-import { capIncomingSpeedForReadability, type RallyPattern } from "@/lib/tennis/rally-generator";
+import { capIncomingSpeedForReadability, smootherstep, type RallyPattern } from "@/lib/tennis/rally-generator";
 import { createArcadeBall, stepArcadeBallInPlace, type ArcadeBallState } from "@/lib/vector-tennis";
 
 export type CuePlayerState = {
@@ -68,20 +68,21 @@ export function prepareIncomingBall(pattern: RallyPattern, source?: ArcadeBallSt
   if (!source) {
     next.z = -0.76;
     next.x = pattern.targetX * -0.18;
-    next.height = 0.48;
+    next.height = 0.6;
+  } else {
+    // A rival return is a fresh racket strike, so relaunch it from a readable
+    // knee/hip-height contact instead of inheriting a near-ground bounce sample.
+    // This rule is continuous across phase boundaries, including Rally 8 -> 9.
+    next.height = Math.max(next.height, 0.56);
   }
   const flightDistance = Math.max(0.1, pattern.contactZ - next.z);
   next.vz = capIncomingSpeedForReadability(flightDistance, pattern.incomingSpeed, pattern.minimumTimeToContactMs);
   // Drag and the two-bounce lifetime require a small deterministic velocity floor
   // for the opening ball to remain active until contact. This still yields at least
   // 1.4 s on the calibration feed and avoids an artificial UNREACHABLE result.
-  if (pattern.index < 8) {
-    next.vz = Math.max(next.vz, 1.1 + pattern.index * 0.012);
-    // The robot visibly meets the ball around knee/hip height instead of relaunching
-    // it from an ankle-high post-bounce sample. This preserves the readable first
-    // bounce and keeps the feed alive through the physical intercept.
-    next.height = source ? Math.max(next.height, 0.56) : 0.6;
-  }
+  const openingProtection = pattern.index <= 7 ? 1 : smootherstep((12 - pattern.index) / 4);
+  const protectedVelocityFloor = (1.1 + Math.min(pattern.index, 8) * 0.012) * openingProtection;
+  next.vz = Math.max(next.vz, protectedVelocityFloor);
   const approximateFlightSeconds = Math.max(pattern.minimumTimeToContactMs / 1000, flightDistance / next.vz);
   next.vx = (pattern.targetX - next.x) / approximateFlightSeconds - pattern.sidespin * 0.075 * approximateFlightSeconds * 0.5;
   next.vy = pattern.shot === "topspin" ? 1.02 : pattern.shot === "slice" ? 0.78 : 0.88;
@@ -159,7 +160,9 @@ export function createContactTimeline(
 /** Input, cue and animation all reference this one simulation-time timeline. */
 export function bufferPrimarySwing(inputSimMs: number, timeline: ContactTimeline, alreadyBuffered: boolean, config: EndlessRallyConfig = ENDLESS_RALLY_CONFIG): BufferedSwing | null {
   if (alreadyBuffered || inputSimMs < timeline.bufferOpensSimMs || inputSimMs > timeline.displayedIdealInputSimMs + config.timing.scrambleMaxMs) return null;
-  const swingStartSimMs = Math.max(inputSimMs, timeline.displayedIdealInputSimMs);
+  // A buffered tap begins visible preparation immediately, while the useful
+  // racket-head peak remains aligned with the predicted physical intercept.
+  const swingStartSimMs = inputSimMs;
   const racketPeakVelocitySimMs = inputSimMs <= timeline.predictedInterceptSimMs
     ? timeline.predictedInterceptSimMs
     : inputSimMs;
@@ -184,7 +187,7 @@ export function hasBallPassedContactVolume(ballZ: number, racketZ: number, racke
 
 export function cuePresentation(simTimeMs: number, timeline: ContactTimeline, incomingRally: number, fullCueAssist: boolean, reducedMotion: boolean, config: EndlessRallyConfig = ENDLESS_RALLY_CONFIG): CuePresentation {
   const inputErrorMs = simTimeMs - timeline.displayedIdealInputSimMs;
-  const completeCue = fullCueAssist || incomingRally <= config.cue.completeThroughRally;
+  const completeCue = fullCueAssist || config.cue.persistentStandardCue || incomingRally <= config.cue.completeThroughRally;
   const showRing = completeCue || incomingRally <= config.cue.ringThroughRally || incomingRally <= config.cue.fadedThroughRally;
   const visible = fullCueAssist || incomingRally <= config.cue.fadedThroughRally || simTimeMs <= timeline.predictedInterceptSimMs;
   const viableProgress = clamp((simTimeMs - timeline.bufferOpensSimMs) / Math.max(1, timeline.displayedIdealInputSimMs - timeline.bufferOpensSimMs), 0, 1);

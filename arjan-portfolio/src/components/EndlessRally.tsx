@@ -204,7 +204,7 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
         personalBest,
         daily: dailyRef.current,
         dailyKey,
-        cueInstruction: (machine === "PLAYING" || machine === "IMPACT") && !playerReturnedBall && score.rally < 4 ? "TAP AS THE RING MEETS THE BALL" : "",
+        cueInstruction: (machine === "PLAYING" || machine === "IMPACT") && !playerReturnedBall && score.rally < 12 ? "TAP AS THE RING MEETS THE BALL" : "",
       });
     };
 

@@ -100,6 +100,8 @@ export type EndlessRallyConfig = {
     personalBestProximity: number;
   };
   cue: {
+    /** Standard keeps its physically anchored timing cue; challenge comes from the ball. */
+    persistentStandardCue: boolean;
     completeThroughRally: number;
     ringThroughRally: number;
     fadedThroughRally: number;
@@ -144,10 +146,10 @@ export const ENDLESS_RALLY_CONFIG: EndlessRallyConfig = {
   },
   openingAssistance: {
     keyframes: [
-      { incomingRally: 1, earlyBufferMs: 500, lateToleranceMs: 250, racketReachX: 0.56, racketReachZ: 0.34, racketReachHeight: 0.62, sweetSpotMaxOffset: 0.72, frameMinOffset: 0.98, minFaceNormalZ: 0.42, minRacketHeadSpeed: 0.48 },
-      { incomingRally: 4, earlyBufferMs: 420, lateToleranceMs: 220, racketReachX: 0.5, racketReachZ: 0.3, racketReachHeight: 0.55, sweetSpotMaxOffset: 0.64, frameMinOffset: 0.94, minFaceNormalZ: 0.45, minRacketHeadSpeed: 0.51 },
-      { incomingRally: 8, earlyBufferMs: 360, lateToleranceMs: 190, racketReachX: 0.43, racketReachZ: 0.25, racketReachHeight: 0.48, sweetSpotMaxOffset: 0.54, frameMinOffset: 0.9, minFaceNormalZ: 0.48, minRacketHeadSpeed: 0.55 },
-      { incomingRally: 13, earlyBufferMs: 360, lateToleranceMs: 180, racketReachX: 0.36, racketReachZ: 0.2, racketReachHeight: 0.42, sweetSpotMaxOffset: 0.46, frameMinOffset: 0.86, minFaceNormalZ: 0.5, minRacketHeadSpeed: 0.58 },
+      { incomingRally: 1, earlyBufferMs: 560, lateToleranceMs: 250, racketReachX: 0.56, racketReachZ: 0.34, racketReachHeight: 0.62, sweetSpotMaxOffset: 0.72, frameMinOffset: 0.98, minFaceNormalZ: 0.42, minRacketHeadSpeed: 0.48 },
+      { incomingRally: 4, earlyBufferMs: 540, lateToleranceMs: 220, racketReachX: 0.5, racketReachZ: 0.3, racketReachHeight: 0.55, sweetSpotMaxOffset: 0.64, frameMinOffset: 0.94, minFaceNormalZ: 0.45, minRacketHeadSpeed: 0.51 },
+      { incomingRally: 8, earlyBufferMs: 500, lateToleranceMs: 190, racketReachX: 0.43, racketReachZ: 0.25, racketReachHeight: 0.48, sweetSpotMaxOffset: 0.54, frameMinOffset: 0.9, minFaceNormalZ: 0.48, minRacketHeadSpeed: 0.55 },
+      { incomingRally: 13, earlyBufferMs: 420, lateToleranceMs: 180, racketReachX: 0.36, racketReachZ: 0.2, racketReachHeight: 0.42, sweetSpotMaxOffset: 0.46, frameMinOffset: 0.86, minFaceNormalZ: 0.5, minRacketHeadSpeed: 0.58 },
     ],
   },
   difficulty: {
@@ -202,6 +204,7 @@ export const ENDLESS_RALLY_CONFIG: EndlessRallyConfig = {
     personalBestProximity: 2,
   },
   cue: {
+    persistentStandardCue: true,
     completeThroughRally: 4,
     ringThroughRally: 8,
     fadedThroughRally: 12,
