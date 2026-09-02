@@ -3,7 +3,7 @@ import { ENDLESS_RALLY_CONFIG } from "@/lib/tennis/config";
 import { assistedConfigForRally, classifyTiming, evaluateContact, evaluateRallyContact, openingAssistanceForRally } from "@/lib/tennis/contact";
 import { autoFootworkForPattern, bufferPrimarySwing, consumeBufferedSwing, createContactTimeline, cuePresentation, hasBallPassedContactVolume, predictRacketBallIntercept, prepareIncomingBall, timingTrace } from "@/lib/tennis/contact-cue";
 import { driveCueFollowingRun, traceOpeningExchanges } from "@/lib/tennis/endless-rally-driver";
-import { TennisAudio } from "@/lib/tennis/audio";
+import { impactSoundProfile, TennisAudio } from "@/lib/tennis/audio";
 import { canRobotReturnBall, isLegalOpponentBounce, resolveDeadReturnedBall, strikeEndlessRallyBall, validateLegalReturn } from "@/lib/tennis/rally-contact-physics";
 import { createArcadeBall } from "@/lib/vector-tennis";
 import {
@@ -45,6 +45,84 @@ const physicalContact = {
   incomingSpeed: 1.7,
   incomingSpin: 2.2,
 };
+
+class MockAudioParam {
+  value = 0;
+  setValueAtTime(value: number) { this.value = value; return this; }
+  linearRampToValueAtTime(value: number) { this.value = value; return this; }
+  exponentialRampToValueAtTime(value: number) { this.value = value; return this; }
+}
+
+class MockAudioNode {
+  disconnected = false;
+  connect<T>(node: T) { return node; }
+  disconnect() { this.disconnected = true; }
+}
+
+class MockScheduledSource extends MockAudioNode {
+  onended: (() => void) | null = null;
+  starts = 0;
+  stops = 0;
+  start() { this.starts += 1; }
+  stop() { this.stops += 1; }
+}
+
+class MockOscillator extends MockScheduledSource {
+  type: OscillatorType = "sine";
+  frequency = new MockAudioParam();
+}
+
+class MockBufferSource extends MockScheduledSource {
+  buffer: AudioBuffer | null = null;
+}
+
+class MockGain extends MockAudioNode { gain = new MockAudioParam(); }
+class MockDelay extends MockAudioNode { delayTime = new MockAudioParam(); }
+class MockFilter extends MockAudioNode {
+  type: BiquadFilterType = "lowpass";
+  frequency = new MockAudioParam();
+  Q = new MockAudioParam();
+}
+class MockCompressor extends MockAudioNode {
+  threshold = new MockAudioParam();
+  knee = new MockAudioParam();
+  ratio = new MockAudioParam();
+  attack = new MockAudioParam();
+  release = new MockAudioParam();
+}
+
+class MockAudioContext {
+  state: AudioContextState = "running";
+  currentTime = 0;
+  sampleRate = 48000;
+  destination = new MockAudioNode();
+  sources: MockScheduledSource[] = [];
+  resumeCalls = 0;
+  closeCalls = 0;
+  createGain() { return new MockGain(); }
+  createDelay() { return new MockDelay(); }
+  createBiquadFilter() { return new MockFilter(); }
+  createDynamicsCompressor() { return new MockCompressor(); }
+  createOscillator() { const source = new MockOscillator(); this.sources.push(source); return source; }
+  createBufferSource() { const source = new MockBufferSource(); this.sources.push(source); return source; }
+  createBuffer(_channels: number, length: number) {
+    const data = new Float32Array(length);
+    return { getChannelData: () => data };
+  }
+  resume() { this.resumeCalls += 1; this.state = "running"; return Promise.resolve(); }
+  close() { this.closeCalls += 1; this.state = "closed"; return Promise.resolve(); }
+}
+
+function createAudioHarness(maximumVoices = 24, state: AudioContextState = "running") {
+  const context = new MockAudioContext();
+  context.state = state;
+  let factoryCalls = 0;
+  const audio = new TennisAudio(() => {
+    factoryCalls += 1;
+    return context as unknown as AudioContext;
+  }, maximumVoices);
+  return { audio, context, factoryCalls: () => factoryCalls };
+}
 
 describe("Endless Rally fixed contact model", () => {
   it("uses the exact published Standard timing boundaries", () => {
@@ -415,6 +493,69 @@ describe("Endless Rally scoring, feedback, and state", () => {
       audio.net();
       audio.dispose();
     }).not.toThrow();
+  });
+
+  it("creates one shared audio context across repeated unlocks", () => {
+    const { audio, context, factoryCalls } = createAudioHarness(24, "suspended");
+    audio.unlock();
+    audio.unlock();
+    expect(factoryCalls()).toBe(1);
+    expect(context.resumeCalls).toBe(1);
+    audio.dispose();
+  });
+
+  it("suppresses every audio event while muted", () => {
+    const { audio, context } = createAudioHarness();
+    audio.unlock();
+    audio.setMuted(true);
+    const sourceCount = context.sources.length;
+    audio.impact("PERFECT", 1.5, 0.02, 2.1);
+    audio.opponentImpact(1, 1.5);
+    audio.bounce(1.8);
+    audio.net(2);
+    audio.cuePulse();
+    audio.personalBestMilestone("BEST IN 1");
+    audio.result(true);
+    expect(context.sources).toHaveLength(sourceCount);
+    expect(audio.debugSnapshot().emittedEvents).toBe(0);
+    audio.dispose();
+  });
+
+  it("caps voices, clears stale restart tails, and disposes safely", () => {
+    const { audio, context } = createAudioHarness(8);
+    audio.unlock();
+    for (let index = 0; index < 10; index += 1) audio.impact("PERFECT", 1.45, 0.05, 2);
+    expect(audio.debugSnapshot().activeVoices).toBeLessThanOrEqual(8);
+    expect(context.sources.some((source) => source.stops > 1)).toBe(true);
+    audio.beginRun();
+    expect(audio.debugSnapshot().activeVoices).toBe(0);
+    audio.dispose();
+    expect(audio.debugSnapshot()).toMatchObject({ activeVoices: 0, pendingTimers: 0, disposed: true });
+    expect(context.closeCalls).toBe(1);
+  });
+
+  it("fires each personal-best milestone once per run", () => {
+    const { audio, context } = createAudioHarness();
+    audio.unlock();
+    expect(audio.personalBestMilestone("BEST IN 2")).toBe(true);
+    const afterFirst = context.sources.length;
+    expect(audio.personalBestMilestone("BEST IN 2")).toBe(false);
+    expect(context.sources).toHaveLength(afterFirst);
+    expect(audio.personalBestMilestone("BEST IN 1")).toBe(true);
+    audio.beginRun();
+    expect(audio.personalBestMilestone("BEST IN 2")).toBe(true);
+    audio.dispose();
+  });
+
+  it("maps measured impact physics deterministically into bounded sound profiles", () => {
+    const centered = impactSoundProfile("PERFECT", 1.5, 0.02, 2.1);
+    const repeated = impactSoundProfile("PERFECT", 1.5, 0.02, 2.1);
+    const frame = impactSoundProfile("FRAME", 0.8, 0.94, 1.4);
+    expect(centered).toEqual(repeated);
+    expect(centered.transientGain).toBeLessThanOrEqual(0.098);
+    expect(centered.bodyGain).toBeLessThanOrEqual(0.078);
+    expect(centered.brightnessHz).toBeGreaterThan(frame.brightnessHz * 0.5);
+    expect(frame.dampingSeconds).toBeLessThan(centered.dampingSeconds);
   });
 
   it("reports exact personal-best pressure states", () => {
