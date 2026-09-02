@@ -132,14 +132,15 @@ export function impactFeedback(label: ContactLabel, reducedMotion: boolean) {
       : label === "DEFENSIVE"
         ? ENDLESS_RALLY_CONFIG.feedback.defensiveImpactMs
         : ENDLESS_RALLY_CONFIG.feedback.scrambleImpactMs;
-  const cameraImpulsePx = reducedMotion ? 0 : label === "PERFECT" ? 6.5 : label === "CLEAN" ? 2.8 : label === "DEFENSIVE" ? 1.35 : 0.9;
-  return { durationMs, cameraImpulsePx };
+  const cameraImpulsePx = reducedMotion ? 0 : label === "PERFECT" ? 4 : label === "CLEAN" ? 1.8 : 0;
+  const particleCount = reducedMotion ? 0 : label === "PERFECT" ? 6 : label === "CLEAN" ? 3 : 1;
+  return { durationMs, cameraImpulsePx, particleCount };
 }
 
 export type ResultsPresentation = "COMPACT" | "FULL";
 
 export function resultsPresentation(rally: number): ResultsPresentation {
-  return rally < 4 ? "COMPACT" : "FULL";
+  return rally < 5 ? "COMPACT" : "FULL";
 }
 
 export type RunResult = {

@@ -7,6 +7,20 @@ const SINGLES_SIDELINE_X = 1;
 const LINE_TOLERANCE = 0.025;
 const ROBOT_REACH_X = 0.29;
 const ROBOT_RETURN_MAX_HEIGHT = 0.66;
+const ARCADE_HORIZONTAL_DRAG_PER_SECOND = -120 * Math.log(0.998);
+
+function flightTimeToZ(startZ: number, targetZ: number, initialVz: number) {
+  const distance = Math.abs(targetZ - startZ);
+  const speed = Math.max(0.05, Math.abs(initialVz));
+  const ratio = Math.min(0.94, distance * ARCADE_HORIZONTAL_DRAG_PER_SECOND / speed);
+  return -Math.log(1 - ratio) / ARCADE_HORIZONTAL_DRAG_PER_SECOND;
+}
+
+function verticalVelocityForLanding(ball: ArcadeBallState, targetZ: number) {
+  const flightSeconds = flightTimeToZ(ball.z, targetZ, ball.vz);
+  const downwardAcceleration = 3.05 + Math.max(0, ball.topspin) * 0.12;
+  return (0.5 * downwardAcceleration * flightSeconds ** 2 - ball.height) / flightSeconds;
+}
 
 export function strikeEndlessRallyBall(incoming: ArcadeBallState, contact: ContactEvaluation, robotX = 0): ArcadeBallState {
   const shot: ArcadeShot = contact.label === "PERFECT" ? "flat" : contact.label === "CLEAN" ? "topspin" : "slice";
@@ -17,9 +31,15 @@ export function strikeEndlessRallyBall(incoming: ArcadeBallState, contact: Conta
   const timing = contact.label === "PERFECT" ? 1 : contact.label === "CLEAN" ? 0.8 : contact.label === "DEFENSIVE" ? 0.54 : 0.34;
   const ball = strikeArcadeBall(incoming, "player", shot, controlledAim, charge, timing);
   ball.vz *= contact.restitution * contact.paceScale;
+  const minimumOutgoingPace = contact.label === "PERFECT" ? 2.05 : contact.label === "CLEAN" ? 1.85 : contact.label === "DEFENSIVE" ? 1.45 : 1.1;
+  const maximumOutgoingPace = contact.label === "PERFECT" ? 2.3 : contact.label === "CLEAN" ? 2.15 : contact.label === "DEFENSIVE" ? 1.82 : 1.48;
+  ball.vz = -Math.max(minimumOutgoingPace, Math.min(maximumOutgoingPace, Math.abs(ball.vz)));
   ball.vx *= 0.8 + contact.spinTransfer * 0.35;
-  if (contact.label === "DEFENSIVE") ball.vy += 0.38;
-  if (contact.label === "SCRAMBLE") ball.vy += 0.68;
+  // Derive vertical launch from current height, outgoing pace and a quality-shaped
+  // landing depth. It remains ballistic, while tall incoming balls no longer turn a
+  // well-timed strike into an unexplained long ball.
+  const landingZ = contact.label === "PERFECT" ? -0.88 : contact.label === "CLEAN" ? -0.82 : contact.label === "DEFENSIVE" ? -0.7 : -0.6;
+  ball.vy = verticalVelocityForLanding(ball, landingZ);
   const minimumNetClearance = contact.label === "PERFECT"
     ? ENDLESS_RALLY_CONFIG.contact.perfectNetClearance
     : contact.label === "CLEAN"

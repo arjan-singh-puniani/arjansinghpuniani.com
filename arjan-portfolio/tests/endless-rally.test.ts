@@ -1,9 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { ENDLESS_RALLY_CONFIG } from "@/lib/tennis/config";
-import { classifyTiming, evaluateContact, evaluateRallyContact } from "@/lib/tennis/contact";
-import { bufferPrimarySwing, consumeBufferedSwing, createContactTimeline, cuePresentation, hasBallPassedContactVolume, timingTrace } from "@/lib/tennis/contact-cue";
-import { driveCueFollowingRun } from "@/lib/tennis/endless-rally-driver";
-import { canRobotReturnBall, isLegalOpponentBounce, resolveDeadReturnedBall } from "@/lib/tennis/rally-contact-physics";
+import { classifyTiming, evaluateContact, evaluateRallyContact, openingAssistanceForRally } from "@/lib/tennis/contact";
+import { autoFootworkForPattern, bufferPrimarySwing, consumeBufferedSwing, createContactTimeline, cuePresentation, hasBallPassedContactVolume, timingTrace } from "@/lib/tennis/contact-cue";
+import { driveCueFollowingRun, traceOpeningExchanges } from "@/lib/tennis/endless-rally-driver";
+import { TennisAudio } from "@/lib/tennis/audio";
+import { canRobotReturnBall, isLegalOpponentBounce, resolveDeadReturnedBall, strikeEndlessRallyBall, validateLegalReturn } from "@/lib/tennis/rally-contact-physics";
 import { createArcadeBall } from "@/lib/vector-tennis";
 import {
   applyContactToScore,
@@ -77,14 +78,13 @@ describe("Endless Rally fixed contact model", () => {
     expect(evaluateContact({ ...physicalContact, timingErrorMs: 20, stringBedOffset: 1.12 }).label).toBe("FRAME");
   });
 
-  it("lets first-time players discover Perfect without changing the published Standard bands", () => {
+  it("never lets opening assistance award a false Perfect", () => {
     const wideContact = { ...physicalContact, timingErrorMs: 100, ballX: 0.48, stringBedOffset: 0.2 };
-    expect(evaluateRallyContact(wideContact, 0).label).toBe("PERFECT");
-    expect(evaluateRallyContact({ ...wideContact, timingErrorMs: 180 }, 0).label).toBe("CLEAN");
-    expect(evaluateRallyContact({ ...wideContact, timingErrorMs: 280 }, 0).label).toBe("DEFENSIVE");
+    expect(evaluateRallyContact(wideContact, 0).label).toBe("SCRAMBLE");
+    expect(evaluateRallyContact({ ...physicalContact, timingErrorMs: 100 }, 0).label).toBe("CLEAN");
+    expect(evaluateRallyContact({ ...wideContact, timingErrorMs: 180 }, 0).label).toBe("SCRAMBLE");
     expect(evaluateRallyContact({ ...wideContact, timingErrorMs: 350 }, 0).label).toBe("SCRAMBLE");
-    expect(evaluateRallyContact(wideContact, 5).label).toBe("CLEAN");
-    expect(evaluateRallyContact(wideContact, 6).label).toBe("UNREACHABLE");
+    expect(evaluateRallyContact(wideContact, 12).label).toBe("UNREACHABLE");
     expect(classifyTiming(100)).toBe("CLEAN");
   });
 });
@@ -93,12 +93,26 @@ describe("Endless Rally smooth difficulty", () => {
   it("uses the named eight-phase emotional progression", () => {
     expect(difficultyForRally(1).phase).toBe("CALIBRATION");
     expect(difficultyForRally(2).phase).toBe("ORIENTATION");
-    expect(difficultyForRally(8).phase).toBe("RHYTHM");
+    expect(difficultyForRally(4).phase).toBe("RHYTHM");
+    expect(difficultyForRally(8).phase).toBe("CONFIDENCE");
     expect(difficultyForRally(12).phase).toBe("CONFIDENCE");
     expect(difficultyForRally(20).phase).toBe("PRESSURE");
     expect(difficultyForRally(32).phase).toBe("MASTERY");
     expect(difficultyForRally(48).phase).toBe("HIGH PRESSURE");
     expect(difficultyForRally(49).phase).toBe("SURVIVAL");
+  });
+
+  it("has no fourth-exchange cliff in phase, pace, placement, or readable time", () => {
+    const third = difficultyForRally(3);
+    const fourth = difficultyForRally(4);
+    const fifth = difficultyForRally(5);
+    expect(fourth.phase).toBe(fifth.phase);
+    expect(fourth.phaseIndex).toBe(fifth.phaseIndex);
+    for (const [prior, next] of [[third, fourth], [fourth, fifth]] as const) {
+      expect((next.paceMultiplier - prior.paceMultiplier) / prior.paceMultiplier).toBeLessThanOrEqual(ENDLESS_RALLY_CONFIG.difficulty.maximumConsecutivePaceDelta);
+      expect(next.placementRangeX - prior.placementRangeX).toBeLessThanOrEqual(0.035);
+      expect(prior.minimumTimeToContactMs - next.minimumTimeToContactMs).toBeLessThanOrEqual(100);
+    }
   });
 
   it("stays shallow through Rally 8 and preserves readable flight time", () => {
@@ -124,7 +138,7 @@ describe("Endless Rally smooth difficulty", () => {
     }
   });
 
-  it("increases monotonically with no post-calibration pace jump above 6%", () => {
+  it("increases monotonically with no consecutive pace jump above 6%", () => {
     const values = Array.from({ length: 100 }, (_, index) => difficultyForRally(index + 1));
     for (let index = 1; index < values.length; index += 1) {
       expect(values[index].paceMultiplier).toBeGreaterThanOrEqual(values[index - 1].paceMultiplier);
@@ -132,16 +146,12 @@ describe("Endless Rally smooth difficulty", () => {
       expect(values[index].spinIntensity).toBeGreaterThanOrEqual(values[index - 1].spinIntensity);
       expect(values[index].minimumTimeToContactMs).toBeLessThanOrEqual(values[index - 1].minimumTimeToContactMs);
 
-      // Rally 1 is intentionally a slower calibration feed. Enforce the 6%
-      // consecutive pace cap after that special onboarding transition.
-      if (index > 1) {
-        const paceDelta =
-          (values[index].paceMultiplier - values[index - 1].paceMultiplier) /
-          values[index - 1].paceMultiplier;
-        expect(paceDelta).toBeLessThanOrEqual(
-          ENDLESS_RALLY_CONFIG.difficulty.maximumConsecutivePaceDelta + 1e-10,
-        );
-      }
+      const paceDelta =
+        (values[index].paceMultiplier - values[index - 1].paceMultiplier) /
+        values[index - 1].paceMultiplier;
+      expect(paceDelta).toBeLessThanOrEqual(
+        ENDLESS_RALLY_CONFIG.difficulty.maximumConsecutivePaceDelta + 1e-10,
+      );
     }
   });
 
@@ -163,13 +173,115 @@ describe("Endless Rally smooth difficulty", () => {
   });
 });
 
+describe("Endless Rally opening trace and one-input control", () => {
+  it("traces twelve reachable exchanges across deterministic seeds", () => {
+    for (const seed of [7, 73421, 918273, 0xffffffff]) {
+      const trace = traceOpeningExchanges(seed, 12);
+      expect(trace).toHaveLength(12);
+      expect(trace.every((exchange) => exchange.reachable)).toBe(true);
+      expect(trace.every((exchange) => exchange.readableFlightTimeMs >= difficultyForRally(exchange.rallyIndex).minimumTimeToContactMs)).toBe(true);
+      expect(trace[3].difficultyPhase).toBe(trace[4].difficultyPhase);
+      expect(trace[4].incomingSpin).toEqual({ topspin: 0, sidespin: 0 });
+      expect(trace[5].playerArrivalTimeMs).toBeLessThan(trace[5].readableFlightTimeMs);
+      for (const [prior, next] of [[trace[2], trace[3]], [trace[3], trace[4]]] as const) {
+        const priorPace = Math.hypot(prior.incomingVelocity.x, prior.incomingVelocity.z);
+        const nextPace = Math.hypot(next.incomingVelocity.x, next.incomingVelocity.z);
+        expect((nextPace - priorPace) / priorPace).toBeLessThanOrEqual(ENDLESS_RALLY_CONFIG.difficulty.maximumConsecutivePaceDelta);
+      }
+    }
+    expect(traceOpeningExchanges(73421, 12)).toEqual(traceOpeningExchanges(73421, 12));
+  });
+
+  it("auto-positions toward every opening intercept without teleporting", () => {
+    let playerX = 0;
+    for (const pattern of generatePatternSequence(918273, 12)) {
+      const footwork = autoFootworkForPattern(playerX, pattern);
+      expect(footwork.targetX).toBe(pattern.targetX);
+      expect(Math.abs(footwork.targetX - playerX)).toBeLessThanOrEqual(ENDLESS_RALLY_CONFIG.reachability.playerMaxSpeedPerSecond * pattern.recoverySeconds);
+      playerX = footwork.targetX;
+    }
+  });
+
+  it("smoothly fades the opening buffer and racket assistance", () => {
+    const values = Array.from({ length: 13 }, (_, index) => openingAssistanceForRally(index + 1));
+    expect(values[0].earlyBufferMs).toBe(500);
+    expect(values[3].earlyBufferMs).toBe(420);
+    expect(values[12].racketReachX).toBe(ENDLESS_RALLY_CONFIG.contact.racketReachX);
+    for (let index = 1; index < values.length; index += 1) {
+      expect(values[index].earlyBufferMs).toBeLessThanOrEqual(values[index - 1].earlyBufferMs);
+      expect(values[index].racketReachX).toBeLessThanOrEqual(values[index - 1].racketReachX);
+    }
+  });
+
+  it("buffers one cue-relative intention and consumes it exactly once", () => {
+    const timeline = createContactTimeline(0, 1400, ENDLESS_RALLY_CONFIG, 500);
+    const first = bufferPrimarySwing(timeline.displayedIdealInputSimMs - 400, timeline, false);
+    expect(first).not.toBeNull();
+    expect(bufferPrimarySwing(timeline.displayedIdealInputSimMs - 390, timeline, first !== null)).toBeNull();
+    expect(consumeBufferedSwing(first!, first!.swingStartSimMs - 1).consumed).toBe(false);
+    expect(consumeBufferedSwing(first!, first!.swingStartSimMs).consumed).toBe(true);
+    // Pointer, touch and keyboard all enter through this same primary-input gate.
+    expect(bufferPrimarySwing(timeline.displayedIdealInputSimMs, timeline, false)?.inputErrorMs).toBe(0);
+  });
+
+  it("keeps the visible cue on the exact authoritative input timestamp", () => {
+    const timeline = createContactTimeline(500, 1400, ENDLESS_RALLY_CONFIG, 500);
+    const atCue = cuePresentation(timeline.displayedIdealInputSimMs, timeline, 1, false, false);
+    const buffered = bufferPrimarySwing(timeline.displayedIdealInputSimMs, timeline, false)!;
+    expect(atCue.phase).toBe("IDEAL");
+    expect(atCue.showTap).toBe(true);
+    expect(buffered.displayedIdealInputSimMs).toBe(timeline.displayedIdealInputSimMs);
+    expect(buffered.inputErrorMs).toBe(0);
+    expect(timingTrace(buffered, timeline.predictedInterceptSimMs).predictedInterceptTimestampMs).toBe(timeline.predictedInterceptSimMs);
+  });
+
+  it("drives a legal twelve-return run by following the cue", () => {
+    const run = driveCueFollowingRun(73421, Array.from({ length: 12 }, () => 0));
+    expect(run).toHaveLength(12);
+    expect(run.every((exchange) => exchange.contact.label === "PERFECT")).toBe(true);
+    expect(run.every((exchange) => exchange.legalReturn)).toBe(true);
+  });
+
+  it("classifies deterministic cue offsets and rejects input outside the envelope", () => {
+    const expected = [
+      { inputErrorMs: 0, label: "PERFECT" },
+      { inputErrorMs: -100, label: "CLEAN" },
+      { inputErrorMs: -200, label: "DEFENSIVE" },
+      { inputErrorMs: -300, label: "SCRAMBLE" },
+      { inputErrorMs: -400, label: "SCRAMBLE" },
+    ] as const;
+    for (const sample of expected) {
+      const [result] = driveCueFollowingRun(73421, [sample.inputErrorMs]);
+      expect(result.contact.label).toBe(sample.label);
+      expect(result.legalReturn).toBe(true);
+    }
+    expect(driveCueFollowingRun(73421, [400])).toHaveLength(0);
+  });
+
+  it("still fails when no input arrives before the ball passes", () => {
+    expect(hasBallPassedContactVolume(1.01, 0.78, 0.2, true)).toBe(true);
+    expect(hasBallPassedContactVolume(0.78, 0.78, 0.2, true)).toBe(false);
+  });
+
+  it("keeps assisted Scramble trajectories physical and legal", () => {
+    const contact = evaluateRallyContact({ ...physicalContact, ballX: 0.48, timingErrorMs: -400 }, 0);
+    const ball = { ...createArcadeBall("rival"), x: 0.48, z: 0.69, height: 0.31, vx: 0.1, vy: -0.2, vz: 1.1, active: true };
+    const struck = strikeEndlessRallyBall(ball, contact);
+    expect(contact.label).toBe("SCRAMBLE");
+    expect(contact.successful).toBe(true);
+    expect(struck.vz).toBeLessThan(0);
+    expect(struck.vy).toBeGreaterThan(0);
+    expect(validateLegalReturn(struck).legal).toBe(true);
+  });
+});
+
 describe("Endless Rally deterministic pattern safety", () => {
   it("reproduces identical sequences for the same seed and keeps onboarding scripted", () => {
     expect(generatePatternSequence(73421, 80)).toEqual(generatePatternSequence(73421, 80));
 
-    // The first eight rallies are intentionally seed-independent so every new
+    // The first seven rallies are intentionally seed-independent so every new
     // player learns the same readable opening pattern.
-    expect(generatePatternSequence(73421, 8)).toEqual(generatePatternSequence(73422, 8));
+    expect(generatePatternSequence(73421, 7)).toEqual(generatePatternSequence(73422, 7));
 
     // Seeded variation should emerge once later-game pattern variety unlocks.
     expect(generatePatternSequence(73421, 60)).not.toEqual(generatePatternSequence(73422, 60));
@@ -248,6 +360,25 @@ describe("Endless Rally scoring, feedback, and state", () => {
   it("removes camera impulse for reduced motion", () => {
     expect(impactFeedback("PERFECT", false).cameraImpulsePx).toBeGreaterThan(0);
     expect(impactFeedback("PERFECT", true).cameraImpulsePx).toBe(0);
+    expect(impactFeedback("PERFECT", true).particleCount).toBe(0);
+    expect(impactFeedback("DEFENSIVE", false).cameraImpulsePx).toBe(0);
+  });
+
+  it("uses compact early results and fuller results after Rally 4", () => {
+    expect(resultsPresentation(4)).toBe("COMPACT");
+    expect(resultsPresentation(5)).toBe("FULL");
+  });
+
+  it("lets synthesized audio fail safely when Web Audio is unavailable", () => {
+    const audio = new TennisAudio();
+    expect(() => {
+      audio.unlock();
+      audio.impact("PERFECT", 1.4, 0.1);
+      audio.impact("FRAME", 0.8, 0.94);
+      audio.bounce();
+      audio.net();
+      audio.dispose();
+    }).not.toThrow();
   });
 
   it("reports exact personal-best pressure states", () => {
@@ -259,7 +390,7 @@ describe("Endless Rally scoring, feedback, and state", () => {
   });
 
   it("uses measured telemetry in Coach Brain", () => {
-    const telemetry: FailureTelemetry = { ballX: 0.8, ballHeight: 0.3, racketX: 0.1, racketHeight: 0.3, racketFaceNormalZ: 0.4, racketHeadSpeed: 1.1, stringBedOffset: 0.2, incomingSpeed: 1.8, incomingSpin: 2, difficultyTier: 2, reachabilityPassed: true };
+    const telemetry: FailureTelemetry = { ballX: 0.8, ballZ: 0.72, ballHeight: 0.3, racketX: 0.1, racketZ: 0.78, racketHeight: 0.3, racketFaceNormalZ: 0.4, racketHeadSpeed: 1.1, stringBedOffset: 0.2, incomingSpeed: 1.8, incomingSpin: 2, difficultyTier: 2, reachabilityPassed: true };
     expect(coachObservation("early", -138, createRunScore(), telemetry)).toContain("138 ms early");
     expect(coachObservation("frame", 40, createRunScore(), telemetry)).toMatch(/racket face was \d+° open/);
   });

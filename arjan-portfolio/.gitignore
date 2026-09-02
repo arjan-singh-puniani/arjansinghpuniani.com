@@ -4,3 +4,5 @@ node_modules
 coverage
 .DS_Store
 tsconfig.tsbuildinfo
+# Ignore iCloud conflict copies (for example `file 2.ts`) without touching them.
+**/* 2.*

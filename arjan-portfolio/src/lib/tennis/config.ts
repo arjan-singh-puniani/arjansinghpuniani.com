@@ -13,6 +13,20 @@ export type RallyPhaseConfig = {
   contactDepthMax: number;
 };
 
+export type OpeningAssistanceKeyframe = {
+  /** Incoming exchange number. Values between keyframes are smootherstep-interpolated. */
+  incomingRally: number;
+  earlyBufferMs: number;
+  lateToleranceMs: number;
+  racketReachX: number;
+  racketReachZ: number;
+  racketReachHeight: number;
+  sweetSpotMaxOffset: number;
+  frameMinOffset: number;
+  minFaceNormalZ: number;
+  minRacketHeadSpeed: number;
+};
+
 export type EndlessRallyConfig = {
   fixedStepSeconds: number;
   timing: {
@@ -41,14 +55,7 @@ export type EndlessRallyConfig = {
     scrambleNetClearance: number;
   };
   openingAssistance: {
-    successfulReturns: number;
-    racketReachX: number;
-    racketReachZ: number;
-    racketReachHeight: number;
-    sweetSpotMaxOffset: number;
-    frameMinOffset: number;
-    minFaceNormalZ: number;
-    minRacketHeadSpeed: number;
+    keyframes: readonly OpeningAssistanceKeyframe[];
   };
   difficulty: {
     standardIncomingSpeedPerSecond: number;
@@ -130,20 +137,18 @@ export const ENDLESS_RALLY_CONFIG: EndlessRallyConfig = {
     severeFaceNormalZ: 0.32,
     minRacketHeadSpeed: 0.58,
     severeRacketHeadSpeed: 0.38,
-    perfectNetClearance: 0.42,
-    cleanNetClearance: 0.36,
+    perfectNetClearance: 0.3,
+    cleanNetClearance: 0.3,
     defensiveNetClearance: 0.34,
     scrambleNetClearance: 0.4,
   },
   openingAssistance: {
-    successfulReturns: 6,
-    racketReachX: 0.56,
-    racketReachZ: 0.34,
-    racketReachHeight: 0.62,
-    sweetSpotMaxOffset: 0.72,
-    frameMinOffset: 0.98,
-    minFaceNormalZ: 0.42,
-    minRacketHeadSpeed: 0.48,
+    keyframes: [
+      { incomingRally: 1, earlyBufferMs: 500, lateToleranceMs: 250, racketReachX: 0.56, racketReachZ: 0.34, racketReachHeight: 0.62, sweetSpotMaxOffset: 0.72, frameMinOffset: 0.98, minFaceNormalZ: 0.42, minRacketHeadSpeed: 0.48 },
+      { incomingRally: 4, earlyBufferMs: 420, lateToleranceMs: 220, racketReachX: 0.5, racketReachZ: 0.3, racketReachHeight: 0.55, sweetSpotMaxOffset: 0.64, frameMinOffset: 0.94, minFaceNormalZ: 0.45, minRacketHeadSpeed: 0.51 },
+      { incomingRally: 8, earlyBufferMs: 360, lateToleranceMs: 190, racketReachX: 0.43, racketReachZ: 0.25, racketReachHeight: 0.48, sweetSpotMaxOffset: 0.54, frameMinOffset: 0.9, minFaceNormalZ: 0.48, minRacketHeadSpeed: 0.55 },
+      { incomingRally: 13, earlyBufferMs: 360, lateToleranceMs: 180, racketReachX: 0.36, racketReachZ: 0.2, racketReachHeight: 0.42, sweetSpotMaxOffset: 0.46, frameMinOffset: 0.86, minFaceNormalZ: 0.5, minRacketHeadSpeed: 0.58 },
+    ],
   },
   difficulty: {
     standardIncomingSpeedPerSecond: 1.72,
@@ -157,18 +162,18 @@ export const ENDLESS_RALLY_CONFIG: EndlessRallyConfig = {
     maxRegenerationAttempts: 4,
     phases: [
       { name: "CALIBRATION", startRally: 1, endRally: 1, incomingPaceMultiplierMin: 0.5, incomingPaceMultiplierMax: 0.5, lateralReachFractionMax: 0, spinIntensityMax: 0, minimumTimeToContactMs: 1400, contactDepthMin: 0.68, contactDepthMax: 0.68 },
-      { name: "ORIENTATION", startRally: 2, endRally: 4, incomingPaceMultiplierMin: 0.56, incomingPaceMultiplierMax: 0.62, lateralReachFractionMax: 0.1, spinIntensityMax: 0, minimumTimeToContactMs: 1300, contactDepthMin: 0.66, contactDepthMax: 0.7 },
-      { name: "RHYTHM", startRally: 5, endRally: 8, incomingPaceMultiplierMin: 0.63, incomingPaceMultiplierMax: 0.72, lateralReachFractionMax: 0.2, spinIntensityMax: 0, minimumTimeToContactMs: 1180, contactDepthMin: 0.64, contactDepthMax: 0.72 },
-      { name: "CONFIDENCE", startRally: 9, endRally: 12, incomingPaceMultiplierMin: 0.73, incomingPaceMultiplierMax: 0.82, lateralReachFractionMax: 0.3, spinIntensityMax: 0.1, minimumTimeToContactMs: 1050, contactDepthMin: 0.6, contactDepthMax: 0.76 },
+      { name: "ORIENTATION", startRally: 2, endRally: 3, incomingPaceMultiplierMin: 0.53, incomingPaceMultiplierMax: 0.56, lateralReachFractionMax: 0.08, spinIntensityMax: 0, minimumTimeToContactMs: 1300, contactDepthMin: 0.66, contactDepthMax: 0.7 },
+      { name: "RHYTHM", startRally: 4, endRally: 7, incomingPaceMultiplierMin: 0.58, incomingPaceMultiplierMax: 0.68, lateralReachFractionMax: 0.18, spinIntensityMax: 0, minimumTimeToContactMs: 1200, contactDepthMin: 0.64, contactDepthMax: 0.72 },
+      { name: "CONFIDENCE", startRally: 8, endRally: 12, incomingPaceMultiplierMin: 0.7, incomingPaceMultiplierMax: 0.82, lateralReachFractionMax: 0.3, spinIntensityMax: 0.1, minimumTimeToContactMs: 1050, contactDepthMin: 0.6, contactDepthMax: 0.76 },
       { name: "PRESSURE", startRally: 13, endRally: 20, incomingPaceMultiplierMin: 0.83, incomingPaceMultiplierMax: 0.96, lateralReachFractionMax: 0.45, spinIntensityMax: 0.3, minimumTimeToContactMs: 900, contactDepthMin: 0.56, contactDepthMax: 0.8 },
       { name: "MASTERY", startRally: 21, endRally: 32, incomingPaceMultiplierMin: 0.97, incomingPaceMultiplierMax: 1.1, lateralReachFractionMax: 0.6, spinIntensityMax: 0.5, minimumTimeToContactMs: 760, contactDepthMin: 0.52, contactDepthMax: 0.82 },
       { name: "HIGH PRESSURE", startRally: 33, endRally: 48, incomingPaceMultiplierMin: 1.1, incomingPaceMultiplierMax: 1.18, lateralReachFractionMax: 0.68, spinIntensityMax: 0.72, minimumTimeToContactMs: 680, contactDepthMin: 0.5, contactDepthMax: 0.84 },
       { name: "SURVIVAL", startRally: 49, endRally: null, incomingPaceMultiplierMin: 1.19, incomingPaceMultiplierMax: 1.26, lateralReachFractionMax: 0.78, spinIntensityMax: 1, minimumTimeToContactMs: 620, contactDepthMin: 0.48, contactDepthMax: 0.86 },
     ],
     patternUnlocks: {
-      leftCenterRightRally: 5,
-      depthVariationRally: 9,
-      alternatingPlacementRally: 9,
+      leftCenterRightRally: 8,
+      depthVariationRally: 8,
+      alternatingPlacementRally: 8,
       topspinRally: 9,
       sliceRally: 17,
       paceDepthCombinationRally: 21,

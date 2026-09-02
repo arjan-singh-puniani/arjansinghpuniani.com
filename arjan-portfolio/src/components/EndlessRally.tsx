@@ -4,8 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import { TennisAudio } from "@/lib/tennis/audio";
 import { ENDLESS_RALLY_CONFIG } from "@/lib/tennis/config";
 import {
+  autoFootworkForPattern,
+  bufferPrimarySwing,
   consumeBufferedSwing,
   createContactTimeline,
+  cuePresentation,
   hasBallPassedContactVolume,
   prepareIncomingBall,
   predictRacketBallIntercept,
@@ -14,7 +17,7 @@ import {
   type ContactTimeline,
   type PredictedIntercept,
 } from "@/lib/tennis/contact-cue";
-import { evaluateRallyContact, type ContactEvaluation, type ContactLabel, type FailureCause } from "@/lib/tennis/contact";
+import { assistedConfigForRally, evaluateRallyContact, openingAssistanceForRally, type ContactEvaluation, type ContactLabel, type FailureCause } from "@/lib/tennis/contact";
 import {
   applyContactToScore,
   canAcceptRestart,
@@ -139,6 +142,8 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
     const testParams = process.env.NODE_ENV !== "production" ? new URLSearchParams(window.location.search) : null;
     const controlledStartRally = testParams ? clamp(Number(testParams.get("tennisTestRally") ?? 0), 0, 80) : 0;
     const controlledSeed = testParams?.has("tennisTestSeed") ? Number(testParams.get("tennisTestSeed")) >>> 0 : null;
+    const controlledCueInputMs = testParams?.has("tennisTestInputMs") ? clamp(Number(testParams.get("tennisTestInputMs")), -500, 360) : null;
+    const liveTraceEnabled = testParams?.has("tennisTrace") ?? false;
 
     let width = 1000;
     let height = 620;
@@ -179,8 +184,10 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
     let lastPrimaryRealMs = -1000;
     let visible = true;
     let dailyKey = "";
+    let cuePulsePlayed = false;
+    let controlledInputAttempted = false;
     const trail: Array<{ x: number; z: number; height: number; ageMs: number }> = [];
-    const bursts: Array<{ x: number; z: number; height: number; ageMs: number; label: ContactLabel }> = [];
+    const bursts: Array<{ x: number; z: number; height: number; ageMs: number; label: ContactLabel; vx: number; vz: number }> = [];
 
     const publish = (force = false) => {
       if (!force && publishElapsedMs < 80) return;
@@ -197,7 +204,7 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
         personalBest,
         daily: dailyRef.current,
         dailyKey,
-        cueInstruction: (machine === "PLAYING" || machine === "IMPACT") && !playerReturnedBall && score.rally < 4 ? "MOVE · THEN TAP TO HIT" : "",
+        cueInstruction: (machine === "PLAYING" || machine === "IMPACT") && !playerReturnedBall && score.rally < 4 ? "TAP AS THE RING MEETS THE BALL" : "",
       });
     };
 
@@ -217,9 +224,16 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
     const configureIncomingBall = (nextPattern: RallyPattern, source?: ArcadeBallState) => {
       pattern = nextPattern;
       ball = prepareIncomingBall(nextPattern, source);
-      player.forehand = nextPattern.targetX >= player.x;
-      predictedIntercept = predictRacketBallIntercept(ball, player, nextPattern.contactZ);
-      contactTimeline = createContactTimeline(simTimeMs, predictedIntercept.delayMs);
+      // Endless Rally owns footwork. The player only decides when to swing.
+      const footwork = autoFootworkForPattern(player.x, nextPattern);
+      player.targetX = footwork.targetX;
+      player.forehand = footwork.forehand;
+      predictedIntercept = predictRacketBallIntercept(ball, player, nextPattern.contactZ, assistedConfigForRally(score.rally + 1));
+      const assistance = openingAssistanceForRally(score.rally + 1);
+      contactTimeline = createContactTimeline(simTimeMs, predictedIntercept.delayMs, ENDLESS_RALLY_CONFIG, assistance.earlyBufferMs);
+      cuePulsePlayed = false;
+      controlledInputAttempted = false;
+      if (liveTraceEnabled) console.info("[tennis-trace]", JSON.stringify({ rallyIndex: score.rally + 1, seed, phase: nextPattern.phase, tier: nextPattern.tier, incomingBall: { x: ball.x, z: ball.z, height: ball.height, bounces: ball.bounces }, incomingVelocity: { x: ball.vx, y: ball.vy, z: ball.vz }, incomingSpin: { topspin: ball.topspin, sidespin: ball.sidespin }, targetX: nextPattern.targetX, predictedIntercept, contactTimeline, assistance }));
       playerReturnedBall = false;
       opponentFirstBounceLegal = null;
       swingPending = false;
@@ -251,7 +265,7 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
       audio.unlock();
       analytics(restarted ? "tennis_run_restarted" : "tennis_run_started", { input_type: inputType, daily: dailyRef.current });
       publish(true);
-      if (window.innerHeight <= 500) stage.scrollIntoView({ block: "center", behavior: "auto" });
+      if (window.innerHeight <= 500) stage.parentElement?.scrollIntoView({ block: "start", behavior: "auto" });
     };
 
     const finishRun = (failureCause: FailureCause, timingLabel: RunResult["timingLabel"], timingErrorMs: number, telemetry = lastFailureTelemetry) => {
@@ -277,7 +291,7 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
       publish(true);
     };
 
-    const applySuccessfulContact = (contact: ContactEvaluation) => {
+    const applySuccessfulContact = (contact: ContactEvaluation, racketHeadSpeed: number, stringBedOffset: number) => {
       score = applyContactToScore(score, contact);
       machine = transitionEndlessRally("PLAYING", "CONTACT");
       const impact = impactFeedback(contact.label, reducedMotionRef.current);
@@ -286,15 +300,15 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
       feedbackEndsSimMs = simTimeMs + (contact.label === "PERFECT" ? 760 : contact.label === "CLEAN" ? 580 : contact.label === "SCRAMBLE" ? 540 : 470);
       cameraImpulse = impact.cameraImpulsePx;
       lastContactLabel = contact.label;
-      bursts.push({ x: ball.x, z: ball.z, height: ball.height, ageMs: 0, label: contact.label });
-      if (bursts.length > 8) bursts.shift();
       ball = strikeEndlessRallyBall(ball, contact, robot.x);
+      bursts.push({ x: ball.x, z: ball.z, height: ball.height, ageMs: 0, label: contact.label, vx: ball.vx, vz: ball.vz });
+      if (bursts.length > 8) bursts.shift();
       if (lastFailureTelemetry) lastFailureTelemetry = { ...lastFailureTelemetry, resultingBallX: ball.x, resultingBallZ: ball.z, resultingBallHeight: ball.height };
       playerReturnedBall = true;
       opponentFirstBounceLegal = null;
       swingPending = false;
       bufferedSwing = null;
-      audio.impact(contact.label);
+      audio.impact(contact.label, racketHeadSpeed, stringBedOffset);
       if ("vibrate" in navigator) navigator.vibrate(contact.label === "PERFECT" ? [24, 18, 18] : contact.label === "CLEAN" ? 14 : contact.label === "DEFENSIVE" ? 10 : 14);
       publish(true);
     };
@@ -303,26 +317,15 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
       const activeBuffer = bufferedSwing;
       if (!activeBuffer) return;
       const rawTimingErrorMs = activeBuffer.inputErrorMs;
-      const opening = score.rally < ENDLESS_RALLY_CONFIG.openingAssistance.successfulReturns;
-      // During the first four successful returns, timing affects shot quality but not
-      // basic participation. A visibly reasonable press bottoms out at DEFENSIVE rather
-      // than producing a ceremonial Rally 0 failure.
-      const timingErrorMs = opening
-        ? clamp(rawTimingErrorMs, -ENDLESS_RALLY_CONFIG.timing.defensiveMaxMs, ENDLESS_RALLY_CONFIG.timing.defensiveMaxMs)
-        : rawTimingErrorMs;
+      const timingErrorMs = rawTimingErrorMs;
       lastTimingErrorMs = rawTimingErrorMs;
-      const reachX = opening ? ENDLESS_RALLY_CONFIG.openingAssistance.racketReachX : ENDLESS_RALLY_CONFIG.contact.racketReachX;
-      const reachZ = opening ? ENDLESS_RALLY_CONFIG.openingAssistance.racketReachZ : ENDLESS_RALLY_CONFIG.contact.racketReachZ;
-      const reachHeight = opening ? ENDLESS_RALLY_CONFIG.openingAssistance.racketReachHeight : ENDLESS_RALLY_CONFIG.contact.racketReachHeight;
-      const assistedBallX = opening ? clamp(ball.x, player.x - reachX * 0.82, player.x + reachX * 0.82) : ball.x;
-      const assistedBallZ = opening ? clamp(ball.z, player.z - reachZ * 0.82, player.z + reachZ * 0.82) : ball.z;
-      const assistedBallHeight = opening ? clamp(ball.height, player.racketHeight - reachHeight * 0.82, player.racketHeight + reachHeight * 0.82) : ball.height;
-      const stringOffset = (assistedBallX - player.x) / reachX + timingErrorMs / 920;
+      const assistance = openingAssistanceForRally(score.rally + 1);
+      const stringOffset = (ball.x - player.x) / assistance.racketReachX + timingErrorMs / 920;
       const contactInput = {
         timingErrorMs,
-        ballX: assistedBallX,
-        ballZ: assistedBallZ,
-        ballHeight: assistedBallHeight,
+        ballX: ball.x,
+        ballZ: ball.z,
+        ballHeight: ball.height,
         racketX: player.x,
         racketZ: player.z,
         racketHeight: player.racketHeight,
@@ -351,11 +354,15 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
         ...trace,
       };
       if (!contact.successful) {
-        audio.impact(contact.label);
+        if (contact.label === "FRAME") {
+          bursts.push({ x: ball.x, z: ball.z, height: ball.height, ageMs: 0, label: "FRAME", vx: -ball.vx, vz: -ball.vz });
+          if (bursts.length > 8) bursts.shift();
+        }
+        audio.impact(contact.label, contactInput.racketHeadSpeed, contactInput.stringBedOffset);
         finishRun(contact.failureCause ?? "frame", contact.label, timingErrorMs);
         return;
       }
-      applySuccessfulContact(contact);
+      applySuccessfulContact(contact, contactInput.racketHeadSpeed, contactInput.stringBedOffset);
     };
 
     const robotReturn = () => {
@@ -404,37 +411,14 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
       }
       if (!canAcceptSwing(machine, swingPending) || playerReturnedBall || ball.lastHit !== "rival") return;
 
-      // Endless Rally intentionally treats a press as "try to hit this ball," not as a
-      // request to guess an invisible timestamp. We derive time-to-contact from the
-      // current physical state. Very early presses are ignored so the player can press
-      // again; once the ball is visibly approaching the racket, one press schedules a
-      // physically coherent swing whose peak meets the predicted intercept.
-      const liveIntercept = predictRacketBallIntercept(ball, player, pattern.contactZ);
-      const opening = score.rally < ENDLESS_RALLY_CONFIG.openingAssistance.successfulReturns;
-      const maximumIntentLeadMs = opening ? 900 : score.rally < 12 ? 720 : 590;
-      if (!liveIntercept.reachable || liveIntercept.delayMs > maximumIntentLeadMs) return;
-
-      const idealLeadMs = ENDLESS_RALLY_CONFIG.timing.swingPreparationMs;
-      const inputErrorMs = idealLeadMs - liveIntercept.delayMs;
-      const predictedInterceptSimMs = simTimeMs + liveIntercept.delayMs;
-      const swingStartSimMs = simTimeMs;
-      const racketPeakVelocitySimMs = Math.max(
-        simTimeMs + ENDLESS_RALLY_CONFIG.timing.minimumLateSwingMs,
-        predictedInterceptSimMs,
-      );
-      bufferedSwing = {
-        inputSimMs: simTimeMs,
-        displayedIdealInputSimMs: simTimeMs - inputErrorMs,
-        inputErrorMs,
-        swingStartSimMs,
-        racketPeakVelocitySimMs,
-        predictedInterceptSimMs,
-        consumed: true,
-      };
-      predictedIntercept = liveIntercept;
+      // The rendered ring, accepted input, swing wind-up and collision share this
+      // fixed-step timeline. One accepted intention is retained for this ball.
+      const accepted = bufferPrimarySwing(simTimeMs, contactTimeline, bufferedSwing !== null);
+      if (!accepted || !predictedIntercept.reachable) return;
+      bufferedSwing = accepted;
       swingPending = true;
-      swingStartedSimMs = swingStartSimMs;
-      swingImpactSimMs = racketPeakVelocitySimMs;
+      swingStartedSimMs = accepted.swingStartSimMs;
+      swingImpactSimMs = accepted.racketPeakVelocitySimMs;
     };
     primaryActionRef.current = primaryAction;
 
@@ -459,6 +443,23 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
       for (const burst of bursts) burst.ageMs += dtMs;
       while (bursts.length && bursts[0].ageMs > 480) bursts.shift();
 
+      if (!cuePulsePlayed && !playerReturnedBall && score.rally < 8 && simTimeMs >= contactTimeline.displayedIdealInputSimMs - ENDLESS_RALLY_CONFIG.cue.preparatoryPulseLeadMs) {
+        cuePulsePlayed = true;
+        audio.cuePulse();
+      }
+
+      if (controlledCueInputMs !== null && !controlledInputAttempted && !swingPending && !playerReturnedBall && machine === "PLAYING" && simTimeMs >= contactTimeline.displayedIdealInputSimMs + controlledCueInputMs) {
+        controlledInputAttempted = true;
+        const controlledSwing = bufferPrimarySwing(simTimeMs, contactTimeline, false);
+        if (liveTraceEnabled) console.info("[tennis-input]", JSON.stringify({ rallyIndex: score.rally + 1, simTimeMs, controlledCueInputMs, accepted: Boolean(controlledSwing), reachable: predictedIntercept.reachable }));
+        if (controlledSwing && predictedIntercept.reachable) {
+          bufferedSwing = controlledSwing;
+          swingPending = true;
+          swingStartedSimMs = controlledSwing.swingStartSimMs;
+          swingImpactSimMs = controlledSwing.racketPeakVelocitySimMs;
+        }
+      }
+
       if (machine === "RUN_END") {
         if (simTimeMs >= resultsAtSimMs) {
           machine = transitionEndlessRally(machine, "SHOW_RESULTS");
@@ -467,9 +468,6 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
         return;
       }
 
-      if (keyboardDirection !== 0) {
-        player.targetX = clamp(player.targetX + keyboardDirection * dtSeconds * 1.35, -0.88, 0.88);
-      }
       const desiredVelocity = clamp((player.targetX - player.x) * 6.2, -ENDLESS_RALLY_CONFIG.reachability.playerMaxSpeedPerSecond, ENDLESS_RALLY_CONFIG.reachability.playerMaxSpeedPerSecond);
       const maxVelocityChange = ENDLESS_RALLY_CONFIG.reachability.playerAccelerationPerSecond2 * dtSeconds;
       player.vx += clamp(desiredVelocity - player.vx, -maxVelocityChange, maxVelocityChange);
@@ -494,7 +492,7 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
 
       if (bufferedSwing && !bufferedSwing.consumed && simTimeMs >= bufferedSwing.swingStartSimMs) bufferedSwing = consumeBufferedSwing(bufferedSwing, simTimeMs);
       if (swingPending && bufferedSwing?.consumed && simTimeMs >= swingImpactSimMs) evaluateScheduledSwing();
-      const contactReachZ = score.rally < ENDLESS_RALLY_CONFIG.openingAssistance.successfulReturns ? ENDLESS_RALLY_CONFIG.openingAssistance.racketReachZ : ENDLESS_RALLY_CONFIG.contact.racketReachZ;
+      const contactReachZ = openingAssistanceForRally(score.rally + 1).racketReachZ;
       if (!swingPending && !playerReturnedBall && machine === "PLAYING" && hasBallPassedContactVolume(ball.z, player.z, contactReachZ, ball.active)) {
         lastTimingErrorMs = simTimeMs - contactTimeline.displayedIdealInputSimMs;
         const lateTelemetry: FailureTelemetry = {
@@ -682,6 +680,19 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
         context.strokeStyle = burst.label === "PERFECT" ? "#ffeb49" : burst.label === "DEFENSIVE" ? "#ff9d66" : burst.label === "SCRAMBLE" ? "#c995ff" : "#35ecff";
         context.lineWidth = 3;
         context.beginPath(); context.ellipse(point.x, point.y, 12 + progress * 55, 6 + progress * 24, -0.3, 0, Math.PI * 2); context.stroke();
+        if (!reducedMotionRef.current) {
+          const outgoing = project(burst.x + burst.vx * 0.12, burst.z + burst.vz * 0.12, burst.height);
+          const angle = Math.atan2(outgoing.y - point.y, outgoing.x - point.x);
+          const particleCount = burst.label === "PERFECT" ? 6 : burst.label === "CLEAN" ? 3 : 1;
+          for (let index = 0; index < particleCount; index += 1) {
+            const spread = (index - (particleCount - 1) / 2) * 0.22;
+            const length = (13 + index * 2) * (1 + progress * 1.8);
+            context.beginPath();
+            context.moveTo(point.x + Math.cos(angle + spread) * 8, point.y + Math.sin(angle + spread) * 8);
+            context.lineTo(point.x + Math.cos(angle + spread) * length, point.y + Math.sin(angle + spread) * length);
+            context.stroke();
+          }
+        }
         context.globalAlpha = 1;
       }
 
@@ -692,52 +703,45 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
       context.shadowColor = "#ffeb49";
       context.shadowBlur = 16;
       context.fillStyle = "#ffeb49";
-      context.beginPath(); context.arc(orb.x, orb.y, Math.max(7, 10 * orb.scale), 0, Math.PI * 2); context.fill();
+      const ballRadius = Math.max(7, 10 * orb.scale);
+      const compressed = machine === "IMPACT" && lastContactLabel !== null;
+      context.beginPath();
+      context.ellipse(orb.x, orb.y, compressed ? ballRadius * 1.24 : ballRadius, compressed ? ballRadius * 0.72 : ballRadius, -0.34, 0, Math.PI * 2);
+      context.fill();
       context.shadowBlur = 0;
 
       if ((machine === "PLAYING" || machine === "IMPACT") && !playerReturnedBall) {
-        const liveIntercept = predictRacketBallIntercept(ball, player, pattern.contactZ);
-        if (liveIntercept.reachable && liveIntercept.delayMs <= 540) {
-          const racketPoint = project(player.x, player.z, player.racketHeight);
-          const racketHeadX = racketPoint.x + (player.forehand ? 55 : -55) * racketPoint.scale;
-          const racketHeadY = racketPoint.y - 26 * racketPoint.scale;
-          const idealErrorMs = ENDLESS_RALLY_CONFIG.timing.swingPreparationMs - liveIntercept.delayMs;
-          const discoveryPerfectMs = score.rally < 5 ? 105 : ENDLESS_RALLY_CONFIG.timing.perfectMaxMs;
-          const inSweetWindow = Math.abs(idealErrorMs) <= discoveryPerfectMs;
-          const readiness = clamp(1 - liveIntercept.delayMs / 540, 0, 1);
-
+        const cue = cuePresentation(simTimeMs, contactTimeline, score.rally + 1, false, reducedMotionRef.current);
+        if (cue.visible && predictedIntercept.reachable) {
+          const contactPoint = project(predictedIntercept.ballX, predictedIntercept.ballZ, predictedIntercept.ballHeight);
           context.save();
-          if (inSweetWindow) {
-            // The ball remains the timing cue. This is only a brief confirmation that
-            // the racket and ball are now in the sweet strike relationship.
-            context.globalAlpha = 0.96;
-            context.fillStyle = "rgba(244,200,74,.18)";
-            context.shadowColor = "#f4c84a";
-            context.shadowBlur = reducedMotionRef.current ? 0 : 22;
-            context.beginPath();
-            context.arc(racketHeadX, racketHeadY, 35 * racketPoint.scale, 0, Math.PI * 2);
-            context.fill();
-            context.shadowBlur = 0;
-            context.strokeStyle = "#f4c84a";
-            context.lineWidth = 5;
-            context.beginPath();
-            context.arc(racketHeadX, racketHeadY, 36 * racketPoint.scale, 0, Math.PI * 2);
-            context.stroke();
+          context.globalAlpha = cue.opacity;
+          context.strokeStyle = cue.color;
+          context.fillStyle = cue.color;
+          context.lineWidth = cue.phase === "IDEAL" ? 4 : 2.5;
+          context.setLineDash(cue.phase === "PREPARE" ? [5, 5] : []);
 
-            if (score.rally < 5) {
-              context.fillStyle = "#17262b";
-              context.font = `900 ${Math.max(13, 17 * racketPoint.scale)}px ui-monospace, SFMono-Regular, Menlo, monospace`;
-              context.textAlign = "center";
-              context.textBaseline = "bottom";
-              context.fillText("HIT", racketHeadX, racketHeadY - 45 * racketPoint.scale);
-            }
-          } else {
-            context.globalAlpha = 0.12 + readiness * 0.2;
-            context.strokeStyle = "#f4c84a";
-            context.lineWidth = 2.5;
+          // A stationary cross marks the physical intercept; the ring contracts around
+          // the moving ball. Both derive from the same authoritative simulation clock.
+          const markerSize = 10 * contactPoint.scale;
+          context.beginPath();
+          context.moveTo(contactPoint.x - markerSize, contactPoint.y);
+          context.lineTo(contactPoint.x + markerSize, contactPoint.y);
+          context.moveTo(contactPoint.x, contactPoint.y - markerSize);
+          context.lineTo(contactPoint.x, contactPoint.y + markerSize);
+          context.stroke();
+          if (cue.showRing) {
+            const ringRadius = ballRadius * (1.65 * cue.ringScale);
             context.beginPath();
-            context.arc(racketHeadX, racketHeadY, (31 + 10 * readiness) * racketPoint.scale, 0, Math.PI * 2);
+            context.arc(orb.x, orb.y, ringRadius, 0, Math.PI * 2);
             context.stroke();
+          }
+          if (cue.showTap) {
+            context.setLineDash([]);
+            context.font = `900 ${Math.max(13, 16 * orb.scale)}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+            context.textAlign = "center";
+            context.textBaseline = "bottom";
+            context.fillText("TAP", orb.x, orb.y - ballRadius * 2.4);
           }
           context.restore();
         }
@@ -759,27 +763,14 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
       animationFrame = requestAnimationFrame(tick);
     };
 
-    let keyboardDirection = 0;
     const onKeyDown = (event: globalThis.KeyboardEvent) => {
-      if (event.code === "ArrowLeft" || event.code === "KeyA") { keyboardDirection = -1; event.preventDefault(); return; }
-      if (event.code === "ArrowRight" || event.code === "KeyD") { keyboardDirection = 1; event.preventDefault(); return; }
       if (event.code !== "Space" || event.repeat) return;
       event.preventDefault();
       primaryAction("keyboard");
     };
-    const onKeyUp = (event: globalThis.KeyboardEvent) => {
-      if ((event.code === "ArrowLeft" || event.code === "KeyA") && keyboardDirection < 0) keyboardDirection = 0;
-      if ((event.code === "ArrowRight" || event.code === "KeyD") && keyboardDirection > 0) keyboardDirection = 0;
-    };
     const onVisibility = () => { if (document.hidden) pause(); };
     const onWindowBlur = () => pause();
-    const onMove = (event: Event) => {
-      const detail = (event as CustomEvent<number>).detail;
-      if (Number.isFinite(detail)) player.targetX = clamp(detail, -0.88, 0.88);
-    };
     stage.addEventListener("keydown", onKeyDown);
-    stage.addEventListener("keyup", onKeyUp);
-    stage.addEventListener("tennis-move", onMove);
     document.addEventListener("visibilitychange", onVisibility);
     window.addEventListener("blur", onWindowBlur);
     const resizeObserver = new ResizeObserver(resize);
@@ -795,8 +786,6 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
       stage.removeEventListener("keydown", onKeyDown);
-      stage.removeEventListener("keyup", onKeyUp);
-      stage.removeEventListener("tennis-move", onMove);
       document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("blur", onWindowBlur);
       audio.dispose();
@@ -827,9 +816,10 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
   const best = daily ? stats.daily[view.dailyKey || todayKey]?.bestRally ?? 0 : stats.allTimeBestRally;
   const bestStatus = personalBestStatus(view.rally, best);
   const active = view.state === "PLAYING" || view.state === "IMPACT";
+  const immersive = active || view.state === "RUN_END" || view.state === "RESULTS" || view.state === "PAUSED";
   const resultLayout = view.result ? resultsPresentation(view.result.rally) : null;
 
-  return <section className={`endless-rally ${active ? "is-active" : ""}`} aria-labelledby="endless-rally-title">
+  return <section className={`endless-rally ${active ? "is-active" : ""} ${immersive ? "is-immersive" : ""}`} aria-labelledby="endless-rally-title">
     <div className="endless-topbar">
       <div><span>{daily ? "Daily Rally" : "Endless Rally"}</span><strong>RALLY {view.rally}</strong></div>
       <div className="endless-best"><span>{daily ? "Daily best" : "All-time best"}</span><strong>{best}</strong>{bestStatus && active ? <b>{bestStatus}</b> : null}</div>
@@ -844,23 +834,9 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
       className="endless-stage"
       tabIndex={0}
       role="application"
-      aria-label="Vector Tennis Endless Rally. Move with the pointer or arrow keys. Press Space, click, or tap to swing when the ball reaches your racket."
-      onPointerMove={(event) => {
-        if (!active) return;
-        const rect = stageRef.current?.getBoundingClientRect();
-        if (!rect) return;
-        const normalized = clamp(((event.clientX - rect.left) / rect.width - 0.5) * 2, -1, 1);
-        // targetX lives in the animation loop; dispatch through a tiny custom event so
-        // pointer movement stays imperative and never causes React rerenders.
-        stageRef.current?.dispatchEvent(new CustomEvent("tennis-move", { detail: normalized * 0.88 }));
-      }}
+      aria-label="Vector Tennis Endless Rally. Press Space, click, or tap once as the timing ring meets the ball. Footwork is automatic."
       onPointerDown={(event) => {
         event.preventDefault();
-        const rect = stageRef.current?.getBoundingClientRect();
-        if (rect && active) {
-          const normalized = clamp(((event.clientX - rect.left) / rect.width - 0.5) * 2, -1, 1);
-          stageRef.current?.dispatchEvent(new CustomEvent("tennis-move", { detail: normalized * 0.88 }));
-        }
         primaryAction(event.pointerType === "touch" ? "touch" : "pointer");
       }}
     >
@@ -874,7 +850,7 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
         <h1 id="endless-rally-title">Endless Rally</h1>
         <p className="endless-best-line">Best: <strong>{best}</strong></p>
         <button type="button" onPointerDown={(event) => event.stopPropagation()} onClick={() => primaryAction("pointer")}><span>Space / click / tap</span>Play</button>
-        <p>Move toward the ball. Tap when it reaches your racket.</p>
+        <p>Footwork is automatic. Tap as the ring meets the ball.</p>
         <nav aria-label="Tennis modes and help" onPointerDown={(event) => event.stopPropagation()}><button type="button" aria-pressed={daily} onClick={toggleDaily}>Daily Rally</button><button type="button" onClick={onOpenRacketLab} data-analytics-event="tennis_racket_lab_opened">Racket Lab</button><a href="#endless-how">How it works</a></nav>
       </div>}
 
@@ -884,9 +860,9 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
         <div className="result-panel">
           <p className="eyebrow">{view.personalBest ? "New personal best" : resultLayout === "COMPACT" ? "One more" : "Run complete"}</p>
           <h2 id="rally-results-heading">Rally {view.result.rally}</h2>
-          <p className="result-cause"><strong>{view.result.rally < 4 ? "SO CLOSE" : view.result.timingLabel}</strong>{view.result.rally < 4 ? " · move, then hit" : ` · ${FAILURE_LABELS[view.result.failureCause]}`}</p>
+          <p className="result-cause"><strong>{view.result.timingLabel}</strong>{` · ${FAILURE_LABELS[view.result.failureCause]}`}</p>
           {resultLayout === "FULL" ? <dl><div><dt>Perfect contacts</dt><dd>{view.result.perfectContacts}</dd></div><div><dt>Best Perfect streak</dt><dd>{view.result.bestPerfectStreak}</dd></div><div><dt>Mean timing error</dt><dd>{view.result.meanTimingErrorMs} ms</dd></div><div><dt>Precision</dt><dd>{view.result.precisionScore}</dd></div></dl> : null}
-          {resultLayout === "FULL" ? <p className="coach-brain"><span>Replay note</span>{view.result.coach}</p> : <p className="quick-retry-note">Keep the racket under the ball and hit again.</p>}
+          {resultLayout === "FULL" ? <p className="coach-brain"><span>Replay note</span>{view.result.coach}</p> : <p className="quick-retry-note">{view.result.coach}</p>}
           {resultLayout === "FULL" && view.result.telemetry ? <details className="failure-inspection"><summary>Inspect contact</summary><dl><div><dt>Ball / racket X</dt><dd>{view.result.telemetry.ballX.toFixed(2)} / {view.result.telemetry.racketX.toFixed(2)}</dd></div><div><dt>String offset</dt><dd>{Math.round(view.result.telemetry.stringBedOffset * 100)}%</dd></div><div><dt>Incoming pace</dt><dd>{view.result.telemetry.incomingSpeed.toFixed(2)}</dd></div><div><dt>Incoming spin</dt><dd>{view.result.telemetry.incomingSpin.toFixed(2)}</dd></div></dl></details> : null}
           <button type="button" onPointerDown={(event) => event.stopPropagation()} onClick={() => primaryAction("pointer")}><span>Space / click / tap</span>Play again</button>
           {view.daily ? <button className="share-result" type="button" onPointerDown={(event) => event.stopPropagation()} onClick={shareDaily}>Copy Daily Rally result</button> : null}
@@ -895,6 +871,6 @@ export function EndlessRally({ onOpenRacketLab }: { onOpenRacketLab: () => void 
     </div>
 
     <p className="sr-only" aria-live="polite">{active ? `Rally ${view.rally}. ${view.feedback}` : view.result ? `Run ended at rally ${view.result.rally}. ${view.result.failureCause}.` : "Ready to play."}</p>
-    <div className="endless-footer" id="endless-how"><p><strong>Move.</strong> Pointer, touch, A/D, or arrow keys position the racket.</p><p><strong>Hit.</strong> Space, click, or tap when the ball reaches you. Early presses are ignored instead of punished.</p><p><strong>Get better.</strong> Pace, placement, depth, and spin rise; the underlying contact physics stays causal.</p></div>
+    <div className="endless-footer" id="endless-how"><p><strong>Read.</strong> Automatic footwork brings the racket to a physically reachable intercept.</p><p><strong>Hit.</strong> Space, click, or tap once as the ring meets the ball.</p><p><strong>Get better.</strong> Pace, placement, depth, and spin rise; the underlying contact physics stays causal.</p></div>
   </section>;
 }

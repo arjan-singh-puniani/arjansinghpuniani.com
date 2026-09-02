@@ -29,6 +29,7 @@ export type ContactTimeline = {
   bufferOpensSimMs: number;
   predictedInterceptSimMs: number;
   swingPreparationMs: number;
+  earlyBufferMs: number;
 };
 
 export type BufferedSwing = {
@@ -53,6 +54,11 @@ export type CuePresentation = {
 
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 
+export function autoFootworkForPattern(currentPlayerX: number, pattern: RallyPattern, config: EndlessRallyConfig = ENDLESS_RALLY_CONFIG) {
+  const targetX = clamp(pattern.targetX, -config.reachability.courtLimitX, config.reachability.courtLimitX);
+  return { targetX, forehand: targetX >= currentPlayerX };
+}
+
 export function prepareIncomingBall(pattern: RallyPattern, source?: ArcadeBallState): ArcadeBallState {
   const next = source ? { ...source } : createArcadeBall("rival");
   next.active = true;
@@ -66,12 +72,15 @@ export function prepareIncomingBall(pattern: RallyPattern, source?: ArcadeBallSt
   }
   const flightDistance = Math.max(0.1, pattern.contactZ - next.z);
   next.vz = capIncomingSpeedForReadability(flightDistance, pattern.incomingSpeed, pattern.minimumTimeToContactMs);
-  // The opening feeds are intentionally readable but must still arrive before a
-  // second bounce. The previous ultra-slow launch was mathematically "easy" yet
-  // physically deactivated before the racket could meet it.
-  if (pattern.index < 4) {
-    next.vz = Math.max(next.vz, pattern.index === 0 ? 1.16 : 1.1);
-    if (!source) next.height = 0.6;
+  // Drag and the two-bounce lifetime require a small deterministic velocity floor
+  // for the opening ball to remain active until contact. This still yields at least
+  // 1.4 s on the calibration feed and avoids an artificial UNREACHABLE result.
+  if (pattern.index < 8) {
+    next.vz = Math.max(next.vz, 1.1 + pattern.index * 0.012);
+    // The robot visibly meets the ball around knee/hip height instead of relaunching
+    // it from an ankle-high post-bounce sample. This preserves the readable first
+    // bounce and keeps the feed alive through the physical intercept.
+    next.height = source ? Math.max(next.height, 0.56) : 0.6;
   }
   const approximateFlightSeconds = Math.max(pattern.minimumTimeToContactMs / 1000, flightDistance / next.vz);
   next.vx = (pattern.targetX - next.x) / approximateFlightSeconds - pattern.sidespin * 0.075 * approximateFlightSeconds * 0.5;
@@ -129,15 +138,21 @@ export function predictRacketBallIntercept(
   };
 }
 
-export function createContactTimeline(launchSimMs: number, interceptDelayMs: number, config: EndlessRallyConfig = ENDLESS_RALLY_CONFIG): ContactTimeline {
+export function createContactTimeline(
+  launchSimMs: number,
+  interceptDelayMs: number,
+  config: EndlessRallyConfig = ENDLESS_RALLY_CONFIG,
+  earlyBufferMs = config.timing.inputBufferEarlyMs,
+): ContactTimeline {
   const predictedInterceptSimMs = launchSimMs + interceptDelayMs;
   const displayedIdealInputSimMs = predictedInterceptSimMs - config.timing.swingPreparationMs;
   return {
     launchSimMs,
     displayedIdealInputSimMs,
-    bufferOpensSimMs: displayedIdealInputSimMs - config.timing.inputBufferEarlyMs,
+    bufferOpensSimMs: displayedIdealInputSimMs - earlyBufferMs,
     predictedInterceptSimMs,
     swingPreparationMs: config.timing.swingPreparationMs,
+    earlyBufferMs,
   };
 }
 
@@ -174,7 +189,7 @@ export function cuePresentation(simTimeMs: number, timeline: ContactTimeline, in
   const visible = fullCueAssist || incomingRally <= config.cue.fadedThroughRally || simTimeMs <= timeline.predictedInterceptSimMs;
   const viableProgress = clamp((simTimeMs - timeline.bufferOpensSimMs) / Math.max(1, timeline.displayedIdealInputSimMs - timeline.bufferOpensSimMs), 0, 1);
   const ideal = Math.abs(inputErrorMs) <= config.timing.perfectMaxMs;
-  const viable = simTimeMs >= timeline.displayedIdealInputSimMs - config.timing.scrambleMaxMs && simTimeMs <= timeline.displayedIdealInputSimMs + config.timing.scrambleMaxMs;
+  const viable = simTimeMs >= timeline.bufferOpensSimMs && simTimeMs <= timeline.displayedIdealInputSimMs + config.timing.scrambleMaxMs;
   const phase = ideal ? "IDEAL" : simTimeMs > timeline.displayedIdealInputSimMs + config.timing.scrambleMaxMs ? "PASSED" : viable ? "VIABLE" : "PREPARE";
   const baseOpacity = incomingRally <= config.cue.ringThroughRally || fullCueAssist ? 0.94 : incomingRally <= config.cue.fadedThroughRally ? 0.48 : 0.24;
   return {

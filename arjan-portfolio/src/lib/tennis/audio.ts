@@ -34,22 +34,26 @@ export class TennisAudio {
     oscillator.stop(context.currentTime + durationSeconds);
   }
 
-  impact(label: ContactLabel) {
+  /** Layered, synthesized racket palette. Pitch varies only from measured physics. */
+  impact(label: ContactLabel, racketHeadSpeed = 1.2, stringBedOffset = 0) {
+    const velocityPitch = Math.max(0.94, Math.min(1.06, 0.94 + racketHeadSpeed * 0.085));
+    const centerBrightness = Math.max(0.72, 1 - Math.min(1, Math.abs(stringBedOffset)) * 0.24);
     if (label === "PERFECT") {
-      // Perfect should be recognizable with your eyes closed: a crisp string snap,
-      // a short bright overtone, and a deeper body transient.
-      this.tone(1080, 0.075, 0.13, "triangle", 690);
-      this.tone(1760, 0.04, 0.055, "sine", 1180);
-      this.tone(220, 0.16, 0.14, "sine", 86);
+      this.tone(1120 * velocityPitch, 0.065, 0.145 * centerBrightness, "triangle", 720 * velocityPitch);
+      this.tone(2150 * velocityPitch, 0.028, 0.048, "square", 1240 * velocityPitch);
+      this.tone(238 * velocityPitch, 0.145, 0.15, "sine", 82);
     } else if (label === "FRAME") {
-      this.tone(142, 0.12, 0.09, "square", 75);
-      this.tone(1740, 0.035, 0.035, "square", 620);
+      this.tone(138 * velocityPitch, 0.11, 0.105, "square", 68);
+      this.tone(1880 * velocityPitch, 0.026, 0.046, "square", 580);
     } else if (label === "SCRAMBLE") {
-      this.tone(330, 0.12, 0.09, "sawtooth", 155);
-      this.tone(1280, 0.05, 0.035, "square", 430);
+      this.tone(315 * velocityPitch, 0.13, 0.1, "sawtooth", 142);
+      this.tone(1180 * velocityPitch, 0.046, 0.045 * centerBrightness, "square", 390);
+      this.tone(92, 0.14, 0.08, "sine", 58);
     } else {
-      this.tone(label === "DEFENSIVE" ? 520 : 720, 0.095, label === "DEFENSIVE" ? 0.1 : 0.105, "triangle", 390);
-      this.tone(165, 0.12, 0.085, "sine", 88);
+      const stringFrequency = label === "DEFENSIVE" ? 540 : 790;
+      this.tone(stringFrequency * velocityPitch, 0.085, (label === "DEFENSIVE" ? 0.115 : 0.13) * centerBrightness, "triangle", 360 * velocityPitch);
+      this.tone(1480 * velocityPitch, 0.032, label === "CLEAN" ? 0.036 : 0.022, "square", 740);
+      this.tone(182 * velocityPitch, 0.13, 0.105, "sine", 76);
     }
   }
 
