@@ -1,3 +1,40 @@
-import type { Metadata } from "next";import Image from "next/image";import Link from "next/link";import { notFound } from "next/navigation";import { projects,getProject } from "@/content/projects";import { statusLabels } from "@/content/statuses";
-export function generateStaticParams(){return projects.map(p=>({slug:p.slug}))}export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{const {slug}=await params;const p=getProject(slug);if(!p)return{};return{title:p.title,description:p.shortDescription,alternates:{canonical:`/work/${p.slug}`}}}
-export default async function ProjectPage({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const p=getProject(slug);if(!p)notFound();const related=projects.filter(x=>x.slug!==p.slug&&x.category.some(c=>p.category.includes(c))).slice(0,2);return <><header className="page-hero"><div className="shell"><p className="eyebrow">{p.category.join(" · ")}</p><h1>{p.title}</h1><p>{p.shortDescription}</p></div></header><section className="section"><div className="shell case-grid"><div className="case-main">{p.media?.[0]&&<figure className="case-hero"><Image src={p.media[0].src} alt={p.media[0].alt} width={1400} height={900} priority/><figcaption>{p.media[0].caption}</figcaption></figure>}<section><h2>Problem</h2><p>{p.problem}</p></section><section><h2>Approach</h2><ul>{p.approach.map(x=><li key={x}>{x}</li>)}</ul></section><section><h2>Results</h2><ul>{p.results.map(x=><li key={x}>{x}</li>)}</ul></section>{p.limitations&&<section><h2>Limitations</h2><div className="notice"><ul>{p.limitations.map(x=><li key={x}>{x}</li>)}</ul></div></section>}<section><h2>Evidence</h2>{p.evidence.map(e=><p key={e.label}><strong>{e.label}:</strong> {e.sourceFile??"Source confirmation pending"} · {e.verified?"verified for this wording":"not yet verified for expanded public claims"}</p>)}</section>{p.media&&p.media.length>1&&<section><h2>Gallery</h2><div className="media-grid">{p.media.slice(1).map(m=><figure key={m.src}><Image src={m.src} alt={m.alt} width={1000} height={700}/><figcaption>{m.caption}</figcaption></figure>)}</div></section>}{related.length>0&&<section><h2>Related work</h2>{related.map(r=><p key={r.slug}><Link className="text-link" href={`/work/${r.slug}`}>{r.title} ↗</Link></p>)}</section>}</div><aside className="case-aside"><span className="status">{statusLabels[p.status]}</span><dl><dt>Role</dt><dd>{p.role}</dd><dt>Dates</dt><dd>{p.yearStart}{p.yearEnd&&`–${p.yearEnd}`}</dd><dt>Categories</dt><dd>{p.category.join(", ")}</dd></dl>{p.links?.map(l=><p key={l.href}><a className="text-link" href={l.href}>{l.label} ↗</a></p>)}</aside></div></section></>}
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { SeizeFreezeCaseStudy } from "@/components/SeizeFreezeCaseStudy";
+import { projects, getProject } from "@/content/projects";
+import { statusLabels } from "@/content/statuses";
+
+export function generateStaticParams() { return projects.map((project) => ({ slug: project.slug })); }
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProject(slug);
+  if (!project) return {};
+  return {
+    title: project.title,
+    description: project.shortDescription,
+    alternates: { canonical: `/work/${project.slug}` },
+    ...(project.slug === "seizefreeze" ? { openGraph: { title: "SeizeFreeze | Closed-loop cortical-cooling concept", description: project.shortDescription, images: [{ url: "/images/neurotechnology/seizefreeze-homepage-hero-v2.webp", width: 1536, height: 1024, alt: "SeizeFreeze engineering concept" }] } } : {}),
+  };
+}
+
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = getProject(slug);
+  if (!project) notFound();
+  if (project.slug === "seizefreeze") return <SeizeFreezeCaseStudy />;
+  const related = projects.filter((item) => item.slug !== project.slug && item.category.some((category) => project.category.includes(category))).slice(0, 2);
+
+  return <><header className="page-hero"><div className="shell"><p className="eyebrow">{project.category.join(" · ")}</p><h1>{project.title}</h1><p>{project.shortDescription}</p></div></header><section className="section"><div className="shell case-grid"><div className="case-main">
+    {project.media?.[0] && <figure className="case-hero"><Image src={project.media[0].src} alt={project.media[0].alt} width={1400} height={900} priority /><figcaption>{project.media[0].caption}</figcaption></figure>}
+    <section><h2>Problem</h2><p>{project.problem}</p></section>
+    <section><h2>Approach</h2><ul>{project.approach.map((item) => <li key={item}>{item}</li>)}</ul></section>
+    <section><h2>Results</h2><ul>{project.results.map((item) => <li key={item}>{item}</li>)}</ul></section>
+    {project.limitations && <section><h2>Limitations</h2><div className="notice"><ul>{project.limitations.map((item) => <li key={item}>{item}</li>)}</ul></div></section>}
+    <section><h2>Evidence</h2>{project.evidence.map((evidence) => <p key={evidence.label}><strong>{evidence.label}:</strong> {evidence.sourceFile ?? "Source confirmation pending"} · {evidence.verified ? "verified for this wording" : "not yet verified for expanded public claims"}</p>)}</section>
+    {project.media && project.media.length > 1 && <section><h2>Gallery</h2><div className="media-grid">{project.media.slice(1).map((media) => <figure key={media.src}><Image src={media.src} alt={media.alt} width={1000} height={700} /><figcaption>{media.caption}</figcaption></figure>)}</div></section>}
+    {related.length > 0 && <section><h2>Related work</h2>{related.map((item) => <p key={item.slug}><Link className="text-link" href={`/work/${item.slug}`}>{item.title} ↗</Link></p>)}</section>}
+  </div><aside className="case-aside"><span className="status">{statusLabels[project.status]}</span><dl><dt>Role</dt><dd>{project.role}</dd><dt>Dates</dt><dd>{project.yearStart}{project.yearEnd && `–${project.yearEnd}`}</dd><dt>Categories</dt><dd>{project.category.join(", ")}</dd></dl>{project.links?.map((link) => <p key={link.href}><a className="text-link" href={link.href}>{link.label} ↗</a></p>)}</aside></div></section></>;
+}
