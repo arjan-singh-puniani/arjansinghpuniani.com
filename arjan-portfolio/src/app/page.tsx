@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ViewportBackgroundVideo from "@/components/ViewportBackgroundVideo";
 
 const disciplines = ["Neural engineering", "Patient-centered design", "Clinical reasoning", "Motorsport safety"];
 
@@ -52,7 +53,7 @@ export default function Home() {
       <div className="shell"><p className="v2-section-number">[ 03 — Current trajectory ]</p><div className="v2-crossroads-grid"><h2>Medicine.<br />Engineering.<br /><em>At speed.</em></h2><div><p>Current work examines trackside neurotrauma and emergency operations: places where incomplete information, limited time, and human consequences meet.</p><p><Link href="/work/motorsport-neurotrauma-toolkit">Explore the neurotrauma toolkit ↗</Link></p><p><Link href="/work/belmont-motorsport-systems">Open the Belmont systems study ↗</Link></p></div></div><ol className="home-motorsport-sequence" aria-label="Hazard leads to decision, response, recovery, and record">{["Hazard","Decision","Response","Recovery","Record"].map((item,index)=><li key={item}><span>0{index+1}</span><strong>{item}</strong></li>)}</ol></div>
     </section>
 
-    <section className="v2-playground-teaser"><div className="shell"><div><p className="v2-section-number">[ 04 — Playground ]</p><h2>Vector Tennis<br /><em>Endless Rally.</em></h2></div><div><p>A one-input arcade rally over mechanically causal contact, spin, trajectory, and bounce—with Racket Lab underneath.</p><div className="mini-causal-chain" aria-label="Read leads to timing, strike, survival, and restart">{["Read","Time","Strike","Survive","Restart"].map((item)=><span key={item}>{item}</span>)}</div><Link href="/playground/vector-tennis">Play the experiment ↗</Link></div></div></section>
+    <section className="v2-playground-teaser"><ViewportBackgroundVideo /><div className="shell"><div><p className="v2-section-number">[ 04 — Playground ]</p><h2>Vector Tennis<br /><em>Endless Rally.</em></h2></div><div><p>A one-input arcade rally over mechanically causal contact, spin, trajectory, and bounce—with Racket Lab underneath.</p><div className="mini-causal-chain" aria-label="Read leads to timing, strike, survival, and restart">{["Read","Time","Strike","Survive","Restart"].map((item)=><span key={item}>{item}</span>)}</div><Link href="/playground/vector-tennis">Play the experiment ↗</Link></div></div></section>
 
     <section className="v2-contact"><div className="shell"><p>Have a difficult system worth building?</p><Link href="/contact">Let’s work on it. <span>↗</span></Link></div></section>
   </>;
