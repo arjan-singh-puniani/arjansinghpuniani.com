@@ -4,6 +4,7 @@ import { profile } from "@/content/profile";
 import { links } from "@/content/links";
 import { scienceWriting } from "@/content/publications";
 import { siteUrl } from "@/lib/site";
+import styles from "./about.module.css";
 
 export const metadata: Metadata = {
   title: "About Arjan Singh Puniani",
@@ -11,6 +12,20 @@ export const metadata: Metadata = {
     "Biography of Arjan Singh Puniani (Arjan Puniani), a neural engineer and medical-school applicant working across rehabilitation, clinical reasoning, neurotechnology, and motorsport safety.",
   alternates: { canonical: "/about" },
 };
+
+const interests = [
+  "Formula 1",
+  "Tennis",
+  "Buffalo Bills",
+  "Whole Foods",
+  "Virtual reality",
+  "Pickleball",
+  "Bonsai",
+  "Metal detecting",
+  "LEGO",
+  "Sketching",
+  "Terrence Malick",
+] as const;
 
 export default function About() {
   const personId = `${siteUrl}/#arjan-singh-puniani`;
@@ -77,17 +92,37 @@ export default function About() {
           ))}
         </div>
       </section>
-      <section className="section outside-lab">
-        <div className="shell case-intro">
-          <figure>
-            <Image src="/images/about/tennis-portrait.jpeg" alt="Arjan Singh Puniani on a tennis court" width={900} height={1100} />
+      <section className={`section outside-lab ${styles.personalSection}`}>
+        <div className={`shell ${styles.personalGrid}`}>
+          <figure className={styles.portrait}>
+            <Image
+              src="/images/about/arjan-candid.jpg"
+              alt="Candid portrait of the site author seated at a restaurant"
+              width={1200}
+              height={1600}
+              sizes="(max-width: 900px) calc(100vw - 24px), 40vw"
+            />
             <figcaption>Outside research and engineering.</figcaption>
           </figure>
-          <div>
+          <div className={styles.personalCopy}>
             <p className="eyebrow">Outside the lab</p>
-            <h2>Cooking is another form of iterative design.</h2>
-            <p>Arjan cooks bánh mì and experiments with playful recipes, including his own approach to the Crunchwrap Supreme. The appeal is practical: understand the ingredients, control the sequence, notice what fails, and make something worth sharing.</p>
-            <p>He also plays and teaches tennis.</p>
+            <h2>A few things I genuinely like.</h2>
+            <div className={styles.personalProse}>
+              <p>I cook a lot, especially bánh mì, bulgogi cheesesteaks, and sloppy joes. I play and teach tennis, play pickleball, follow Formula 1 and the Buffalo Bills, and spend a lot of time in virtual reality.</p>
+              <p>Whole Foods is, inexplicably, one of my hobbies.</p>
+              <p>When I want something quieter, I work on my bonsai, build LEGO sets, sketch, go metal detecting, or put on a Terrence Malick film.</p>
+            </div>
+            <div className={styles.interests}>
+              <h3>Currently into</h3>
+              <ul className={styles.interestList}>
+                {interests.map((interest, index) => (
+                  <li key={interest}>
+                    <span className={styles.interestNumber} aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                    <span>{interest}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
