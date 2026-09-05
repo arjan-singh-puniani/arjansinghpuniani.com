@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { SeizeFreezeHomeFeature } from "@/components/SeizeFreezeHomeFeature";
 import ViewportBackgroundVideo from "@/components/ViewportBackgroundVideo";
 
 const disciplines = ["Neural engineering", "Patient-centered design", "Clinical reasoning", "Motorsport safety"];
@@ -39,10 +40,7 @@ export default function Home() {
         </div>
         <div className="v2-feature-copy"><p>00 / Reasoning systems · Medical education</p><h3>Vector EKG + ReasonOS</h3><p className="v2-feature-lead">An educational prototype that preserves how evidence changes a model.</p><p>The system records observations, calculations, competing candidate pathways, contradictions, provenance, and revisions. It remains research software with no clinical validation.</p><dl><div><dt>Role</dt><dd>Independent designer + developer</dd></div><div><dt>State</dt><dd>Tested educational prototype</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl><Link href="/work/vector-ekg-reasonos" data-analytics-event="view_project">Open the case study <span>↗</span></Link></div>
       </article>
-      <article className="v2-feature v2-feature-dark">
-        <div className="v2-feature-image v2-device"><Image src="/images/neurotechnology/seizefreeze-homepage-hero-v2.webp" alt="Concept visualization of the proposed SeizeFreeze implant, thermoelectric assembly, and localized cortical cooling" fill sizes="(max-width: 800px) 100vw, 50vw" /></div>
-        <div className="v2-feature-copy"><p>01 / Neurotechnology</p><h3>SeizeFreeze</h3><p className="v2-feature-lead">A focal cortical-cooling concept for drug-resistant epilepsy.</p><dl><div><dt>Role</dt><dd>Founder + device lead</dd></div><div><dt>State</dt><dd>Prototype</dd></div><div><dt>Evidence</dt><dd>$12.5K documented awards</dd></div></dl><Link href="/work/seizefreeze">Open case study <span>↗</span></Link></div>
-      </article>
+      <SeizeFreezeHomeFeature />
       <article className="v2-feature v2-feature-light">
         <div className="v2-feature-copy"><p>02 / Brain-computer interfaces</p><h3>Making calibration worth finishing.</h3><p className="v2-feature-lead">Gamified psychophysics, neural recording interfaces, and patterns found across more than 940 sessions.</p><dl><div><dt>Role</dt><dd>R&amp;D neural engineer</dd></div><div><dt>State</dt><dd>Completed research</dd></div></dl><Link href="/work/bci-calibration">Open case study <span>↗</span></Link></div>
         <div className="v2-feature-image"><Image src="/images/research/rnel-gamified-bci-task.jpg" alt="Gamified brain-computer interface calibration task in a research laboratory" fill sizes="(max-width: 800px) 100vw, 56vw" /></div>
