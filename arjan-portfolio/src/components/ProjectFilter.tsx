@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { categories, projects } from "@/content/projects";
 import { ProjectCard } from "./ProjectCard";
-const projectOrder = ["vector-ekg-reasonos", "seizefreeze", "bci-calibration"];
+const projectOrder = ["vector-ekg-reasonos", "seizefreeze", "bci-calibration", "rigetti-quantum-operations"];
 export function ProjectFilter() {
   const [active, setActive] = useState<(typeof categories)[number]>("All");
   const filtered = active === "All" ? projects : projects.filter((p) => p.category.includes(active));

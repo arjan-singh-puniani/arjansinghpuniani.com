@@ -22,6 +22,17 @@ export const projects: Project[] = [
     evidence: [{ label: "Portfolio résumé", sourceFile: "ArjanSinghPuniani_2026.pdf", verified: true }]
   },
   {
+    slug: "rigetti-quantum-operations", title: "Quantum systems operations", shortDescription: "A retrospective Rigetti operating case study paired with an independent interactive model of a superconducting quantum-computing control chain.",
+    category: ["Software and Simulation"], status: "Tested educational prototype", yearStart: 2026, yearEnd: 2026, role: "Independent model designer; former Rigetti Chief of Staff",
+    problem: "Superconducting quantum computers depend on a tightly coordinated stack of room-temperature control, cryogenics, processor interfaces, signal delivery, and readout. The surrounding system is difficult to understand from isolated component diagrams.",
+    approach: ["Built a procedural Three.js model of a superconducting quantum-computing control chain.", "Connected room-temperature control hardware, five cryogenic stages, a simplified transmon-like processor, microwave drive, and readout paths.", "Added inspection controls, camera presets, cutaway views, component labels, simulated telemetry, and a timed gate-cycle sequence.", "Separated the documented 2013–2015 Rigetti operating role from the independently built 2026 educational artifact."],
+    results: ["Produced a tested interactive educational model with six camera presets and a wall-clock-driven operation sequence.", "Created a system-level explanation that makes the control chain inspectable without presenting commercial or confidential hardware."],
+    limitations: ["The model is not a Rigetti product, proprietary design, dimensional replica, or representation of confidential hardware.", "Displayed telemetry is illustrative and simulated; it is not measured device performance.", "The model provides educational context and does not imply processor, cryostat, or control-system engineering performed during the documented Rigetti role."],
+    featured: true,
+    links: [{ label: "Open the full-screen interactive laboratory", href: "/quantum-computer-lab/index.html" }],
+    evidence: [{ label: "Documented Rigetti role", sourceFile: "Portfolio résumé", verified: true }, { label: "Three.js model source, production build, and QA record", sourceFile: "Quantum-Computer-ThreeJS.zip", verified: true }]
+  },
+  {
     slug: "quantum-active-inference", title: "Conscious active inference", shortDescription: "Peer-reviewed theoretical research on active inference, quantum dynamics, and conscious planning.",
     category: ["Neurotechnology"], status: "Published", yearStart: 2025, yearEnd: 2025, role: "Co-author",
     problem: "The relationship between physical dynamics, inference, and conscious experience remains unresolved.",

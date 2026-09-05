@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#071018" />
+    <title>Quantum Computer Operations Lab | Arjan Singh Puniani</title>
+    <meta name="description" content="Independent educational visualization of a superconducting quantum-computing control chain." />
+    <script type="module" crossorigin src="./assets/index-C81YNuSX.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CbBBWMc4.css">
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="scene" aria-label="Interactive 3D quantum computer visualization"></canvas>
+
+      <header class="topbar glass">
+        <div>
+          <div class="eyebrow">INDEPENDENT EDUCATIONAL MODEL</div>
+          <h1>Quantum Computer Operations Lab</h1>
+        </div>
+        <div class="status-cluster">
+          <div class="status-chip"><span class="dot live"></span><span id="system-status">SYSTEM READY</span></div>
+          <div class="status-chip"><span class="dot cold"></span>12 mK</div>
+          <div class="status-chip"><span class="dot link"></span>SIMULATED · 8 QUBITS</div>
+        </div>
+      </header>
+
+      <aside class="left-panel glass">
+        <section>
+          <div class="section-label">Operation</div>
+          <div class="button-grid">
+            <button id="run-sequence" class="primary">Run gate cycle</button>
+            <button id="pause-sequence">Pause</button>
+            <button id="reset-sequence">Reset</button>
+            <button id="auto-tour">Auto tour</button>
+          </div>
+        </section>
+
+        <section>
+          <div class="section-label">Camera presets</div>
+          <div id="camera-presets" class="button-grid compact">
+            <button data-view="overview">1 Overview</button>
+            <button data-view="front">2 Front</button>
+            <button data-view="top">3 Top</button>
+            <button data-view="chip">4 Qubit chip</button>
+            <button data-view="rack">5 Controllers</button>
+            <button data-view="inside">6 Cryostat interior</button>
+          </div>
+        </section>
+
+        <section>
+          <div class="section-label">Inspection</div>
+          <label class="toggle-row"><span>Cutaway shell</span><input id="cutaway" type="checkbox" checked /><i></i></label>
+          <label class="toggle-row"><span>Labels</span><input id="labels" type="checkbox" checked /><i></i></label>
+          <label class="toggle-row"><span>Signal paths</span><input id="signals" type="checkbox" checked /><i></i></label>
+          <label class="toggle-row"><span>Auto rotate</span><input id="autorotate" type="checkbox" /><i></i></label>
+        </section>
+
+        <section class="help-copy">
+          <div class="section-label">Navigation</div>
+          <p>Drag to orbit. Wheel to zoom. Right drag to pan. Double click a part to focus. Press F to frame your selection.</p>
+        </section>
+      </aside>
+
+      <aside class="right-panel glass">
+        <section>
+          <div class="section-label">Simulated telemetry</div>
+          <div class="metric"><span>Sequence</span><strong id="sequence-name">Idle</strong></div>
+          <div class="metric"><span>Step</span><strong id="sequence-step">0 / 6</strong></div>
+          <div class="metric"><span>Modeled fidelity</span><strong id="fidelity">99.72%</strong></div>
+          <div class="metric"><span>Modeled readout SNR</span><strong id="snr">18.4 dB</strong></div>
+          <div class="metric"><span>Example T₁</span><strong id="t1">112 μs</strong></div>
+          <div class="metric"><span>Example T₂</span><strong id="t2">89 μs</strong></div>
+        </section>
+
+        <section>
+          <div class="section-label">Selected component</div>
+          <h2 id="part-name">Dilution refrigerator</h2>
+          <p id="part-description">A multi-stage cryogenic system that cools the superconducting processor to millikelvin temperatures.</p>
+          <div class="tag-row" id="part-tags"><span>cryogenics</span><span>shielding</span></div>
+        </section>
+
+        <section>
+          <div class="section-label">Thermal stack</div>
+          <div class="thermal-stack">
+            <div><span>50 K shield</span><b>49.8 K</b></div>
+            <div><span>4 K plate</span><b>3.92 K</b></div>
+            <div><span>Still</span><b>840 mK</b></div>
+            <div><span>Cold plate</span><b>92 mK</b></div>
+            <div><span>Mixing chamber</span><b>12 mK</b></div>
+          </div>
+        </section>
+      </aside>
+
+      <div class="timeline glass">
+        <div class="timeline-head">
+          <span id="timeline-title">Ready for operation</span>
+          <span id="timeline-time">0.00 μs</span>
+        </div>
+        <div class="timeline-track"><div id="timeline-progress"></div></div>
+        <div class="timeline-steps">
+          <span>Initialize</span><span>Drive</span><span>Entangle</span><span>Wait</span><span>Readout</span><span>Decode</span>
+        </div>
+      </div>
+
+      <div id="label-layer" aria-hidden="true"></div>
+      <div id="tooltip" class="tooltip"></div>
+      <div id="loading" class="loading"><div class="spinner"></div><span>Building cryogenic system</span></div>
+    </div>
+
+  </body>
+</html>

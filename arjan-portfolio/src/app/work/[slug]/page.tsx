@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SeizeFreezeCaseStudy } from "@/components/SeizeFreezeCaseStudy";
+import { RigettiQuantumCaseStudy } from "@/components/RigettiQuantumCaseStudy";
 import { projects, getProject } from "@/content/projects";
 import { statusLabels } from "@/content/statuses";
 
@@ -17,6 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: project.shortDescription,
     alternates: { canonical: `/work/${project.slug}` },
     ...(project.slug === "seizefreeze" ? { openGraph: { title: "SeizeFreeze | Closed-loop cortical-cooling concept", description: project.shortDescription, images: [{ url: "/images/neurotechnology/seizefreeze-homepage-hero-v2.webp", width: 1536, height: 1024, alt: "SeizeFreeze engineering concept" }] } } : {}),
+    ...(project.slug === "rigetti-quantum-operations" ? { openGraph: { title: "Quantum Systems Operations | Arjan Singh Puniani", description: project.shortDescription, images: [{ url: "/images/quantum/quantum-operations-lab-overview.png", width: 1600, height: 1000, alt: "Interactive superconducting quantum-computer operations model" }] } } : {}),
   };
 }
 
@@ -25,6 +27,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const project = getProject(slug);
   if (!project) notFound();
   if (project.slug === "seizefreeze") return <SeizeFreezeCaseStudy />;
+  if (project.slug === "rigetti-quantum-operations") return <RigettiQuantumCaseStudy />;
   const related = projects.filter((item) => item.slug !== project.slug && item.category.some((category) => project.category.includes(category))).slice(0, 2);
 
   return <><header className="page-hero"><div className="shell"><p className="eyebrow">{project.category.join(" · ")}</p><h1>{project.title}</h1><p>{project.shortDescription}</p></div></header><section className="section"><div className="shell case-grid"><div className="case-main">
