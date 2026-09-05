@@ -1,7 +1,38 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SeizeFreezeHomeFeature } from "@/components/SeizeFreezeHomeFeature";
 import ViewportBackgroundVideo from "@/components/ViewportBackgroundVideo";
+import { siteUrl } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: { absolute: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine" },
+  description:
+    "Official portfolio of Arjan Singh Puniani, a neural engineer pursuing medicine, with work in brain-computer interfaces, neurotechnology, clinical reasoning, rehabilitation, and motorsport safety.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    title: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
+    description:
+      "Neural engineering, brain-computer interfaces, neurotechnology, clinical reasoning, rehabilitation, and motorsport safety.",
+    images: [
+      {
+        url: "/images/hero/arj_kuzneski-hero.png",
+        width: 1200,
+        height: 1500,
+        alt: "Arjan Singh Puniani holding the Kuzneski Innovation Cup",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
+    description:
+      "Neural engineering, brain-computer interfaces, neurotechnology, clinical reasoning, rehabilitation, and motorsport safety.",
+    images: ["/images/hero/arj_kuzneski-hero.png"],
+  },
+};
 
 const disciplines = ["Neural engineering", "Patient-centered design", "Clinical reasoning", "Motorsport safety"];
 

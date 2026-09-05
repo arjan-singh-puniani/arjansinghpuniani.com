@@ -1,3 +1,36 @@
-import type { Metadata } from "next";import Link from "next/link";import { education } from "@/content/education";import { experience } from "@/content/experience";import { links } from "@/content/links";
-export const metadata:Metadata={title:"CV",description:"Curriculum vitae of Arjan Singh Puniani, including neural engineering, research, education, teaching, and service experience.",alternates:{canonical:"/cv"}};
-export default function CV(){return <><header className="page-hero"><div className="shell"><p className="eyebrow">Curriculum vitae</p><h1>Arjan Singh Puniani — CV</h1><p>Selected education, research, engineering, teaching, and service experience.</p><div className="cv-actions"><a className="button" href={links.resume} download data-analytics-event="download_resume">Download résumé</a><span className="button-secondary">Use your browser’s Print command</span></div></div></header><section className="section"><div className="shell"><div className="section-head"><div><p className="eyebrow">Experience</p><h2>Experience</h2></div></div><div className="timeline">{experience.map(x=><article key={x.organization}><time>{x.dates}</time><div><h3>{x.role}</h3><p><strong>{x.organization}</strong></p><p>{x.summary}</p>{x.organization==="Rigetti Computing"&&<p><Link className="text-link" href="/work/rigetti-quantum-operations">Explore the quantum systems case study ↗</Link></p>}</div></article>)}</div></div></section><section className="section"><div className="shell"><div className="section-head"><div><p className="eyebrow">Education</p><h2>Academic foundation</h2></div></div><div className="timeline">{education.map(x=><article key={x.institution}><time>{x.year}</time><div><h3>{x.degree}</h3><p><strong>{x.institution}</strong></p><p>{x.focus}</p></div></article>)}</div></div></section></>}
+import type { Metadata } from "next";
+import Link from "next/link";
+import { education } from "@/content/education";
+import { experience } from "@/content/experience";
+import { links } from "@/content/links";
+import { siteUrl } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "CV — Neural Engineering, Research & Education",
+  description:
+    "Curriculum vitae of Arjan Singh Puniani, including neural engineering, brain-computer-interface research, clinical research, education, teaching, and service experience.",
+  alternates: { canonical: "/cv" },
+  openGraph: {
+    type: "website",
+    url: `${siteUrl}/cv`,
+    title: "CV — Neural Engineering, Research & Education | Arjan Singh Puniani",
+    description:
+      "Neural engineering, brain-computer-interface research, clinical research, education, teaching, and service experience.",
+    images: ["/og.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CV — Neural Engineering, Research & Education | Arjan Singh Puniani",
+    description:
+      "Neural engineering, brain-computer-interface research, clinical research, education, teaching, and service experience.",
+    images: ["/og.png"],
+  },
+};
+
+export default function CV() {
+  return <>
+    <header className="page-hero"><div className="shell"><p className="eyebrow">Curriculum vitae</p><h1>Arjan Singh Puniani — CV</h1><p>Selected education, research, engineering, teaching, and service experience.</p><div className="cv-actions"><a className="button" href={links.resume} download data-analytics-event="download_resume">Download résumé</a><span className="button-secondary">Use your browser’s Print command</span></div></div></header>
+    <section className="section"><div className="shell"><div className="section-head"><div><p className="eyebrow">Experience</p><h2>Experience</h2></div></div><div className="timeline">{experience.map(x=><article key={x.organization}><time>{x.dates}</time><div><h3>{x.role}</h3><p><strong>{x.organization}</strong></p><p>{x.summary}</p>{x.organization==="Rigetti Computing"&&<p><Link className="text-link" href="/work/rigetti-quantum-operations">Explore the quantum systems case study ↗</Link></p>}</div></article>)}</div></div></section>
+    <section className="section"><div className="shell"><div className="section-head"><div><p className="eyebrow">Education</p><h2>Academic foundation</h2></div></div><div className="timeline">{education.map(x=><article key={x.institution}><time>{x.year}</time><div><h3>{x.degree}</h3><p><strong>{x.institution}</strong></p><p>{x.focus}</p></div></article>)}</div></div></section>
+  </>;
+}

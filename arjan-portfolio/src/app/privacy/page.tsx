@@ -1,1 +1,14 @@
-export const metadata={title:"Privacy",alternates:{canonical:"/privacy"}};export default function Privacy(){return <><header className="page-hero"><div className="shell"><p className="eyebrow">Privacy</p><h1>Limited measurement.</h1><p>This site uses Vercel Web Analytics for aggregate traffic. It does not use advertising trackers.</p></div></header><section className="section"><div className="shell prose"><h2>Analytics</h2><p>Vercel states that Web Analytics stores anonymized data without cookies. Events contain a page path and visible link label. They exclude form contents, email addresses, and medical information.</p><h2>Contact</h2><p>The contact form processes what you submit so Arjan can respond. Do not send medical records or confidential data. Messages are not sold.</p><h2>Hosting</h2><p>The provider may process routine server logs for security and operation.</p></div></section></>}
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy",
+  alternates: { canonical: "/privacy" },
+  robots: { index: false, follow: true },
+};
+
+export default function Privacy() {
+  return <>
+    <header className="page-hero"><div className="shell"><p className="eyebrow">Privacy</p><h1>Limited measurement.</h1><p>This site uses Vercel Web Analytics for aggregate traffic. It does not use advertising trackers.</p></div></header>
+    <section className="section"><div className="shell prose"><h2>Analytics</h2><p>Vercel states that Web Analytics stores anonymized data without cookies. Events contain a page path and visible link label. They exclude form contents, email addresses, and medical information.</p><h2>Contact</h2><p>The contact form processes what you submit so Arjan can respond. Do not send medical records or confidential data. Messages are not sold.</p><h2>Hosting</h2><p>The provider may process routine server logs for security and operation.</p></div></section>
+  </>;
+}

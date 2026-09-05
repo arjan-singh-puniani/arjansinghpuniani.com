@@ -1,10 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Playground",
-  description: "Small interactive experiments in simulation, interfaces, and embodied learning.",
+  title: "Interactive Playground",
+  description:
+    "Interactive experiments by Arjan Singh Puniani in simulation, interfaces, embodied learning, and mechanically causal tennis physics.",
   alternates: { canonical: "/playground" },
+  openGraph: {
+    type: "website",
+    url: `${siteUrl}/playground`,
+    title: "Interactive Playground | Arjan Singh Puniani",
+    description:
+      "Interactive experiments in simulation, interfaces, embodied learning, and mechanically causal tennis physics.",
+    images: ["/video/tennis-racket-background-poster.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Interactive Playground | Arjan Singh Puniani",
+    description:
+      "Interactive experiments in simulation, interfaces, embodied learning, and mechanically causal tennis physics.",
+    images: ["/video/tennis-racket-background-poster.jpg"],
+  },
 };
 
 export default function Playground() {

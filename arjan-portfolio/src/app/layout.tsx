@@ -25,7 +25,6 @@ export const metadata: Metadata = {
   creator: "Arjan Singh Puniani",
   publisher: "Arjan Singh Puniani",
   category: "Neural engineering",
-  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: siteUrl,
@@ -97,6 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         "Medical education",
         "Neurotechnology",
         "Motorsport safety",
+        "Active inference",
       ],
     },
     {
@@ -106,6 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       name: "Arjan Singh Puniani",
       alternateName: "Arjan Puniani",
       url: siteUrl,
+      inLanguage: "en-US",
       author: { "@id": personId },
       publisher: { "@id": personId },
     },

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { profile } from "@/content/profile";
 import { links } from "@/content/links";
 import { scienceWriting } from "@/content/publications";
@@ -9,8 +10,30 @@ import styles from "./about.module.css";
 export const metadata: Metadata = {
   title: "About Arjan Singh Puniani",
   description:
-    "Biography of Arjan Singh Puniani (Arjan Puniani), a neural engineer and medical-school applicant working across rehabilitation, clinical reasoning, neurotechnology, and motorsport safety.",
+    "Biography of Arjan Singh Puniani (Arjan Puniani), a neural engineer and medical-school applicant working across brain-computer interfaces, rehabilitation, clinical reasoning, neurotechnology, and motorsport safety.",
   alternates: { canonical: "/about" },
+  openGraph: {
+    type: "website",
+    url: `${siteUrl}/about`,
+    title: "About Arjan Singh Puniani",
+    description:
+      "Neural engineer and medical-school applicant working across brain-computer interfaces, rehabilitation, clinical reasoning, neurotechnology, and motorsport safety.",
+    images: [
+      {
+        url: "/images/about/arjan-candid.jpg",
+        width: 1200,
+        height: 1600,
+        alt: "Candid portrait of Arjan Singh Puniani",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Arjan Singh Puniani",
+    description:
+      "Neural engineer and medical-school applicant working across brain-computer interfaces, rehabilitation, clinical reasoning, neurotechnology, and motorsport safety.",
+    images: ["/images/about/arjan-candid.jpg"],
+  },
 };
 
 const interests = [
@@ -82,6 +105,7 @@ export default function About() {
             <p>Arjan Singh Puniani was a student contributor to <em>Physics World</em>, writing reported features about neural engineering, brain–computer interfaces, and neuroimaging research.</p>
           </div>
           <p><a className="text-link" href={links.physicsWorldAuthor} target="_blank" rel="noreferrer">Physics World contributor archive <span aria-hidden="true">↗</span></a></p>
+          <p><Link className="text-link" href="/research">See peer-reviewed research and current research themes →</Link></p>
           {scienceWriting.map((article) => (
             <article className="publication" key={article.href}>
               <p className="publication-meta">By Arjan Singh Puniani · {article.venue} · {article.publishedAt}</p>

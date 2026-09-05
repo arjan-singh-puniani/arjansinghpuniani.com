@@ -1,11 +1,28 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { VectorTennisExperience } from "@/components/VectorTennisExperience";
+import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Vector Tennis — Endless Rally",
-  description: "A deterministic one-input arcade tennis experiment with mechanically causal contact, spin, trajectory, and bounce.",
+  title: "Vector Tennis — Endless Rally Physics Arcade",
+  description:
+    "Vector Tennis is a deterministic one-input arcade tennis experiment with mechanically causal racket contact, spin, trajectory, Magnus-like curve, and bounce.",
   alternates: { canonical: "/playground/vector-tennis" },
+  openGraph: {
+    type: "website",
+    url: `${siteUrl}/playground/vector-tennis`,
+    title: "Vector Tennis — Endless Rally | Arjan Singh Puniani",
+    description:
+      "A deterministic one-input arcade tennis experiment with mechanically causal racket contact, spin, trajectory, and bounce.",
+    images: ["/video/tennis-racket-background-poster.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vector Tennis — Endless Rally | Arjan Singh Puniani",
+    description:
+      "A deterministic one-input arcade tennis experiment with mechanically causal racket contact, spin, trajectory, and bounce.",
+    images: ["/video/tennis-racket-background-poster.jpg"],
+  },
 };
 
 const relationships = [
@@ -18,7 +35,21 @@ const relationships = [
 ] as const;
 
 export default function VectorTennisPage() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Vector Tennis — Endless Rally",
+    applicationCategory: "GameApplication",
+    operatingSystem: "Web",
+    url: `${siteUrl}/playground/vector-tennis`,
+    author: { "@type": "Person", "@id": `${siteUrl}/#arjan-singh-puniani`, name: "Arjan Singh Puniani" },
+    description:
+      "Deterministic one-input arcade tennis experiment with mechanically causal racket contact, spin, trajectory, and bounce.",
+    isAccessibleForFree: true,
+  };
+
   return <div className="vector-tennis-page">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     <header className="tennis-compact-hero"><div className="shell"><Link className="back-link" href="/playground">← Playground</Link><p className="eyebrow">Vector Tennis / Physics arcade</p><p>Time one swing. Survive the next ball. Inspect the mechanics when you want to go deeper.</p></div></header>
 
     <VectorTennisExperience />

@@ -17,7 +17,22 @@ export type Project = {
   links?: { label: string; href: string }[]; featured: boolean; evidence: Evidence[];
   media?: { src: string; alt: string; caption?: string }[];
 };
-export type Publication = { title: string; authors: string; venue: string; year: number; type: string; summary: string; href?: string; role?: string; evidence: Evidence[] };
+export type Publication = {
+  title: string;
+  authors: string;
+  authorNames?: string[];
+  venue: string;
+  year: number;
+  type: string;
+  summary: string;
+  href?: string;
+  doi?: string;
+  pubmed?: string;
+  pmc?: string;
+  correction?: { label: string; href: string };
+  role?: string;
+  evidence: Evidence[];
+};
 export type ScienceArticle = {
   title: string;
   venue: string;
