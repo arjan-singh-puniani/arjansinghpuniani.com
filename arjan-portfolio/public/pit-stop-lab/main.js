@@ -57,6 +57,193 @@ const C = {
   blue: 0x4ca5ff,
 };
 
+// Procedural mechanical audio. No external audio files are loaded; every cue is
+// synthesized with the Web Audio API after the visitor's first interaction.
+const pitAudio = (() => {
+  let ctx = null;
+  let master = null;
+  let compressor = null;
+  let enabled = true;
+
+  function ensure() {
+    if (!enabled) return null;
+    if (!ctx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContext) return null;
+      ctx = new AudioContext();
+      master = ctx.createGain();
+      master.gain.value = 0.72;
+      compressor = ctx.createDynamicsCompressor();
+      compressor.threshold.value = -12;
+      compressor.knee.value = 10;
+      compressor.ratio.value = 8;
+      compressor.attack.value = 0.003;
+      compressor.release.value = 0.12;
+      master.connect(compressor).connect(ctx.destination);
+    }
+    if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+    return ctx;
+  }
+
+  function panNode(pan = 0) {
+    if (!ctx || !master) return null;
+    if (typeof ctx.createStereoPanner === 'function') {
+      const node = ctx.createStereoPanner();
+      node.pan.value = THREE.MathUtils.clamp(pan, -1, 1);
+      node.connect(master);
+      return node;
+    }
+    return master;
+  }
+
+  function noise(duration = 0.1) {
+    const c = ensure();
+    if (!c) return null;
+    const length = Math.max(1, Math.floor(c.sampleRate * duration));
+    const buffer = c.createBuffer(1, length, c.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < length; i++) data[i] = Math.random() * 2 - 1;
+    const src = c.createBufferSource();
+    src.buffer = buffer;
+    return src;
+  }
+
+  function hiss({ when = 0, duration = 0.16, gain = 0.12, pan = 0, bright = true } = {}) {
+    const c = ensure();
+    if (!c) return;
+    const start = c.currentTime + when;
+    const src = noise(duration + 0.04);
+    if (!src) return;
+    const hp = c.createBiquadFilter();
+    hp.type = 'highpass';
+    hp.frequency.value = bright ? 1800 : 850;
+    const bp = c.createBiquadFilter();
+    bp.type = 'bandpass';
+    bp.frequency.value = bright ? 4600 : 2200;
+    bp.Q.value = 0.55;
+    const amp = c.createGain();
+    amp.gain.setValueAtTime(0.0001, start);
+    amp.gain.exponentialRampToValueAtTime(gain, start + 0.012);
+    amp.gain.setValueAtTime(gain * 0.82, start + duration * 0.45);
+    amp.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+    src.connect(hp).connect(bp).connect(amp).connect(panNode(pan));
+    src.start(start);
+    src.stop(start + duration + 0.03);
+  }
+
+  function metallicClick({ when = 0, gain = 0.16, pan = 0, pitch = 1 } = {}) {
+    const c = ensure();
+    if (!c) return;
+    const start = c.currentTime + when;
+    const out = panNode(pan);
+    [620, 1120, 1860].forEach((base, index) => {
+      const osc = c.createOscillator();
+      const amp = c.createGain();
+      osc.type = index === 0 ? 'triangle' : 'sine';
+      osc.frequency.setValueAtTime(base * pitch, start);
+      osc.frequency.exponentialRampToValueAtTime(Math.max(90, base * pitch * 0.62), start + 0.045);
+      amp.gain.setValueAtTime(gain * (1 - index * 0.22), start);
+      amp.gain.exponentialRampToValueAtTime(0.0001, start + 0.055 + index * 0.018);
+      osc.connect(amp).connect(out);
+      osc.start(start);
+      osc.stop(start + 0.09);
+    });
+    const src = noise(0.045);
+    if (src) {
+      const hp = c.createBiquadFilter();
+      hp.type = 'highpass';
+      hp.frequency.value = 2500;
+      const amp = c.createGain();
+      amp.gain.setValueAtTime(gain * 0.38, start);
+      amp.gain.exponentialRampToValueAtTime(0.0001, start + 0.04);
+      src.connect(hp).connect(amp).connect(out);
+      src.start(start);
+      src.stop(start + 0.05);
+    }
+  }
+
+  function thud({ when = 0, gain = 0.22, pan = 0 } = {}) {
+    const c = ensure();
+    if (!c) return;
+    const start = c.currentTime + when;
+    const out = panNode(pan);
+    const osc = c.createOscillator();
+    const amp = c.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(92, start);
+    osc.frequency.exponentialRampToValueAtTime(46, start + 0.13);
+    amp.gain.setValueAtTime(gain, start);
+    amp.gain.exponentialRampToValueAtTime(0.0001, start + 0.16);
+    osc.connect(amp).connect(out);
+    osc.start(start);
+    osc.stop(start + 0.18);
+  }
+
+  function gunBurst({ tighten = false } = {}) {
+    const c = ensure();
+    if (!c) return;
+    // High-flow air hiss under a rapid train of torque impacts.
+    hiss({ duration: 0.37, gain: 0.10, pan: 0.42, bright: true });
+    const impacts = tighten ? 9 : 8;
+    const spacing = tighten ? 0.038 : 0.043;
+    for (let i = 0; i < impacts; i++) {
+      const when = i * spacing;
+      const punch = 0.16 + (i % 3 === 0 ? 0.045 : 0);
+      metallicClick({ when, gain: punch, pan: 0.43, pitch: tighten ? 1.18 : 0.96 });
+      const osc = c.createOscillator();
+      const amp = c.createGain();
+      const start = c.currentTime + when;
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(tighten ? 132 : 108, start);
+      osc.frequency.exponentialRampToValueAtTime(tighten ? 88 : 72, start + 0.028);
+      amp.gain.setValueAtTime(0.075, start);
+      amp.gain.exponentialRampToValueAtTime(0.0001, start + 0.036);
+      osc.connect(amp).connect(panNode(0.35));
+      osc.start(start);
+      osc.stop(start + 0.04);
+    }
+  }
+
+  function jackRelease() {
+    hiss({ duration: 0.34, gain: 0.15, pan: -0.28, bright: false });
+    metallicClick({ when: 0.06, gain: 0.18, pan: -0.24, pitch: 0.72 });
+    thud({ when: 0.09, gain: 0.24, pan: -0.18 });
+  }
+
+  const cues = [
+    { at: 0.018, play: () => { hiss({ duration: 0.22, gain: 0.11, pan: -0.22, bright: false }); metallicClick({ when: 0.025, gain: 0.11, pan: -0.18, pitch: 0.82 }); } },
+    { at: 0.150, play: () => gunBurst({ tighten: false }) },
+    { at: 0.278, play: () => { metallicClick({ gain: 0.20, pan: 0.12, pitch: 0.88 }); thud({ when: 0.018, gain: 0.16, pan: 0.05 }); } },
+    { at: 0.430, play: () => hiss({ duration: 0.13, gain: 0.055, pan: -0.08, bright: false }) },
+    { at: 0.635, play: () => thud({ gain: 0.12, pan: 0.08 }) },
+    { at: 0.685, play: () => { metallicClick({ gain: 0.18, pan: 0.10, pitch: 1.04 }); thud({ when: 0.012, gain: 0.13, pan: 0.06 }); } },
+    { at: 0.720, play: () => gunBurst({ tighten: true }) },
+    { at: 0.845, play: () => hiss({ duration: 0.18, gain: 0.085, pan: 0.40, bright: true }) },
+    { at: 0.940, play: jackRelease },
+  ];
+
+  function triggerBetween(from, to, active = true) {
+    if (!enabled || !active || to <= from) return;
+    for (const cue of cues) {
+      if (cue.at > from && cue.at <= to) cue.play();
+    }
+  }
+
+  function setEnabled(next) {
+    enabled = Boolean(next);
+    if (enabled) {
+      ensure();
+      metallicClick({ gain: 0.055, pitch: 1.2 });
+    } else if (master && ctx) {
+      master.gain.cancelScheduledValues(ctx.currentTime);
+      master.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.015);
+    }
+    if (enabled && master && ctx) master.gain.setTargetAtTime(0.72, ctx.currentTime, 0.02);
+  }
+
+  return { ensure, triggerBetween, setEnabled, get enabled() { return enabled; } };
+})();
+
 const mats = {
   carbon: new THREE.MeshPhysicalMaterial({ color: C.carbon, roughness: 0.34, metalness: 0.25, clearcoat: 0.35, clearcoatRoughness: 0.3 }),
   carbon2: new THREE.MeshStandardMaterial({ color: C.carbon2, roughness: 0.48, metalness: 0.22 }),
@@ -997,6 +1184,8 @@ let fpsTime = performance.now();
 function animate(now) {
   requestAnimationFrame(animate);
   const dt = Math.min(clock.getDelta(), 0.05);
+  const previousT = state.t;
+  const wasPlaying = state.playing;
   if (state.playing) {
     state.t += dt * state.speed / TOTAL_SECONDS;
     if (state.t >= 1) {
@@ -1004,6 +1193,7 @@ function animate(now) {
       state.playing = false;
     }
   }
+  pitAudio.triggerBetween(previousT, state.t, wasPlaying);
   updateSimulation(state.t);
   updateCameraTween(now);
   if (state.follow) {
@@ -1028,12 +1218,19 @@ function animate(now) {
 
 // UI events.
 document.querySelector('#playBtn').addEventListener('click', () => {
+  pitAudio.ensure();
   if (state.t >= 1) state.t = 0;
   state.playing = !state.playing;
 });
 document.querySelector('#resetBtn').addEventListener('click', () => { state.playing = false; state.t = 0; });
 document.querySelector('#stepBackBtn').addEventListener('click', () => { state.playing = false; state.t = Math.max(0, state.t - 0.05); });
-document.querySelector('#stepFwdBtn').addEventListener('click', () => { state.playing = false; state.t = Math.min(1, state.t + 0.05); });
+document.querySelector('#stepFwdBtn').addEventListener('click', () => {
+  pitAudio.ensure();
+  state.playing = false;
+  const from = state.t;
+  state.t = Math.min(1, state.t + 0.05);
+  pitAudio.triggerBetween(from, state.t, true);
+});
 document.querySelector('#timeline').addEventListener('input', (e) => { state.playing = false; state.t = Number(e.target.value); });
 document.querySelector('#speed').addEventListener('input', (e) => {
   state.speed = Number(e.target.value);
@@ -1044,6 +1241,7 @@ document.querySelector('#exploded').addEventListener('change', (e) => state.expl
 document.querySelector('#trails').addEventListener('change', (e) => state.trails = e.target.checked);
 document.querySelector('#follow').addEventListener('change', (e) => state.follow = e.target.checked);
 document.querySelector('#labels').addEventListener('change', (e) => state.labels = e.target.checked);
+document.querySelector('#sound').addEventListener('change', (e) => pitAudio.setEnabled(e.target.checked));
 document.querySelector('#fov').addEventListener('input', (e) => {
   camera.fov = Number(e.target.value);
   camera.updateProjectionMatrix();
@@ -1070,8 +1268,13 @@ renderer.domElement.addEventListener('pointerdown', (e) => {
 
 window.addEventListener('keydown', (e) => {
   if (e.target.matches('input,select,button')) return;
-  if (e.code === 'Space') { e.preventDefault(); if (state.t >= 1) state.t = 0; state.playing = !state.playing; }
+  if (e.code === 'Space') { e.preventDefault(); pitAudio.ensure(); if (state.t >= 1) state.t = 0; state.playing = !state.playing; }
   if (e.key.toLowerCase() === 'r') { state.playing = false; state.t = 0; }
+  if (e.key.toLowerCase() === 'm') {
+    const soundToggle = document.querySelector('#sound');
+    soundToggle.checked = !soundToggle.checked;
+    pitAudio.setEnabled(soundToggle.checked);
+  }
   if (e.key.toLowerCase() === 'f') frameObject(state.selected || rig);
   if (e.key.toLowerCase() === 'c') { state.cutaway = !state.cutaway; document.querySelector('#cutaway').checked = state.cutaway; }
   if (e.key.toLowerCase() === 'e') { state.exploded = !state.exploded; document.querySelector('#exploded').checked = state.exploded; }
@@ -1095,6 +1298,7 @@ if (params.has('camera')) setCameraPreset(params.get('camera'), true);
 else setCameraPreset('hero', true);
 if (params.get('cutaway') === '1') { state.cutaway = true; document.querySelector('#cutaway').checked = true; }
 if (params.get('explode') === '1') { state.exploded = true; document.querySelector('#exploded').checked = true; }
+if (params.get('sound') === '0') { document.querySelector('#sound').checked = false; pitAudio.setEnabled(false); }
 if (params.get('play') === '1') state.playing = true;
 
 state.selected = null;

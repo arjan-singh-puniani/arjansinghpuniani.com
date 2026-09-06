@@ -13,7 +13,7 @@
 </head>
 <body>
   <div id="app">
-    <canvas id="viewport" aria-label="Interactive Formula 1 pit wheel simulation"></canvas>
+    <canvas id="viewport" aria-label="Interactive Formula-style pit wheel simulation"></canvas>
 
     <header class="hud topbar">
       <div>
@@ -53,6 +53,7 @@
       <label class="switch-row"><span>Motion trails</span><input id="trails" type="checkbox" checked /></label>
       <label class="switch-row"><span>Auto-follow</span><input id="follow" type="checkbox" /></label>
       <label class="switch-row"><span>Labels</span><input id="labels" type="checkbox" checked /></label>
+      <label class="switch-row"><span>Mechanical audio</span><input id="sound" type="checkbox" checked /></label>
 
       <div class="legend">
         <div><i class="dot green"></i>Locked</div>
@@ -104,6 +105,7 @@
       <div><kbd>1–6</kbd> camera presets</div>
       <div><kbd>C</kbd> cutaway</div>
       <div><kbd>E</kbd> explode</div>
+      <div><kbd>M</kbd> sound</div>
       <div class="independent-note">Independent educational simulation</div>
       <div id="renderStats">0 fps</div>
     </footer>
