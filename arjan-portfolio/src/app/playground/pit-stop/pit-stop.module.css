@@ -1,0 +1,86 @@
+.hero h1 {
+  max-width: 900px;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 22px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.backLink:hover,
+.backLink:focus-visible {
+  color: var(--accent);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.simSection {
+  padding: 30px 0 0;
+}
+
+.frameShell {
+  width: min(1480px, calc(100% - 24px));
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  background: #05070a;
+}
+
+.frameBar {
+  display: flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 14px;
+  border-bottom: 1px solid #343a43;
+  color: #f4f6f8;
+  background: #101418;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+
+.frameBar span:last-child {
+  color: #9aa3ad;
+}
+
+.simFrame {
+  display: block;
+  width: 100%;
+  height: min(820px, 78svh);
+  min-height: 650px;
+  border: 0;
+  background: #05070a;
+}
+
+@media (max-width: 800px) {
+  .simSection {
+    padding-top: 12px;
+  }
+
+  .frameShell {
+    width: calc(100% - 12px);
+  }
+
+  .frameBar span:last-child {
+    display: none;
+  }
+
+  .simFrame {
+    height: 76svh;
+    min-height: 560px;
+  }
+}

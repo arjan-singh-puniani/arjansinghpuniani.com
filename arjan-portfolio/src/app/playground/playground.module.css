@@ -1,0 +1,22 @@
+.pitCard {
+  align-items: stretch;
+}
+
+.pitPreview {
+  position: relative;
+  min-height: 330px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #070a0f;
+}
+
+.pitPreview img {
+  object-fit: cover;
+}
+
+@media (max-width: 800px) {
+  .pitPreview {
+    min-height: 260px;
+  }
+}

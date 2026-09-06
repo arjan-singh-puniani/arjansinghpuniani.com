@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080a0e" />
+  <title>Pit Stop Lab | Arjan Singh Puniani</title>
+  <meta name="description" content="Interactive educational visualization of a Formula-style center-lock pit wheel change, including the wheel gun, retained nut, hub, brake, replacement wheel, and jack sequence." />
+  <meta name="robots" content="noindex,follow" />
+  <link rel="canonical" href="https://arjansinghpuniani.com/playground/pit-stop" />
+  <link rel="stylesheet" href="./style.css" />
+
+</head>
+<body>
+  <div id="app">
+    <canvas id="viewport" aria-label="Interactive Formula 1 pit wheel simulation"></canvas>
+
+    <header class="hud topbar">
+      <div>
+        <div class="eyebrow">FORMULA SYSTEMS / MECHANICAL LAB</div>
+        <h1>PIT STOP LAB</h1>
+      </div>
+      <div class="timing">
+        <span id="phase">READY</span>
+        <strong id="clock">0.000 s</strong>
+      </div>
+    </header>
+
+    <aside class="hud panel left-panel">
+      <div class="panel-title">SEQUENCE</div>
+      <div class="button-grid">
+        <button id="playBtn" class="primary">PLAY</button>
+        <button id="resetBtn">RESET</button>
+        <button id="stepBackBtn">− STEP</button>
+        <button id="stepFwdBtn">+ STEP</button>
+      </div>
+
+      <label class="control-row">
+        <span>Timeline</span>
+        <output id="timelineOut">0%</output>
+      </label>
+      <input id="timeline" type="range" min="0" max="1" step="0.001" value="0" />
+
+      <label class="control-row">
+        <span>Playback</span>
+        <output id="speedOut">1.00×</output>
+      </label>
+      <input id="speed" type="range" min="0.05" max="2" step="0.05" value="1" />
+
+      <div class="panel-title gap">MECHANICS</div>
+      <label class="switch-row"><span>Cutaway wheel</span><input id="cutaway" type="checkbox" /></label>
+      <label class="switch-row"><span>Exploded view</span><input id="exploded" type="checkbox" /></label>
+      <label class="switch-row"><span>Motion trails</span><input id="trails" type="checkbox" checked /></label>
+      <label class="switch-row"><span>Auto-follow</span><input id="follow" type="checkbox" /></label>
+      <label class="switch-row"><span>Labels</span><input id="labels" type="checkbox" checked /></label>
+
+      <div class="legend">
+        <div><i class="dot green"></i>Locked</div>
+        <div><i class="dot amber"></i>Tool engaged</div>
+        <div><i class="dot red"></i>Wheel unsecured</div>
+      </div>
+    </aside>
+
+    <aside class="hud panel right-panel">
+      <div class="panel-title">CAMERA</div>
+      <div class="preset-grid">
+        <button data-camera="hero">HERO</button>
+        <button data-camera="gun">WHEEL GUN</button>
+        <button data-camera="hub">HUB</button>
+        <button data-camera="brake">BRAKE</button>
+        <button data-camera="top">TOP</button>
+        <button data-camera="wide">WIDE</button>
+      </div>
+
+      <label class="control-row gap">
+        <span>Focus</span>
+      </label>
+      <select id="focusSelect">
+        <option value="assembly">Complete assembly</option>
+        <option value="wheel">Installed wheel</option>
+        <option value="nut">Retained nut</option>
+        <option value="gun">Wheel gun</option>
+        <option value="brake">Brake system</option>
+        <option value="hub">Hub and axle</option>
+        <option value="newWheel">Incoming wheel</option>
+      </select>
+
+      <label class="control-row gap"><span>Field of view</span><output id="fovOut">38°</output></label>
+      <input id="fov" type="range" min="18" max="70" step="1" value="38" />
+
+      <div class="inspection-card">
+        <div class="panel-title">INSPECTOR</div>
+        <strong id="partName">Complete wheel corner</strong>
+        <p id="partDesc">Drag to orbit. Scroll to zoom. Right-drag to pan. Click a component to inspect it.</p>
+      </div>
+    </aside>
+
+    <div id="labelsLayer" aria-hidden="true"></div>
+
+    <footer class="hud footerbar">
+      <div><kbd>SPACE</kbd> play/pause</div>
+      <div><kbd>R</kbd> reset</div>
+      <div><kbd>F</kbd> frame selection</div>
+      <div><kbd>1–6</kbd> camera presets</div>
+      <div><kbd>C</kbd> cutaway</div>
+      <div><kbd>E</kbd> explode</div>
+      <div class="independent-note">Independent educational simulation</div>
+      <div id="renderStats">0 fps</div>
+    </footer>
+  </div>
+
+  <script>
+    (() => {
+      const showBootError = (message) => {
+        const text = String(message || "Unknown startup error");
+        const phase = document.getElementById("phase");
+        const stats = document.getElementById("renderStats");
+        const name = document.getElementById("partName");
+        const desc = document.getElementById("partDesc");
+        if (phase) { phase.textContent = "BOOT ERROR"; phase.style.color = "#ff5d64"; }
+        if (stats) stats.textContent = "startup failed";
+        if (name) name.textContent = "Simulation startup failed";
+        if (desc) desc.textContent = text;
+        console.error("Pit Stop Lab startup error:", text);
+      };
+      window.addEventListener("error", (event) => showBootError(event.error?.stack || event.message));
+      window.addEventListener("unhandledrejection", (event) => showBootError(event.reason?.stack || event.reason));
+      window.setTimeout(() => {
+        if (!window.__SIM_READY__) {
+          const phase = document.getElementById("phase");
+          const stats = document.getElementById("renderStats");
+          if (phase && phase.textContent === "READY") phase.textContent = "STARTING…";
+          if (stats && stats.textContent === "0 fps") stats.textContent = "waiting for renderer";
+        }
+      }, 1500);
+    })();
+  </script>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
