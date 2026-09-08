@@ -4,6 +4,7 @@ import "./reasonos.css";
 import "./systems.css";
 import "./seizefreeze.css";
 import "./rigetti.css";
+import "./qai.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SiteAnalytics } from "@/components/SiteAnalytics";

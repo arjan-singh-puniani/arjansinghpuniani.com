@@ -33,14 +33,14 @@ export const projects: Project[] = [
     evidence: [{ label: "Documented Rigetti role", sourceFile: "Portfolio résumé", verified: true }, { label: "Three.js model source, production build, and QA record", sourceFile: "Quantum-Computer-ThreeJS.zip", verified: true }]
   },
   {
-    slug: "quantum-active-inference", title: "Conscious active inference", shortDescription: "Peer-reviewed theoretical research on active inference, quantum dynamics, and conscious planning.",
+    slug: "quantum-active-inference", title: "Conscious active inference", shortDescription: "Two peer-reviewed theoretical reviews connecting temporally deep active inference with quantum dynamics and Orch OR as a candidate physical implementation.",
     category: ["Neurotechnology"], status: "Published", yearStart: 2025, yearEnd: 2025, role: "Co-author",
-    problem: "The relationship between physical dynamics, inference, and conscious experience remains unresolved.",
-    approach: ["Contributed to a cross-disciplinary theoretical framework.", "Connected concepts from neuroscience, active inference, and mathematical physics."],
-    results: ["Published in Computational and Structural Biotechnology Journal in 2025."],
-    limitations: ["This is a theoretical model, not experimental proof that consciousness depends on quantum microtubule dynamics."], featured: true,
-    links: [{ label: "Read the open-access paper", href: "https://doi.org/10.1016/j.csbj.2025.09.017" }],
-    evidence: [{ label: "Publisher PDF", sourceFile: "_Arjan_SP_ConsciousnessPaper.pdf", verified: true }]
+    problem: "Active inference specifies normative and process-level computations for perception, action, and planning, while the physical mechanism capable of implementing temporally deep conscious inference remains unresolved.",
+    approach: ["Separated normative active-inference claims from neural process models and mechanistic biophysics.", "Examined whether quantum path-integral dynamics could provide a candidate implementation for integration over possible future trajectories.", "Evaluated Orch OR microtubule dynamics as a theoretical candidate for discrete perceptual cycles while keeping contested evidence and classical alternatives explicit."],
+    results: ["Co-authored two companion peer-reviewed review articles in Computational and Structural Biotechnology Journal, volume 30 (2025).", "Paper I addresses real-time planning and path integration; Paper II addresses discrete perceptual cycles and Orch OR as a proposed mechanism."],
+    limitations: ["These are theoretical reviews, not experimental proof that consciousness depends on quantum microtubule dynamics.", "External anesthesia and MRI studies discussed in the case study were conducted by other researchers and do not establish a specifically quantum mechanism."], featured: true,
+    links: [{ label: "Read Conscious active inference I", href: "https://doi.org/10.1016/j.csbj.2025.09.017" }, { label: "Read Conscious active inference II", href: "https://doi.org/10.1016/j.csbj.2025.09.016" }],
+    evidence: [{ label: "Paper I publisher record", url: "https://doi.org/10.1016/j.csbj.2025.09.017", verified: true }, { label: "Paper II publisher record", url: "https://doi.org/10.1016/j.csbj.2025.09.016", verified: true }, { label: "Paper II corrigendum", url: "https://doi.org/10.1016/j.csbj.2025.10.016", verified: true }]
   },
   {
     slug: "doctors-without-reservations", title: "Doctors Without Reservations", shortDescription: "A proposed community-led clinical and public-health learning model with tribal nations.",

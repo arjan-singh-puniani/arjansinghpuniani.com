@@ -3,10 +3,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SeizeFreezeCaseStudy } from "@/components/SeizeFreezeCaseStudy";
+import { QuantumActiveInferenceCaseStudy } from "@/components/QuantumActiveInferenceCaseStudy";
 import { RigettiQuantumCaseStudy } from "@/components/RigettiQuantumCaseStudy";
 import { projects, getProject } from "@/content/projects";
 import { statusLabels } from "@/content/statuses";
 import { siteUrl } from "@/lib/site";
+
+const quantumKeywords = [
+  "Conscious active inference",
+  "Arjan Singh Puniani",
+  "Michael C. Wiest",
+  "active inference",
+  "free energy principle",
+  "quantum consciousness",
+  "Orch OR",
+  "microtubules",
+  "quantum cognition",
+  "Computational and Structural Biotechnology Journal",
+];
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -25,6 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: project.title,
     description: project.shortDescription,
+    keywords: project.slug === "quantum-active-inference" ? quantumKeywords : undefined,
     alternates: { canonical: `/work/${project.slug}` },
     openGraph: {
       type: "article",
@@ -48,6 +63,7 @@ function StructuredData({ slug }: { slug: string }) {
 
   const personId = `${siteUrl}/#arjan-singh-puniani`;
   const url = `${siteUrl}/work/${project.slug}`;
+  const keywords = project.slug === "quantum-active-inference" ? quantumKeywords.join(", ") : project.category.join(", ");
   const schema = [
     {
       "@context": "https://schema.org",
@@ -57,7 +73,7 @@ function StructuredData({ slug }: { slug: string }) {
       description: project.shortDescription,
       url,
       author: { "@type": "Person", "@id": personId, name: "Arjan Singh Puniani" },
-      keywords: project.category.join(", "),
+      keywords,
       isAccessibleForFree: true,
     },
     {
@@ -86,6 +102,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   if (project.slug === "rigetti-quantum-operations") {
     return <><StructuredData slug={slug} /><RigettiQuantumCaseStudy /></>;
+  }
+
+  if (project.slug === "quantum-active-inference") {
+    return <><StructuredData slug={slug} /><QuantumActiveInferenceCaseStudy /></>;
   }
 
   const related = projects
