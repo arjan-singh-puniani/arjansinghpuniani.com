@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BciCalibrationCaseStudy } from "@/components/BciCalibrationCaseStudy";
 import { SeizeFreezeCaseStudy } from "@/components/SeizeFreezeCaseStudy";
 import { QuantumActiveInferenceCaseStudy } from "@/components/QuantumActiveInferenceCaseStudy";
 import { RigettiQuantumCaseStudy } from "@/components/RigettiQuantumCaseStudy";
@@ -95,6 +96,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();
+
+  if (project.slug === "bci-calibration") {
+    return <><StructuredData slug={slug} /><BciCalibrationCaseStudy /></>;
+  }
 
   if (project.slug === "seizefreeze") {
     return <><StructuredData slug={slug} /><SeizeFreezeCaseStudy /></>;
