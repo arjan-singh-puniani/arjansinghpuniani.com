@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { publications } from "@/content/publications";
+import { QaiFigureAtlas } from "@/components/QaiFigureAtlas";
 
 const DOI = {
   tegmark: "https://doi.org/10.1103/PhysRevE.61.4194",
@@ -230,8 +231,57 @@ function PolicyFigure() {
   </figure>;
 }
 
+
+function OrchORInlineFigure() {
+  return <figure className="qai-orch-figure" aria-labelledby="qai-orch-title">
+    <div className="qai-orch-figure-topline">
+      <span>Mechanistic candidate / Paper II</span>
+      <small>Conceptual diagram · theoretical proposal</small>
+    </div>
+    <div className="qai-orch-figure-grid">
+      <div className="qai-orch-copy">
+        <p className="qai-figure-label">Where Orch OR enters the argument</p>
+        <h3 id="qai-orch-title">A deliberately narrow mechanistic bridge.</h3>
+        <p>Paper II evaluates Orch OR as one candidate physical mechanism for discrete perceptual cycles. It is not a requirement of active inference and is not presented as an established substrate of consciousness.</p>
+        <div className="qai-orch-boundary"><strong>Evidence boundary</strong><span>Tubulin quantum states, orchestrated coherence, and objective reduction remain theoretical propositions. The schematic visualizes the hypothesis rather than an experimental observation.</span></div>
+      </div>
+      <div className="qai-orch-visual" aria-hidden="true">
+        <svg viewBox="0 0 780 520">
+          <defs>
+            <linearGradient id="qai-orch-glow" x1="0" x2="1"><stop offset="0" stopColor="#45d0ff"/><stop offset="1" stopColor="#bd79ff"/></linearGradient>
+            <radialGradient id="qai-orch-node"><stop offset="0" stopColor="#d8f8ff"/><stop offset="0.35" stopColor="#5bb6ff"/><stop offset="1" stopColor="#234179"/></radialGradient>
+            <filter id="qai-orch-soft"><feGaussianBlur stdDeviation="8"/></filter>
+          </defs>
+          <g className="qai-orch-neuron">
+            <circle cx="155" cy="254" r="52"/>
+            <circle cx="155" cy="254" r="18" className="qai-orch-nucleus"/>
+            {[[155,202,120,145],[120,218,54,180],[112,250,34,252],[120,284,62,338],[149,306,132,400],[188,222,258,158],[202,250,288,244],[190,286,272,342]].map((d,i)=><path key={i} d={`M ${d[0]} ${d[1]} C ${(d[0]+d[2])/2} ${d[1]}, ${(d[0]+d[2])/2} ${d[3]}, ${d[2]} ${d[3]}`} />)}
+          </g>
+          <rect x="268" y="208" width="42" height="42" className="qai-orch-focus"/>
+          <path d="M310 210 L365 160 M310 250 L365 360" className="qai-orch-guide"/>
+          <g transform="translate(365 102)">
+            <rect x="0" y="0" width="365" height="322" rx="18" className="qai-orch-mt-panel"/>
+            <text x="24" y="34" className="qai-orch-svg-title">MICROTUBULE LATTICE · SCHEMATIC</text>
+            {Array.from({length:9}).map((_,row)=>Array.from({length:6}).map((__,col)=>{
+              const x=62+col*38+(row%2?19:0), y=82+row*26;
+              return <circle key={`${row}-${col}`} cx={x} cy={y} r="18" fill={col%2?"#7056b8":"#3478bd"} stroke="#8bd8ff" strokeWidth="0.8"/>;
+            }))}
+            <path d="M58 105 C130 45 172 192 252 112 S305 176 326 130" className="qai-orch-coherence"/>
+            {[105,176,247,318].map((y,i)=><g key={y}><circle cx="265" cy={y} r="6" className="qai-orch-label-dot"/><line x1="271" y1={y} x2="322" y2={y} className="qai-orch-label-line"/><text x="330" y={y+5} className="qai-orch-label-text">{["candidate tubulin state","coherent evolution","orchestration / context","objective reduction"][i]}</text></g>)}
+          </g>
+          <g transform="translate(380 442)">
+            <text x="0" y="0" className="qai-orch-cycle-label">PROPOSED DISCRETE UPDATE</text>
+            {[0,1,2,3].map(i=><g key={i} transform={`translate(${i*112} 32)`}><circle cx="22" cy="22" r="19" fill="url(#qai-orch-node)"/><text x="22" y="60" textAnchor="middle" className="qai-orch-cycle-text">{["superposition","orchestration","reduction","update"][i]}</text>{i<3&&<path d="M46 22 H96" className="qai-orch-cycle-arrow"/>}</g>)}
+          </g>
+        </svg>
+      </div>
+    </div>
+    <figcaption>Orch OR is shown here as a candidate physical mechanism proposed in Paper II, not as established microtubule physiology. <ReferenceLink href={DOI.paperII} label="Open Conscious active inference II">[14]</ReferenceLink></figcaption>
+  </figure>;
+}
+
 function PublicationCard({ publication, index }: { publication: (typeof publications)[number]; index: number }) {
-  return <article className="qai-publication-card">
+  return <article className="qai-publication-card" data-paper={index === 0 ? "I" : "II"}>
     <div className="qai-publication-topline">
       <span>Paper {index === 0 ? "I" : "II"}</span>
       <span>{publication.type}</span>
@@ -265,11 +315,17 @@ export function QuantumActiveInferenceCaseStudy() {
           <path d="M-100 440 C120 360 260 430 410 355 C575 270 675 90 850 145 C1035 205 1100 45 1275 20" />
         </svg>
       </div>
+      <div className="qai-hero-equations" aria-hidden="true">
+        <span><b>F[q]</b><small>variational free energy</small></span>
+        <span><b>q(s, π)</b><small>beliefs over states + policies</small></span>
+        <span><b>π₁ · π₂ · π₃</b><small>counterfactual futures</small></span>
+      </div>
       <div className="qai-lattice" aria-hidden="true">
         <span /><span /><span /><span /><span /><span /><span /><span /><span /><span /><span /><span />
       </div>
       <div className="shell qai-hero-content">
         <p className="qai-kicker">02 / Theoretical neuroscience · Peer-reviewed research</p>
+        <div className="qai-hero-status"><span>Published 2025</span><span>Two companion reviews</span><span>Open-access record</span></div>
         <h1>Conscious<br /><em>active inference.</em></h1>
         <p className="qai-deck">A two-paper theoretical program asking whether quantum dynamics could provide a mechanistic implementation for the probabilistic planning and discrete perceptual cycles required by temporally deep active inference.</p>
         <div className="qai-hero-links">
@@ -282,6 +338,7 @@ export function QuantumActiveInferenceCaseStudy() {
           <div><dt>Papers</dt><dd>Two companion reviews · 2025</dd></div>
           <div><dt>Framework</dt><dd>Active inference × quantum dynamics × Orch OR</dd></div>
         </dl>
+        <p className="qai-hero-caption"><span>Argument arc</span> objection → perturbation → mechanistic hypothesis → discriminating experiment</p>
       </div>
     </header>
 
@@ -289,7 +346,28 @@ export function QuantumActiveInferenceCaseStudy() {
       <div className="shell"><strong>Evidence boundary</strong><p>This is peer-reviewed theoretical work. The papers argue that quantum dynamics may provide a biologically plausible implementation of conscious active inference and evaluate Orch OR as a candidate mechanism. They do not establish that consciousness depends on quantum microtubule dynamics.</p></div>
     </aside>
 
-    <section className="qai-section qai-question" aria-labelledby="qai-question-title">
+    <nav className="qai-argument-nav" aria-label="Case study argument map">
+      <div className="shell">
+        <a href="#qai-question"><span>00</span>Question</a>
+        <a href="#qai-objection"><span>01</span>Objection</a>
+        <a href="#qai-anesthesia"><span>02</span>Perturbation</a>
+        <a href="#qai-contribution"><span>03</span>Our work</a>
+        <a href="#qai-mri"><span>04</span>Controversy</a>
+        <a href="#qai-map"><span>05</span>Evidence</a>
+        <a href="#qai-falsifiability"><span>06</span>Test</a>
+        <a href="#qai-publications"><span>07</span>Papers</a>
+      </div>
+    </nav>
+
+    <section className="qai-thesis" aria-label="Research posture">
+      <div className="shell">
+        <article><span>Formal level</span><strong>What must be computed?</strong><p>Active inference specifies belief updating and policy selection under variational free-energy minimization.</p></article>
+        <article><span>Mechanistic candidate</span><strong>What could implement it?</strong><p>The papers evaluate quantum dynamics and Orch OR as candidate physical implementations, not prerequisites of active inference itself.</p></article>
+        <article><span>Standard of proof</span><strong>What would count?</strong><p>A quantum account must outperform viable classical alternatives on discriminating, reproducible intervention predictions.</p></article>
+      </div>
+    </section>
+
+    <section id="qai-question" data-section="00" className="qai-section qai-question" aria-labelledby="qai-question-title">
       <div className="shell qai-two-column">
         <p className="qai-index">00 / From process to mechanism</p>
         <div>
@@ -301,7 +379,7 @@ export function QuantumActiveInferenceCaseStudy() {
       <div className="shell"><TheoryLevelDiagram /></div>
     </section>
 
-    <section className="qai-section qai-objection" aria-labelledby="qai-objection-title">
+    <section id="qai-objection" data-section="01" className="qai-section qai-objection" aria-labelledby="qai-objection-title">
       <div className="shell qai-two-column">
         <p className="qai-index">01 / The decoherence challenge</p>
         <div>
@@ -327,7 +405,7 @@ export function QuantumActiveInferenceCaseStudy() {
       </div>
     </section>
 
-    <section className="qai-section qai-anesthesia" aria-labelledby="qai-anesthesia-title">
+    <section id="qai-anesthesia" data-section="02" className="qai-section qai-anesthesia" aria-labelledby="qai-anesthesia-title">
       <div className="shell qai-two-column">
         <p className="qai-index">02 / Anesthesia as a perturbation</p>
         <div>
@@ -363,7 +441,7 @@ export function QuantumActiveInferenceCaseStudy() {
       </div>
     </section>
 
-    <section className="qai-section qai-contribution" aria-labelledby="qai-contribution-title">
+    <section id="qai-contribution" data-section="03" className="qai-section qai-contribution" aria-labelledby="qai-contribution-title">
       <div className="shell qai-two-column">
         <p className="qai-index">03 / Our contribution</p>
         <div>
@@ -386,9 +464,10 @@ export function QuantumActiveInferenceCaseStudy() {
           <a href={DOI.paperII} target="_blank" rel="noreferrer">Read Paper II ↗</a>
         </article>
       </div>
+      <div className="shell"><OrchORInlineFigure /></div>
     </section>
 
-    <section className="qai-section qai-mri" aria-labelledby="qai-mri-title">
+    <section id="qai-mri" data-section="04" className="qai-section qai-mri" aria-labelledby="qai-mri-title">
       <div className="shell qai-two-column">
         <p className="qai-index">04 / A disputed signal</p>
         <div>
@@ -417,7 +496,7 @@ export function QuantumActiveInferenceCaseStudy() {
       </div>
     </section>
 
-    <section className="qai-section qai-map" aria-labelledby="qai-map-title">
+    <section id="qai-map" data-section="05" className="qai-section qai-map" aria-labelledby="qai-map-title">
       <div className="shell">
         <p className="qai-index">05 / What survives scrutiny</p>
         <h2 id="qai-map-title">A useful theory should make it easy to see what is known,<br /><em>what is suggestive, and what remains conjecture.</em></h2>
@@ -433,7 +512,7 @@ export function QuantumActiveInferenceCaseStudy() {
       </div>
     </section>
 
-    <section className="qai-section qai-falsifiability" aria-labelledby="qai-falsifiability-title">
+    <section id="qai-falsifiability" data-section="06" className="qai-section qai-falsifiability" aria-labelledby="qai-falsifiability-title">
       <div className="shell qai-two-column">
         <p className="qai-index">06 / Falsifiability</p>
         <div>
@@ -447,7 +526,9 @@ export function QuantumActiveInferenceCaseStudy() {
       <div className="shell qai-falsifiability-rule"><strong>Decision rule</strong><p>A quantum account should earn explanatory status only if it predicts intervention outcomes that viable classical models do not, and those predictions replicate.</p></div>
     </section>
 
-    <section className="qai-section qai-publications" aria-labelledby="qai-publications-title">
+    <QaiFigureAtlas />
+
+    <section id="qai-publications" data-section="07" className="qai-section qai-publications" aria-labelledby="qai-publications-title">
       <div className="shell">
         <p className="qai-index">07 / Published work</p>
         <h2 id="qai-publications-title">Two companion reviews.<br /><em>One mechanistic question.</em></h2>
@@ -456,6 +537,10 @@ export function QuantumActiveInferenceCaseStudy() {
         </div>
       </div>
     </section>
+
+    <aside className="qai-coda" aria-label="Research position">
+      <div className="shell"><span>Research position</span><p>The scientifically useful claim is deliberately narrow: quantum active inference is a mechanistic hypothesis with emerging experimentally addressable consequences, not an established account of consciousness.</p></div>
+    </aside>
 
     <section className="qai-section qai-references" aria-labelledby="qai-references-title">
       <div className="shell qai-two-column">
