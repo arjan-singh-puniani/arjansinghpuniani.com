@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ReasonOSLab } from "@/components/ReasonOSLab";
 import { siteUrl } from "@/lib/site";
@@ -68,6 +69,26 @@ function BoundaryDiagram() {
   </figure>;
 }
 
+const pairedMachineOutput = [
+  ["A", "82 bpm", "149 ms", "83 ms", "357 / 396 ms", "−3° / 39° / 53°"],
+  ["B", "81 bpm", "155 ms", "80 ms", "357 / 394 ms", "12° / 40° / 55°"],
+] as const;
+
+function PairedSourceCase() {
+  return <div className="rosx-paired-case">
+    <div className="rosx-source-header"><div><span>CASE ASP-001</span><strong>Paired 12-lead source recording</strong></div><p>Self-contributed · de-identified derivative · waveform pixels preserved</p></div>
+    <div className="rosx-recording-grid">
+      <figure><div className="rosx-recording-label"><span>RECORDING A</span><small>12 leads + long lead II</small></div><Image src="/images/reasonos/asp-001-recording-a.webp" alt="De-identified first 12-lead ECG source recording with a long lead II rhythm strip" width={2200} height={1180} sizes="(max-width: 800px) 100vw, 50vw"/></figure>
+      <figure><div className="rosx-recording-label"><span>RECORDING B</span><small>12 leads + long lead II</small></div><Image src="/images/reasonos/asp-001-recording-b.webp" alt="De-identified second 12-lead ECG source recording with a long lead II rhythm strip" width={2110} height={1220} sizes="(max-width: 800px) 100vw, 50vw"/></figure>
+    </div>
+    <div className="rosx-machine-ledger" role="table" aria-label="Unconfirmed machine-generated measurements transcribed from the two source recordings">
+      <div className="rosx-machine-head" role="row"><span role="columnheader">Recording</span><span role="columnheader">Rate</span><span role="columnheader">PR</span><span role="columnheader">QRS</span><span role="columnheader">QT / QTc</span><span role="columnheader">P / QRS / T axes</span></div>
+      {pairedMachineOutput.map((row) => <div role="row" key={row[0]}>{row.map((value, index) => index === 0 ? <strong role="cell" key={value}>{value}</strong> : <span role="cell" key={value}>{value}</span>)}</div>)}
+    </div>
+    <div className="rosx-source-provenance"><span>MACHINE-DERIVED · UNCONFIRMED</span><p>The values above are transcribed from the device report. They are comparison inputs, not adjudicated measurements or diagnostic truth.</p></div>
+  </div>;
+}
+
 export default function VectorEkgReasonOSPage() {
   const schema = { "@context": "https://schema.org", "@type": "SoftwareApplication", name: "Vector EKG and ReasonOS", applicationCategory: "EducationalApplication", operatingSystem: "Web", author: { "@type": "Person", name: "Arjan Singh Puniani", url: siteUrl }, url: `${siteUrl}/work/vector-ekg-reasonos`, description: "Educational research prototype for inspectable ECG reasoning.", isAccessibleForFree: true };
   return <div className="vector-case rosx-case">
@@ -88,10 +109,12 @@ export default function VectorEkgReasonOSPage() {
 
     <section className="section rosx-state-model"><div className="shell"><div className="rosx-section-head"><div><p className="eyebrow">07 / Evidence states</p><h2>Uncertainty has an explicit place in the model.</h2></div><p>These labels describe the status of evidence in a trace. They are not diagnostic confidence scores.</p></div><div className="evidence-state-grid">{evidenceStates.map(([state, meaning], index) => <article key={state}><span>{String(index + 1).padStart(2, "0")}</span><h3>{state}</h3><p>{meaning}</p></article>)}</div></div></section>
 
-    <section className="section lab-embed rosx-lab" id="laboratory" data-analytics-event="open_reasoning_trace"><div className="shell rosx-lab-intro"><div><p className="eyebrow">08 / Executable vertical slice</p><h2>Do not take the architecture on faith.</h2></div><p className="section-lede">Use the synthetic waveform. Record an inspection, select endpoints, calculate an interval, test a claim, and switch the trace between its human-readable and structured representations.</p></div><div className="reasonos-theme"><ReasonOSLab/></div></section>
+    <section className="section rosx-source-case"><div className="shell"><div className="rosx-section-head"><div><p className="eyebrow">08 / Grounded source case</p><h2>One source. Two recordings. Several values to explain.</h2></div><p>The paired record creates a concrete comparison problem: determine whether small differences arise from acquisition, measurement boundaries, scan geometry, or defensible signal variation.</p></div><PairedSourceCase /></div></section>
 
-    <section className="section rosx-spec" id="specification"><div className="shell"><div className="rosx-section-head"><div><p className="eyebrow">09 / Engineering record</p><h2>What the current implementation establishes.</h2></div><p>Implemented behavior, research hypotheses, and future clinical requirements remain separate.</p></div><div className="spec-grid"><article><span>ACCEPTS</span><h3>Inputs</h3><ul><li>Synthetic ECG coordinates</li><li>Manual calibration metadata</li><li>Learner observations and measurements</li><li>Versioned candidate paths</li></ul></article><article><span>EMITS</span><h3>Outputs</h3><ul><li>Immutable accepted states</li><li>Accepted and rejected events</li><li>Interval, axis, and QTc calculations</li><li>Candidate-path structural comparison</li></ul></article><article><span>ENFORCES</span><h3>Invariants</h3><ul><li>Referenced inputs exist</li><li>Writes remain append-only</li><li>Actor and provenance are present</li><li>Causal ancestry remains acyclic</li><li>Witness identity is preserved</li></ul></article><article><span>CAN FAIL</span><h3>Known failure modes</h3><ul><li>Incorrect manual calibration</li><li>Poor source quality</li><li>Incompatible paths combined</li><li>Candidate models mistaken for consensus</li><li>Single-lead evidence overinterpreted</li></ul></article></div></div></section>
+    <section className="section lab-embed rosx-lab" id="laboratory" data-analytics-event="open_reasoning_trace"><div className="shell rosx-lab-intro"><div><p className="eyebrow">09 / Executable vertical slice</p><h2>Do not take the architecture on faith.</h2></div><p className="section-lede">The paired case above supplies real source complexity. The calibrated synthetic waveform below isolates the reasoning mechanics so its measurements remain reproducible.</p></div><div className="reasonos-theme"><ReasonOSLab/></div></section>
 
-    <section className="section clinical-boundary rosx-limitations"><div className="shell rosx-thesis-grid"><p className="eyebrow">10 / What remains unproven</p><div><h2>This system does not diagnose patients.</h2><p>Vector EKG is educational research software. It has no clinical validation, regulatory clearance, expert-trace reliability study, demonstrated learning benefit, or authorization for patient care.</p><p>Clinical use would require a defined intended use, expert-reviewed ontology, representative datasets, human-factors testing, prospective validation, security and privacy controls, regulatory analysis, and independent clinical governance.</p><Link className="text-link" href="/research">See the documented research record →</Link></div></div></section>
+    <section className="section rosx-spec" id="specification"><div className="shell"><div className="rosx-section-head"><div><p className="eyebrow">10 / Engineering record</p><h2>What the current implementation establishes.</h2></div><p>Implemented behavior, research hypotheses, and future clinical requirements remain separate.</p></div><div className="spec-grid"><article><span>ACCEPTS</span><h3>Inputs</h3><ul><li>De-identified and synthetic ECG sources</li><li>Manual calibration metadata</li><li>Learner observations and measurements</li><li>Versioned candidate paths</li></ul></article><article><span>EMITS</span><h3>Outputs</h3><ul><li>Immutable accepted states</li><li>Accepted and rejected events</li><li>Interval, axis, and QTc calculations</li><li>Candidate-path structural comparison</li></ul></article><article><span>ENFORCES</span><h3>Invariants</h3><ul><li>Referenced inputs exist</li><li>Writes remain append-only</li><li>Actor and provenance are present</li><li>Causal ancestry remains acyclic</li><li>Witness identity is preserved</li></ul></article><article><span>CAN FAIL</span><h3>Known failure modes</h3><ul><li>Incorrect manual calibration</li><li>Poor source quality</li><li>Incompatible paths combined</li><li>Candidate models mistaken for consensus</li><li>Single-lead evidence overinterpreted</li></ul></article></div></div></section>
+
+    <section className="section clinical-boundary rosx-limitations"><div className="shell rosx-thesis-grid"><p className="eyebrow">11 / What remains unproven</p><div><h2>This system does not diagnose patients.</h2><p>Vector EKG is educational research software. It has no clinical validation, regulatory clearance, expert-trace reliability study, demonstrated learning benefit, or authorization for patient care.</p><p>Clinical use would require a defined intended use, expert-reviewed ontology, representative datasets, human-factors testing, prospective validation, security and privacy controls, regulatory analysis, and independent clinical governance.</p><Link className="text-link" href="/research">See the documented research record →</Link></div></div></section>
   </div>;
 }
