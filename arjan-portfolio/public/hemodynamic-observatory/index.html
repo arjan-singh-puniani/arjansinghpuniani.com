@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f6f5f1">
+  <title>Hemodynamic Observatory — Carotid Flow</title>
+  <meta name="description" content="Interactive, synthetic reduced-order visualization of flow through an idealized stenosed carotid artery. Educational, not patient data or clinical CFD.">
+  <link rel="stylesheet" href="./styles.css">
+  <script>if(new URLSearchParams(location.search).get("embed")==="1")document.documentElement.classList.add("embedded");</script>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div>
+      <div class="kicker">Axial Lab / Cardiovascular Fluid Dynamics</div>
+      <div class="brand-row"><h1>Hemodynamic Observatory</h1><span class="brand-sub">CAROTID / 01</span></div>
+    </div>
+    <div class="equations" aria-label="Governing equations">
+      <span>∇ · u = 0</span>
+      <span>∂u/∂t + (u·∇)u = −ρ⁻¹∇p + ν∇²u</span>
+      <span>ω = ∇ × u</span>
+    </div>
+  </header>
+
+  <div class="status-strip" aria-label="Data provenance">
+    <strong>Physics-inspired demonstration</strong><i></i>
+    <span>Synthetic vascular geometry</span><i></i>
+    <span class="embed-secondary">Reduced-order analytic velocity field</span><i class="embed-secondary"></i>
+    <span>Not a numerical CFD solution</span><i></i>
+    <span>Not patient data</span><i></i>
+    <span class="embed-secondary">Not for clinical use</span>
+  </div>
+
+  <section class="controls" aria-label="Observatory controls">
+    <div class="control-group">
+      <label for="caseSelect">Case</label>
+      <select id="caseSelect" aria-label="Synthetic stenosis case"></select>
+    </div>
+    <div class="control-group">
+      <label>Field</label>
+      <div class="segmented" id="fieldButtons" role="group" aria-label="Visualization field">
+        <button type="button" data-mode="streamlines" aria-pressed="true">Streamlines</button>
+        <button type="button" data-mode="velocity" aria-pressed="false">Velocity</button>
+        <button type="button" data-mode="vorticity" aria-pressed="false">Vorticity</button>
+        <button type="button" data-mode="pressure" aria-pressed="false">Pressure</button>
+        <button type="button" data-mode="wall" aria-pressed="false">Wall shear</button>
+      </div>
+    </div>
+    <div class="phase-wrap">
+      <span class="micro-label">Cardiac phase</span>
+      <input id="phase" type="range" min="0" max="1" step="0.001" value="0.28" aria-label="Cardiac phase">
+      <output id="phaseValue" class="phase-value">28%</output>
+    </div>
+    <div class="control-group">
+      <div class="segmented" id="viewButtons" role="group" aria-label="View mode">
+        <button type="button" data-view="3d" aria-pressed="true">3D</button>
+        <button type="button" data-view="section" aria-pressed="false">Longitudinal</button>
+        <button type="button" data-view="cross" aria-pressed="false">Cross-sections</button>
+      </div>
+      <button id="play" class="icon-button" type="button" aria-pressed="true">Pause</button>
+      <button id="resetView" class="icon-button" type="button">Reset view</button>
+    </div>
+  </section>
+
+  <main class="stage">
+    <aside class="annotation-rail" aria-label="Flow landmarks">
+      <div class="micro-label">Flow sequence</div>
+      <div class="annotation"><b>Proximal flow</b><span>organized inflow</span></div>
+      <div class="annotation"><b>Stenosis throat</b><span>minimum lumen</span></div>
+      <div class="annotation"><b>Jet core</b><span>area-driven acceleration</span></div>
+      <div class="annotation"><b>Recirculation</b><span>near-wall reversal</span></div>
+    </aside>
+
+    <section class="visual-stage" id="visualStage" aria-label="Interactive hemodynamic visualization">
+      <div class="canvas-label"><strong id="viewLabel">3D flow field</strong> / <span id="modeLabel">streamlines</span></div>
+      <canvas id="glCanvas" aria-label="Three-dimensional idealized carotid vessel with flow streamlines"></canvas>
+      <canvas id="sectionCanvas" aria-label="Longitudinal section of idealized carotid vessel"></canvas>
+      <div class="legend" aria-label="Field legend">
+        <div class="legend-head"><span id="legendName">Velocity magnitude</span><span id="legendUnit">m/s</span></div>
+        <div class="legend-bar"></div>
+        <div class="legend-scale"><span id="legendMin">0.00</span><span id="legendMax">1.00</span></div>
+      </div>
+      <div class="probe" id="probe"></div>
+      <div class="failure" id="failure"><div><strong>3D rendering unavailable</strong><span id="failureText"></span></div></div>
+    </section>
+
+    <aside class="metrics-rail" aria-label="Derived metrics">
+      <h2>Active case / derived state</h2>
+      <div class="metric"><span class="metric-label">Inlet mean velocity</span><div class="metric-value"><b id="mInlet">—</b><span>m/s</span></div><div class="metric-provenance">Synthetic input</div></div>
+      <div class="metric"><span class="metric-label">Throat mean velocity</span><div class="metric-value"><b id="mThroat">—</b><span>m/s</span></div><div class="metric-provenance">Derived / Q ÷ A</div></div>
+      <div class="metric"><span class="metric-label">Modeled Δp span</span><div class="metric-value"><b id="mPressure">—</b><span>mmHg</span></div><div class="metric-provenance approx">Approximated / reduced-order</div></div>
+      <div class="metric"><span class="metric-label">Reynolds / inlet</span><div class="metric-value"><b id="mRe">—</b><span>Re</span></div><div class="metric-provenance">Derived / ρUDμ⁻¹</div></div>
+      <div class="metric"><span class="metric-label">Recirculation length</span><div class="metric-value"><b id="mRecirc">—</b><span>mm</span></div><div class="metric-provenance">Derived / reduced-order field</div></div>
+      <div class="metric"><span class="metric-label">Peak wall shear</span><div class="metric-value"><b id="mWss">—</b><span>Pa</span></div><div class="metric-provenance">Derived / wall gradient</div></div>
+    </aside>
+  </main>
+
+  <section class="analysis-strip" aria-label="Analytical views">
+    <article class="panel"><div class="panel-head"><div><span class="panel-kicker">01 / profiles</span><div class="panel-title">Velocity profile</div></div><span class="panel-value">uᶻ(r)</span></div><canvas id="velocityChart"></canvas></article>
+    <article class="panel"><div class="panel-head"><div><span class="panel-kicker">02 / axial</span><div class="panel-title">Modeled pressure</div></div><span class="panel-value">p(z) − pᵢₙ</span></div><canvas id="pressureChart"></canvas></article>
+    <article class="panel"><div class="panel-head"><div><span class="panel-kicker">03 / wall</span><div class="panel-title">Wall shear magnitude</div></div><span class="panel-value">|τw(z)|</span></div><canvas id="wssChart"></canvas></article>
+    <article class="panel"><div class="panel-head"><div><span class="panel-kicker">04 / regime</span><div class="panel-title">Pulsatile flow</div></div><span class="panel-value" id="flowRateLabel">Q —</span></div><canvas id="pulseChart"></canvas><div class="regime-grid"><div><b id="rRe">—</b><span>Re inlet</span></div><div><b id="rWo">—</b><span>Womersley</span></div></div></article>
+  </section>
+
+  <section class="assumptions" aria-label="Model assumptions">
+    <div class="assumption"><span class="assumption-key">Density ρ</span><span class="assumption-value">1060 kg/m³</span></div>
+    <div class="assumption"><span class="assumption-key">Viscosity μ</span><span class="assumption-value">3.5 mPa·s</span></div>
+    <div class="assumption"><span class="assumption-key">Rheology</span><span class="assumption-value">Newtonian</span></div>
+    <div class="assumption"><span class="assumption-key">Wall</span><span class="assumption-value">Rigid / no-slip axial</span></div>
+    <div class="assumption"><span class="assumption-key">Geometry</span><span class="assumption-value">Synthetic idealized</span></div>
+    <div class="assumption"><span class="assumption-key">Pulse</span><span class="assumption-value">Synthetic normalized</span></div>
+    <div class="assumption"><span class="assumption-key">Pressure</span><span class="assumption-value">Reduced-order approximation</span></div>
+  </section>
+
+  <footer class="disclaimer">
+    <span><strong>Interpretation boundary.</strong> This lab visualizes a deterministic reduced-order field with exact sectional flux conservation and continuity-derived radial motion. It does not solve patient-specific three-dimensional Navier–Stokes.</span>
+    <span>Animation is slowed for inspection. Use the longitudinal view to probe local reduced-order values. <a href="./model-provenance.json" target="_blank" rel="noreferrer">Model provenance ↗</a></span>
+  </footer>
+  <pre id="diagnostics" aria-hidden="true"></pre>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

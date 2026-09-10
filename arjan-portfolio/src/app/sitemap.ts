@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/playground",
     "/playground/vector-tennis",
     "/playground/pit-stop",
+    "/playground/hemodynamic-observatory",
   ];
 
   return [

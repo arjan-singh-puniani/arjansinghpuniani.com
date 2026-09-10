@@ -1,0 +1,61 @@
+{
+  "model": "Hemodynamic Observatory synthetic carotid demonstration",
+  "version": "2.0.0",
+  "classification": "PHYSICS-INSPIRED DEMONSTRATION",
+  "clinical_use": false,
+  "patient_data": false,
+  "numerical_cfd_solution": false,
+  "geometry": {
+    "provenance": "SYNTHETIC",
+    "type": "idealized straight carotid segment with smooth super-Gaussian focal stenosis",
+    "nominal_radius_m": 0.0032,
+    "stenosis_definition": "fractional diameter reduction relative to nominal diameter",
+    "default_diameter_reduction": 0.55
+  },
+  "fluid": {
+    "density_kg_m3": 1060,
+    "dynamic_viscosity_pa_s": 0.0035,
+    "rheology": "Newtonian"
+  },
+  "wall": {
+    "model": "rigid",
+    "velocity_boundary": "analytic field vanishes at wall"
+  },
+  "inlet": {
+    "provenance": "SYNTHETIC",
+    "mean_velocity_m_s": 0.28,
+    "waveform": "deterministic normalized synthetic periodic waveform",
+    "cycle_period_s": 0.86
+  },
+  "velocity": {
+    "provenance": "SYNTHETIC",
+    "method": "analytic reduced-order axisymmetric field with exact sectional flux construction, continuity-derived radial component, zero-area-mean post-stenotic profile disturbance, and bounded axisymmetric swirl"
+  },
+  "streamlines": {
+    "provenance": "DERIVED",
+    "integrator": "classical RK4",
+    "termination": ["wall/domain exit", "stagnation", "maximum path length", "invalid sample"]
+  },
+  "vorticity": {
+    "provenance": "DERIVED",
+    "method": "finite-difference numerical curl of implemented reduced-order velocity field"
+  },
+  "pressure": {
+    "provenance": "APPROXIMATED",
+    "method": "reduced-order convective/Bernoulli term plus explicit configured downstream loss term",
+    "warning": "not a pressure field from a CFD pressure solve and not clinically validated"
+  },
+  "wall_shear": {
+    "provenance": "DERIVED",
+    "method": "magnitude from analytic reduced-order wall velocity gradients",
+    "warning": "belongs only to the demonstration model"
+  },
+  "reynolds": {
+    "provenance": "DERIVED",
+    "definition": "rho * U_inlet_mean * D_nominal / mu"
+  },
+  "womersley": {
+    "provenance": "DERIVED",
+    "definition": "R_nominal * sqrt(omega * rho / mu)"
+  }
+}
