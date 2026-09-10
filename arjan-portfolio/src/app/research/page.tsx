@@ -88,7 +88,7 @@ export default function Research() {
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(publicationSchema) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(scienceWritingSchema) }} />
-    <header className="page-hero"><div className="shell"><p className="eyebrow">Research record</p><h1>Research by Arjan Singh Puniani</h1><p>Published work, active research themes, and technical writing. Bibliographic details appear only when the source record supports them.</p></div></header>
+    <header className="page-hero"><div className="shell"><p className="eyebrow">Research record</p><h1>Research by Arjan Singh Puniani</h1><p>Peer-reviewed work, manuscripts, active research themes, and science writing across neural engineering and adjacent systems.</p></div></header>
 
     <section className="section"><div className="shell"><div className="section-head"><div><p className="eyebrow">Publications</p><h2>Peer-reviewed work and manuscripts</h2></div></div>{publications.map((publication) => {
       const citation = `${publication.authors} (${publication.year}). ${publication.title}. ${publication.venue}.`;
@@ -119,6 +119,5 @@ export default function Research() {
 
     <section className="section"><div className="shell bio-grid"><div><p className="eyebrow">Research projects</p><h2>Questions under active development</h2></div><div>{researchProjects.map((project, index) => <article className="publication" key={project}><span className="publication-meta">0{index + 1}</span><h3>{project}</h3></article>)}</div></div></section>
 
-    <section className="section"><div className="shell"><div className="notice">Peer-reviewed records link to DOI, PubMed, or PubMed Central when a public record is available. The BCI calibration manuscript remains labeled as a preprint until a public journal or publisher record supports a different status.</div></div></section>
   </>;
 }

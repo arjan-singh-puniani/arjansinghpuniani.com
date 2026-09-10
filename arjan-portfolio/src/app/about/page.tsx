@@ -10,14 +10,14 @@ import styles from "./about.module.css";
 export const metadata: Metadata = {
   title: "About Arjan Singh Puniani",
   description:
-    "Biography of Arjan Singh Puniani (Arjan Puniani), a neural engineer and medical-school applicant working across brain-computer interfaces, rehabilitation, clinical reasoning, neurotechnology, and motorsport safety.",
+    "Biography of Arjan Singh Puniani (Arjan Puniani), a neural engineer pursuing medicine and working across brain-computer interfaces, rehabilitation, clinical reasoning, neurotechnology, and motorsport safety.",
   alternates: { canonical: "/about" },
   openGraph: {
     type: "website",
     url: `${siteUrl}/about`,
     title: "About Arjan Singh Puniani",
     description:
-      "Neural engineer and medical-school applicant working across brain-computer interfaces, rehabilitation, clinical reasoning, neurotechnology, and motorsport safety.",
+      "Neural engineer pursuing medicine and working across brain-computer interfaces, rehabilitation, clinical reasoning, neurotechnology, and motorsport safety.",
     images: [
       {
         url: "/images/about/arjan-candid.jpg",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Arjan Singh Puniani",
     description:
-      "Neural engineer and medical-school applicant working across brain-computer interfaces, rehabilitation, clinical reasoning, neurotechnology, and motorsport safety.",
+      "Neural engineer pursuing medicine and working across brain-computer interfaces, rehabilitation, clinical reasoning, neurotechnology, and motorsport safety.",
     images: ["/images/about/arjan-candid.jpg"],
   },
 };

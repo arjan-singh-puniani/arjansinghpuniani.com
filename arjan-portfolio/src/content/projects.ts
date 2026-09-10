@@ -48,7 +48,7 @@ export const projects: Project[] = [
     problem: "Clinical education often treats tribal health as a short module rather than a sustained relationship shaped by sovereignty and local priorities.",
     approach: ["Outlined a longitudinal, culturally humble rotation model.", "Centered tribal sovereignty and community-defined needs.", "Sought faculty guidance and external dialogue before implementation."],
     results: ["Developed an initial concept and educational rationale."],
-    limitations: ["This is not presented as an operating program, formal partnership, or completed clinical rotation."], featured: true,
+    limitations: ["Current stage: concept development and faculty/community dialogue; implementation would require tribal partnership and governance."], featured: true,
     evidence: [{ label: "HCOP essay", sourceFile: "HCOP Essay.pdf", verified: true }]
   },
   {
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     problem: "Digital studies need reliable participant operations, clear protocols, and rapid deployment without sacrificing research integrity.",
     approach: ["Supported study operations and participant workflows.", "Authored and refined standard operating procedures.", "Coordinated cross-functional deployment work."],
     results: ["Improved operational readiness; exact percentage and adoption claims remain withheld pending primary evidence."],
-    limitations: ["No confidential study data or participant information is disclosed."], featured: true,
+    limitations: ["Public case material focuses on workflow design and operations rather than study-specific participant data."], featured: true,
     evidence: [{ label: "Portfolio résumé", sourceFile: "ArjanSinghPuniani_2026.pdf", verified: true }]
   },
   {
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     problem: "Concussion tools document symptoms and medical warning signs, while motorsport safety records document the crash and occupant-protection system. Those records often remain disconnected during the handoff from trackside response to medical care.",
     approach: ["Designed a four-domain intake structure covering crash mechanism, occupant protection, acute neurological observations, and initial disposition.", "Built a companion pilot disposition algorithm for four-wheeled racing, separating clinical decisions from Race Control authority.", "Mapped fields and terminology against cited concussion and motorsport-safety references while preserving local-protocol constraints.", "Sought criticism from motorsport physicians and safety professionals, then recorded unresolved questions about terminology, users, observation reliability, workflow location, and series rules."],
     results: ["Produced a Version 0.2 pilot intake card and disposition algorithm.", "External expert critique was requested and received through documented March 2026 correspondence.", "The critique identified design questions for a future revision; it did not validate, endorse, adopt, or deploy the toolkit."],
-    limitations: ["Unvalidated pilot material. It is not a clinical protocol, sanctioning-body standard, or substitute for trained medical judgment.", "The current scope is four-wheeled racing only; motorcycle events require different governance and return-to-competition rules.", "Operational use would require review by the responsible medical director, sanctioning body, venue, emergency medical services agency, and local protocol authority."], featured: true,
+    limitations: ["Current stage: Version 0.2 pilot documentation framework awaiting formal validation.", "Current scope is four-wheeled racing; motorcycle events require a separate governance and return-to-competition model.", "Operational adoption would require review by the responsible medical director, sanctioning body, venue, emergency medical services agency, and local protocol authority."], featured: true,
     evidence: [{ label: "Version 0.2 pilot documentation toolkit", sourceFile: "Mechanism to Medical Center Crash and Concussion Card.pdf", verified: true }, { label: "Version 0.2 pilot disposition algorithm", sourceFile: "Red Flag and Dispo Algorithm.pdf", verified: true }, { label: "March 2026 expert-review correspondence", sourceFile: "Trackside toolkit grassroots motorsports email chain.pdf", verified: true }]
   },
   {
@@ -75,7 +75,7 @@ export const projects: Project[] = [
     problem: "A major road-racing weekend combines high-energy crashes, heat exposure, hillside crowds, restricted competition areas, temporary systems, and limited emergency-access routes. A useful plan must coordinate those risks without obstructing Race Control or public-safety authority.",
     approach: ["Built and ranked a 16-item event risk register using consistent likelihood and impact criteria.", "Developed controls for heat illness, medical surge, high-energy crashes, fire, hazardous materials, severe weather, security threats, and technology failure.", "Assigned decision roles across Race Control, fire-rescue, medical leadership, security, operations, and public information.", "Defined recovery gates for track condition, containment, communications, medical coverage, responder access, security, and required records."],
     results: ["Produced an integrated academic portfolio consisting of a risk analysis, mitigation plan, and proposed emergency and medical operations annex.", "Converted a static risk matrix into triggers, decision ownership, communications requirements, and conditions for resuming operations."],
-    limitations: ["Academic, role-based proposal developed through Belmont Abbey College coursework.", "Not commissioned, reviewed, or approved by Sonoma Raceway, NASCAR, or any public agency.", "Any operational version would require reconciliation with current venue plans, sanctioning-body procedures, hospital agreements, credentialing rules, radio assignments, and private contact lists."], featured: true,
+    limitations: ["Academic, role-based proposal developed through Belmont Abbey College coursework.", "The study was developed independently as coursework rather than as a venue or sanctioning-body commission.", "An operational version would need reconciliation with current venue plans, sanctioning-body procedures, hospital agreements, credentialing rules, radio assignments, and contact lists."], featured: true,
     evidence: [{ label: "Belmont Abbey College risk-analysis assignment", sourceFile: "Assignment_3_Analyzing_Risk_Sonoma_Raceway_Exceptional.pdf", verified: true }, { label: "Belmont Abbey College mitigation assignment", sourceFile: "ARJAN Assignment_4_Techniques_in_Mitigation_Sonoma_Raceway.pdf", verified: true }, { label: "Proposed emergency and medical operations annex", sourceFile: "Assignment_6_Emergency_Disaster_Planning_Sonoma_Raceway_Exceptional.pdf", verified: true }]
   },
   {

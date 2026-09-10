@@ -40,7 +40,7 @@ export default function HemodynamicObservatoryPage() {
     operatingSystem: "Web",
     url: `${siteUrl}/playground/hemodynamic-observatory`,
     description:
-      "Interactive educational visualization of a deterministic reduced-order velocity field through synthetic stenosed carotid geometry. Not patient data or a numerical CFD solution.",
+      "Interactive educational visualization of a deterministic reduced-order velocity field through synthetic stenosed carotid geometry.",
     author: {
       "@type": "Person",
       "@id": `${siteUrl}/#arjan-singh-puniani`,
@@ -95,7 +95,7 @@ export default function HemodynamicObservatoryPage() {
             <dl>
               <div><dt>Case</dt><dd>Idealized carotid stenosis</dd></div>
               <div><dt>Model</dt><dd>Deterministic reduced-order field</dd></div>
-              <div><dt>Boundary</dt><dd>Not patient data · Not clinical CFD</dd></div>
+              <div><dt>Basis</dt><dd>Synthetic geometry · reduced-order mechanics</dd></div>
             </dl>
           </aside>
         </div>
@@ -137,14 +137,14 @@ export default function HemodynamicObservatoryPage() {
       <section className={styles.explainSection}>
         <div className={`shell ${styles.explainGrid}`}>
           <div>
-            <p className={styles.index}>02 / SCIENTIFIC BOUNDARY</p>
-            <h2>Mechanism first.<br />Provenance always visible.</h2>
+            <p className={styles.index}>02 / MODEL BASIS</p>
+            <h2>Mechanism first.<br />Assumptions in view.</h2>
           </div>
           <div className={styles.explainCopy}>
             <p>
-              The default field is an analytic educational model, not a patient-specific
-              computational fluid dynamics solution. The geometry, velocity field, derived
-              quantities, and pressure approximation remain explicitly separated.
+              The model uses synthetic geometry and a deterministic reduced-order field so every
+              displayed quantity remains traceable to an explicit assumption. Geometry, velocity,
+              derived quantities, and the pressure approximation stay distinct.
             </p>
             <p>
               Switch between the three-dimensional vessel, longitudinal section, and cross-sectional

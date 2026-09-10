@@ -120,9 +120,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <Header />
-        <main id="main">{children}</main>
+        <main id="main" tabIndex={-1}>{children}</main>
         <Footer />
-        <SiteAnalytics />
+        <SiteAnalytics enabled={process.env.VERCEL === "1"} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}

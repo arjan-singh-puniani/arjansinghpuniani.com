@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f6f5f1">
   <title>Hemodynamic Observatory — Carotid Flow</title>
-  <meta name="description" content="Interactive, synthetic reduced-order visualization of flow through an idealized stenosed carotid artery. Educational, not patient data or clinical CFD.">
+  <meta name="description" content="Interactive reduced-order visualization of flow through an idealized stenosed carotid artery with explicit model provenance.">
   <link rel="stylesheet" href="./styles.css">
   <script>if(new URLSearchParams(location.search).get("embed")==="1")document.documentElement.classList.add("embedded");</script>
 </head>
@@ -23,13 +23,12 @@
     </div>
   </header>
 
-  <div class="status-strip" aria-label="Data provenance">
-    <strong>Physics-inspired demonstration</strong><i></i>
+  <div class="status-strip" aria-label="Model provenance">
+    <strong>Reduced-order flow model</strong><i></i>
     <span>Synthetic vascular geometry</span><i></i>
-    <span class="embed-secondary">Reduced-order analytic velocity field</span><i class="embed-secondary"></i>
-    <span>Not a numerical CFD solution</span><i></i>
-    <span>Not patient data</span><i></i>
-    <span class="embed-secondary">Not for clinical use</span>
+    <span class="embed-secondary">Analytic velocity field</span><i class="embed-secondary"></i>
+    <span>Derived vorticity + wall shear</span><i></i>
+    <span>Approximate pressure field</span>
   </div>
 
   <section class="controls" aria-label="Observatory controls">
@@ -114,8 +113,8 @@
   </section>
 
   <footer class="disclaimer">
-    <span><strong>Interpretation boundary.</strong> This lab visualizes a deterministic reduced-order field with exact sectional flux conservation and continuity-derived radial motion. It does not solve patient-specific three-dimensional Navier–Stokes.</span>
-    <span>Animation is slowed for inspection. Use the longitudinal view to probe local reduced-order values. <a href="./model-provenance.json" target="_blank" rel="noreferrer">Model provenance ↗</a></span>
+    <span><strong>Model basis.</strong> Deterministic reduced-order field with exact sectional flux conservation, continuity-derived radial motion, synthetic geometry, and inspectable assumptions.</span>
+    <span>Animation is slowed for inspection. Use the longitudinal view to probe local values. <a href="./model-provenance.json" target="_blank" rel="noreferrer">Model provenance ↗</a></span>
   </footer>
   <pre id="diagnostics" aria-hidden="true"></pre>
 </div>

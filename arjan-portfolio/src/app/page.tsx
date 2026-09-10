@@ -44,8 +44,9 @@ export default function Home() {
         <div className="v2-hero-copy">
           <p className="v2-label"><span /> Neural engineer pursuing medicine</p>
           <h1><span className="v2-hero-name">Arjan Singh Puniani</span>Engineering for<br />decisions that affect<br /><em>human lives.</em></h1>
-          <p className="v2-intro">Arjan Singh Puniani builds evidence-aware systems across neurotechnology, clinical reasoning, rehabilitation, and motorsport safety. He is pursuing medicine to connect technical capability with responsibility for the person affected by it.</p>
-          <div className="v2-actions"><Link href="/work" data-analytics-event="hero_project_click">Explore the work <b>↗</b></Link><Link href="/about">Read the approach</Link></div>
+          <p className="v2-intro">Arjan Singh Puniani builds systems across neurotechnology, clinical reasoning, rehabilitation, and motorsport safety. He is pursuing medicine to bring technical capability closer to responsibility for the person affected by it.</p>
+          <p className="v2-fit"><span>Current focus</span> Neural engineering · research software · scientific visualization · translational neurotechnology</p>
+          <div className="v2-actions"><Link href="/work" data-analytics-event="hero_project_click">Explore the work <b>↗</b></Link><Link href="/cv" data-analytics-event="hero_cv_click">View CV</Link><Link href="/about">Read the approach</Link></div>
         </div>
         <div className="v2-visual">
           <div className="v2-photo-index">ASP / 001</div>
@@ -54,7 +55,30 @@ export default function Home() {
           <div className="v2-signal" aria-hidden="true"><svg viewBox="0 0 440 80" preserveAspectRatio="none"><path d="M0 44h66l12-2 8 2h36l8-20 12 46 13-64 15 38h36l8-4 10 4h70l13-12 14 27 13-36 14 21h83" /></svg></div>
         </div>
       </div>
-      <div className="v2-ticker" aria-label="Areas of work">{[...disciplines, ...disciplines].map((item, i) => <span key={`${item}-${i}`}>{item}<b>✦</b></span>)}</div>
+      <div className="v2-ticker" aria-hidden="true">{[...disciplines, ...disciplines].map((item, i) => <span key={`${item}-${i}`}>{item}<b>✦</b></span>)}</div>
+    </section>
+
+    <section className="home-proof" aria-labelledby="home-proof-title">
+      <div className="shell">
+        <div className="home-proof-head">
+          <p className="v2-section-number">[ Research snapshot ]</p>
+          <p id="home-proof-title">A few signals of depth before you open a case study.</p>
+        </div>
+        <div className="home-proof-grid">
+          <Link href="/work/bci-calibration" className="home-proof-item" data-analytics-event="proof_bci_hours">
+            <strong>3,024 h</strong><span>Human neural engineering</span><small>Pitt RNEL · documented research time</small>
+          </Link>
+          <Link href="/work/bci-calibration" className="home-proof-item" data-analytics-event="proof_bci_sessions">
+            <strong>940+</strong><span>Calibration sessions analyzed</span><small>Longitudinal BCI research</small>
+          </Link>
+          <Link href="/research" className="home-proof-item" data-analytics-event="proof_publications">
+            <strong>2</strong><span>Peer-reviewed papers</span><small>Computational + theoretical neuroscience</small>
+          </Link>
+          <Link href="/cv" className="home-proof-item" data-analytics-event="proof_degree">
+            <strong>4.0</strong><span>M.S. Bioengineering GPA</span><small>University of Pittsburgh</small>
+          </Link>
+        </div>
+      </div>
     </section>
 
     <section className="v2-manifesto">
@@ -64,12 +88,12 @@ export default function Home() {
     <section className="v2-work">
       <div className="shell v2-work-head"><p className="v2-section-number">[ 02 — Selected systems ]</p><h2>Work with a pulse.</h2><Link href="/work">View all projects ↗</Link></div>
       <article className="v2-feature reasonos-home-feature">
-        <div className="reasonos-home-visual" aria-label="ReasonOS kernel and trace diagram">
+        <div className="reasonos-home-visual" role="img" aria-label="ReasonOS kernel and trace diagram">
           <div className="reasonos-home-source"><span>SOURCE</span><i /></div>
           <div className="reasonos-home-chain"><div><span>01</span><strong>State</strong></div><b>→</b><div><span>02</span><strong>Transformation</strong></div><b>→</b><div><span>03</span><strong>Constraint</strong></div></div>
           <div className="reasonos-home-trace"><span>TRACE / APPEND-ONLY</span><i /><i /><i className="rejected" /><i /></div>
         </div>
-        <div className="v2-feature-copy"><p>00 / Reasoning systems · Medical education</p><h3>Vector EKG + ReasonOS</h3><p className="v2-feature-lead">An educational prototype that preserves how evidence changes a model.</p><p>The system records observations, calculations, competing candidate pathways, contradictions, provenance, and revisions. It remains research software with no clinical validation.</p><dl><div><dt>Role</dt><dd>Independent designer + developer</dd></div><div><dt>State</dt><dd>Tested educational prototype</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl><Link href="/work/vector-ekg-reasonos" data-analytics-event="view_project">Open the case study <span>↗</span></Link></div>
+        <div className="v2-feature-copy"><p>00 / Reasoning systems · Medical education</p><h3>Vector EKG + ReasonOS</h3><p className="v2-feature-lead">An educational prototype that preserves how evidence changes a model.</p><p>The system records observations, calculations, competing candidate pathways, contradictions, provenance, and revisions as inspectable state changes.</p><dl><div><dt>Role</dt><dd>Independent designer + developer</dd></div><div><dt>State</dt><dd>Tested educational prototype</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl><Link href="/work/vector-ekg-reasonos" data-analytics-event="view_project">Open the case study <span>↗</span></Link></div>
       </article>
       <SeizeFreezeHomeFeature />
       <article className="v2-feature v2-feature-light">
@@ -82,7 +106,7 @@ export default function Home() {
       <div className="shell"><p className="v2-section-number">[ 03 — Current trajectory ]</p><div className="v2-crossroads-grid"><h2>Medicine.<br />Engineering.<br /><em>At speed.</em></h2><div><p>Current work examines trackside neurotrauma and emergency operations: places where incomplete information, limited time, and human consequences meet.</p><p><Link href="/work/motorsport-neurotrauma-toolkit">Explore the neurotrauma toolkit ↗</Link></p><p><Link href="/work/belmont-motorsport-systems">Open the Belmont systems study ↗</Link></p></div></div><ol className="home-motorsport-sequence" aria-label="Hazard leads to decision, response, recovery, and record">{["Hazard","Decision","Response","Recovery","Record"].map((item,index)=><li key={item}><span>0{index+1}</span><strong>{item}</strong></li>)}</ol></div>
     </section>
 
-    <section className="v2-playground-teaser"><ViewportBackgroundVideo /><div className="shell"><div><p className="v2-section-number">[ 04 — Playground ]</p><h2>Vector Tennis<br /><em>Endless Rally.</em></h2></div><div><p>A one-input arcade rally over mechanically causal contact, spin, trajectory, and bounce—with Racket Lab underneath.</p><div className="mini-causal-chain" aria-label="Read leads to timing, strike, survival, and restart">{["Read","Time","Strike","Survive","Restart"].map((item)=><span key={item}>{item}</span>)}</div><Link href="/playground/vector-tennis">Play the experiment ↗</Link></div></div></section>
+    <section className="v2-playground-teaser"><ViewportBackgroundVideo /><div className="shell"><div><p className="v2-section-number">[ 04 — Playground ]</p><h2>Vector Tennis<br /><em>Endless Rally.</em></h2></div><div><p>A one-input arcade rally over mechanically causal contact, spin, trajectory, and bounce—with Racket Lab underneath.</p><div className="mini-causal-chain" role="img" aria-label="Read leads to timing, strike, survival, and restart">{["Read","Time","Strike","Survive","Restart"].map((item)=><span key={item}>{item}</span>)}</div><Link href="/playground/vector-tennis">Play the experiment ↗</Link></div></div></section>
 
     <section className="v2-contact"><div className="shell"><p>Have a difficult system worth building?</p><Link href="/contact">Let’s work on it. <span>↗</span></Link></div></section>
   </>;

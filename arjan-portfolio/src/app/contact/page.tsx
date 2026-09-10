@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 import { profile } from "@/content/profile";
+import { links } from "@/content/links";
 import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function Contact() {
   return <>
-    <header className="page-hero"><div className="shell"><p className="eyebrow">Contact</p><h1>Start with the problem.</h1><p>Share the question, the people affected, and the decision you need to make.</p></div></header>
-    <section className="section"><div className="shell contact-grid"><aside><h2>Direct contact</h2><p><a className="text-link" href={`mailto:${profile.email}`}>{profile.email}</a></p><p>The form uses a honeypot field and server-side validation. It stores nothing in this repository.</p><p className="notice">When email delivery is not configured, use the direct email link. No analytics or tracking is required.</p></aside><ContactForm/></div></section>
+    <header className="page-hero"><div className="shell"><p className="eyebrow">Contact</p><h1>Start with the problem.</h1><p>Share what you are building, what is hard about it, and where you think I could contribute.</p></div></header>
+    <section className="section"><div className="shell contact-grid"><aside className="contact-fit"><p className="eyebrow">Best fit</p><h2>Science-heavy work that needs both technical depth and judgment.</h2><ul className="contact-fit-list"><li>Neural engineering and brain-computer interfaces</li><li>Research software and scientific visualization</li><li>Translational neurotechnology</li><li>Human-centered research systems</li></ul><div className="contact-direct-links"><a className="text-link" href={`mailto:${profile.email}`}>Email directly ↗</a><a className="text-link" href={links.resume} download>Download CV ↗</a><a className="text-link" href={links.github} target="_blank" rel="noreferrer">GitHub ↗</a></div></aside><ContactForm/></div></section>
   </>;
 }

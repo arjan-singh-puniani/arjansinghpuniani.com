@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ProjectFilter } from "@/components/ProjectFilter";
+import { CuratedProjectFilter } from "@/components/CuratedProjectFilter";
 import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function Work() {
   return <>
-    <header className="page-hero"><div className="shell"><p className="eyebrow">Project index</p><h1>Work</h1><p>Filter by field. Open any project for its evidence, limitations, and current status.</p></div></header>
-    <section className="section"><div className="shell"><ProjectFilter/></div></section>
+    <header className="page-hero"><div className="shell"><p className="eyebrow">Project index</p><h1>Work</h1><p>Start with the flagship systems, then explore the broader archive by field.</p></div></header>
+    <section className="section"><div className="shell"><CuratedProjectFilter/></div></section>
   </>;
 }

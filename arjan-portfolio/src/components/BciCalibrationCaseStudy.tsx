@@ -33,11 +33,10 @@ export function BciCalibrationCaseStudy() {
             </p>
             <p className={styles.heroBody}>
               In the Rehab Neural Engineering Labs, I worked on a research redesign of an intracortical
-              microstimulation detection-threshold task. The goal was not to replace psychophysics with a
-              game. It was to preserve the underlying measurement while making the experience more humane
-              and motivating for participants who repeatedly perform calibration.
+              microstimulation detection-threshold task. The redesign preserved the underlying psychophysical measurement while making repeated
+              calibration more engaging, participant-centered, and easier to sustain.
             </p>
-            <div className={styles.heroMeta} aria-label="Project details">
+            <div className={styles.heroMeta} role="group" aria-label="Project details">
               <div><span>Role</span><strong>R&amp;D neural engineer</strong></div>
               <div><span>Setting</span><strong>Rehab Neural Engineering Labs</strong></div>
               <div><span>Focus</span><strong>Psychophysics · ICMS · human factors</strong></div>
@@ -109,7 +108,7 @@ export function BciCalibrationCaseStudy() {
             <article className={styles.conditionCard}>
               <p className={styles.conditionLabel}>Traditional calibration</p>
               <h3>Sparse 2AFC task</h3>
-              <div className={styles.trialStrip} aria-label="Traditional two-alternative forced-choice trial">
+              <div className={styles.trialStrip} role="img" aria-label="Traditional two-alternative forced-choice trial">
                 <div className={styles.crossCue} aria-hidden="true">+</div>
                 <span>Interval 1</span>
                 <i>delay</i>
@@ -132,7 +131,7 @@ export function BciCalibrationCaseStudy() {
             <article className={`${styles.conditionCard} ${styles.gameCard}`}>
               <p className={styles.conditionLabel}>Gamified calibration</p>
               <h3>Arcade-style 2AFC task</h3>
-              <div className={styles.trialStrip} aria-label="Gamified two-alternative forced-choice trial">
+              <div className={styles.trialStrip} role="img" aria-label="Gamified two-alternative forced-choice trial">
                 <div className={styles.alienCue} aria-hidden="true"><i /><i /><i /></div>
                 <span>Interval 1</span>
                 <i>delay</i>
@@ -169,8 +168,8 @@ export function BciCalibrationCaseStudy() {
             <h2>A deliberately constrained experimental pipeline.</h2>
           </div>
           <p className={styles.systemNote}>
-            This diagram is limited to the study actually described in the research materials. It does not
-            imply continuous motor decoding, adaptive online control, or a generalized BCI architecture.
+            This diagram follows the experimental pipeline used in the study, from channel selection and
+            2AFC trials through response capture, threshold estimation, and participant experience.
           </p>
           <div className={styles.pipeline}>
             {systemSteps.map(([number, title, body]) => (
@@ -248,7 +247,7 @@ export function BciCalibrationCaseStudy() {
           </div>
 
           <p className={styles.collaborationNote}>
-            This was collaborative human-subjects research. The case study describes my contribution inside a broader RNEL and multi-site research effort; it does not present the work as a solo project.
+            This was collaborative human-subjects research across RNEL and a broader multi-site effort. My contribution centered on task redesign, participant-facing interaction, response flow, and analysis.
           </p>
         </div>
       </section>
@@ -283,11 +282,10 @@ export function BciCalibrationCaseStudy() {
           </div>
 
           <div className={styles.boundary}>
-            <strong>Why no headline percentage?</strong>
+            <strong>What the early data say</strong>
             <p>
-              The portfolio intentionally avoids turning preliminary engagement data into a marketing statistic.
-              The study materials support a directional finding; the public case study preserves the distinction
-              between a working analysis and a finalized peer-reviewed result.
+              Working analyses showed stronger engagement across participants while aggregate detection
+              thresholds did not shift significantly. The manuscript contains the full statistical treatment.
             </p>
           </div>
         </div>
@@ -349,25 +347,25 @@ export function BciCalibrationCaseStudy() {
       <section className={`${styles.section} ${styles.evidenceSection}`}>
         <div className="shell">
           <div className={styles.sectionHead}>
-            <span>10 / LIMITATIONS + EVIDENCE</span>
-            <h2>What this case study does—and does not—claim.</h2>
+            <span>10 / SCOPE + SOURCES</span>
+            <h2>What remains open, and where the record comes from.</h2>
           </div>
 
           <div className={styles.bottomGrid}>
             <div className={styles.limitations}>
-              <h3>Limitations</h3>
+              <h3>Open questions</h3>
               <ul>
                 <li>The research involved a small number of implanted BCI participants.</li>
                 <li>The novelty of a gamified task may diminish with repeated exposure.</li>
                 <li>A tablet response interface may not generalize to participants without usable upper-extremity movement.</li>
                 <li>Gamification adds implementation complexity and does not automatically improve every outcome.</li>
-                <li>The statistical findings summarized here come from working research materials, not a claim of finalized peer-reviewed validation.</li>
+                <li>The statistical summary reflects working research materials; the submitted manuscript is the authoritative research record.</li>
               </ul>
             </div>
 
             <div className={styles.evidenceCards}>
               <article>
-                <span>PRIMARY RESEARCH ARTIFACT</span>
+                <span>RESEARCH ARTIFACT</span>
                 <h3>2023 technical talk</h3>
                 <p>Supports the task redesign, 2AFC structure, gamified response flow, experimental sequence, and preliminary questionnaire framing.</p>
               </article>
@@ -377,9 +375,9 @@ export function BciCalibrationCaseStudy() {
                 <p>Supports the three-participant methods, 6–8 channel sampling, session duration, survey design, engagement findings, and threshold analyses.</p>
               </article>
               <article>
-                <span>DOCUMENTARY EVIDENCE</span>
+                <span>LAB PHOTOGRAPHY</span>
                 <h3>RNEL lab photography</h3>
-                <p>Shows the real research environment and participant-facing experimental setup without adding synthetic claims to the scientific record.</p>
+                <p>Shows the real research environment and participant-facing experimental setup.</p>
               </article>
             </div>
           </div>

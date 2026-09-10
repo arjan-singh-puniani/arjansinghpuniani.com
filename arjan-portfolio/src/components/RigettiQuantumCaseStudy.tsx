@@ -23,13 +23,13 @@ export function RigettiQuantumCaseStudy() {
     </header>
 
     <section className="rq-boundary">
-      <div className="shell"><strong>Evidence boundary</strong><p>The interactive model below was built independently in 2026. It is not a Rigetti product, proprietary design, dimensional replica, or representation of confidential hardware.</p></div>
+      <div className="shell"><strong>Artifact context</strong><p>The 2026 interactive model is an independent educational reconstruction built to explain the superconducting stack around the documented operating role.</p></div>
     </section>
 
     <section className="rq-section rq-context">
       <div className="shell rq-two-column">
         <p className="rq-index">00 / The operating role</p>
-        <div><h2>Technical companies are also coordination systems.</h2><p className="rq-lede">At Rigetti Computing, my documented role centered on early-stage company operations, investor communications, and strategic execution. The work required translating across technical ambition, organizational priorities, external stakeholders, and the practical demands of building a company around difficult hardware.</p><p>This case study does not recast that operating role as processor or cryogenic engineering. The model provides technical context for the system that the organization existed to build.</p></div>
+        <div><h2>Technical companies are also coordination systems.</h2><p className="rq-lede">At Rigetti Computing, my documented role centered on early-stage company operations, investor communications, and strategic execution. The work required translating across technical ambition, organizational priorities, external stakeholders, and the practical demands of building a company around difficult hardware.</p><p>The model provides technical context for the system that the organization existed to build; my historical role remained company operations, investor communications, and strategic execution.</p></div>
       </div>
     </section>
 
@@ -53,11 +53,11 @@ export function RigettiQuantumCaseStudy() {
 
     <section className="rq-section rq-record">
       <div className="shell rq-two-column">
-        <div><p className="rq-index">03 / What this establishes</p><h2>Keep the record precise.</h2></div>
+        <div><p className="rq-index">03 / Record</p><h2>Two chapters, connected by systems thinking.</h2></div>
         <div className="rq-record-list">
           <article><span>Documented</span><h3>Company operations</h3><p>Chief of Staff at Rigetti Computing from 2013 through 2015, focused on early-stage operations, investor communications, and strategic execution.</p></article>
           <article><span>Implemented later</span><h3>Interactive explainer</h3><p>A tested Three.js educational model built independently in 2026 to make the surrounding control chain inspectable.</p></article>
-          <article><span>Not claimed</span><h3>Commercial hardware authorship</h3><p>No claim that this model reproduces a Rigetti machine, contains proprietary information, or documents processor, cryostat, or control-system engineering performed at Rigetti.</p></article>
+          <article><span>Connection</span><h3>System-level translation</h3><p>The interactive model turns the surrounding technical stack into an inspectable systems explainer that complements the earlier operating experience.</p></article>
         </div>
       </div>
     </section>
