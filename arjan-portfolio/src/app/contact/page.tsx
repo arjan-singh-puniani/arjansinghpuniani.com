@@ -7,21 +7,21 @@ import { siteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Arjan Singh Puniani about research, clinical translation, teaching, neurotechnology, motorsport medicine, or media.",
+    "Contact Arjan Singh Puniani about research, research software, teaching, neurotechnology, motorsport medicine, or media.",
   alternates: { canonical: "/contact" },
   openGraph: {
     type: "website",
     url: `${siteUrl}/contact`,
     title: "Contact Arjan Singh Puniani",
     description:
-      "Contact Arjan Singh Puniani about research, clinical translation, teaching, neurotechnology, motorsport medicine, or media.",
+      "Contact Arjan Singh Puniani about research, research software, teaching, neurotechnology, motorsport medicine, or media.",
     images: [{ url: "/og.png", alt: "Arjan Singh Puniani" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contact Arjan Singh Puniani",
     description:
-      "Contact Arjan Singh Puniani about research, clinical translation, teaching, neurotechnology, motorsport medicine, or media.",
+      "Contact Arjan Singh Puniani about research, research software, teaching, neurotechnology, motorsport medicine, or media.",
     images: ["/og.png"],
   },
 };

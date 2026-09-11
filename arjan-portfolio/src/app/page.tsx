@@ -45,8 +45,7 @@ export default function Home() {
           <p className="v2-label"><span /> Neural engineer pursuing medicine</p>
           <h1><span className="v2-hero-name">Arjan Singh Puniani</span>Engineering for<br />decisions that affect<br /><em>human lives.</em></h1>
           <p className="v2-intro">Arjan Singh Puniani builds systems across neurotechnology, clinical reasoning, rehabilitation, and motorsport safety. He is pursuing medicine to bring technical capability closer to responsibility for the person affected by it.</p>
-          <p className="v2-fit"><span>Current focus</span> Neural engineering · research software · scientific visualization · translational neurotechnology</p>
-          <div className="v2-actions"><Link href="/work" data-analytics-event="hero_project_click">Explore the work <b>↗</b></Link><Link href="/cv" data-analytics-event="hero_cv_click">View CV</Link><Link href="/about">Read the approach</Link></div>
+          <div className="v2-actions"><Link href="/work" data-analytics-event="hero_project_click">Explore the work <b>↗</b></Link><Link href="/about">Read the approach</Link></div>
         </div>
         <div className="v2-visual">
           <div className="v2-photo-index">ASP / 001</div>
@@ -56,29 +55,6 @@ export default function Home() {
         </div>
       </div>
       <div className="v2-ticker" aria-hidden="true">{[...disciplines, ...disciplines].map((item, i) => <span key={`${item}-${i}`}>{item}<b>✦</b></span>)}</div>
-    </section>
-
-    <section className="home-proof" aria-labelledby="home-proof-title">
-      <div className="shell">
-        <div className="home-proof-head">
-          <p className="v2-section-number">[ Research snapshot ]</p>
-          <p id="home-proof-title">A few signals of depth before you open a case study.</p>
-        </div>
-        <div className="home-proof-grid">
-          <Link href="/work/bci-calibration" className="home-proof-item" data-analytics-event="proof_bci_hours">
-            <strong>3,024 h</strong><span>Human neural engineering</span><small>Pitt RNEL · documented research time</small>
-          </Link>
-          <Link href="/work/bci-calibration" className="home-proof-item" data-analytics-event="proof_bci_sessions">
-            <strong>940+</strong><span>Calibration sessions analyzed</span><small>Longitudinal BCI research</small>
-          </Link>
-          <Link href="/research" className="home-proof-item" data-analytics-event="proof_publications">
-            <strong>2</strong><span>Peer-reviewed papers</span><small>Computational + theoretical neuroscience</small>
-          </Link>
-          <Link href="/cv" className="home-proof-item" data-analytics-event="proof_degree">
-            <strong>4.0</strong><span>M.S. Bioengineering GPA</span><small>University of Pittsburgh</small>
-          </Link>
-        </div>
-      </div>
     </section>
 
     <section className="v2-manifesto">

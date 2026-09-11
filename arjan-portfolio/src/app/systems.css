@@ -120,7 +120,7 @@ body { overflow-x: clip; }
 .home-motorsport-sequence li:last-child { border-right: 0; }
 .home-motorsport-sequence span { display: block; font: 9px var(--font-mono); opacity: .7; }
 .home-motorsport-sequence strong { display: block; margin-top: 16px; font-size: 14px; }
-.home-motorsport-sequence li:not(:last-child)::after { content: "→"; position: absolute; right: -8px; top: 50%; z-index: 1; background: #647bc4; color: #f3f0e8; }
+.home-motorsport-sequence li:not(:last-child)::after { content: "→"; position: absolute; right: -8px; top: 50%; z-index: 1; background: #4f619b; color: #f3f0e8; }
 .v2-playground-teaser { position: relative; isolation: isolate; overflow: hidden; padding: 95px 0; background: #0a0f1c; color: #f3f0e8; }
 .v2-playground-teaser::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(5,10,20,.94) 0%, rgba(5,10,20,.82) 48%, rgba(5,10,20,.72) 100%); pointer-events: none; }
 .v2-playground-video { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 48%; filter: saturate(.7) contrast(1.08); transform: scale(1.015); }
