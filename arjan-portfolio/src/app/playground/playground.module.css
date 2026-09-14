@@ -22,10 +22,142 @@
 }
 
 /* RALLY_HOUSE_NATIVE_BEGIN */
-.rallyEntry{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,1fr);min-height:520px;overflow:hidden;border:1px solid var(--line);background:#f5f0e5;color:var(--ink)}
-.rallyCopy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:clamp(38px,5vw,70px)}
-.rallyCopy .status{margin-bottom:22px}.rallyCopy h2{max-width:650px;margin:10px 0 20px;font-size:clamp(42px,4.8vw,72px);line-height:.98}.rallyCopy>p:not(.eyebrow){max-width:630px;margin:0;color:#566a60;font-size:17px;line-height:1.55}
-.rallyRhythm{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 30px;color:#5f7d66;font-family:var(--font-mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.rallyRhythm span:not(:last-child)::after{content:" ·";color:#9b8d79}
-.rallyPreview{position:relative;min-height:520px;margin:0;overflow:hidden;border-left:1px solid rgba(65,80,70,.18);background:#dfe4d2}.rallyPreview::after{content:"PLAYABLE / PRESENCE & ACTING v16";position:absolute;right:18px;bottom:16px;z-index:2;padding:6px 8px;border:1px solid rgba(65,80,70,.20);background:rgba(255,253,247,.92);color:#5f7268;font-family:var(--font-mono);font-size:8px;letter-spacing:.08em}.rallyPreview img{object-fit:cover;object-position:50% 50%}
-@media(max-width:800px){.rallyEntry{grid-template-columns:1fr}.rallyCopy{padding:34px 26px 38px}.rallyPreview{min-height:390px;border-left:0;border-top:1px solid rgba(65,80,70,.18)}}
+.playSection{padding-top:clamp(30px,3.5vw,48px);padding-bottom:clamp(30px,3.5vw,48px)}
+
+.rallyEntry{
+  display:grid;
+  grid-template-columns:minmax(0,.82fr) minmax(430px,1.18fr);
+  min-height:500px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:#f6efe2;
+  color:var(--ink);
+}
+.rallyCopy{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  padding:clamp(40px,5vw,72px);
+}
+.rallyCopy .status{margin-bottom:22px}
+.rallyCopy h2{
+  max-width:610px;
+  margin:10px 0 20px;
+  font-size:clamp(42px,4.6vw,68px);
+  line-height:.98;
+}
+.rallyCopy>p:not(.eyebrow){
+  max-width:600px;
+  margin:0;
+  color:#596b61;
+  font-size:17px;
+  line-height:1.58;
+}
+.rallyRhythm,.pitRhythm{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:28px 0 30px;
+  font-family:var(--font-mono);
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.075em;
+  text-transform:uppercase;
+}
+.rallyRhythm{color:#687c70}
+.rallyRhythm span:not(:last-child)::after{content:" ·";color:#b39d82}
+.rallyPreview{
+  position:relative;
+  min-height:500px;
+  margin:0;
+  overflow:hidden;
+  border-left:1px solid rgba(65,80,70,.16);
+  background:#eadfcd;
+}
+.rallyPreview img{
+  object-fit:cover;
+  object-position:50% 50%;
+  transform:scale(1.002);
+}
+
+.pitEntry{
+  display:grid;
+  grid-template-columns:minmax(0,.92fr) minmax(420px,1.08fr);
+  min-height:500px;
+  overflow:hidden;
+  border:1px solid rgba(231,235,245,.16);
+  background:#0d1830;
+  color:#f7f4eb;
+}
+.pitCopy{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  padding:clamp(40px,5vw,72px);
+}
+.pitCopy .status{
+  margin-bottom:22px;
+  border-color:rgba(247,244,235,.42);
+  color:#f7f4eb;
+}
+.pitCopy .eyebrow{color:#586fd4}
+.pitCopy h2{
+  max-width:620px;
+  margin:10px 0 20px;
+  color:#f7f4eb;
+  font-size:clamp(42px,4.6vw,68px);
+  line-height:.98;
+}
+.pitCopy>p:not(.eyebrow){
+  max-width:610px;
+  margin:0;
+  color:#b9c1d2;
+  font-size:17px;
+  line-height:1.58;
+}
+.pitRhythm{color:#f1f2f6}
+.pitRhythm span:not(:last-child)::after{content:" →";color:#ddb52b}
+.pitHero{
+  position:relative;
+  min-height:500px;
+  margin:0;
+  overflow:hidden;
+  border-left:1px solid rgba(247,244,235,.12);
+  background:#080d18;
+}
+.pitHero::after{
+  content:"CENTER-LOCK · HUB · BRAKE · RELEASE";
+  position:absolute;
+  right:18px;
+  bottom:16px;
+  z-index:2;
+  padding:7px 9px;
+  border:1px solid rgba(247,244,235,.20);
+  background:rgba(8,13,24,.78);
+  color:#f1f2f6;
+  font-family:var(--font-mono);
+  font-size:8px;
+  letter-spacing:.08em;
+  backdrop-filter:blur(8px);
+}
+.pitHero img{
+  object-fit:cover;
+  object-position:50% 50%;
+}
+
+@media(max-width:800px){
+  .playSection{padding-top:24px;padding-bottom:24px}
+  .rallyEntry,.pitEntry{grid-template-columns:1fr}
+  .rallyCopy,.pitCopy{padding:34px 26px 38px}
+  .rallyPreview,.pitHero{
+    min-height:0;
+    aspect-ratio:16/9;
+    border-left:0;
+    border-top:1px solid rgba(65,80,70,.16);
+  }
+  .pitHero{border-top-color:rgba(247,244,235,.12)}
+  .pitHero::after{right:12px;bottom:12px}
+}
 /* RALLY_HOUSE_NATIVE_END */
