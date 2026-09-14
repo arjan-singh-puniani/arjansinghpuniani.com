@@ -1,0 +1,358 @@
+{
+  "before": {
+    "progress": 28,
+    "queued": null,
+    "active": [
+      {
+        "id": "activity-1",
+        "kind": "observe",
+        "phase": "active"
+      }
+    ],
+    "clock": {
+      "minutes": 563.75,
+      "day": 1,
+      "paused": false,
+      "speed": 1
+    },
+    "characters": [
+      {
+        "id": "coach",
+        "state": "serve",
+        "position": {
+          "x": 1,
+          "y": 0,
+          "z": -5
+        }
+      },
+      {
+        "id": "mika",
+        "state": "shuffle",
+        "position": {
+          "x": 0.685,
+          "y": 0,
+          "z": 5
+        }
+      },
+      {
+        "id": "leo",
+        "state": "watch",
+        "position": {
+          "x": 9,
+          "y": 0,
+          "z": -6
+        }
+      },
+      {
+        "id": "nia",
+        "state": "drink",
+        "position": {
+          "x": -9,
+          "y": 0,
+          "z": -4.5
+        }
+      }
+    ],
+    "history": [],
+    "reps": 0,
+    "philosophy": {}
+  },
+  "selected": {
+    "progress": 28,
+    "queued": null,
+    "active": [
+      {
+        "id": "activity-2",
+        "kind": "everyday",
+        "phase": "traveling"
+      },
+      {
+        "id": "activity-3",
+        "kind": "lesson",
+        "phase": "starting"
+      }
+    ],
+    "clock": {
+      "minutes": 575,
+      "day": 1,
+      "paused": false,
+      "speed": 1
+    },
+    "characters": [
+      {
+        "id": "coach",
+        "state": "swingForehand",
+        "position": {
+          "x": 1,
+          "y": 0,
+          "z": -5
+        }
+      },
+      {
+        "id": "mika",
+        "state": "watch",
+        "position": {
+          "x": 1,
+          "y": 0,
+          "z": 5
+        }
+      },
+      {
+        "id": "leo",
+        "state": "walk",
+        "position": {
+          "x": 3.027841897118989,
+          "y": 0,
+          "z": -7.184349263374452
+        }
+      },
+      {
+        "id": "nia",
+        "state": "drink",
+        "position": {
+          "x": -9,
+          "y": 0,
+          "z": -4.5
+        }
+      }
+    ],
+    "history": [],
+    "reps": 0,
+    "philosophy": {}
+  },
+  "completed": {
+    "progress": 32,
+    "queued": null,
+    "active": [
+      {
+        "id": "activity-2",
+        "kind": "everyday",
+        "phase": "active"
+      }
+    ],
+    "clock": {
+      "minutes": 600.25,
+      "day": 1,
+      "paused": false,
+      "speed": 1
+    },
+    "characters": [
+      {
+        "id": "coach",
+        "state": "idle",
+        "position": {
+          "x": 1,
+          "y": 0,
+          "z": -5
+        }
+      },
+      {
+        "id": "mika",
+        "state": "idle",
+        "position": {
+          "x": 2.22,
+          "y": 0,
+          "z": 5
+        }
+      },
+      {
+        "id": "leo",
+        "state": "shuffle",
+        "position": {
+          "x": -9.3,
+          "y": 0,
+          "z": 1.6
+        }
+      },
+      {
+        "id": "nia",
+        "state": "watch",
+        "position": {
+          "x": -9,
+          "y": 0,
+          "z": 3.5
+        }
+      }
+    ],
+    "history": [
+      {
+        "id": "activity-3",
+        "kind": "lesson",
+        "participants": [
+          "coach",
+          "mika"
+        ],
+        "resource": "court",
+        "phase": "completed",
+        "elapsed": 25.649999999999824,
+        "phaseTime": 0,
+        "detail": "Drop-feed timing",
+        "result": "Lucresia completed eight practice contacts: 7 clean. The cue gave her something to keep."
+      }
+    ],
+    "reps": 8,
+    "philosophy": {
+      "preparation": 1
+    }
+  },
+  "queued": {
+    "progress": 32,
+    "queued": "movement",
+    "active": [
+      {
+        "id": "activity-4",
+        "kind": "everyday",
+        "phase": "active"
+      }
+    ],
+    "clock": {
+      "minutes": 1294.75,
+      "day": 1,
+      "paused": false,
+      "speed": 1
+    },
+    "characters": [
+      {
+        "id": "coach",
+        "state": "watch",
+        "position": {
+          "x": -6.5,
+          "y": 0,
+          "z": -4.5
+        }
+      },
+      {
+        "id": "mika",
+        "state": "idle",
+        "position": {
+          "x": -6.5,
+          "y": 0,
+          "z": 8.7
+        }
+      },
+      {
+        "id": "leo",
+        "state": "walk",
+        "position": {
+          "x": -11.162653028154384,
+          "y": 0,
+          "z": 3.9879590844631414
+        }
+      },
+      {
+        "id": "nia",
+        "state": "watch",
+        "position": {
+          "x": -7.992401504850005,
+          "y": 0,
+          "z": 5.921659161305292
+        }
+      }
+    ],
+    "history": [
+      {
+        "id": "activity-3",
+        "kind": "lesson",
+        "participants": [
+          "coach",
+          "mika"
+        ],
+        "resource": "court",
+        "phase": "completed",
+        "elapsed": 25.649999999999824,
+        "phaseTime": 0,
+        "detail": "Drop-feed timing",
+        "result": "Lucresia completed eight practice contacts: 7 clean. The cue gave her something to keep."
+      }
+    ],
+    "reps": 8,
+    "philosophy": {
+      "preparation": 1
+    }
+  },
+  "state": {
+    "progress": 35,
+    "queued": null,
+    "active": [],
+    "clock": {
+      "minutes": 1347.25,
+      "day": 1,
+      "paused": false,
+      "speed": 1
+    },
+    "characters": [
+      {
+        "id": "coach",
+        "state": "walk",
+        "position": {
+          "x": -4.480449318953293,
+          "y": 0,
+          "z": -2.8475870510892385
+        }
+      },
+      {
+        "id": "mika",
+        "state": "walk",
+        "position": {
+          "x": -6.295433284984196,
+          "y": 0,
+          "z": 8.39724126177661
+        }
+      },
+      {
+        "id": "leo",
+        "state": "idle",
+        "position": {
+          "x": -8,
+          "y": 0,
+          "z": 8.7
+        }
+      },
+      {
+        "id": "nia",
+        "state": "watch",
+        "position": {
+          "x": -9,
+          "y": 0,
+          "z": 3.5
+        }
+      }
+    ],
+    "history": [
+      {
+        "id": "activity-5",
+        "kind": "lesson",
+        "participants": [
+          "coach",
+          "mika"
+        ],
+        "resource": "court",
+        "phase": "completed",
+        "elapsed": 30.233333333332897,
+        "phaseTime": 0,
+        "detail": "Movement + recovery",
+        "result": "Lucresia completed eight practice contacts: 7 clean. The cue gave her something to keep."
+      },
+      {
+        "id": "activity-3",
+        "kind": "lesson",
+        "participants": [
+          "coach",
+          "mika"
+        ],
+        "resource": "court",
+        "phase": "completed",
+        "elapsed": 25.649999999999824,
+        "phaseTime": 0,
+        "detail": "Drop-feed timing",
+        "result": "Lucresia completed eight practice contacts: 7 clean. The cue gave her something to keep."
+      }
+    ],
+    "reps": 8,
+    "philosophy": {
+      "preparation": 1,
+      "recovery": 1
+    }
+  },
+  "seconds": 99.852
+}

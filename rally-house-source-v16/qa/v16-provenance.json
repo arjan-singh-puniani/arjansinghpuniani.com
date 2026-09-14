@@ -1,0 +1,21 @@
+{
+  "canonical_archive_sha256": "2fd173c7a81d57c338cdc50f6a1bba1a54491f441d5a98f500694ebe10a2a488",
+  "carried_forward_working_copy_changes": [
+    "src/Game.ts",
+    "src/ui/HUD.ts",
+    "src/core/types.ts",
+    "src/simulation/EverydayLife.ts",
+    "src/simulation/SceneGrammar.ts",
+    "src/simulation/EmergentSocialSystem.ts",
+    "src/simulation/ClubLifeSystem.ts",
+    "src/simulation/ClubHistory.ts",
+    "src/content/content.ts",
+    "src/content/PlayerAvatars.ts",
+    "src/persistence/migrations.ts",
+    "src/entities/Character.ts"
+  ],
+  "protected": {
+    "WalkCycle.ts": "5fe48a2547806c1b06468ddd4a4e42a261785fa79cfa47b26927e54b63e254c9",
+    "CharacterSkin.ts": "3ffc08dc91c90d24db1af21b8c0a772a77b362bdef8dee4418c85fda1d7b50b1"
+  }
+}

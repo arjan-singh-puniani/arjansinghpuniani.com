@@ -1,0 +1,13 @@
+{
+  "method": "Physical source lines including blanks/comments; excludes dist, references, JSON evidence and dependencies.",
+  "game": {
+    "files": 41,
+    "physicalLines": 3365,
+    "nonblankLines": 3170
+  },
+  "testAndTools": {
+    "files": 57,
+    "physicalLines": 1136,
+    "nonblankLines": 1108
+  }
+}

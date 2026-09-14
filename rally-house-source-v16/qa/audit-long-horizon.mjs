@@ -1,0 +1,4 @@
+import {simulation} from '../../v16-audit-reference/Rally-House-Character-Life-v15/qa/sim-harness.mjs';
+import fs from 'node:fs';
+const g=simulation(),rows=[];g.clock.minutes=0;const start=performance.now();
+for(let day=1;day<=100;day++){for(let i=0;i<1440*30;i++)g.updateFixed(1/30);if([1,7,30,100].includes(day)){const row={days:day,wallSeconds:(performance.now()-start)/1000,culture:{...g.mind.culture},memories:g.mind.memories.length,major:g.mind.memories.filter(m=>m.importance>=.95).length,events:g.mind.events.length,bytes:JSON.stringify(g.mind.serialize()).length,intentions:g.history.intentions.length,cancellations:g.telemetry.cancellations,completed:g.telemetry.meaningful,pairs:g.telemetry.pairs};rows.push(structuredClone(row));console.log(row);fs.writeFileSync('qa/baseline-long-horizon.json',JSON.stringify(rows,null,2));}}

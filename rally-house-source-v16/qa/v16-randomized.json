@@ -1,0 +1,273 @@
+{
+  "seed": 160913,
+  "days": 20,
+  "requests": 62,
+  "maxPath": 11,
+  "minGap": 0.8201469506320475,
+  "nearFrames": 0,
+  "layout": [
+    {
+      "type": "bench",
+      "x": -5,
+      "z": 2,
+      "id": "furniture-1"
+    },
+    {
+      "type": "plant",
+      "x": 7,
+      "z": 1,
+      "id": "furniture-2"
+    },
+    {
+      "type": "basket",
+      "x": -5,
+      "z": -2,
+      "id": "furniture-3"
+    },
+    {
+      "type": "lamp",
+      "x": 7,
+      "z": -2,
+      "id": "furniture-4"
+    }
+  ],
+  "interruptions": [
+    {
+      "day": 1,
+      "id": "activity-3",
+      "kind": "everyday",
+      "phase": "traveling",
+      "elapsed": 65.03333333333221,
+      "duringRequest": false,
+      "retry": false
+    },
+    {
+      "day": 1,
+      "id": "activity-35",
+      "kind": "everyday",
+      "phase": "traveling",
+      "elapsed": 65.03333333333221,
+      "duringRequest": false,
+      "retry": false
+    },
+    {
+      "day": 1,
+      "id": "activity-36",
+      "kind": "everyday",
+      "phase": "traveling",
+      "elapsed": 65.03333333333221,
+      "duringRequest": false,
+      "retry": false
+    },
+    {
+      "day": 2,
+      "id": "activity-37",
+      "kind": "everyday",
+      "phase": "traveling",
+      "elapsed": 65.03333333333221,
+      "duringRequest": false,
+      "retry": false
+    },
+    {
+      "day": 13,
+      "id": "activity-457",
+      "kind": "object",
+      "phase": "traveling",
+      "elapsed": 65.03333333333221,
+      "duringRequest": false,
+      "retry": true
+    }
+  ],
+  "pairs": {
+    "coach|mika": 109,
+    "mika|nia": 102,
+    "coach|nia": 133,
+    "leo|mika": 67,
+    "leo|nia": 75,
+    "coach|leo": 22,
+    "leo|mika|nia": 1,
+    "coach|leo|mika": 7
+  },
+  "rows": [
+    {
+      "day": 1,
+      "completed": 33,
+      "cancellations": 3,
+      "memories": 48,
+      "events": 3,
+      "mindBytes": 16688,
+      "everydayBytes": 6886
+    },
+    {
+      "day": 2,
+      "completed": 69,
+      "cancellations": 4,
+      "memories": 48,
+      "events": 8,
+      "mindBytes": 18652,
+      "everydayBytes": 9554
+    },
+    {
+      "day": 3,
+      "completed": 105,
+      "cancellations": 4,
+      "memories": 48,
+      "events": 12,
+      "mindBytes": 19912,
+      "everydayBytes": 9713
+    },
+    {
+      "day": 4,
+      "completed": 144,
+      "cancellations": 4,
+      "memories": 50,
+      "events": 21,
+      "mindBytes": 23149,
+      "everydayBytes": 9859
+    },
+    {
+      "day": 5,
+      "completed": 181,
+      "cancellations": 4,
+      "memories": 50,
+      "events": 26,
+      "mindBytes": 24972,
+      "everydayBytes": 10011
+    },
+    {
+      "day": 6,
+      "completed": 217,
+      "cancellations": 4,
+      "memories": 50,
+      "events": 30,
+      "mindBytes": 26456,
+      "everydayBytes": 10182
+    },
+    {
+      "day": 7,
+      "completed": 252,
+      "cancellations": 4,
+      "memories": 50,
+      "events": 34,
+      "mindBytes": 27782,
+      "everydayBytes": 10198
+    },
+    {
+      "day": 8,
+      "completed": 286,
+      "cancellations": 4,
+      "memories": 50,
+      "events": 37,
+      "mindBytes": 29095,
+      "everydayBytes": 10395
+    },
+    {
+      "day": 9,
+      "completed": 322,
+      "cancellations": 4,
+      "memories": 50,
+      "events": 44,
+      "mindBytes": 31116,
+      "everydayBytes": 10302
+    },
+    {
+      "day": 10,
+      "completed": 360,
+      "cancellations": 4,
+      "memories": 50,
+      "events": 48,
+      "mindBytes": 32624,
+      "everydayBytes": 10314
+    },
+    {
+      "day": 11,
+      "completed": 394,
+      "cancellations": 4,
+      "memories": 50,
+      "events": 48,
+      "mindBytes": 32899,
+      "everydayBytes": 10447
+    },
+    {
+      "day": 12,
+      "completed": 430,
+      "cancellations": 4,
+      "memories": 51,
+      "events": 48,
+      "mindBytes": 33758,
+      "everydayBytes": 10405
+    },
+    {
+      "day": 13,
+      "completed": 463,
+      "cancellations": 5,
+      "memories": 51,
+      "events": 48,
+      "mindBytes": 34114,
+      "everydayBytes": 10260
+    },
+    {
+      "day": 14,
+      "completed": 499,
+      "cancellations": 5,
+      "memories": 51,
+      "events": 48,
+      "mindBytes": 34344,
+      "everydayBytes": 10170
+    },
+    {
+      "day": 15,
+      "completed": 534,
+      "cancellations": 5,
+      "memories": 51,
+      "events": 48,
+      "mindBytes": 34733,
+      "everydayBytes": 10363
+    },
+    {
+      "day": 16,
+      "completed": 569,
+      "cancellations": 5,
+      "memories": 51,
+      "events": 48,
+      "mindBytes": 35157,
+      "everydayBytes": 10183
+    },
+    {
+      "day": 17,
+      "completed": 604,
+      "cancellations": 5,
+      "memories": 51,
+      "events": 48,
+      "mindBytes": 35382,
+      "everydayBytes": 10214
+    },
+    {
+      "day": 18,
+      "completed": 639,
+      "cancellations": 5,
+      "memories": 51,
+      "events": 48,
+      "mindBytes": 35554,
+      "everydayBytes": 10267
+    },
+    {
+      "day": 19,
+      "completed": 673,
+      "cancellations": 5,
+      "memories": 49,
+      "events": 48,
+      "mindBytes": 34968,
+      "everydayBytes": 10287
+    },
+    {
+      "day": 20,
+      "completed": 708,
+      "cancellations": 5,
+      "memories": 51,
+      "events": 48,
+      "mindBytes": 35487,
+      "everydayBytes": 10273
+    }
+  ]
+}

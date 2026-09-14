@@ -1,0 +1,17 @@
+{
+  "mobile": {
+    "status": "failed",
+    "stage": "startup wait",
+    "timeoutSeconds": 30
+  },
+  "avatarFirstAttempt": {
+    "status": "failed",
+    "stage": "Taylor click without explicitly opening picker",
+    "timeoutSeconds": 30
+  },
+  "avatarRetry": {
+    "status": "failed",
+    "stage": "startup wait",
+    "timeoutSeconds": 60
+  }
+}

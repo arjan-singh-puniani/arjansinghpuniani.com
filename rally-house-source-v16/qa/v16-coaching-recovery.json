@@ -1,0 +1,121 @@
+[
+  {
+    "at": 0,
+    "event": "request",
+    "data": {
+      "key": "dropFeed",
+      "queued": null,
+      "active": []
+    }
+  },
+  {
+    "at": 0,
+    "event": "reserved",
+    "data": {
+      "id": "activity-1",
+      "key": "dropFeed",
+      "targets": [
+        {
+          "x": 1,
+          "y": 0,
+          "z": -5
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "z": 5
+        }
+      ]
+    }
+  },
+  {
+    "at": 65.01666666666426,
+    "event": "cancelled",
+    "data": {
+      "id": "activity-1",
+      "retry": true,
+      "phase": "traveling",
+      "seconds": 65.01666666666426,
+      "positions": [
+        {
+          "id": "coach",
+          "position": {
+            "x": -9,
+            "y": 0,
+            "z": -4.5
+          },
+          "path": [],
+          "index": 0
+        },
+        {
+          "id": "mika",
+          "position": {
+            "x": -6.5,
+            "y": 0,
+            "z": 8.7
+          },
+          "path": [
+            {
+              "x": 1,
+              "y": 0,
+              "z": 5
+            }
+          ],
+          "index": 1
+        }
+      ]
+    }
+  },
+  {
+    "at": 65.01666666666426,
+    "event": "waiting",
+    "data": {
+      "key": "dropFeed",
+      "active": []
+    }
+  },
+  {
+    "at": 66.56666666666418,
+    "event": "request",
+    "data": {
+      "key": "dropFeed",
+      "queued": "dropFeed",
+      "active": []
+    }
+  },
+  {
+    "at": 66.56666666666418,
+    "event": "reserved",
+    "data": {
+      "id": "activity-3",
+      "key": "dropFeed",
+      "targets": [
+        {
+          "x": 1,
+          "y": 0,
+          "z": -5
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "z": 5
+        }
+      ]
+    }
+  },
+  {
+    "at": 80.1166666666634,
+    "event": "practice-start",
+    "data": {
+      "id": "activity-3"
+    }
+  },
+  {
+    "at": 104.3333333333287,
+    "event": "completed",
+    "data": {
+      "id": "activity-3",
+      "reps": 8
+    }
+  }
+]

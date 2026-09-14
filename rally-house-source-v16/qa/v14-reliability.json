@@ -1,0 +1,22 @@
+{
+  "graphics": {
+    "before": {
+      "coins": 317,
+      "progress": 28
+    },
+    "after": {
+      "coins": 317,
+      "progress": 28
+    }
+  },
+  "partial": {
+    "count": 0,
+    "sequence": 2
+  },
+  "reset": {
+    "count": 0,
+    "sequence": 2,
+    "active": 0
+  },
+  "corruption": "rejected visibly"
+}

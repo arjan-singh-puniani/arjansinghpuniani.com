@@ -1,0 +1,2796 @@
+{
+  "from": 7,
+  "to": 7,
+  "preserved": [
+    "progress",
+    "equipment",
+    "placements",
+    "relationships",
+    "activities",
+    "history",
+    "development",
+    "events",
+    "memory occurrence counts and important details"
+  ],
+  "before": {
+    "queuedLesson": null,
+    "mind": {
+      "time": 600.0000000000001,
+      "states": {
+        "coach": {
+          "energy": 1,
+          "confidence": 0.8530818378094661,
+          "social": 0.015000000000000124,
+          "practice": 0.6999999999999769,
+          "comfort": 0.9109489466482479,
+          "tone": 0.7908303283172171
+        },
+        "mika": {
+          "energy": 1,
+          "confidence": 0.656633455294899,
+          "social": 0.12000000000001576,
+          "practice": 0.38704999999999706,
+          "comfort": 0.8278629381558659,
+          "tone": 0.8668800708863822
+        },
+        "leo": {
+          "energy": 0.9392000000000126,
+          "confidence": 0.8428331901229589,
+          "social": 0.28500000000001247,
+          "practice": 0.4812999999999895,
+          "comfort": 0.7953900140269131,
+          "tone": 0.8159662622735493
+        },
+        "nia": {
+          "energy": 1,
+          "confidence": 0.78,
+          "social": 0.5400000000000298,
+          "practice": 0.4300000000000078,
+          "comfort": 0.9548577960812138,
+          "tone": 0.8680005715710615
+        }
+      },
+      "events": [
+        {
+          "id": "activity-4",
+          "kind": "match",
+          "subject": "mika",
+          "detail": "Mika 2 · Leo 2. They finish level. Longest rally: 25.",
+          "winner": "draw",
+          "importance": 0.8,
+          "day": 1,
+          "place": "court",
+          "at": 172.00000000000003,
+          "witnesses": [
+            "coach"
+          ],
+          "pending": []
+        }
+      ],
+      "memories": [
+        {
+          "id": "life-13:coach",
+          "person": "coach",
+          "topic": "care",
+          "place": "cafe",
+          "people": [
+            "nia",
+            "coach"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "June volunteered to help Nia with the last cup. Her first contribution was drinking it."
+        },
+        {
+          "id": "life-13:nia",
+          "person": "nia",
+          "topic": "care",
+          "place": "cafe",
+          "people": [
+            "nia",
+            "coach"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "June volunteered to help Nia with the last cup. Her first contribution was drinking it."
+        },
+        {
+          "id": "life-12:leo",
+          "person": "leo",
+          "topic": "advice",
+          "place": "stringing",
+          "people": [
+            "coach",
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation."
+        },
+        {
+          "id": "life-12:coach",
+          "person": "coach",
+          "topic": "advice",
+          "place": "stringing",
+          "people": [
+            "coach",
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation."
+        },
+        {
+          "id": "life-11:mika",
+          "person": "mika",
+          "topic": "company",
+          "place": "cafe",
+          "people": [
+            "nia",
+            "mika"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Nia learned that Mika likes extra foam. Mika stopped apologizing for asking."
+        },
+        {
+          "id": "life-11:nia",
+          "person": "nia",
+          "topic": "company",
+          "place": "cafe",
+          "people": [
+            "nia",
+            "mika"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Nia learned that Mika likes extra foam. Mika stopped apologizing for asking."
+        },
+        {
+          "id": "life-10:mika",
+          "person": "mika",
+          "topic": "practice",
+          "place": "warmup",
+          "people": [
+            "mika"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Mika quietly rehearsed her footwork, then gave herself permission to count the imperfect rep."
+        },
+        {
+          "id": "life-9:mika",
+          "person": "mika",
+          "topic": "practice",
+          "place": "warmup",
+          "people": [
+            "mika"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Mika spent a few quiet minutes rehearsing recovery footwork."
+        },
+        {
+          "id": "life-8:leo",
+          "person": "leo",
+          "topic": "practice",
+          "place": "warmup",
+          "people": [
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.78,
+          "detail": "Leo quietly worked on recovery after the completed game."
+        },
+        {
+          "id": "life-7:nia",
+          "person": "nia",
+          "topic": "care",
+          "place": "bonsai",
+          "people": [
+            "nia"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Nia tended the bonsai and took a moment to look at it."
+        },
+        {
+          "id": "activity-10:leo",
+          "person": "leo",
+          "topic": "company",
+          "place": "cafe",
+          "people": [
+            "mika",
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Mika and Leo shared a cup."
+        },
+        {
+          "id": "activity-10:mika",
+          "person": "mika",
+          "topic": "company",
+          "place": "cafe",
+          "people": [
+            "mika",
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Mika and Leo shared a cup."
+        },
+        {
+          "id": "life-6:leo",
+          "person": "leo",
+          "topic": "rest",
+          "place": "courtBench",
+          "people": [
+            "mika",
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts."
+        },
+        {
+          "id": "life-6:mika",
+          "person": "mika",
+          "topic": "rest",
+          "place": "courtBench",
+          "people": [
+            "mika",
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts."
+        },
+        {
+          "id": "life-5:mika",
+          "person": "mika",
+          "topic": "witness",
+          "place": "cafe",
+          "people": [
+            "coach",
+            "mika"
+          ],
+          "day": 1,
+          "importance": 0.78,
+          "detail": "June and Mika talked over a cup about the game."
+        },
+        {
+          "id": "life-5:coach",
+          "person": "coach",
+          "topic": "witness",
+          "place": "cafe",
+          "people": [
+            "coach",
+            "mika"
+          ],
+          "day": 1,
+          "importance": 0.78,
+          "detail": "June and Mika talked over a cup about the game."
+        },
+        {
+          "id": "activity-6:coach",
+          "person": "coach",
+          "topic": "company",
+          "place": "cafe",
+          "people": [
+            "nia",
+            "coach"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Nia and Coach June shared a cup."
+        },
+        {
+          "id": "activity-6:nia",
+          "person": "nia",
+          "topic": "company",
+          "place": "cafe",
+          "people": [
+            "nia",
+            "coach"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Nia and Coach June shared a cup."
+        },
+        {
+          "id": "life-4:mika",
+          "person": "mika",
+          "topic": "practice",
+          "place": "warmup",
+          "people": [
+            "mika"
+          ],
+          "day": 1,
+          "importance": 0.78,
+          "detail": "Mika quietly worked on recovery after the completed game."
+        },
+        {
+          "id": "activity-4:seen:coach",
+          "person": "coach",
+          "topic": "witness",
+          "place": "court",
+          "people": [
+            "coach",
+            "mika"
+          ],
+          "day": 1,
+          "importance": 0.72,
+          "detail": "Saw: Mika 2 · Leo 2. They finish level. Longest rally: 25."
+        },
+        {
+          "id": "activity-4:participant:leo",
+          "person": "leo",
+          "topic": "match",
+          "place": "court",
+          "people": [
+            "mika",
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.8,
+          "detail": "Mika 2 · Leo 2. They finish level. Longest rally: 25."
+        },
+        {
+          "id": "activity-4",
+          "person": "mika",
+          "topic": "match",
+          "place": "court",
+          "people": [
+            "mika",
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.8,
+          "detail": "Mika 2 · Leo 2. They finish level. Longest rally: 25."
+        },
+        {
+          "id": "life-3:coach",
+          "person": "coach",
+          "topic": "witness",
+          "place": "courtBench",
+          "people": [
+            "coach"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "June made time to watch the game."
+        },
+        {
+          "id": "life-2:mika",
+          "person": "mika",
+          "topic": "practice",
+          "place": "warmup",
+          "people": [
+            "mika"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Mika quietly rehearsed her footwork, then gave herself permission to count the imperfect rep."
+        },
+        {
+          "id": "life-1:leo",
+          "person": "leo",
+          "topic": "practice",
+          "place": "warmup",
+          "people": [
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Leo spent a few quiet minutes rehearsing recovery footwork."
+        }
+      ],
+      "receipts": [
+        "life-1",
+        "life-2",
+        "life-3",
+        "life-4",
+        "activity-6",
+        "life-5",
+        "life-6",
+        "activity-10",
+        "life-7",
+        "life-8",
+        "life-9",
+        "life-10",
+        "life-11",
+        "life-12",
+        "life-13"
+      ],
+      "recent": [
+        {
+          "scene": "closing",
+          "pair": "coach|nia",
+          "place": "cafe",
+          "motif": "closing",
+          "at": 576.0000000000001
+        },
+        {
+          "scene": "gear-advice",
+          "pair": "coach|leo",
+          "place": "stringing",
+          "motif": "gear-advice",
+          "at": 538.0000000000001
+        },
+        {
+          "scene": "usual",
+          "pair": "mika|nia",
+          "place": "cafe",
+          "motif": "usual",
+          "at": 495.00000000000006
+        },
+        {
+          "scene": "counting",
+          "pair": "mika",
+          "place": "warmup",
+          "motif": "counting",
+          "at": 453.00000000000006
+        },
+        {
+          "scene": "practice",
+          "pair": "mika",
+          "place": "warmup",
+          "motif": "recovery-rehearsal",
+          "at": 413.00000000000006
+        },
+        {
+          "scene": "after-result",
+          "pair": "leo",
+          "place": "warmup",
+          "motif": "reset-after-game",
+          "at": 370.00000000000006
+        },
+        {
+          "scene": "care",
+          "pair": "nia",
+          "place": "bonsai",
+          "motif": "plant-care",
+          "at": 333.00000000000006
+        },
+        {
+          "scene": "tea",
+          "pair": "leo|mika",
+          "place": "cafe",
+          "motif": "tea",
+          "at": 318.00000000000006
+        },
+        {
+          "scene": "bench-room",
+          "pair": "leo|mika",
+          "place": "courtBench",
+          "motif": "bench-room",
+          "at": 282.00000000000006
+        },
+        {
+          "scene": "witness-followup",
+          "pair": "coach|mika",
+          "place": "cafe",
+          "motif": "reassure",
+          "at": 243.00000000000003
+        },
+        {
+          "scene": "tea",
+          "pair": "coach|nia",
+          "place": "cafe",
+          "motif": "tea",
+          "at": 207.00000000000003
+        },
+        {
+          "scene": "after-result",
+          "pair": "mika",
+          "place": "warmup",
+          "motif": "reset-after-game",
+          "at": 206.00000000000003
+        },
+        {
+          "scene": "watch-court",
+          "pair": "coach",
+          "place": "courtBench",
+          "motif": "pay-attention",
+          "at": 172.00000000000003
+        },
+        {
+          "scene": "counting",
+          "pair": "mika",
+          "place": "warmup",
+          "motif": "counting",
+          "at": 82.00000000000003
+        },
+        {
+          "scene": "practice",
+          "pair": "leo",
+          "place": "warmup",
+          "motif": "recovery-rehearsal",
+          "at": 48.00000000000003
+        }
+      ],
+      "rituals": {
+        "rehearse-leo": 1,
+        "watch-coach": 1,
+        "nia-tends": 1,
+        "rehearse-mika": 1
+      },
+      "culture": {
+        "training": 0.3750000000000001,
+        "social": 0.3500000000000001,
+        "calm": 0.225,
+        "competition": 0.245,
+        "care": 0.25
+      },
+      "philosophy": {},
+      "possessions": [
+        {
+          "id": "june-notebook",
+          "owner": "coach",
+          "kind": "notebook",
+          "uses": 0,
+          "lastPlace": "carried"
+        },
+        {
+          "id": "june-cup",
+          "owner": "coach",
+          "kind": "cup",
+          "uses": 0,
+          "lastPlace": "carried"
+        },
+        {
+          "id": "mika-racket",
+          "owner": "mika",
+          "kind": "racket",
+          "uses": 4,
+          "lastPlace": "warmup"
+        },
+        {
+          "id": "leo-racket",
+          "owner": "leo",
+          "kind": "racket",
+          "uses": 3,
+          "lastPlace": "stringing"
+        },
+        {
+          "id": "nia-can",
+          "owner": "nia",
+          "kind": "wateringCan",
+          "uses": 2,
+          "lastPlace": "cafe"
+        }
+      ]
+    },
+    "clock": {
+      "minutes": 1160,
+      "day": 1,
+      "paused": true,
+      "speed": 1
+    },
+    "coins": 195,
+    "stars": 3,
+    "coachXP": 14,
+    "mikaProgress": 28,
+    "weather": "clear",
+    "placements": [
+      {
+        "type": "bench",
+        "x": -5,
+        "z": 2,
+        "id": "furniture-1"
+      }
+    ],
+    "relationships": {
+      "@coach|mika": {
+        "familiarity": 13,
+        "warmth": 16,
+        "trust": 14,
+        "rivalry": 0,
+        "memories": [
+          "Day 1 · June and Mika talked over a cup about the game."
+        ],
+        "events": [
+          {
+            "id": "1:listen:coach-mika:June and Mika talked over a cup about the game.",
+            "type": "listen",
+            "day": 1,
+            "people": [
+              "coach",
+              "mika"
+            ],
+            "tags": [
+              "listen"
+            ],
+            "sentiment": 0.75,
+            "strength": 0.65,
+            "detail": "June and Mika talked over a cup about the game."
+          }
+        ]
+      },
+      "@coach|leo": {
+        "familiarity": 13,
+        "warmth": 15,
+        "trust": 15,
+        "rivalry": 0,
+        "memories": [
+          "Day 1 · Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation."
+        ],
+        "events": [
+          {
+            "id": "1:coach:coach-leo:Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation.",
+            "type": "coach",
+            "day": 1,
+            "people": [
+              "coach",
+              "leo"
+            ],
+            "tags": [
+              "coach",
+              "tennis",
+              "learning"
+            ],
+            "sentiment": 0.75,
+            "strength": 0.85,
+            "detail": "Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation."
+          }
+        ]
+      },
+      "@coach|nia": {
+        "familiarity": 18,
+        "warmth": 22,
+        "trust": 16,
+        "rivalry": 0,
+        "memories": [
+          "Day 1 · June volunteered to help Nia with the last cup. Her first contribution was drinking it.",
+          "Day 1 · Nia and Coach June shared a cup."
+        ],
+        "events": [
+          {
+            "id": "1:listen:nia-coach:June volunteered to help Nia with the last cup. Her first contribution was drinking it.",
+            "type": "listen",
+            "day": 1,
+            "people": [
+              "nia",
+              "coach"
+            ],
+            "tags": [
+              "listen"
+            ],
+            "sentiment": 0.75,
+            "strength": 0.65,
+            "detail": "June volunteered to help Nia with the last cup. Her first contribution was drinking it."
+          },
+          {
+            "id": "1:matcha:nia-coach:Nia and Coach June shared a cup.",
+            "type": "matcha",
+            "day": 1,
+            "people": [
+              "nia",
+              "coach"
+            ],
+            "tags": [
+              "matcha",
+              "social",
+              "ritual"
+            ],
+            "sentiment": 0.75,
+            "strength": 0.65,
+            "detail": "Nia and Coach June shared a cup."
+          }
+        ]
+      },
+      "@leo|mika": {
+        "familiarity": 22,
+        "warmth": 24,
+        "trust": 18,
+        "rivalry": 7,
+        "memories": [
+          "Day 1 · Mika and Leo shared a cup.",
+          "Day 1 · Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts.",
+          "Day 1 · Mika 2 · Leo 2. They finish level. Longest rally: 25."
+        ],
+        "events": [
+          {
+            "id": "1:matcha:mika-leo:Mika and Leo shared a cup.",
+            "type": "matcha",
+            "day": 1,
+            "people": [
+              "mika",
+              "leo"
+            ],
+            "tags": [
+              "matcha",
+              "social",
+              "ritual"
+            ],
+            "sentiment": 0.75,
+            "strength": 0.65,
+            "detail": "Mika and Leo shared a cup."
+          },
+          {
+            "id": "1:listen:mika-leo:Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts.",
+            "type": "listen",
+            "day": 1,
+            "people": [
+              "mika",
+              "leo"
+            ],
+            "tags": [
+              "listen"
+            ],
+            "sentiment": 0.75,
+            "strength": 0.65,
+            "detail": "Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts."
+          },
+          {
+            "id": "1:match_result:mika-leo:Mika 2 · Leo 2. They finish level. Longest rally: 25.",
+            "type": "match_result",
+            "day": 1,
+            "people": [
+              "mika",
+              "leo"
+            ],
+            "tags": [
+              "tennis",
+              "match",
+              "rematch"
+            ],
+            "strength": 0.8,
+            "sentiment": 0.6,
+            "place": "court",
+            "subject": "draw",
+            "detail": "Mika 2 · Leo 2. They finish level. Longest rally: 25."
+          },
+          {
+            "id": "1:rally:mika-leo:Mika 2 · Leo 2. They finish level. Longest rally: 25.",
+            "type": "rally",
+            "day": 1,
+            "people": [
+              "mika",
+              "leo"
+            ],
+            "tags": [
+              "rally",
+              "tennis",
+              "shared-court"
+            ],
+            "sentiment": 0.45,
+            "strength": 0.65,
+            "detail": "Mika 2 · Leo 2. They finish level. Longest rally: 25."
+          }
+        ]
+      },
+      "@mika|nia": {
+        "familiarity": 13,
+        "warmth": 16,
+        "trust": 14,
+        "rivalry": 0,
+        "memories": [
+          "Day 1 · Nia learned that Mika likes extra foam. Mika stopped apologizing for asking."
+        ],
+        "events": [
+          {
+            "id": "1:listen:nia-mika:Nia learned that Mika likes extra foam. Mika stopped apologizing for asking.",
+            "type": "listen",
+            "day": 1,
+            "people": [
+              "nia",
+              "mika"
+            ],
+            "tags": [
+              "listen"
+            ],
+            "sentiment": 0.75,
+            "strength": 0.65,
+            "detail": "Nia learned that Mika likes extra foam. Mika stopped apologizing for asking."
+          }
+        ]
+      },
+      "@leo|nia": {
+        "familiarity": 10,
+        "warmth": 12,
+        "trust": 10,
+        "rivalry": 0,
+        "memories": [],
+        "events": []
+      },
+      "coach": {
+        "familiarity": 10,
+        "warmth": 12,
+        "trust": 10,
+        "rivalry": 0,
+        "memories": [],
+        "events": []
+      },
+      "mika": {
+        "familiarity": 10,
+        "warmth": 12,
+        "trust": 10,
+        "rivalry": 0,
+        "memories": [],
+        "events": []
+      },
+      "leo": {
+        "familiarity": 10,
+        "warmth": 12,
+        "trust": 10,
+        "rivalry": 0,
+        "memories": [],
+        "events": []
+      },
+      "nia": {
+        "familiarity": 10,
+        "warmth": 12,
+        "trust": 10,
+        "rivalry": 0,
+        "memories": [],
+        "events": []
+      }
+    },
+    "dailyGoals": {
+      "day": 1,
+      "goals": [
+        {
+          "kind": "greet",
+          "label": "Say hello to someone",
+          "reward": 4,
+          "done": false
+        },
+        {
+          "kind": "coach",
+          "label": "Coach one focused block",
+          "reward": 8,
+          "done": false
+        },
+        {
+          "kind": "matcha",
+          "label": "Make a matcha",
+          "reward": 4,
+          "done": false
+        }
+      ],
+      "claimed": false
+    },
+    "clubLife": {
+      "seen": [],
+      "memories": [
+        "Day 1 · You added a bench to the academy.",
+        "Day 1 · June volunteered to help Nia with the last cup. Her first contribution was drinking it.",
+        "Day 1 · Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation.",
+        "Day 1 · Nia learned that Mika likes extra foam. Mika stopped apologizing for asking.",
+        "Day 1 · Mika quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+        "Day 1 · Mika spent a few quiet minutes rehearsing recovery footwork.",
+        "Day 1 · Leo quietly worked on recovery after the completed game.",
+        "Day 1 · Nia tended the bonsai and took a moment to look at it.",
+        "Day 1 · Mika and Leo shared a cup.",
+        "Day 1 · Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts.",
+        "Day 1 · June and Mika talked over a cup about the game.",
+        "Day 1 · Nia and Coach June shared a cup.",
+        "Day 1 · Mika quietly worked on recovery after the completed game.",
+        "Day 1 · Mika 2 · Leo 2. They finish level. Longest rally: 25.",
+        "Day 1 · June made time to watch the game.",
+        "Day 1 · Leo spent a few quiet minutes rehearsing recovery footwork.",
+        "Day 1 · June and Mika finished a practice rally of 15 contacts."
+      ]
+    },
+    "equipment": {
+      "frame": "Cedar 98",
+      "tension": 52,
+      "string": "Soft poly"
+    },
+    "player": {
+      "x": -11.9,
+      "z": 8.1
+    },
+    "bestRally": 15,
+    "emergentSocial": {
+      "nextAllowed": 548,
+      "day": 1,
+      "seen": []
+    },
+    "activities": {
+      "sequence": 18,
+      "history": [
+        {
+          "id": "activity-17",
+          "kind": "everyday",
+          "participants": [
+            "nia",
+            "coach"
+          ],
+          "resource": "cafe-table",
+          "phase": "completed",
+          "elapsed": 24.316666666666567,
+          "phaseTime": 0,
+          "detail": "The last cup takes two people",
+          "result": "June volunteered to help Nia with the last cup. Her first contribution was drinking it."
+        },
+        {
+          "id": "activity-16",
+          "kind": "everyday",
+          "participants": [
+            "coach",
+            "leo"
+          ],
+          "resource": "place-stringing",
+          "phase": "completed",
+          "elapsed": 30.53333333333288,
+          "phaseTime": 0,
+          "detail": "Advice Leo almost takes",
+          "result": "Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation."
+        },
+        {
+          "id": "activity-15",
+          "kind": "everyday",
+          "participants": [
+            "nia",
+            "mika"
+          ],
+          "resource": "cafe-table",
+          "phase": "completed",
+          "elapsed": 29.13333333333296,
+          "phaseTime": 0,
+          "detail": "Nia learns Mika’s usual",
+          "result": "Nia learned that Mika likes extra foam. Mika stopped apologizing for asking."
+        },
+        {
+          "id": "activity-14",
+          "kind": "everyday",
+          "participants": [
+            "mika"
+          ],
+          "resource": "place-warmup",
+          "phase": "completed",
+          "elapsed": 26.033333333333136,
+          "phaseTime": 0,
+          "detail": "Mika starts the count again",
+          "result": "Mika quietly rehearsed her footwork, then gave herself permission to count the imperfect rep."
+        },
+        {
+          "id": "activity-13",
+          "kind": "everyday",
+          "participants": [
+            "mika"
+          ],
+          "resource": "place-warmup",
+          "phase": "completed",
+          "elapsed": 30.73333333333287,
+          "phaseTime": 0,
+          "detail": "Mika gives herself a slower count",
+          "result": "Mika spent a few quiet minutes rehearsing recovery footwork."
+        },
+        {
+          "id": "activity-12",
+          "kind": "everyday",
+          "participants": [
+            "leo"
+          ],
+          "resource": "place-warmup",
+          "phase": "completed",
+          "elapsed": 23.533333333333278,
+          "phaseTime": 0,
+          "detail": "Leo returns to the small things",
+          "result": "Leo quietly worked on recovery after the completed game."
+        },
+        {
+          "id": "activity-11",
+          "kind": "everyday",
+          "participants": [
+            "nia"
+          ],
+          "resource": "place-bonsai",
+          "phase": "completed",
+          "elapsed": 39.51666666666571,
+          "phaseTime": 0,
+          "detail": "Nia checks the quiet corner",
+          "result": "Nia tended the bonsai and took a moment to look at it."
+        },
+        {
+          "id": "activity-10",
+          "kind": "tea",
+          "participants": [
+            "mika",
+            "leo"
+          ],
+          "resource": "cafe-table",
+          "phase": "completed",
+          "elapsed": 26.266666666666456,
+          "phaseTime": 0,
+          "detail": "Mika and Leo shared a break",
+          "result": "Mika and Leo shared a cup."
+        },
+        {
+          "id": "activity-9",
+          "kind": "everyday",
+          "participants": [
+            "mika",
+            "leo"
+          ],
+          "resource": "place-courtBench",
+          "phase": "completed",
+          "elapsed": 26.183333333333128,
+          "phaseTime": 0,
+          "detail": "Making room, eventually",
+          "result": "Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts."
+        },
+        {
+          "id": "activity-8",
+          "kind": "everyday",
+          "participants": [
+            "coach",
+            "mika"
+          ],
+          "resource": "cafe-table",
+          "phase": "completed",
+          "elapsed": 23.966666666666587,
+          "phaseTime": 0,
+          "detail": "June remembers what they saw",
+          "result": "June and Mika talked over a cup about the game."
+        },
+        {
+          "id": "activity-6",
+          "kind": "tea",
+          "participants": [
+            "nia",
+            "coach"
+          ],
+          "resource": "cafe-table",
+          "phase": "completed",
+          "elapsed": 33.683333333332705,
+          "phaseTime": 0,
+          "detail": "Nia and Coach June shared a break",
+          "result": "Nia and Coach June shared a cup."
+        },
+        {
+          "id": "activity-7",
+          "kind": "everyday",
+          "participants": [
+            "mika"
+          ],
+          "resource": "place-warmup",
+          "phase": "completed",
+          "elapsed": 20.76666666666677,
+          "phaseTime": 0,
+          "detail": "Mika returns to the small things",
+          "result": "Mika quietly worked on recovery after the completed game."
+        },
+        {
+          "id": "activity-4",
+          "kind": "match",
+          "participants": [
+            "leo",
+            "mika"
+          ],
+          "resource": "court",
+          "phase": "completed",
+          "elapsed": 90.26666666666283,
+          "phaseTime": 0,
+          "detail": "First shared court",
+          "result": "Mika 2 · Leo 2. They finish level. Longest rally: 25."
+        },
+        {
+          "id": "activity-5",
+          "kind": "everyday",
+          "participants": [
+            "coach"
+          ],
+          "resource": "place-courtBench",
+          "phase": "completed",
+          "elapsed": 77.74999999999687,
+          "phaseTime": 0,
+          "detail": "June watches without interrupting",
+          "result": "June made time to watch the game."
+        },
+        {
+          "id": "activity-3",
+          "kind": "everyday",
+          "participants": [
+            "mika"
+          ],
+          "resource": "place-warmup",
+          "phase": "completed",
+          "elapsed": 22.016666666666698,
+          "phaseTime": 0,
+          "detail": "Mika starts the count again",
+          "result": "Mika quietly rehearsed her footwork, then gave herself permission to count the imperfect rep."
+        },
+        {
+          "id": "activity-2",
+          "kind": "everyday",
+          "participants": [
+            "leo"
+          ],
+          "resource": "place-warmup",
+          "phase": "completed",
+          "elapsed": 39.93333333333235,
+          "phaseTime": 0,
+          "detail": "Leo works on the unglamorous part",
+          "result": "Leo spent a few quiet minutes rehearsing recovery footwork."
+        },
+        {
+          "id": "activity-1",
+          "kind": "observe",
+          "participants": [
+            "coach",
+            "mika"
+          ],
+          "resource": "court",
+          "phase": "completed",
+          "elapsed": 25.916666666666476,
+          "phaseTime": 0,
+          "detail": "Morning practice",
+          "result": "June and Mika finished a practice rally of 15 contacts."
+        }
+      ]
+    },
+    "history": {
+      "matches": [
+        {
+          "id": "activity-4",
+          "day": 1,
+          "winner": "draw",
+          "score": {
+            "leo": 2,
+            "mika": 2
+          },
+          "longest": 25,
+          "contacts": 60,
+          "errors": {
+            "leo": 2,
+            "mika": 2
+          }
+        }
+      ],
+      "intentions": [
+        {
+          "id": "rematch",
+          "person": "mika",
+          "kind": "rematch",
+          "notBefore": 3420,
+          "text": "Mika wants another chance with Leo tomorrow."
+        }
+      ],
+      "firstMikaWin": false,
+      "breakthrough": false,
+      "nextSocial": 2352.75,
+      "nextObject": 2600
+    },
+    "affordances": {
+      "objects": {
+        "furniture-1": {
+          "placedDay": 1,
+          "visits": {},
+          "memories": [],
+          "favoriteOf": []
+        }
+      },
+      "sequence": 1
+    },
+    "development": {
+      "preparation": 0,
+      "recovery": 0
+    },
+    "settings": {
+      "volume": 0.65,
+      "visuals": "auto",
+      "reducedMotion": false
+    },
+    "everyday": {
+      "time": 600.0333333331163,
+      "next": 622.8999999997912,
+      "sequence": 14,
+      "cooldowns": {
+        "rehearse-leo": 228.01666666666523,
+        "counting": 673.5833333332495,
+        "watch-court-coach": 372.55000000002946,
+        "after-activity-4-mika": 386.316666666723,
+        "witness-activity-4-coach": 423.80000000008613,
+        "bench-room": 502.31666666673857,
+        "nia-tends": 513.9666666666916,
+        "after-activity-4-leo": 550.4166666666584,
+        "rehearse-mika": 593.9166666666189,
+        "usual": 714.9999999998785,
+        "gear-advice": 758.7499999998387,
+        "closing": 796.899999999804
+      },
+      "counts": {
+        "rehearse-leo": 1,
+        "counting": 2,
+        "watch-court-coach": 1,
+        "after-activity-4-mika": 1,
+        "witness-activity-4-coach": 1,
+        "bench-room": 1,
+        "nia-tends": 1,
+        "after-activity-4-leo": 1,
+        "rehearse-mika": 1,
+        "usual": 1,
+        "gear-advice": 1,
+        "closing": 1
+      },
+      "history": [
+        {
+          "id": "life-13",
+          "scene": "closing",
+          "title": "The last cup takes two people",
+          "people": [
+            "nia",
+            "coach"
+          ],
+          "day": 1,
+          "at": 576.899999999804,
+          "memory": "June volunteered to help Nia with the last cup. Her first contribution was drinking it.",
+          "place": "cafe",
+          "motif": "closing"
+        },
+        {
+          "id": "life-12",
+          "scene": "gear-advice",
+          "title": "Advice Leo almost takes",
+          "people": [
+            "coach",
+            "leo"
+          ],
+          "day": 1,
+          "at": 538.7499999998387,
+          "memory": "Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation.",
+          "place": "stringing",
+          "motif": "gear-advice"
+        },
+        {
+          "id": "life-11",
+          "scene": "usual",
+          "title": "Nia learns Mika’s usual",
+          "people": [
+            "nia",
+            "mika"
+          ],
+          "day": 1,
+          "at": 494.99999999987847,
+          "memory": "Nia learned that Mika likes extra foam. Mika stopped apologizing for asking.",
+          "place": "cafe",
+          "motif": "usual"
+        },
+        {
+          "id": "life-10",
+          "scene": "counting",
+          "title": "Mika starts the count again",
+          "people": [
+            "mika"
+          ],
+          "day": 1,
+          "at": 453.58333333324947,
+          "memory": "Mika quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+          "place": "warmup",
+          "motif": "counting"
+        },
+        {
+          "id": "life-9",
+          "scene": "rehearse-mika",
+          "title": "Mika gives herself a slower count",
+          "people": [
+            "mika"
+          ],
+          "day": 1,
+          "at": 413.9166666666189,
+          "memory": "Mika spent a few quiet minutes rehearsing recovery footwork.",
+          "place": "warmup",
+          "motif": "recovery-rehearsal"
+        },
+        {
+          "id": "life-8",
+          "scene": "after-activity-4-leo",
+          "title": "Leo returns to the small things",
+          "people": [
+            "leo"
+          ],
+          "day": 1,
+          "at": 370.41666666665844,
+          "memory": "Leo quietly worked on recovery after the completed game.",
+          "place": "warmup",
+          "motif": "reset-after-game"
+        },
+        {
+          "id": "life-7",
+          "scene": "nia-tends",
+          "title": "Nia checks the quiet corner",
+          "people": [
+            "nia"
+          ],
+          "day": 1,
+          "at": 333.9666666666916,
+          "memory": "Nia tended the bonsai and took a moment to look at it.",
+          "place": "bonsai",
+          "motif": "plant-care"
+        },
+        {
+          "id": "life-6",
+          "scene": "bench-room",
+          "title": "Making room, eventually",
+          "people": [
+            "mika",
+            "leo"
+          ],
+          "day": 1,
+          "at": 282.31666666673857,
+          "memory": "Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts.",
+          "place": "courtBench",
+          "motif": "bench-room"
+        },
+        {
+          "id": "life-5",
+          "scene": "witness-activity-4-coach",
+          "title": "June remembers what they saw",
+          "people": [
+            "coach",
+            "mika"
+          ],
+          "day": 1,
+          "at": 243.80000000008616,
+          "memory": "June and Mika talked over a cup about the game.",
+          "place": "cafe",
+          "motif": "reassure"
+        },
+        {
+          "id": "life-4",
+          "scene": "after-activity-4-mika",
+          "title": "Mika returns to the small things",
+          "people": [
+            "mika"
+          ],
+          "day": 1,
+          "at": 206.316666666723,
+          "memory": "Mika quietly worked on recovery after the completed game.",
+          "place": "warmup",
+          "motif": "reset-after-game"
+        },
+        {
+          "id": "life-3",
+          "scene": "watch-court-coach",
+          "title": "June watches without interrupting",
+          "people": [
+            "coach"
+          ],
+          "day": 1,
+          "at": 172.55000000002946,
+          "memory": "June made time to watch the game.",
+          "interruptedBy": "rally",
+          "place": "courtBench",
+          "motif": "pay-attention"
+        },
+        {
+          "id": "life-2",
+          "scene": "counting",
+          "title": "Mika starts the count again",
+          "people": [
+            "mika"
+          ],
+          "day": 1,
+          "at": 82.53333333332994,
+          "memory": "Mika quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+          "place": "warmup",
+          "motif": "counting"
+        },
+        {
+          "id": "life-1",
+          "scene": "rehearse-leo",
+          "title": "Leo works on the unglamorous part",
+          "people": [
+            "leo"
+          ],
+          "day": 1,
+          "at": 48.01666666666522,
+          "memory": "Leo spent a few quiet minutes rehearsing recovery footwork.",
+          "place": "warmup",
+          "motif": "recovery-rehearsal"
+        }
+      ],
+      "pending": [],
+      "lastMatch": ""
+    }
+  },
+  "after": {
+    "playerAvatar": null,
+    "queuedLesson": null,
+    "mind": {
+      "time": 600.0000000000001,
+      "states": {
+        "coach": {
+          "energy": 1,
+          "confidence": 0.8530818378094661,
+          "social": 0.015000000000000124,
+          "practice": 0.6999999999999769,
+          "comfort": 0.9109489466482479,
+          "tone": 0.7908303283172171
+        },
+        "mika": {
+          "energy": 1,
+          "confidence": 0.656633455294899,
+          "social": 0.12000000000001576,
+          "practice": 0.38704999999999706,
+          "comfort": 0.8278629381558659,
+          "tone": 0.8668800708863822
+        },
+        "leo": {
+          "energy": 0.9392000000000126,
+          "confidence": 0.8428331901229589,
+          "social": 0.28500000000001247,
+          "practice": 0.4812999999999895,
+          "comfort": 0.7953900140269131,
+          "tone": 0.8159662622735493
+        },
+        "nia": {
+          "energy": 1,
+          "confidence": 0.78,
+          "social": 0.5400000000000298,
+          "practice": 0.4300000000000078,
+          "comfort": 0.9548577960812138,
+          "tone": 0.8680005715710615
+        }
+      },
+      "events": [
+        {
+          "id": "activity-4",
+          "kind": "match",
+          "subject": "mika",
+          "detail": "Mika 2 · Leo 2. They finish level. Longest rally: 25.",
+          "winner": "draw",
+          "importance": 0.8,
+          "day": 1,
+          "place": "court",
+          "at": 172.00000000000003,
+          "witnesses": [
+            "coach"
+          ],
+          "pending": []
+        }
+      ],
+      "memories": [
+        {
+          "id": "life-1:leo",
+          "person": "leo",
+          "topic": "practice",
+          "place": "warmup",
+          "people": [
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Leo spent a few quiet minutes rehearsing recovery footwork.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "life-2:mika",
+          "person": "mika",
+          "topic": "practice",
+          "place": "warmup",
+          "people": [
+            "mika"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Returned here to rehearse the small things.",
+          "memoryClass": "ordinary",
+          "count": 3
+        },
+        {
+          "id": "life-3:coach",
+          "person": "coach",
+          "topic": "witness",
+          "place": "courtBench",
+          "people": [
+            "coach"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "June made time to watch the game.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "activity-4",
+          "person": "mika",
+          "topic": "match",
+          "place": "court",
+          "people": [
+            "mika",
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.8,
+          "detail": "Mika 2 · Leo 2. They finish level. Longest rally: 25.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "activity-4:participant:leo",
+          "person": "leo",
+          "topic": "match",
+          "place": "court",
+          "people": [
+            "mika",
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.8,
+          "detail": "Mika 2 · Leo 2. They finish level. Longest rally: 25.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "activity-4:seen:coach",
+          "person": "coach",
+          "topic": "witness",
+          "place": "court",
+          "people": [
+            "coach",
+            "mika"
+          ],
+          "day": 1,
+          "importance": 0.72,
+          "detail": "Saw: Mika 2 · Leo 2. They finish level. Longest rally: 25.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "life-4:mika",
+          "person": "mika",
+          "topic": "practice",
+          "place": "warmup",
+          "people": [
+            "mika"
+          ],
+          "day": 1,
+          "importance": 0.78,
+          "detail": "Mika quietly worked on recovery after the completed game.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "activity-6:nia",
+          "person": "nia",
+          "topic": "company",
+          "place": "cafe",
+          "people": [
+            "nia",
+            "coach"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Nia and Coach June shared a cup.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "activity-6:coach",
+          "person": "coach",
+          "topic": "company",
+          "place": "cafe",
+          "people": [
+            "nia",
+            "coach"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Nia and Coach June shared a cup.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "life-5:coach",
+          "person": "coach",
+          "topic": "witness",
+          "place": "cafe",
+          "people": [
+            "coach",
+            "mika"
+          ],
+          "day": 1,
+          "importance": 0.78,
+          "detail": "June and Mika talked over a cup about the game.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "life-5:mika",
+          "person": "mika",
+          "topic": "witness",
+          "place": "cafe",
+          "people": [
+            "coach",
+            "mika"
+          ],
+          "day": 1,
+          "importance": 0.78,
+          "detail": "June and Mika talked over a cup about the game.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "life-6:mika",
+          "person": "mika",
+          "topic": "rest",
+          "place": "courtBench",
+          "people": [
+            "mika",
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "life-6:leo",
+          "person": "leo",
+          "topic": "rest",
+          "place": "courtBench",
+          "people": [
+            "mika",
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "activity-10:mika",
+          "person": "mika",
+          "topic": "company",
+          "place": "cafe",
+          "people": [
+            "mika",
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Mika and Leo shared a cup.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "activity-10:leo",
+          "person": "leo",
+          "topic": "company",
+          "place": "cafe",
+          "people": [
+            "mika",
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Mika and Leo shared a cup.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "life-7:nia",
+          "person": "nia",
+          "topic": "care",
+          "place": "bonsai",
+          "people": [
+            "nia"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Nia tended the bonsai and took a moment to look at it.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "life-8:leo",
+          "person": "leo",
+          "topic": "practice",
+          "place": "warmup",
+          "people": [
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.78,
+          "detail": "Leo quietly worked on recovery after the completed game.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "life-11:nia",
+          "person": "nia",
+          "topic": "company",
+          "place": "cafe",
+          "people": [
+            "nia",
+            "mika"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Nia learned that Mika likes extra foam. Mika stopped apologizing for asking.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "life-11:mika",
+          "person": "mika",
+          "topic": "company",
+          "place": "cafe",
+          "people": [
+            "nia",
+            "mika"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Nia learned that Mika likes extra foam. Mika stopped apologizing for asking.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "life-12:coach",
+          "person": "coach",
+          "topic": "advice",
+          "place": "stringing",
+          "people": [
+            "coach",
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "life-12:leo",
+          "person": "leo",
+          "topic": "advice",
+          "place": "stringing",
+          "people": [
+            "coach",
+            "leo"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "life-13:nia",
+          "person": "nia",
+          "topic": "care",
+          "place": "cafe",
+          "people": [
+            "nia",
+            "coach"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "June volunteered to help Nia with the last cup. Her first contribution was drinking it.",
+          "memoryClass": "ordinary",
+          "count": 1
+        },
+        {
+          "id": "life-13:coach",
+          "person": "coach",
+          "topic": "care",
+          "place": "cafe",
+          "people": [
+            "nia",
+            "coach"
+          ],
+          "day": 1,
+          "importance": 0.4,
+          "detail": "June volunteered to help Nia with the last cup. Her first contribution was drinking it.",
+          "memoryClass": "ordinary",
+          "count": 1
+        }
+      ],
+      "receipts": [
+        "life-1",
+        "life-2",
+        "life-3",
+        "life-4",
+        "activity-6",
+        "life-5",
+        "life-6",
+        "activity-10",
+        "life-7",
+        "life-8",
+        "life-9",
+        "life-10",
+        "life-11",
+        "life-12",
+        "life-13"
+      ],
+      "recent": [
+        {
+          "scene": "closing",
+          "pair": "coach|nia",
+          "place": "cafe",
+          "motif": "closing",
+          "at": 576.0000000000001
+        },
+        {
+          "scene": "gear-advice",
+          "pair": "coach|leo",
+          "place": "stringing",
+          "motif": "gear-advice",
+          "at": 538.0000000000001
+        },
+        {
+          "scene": "usual",
+          "pair": "mika|nia",
+          "place": "cafe",
+          "motif": "usual",
+          "at": 495.00000000000006
+        },
+        {
+          "scene": "counting",
+          "pair": "mika",
+          "place": "warmup",
+          "motif": "counting",
+          "at": 453.00000000000006
+        },
+        {
+          "scene": "practice",
+          "pair": "mika",
+          "place": "warmup",
+          "motif": "recovery-rehearsal",
+          "at": 413.00000000000006
+        },
+        {
+          "scene": "after-result",
+          "pair": "leo",
+          "place": "warmup",
+          "motif": "reset-after-game",
+          "at": 370.00000000000006
+        },
+        {
+          "scene": "care",
+          "pair": "nia",
+          "place": "bonsai",
+          "motif": "plant-care",
+          "at": 333.00000000000006
+        },
+        {
+          "scene": "tea",
+          "pair": "leo|mika",
+          "place": "cafe",
+          "motif": "tea",
+          "at": 318.00000000000006
+        },
+        {
+          "scene": "bench-room",
+          "pair": "leo|mika",
+          "place": "courtBench",
+          "motif": "bench-room",
+          "at": 282.00000000000006
+        },
+        {
+          "scene": "witness-followup",
+          "pair": "coach|mika",
+          "place": "cafe",
+          "motif": "reassure",
+          "at": 243.00000000000003
+        },
+        {
+          "scene": "tea",
+          "pair": "coach|nia",
+          "place": "cafe",
+          "motif": "tea",
+          "at": 207.00000000000003
+        },
+        {
+          "scene": "after-result",
+          "pair": "mika",
+          "place": "warmup",
+          "motif": "reset-after-game",
+          "at": 206.00000000000003
+        },
+        {
+          "scene": "watch-court",
+          "pair": "coach",
+          "place": "courtBench",
+          "motif": "pay-attention",
+          "at": 172.00000000000003
+        },
+        {
+          "scene": "counting",
+          "pair": "mika",
+          "place": "warmup",
+          "motif": "counting",
+          "at": 82.00000000000003
+        },
+        {
+          "scene": "practice",
+          "pair": "leo",
+          "place": "warmup",
+          "motif": "recovery-rehearsal",
+          "at": 48.00000000000003
+        }
+      ],
+      "rituals": {
+        "rehearse-leo": 1,
+        "watch-coach": 1,
+        "nia-tends": 1,
+        "rehearse-mika": 1
+      },
+      "culture": {
+        "training": 0.3750000000000001,
+        "social": 0.3500000000000001,
+        "calm": 0.225,
+        "competition": 0.245,
+        "care": 0.25
+      },
+      "philosophy": {},
+      "possessions": [
+        {
+          "id": "june-notebook",
+          "owner": "coach",
+          "kind": "notebook",
+          "uses": 0,
+          "lastPlace": "carried"
+        },
+        {
+          "id": "june-cup",
+          "owner": "coach",
+          "kind": "cup",
+          "uses": 0,
+          "lastPlace": "carried"
+        },
+        {
+          "id": "mika-racket",
+          "owner": "mika",
+          "kind": "racket",
+          "uses": 4,
+          "lastPlace": "warmup"
+        },
+        {
+          "id": "leo-racket",
+          "owner": "leo",
+          "kind": "racket",
+          "uses": 3,
+          "lastPlace": "stringing"
+        },
+        {
+          "id": "nia-can",
+          "owner": "nia",
+          "kind": "wateringCan",
+          "uses": 2,
+          "lastPlace": "cafe"
+        }
+      ]
+    },
+    "clock": {
+      "minutes": 1160,
+      "day": 1,
+      "paused": true,
+      "speed": 1
+    },
+    "coins": 195,
+    "stars": 3,
+    "coachXP": 14,
+    "mikaProgress": 28,
+    "weather": "clear",
+    "placements": [
+      {
+        "type": "bench",
+        "x": -5,
+        "z": 2,
+        "id": "furniture-1"
+      }
+    ],
+    "relationships": {
+      "@coach|mika": {
+        "familiarity": 13,
+        "warmth": 16,
+        "trust": 14,
+        "rivalry": 0,
+        "memories": [
+          "Day 1 · June and Mika talked over a cup about the game."
+        ],
+        "events": [
+          {
+            "id": "1:listen:coach-mika:June and Mika talked over a cup about the game.",
+            "type": "listen",
+            "day": 1,
+            "people": [
+              "coach",
+              "mika"
+            ],
+            "tags": [
+              "listen"
+            ],
+            "sentiment": 0.75,
+            "strength": 0.65,
+            "detail": "June and Mika talked over a cup about the game."
+          }
+        ]
+      },
+      "@coach|leo": {
+        "familiarity": 13,
+        "warmth": 15,
+        "trust": 15,
+        "rivalry": 0,
+        "memories": [
+          "Day 1 · Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation."
+        ],
+        "events": [
+          {
+            "id": "1:coach:coach-leo:Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation.",
+            "type": "coach",
+            "day": 1,
+            "people": [
+              "coach",
+              "leo"
+            ],
+            "tags": [
+              "coach",
+              "tennis",
+              "learning"
+            ],
+            "sentiment": 0.75,
+            "strength": 0.85,
+            "detail": "Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation."
+          }
+        ]
+      },
+      "@coach|nia": {
+        "familiarity": 18,
+        "warmth": 22,
+        "trust": 16,
+        "rivalry": 0,
+        "memories": [
+          "Day 1 · June volunteered to help Nia with the last cup. Her first contribution was drinking it.",
+          "Day 1 · Nia and Coach June shared a cup."
+        ],
+        "events": [
+          {
+            "id": "1:listen:nia-coach:June volunteered to help Nia with the last cup. Her first contribution was drinking it.",
+            "type": "listen",
+            "day": 1,
+            "people": [
+              "nia",
+              "coach"
+            ],
+            "tags": [
+              "listen"
+            ],
+            "sentiment": 0.75,
+            "strength": 0.65,
+            "detail": "June volunteered to help Nia with the last cup. Her first contribution was drinking it."
+          },
+          {
+            "id": "1:matcha:nia-coach:Nia and Coach June shared a cup.",
+            "type": "matcha",
+            "day": 1,
+            "people": [
+              "nia",
+              "coach"
+            ],
+            "tags": [
+              "matcha",
+              "social",
+              "ritual"
+            ],
+            "sentiment": 0.75,
+            "strength": 0.65,
+            "detail": "Nia and Coach June shared a cup."
+          }
+        ]
+      },
+      "@leo|mika": {
+        "familiarity": 22,
+        "warmth": 24,
+        "trust": 18,
+        "rivalry": 7,
+        "memories": [
+          "Day 1 · Mika and Leo shared a cup.",
+          "Day 1 · Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts.",
+          "Day 1 · Mika 2 · Leo 2. They finish level. Longest rally: 25."
+        ],
+        "events": [
+          {
+            "id": "1:matcha:mika-leo:Mika and Leo shared a cup.",
+            "type": "matcha",
+            "day": 1,
+            "people": [
+              "mika",
+              "leo"
+            ],
+            "tags": [
+              "matcha",
+              "social",
+              "ritual"
+            ],
+            "sentiment": 0.75,
+            "strength": 0.65,
+            "detail": "Mika and Leo shared a cup."
+          },
+          {
+            "id": "1:listen:mika-leo:Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts.",
+            "type": "listen",
+            "day": 1,
+            "people": [
+              "mika",
+              "leo"
+            ],
+            "tags": [
+              "listen"
+            ],
+            "sentiment": 0.75,
+            "strength": 0.65,
+            "detail": "Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts."
+          },
+          {
+            "id": "1:match_result:mika-leo:Mika 2 · Leo 2. They finish level. Longest rally: 25.",
+            "type": "match_result",
+            "day": 1,
+            "people": [
+              "mika",
+              "leo"
+            ],
+            "tags": [
+              "tennis",
+              "match",
+              "rematch"
+            ],
+            "strength": 0.8,
+            "sentiment": 0.6,
+            "place": "court",
+            "subject": "draw",
+            "detail": "Mika 2 · Leo 2. They finish level. Longest rally: 25."
+          },
+          {
+            "id": "1:rally:mika-leo:Mika 2 · Leo 2. They finish level. Longest rally: 25.",
+            "type": "rally",
+            "day": 1,
+            "people": [
+              "mika",
+              "leo"
+            ],
+            "tags": [
+              "rally",
+              "tennis",
+              "shared-court"
+            ],
+            "sentiment": 0.45,
+            "strength": 0.65,
+            "detail": "Mika 2 · Leo 2. They finish level. Longest rally: 25."
+          }
+        ]
+      },
+      "@mika|nia": {
+        "familiarity": 13,
+        "warmth": 16,
+        "trust": 14,
+        "rivalry": 0,
+        "memories": [
+          "Day 1 · Nia learned that Mika likes extra foam. Mika stopped apologizing for asking."
+        ],
+        "events": [
+          {
+            "id": "1:listen:nia-mika:Nia learned that Mika likes extra foam. Mika stopped apologizing for asking.",
+            "type": "listen",
+            "day": 1,
+            "people": [
+              "nia",
+              "mika"
+            ],
+            "tags": [
+              "listen"
+            ],
+            "sentiment": 0.75,
+            "strength": 0.65,
+            "detail": "Nia learned that Mika likes extra foam. Mika stopped apologizing for asking."
+          }
+        ]
+      },
+      "@leo|nia": {
+        "familiarity": 10,
+        "warmth": 12,
+        "trust": 10,
+        "rivalry": 0,
+        "memories": [],
+        "events": []
+      },
+      "coach": {
+        "familiarity": 10,
+        "warmth": 12,
+        "trust": 10,
+        "rivalry": 0,
+        "memories": [],
+        "events": []
+      },
+      "mika": {
+        "familiarity": 10,
+        "warmth": 12,
+        "trust": 10,
+        "rivalry": 0,
+        "memories": [],
+        "events": []
+      },
+      "leo": {
+        "familiarity": 10,
+        "warmth": 12,
+        "trust": 10,
+        "rivalry": 0,
+        "memories": [],
+        "events": []
+      },
+      "nia": {
+        "familiarity": 10,
+        "warmth": 12,
+        "trust": 10,
+        "rivalry": 0,
+        "memories": [],
+        "events": []
+      }
+    },
+    "dailyGoals": {
+      "day": 1,
+      "goals": [
+        {
+          "kind": "greet",
+          "label": "Say hello to someone",
+          "reward": 4,
+          "done": false
+        },
+        {
+          "kind": "coach",
+          "label": "Coach one focused block",
+          "reward": 8,
+          "done": false
+        },
+        {
+          "kind": "matcha",
+          "label": "Make a matcha",
+          "reward": 4,
+          "done": false
+        }
+      ],
+      "claimed": false
+    },
+    "clubLife": {
+      "seen": [],
+      "memories": [
+        "Day 1 · You added a bench to the academy.",
+        "Day 1 · June volunteered to help Nia with the last cup. Her first contribution was drinking it.",
+        "Day 1 · Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation.",
+        "Day 1 · Nia learned that Mika likes extra foam. Mika stopped apologizing for asking.",
+        "Day 1 · Mika quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+        "Day 1 · Mika spent a few quiet minutes rehearsing recovery footwork.",
+        "Day 1 · Leo quietly worked on recovery after the completed game.",
+        "Day 1 · Nia tended the bonsai and took a moment to look at it.",
+        "Day 1 · Mika and Leo shared a cup.",
+        "Day 1 · Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts.",
+        "Day 1 · June and Mika talked over a cup about the game.",
+        "Day 1 · Nia and Coach June shared a cup.",
+        "Day 1 · Mika quietly worked on recovery after the completed game.",
+        "Day 1 · Mika 2 · Leo 2. They finish level. Longest rally: 25.",
+        "Day 1 · June made time to watch the game.",
+        "Day 1 · Leo spent a few quiet minutes rehearsing recovery footwork.",
+        "Day 1 · June and Mika finished a practice rally of 15 contacts."
+      ]
+    },
+    "equipment": {
+      "frame": "Cedar 98",
+      "tension": 52,
+      "string": "Soft poly"
+    },
+    "player": {
+      "x": -11.9,
+      "z": 8.1
+    },
+    "bestRally": 15,
+    "emergentSocial": {
+      "nextAllowed": 548,
+      "day": 1,
+      "seen": []
+    },
+    "activities": {
+      "sequence": 18,
+      "history": [
+        {
+          "id": "activity-17",
+          "kind": "everyday",
+          "participants": [
+            "nia",
+            "coach"
+          ],
+          "resource": "cafe-table",
+          "phase": "completed",
+          "elapsed": 24.316666666666567,
+          "phaseTime": 0,
+          "detail": "The last cup takes two people",
+          "result": "June volunteered to help Nia with the last cup. Her first contribution was drinking it."
+        },
+        {
+          "id": "activity-16",
+          "kind": "everyday",
+          "participants": [
+            "coach",
+            "leo"
+          ],
+          "resource": "place-stringing",
+          "phase": "completed",
+          "elapsed": 30.53333333333288,
+          "phaseTime": 0,
+          "detail": "Advice Leo almost takes",
+          "result": "Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation."
+        },
+        {
+          "id": "activity-15",
+          "kind": "everyday",
+          "participants": [
+            "nia",
+            "mika"
+          ],
+          "resource": "cafe-table",
+          "phase": "completed",
+          "elapsed": 29.13333333333296,
+          "phaseTime": 0,
+          "detail": "Nia learns Mika’s usual",
+          "result": "Nia learned that Mika likes extra foam. Mika stopped apologizing for asking."
+        },
+        {
+          "id": "activity-14",
+          "kind": "everyday",
+          "participants": [
+            "mika"
+          ],
+          "resource": "place-warmup",
+          "phase": "completed",
+          "elapsed": 26.033333333333136,
+          "phaseTime": 0,
+          "detail": "Mika starts the count again",
+          "result": "Mika quietly rehearsed her footwork, then gave herself permission to count the imperfect rep."
+        },
+        {
+          "id": "activity-13",
+          "kind": "everyday",
+          "participants": [
+            "mika"
+          ],
+          "resource": "place-warmup",
+          "phase": "completed",
+          "elapsed": 30.73333333333287,
+          "phaseTime": 0,
+          "detail": "Mika gives herself a slower count",
+          "result": "Mika spent a few quiet minutes rehearsing recovery footwork."
+        },
+        {
+          "id": "activity-12",
+          "kind": "everyday",
+          "participants": [
+            "leo"
+          ],
+          "resource": "place-warmup",
+          "phase": "completed",
+          "elapsed": 23.533333333333278,
+          "phaseTime": 0,
+          "detail": "Leo returns to the small things",
+          "result": "Leo quietly worked on recovery after the completed game."
+        },
+        {
+          "id": "activity-11",
+          "kind": "everyday",
+          "participants": [
+            "nia"
+          ],
+          "resource": "place-bonsai",
+          "phase": "completed",
+          "elapsed": 39.51666666666571,
+          "phaseTime": 0,
+          "detail": "Nia checks the quiet corner",
+          "result": "Nia tended the bonsai and took a moment to look at it."
+        },
+        {
+          "id": "activity-10",
+          "kind": "tea",
+          "participants": [
+            "mika",
+            "leo"
+          ],
+          "resource": "cafe-table",
+          "phase": "completed",
+          "elapsed": 26.266666666666456,
+          "phaseTime": 0,
+          "detail": "Mika and Leo shared a break",
+          "result": "Mika and Leo shared a cup."
+        },
+        {
+          "id": "activity-9",
+          "kind": "everyday",
+          "participants": [
+            "mika",
+            "leo"
+          ],
+          "resource": "place-courtBench",
+          "phase": "completed",
+          "elapsed": 26.183333333333128,
+          "phaseTime": 0,
+          "detail": "Making room, eventually",
+          "result": "Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts."
+        },
+        {
+          "id": "activity-8",
+          "kind": "everyday",
+          "participants": [
+            "coach",
+            "mika"
+          ],
+          "resource": "cafe-table",
+          "phase": "completed",
+          "elapsed": 23.966666666666587,
+          "phaseTime": 0,
+          "detail": "June remembers what they saw",
+          "result": "June and Mika talked over a cup about the game."
+        },
+        {
+          "id": "activity-6",
+          "kind": "tea",
+          "participants": [
+            "nia",
+            "coach"
+          ],
+          "resource": "cafe-table",
+          "phase": "completed",
+          "elapsed": 33.683333333332705,
+          "phaseTime": 0,
+          "detail": "Nia and Coach June shared a break",
+          "result": "Nia and Coach June shared a cup."
+        },
+        {
+          "id": "activity-7",
+          "kind": "everyday",
+          "participants": [
+            "mika"
+          ],
+          "resource": "place-warmup",
+          "phase": "completed",
+          "elapsed": 20.76666666666677,
+          "phaseTime": 0,
+          "detail": "Mika returns to the small things",
+          "result": "Mika quietly worked on recovery after the completed game."
+        },
+        {
+          "id": "activity-4",
+          "kind": "match",
+          "participants": [
+            "leo",
+            "mika"
+          ],
+          "resource": "court",
+          "phase": "completed",
+          "elapsed": 90.26666666666283,
+          "phaseTime": 0,
+          "detail": "First shared court",
+          "result": "Mika 2 · Leo 2. They finish level. Longest rally: 25."
+        },
+        {
+          "id": "activity-5",
+          "kind": "everyday",
+          "participants": [
+            "coach"
+          ],
+          "resource": "place-courtBench",
+          "phase": "completed",
+          "elapsed": 77.74999999999687,
+          "phaseTime": 0,
+          "detail": "June watches without interrupting",
+          "result": "June made time to watch the game."
+        },
+        {
+          "id": "activity-3",
+          "kind": "everyday",
+          "participants": [
+            "mika"
+          ],
+          "resource": "place-warmup",
+          "phase": "completed",
+          "elapsed": 22.016666666666698,
+          "phaseTime": 0,
+          "detail": "Mika starts the count again",
+          "result": "Mika quietly rehearsed her footwork, then gave herself permission to count the imperfect rep."
+        },
+        {
+          "id": "activity-2",
+          "kind": "everyday",
+          "participants": [
+            "leo"
+          ],
+          "resource": "place-warmup",
+          "phase": "completed",
+          "elapsed": 39.93333333333235,
+          "phaseTime": 0,
+          "detail": "Leo works on the unglamorous part",
+          "result": "Leo spent a few quiet minutes rehearsing recovery footwork."
+        },
+        {
+          "id": "activity-1",
+          "kind": "observe",
+          "participants": [
+            "coach",
+            "mika"
+          ],
+          "resource": "court",
+          "phase": "completed",
+          "elapsed": 25.916666666666476,
+          "phaseTime": 0,
+          "detail": "Morning practice",
+          "result": "June and Mika finished a practice rally of 15 contacts."
+        }
+      ]
+    },
+    "history": {
+      "matches": [
+        {
+          "id": "activity-4",
+          "day": 1,
+          "winner": "draw",
+          "score": {
+            "leo": 2,
+            "mika": 2
+          },
+          "longest": 25,
+          "contacts": 60,
+          "errors": {
+            "leo": 2,
+            "mika": 2
+          }
+        }
+      ],
+      "intentions": [
+        {
+          "id": "rematch",
+          "person": "mika",
+          "kind": "rematch",
+          "notBefore": 3420,
+          "text": "Mika wants another chance with Leo tomorrow."
+        }
+      ],
+      "firstMikaWin": false,
+      "breakthrough": false,
+      "nextSocial": 2352.75,
+      "nextObject": 2600
+    },
+    "affordances": {
+      "objects": {
+        "furniture-1": {
+          "placedDay": 1,
+          "visits": {},
+          "memories": [],
+          "favoriteOf": [],
+          "comfort": {},
+          "usageCount": 0,
+          "importantEvents": [],
+          "revision": 0
+        }
+      },
+      "sequence": 1
+    },
+    "development": {
+      "preparation": 0,
+      "recovery": 0
+    },
+    "settings": {
+      "volume": 0.65,
+      "visuals": "auto",
+      "reducedMotion": false
+    },
+    "everyday": {
+      "time": 600.0333333331163,
+      "next": 622.8999999997912,
+      "sequence": 14,
+      "cooldowns": {
+        "rehearse-leo": 228.01666666666523,
+        "counting": 673.5833333332495,
+        "watch-court-coach": 372.55000000002946,
+        "after-activity-4-mika": 386.316666666723,
+        "witness-activity-4-coach": 423.80000000008613,
+        "bench-room": 502.31666666673857,
+        "nia-tends": 513.9666666666916,
+        "after-activity-4-leo": 550.4166666666584,
+        "rehearse-mika": 593.9166666666189,
+        "usual": 714.9999999998785,
+        "gear-advice": 758.7499999998387,
+        "closing": 796.899999999804
+      },
+      "counts": {
+        "rehearse-leo": 1,
+        "counting": 2,
+        "watch-court-coach": 1,
+        "after-activity-4-mika": 1,
+        "witness-activity-4-coach": 1,
+        "bench-room": 1,
+        "nia-tends": 1,
+        "after-activity-4-leo": 1,
+        "rehearse-mika": 1,
+        "usual": 1,
+        "gear-advice": 1,
+        "closing": 1
+      },
+      "history": [
+        {
+          "id": "life-13",
+          "scene": "closing",
+          "title": "The last cup takes two people",
+          "people": [
+            "nia",
+            "coach"
+          ],
+          "day": 1,
+          "at": 576.899999999804,
+          "memory": "June volunteered to help Nia with the last cup. Her first contribution was drinking it.",
+          "place": "cafe",
+          "motif": "closing"
+        },
+        {
+          "id": "life-12",
+          "scene": "gear-advice",
+          "title": "Advice Leo almost takes",
+          "people": [
+            "coach",
+            "leo"
+          ],
+          "day": 1,
+          "at": 538.7499999998387,
+          "memory": "Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation.",
+          "place": "stringing",
+          "motif": "gear-advice"
+        },
+        {
+          "id": "life-11",
+          "scene": "usual",
+          "title": "Nia learns Mika’s usual",
+          "people": [
+            "nia",
+            "mika"
+          ],
+          "day": 1,
+          "at": 494.99999999987847,
+          "memory": "Nia learned that Mika likes extra foam. Mika stopped apologizing for asking.",
+          "place": "cafe",
+          "motif": "usual"
+        },
+        {
+          "id": "life-10",
+          "scene": "counting",
+          "title": "Mika starts the count again",
+          "people": [
+            "mika"
+          ],
+          "day": 1,
+          "at": 453.58333333324947,
+          "memory": "Mika quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+          "place": "warmup",
+          "motif": "counting"
+        },
+        {
+          "id": "life-9",
+          "scene": "rehearse-mika",
+          "title": "Mika gives herself a slower count",
+          "people": [
+            "mika"
+          ],
+          "day": 1,
+          "at": 413.9166666666189,
+          "memory": "Mika spent a few quiet minutes rehearsing recovery footwork.",
+          "place": "warmup",
+          "motif": "recovery-rehearsal"
+        },
+        {
+          "id": "life-8",
+          "scene": "after-activity-4-leo",
+          "title": "Leo returns to the small things",
+          "people": [
+            "leo"
+          ],
+          "day": 1,
+          "at": 370.41666666665844,
+          "memory": "Leo quietly worked on recovery after the completed game.",
+          "place": "warmup",
+          "motif": "reset-after-game"
+        },
+        {
+          "id": "life-7",
+          "scene": "nia-tends",
+          "title": "Nia checks the quiet corner",
+          "people": [
+            "nia"
+          ],
+          "day": 1,
+          "at": 333.9666666666916,
+          "memory": "Nia tended the bonsai and took a moment to look at it.",
+          "place": "bonsai",
+          "motif": "plant-care"
+        },
+        {
+          "id": "life-6",
+          "scene": "bench-room",
+          "title": "Making room, eventually",
+          "people": [
+            "mika",
+            "leo"
+          ],
+          "day": 1,
+          "at": 282.31666666673857,
+          "memory": "Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts.",
+          "place": "courtBench",
+          "motif": "bench-room"
+        },
+        {
+          "id": "life-5",
+          "scene": "witness-activity-4-coach",
+          "title": "June remembers what they saw",
+          "people": [
+            "coach",
+            "mika"
+          ],
+          "day": 1,
+          "at": 243.80000000008616,
+          "memory": "June and Mika talked over a cup about the game.",
+          "place": "cafe",
+          "motif": "reassure"
+        },
+        {
+          "id": "life-4",
+          "scene": "after-activity-4-mika",
+          "title": "Mika returns to the small things",
+          "people": [
+            "mika"
+          ],
+          "day": 1,
+          "at": 206.316666666723,
+          "memory": "Mika quietly worked on recovery after the completed game.",
+          "place": "warmup",
+          "motif": "reset-after-game"
+        },
+        {
+          "id": "life-3",
+          "scene": "watch-court-coach",
+          "title": "June watches without interrupting",
+          "people": [
+            "coach"
+          ],
+          "day": 1,
+          "at": 172.55000000002946,
+          "memory": "June made time to watch the game.",
+          "interruptedBy": "rally",
+          "place": "courtBench",
+          "motif": "pay-attention"
+        },
+        {
+          "id": "life-2",
+          "scene": "counting",
+          "title": "Mika starts the count again",
+          "people": [
+            "mika"
+          ],
+          "day": 1,
+          "at": 82.53333333332994,
+          "memory": "Mika quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+          "place": "warmup",
+          "motif": "counting"
+        },
+        {
+          "id": "life-1",
+          "scene": "rehearse-leo",
+          "title": "Leo works on the unglamorous part",
+          "people": [
+            "leo"
+          ],
+          "day": 1,
+          "at": 48.01666666666522,
+          "memory": "Leo spent a few quiet minutes rehearsing recovery footwork.",
+          "place": "warmup",
+          "motif": "recovery-rehearsal"
+        }
+      ],
+      "pending": [],
+      "lastMatch": ""
+    }
+  }
+}

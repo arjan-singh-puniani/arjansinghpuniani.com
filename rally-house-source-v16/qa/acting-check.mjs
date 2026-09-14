@@ -1,0 +1,14 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';
+export async function acting(page){
+ const results=[];
+ for(const [sceneId,beat] of [['bonsai',1],['notes',0],['usual',0],['gear-advice',3]]){
+  await page.evaluate(({sceneId,beat})=>{const g=window.__rh.game;g.clock.paused=false;for(const a of [...g.activities.active])g.cancelActivity(a);g.observationStarted=true;g.history.nextSocial=1e12;g.history.nextObject=1e12;g.clock.minutes=sceneId==='usual'?1000:700;const scene=g.everyday.scenes(g.lifeContext()).find(s=>s.id===sceneId),a=g.startEveryday(scene);if(!a)throw Error('Failed staging '+sceneId);g.everyday.next=1e12;for(let i=0;i<3600;i++){g.updateFixed(1/60);const r=g.lifeRuns.get(a.id);if(a.phase==='active'&&r.beat===beat&&r.age>.8)break;}const r=g.lifeRuns.get(a.id);if(!r||r.beat!==beat)throw Error('Stage not reached');g.clock.paused=true;const c=g.actor(scene.people[0]);g.camera.focus(c.position.x,c.position.z,26);}, {sceneId,beat});
+  await page.waitForTimeout(1200);await page.screenshot({path:`qa/v14-${sceneId}.png`,timeout:60000});results.push(await page.evaluate(()=>({scene:document.querySelector('#scenePeek strong').textContent,speech:document.querySelector('#speech').innerText,report:window.__rh.report()})));
+ }
+ // An everyday scene must not steal a committed court or advance relationship history on click.
+ const cancel=await page.evaluate(async()=>{const g=window.__rh.game;const a=g.activities.active.find(a=>a.kind==='everyday'),before=g.everyday.history.length,ids=[...a.participants];g.cancelActivity(a);const after=g.everyday.history.length;await g.save();return {before,after,reserved:ids.some(id=>g.activities.busy(id)),props:ids.map(id=>g.actor(id).socialProp)}});assert.equal(cancel.before,cancel.after);assert(!cancel.reserved);assert(cancel.props.every(x=>x===null));
+ // Narrow viewport must keep speech onscreen; peek must yield to build mode.
+ await page.setViewportSize({width:390,height:844});await page.evaluate(()=>{const g=window.__rh.game;g.clock.paused=false;g.clock.minutes=700;const a=g.startEveryday(g.everyday.scenes(g.lifeContext()).find(s=>s.id==='cups'));g.everyday.next=1e12;for(let i=0;i<2400;i++){g.updateFixed(1/60);if(a.phase==='active'&&g.lifeRuns.get(a.id).beat===1)break;}g.clock.paused=true;g.camera.frameAcademy()});await page.waitForTimeout(1500);await page.screenshot({path:'qa/v14-mobile-story.png',timeout:60000});const bounds=await page.locator('#speech').boundingBox();assert(bounds.x>=0&&bounds.x+bounds.width<=391);
+ await page.locator('#buildBtn').click();await page.waitForTimeout(400);assert(await page.locator('#scenePeek').isHidden());await page.screenshot({path:'qa/v14-mobile-build.png',timeout:60000});
+ fs.writeFileSync('qa/v14-acting.json',JSON.stringify({results,cancel,bounds},null,2));console.log('ACTING AND MOBILE LAYOUT PASSED');
+}

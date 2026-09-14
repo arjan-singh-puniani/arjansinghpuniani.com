@@ -1,0 +1,112 @@
+[
+  {
+    "days": 1,
+    "wallSeconds": 3.235444333,
+    "culture": {
+      "training": 0.3109955176657781,
+      "social": 0.2896632219491315,
+      "calm": 0.26311858052178577,
+      "competition": 0.20395398836354553,
+      "care": 0.23887163140388779
+    },
+    "memories": 38,
+    "major": 0,
+    "events": 1,
+    "bytes": 13510,
+    "intentions": 1,
+    "cancellations": 0,
+    "completed": 29,
+    "pairs": {
+      "mika|nia": 5,
+      "coach|nia": 3,
+      "coach|mika": 3,
+      "leo|mika": 1,
+      "coach|leo": 2,
+      "leo|nia": 1
+    }
+  },
+  {
+    "days": 7,
+    "wallSeconds": 18.249065625,
+    "culture": {
+      "training": 0.35691204080714517,
+      "social": 0.453590373109083,
+      "calm": 0.25590138148897623,
+      "competition": 0.2075765633557689,
+      "care": 0.2395929526658021
+    },
+    "memories": 48,
+    "major": 0,
+    "events": 7,
+    "bytes": 19424,
+    "intentions": 1,
+    "cancellations": 0,
+    "completed": 194,
+    "pairs": {
+      "mika|nia": 41,
+      "coach|nia": 25,
+      "coach|mika": 20,
+      "leo|mika": 14,
+      "coach|leo": 7,
+      "leo|nia": 8,
+      "coach|leo|mika": 1,
+      "leo|mika|nia": 1
+    }
+  },
+  {
+    "days": 30,
+    "wallSeconds": 78.281159166,
+    "culture": {
+      "training": 0.35921132363281105,
+      "social": 0.4478546397113241,
+      "calm": 0.26388982548290185,
+      "competition": 0.20748406482509033,
+      "care": 0.24367074684540918
+    },
+    "memories": 50,
+    "major": 2,
+    "events": 30,
+    "bytes": 29503,
+    "intentions": 1,
+    "cancellations": 0,
+    "completed": 815,
+    "pairs": {
+      "mika|nia": 159,
+      "coach|nia": 145,
+      "coach|mika": 101,
+      "leo|mika": 71,
+      "coach|leo": 53,
+      "leo|nia": 27,
+      "coach|leo|mika": 5,
+      "leo|mika|nia": 3
+    }
+  },
+  {
+    "days": 100,
+    "wallSeconds": 476.49233883299996,
+    "culture": {
+      "training": 0.3501313763171287,
+      "social": 0.4480102057042502,
+      "calm": 0.2378728924162047,
+      "competition": 0.2069986134520344,
+      "care": 0.24224265582894994
+    },
+    "memories": 49,
+    "major": 2,
+    "events": 48,
+    "bytes": 34379,
+    "intentions": 1,
+    "cancellations": 0,
+    "completed": 2737,
+    "pairs": {
+      "mika|nia": 497,
+      "coach|nia": 478,
+      "coach|mika": 316,
+      "leo|mika": 197,
+      "coach|leo": 205,
+      "leo|nia": 223,
+      "coach|leo|mika": 31,
+      "leo|mika|nia": 8
+    }
+  }
+]

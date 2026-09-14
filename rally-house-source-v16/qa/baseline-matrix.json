@@ -1,0 +1,29 @@
+[
+  {
+    "browser": "chromium",
+    "errors": [],
+    "startup": true,
+    "people": "Coach June\nSettling into the day\nHead coach · Never rushes a correction\n\nMorning practice\n\nnotebook · a familiar belonging · cup · a familiar belonging\nMika\nKeen to try again\nMember · Counts clean rallies under her breath\n\nMorning practice\n\nracket · a familiar belonging\nLeo\nSettling into the day\nMember · Tests every grip in the pro shop\n\nComparing fresh grips\n\nracket · a familiar belonging\nNia\nIn the mood for company\nClub host · Remembers everyone’s usual drink\n\nPreparing the usual orders\n\nWatering can · a familiar belonging",
+    "reload": true,
+    "saveConflict": {
+      "detected": false,
+      "message": "",
+      "coins": 222
+    },
+    "keyboard": "Mika",
+    "mobileOverflow": false,
+    "status": "tested"
+  },
+  {
+    "browser": "webkit",
+    "errors": [],
+    "status": "unavailable",
+    "reason": "browserType.launch: Executable doesn't exist at /Users/arjan/Library/Caches/ms-playwright/webkit-2336/pw_run.sh\n╔════════════════════════════════════════════════════════════╗\n║ Looks like Playwright was just installed or updated.       ║\n║ Please run the following command to download new browsers: ║\n║                                                            ║\n║     npx playwright install                                 ║\n║                                                            ║\n║ <3 Playwright Team                                         ║\n╚════════════════════════════════════════════════════════════╝"
+  },
+  {
+    "browser": "firefox",
+    "errors": [],
+    "status": "unavailable",
+    "reason": "browserType.launch: Executable doesn't exist at /Users/arjan/Library/Caches/ms-playwright/firefox-1538/firefox/Nightly.app/Contents/MacOS/firefox\n╔════════════════════════════════════════════════════════════╗\n║ Looks like Playwright was just installed or updated.       ║\n║ Please run the following command to download new browsers: ║\n║                                                            ║\n║     npx playwright install                                 ║\n║                                                            ║\n║ <3 Playwright Team                                         ║\n╚════════════════════════════════════════════════════════════╝"
+  }
+]

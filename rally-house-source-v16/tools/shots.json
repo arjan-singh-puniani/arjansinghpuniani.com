@@ -1,0 +1,6 @@
+[{"name":"01-morning","settleMs":3500,"report":true,"setup":"window.__rh.setTime(8*60+10); window.__rh.setWeather('clear');"},
+ {"name":"02-midday","settleMs":3500,"report":true,"setup":"window.__rh.setTime(12*60+40); window.__rh.setWeather('clear');"},
+ {"name":"03-golden","settleMs":3500,"report":true,"setup":"window.__rh.setTime(17*60+10); window.__rh.setWeather('clear');"},
+ {"name":"04-rain","settleMs":3500,"report":true,"setup":"window.__rh.setTime(14*60); window.__rh.setWeather('rain');"},
+ {"name":"05-evening","settleMs":3500,"report":true,"setup":"window.__rh.setTime(20*60+30); window.__rh.setWeather('clear');"},
+ {"name":"06-mobile","viewport":{"width":390,"height":844},"mobile":true,"settleMs":3500,"setup":"window.__rh.setTime(12*60); window.__rh.setWeather('clear');"}]

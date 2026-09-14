@@ -1,0 +1,848 @@
+{
+  "wallSeconds": 0.852078125,
+  "day": 2,
+  "minDistances": {
+    "coach|mika": 0,
+    "coach|leo": 0,
+    "coach|nia": 0.07289907898556436,
+    "coach|player": 0,
+    "mika|leo": 0,
+    "mika|nia": 0,
+    "mika|player": 0,
+    "leo|nia": 0,
+    "leo|player": 0,
+    "nia|player": 1.9000000000000004
+  },
+  "overlaps": [
+    {
+      "at": 34,
+      "pair": "leo|nia",
+      "d": 0.3112512336970299,
+      "states": [
+        "talk",
+        "walk"
+      ],
+      "activities": [
+        {
+          "id": "activity-2",
+          "phase": "active",
+          "participants": [
+            "leo"
+          ]
+        }
+      ]
+    },
+    {
+      "at": 49.5,
+      "pair": "leo|nia",
+      "d": 0.03565014801204611,
+      "states": [
+        "walk",
+        "watch"
+      ],
+      "activities": []
+    },
+    {
+      "at": 70.5,
+      "pair": "coach|mika",
+      "d": 0.5222757755069652,
+      "states": [
+        "walk",
+        "shuffle"
+      ],
+      "activities": [
+        {
+          "id": "activity-3",
+          "phase": "active",
+          "participants": [
+            "mika"
+          ]
+        }
+      ]
+    },
+    {
+      "at": 71,
+      "pair": "coach|mika",
+      "d": 0.27964852355569675,
+      "states": [
+        "walk",
+        "shuffle"
+      ],
+      "activities": [
+        {
+          "id": "activity-3",
+          "phase": "active",
+          "participants": [
+            "mika"
+          ]
+        }
+      ]
+    },
+    {
+      "at": 72,
+      "pair": "coach|nia",
+      "d": 0.11190758425788838,
+      "states": [
+        "walk",
+        "watch"
+      ],
+      "activities": [
+        {
+          "id": "activity-3",
+          "phase": "active",
+          "participants": [
+            "mika"
+          ]
+        }
+      ]
+    },
+    {
+      "at": 84,
+      "pair": "mika|nia",
+      "d": 0.2749797298500026,
+      "states": [
+        "walk",
+        "watch"
+      ],
+      "activities": [
+        {
+          "id": "activity-4",
+          "phase": "traveling",
+          "participants": [
+            "leo",
+            "mika"
+          ]
+        }
+      ]
+    },
+    {
+      "at": 84.5,
+      "pair": "mika|nia",
+      "d": 0.4630322518303955,
+      "states": [
+        "walk",
+        "watch"
+      ],
+      "activities": [
+        {
+          "id": "activity-4",
+          "phase": "traveling",
+          "participants": [
+            "leo",
+            "mika"
+          ]
+        }
+      ]
+    },
+    {
+      "at": 225,
+      "pair": "coach|mika",
+      "d": 0.19716111145040394,
+      "states": [
+        "walk",
+        "watch"
+      ],
+      "activities": [
+        {
+          "id": "activity-8",
+          "phase": "traveling",
+          "participants": [
+            "coach",
+            "mika"
+          ]
+        }
+      ]
+    },
+    {
+      "at": 260.5,
+      "pair": "mika|leo",
+      "d": 0.23003780667651622,
+      "states": [
+        "walk",
+        "watch"
+      ],
+      "activities": [
+        {
+          "id": "activity-9",
+          "phase": "traveling",
+          "participants": [
+            "mika",
+            "leo"
+          ]
+        }
+      ]
+    },
+    {
+      "at": 289,
+      "pair": "coach|leo",
+      "d": 0.052429561043968724,
+      "states": [
+        "watch",
+        "walk"
+      ],
+      "activities": []
+    },
+    {
+      "at": 289.5,
+      "pair": "coach|leo",
+      "d": 0,
+      "states": [
+        "watch",
+        "watch"
+      ],
+      "activities": []
+    },
+    {
+      "at": 290,
+      "pair": "coach|leo",
+      "d": 0,
+      "states": [
+        "watch",
+        "watch"
+      ],
+      "activities": []
+    },
+    {
+      "at": 290.5,
+      "pair": "coach|leo",
+      "d": 0,
+      "states": [
+        "watch",
+        "watch"
+      ],
+      "activities": []
+    },
+    {
+      "at": 291,
+      "pair": "coach|leo",
+      "d": 0,
+      "states": [
+        "watch",
+        "watch"
+      ],
+      "activities": []
+    },
+    {
+      "at": 291.5,
+      "pair": "coach|leo",
+      "d": 0,
+      "states": [
+        "watch",
+        "watch"
+      ],
+      "activities": []
+    },
+    {
+      "at": 292,
+      "pair": "coach|leo",
+      "d": 0,
+      "states": [
+        "watch",
+        "watch"
+      ],
+      "activities": []
+    },
+    {
+      "at": 292.5,
+      "pair": "coach|leo",
+      "d": 0.02489230526734798,
+      "states": [
+        "watch",
+        "walk"
+      ],
+      "activities": [
+        {
+          "id": "activity-10",
+          "phase": "traveling",
+          "participants": [
+            "mika",
+            "leo"
+          ]
+        }
+      ]
+    },
+    {
+      "at": 338,
+      "pair": "mika|leo",
+      "d": 0,
+      "states": [
+        "drink",
+        "drink"
+      ],
+      "activities": []
+    },
+    {
+      "at": 338.5,
+      "pair": "mika|leo",
+      "d": 0,
+      "states": [
+        "drink",
+        "drink"
+      ],
+      "activities": []
+    },
+    {
+      "at": 339,
+      "pair": "mika|leo",
+      "d": 0,
+      "states": [
+        "drink",
+        "drink"
+      ],
+      "activities": []
+    },
+    {
+      "at": 339.5,
+      "pair": "mika|leo",
+      "d": 0,
+      "states": [
+        "drink",
+        "drink"
+      ],
+      "activities": []
+    },
+    {
+      "at": 340,
+      "pair": "mika|leo",
+      "d": 0,
+      "states": [
+        "drink",
+        "drink"
+      ],
+      "activities": []
+    },
+    {
+      "at": 340.5,
+      "pair": "mika|leo",
+      "d": 0,
+      "states": [
+        "drink",
+        "drink"
+      ],
+      "activities": []
+    },
+    {
+      "at": 341,
+      "pair": "mika|leo",
+      "d": 0,
+      "states": [
+        "drink",
+        "drink"
+      ],
+      "activities": []
+    },
+    {
+      "at": 341.5,
+      "pair": "mika|leo",
+      "d": 0,
+      "states": [
+        "drink",
+        "drink"
+      ],
+      "activities": []
+    },
+    {
+      "at": 342,
+      "pair": "mika|leo",
+      "d": 0,
+      "states": [
+        "drink",
+        "drink"
+      ],
+      "activities": []
+    },
+    {
+      "at": 342.5,
+      "pair": "mika|leo",
+      "d": 0,
+      "states": [
+        "drink",
+        "drink"
+      ],
+      "activities": []
+    },
+    {
+      "at": 343,
+      "pair": "mika|leo",
+      "d": 0,
+      "states": [
+        "drink",
+        "drink"
+      ],
+      "activities": []
+    },
+    {
+      "at": 343.5,
+      "pair": "mika|leo",
+      "d": 0,
+      "states": [
+        "drink",
+        "drink"
+      ],
+      "activities": []
+    },
+    {
+      "at": 344,
+      "pair": "mika|leo",
+      "d": 0,
+      "states": [
+        "drink",
+        "drink"
+      ],
+      "activities": []
+    }
+  ],
+  "maxMem": 44,
+  "culture": {
+    "training": 0.42500000000000016,
+    "social": 0.4500000000000002,
+    "calm": 0.3500000000000001,
+    "competition": 0.245,
+    "care": 0.275
+  },
+  "report": {
+    "seconds": 1440.0000000000002,
+    "uniqueScenes": 17,
+    "uniquePairs": 6,
+    "uniqueLocations": 10,
+    "idlePercent": 17.083333333333332,
+    "quietPercent": 58.732638888888886,
+    "mostRepeatedBehavior": [
+      "shared-break",
+      5
+    ],
+    "mostRepeatedPair": [
+      "coach|nia",
+      4
+    ],
+    "flags": [],
+    "initiators": {
+      "coach": 7,
+      "leo": 4,
+      "mika": 8,
+      "nia": 11
+    },
+    "scenes": {
+      "observe": 1,
+      "practice": 3,
+      "counting": 2,
+      "watch-court": 1,
+      "match": 1,
+      "after-result": 2,
+      "tea": 2,
+      "witness-followup": 1,
+      "bench-room": 1,
+      "care": 2,
+      "usual": 1,
+      "gear-advice": 1,
+      "closing": 1,
+      "reflect": 2,
+      "shared-break": 5,
+      "small-win": 1,
+      "rest": 3
+    },
+    "pairs": {
+      "coach|mika": 3,
+      "leo|mika": 3,
+      "coach|nia": 4,
+      "mika|nia": 3,
+      "coach|leo": 1,
+      "leo|nia": 1
+    },
+    "places": {
+      "court": 2,
+      "warmup": 7,
+      "courtBench": 4,
+      "cafe-table": 2,
+      "cafe": 3,
+      "bonsai": 2,
+      "stringing": 1,
+      "cafeTable": 7,
+      "training": 1,
+      "lounge": 1
+    },
+    "interruptions": 2,
+    "cancellations": 0,
+    "meaningful": 30,
+    "memoryCount": 44,
+    "favoriteUses": 0,
+    "rituals": 11,
+    "log": [
+      {
+        "at": 25.000000000000025,
+        "day": 1,
+        "minute": 585.75,
+        "who": [
+          "coach",
+          "mika"
+        ],
+        "what": "Morning practice",
+        "why": "Opening club routine",
+        "changed": "June and Mika finished a practice rally of 15 contacts.",
+        "next": "Return to the day"
+      },
+      {
+        "at": 48.00000000000003,
+        "day": 1,
+        "minute": 608,
+        "who": [
+          "leo"
+        ],
+        "what": "Leo works on the unglamorous part",
+        "why": "practice drive, opportunity, personality, energy",
+        "changed": "Leo spent a few quiet minutes rehearsing recovery footwork.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 82.00000000000003,
+        "day": 1,
+        "minute": 642.5,
+        "who": [
+          "mika"
+        ],
+        "what": "Mika starts the count again",
+        "why": "practice drive, personality, energy, opportunity",
+        "changed": "Mika quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 172.00000000000003,
+        "day": 1,
+        "minute": 732.5,
+        "who": [
+          "coach"
+        ],
+        "what": "June watches without interrupting",
+        "why": "live court, personality, schedule, opportunity",
+        "changed": "June made time to watch the game.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 172.00000000000003,
+        "day": 1,
+        "minute": 732.75,
+        "who": [
+          "leo",
+          "mika"
+        ],
+        "what": "First shared court",
+        "why": "Court opportunity and challenge readiness",
+        "changed": "Mika 2 · Leo 2. They finish level. Longest rally: 25.",
+        "next": "Mika wants another chance with Leo tomorrow."
+      },
+      {
+        "at": 206.00000000000003,
+        "day": 1,
+        "minute": 766.25,
+        "who": [
+          "mika"
+        ],
+        "what": "Mika returns to the small things",
+        "why": "memory, practice drive, personality, schedule",
+        "changed": "Mika quietly worked on recovery after the completed game.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 207.00000000000003,
+        "day": 1,
+        "minute": 767,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Nia and Coach June shared a break",
+        "why": "Relationship and place preference",
+        "changed": "Nia and Coach June shared a cup.",
+        "next": "Nia is keeping a place for a post-court break."
+      },
+      {
+        "at": 243.00000000000003,
+        "day": 1,
+        "minute": 803.75,
+        "who": [
+          "coach",
+          "mika"
+        ],
+        "what": "June remembers what they saw",
+        "why": "memory, personality, opportunity, shared time",
+        "changed": "June and Mika talked over a cup about the game.",
+        "next": "At home here"
+      },
+      {
+        "at": 282.00000000000006,
+        "day": 1,
+        "minute": 842.25,
+        "who": [
+          "mika",
+          "leo"
+        ],
+        "what": "Making room, eventually",
+        "why": "energy, opportunity, shared time, authored performance",
+        "changed": "Mika asked Leo to make room. He eventually found somewhere else for his tactical thoughts.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 318.00000000000006,
+        "day": 1,
+        "minute": 878.5,
+        "who": [
+          "mika",
+          "leo"
+        ],
+        "what": "Mika and Leo shared a break",
+        "why": "Relationship and place preference",
+        "changed": "Mika and Leo shared a cup.",
+        "next": "Mika wants another chance with Leo tomorrow."
+      },
+      {
+        "at": 333.00000000000006,
+        "day": 1,
+        "minute": 893.75,
+        "who": [
+          "nia"
+        ],
+        "what": "Nia checks the quiet corner",
+        "why": "personality, opportunity, ritual",
+        "changed": "Nia tended the bonsai and took a moment to look at it.",
+        "next": "In the mood for company"
+      },
+      {
+        "at": 370.00000000000006,
+        "day": 1,
+        "minute": 930.25,
+        "who": [
+          "leo"
+        ],
+        "what": "Leo returns to the small things",
+        "why": "memory, practice drive, opportunity, personality",
+        "changed": "Leo quietly worked on recovery after the completed game.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 413.00000000000006,
+        "day": 1,
+        "minute": 973.75,
+        "who": [
+          "mika"
+        ],
+        "what": "Mika gives herself a slower count",
+        "why": "practice drive, personality, energy, ritual",
+        "changed": "Mika spent a few quiet minutes rehearsing recovery footwork.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 453.00000000000006,
+        "day": 1,
+        "minute": 1013.5,
+        "who": [
+          "mika"
+        ],
+        "what": "Mika starts the count again",
+        "why": "personality, practice drive, energy, opportunity",
+        "changed": "Mika quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+        "next": "At home here"
+      },
+      {
+        "at": 495.00000000000006,
+        "day": 1,
+        "minute": 1054.75,
+        "who": [
+          "nia",
+          "mika"
+        ],
+        "what": "Nia learns Mika’s usual",
+        "why": "personality, social appetite, opportunity, shared time",
+        "changed": "Nia learned that Mika likes extra foam. Mika stopped apologizing for asking.",
+        "next": "At home here"
+      },
+      {
+        "at": 538.0000000000001,
+        "day": 1,
+        "minute": 1098.5,
+        "who": [
+          "coach",
+          "leo"
+        ],
+        "what": "Advice Leo almost takes",
+        "why": "personality, opportunity, shared time, proximity",
+        "changed": "Leo asked June about strings. She prescribed footwork, then allowed a future gear conversation.",
+        "next": "At home here"
+      },
+      {
+        "at": 576.0000000000001,
+        "day": 1,
+        "minute": 1136.75,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "The last cup takes two people",
+        "why": "personality, schedule, opportunity, shared time",
+        "changed": "June volunteered to help Nia with the last cup. Her first contribution was drinking it.",
+        "next": "At home here"
+      },
+      {
+        "at": 614.0000000000001,
+        "day": 1,
+        "minute": 1174.5,
+        "who": [
+          "coach"
+        ],
+        "what": "June leaves a little space on the page",
+        "why": "personality, schedule, opportunity, ritual",
+        "changed": "June kept her notes short and left room to look up.",
+        "next": "At home here"
+      },
+      {
+        "at": 659.0000000000001,
+        "day": 1,
+        "minute": 1219,
+        "who": [
+          "nia",
+          "leo"
+        ],
+        "what": "Nia makes time for Leo",
+        "why": "personality, opportunity, shared time, proximity",
+        "changed": "Nia invited Leo to a shared break.",
+        "next": "At home here"
+      },
+      {
+        "at": 707.0000000000001,
+        "day": 1,
+        "minute": 1267.25,
+        "who": [
+          "coach",
+          "mika"
+        ],
+        "what": "June notices the second try",
+        "why": "personality, opportunity, shared time, authored performance",
+        "changed": "June noticed Mika resetting calmly. They agreed that could be the useful thing for today.",
+        "next": "At home here"
+      },
+      {
+        "at": 757.0000000000001,
+        "day": 1,
+        "minute": 1317.5,
+        "who": [
+          "mika"
+        ],
+        "what": "Mika takes a real minute",
+        "why": "ritual, opportunity, time of day, social appetite",
+        "changed": "Mika took an unhurried break.",
+        "next": "At home here"
+      },
+      {
+        "at": 827.0000000000001,
+        "day": 1,
+        "minute": 1387.25,
+        "who": [
+          "nia",
+          "mika"
+        ],
+        "what": "Nia makes time for Mika",
+        "why": "personality, opportunity, shared time, relationship",
+        "changed": "Nia invited Mika to a shared break.",
+        "next": "At home here"
+      },
+      {
+        "at": 904.0000000000001,
+        "day": 2,
+        "minute": 24,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Nia makes time for June",
+        "why": "personality, opportunity, shared time, relationship",
+        "changed": "Nia invited June to a shared break.",
+        "next": "At home here"
+      },
+      {
+        "at": 984.0000000000001,
+        "day": 2,
+        "minute": 104.75,
+        "who": [
+          "nia"
+        ],
+        "what": "Nia checks the quiet corner",
+        "why": "personality, ritual, opportunity, time of day",
+        "changed": "Nia tended the bonsai and took a moment to look at it.",
+        "next": "At home here"
+      },
+      {
+        "at": 1052.0000000000002,
+        "day": 2,
+        "minute": 172,
+        "who": [
+          "coach"
+        ],
+        "what": "June leaves a little space on the page",
+        "why": "personality, opportunity, ritual, time of day",
+        "changed": "June kept her notes short and left room to look up.",
+        "next": "At home here"
+      },
+      {
+        "at": 1125.0000000000002,
+        "day": 2,
+        "minute": 245.75,
+        "who": [
+          "leo"
+        ],
+        "what": "Leo takes a real minute",
+        "why": "schedule, ritual, opportunity, social appetite",
+        "changed": "Leo took an unhurried break.",
+        "next": "At home here"
+      },
+      {
+        "at": 1206.0000000000002,
+        "day": 2,
+        "minute": 326.25,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Nia makes time for June",
+        "why": "personality, opportunity, shared time, relationship",
+        "changed": "Nia invited June to a shared break.",
+        "next": "At home here"
+      },
+      {
+        "at": 1292.0000000000002,
+        "day": 2,
+        "minute": 412.75,
+        "who": [
+          "nia"
+        ],
+        "what": "Nia takes a real minute",
+        "why": "ritual, opportunity, social appetite, personality",
+        "changed": "Nia took an unhurried break.",
+        "next": "At home here"
+      },
+      {
+        "at": 1363.0000000000002,
+        "day": 2,
+        "minute": 483.75,
+        "who": [
+          "nia",
+          "mika"
+        ],
+        "what": "Nia makes time for Mika",
+        "why": "personality, opportunity, shared time, relationship",
+        "changed": "Nia invited Mika to a shared break.",
+        "next": "At home here"
+      },
+      {
+        "at": 1432.0000000000002,
+        "day": 2,
+        "minute": 552.5,
+        "who": [
+          "mika"
+        ],
+        "what": "Mika gives herself a slower count",
+        "why": "personality, practice drive, energy, opportunity",
+        "changed": "Mika spent a few quiet minutes rehearsing recovery footwork.",
+        "next": "At home here"
+      }
+    ]
+  }
+}

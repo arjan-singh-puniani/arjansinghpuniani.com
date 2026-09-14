@@ -1,0 +1,47 @@
+[
+  {
+    "browser": "chromium",
+    "errors": [],
+    "startup": true,
+    "people": "Coach Contessa\nSettling into the day\nHead coach · Never rushes a correction\n\nMorning practice\n\nnotebook · a familiar belonging · cup · a familiar belonging\nLucresia\nKeen to try again\nMember · Counts clean rallies under her breath\n\nMorning practice\n\nracket · a familiar belonging\nLeo\nSettling into the day\nMember · Tests every grip in the pro shop\n\nComparing fresh grips\n\nracket · a familiar belonging\nBarbara\nIn the mood for company\nClub host · Remembers everyone’s usual drink\n\nPreparing the usual orders\n\nWatering can · a familiar belonging",
+    "reload": true,
+    "saveConflict": {
+      "detected": true,
+      "message": "Another tab saved a newer club. Reload that save, or export this tab before closing it.",
+      "coins": 111
+    },
+    "keyboard": "Lucresia",
+    "mobileOverflow": false,
+    "status": "tested"
+  },
+  {
+    "browser": "webkit",
+    "errors": [],
+    "startup": true,
+    "people": "Coach Contessa\nSettling into the day\nHead coach · Never rushes a correction\n\nMorning practice\n\nnotebook · a familiar belonging · cup · a familiar belonging\nLucresia\nKeen to try again\nMember · Counts clean rallies under her breath\n\nMorning practice\n\nracket · a familiar belonging\nLeo\nSettling into the day\nMember · Tests every grip in the pro shop\n\nComparing fresh grips\n\nracket · a familiar belonging\nBarbara\nIn the mood for company\nClub host · Remembers everyone’s usual drink\n\nPreparing the usual orders\n\nWatering can · a familiar belonging",
+    "reload": true,
+    "saveConflict": {
+      "detected": true,
+      "message": "Another tab saved a newer club. Reload that save, or export this tab before closing it.",
+      "coins": 111
+    },
+    "keyboard": "",
+    "mobileOverflow": false,
+    "status": "tested"
+  },
+  {
+    "browser": "firefox",
+    "errors": [],
+    "startup": true,
+    "people": "Coach Contessa\nSettling into the day\nHead coach · Never rushes a correction\n\nMorning practice\n\nnotebook · a familiar belonging · cup · a familiar belonging\nLucresia\nKeen to try again\nMember · Counts clean rallies under her breath\n\nMorning practice\n\nracket · a familiar belonging\nLeo\nSettling into the day\nMember · Tests every grip in the pro shop\n\nComparing fresh grips\n\nracket · a familiar belonging\nBarbara\nIn the mood for company\nClub host · Remembers everyone’s usual drink\n\nPreparing the usual orders\n\nWatering can · a familiar belonging",
+    "reload": true,
+    "saveConflict": {
+      "detected": true,
+      "message": "Another tab saved a newer club. Reload that save, or export this tab before closing it.",
+      "coins": 111
+    },
+    "keyboard": "Lucresia",
+    "mobileOverflow": false,
+    "status": "tested"
+  }
+]

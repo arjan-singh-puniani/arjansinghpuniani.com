@@ -1,0 +1,105 @@
+{
+  "measurement": "10-second samples of smoothed internal CPU measurements; concurrent QA load; not GPU frame time or physical-device FPS. Heap is the browser-reported coarse bucket, not a leak proof.",
+  "runs": {
+    "baseline": {
+      "samples": 60,
+      "lastSampleSeconds": 608.246,
+      "errors": [],
+      "simMs": {
+        "median": 0.12411997463723581,
+        "p95": 0.5441620688669412,
+        "max": 0.8960198704035905,
+        "firstThirdMedian": 0.14407224459559342,
+        "lastThirdMedian": 0.0962821829437022
+      },
+      "renderMs": {
+        "median": 2.1537256017385396,
+        "p95": 2.2882190290065774,
+        "max": 2.3589052004048012,
+        "firstThirdMedian": 2.113058780142069,
+        "lastThirdMedian": 2.224509697070681
+      },
+      "drawCalls": {
+        "median": 733.0,
+        "p95": 744,
+        "max": 748,
+        "firstThirdMedian": 732.0,
+        "lastThirdMedian": 736.0
+      },
+      "triangles": {
+        "median": 220972.0,
+        "p95": 227612,
+        "max": 228892,
+        "firstThirdMedian": 220412.0,
+        "lastThirdMedian": 222172.0
+      },
+      "memoryMB": {
+        "median": 9.5367431640625,
+        "p95": 9.5367431640625,
+        "max": 9.5367431640625,
+        "firstThirdMedian": 9.5367431640625,
+        "lastThirdMedian": 9.5367431640625
+      },
+      "aiMs": null,
+      "renderItems": null,
+      "completed": 17,
+      "interrupted": 0
+    },
+    "release": {
+      "samples": 108,
+      "lastSampleSeconds": 2441.191,
+      "errors": [],
+      "simMs": {
+        "median": 0.8885932773982453,
+        "p95": 4.650711020138082,
+        "max": 13.364985286627077,
+        "firstThirdMedian": 2.499622508196632,
+        "lastThirdMedian": 0.3769810737663463
+      },
+      "renderMs": {
+        "median": 4.51859321451302,
+        "p95": 6.05408104023746,
+        "max": 6.540497756299418,
+        "firstThirdMedian": 5.320051707272873,
+        "lastThirdMedian": 3.5501332334851674
+      },
+      "drawCalls": {
+        "median": 754.0,
+        "p95": 763,
+        "max": 766,
+        "firstThirdMedian": 746.0,
+        "lastThirdMedian": 754.0
+      },
+      "triangles": {
+        "median": 234732.0,
+        "p95": 237852,
+        "max": 239052,
+        "firstThirdMedian": 229292.0,
+        "lastThirdMedian": 234732.0
+      },
+      "memoryMB": {
+        "median": 9.5367431640625,
+        "p95": 9.5367431640625,
+        "max": 9.5367431640625,
+        "firstThirdMedian": 9.5367431640625,
+        "lastThirdMedian": 9.5367431640625
+      },
+      "aiMs": {
+        "median": 0.052362421978633784,
+        "p95": 0.07660755065988326,
+        "max": 0.1431110156403839,
+        "firstThirdMedian": 0.055676905917153664,
+        "lastThirdMedian": 0.04933899393601756
+      },
+      "renderItems": {
+        "median": 754.0,
+        "p95": 763,
+        "max": 766,
+        "firstThirdMedian": 746.0,
+        "lastThirdMedian": 754.0
+      },
+      "completed": 24,
+      "interrupted": 0
+    }
+  }
+}

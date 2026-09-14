@@ -1,0 +1,5 @@
+import {simulation} from '../../v16-audit-reference/Rally-House-Character-Life-v15/qa/sim-harness.mjs';
+import fs from 'node:fs';
+const g=simulation(),mins=new Map(),overlaps=[];const start=performance.now();let maxMem=0;
+for(let i=0;i<1440*60;i++){g.updateFixed(1/60);if(i%30)continue;maxMem=Math.max(maxMem,g.mind.memories.length);const people=[...g.characters,g.player];for(let a=0;a<people.length;a++)for(let b=a+1;b<people.length;b++){const x=people[a],y=people[b],d=Math.hypot(x.position.x-y.position.x,x.position.z-y.position.z),key=[x.id,y.id].join('|');mins.set(key,Math.min(mins.get(key)??Infinity,d));if(d<.55&&overlaps.length<30)overlaps.push({at:i/60,pair:key,d,states:[x.state,y.state],activities:g.activities.active.map(a=>({id:a.id,phase:a.phase,participants:a.participants}))});}}
+const r={wallSeconds:(performance.now()-start)/1000,day:g.clock.day,minDistances:Object.fromEntries(mins),overlaps,maxMem,culture:g.mind.culture,report:g.telemetry.report()};fs.writeFileSync('qa/baseline-simulation-audit.json',JSON.stringify(r,null,2));console.log(JSON.stringify({...r,report:undefined,overlaps:overlaps.slice(0,5)}));

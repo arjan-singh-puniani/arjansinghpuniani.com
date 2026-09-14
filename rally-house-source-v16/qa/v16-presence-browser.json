@@ -1,0 +1,24 @@
+{
+  "twoTabs": [
+    {
+      "fallback": false,
+      "outcomes": [
+        "SaveConflictError",
+        "saved"
+      ],
+      "saved": 222
+    },
+    {
+      "fallback": true,
+      "outcomes": [
+        "SaveConflictError",
+        "saved"
+      ],
+      "saved": 222
+    }
+  ],
+  "errors": [],
+  "focusReturned": true,
+  "overflow": false,
+  "liveCaption": 2
+}

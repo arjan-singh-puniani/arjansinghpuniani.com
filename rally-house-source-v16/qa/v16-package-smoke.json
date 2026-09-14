@@ -1,0 +1,7 @@
+{
+  "root": "/tmp/rally-v16-package-check/Rally-House-v16-Playtest",
+  "startup": true,
+  "members": true,
+  "avatarReload": true,
+  "errors": []
+}

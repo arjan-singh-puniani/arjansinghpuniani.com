@@ -1,0 +1,92 @@
+[
+  {
+    "day": 8,
+    "time": 883,
+    "activity": {
+      "id": "activity-210",
+      "kind": "tea",
+      "participants": [
+        "mika",
+        "coach"
+      ],
+      "resource": "cafe-table",
+      "phase": "interrupted",
+      "elapsed": 65.03333333333221,
+      "phaseTime": 0,
+      "detail": "Lucresia and Coach Contessa shared a break",
+      "result": "Interrupted safely; no completion rewards."
+    }
+  },
+  {
+    "day": 23,
+    "time": 977,
+    "activity": {
+      "id": "activity-623",
+      "kind": "everyday",
+      "participants": [
+        "mika",
+        "leo"
+      ],
+      "resource": "place-courtBench",
+      "phase": "interrupted",
+      "elapsed": 65.03333333333221,
+      "phaseTime": 0,
+      "detail": "Making room, eventually",
+      "result": "Interrupted safely; no completion rewards."
+    }
+  },
+  {
+    "day": 48,
+    "time": 683,
+    "activity": {
+      "id": "activity-1293",
+      "kind": "tea",
+      "participants": [
+        "nia",
+        "coach"
+      ],
+      "resource": "cafe-table",
+      "phase": "interrupted",
+      "elapsed": 65.03333333333221,
+      "phaseTime": 0,
+      "detail": "Barbara and Coach Contessa shared a break",
+      "result": "Interrupted safely; no completion rewards."
+    }
+  },
+  {
+    "day": 50,
+    "time": 863,
+    "activity": {
+      "id": "activity-1352",
+      "kind": "tea",
+      "participants": [
+        "nia",
+        "leo"
+      ],
+      "resource": "cafe-table",
+      "phase": "interrupted",
+      "elapsed": 65.03333333333221,
+      "phaseTime": 0,
+      "detail": "Barbara and Leo shared a break",
+      "result": "Interrupted safely; no completion rewards."
+    }
+  },
+  {
+    "day": 75,
+    "time": 673,
+    "activity": {
+      "id": "activity-2031",
+      "kind": "tea",
+      "participants": [
+        "nia",
+        "coach"
+      ],
+      "resource": "cafe-table",
+      "phase": "interrupted",
+      "elapsed": 65.03333333333221,
+      "phaseTime": 0,
+      "detail": "Barbara and Coach Contessa shared a break",
+      "result": "Interrupted safely; no completion rewards."
+    }
+  }
+]

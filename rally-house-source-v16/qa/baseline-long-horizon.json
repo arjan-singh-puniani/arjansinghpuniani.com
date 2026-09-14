@@ -1,0 +1,106 @@
+[
+  {
+    "days": 1,
+    "wallSeconds": 0.58789075,
+    "culture": {
+      "training": 0.42500000000000016,
+      "social": 0.42500000000000016,
+      "calm": 0.3500000000000001,
+      "competition": 0.245,
+      "care": 0.275
+    },
+    "memories": 44,
+    "major": 0,
+    "events": 1,
+    "bytes": 13024,
+    "intentions": 1,
+    "cancellations": 0,
+    "completed": 29,
+    "pairs": {
+      "mika|nia": 5,
+      "coach|nia": 2,
+      "coach|mika": 3,
+      "leo|mika": 2,
+      "coach|leo": 2,
+      "leo|nia": 1
+    }
+  },
+  {
+    "days": 7,
+    "wallSeconds": 3.092474833,
+    "culture": {
+      "training": 1,
+      "social": 1,
+      "calm": 1,
+      "competition": 0.5149999999999999,
+      "care": 0.8250000000000005
+    },
+    "memories": 48,
+    "major": 0,
+    "events": 7,
+    "bytes": 17511,
+    "intentions": 1,
+    "cancellations": 0,
+    "completed": 201,
+    "pairs": {
+      "mika|nia": 37,
+      "coach|nia": 33,
+      "coach|mika": 20,
+      "leo|mika": 10,
+      "coach|leo": 11,
+      "leo|nia": 12
+    }
+  },
+  {
+    "days": 30,
+    "wallSeconds": 13.306798624999999,
+    "culture": {
+      "training": 1,
+      "social": 1,
+      "calm": 1,
+      "competition": 1,
+      "care": 1
+    },
+    "memories": 50,
+    "major": 2,
+    "events": 30,
+    "bytes": 27478,
+    "intentions": 1,
+    "cancellations": 0,
+    "completed": 852,
+    "pairs": {
+      "mika|nia": 157,
+      "coach|nia": 149,
+      "coach|mika": 116,
+      "leo|mika": 33,
+      "coach|leo": 64,
+      "leo|nia": 76
+    }
+  },
+  {
+    "days": 100,
+    "wallSeconds": 45.193915542,
+    "culture": {
+      "training": 1,
+      "social": 1,
+      "calm": 1,
+      "competition": 1,
+      "care": 1
+    },
+    "memories": 50,
+    "major": 2,
+    "events": 41,
+    "bytes": 30880,
+    "intentions": 1,
+    "cancellations": 0,
+    "completed": 2841,
+    "pairs": {
+      "mika|nia": 520,
+      "coach|nia": 508,
+      "coach|mika": 369,
+      "leo|mika": 169,
+      "coach|leo": 224,
+      "leo|nia": 267
+    }
+  }
+]

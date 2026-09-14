@@ -1,0 +1,46 @@
+[
+  {
+    "before": {
+      "id": "taylor",
+      "name": "Taylor",
+      "position": {
+        "x": -5,
+        "z": 2
+      },
+      "coins": 240,
+      "progress": 28
+    },
+    "after": {
+      "id": "taylor",
+      "name": "Taylor",
+      "position": {
+        "x": -5,
+        "z": 2
+      },
+      "coins": 240,
+      "progress": 28
+    }
+  },
+  {
+    "before": {
+      "id": "arjan",
+      "name": "Arjan",
+      "position": {
+        "x": -5,
+        "z": 2
+      },
+      "coins": 240,
+      "progress": 28
+    },
+    "after": {
+      "id": "arjan",
+      "name": "Arjan",
+      "position": {
+        "x": -5,
+        "z": 2
+      },
+      "coins": 240,
+      "progress": 28
+    }
+  }
+]

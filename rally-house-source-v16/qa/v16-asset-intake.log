@@ -1,0 +1,2 @@
+Asset intake accepts a weighted synthetic triangle and rejects 16 malformed/unsupported cases; no professional asset supplied.
+Valid GLB JSON/BIN container and provenance CLI pass; mismatched source hash is rejected.

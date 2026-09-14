@@ -1,0 +1,227 @@
+{
+  "seed": 17,
+  "days": 20,
+  "requests": 62,
+  "maxPath": 11,
+  "minGap": 0.8200079198811211,
+  "nearFrames": 0,
+  "layout": [
+    {
+      "type": "bench",
+      "x": -5,
+      "z": 2,
+      "id": "furniture-1"
+    },
+    {
+      "type": "plant",
+      "x": 7,
+      "z": 1,
+      "id": "furniture-2"
+    },
+    {
+      "type": "basket",
+      "x": -5,
+      "z": -2,
+      "id": "furniture-3"
+    },
+    {
+      "type": "lamp",
+      "x": 7,
+      "z": -2,
+      "id": "furniture-4"
+    }
+  ],
+  "interruptions": [],
+  "pairs": {
+    "mika|nia": 86,
+    "coach|nia": 150,
+    "coach|mika": 119,
+    "leo|nia": 81,
+    "leo|mika": 82,
+    "leo|mika|nia": 7,
+    "coach|leo": 7,
+    "coach|leo|mika": 1
+  },
+  "rows": [
+    {
+      "day": 1,
+      "completed": 40,
+      "cancellations": 0,
+      "memories": 48,
+      "events": 8,
+      "mindBytes": 18423,
+      "everydayBytes": 7349
+    },
+    {
+      "day": 2,
+      "completed": 76,
+      "cancellations": 0,
+      "memories": 46,
+      "events": 14,
+      "mindBytes": 19999,
+      "everydayBytes": 9740
+    },
+    {
+      "day": 3,
+      "completed": 111,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 19,
+      "mindBytes": 22347,
+      "everydayBytes": 9713
+    },
+    {
+      "day": 4,
+      "completed": 148,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 26,
+      "mindBytes": 24611,
+      "everydayBytes": 9788
+    },
+    {
+      "day": 5,
+      "completed": 186,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 34,
+      "mindBytes": 26888,
+      "everydayBytes": 10012
+    },
+    {
+      "day": 6,
+      "completed": 224,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 42,
+      "mindBytes": 29371,
+      "everydayBytes": 10083
+    },
+    {
+      "day": 7,
+      "completed": 260,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 46,
+      "mindBytes": 30923,
+      "everydayBytes": 10165
+    },
+    {
+      "day": 8,
+      "completed": 293,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 48,
+      "mindBytes": 31595,
+      "everydayBytes": 10106
+    },
+    {
+      "day": 9,
+      "completed": 328,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 48,
+      "mindBytes": 31879,
+      "everydayBytes": 10098
+    },
+    {
+      "day": 10,
+      "completed": 364,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 48,
+      "mindBytes": 32310,
+      "everydayBytes": 10247
+    },
+    {
+      "day": 11,
+      "completed": 400,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 48,
+      "mindBytes": 32873,
+      "everydayBytes": 10337
+    },
+    {
+      "day": 12,
+      "completed": 437,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 48,
+      "mindBytes": 33091,
+      "everydayBytes": 10101
+    },
+    {
+      "day": 13,
+      "completed": 472,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 48,
+      "mindBytes": 33531,
+      "everydayBytes": 10283
+    },
+    {
+      "day": 14,
+      "completed": 508,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 48,
+      "mindBytes": 33814,
+      "everydayBytes": 10115
+    },
+    {
+      "day": 15,
+      "completed": 546,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 48,
+      "mindBytes": 34329,
+      "everydayBytes": 10240
+    },
+    {
+      "day": 16,
+      "completed": 582,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 48,
+      "mindBytes": 34682,
+      "everydayBytes": 10063
+    },
+    {
+      "day": 17,
+      "completed": 618,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 48,
+      "mindBytes": 35071,
+      "everydayBytes": 10288
+    },
+    {
+      "day": 18,
+      "completed": 655,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 48,
+      "mindBytes": 35036,
+      "everydayBytes": 10188
+    },
+    {
+      "day": 19,
+      "completed": 689,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 48,
+      "mindBytes": 35112,
+      "everydayBytes": 10265
+    },
+    {
+      "day": 20,
+      "completed": 727,
+      "cancellations": 0,
+      "memories": 50,
+      "events": 48,
+      "mindBytes": 35279,
+      "everydayBytes": 10248
+    }
+  ]
+}

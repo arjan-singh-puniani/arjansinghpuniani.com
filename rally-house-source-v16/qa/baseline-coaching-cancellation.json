@@ -1,0 +1,25 @@
+{
+  "fault": "Interrupted travel path after request was accepted, before arrival",
+  "accepted": {
+    "id": "activity-1",
+    "phase": "interrupted"
+  },
+  "queue": null,
+  "lessons": [
+    {
+      "id": "activity-1",
+      "kind": "lesson",
+      "participants": [
+        "coach",
+        "mika"
+      ],
+      "resource": "court",
+      "phase": "interrupted",
+      "elapsed": 40.01666666666568,
+      "phaseTime": 0,
+      "detail": "Drop-feed timing",
+      "result": "Interrupted safely; no completion rewards."
+    }
+  ],
+  "progress": 28
+}

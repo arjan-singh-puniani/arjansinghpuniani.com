@@ -1,0 +1,41 @@
+{
+  "match": {
+    "id": "activity-1",
+    "day": 1,
+    "winner": "draw",
+    "score": {
+      "leo": 2,
+      "mika": 2
+    },
+    "longest": 25,
+    "contacts": 60,
+    "errors": {
+      "leo": 2,
+      "mika": 2
+    }
+  },
+  "event": {
+    "id": "activity-1",
+    "kind": "match",
+    "subject": "mika",
+    "detail": "Lucresia 2 · Leo 2. They finish level. Longest rally: 25.",
+    "winner": "draw",
+    "importance": 0.8,
+    "day": 1,
+    "place": "court",
+    "at": 88.00000000000003,
+    "witnesses": [
+      "coach"
+    ],
+    "pending": [
+      "mika",
+      "leo"
+    ]
+  },
+  "scene": "three-activity-1-coach",
+  "threeCompleted": "activity-2",
+  "friction": [
+    "activity-1",
+    "activity-2"
+  ]
+}
