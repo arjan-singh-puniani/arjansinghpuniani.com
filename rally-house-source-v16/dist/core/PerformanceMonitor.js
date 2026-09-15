@@ -26,4 +26,3 @@ export class PerformanceMonitor {
         return { simMs: this.simMs, renderMs: this.renderMs, drawCalls: this.drawCalls, triangles: this.triangles, entities: this.entities, memoryMB: perf.memory ? perf.memory.usedJSHeapSize / 1048576 : null };
     }
 }
-//# sourceMappingURL=PerformanceMonitor.js.map

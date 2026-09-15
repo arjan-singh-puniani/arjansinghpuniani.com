@@ -74,4 +74,3 @@ addSegment(arms, bind.foreArmL, bind.handL, [.12, .105], [.095, .085], BONE.fore
 addSegment(arms, bind.upperArmR, bind.foreArmR, [.14, .13], [.12, .105], BONE.upperArmR, BONE.foreArmR, 10);
 addSegment(arms, bind.foreArmR, bind.handR, [.12, .105], [.095, .085], BONE.foreArmR, BONE.handR, 10);
 export const CHARACTER_SKIN = { top: finish('char-top-v1', top), feminineTop: finish('char-top-feminine-v1', feminineTop), pants: finish('char-pants-v1', pants), arms: finish('char-arms-v1', arms) };
-//# sourceMappingURL=CharacterSkin.js.map

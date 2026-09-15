@@ -123,4 +123,3 @@ export function inspectCharacterAsset(input, buffers, provenance) {
         fail('empty or over-budget geometry');
     return { primitives, inverseBindMatrices: inverse, provenance: structuredClone(provenance), warnings: ['Intake only: compare bind pose, material mapping and motion before activation.', 'SHA-256 provenance must be verified by the file-loading caller.', 'No professional character or animation asset was supplied.'] };
 }
-//# sourceMappingURL=CharacterAssetIntake.js.map

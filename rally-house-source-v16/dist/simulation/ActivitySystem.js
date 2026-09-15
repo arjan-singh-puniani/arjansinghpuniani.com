@@ -43,4 +43,3 @@ export class ActivitySystem {
     serialize() { return { sequence: this.sequence, history: this.history.map(a => ({ ...a, participants: [...a.participants] })) }; }
     load(s) { this.active = []; this.sequence = s?.sequence ?? 0; this.history = (s?.history ?? []).slice(0, 48); }
 }
-//# sourceMappingURL=ActivitySystem.js.map

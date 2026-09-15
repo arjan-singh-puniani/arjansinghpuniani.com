@@ -41,4 +41,3 @@ export class BallPhysics {
     }
 }
 export function solveLaunch(start, target, flightTime, gravity = -9.81) { return new Vec3((target.x - start.x) / flightTime, (target.y - start.y - .5 * gravity * flightTime * flightTime) / flightTime, (target.z - start.z) / flightTime); }
-//# sourceMappingURL=BallPhysics.js.map

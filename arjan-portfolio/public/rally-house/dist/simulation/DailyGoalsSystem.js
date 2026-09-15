@@ -22,4 +22,3 @@ export class DailyGoalsSystem {
         return; this.day = s.day; this.goals = (s.goals || []).map(g => ({ ...g })); this.claimed = !!s.claimed; if (!this.goals.length)
         this.reset(this.day); }
 }
-//# sourceMappingURL=DailyGoalsSystem.js.map

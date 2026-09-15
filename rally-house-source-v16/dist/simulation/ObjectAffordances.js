@@ -52,4 +52,3 @@ export class ObjectAffordances {
         }
     }
 }
-//# sourceMappingURL=ObjectAffordances.js.map

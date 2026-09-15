@@ -48,4 +48,3 @@ export class WalkCycle {
         return landed;
     }
 }
-//# sourceMappingURL=WalkCycle.js.map

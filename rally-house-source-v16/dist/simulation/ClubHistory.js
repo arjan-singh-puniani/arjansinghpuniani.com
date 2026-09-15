@@ -22,4 +22,3 @@ export class ClubHistory {
     load(s) { if (!s)
         return; Object.assign(this, s); this.matches = this.matches.slice(0, 24); this.intentions = this.intentions.slice(-8); }
 }
-//# sourceMappingURL=ClubHistory.js.map

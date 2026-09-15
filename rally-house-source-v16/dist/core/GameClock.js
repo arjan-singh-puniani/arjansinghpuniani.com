@@ -23,4 +23,3 @@ export class GameClock {
     formatted() { return `${this.hour}:${String(this.minute).padStart(2, '0')}`; }
     serialize() { return { minutes: this.minutes, day: this.day, paused: this.paused, speed: this.speed }; }
 }
-//# sourceMappingURL=GameClock.js.map
