@@ -14,4 +14,3 @@ export class ScheduleSystem {
         person.setDestination(e.destination, e.activity, e.animation);
     } }
 }
-//# sourceMappingURL=ScheduleSystem.js.map

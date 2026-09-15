@@ -91,4 +91,3 @@ export const conversationLines = {
 export const relationshipTiers = [
     { min: 0, label: 'New face' }, { min: 20, label: 'Familiar' }, { min: 40, label: 'Club regular' }, { min: 60, label: 'Club friend' }, { min: 80, label: 'Close friend' }, { min: 95, label: 'Trusted person' }
 ];
-//# sourceMappingURL=content.js.map

@@ -61,4 +61,3 @@ export class ActingState {
     get reaction() { return this.reactionName ? REACTIONS[this.reactionName] : null; }
     get settling() { return this.reactionName !== null && this.reactionAge < 2.8; }
 }
-//# sourceMappingURL=ActingState.js.map

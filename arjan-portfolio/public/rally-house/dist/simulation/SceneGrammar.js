@@ -78,4 +78,3 @@ export class SceneGrammar {
         return out.filter(s => s.people.every(id => c.free.has(id)) && c.available(s));
     }
 }
-//# sourceMappingURL=SceneGrammar.js.map

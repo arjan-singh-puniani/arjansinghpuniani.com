@@ -98,4 +98,3 @@ export class HUD {
     hideSpeech() { clearTimeout(this.speechTimer); byId('speech').classList.remove('show'); }
     positionSpeech(x, y) { const el = byId('speech'); const half = el.getBoundingClientRect().width / 2; el.style.left = `${Math.max(half + 12, Math.min(innerWidth - half - 12, x))}px`; el.style.top = `${Math.max(145, Math.min(innerHeight - 100, y))}px`; }
 }
-//# sourceMappingURL=HUD.js.map

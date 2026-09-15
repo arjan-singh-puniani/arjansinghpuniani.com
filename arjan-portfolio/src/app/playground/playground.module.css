@@ -147,11 +147,36 @@
   object-position:50% 50%;
 }
 
+.hemoEntry{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);
+  min-height:500px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:var(--paper);
+  color:var(--ink);
+}
+.hemoCopy{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  padding:clamp(40px,5vw,72px);
+}
+.hemoCopy .status{margin-bottom:22px}
+.hemoCopy h2{max-width:620px;margin:10px 0 20px;font-size:clamp(42px,4.6vw,68px);line-height:.98}
+.hemoCopy>p:not(.eyebrow){max-width:610px;margin:0;color:var(--muted);font-size:17px;line-height:1.58}
+.hemoChain{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 30px;color:var(--accent);font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.hemoChain span:not(:last-child)::after{content:" →";color:var(--muted)}
+.hemoPreview{position:relative;min-height:500px;margin:0;overflow:hidden;border-left:1px solid var(--line);background:#f6f5f1}
+.hemoPreview::after{content:"MODEL PREVIEW / OPEN FOR INTERACTION";position:absolute;right:18px;bottom:16px;z-index:2;padding:7px 9px;border:1px solid var(--line);background:rgba(251,250,246,.94);color:var(--muted);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em}
+.hemoPreview img{object-fit:cover;object-position:50% 42%;filter:saturate(.86) contrast(1.02)}
+
 @media(max-width:800px){
   .playSection{padding-top:24px;padding-bottom:24px}
-  .rallyEntry,.pitEntry{grid-template-columns:1fr}
-  .rallyCopy,.pitCopy{padding:34px 26px 38px}
-  .rallyPreview,.pitHero{
+  .rallyEntry,.pitEntry,.hemoEntry{grid-template-columns:1fr}
+  .rallyCopy,.pitCopy,.hemoCopy{padding:34px 26px 38px}
+  .rallyPreview,.pitHero,.hemoPreview{
     min-height:0;
     aspect-ratio:16/9;
     border-left:0;

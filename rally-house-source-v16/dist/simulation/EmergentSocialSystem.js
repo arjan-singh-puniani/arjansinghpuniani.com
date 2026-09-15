@@ -41,4 +41,3 @@ export class EmergentSocialSystem {
     load(s) { if (!s)
         return; this.nextAllowed = s.nextAllowed ?? 548; this.activeDay = s.day ?? 1; this.seen = new Set(s.seen ?? []); }
 }
-//# sourceMappingURL=EmergentSocialSystem.js.map

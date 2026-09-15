@@ -10,7 +10,7 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
     "removeComments": false,
-    "sourceMap": true
+    "sourceMap": false
   },
   "include": ["src/**/*.ts"]
 }

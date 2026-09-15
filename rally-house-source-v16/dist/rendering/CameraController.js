@@ -98,4 +98,3 @@ export class CameraController {
         return null; return ray.origin.add(ray.dir.scale(t)); }
     project(v) { const p = transformPoint(this.viewProjection(), v), r = this.canvas.getBoundingClientRect(); return { x: (p.x * .5 + .5) * r.width, y: (1 - (p.y * .5 + .5)) * r.height, visible: p.z > -1 && p.z < 1 }; }
 }
-//# sourceMappingURL=CameraController.js.map

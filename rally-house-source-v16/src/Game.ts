@@ -65,6 +65,7 @@ export class Game {
 
   /** Local, dev-only instrumentation. No network, no user data. Used by tools/shoot.mjs and by hand in the console. */
   private exposeDebugHooks(){
+    if(!new URLSearchParams(location.search).has('debug'))return;
     (window as unknown as {__rh:unknown}).__rh={
       ready:true,
       game:this,

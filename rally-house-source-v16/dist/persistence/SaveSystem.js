@@ -125,4 +125,3 @@ export class SaveSystem {
 }
 class ProtectedSaveError extends Error {
 }
-//# sourceMappingURL=SaveSystem.js.map

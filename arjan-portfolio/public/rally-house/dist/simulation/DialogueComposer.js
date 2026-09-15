@@ -26,4 +26,3 @@ export class DialogueComposer {
     }
     commit(line, now) { this.recent = this.recent.filter(r => now - r.at < 360); this.recent.push({ key: line.key, at: now }); this.recent = this.recent.slice(-32); }
 }
-//# sourceMappingURL=DialogueComposer.js.map

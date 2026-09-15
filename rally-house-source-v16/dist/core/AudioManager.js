@@ -67,4 +67,3 @@ export class AudioManager {
     chuckle() { this.tone(230, .055, .002, 'triangle'); setTimeout(() => this.tone(270, .07, .0015, 'triangle'), 90); }
     success() { this.tone(660, .08, .013); setTimeout(() => this.tone(880, .10, .011), 70); }
 }
-//# sourceMappingURL=AudioManager.js.map

@@ -1010,4 +1010,3 @@ export class Character {
         return m;
     }
 }
-//# sourceMappingURL=Character.js.map

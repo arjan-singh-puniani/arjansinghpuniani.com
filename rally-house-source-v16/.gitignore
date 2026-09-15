@@ -1,1 +1,7 @@
 node_modules/
+dist/**/*.map
+qa/**/watch.json
+qa/**/session.json
+qa/*-soak/
+qa/*-mixed/
+qa/*.log

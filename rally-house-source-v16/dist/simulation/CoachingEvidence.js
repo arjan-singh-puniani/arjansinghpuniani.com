@@ -23,4 +23,3 @@ export class CoachingEvidence {
         return { before, after, gain, breakthrough: this.complete && before.count >= 6 && before.late >= 3 && this.cue === 'preparation' && after.late <= 2 && after.clean >= 6 };
     }
 }
-//# sourceMappingURL=CoachingEvidence.js.map

@@ -22,4 +22,3 @@ export class ClubLifeSystem {
     load(s) { if (!s)
         return; this.seen = new Set(s.seen || []); this.memories = s.memories || []; }
 }
-//# sourceMappingURL=ClubLifeSystem.js.map

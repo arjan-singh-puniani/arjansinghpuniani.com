@@ -72,4 +72,3 @@ export function migrateGameSave(version, state) {
         relationships[k] = normalizeRelationship(v);
     return { ...state, stars: state.stars ?? 3, coachXP: state.coachXP ?? 14, weather: state.weather ?? 'clear', placements: state.placements ?? [], equipment: state.equipment ?? { frame: 'Cedar 98', tension: 52, string: 'Soft poly' }, relationships, bestRally: state.bestRally ?? 0, development: state.development ?? { preparation: 0, recovery: 0 }, emergentSocial: version >= 4 ? state.emergentSocial : undefined, mind: version >= 7 ? state.mind : undefined };
 }
-//# sourceMappingURL=migrations.js.map

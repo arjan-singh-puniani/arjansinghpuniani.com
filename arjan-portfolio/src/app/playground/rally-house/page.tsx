@@ -4,7 +4,7 @@ import { siteUrl } from "@/lib/site";
 import styles from "./rally-house.module.css";
 
 export const metadata: Metadata = {
-  title: "Rally House — Presence & Acting",
+  title: "Rally House — Cozy Tennis Life Sim",
   description:
     "Play Rally House, Arjan Singh Puniani's cozy social tennis simulation where coaching, routines, relationships, witnessed moments, decorating, and club history shape a living academy.",
   alternates: { canonical: "/playground/rally-house" },
@@ -37,18 +37,18 @@ export default function RallyHousePage() {
         <div className={`shell ${styles.heroGrid}`}>
           <div>
             <Link className={styles.back} href="/playground">← Playground</Link>
-            <p className="eyebrow">Rally House · Cozy social tennis simulation</p>
-            <h1>A little club that notices.</h1>
+            <p className="eyebrow">Rally House · Playable cozy tennis life sim</p>
+            <h1>Come hang out for a while.</h1>
             <p className={styles.deck}>
               Coach a lesson, wander through the academy, decorate a corner, and watch people react to what actually happened. Relationships, witnessed moments, routines, favorite places, and club history carry forward.
             </p>
             <div className={styles.actions}>
-              <a className="button" href="#play">Play Rally House ↓</a>
+              <a className="button" href="#play">Start playing ↓</a>
               <a className={styles.textLink} href="/rally-house/index.html" target="_blank" rel="noreferrer">Open full screen ↗</a>
             </div>
           </div>
           <aside className={styles.summary} aria-label="Rally House game summary">
-            <p>PRESENCE & ACTING / v16</p>
+            <p>PLAYABLE WEB GAME</p>
             <dl>
               <div><dt>Do</dt><dd>Coach · wander · decorate</dd></div>
               <div><dt>People</dt><dd>Notice · react · remember</dd></div>
@@ -61,10 +61,10 @@ export default function RallyHousePage() {
       <section className={styles.gameSection} id="play" aria-label="Playable Rally House game">
         <div className="shell">
           <div className={styles.frameShell}>
-            <iframe className={styles.gameFrame} src="/rally-house/index.html" title="Rally House interactive living tennis academy" loading="eager" allow="fullscreen" />
+            <iframe className={styles.gameFrame} src="/rally-house/index.html" title="Play Rally House, an interactive living tennis academy" loading="eager" allow="fullscreen" allowFullScreen aria-describedby="rally-house-controls" />
           </div>
           <div className={styles.gameFooter}>
-            <p>Tap to walk · drag to pan · Shift/right-drag to orbit · pinch or scroll to zoom.</p>
+            <p id="rally-house-controls">Tap to walk · drag to pan · Shift/right-drag to orbit · pinch or scroll to zoom.</p>
             <a href="/rally-house/index.html" target="_blank" rel="noreferrer">Full-screen game ↗</a>
           </div>
         </div>

@@ -72,4 +72,3 @@ export class RelationshipSystem {
         r.events = [...major, ...all.filter(e => !ids.has(e.id)).slice(0, 16 - major.length)].sort((a, b) => b.day - a.day);
     }
 }
-//# sourceMappingURL=RelationshipSystem.js.map

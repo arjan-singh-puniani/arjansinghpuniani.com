@@ -87,4 +87,3 @@ export function clipForState(state, seed = 0) {
         default: return seed % 2 ? 'idleB' : 'idleA';
     }
 }
-//# sourceMappingURL=ClipLibrary.js.map

@@ -135,4 +135,3 @@ export function sunViewProjection(sunDir, center, radius, resolution) {
     const proj = orthographic(-radius + sx, radius + sx, -radius + sy, radius + sy, .1, radius * 4.5);
     return multiply(proj, view);
 }
-//# sourceMappingURL=Math3D.js.map

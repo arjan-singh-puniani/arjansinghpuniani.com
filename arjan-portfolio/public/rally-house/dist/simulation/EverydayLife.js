@@ -105,4 +105,3 @@ export class EverydayLife {
         this.lastMatch = s.lastMatch;
     }
 }
-//# sourceMappingURL=EverydayLife.js.map

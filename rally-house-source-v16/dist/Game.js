@@ -132,6 +132,8 @@ export class Game {
         this.openAvatarPicker(); }
     /** Local, dev-only instrumentation. No network, no user data. Used by tools/shoot.mjs and by hand in the console. */
     exposeDebugHooks() {
+        if (!new URLSearchParams(location.search).has('debug'))
+            return;
         window.__rh = {
             ready: true,
             game: this,
@@ -1388,4 +1390,3 @@ export class Game {
         this.player.path = [];
     } }
 }
-//# sourceMappingURL=Game.js.map
