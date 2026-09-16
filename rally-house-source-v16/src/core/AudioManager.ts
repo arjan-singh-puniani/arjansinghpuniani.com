@@ -8,9 +8,13 @@ export class AudioManager {
   paper(){this.noiseBurst(1250,.055,.005,1.6);this.tone(610,.035,.004,'sine')}
   bounce(){this.tone(116+Math.random()*8,.034,.010,'triangle');this.noiseBurst(520+Math.random()*80,.030,.007)}
   hit(quality:'clean'|'frame'|'net'='clean'){
-    if(quality==='frame'){this.tone(224,.040,.010,'triangle',240);this.noiseBurst(1550,.030,.010,1.4);return;}
+    const drift=(Math.random()-.5)*34;
+    if(quality==='frame'){this.tone(218+Math.random()*10,.036,.012,'triangle',220+drift);this.noiseBurst(1680+Math.random()*160,.026,.013,1.55);return;}
     if(quality==='net'){this.net();return;}
-    this.tone(184+Math.random()*12,.054,.015,'triangle');this.tone(365+Math.random()*20,.036,.007,'sine');this.noiseBurst(1100+Math.random()*140,.044,.013,1.05);
+    this.tone(178+Math.random()*10,.043,.019,'triangle',drift);
+    this.tone(515+Math.random()*35,.024,.009,'sine',drift*.5);
+    this.noiseBurst(1760+Math.random()*240,.026,.016,1.65);
+    this.noiseBurst(760+Math.random()*90,.048,.0065,.82);
   }
   net(){this.noiseBurst(390,.078,.011,.7);this.tone(92,.07,.007,'triangle')}
   shoe(squeak=false){if(squeak){this.noiseBurst(1750,.045,.0045,2.4);this.tone(720,.025,.0028,'sine');}else this.noiseBurst(260,.025,.0027,.7)}

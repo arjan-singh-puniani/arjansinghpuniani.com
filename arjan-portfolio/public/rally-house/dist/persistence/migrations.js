@@ -1,4 +1,5 @@
-export const CURRENT_SAVE_VERSION = 7;
+import { DECOR_BY_ID } from '../content/DecorCatalog.js';
+export const CURRENT_SAVE_VERSION = 8;
 const invalid = () => { throw new Error('Saved club data is invalid. Storage has been left untouched.'); };
 function scan(v, depth = 0) {
     if (depth > 20)
@@ -40,7 +41,7 @@ export function migrateGameSave(version, state) {
         invalid();
     const ids = new Set();
     for (const p of state.placements ?? []) {
-        if (!p || !['bench', 'plant', 'lamp', 'basket'].includes(p.type) || ![p.x, p.z].every(Number.isFinite) || Math.abs(p.x) > 12.5 || Math.abs(p.z) > 9.5)
+        if (!p || !(p.type in DECOR_BY_ID) || ![p.x, p.z].every(Number.isFinite) || Math.abs(p.x) > 12.5 || Math.abs(p.z) > 9.5 || (p.rotation !== undefined && (!Number.isFinite(p.rotation) || Math.abs(p.rotation) > Math.PI * 8)))
             invalid();
         if (p.id) {
             if (typeof p.id !== 'string' || ids.has(p.id))

@@ -28,7 +28,8 @@ import { AmbientSocialPlanner } from './simulation/AmbientSocialPlanner.js';
 import { SaveSystem, SaveConflictError } from './persistence/SaveSystem.js';
 import { migrateGameSave } from './persistence/migrations.js';
 import { HUD } from './ui/HUD.js';
-const COSTS = { plant: 30, bench: 45, lamp: 35, basket: 25 };
+import { DECOR_BY_ID, rotatedFootprint } from './content/DecorCatalog.js';
+const LESSON_FEE = 18;
 const weatherOrder = ['clear', 'cloudy', 'rain'];
 export class Game {
     canvas;
@@ -47,7 +48,7 @@ export class Game {
     player;
     rally;
     socialRally;
-    coins = 240;
+    coins = 100;
     stars = 3;
     mikaProgress = 28;
     coachXP = 14;
@@ -82,6 +83,7 @@ export class Game {
     saveSystem = new SaveSystem();
     selectedId = null;
     buildType = null;
+    buildRotation = 0;
     hoverGround = null;
     frameSamples = [];
     graphicsLost = false;
@@ -157,7 +159,7 @@ export class Game {
         };
     }
     bindUI() {
-        this.ui.onBuildClose = () => { this.buildType = null; this.movingPlacement = null; };
+        this.ui.onBuildClose = () => { this.buildType = null; this.buildRotation = 0; this.movingPlacement = null; };
         document.getElementById('scenePeek').onclick = () => { const run = this.lifeRuns.values().next().value; if (run) {
             const people = run.scene.people.map(id => this.actor(id));
             this.camera.focus(people.reduce((v, c) => v + c.position.x, 0) / people.length, people.reduce((v, c) => v + c.position.z, 0) / people.length, 25);
@@ -168,7 +170,8 @@ export class Game {
         this.ui.onBook = () => this.openBook();
         this.ui.onCoach = () => this.openCoaching();
         this.ui.onBuild = () => { this.ui.toggleBuild(); this.audio.click(); };
-        this.ui.onBuildSelect = (type) => { this.buildType = type; this.ui.toast(`${type[0].toUpperCase() + type.slice(1)} selected · tap a free floor tile`); this.audio.click(); };
+        this.ui.onBuildSelect = (type) => { this.buildType = type; this.buildRotation = 0; const d = DECOR_BY_ID[this.buildType]; this.ui.toast(`${d.label} selected · Q / E rotates`); this.audio.click(); };
+        this.ui.onBuildRotate = (direction) => { this.rotateBuild(direction); this.audio.click(); };
         this.ui.onWeather = () => { const i = weatherOrder.indexOf(this.world.weather); this.world.weather = weatherOrder[(i + 1) % weatherOrder.length]; const msg = this.world.weather === 'rain' ? 'Soft rain moved in. The indoor court feels extra cozy.' : this.world.weather === 'cloudy' ? 'Clouds softened the light.' : 'The clouds cleared.'; this.ui.toast(msg); this.audio.click(); this.applyWeatherBehavior(); void this.save(); };
         this.ui.onCamera = () => { const view = this.camera.cycleView(); this.ui.toast(view === 1 ? 'Mirrored dollhouse view' : view === 2 ? 'High center view' : 'Classic dollhouse view'); this.audio.click(); };
         this.ui.onSave = () => void this.save(true);
@@ -194,24 +197,41 @@ export class Game {
             box.append(title, detail);
             void this.saveSystem.save(this.snapshot()).then(() => { detail.textContent = 'Your club is saved. Reload to restore the view.'; const button = document.createElement('button'); button.textContent = 'Reload saved club'; button.onclick = () => location.reload(); box.append(button); }).catch(() => { detail.textContent = 'Graphics stopped, and recent changes could not be saved. Keep this tab open.'; });
         });
-        document.addEventListener('keydown', e => { if (e.target instanceof HTMLInputElement)
-            return; if (e.key === 'Escape') {
-            const hadPanel = !!document.querySelector('#context.open,#book.open');
-            this.ui.closeContext();
-            this.ui.closeBook();
-            this.ui.toggleBuild(false);
-            this.buildType = null;
-            this.movingPlacement = null;
-            if (!hadPanel)
-                this.canvas.focus();
-        } if (e.target !== this.canvas)
-            return; const c = this.characters[Number(e.key) - 1]; if (c)
-            this.openCharacter(c); if (e.key.toLowerCase() === 'c')
-            this.openCoaching(); if (e.key.toLowerCase() === 'b')
-            this.ui.toggleBuild(); if (e.key.startsWith('Arrow')) {
-            e.preventDefault();
-            this.camera.pan(e.key === 'ArrowLeft' ? -25 : e.key === 'ArrowRight' ? 25 : 0, e.key === 'ArrowUp' ? -25 : e.key === 'ArrowDown' ? 25 : 0);
-        } });
+        document.addEventListener('keydown', e => {
+            if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement)
+                return;
+            const key = e.key.toLowerCase();
+            if (e.key === 'Escape') {
+                const hadPanel = !!document.querySelector('#context.open,#book.open');
+                this.ui.closeContext();
+                this.ui.closeBook();
+                this.ui.toggleBuild(false);
+                this.buildType = null;
+                this.buildRotation = 0;
+                this.movingPlacement = null;
+                if (!hadPanel)
+                    this.canvas.focus();
+                return;
+            }
+            if (this.buildType && (key === 'q' || key === 'e')) {
+                e.preventDefault();
+                this.rotateBuild(key === 'q' ? -1 : 1, e.shiftKey);
+                return;
+            }
+            if (e.target !== this.canvas)
+                return;
+            const c = this.characters[Number(e.key) - 1];
+            if (c)
+                this.openCharacter(c);
+            if (key === 'c')
+                this.openCoaching();
+            if (key === 'b')
+                this.ui.toggleBuild();
+            if (e.key.startsWith('Arrow')) {
+                e.preventDefault();
+                this.camera.pan(e.key === 'ArrowLeft' ? -25 : e.key === 'ArrowRight' ? 25 : 0, e.key === 'ArrowUp' ? -25 : e.key === 'ArrowDown' ? 25 : 0);
+            }
+        });
         this.canvas.addEventListener('wheel', e => { e.preventDefault(); this.camera.zoom(e.deltaY * .012); }, { passive: false });
         this.canvas.addEventListener('contextmenu', e => e.preventDefault());
         this.canvas.addEventListener('pointerdown', e => { this.canvas.setPointerCapture(e.pointerId); this.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY }); if (this.pointers.size === 1) {
@@ -292,7 +312,7 @@ export class Game {
                 this.place(this.buildType, g.x, g.z);
             return;
         }
-        const placed = this.world.placements.find(p => { const q = this.camera.project(new Vec3(p.x, .6, p.z)); return Math.hypot(q.x - x, q.y - y) < 28; });
+        const placed = this.world.placements.find(p => { const q = this.camera.project(new Vec3(p.x, .6, p.z)), d = DECOR_BY_ID[p.type], threshold = Math.min(62, 24 + Math.max(d.footprintX, d.footprintZ) * 12); return Math.hypot(q.x - x, q.y - y) < threshold; });
         if (placed) {
             this.openFurniture(placed);
             return;
@@ -425,21 +445,21 @@ export class Game {
     openEquipment() {
         const e = this.equipment;
         const actions = [
-            { title: 'Willow 100', subtitle: 'Forgiving frame · 20 coins', run: () => this.buyFrame('Willow 100', 20) },
-            { title: 'Cedar 98', subtitle: 'Precise frame · 20 coins', run: () => this.buyFrame('Cedar 98', 20) },
-            { title: 'Softer strings', subtitle: 'Multifilament · 12 coins', run: () => this.buyString('Multifilament', 12) },
-            { title: 'Firm strings', subtitle: 'Soft poly · 12 coins', run: () => this.buyString('Soft poly', 12) },
+            { title: 'Willow 100', subtitle: 'Forgiving frame · 20 club funds', run: () => this.buyFrame('Willow 100', 20) },
+            { title: 'Cedar 98', subtitle: 'Precise frame · 20 club funds', run: () => this.buyFrame('Cedar 98', 20) },
+            { title: 'Softer strings', subtitle: 'Multifilament · 12 club funds', run: () => this.buyString('Multifilament', 12) },
+            { title: 'Firm strings', subtitle: 'Soft poly · 12 club funds', run: () => this.buyString('Soft poly', 12) },
             { title: 'Tension −2 lb', subtitle: 'More launch', run: () => { e.tension = Math.max(44, e.tension - 2); this.openEquipment(); void this.save(); } },
             { title: 'Tension +2 lb', subtitle: 'More control', run: () => { e.tension = Math.min(60, e.tension + 2); this.openEquipment(); void this.save(); } }
         ];
         this.ui.showContext('PRO SHOP', 'Racket bench', `${e.frame} · ${e.string} · ${e.tension} lb`, ['visual customization', 'persistent equipment', 'no hidden rarity tiers'], actions);
     }
     buyFrame(frame, cost) { if (this.coins < cost) {
-        this.ui.toast('Not enough coins yet.');
+        this.ui.toast('Not enough club funds yet.');
         return;
     } this.coins -= cost; this.equipment.frame = frame; this.life.addMemory(this.clock.day, `You set up a ${frame}.`); this.ui.toast(`${frame} is now in the bag.`); this.audio.success(); this.openEquipment(); void this.save(); }
     buyString(string, cost) { if (this.coins < cost) {
-        this.ui.toast('Not enough coins yet.');
+        this.ui.toast('Not enough club funds yet.');
         return;
     } this.coins -= cost; this.equipment.string = string; this.world.triggerInteraction('stringing'); this.life.addMemory(this.clock.day, `The pro-shop bench restrung your racket with ${string}.`); this.ui.toast(`Restrung with ${string}.`); this.audio.stringing(); this.audio.success(); this.openEquipment(); void this.save(); }
     openBook() {
@@ -449,25 +469,44 @@ export class Game {
         this.audio.click();
     }
     openFurniture(p) {
-        const h = this.affordances.objects[p.id];
-        const favorites = h?.favoriteOf.map(id => this.actor(id).spec.name).join(', ');
-        this.ui.showContext('YOUR ACADEMY', `Your ${p.type}`, favorites ? `A favorite place for ${favorites}.` : h?.memories[0] ?? 'A new place for a club ritual.', this.affordances.affordances(p), [
+        const h = this.affordances.objects[p.id], def = DECOR_BY_ID[p.type], favorites = h?.favoriteOf.map(id => this.actor(id).spec.name).join(', ');
+        this.ui.showContext('YOUR ACADEMY', def.label, favorites ? `A favorite place for ${favorites}.` : h?.memories[0] ?? 'A new place for a club ritual.', this.affordances.affordances(p), [
             { title: 'Move', subtitle: 'Keep this object’s history', run: () => { if (this.activities.reserved(p.id)) {
                     this.ui.toast('Let their break finish first.');
                     return;
                 } this.movingPlacement = p.id; this.ui.closeContext(); this.ui.toast('Tap a free floor tile. Escape cancels.'); } },
+            { title: 'Rotate left', subtitle: 'Turn 22.5° without moving it', run: () => this.rotateFurniture(p, -1) },
+            { title: 'Rotate right', subtitle: 'Turn 22.5° without moving it', run: () => this.rotateFurniture(p, 1) },
             { title: 'Return to catalog', subtitle: 'Full refund; clears this place’s history', run: () => { if (this.activities.reserved(p.id)) {
                     this.ui.toast('Someone is using this place.');
                     return;
                 } this.world.placements = this.world.placements.filter(v => v !== p); for (const e of this.mind.events)
                     if (e.kind === 'move' && e.place === p.id)
-                        e.pending = []; this.coins += COSTS[p.type]; this.affordances.sync(this.world.placements, this.clock.day); this.rebuildFurnitureObstacles(); this.ui.closeContext(); void this.save(); } }
+                        e.pending = []; this.coins += def.cost; this.affordances.sync(this.world.placements, this.clock.day); this.rebuildFurnitureObstacles(); this.ui.closeContext(); void this.save(); } }
         ]);
+    }
+    rotateBuild(direction, fine = false) { if (!this.buildType)
+        return; const step = fine ? Math.PI / 24 : DECOR_BY_ID[this.buildType].rotationStep, tau = Math.PI * 2; this.buildRotation = (this.buildRotation + direction * step + tau) % tau; }
+    rotateFurniture(p, direction) {
+        if (this.activities.reserved(p.id)) {
+            this.ui.toast('Let their break finish first.');
+            return;
+        }
+        const step = DECOR_BY_ID[p.type].rotationStep, tau = Math.PI * 2, next = ((p.rotation ?? 0) + direction * step + tau) % tau;
+        if (!this.placementClear(p.type, p.x, p.z, next, p.id)) {
+            this.ui.toast('That rotation would crowd another object.');
+            return;
+        }
+        p.rotation = next;
+        this.rebuildFurnitureObstacles();
+        this.audio.click();
+        void this.save();
+        this.openFurniture(p);
     }
     furnitureObstacles = [];
     rebuildFurnitureObstacles() {
         this.world.nav.obstacles = this.world.nav.obstacles.filter(o => !this.furnitureObstacles.includes(o));
-        this.furnitureObstacles = this.world.placements.filter(p => p.type === 'bench').map(p => ({ x: p.x, z: p.z, w: 1.8, d: .9 }));
+        this.furnitureObstacles = this.world.placements.filter(p => DECOR_BY_ID[p.type].blocksNavigation).map(p => { const f = rotatedFootprint(p.type, p.rotation ?? 0); return { x: p.x, z: p.z, w: f.w, d: f.d }; });
         this.world.nav.obstacles.push(...this.furnitureObstacles);
         for (const c of [...this.characters, this.player])
             if (c.pathIndex < c.path.length) {
@@ -479,8 +518,8 @@ export class Game {
         const p = this.world.placements.find(p => p.id === id);
         if (!p)
             return;
-        const xx = Math.round(x * 2) / 2, zz = Math.round(z * 2) / 2;
-        if (this.activities.reserved(id) || !this.placementClear(p.type, xx, zz) || [...this.characters, this.player].some(c => Math.abs(c.position.x - xx) < (p.type === 'bench' ? 1.2 : .7) && Math.abs(c.position.z - zz) < .8)) {
+        const xx = Math.round(x * 2) / 2, zz = Math.round(z * 2) / 2, rotation = p.rotation ?? 0;
+        if (this.activities.reserved(id) || !this.placementClear(p.type, xx, zz, rotation, id) || this.placementNearPerson(p.type, xx, zz, rotation)) {
             this.ui.toast('Choose a free patch of floor away from people.');
             return;
         }
@@ -490,7 +529,7 @@ export class Game {
         for (const person of this.affordances.objects[id]?.favoriteOf ?? []) {
             if (!MEMBERS.includes(person))
                 continue;
-            this.mind.recordEvent({ id: `move:${id}:${revision}:${person}`, kind: 'move', subject: person, day: this.clock.day, place: id, detail: `The familiar ${p.type} moved to another part of the club.`, importance: .5 }, Object.fromEntries(this.characters.map(c => [c.id, c.position])), new Set(), () => false);
+            this.mind.recordEvent({ id: `move:${id}:${revision}:${person}`, kind: 'move', subject: person, day: this.clock.day, place: id, detail: `The familiar ${DECOR_BY_ID[p.type].label.toLowerCase()} moved to another part of the club.`, importance: .5 }, Object.fromEntries(this.characters.map(c => [c.id, c.position])), new Set(), () => false);
         }
         this.rebuildFurnitureObstacles();
         this.movingPlacement = null;
@@ -520,31 +559,62 @@ export class Game {
             { title: `Volume: ${Math.round(this.settings.volume * 100)}%`, subtitle: 'Cycle muted, quiet, medium, full', run: () => { const levels = [0, .3, .65, 1]; this.settings.volume = levels[(levels.indexOf(this.settings.volume) + 1) % 4]; this.audio.volume = this.settings.volume; this.openSettings(); void this.save(); } }
         ]);
     }
-    placementClear(type, x, z) {
-        if (!this.world.canPlace(x, z))
+    staticPlacementBlocked(x, z) {
+        if (x < this.world.nav.minX || x > this.world.nav.maxX || z < this.world.nav.minZ || z > this.world.nav.maxZ)
+            return true;
+        return this.world.nav.obstacles.some(o => !this.furnitureObstacles.includes(o) && x > o.x - o.w / 2 - .22 && x < o.x + o.w / 2 + .22 && z > o.z - o.d / 2 - .22 && z < o.z + o.d / 2 + .22);
+    }
+    placementNearPerson(type, x, z, rotation = 0) {
+        const f = rotatedFootprint(type, rotation);
+        return [...this.characters, this.player].some(c => Math.abs(c.position.x - x) < f.w / 2 + .42 && Math.abs(c.position.z - z) < f.d / 2 + .42);
+    }
+    placementClear(type, x, z, rotation = 0, ignoreId) {
+        if (!this.world.canPlace(x, z, type, rotation, ignoreId))
             return false;
-        const halfX = type === 'bench' ? .95 : type === 'lamp' ? .2 : .4, halfZ = type === 'bench' ? .45 : type === 'lamp' ? .2 : .4;
-        for (const dx of [-halfX, halfX])
-            for (const dz of [-halfZ, halfZ]) {
+        const f = rotatedFootprint(type, rotation);
+        for (const dx of [-f.w / 2, 0, f.w / 2])
+            for (const dz of [-f.d / 2, 0, f.d / 2]) {
                 const xx = x + dx, zz = z + dz;
-                if (this.world.nav.isBlocked(xx, zz) || (xx > -3.8 && xx < 5.8 && zz > -6.6 && zz < 6.6))
+                if (this.staticPlacementBlocked(xx, zz) || (xx > -3.8 && xx < 5.8 && zz > -6.6 && zz < 6.6))
                     return false;
             }
         return true;
     }
-    place(type, x, z) { if (!(type in COSTS))
-        return; x = Math.round(x * 2) / 2; z = Math.round(z * 2) / 2; const cost = COSTS[type]; if (this.coins < cost) {
-        this.ui.toast('Not enough coins yet.');
-        return;
-    } if (!this.placementClear(type, x, z) || [...this.characters, this.player].some(c => Math.abs(c.position.x - x) < (type === 'bench' ? 1.2 : .7) && Math.abs(c.position.z - z) < .8)) {
-        this.ui.toast('That spot is a little crowded.');
-        return;
-    } this.coins -= cost; this.world.placements.push({ type, x, z }); this.affordances.sync(this.world.placements, this.clock.day); this.history.nextObject = this.absoluteMinute; const culture = type === 'plant' ? 'care' : type === 'basket' ? 'training' : type === 'bench' ? 'social' : 'calm'; this.mind.reinforceCulture(culture, .025); this.rebuildFurnitureObstacles(); this.buildType = null; this.ui.clearBuildSelection(); this.recordGoal('decorate'); this.life.addMemory(this.clock.day, `You added a ${type} to the academy.`); this.ui.toast('Placed. The club feels a little more yours.'); this.audio.success(); void this.save(); }
+    place(type, x, z) {
+        const def = DECOR_BY_ID[type];
+        if (!def)
+            return;
+        x = Math.round(x * 2) / 2;
+        z = Math.round(z * 2) / 2;
+        const cost = def.cost;
+        if (this.coins < cost) {
+            this.ui.toast('Not enough club funds yet. Coach a lesson to earn more.');
+            return;
+        }
+        if (!this.placementClear(type, x, z, this.buildRotation) || this.placementNearPerson(type, x, z, this.buildRotation)) {
+            this.ui.toast('That spot is a little crowded.');
+            return;
+        }
+        this.coins -= cost;
+        this.world.placements.push({ type, x, z, rotation: this.buildRotation });
+        this.affordances.sync(this.world.placements, this.clock.day);
+        this.history.nextObject = this.absoluteMinute;
+        this.mind.reinforceCulture(def.culture, .025);
+        this.rebuildFurnitureObstacles();
+        this.buildType = null;
+        this.buildRotation = 0;
+        this.ui.clearBuildSelection();
+        this.recordGoal('decorate');
+        this.life.addMemory(this.clock.day, `You added a ${def.label.toLowerCase()} to the academy.`);
+        this.ui.toast('Placed. The club feels a little more yours.');
+        this.audio.success();
+        void this.save();
+    }
     recordGoal(kind) { this.daily.ensureDay(this.clock.day); const before = this.daily.doneCount; this.daily.record(kind); if (this.daily.doneCount > before)
         this.ui.showMoment('A gentle intention', 'Done. Nothing resets if you leave.'); const reward = this.daily.claim(); if (reward > 0) {
         this.coins += reward;
-        this.life.addMemory(this.clock.day, `The day’s three gentle intentions came together. +${reward} coins.`);
-        this.ui.showMoment('Morning complete', `+${reward} coins. No streak. No timer. The rest of the day is yours.`);
+        this.life.addMemory(this.clock.day, `The day’s three gentle intentions came together. +${reward} club funds.`);
+        this.ui.showMoment('Morning complete', `+${reward} club funds. No streak. No timer. The rest of the day is yours.`);
         this.audio.success();
     } this.updateObjective(); }
     updateObjective() {
@@ -674,7 +744,7 @@ export class Game {
                 mika.preparationBonus = this.development.preparation;
                 mika.recoveryBonus = this.development.recovery;
                 this.coachXP += result.gain ? 4 : 1;
-                this.coins += result.gain ? 8 : 0;
+                this.coins += LESSON_FEE;
                 text = `Lucresia completed eight practice contacts: ${result.after.clean} clean. ${result.gain ? 'The cue gave her something to keep.' : 'Contessa will try a different cue next time.'}`;
                 this.relations.interact('mika', 'coach', this.clock.day, text);
                 this.relations.interactBetween('coach', 'mika', 'coach', this.clock.day, text);
@@ -689,7 +759,7 @@ export class Game {
                 this.history.nextSocial = this.absoluteMinute + 25;
                 this.mind.coaching(this.evidence.cue, result.gain);
                 this.recordLifeEvent(a, 'lesson', 'mika', text, undefined, this.history.breakthrough && result.breakthrough ? 1 : .8);
-                this.ui.showMoment(result.gain ? 'A cue worth keeping' : 'A useful diagnosis', text);
+                this.ui.showMoment(result.gain ? 'A cue worth keeping' : 'A useful diagnosis', `${text} +${LESSON_FEE} club funds for the completed lesson.`);
             }
             else if (a.kind === 'match') {
                 const r = this.socialRally, score = { ...r.score };
@@ -1195,7 +1265,7 @@ export class Game {
                         c.setAnimation('sit');
                     }
                     else
-                        c.setAnimation(a.kind === 'object' ? (object?.type === 'basket' ? 'stretch' : 'watch') : i ? 'drink' : 'talk'); });
+                        c.setAnimation(a.kind === 'object' ? (['basket', 'ballHopper', 'coneSet', 'racketRack'].includes(object?.type ?? '') ? 'stretch' : 'watch') : i ? 'drink' : 'talk'); });
                     this.activeSpeechId = people[0].id;
                     this.speechUntil = performance.now() + 3500;
                     this.ui.showSpeech(people[0].spec.name, this.socialLine(people[0], people[1], object), 3500);
@@ -1298,7 +1368,7 @@ export class Game {
         meshes.push(...this.player.meshes(false), ...this.rally.meshes(), ...this.socialRally.meshes());
         if (this.buildType && this.hoverGround) {
             const x = Math.round(this.hoverGround.x * 2) / 2, z = Math.round(this.hoverGround.z * 2) / 2;
-            meshes.push(...this.previewMeshes(this.buildType, x, z, this.placementClear(this.buildType, x, z)));
+            meshes.push(...this.previewMeshes(this.buildType, x, z, this.placementClear(this.buildType, x, z, this.buildRotation)));
         }
         if (this.history.breakthrough || this.history.firstMikaWin)
             meshes.push({ kind: 'roundBox', position: new Vec3(4.25, 2.12, -9.1), scale: new Vec3(.7, .12, .45), color: '#c58a5b', material: 'wood' }, { kind: 'sphere', position: new Vec3(4.25, 2.3, -9.1), scale: new Vec3(.24, .24, .24), color: '#e6c65f', material: 'fabric' });
@@ -1314,10 +1384,7 @@ export class Game {
         else
             this.activeSpeechId = null;
     }
-    previewMeshes(type, x, z, valid) { const c = valid ? '#9ab58e' : '#c87e70'; if (type === 'plant')
-        return [{ kind: 'cone', position: new Vec3(x, .3, z), scale: new Vec3(.5, .6, .5), color: c, alpha: .48, unlit: true }, { kind: 'sphere', position: new Vec3(x, 1, z), scale: new Vec3(.8, .55, .65), color: c, alpha: .4, unlit: true }]; if (type === 'bench')
-        return [{ kind: 'roundBox', position: new Vec3(x, .42, z), scale: new Vec3(1.7, .28, .7), color: c, alpha: .45, unlit: true }]; if (type === 'lamp')
-        return [{ kind: 'cylinder', position: new Vec3(x, 1, z), scale: new Vec3(.08, 2, .08), color: c, alpha: .5, unlit: true }, { kind: 'cone', position: new Vec3(x, 2.05, z), scale: new Vec3(.65, .55, .65), color: c, alpha: .42, unlit: true }]; return [{ kind: 'cylinder', position: new Vec3(x, .35, z), scale: new Vec3(.65, .58, .65), color: c, alpha: .45, unlit: true }]; }
+    previewMeshes(type, x, z, valid) { return this.world.previewPlacement(type, x, z, this.buildRotation, valid); }
     loop = (now) => {
         if (this.graphicsLost)
             return;

@@ -1,3 +1,6 @@
+const training = new Set(['basket', 'ballHopper', 'coneSet', 'racketRack', 'scoreboard', 'tennisBag']);
+const social = new Set(['bench', 'cafeTable', 'stool', 'sideTable']);
+const care = new Set(['plant', 'planter', 'towelRack']);
 export class ObjectAffordances {
     objects = {};
     sequence = 0;
@@ -13,11 +16,11 @@ export class ObjectAffordances {
             if (!used.has(id))
                 delete this.objects[id];
     }
-    affordances(p) { return p.type === 'bench' ? ['sit', 'spectate', 'talk'] : p.type === 'plant' ? ['admire', 'tend'] : p.type === 'basket' ? ['stretch', 'practice'] : ['quiet-break']; }
+    affordances(p) { return social.has(p.type) ? ['sit', 'spectate', 'talk'] : care.has(p.type) ? ['admire', 'tend'] : training.has(p.type) ? ['stretch', 'practice'] : p.type === 'trophy' ? ['admire', 'remember'] : ['quiet-break']; }
     choose(placements, person) {
         return [...placements].sort((a, b) => this.score(b, person) - this.score(a, person))[0];
     }
-    score(p, id) { const visits = this.objects[p.id ?? '']?.visits[id] ?? 0; return Math.min(6, visits) * 2 + (p.type === 'bench' ? (id === 'nia' ? 8 : 5) : p.type === 'plant' ? (id === 'nia' || id === 'leo' ? 6 : 2) : p.type === 'basket' ? (id === 'mika' ? 7 : 1) : 3); }
+    score(p, id) { const visits = this.objects[p.id ?? '']?.visits[id] ?? 0; return Math.min(6, visits) * 2 + (social.has(p.type) ? (id === 'nia' ? 8 : 5) : care.has(p.type) ? (id === 'nia' || id === 'leo' ? 6 : 2) : training.has(p.type) ? (id === 'mika' ? 7 : 2) : 3); }
     visit(id, people, day, quality = 1) { const h = this.objects[id]; if (!h)
         return; h.comfort ??= {}; h.usageCount = (h.usageCount ?? 0) + people.length; for (const person of people) {
         h.visits[person] = Math.min(999, (h.visits[person] ?? 0) + 1);

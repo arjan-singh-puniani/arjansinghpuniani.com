@@ -17,7 +17,7 @@
       <span><strong>Rally House</strong><small>living tennis academy</small></span>
     </button>
     <div class="stats glass" aria-label="Academy status">
-      <span>◌ <b id="coins">240</b></span>
+      <span title="Club funds">◌ <b id="coins">100</b></span>
       <span>♥ <b id="heart">1</b></span>
       <span>✦ <b id="stars">3</b></span>
       <span id="weatherChip">☀ <b id="clock">9:20</b></span>
@@ -61,13 +61,18 @@
   <aside class="build glass" id="buildPanel" aria-label="Build mode">
     <p class="eyebrow">DECORATE</p>
     <strong>Make it yours</strong>
-    <div class="catalog">
-      <button data-build="plant">🪴<span>Plant</span><small>30</small></button>
-      <button data-build="bench">🪑<span>Bench</span><small>45</small></button>
-      <button data-build="lamp">💡<span>Lamp</span><small>35</small></button>
-      <button data-build="basket">🎾<span>Basket</span><small>25</small></button>
+    <nav class="buildTabs" aria-label="Decoration categories">
+      <button class="active" data-build-category="tennis">🎾 Tennis</button>
+      <button data-build-category="clubhouse">☕ Club</button>
+      <button data-build-category="greenery">🌿 Green</button>
+      <button data-build-category="ambience">💡 Glow</button>
+    </nav>
+    <div class="catalog" id="buildCatalog"></div>
+    <div class="buildControls" id="buildControls" hidden>
+      <button id="rotateLeft" aria-label="Rotate selected decoration left">↺ Rotate</button>
+      <button id="rotateRight" aria-label="Rotate selected decoration right">Rotate ↻</button>
     </div>
-    <small id="buildHint">Choose an item, then tap a free patch of floor.</small>
+    <small id="buildHint">Choose an item, move it over free floor, then tap to place. Q / E rotates on desktop.</small>
   </aside>
 
   <div class="toast" id="toast" role="status"></div>

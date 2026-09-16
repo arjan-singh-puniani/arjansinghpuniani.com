@@ -7,7 +7,7 @@ type Stroke='swingForehand'|'swingBackhand'|'serve'|'volley';
 export type ShotQuality='clean'|'frame'|'net';
 type ShotOutcome='clean'|'frame'|'net'|'long';
 interface PendingShot {
-  hitter:Character;receiver:Character;state:Stroke;target:Vec3;flight:number;contactAt:number;duration:number;released:boolean;outcome:ShotOutcome;
+  hitter:Character;receiver:Character;state:Stroke;target:Vec3;flight:number;contactAt:number;duration:number;released:boolean;impactStarted:boolean;latchRemaining:number;outcome:ShotOutcome;
   evidence:import('../simulation/CoachingEvidence.js').ShotEvidence;incomingStart:Vec3|null;contactTarget:Vec3|null;tossStart:Vec3;
 }
 export interface RallyCallbacks {onShot?:(e:import('../simulation/CoachingEvidence.js').ShotEvidence)=>void;onPoint?:(winner:string,loser:string,kind:string)=>void;onHit?:((quality:ShotQuality)=>void);onBounce?:()=>void;onNet?:()=>void;onRally?:((count:number)=>void);onMiss?:((who:string,kind:ShotOutcome)=>void);}
@@ -17,21 +17,48 @@ const hash=(n:number)=>fract(Math.sin(n*12.9898+78.233)*43758.5453);
 
 export class RallySystem {
   ball=new BallPhysics();enabled=true;rallyCount=0;bestRally=0;sessionHits=0;score:Record<string,number>={};errors:Record<string,number>={};cue='';private flightHitter:Character|null=null;
-  private hitter=0;private shotTimer=.4;private shotCount=0;private trail:Vec3[]=[];private impactPulse=0;private pending:PendingShot|null=null;private lastContact:Vec3|null=null;private waitingForReceiver=false;private callbacks:RallyCallbacks;
+  private hitter=0;private shotTimer=.4;private shotCount=0;private trail:Vec3[]=[];private trailSpeed=0;private impactBurst=0;private pending:PendingShot|null=null;private lastContact:Vec3|null=null;private lastContactFrame:{rotation:Vec3;horizontal:Vec3;vertical:Vec3}|null=null;private waitingForReceiver=false;private callbacks:RallyCallbacks;
   private capturedIncoming:Vec3|null=null;private netRipple=0;private lastOutcome:ShotOutcome='clean';
   constructor(private north:Character,private south:Character,callbacks:RallyCallbacks={}){this.callbacks=callbacks;this.north.face(this.south.position);this.south.face(this.north.position);}
-  start(){this.sessionHits=0;this.score={[this.north.id]:0,[this.south.id]:0};this.errors={[this.north.id]:0,[this.south.id]:0};this.bestRally=0;this.enabled=true;this.rallyCount=0;this.ball.active=false;this.shotTimer=.16;this.waitingForReceiver=false;this.pending=null;this.trail=[];this.hitter=0;this.capturedIncoming=null;this.north.setAnimation('ready');this.south.setAnimation('ready');}
-  stop(){this.enabled=false;this.ball.active=false;this.trail=[];this.pending=null;this.waitingForReceiver=false;this.capturedIncoming=null;this.north.clearCourtMove();this.south.clearCourtMove();this.north.setLook(undefined);this.south.setLook(undefined);}
+  start(){this.sessionHits=0;this.score={[this.north.id]:0,[this.south.id]:0};this.errors={[this.north.id]:0,[this.south.id]:0};this.bestRally=0;this.enabled=true;this.rallyCount=0;this.ball.active=false;this.shotTimer=.16;this.waitingForReceiver=false;this.pending=null;this.trail=[];this.trailSpeed=0;this.impactBurst=0;this.lastContact=null;this.lastContactFrame=null;this.hitter=0;this.capturedIncoming=null;this.north.setAnimation('ready');this.south.setAnimation('ready');}
+  stop(){this.enabled=false;this.ball.active=false;this.trail=[];this.trailSpeed=0;this.impactBurst=0;this.lastContact=null;this.lastContactFrame=null;this.pending=null;this.waitingForReceiver=false;this.capturedIncoming=null;this.north.clearCourtMove();this.south.clearCourtMove();this.north.setLook(undefined);this.south.setLook(undefined);}
+
+  private stagedBall(p:PendingShot){
+    const t=clamp(p.hitter.animTime/Math.max(.001,p.contactAt),0,1),live=p.hitter.racketContactPoint(),planned=p.contactTarget??live;
+    const contact=Vec3.lerp(planned,live,smoothstep(.70,1,t));
+    if(p.state==='serve'){
+      const rise=smoothstep(0,.72,t),settle=smoothstep(.72,1,t),q=Vec3.lerp(p.tossStart,contact,rise);
+      q.y+=Math.sin(Math.PI*t)*(.58-.18*settle);return q;
+    }
+    if(p.incomingStart){const q=Vec3.lerp(p.incomingStart,contact,smoothstep(0,1,t));q.y+=Math.sin(Math.PI*t)*.06;return q;}
+    return contact.clone();
+  }
 
   update(dt:number){
-    if(!this.enabled)return;this.impactPulse=Math.max(0,this.impactPulse-dt*3.2);this.netRipple=Math.max(0,this.netRipple-dt*3.8);
+    if(!this.enabled)return;this.impactBurst=Math.max(0,this.impactBurst-dt*4.8);this.netRipple=Math.max(0,this.netRipple-dt*3.8);
     if(this.pending){
       const p=this.pending;
-      if(!p.released&&p.hitter.animTime>=p.contactAt){
-        p.released=true;this.flightHitter=p.hitter;this.sessionHits++;this.callbacks.onShot?.(p.evidence);const start=p.hitter.racketContactPoint();this.lastContact=start.clone();
-        p.hitter.notifyRacketImpact(p.outcome==='frame'?'frame':p.outcome==='net'?'net':'clean');
-        this.ball.launch(start,p.target,p.flight);this.trail=[];this.impactPulse=1;this.lastOutcome=p.outcome;this.callbacks.onHit?.(p.outcome==='frame'?'frame':p.outcome==='net'?'net':'clean');
-        if(p.outcome==='clean'||p.outcome==='frame'){this.rallyCount++;this.bestRally=Math.max(this.bestRally,this.rallyCount);this.callbacks.onRally?.(this.rallyCount);}this.waitingForReceiver=false;
+      if(!p.released){
+        if(!p.impactStarted){
+          const staged=this.stagedBall(p),frame=p.hitter.racketContactFrame(),gap=Vec3.sub(staged,frame.center).len();
+          // stagedBall converges onto the live string-bed center. No time-only "near enough" release.
+          const contactWindow=p.hitter.animTime>=p.contactAt-.025;
+          if(contactWindow&&gap<=.12){
+            p.impactStarted=true;p.latchRemaining=.055;this.flightHitter=p.hitter;this.sessionHits++;this.callbacks.onShot?.(p.evidence);
+            this.lastContact=frame.center.clone();this.lastContactFrame={rotation:frame.rotation.clone(),horizontal:frame.horizontal.clone(),vertical:frame.vertical.clone()};
+            p.hitter.notifyRacketImpact(p.outcome==='frame'?'frame':p.outcome==='net'?'net':'clean');
+            this.impactBurst=1;this.lastOutcome=p.outcome;this.waitingForReceiver=false;
+            // Sound and visual burst begin on the same authoritative contact event.
+            this.callbacks.onHit?.(p.outcome==='frame'?'frame':p.outcome==='net'?'net':'clean');
+          }
+        }else{
+          p.latchRemaining-=dt;
+          if(p.latchRemaining<=0){
+            const frame=p.hitter.racketContactFrame();p.released=true;
+            this.ball.launch(frame.center,p.target,p.flight);this.trail=[];this.trailSpeed=this.ball.velocity.len();
+            if(p.outcome==='clean'||p.outcome==='frame'){this.rallyCount++;this.bestRally=Math.max(this.bestRally,this.rallyCount);this.callbacks.onRally?.(this.rallyCount);}
+          }
+        }
       }
       if(p.hitter.animTime>=p.duration){
         if(p.hitter.state===p.state){p.hitter.setAnimation('ready');p.hitter.clearShotIntent();const recovery=new Vec3(1,0,p.hitter.position.z<0?-5:5);p.hitter.moveOnCourt(recovery,p.receiver.position,false);}
@@ -41,8 +68,10 @@ export class RallySystem {
 
     if(this.ball.active){
       this.north.setLook(this.ball.position);this.south.setLook(this.ball.position);
-      const ev=this.ball.update(dt);this.trail.unshift(this.ball.position.clone());this.trail=this.trail.slice(0,12);
-      if(ev.bounced){this.callbacks.onBounce?.();this.impactPulse=.48;if(this.ball.bounces===1)this.waitingForReceiver=true;}
+      const ev=this.ball.update(dt),speed=this.ball.velocity.len();this.trailSpeed=speed;
+      if(speed>4.2){this.trail.unshift(this.ball.position.clone());if(this.trail.length>18)this.trail.pop();}
+      else if(this.trail.length)this.trail.pop();
+      if(ev.bounced){this.callbacks.onBounce?.();if(this.ball.bounces===1)this.waitingForReceiver=true;}
       if(ev.net){this.callbacks.onNet?.();this.netRipple=1;this.finishError('net');return;}
       if(this.waitingForReceiver){
         const receiver=this.hitter===0?this.south:this.north;const d=Math.hypot(this.ball.position.x-receiver.position.x,this.ball.position.z-receiver.position.z);
@@ -62,7 +91,7 @@ export class RallySystem {
 
   private finishError(kind:ShotOutcome){
     const striker=this.flightHitter??(this.hitter===0?this.north:this.south);const receiver=striker===this.north?this.south:this.north;const lastHitter=kind==='net'||kind==='long'?striker:receiver;lastHitter.setEmotion(kind==='net'?'frustrated':'disappointed',.8);lastHitter.trigger('reactMiss');
-    const other=lastHitter===this.north?this.south:this.north;this.score[other.id]=(this.score[other.id]??0)+1;this.errors[lastHitter.id]=(this.errors[lastHitter.id]??0)+1;this.callbacks.onPoint?.(other.id,lastHitter.id,kind);other.setEmotion('attentive',.55);this.callbacks.onMiss?.(lastHitter.id,kind);this.rallyCount=0;this.waitingForReceiver=false;this.pending=null;this.ball.active=false;this.capturedIncoming=null;this.shotTimer=.72;
+    const other=lastHitter===this.north?this.south:this.north;this.score[other.id]=(this.score[other.id]??0)+1;this.errors[lastHitter.id]=(this.errors[lastHitter.id]??0)+1;this.callbacks.onPoint?.(other.id,lastHitter.id,kind);other.setEmotion('attentive',.55);this.callbacks.onMiss?.(lastHitter.id,kind);this.rallyCount=0;this.waitingForReceiver=false;this.pending=null;this.ball.active=false;this.trail=[];this.trailSpeed=0;this.capturedIncoming=null;this.shotTimer=.72;
   }
 
   private outcomeFor(hitter:Character,state:Stroke):ShotOutcome{
@@ -83,24 +112,42 @@ export class RallySystem {
     const target=new Vec3(targetX,.11,targetDepth);
     const receiveX=clamp(targetX+(receiver.practiceCue==='spacing'?.40:(this.shotCount%2?.22:-.18)),-2.65,4.65),receiveZ=receiver.position.z<0?-5:5;
     receiver.moveOnCourt(new Vec3(receiveX,0,receiveZ),hitter.position);receiver.setLook(hitter.position);receiver.setEmotion('focused',.8);hitter.face(target);hitter.setLook(receiver.position);hitter.triggerShot(state,target);
-    const kin=hitter.debugKinematics(),contactAt=hitter.shotContactTime(state),duration=hitter.shotDuration(state);const evidence={who:hitter.id,stroke:state,preparation:clamp((contactAt-.24)/.15,0,1),spacing:this.capturedIncoming&&kin.contactTarget?clamp(1-Vec3.sub(this.capturedIncoming,kin.contactTarget).len()/1.5,0,1):.75,recovery:clamp(1-Math.abs(hitter.position.x-1)/2.8,0,1),clean:outcome==='clean'};this.pending={evidence,hitter,receiver,state,target,flight,contactAt,duration,released:false,outcome,incomingStart:this.capturedIncoming?.clone()??null,contactTarget:kin.contactTarget?.clone()??null,tossStart:hitter.serveTossPoint()};this.capturedIncoming=null;this.shotCount++;
+    const kin=hitter.debugKinematics(),contactAt=hitter.shotContactTime(state),duration=hitter.shotDuration(state);const evidence={who:hitter.id,stroke:state,preparation:clamp((contactAt-.24)/.15,0,1),spacing:this.capturedIncoming&&kin.contactTarget?clamp(1-Vec3.sub(this.capturedIncoming,kin.contactTarget).len()/1.5,0,1):.75,recovery:clamp(1-Math.abs(hitter.position.x-1)/2.8,0,1),clean:outcome==='clean'};this.pending={evidence,hitter,receiver,state,target,flight,contactAt,duration,released:false,impactStarted:false,latchRemaining:0,outcome,incomingStart:this.capturedIncoming?.clone()??null,contactTarget:kin.contactTarget?.clone()??null,tossStart:hitter.serveTossPoint()};this.capturedIncoming=null;this.shotCount++;
   }
 
   meshes():Mesh[]{
     const m:Mesh[]=[];
     if(this.pending&&!this.pending.released){
-      const p=this.pending,t=clamp(p.hitter.animTime/Math.max(.001,p.contactAt),0,1),contact=p.contactTarget??p.hitter.racketContactPoint();
-      if(p.state==='serve'){
-        const rise=smoothstep(0,.72,t),settle=smoothstep(.72,1,t);const toss=Vec3.lerp(p.tossStart,contact,rise);toss.y+=Math.sin(Math.PI*t)*(.58-.18*settle);m.push({kind:'sphere',position:toss,scale:new Vec3(.16,.16,.16),color:'#dbc65d',unlit:true});
-      }else if(p.incomingStart){
-        const q=Vec3.lerp(p.incomingStart,contact,smoothstep(0,1,t));q.y+=Math.sin(Math.PI*t)*.06;m.push({kind:'sphere',position:q,scale:new Vec3(.16,.16,.16),color:'#dbc65d',unlit:true});
-      }else if(1-t<.36){m.push({kind:'sphere',position:contact.clone(),scale:new Vec3(.16,.16,.16),color:'#dbc65d',unlit:true});}
+      const p=this.pending;
+      if(p.impactStarted){
+        const frame=p.hitter.racketContactFrame();
+        // Flatten along the racket-normal axis for a tiny toy-like string compression.
+        m.push({kind:'sphere',position:frame.center.clone(),rotation:frame.rotation.clone(),scale:new Vec3(.220,.230,.070),color:'#d5df58',unlit:true,noShadow:true});
+      }else{
+        const q=this.stagedBall(p);
+        m.push({kind:'sphere',position:q,scale:new Vec3(.16,.16,.16),color:'#cbdc55',unlit:true});
+      }
     }
     if(this.ball.active){
-      for(let i=this.trail.length-1;i>=0;i--){const q=this.trail[i],a=.025+(this.trail.length-i)*.015;m.push({kind:'sphere',position:q.clone(),scale:new Vec3(.095,.095,.095),color:'#e2cf66',alpha:Math.min(.14,a),unlit:true});}
-      const squash=this.ball.position.y<.14?.82:1;m.push({kind:'sphere',position:this.ball.position.clone(),scale:new Vec3(.16/squash,.16*squash,.16/squash),color:'#dbc65d',unlit:true},{kind:'sphere',position:new Vec3(this.ball.position.x,.025,this.ball.position.z),scale:new Vec3(.23,.024,.14),color:'#435448',alpha:.14,unlit:true});
+      const glow=clamp((this.trailSpeed-3.8)/7.5,0,1);
+      for(let i=this.trail.length-1;i>=0;i--){
+        const q=this.trail[i],life=1-i/Math.max(1,this.trail.length),size=.050+.115*life,alpha=(.045+.30*life)*(.45+.55*glow);
+        m.push({kind:'sphere',position:q.clone(),scale:new Vec3(size,size,size),color:'#b7e34a',alpha,unlit:true,noShadow:true});
+      }
+      const squash=this.ball.position.y<.14?.82:1;m.push({kind:'sphere',position:this.ball.position.clone(),scale:new Vec3(.16/squash,.16*squash,.16/squash),color:'#cbdc55',unlit:true},{kind:'sphere',position:new Vec3(this.ball.position.x,.025,this.ball.position.z),scale:new Vec3(.23,.024,.14),color:'#435448',alpha:.14,unlit:true,noShadow:true});
     }
-    if(this.impactPulse>0&&this.lastContact){const q=this.lastContact,scale=.32+(1-this.impactPulse)*.24;m.push({kind:'torus',position:q.clone(),rotation:new Vec3(Math.PI/2,0,0),scale:new Vec3(scale,scale,.23),color:'#f0d778',alpha:Math.min(.28,this.impactPulse*.34),unlit:true});}
+    if(this.impactBurst>0&&this.lastContact&&this.lastContactFrame){
+      const q=this.lastContact,t=1-this.impactBurst,ring=.30+t*.31,frame=this.lastContactFrame;
+      // Cream pop first, tennis-green echo second. Both lie in the actual string-bed plane.
+      m.push({kind:'torus',position:q.clone(),rotation:frame.rotation.clone(),scale:new Vec3(ring*1.05,ring*1.18,.15),color:'#fff0c8',alpha:.62*this.impactBurst,unlit:true,noShadow:true},
+             {kind:'torus',position:q.clone(),rotation:frame.rotation.clone(),scale:new Vec3(ring*.72,ring*.82,.10),color:'#bce453',alpha:.44*this.impactBurst,unlit:true,noShadow:true});
+      m.push({kind:'sphere',position:q.clone(),scale:new Vec3(.16+.05*this.impactBurst,.16+.05*this.impactBurst,.16+.05*this.impactBurst),color:'#fff7dc',alpha:.52*this.impactBurst,unlit:true,noShadow:true});
+      const spread=.30+t*.32,axes=[frame.horizontal.clone(),frame.horizontal.clone().scale(-1),frame.vertical.clone(),frame.vertical.clone().scale(-1)];
+      for(let i=0;i<axes.length;i++){
+        const pos=q.clone().add(axes[i].scale(spread*(i<2?1:.88))),size=.065+.026*this.impactBurst;
+        m.push({kind:'sphere',position:pos,scale:new Vec3(size,size,size),color:i%2?'#c9e85d':'#fff0c8',alpha:.68*this.impactBurst,unlit:true,noShadow:true});
+      }
+    }
     if(this.netRipple>0){for(let i=0;i<5;i++){const x=-2.2+i*1.55,phase=(1-this.netRipple)*5+i*.6;m.push({kind:'roundBox',position:new Vec3(x,.55,Math.sin(phase)*.045*this.netRipple),scale:new Vec3(.025,.68,.025),color:'#ede6d7',alpha:.32*this.netRipple,unlit:true});}}
     return m;
   }

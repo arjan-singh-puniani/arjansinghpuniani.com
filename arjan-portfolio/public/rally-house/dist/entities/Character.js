@@ -25,6 +25,13 @@ function bell(x, width) { const q = x / Math.max(.001, width); return Math.exp(-
 function blendVec(a, b, t) { return Vec3.lerp(a, b, t); }
 function blendFace(a, b, t) { return { smile: a.smile + (b.smile - a.smile) * t, mouthOpen: a.mouthOpen + (b.mouthOpen - a.mouthOpen) * t, browRaise: a.browRaise + (b.browRaise - a.browRaise) * t, squint: a.squint + (b.squint - a.squint) * t, focus: a.focus + (b.focus - a.focus) * t }; }
 function mixHex(a, b, t) { const parse = (h) => { const s = h.replace('#', ''); return [parseInt(s.slice(0, 2), 16), parseInt(s.slice(2, 4), 16), parseInt(s.slice(4, 6), 16)]; }; const aa = parse(a), bb = parse(b), c = aa.map((v, i) => Math.round(v + (bb[i] - v) * t)); return '#' + c.map(v => v.toString(16).padStart(2, '0')).join(''); }
+/** Rotate a local racket-plane vector by the same Y * X * Z order used by Math3D.compose. */
+function rotateEulerVector(v, r) {
+    const cz = Math.cos(r.z), sz = Math.sin(r.z), cx = Math.cos(r.x), sx = Math.sin(r.x), cy = Math.cos(r.y), sy = Math.sin(r.y);
+    const zx = v.x * cz - v.y * sz, zy = v.x * sz + v.y * cz, zz = v.z;
+    const xx = zx, xy = zy * cx - zz * sx, xz = zy * sx + zz * cx;
+    return new Vec3(xx * cy + xz * sy, xy, -xx * sy + xz * cy);
+}
 export class Character {
     spec;
     nav;
@@ -366,6 +373,7 @@ export class Character {
         this.prevPosition = this.position.clone();
     }
     racketContactPoint() { const pose = this.pose(); return pose.racketCenter.clone(); }
+    racketContactFrame() { const pose = this.pose(); return { center: pose.racketCenter.clone(), rotation: pose.racketRot.clone(), horizontal: rotateEulerVector(new Vec3(1, 0, 0), pose.racketRot).normalize(), vertical: rotateEulerVector(new Vec3(0, 1, 0), pose.racketRot).normalize(), normal: rotateEulerVector(new Vec3(0, 0, 1), pose.racketRot).normalize() }; }
     debugKinematics() { const p = this.pose(); const err = this.contactTarget ? Vec3.sub(p.racketCenter, this.contactTarget).len() : 0; const lateral = Math.min(1, Math.abs(this.localVelocity.x) / Math.max(.01, this.courtSpeed)), forward = Math.min(1, Math.max(0, this.localVelocity.z) / Math.max(.01, this.courtSpeed)), backward = Math.min(1, Math.max(0, -this.localVelocity.z) / Math.max(.01, this.courtSpeed)), jog = Math.min(1, Math.max(0, (this.horizontalSpeed - 1.45) / .8)), walk = Math.min(1, this.horizontalSpeed / 1.55) * (1 - jog); return { leftFoot: p.footL.clone(), rightFoot: p.footR.clone(), leftHand: p.handL.clone(), rightHand: p.handR.clone(), leftFootPlanted: this.leftFootLock !== null, rightFootPlanted: this.rightFootLock !== null, racketGrip: p.racketGrip.clone(), racketCenter: p.racketCenter.clone(), contactTarget: this.contactTarget?.clone() ?? null, contactError: err, state: this.state, transition: clamp(this.transitionAge / this.transitionDuration, 0, 1), locomotion: this.locomotion, courtPhase: this.courtPhase, development: this.development, racketVibration: this.racketVibration, motionBlend: { idle: 1 - this.locomotion, walk, jog, lateral, forward, backward } }; }
     changeState(next, resetTime) {
         if (next === this.state) {
@@ -497,7 +505,7 @@ export class Character {
         let coil = clip.torsoTwist, hipCoil = clip.hipTwist, lean = clip.lean, knee = clip.knee, weightShift = 0;
         if (state === 'swingForehand') {
             const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1);
-            coil += (-.62 * (1 - smoothstep(0, .82, pre)) + .66 * style.follow * smoothstep(0, 1, post)) * style.coil;
+            coil += (-.62 * (1 - smoothstep(0, .82, pre)) + .78 * style.follow * smoothstep(0, 1, post)) * style.coil;
             hipCoil += coil * .52;
             lean += .035 + .07 * Math.sin(sp * Math.PI);
             knee += .11 * Math.sin(Math.min(1, sp / contact) * Math.PI);
@@ -505,7 +513,7 @@ export class Character {
         }
         if (state === 'swingBackhand') {
             const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1);
-            coil += (.58 * (1 - smoothstep(0, .82, pre)) - .56 * style.follow * smoothstep(0, 1, post)) * style.coil;
+            coil += (.58 * (1 - smoothstep(0, .82, pre)) - .68 * style.follow * smoothstep(0, 1, post)) * style.coil;
             hipCoil += coil * .56;
             lean += .04;
             knee += .10 * Math.sin(Math.min(1, sp / contact) * Math.PI);
@@ -608,12 +616,12 @@ export class Character {
             handR = this.worldLocal(.58, 1.38 + baseY, .22 + Math.sin(time * 2.1) * .08);
         }
         if (state === 'swingForehand') {
-            const a = -1.45 + smoothstep(0, .70, sp / contact) * 1.98 + smoothstep(contact, 1, sp) * 1.10;
+            const a = -1.45 + smoothstep(0, .70, sp / contact) * 1.98 + smoothstep(contact, 1, sp) * 1.24;
             handR = this.worldLocal(.54 * Math.cos(a), 1.05 + baseY - knee, .58 * Math.sin(a) + .29, torsoYaw);
             handL = this.worldLocal(-.14, 1.18 + baseY - knee, .30, torsoYaw);
         }
         if (state === 'swingBackhand') {
-            const a = 1.30 - smoothstep(0, .70, sp / contact) * 1.72 - smoothstep(contact, 1, sp) * .86;
+            const a = 1.30 - smoothstep(0, .70, sp / contact) * 1.72 - smoothstep(contact, 1, sp) * .98;
             handR = this.worldLocal(.42 * Math.cos(a), 1.13 + baseY - knee, .54 * Math.sin(a) + .25, torsoYaw);
             handL = this.worldLocal(-.02, 1.16 + baseY - knee, .30, torsoYaw);
         }
@@ -984,9 +992,19 @@ export class Character {
                 m.push({ kind: 'sphere', position: charm, scale: new Vec3(.10, .12, .035), color: '#50b8b4', material: 'ceramic' });
         }
         if (this.spec.id !== 'nia' && (pose.shot || this.state === 'ready' || this.state === 'shuffle' || this.socialGesture === 'inspect' && !this.racketStowed) && !this.racketStowed && this.state !== 'drink' && !this.propKind) {
-            m.push(this.limb(racketGrip, racketHandleTop, .045, '#705747'));
-            m.push({ kind: 'torus', position: racketCenter, rotation: racketRot, scale: new Vec3(.86, 1.08, .58), color: this.spec.accent ?? '#e0c474', material: 'metal' });
-            m.push({ kind: 'torus', position: racketCenter, rotation: racketRot, scale: new Vec3(.62, .79, .42), color: '#ece6d7', material: 'metal', alpha: .52, unlit: true });
+            m.push(this.limb(racketGrip, racketHandleTop, .048, '#705747'));
+            // One readable frame, then an actual string bed. The old second torus read as a hollow ring.
+            m.push({ kind: 'torus', position: racketCenter, rotation: racketRot, scale: new Vec3(.88, 1.10, .62), color: this.spec.accent ?? '#e0c474', material: 'metal' });
+            m.push({ kind: 'sphere', position: racketCenter, rotation: racketRot, scale: new Vec3(.61, .79, .034), color: '#edf4e7', alpha: .20, unlit: true, noShadow: true });
+            const stringColor = '#c8e1d4';
+            for (const x of [-.36, -.24, -.12, 0, .12, .24, .36]) {
+                const q = Vec3.add(racketCenter, rotateEulerVector(new Vec3(x, 0, 0), racketRot));
+                m.push({ kind: 'roundBox', position: q, rotation: racketRot, scale: new Vec3(.022, .71, .022), color: stringColor, alpha: .92, unlit: true, noShadow: true });
+            }
+            for (const y of [-.48, -.32, -.16, 0, .16, .32, .48]) {
+                const q = Vec3.add(racketCenter, rotateEulerVector(new Vec3(0, y, 0), racketRot));
+                m.push({ kind: 'roundBox', position: q, rotation: racketRot, scale: new Vec3(.55, .022, .022), color: stringColor, alpha: .88, unlit: true, noShadow: true });
+            }
             // A tiny butt cap makes the hand-to-racket constraint visually obvious at close zoom.
             m.push({ kind: 'cylinder', position: racketGrip, rotation: new Vec3(Math.PI / 2, this.yaw, 0), scale: new Vec3(.075, .10, .075), color: '#44372f', material: 'fabric' });
         }
