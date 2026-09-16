@@ -2,9 +2,10 @@ import {Vec3, smoothstep} from '../rendering/Math3D.js';
 import type {Lighting,Mesh,MaterialKind} from '../rendering/Renderer.js';
 import {palette} from '../content/content.js';
 import {Navigation,type Rect} from './Navigation.js';
+import {rotatedFootprint,type DecorType} from '../content/DecorCatalog.js';
 
 export interface InteractiveObject {id:string;label:string;kind:string;position:Vec3;radius:number;description:string}
-export interface Placement {id?:string;type:'plant'|'bench'|'lamp'|'basket';x:number;z:number}
+export interface Placement {id?:string;type:DecorType;x:number;z:number;rotation?:number}
 export type Weather='clear'|'cloudy'|'rain';
 
 export class World {
@@ -288,8 +289,103 @@ export class World {
     if(active('training')){for(let i=0;i<3;i++){const ph=((time*1.2+i*.27)%1);m.push({kind:'sphere',position:new Vec3(-7.15+ph*1.6,.78+Math.sin(ph*Math.PI)*.5,.05+i*.08),scale:new Vec3(.13,.13,.13),color:'#d9c65f',alpha:.74,unlit:true});}}
     return m;
   }
-  placementMeshes():Mesh[]{const out:Mesh[]=[];for(const p of this.placements){out.push({kind:'sphere',position:new Vec3(p.x,.025,p.z),scale:new Vec3(p.type==='bench'?1.7:.75,.035,p.type==='bench'?.7:.65),color:'#4a584e',alpha:.10,unlit:true});if(p.type==='plant'){out.push({kind:'cone',position:new Vec3(p.x,.3,p.z),scale:new Vec3(.5,.6,.5),color:palette.terracotta},{kind:'sphere',position:new Vec3(p.x,1.0,p.z),scale:new Vec3(.82,.55,.68),color:palette.sage});}else if(p.type==='bench'){out.push({kind:'roundBox',position:new Vec3(p.x,.4,p.z),scale:new Vec3(1.72,.28,.67),color:palette.wood},{kind:'roundBox',position:new Vec3(p.x,.77,p.z+.25),scale:new Vec3(1.72,.66,.18),color:palette.woodDark});}else if(p.type==='lamp'){out.push({kind:'cylinder',position:new Vec3(p.x,1.0,p.z),scale:new Vec3(.06,2,.06),color:'#5e6b61'},{kind:'cone',position:new Vec3(p.x,2.05,p.z),scale:new Vec3(.66,.56,.66),color:palette.gold,unlit:true});}else{out.push({kind:'cylinder',position:new Vec3(p.x,.32,p.z),scale:new Vec3(.64,.55,.64),color:'#88745d'});for(let i=0;i<6;i++)out.push({kind:'sphere',position:new Vec3(p.x+((i%2)-.5)*.25,.68+Math.floor(i/2)*.11,p.z+((i%3)-1)*.12),scale:new Vec3(.16,.16,.16),color:'#d6c35f',unlit:true});}}return out;}
-  canPlace(x:number,z:number){if(!Number.isFinite(x)||!Number.isFinite(z))return false;if(x<-12||x>12||z<-9||z>9)return false;if(x>-3.8&&x<5.8&&z>-6.6&&z<6.6)return false;if(this.nav.isBlocked(x,z))return false;return !this.placements.some(p=>Math.hypot(p.x-x,p.z-z)<1.2)}
+  private decorMeshes(p:Placement,override?:string,alphaScale=1):Mesh[]{
+    const out:Mesh[]=[],rot=p.rotation??0,c=Math.cos(rot),s=Math.sin(rot);
+    const pos=(dx:number,y:number,dz:number)=>new Vec3(p.x+dx*c+dz*s,y,p.z-dx*s+dz*c);
+    const add=(kind:Mesh['kind'],dx:number,y:number,dz:number,sx:number,sy:number,sz:number,color:string,ry=0,unlit=false,material?:MaterialKind,alpha=1)=>{
+      out.push({kind,position:pos(dx,y,dz),rotation:new Vec3(0,rot+ry,0),scale:new Vec3(sx,sy,sz),color:override??color,alpha:alpha*alphaScale,unlit,material,noShadow:alphaScale<.99});
+    };
+    const fp=rotatedFootprint(p.type,rot);
+    out.push({kind:'sphere',position:new Vec3(p.x,.025,p.z),scale:new Vec3(fp.w*.47,.03,fp.d*.47),color:override??'#4a584e',alpha:.10*alphaScale,unlit:true,noShadow:true});
+
+    if(p.type==='plant'){
+      add('cone',0,.30,0,.50,.60,.50,palette.terracotta);
+      add('sphere',0,1.00,0,.82,.55,.68,palette.sage,0,false,'leaf');
+    }else if(p.type==='planter'){
+      add('roundBox',0,.27,0,1.28,.46,.52,'#b87958',0,false,'ceramic');
+      for(const x of [-.42,0,.42]){add('sphere',x,.72,0,.46,.45,.42,x===0?palette.sageLight:palette.sage,0,false,'leaf');}
+    }else if(p.type==='bench'){
+      add('roundBox',0,.40,0,1.72,.28,.67,palette.wood,0,false,'wood');
+      add('roundBox',0,.77,.25,1.72,.66,.18,palette.woodDark,0,false,'wood');
+      add('cylinder',-.68,.20,0,.10,.40,.10,'#6f6254');
+      add('cylinder',.68,.20,0,.10,.40,.10,'#6f6254');
+    }else if(p.type==='lamp'){
+      add('cylinder',0,1.00,0,.06,2.00,.06,'#5e6b61',0,false,'metal');
+      add('cone',0,2.05,0,.66,.56,.66,palette.gold,0,true);
+    }else if(p.type==='lantern'){
+      add('cylinder',0,.12,0,.34,.12,.34,'#675f54',0,false,'metal');
+      add('roundBox',0,.46,0,.40,.58,.40,'#e9ce8f',0,true,'glass',.80);
+      add('torus',0,.86,0,.34,.34,.15,'#675f54',0,false,'metal');
+    }else if(p.type==='basket'){
+      add('cylinder',0,.32,0,.64,.55,.64,'#88745d',0,false,'fabric');
+      const balls=[[-.18,.66,-.15],[.16,.67,-.13],[-.04,.72,.10],[.20,.78,.12],[-.22,.79,.14],[.02,.87,-.02]];
+      for(const [x,y,z] of balls)add('sphere',x,y,z,.16,.16,.16,'#d6c35f',0,true);
+    }else if(p.type==='ballHopper'){
+      for(const x of [-.30,.30])for(const z of [-.22,.22])add('cylinder',x,.38,z,.035,.76,.035,'#59655d',0,false,'metal');
+      add('roundBox',0,.79,0,.72,.38,.58,'#8c806d',0,false,'metal');
+      for(let i=0;i<8;i++){const x=((i%4)-1.5)*.15,z=(Math.floor(i/4)-.5)*.18;add('sphere',x,1.03+(i%2)*.04,z,.13,.13,.13,'#d3cb52',0,true);}
+      add('cylinder',.32,1.28,0,.035,.66,.035,'#59655d',0,false,'metal');
+    }else if(p.type==='coneSet'){
+      const cones=[[-.45,-.16],[-.15,.16],[.15,-.16],[.45,.16]];
+      for(let i=0;i<cones.length;i++)add('cone',cones[i][0],.16,cones[i][1],.25,.33,.25,i%2?palette.gold:palette.peach);
+    }else if(p.type==='tennisBag'){
+      add('roundBox',0,.34,0,1.06,.58,.46,'#48695f',0,false,'fabric');
+      add('roundBox',-.23,.65,0,.48,.24,.40,'#5e8175',-.08,false,'fabric');
+      add('torus',.28,.69,0,.26,.26,.12,'#344c45',0,false,'fabric');
+    }else if(p.type==='racketRack'){
+      add('roundBox',0,.10,0,1.48,.16,.50,palette.woodDark,0,false,'wood');
+      add('roundBox',0,.72,0,1.35,.10,.16,palette.wood,0,false,'wood');
+      for(const [i,x] of [-.48,0,.48].entries()){
+        const color=[palette.sage,palette.gold,palette.peach][i];
+        add('cylinder',x,.70,0,.055,.72,.055,color,0,false,'metal');
+        add('torus',x,1.34,0,.38,.48,.19,color,0,false,'metal');
+      }
+    }else if(p.type==='scoreboard'){
+      add('cylinder',-.52,.64,0,.055,1.28,.055,'#5f695f',0,false,'metal');
+      add('cylinder',.52,.64,0,.055,1.28,.055,'#5f695f',0,false,'metal');
+      add('roundBox',0,1.28,0,1.34,.72,.16,'#385b50',0,false,'wood');
+      for(const x of [-.36,0,.36])add('roundBox',x,1.30,-.10,.22,.30,.035,x===0?'#e9d480':'#f0eadc',0,true);
+    }else if(p.type==='cafeTable'){
+      add('cylinder',0,.42,0,.16,.80,.16,'#735f50',0,false,'metal');
+      add('cylinder',0,.86,0,.94,.12,.94,'#c99d72',0,false,'wood');
+      add('cylinder',0,.08,0,.62,.08,.62,'#735f50',0,false,'metal');
+    }else if(p.type==='stool'){
+      add('cylinder',0,.46,0,.11,.84,.11,'#6b5c50',0,false,'metal');
+      add('cylinder',0,.87,0,.56,.18,.56,'#b98262',0,false,'fabric');
+      add('cylinder',0,.08,0,.42,.08,.42,'#6b5c50',0,false,'metal');
+    }else if(p.type==='sideTable'){
+      add('roundBox',0,.62,0,.82,.14,.68,'#bc8e69',0,false,'wood');
+      for(const x of [-.31,.31])for(const z of [-.24,.24])add('cylinder',x,.30,z,.055,.58,.055,'#755c49',0,false,'wood');
+    }else if(p.type==='trophy'){
+      add('roundBox',0,.13,0,.44,.20,.38,palette.woodDark,0,false,'wood');
+      add('cylinder',0,.42,0,.08,.42,.08,'#b59142',0,false,'metal');
+      add('sphere',0,.72,0,.34,.26,.34,'#e2c45b',0,false,'metal');
+      add('torus',-.27,.72,0,.20,.25,.10,'#e2c45b',0,false,'metal');
+      add('torus',.27,.72,0,.20,.25,.10,'#e2c45b',0,false,'metal');
+    }else if(p.type==='towelRack'){
+      add('cylinder',-.46,.55,0,.055,1.10,.055,'#65736b',0,false,'metal');
+      add('cylinder',.46,.55,0,.055,1.10,.055,'#65736b',0,false,'metal');
+      add('roundBox',0,1.03,0,1.00,.055,.055,'#65736b',0,false,'metal');
+      add('roundBox',-.23,.70,.05,.36,.62,.10,palette.paper,0,false,'fabric');
+      add('roundBox',.23,.68,.05,.36,.58,.10,palette.peach,0,false,'fabric');
+    }
+    return out;
+  }
+
+  placementMeshes():Mesh[]{const out:Mesh[]=[];for(const p of this.placements)out.push(...this.decorMeshes(p));return out;}
+  previewPlacement(type:Placement['type'],x:number,z:number,rotation:number,valid:boolean):Mesh[]{return this.decorMeshes({type,x,z,rotation},valid?'#87a87e':'#c6796c',.48);}
+  canPlace(x:number,z:number,type:Placement['type']='plant',rotation=0,ignoreId?:string){
+    if(!Number.isFinite(x)||!Number.isFinite(z))return false;
+    const f=rotatedFootprint(type,rotation);
+    if(x-f.w/2<-12||x+f.w/2>12||z-f.d/2<-9||z+f.d/2>9)return false;
+    if(x+f.w/2>-3.8&&x-f.w/2<5.8&&z+f.d/2>-6.6&&z-f.d/2<6.6)return false;
+    return !this.placements.some(p=>{
+      if(p.id&&p.id===ignoreId)return false;
+      const g=rotatedFootprint(p.type,p.rotation??0);
+      return Math.abs(p.x-x)<(f.w+g.w)/2+.14&&Math.abs(p.z-z)<(f.d+g.d)/2+.14;
+    });
+  }
+
 }
 
 function mixColor(a:string,b:string,t:number){const parse=(h:string)=>{const s=h.replace('#','');return [parseInt(s.slice(0,2),16),parseInt(s.slice(2,4),16),parseInt(s.slice(4,6),16)]};const aa=parse(a),bb=parse(b),v=aa.map((n,i)=>Math.round(n+(bb[i]-n)*t));return '#'+v.map(n=>n.toString(16).padStart(2,'0')).join('');}

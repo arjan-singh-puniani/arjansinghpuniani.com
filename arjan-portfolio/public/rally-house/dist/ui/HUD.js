@@ -1,3 +1,4 @@
+import { DECOR_CATALOG } from '../content/DecorCatalog.js';
 const byId = (id) => document.getElementById(id);
 export class HUD {
     onBuildClose = () => { };
@@ -10,6 +11,7 @@ export class HUD {
     onCamera = () => { };
     onSave = () => { };
     onBuildSelect = (type) => { };
+    onBuildRotate = (direction) => { };
     context = byId('context');
     book = byId('book');
     build = byId('buildPanel');
@@ -18,6 +20,7 @@ export class HUD {
     speechTimer = 0;
     bookData = null;
     activeTab = 'today';
+    activeBuildCategory = 'tennis';
     opener = null;
     focusPanel(panel) { if (!panel.contains(document.activeElement))
         this.opener = document.activeElement; requestAnimationFrame(() => { if (panel.classList.contains('open'))
@@ -34,9 +37,34 @@ export class HUD {
         byId('closeContext').onclick = () => this.closeContext();
         byId('closeBook').onclick = () => this.closeBook();
         byId('brandBtn').onclick = () => this.onBook();
-        this.build.querySelectorAll('button[data-build]').forEach(b => b.onclick = () => { this.build.querySelectorAll('button').forEach(x => x.classList.remove('selected')); b.classList.add('selected'); this.onBuildSelect(b.dataset.build); });
+        const catalog = byId('buildCatalog');
+        for (const d of DECOR_CATALOG) {
+            const b = document.createElement('button');
+            b.dataset.build = d.id;
+            b.dataset.category = d.category;
+            b.setAttribute('aria-label', `${d.label}, ${d.cost} club funds`);
+            const icon = document.createElement('span');
+            icon.className = 'buildIcon';
+            icon.textContent = d.icon;
+            const label = document.createElement('span');
+            label.textContent = d.label;
+            const price = document.createElement('small');
+            price.textContent = `${d.cost} funds`;
+            b.append(icon, label, price);
+            b.onclick = () => { this.build.querySelectorAll('button[data-build]').forEach(x => x.classList.remove('selected')); b.classList.add('selected'); byId('buildControls').hidden = false; this.onBuildSelect(d.id); };
+            catalog.appendChild(b);
+        }
+        this.build.querySelectorAll('button[data-build-category]').forEach(b => b.onclick = () => this.setBuildCategory(b.dataset.buildCategory));
+        byId('rotateLeft').onclick = () => this.onBuildRotate(-1);
+        byId('rotateRight').onclick = () => this.onBuildRotate(1);
+        this.setBuildCategory('tennis');
         byId('bookTabs').addEventListener('click', e => { const b = e.target.closest('button[data-tab]'); if (!b)
             return; this.activeTab = b.dataset.tab; byId('bookTabs').querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b)); this.renderBook(); });
+    }
+    setBuildCategory(category) {
+        this.activeBuildCategory = category;
+        this.build.querySelectorAll('button[data-build-category]').forEach(b => b.classList.toggle('active', b.dataset.buildCategory === category));
+        this.build.querySelectorAll('button[data-build]').forEach(b => b.hidden = b.dataset.category !== category);
     }
     hideLoading() { setTimeout(() => byId('loading').classList.add('hide'), 180); }
     hideHint() { byId('hint').classList.add('hide'); }
@@ -71,13 +99,13 @@ export class HUD {
             c.innerHTML = d.members.map(m => `<div class="card personCard"><div class="row"><strong>${this.escape(m.name)}</strong><span>${this.escape(m.mood ?? m.tier)}</span></div><small>${this.escape(m.role)} · ${this.escape(m.quirk)}</small><p>${this.escape(m.intention ?? m.goal)}</p>${m.favorite ? `<small>Favorite place · ${this.escape(m.favorite)}</small>` : ''}${m.personalMemory ? `<em>${this.escape(m.personalMemory)}</em>` : m.memories[0] ? `<em>${this.escape(m.memories[0])}</em>` : ''}${m.possessions?.length ? `<small>${m.possessions.map(p => this.escape(p)).join(' · ')}</small>` : ''}</div>`).join('');
         }
         else if (this.activeTab === 'coaching') {
-            c.innerHTML = `<div class="card"><strong>Your coaching approach</strong><small>${this.escape(d.philosophy ?? 'Your approach will emerge through practice.')}</small></div><div class="card"><div class="row"><strong>Lucresia · forehand timing</strong><span>${d.mikaProgress}%</span></div><div class="meter"><i style="width:${Math.min(100, d.mikaProgress)}%"></i></div><small>Choose drills because they fit the problem, not because they pay more.</small></div><div class="card"><div class="row"><strong>${this.escape(d.coachLevel)}</strong><span>${d.coachXP} XP</span></div><small>Your coaching level grows from completed lessons and useful choices.</small></div><div class="card"><div class="row"><strong>Best observed rally</strong><span>${d.bestRally} balls</span></div><small>Rallies are a little different every time. No score multiplier attached.</small></div>`;
+            c.innerHTML = `<div class="card"><strong>Your coaching approach</strong><small>${this.escape(d.philosophy ?? 'Your approach will emerge through practice.')}</small></div><div class="card"><div class="row"><strong>Lucresia · forehand timing</strong><span>${d.mikaProgress}%</span></div><div class="meter"><i style="width:${Math.min(100, d.mikaProgress)}%"></i></div><small>Choose drills because they fit the problem, not because they pay more.</small></div><div class="card"><div class="row"><strong>${this.escape(d.coachLevel)}</strong><span>${d.coachXP} XP</span></div><small>Every completed lesson contributes 18 club funds. Results affect learning, not the fee.</small></div><div class="card"><div class="row"><strong>Best observed rally</strong><span>${d.bestRally} balls</span></div><small>Rallies are a little different every time. No score multiplier attached.</small></div>`;
         }
         else if (this.activeTab === 'moments') {
             c.innerHTML = d.moments.length ? d.moments.map(x => `<div class="memory"><i>✦</i><span>${this.escape(x)}</span></div>`).join('') : `<div class="card"><strong>No scrapbook entries yet</strong><small>Watch the club for a while. People will make their own little stories.</small></div>`;
         }
         else
-            c.innerHTML = `<div class="card"><strong>The club is becoming…</strong><small>${this.escape(d.culture ?? 'Still finding its rhythm.')}</small></div><div class="card"><strong>Current racket</strong><small>${this.escape(d.equipment.frame)} · ${this.escape(d.equipment.string)} · ${d.equipment.tension} lb</small></div><div class="card"><strong>Academy snapshot</strong><small>${d.coins} coins · ${d.placements} placed details · indoor court · matcha nook · pro shop · lounge · bonsai corner</small></div><div class="card"><strong>Design principle</strong><small>Most management is optional. The physical club is the interface and the people remain the point.</small></div>`;
+            c.innerHTML = `<div class="card"><strong>The club is becoming…</strong><small>${this.escape(d.culture ?? 'Still finding its rhythm.')}</small></div><div class="card"><strong>Current racket</strong><small>${this.escape(d.equipment.frame)} · ${this.escape(d.equipment.string)} · ${d.equipment.tension} lb</small></div><div class="card"><strong>Academy snapshot</strong><small>${d.coins} club funds · ${d.placements} placed details · indoor court · matcha nook · pro shop · lounge · bonsai corner</small></div><div class="card"><strong>Design principle</strong><small>Most management is optional. The physical club is the interface and the people remain the point.</small></div>`;
     }
     escape(v) { return v.replace(/[&<>'"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[c])); }
     closeBook() { const had = this.book.contains(document.activeElement); this.book.classList.remove('open'); if (had)
@@ -85,12 +113,13 @@ export class HUD {
     toggleBuild(open) { const next = open ?? !this.build.classList.contains('open'); if (next) {
         this.closeContext();
         this.closeBook();
+        this.setBuildCategory(this.activeBuildCategory);
     }
     else {
         this.clearBuildSelection();
         this.onBuildClose();
     } this.build.classList.toggle('open', next); byId('buildBtn').classList.toggle('active', next); }
-    clearBuildSelection() { this.build.querySelectorAll('button').forEach(x => x.classList.remove('selected')); }
+    clearBuildSelection() { this.build.querySelectorAll('button[data-build]').forEach(x => x.classList.remove('selected')); byId('buildControls').hidden = true; }
     toast(msg) { const t = byId('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(this.toastTimer); this.toastTimer = window.setTimeout(() => t.classList.remove('show'), 2300); }
     showMoment(title, text) { byId('momentTitle').textContent = title; byId('momentText').textContent = text; const el = byId('moment'); el.classList.add('show'); clearTimeout(this.momentTimer); this.momentTimer = window.setTimeout(() => el.classList.remove('show'), 5200); }
     showSpeech(name, text, duration = 3600) { byId('speechName').textContent = name; byId('speechText').textContent = text; const el = byId('speech'); el.classList.add('show'); clearTimeout(this.speechTimer); if (duration > 0)

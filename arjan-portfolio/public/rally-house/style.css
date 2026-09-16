@@ -36,15 +36,30 @@ button:focus-visible,#game:focus-visible{outline:3px solid #b87535;outline-offse
 
 #loading button{margin-top:14px;padding:12px 18px;border-radius:12px;background:#416d59;color:white;cursor:pointer}
 
-.loading.fallback{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);place-content:stretch;text-align:left;background:#efe9dc}
-.loading.fallback img{width:100%;height:100%;min-height:0;object-fit:cover}
-.loading.fallback>div{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:clamp(28px,6vw,72px)}
-.loading.fallback strong{font-size:clamp(24px,4vw,44px);line-height:1.05}
-.loading.fallback span{display:block;max-width:38ch;margin-top:14px;color:var(--muted);font-size:16px;line-height:1.5}
-@media(max-width:720px){.loading.fallback{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}.loading.fallback>div{padding:22px 24px 30px}.loading.fallback img{max-height:52dvh}.loading.fallback strong{font-size:27px}.loading.fallback span{font-size:14px}}
-
 /* v15: dialogue and member stories must remain readable at normal zoom. */
 .speech{max-width:min(300px,calc(100vw - 28px));padding:11px 13px}.speech strong{font-size:12px}.speech span{font-size:13px;line-height:1.45}.personCard p,.card p{font-size:13px;line-height:1.5}.personCard small,.card small{font-size:12px;line-height:1.5}.personCard em{display:block;margin:12px 0;font-size:13px;line-height:1.45}.personCard .row{flex-wrap:wrap;gap:6px}.personCard .row span{font-size:11px}.objective small{font-size:11px}.objective strong{font-size:12px}.moment small{font-size:12px}.moment strong{font-size:12px}.context p,.actions span{font-size:13px;line-height:1.45}button:focus-visible,canvas:focus-visible{outline:3px solid #315f52;outline-offset:3px}@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}
 
 /* v16: readable captions and explicit keyboard focus, without numeric mind UI. */
 :root{--muted:#52685d}.speech{max-width:min(290px,calc(100vw - 28px))}.speech strong{font-size:13px}.speech span{font-size:13px;line-height:1.45}.memory span{font-size:13px}.personCard em{font-size:12px}.context h2{padding-right:30px}.hint{white-space:normal;text-align:center}.context,.book{overscroll-behavior:contain}
+
+
+/* v17 tactile decorating: categorized catalog + rotation controls */
+.build{width:min(360px,calc(100% - 28px))}
+.buildTabs{display:flex;gap:5px;margin:9px 0 7px;overflow-x:auto;padding-bottom:2px}
+.buildTabs button{flex:0 0 auto;min-height:32px;padding:6px 9px;border-radius:10px;background:#eee9dd;font-size:9px;font-weight:760;cursor:pointer}
+.buildTabs button.active{background:#dfead9;color:#3f6250;box-shadow:inset 0 0 0 1px rgba(80,112,87,.12)}
+.catalog{grid-template-columns:repeat(2,minmax(0,1fr));max-height:min(330px,42dvh);overflow-y:auto;overscroll-behavior:contain;padding:1px 3px 3px 1px}
+.catalog button{min-height:66px;position:relative}
+.catalog button[hidden]{display:none}
+.catalog .buildIcon{font-size:16px;margin-bottom:3px}
+.catalog button span:not(.buildIcon){font-size:10px;font-weight:760}
+.catalog button small{font-size:8.5px}
+.buildControls{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:9px 0 8px}
+.buildControls[hidden]{display:none}
+.buildControls button{min-height:38px;border-radius:12px;background:#e4eee0;color:#3f6250;font-size:10px;font-weight:800;cursor:pointer}
+.buildControls button:hover{transform:translateY(-1px);background:#d9e8d5}
+@media(max-width:720px){
+  .build{width:min(292px,calc(100% - 28px));max-height:68dvh}
+  .catalog{max-height:34dvh}
+  .buildControls button{min-height:44px}
+}

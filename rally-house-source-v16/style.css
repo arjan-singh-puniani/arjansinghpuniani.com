@@ -41,3 +41,25 @@ button:focus-visible,#game:focus-visible{outline:3px solid #b87535;outline-offse
 
 /* v16: readable captions and explicit keyboard focus, without numeric mind UI. */
 :root{--muted:#52685d}.speech{max-width:min(290px,calc(100vw - 28px))}.speech strong{font-size:13px}.speech span{font-size:13px;line-height:1.45}.memory span{font-size:13px}.personCard em{font-size:12px}.context h2{padding-right:30px}.hint{white-space:normal;text-align:center}.context,.book{overscroll-behavior:contain}
+
+
+/* v17 tactile decorating: categorized catalog + rotation controls */
+.build{width:min(360px,calc(100% - 28px))}
+.buildTabs{display:flex;gap:5px;margin:9px 0 7px;overflow-x:auto;padding-bottom:2px}
+.buildTabs button{flex:0 0 auto;min-height:32px;padding:6px 9px;border-radius:10px;background:#eee9dd;font-size:9px;font-weight:760;cursor:pointer}
+.buildTabs button.active{background:#dfead9;color:#3f6250;box-shadow:inset 0 0 0 1px rgba(80,112,87,.12)}
+.catalog{grid-template-columns:repeat(2,minmax(0,1fr));max-height:min(330px,42dvh);overflow-y:auto;overscroll-behavior:contain;padding:1px 3px 3px 1px}
+.catalog button{min-height:66px;position:relative}
+.catalog button[hidden]{display:none}
+.catalog .buildIcon{font-size:16px;margin-bottom:3px}
+.catalog button span:not(.buildIcon){font-size:10px;font-weight:760}
+.catalog button small{font-size:8.5px}
+.buildControls{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:9px 0 8px}
+.buildControls[hidden]{display:none}
+.buildControls button{min-height:38px;border-radius:12px;background:#e4eee0;color:#3f6250;font-size:10px;font-weight:800;cursor:pointer}
+.buildControls button:hover{transform:translateY(-1px);background:#d9e8d5}
+@media(max-width:720px){
+  .build{width:min(292px,calc(100% - 28px));max-height:68dvh}
+  .catalog{max-height:34dvh}
+  .buildControls button{min-height:44px}
+}
