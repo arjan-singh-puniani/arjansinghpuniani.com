@@ -47,6 +47,7 @@ export class Game {
   activities=new ActivitySystem();evidence=new CoachingEvidence();history=new ClubHistory();affordances=new ObjectAffordances();ambientSocial=new AmbientSocialPlanner();development={preparation:0,recovery:0};settings:{volume:number;visuals:'auto'|'detail';reducedMotion:boolean}={volume:.65,visuals:'auto',reducedMotion:matchMedia('(prefers-reduced-motion: reduce)').matches};private queuedLesson:string|null=null;private movingPlacement:string|null=null;private decisionTimer=0;private observationStarted=false;
   private saveSystem=new SaveSystem<GameSave>();private selectedId:string|null=null;private buildType:Placement['type']|null=null;private buildRotation=0;private hoverGround:Vec3|null=null;
   private frameSamples:number[]=[];private graphicsLost=false;private last=performance.now();private simAcc=0;private lessonUntil=-1;private lessonActive=false;private rallyWasRunning=false;private autosave=0;private lastDay=1;
+  private playerWatchingRally=false;private playerWatchActivityId:string|null=null;private playerWatchPeak=0;private playerWatchNextReaction=8;
   private pointers=new Map<number,{x:number;y:number}>();private pointerStart:{x:number;y:number}|null=null;private lastPointer:{x:number;y:number}|null=null;private dragged=false;private pinchDistance=0;
   private perf=new PerformanceMonitor(new URLSearchParams(location.search).has('debug'));private socialUntil=-1;private socialIds=new Set<string>();private activeSpeechId:string|null=null;private speechUntil=0;private weatherRedirectUntil=-1;private socialRallyWasRunning=false;private socialRallyUntil=-1;
 
@@ -154,7 +155,7 @@ export class Game {
     const placed=this.world.placements.find(p=>{const q=this.camera.project(new Vec3(p.x,.6,p.z)),d=DECOR_BY_ID[p.type],threshold=Math.min(62,24+Math.max(d.footprintX,d.footprintZ)*12);return Math.hypot(q.x-x,q.y-y)<threshold;});if(placed){this.openFurniture(placed);return;}
     const c=this.pickCharacter(x,y);if(c){this.openCharacter(c);return}
     const o=this.pickObject(x,y);if(o){this.openObject(o);return}
-    const g=this.camera.groundPoint(x,y);if(g&&!this.activities.busy('player')&&g.x>-12.2&&g.x<12.2&&g.z>-9.2&&g.z<9.2){this.selectedId=null;this.ui.closeContext();this.player.goTo(new Vec3(clamp(g.x,-12,12),0,clamp(g.z,-9,9)),'idle')}
+    const g=this.camera.groundPoint(x,y);if(g&&!this.activities.busy('player')&&g.x>-12.2&&g.x<12.2&&g.z>-9.2&&g.z<9.2){this.stopPlayerWatching(false);this.selectedId=null;this.ui.closeContext();this.player.goTo(new Vec3(clamp(g.x,-12,12),0,clamp(g.z,-9,9)),'idle')}
   }
   private pickCharacter(x:number,y:number){let best:Character|null=null,bd=48;for(const c of this.characters){const p=this.camera.project(new Vec3(c.position.x,1.25,c.position.z)),d=Math.hypot(x-p.x,y-p.y);if(d<bd){bd=d;best=c}}return best}
   private pickObject(x:number,y:number){let best:InteractiveObject|null=null,bd=Infinity;for(const o of this.world.objects){const p=this.camera.project(new Vec3(o.position.x,.75,o.position.z)),d=Math.hypot(x-p.x,y-p.y),threshold=Math.min(78,28+o.radius*7);if(d<threshold&&d<bd){bd=d;best=o}}return best}
@@ -181,7 +182,7 @@ export class Game {
     if(o.kind==='reception')actions.push({title:'Review bookings',subtitle:'Three courts · one lesson · one social',run:()=>this.ui.toast('Enough structure to create life. Not enough to feel like work.')});
     if(o.kind==='lounge')actions.push({title:'Take five',subtitle:'Let the simulation carry itself',run:()=>{if(this.activities.busy('player')){this.ui.toast('Finish your shared moment first.');return;}this.camera.focus(6.5,3.2,25);this.player.goTo(destinations.lounge,'sit');this.ui.toast('You sit down. The academy carries on without you.')}});
     if(o.kind==='water')actions.push({title:'Fill bottle',subtitle:'Hydration, quietly handled',run:()=>{this.world.triggerInteraction('water');this.ui.toast('Cold water. No meter. No chore.')}});
-    if(o.kind==='court')actions.push({title:'Watch a rally',subtitle:'Coach Contessa ↔ Lucresia · rallies vary',run:()=>{this.beginExhibition();this.camera.focus(1,0,24)}});
+    if(o.kind==='court')actions.push({title:'Watch a rally',subtitle:'Walk to the sideline and follow the ball',run:()=>this.watchRallyAsPlayer()});
     if(o.kind==='board')actions.push({title:'Read today’s note',subtitle:'One useful cue survives the lesson',run:()=>{this.ui.showMoment('Club board','“Prepare earlier. Then let the swing breathe.” — Contessa');}});
     if(!actions.length)actions.push({title:'Admire it',subtitle:'The club is allowed to be pretty',run:()=>this.ui.toast('You admire it for exactly long enough.')});
     this.ui.showContext(o.kind,o.label,o.description,[],actions);
@@ -190,9 +191,9 @@ export class Game {
   private openCoaching(){
     if(this.queuedLesson){this.ui.showContext('COACHING','Contessa is making time','Practice will begin when the current activity finishes.',[],[{title:'Cancel planned lesson',subtitle:'Everyone continues their day',run:()=>{this.queuedLesson=null;this.ui.closeContext()}}]);return;}
     const active=this.activities.active.find(a=>a.kind==='lesson');
-    if(active){this.ui.showContext('COACHING','One cue at a time',`${active.phase} · ${this.evidence.reps.length}/8 contacts`,[],[{title:'Watch practice',subtitle:'The academy keeps moving around you',run:()=>{this.camera.focus(1,0,28);this.ui.closeContext()}},{title:'End practice',subtitle:'Stop safely without completion rewards',run:()=>{this.cancelActivity(active);this.ui.closeContext()}}]);return;}
+    if(active){this.ui.showContext('COACHING','One cue at a time',`${active.phase} · ${this.evidence.reps.length}/8 contacts`,[],[{title:'Watch practice',subtitle:'Walk over and stay present at the sideline',run:()=>this.watchRallyAsPlayer()},{title:'End practice',subtitle:'Stop safely without completion rewards',run:()=>{this.cancelActivity(active);this.ui.closeContext()}}]);return;}
     const e=summarize(this.evidence.recent.slice(-8));
-    this.ui.showContext('COACHING','What is Lucresia finding difficult?',e.count?`${e.late} of her last ${e.count} contacts had a short preparation window; ${e.clean} were clean. Watch her spacing and recovery too.`:'Watch a few balls first, or try a practice block to learn what needs attention.',[],[{title:'Observe a rally',subtitle:'Gather evidence before choosing a cue',run:()=>this.beginExhibition()},...Object.entries(drills).map(([key,d])=>({title:d.name,subtitle:d.description,run:()=>this.beginLesson(key)}))]);
+    this.ui.showContext('COACHING','What is Lucresia finding difficult?',e.count?`${e.late} of her last ${e.count} contacts had a short preparation window; ${e.clean} were clean. Watch her spacing and recovery too.`:'Watch a few balls first, or try a practice block to learn what needs attention.',[],[{title:'Observe a rally',subtitle:'Walk over, watch the ball, then choose a cue',run:()=>this.watchRallyAsPlayer()},...Object.entries(drills).map(([key,d])=>({title:d.name,subtitle:d.description,run:()=>this.beginLesson(key)}))]);
   }
   private beginLesson(key:string){
     if(!(key in drills))return;this.traceCoaching('request',{key,queued:this.queuedLesson,active:this.activities.active.map(a=>({id:a.id,phase:a.phase,people:a.participants}))});
@@ -202,8 +203,39 @@ export class Game {
     this.lessonKeys??=new Map();this.lessonKeys.set(a.id,key);this.traceCoaching('reserved',{id:a.id,key,targets:this.routes.get(a.id)});this.evidence.begin(cueFor(key));this.lessonActive=true;this.observationStarted=true;this.camera.focus(1,0,28);this.ui.closeContext();this.ui.toast('Contessa will demonstrate, then Lucresia will try eight contacts.');
   }
   private beginExhibition(){
-    if(this.activities.reserved('court')){this.camera.focus(1,0,28);this.ui.closeContext();return;}
-    const a=this.startActivity('observe',['coach','mika'],'court',[destinations.courtNorth,destinations.courtSouth],'Watch the preparation');if(a){this.camera.focus(1,0,28);this.ui.closeContext();}
+    const current=this.activities.active.find(a=>a.resource==='court');
+    if(current){this.ui.closeContext();return current;}
+    const a=this.startActivity('observe',['coach','mika'],'court',[destinations.courtNorth,destinations.courtSouth],'Watch the preparation');
+    if(a)this.ui.closeContext();
+    return a;
+  }
+  private watchRallyAsPlayer(){
+    if(this.activities.busy('player')){this.ui.toast('Finish your shared moment first.');return;}
+    const a=this.beginExhibition();if(!a){this.ui.toast('The court is not ready just yet.');return;}
+    const center=new Vec3(1,0,0),candidates=[new Vec3(-5.15,0,3.6),new Vec3(-5.15,0,-3.0),new Vec3(6.35,0,3.1),new Vec3(6.35,0,-3.0),new Vec3(1,0,7.45)];
+    candidates.sort((p,q)=>Vec3.sub(p,this.player.position).len()-Vec3.sub(q,this.player.position).len());
+    const spot=this.player.freeDestination(candidates[0]);
+    this.playerWatchingRally=true;this.playerWatchActivityId=a.id;this.playerWatchPeak=0;this.playerWatchNextReaction=8;
+    this.player.activity='Watching the rally from the sideline';this.player.setConversationPartner(undefined);this.player.setLook(center);this.player.goTo(spot,'watch');
+    this.ui.closeContext();this.ui.toast('You head to the sideline. The camera stays yours.');
+  }
+  private stopPlayerWatching(showMoment=true){
+    if(!this.playerWatchingRally)return;
+    const peak=this.playerWatchPeak;this.playerWatchingRally=false;this.playerWatchActivityId=null;this.playerWatchPeak=0;this.playerWatchNextReaction=8;
+    this.player.setLook(undefined);this.player.activity='';if(this.player.pathIndex>=this.player.path.length)this.player.setAnimation('idle');
+    if(showMoment&&peak>0)this.ui.showMoment('You stayed for the rally',`${peak} ${peak===1?'contact':'contacts'} · you watched it happen from inside the club.`);
+  }
+  private updatePlayerWatching(){
+    if(!this.playerWatchingRally)return;
+    const watched=this.playerWatchActivityId?this.activities.active.find(a=>a.id===this.playerWatchActivityId):undefined;
+    const live=this.rally.enabled?this.rally:this.socialRally.enabled?this.socialRally:null;
+    if(!watched&&!live){this.stopPlayerWatching(true);return;}
+    if(this.player.pathIndex<this.player.path.length)return;
+    const center=new Vec3(1,0,0),look=live?.ball.active?live.ball.position:center;
+    if(this.player.state!=='watch')this.player.setAnimation('watch');
+    this.player.face(center);this.player.setLook(look);this.player.setEmotion('attentive',.35);
+    const count=live?.rallyCount??0;this.playerWatchPeak=Math.max(this.playerWatchPeak,count);
+    if(live&&count>=this.playerWatchNextReaction){this.player.react(count>=16?'acknowledge':'thoughtful',look,1.1);this.playerWatchNextReaction+=8;}
   }
 
   private openEquipment(){const e=this.equipment;const actions=[
@@ -305,6 +337,7 @@ export class Game {
   private actor(id:string){return id==='player'?this.player:this.byId(id)!;}
   private routes=new Map<string,Vec3[]>();private waitingForPlace=new Map<string,string>();
   private startActivity(kind:string,ids:string[],resource:string,targets:Vec3[],detail=''){
+    if(ids.includes('player'))this.stopPlayerWatching(false);
     if(targets.some(p=>this.world.nav.isBlocked(p.x,p.z)))return null;
     const paths=targets.map((p,i)=>this.world.nav.clubPath(this.actor(ids[i]).position,p));
     if(paths.some((p,i)=>!p.length&&Vec3.sub(this.actor(ids[i]).position,targets[i]).len()>.6))return null;
@@ -524,7 +557,7 @@ export class Game {
       }
       c.update(step);if(c.consumeStepEvent())this.audio.shoe(c.state==='shuffle');
     }
-    this.player.update(step);
+    this.player.update(step);this.updatePlayerWatching();
     for(const a of [...this.activities.active]){
       const people=a.participants.map(id=>this.actor(id)),targets=this.routes.get(a.id)!;
       if(a.kind==='everyday'){this.updateEveryday(a,step);continue;}
