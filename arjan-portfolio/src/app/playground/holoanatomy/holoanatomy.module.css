@@ -1,0 +1,6 @@
+.hero { padding-bottom: 2rem; }
+.actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.5rem; }
+.viewerSection { padding: 1rem 0 2rem; scroll-margin-top: 6rem; }
+.instructions, .note { max-width: 75ch; margin: 1rem 0; }
+.viewer { display: block; width: 100%; height: 850px; height: min(900px, 90svh); min-height: 620px; border: 1px solid #253342; border-radius: 16px; background: #050609; }
+@media (max-width: 600px) { .viewer { min-height: 740px; border-radius: 10px; } }
