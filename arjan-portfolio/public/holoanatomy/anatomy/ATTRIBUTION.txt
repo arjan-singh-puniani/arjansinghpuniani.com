@@ -1,0 +1,4 @@
+BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International
+
+Official source: https://dbarchive.biosciencedbc.jp/en/bodyparts3d/
+License: https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html
