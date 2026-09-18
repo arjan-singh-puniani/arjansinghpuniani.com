@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#050609" />
+  <meta name="description" content="HoloAnatomy: pull-apart interactive spatial anatomy with verified BodyParts3D geometry, holographic hover labels, and quiz mode." />
+  <title>HoloAnatomy — Pull-Apart Spatial Anatomy</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main id="app" aria-label="HoloAnatomy interactive pull-apart anatomy viewer">
+    <canvas id="anatomy-canvas" aria-hidden="true"></canvas>
+
+    <div id="hover-label" class="hover-label chrome" hidden aria-hidden="true">
+      <span class="hover-system" id="hover-system"></span>
+      <strong id="hover-name"></strong>
+      <span class="hover-meta" id="hover-meta"></span>
+    </div>
+
+    <div id="fallback" class="fallback" hidden>
+      <div class="fallback-card">
+        <p class="eyebrow">HOLOANATOMY</p>
+        <h1 id="fallback-title">Interactive 3D is unavailable.</h1>
+        <p id="fallback-message">Your browser or graphics hardware could not start the WebGL 2 renderer. The anatomical dataset remains available through the source documentation.</p>
+      </div>
+    </div>
+
+    <header class="topbar chrome" id="topbar">
+      <div>
+        <p class="eyebrow">HOLOANATOMY</p>
+        <h1 id="module-title">Head + Neck Neuro</h1>
+        <p class="subtitle" id="module-subtitle">Skull, brain, cranial/orbital nerves, cervical vessels and neck musculature</p>
+        <label class="module-picker"><span>Current exhibit</span><select id="module-select" aria-label="Anatomy exhibit"></select></label>
+      </div>
+      <div class="top-actions">
+        <button class="utility" id="reset-view" type="button">Reset</button>
+        <button class="utility" id="fullscreen" type="button">Fullscreen</button>
+      </div>
+    </header>
+
+    <aside id="loading" class="loading-panel chrome" aria-live="polite">
+      <div class="loading-head">
+        <span>Preparing anatomy</span>
+        <span id="load-summary">0 / 0</span>
+      </div>
+      <div class="load-track"><div id="load-bar" class="load-bar"></div></div>
+      <div id="load-status" class="load-status">Initializing renderer…</div>
+      <div id="asset-warning" class="asset-warning" hidden>
+        Real anatomy assets could not be reached. Run <code>python3 scripts/vendor_bodyparts3d.py</code> while online, then reload.
+      </div>
+    </aside>
+
+    <section id="selection-card" class="selection-card chrome" hidden aria-live="polite">
+      <button id="close-selection" class="close-button" type="button" aria-label="Close structure details">×</button>
+      <p class="selection-system" id="selection-system"></p>
+      <h2 id="selection-name"></h2>
+      <p class="selection-id" id="selection-id"></p>
+      <p class="pull-status" id="pull-status">In anatomical position</p>
+      <div class="selection-actions selection-actions-primary">
+        <button id="pull-selection" type="button">Pull out</button>
+        <button id="return-selection" type="button">Return</button>
+      </div>
+      <div class="selection-actions">
+        <button id="isolate" type="button">Isolate</button>
+        <button id="focus-selection" type="button">Focus</button>
+      </div>
+    </section>
+
+    <section id="exhibits-panel" class="popover exhibit-panel chrome" hidden aria-label="Anatomy exhibits">
+      <div class="popover-head">
+        <strong>Exhibits</strong>
+        <span>Choose a regional pull-apart anatomy exhibit</span>
+      </div>
+      <div id="exhibit-list" class="exhibit-list"></div>
+    </section>
+
+    <section id="layers-panel" class="popover chrome" hidden aria-label="Anatomical layer controls">
+      <div class="popover-head">
+        <strong>Layers</strong>
+        <span>Tap to cycle Visible → Ghost → Hidden</span>
+      </div>
+      <div id="layer-list" class="layer-list"></div>
+    </section>
+
+    <section id="section-panel" class="popover chrome" hidden aria-label="Section plane controls">
+      <div class="popover-head">
+        <strong>Section view</strong>
+        <span>True shader clipping</span>
+      </div>
+      <div class="segmented" role="group" aria-label="Section orientation">
+        <button data-plane="x" type="button">Sagittal</button>
+        <button data-plane="y" type="button">Coronal</button>
+        <button data-plane="z" type="button">Axial</button>
+      </div>
+      <label class="range-row">
+        <span>Plane position</span>
+        <input id="clip-position" type="range" min="-1.1" max="1.1" value="0" step="0.01" />
+      </label>
+      <div class="section-actions">
+        <button id="toggle-section" type="button">Enable section</button>
+        <button id="flip-section" type="button">Flip side</button>
+      </div>
+    </section>
+
+    <section id="quiz-panel" class="quiz-panel chrome" hidden aria-live="polite">
+      <div class="quiz-topline">
+        <span class="quiz-kicker">QUIZ MODE</span>
+        <span id="quiz-score">0 / 0</span>
+      </div>
+      <h2 id="quiz-question">Identify the highlighted structure.</h2>
+      <p id="quiz-hint" class="quiz-hint" hidden></p>
+      <div id="quiz-options" class="quiz-options" role="group" aria-label="Quiz answer choices"></div>
+      <p id="quiz-feedback" class="quiz-feedback" aria-live="polite"></p>
+      <div class="quiz-actions">
+        <button id="quiz-hint-button" type="button">Hint</button>
+        <button id="quiz-skip" type="button">Skip</button>
+        <button id="quiz-next" type="button" disabled>Next</button>
+        <button id="quiz-end" type="button">End quiz</button>
+      </div>
+    </section>
+
+    <svg id="stage-leaders" class="stage-leaders chrome" aria-hidden="true"></svg>
+    <div id="stage-labels" class="stage-labels chrome" aria-label="Removed anatomical structures"></div>
+    <section id="table-summary" class="table-summary chrome" hidden aria-live="polite">
+      <div><span id="table-count">0</span> on dissection table</div>
+      <button id="return-all" type="button">Reassemble all</button>
+    </section>
+
+    <nav class="toolbar chrome" id="toolbar" aria-label="Viewer controls">
+      <button id="exhibits-button" class="exhibits-button" type="button" aria-expanded="false">Exhibits <span class="toolbar-count">3</span></button>
+      <button id="quiz-button" class="quiz-button" type="button" aria-pressed="false">Quiz</button>
+      <button id="layers-button" type="button" aria-expanded="false">Layers</button>
+      <button id="section-button" type="button" aria-expanded="false">Section</button>
+      <button id="dissect-button" type="button" aria-pressed="true">Dissect</button>
+      <button id="table-button" type="button" aria-pressed="true">Table</button>
+      <button id="explode-button" type="button" aria-pressed="false">Spread</button>
+      <button id="focus-button" type="button" aria-pressed="false">Focus</button>
+    </nav>
+
+    <div class="gesture-hint chrome" id="gesture-hint">Dissect + Table · pull a structure and release to stage it · drag it back to reassemble</div>
+
+    <div id="debug" class="debug" hidden></div>
+
+    <footer class="attribution chrome" id="attribution">
+      BodyParts3D, © The Database Center for Life Science, CC BY 4.0 International.
+    </footer>
+  </main>
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>
