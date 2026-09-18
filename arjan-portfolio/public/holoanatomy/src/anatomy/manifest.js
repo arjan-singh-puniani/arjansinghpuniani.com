@@ -65,7 +65,7 @@ function part(file, name, fma, layer, { component = null, initial = true, module
     module,
     selectable: true,
     initial,
-    localUrl: `/anatomy/${file}.obj`,
+    localUrl: `/holoanatomy/anatomy/${file}.obj`,
     remoteUrl: `${MIRROR_BASE}/${file}.obj`,
     source: 'BodyParts3D / ISA Release 4.0',
     sourceUrl: OFFICIAL_SOURCE,
