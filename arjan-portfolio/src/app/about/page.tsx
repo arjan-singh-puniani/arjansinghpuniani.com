@@ -37,17 +37,12 @@ export const metadata: Metadata = {
 };
 
 const interests = [
-  "Formula 1",
   "Tennis",
+  "Formula 1",
   "Buffalo Bills",
-  "Whole Foods",
+  "Cooking",
   "Virtual reality",
-  "Pickleball",
-  "Bonsai",
-  "Metal detecting",
-  "LEGO",
   "Sketching",
-  "Terrence Malick",
 ] as const;
 
 export default function About() {
@@ -81,7 +76,7 @@ export default function About() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <header className="page-hero">
         <div className="shell">
-          <p className="eyebrow">Biography</p>
+          <p className="eyebrow">About</p>
           <h1>Arjan Singh Puniani</h1>
           <p>{profile.headline}</p>
         </div>
@@ -89,12 +84,45 @@ export default function About() {
       <section className="section">
         <div className="shell bio-grid">
           <aside>
-            <p className="eyebrow">Current position</p>
+            <p className="eyebrow">Background</p>
             <h2>{profile.descriptor}</h2>
           </aside>
           <article>{profile.biography.map((p) => <p className="large" style={{ fontSize: "22px" }} key={p}>{p}</p>)}</article>
         </div>
       </section>
+
+      <section className="section">
+        <div className="shell">
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">Interests → projects</p>
+              <h2>Tennis, motorsport, and interactive models.</h2>
+            </div>
+            <p>Those interests have become useful places to test ideas about feedback, interfaces, and learning.</p>
+          </div>
+          <div className="directions">
+            <article className="direction">
+              <span>01 / Tennis</span>
+              <h3>Tennis</h3>
+              <p>I play and teach tennis. It became a natural place to test timing, feedback, and interaction design.</p>
+              <p><Link href="/playground/vector-tennis">Open Vector Tennis →</Link></p>
+            </article>
+            <article className="direction">
+              <span>02 / Motorsport</span>
+              <h3>Motorsport</h3>
+              <p>I follow motorsport closely. That led to work on crash mechanics, neurological assessment, emergency operations, and medical handoff.</p>
+              <p><Link href="/work/motorsport-neurotrauma-toolkit">Open the neurotrauma work →</Link></p>
+            </article>
+            <article className="direction">
+              <span>03 / Interactive models</span>
+              <h3>Interactive models</h3>
+              <p>The Playground uses interactive models for anatomy, physiology, mechanical systems, and games.</p>
+              <p><Link href="/playground">Explore the Playground →</Link></p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section className="section">
         <div className="shell">
           <div className="section-head">
@@ -102,7 +130,7 @@ export default function About() {
               <p className="eyebrow">Science writing</p>
               <h2>Selected writing for Physics World</h2>
             </div>
-            <p>Arjan Singh Puniani was a student contributor to <em>Physics World</em>, writing reported features about neural engineering, brain–computer interfaces, and neuroimaging research.</p>
+            <p>I wrote reported features for <em>Physics World</em> on neural engineering, brain–computer interfaces, and neuroimaging research.</p>
           </div>
           <p><a className="text-link" href={links.physicsWorldAuthor} target="_blank" rel="noreferrer">Physics World contributor archive <span aria-hidden="true">↗</span></a></p>
           <p><Link className="text-link" href="/research">See peer-reviewed research and current research themes →</Link></p>
@@ -118,26 +146,35 @@ export default function About() {
       </section>
       <section className={`section outside-lab ${styles.personalSection}`}>
         <div className={`shell ${styles.personalGrid}`}>
-          <figure className={styles.portrait}>
-            <Image
-              src="/images/about/arjan-candid.jpg"
-              alt="Candid portrait of the site author seated at a restaurant"
-              width={1200}
-              height={1600}
-              sizes="(max-width: 900px) calc(100vw - 24px), 40vw"
-            />
-            <figcaption>Outside research and engineering.</figcaption>
-          </figure>
+          <div className={styles.photoStack}>
+            <figure className={styles.photoWide}>
+              <Image
+                src="/images/about/arjan-camera-2026.jpg"
+                alt="Arjan Singh Puniani holding a camera outdoors"
+                width={1600}
+                height={1200}
+                sizes="(max-width: 900px) calc(100vw - 24px), 42vw"
+              />
+            </figure>
+            <figure className={styles.photoWide}>
+              <Image
+                src="/images/about/arjan-dog-2026.jpg"
+                alt="Arjan Singh Puniani relaxing on grass with a dog"
+                width={1600}
+                height={1200}
+                sizes="(max-width: 900px) calc(100vw - 24px), 42vw"
+              />
+            </figure>
+          </div>
           <div className={styles.personalCopy}>
-            <p className="eyebrow">Outside the lab</p>
-            <h2>A few things I genuinely like.</h2>
+            <p className="eyebrow">Outside work</p>
+            <h2>Mostly tennis, cooking, sports, and making things.</h2>
             <div className={styles.personalProse}>
-              <p>I cook a lot, especially bánh mì, bulgogi cheesesteaks, and sloppy joes. I play and teach tennis, play pickleball, follow Formula 1 and the Buffalo Bills, and spend a lot of time in virtual reality.</p>
-              <p>Whole Foods is, inexplicably, one of my hobbies.</p>
-              <p>When I want something quieter, I work on my bonsai, build LEGO sets, sketch, go metal detecting, or put on a Terrence Malick film.</p>
+              <p>I play and teach tennis, cook often, follow Formula 1 and the Buffalo Bills, and spend a lot of time with interactive media and VR.</p>
+              <p>I also sketch and keep a camera around.</p>
             </div>
             <div className={styles.interests}>
-              <h3>Currently into</h3>
+              <h3>Also into</h3>
               <ul className={styles.interestList}>
                 {interests.map((interest, index) => (
                   <li key={interest}>

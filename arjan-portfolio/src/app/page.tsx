@@ -2,88 +2,213 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SeizeFreezeHomeFeature } from "@/components/SeizeFreezeHomeFeature";
-import ViewportBackgroundVideo from "@/components/ViewportBackgroundVideo";
+import { links } from "@/content/links";
 import { siteUrl } from "@/lib/site";
+import styles from "./home.module.css";
 
 export const metadata: Metadata = {
-  title: { absolute: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine" },
+  title: { absolute: "Arjan Singh Puniani | Neural Engineering" },
   description:
-    "Official portfolio of Arjan Singh Puniani, a neural engineer pursuing medicine, with work in brain-computer interfaces, neurotechnology, clinical reasoning, rehabilitation, and motorsport safety.",
+    "Arjan Singh Puniani: SeizeFreeze, brain-computer interface research, conscious active inference, and independent engineering projects.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: siteUrl,
-    title: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
+    title: "Arjan Singh Puniani | Neural Engineering",
     description:
-      "Neural engineering, brain-computer interfaces, neurotechnology, clinical reasoning, rehabilitation, and motorsport safety.",
+      "SeizeFreeze, brain-computer interface research, conscious active inference, and independent engineering projects.",
     images: [
       {
-        url: "/images/hero/arj_kuzneski-hero.png",
-        width: 1200,
-        height: 1500,
-        alt: "Arjan Singh Puniani holding the Kuzneski Innovation Cup",
+        url: "/images/hero/arjan-portrait-2026.jpg",
+        width: 3024,
+        height: 4032,
+        alt: "Portrait of Arjan Singh Puniani",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
+    title: "Arjan Singh Puniani | Neural Engineering",
     description:
-      "Neural engineering, brain-computer interfaces, neurotechnology, clinical reasoning, rehabilitation, and motorsport safety.",
-    images: ["/images/hero/arj_kuzneski-hero.png"],
+      "SeizeFreeze, brain-computer interface research, conscious active inference, and independent engineering projects.",
+    images: ["/images/hero/arjan-portrait-2026.jpg"],
   },
 };
 
-const disciplines = ["Neural engineering", "Patient-centered design", "Clinical reasoning", "Motorsport safety"];
-
 export default function Home() {
-  return <>
-    <section className="v2-hero">
-      <div className="v2-orbit" aria-hidden="true"><span>01</span><i /><span>26</span></div>
-      <div className="shell v2-hero-grid">
-        <div className="v2-hero-copy">
-          <p className="v2-label"><span /> Neural engineer pursuing medicine</p>
-          <h1><span className="v2-hero-name">Arjan Singh Puniani</span>Engineering for<br />decisions that affect<br /><em>human lives.</em></h1>
-          <p className="v2-intro">Arjan Singh Puniani builds systems across neurotechnology, clinical reasoning, rehabilitation, and motorsport safety. He is pursuing medicine to bring technical capability closer to responsibility for the person affected by it.</p>
-          <div className="v2-actions"><Link href="/work" data-analytics-event="hero_project_click">Explore the work <b>↗</b></Link><Link href="/about">Read the approach</Link></div>
+  return (
+    <>
+      <section className={`v2-hero ${styles.heroScope}`}>
+        <div className="v2-orbit" aria-hidden="true">
+          <span>01</span>
+          <i />
+          <span>26</span>
         </div>
-        <div className="v2-visual">
-          <div className="v2-photo-index">ASP / 001</div>
-          <Image src="/images/hero/arj_kuzneski-hero.png" alt="Arjan Singh Puniani holding the Kuzneski Innovation Cup" fill priority sizes="(max-width: 800px) 100vw, 44vw" />
-<div className="v2-photo-caption"><span>Kuzneski Innovation Cup</span><span>Pittsburgh, PA</span></div>
-          <div className="v2-signal" aria-hidden="true"><svg viewBox="0 0 440 80" preserveAspectRatio="none"><path d="M0 44h66l12-2 8 2h36l8-20 12 46 13-64 15 38h36l8-4 10 4h70l13-12 14 27 13-36 14 21h83" /></svg></div>
+        <div className="shell v2-hero-grid">
+          <div className="v2-hero-copy">
+            <p className="v2-label">
+              <span /> Neural engineering · California
+            </p>
+            <h1 className={styles.heroTitle}>Arjan Singh Puniani</h1>
+            <p className={styles.heroFocus}>
+              SeizeFreeze · BCI research · conscious active inference
+            </p>
+            <div className="v2-actions">
+              <Link href="#selected-work" data-analytics-event="hero_project_click">
+                Selected work <b>↗</b>
+              </Link>
+              <Link href="/research">Research</Link>
+              <Link href="/cv">CV</Link>
+            </div>
+          </div>
+          <div className="v2-visual">
+            <div className="v2-photo-index">ASP / 001</div>
+            <Image
+              src="/images/hero/arjan-portrait-2026.jpg"
+              alt="Portrait of Arjan Singh Puniani"
+              fill
+              priority
+              sizes="(max-width: 800px) 100vw, 44vw"
+            />
+            <div className="v2-photo-caption">
+              <span>Arjan Singh Puniani</span>
+              <span>2026</span>
+            </div>
+            <div className="v2-signal" aria-hidden="true">
+              <svg viewBox="0 0 440 80" preserveAspectRatio="none">
+                <path d="M0 44h66l12-2 8 2h36l8-20 12 46 13-64 15 38h36l8-4 10 4h70l13-12 14 27 13-36 14 21h83" />
+              </svg>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="v2-ticker" aria-hidden="true">{[...disciplines, ...disciplines].map((item, i) => <span key={`${item}-${i}`}>{item}<b>✦</b></span>)}</div>
-    </section>
+      </section>
 
-    <section className="v2-manifesto">
-      <div className="shell v2-manifesto-grid"><p className="v2-section-number">[ 01 — Thesis ]</p><div><h2>Engineering is most consequential when the system is human.</h2><p>I turn difficult signals, constrained environments, and incomplete evidence into tools people can understand and use.</p></div></div>
-    </section>
-
-    <section className="v2-work">
-      <div className="shell v2-work-head"><p className="v2-section-number">[ 02 — Selected systems ]</p><h2>Work with a pulse.</h2><Link href="/work">View all projects ↗</Link></div>
-      <article className="v2-feature reasonos-home-feature">
-        <div className="reasonos-home-visual" role="img" aria-label="ReasonOS kernel and trace diagram">
-          <div className="reasonos-home-source"><span>SOURCE</span><i /></div>
-          <div className="reasonos-home-chain"><div><span>01</span><strong>State</strong></div><b>→</b><div><span>02</span><strong>Transformation</strong></div><b>→</b><div><span>03</span><strong>Constraint</strong></div></div>
-          <div className="reasonos-home-trace"><span>TRACE / APPEND-ONLY</span><i /><i /><i className="rejected" /><i /></div>
+      <section className="v2-work" id="selected-work">
+        <div className="shell v2-work-head">
+          <p className="v2-section-number">[ 01 — Selected work ]</p>
+          <h2>Selected projects.</h2>
+          <Link href="/work">View all projects ↗</Link>
         </div>
-        <div className="v2-feature-copy"><p>00 / Reasoning systems · Medical education</p><h3>Vector EKG + ReasonOS</h3><p className="v2-feature-lead">An educational prototype that preserves how evidence changes a model.</p><p>The system records observations, calculations, competing candidate pathways, contradictions, provenance, and revisions as inspectable state changes.</p><dl><div><dt>Role</dt><dd>Independent designer + developer</dd></div><div><dt>State</dt><dd>Tested educational prototype</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl><Link href="/work/vector-ekg-reasonos" data-analytics-event="view_project">Open the case study <span>↗</span></Link></div>
-      </article>
-      <SeizeFreezeHomeFeature />
-      <article className="v2-feature v2-feature-light">
-        <div className="v2-feature-copy"><p>02 / Brain-computer interfaces</p><h3>Making calibration worth finishing.</h3><p className="v2-feature-lead">Gamified psychophysics, neural recording interfaces, and patterns found across more than 940 sessions.</p><dl><div><dt>Role</dt><dd>R&amp;D neural engineer</dd></div><div><dt>State</dt><dd>Completed research</dd></div></dl><Link href="/work/bci-calibration">Open case study <span>↗</span></Link></div>
-        <div className="v2-feature-image"><Image src="/images/research/rnel-gamified-bci-task.jpg" alt="Gamified brain-computer interface calibration task in a research laboratory" fill sizes="(max-width: 800px) 100vw, 56vw" /></div>
-      </article>
-    </section>
 
-    <section className="v2-crossroads">
-      <div className="shell"><p className="v2-section-number">[ 03 — Current trajectory ]</p><div className="v2-crossroads-grid"><h2>Medicine.<br />Engineering.<br /><em>At speed.</em></h2><div><p>Current work examines trackside neurotrauma and emergency operations: places where incomplete information, limited time, and human consequences meet.</p><p><Link href="/work/motorsport-neurotrauma-toolkit">Explore the neurotrauma toolkit ↗</Link></p><p><Link href="/work/belmont-motorsport-systems">Open the Belmont systems study ↗</Link></p></div></div><ol className="home-motorsport-sequence" aria-label="Hazard leads to decision, response, recovery, and record">{["Hazard","Decision","Response","Recovery","Record"].map((item,index)=><li key={item}><span>0{index+1}</span><strong>{item}</strong></li>)}</ol></div>
-    </section>
+        <SeizeFreezeHomeFeature />
 
-    <section className="v2-playground-teaser"><ViewportBackgroundVideo /><div className="shell"><div><p className="v2-section-number">[ 04 — Playground ]</p><h2>Vector Tennis<br /><em>Endless Rally.</em></h2></div><div><p>A one-input arcade rally over mechanically causal contact, spin, trajectory, and bounce—with Racket Lab underneath.</p><div className="mini-causal-chain" role="img" aria-label="Read leads to timing, strike, survival, and restart">{["Read","Time","Strike","Survive","Restart"].map((item)=><span key={item}>{item}</span>)}</div><Link href="/playground/vector-tennis">Play the experiment ↗</Link></div></div></section>
+        <article className="v2-feature v2-feature-light">
+          <div className={`v2-feature-image ${styles.projectPreviewFrame} ${styles.lightPreviewFrame}`}>
+            <Image
+              src="/images/home/quantum-active-inference-preview.png"
+              alt="Conceptual illustration of conscious active inference, Orch OR, and a microtubule-based quantum computation motif"
+              fill
+              className={styles.projectPreviewImage}
+              sizes="(max-width: 800px) 100vw, 56vw"
+            />
+          </div>
+          <div className="v2-feature-copy">
+            <p>02 / Active inference · Orch OR</p>
+            <h3>Conscious active inference</h3>
+            <p className="v2-feature-lead">
+              Two peer-reviewed 2025 reviews connecting active inference with quantum dynamics and Orch OR as a candidate physical implementation.
+            </p>
+            <dl>
+              <div>
+                <dt>Role</dt>
+                <dd>Co-author</dd>
+              </div>
+              <div>
+                <dt>State</dt>
+                <dd>Published</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2025</dd>
+              </div>
+            </dl>
+            <Link href="/work/quantum-active-inference">Open the case study <span>↗</span></Link>
+          </div>
+        </article>
 
-    <section className="v2-contact"><div className="shell"><p>Have a difficult system worth building?</p><Link href="/contact">Let’s work on it. <span>↗</span></Link></div></section>
-  </>;
+        <article className="v2-feature reasonos-home-feature">
+          <div className={`v2-feature-image ${styles.projectPreviewFrame} ${styles.darkPreviewFrame}`}>
+            <Image
+              src="/images/home/reasonos-manifesto-preview.png"
+              alt="ReasonOS preview showing ECG reasoning, explicit measurements, calculations, competing explanations, and visible revision history"
+              fill
+              className={styles.projectPreviewImage}
+              sizes="(max-width: 800px) 100vw, 56vw"
+            />
+          </div>
+          <div className="v2-feature-copy">
+            <p>03 / Reasoning systems · Medical education</p>
+            <h3>Vector EKG + ReasonOS</h3>
+            <p className="v2-feature-lead">
+              A reasoning interface for medicine that keeps source data, measurements, calculations, alternatives, and revisions visible.
+            </p>
+            <dl>
+              <div>
+                <dt>Role</dt>
+                <dd>Independent designer + developer</dd>
+              </div>
+              <div>
+                <dt>State</dt>
+                <dd>Tested educational prototype</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2026</dd>
+              </div>
+            </dl>
+            <Link href="/work/vector-ekg-reasonos" data-analytics-event="view_project">
+              Open the case study <span>↗</span>
+            </Link>
+          </div>
+        </article>
+
+        <article className="v2-feature v2-feature-light">
+          <div className="v2-feature-copy">
+            <p>04 / Brain-computer interfaces</p>
+            <h3>Gamified BCI calibration</h3>
+            <p className="v2-feature-lead">
+              A game-like calibration task for repeated BCI psychophysics sessions at Pitt RNEL.
+            </p>
+            <dl>
+              <div>
+                <dt>Role</dt>
+                <dd>R&amp;D neural engineer</dd>
+              </div>
+              <div>
+                <dt>State</dt>
+                <dd>Completed research</dd>
+              </div>
+            </dl>
+            <Link href="/work/bci-calibration">Open case study <span>↗</span></Link>
+          </div>
+          <div className="v2-feature-image">
+            <Image
+              src="/images/research/rnel-gamified-bci-task.jpg"
+              alt="Gamified brain-computer interface calibration task in a research laboratory"
+              fill
+              sizes="(max-width: 800px) 100vw, 56vw"
+            />
+          </div>
+        </article>
+      </section>
+
+      <section className={styles.contact} aria-labelledby="contact-heading">
+        <div className={`shell ${styles.contactGrid}`}>
+          <div>
+            <p className="v2-section-number">[ 02 — Contact ]</p>
+            <h2 id="contact-heading">Contact.</h2>
+          </div>
+          <div className={styles.contactActions}>
+            <Link href="/contact">
+              Get in touch <span aria-hidden="true">↗</span>
+            </Link>
+            <a href={links.email}>Email directly</a>
+            <a href={links.resume} download>
+              Download CV
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
+  );
 }

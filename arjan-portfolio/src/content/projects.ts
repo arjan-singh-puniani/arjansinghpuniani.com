@@ -79,7 +79,7 @@ export const projects: Project[] = [
     evidence: [{ label: "Belmont Abbey College risk-analysis assignment", sourceFile: "Assignment_3_Analyzing_Risk_Sonoma_Raceway_Exceptional.pdf", verified: true }, { label: "Belmont Abbey College mitigation assignment", sourceFile: "ARJAN Assignment_4_Techniques_in_Mitigation_Sonoma_Raceway.pdf", verified: true }, { label: "Proposed emergency and medical operations annex", sourceFile: "Assignment_6_Emergency_Disaster_Planning_Sonoma_Raceway_Exceptional.pdf", verified: true }]
   },
   {
-    slug: "vector-ekg-reasonos", title: "Vector EKG and ReasonOS", shortDescription: "An educational prototype that preserves ECG observations, calculations, competing pathways, contradictions, provenance, and revisions.",
+    slug: "vector-ekg-reasonos", title: "Vector EKG and ReasonOS", shortDescription: "An interactive ECG case that keeps measurements, calculations, alternate explanations, and revisions visible.",
     category: ["Software and Simulation", "Education"], status: "Tested educational prototype", yearStart: 2026, yearEnd: "Present", role: "Independent product designer and developer",
     problem: "Electrocardiogram teaching tools often show conclusions without preserving measurement provenance or the reasoning path.",
     approach: ["Separated a domain-independent event-sourced kernel from ECG-specific meaning.", "Built calibration, axis, corrected QT, lead-group, comparison, provenance, and evidence-ledger modules.", "Preserved accepted and rejected transformations for deterministic replay.", "Represented alternative candidate pathways without labeling them validated expert consensus."],
