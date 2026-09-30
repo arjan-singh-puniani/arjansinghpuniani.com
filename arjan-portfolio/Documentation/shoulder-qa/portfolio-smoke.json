@@ -1,0 +1,86 @@
+[
+  {
+    "route": "/",
+    "status": 200,
+    "heading": "ARJAN SINGH PUNIANI\nI build research tools for\nneural engineering and neurotechnology.",
+    "errors": []
+  },
+  {
+    "route": "/about",
+    "status": 200,
+    "heading": "Arjan Singh Puniani",
+    "errors": []
+  },
+  {
+    "route": "/cv",
+    "status": 200,
+    "heading": "Arjan Singh Puniani — CV",
+    "errors": []
+  },
+  {
+    "route": "/work",
+    "status": 200,
+    "heading": "Work",
+    "errors": []
+  },
+  {
+    "route": "/research",
+    "status": 200,
+    "heading": "Research by Arjan Singh Puniani",
+    "errors": []
+  },
+  {
+    "route": "/notes",
+    "status": 200,
+    "heading": "Notes from projects I've built or studied.",
+    "errors": []
+  },
+  {
+    "route": "/contact",
+    "status": 200,
+    "heading": "Get in touch.",
+    "errors": []
+  },
+  {
+    "route": "/playground",
+    "status": 200,
+    "heading": "Ideas you can move.",
+    "errors": []
+  },
+  {
+    "route": "/playground/rally-house",
+    "status": 200,
+    "heading": "Come hang out for a while.",
+    "errors": []
+  },
+  {
+    "route": "/playground/vector-tennis",
+    "status": 200,
+    "heading": "ENDLESS RALLY",
+    "errors": []
+  },
+  {
+    "route": "/playground/pit-stop",
+    "status": 200,
+    "heading": "Pit Stop Lab",
+    "errors": []
+  },
+  {
+    "route": "/playground/hemodynamic-observatory",
+    "status": 200,
+    "heading": "See a narrowing become a jet.",
+    "errors": []
+  },
+  {
+    "route": "/work/vector-ekg-reasonos",
+    "status": 200,
+    "heading": "Make the reasoning inspectable.",
+    "errors": []
+  },
+  {
+    "route": "/playground/holoanatomy",
+    "status": 200,
+    "embeddedStudio": "PASS",
+    "errors": []
+  }
+]

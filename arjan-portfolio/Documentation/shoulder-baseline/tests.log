@@ -1,0 +1,92 @@
+
+> arjan-singh-puniani-portfolio@1.0.0 test
+> vitest run tests
+
+
+ RUN  v4.0.8 /Users/arjan/Library/Mobile Documents/com~apple~CloudDocs/mcat/DO/wins/website/shoulder-2/arjan-portfolio
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 7 unhandled errors during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Timeout starting forks runner.
+ ❯ Timeout._onTimeout ../../../../../../../../../Desktop/arjansinghpuniani.com/arjan-portfolio/node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
+ ❯ listOnTimeout node:internal/timers:585:17
+ ❯ processTimers node:internal/timers:521:7
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Timeout starting forks runner.
+ ❯ Timeout._onTimeout ../../../../../../../../../Desktop/arjansinghpuniani.com/arjan-portfolio/node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
+ ❯ listOnTimeout node:internal/timers:585:17
+ ❯ processTimers node:internal/timers:521:7
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Timeout starting forks runner.
+ ❯ Timeout._onTimeout ../../../../../../../../../Desktop/arjansinghpuniani.com/arjan-portfolio/node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
+ ❯ listOnTimeout node:internal/timers:585:17
+ ❯ processTimers node:internal/timers:521:7
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Timeout starting forks runner.
+ ❯ Timeout._onTimeout ../../../../../../../../../Desktop/arjansinghpuniani.com/arjan-portfolio/node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
+ ❯ listOnTimeout node:internal/timers:585:17
+ ❯ processTimers node:internal/timers:521:7
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Timeout starting forks runner.
+ ❯ Timeout._onTimeout ../../../../../../../../../Desktop/arjansinghpuniani.com/arjan-portfolio/node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
+ ❯ listOnTimeout node:internal/timers:585:17
+ ❯ processTimers node:internal/timers:521:7
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Timeout starting forks runner.
+ ❯ Timeout._onTimeout ../../../../../../../../../Desktop/arjansinghpuniani.com/arjan-portfolio/node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
+ ❯ listOnTimeout node:internal/timers:585:17
+ ❯ processTimers node:internal/timers:521:7
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Timeout starting forks runner.
+ ❯ Timeout._onTimeout ../../../../../../../../../Desktop/arjansinghpuniani.com/arjan-portfolio/node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
+ ❯ listOnTimeout node:internal/timers:585:17
+ ❯ processTimers node:internal/timers:521:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  no tests
+      Tests  no tests
+     Errors  7 errors
+   Start at  10:37:59
+   Duration  5.26s (transform 0ms, setup 0ms, collect 0ms, tests 0ms, environment 0ms, prepare 0ms)
+
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: write EPIPE
+    at target._send (node:internal/child_process:877:20)
+    at target.send (node:internal/child_process:751:19)
+    at ForksPoolWorker.send (file:///Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:6839:13)
+    at PoolRunner.postMessage (file:///Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:6677:63)
+    at post (file:///Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:6668:28)
+    at EventEmitter.onMessage (file:///Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/node_modules/vitest/dist/chunks/index.DAL392Ss.js:161:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+Emitted 'error' event at:
+    at ChildProcess.emitWorkerError (file:///Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:6769:22)
+    at ChildProcess.emit (node:events:519:28)
+    at node:internal/child_process:881:39
+    at process.processTicksAndRejections (node:internal/process/task_queues:84:11) {
+  errno: -32,
+  code: 'EPIPE',
+  syscall: 'write'
+}
+
+Node.js v22.23.2

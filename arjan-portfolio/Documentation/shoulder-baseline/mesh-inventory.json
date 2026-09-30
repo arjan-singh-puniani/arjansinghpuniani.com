@@ -1,0 +1,962 @@
+[
+  {
+    "id": "FJ3384",
+    "file": "FJ3384.obj",
+    "name": "Right scapula",
+    "fma": "FMA13395",
+    "component": null,
+    "layer": "skeleton",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ3384.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ3384.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ3384",
+    "FMA": "FMA13395",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 13118,
+    "faceCount": 26172,
+    "triangleCount": 26172,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -166.464,
+        -102.856,
+        1183.96
+      ],
+      "max": [
+        -57.0538,
+        5.08275,
+        1349.86
+      ]
+    },
+    "bytes": 1743768,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ3362",
+    "file": "FJ3362.obj",
+    "name": "Right clavicle",
+    "fma": "FMA13322",
+    "component": null,
+    "layer": "skeleton",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ3362.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ3362.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ3362",
+    "FMA": "FMA13322",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 583,
+    "faceCount": 1146,
+    "triangleCount": 1146,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -145.277,
+        -146.948,
+        1308.62
+      ],
+      "max": [
+        -9.66165,
+        -54.4125,
+        1355.44
+      ]
+    },
+    "bytes": 68321,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ3368",
+    "file": "FJ3368.obj",
+    "name": "Right humerus",
+    "fma": "FMA23130",
+    "component": null,
+    "layer": "skeleton",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ3368.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ3368.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ3368",
+    "FMA": "FMA23130",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 2233,
+    "faceCount": 3784,
+    "triangleCount": 3784,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -240.841,
+        -100.219,
+        1029.2
+      ],
+      "max": [
+        -140.09,
+        -51.0391,
+        1336.54
+      ]
+    },
+    "bytes": 256564,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ1506",
+    "file": "FJ1506.obj",
+    "name": "Right supraspinatus",
+    "fma": "FMA32544",
+    "component": null,
+    "layer": "muscles",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ1506.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ1506.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ1506",
+    "FMA": "FMA32544",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 843,
+    "faceCount": 878,
+    "triangleCount": 878,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -188.443,
+        -91.9013,
+        1307.34
+      ],
+      "max": [
+        -63.876,
+        -12.9613,
+        1342.36
+      ]
+    },
+    "bytes": 76172,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ1500",
+    "file": "FJ1500.obj",
+    "name": "Right infraspinatus muscle",
+    "fma": "FMA32547",
+    "component": null,
+    "layer": "muscles",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ1500.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ1500.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ1500",
+    "FMA": "FMA32547",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 743,
+    "faceCount": 866,
+    "triangleCount": 866,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -189.05,
+        -77.087,
+        1206.53
+      ],
+      "max": [
+        -60.2584,
+        3.66613,
+        1330.97
+      ]
+    },
+    "bytes": 69844,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ1504",
+    "file": "FJ1504.obj",
+    "name": "Right subscapularis",
+    "fma": "FMA13414",
+    "component": null,
+    "layer": "muscles",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ1504.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ1504.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ1504",
+    "FMA": "FMA13414",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 2775,
+    "faceCount": 2092,
+    "triangleCount": 2092,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -166.117,
+        -99.9547,
+        1195.16
+      ],
+      "max": [
+        -63.1822,
+        -2.75783,
+        1324.8
+      ]
+    },
+    "bytes": 231733,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ1508",
+    "file": "FJ1508.obj",
+    "name": "Right teres minor",
+    "fma": "FMA32553",
+    "component": null,
+    "layer": "muscles",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ1508.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ1508.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ1508",
+    "FMA": "FMA32553",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 392,
+    "faceCount": 506,
+    "triangleCount": 506,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -190.554,
+        -80.3106,
+        1220.56
+      ],
+      "max": [
+        -105.409,
+        -12.4062,
+        1316.92
+      ]
+    },
+    "bytes": 38012,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ1467",
+    "file": "FJ1467.obj",
+    "name": "Acromial part of right deltoid",
+    "fma": "FMA34682",
+    "component": null,
+    "layer": "muscles",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ1467.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ1467.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ1467",
+    "FMA": "FMA34682",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 916,
+    "faceCount": 1300,
+    "triangleCount": 1300,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -227.228,
+        -103.338,
+        1205.09
+      ],
+      "max": [
+        -146.586,
+        -40.8371,
+        1349.22
+      ]
+    },
+    "bytes": 92591,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ1468",
+    "file": "FJ1468.obj",
+    "name": "Clavicular part of right deltoid",
+    "fma": "FMA34680",
+    "component": null,
+    "layer": "muscles",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ1468.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ1468.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ1468",
+    "FMA": "FMA34680",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 2592,
+    "faceCount": 2206,
+    "triangleCount": 2206,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -203.619,
+        -121.331,
+        1203.85
+      ],
+      "max": [
+        -88.555,
+        -75.1252,
+        1355.39
+      ]
+    },
+    "bytes": 223657,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ1513",
+    "file": "FJ1513.obj",
+    "name": "Spinal part of right deltoid",
+    "fma": "FMA34684",
+    "component": null,
+    "layer": "muscles",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ1513.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ1513.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ1513",
+    "FMA": "FMA34684",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 1665,
+    "faceCount": 1900,
+    "triangleCount": 1900,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -219.171,
+        -79.253,
+        1187.75
+      ],
+      "max": [
+        -82.8341,
+        -2.72512,
+        1339.84
+      ]
+    },
+    "bytes": 157136,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ1478",
+    "file": "FJ1478.obj",
+    "name": "Long head of right biceps brachii",
+    "fma": "FMA37686",
+    "component": null,
+    "layer": "muscles",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ1478.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ1478.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ1478",
+    "FMA": "FMA37686",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 1053,
+    "faceCount": 1426,
+    "triangleCount": 1426,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -229.86,
+        -109.292,
+        994.072
+      ],
+      "max": [
+        -135.268,
+        -67.8089,
+        1339.42
+      ]
+    },
+    "bytes": 105386,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ3579",
+    "file": "FJ3579.obj",
+    "name": "Right subclavian artery",
+    "fma": "FMA3953",
+    "component": null,
+    "layer": "arteries",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ3579.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ3579.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ3579",
+    "FMA": "FMA3953",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 247,
+    "faceCount": 452,
+    "triangleCount": 452,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -82.176,
+        -112.221,
+        1330.94
+      ],
+      "max": [
+        -9.74729,
+        -94.3546,
+        1353.03
+      ]
+    },
+    "bytes": 27662,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ2268",
+    "file": "FJ2268.obj",
+    "name": "Right axillary artery",
+    "fma": "FMA22655",
+    "component": null,
+    "layer": "arteries",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ2268.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ2268.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ2268",
+    "FMA": "FMA22655",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 915,
+    "faceCount": 1826,
+    "triangleCount": 1826,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -151.44,
+        -106.425,
+        1258.12
+      ],
+      "max": [
+        -76.9415,
+        -80.0562,
+        1339.84
+      ]
+    },
+    "bytes": 108257,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ2303",
+    "file": "FJ2303.obj",
+    "name": "Right suprascapular artery",
+    "fma": "FMA10698",
+    "component": null,
+    "layer": "arteries",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ2303.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ2303.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ2303",
+    "FMA": "FMA10698",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 1027,
+    "faceCount": 1912,
+    "triangleCount": 1912,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -138.112,
+        -102.305,
+        1291.49
+      ],
+      "max": [
+        -41.0367,
+        -36.8373,
+        1354.82
+      ]
+    },
+    "bytes": 117581,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ2298",
+    "file": "FJ2298.obj",
+    "name": "Right subscapular artery",
+    "fma": "FMA22678",
+    "component": null,
+    "layer": "arteries",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ2298.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ2298.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ2298",
+    "FMA": "FMA22678",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 431,
+    "faceCount": 786,
+    "triangleCount": 786,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -141.982,
+        -92.2239,
+        1279.4
+      ],
+      "max": [
+        -128.94,
+        -83.6516,
+        1294.89
+      ]
+    },
+    "bytes": 48481,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ2273",
+    "file": "FJ2273.obj",
+    "name": "Right circumflex scapular artery",
+    "fma": "FMA23180",
+    "component": null,
+    "layer": "arteries",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ2273.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ2273.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ2273",
+    "FMA": "FMA23180",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 399,
+    "faceCount": 778,
+    "triangleCount": 778,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -144.23,
+        -86.7127,
+        1280.56
+      ],
+      "max": [
+        -134.135,
+        -51.1158,
+        1293.92
+      ]
+    },
+    "bytes": 46379,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ2269",
+    "file": "FJ2269.obj",
+    "name": "Right axillary vein",
+    "fma": "FMA13330",
+    "component": null,
+    "layer": "veins",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ2269.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ2269.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ2269",
+    "FMA": "FMA13330",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 1112,
+    "faceCount": 2146,
+    "triangleCount": 2146,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -157.167,
+        -115.169,
+        1232.85
+      ],
+      "max": [
+        -74.9191,
+        -91.3942,
+        1335.14
+      ]
+    },
+    "bytes": 130875,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ2302",
+    "file": "FJ2302.obj",
+    "name": "Right suprascapular vein",
+    "fma": "FMA50859",
+    "component": null,
+    "layer": "veins",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ2302.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ2302.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ2302",
+    "FMA": "FMA50859",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 1003,
+    "faceCount": 1986,
+    "triangleCount": 1986,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -139.65,
+        -113.877,
+        1283.13
+      ],
+      "max": [
+        -63.5169,
+        -51.6802,
+        1343.96
+      ]
+    },
+    "bytes": 118362,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ2299",
+    "file": "FJ2299.obj",
+    "name": "Right subscapular vein",
+    "fma": "FMA23114",
+    "component": null,
+    "layer": "veins",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ2299.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ2299.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ2299",
+    "FMA": "FMA23114",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 265,
+    "faceCount": 526,
+    "triangleCount": 526,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -129.826,
+        -106.668,
+        1292.19
+      ],
+      "max": [
+        -126.277,
+        -100.419,
+        1312.31
+      ]
+    },
+    "bytes": 30853,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  },
+  {
+    "id": "FJ2274",
+    "file": "FJ2274.obj",
+    "name": "Right circumflex scapular vein",
+    "fma": "FMA77949",
+    "component": null,
+    "layer": "veins",
+    "module": "shoulder",
+    "selectable": true,
+    "initial": true,
+    "localUrl": "/holoanatomy/anatomy/FJ2274.obj",
+    "remoteUrl": "https://raw.githubusercontent.com/jixiangying/anatomy/be67a977abe25a36f59793fda86a506618fd4d27/isa_BP3D_4.0_obj_99/FJ2274.obj",
+    "source": "BodyParts3D / ISA Release 4.0",
+    "sourceUrl": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "license": "CC BY 4.0",
+    "structureId": "FJ2274",
+    "FMA": "FMA77949",
+    "sourceVersion": "4.0",
+    "attribution": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "geometryType": "OBJ polygon surface",
+    "vertexCount": 505,
+    "faceCount": 960,
+    "triangleCount": 960,
+    "hasUV": false,
+    "hasNormals": true,
+    "hasTangents": false,
+    "textures": [],
+    "materialData": [
+      "usemtl mtl1"
+    ],
+    "bounds": {
+      "min": [
+        -151.855,
+        -103.087,
+        1282.79
+      ],
+      "max": [
+        -127.859,
+        -52.2161,
+        1295.4
+      ]
+    },
+    "bytes": 58129,
+    "classificationCorrect": true,
+    "classificationBasis": "Manifest name is consistent with broad tissue class; muscle meshes do not establish separate tendon geometry.",
+    "derivedOperations": [],
+    "reviewStatus": "Engineering inventory; not independently clinically validated"
+  }
+]

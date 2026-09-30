@@ -1,0 +1,98 @@
+
+> arjan-singh-puniani-portfolio@1.0.0 test:shoulder
+> node --test tools/shoulder/domain.test.mjs
+
+TAP version 13
+# Subtest: all source IDs unique and SITS complete
+ok 1 - all source IDs unique and SITS complete
+  ---
+  duration_ms: 1.432667
+  type: 'test'
+  ...
+# Subtest: tissue classification does not fabricate tendons
+ok 2 - tissue classification does not fabricate tendons
+  ---
+  duration_ms: 0.125959
+  type: 'test'
+  ...
+# Subtest: all nine material classes have bounded roughness and restrained ghost alpha
+ok 3 - all nine material classes have bounded roughness and restrained ghost alpha
+  ---
+  duration_ms: 0.180875
+  type: 'test'
+  ...
+# Subtest: provenance is complete, source geometry is untextured, and normals are valid
+ok 4 - provenance is complete, source geometry is untextured, and normals are valid
+  ---
+  duration_ms: 0.186625
+  type: 'test'
+  ...
+# Subtest: six presets explicitly partition every structure and have meaningful purposes
+ok 5 - six presets explicitly partition every structure and have meaningful purposes
+  ---
+  duration_ms: 0.159125
+  type: 'test'
+  ...
+# Subtest: isolation ghosts context; hidden objects remain hidden
+ok 6 - isolation ghosts context; hidden objects remain hidden
+  ---
+  duration_ms: 0.091959
+  type: 'test'
+  ...
+# Subtest: peel staging is bounded, reversible and only moves cuff structures
+ok 7 - peel staging is bounded, reversible and only moves cuff structures
+  ---
+  duration_ms: 0.180125
+  type: 'test'
+  ...
+# Subtest: peel exposures use source deltoid and cuff without adding geometry
+ok 8 - peel exposures use source deltoid and cuff without adding geometry
+  ---
+  duration_ms: 0.05425
+  type: 'test'
+  ...
+# Subtest: quiz retries do not reward random clicking; no immediate repetition
+ok 9 - quiz retries do not reward random clicking; no immediate repetition
+  ---
+  duration_ms: 0.727
+  type: 'test'
+  ...
+# Subtest: orbit drag or multi-touch cannot be interpreted as a click
+ok 10 - orbit drag or multi-touch cannot be interpreted as a click
+  ---
+  duration_ms: 0.3215
+  type: 'test'
+  ...
+# Subtest: labels retain structure references and avoid collisions at narrow widths
+ok 11 - labels retain structure references and avoid collisions at narrow widths
+  ---
+  duration_ms: 0.193416
+  type: 'test'
+  ...
+# Subtest: every OBJ fallback exists, parses and matches source triangle inventory
+ok 12 - every OBJ fallback exists, parses and matches source triangle inventory
+  ---
+  duration_ms: 119.315208
+  type: 'test'
+  ...
+# Subtest: all GLB LODs have indexed normals, named nodes, and preserve scarce cuff topology
+ok 13 - all GLB LODs have indexed normals, named nodes, and preserve scarce cuff topology
+  ---
+  duration_ms: 4.519166
+  type: 'test'
+  ...
+# Subtest: production entry is self-contained and references vendored runtime
+ok 14 - production entry is self-contained and references vendored runtime
+  ---
+  duration_ms: 1.734625
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 233.090208

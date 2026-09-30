@@ -1,0 +1,59 @@
+{
+  "errors": [],
+  "productionUrl": "https://arjansinghpuniani.com/holoanatomy/index.html?debug=1",
+  "initial": {
+    "state": {
+      "module": "shoulder",
+      "layers": {
+        "skeleton": "visible",
+        "brain": "visible",
+        "arteries": "visible",
+        "veins": "visible",
+        "nerves": "visible",
+        "muscles": "ghost",
+        "myocardium": "visible",
+        "chambers": "ghost",
+        "valves": "visible"
+      },
+      "selectedId": null,
+      "isolatedId": null,
+      "dissect": true,
+      "table": true,
+      "quizMode": false,
+      "explode": false,
+      "explodeAmount": 0,
+      "section": {
+        "enabled": false,
+        "axis": "x",
+        "position": 0,
+        "flip": false
+      },
+      "parallax": true,
+      "focusMode": false,
+      "quality": "auto",
+      "reducedMotion": false
+    },
+    "camera": {
+      "yaw": -0.18,
+      "pitch": 0.02,
+      "distance": 3.25,
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "parallax": [
+        0,
+        0
+      ]
+    },
+    "stats": {
+      "fps": 652.1739145222238,
+      "frameMs": 1.5333333298566383,
+      "drawCalls": 20,
+      "triangles": 53648,
+      "textures": 0,
+      "geometries": 20
+    }
+  }
+}

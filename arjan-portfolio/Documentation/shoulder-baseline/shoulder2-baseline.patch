@@ -1,0 +1,1344 @@
+diff --git a/arjan-portfolio/public/holoanatomy/index.html b/arjan-portfolio/public/holoanatomy/index.html
+index 7ebfc01..dfb531f 100644
+--- a/arjan-portfolio/public/holoanatomy/index.html
++++ b/arjan-portfolio/public/holoanatomy/index.html
+@@ -4,7 +4,7 @@
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+   <meta name="theme-color" content="#050609" />
+-  <meta name="description" content="HoloAnatomy: pull-apart interactive spatial anatomy with verified BodyParts3D geometry, holographic hover labels, and quiz mode." />
++  <meta name="description" content="HoloAnatomy: pull-apart interactive spatial anatomy with verified BodyParts3D geometry." />
+   <title>HoloAnatomy — Pull-Apart Spatial Anatomy</title>
+   <link rel="stylesheet" href="/holoanatomy/styles.css" />
+ </head>
+@@ -12,12 +12,6 @@
+   <main id="app" aria-label="HoloAnatomy interactive pull-apart anatomy viewer">
+     <canvas id="anatomy-canvas" aria-hidden="true"></canvas>
+ 
+-    <div id="hover-label" class="hover-label chrome" hidden aria-hidden="true">
+-      <span class="hover-system" id="hover-system"></span>
+-      <strong id="hover-name"></strong>
+-      <span class="hover-meta" id="hover-meta"></span>
+-    </div>
+-
+     <div id="fallback" class="fallback" hidden>
+       <div class="fallback-card">
+         <p class="eyebrow">HOLOANATOMY</p>
+@@ -31,7 +25,7 @@
+         <p class="eyebrow">HOLOANATOMY</p>
+         <h1 id="module-title">Head + Neck Neuro</h1>
+         <p class="subtitle" id="module-subtitle">Skull, brain, cranial/orbital nerves, cervical vessels and neck musculature</p>
+-        <label class="module-picker"><span>Current exhibit</span><select id="module-select" aria-label="Anatomy exhibit"></select></label>
++        <label class="module-picker"><span>Exhibit</span><select id="module-select" aria-label="Anatomy exhibit"></select></label>
+       </div>
+       <div class="top-actions">
+         <button class="utility" id="reset-view" type="button">Reset</button>
+@@ -67,14 +61,6 @@
+       </div>
+     </section>
+ 
+-    <section id="exhibits-panel" class="popover exhibit-panel chrome" hidden aria-label="Anatomy exhibits">
+-      <div class="popover-head">
+-        <strong>Exhibits</strong>
+-        <span>Choose a regional pull-apart anatomy exhibit</span>
+-      </div>
+-      <div id="exhibit-list" class="exhibit-list"></div>
+-    </section>
+-
+     <section id="layers-panel" class="popover chrome" hidden aria-label="Anatomical layer controls">
+       <div class="popover-head">
+         <strong>Layers</strong>
+@@ -103,23 +89,6 @@
+       </div>
+     </section>
+ 
+-    <section id="quiz-panel" class="quiz-panel chrome" hidden aria-live="polite">
+-      <div class="quiz-topline">
+-        <span class="quiz-kicker">QUIZ MODE</span>
+-        <span id="quiz-score">0 / 0</span>
+-      </div>
+-      <h2 id="quiz-question">Identify the highlighted structure.</h2>
+-      <p id="quiz-hint" class="quiz-hint" hidden></p>
+-      <div id="quiz-options" class="quiz-options" role="group" aria-label="Quiz answer choices"></div>
+-      <p id="quiz-feedback" class="quiz-feedback" aria-live="polite"></p>
+-      <div class="quiz-actions">
+-        <button id="quiz-hint-button" type="button">Hint</button>
+-        <button id="quiz-skip" type="button">Skip</button>
+-        <button id="quiz-next" type="button" disabled>Next</button>
+-        <button id="quiz-end" type="button">End quiz</button>
+-      </div>
+-    </section>
+-
+     <svg id="stage-leaders" class="stage-leaders chrome" aria-hidden="true"></svg>
+     <div id="stage-labels" class="stage-labels chrome" aria-label="Removed anatomical structures"></div>
+     <section id="table-summary" class="table-summary chrome" hidden aria-live="polite">
+@@ -128,8 +97,6 @@
+     </section>
+ 
+     <nav class="toolbar chrome" id="toolbar" aria-label="Viewer controls">
+-      <button id="exhibits-button" class="exhibits-button" type="button" aria-expanded="false">Exhibits <span class="toolbar-count">3</span></button>
+-      <button id="quiz-button" class="quiz-button" type="button" aria-pressed="false">Quiz</button>
+       <button id="layers-button" type="button" aria-expanded="false">Layers</button>
+       <button id="section-button" type="button" aria-expanded="false">Section</button>
+       <button id="dissect-button" type="button" aria-pressed="true">Dissect</button>
+diff --git a/arjan-portfolio/public/holoanatomy/src/app.js b/arjan-portfolio/public/holoanatomy/src/app.js
+index 2a32d15..bb66b8d 100644
+--- a/arjan-portfolio/public/holoanatomy/src/app.js
++++ b/arjan-portfolio/public/holoanatomy/src/app.js
+@@ -2,9 +2,9 @@ import { ANATOMY_MANIFEST, BODY_PARTS_LICENSE, LAYERS, MODULES, MODULE_MANIFESTS
+ import { loadManifest } from './engine/loader.js';
+ import { HoloRenderer } from './engine/renderer.js';
+ import { AdaptiveQuality, chooseQuality } from './engine/quality.js';
+-import { createInitialState, selectStructure, setQuality, structureVisibility } from './state/store.js';
++import { createInitialState, selectStructure, setQuality } from './state/store.js';
+ import { setupControls } from './ui/controls.js';
+-import { buildQuizChoices, chooseQuizTarget, uniqueNamePool } from './learning/quiz.js';
++import { setupShoulderStudio } from './shoulderStudio.js';
+ 
+ const canvas = document.getElementById('anatomy-canvas');
+ const fallback = document.getElementById('fallback');
+@@ -19,14 +19,6 @@ const fallbackMessage = document.getElementById('fallback-message');
+ const moduleSelect = document.getElementById('module-select');
+ const moduleTitle = document.getElementById('module-title');
+ const moduleSubtitle = document.getElementById('module-subtitle');
+-const exhibitsPanel = document.getElementById('exhibits-panel');
+-const exhibitList = document.getElementById('exhibit-list');
+-const exhibitsButton = document.getElementById('exhibits-button');
+-const hoverLabel = document.getElementById('hover-label');
+-const hoverSystem = document.getElementById('hover-system');
+-const hoverName = document.getElementById('hover-name');
+-const hoverMeta = document.getElementById('hover-meta');
+-const quizPanel = document.getElementById('quiz-panel');
+ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const mobile = matchMedia('(pointer: coarse)').matches || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+ const detectedQuality = chooseQuality({
+@@ -62,11 +54,11 @@ window.addEventListener('holoanatomy:contextlost', () => {
+ });
+ 
+ const controls = setupControls({ state, renderer, manifestById });
++const shoulderStudio = setupShoulderStudio({ state, renderer, controls });
+ setupQualityControl();
+ setupInteraction();
+ setupDebug();
+ setupModulePicker();
+-const quizController = setupQuizMode();
+ 
+ const loadedModules = new Set();
+ const loadingPromises = new Map();
+@@ -77,61 +69,24 @@ await switchModule(state.module, { initial:true });
+ 
+ function setupModulePicker() {
+   moduleSelect.innerHTML = '';
+-  exhibitList.innerHTML = '';
+-  const countBadge = exhibitsButton.querySelector('.toolbar-count');
+-  if (countBadge) countBadge.textContent = String(Object.keys(MODULES).length);
+-  const updateActive = () => {
+-    exhibitList.querySelectorAll('.exhibit-card').forEach(card => {
+-      const active = card.dataset.module === state.module;
+-      card.classList.toggle('active', active);
+-      card.setAttribute('aria-current', active ? 'true' : 'false');
+-      const current = card.querySelector('.exhibit-current');
+-      if (current) current.textContent = active ? 'Current' : 'Open';
+-    });
+-  };
+-
+   for (const [id, cfg] of Object.entries(MODULES)) {
+     const option = document.createElement('option');
+     option.value = id; option.textContent = cfg.label;
+     moduleSelect.append(option);
+-
+-    const card = document.createElement('button');
+-    card.type = 'button'; card.className = 'exhibit-card'; card.dataset.module = id;
+-    card.innerHTML = `<div class="exhibit-meta"><span>${MODULE_MANIFESTS[id].length} verified structures</span><span class="exhibit-current">Open</span></div><strong>${cfg.label}</strong><p>${cfg.subtitle}</p>`;
+-    card.addEventListener('click', async () => {
+-      if (id === state.module) { exhibitsPanel.hidden = true; exhibitsButton.setAttribute('aria-expanded','false'); return; }
+-      exhibitsPanel.hidden = true; exhibitsButton.setAttribute('aria-expanded','false');
+-      moduleSelect.disabled = true;
+-      try { await switchModule(id); }
+-      finally { moduleSelect.disabled = false; updateActive(); }
+-    });
+-    exhibitList.append(card);
+   }
+-
+   moduleSelect.value = state.module;
+-  updateActive();
+   moduleSelect.addEventListener('change', async () => {
+     const requested = moduleSelect.value;
+     moduleSelect.disabled = true;
+     try { await switchModule(requested); }
+-    finally { moduleSelect.disabled = false; updateActive(); }
++    finally { moduleSelect.disabled = false; }
+   });
+-  exhibitsButton.addEventListener('click', () => {
+-    const show = exhibitsPanel.hidden;
+-    controls.closePopovers();
+-    exhibitsPanel.hidden = !show;
+-    exhibitsButton.setAttribute('aria-expanded', String(show));
+-    updateActive();
+-  });
+-
+-  return { updateActive };
+ }
+ 
+ async function switchModule(moduleId, { initial = false } = {}) {
+   const cfg = MODULES[moduleId];
+   if (!cfg) throw new Error(`Unknown anatomy module: ${moduleId}`);
+   state.selectedId = null; state.isolatedId = null; state.explode = false;
+-  renderer.hoveredId = null; renderer.quizTargetId = null; hideHoverLabel();
+   renderer.reassembleAll();
+   state.module = moduleId;
+   renderer.setModule(moduleId);
+@@ -140,14 +95,12 @@ async function switchModule(moduleId, { initial = false } = {}) {
+   moduleSubtitle.textContent = cfg.subtitle;
+   document.title = `HoloAnatomy — ${cfg.label}`;
+   controls.refreshSelection(); controls.refreshStageLabels(true);
++  shoulderStudio.onModuleChanged(moduleId);
+   await loadModule(moduleId);
+   renderer.setModule(moduleId);
+   if (!initial) controls.renderLayers();
+-  exhibitList.querySelectorAll('.exhibit-card').forEach(card => card.classList.toggle('active', card.dataset.module === moduleId));
+-  if (state.quizMode) quizController?.resetForModule();
+ }
+ 
+-
+ async function loadModule(moduleId) {
+   if (loadedModules.has(moduleId)) return;
+   if (loadingPromises.has(moduleId)) return loadingPromises.get(moduleId);
+@@ -214,130 +167,6 @@ function setupQualityControl() {
+   });
+ }
+ 
+-function hideHoverLabel() {
+-  hoverLabel.hidden = true;
+-  renderer.hoveredId = null;
+-}
+-
+-function showHoverLabel(mesh, clientX, clientY) {
+-  if (!mesh || state.quizMode) { hideHoverLabel(); return; }
+-  const part = mesh.part;
+-  hoverSystem.textContent = LAYERS[part.layer]?.label || part.layer;
+-  hoverName.textContent = part.name + (part.component ? ` · component ${part.component}` : '');
+-  hoverMeta.textContent = `${part.fma} · click to inspect${state.dissect ? ' · drag to dissect' : ''}`;
+-  const rect = document.getElementById('app').getBoundingClientRect();
+-  hoverLabel.hidden = false;
+-  const box = hoverLabel.getBoundingClientRect();
+-  const x = Math.max(8, Math.min(rect.width - box.width - 22, clientX - rect.left));
+-  const y = Math.max(8, Math.min(rect.height - box.height - 22, clientY - rect.top));
+-  hoverLabel.style.left = `${x}px`;
+-  hoverLabel.style.top = `${y}px`;
+-}
+-
+-function setupQuizMode() {
+-  const button = document.getElementById('quiz-button');
+-  const score = document.getElementById('quiz-score');
+-  const options = document.getElementById('quiz-options');
+-  const feedback = document.getElementById('quiz-feedback');
+-  const hint = document.getElementById('quiz-hint');
+-  const hintButton = document.getElementById('quiz-hint-button');
+-  const nextButton = document.getElementById('quiz-next');
+-  const skipButton = document.getElementById('quiz-skip');
+-  const endButton = document.getElementById('quiz-end');
+-  let correct = 0, attempted = 0, target = null, answered = false, previousId = null;
+-  let previousDissect = state.dissect;
+-
+-  const partsForQuiz = () => uniqueNamePool(renderer.activeMeshes()
+-    .filter(mesh => structureVisibility(state, mesh.part).visible)
+-    .map(mesh => mesh.part));
+-
+-  function updateScore() { score.textContent = `${correct} / ${attempted}`; }
+-  function clearQuestionUI() {
+-    options.innerHTML = ''; feedback.textContent = ''; feedback.className = 'quiz-feedback';
+-    hint.hidden = true; hint.textContent = ''; nextButton.disabled = true; answered = false;
+-  }
+-  function startQuestion() {
+-    if (!state.quizMode) return;
+-    clearQuestionUI();
+-    const pool = partsForQuiz();
+-    target = chooseQuizTarget(pool, previousId);
+-    if (!target) {
+-      feedback.textContent = 'No unambiguous visible structures are available for this quiz. Turn on a layer or choose another exhibit.';
+-      renderer.quizTargetId = null;
+-      return;
+-    }
+-    previousId = target.id;
+-    renderer.quizTargetId = target.id;
+-    const mesh = renderer.activeMeshes().find(m => m.part.id === target.id);
+-    if (mesh) renderer.focusMesh(mesh);
+-    const choices = buildQuizChoices(pool, target, 4);
+-    if (choices.length < 2) {
+-      feedback.textContent = 'Not enough distinct structures are visible to build answer choices.';
+-      return;
+-    }
+-    for (const choice of choices) {
+-      const option = document.createElement('button');
+-      option.type = 'button'; option.className = 'quiz-option'; option.dataset.id = choice.id;
+-      option.textContent = choice.name;
+-      option.addEventListener('click', () => answer(choice, option));
+-      options.append(option);
+-    }
+-  }
+-  function answer(choice, option) {
+-    if (answered || !target) return;
+-    answered = true; attempted++;
+-    const isCorrect = choice.id === target.id;
+-    if (isCorrect) correct++;
+-    for (const node of options.querySelectorAll('.quiz-option')) {
+-      node.disabled = true;
+-      if (node.dataset.id === target.id) node.classList.add('correct');
+-    }
+-    if (!isCorrect) option.classList.add('incorrect');
+-    feedback.className = `quiz-feedback ${isCorrect ? 'good' : 'bad'}`;
+-    feedback.textContent = isCorrect
+-      ? `Correct. ${target.name} · ${target.fma}.`
+-      : `The highlighted structure is ${target.name} · ${target.fma}.`;
+-    nextButton.disabled = false;
+-    updateScore();
+-  }
+-  function enter() {
+-    if (state.quizMode) return;
+-    state.quizMode = true; previousDissect = state.dissect; state.dissect = false;
+-    button.setAttribute('aria-pressed','true'); quizPanel.hidden = false;
+-    document.getElementById('app').classList.add('quiz-mode');
+-    document.getElementById('dissect-button').setAttribute('aria-pressed','false');
+-    for (const id of ['dissect-button','table-button','explode-button']) document.getElementById(id).disabled = true;
+-    document.getElementById('gesture-hint').textContent = 'Quiz mode · identify the cyan-outlined structure · rotate and zoom to inspect';
+-    hideHoverLabel(); controls.closePopovers(); exhibitsPanel.hidden = true; exhibitsButton.setAttribute('aria-expanded','false');
+-    startQuestion();
+-  }
+-  function exit() {
+-    if (!state.quizMode) return;
+-    state.quizMode = false; state.dissect = previousDissect;
+-    button.setAttribute('aria-pressed','false'); quizPanel.hidden = true;
+-    renderer.quizTargetId = null; document.getElementById('app').classList.remove('quiz-mode');
+-    document.getElementById('dissect-button').setAttribute('aria-pressed',String(state.dissect));
+-    for (const id of ['dissect-button','table-button','explode-button']) document.getElementById(id).disabled = false;
+-    document.getElementById('gesture-hint').textContent = state.dissect ? (state.table ? 'Dissect + Table · pull a structure and release to stage it · drag it back to reassemble' : 'Free dissection · drag a structure anywhere · drag empty space to rotate') : 'Explore mode · drag to rotate · tap a structure';
+-  }
+-  function resetForModule() {
+-    correct = 0; attempted = 0; previousId = null; updateScore();
+-    if (state.quizMode) startQuestion();
+-  }
+-
+-  button.addEventListener('click', () => state.quizMode ? exit() : enter());
+-  endButton.addEventListener('click', exit);
+-  nextButton.addEventListener('click', startQuestion);
+-  skipButton.addEventListener('click', () => { if (!state.quizMode) return; startQuestion(); });
+-  hintButton.addEventListener('click', () => {
+-    if (!target) return;
+-    hint.textContent = `System: ${LAYERS[target.layer]?.label || target.layer}. The highlighted geometry is a verified BodyParts3D structure.`;
+-    hint.hidden = false;
+-  });
+-  updateScore();
+-  return { enter, exit, startQuestion, resetForModule };
+-}
+-
+ function setupInteraction() {
+   const pointers = new Map();
+   let gestureMoved = false;
+@@ -345,9 +174,6 @@ function setupInteraction() {
+   let downAt = null;
+   let dissectMesh = null;
+   let dissectMoved = false;
+-  let hoverTimer = null;
+-  let hoverPoint = null;
+-  let lastHoverPick = 0;
+ 
+   const normalizedPointer = e => {
+     const r = canvas.getBoundingClientRect();
+@@ -361,7 +187,6 @@ function setupInteraction() {
+     downAt = { x:e.clientX, y:e.clientY, time:performance.now() };
+     dissectMesh = null;
+     dissectMoved = false;
+-    hideHoverLabel();
+ 
+     if (state.dissect && pointers.size === 1) {
+       const mesh = renderer.pick(e.clientX,e.clientY);
+@@ -384,10 +209,7 @@ function setupInteraction() {
+   canvas.addEventListener('pointermove', e => {
+     const n = normalizedPointer(e);
+     renderer.camera.parallax = [n[0], n[1]];
+-    if (!pointers.has(e.pointerId)) {
+-      if (!mobile && !state.quizMode) queueHoverPick(e.clientX, e.clientY);
+-      return;
+-    }
++    if (!pointers.has(e.pointerId)) return;
+     const previous = pointers.get(e.pointerId);
+     pointers.set(e.pointerId, {x:e.clientX,y:e.clientY});
+     if (pointers.size === 1) {
+@@ -404,25 +226,11 @@ function setupInteraction() {
+     } else if (pointers.size === 2) {
+       const pts=[...pointers.values()];
+       const d=Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y);
+-      if (pinchDistance>0) renderer.camera.zoom(Math.log(d/pinchDistance));
++      if (pinchDistance>0) renderer.camera.zoom(Math.log(pinchDistance/d));
+       pinchDistance=d; gestureMoved=true;
+     }
+   });
+ 
+-  function queueHoverPick(x, y) {
+-    hoverPoint = { x, y };
+-    if (hoverTimer) return;
+-    const wait = Math.max(0, 55 - (performance.now() - lastHoverPick));
+-    hoverTimer = window.setTimeout(() => {
+-      hoverTimer = null; lastHoverPick = performance.now();
+-      if (!hoverPoint || pointers.size || state.quizMode) return;
+-      const point = hoverPoint;
+-      const mesh = renderer.pick(point.x, point.y);
+-      renderer.hoveredId = mesh?.part.id || null;
+-      if (mesh) showHoverLabel(mesh, point.x, point.y); else hideHoverLabel();
+-    }, wait);
+-  }
+-
+   const endPointer = e => {
+     const wasTap = downAt && !gestureMoved && Math.hypot(e.clientX-downAt.x,e.clientY-downAt.y)<7 && performance.now()-downAt.time<650;
+     pointers.delete(e.pointerId);
+@@ -447,10 +255,9 @@ function setupInteraction() {
+     if (dissectMesh && dissectMoved && state.table && renderer.pullDistance(dissectMesh)>=0.18) renderer.stageMesh(dissectMesh);
+     dissectMesh=null; dissectMoved=false; controls.refreshStageLabels(true); canvas.classList.remove('pulling');
+   });
+-  canvas.addEventListener('wheel', e => { e.preventDefault(); const delta = e.ctrlKey ? -e.deltaY : e.deltaY; renderer.camera.zoom(delta*0.00125); }, { passive:false });
++  canvas.addEventListener('wheel', e => { e.preventDefault(); renderer.camera.zoom(e.deltaY*0.00125); }, { passive:false });
+   canvas.addEventListener('dblclick', e => { e.preventDefault(); chooseAt(e.clientX,e.clientY,true); });
+   canvas.addEventListener('contextmenu', e => e.preventDefault());
+-  canvas.addEventListener('pointerleave', () => { hoverPoint = null; hideHoverLabel(); });
+ 
+   async function chooseAt(x,y,focus) {
+     const mesh=renderer.pick(x,y);
+@@ -477,10 +284,7 @@ function setupInteraction() {
+       document.getElementById('app').classList.toggle('dissect-mode',state.dissect);
+       document.getElementById('gesture-hint').textContent = state.dissect ? (state.table ? 'Dissect + Table · pull a structure and release to stage it · drag it back to reassemble' : 'Free dissection · drag a structure anywhere · drag empty space to rotate') : 'Explore mode · drag to rotate · tap a structure';
+     }
+-    else if (e.key.toLowerCase()==='q') { document.getElementById('quiz-button').click(); }
+-    else if (e.key.toLowerCase()==='e') { document.getElementById('exhibits-button').click(); }
+-    else if (e.key.toLowerCase()==='n' && state.quizMode) { document.getElementById('quiz-next').click(); }
+-    else if (e.key==='Escape') { controls.closePopovers(); exhibitsPanel.hidden=true; exhibitsButton.setAttribute('aria-expanded','false'); state.selectedId=null; state.isolatedId=null; controls.refreshSelection(); }
++    else if (e.key==='Escape') { controls.closePopovers(); state.selectedId=null; state.isolatedId=null; controls.refreshSelection(); }
+     else return;
+     e.preventDefault();
+   });
+@@ -507,8 +311,6 @@ function updateDebug() {
+     `cached       ${loadedModules.size}/${Object.keys(MODULES).length} modules`,
+     `staged       ${renderer.stagedMeshes().length}`,
+     `table        ${state.table ? 'on' : 'off'}`,
+-    `hover        ${renderer.hoveredId || '-'}`,
+-    `quiz         ${state.quizMode ? 'on' : 'off'}`,
+     `license      ${BODY_PARTS_LICENSE.short}`
+   ].join('\n');
+ }
+diff --git a/arjan-portfolio/public/holoanatomy/src/engine/renderer.js b/arjan-portfolio/public/holoanatomy/src/engine/renderer.js
+index 0230cda..a07abb2 100644
+--- a/arjan-portfolio/public/holoanatomy/src/engine/renderer.js
++++ b/arjan-portfolio/public/holoanatomy/src/engine/renderer.js
+@@ -71,36 +71,6 @@ void main() {
+   outColor = vec4(uPickColor, 1.0);
+ }`;
+ 
+-
+-const OUTLINE_VERTEX_SHADER = `#version 300 es
+-precision highp float;
+-layout(location=0) in vec3 aPosition;
+-layout(location=1) in vec3 aNormal;
+-uniform mat4 uViewProjection;
+-uniform vec3 uDataCenter;
+-uniform float uDataScale;
+-uniform vec3 uOffset;
+-uniform float uOutlineWidth;
+-out vec3 vWorldPosition;
+-void main() {
+-  vec3 p = (aPosition - uDataCenter) * uDataScale + uOffset;
+-  p += normalize(aNormal) * uOutlineWidth;
+-  vWorldPosition = p;
+-  gl_Position = uViewProjection * vec4(p, 1.0);
+-}`;
+-
+-const OUTLINE_FRAGMENT_SHADER = `#version 300 es
+-precision highp float;
+-in vec3 vWorldPosition;
+-uniform vec4 uOutlineColor;
+-uniform bool uClipEnabled;
+-uniform vec4 uClipPlane;
+-out vec4 outColor;
+-void main() {
+-  if (uClipEnabled && dot(vWorldPosition, uClipPlane.xyz) - uClipPlane.w > 0.0) discard;
+-  outColor = uOutlineColor;
+-}`;
+-
+ function shader(gl, type, source) {
+   const s = gl.createShader(type);
+   gl.shaderSource(s, source);
+@@ -113,9 +83,9 @@ function shader(gl, type, source) {
+   return s;
+ }
+ 
+-function program(gl, fragmentSource, vertexSource = VERTEX_SHADER) {
++function program(gl, fragmentSource) {
+   const p = gl.createProgram();
+-  gl.attachShader(p, shader(gl, gl.VERTEX_SHADER, vertexSource));
++  gl.attachShader(p, shader(gl, gl.VERTEX_SHADER, VERTEX_SHADER));
+   gl.attachShader(p, shader(gl, gl.FRAGMENT_SHADER, fragmentSource));
+   gl.bindAttribLocation(p, 0, 'aPosition');
+   gl.bindAttribLocation(p, 1, 'aNormal');
+@@ -170,12 +140,8 @@ export class HoloRenderer {
+     const gl = this.gl;
+     this.program = program(gl, FRAGMENT_SHADER);
+     this.pickProgram = program(gl, PICK_FRAGMENT_SHADER);
+-    this.outlineProgram = program(gl, OUTLINE_FRAGMENT_SHADER, OUTLINE_VERTEX_SHADER);
+     this.u = uniforms(gl, this.program, ['uViewProjection','uDataCenter','uDataScale','uOffset','uColor','uCameraPosition','uLightDirection','uAlpha','uSpecularPower','uRimStrength','uSelected','uIntro','uClipEnabled','uClipPlane']);
+     this.pu = uniforms(gl, this.pickProgram, ['uViewProjection','uDataCenter','uDataScale','uOffset','uPickColor','uClipEnabled','uClipPlane']);
+-    this.ou = uniforms(gl, this.outlineProgram, ['uViewProjection','uDataCenter','uDataScale','uOffset','uOutlineWidth','uOutlineColor','uClipEnabled','uClipPlane']);
+-    this.hoveredId = null;
+-    this.quizTargetId = null;
+     this.meshes = [];
+     this.globalBounds = bboxEmpty();
+     this.dataCenter = [0,0,0];
+@@ -469,27 +435,6 @@ export class HoloRenderer {
+     return true;
+   }
+ 
+-  drawOutline(mesh, viewProjection, color = [0.55,0.93,1.0,0.92], width = 0.010) {
+-    if (!mesh) return false;
+-    const visibility = structureVisibility(this.state, mesh.part);
+-    if (!visibility.visible) return false;
+-    const gl = this.gl;
+-    const u = this.ou;
+-    gl.useProgram(this.outlineProgram);
+-    gl.bindVertexArray(mesh.vao);
+-    gl.uniformMatrix4fv(u.uViewProjection, false, viewProjection);
+-    gl.uniform3fv(u.uDataCenter, this.dataCenter);
+-    gl.uniform1f(u.uDataScale, this.dataScale);
+-    gl.uniform3fv(u.uOffset, mesh.renderOffset);
+-    gl.uniform1f(u.uOutlineWidth, width);
+-    gl.uniform4fv(u.uOutlineColor, color);
+-    const clip = this.clipPlane();
+-    gl.uniform1i(u.uClipEnabled, clip.enabled ? 1 : 0);
+-    gl.uniform4fv(u.uClipPlane, clip.value);
+-    gl.drawElements(gl.TRIANGLES, mesh.indexCount, mesh.indexType, 0);
+-    return true;
+-  }
+-
+   render(now = performance.now()) {
+     if (this.contextLost) return;
+     this.resize();
+@@ -521,21 +466,6 @@ export class HoloRenderer {
+     for (const mesh of transparent) if (this.drawMesh(mesh, this.program, this.u, vp.matrix, vp.eye, this.meshOffset(mesh,dt))) calls++;
+     gl.depthMask(true); gl.disable(gl.BLEND); gl.bindVertexArray(null);
+ 
+-    const outlineIds = [];
+-    if (this.state.selectedId) outlineIds.push({ id:this.state.selectedId, color:[0.96,0.80,0.48,0.92], width:0.009 });
+-    if (this.hoveredId) outlineIds.push({ id:this.hoveredId, color:[0.48,0.92,1.0,0.94], width:0.011 });
+-    if (this.quizTargetId) outlineIds.push({ id:this.quizTargetId, color:[0.48,0.98,1.0,0.98], width:0.015 });
+-    const seen = new Set();
+-    gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA); gl.depthMask(false); gl.cullFace(gl.FRONT);
+-    for (let i=outlineIds.length-1;i>=0;i--) {
+-      const style=outlineIds[i];
+-      if (seen.has(style.id)) continue;
+-      seen.add(style.id);
+-      const mesh=activeMeshes.find(m=>m.part.id===style.id);
+-      if (mesh && this.drawOutline(mesh,vp.matrix,style.color,style.width)) calls++;
+-    }
+-    gl.cullFace(gl.BACK); gl.depthMask(true); gl.disable(gl.BLEND); gl.bindVertexArray(null);
+-
+     const frameMs = Math.max(0.01, performance.now() - now);
+     this.fpsWindow.push(frameMs);
+     if (this.fpsWindow.length > 45) this.fpsWindow.shift();
+@@ -600,6 +530,6 @@ export class HoloRenderer {
+     if(this.pickTexture) gl.deleteTexture(this.pickTexture);
+     if(this.pickDepth) gl.deleteRenderbuffer(this.pickDepth);
+     if(this.pickFramebuffer) gl.deleteFramebuffer(this.pickFramebuffer);
+-    gl.deleteProgram(this.program); gl.deleteProgram(this.pickProgram); gl.deleteProgram(this.outlineProgram);
++    gl.deleteProgram(this.program); gl.deleteProgram(this.pickProgram);
+   }
+ }
+diff --git a/arjan-portfolio/public/holoanatomy/src/learning/quiz.js b/arjan-portfolio/public/holoanatomy/src/learning/quiz.js
+deleted file mode 100644
+index ca72702..0000000
+--- a/arjan-portfolio/public/holoanatomy/src/learning/quiz.js
++++ /dev/null
+@@ -1,38 +0,0 @@
+-function randomIndex(length, rng = Math.random) {
+-  if (length <= 0) return -1;
+-  return Math.min(length - 1, Math.floor(Math.max(0, Math.min(0.999999, rng())) * length));
+-}
+-
+-export function uniqueNamePool(parts = []) {
+-  const counts = new Map();
+-  for (const part of parts) counts.set(part.name, (counts.get(part.name) || 0) + 1);
+-  return parts.filter(part => part?.selectable !== false && counts.get(part.name) === 1);
+-}
+-
+-export function chooseQuizTarget(parts, previousId = null, rng = Math.random) {
+-  const pool = uniqueNamePool(parts);
+-  if (!pool.length) return null;
+-  const alternatives = pool.filter(part => part.id !== previousId);
+-  const source = alternatives.length ? alternatives : pool;
+-  return source[randomIndex(source.length, rng)] || null;
+-}
+-
+-export function buildQuizChoices(parts, target, count = 4, rng = Math.random) {
+-  if (!target) return [];
+-  const pool = uniqueNamePool(parts).filter(part => part.id !== target.id);
+-  const sameLayer = pool.filter(part => part.layer === target.layer);
+-  const other = pool.filter(part => part.layer !== target.layer);
+-  const shuffle = values => {
+-    const a=[...values];
+-    for (let i=a.length-1;i>0;i--) {
+-      const j=randomIndex(i+1,rng); [a[i],a[j]]=[a[j],a[i]];
+-    }
+-    return a;
+-  };
+-  const distractors=[];
+-  for (const part of [...shuffle(sameLayer), ...shuffle(other)]) {
+-    if (distractors.length >= count-1) break;
+-    if (!distractors.some(x => x.name === part.name)) distractors.push(part);
+-  }
+-  return shuffle([target, ...distractors]).slice(0,count);
+-}
+diff --git a/arjan-portfolio/public/holoanatomy/src/state/store.js b/arjan-portfolio/public/holoanatomy/src/state/store.js
+index 314556d..af3cbc6 100644
+--- a/arjan-portfolio/public/holoanatomy/src/state/store.js
++++ b/arjan-portfolio/public/holoanatomy/src/state/store.js
+@@ -8,9 +8,9 @@ export function createInitialState({ reducedMotion = false, quality = 'auto' } =
+     layers: Object.fromEntries(Object.entries(LAYERS).map(([id, cfg]) => [id, cfg.initial])),
+     selectedId: null,
+     isolatedId: null,
++    structureOverrides: {},
+     dissect: true,
+     table: true,
+-    quizMode: false,
+     explode: false,
+     explodeAmount: 0,
+     section: { enabled: false, axis: 'x', position: 0, flip: false },
+@@ -46,6 +46,10 @@ export function setQuality(state, quality) {
+ }
+ 
+ export function structureVisibility(state, part) {
++  const override = state.structureOverrides?.[part.id];
++  if (override === 'hidden') return { visible:false, ghost:false };
++  if (override === 'ghost') return { visible:true, ghost:true };
++  if (override === 'visible') return { visible:true, ghost:false };
+   const layerState = state.layers[part.layer] || 'visible';
+   if (layerState === 'hidden') return { visible:false, ghost:false };
+   if (state.isolatedId && state.isolatedId !== part.id) return { visible:true, ghost:true };
+diff --git a/arjan-portfolio/public/holoanatomy/src/ui/controls.js b/arjan-portfolio/public/holoanatomy/src/ui/controls.js
+index cb567ff..09ec11f 100644
+--- a/arjan-portfolio/public/holoanatomy/src/ui/controls.js
++++ b/arjan-portfolio/public/holoanatomy/src/ui/controls.js
+@@ -14,8 +14,6 @@ export function setupControls({ state, renderer, manifestById, onStateChange = (
+   const closePopovers = except => {
+     if (except !== 'layers') { layersPanel.hidden=true; $('layers-button').setAttribute('aria-expanded','false'); }
+     if (except !== 'section') { sectionPanel.hidden=true; $('section-button').setAttribute('aria-expanded','false'); }
+-    const exhibitsPanel=$('exhibits-panel'), exhibitsButton=$('exhibits-button');
+-    if (except !== 'exhibits' && exhibitsPanel) { exhibitsPanel.hidden=true; exhibitsButton?.setAttribute('aria-expanded','false'); }
+   };
+ 
+   const renderLayers = () => {
+diff --git a/arjan-portfolio/public/holoanatomy/styles.css b/arjan-portfolio/public/holoanatomy/styles.css
+index 81ac291..7f2d9be 100644
+--- a/arjan-portfolio/public/holoanatomy/styles.css
++++ b/arjan-portfolio/public/holoanatomy/styles.css
+@@ -179,64 +179,11 @@ h1 { margin:0; font-size:clamp(20px,2vw,30px); font-weight:550; letter-spacing:-
+   .toolbar button { flex:0 0 auto; }
+ }
+ 
+-/* v0.4 learning + exhibit discoverability */
+-.exhibits-button { color:#fff !important; background:rgba(214,198,162,.12) !important; border-color:rgba(214,198,162,.25) !important; }
+-.toolbar-count { display:inline-grid; place-items:center; min-width:18px; height:18px; margin-left:4px; padding:0 5px; border-radius:999px; background:rgba(255,255,255,.10); font-size:9px; color:var(--accent); }
+-.quiz-button { color:#c9f7ff !important; }
+-.quiz-button[aria-pressed="true"] { background:rgba(92,220,240,.14) !important; color:#dffcff !important; border-color:rgba(112,232,255,.25) !important; }
+-
+-.exhibit-panel { width:min(560px,calc(100% - 30px)); }
+-.exhibit-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+-.exhibit-card { min-width:0; text-align:left; border:1px solid rgba(255,255,255,.10); border-radius:14px; background:rgba(255,255,255,.035); color:inherit; padding:12px; cursor:pointer; display:grid; gap:7px; }
+-.exhibit-card:hover { background:rgba(255,255,255,.07); }
+-.exhibit-card.active { border-color:rgba(214,198,162,.48); background:rgba(214,198,162,.10); }
+-.exhibit-card strong { font-size:12px; line-height:1.2; }
+-.exhibit-card p { margin:0; color:var(--muted); font-size:9px; line-height:1.35; }
+-.exhibit-meta { display:flex; justify-content:space-between; gap:8px; align-items:center; color:var(--muted); font-size:8px; letter-spacing:.07em; text-transform:uppercase; }
+-.exhibit-card.active .exhibit-current { color:var(--accent); }
+-
+-.hover-label { position:absolute; z-index:12; width:max-content; max-width:250px; pointer-events:none; padding:9px 11px 9px 13px; border:1px solid rgba(112,232,255,.28); border-left:2px solid rgba(112,232,255,.92); border-radius:10px; background:linear-gradient(110deg,rgba(8,15,19,.90),rgba(7,9,13,.84)); backdrop-filter:blur(16px); box-shadow:0 0 22px rgba(71,210,235,.07); display:grid; gap:2px; transform:translate(16px,16px); }
+-.hover-label[hidden] { display:none; }
+-.hover-label::before { content:""; position:absolute; left:-5px; top:14px; width:7px; height:7px; border-radius:50%; background:#8fefff; box-shadow:0 0 12px rgba(143,239,255,.65); }
+-.hover-system { font-size:8px; letter-spacing:.13em; text-transform:uppercase; color:#8fefff; }
+-.hover-label strong { font-size:12px; line-height:1.2; font-weight:600; color:#f7fbfc; }
+-.hover-meta { font-size:8px; color:rgba(217,239,243,.55); }
+-
+-.quiz-panel { position:absolute; z-index:11; right:28px; top:112px; width:min(330px,calc(100% - 40px)); padding:16px; border:1px solid rgba(112,232,255,.20); border-radius:18px; background:rgba(7,10,14,.88); backdrop-filter:blur(24px); box-shadow:0 0 40px rgba(54,190,220,.05); }
+-.quiz-panel[hidden] { display:none; }
+-.quiz-topline { display:flex; align-items:center; justify-content:space-between; gap:12px; color:var(--muted); font-size:9px; letter-spacing:.10em; text-transform:uppercase; }
+-.quiz-kicker { color:#8fefff; }
+-.quiz-panel h2 { margin:10px 0 12px; font-size:17px; line-height:1.25; font-weight:560; }
+-.quiz-hint { margin:0 0 10px; padding:9px 10px; border-left:2px solid rgba(143,239,255,.58); background:rgba(143,239,255,.055); color:#cbe9ed; font-size:10px; line-height:1.4; }
+-.quiz-options { display:grid; gap:7px; }
+-.quiz-option { width:100%; text-align:left; border:1px solid rgba(255,255,255,.10); border-radius:11px; background:rgba(255,255,255,.035); color:#f2f2ef; padding:10px 11px; cursor:pointer; font-size:11px; line-height:1.3; }
+-.quiz-option:hover { background:rgba(255,255,255,.07); }
+-.quiz-option.correct { border-color:rgba(116,224,169,.52); background:rgba(116,224,169,.10); }
+-.quiz-option.incorrect { border-color:rgba(239,132,122,.48); background:rgba(239,132,122,.09); }
+-.quiz-option:disabled { cursor:default; }
+-.quiz-feedback { min-height:31px; margin:10px 0 0; color:var(--soft); font-size:10px; line-height:1.45; }
+-.quiz-feedback.good { color:#aeeac9; }
+-.quiz-feedback.bad { color:#f2b3aa; }
+-.quiz-actions { display:flex; flex-wrap:wrap; gap:6px; margin-top:11px; }
+-.quiz-actions button { border:1px solid var(--panel-border); border-radius:999px; background:rgba(255,255,255,.04); color:var(--soft); padding:7px 10px; cursor:pointer; font-size:9px; }
+-.quiz-actions button:hover:not(:disabled) { background:rgba(255,255,255,.09); }
+-.quiz-actions button:disabled { opacity:.32; cursor:default; }
+-.quiz-actions #quiz-next { margin-left:auto; color:#dffcff; border-color:rgba(112,232,255,.22); }
+-.quiz-mode .selection-card { display:none !important; }
+-.quiz-mode .stage-labels, .quiz-mode .stage-leaders, .quiz-mode .table-summary { opacity:.28; pointer-events:none; }
+-
+-/* Keep debug useful without covering the exhibit selector. */
+-.debug { left:auto; right:28px; top:auto; bottom:86px; }
+-
+-@media (max-width: 900px) {
+-  .exhibit-list { grid-template-columns:1fr; }
+-  .exhibit-card { padding:10px 11px; }
+-}
+-
+-@media (max-width: 720px) {
+-  .module-picker { max-width:calc(100vw - 36px); }
+-  .module-picker select { max-width:100%; }
+-  .quiz-panel { left:15px; right:15px; top:auto; bottom:82px; width:auto; max-height:58%; overflow:auto; }
+-  .hover-label { display:none !important; }
+-  .debug { left:12px; right:auto; top:100px; bottom:auto; }
+-}
++/* HoloAnatomy 1.0 candidate — rotator cuff studio */
++.shoulder-studio-panel{width:min(560px,calc(100% - 30px))}
++.shoulder-studio-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
++.shoulder-studio-grid button{display:grid;gap:4px;text-align:left;padding:12px;border:1px solid rgba(255,255,255,.10);border-radius:12px;background:rgba(255,255,255,.035);color:inherit;cursor:pointer}
++.shoulder-studio-grid button:hover{background:rgba(255,255,255,.07)}
++.shoulder-studio-grid strong{font-size:10px}
++.shoulder-integrity{margin:10px 0 0;padding:10px;border-left:2px solid rgba(216,202,176,.5);color:var(--muted);font-size:9px;line-height:1.45}
++@media(max-width:720px){.shoulder-studio-grid{grid-template-columns:1fr}}
+diff --git a/arjan-portfolio/src/app/about/page.tsx b/arjan-portfolio/src/app/about/page.tsx
+index 840c8b6..09bddc2 100644
+--- a/arjan-portfolio/src/app/about/page.tsx
++++ b/arjan-portfolio/src/app/about/page.tsx
+@@ -95,6 +95,39 @@ export default function About() {
+           <article>{profile.biography.map((p) => <p className="large" style={{ fontSize: "22px" }} key={p}>{p}</p>)}</article>
+         </div>
+       </section>
++
++      <section className="section">
++        <div className="shell">
++          <div className="section-head">
++            <div>
++              <p className="eyebrow">Project origins</p>
++              <h2>Some projects start with things I already do.</h2>
++            </div>
++            <p>Tennis, motorsport, and interactive models keep showing up because they are part of my life outside work.</p>
++          </div>
++          <div className="directions">
++            <article className="direction">
++              <span>01 / Tennis</span>
++              <h3>Tennis</h3>
++              <p>I play and teach tennis, so it became a natural place to experiment with timing, feedback, and interaction design.</p>
++              <p><Link href="/playground/vector-tennis">Open Vector Tennis →</Link></p>
++            </article>
++            <article className="direction">
++              <span>02 / Motorsport</span>
++              <h3>Motorsport</h3>
++              <p>I follow motorsport closely. That led me toward the practical problems around crashes, neurological assessment, emergency operations, and medical handoff.</p>
++              <p><Link href="/work/motorsport-neurotrauma-toolkit">Open the neurotrauma work →</Link></p>
++            </article>
++            <article className="direction">
++              <span>03 / Interactive models</span>
++              <h3>Interactive models</h3>
++              <p>I learn well by taking things apart and moving them around. The Playground applies that instinct to anatomy, physiology, mechanical systems, and games.</p>
++              <p><Link href="/playground">Explore the Playground →</Link></p>
++            </article>
++          </div>
++        </div>
++      </section>
++
+       <section className="section">
+         <div className="shell">
+           <div className="section-head">
+@@ -102,7 +135,7 @@ export default function About() {
+               <p className="eyebrow">Science writing</p>
+               <h2>Selected writing for Physics World</h2>
+             </div>
+-            <p>Arjan Singh Puniani was a student contributor to <em>Physics World</em>, writing reported features about neural engineering, brain–computer interfaces, and neuroimaging research.</p>
++            <p>I wrote reported features for <em>Physics World</em> on neural engineering, brain–computer interfaces, and neuroimaging research.</p>
+           </div>
+           <p><a className="text-link" href={links.physicsWorldAuthor} target="_blank" rel="noreferrer">Physics World contributor archive <span aria-hidden="true">↗</span></a></p>
+           <p><Link className="text-link" href="/research">See peer-reviewed research and current research themes →</Link></p>
+diff --git a/arjan-portfolio/src/app/contact/page.tsx b/arjan-portfolio/src/app/contact/page.tsx
+index 3f654d1..d2daf4e 100644
+--- a/arjan-portfolio/src/app/contact/page.tsx
++++ b/arjan-portfolio/src/app/contact/page.tsx
+@@ -7,28 +7,28 @@ import { siteUrl } from "@/lib/site";
+ export const metadata: Metadata = {
+   title: "Contact",
+   description:
+-    "Contact Arjan Singh Puniani about research, research software, teaching, neurotechnology, motorsport medicine, or media.",
++    "Contact Arjan Singh Puniani about roles or collaborations in neural engineering, neurotechnology, research software, clinical research, or wearable sensing.",
+   alternates: { canonical: "/contact" },
+   openGraph: {
+     type: "website",
+     url: `${siteUrl}/contact`,
+     title: "Contact Arjan Singh Puniani",
+     description:
+-      "Contact Arjan Singh Puniani about research, research software, teaching, neurotechnology, motorsport medicine, or media.",
++      "Contact Arjan Singh Puniani about neural engineering, neurotechnology, research software, clinical research, or wearable sensing.",
+     images: [{ url: "/og.png", alt: "Arjan Singh Puniani" }],
+   },
+   twitter: {
+     card: "summary_large_image",
+     title: "Contact Arjan Singh Puniani",
+     description:
+-      "Contact Arjan Singh Puniani about research, research software, teaching, neurotechnology, motorsport medicine, or media.",
++      "Neural engineering, neurotechnology, research software, clinical research, and wearable sensing.",
+     images: ["/og.png"],
+   },
+ };
+ 
+ export default function Contact() {
+   return <>
+-    <header className="page-hero"><div className="shell"><p className="eyebrow">Contact</p><h1>Start with the problem.</h1><p>Share what you are building, what is hard about it, and where you think I could contribute.</p></div></header>
+-    <section className="section"><div className="shell contact-grid"><aside className="contact-fit"><p className="eyebrow">Best fit</p><h2>Science-heavy work that needs both technical depth and judgment.</h2><ul className="contact-fit-list"><li>Neural engineering and brain-computer interfaces</li><li>Research software and scientific visualization</li><li>Translational neurotechnology</li><li>Human-centered research systems</li></ul><div className="contact-direct-links"><a className="text-link" href={`mailto:${profile.email}`}>Email directly ↗</a><a className="text-link" href={links.resume} download>Download CV ↗</a><a className="text-link" href={links.github} target="_blank" rel="noreferrer">GitHub ↗</a></div></aside><ContactForm/></div></section>
++    <header className="page-hero"><div className="shell"><p className="eyebrow">Contact</p><h1>Get in touch.</h1><p>If you&apos;re working on something where my background could help, I&apos;d like to hear about it.</p></div></header>
++    <section className="section"><div className="shell contact-grid"><aside className="contact-fit"><p className="eyebrow">Good fit</p><h2>Research and engineering around neurotechnology and sensing.</h2><ul className="contact-fit-list"><li>Neural engineering and BCI experiments</li><li>Research software and scientific visualization</li><li>Neurotechnology and human factors</li><li>Wearable or biointegrated sensing</li></ul><p>I&apos;m especially interested in roles that connect research, engineering, and product work. I&apos;m open to relocating.</p><div className="contact-direct-links"><a className="text-link" href={`mailto:${profile.email}`}>Email directly ↗</a><a className="text-link" href={links.resume} download>Download CV ↗</a><a className="text-link" href={links.github} target="_blank" rel="noreferrer">GitHub ↗</a></div></aside><ContactForm/></div></section>
+   </>;
+ }
+diff --git a/arjan-portfolio/src/app/notes/page.tsx b/arjan-portfolio/src/app/notes/page.tsx
+index 796b5a4..044f398 100644
+--- a/arjan-portfolio/src/app/notes/page.tsx
++++ b/arjan-portfolio/src/app/notes/page.tsx
+@@ -3,33 +3,112 @@ import Link from "next/link";
+ import { siteUrl } from "@/lib/site";
+ 
+ export const metadata: Metadata = {
+-  title: "Technical Notes",
++  title: "Notes — Neural Engineering & Research",
+   description:
+-    "Technical notes by Arjan Singh Puniani on active inference, reasoning systems, neural engineering, and related exploratory ideas, with clear evidence boundaries.",
++    "Notes by Arjan Singh Puniani on BCI experiments, research software, motorsport safety, anatomy, and design choices from his projects.",
+   alternates: { canonical: "/notes" },
+   openGraph: {
+     type: "website",
+     url: `${siteUrl}/notes`,
+-    title: "Technical Notes | Arjan Singh Puniani",
++    title: "Notes | Arjan Singh Puniani",
+     description:
+-      "Exploratory technical notes on active inference, reasoning systems, neural engineering, and related ideas.",
++      "Notes from neural engineering, research software, motorsport safety, and interactive scientific tools.",
+     images: ["/og.png"],
+   },
+   twitter: {
+     card: "summary_large_image",
+-    title: "Technical Notes | Arjan Singh Puniani",
++    title: "Notes | Arjan Singh Puniani",
+     description:
+-      "Exploratory technical notes on active inference, reasoning systems, neural engineering, and related ideas.",
++      "Notes from neural engineering, research software, motorsport safety, and interactive scientific tools.",
+     images: ["/og.png"],
+   },
+ };
+ 
++const notes = [
++  {
++    id: "interface-is-part-of-measurement",
++    meta: "Neural engineering · Experimental design",
++    title: "The interface can change the measurement.",
++    body: [
++      "Sensors are not the only thing shaping a measurement. Instructions, feedback, pacing, fatigue, attention, and task effort can change the conditions under which data are collected.",
++      "That was the challenge in my BCI calibration work. We could make a repetitive task easier to stay with, but we could not quietly change what the experiment measured. The public record supports real-time neural and behavioral interfaces and analysis across more than 940 sessions; I leave unreleased engagement and validity results out.",
++    ],
++    takeaway: "Decide what must stay fixed before redesigning the task. Then improve the experience around that constraint.",
++    href: "/work/bci-calibration",
++    linkLabel: "Open the BCI calibration case study",
++  },
++  {
++    id: "preserve-rejected-reasoning",
++    meta: "Research software · Reasoning",
++    title: "Keep the paths you ruled out.",
++    body: [
++      "If a system stores only the final answer, you lose the record of what changed and why. That matters when someone needs to review the reasoning later.",
++      "ReasonOS keeps accepted and rejected steps separate. A path you ruled out can stay in the record without being mistaken for the answer.",
++    ],
++    takeaway: "Keep the steps you ruled out, but label them clearly. The history should help a reviewer, not create another puzzle.",
++    href: "/work/vector-ekg-reasonos",
++    linkLabel: "Open Vector EKG + ReasonOS",
++  },
++  {
++    id: "handoff-is-a-data-structure",
++    meta: "Motorsport safety · Human factors",
++    title: "Good handoffs separate facts from interpretation.",
++    body: [
++      "A handoff gets muddy when observations, interpretation, and decision authority are blended together. The next person should be able to tell what was seen, what was inferred, and who made the call.",
++      "My motorsport neurotrauma draft separates crash mechanics, occupant-protection context, neurological observations, disposition, and the boundary between medical decisions and Race Control authority.",
++    ],
++    takeaway: "Record what was observed, what was inferred, what happened next, and who owns the next decision.",
++    href: "/work/motorsport-neurotrauma-toolkit",
++    linkLabel: "Open the neurotrauma toolkit",
++  },
++  {
++    id: "spatial-learning-needs-relationships",
++    meta: "Interactive anatomy · Spatial interfaces",
++    title: "Context matters in 3D.",
++    body: [
++      "A labeled structure can still be hard to understand when its neighbors disappear. In anatomy, the relationships around a structure are often part of what makes it make sense.",
++      "HoloAnatomy lets you separate structures, inspect their neighbors, identify them, and test your recall. It is an interactive learning exhibit; I have not tested whether it improves learning outcomes.",
++    ],
++    takeaway: "Let people pull structures apart without losing the context around them, then move straight into identification and recall.",
++    href: "/playground/holoanatomy",
++    linkLabel: "Explore HoloAnatomy",
++  },
++] as const;
++
+ export default function Notes() {
++  const schema = {
++    "@context": "https://schema.org",
++    "@type": "CollectionPage",
++    "@id": `${siteUrl}/notes#field-notes`,
++    url: `${siteUrl}/notes`,
++    name: "Notes by Arjan Singh Puniani",
++    description: metadata.description,
++    mainEntity: {
++      "@type": "ItemList",
++      itemListElement: notes.map((note, index) => ({
++        "@type": "ListItem",
++        position: index + 1,
++        url: `${siteUrl}/notes#${note.id}`,
++        name: note.title,
++      })),
++    },
++  };
++
+   return <>
+-    <header className="page-hero"><div className="shell"><p className="eyebrow">Explorations</p><h1>Notes</h1><p>Technical questions, working models, and ideas in progress.</p></div></header>
++    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
++    <header className="page-hero"><div className="shell"><p className="eyebrow">Notes</p><h1>Notes from projects I&apos;ve built or studied.</h1><p>Short notes on what worked, what was hard, and what I want to remember for the next project. I leave private implementation details out.</p></div></header>
+     <section className="section"><div className="shell">
+-      <article className="publication"><p className="publication-meta">Theoretical · Interdisciplinary</p><h2>Quantum dynamics and conscious active inference</h2><p>Two peer-reviewed theoretical papers explore whether quantum dynamics could provide a physical implementation for temporally deep active inference. The evidence remains theoretical.</p><p><Link className="text-link" href="/research">Read the peer-reviewed publication record →</Link></p><p><Link className="text-link" href="/work/quantum-active-inference">Open the research case study →</Link></p></article>
+-      <article className="publication"><p className="publication-meta">Design note · 2026</p><h2>Why preserve rejected reasoning steps?</h2><p>A system that stores only accepted conclusions erases evidence about misconception, uncertainty, and revision. ReasonOS treats rejection as an event that remains inspectable without creating a new accepted state.</p><Link className="text-link" href="/work/vector-ekg-reasonos">Open the implemented example →</Link></article>
++      <div className="section-head"><div><p className="eyebrow">Four notes</p><h2>What I want to remember.</h2></div><p>Each one comes from a real project. I keep the claims within what the work actually supports.</p></div>
++      {notes.map((note, index) => (
++        <article className="publication" id={note.id} key={note.id} style={{ scrollMarginTop: "96px" }}>
++          <p className="publication-meta">0{index + 1} · {note.meta}</p>
++          <h2>{note.title}</h2>
++          {note.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
++          <p><strong>Takeaway:</strong> {note.takeaway}</p>
++          <p><Link className="text-link" href={note.href}>{note.linkLabel} →</Link></p>
++        </article>
++      ))}
+     </div></section>
++    <section className="section"><div className="shell bio-grid"><div><p className="eyebrow">Scope</p><h2>A note on limits.</h2></div><div><p className="large" style={{ fontSize: "22px" }}>These are project notes, not claims of clinical validation. I leave unpublished implementation details out.</p><p><Link className="text-link" href="/work">Browse the projects →</Link></p></div></div></section>
+   </>;
+ }
+diff --git a/arjan-portfolio/src/app/page.tsx b/arjan-portfolio/src/app/page.tsx
+index e762591..342f770 100644
+--- a/arjan-portfolio/src/app/page.tsx
++++ b/arjan-portfolio/src/app/page.tsx
+@@ -3,19 +3,21 @@ import Image from "next/image";
+ import Link from "next/link";
+ import { SeizeFreezeHomeFeature } from "@/components/SeizeFreezeHomeFeature";
+ import ViewportBackgroundVideo from "@/components/ViewportBackgroundVideo";
++import { links } from "@/content/links";
+ import { siteUrl } from "@/lib/site";
++import styles from "./home.module.css";
+ 
+ export const metadata: Metadata = {
+-  title: { absolute: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine" },
++  title: { absolute: "Arjan Singh Puniani | Neural Engineering & Neurotechnology" },
+   description:
+-    "Official portfolio of Arjan Singh Puniani, a neural engineer pursuing medicine, with work in brain-computer interfaces, neurotechnology, clinical reasoning, rehabilitation, and motorsport safety.",
++    "Official portfolio of Arjan Singh Puniani, a neural engineer pursuing medicine who builds brain-computer-interface experiments, research software, and early neurotechnology concepts.",
+   alternates: { canonical: "/" },
+   openGraph: {
+     type: "website",
+     url: siteUrl,
+-    title: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
++    title: "Arjan Singh Puniani | Neural Engineering & Neurotechnology",
+     description:
+-      "Neural engineering, brain-computer interfaces, neurotechnology, clinical reasoning, rehabilitation, and motorsport safety.",
++      "Brain-computer interfaces, neurotechnology, research software, and clinical research.",
+     images: [
+       {
+         url: "/images/hero/arj_kuzneski-hero.png",
+@@ -27,63 +29,273 @@ export const metadata: Metadata = {
+   },
+   twitter: {
+     card: "summary_large_image",
+-    title: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
++    title: "Arjan Singh Puniani | Neural Engineering & Neurotechnology",
+     description:
+-      "Neural engineering, brain-computer interfaces, neurotechnology, clinical reasoning, rehabilitation, and motorsport safety.",
++      "Brain-computer interfaces, neurotechnology, research software, and clinical research.",
+     images: ["/images/hero/arj_kuzneski-hero.png"],
+   },
+ };
+ 
+-const disciplines = ["Neural engineering", "Patient-centered design", "Clinical reasoning", "Motorsport safety"];
++const disciplines = ["Neural engineering", "Research software", "Neurotechnology", "Clinical research"];
++
++const proofPoints = [
++  {
++    value: "2022–2024",
++    label: "R&D neural engineer",
++    detail: "Rehab Neural Engineering Labs · University of Pittsburgh",
++    href: "/work/bci-calibration",
++  },
++  {
++    value: "940+",
++    label: "BCI calibration sessions analyzed",
++    detail: "Longitudinal psychophysics and neural-interface workflows",
++    href: "/work/bci-calibration",
++  },
++  {
++    value: "2",
++    label: "Peer-reviewed 2025 review articles",
++    detail: "Computational and Structural Biotechnology Journal",
++    href: "/research",
++  },
++  {
++    value: "UCSF",
++    label: "Clinical research operations",
++    detail: "Protocols, study workflows, and deployment support",
++    href: "/cv",
++  },
++] as const;
++
++const contributionAreas = [
++  {
++    index: "01",
++    label: "Experimental systems",
++    title: "Build around the experiment.",
++    description:
++      "I have built psychophysics tasks, real-time interfaces, calibration workflows, and analysis tools. The experiment comes first; the interface supports it.",
++    href: "/work/bci-calibration",
++    linkLabel: "See the BCI work",
++  },
++  {
++    index: "02",
++    label: "Research software",
++    title: "Make the reasoning traceable.",
++    description:
++      "When a result matters, I want to be able to see where it came from: source data, calculations, assumptions, alternatives, and revisions.",
++    href: "/work/vector-ekg-reasonos",
++    linkLabel: "See ReasonOS",
++  },
++  {
++    index: "03",
++    label: "Research + product",
++    title: "Work between research and product.",
++    description:
++      "I have worked in clinical research, early-stage company operations, technical writing, and device development. I am comfortable working across researchers, engineers, operators, and outside partners.",
++    href: "/cv",
++    linkLabel: "See the experience record",
++  },
++] as const;
++
++const fieldNotes = [
++  {
++    id: "interface-is-part-of-measurement",
++    index: "01",
++    label: "BCI calibration",
++    title: "The interface can change the measurement.",
++    description:
++      "Instructions, feedback, pacing, fatigue, and task effort can change the conditions under which data are collected. That makes interface design part of experimental design.",
++  },
++  {
++    id: "preserve-rejected-reasoning",
++    index: "02",
++    label: "Reasoning systems",
++    title: "Keep the paths you ruled out.",
++    description:
++      "If a system stores only the final answer, you lose the record of what changed and why. Rejected paths can stay visible without being mistaken for the answer.",
++  },
++  {
++    id: "handoff-is-a-data-structure",
++    index: "03",
++    label: "Motorsport neurotrauma",
++    title: "Good handoffs separate facts from interpretation.",
++    description:
++      "Crash mechanics, neurological observations, disposition, and decision authority are easier to use when they are recorded separately instead of blended into one judgment.",
++  },
++  {
++    id: "spatial-learning-needs-relationships",
++    index: "04",
++    label: "HoloAnatomy",
++    title: "Context matters in 3D.",
++    description:
++      "Anatomy is easier to understand when you can separate a structure without losing sight of what surrounds it, then identify it and test your recall.",
++  },
++] as const;
++
++const currentThreads = [
++  {
++    label: "Neurotechnology",
++    title: "SeizeFreeze",
++    description: "An early focal cortical-cooling device concept, with work on thermal modeling, control, packaging, and safety constraints.",
++    href: "/work/seizefreeze",
++  },
++  {
++    label: "Reasoning systems",
++    title: "Vector EKG + ReasonOS",
++    description: "An educational ECG tool that keeps the measurements, calculations, alternatives, and revisions visible.",
++    href: "/work/vector-ekg-reasonos",
++  },
++  {
++    label: "Motorsport safety",
++    title: "Mechanism-to-Medical Center",
++    description: "An exploratory handoff tool for recording crash mechanics, neurological observations, escalation, and disposition.",
++    href: "/work/motorsport-neurotrauma-toolkit",
++  },
++] as const;
+ 
+ export default function Home() {
+   return <>
+-    <section className="v2-hero">
++    <section className={`v2-hero ${styles.heroScope}`}>
+       <div className="v2-orbit" aria-hidden="true"><span>01</span><i /><span>26</span></div>
+       <div className="shell v2-hero-grid">
+         <div className="v2-hero-copy">
+-          <p className="v2-label"><span /> Neural engineer pursuing medicine</p>
+-          <h1><span className="v2-hero-name">Arjan Singh Puniani</span>Engineering for<br />decisions that affect<br /><em>human lives.</em></h1>
+-          <p className="v2-intro">Arjan Singh Puniani builds systems across neurotechnology, clinical reasoning, rehabilitation, and motorsport safety. He is pursuing medicine to bring technical capability closer to responsibility for the person affected by it.</p>
+-          <div className="v2-actions"><Link href="/work" data-analytics-event="hero_project_click">Explore the work <b>↗</b></Link><Link href="/about">Read the approach</Link></div>
++          <p className="v2-label"><span /> Neural engineer · research software · neurotechnology</p>
++          <h1><span className="v2-hero-name">Arjan Singh Puniani</span>I build research tools for<br /><em>neural engineering and neurotechnology.</em></h1>
++          <p className="v2-intro">I&apos;ve worked on BCI experiments, research software, clinical studies, and early device concepts. I care about whether a tool is technically sound and actually usable.</p>
++          <div className="v2-actions">
++            <Link href="/work" data-analytics-event="hero_project_click">See flagship work <b>↗</b></Link>
++            <Link href="/research">Research record</Link>
++            <Link href="/notes">Read notes</Link>
++          </div>
+         </div>
+         <div className="v2-visual">
+           <div className="v2-photo-index">ASP / 001</div>
+           <Image src="/images/hero/arj_kuzneski-hero.png" alt="Arjan Singh Puniani holding the Kuzneski Innovation Cup" fill priority sizes="(max-width: 800px) 100vw, 44vw" />
+-<div className="v2-photo-caption"><span>Kuzneski Innovation Cup</span><span>Pittsburgh, PA</span></div>
++          <div className="v2-photo-caption"><span>Kuzneski Innovation Cup</span><span>Pittsburgh, PA</span></div>
+           <div className="v2-signal" aria-hidden="true"><svg viewBox="0 0 440 80" preserveAspectRatio="none"><path d="M0 44h66l12-2 8 2h36l8-20 12 46 13-64 15 38h36l8-4 10 4h70l13-12 14 27 13-36 14 21h83" /></svg></div>
+         </div>
+       </div>
+       <div className="v2-ticker" aria-hidden="true">{[...disciplines, ...disciplines].map((item, i) => <span key={`${item}-${i}`}>{item}<b>✦</b></span>)}</div>
+     </section>
+ 
++    <section className={styles.proof} aria-label="Selected evidence of research and engineering experience">
++      <div className={`shell ${styles.proofGrid}`}>
++        {proofPoints.map((point) => (
++          <Link className={styles.proofItem} href={point.href} key={`${point.value}-${point.label}`}>
++            <strong>{point.value}</strong>
++            <span>{point.label}</span>
++            <small>{point.detail}</small>
++          </Link>
++        ))}
++      </div>
++    </section>
++
+     <section className="v2-manifesto">
+-      <div className="shell v2-manifesto-grid"><p className="v2-section-number">[ 01 — Thesis ]</p><div><h2>Engineering is most consequential when the system is human.</h2><p>I turn difficult signals, constrained environments, and incomplete evidence into tools people can understand and use.</p></div></div>
++      <div className="shell v2-manifesto-grid"><p className="v2-section-number">[ 01 — Approach ]</p><div><h2>Show your work.</h2><p>Measurements should trace back to their source. Assumptions should be visible. So should uncertainty.</p></div></div>
+     </section>
+ 
+     <section className="v2-work">
+-      <div className="shell v2-work-head"><p className="v2-section-number">[ 02 — Selected systems ]</p><h2>Work with a pulse.</h2><Link href="/work">View all projects ↗</Link></div>
++      <div className="shell v2-work-head"><p className="v2-section-number">[ 02 — Selected work ]</p><h2>Selected projects.</h2><Link href="/work">View all projects ↗</Link></div>
+       <article className="v2-feature reasonos-home-feature">
+         <div className="reasonos-home-visual" role="img" aria-label="ReasonOS kernel and trace diagram">
+           <div className="reasonos-home-source"><span>SOURCE</span><i /></div>
+           <div className="reasonos-home-chain"><div><span>01</span><strong>State</strong></div><b>→</b><div><span>02</span><strong>Transformation</strong></div><b>→</b><div><span>03</span><strong>Constraint</strong></div></div>
+           <div className="reasonos-home-trace"><span>TRACE / APPEND-ONLY</span><i /><i /><i className="rejected" /><i /></div>
+         </div>
+-        <div className="v2-feature-copy"><p>00 / Reasoning systems · Medical education</p><h3>Vector EKG + ReasonOS</h3><p className="v2-feature-lead">An educational prototype that preserves how evidence changes a model.</p><p>The system records observations, calculations, competing candidate pathways, contradictions, provenance, and revisions as inspectable state changes.</p><dl><div><dt>Role</dt><dd>Independent designer + developer</dd></div><div><dt>State</dt><dd>Tested educational prototype</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl><Link href="/work/vector-ekg-reasonos" data-analytics-event="view_project">Open the case study <span>↗</span></Link></div>
++        <div className="v2-feature-copy"><p>00 / Reasoning systems · Medical education</p><h3>Vector EKG + ReasonOS</h3><p className="v2-feature-lead">An interactive ECG case that keeps the measurements, calculations, alternate explanations, and revisions visible.</p><p>I built it so the path to the answer stays visible.</p><dl><div><dt>Role</dt><dd>Independent designer + developer</dd></div><div><dt>State</dt><dd>Tested educational prototype</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl><Link href="/work/vector-ekg-reasonos" data-analytics-event="view_project">Open the case study <span>↗</span></Link></div>
+       </article>
+       <SeizeFreezeHomeFeature />
+       <article className="v2-feature v2-feature-light">
+-        <div className="v2-feature-copy"><p>02 / Brain-computer interfaces</p><h3>Making calibration worth finishing.</h3><p className="v2-feature-lead">Gamified psychophysics, neural recording interfaces, and patterns found across more than 940 sessions.</p><dl><div><dt>Role</dt><dd>R&amp;D neural engineer</dd></div><div><dt>State</dt><dd>Completed research</dd></div></dl><Link href="/work/bci-calibration">Open case study <span>↗</span></Link></div>
++        <div className="v2-feature-copy"><p>02 / Brain-computer interfaces</p><h3>Gamified BCI calibration</h3><p className="v2-feature-lead">I helped turn repetitive psychophysical calibration into game-like experiments without changing what still had to be measured.</p><p>The hard part was making the task better to use without making it a different experiment.</p><dl><div><dt>Role</dt><dd>R&amp;D neural engineer</dd></div><div><dt>State</dt><dd>Completed research</dd></div></dl><Link href="/work/bci-calibration">Open case study <span>↗</span></Link></div>
+         <div className="v2-feature-image"><Image src="/images/research/rnel-gamified-bci-task.jpg" alt="Gamified brain-computer interface calibration task in a research laboratory" fill sizes="(max-width: 800px) 100vw, 56vw" /></div>
+       </article>
+     </section>
+ 
++    <section className={styles.contribution} aria-labelledby="contribution-heading">
++      <div className="shell">
++        <div className={styles.contributionHead}>
++          <div>
++            <p className="v2-section-number">[ 03 — Good fit ]</p>
++            <h2 id="contribution-heading">Where I&apos;m useful.</h2>
++          </div>
++          <p>I&apos;m most useful when a project needs someone who can move between the experiment, the software, and the people using it.</p>
++        </div>
++        <div className={styles.contributionGrid}>
++          {contributionAreas.map((area) => (
++            <article className={styles.contributionCard} key={area.index}>
++              <div className={styles.contributionMeta}><span>{area.index}</span><span>{area.label}</span></div>
++              <h3>{area.title}</h3>
++              <p>{area.description}</p>
++              <Link href={area.href}>{area.linkLabel} <span aria-hidden="true">↗</span></Link>
++            </article>
++          ))}
++        </div>
++      </div>
++    </section>
++
++    <section className={styles.fieldNotes} aria-labelledby="field-notes-heading">
++      <div className="shell">
++        <div className={styles.fieldNotesHead}>
++          <div>
++            <p className="v2-section-number">[ 04 — Notes ]</p>
++            <h2 id="field-notes-heading">Things I wrote down.</h2>
++          </div>
++          <p>Short notes on what worked, what was hard, and what I would carry into the next project.</p>
++        </div>
++        <div className={styles.noteGrid}>
++          {fieldNotes.map((note) => (
++            <article className={styles.noteCard} key={note.id}>
++              <div className={styles.noteMeta}><span>{note.index}</span><span>{note.label}</span></div>
++              <h3>{note.title}</h3>
++              <p>{note.description}</p>
++              <Link href={`/notes#${note.id}`}>Read the note <span aria-hidden="true">↗</span></Link>
++            </article>
++          ))}
++        </div>
++        <div className={styles.fieldNotesFooter}>
++          <p>I leave out private implementation details and focus on what is useful to share.</p>
++          <Link href="/notes">Browse all notes ↗</Link>
++        </div>
++      </div>
++    </section>
++
+     <section className="v2-crossroads">
+-      <div className="shell"><p className="v2-section-number">[ 03 — Current trajectory ]</p><div className="v2-crossroads-grid"><h2>Medicine.<br />Engineering.<br /><em>At speed.</em></h2><div><p>Current work examines trackside neurotrauma and emergency operations: places where incomplete information, limited time, and human consequences meet.</p><p><Link href="/work/motorsport-neurotrauma-toolkit">Explore the neurotrauma toolkit ↗</Link></p><p><Link href="/work/belmont-motorsport-systems">Open the Belmont systems study ↗</Link></p></div></div><ol className="home-motorsport-sequence" aria-label="Hazard leads to decision, response, recovery, and record">{["Hazard","Decision","Response","Recovery","Record"].map((item,index)=><li key={item}><span>0{index+1}</span><strong>{item}</strong></li>)}</ol></div>
++      <div className="shell">
++        <p className="v2-section-number">[ 05 — Current work ]</p>
++        <div className="v2-crossroads-grid">
++          <h2>What I&apos;m<br />working on<br /><em>now.</em></h2>
++          <div>
++            <p>Right now I&apos;m working on focal cortical cooling, ECG reasoning software, and a motorsport concussion handoff tool.</p>
++            <p><Link href="/work/motorsport-neurotrauma-toolkit">Explore the neurotrauma toolkit ↗</Link></p>
++            <p><Link href="/work/belmont-motorsport-systems">Open the Belmont systems study ↗</Link></p>
++          </div>
++        </div>
++        <ol className={styles.currentThreads} aria-label="Current project threads">
++          {currentThreads.map((thread, index) => (
++            <li key={thread.href}>
++              <span>0{index + 1} / {thread.label}</span>
++              <h3><Link href={thread.href}>{thread.title}</Link></h3>
++              <p>{thread.description}</p>
++            </li>
++          ))}
++        </ol>
++        <ol className="home-motorsport-sequence" aria-label="Hazard leads to decision, response, recovery, and record">{["Hazard","Decision","Response","Recovery","Record"].map((item,index)=><li key={item}><span>0{index+1}</span><strong>{item}</strong></li>)}</ol>
++      </div>
+     </section>
+ 
+-    <section className="v2-playground-teaser"><ViewportBackgroundVideo /><div className="shell"><div><p className="v2-section-number">[ 04 — Playground ]</p><h2>Vector Tennis<br /><em>Endless Rally.</em></h2></div><div><p>A one-input arcade rally over mechanically causal contact, spin, trajectory, and bounce—with Racket Lab underneath.</p><div className="mini-causal-chain" role="img" aria-label="Read leads to timing, strike, survival, and restart">{["Read","Time","Strike","Survive","Restart"].map((item)=><span key={item}>{item}</span>)}</div><Link href="/playground/vector-tennis">Play the experiment ↗</Link></div></div></section>
++    <section className="v2-playground-teaser"><ViewportBackgroundVideo /><div className="shell"><div><p className="v2-section-number">[ 06 — Playground ]</p><h2>Vector Tennis<br /><em>Endless Rally.</em></h2></div><div><p>A one-button tennis game built around contact timing, spin, trajectory, and bounce. Racket Lab lets you inspect the model underneath.</p><div className="mini-causal-chain" role="img" aria-label="Read leads to timing, strike, survival, and restart">{["Read","Time","Strike","Survive","Restart"].map((item)=><span key={item}>{item}</span>)}</div><Link href="/playground/vector-tennis">Play the experiment ↗</Link></div></div></section>
+ 
+-    <section className="v2-contact"><div className="shell"><p>Have a difficult system worth building?</p><Link href="/contact">Let’s work on it. <span>↗</span></Link></div></section>
++    <section className={styles.contact} aria-labelledby="work-together-heading">
++      <div className={`shell ${styles.contactGrid}`}>
++        <div>
++          <p className="v2-section-number">[ 07 — Contact ]</p>
++          <h2 id="work-together-heading">Interested in working together?</h2>
++          <p>I&apos;m interested in roles and collaborations in neural engineering, neurotechnology, wearable sensing, and research software. I&apos;m open to relocating for the right role.</p>
++        </div>
++        <div className={styles.contactActions}>
++          <Link href="/contact">Get in touch <span aria-hidden="true">↗</span></Link>
++          <a href={links.email}>Email directly</a>
++          <a href={links.resume} download>Download CV</a>
++        </div>
++      </div>
++    </section>
+   </>;
+ }
+diff --git a/arjan-portfolio/src/app/work/page.tsx b/arjan-portfolio/src/app/work/page.tsx
+index b15fa34..ff9c0e7 100644
+--- a/arjan-portfolio/src/app/work/page.tsx
++++ b/arjan-portfolio/src/app/work/page.tsx
+@@ -1,4 +1,5 @@
+ import type { Metadata } from "next";
++import Link from "next/link";
+ import { CuratedProjectFilter } from "@/components/CuratedProjectFilter";
+ import { siteUrl } from "@/lib/site";
+ 
+@@ -26,7 +27,7 @@ export const metadata: Metadata = {
+ 
+ export default function Work() {
+   return <>
+-    <header className="page-hero"><div className="shell"><p className="eyebrow">Project index</p><h1>Work</h1><p>Start with the flagship systems, then explore the broader archive by field.</p></div></header>
++    <header className="page-hero"><div className="shell"><p className="eyebrow">Project index</p><h1>Work</h1><p>Start with the main projects. Each case study separates the problem, what I did, the evidence, and the limits.</p><p><Link className="text-link" href="/notes">For shorter notes on design choices and lessons, read Notes →</Link></p></div></header>
+     <section className="section"><div className="shell"><CuratedProjectFilter/></div></section>
+   </>;
+ }
+diff --git a/arjan-portfolio/src/components/Footer.tsx b/arjan-portfolio/src/components/Footer.tsx
+index 8e80377..d143fa4 100644
+--- a/arjan-portfolio/src/components/Footer.tsx
++++ b/arjan-portfolio/src/components/Footer.tsx
+@@ -1,2 +1,5 @@
+ import Link from "next/link";
+-export function Footer() { return <footer className="footer"><div className="shell footer-grid"><div><strong>Arjan Singh Puniani</strong><p>Neural engineering, clinical reasoning, and human performance.</p></div><div><Link href="/work">Selected work</Link><Link href="/research">Research</Link><Link href="/playground">Playground</Link><Link href="/contact">Contact</Link><Link href="/privacy">Privacy</Link></div><p className="fine">© {new Date().getFullYear()} Arjan Singh Puniani.</p></div></footer>; }
++
++export function Footer() {
++  return <footer className="footer"><div className="shell footer-grid"><div><strong>Arjan Singh Puniani</strong><p>Neural engineering, research software, and neurotechnology.</p></div><div><Link href="/work">Selected work</Link><Link href="/research">Research</Link><Link href="/notes">Notes</Link><Link href="/playground">Playground</Link><Link href="/cv">CV</Link><Link href="/contact">Contact</Link><Link href="/privacy">Privacy</Link></div><p className="fine">© {new Date().getFullYear()} Arjan Singh Puniani.</p></div></footer>;
++}
+diff --git a/arjan-portfolio/src/components/Header.tsx b/arjan-portfolio/src/components/Header.tsx
+index d3cd4f9..378833a 100644
+--- a/arjan-portfolio/src/components/Header.tsx
++++ b/arjan-portfolio/src/components/Header.tsx
+@@ -1,7 +1,7 @@
+ import Link from "next/link";
+ import { MobileNav } from "@/components/MobileNav";
+ 
+-const nav = [["Work", "/work"], ["Research", "/research"], ["Playground", "/playground"], ["About", "/about"], ["CV", "/cv"], ["Notes", "/notes"], ["Contact", "/contact"]] as const;
++const nav = [["Work", "/work"], ["Research", "/research"], ["Notes", "/notes"], ["Playground", "/playground"], ["About", "/about"], ["CV", "/cv"], ["Contact", "/contact"]] as const;
+ 
+ export function Header() {
+   return (
+diff --git a/arjan-portfolio/src/components/MobileNav.tsx b/arjan-portfolio/src/components/MobileNav.tsx
+index 8bf617e..4793c7a 100644
+--- a/arjan-portfolio/src/components/MobileNav.tsx
++++ b/arjan-portfolio/src/components/MobileNav.tsx
+@@ -4,7 +4,7 @@ import Link from "next/link";
+ import { usePathname } from "next/navigation";
+ import { useEffect, useRef, useState } from "react";
+ 
+-const nav = [["Work", "/work"], ["Research", "/research"], ["Playground", "/playground"], ["About", "/about"], ["CV", "/cv"], ["Notes", "/notes"], ["Contact", "/contact"]] as const;
++const nav = [["Work", "/work"], ["Research", "/research"], ["Notes", "/notes"], ["Playground", "/playground"], ["About", "/about"], ["CV", "/cv"], ["Contact", "/contact"]] as const;
+ 
+ export function MobileNav() {
+   const [open, setOpen] = useState(false);
+diff --git a/arjan-portfolio/src/content/profile.ts b/arjan-portfolio/src/content/profile.ts
+index c8c6d3d..7988206 100644
+--- a/arjan-portfolio/src/content/profile.ts
++++ b/arjan-portfolio/src/content/profile.ts
+@@ -1,16 +1,16 @@
+ export const profile = {
+   name: "Arjan Singh Puniani",
+   descriptor: "Neural engineer pursuing medicine.",
+-  headline: "Engineering systems around the person who must live with their consequences.",
+-  intro: "Arjan develops research tools, early medical-device concepts, and educational systems across neural engineering, clinical reasoning, rehabilitation, and motorsport safety.",
++  headline: "I build research tools and neurotechnology while pursuing medicine.",
++  intro: "Arjan builds research tools, early neurotechnology concepts, and educational software across neural engineering, clinical research, and motorsport safety.",
+   location: "California, United States",
+   email: "arjan.singh.puniani.main@gmail.com",
+   domain: "https://arjansinghpuniani.com",
+   linkedin: "",
+   biography: [
+-    "At the University of Pittsburgh’s Rehab Neural Engineering Labs, Arjan helped redesign repetitive psychophysical calibration as an interactive game while preserving the task’s measurement requirements. A participant living with quadriplegia described wanting to play video games again. That ordinary goal changed how Arjan judged technical work: by what it could help a person reclaim.",
+-    "Emergency-department service exposed a different responsibility. Physicians often had to act before every uncertainty could be resolved. Arjan saw that technical capability matters, but medicine requires someone to interpret incomplete evidence for a particular person and remain accountable for the decision.",
+-    "That distinction shapes his projects. ReasonOS records observations, evidence, contradictions, and revisions instead of preserving only an answer. SeizeFreeze develops focal cortical-cooling architecture from thermal models through control and packaging. His motorsport work connects crash mechanism, neurological findings, and medical handoff.",
+-    "Arjan earned a Master of Science in Bioengineering from the University of Pittsburgh after studying chemical engineering at the University of California, Berkeley. He now develops neural-engineering tools, research software, and medical-system concepts while preparing for medical training."
++    "At the University of Pittsburgh’s Rehab Neural Engineering Labs, I helped turn repetitive psychophysical calibration into an interactive game without changing what the task needed to measure. A participant living with quadriplegia told me he wanted to play video games again. That stayed with me. It made usability feel as real as technical performance.",
++    "Working in emergency departments showed me a different problem: decisions often have to be made before every uncertainty is resolved. That is one reason I am pursuing medicine in addition to engineering.",
++    "The same concerns show up in my projects. ReasonOS keeps measurements and revisions visible. SeizeFreeze explores focal cortical cooling. My motorsport work focuses on crash documentation, neurological observations, and medical handoff.",
++    "I earned a Master of Science in Bioengineering from the University of Pittsburgh after studying chemical engineering at the University of California, Berkeley. I now build neural-engineering tools, research software, and early medical-technology concepts while preparing for medical training."
+   ]
+ } as const;
+diff --git a/arjan-portfolio/src/content/projects.ts b/arjan-portfolio/src/content/projects.ts
+index 78316a5..0cd73fe 100644
+--- a/arjan-portfolio/src/content/projects.ts
++++ b/arjan-portfolio/src/content/projects.ts
+@@ -79,7 +79,7 @@ export const projects: Project[] = [
+     evidence: [{ label: "Belmont Abbey College risk-analysis assignment", sourceFile: "Assignment_3_Analyzing_Risk_Sonoma_Raceway_Exceptional.pdf", verified: true }, { label: "Belmont Abbey College mitigation assignment", sourceFile: "ARJAN Assignment_4_Techniques_in_Mitigation_Sonoma_Raceway.pdf", verified: true }, { label: "Proposed emergency and medical operations annex", sourceFile: "Assignment_6_Emergency_Disaster_Planning_Sonoma_Raceway_Exceptional.pdf", verified: true }]
+   },
+   {
+-    slug: "vector-ekg-reasonos", title: "Vector EKG and ReasonOS", shortDescription: "An educational prototype that preserves ECG observations, calculations, competing pathways, contradictions, provenance, and revisions.",
++    slug: "vector-ekg-reasonos", title: "Vector EKG and ReasonOS", shortDescription: "An interactive ECG case that keeps measurements, calculations, alternate explanations, and revisions visible.",
+     category: ["Software and Simulation", "Education"], status: "Tested educational prototype", yearStart: 2026, yearEnd: "Present", role: "Independent product designer and developer",
+     problem: "Electrocardiogram teaching tools often show conclusions without preserving measurement provenance or the reasoning path.",
+     approach: ["Separated a domain-independent event-sourced kernel from ECG-specific meaning.", "Built calibration, axis, corrected QT, lead-group, comparison, provenance, and evidence-ledger modules.", "Preserved accepted and rejected transformations for deterministic replay.", "Represented alternative candidate pathways without labeling them validated expert consensus."],
