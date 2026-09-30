@@ -5,6 +5,7 @@ export class BallPhysics {
     active = false;
     radius = .09;
     gravity = -9.81;
+    restitution = .56;
     bounces = 0;
     lastZ = 0;
     launch(start, target, flightTime = .82) { this.position = start.clone(); this.lastZ = start.z; this.velocity = new Vec3((target.x - start.x) / flightTime, (target.y - start.y - .5 * this.gravity * flightTime * flightTime) / flightTime, (target.z - start.z) / flightTime); this.active = true; this.bounces = 0; }
@@ -26,7 +27,7 @@ export class BallPhysics {
         if (this.position.y < this.radius) {
             this.position.y = this.radius;
             if (this.velocity.y < 0) {
-                this.velocity.y *= -.56;
+                this.velocity.y *= -this.restitution;
                 this.velocity.x *= .93;
                 this.velocity.z *= .93;
                 this.bounces++;

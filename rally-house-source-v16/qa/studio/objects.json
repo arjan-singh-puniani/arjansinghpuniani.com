@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "sound": {
+    "muted": 0,
+    "reused": true,
+    "stopped": true,
+    "touches": 0,
+    "input": false
+  },
+  "errors": []
+}

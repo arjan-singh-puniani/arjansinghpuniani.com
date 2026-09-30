@@ -1,6 +1,7 @@
 import {Vec3, clamp, lookAt, multiply, perspective, transformPoint, type Mat4} from './Math3D.js';
 
 function spring(current:number,velocity:number,target:number,omega:number,dt:number){
+  if(current===target&&velocity===0)return [current,0] as const;
   const f=1+2*dt*omega,oo=omega*omega,hoo=dt*oo,hhoo=dt*hoo,det=1/(f+hhoo);
   const next=(f*current+dt*velocity+hhoo*target)*det;const vel=(velocity+hoo*(target-current))*det;return [next,vel] as const;
 }
@@ -34,6 +35,16 @@ export class CameraController {
     this.maxDistance=this.fitDistance*1.14;
     if(this.autoFrame)this.desiredDistance=this.fitDistance;
     else this.desiredDistance=clamp(this.desiredDistance,this.minDistance,this.maxDistance);
+  }
+  captureState(){
+    return {target:this.target.clone(),desiredTarget:this.desiredTarget.clone(),distance:this.distance,desiredDistance:this.desiredDistance,
+      azimuth:this.azimuth,desiredAzimuth:this.desiredAzimuth,elevation:this.elevation,desiredElevation:this.desiredElevation,
+      fov:this.fov,autoFrame:this.autoFrame,viewIndex:this.viewIndex,targetVelocity:this.targetVelocity.clone(),
+      distanceVelocity:this.distanceVelocity,azimuthVelocity:this.azimuthVelocity,elevationVelocity:this.elevationVelocity};
+  }
+  restoreState(state:ReturnType<CameraController['captureState']>){
+    Object.assign(this,state,{target:state.target.clone(),desiredTarget:state.desiredTarget.clone(),targetVelocity:state.targetVelocity.clone()});
+    this.update(0);
   }
   /** Freeze exactly where the camera is right now. Used by the lock so A/B captures match. */
   pin(){this.desiredTarget.set(this.target.x,this.target.y,this.target.z);this.desiredDistance=this.distance;this.desiredAzimuth=this.azimuth;this.desiredElevation=this.elevation;this.targetVelocity.set(0,0,0);this.distanceVelocity=0;this.azimuthVelocity=0;this.elevationVelocity=0;}

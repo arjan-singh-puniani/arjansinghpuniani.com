@@ -75,7 +75,8 @@ export class RallySystem {
       if(ev.net){this.callbacks.onNet?.();this.netRipple=1;this.finishError('net');return;}
       if(this.waitingForReceiver){
         const receiver=this.hitter===0?this.south:this.north;const d=Math.hypot(this.ball.position.x-receiver.position.x,this.ball.position.z-receiver.position.z);
-        const approaching=this.ball.bounces>=1&&this.ball.position.y<1.48&&this.ball.velocity.y<2.2;
+        const front=(this.ball.position.z-receiver.position.z)*-Math.sign(receiver.position.z);
+        const approaching=this.ball.bounces>=1&&this.ball.position.y<1.65&&this.ball.velocity.y<3.8&&front>.40;
         if(approaching&&d<1.50){
           this.capturedIncoming=this.ball.position.clone();receiver.setIncomingContact(this.ball.position);this.ball.active=false;this.waitingForReceiver=false;this.hitter=1-this.hitter;this.shotTimer=.03;receiver.face(this.hitter===0?this.south.position:this.north.position);
         }
@@ -104,8 +105,9 @@ export class RallySystem {
   private prepareHit(){
     const hitter=this.hitter===0?this.north:this.south,receiver=this.hitter===0?this.south:this.north;const side=this.hitter===0?-1:1;
     const pattern=[-.92,.62,-.34,1.00,.18,-.72,.48,.86,-.12];let targetX=clamp(1+pattern[this.shotCount%pattern.length],-2.75,4.75);const receiverZ=receiver.position.z;
-    let targetDepth=receiverZ+side*(.18+((this.shotCount%3)-1)*.18);let flight=.79+(this.shotCount%4)*.04;
-    let state:Stroke=this.shotCount===0?'serve':this.shotCount%7===5?'volley':this.shotCount%2?'swingForehand':'swingBackhand';if(state!=='serve'&&hitter.practiceCue==='preparation')state='swingForehand';if(receiver.practiceCue==='rhythm')flight+=.12;const outcome=this.outcomeFor(hitter,state);
+    let targetDepth=receiverZ+side*(1.85+((this.shotCount%3)-1)*.18);let flight=.79+(this.shotCount%4)*.04;
+    const incomingSide=this.capturedIncoming?(this.capturedIncoming.x-hitter.position.x)*-Math.sign(hitter.position.z):1;
+    let state:Stroke=this.shotCount===0?'serve':this.shotCount%7===5?'volley':incomingSide<0?'swingBackhand':'swingForehand';if(state!=='serve'&&hitter.practiceCue==='preparation')state='swingForehand';if(receiver.practiceCue==='rhythm')flight+=.12;const outcome=this.outcomeFor(hitter,state);
     if(outcome==='frame'){targetX=clamp(targetX+(hash(this.shotCount+4)>.5?.85:-.85),-3.35,5.35);flight*=1.03;}
     if(outcome==='net'){targetDepth=side<0?1.6:-1.6;flight=.39;}
     if(outcome==='long'){targetDepth=receiverZ-side*2.75;flight=.84;}
@@ -127,6 +129,9 @@ export class RallySystem {
         const q=this.stagedBall(p);
         m.push({kind:'sphere',position:q,scale:new Vec3(.16,.16,.16),color:'#cbdc55',unlit:true});
       }
+    }
+    if(this.capturedIncoming&&!this.pending){
+      m.push({kind:'sphere',position:this.capturedIncoming.clone(),scale:new Vec3(.16,.16,.16),color:'#cbdc55',unlit:true});
     }
     if(this.ball.active){
       const glow=clamp((this.trailSpeed-3.8)/7.5,0,1);

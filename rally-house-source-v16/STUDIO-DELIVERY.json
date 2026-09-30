@@ -1,0 +1,557 @@
+{
+  "date": "2026-09-30",
+  "sourceRoot": "/Users/arjan/Desktop/arjansinghpuniani.com/rally-house-source-v16",
+  "servedRoot": "/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/rally-house",
+  "sourceBackup": "/Users/arjan/Library/Mobile Documents/com~apple~CloudDocs/mcat/DO/wins/RallyHouse/Studio-Polish-20260930/rally-house-before.tar.gz",
+  "servedBackup": "/Users/arjan/Library/Mobile Documents/com~apple~CloudDocs/mcat/DO/wins/RallyHouse/Studio-Polish-20260930/portfolio-before.tar.gz",
+  "source": [
+    {
+      "path": "CHAMPIONSHIP.md",
+      "before": "1b907ea44ebb9f3bd266ba85eb504f340c7a7df74e50e47ef6b816c2c9a59555",
+      "after": "d5d4086d2a0edd135a50ee7d1485b64e1fc610c0e7a0438edfa93e300de7a134"
+    },
+    {
+      "path": "IMPLEMENTATION-REPORT.md",
+      "before": null,
+      "after": "f3b8c30a103958a0cc56f153ff487ecf79abf62198f426d79b5f9a826e6deb45"
+    },
+    {
+      "path": "PLAYTEST-CHECKLIST.md",
+      "before": null,
+      "after": "aaf2b1b88cc779cdc6c0b2564f1f2a0445ffba61a7098cec7b632525e445366d"
+    },
+    {
+      "path": "README.md",
+      "before": "801e3e4fa85209c83de5219eb53448e32f1220589a386d36e9211ce50d9f0fca",
+      "after": "ba6aa00b3d0aa6eb535a1507e953e38876b0102b2bd909a09ce39216c684ecd9"
+    },
+    {
+      "path": "VALIDATION.md",
+      "before": null,
+      "after": "1114ce709e3e9076c776ea4c2925294d0a7d0bb5b841a41a605492b114c7b8b5"
+    },
+    {
+      "path": "championship.css",
+      "before": null,
+      "after": "dd96e0017857ca439d553deff1de96b9c8f0a64e661a7f7df29e0687702dd96f"
+    },
+    {
+      "path": "dist/Game.js",
+      "before": "74f7821776a233b35ddcc17cb9531efae94b205ae93e9ff7f543bf5f7636f240",
+      "after": "05599f1aed48b2602c1771da3c492d299f892b08cb1cb31051fac8ddb57dd025"
+    },
+    {
+      "path": "dist/core/AudioManager.js",
+      "before": "003bcbc5d4090f58b9eacb2882446315e1a5aa632c197aabe6e6bc40de9ed21f",
+      "after": "af80e6fde90b64e5be6eb98914494b201c2d93568f1ab0d21709d87e5273b863"
+    },
+    {
+      "path": "dist/entities/Character.js",
+      "before": "311e081435c008fb0ddfa116ab4883681b6698702ec152d02b672536ad31cbe0",
+      "after": "c7447d3ca00b32414a777d1184fa4930e62cdd69b5cc0ad8b08630a3716d47a1"
+    },
+    {
+      "path": "dist/rendering/CameraController.js",
+      "before": "ad2d42ff538af742328c68d6dc0a712ab5923f27ac185140bb043992f6b63dd4",
+      "after": "04fb25d4b43abbbeb5a8c7394162f15d5d1eb86f9883ce484ea9205bda916743"
+    },
+    {
+      "path": "dist/rendering/ClubAtmosphere.js",
+      "before": null,
+      "after": "88b0e722ae8d0783facd91bdb1bcb82415ff3d8df555f6c2e6243b076fd48beb"
+    },
+    {
+      "path": "dist/rendering/Renderer.js",
+      "before": "bd8ff8f6ee69997ba250f9eaf968ae28d7f7574d78dee7791fbf54351d9be5e3",
+      "after": "0364249fd263f0751cc9dc6bd45cb083a041522a4c6f94ded0405dea9e7d552f"
+    },
+    {
+      "path": "dist/simulation/ClubInteractions.js",
+      "before": null,
+      "after": "1edbe01fbc9662513543c8c6583f4a91436b6c3b8af575b9e70c3db42609e031"
+    },
+    {
+      "path": "dist/tennis/ChampionshipCameraRig.js",
+      "before": null,
+      "after": "691cdb48c77f0f17dd0f5045fed4d1275f5f984204aa1cafc1ed3fa0736bb1ff"
+    },
+    {
+      "path": "dist/tennis/ChampionshipController.js",
+      "before": null,
+      "after": "be96b48e7005c385d1dd15814b02e0574afe93d41cd3eee4cb18f8443bfbde4a"
+    },
+    {
+      "path": "dist/tennis/ChampionshipOpponents.js",
+      "before": null,
+      "after": "2d5ae00f6e3a3206e3bde450c689f4e40cae9ff183c614c49c86d620cc24d138"
+    },
+    {
+      "path": "dist/tennis/ChampionshipTuning.js",
+      "before": null,
+      "after": "d03552e69f4a9c3710a144e6477582d757109229f916ca7e737e481c5f476020"
+    },
+    {
+      "path": "dist/tennis/InteractiveMatchSystem.js",
+      "before": null,
+      "after": "6443507a580832054059045b45fa68c4aad6342fec6d38bda368a03f918eb13a"
+    },
+    {
+      "path": "dist/tennis/MatchInput.js",
+      "before": null,
+      "after": "465b8feb7e9d73c955e57a418959d26ec23b7a74fb0c3aa65a9074ea85377675"
+    },
+    {
+      "path": "dist/ui/ChampionshipHUD.js",
+      "before": null,
+      "after": "9a9bb670d95cc113b3d5ad00a2615334a4bdf024b63e0c1ef74d01c907f4f206"
+    },
+    {
+      "path": "dist/world/World.js",
+      "before": "7bf52bc2afde3e2b049378b45008993fc18888fb36e82b5d911df9d5961ed857",
+      "after": "6e844f81359a0e4f349425db9f3a9ca3dd1ed95eac9761f5ed946a2c7c6baca5"
+    },
+    {
+      "path": "index.html",
+      "before": "be2b01f5fc957d5d8279e50b8a3263cd7ed78f92ccab3e75ddbe54693f221636",
+      "after": "96db5b1722163474d4ba7b9f6353f92c37310755fa22967fc80ba4d1a0d7607f"
+    },
+    {
+      "path": "package-lock.json",
+      "before": "719390829ae924564bf0dd70471362995e0ac9ca915977d67e08e1a1b9c55039",
+      "after": "de6aaef2cd0a528ec57b48cba822e5aa138165083ea7fba73290a90580dabd15"
+    },
+    {
+      "path": "package.json",
+      "before": "29b70521bdf1d9a6b4e62e920f47e15d036893cf03e6351051adfc08bebdd176",
+      "after": "0fb497c81dcee3c12a033cae2c23b492d9eba8c2e7060ad364b03941ccca904c"
+    },
+    {
+      "path": "preview-cozy.webp",
+      "before": null,
+      "after": "7a77eaf0a7414fa5a67a3c5e814c94d9040446755edab60a43aa164298c89a65"
+    },
+    {
+      "path": "qa/championship-smoke.mjs",
+      "before": null,
+      "after": "db905743dd92d7a463f44f051f4f98768d57298ac0ffdefdaeae4468fb03a76d"
+    },
+    {
+      "path": "qa/serve.mjs",
+      "before": null,
+      "after": "23e41bf7575fb0188ff9869760baa7601a26b866dfdc2206fb2f8ee15476f517"
+    },
+    {
+      "path": "qa/studio-browsers-chromium.png",
+      "before": null,
+      "after": "eb75600e789d8ffb5213d51281b10f7bd4c58de76c25f04b3c0775f8cdde5296"
+    },
+    {
+      "path": "qa/studio-browsers-firefox.png",
+      "before": null,
+      "after": "7849ed3cd9fb8d5787624dcd32b98768d5a900a7df51bf8e6cc64ed86732a7ab"
+    },
+    {
+      "path": "qa/studio-browsers-webkit.png",
+      "before": null,
+      "after": "64fe18d386fc87a544ef3c0dd5b64643d283f8fc84fa049555a7cbe0fe89248f"
+    },
+    {
+      "path": "qa/studio-browsers.json",
+      "before": null,
+      "after": "9a9b337b86743ce4c90f6ca12c8cfef48f839ad8ff5192b5b46a45cc0000eb7a"
+    },
+    {
+      "path": "qa/studio-matrix.mjs",
+      "before": null,
+      "after": "375f5aa3181545d87c4eca4ce6623664bdd63d46b96572facd510bb3996e5a73"
+    },
+    {
+      "path": "qa/studio-objects.mjs",
+      "before": null,
+      "after": "b4f94420614bcadd389309c27c40ee226100a1cf7f4d6b141312d22ba96be0de"
+    },
+    {
+      "path": "qa/studio-performance.mjs",
+      "before": null,
+      "after": "6d0936ec62e42f1befd469a44768fa7f0a6fa2b2ebc78e8391b05306281b0110"
+    },
+    {
+      "path": "qa/studio/club-desktop.png",
+      "before": null,
+      "after": "72d7a8ee350d84f139d3cf821dc2842d46636a8ba83d10a0cf6d8975b458fa51"
+    },
+    {
+      "path": "qa/studio/club-landscape.png",
+      "before": null,
+      "after": "18bb5b23d64c157f51820e733a80cd2a4e2a8ad311080e4007a2365573981bd1"
+    },
+    {
+      "path": "qa/studio/club-portrait.png",
+      "before": null,
+      "after": "2333bbebdb883d02b987f4f7f20c35cf9eed3816e7b5111360ef5f8513807da1"
+    },
+    {
+      "path": "qa/studio/club-tablet.png",
+      "before": null,
+      "after": "25207656e4d3e7b746c6b791ca2d54b8206b1a23e90d4b58cc68ffe8077c2c7f"
+    },
+    {
+      "path": "qa/studio/desk-interaction.png",
+      "before": null,
+      "after": "cab6abd8a64533ae81c1d9e237e5453d1cf0a67df4ae0368956270d3e1ba4560"
+    },
+    {
+      "path": "qa/studio/match-desktop.png",
+      "before": null,
+      "after": "80fdd09e89bb1c52785080d6f2d030f6d550237737457691223d9c2e7f1bd2ff"
+    },
+    {
+      "path": "qa/studio/match-landscape.png",
+      "before": null,
+      "after": "af32c45e1016aeb456133fe28c543e8b3df5567acb8f85e775cc01dc72067208"
+    },
+    {
+      "path": "qa/studio/match-portrait.png",
+      "before": null,
+      "after": "169d95390dd23b83dc80f557e10d1edb07372e13f39a2b8a3bd115ce77903100"
+    },
+    {
+      "path": "qa/studio/match-tablet.png",
+      "before": null,
+      "after": "a1abdd85dad1f5819fd2f69d5ddce25e02cab8c8510538d6caff8afffca348d5"
+    },
+    {
+      "path": "qa/studio/matrix.json",
+      "before": null,
+      "after": "1253a1f7898e21a7a15a00463d352078c9dbfc67aefa859d39bf8d469f1caee3"
+    },
+    {
+      "path": "qa/studio/objects.json",
+      "before": null,
+      "after": "2f9b3d8e2980e1d82db4b98a03e4b7057cd03011e462b068d6e1db79b8fc5436"
+    },
+    {
+      "path": "qa/studio/performance-active.json",
+      "before": null,
+      "after": "e3f594b78b0d0bf5209b5e4960151ba997885757137179a1a6045762f7898b39"
+    },
+    {
+      "path": "qa/studio/performance.json",
+      "before": null,
+      "after": "702ada6f3bf16b9d002a3a217a1980771b00e48a324b7d4235fc869ba2e9181c"
+    },
+    {
+      "path": "qa/studio/verified-after-evening.png",
+      "before": null,
+      "after": "30fa5b1d48348c7c525a8be2e8744a70d34abe90f10a68f317f7d7e28d8192f2"
+    },
+    {
+      "path": "qa/studio/verified-before-evening.png",
+      "before": null,
+      "after": "35b82a1609e97afe256df9eff6dbdfe223cb3883b57ddf28460a2aeb61269811"
+    },
+    {
+      "path": "qa/studio/welcome-golden.png",
+      "before": null,
+      "after": "8cee3380ec416262efd8768b22f53d990ec11f7d3c0910d10118d920b2bc229d"
+    },
+    {
+      "path": "src/Game.ts",
+      "before": "2db816503f94ca72e387fbc3f7d902ad6415b5965efc66c2cf5dd2e4d0703b33",
+      "after": "ef1814ce0cb9401111748f412e05f0bf08aaf2ab310fc93dc4804265829e9ea1"
+    },
+    {
+      "path": "src/core/AudioManager.ts",
+      "before": "eb23753bd0a6eb541eee0a330210838fa3d5b5367168e475000903cbd4a5e419",
+      "after": "1223b66461a71cc4679a9a15b0beab7ddb70177770ce0d9aa200ea8a0f1e3244"
+    },
+    {
+      "path": "src/entities/Character.ts",
+      "before": "6c2ed39171a0b4d7ae56d39c1e36fe66ee59704af6387c8fb4c2903758280103",
+      "after": "36a0686ffe2ba3e99baec43647087aa3e3279d2c96471ec0a0b81b2293f5fa75"
+    },
+    {
+      "path": "src/rendering/CameraController.ts",
+      "before": "ae632a311cd2896a61ba3a1d8cff291dc0aacee99d6152c0635853e88ca2c6b6",
+      "after": "0d5083cd049b458332f464f4d331f54b533a6b40e06528a475e8ce76725f9525"
+    },
+    {
+      "path": "src/rendering/ClubAtmosphere.ts",
+      "before": null,
+      "after": "7daa4f7fe445ce40b02e9e6222752f97cbc91e4b0617c1804f90ca0457b895a3"
+    },
+    {
+      "path": "src/rendering/Renderer.ts",
+      "before": "d60d0a15fae6fd873f8a8a16291b2832d16878b49e62127d611b0b703b368f1f",
+      "after": "6895ce23f453e356eba6e0a4a48441cd9adfc9aeab095bce4b78a1f08879e8e3"
+    },
+    {
+      "path": "src/simulation/ClubInteractions.ts",
+      "before": null,
+      "after": "278389027f2fa67120130ace7c6aab1215b9b7b1c721920a70ef74d040631e5c"
+    },
+    {
+      "path": "src/tennis/ChampionshipCameraRig.ts",
+      "before": null,
+      "after": "261ded10f581bc2f2bcb752d69f3f3a68e6f2d6e1fb987ed869da33445d931bc"
+    },
+    {
+      "path": "src/tennis/ChampionshipController.ts",
+      "before": null,
+      "after": "2ecb00c590c62a751255d07daccb95c732b9c20504264de3ea60c847a0f24ebd"
+    },
+    {
+      "path": "src/tennis/ChampionshipOpponents.ts",
+      "before": null,
+      "after": "99b9067dcbb8dd2f5e50aa5e60d8b51c3f936d4d0b9cae9705f0ee5bcf05b49b"
+    },
+    {
+      "path": "src/tennis/ChampionshipTuning.ts",
+      "before": null,
+      "after": "e79ef831bc8a7b39ad6f2033e213e88d0e44ddc5b916f771374e3760b9ccb422"
+    },
+    {
+      "path": "src/tennis/InteractiveMatchSystem.ts",
+      "before": null,
+      "after": "6135375e0f3f6787a8322802618e14c861ac3cd2f0f6c78527e194f85da91e0d"
+    },
+    {
+      "path": "src/tennis/MatchInput.ts",
+      "before": null,
+      "after": "95a8b9769cc306e4b2044db056352fa1ea9651904ff8b06c9728d0593ff6e85e"
+    },
+    {
+      "path": "src/ui/ChampionshipHUD.ts",
+      "before": null,
+      "after": "fd831073f9da4e055a4d969f851376e76a3c8d50a7aa0c40a59b35e38cc2239c"
+    },
+    {
+      "path": "src/world/World.ts",
+      "before": "b7e1b7cca571e363d00b699a524b66d354579bef1653561b5386c104b8ec410b",
+      "after": "ced95d292abe467fd57b7e533e6564a88c16942a986930742effc2c484a50f66"
+    },
+    {
+      "path": "style.css",
+      "before": "a390316f17b441b458eaea8b4bef1caed4a973c8fa7ab0593d5c358f209f8cfb",
+      "after": "6203f1c55ef04f8f383be0fa31317e26520f5acafc918fa07e05898bc592023c"
+    },
+    {
+      "path": "tests/championship-controller.mjs",
+      "before": null,
+      "after": "32e9c790bc52066751971c9103b432a84609a79ffd794babbb64c358750e6a3c"
+    },
+    {
+      "path": "tests/studio-polish.mjs",
+      "before": null,
+      "after": "bcc9e24f8a2d3c150031d8ce94d93254c6fae405f56bec86954008611468f4cc"
+    },
+    {
+      "path": "src/tennis/BallPhysics.ts",
+      "before": "c11c1f6c3780c74273da89d28e81e4620c934b75d9afb45f10892d2af304724d",
+      "after": "32abbd4a41ac23da6975f6e0ac14c7229deba2bc93de90aefe8203360e9cc99b"
+    },
+    {
+      "path": "src/tennis/BallTrail.ts",
+      "before": null,
+      "after": "4515a279f9637702cde7a4e90be6e656523e3f2a9679d089a2723067ad58856f"
+    },
+    {
+      "path": "dist/tennis/BallPhysics.js",
+      "before": "d1b8b49e0cced3036661a31ecda16a8e034f7bd2fc7e892099fbfd9bbff8e0b2",
+      "after": "2f4c93dff67a953fd5895aad0ca0f553e0dcb8b62ce21d64bfff95704c520f87"
+    },
+    {
+      "path": "dist/tennis/BallTrail.js",
+      "before": null,
+      "after": "ddc697827fa1f667f3b59eb8af81ddc79554d34fd75e1b75165c5dd112120208"
+    },
+    {
+      "path": "qa/ball-feel.mjs",
+      "before": null,
+      "after": "13ef02b3c59f819b507dc5be9a76c85e8fe40f62d8988b3edd5a8a2bd97fa53f"
+    },
+    {
+      "path": "qa/studio/ball-feel.json",
+      "before": null,
+      "after": "29c474547658591b73e91d0c1ad3ca74b3fc35d4664c56ad563ec266da638cd3"
+    },
+    {
+      "path": "qa/studio/ball-contact.png",
+      "before": null,
+      "after": "0e30181746fff14beb016d72e2a4420f0e4afb0e1e20da6f2d02572ed07c4e4d"
+    },
+    {
+      "path": "qa/studio/ball-flight.png",
+      "before": null,
+      "after": "1d69eb6a8975943287a8c4d67c3796131806bcfb08176dc8856f92cfca82c10f"
+    },
+    {
+      "path": "qa/studio/ball-bounce.png",
+      "before": null,
+      "after": "a38fe970b7acabbe47fc011ec8e1b9e0b5056f52375a3e9acc381857b079d582"
+    },
+    {
+      "path": "src/tennis/RallySystem.ts",
+      "before": "1caaef3a6246299ed947472f840eea0522fabfc38dba07e08648c66ca5c1303f",
+      "after": "9baf5605f40e22281251e3ae984947d53de3b69f4b5eb5a3f3e892ccbc7386bd"
+    },
+    {
+      "path": "dist/tennis/RallySystem.js",
+      "before": "4ac63b7b33d24768e75f3de4b3f3b33648f611728001c4e49a7451a6caea13f7",
+      "after": "df981ff5be4774534409c8da5a1bf581b41ccda042cac1a8e85cdb21a3ee2945"
+    },
+    {
+      "path": "tests/contact-interception.mjs",
+      "before": null,
+      "after": "dd76290c4b9c5dcf4aec0bc548f9a4752c9bd418aad676f443a9ea6531c86e5c"
+    },
+    {
+      "path": "qa/contact-trace.mjs",
+      "before": null,
+      "after": "869e16375ad958083ebf410b51b9e50b31df4492b3167b1c018fd23dbf444343"
+    },
+    {
+      "path": "qa/club-contact.mjs",
+      "before": null,
+      "after": "75327f59fd257f464379b6bb041138634bfaa7687ac4397704aa1e042b0ae869"
+    },
+    {
+      "path": "qa/studio/club-front-contact.json",
+      "before": null,
+      "after": "5ee1fbc709de0eae18129c52a7639fe8b8628047769cc73c5ede3ad2de43012c"
+    },
+    {
+      "path": "qa/studio/club-front-contact.png",
+      "before": null,
+      "after": "3c2c1e4fb6e6597977dc024a9733dcc97b391d6fd09fa8a152ee78f7cc80ad6e"
+    }
+  ],
+  "served": [
+    {
+      "path": "dist/Game.js",
+      "before": "74f7821776a233b35ddcc17cb9531efae94b205ae93e9ff7f543bf5f7636f240",
+      "after": "05599f1aed48b2602c1771da3c492d299f892b08cb1cb31051fac8ddb57dd025"
+    },
+    {
+      "path": "dist/core/AudioManager.js",
+      "before": "003bcbc5d4090f58b9eacb2882446315e1a5aa632c197aabe6e6bc40de9ed21f",
+      "after": "af80e6fde90b64e5be6eb98914494b201c2d93568f1ab0d21709d87e5273b863"
+    },
+    {
+      "path": "dist/entities/Character.js",
+      "before": "311e081435c008fb0ddfa116ab4883681b6698702ec152d02b672536ad31cbe0",
+      "after": "c7447d3ca00b32414a777d1184fa4930e62cdd69b5cc0ad8b08630a3716d47a1"
+    },
+    {
+      "path": "dist/rendering/CameraController.js",
+      "before": "ad2d42ff538af742328c68d6dc0a712ab5923f27ac185140bb043992f6b63dd4",
+      "after": "04fb25d4b43abbbeb5a8c7394162f15d5d1eb86f9883ce484ea9205bda916743"
+    },
+    {
+      "path": "dist/rendering/ClubAtmosphere.js",
+      "before": null,
+      "after": "88b0e722ae8d0783facd91bdb1bcb82415ff3d8df555f6c2e6243b076fd48beb"
+    },
+    {
+      "path": "dist/rendering/Renderer.js",
+      "before": "bd8ff8f6ee69997ba250f9eaf968ae28d7f7574d78dee7791fbf54351d9be5e3",
+      "after": "0364249fd263f0751cc9dc6bd45cb083a041522a4c6f94ded0405dea9e7d552f"
+    },
+    {
+      "path": "dist/simulation/ClubInteractions.js",
+      "before": null,
+      "after": "1edbe01fbc9662513543c8c6583f4a91436b6c3b8af575b9e70c3db42609e031"
+    },
+    {
+      "path": "dist/tennis/ChampionshipCameraRig.js",
+      "before": null,
+      "after": "691cdb48c77f0f17dd0f5045fed4d1275f5f984204aa1cafc1ed3fa0736bb1ff"
+    },
+    {
+      "path": "dist/tennis/ChampionshipController.js",
+      "before": null,
+      "after": "be96b48e7005c385d1dd15814b02e0574afe93d41cd3eee4cb18f8443bfbde4a"
+    },
+    {
+      "path": "dist/tennis/ChampionshipOpponents.js",
+      "before": null,
+      "after": "2d5ae00f6e3a3206e3bde450c689f4e40cae9ff183c614c49c86d620cc24d138"
+    },
+    {
+      "path": "dist/tennis/ChampionshipTuning.js",
+      "before": null,
+      "after": "d03552e69f4a9c3710a144e6477582d757109229f916ca7e737e481c5f476020"
+    },
+    {
+      "path": "dist/tennis/InteractiveMatchSystem.js",
+      "before": null,
+      "after": "6443507a580832054059045b45fa68c4aad6342fec6d38bda368a03f918eb13a"
+    },
+    {
+      "path": "dist/tennis/MatchInput.js",
+      "before": null,
+      "after": "465b8feb7e9d73c955e57a418959d26ec23b7a74fb0c3aa65a9074ea85377675"
+    },
+    {
+      "path": "dist/ui/ChampionshipHUD.js",
+      "before": null,
+      "after": "9a9bb670d95cc113b3d5ad00a2615334a4bdf024b63e0c1ef74d01c907f4f206"
+    },
+    {
+      "path": "dist/world/World.js",
+      "before": "7bf52bc2afde3e2b049378b45008993fc18888fb36e82b5d911df9d5961ed857",
+      "after": "6e844f81359a0e4f349425db9f3a9ca3dd1ed95eac9761f5ed946a2c7c6baca5"
+    },
+    {
+      "path": "index.html",
+      "before": "be2b01f5fc957d5d8279e50b8a3263cd7ed78f92ccab3e75ddbe54693f221636",
+      "after": "96db5b1722163474d4ba7b9f6353f92c37310755fa22967fc80ba4d1a0d7607f"
+    },
+    {
+      "path": "style.css",
+      "before": "a390316f17b441b458eaea8b4bef1caed4a973c8fa7ab0593d5c358f209f8cfb",
+      "after": "6203f1c55ef04f8f383be0fa31317e26520f5acafc918fa07e05898bc592023c"
+    },
+    {
+      "path": "championship.css",
+      "before": null,
+      "after": "dd96e0017857ca439d553deff1de96b9c8f0a64e661a7f7df29e0687702dd96f"
+    },
+    {
+      "path": "dist/tennis/BallPhysics.js",
+      "before": "d1b8b49e0cced3036661a31ecda16a8e034f7bd2fc7e892099fbfd9bbff8e0b2",
+      "after": "2f4c93dff67a953fd5895aad0ca0f553e0dcb8b62ce21d64bfff95704c520f87"
+    },
+    {
+      "path": "dist/tennis/BallTrail.js",
+      "before": null,
+      "after": "ddc697827fa1f667f3b59eb8af81ddc79554d34fd75e1b75165c5dd112120208"
+    },
+    {
+      "path": "dist/tennis/RallySystem.js",
+      "before": "4ac63b7b33d24768e75f3de4b3f3b33648f611728001c4e49a7451a6caea13f7",
+      "after": "df981ff5be4774534409c8da5a1bf581b41ccda042cac1a8e85cdb21a3ee2945"
+    }
+  ],
+  "note": "SHA-256 manifest excludes itself; no deletions or unrelated paths.",
+  "installedValidation": {
+    "fullSourceTests": "PASS",
+    "portfolioIntegrationTests": "5 passed",
+    "installedViewportMatrix": "4 passed",
+    "preview": "http://127.0.0.1:8087/"
+  },
+  "ballFeelFollowup": {
+    "date": "2026-09-30",
+    "backup": "/Users/arjan/Library/Mobile Documents/com~apple~CloudDocs/mcat/DO/wins/RallyHouse/Studio-Polish-20260930/ball-feel-install-before.tar.gz",
+    "tests": "PASS",
+    "viewports": "4 passed",
+    "contactCaptures": "PASS"
+  },
+  "contactInterceptionFix": {
+    "date": "2026-09-30",
+    "backup": "/Users/arjan/Library/Mobile Documents/com~apple~CloudDocs/mcat/DO/wins/RallyHouse/Studio-Polish-20260930/contact-fix-install-before.tar.gz",
+    "tests": "PASS",
+    "viewports": "4 passed",
+    "clubContactCapture": "PASS"
+  }
+}

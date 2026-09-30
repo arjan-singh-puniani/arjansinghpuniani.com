@@ -60,12 +60,12 @@ function rotateEulerVector(v:Vec3,r:Vec3){
 
 export class Character {
   get id(){return this.spec.id;}
-  acting:ActingState;crowd:Character[]=[];majorActivity=false;yieldUntil=0;private crowdCooldown=0;private gazeYaw=0;private gazeStarted=false;private gazeClock=0;
+  acting:ActingState;crowd:Character[]=[];majorActivity=false;yieldUntil=0;private crowdCooldown=0;private gazeYaw=0;private gazeStarted=false;private gazeClock=0;private transientLookRemaining=0;
   seatHeight=.54;
   react(name:ReactionName,target?:Vec3,duration=18){this.acting.react(name,duration);if(target)this.setLook(target);}
   position:Vec3; yaw=0; state:AnimState='idle'; activity=''; currentScheduleIndex=-1; path:Vec3[]=[]; pathIndex=0; speed=1.55; animTime=0; targetLook?:Vec3;
   private pendingState:AnimState='idle';
-  private courtTarget?:Vec3;private courtFacing?:Vec3;private courtSpeed=3.15;
+  private courtTarget?:Vec3;private courtFacing?:Vec3;private courtSpeed=3.15;private courtSpeedScale=1;matchCompetitor=false;spectating=false;
   private previousState:AnimState='idle';private previousAnimTime=0;private transitionAge=1;private transitionDuration=.20;
   private walkCycle=new WalkCycle();private exitWalkPose:Pose|null=null;
   private targetYaw=0;private locomotion=0;private horizontalSpeed=0;private gaitPhase=0;private travelSpeed=0;
@@ -75,6 +75,9 @@ export class Character {
   private lastPose:Pose|null=null;private prevPosition:Vec3;private localVelocity=new Vec3();
   private courtPhase:CourtPhase='neutral';private courtPhaseAge=0;private courtMoveDelay=0;private development=50;
   private emotion:EmotionState='neutral';private emotionUntil=0;private conversationTarget?:Vec3;
+  private racketImpactAge=1;
+  private stringImpactStrength=0;
+  private stringImpactDirection=1;
   private racketVibration=0;private stepEvent=false;private lastStanceKey='';
 
   constructor(public spec:CharacterSpec,start:Vec3,private nav:Navigation,private destinations:Record<string,Vec3>){this.acting=new ActingState(spec.id);this.position=start.clone();this.prevPosition=start.clone();this.targetYaw=this.yaw;}
@@ -108,8 +111,25 @@ export class Character {
   }
   goTo(dest:Vec3,after:AnimState='idle'){if(this.state==='sit'){this.changeState('idle',false);this.departureDelay=.65;}this.clearCourtMove();this.path=this.nav.clubPath(this.position,dest);this.pathIndex=0;this.pendingState=after;if(this.departureDelay<=0)this.changeState(this.path.length?'walk':after,false);}
   moveOnCourt(dest:Vec3,faceTarget?:Vec3,split=true){this.path=[];this.pathIndex=0;this.courtTarget=dest.clone();this.courtFacing=faceTarget?.clone();this.courtPhase=split?'split':'recover';this.courtPhaseAge=0;this.courtMoveDelay=split?.09:0;this.changeState('shuffle',false);}
+  /**
+   * Continuous steering path used by interactive Championship movement.
+   * Unlike moveOnCourt(), updating the target does not restart the court phase
+   * every frame, so held input produces one continuous locomotion state.
+   */
+  steerOnCourt(dest:Vec3,faceTarget?:Vec3){
+    this.path=[];this.pathIndex=0;
+    const alreadySteering=!!this.courtTarget&&this.state==='shuffle';
+    this.courtTarget=dest.clone();
+    this.courtFacing=faceTarget?.clone();
+    this.courtMoveDelay=0;
+    if(!alreadySteering&&!isShot(this.state)){this.courtPhase='recover';this.courtPhaseAge=0;this.changeState('shuffle',false);}
+  }
+  /** Championship can scale court translation without bypassing the existing shuffle/foot solver. */
+  setCourtSpeedScale(scale:number){this.courtSpeedScale=clamp(scale,.05,1.5);}
+  getCourtSpeedScale(){return this.courtSpeedScale;}
   clearCourtMove(){this.courtTarget=undefined;this.courtFacing=undefined;if(!isShot(this.state)){this.courtPhase='neutral';this.courtPhaseAge=0;}}
-  setLook(target?:Vec3){this.targetLook=target?.clone();}
+  setLook(target?:Vec3){this.targetLook=target?.clone();this.transientLookRemaining=0;}
+  glanceAt(target:Vec3,duration=1.6){this.targetLook=target.clone();this.transientLookRemaining=Math.max(.1,duration);}
   setConversationPartner(target?:Vec3){this.conversationTarget=target?.clone();if(target)this.setLook(target);}
   private gestureAge=1;private previousGesture:import('../simulation/EverydayLife.js').Gesture='none';private gesture:import('../simulation/EverydayLife.js').Gesture='none';
   get socialGesture(){return this.gesture;}set socialGesture(g:import('../simulation/EverydayLife.js').Gesture){if(g!==this.gesture){this.previousGesture=this.gesture;this.gesture=g;this.gestureAge=0;}}
@@ -126,7 +146,21 @@ export class Character {
   getDevelopment(){return this.development;}
   tennisSkill(){if(this.spec.id==='coach')return .95;if(this.spec.id==='leo')return .72;if(this.spec.id==='nia')return .48;if(this.spec.id==='mika')return .44+this.development*.0048;return .62;}
   setEmotion(emotion:EmotionState,duration=.9){this.emotion=emotion;this.emotionUntil=duration;}
-  notifyRacketImpact(quality:'clean'|'frame'|'net'='clean'){this.racketVibration=quality==='clean'?1:quality==='frame'?1.45:.75;this.setEmotion(quality==='clean'?'pleased':quality==='frame'?'surprised':'disappointed',.55);}
+  notifyRacketImpact(quality:'perfect'|'clean'|'defensive'|'frame'|'net'='clean',normalDirection=1){
+    this.racketImpactAge=0;
+    this.stringImpactStrength=quality==='perfect'?1:quality==='clean'?.82:quality==='defensive'?.5:.3;
+    this.stringImpactDirection=normalDirection;
+    this.racketVibration=quality==='perfect'?1.42:quality==='clean'?1.05:quality==='defensive'?.72:quality==='frame'?1.5:.75;
+    this.setEmotion(quality==='perfect'||quality==='clean'?'pleased':quality==='frame'?'surprised':quality==='defensive'?'focused':'disappointed',quality==='perfect'?.7:.55);
+  }
+  /** Signed local depth shared by the visible strings and the latched ball. */
+  racketStringOffset(){
+    const age=this.racketImpactAge;
+    if(age>=.28)return 0;
+    const compression=age<.055?1-age*.3:Math.cos((age-.055)*49)*Math.exp(-(age-.055)*18);
+    return -this.stringImpactDirection*.085*this.stringImpactStrength*compression;
+  }
+
   consumeStepEvent(){const v=this.stepEvent;this.stepEvent=false;return v;}
   face(target:Vec3){const d=Vec3.sub(target,this.position);this.targetYaw=Math.atan2(d.x,d.z);}
   trigger(state:AnimState){this.changeState(state,true);if(isShot(state))this.clearCourtMove();}
@@ -149,10 +183,11 @@ export class Character {
   update(dt:number){
     this.propAge+=dt;this.departureDelay=Math.max(0,this.departureDelay-dt);if(!this.propWanted&&this.propAge>=.65){this.propKind=null;this.propAnchor=null;this.propRelease=null;}
     this.acting.update(dt,this.majorActivity||isShot(this.state)||this.state==='shuffle');this.crowdCooldown-=dt;this.gazeClock+=dt;
+    if(this.transientLookRemaining>0){this.transientLookRemaining=Math.max(0,this.transientLookRemaining-dt);if(this.transientLookRemaining===0)this.targetLook=undefined;}
     const look=this.targetLook??this.conversationTarget;let aim=look?Math.atan2(look.x-this.position.x,look.z-this.position.z):this.yaw;
-    if(look&&!this.majorActivity&&this.acting.role!=='none'&&this.gazeClock%(this.acting.values.gazeHold+1)>this.acting.values.gazeHold)aim+=.24;
+    if(look&&!this.spectating&&this.state!=='watch'&&!this.majorActivity&&this.acting.role!=='none'&&this.gazeClock%(this.acting.values.gazeHold+1)>this.acting.values.gazeHold)aim+=.24;
     if(!this.gazeStarted){this.gazeYaw=this.yaw;this.gazeStarted=true;}this.gazeYaw=dampAngle(this.gazeYaw,aim,5,dt);
-    this.animTime+=dt;this.gestureAge+=dt;this.transitionAge+=dt;this.courtPhaseAge+=dt;this.racketVibration=expDamp(this.racketVibration,0,18,dt);
+    this.racketImpactAge+=dt;this.animTime+=dt;this.gestureAge+=dt;this.transitionAge+=dt;this.courtPhaseAge+=dt;this.racketVibration=expDamp(this.racketVibration,0,18,dt);
     if(this.emotionUntil>0){this.emotionUntil=Math.max(0,this.emotionUntil-dt);if(this.emotionUntil===0)this.emotion='neutral';}
     const before=this.position.clone();let moved=0;
     if(this.pathIndex<this.path.length&&this.departureDelay<=0){
@@ -172,12 +207,13 @@ export class Character {
         this.changeState('walk',false);
         if(step>=dist){this.pathIndex++;if(this.pathIndex>=this.path.length){this.travelSpeed=0;this.trigger(this.pendingState);}}
       }
-    }else if(this.courtTarget){this.travelSpeed=expDamp(this.travelSpeed,0,8,dt);
+    }else if(this.courtTarget&&(!isShot(this.state)||this.matchCompetitor)){this.travelSpeed=expDamp(this.travelSpeed,0,8,dt);
       const d=Vec3.sub(this.courtTarget,this.position),dist=Math.hypot(d.x,d.z);
-      if(this.courtFacing){const fd=Vec3.sub(this.courtFacing,this.position);this.targetYaw=Math.atan2(fd.x,fd.z);}
+      const stroking=isShot(this.state);
+      if(this.courtFacing&&!stroking){const fd=Vec3.sub(this.courtFacing,this.position);this.targetYaw=Math.atan2(fd.x,fd.z);}
       if(this.courtMoveDelay>0){this.courtMoveDelay=Math.max(0,this.courtMoveDelay-dt);this.courtPhase='split';}
-      else if(dist<.055){this.position.x=this.courtTarget.x;this.position.z=this.courtTarget.z;this.courtTarget=undefined;this.courtPhase='load';this.courtPhaseAge=0;this.changeState('ready',false);}
-      else{const step=Math.min(dist,(this.courtSpeed+this.recoveryBonus+(this.practiceCue==='recovery'?.6:0))*dt);this.position.x+=d.x/dist*step;this.position.z+=d.z/dist*step;moved=step;this.courtPhase='adjust';this.changeState('shuffle',false);}
+      else if(dist<.055){this.position.x=this.courtTarget.x;this.position.z=this.courtTarget.z;this.courtTarget=undefined;if(!stroking){this.courtPhase='load';this.courtPhaseAge=0;this.changeState('ready',false);}}
+      else{const plant=stroking&&Math.abs(this.animTime-this.shotContactTime())<.07;const strokeScale=plant?0:stroking?.6:1;const step=Math.min(dist,(this.courtSpeed+this.recoveryBonus+(this.practiceCue==='recovery'?.6:0))*this.courtSpeedScale*strokeScale*dt);this.position.x+=d.x/dist*step;this.position.z+=d.z/dist*step;moved=step;if(!stroking){this.courtPhase='adjust';this.changeState('shuffle',false);}}
     }else {this.travelSpeed=expDamp(this.travelSpeed,0,7.5,dt);if(this.courtPhase==='recover'&&this.courtPhaseAge>.28){this.courtPhase='neutral';this.courtPhaseAge=0;}}
     const locomotionStyle=locomotionStyleFor(this.spec.id);this.yaw=dampAngle(this.yaw,this.targetYaw,isShot(this.state)?12:this.acting.role==='speak'||this.acting.role==='listen'?2.8:locomotionStyle.turnSharpness,dt);
     const worldVel=Vec3.sub(this.position,before).scale(dt>0?1/dt:0);const s=Math.sin(this.yaw),c=Math.cos(this.yaw);this.localVelocity.set(c*worldVel.x-s*worldVel.z,0,s*worldVel.x+c*worldVel.z);
@@ -205,13 +241,17 @@ export class Character {
   }
 
   private solveContactTarget(state:ShotState,incoming:Vec3|null){
-    if(state==='serve')return this.worldLocal(.14,2.36,.28);
-    const local=incoming?this.localFromWorld(incoming):new Vec3(state==='swingForehand'?.54:state==='swingBackhand'?-.42:.30,1.02,.48);
-    local.y=clamp(local.y,state==='volley'?.90:.66,state==='volley'?1.58:1.38);local.z=clamp(local.z,.28,.78);
+    // Intercept toward the opponent, even while the body is still turning
+    // out of lateral movement. The previous yaw could put this behind us.
+    const aim=this.outgoingTarget;
+    const shotYaw=aim?Math.atan2(aim.x-this.position.x,aim.z-this.position.z):this.yaw;
+    if(state==='serve')return this.worldLocal(.14,2.36,.38,shotYaw);
+    const local=incoming?this.localFromWorld(incoming,shotYaw):new Vec3(state==='swingForehand'?.54:state==='swingBackhand'?-.42:.30,1.02,.48);
+    local.y=clamp(local.y,state==='volley'?.90:.66,state==='volley'?1.58:1.38);local.z=clamp(local.z,.55,.90);
     if(state==='swingForehand')local.x=clamp(Math.abs(local.x)+.18,.46,.88);
     if(state==='swingBackhand')local.x=-clamp(Math.abs(local.x)+.12,.30,.76);
     if(state==='volley')local.x=clamp(local.x,-.56,.56);
-    return this.worldLocal(local.x,local.y,local.z);
+    return this.worldLocal(local.x,local.y,local.z,shotYaw);
   }
 
   private updateFootPlanting(){
@@ -241,7 +281,7 @@ export class Character {
   }
 
   private worldLocal(x:number,y:number,z:number,yaw=this.yaw){const s=Math.sin(yaw),c=Math.cos(yaw);const shift=this.state==='sit'?-this.seatDepth*smoothstep(0,.6,this.animTime):0;return new Vec3(this.position.x+c*x+s*(z+shift),y,this.position.z-s*x+c*(z+shift));}
-  private localFromWorld(v:Vec3){const dx=v.x-this.position.x,dz=v.z-this.position.z,s=Math.sin(this.yaw),c=Math.cos(this.yaw);return new Vec3(c*dx-s*dz,v.y,s*dx+c*dz);}
+  private localFromWorld(v:Vec3,yaw=this.yaw){const dx=v.x-this.position.x,dz=v.z-this.position.z,s=Math.sin(yaw),c=Math.cos(yaw);return new Vec3(c*dx-s*dz,v.y,s*dx+c*dz);}
   private limb(a:Vec3,b:Vec3,r:number,color:string):Mesh{const d=Vec3.sub(b,a),len=d.len()||.001;const h=Math.hypot(d.x,d.z);const pitch=Math.atan2(h,d.y);const yaw=Math.atan2(d.x,d.z);return {kind:'cylinder',position:Vec3.lerp(a,b,.5),rotation:new Vec3(pitch,yaw,0),scale:new Vec3(r,len,r),color};}
   private seed(){let n=0;for(const c of this.spec.id)n+=c.charCodeAt(0);return n;}
   private shotProgress(state=this.state,time=this.animTime){return isShot(state)?clamp(time/Math.max(.001,this.shotDuration(state)),0,1):0;}
@@ -263,8 +303,8 @@ export class Character {
     if(state==='volley'){coil+=(sp<contact?-.14:.20);hipCoil+=coil*.35;knee+=.055;weightShift=smoothstep(.18,.66,sp);}
     const moving=state==='walk'||state==='jog';const shuffle=state==='shuffle';const gait=moving?Math.cos(this.gaitPhase):0;const gaitStyle=locomotionStyleFor(this.spec.id);const stepLift=moving?Math.pow(Math.abs(Math.sin(this.gaitPhase)),1.7)*gaitStyle.bounce:0;const gaitCounter=moving?Math.sin(this.gaitPhase)*gaitStyle.torsoCounter:0;const splitHop=this.courtPhase==='split'?Math.sin(Math.min(1,this.courtPhaseAge/.10)*Math.PI)*.055:0;
     if(state==='idle'){const phase=time*this.acting.values.idleFidgetRate*(this.spec.id==='mika'?.92:this.spec.id==='nia'?.68:.58)+this.seed()*.037;const amp=this.spec.id==='coach'?.010:this.spec.id==='mika'?.024:this.spec.id==='nia'?.018:.015;hipCoil+=Math.sin(phase)*amp;coil-=Math.sin(phase)*amp*.72;baseY+=Math.sin(phase*1.7)*amp*.13;}
-    if(moving){coil=gait*gaitStyle.torsoCounter*.45;hipCoil=-gait*gaitStyle.hipSwing*.45;baseY=.008+Math.sin(this.gaitPhase*2)*.012;lean=0;knee=0;}const torsoYaw=this.yaw+coil,hipYaw=this.yaw+hipCoil;
-    const targetHeadYaw=this.gazeYaw;const headYaw=this.yaw+clamp(angleDelta(this.yaw,targetHeadYaw),-.42,.42)+clip.headTurn;
+    if(moving){coil=gait*gaitStyle.torsoCounter*.45;hipCoil=-gait*gaitStyle.hipSwing*.45;baseY=.008+Math.sin(this.gaitPhase*2)*.012;lean=0;knee=0;}const watchDelta=(state==='watch'||this.spectating)?clamp(angleDelta(this.yaw,this.gazeYaw),-.78,.78):0;const torsoYaw=this.yaw+coil+watchDelta*.30,hipYaw=this.yaw+hipCoil+watchDelta*.07;
+    const targetHeadYaw=this.gazeYaw;const headLimit=(state==='watch'||this.spectating)?.70:.42;const headYaw=this.yaw+clamp(angleDelta(this.yaw,targetHeadYaw),-headLimit,headLimit)+clip.headTurn;
     const sy=Math.sin(headYaw),cy=Math.cos(headYaw),right=new Vec3(cy,0,-sy),forward=new Vec3(sy,0,cy);
 
     const contactLocal=this.contactTarget?this.localFromWorld(this.contactTarget):new Vec3(state==='swingBackhand'?-.52:state==='serve'?.14:.56,state==='serve'?2.36:1.02,.5);
@@ -458,19 +498,34 @@ export class Character {
       m.push({kind:'torus',position:Vec3.add(charm,new Vec3(0,.07,0)),rotation:new Vec3(.3,torsoYaw,0),scale:new Vec3(.28,.20,.025),color:this.spec.avatar==='taylor'?'#dbb447':'#c6c6bd',material:'metal'});
       if(this.spec.avatar==='taylor')m.push({kind:'sphere',position:charm,scale:new Vec3(.10,.12,.035),color:'#50b8b4',material:'ceramic'});
     }
-    if(this.spec.id!=='nia'&&(pose.shot||this.state==='ready'||this.state==='shuffle'||this.socialGesture==='inspect'&&!this.racketStowed)&&!this.racketStowed&&this.state!=='drink'&&!this.propKind){
+    if((this.matchCompetitor||this.spec.id!=='nia')&&(pose.shot||this.state==='ready'||this.state==='shuffle'||this.socialGesture==='inspect'&&!this.racketStowed)&&!this.racketStowed&&this.state!=='drink'&&!this.propKind){
       m.push(this.limb(racketGrip,racketHandleTop,.048,'#705747'));
       // One readable frame, then an actual string bed. The old second torus read as a hollow ring.
       m.push({kind:'torus',position:racketCenter,rotation:racketRot,scale:new Vec3(.88,1.10,.62),color:this.spec.accent??'#e0c474',material:'metal'});
       m.push({kind:'sphere',position:racketCenter,rotation:racketRot,scale:new Vec3(.61,.79,.034),color:'#edf4e7',alpha:.20,unlit:true,noShadow:true});
-      const stringColor='#c8e1d4';
-      for(const x of [-.36,-.24,-.12,0,.12,.24,.36]){
-        const q=Vec3.add(racketCenter,rotateEulerVector(new Vec3(x,0,0),racketRot));
-        m.push({kind:'roundBox',position:q,rotation:racketRot,scale:new Vec3(.022,.71,.022),color:stringColor,alpha:.92,unlit:true,noShadow:true});
+      // Fixed ends and a yielding middle make impact read as a string bed,
+      // rather than a solid paddle. Only a confirmed contact loads the strings.
+      const depth=this.racketStringOffset();
+      const stringColor=this.racketImpactAge<.10?'#fffbd6':'#d8e9dc';
+      const worldPoint=(x:number,y:number,z:number)=>Vec3.add(racketCenter,rotateEulerVector(new Vec3(x,y,z),racketRot));
+      const stringHalf=(a:Vec3,b:Vec3)=>{
+        const segment=this.limb(a,b,.014,stringColor);
+        segment.id='racket-string';
+        segment.unlit=true;
+        segment.noShadow=true;
+        m.push(segment);
+      };
+      for(const x of [-.24,-.16,-.08,0,.08,.16,.24]){
+        const halfHeight=.44*Math.sqrt(1-(x/.32)**2);
+        const middle=worldPoint(x,0,depth*(1-(x/.32)**2));
+        stringHalf(worldPoint(x,-halfHeight,0),middle);
+        stringHalf(middle,worldPoint(x,halfHeight,0));
       }
-      for(const y of [-.48,-.32,-.16,0,.16,.32,.48]){
-        const q=Vec3.add(racketCenter,rotateEulerVector(new Vec3(0,y,0),racketRot));
-        m.push({kind:'roundBox',position:q,rotation:racketRot,scale:new Vec3(.55,.022,.022),color:stringColor,alpha:.88,unlit:true,noShadow:true});
+      for(const y of [-.36,-.24,-.12,0,.12,.24,.36]){
+        const halfWidth=.32*Math.sqrt(1-(y/.46)**2);
+        const middle=worldPoint(0,y,depth*(1-(y/.46)**2));
+        stringHalf(worldPoint(-halfWidth,y,0),middle);
+        stringHalf(middle,worldPoint(halfWidth,y,0));
       }
       // A tiny butt cap makes the hand-to-racket constraint visually obvious at close zoom.
       m.push({kind:'cylinder',position:racketGrip,rotation:new Vec3(Math.PI/2,this.yaw,0),scale:new Vec3(.075,.10,.075),color:'#44372f',material:'fabric'});
