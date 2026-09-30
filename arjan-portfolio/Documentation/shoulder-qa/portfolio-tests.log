@@ -1,0 +1,19 @@
+
+> arjan-singh-puniani-portfolio@1.0.0 test
+> vitest run tests
+
+
+ RUN  v4.0.8 /Users/arjan/Library/Mobile Documents/com~apple~CloudDocs/mcat/DO/wins/website/shoulder-2/arjan-portfolio
+
+ ✓ tests/endless-rally.test.ts (48 tests) 96ms
+ ✓ tests/components.test.tsx (3 tests) 143ms
+ ✓ tests/vector-tennis.test.ts (11 tests) 4ms
+ ✓ tests/content.test.ts (6 tests) 4ms
+ ✓ tests/rally-house-integration.test.ts (5 tests) 5ms
+ ✓ tests/reasonos-kernel.test.ts (6 tests) 4ms
+ ✓ tests/reasonos-vector.test.ts (8 tests) 3ms
+
+ Test Files  7 passed (7)
+      Tests  87 passed (87)
+   Start at  11:04:51
+   Duration  1.98s (transform 279ms, setup 372ms, collect 517ms, tests 258ms, environment 2.06s, prepare 58ms)

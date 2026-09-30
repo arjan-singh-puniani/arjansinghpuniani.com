@@ -77,3 +77,7 @@ All twenty structures are BodyParts3D / ISA Release 4.0, CC BY 4.0. Attribution:
 ![Deployed mobile](shoulder-baseline/mobile.png)
 
 Audit gate satisfied for reconstruction: actual production inspected and captured; source inventory measured; failures and hardware limitations explicitly recorded. No claim of clinical validation or successful release.
+
+## Baseline finalization
+
+The complete copied working tree passes `npm run typecheck` and `npm run build`. The original default fork-based test runner timed out; the same suite passes with `npm test -- --pool=threads --maxWorkers=2`: 87 tests. The worker-pool workaround changes execution concurrency, not assertions. Official source tables were downloaded read-only and all 20 FMA-to-mesh mappings were checked (see official-verification.json); SHA-256 hashes were recorded.

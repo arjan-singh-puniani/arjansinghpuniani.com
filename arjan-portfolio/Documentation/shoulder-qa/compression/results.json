@@ -1,0 +1,38 @@
+{
+  "environment": "v22.23.2",
+  "results": [
+    {
+      "kind": "uncompressed",
+      "bytes": 1130508,
+      "gzipBytes": 856980,
+      "brotliBytes": 765262,
+      "encodeMs": 0.001249999999913598,
+      "meanParseDecodeMs": 1.3602665999999999,
+      "notes": "No decoder dependency or quantization."
+    },
+    {
+      "kind": "meshopt",
+      "bytes": 430928,
+      "gzipBytes": 346517,
+      "brotliBytes": 317121,
+      "encodeMs": 69.30600000000004,
+      "meanParseDecodeMs": 3.8283081999999924,
+      "notes": "Quantized candidate; not shipped until error/landmark validation."
+    },
+    {
+      "kind": "draco",
+      "bytes": 196220,
+      "gzipBytes": 179637,
+      "brotliBytes": 174929,
+      "encodeMs": 76.86133400000017,
+      "meanParseDecodeMs": 13.520041599999967,
+      "notes": "Quantized candidate; not shipped until error/landmark validation."
+    }
+  ],
+  "ktx2": {
+    "sourceTextures": 0,
+    "sourceTextureBytes": 0,
+    "decision": "No texture payload to compress. Basis/KTX2 introduces decoder/transcoder cost without a current benefit."
+  },
+  "decision": "Ship plain indexed GLB with HTTP compression. Keep compressed candidates in QA only until per-landmark quantization is validated."
+}

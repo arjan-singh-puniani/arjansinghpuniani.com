@@ -1,0 +1,6 @@
+{
+  "cube": "PASS: face, oblique corner, independent drag",
+  "keyboard": "PASS: keyboard reset and orbit",
+  "staging": "PASS: four camera-relative slots remain in viewport during orbit",
+  "status": "PASS"
+}

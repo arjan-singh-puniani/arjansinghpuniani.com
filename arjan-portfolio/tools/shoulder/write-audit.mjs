@@ -1,7 +1,16 @@
-import {readFile,writeFile} from 'node:fs/promises';
-const a=JSON.parse(await readFile('Documentation/shoulder-baseline/mesh-inventory.json'));
-const rows=a.map(p=>`| ${p.id} | ${p.name} | ${p.vertexCount} | ${p.faceCount} | ${p.hasUV?'yes':'no'} / yes / no | ${p.layer} | ${JSON.stringify(p.bounds.min)} → ${JSON.stringify(p.bounds.max)} |`).join('\n');
-await writeFile('Documentation/HOLOANATOMY-SHOULDER-2-AUDIT.md',`# HoloAnatomy Shoulder 2.0 — frozen audit
+import { readFile, writeFile } from "node:fs/promises";
+const a = JSON.parse(
+  await readFile("Documentation/shoulder-baseline/mesh-inventory.json"),
+);
+const rows = a
+  .map(
+    (p) =>
+      `| ${p.id} | ${p.name} | ${p.vertexCount} | ${p.faceCount} | ${p.hasUV ? "yes" : "no"} / yes / no | ${p.layer} | ${JSON.stringify(p.bounds.min)} → ${JSON.stringify(p.bounds.max)} |`,
+  )
+  .join("\n");
+await writeFile(
+  "Documentation/HOLOANATOMY-SHOULDER-2-AUDIT.md",
+  `# HoloAnatomy Shoulder 2.0 — frozen audit
 
 Recorded 2026-09-30 before redesign. Base commit: a9f0b9167527ffc221e17285d65c3787509f2b2e. Dedicated branch: holoanatomy-shoulder-2-20260930. Isolated worktree includes the current working changes; the original checkout remains untouched. Full status and binary diff are preserved in shoulder-baseline. Existing local changes include portfolio copy and a shoulderStudio module; deployed production still exposes the earlier Quiz/Exhibits toolbar.
 
@@ -61,4 +70,5 @@ ${rows}
 ![Deployed mobile](shoulder-baseline/mobile.png)
 
 Audit gate satisfied for reconstruction: actual production inspected and captured; source inventory measured; failures and hardware limitations explicitly recorded. No claim of clinical validation or successful release.
-`);
+`,
+);

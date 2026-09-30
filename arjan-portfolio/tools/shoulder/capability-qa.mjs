@@ -1,11 +1,96 @@
-import{chromium,expect}from'@playwright/test';import{readFile,writeFile}from'node:fs/promises';import AxeBuilder from'@axe-core/playwright';
-const browser=await chromium.launch({channel:'chrome',headless:true});const result={};const base='http://127.0.0.1:4190/holoanatomy/shoulder/';
-try{const context=await browser.newContext({viewport:{width:1440,height:900},reducedMotion:'reduce'});const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.route('**/shoulder-lod0.glb',route=>route.fulfill({body:readFixture,contentType:'model/gltf-binary'}));
- const readFixture=await readFile('Documentation/shoulder-qa/fixtures/textured-mixed.glb');await page.goto(base);await page.waitForFunction(()=>window.shoulderStudio?.ready);result.materials=await page.evaluate(()=>({structures:shoulderStudio.scene.meshes.size,fragments:shoulderStudio.scene.fragments.get('FJ3384').length,maps:shoulderStudio.scene.fragments.get('FJ3384').map(m=>({map:!!m.material.map,normal:!!m.material.normalMap,roughness:!!m.material.roughnessMap,ao:!!m.material.aoMap,metalness:m.material.metalness})),legacy:shoulderStudio.scene.meshes.get('FJ1506').material.map===null}));expect(result.materials.structures).toBe(20);expect(result.materials.fragments).toBe(2);expect(result.materials.legacy).toBe(true);for(const m of result.materials.maps)expect(m).toEqual({map:true,normal:true,roughness:true,ao:true,metalness:0});
- await page.click('#information');await page.click('[data-info-face="0"]');expect(await page.evaluate(()=>shoulderStudio.scene.yaw)).toBe(0);
- await page.click('#reset');await page.click('[data-mode=peel]');await page.locator('#peel-range').fill('2');await page.click('[data-action=separate]');await page.click('[data-action=reassemble]');expect(await page.evaluate(()=>shoulderStudio.state.staged.length)).toBe(0);
- await page.click('[data-mode=explore]');const a11y=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();result.accessibility=a11y.violations.map(v=>({id:v.id,impact:v.impact,description:v.description,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}));expect(errors).toEqual([]);
- // No-WebGL fallback remains readable and linked to provenance.
- const noGL=await browser.newPage();await noGL.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){return type.includes('webgl')?null:original.call(this,type,...args);};});await noGL.goto(base);await expect(noGL.locator('#error')).toBeVisible();await expect(noGL.locator('#error a')).toHaveAttribute('href','./assets/provenance.json');result.fallback='PASS';await noGL.close();
- result.status=result.accessibility.length?'A11Y needs fixes':'PASS';console.log(JSON.stringify(result,null,2));
-}finally{await writeFile('Documentation/shoulder-qa/capability-results.json',JSON.stringify(result,null,2));await browser.close();}
+import { chromium, expect } from "@playwright/test";
+import { readFile, writeFile } from "node:fs/promises";
+import AxeBuilder from "@axe-core/playwright";
+const browser = await chromium.launch({ channel: "chrome", headless: true });
+const result = {};
+const base = "http://127.0.0.1:4190/holoanatomy/shoulder/";
+try {
+  const context = await browser.newContext({
+    viewport: { width: 1440, height: 900 },
+    reducedMotion: "reduce",
+  });
+  const page = await context.newPage();
+  const errors = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  await page.route("**/shoulder-lod0.glb", (route) =>
+    route.fulfill({ body: readFixture, contentType: "model/gltf-binary" }),
+  );
+  const readFixture = await readFile(
+    "Documentation/shoulder-qa/fixtures/textured-mixed.glb",
+  );
+  await page.goto(base);
+  await page.waitForFunction(() => window.shoulderStudio?.ready);
+  result.materials = await page.evaluate(() => ({
+    structures: shoulderStudio.scene.meshes.size,
+    fragments: shoulderStudio.scene.fragments.get("FJ3384").length,
+    maps: shoulderStudio.scene.fragments
+      .get("FJ3384")
+      .map((m) => ({
+        map: !!m.material.map,
+        normal: !!m.material.normalMap,
+        roughness: !!m.material.roughnessMap,
+        ao: !!m.material.aoMap,
+        metalness: m.material.metalness,
+      })),
+    legacy: shoulderStudio.scene.meshes.get("FJ1506").material.map === null,
+  }));
+  expect(result.materials.structures).toBe(20);
+  expect(result.materials.fragments).toBe(2);
+  expect(result.materials.legacy).toBe(true);
+  for (const m of result.materials.maps)
+    expect(m).toEqual({
+      map: true,
+      normal: true,
+      roughness: true,
+      ao: true,
+      metalness: 0,
+    });
+  await page.click("#information");
+  await page.click('[data-info-face="0"]');
+  expect(await page.evaluate(() => shoulderStudio.scene.yaw)).toBe(0);
+  await page.click("#reset");
+  await page.click("[data-mode=peel]");
+  await page.locator("#peel-range").fill("2");
+  await page.click("[data-action=separate]");
+  await page.click("[data-action=reassemble]");
+  expect(await page.evaluate(() => shoulderStudio.state.staged.length)).toBe(0);
+  await page.click("[data-mode=explore]");
+  const a11y = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+    .analyze();
+  result.accessibility = a11y.violations.map((v) => ({
+    id: v.id,
+    impact: v.impact,
+    description: v.description,
+    nodes: v.nodes.map((n) => ({
+      target: n.target,
+      summary: n.failureSummary,
+    })),
+  }));
+  expect(errors).toEqual([]);
+  // No-WebGL fallback remains readable and linked to provenance.
+  const noGL = await browser.newPage();
+  await noGL.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (type, ...args) {
+      return type.includes("webgl") ? null : original.call(this, type, ...args);
+    };
+  });
+  await noGL.goto(base);
+  await expect(noGL.locator("#error")).toBeVisible();
+  await expect(noGL.locator("#error a")).toHaveAttribute(
+    "href",
+    "./assets/provenance.json",
+  );
+  result.fallback = "PASS";
+  await noGL.close();
+  result.status = result.accessibility.length ? "A11Y needs fixes" : "PASS";
+  console.log(JSON.stringify(result, null, 2));
+  expect(result.accessibility).toEqual([]);
+} finally {
+  await writeFile(
+    "Documentation/shoulder-qa/capability-results.json",
+    JSON.stringify(result, null, 2),
+  );
+  await browser.close();
+}

@@ -1,0 +1,26 @@
+{
+  "materials": {
+    "structures": 20,
+    "fragments": 2,
+    "maps": [
+      {
+        "map": true,
+        "normal": true,
+        "roughness": true,
+        "ao": true,
+        "metalness": 0
+      },
+      {
+        "map": true,
+        "normal": true,
+        "roughness": true,
+        "ao": true,
+        "metalness": 0
+      }
+    ],
+    "legacy": true
+  },
+  "accessibility": [],
+  "fallback": "PASS",
+  "status": "PASS"
+}
