@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f0eee7"><title>HoloAnatomy — Rotator Cuff Studio</title>
+<meta name="description" content="An interactive, source-transparent study of the right rotator cuff. Explore, peel, learn and practice with real BodyParts3D geometry.">
+<link rel="canonical" href="https://arjansinghpuniani.com/playground/holoanatomy">
+<link rel="stylesheet" href="./studio.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+</head>
+<body>
+<a class="skip" href="#mode-controls">Skip to anatomy controls</a>
+<header class="masthead"><a class="brand" href="/playground/holoanatomy" target="_top" aria-label="HoloAnatomy portfolio page"><span class="brand-icon" aria-hidden="true">H</span><span>HOLO<span class="brand-light">ANATOMY</span><small>SPATIAL ANATOMY / 02</small></span></a><div class="top-actions"><button id="reset" title="Reset (R)">↺ <span>Reset</span></button><button id="information" aria-haspopup="dialog" aria-label="Sources, limitations and settings">ⓘ <span>About</span></button><button id="fullscreen" aria-label="Enter full screen">⛶</button></div></header>
+<main class="studio">
+<section class="viewport" aria-label="Right shoulder specimen">
+ <div class="view-caption"><span class="edition">RIGHT SHOULDER</span><h1>Rotator cuff.</h1><p id="view-purpose">Four muscles. One stabilizing system.</p></div>
+ <canvas id="specimen" tabindex="0" aria-label="Interactive right shoulder. Drag to orbit, click a structure to select. Arrow keys orbit, plus and minus zoom, F focuses, R resets."></canvas>
+ <svg id="leaders" aria-hidden="true"></svg><div id="atlas" aria-label="Anatomy labels"></div>
+ <div id="orientation" aria-label="Anatomical orientation. Drag to orbit." role="group"><svg id="cube" viewBox="0 0 140 140" aria-hidden="true"></svg><div id="cube-faces"></div><span class="cube-caption">DRAG TO ORBIT</span></div>
+ <div id="hover" hidden aria-hidden="true"></div>
+ <div id="loading" role="status"><span class="loading-ring"></span><strong>Preparing the specimen</strong><span>Verified source geometry · right shoulder</span></div>
+ <div id="error" role="alert" hidden><h2>The specimen could not load.</h2><p id="error-message"></p><button onclick="location.reload()">Try again</button><a href="./assets/provenance.json">Read the anatomy data</a></div>
+ <div class="view-bottom"><span id="crop-note">Proximal view · distal shaft cropped</span><div class="zoom-controls"><button id="zoom-out" aria-label="Zoom out">−</button><button id="zoom-in" aria-label="Zoom in">+</button></div></div>
+</section>
+<aside class="inspector" aria-label="Anatomy controls and learning">
+ <div class="inspector-top"><span class="edition">THE SHOULDER STUDY</span><p class="lede">Understand the cuff<br>from every side.</p></div>
+ <label class="field-label" for="view-select">POINT OF VIEW</label><select id="view-select"></select>
+ <div class="panel-tools"><button id="atlas-toggle" aria-pressed="true">Atlas labels</button><button id="structures-toggle" aria-expanded="false">Structures <span>20</span></button></div>
+ <div id="structure-list" hidden></div>
+ <div id="context"></div>
+ <div id="feedback" role="status" aria-live="polite"></div>
+ <p class="source-note">SOURCE GEOMETRY<br>BodyParts3D · Release 4.0<br><a href="#" id="source-link">What this model can show ↗</a></p>
+</aside>
+</main>
+<footer class="bottom-bar"><nav id="mode-controls" aria-label="Anatomy learning modes"><button data-mode="explore" aria-pressed="true"><span>01</span> Explore</button><button data-mode="peel" aria-pressed="false"><span>02</span> Peel</button><button data-mode="learn" aria-pressed="false"><span>03</span> Learn</button><button data-mode="quiz" aria-pressed="false"><span>04</span> Quiz</button></nav><p class="gesture-help">Drag to orbit <i>·</i> Two-finger scroll to pan <i>·</i> Pinch to zoom</p><span class="version">SHOULDER / 2.0</span></footer>
+<dialog id="info-dialog" aria-labelledby="info-heading"><div class="dialog-head"><span class="edition">SOURCE / METHOD / CONTROLS</span><button id="close-info" aria-label="Close information">×</button></div><h2 id="info-heading">Anatomy with a source.</h2><div id="information-body"></div></dialog>
+<noscript>This interactive anatomy study requires JavaScript. <a href="./assets/provenance.json">Anatomy source data</a> remains available.</noscript>
+<script type="module" src="./app.js"></script>
+</body></html>

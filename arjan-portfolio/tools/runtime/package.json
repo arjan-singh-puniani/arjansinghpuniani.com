@@ -1,0 +1,1 @@
+{"name":"holoanatomy-asset-tools","private":true,"type":"module","dependencies":{"three":"0.180.0","@gltf-transform/core":"4.2.1","@gltf-transform/extensions":"4.2.1","@gltf-transform/functions":"4.2.1","meshoptimizer":"0.24.0","draco3dgltf":"1.5.7"}}
