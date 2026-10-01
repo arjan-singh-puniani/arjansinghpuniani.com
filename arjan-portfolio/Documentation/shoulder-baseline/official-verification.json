@@ -1,0 +1,162 @@
+[
+  {
+    "id": "FJ3384",
+    "fma": "FMA13395",
+    "integratedName": "Right scapula",
+    "officialName": "right scapula",
+    "mapping": "FMA13395\tright scapula\tFJ3384",
+    "sourceSha256": "1641b04e55f9d75bdd6f1f4f07ea596e5dea0a8cb6b348bff47281b8a0bc6e5d"
+  },
+  {
+    "id": "FJ3362",
+    "fma": "FMA13322",
+    "integratedName": "Right clavicle",
+    "officialName": "right clavicle",
+    "mapping": "FMA13322\tright clavicle\tFJ3362",
+    "sourceSha256": "9a111cac8351e79dd1315aea90108fe56f78e4bf0159473e6ad727ba91b60e6d"
+  },
+  {
+    "id": "FJ3368",
+    "fma": "FMA23130",
+    "integratedName": "Right humerus",
+    "officialName": "right humerus",
+    "mapping": "FMA23130\tright humerus\tFJ3368",
+    "sourceSha256": "85f5445a11ecb029b027db0b9b34933982836d442b19ff531d1ca35a3bc3a237"
+  },
+  {
+    "id": "FJ1506",
+    "fma": "FMA32544",
+    "integratedName": "Right supraspinatus",
+    "officialName": "right supraspinatus",
+    "mapping": "FMA32544\tright supraspinatus\tFJ1506",
+    "sourceSha256": "793771eceb64385269ddeeb09245e8c53b67499194f6fa98049b5e17aafa8e0c"
+  },
+  {
+    "id": "FJ1500",
+    "fma": "FMA32547",
+    "integratedName": "Right infraspinatus muscle",
+    "officialName": "right infraspinatus muscle",
+    "mapping": "FMA32547\tright infraspinatus muscle\tFJ1500",
+    "sourceSha256": "28f61376a3a88a28d14c44e1c20e9b7a34129772c130afa003daceac801455b1"
+  },
+  {
+    "id": "FJ1504",
+    "fma": "FMA13414",
+    "integratedName": "Right subscapularis",
+    "officialName": "right subscapularis",
+    "mapping": "FMA13414\tright subscapularis\tFJ1504",
+    "sourceSha256": "fdcbfd01f93e2d24bd73f5cb259a311c9f9e90de08c41573439844eef5f605dd"
+  },
+  {
+    "id": "FJ1508",
+    "fma": "FMA32553",
+    "integratedName": "Right teres minor",
+    "officialName": "right teres minor",
+    "mapping": "FMA32553\tright teres minor\tFJ1508",
+    "sourceSha256": "f56e595b86cea659891664706cd4443acddd8dc69e4e5bb3855445eef302641a"
+  },
+  {
+    "id": "FJ1467",
+    "fma": "FMA34682",
+    "integratedName": "Acromial part of right deltoid",
+    "officialName": "acromial part of right deltoid",
+    "mapping": "FMA34682\tacromial part of right deltoid\tFJ1467",
+    "sourceSha256": "2f69f1a13c836539abca85d9b77f55f96319ad3fdd75c62f498eabe49b266bfe"
+  },
+  {
+    "id": "FJ1468",
+    "fma": "FMA34680",
+    "integratedName": "Clavicular part of right deltoid",
+    "officialName": "clavicular part of right deltoid",
+    "mapping": "FMA34680\tclavicular part of right deltoid\tFJ1468",
+    "sourceSha256": "09eebb4a8d72c91936b0bfde7f35829a58f56103ac158f559186698458bcc616"
+  },
+  {
+    "id": "FJ1513",
+    "fma": "FMA34684",
+    "integratedName": "Spinal part of right deltoid",
+    "officialName": "spinal part of right deltoid",
+    "mapping": "FMA34684\tspinal part of right deltoid\tFJ1513",
+    "sourceSha256": "ef8308c92fd0d01d8c0d7ffd9238305eefc2f28710d7bb58f451512abdc08e99"
+  },
+  {
+    "id": "FJ1478",
+    "fma": "FMA37686",
+    "integratedName": "Long head of right biceps brachii",
+    "officialName": "long head of right biceps brachii",
+    "mapping": "FMA37686\tlong head of right biceps brachii\tFJ1478",
+    "sourceSha256": "2442d2b5ac30c5da42e72eeff83d143df51c7617001cbc6552096a504f29bc07"
+  },
+  {
+    "id": "FJ3579",
+    "fma": "FMA3953",
+    "integratedName": "Right subclavian artery",
+    "officialName": "right subclavian artery",
+    "mapping": "FMA3953\tright subclavian artery\tFJ3579",
+    "sourceSha256": "1fb9231343dce90a8d62061c63e0102eb72d117f131eda7876abfeb0060b6ad3"
+  },
+  {
+    "id": "FJ2268",
+    "fma": "FMA22655",
+    "integratedName": "Right axillary artery",
+    "officialName": "right axillary artery",
+    "mapping": "FMA22655\tright axillary artery\tFJ2268",
+    "sourceSha256": "192c0b2607e669dc89a6eadd2c11f2fff904f010e4dca81822209865df7e5752"
+  },
+  {
+    "id": "FJ2303",
+    "fma": "FMA10698",
+    "integratedName": "Right suprascapular artery",
+    "officialName": "right suprascapular artery",
+    "mapping": "FMA10698\tright suprascapular artery\tFJ2303",
+    "sourceSha256": "7f065a02471a2664b8d258786de9eaa0a5923bdb3c346cc818908ba07faf243d"
+  },
+  {
+    "id": "FJ2298",
+    "fma": "FMA22678",
+    "integratedName": "Right subscapular artery",
+    "officialName": "right subscapular artery",
+    "mapping": "FMA22678\tright subscapular artery\tFJ2298",
+    "sourceSha256": "41050856a7c2cbb79984a78346a0e3dc13e271758a04012f2283fee2182a2f29"
+  },
+  {
+    "id": "FJ2273",
+    "fma": "FMA23180",
+    "integratedName": "Right circumflex scapular artery",
+    "officialName": "right circumflex scapular artery",
+    "mapping": "FMA23180\tright circumflex scapular artery\tFJ2273",
+    "sourceSha256": "37154eff6530ba3cb17412723850f45c3ee5be9d0d9b78e737c7a1f356c87b3c"
+  },
+  {
+    "id": "FJ2269",
+    "fma": "FMA13330",
+    "integratedName": "Right axillary vein",
+    "officialName": "right axillary vein",
+    "mapping": "FMA13330\tright axillary vein\tFJ2269",
+    "sourceSha256": "24438422321aa6665de6394aa39e79fdeabdf2bc56427a3419da4dc630546464"
+  },
+  {
+    "id": "FJ2302",
+    "fma": "FMA50859",
+    "integratedName": "Right suprascapular vein",
+    "officialName": "right suprascapular vein",
+    "mapping": "FMA50859\tright suprascapular vein\tFJ2302",
+    "sourceSha256": "05a1af2bdafa5d179753ce923971e3300a4451ce71788d9fc3bf115897dc92db"
+  },
+  {
+    "id": "FJ2299",
+    "fma": "FMA23114",
+    "integratedName": "Right subscapular vein",
+    "officialName": "right subscapular vein",
+    "mapping": "FMA23114\tright subscapular vein\tFJ2299",
+    "sourceSha256": "33e6404f1b8680e62a83624d352991e69e6929c8b087a6b62dee74e79264e90e"
+  },
+  {
+    "id": "FJ2274",
+    "fma": "FMA77949",
+    "integratedName": "Right circumflex scapular vein",
+    "officialName": "right circumflex scapular vein",
+    "mapping": "FMA77949\tright circumflex scapular vein\tFJ2274",
+    "sourceSha256": "ca9a1a47d874e0e8d7b419cd84e3fbf6f7a80be11bfb540f8cb9fdf2f04afa02"
+  }
+]

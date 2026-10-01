@@ -63,3 +63,6 @@ button:focus-visible,#game:focus-visible{outline:3px solid #b87535;outline-offse
   .catalog{max-height:34dvh}
   .buildControls button{min-height:44px}
 }
+
+/* A faint peripheral falloff lets warm fixtures own their corners. */
+#app::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2;background:radial-gradient(ellipse at 50% 46%,transparent 42%,rgba(12,25,32,.20) 100%);opacity:var(--club-atmosphere,1)}

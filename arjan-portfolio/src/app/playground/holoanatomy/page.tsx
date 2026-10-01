@@ -4,50 +4,119 @@ import styles from "./holoanatomy.module.css";
 import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "HoloAnatomy — Interactive 3D Anatomy",
-  description: "An interactive anatomy prototype with head and neck, shoulder, and heart models using BodyParts3D geometry.",
+  title: "HoloAnatomy | Rotator Cuff Studio",
+  description:
+    "Explore the right rotator cuff in 3D. Inspect source anatomy, peel layers, follow a spatial lesson, and practice identification in HoloAnatomy.",
   alternates: { canonical: "/playground/holoanatomy" },
   openGraph: {
     type: "website", url: `${siteUrl}/playground/holoanatomy`,
     title: "HoloAnatomy | Arjan Singh Puniani",
-    description: "An interactive anatomy prototype with head and neck, shoulder, and heart models using BodyParts3D geometry.",
+    description: "An interactive right rotator cuff prototype using BodyParts3D geometry, with layer controls, guided lessons, and identification exercises.",
     images: ["/images/playground/anatomy-learner.webp"],
   },
   twitter: {
     card: "summary_large_image", title: "HoloAnatomy | Arjan Singh Puniani",
-    description: "An interactive anatomy prototype using BodyParts3D geometry. Learning outcomes have not been tested.",
+    description: "An interactive rotator cuff prototype using BodyParts3D geometry. Learning outcomes have not been tested.",
     images: ["/images/playground/anatomy-learner.webp"],
   },
 };
 
 export default function HoloAnatomyPage() {
-  return <>
-    <header className={`page-hero ${styles.hero}`}>
-      <div className="shell">
-        <Link href="/playground">← Playground</Link>
-        <p className="eyebrow">HoloAnatomy · Interactive spatial anatomy</p>
-        <h1>HoloAnatomy</h1>
-        <p>I built this anatomy prototype using head and neck, shoulder, and heart geometry. Rotate the models, separate structures, and inspect their relationships.</p>
-        <div className={styles.actions}>
-          <a className="button" href="#anatomy">Explore anatomy ↓</a>
-          <a href="/holoanatomy/index.html" target="_blank" rel="noreferrer">Open full screen ↗</a>
+  return (
+    <>
+      <header className={`page-hero ${styles.hero}`}>
+        <div className="shell">
+          <Link href="/playground">← Playground</Link>
+          <p className="eyebrow">HoloAnatomy · Anatomy prototype</p>
+          <h1>HoloAnatomy rotator cuff studio</h1>
+          <p>
+            I built this anatomy prototype using BodyParts3D geometry.
+            Explore the right rotator cuff, separate the available layers,
+            and practice identifying structures.
+          </p>
+          <div className={styles.actions}>
+            <a className="button" href="#anatomy">
+              Explore the shoulder ↓
+            </a>
+            <a
+              href="/holoanatomy/shoulder/index.html"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open full screen ↗
+            </a>
+          </div>
         </div>
-      </div>
-    </header>
-    <section className={styles.viewerSection} id="anatomy" aria-label="Interactive anatomy viewer">
-      <div className="shell">
-        <p className={styles.instructions}>Drag to orbit and scroll or pinch to zoom. Choose an exhibit and select a structure to inspect or isolate it.</p>
-        <iframe className={styles.viewer} src="/holoanatomy/index.html" title="HoloAnatomy interactive 3D anatomy viewer" loading="lazy" allow="fullscreen" />
-        <p className={styles.note}>For more room on a small screen, <a href="/holoanatomy/index.html" target="_blank" rel="noreferrer">open the full-screen viewer ↗</a>.</p>
-      </div>
-    </section>
-    <section className="section">
-      <div className="shell">
-        <h2>Geometry source and limitations</h2>
-        <p>Educational visualization using BodyParts3D geometry. The head and neck exhibit includes only the nerve structures available in this dataset. It is not a complete nerve atlas, and learning outcomes have not been tested.</p>
-        <p>BodyParts3D, © The Database Center for Life Science licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC Attribution 4.0 International</a>.</p>
-        <p><a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/" target="_blank" rel="noreferrer">BodyParts3D source database ↗</a></p>
-      </div>
-    </section>
-  </>;
+      </header>
+      <section
+        className={styles.viewerSection}
+        id="anatomy"
+        aria-label="Rotator cuff studio"
+      >
+        <div className={styles.studioShell}>
+          <iframe
+            className={styles.viewer}
+            src="/holoanatomy/shoulder/index.html"
+            title="HoloAnatomy rotator cuff studio: explore, peel, learn and quiz"
+            loading="lazy"
+            allow="fullscreen"
+          />
+        </div>
+        <div className="shell">
+          <p className={styles.note}>
+            Drag to orbit. Click to select. Two-finger scrolling pans; pinch
+            zooms. For more room,{" "}
+            <a
+              href="/holoanatomy/shoulder/index.html"
+              target="_blank"
+              rel="noreferrer"
+            >
+              open the standalone studio ↗
+            </a>
+            .
+          </p>
+        </div>
+      </section>
+      <section className="section">
+        <div className={`shell ${styles.basis}`}>
+          <div>
+            <p className="eyebrow">Source and scope</p>
+            <h2>Geometry source and limitations</h2>
+          </div>
+          <div>
+            <p>
+              This study preserves twenty BodyParts3D surfaces. The four cuff
+              muscles can be explored in context, but separate tendons,
+              insertion footprints, cartilage and shoulder nerves are not
+              supplied. Curriculum text is distinguished from source geometry
+              throughout the studio. Learning outcomes have not been tested.
+            </p>
+            <p>
+              BodyParts3D, © The Database Center for Life Science licensed
+              under{" "}
+              <a href="https://creativecommons.org/licenses/by/4.0/">
+                CC Attribution 4.0 International
+              </a>
+              . The rendering and coordinate transforms are documented in the{" "}
+              <a href="/holoanatomy/shoulder/assets/provenance.json">
+                asset provenance
+              </a>
+              .
+            </p>
+            <p>
+              The earlier{" "}
+              <a
+                href="/holoanatomy/index.html"
+                target="_blank"
+                rel="noreferrer"
+              >
+                head, neck and heart exhibits ↗
+              </a>{" "}
+              remain available in the original viewer.
+            </p>
+          </div>
+        </div>
+      </section>
+    </>
+  );
 }

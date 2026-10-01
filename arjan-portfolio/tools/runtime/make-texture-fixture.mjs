@@ -1,0 +1,95 @@
+// Synthetic calibration textures only. This fixture is never a production anatomy asset.
+import { NodeIO } from "@gltf-transform/core";
+import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { createRequire } from "node:module";
+const require = createRequire(new URL("../../package.json", import.meta.url));
+const sharp = require("sharp");
+const io = new NodeIO(),
+  root = new URL("../../", import.meta.url);
+const doc = await io.readBinary(
+  await readFile(
+    new URL("public/holoanatomy/shoulder/assets/shoulder-lod0.glb", root),
+  ),
+);
+const pixels = new Uint8Array([
+  230, 220, 190, 255, 170, 120, 100, 255, 170, 120, 100, 255, 230, 220, 190,
+  255,
+]);
+const png = await sharp(pixels, { raw: { width: 2, height: 2, channels: 4 } })
+  .png()
+  .toBuffer();
+const normal = await sharp({
+  create: {
+    width: 2,
+    height: 2,
+    channels: 4,
+    background: { r: 128, g: 128, b: 255, alpha: 1 },
+  },
+})
+  .png()
+  .toBuffer();
+const base = doc
+  .createTexture("NON-ANATOMICAL calibration color")
+  .setImage(png)
+  .setMimeType("image/png");
+const normalTexture = doc
+  .createTexture("NON-ANATOMICAL flat normal")
+  .setImage(normal)
+  .setMimeType("image/png");
+const node = doc
+    .getRoot()
+    .listNodes()
+    .find((n) => n.getName() === "FJ3384"),
+  mesh = node.getMesh(),
+  primitive = mesh.listPrimitives()[0];
+const position = primitive.getAttribute("POSITION");
+const uv = new Float32Array(position.getCount() * 2);
+for (let i = 0; i < position.getCount(); i++) {
+  uv[i * 2] = (i % 10) / 10;
+  uv[i * 2 + 1] = (Math.floor(i / 10) % 10) / 10;
+}
+primitive.setAttribute(
+  "TEXCOORD_0",
+  doc
+    .createAccessor()
+    .setType("VEC2")
+    .setArray(uv)
+    .setBuffer(position.getBuffer()),
+);
+const mat = primitive.getMaterial();
+mat
+  .setBaseColorTexture(base)
+  .setNormalTexture(normalTexture)
+  .setRoughnessFactor(0.6)
+  .setMetallicFactor(0)
+  .setMetallicRoughnessTexture(base)
+  .setOcclusionTexture(base);
+// Split triangles into two primitives/materials, without changing anatomical positions.
+const indices = primitive.getIndices(),
+  a = indices.getArray(),
+  half = Math.floor(a.length / 6) * 3;
+const second = primitive.clone();
+primitive.setIndices(
+  doc
+    .createAccessor()
+    .setType("SCALAR")
+    .setArray(a.slice(0, half))
+    .setBuffer(indices.getBuffer()),
+);
+second.setIndices(
+  doc
+    .createAccessor()
+    .setType("SCALAR")
+    .setArray(a.slice(half))
+    .setBuffer(indices.getBuffer()),
+);
+second.setMaterial(mat.clone().setName("Second calibration material"));
+mesh.addPrimitive(second);
+await mkdir(new URL("Documentation/shoulder-qa/fixtures", root), {
+  recursive: true,
+});
+await writeFile(
+  new URL("Documentation/shoulder-qa/fixtures/textured-mixed.glb", root),
+  await io.writeBinary(doc),
+);
+console.log("Generated QA-only textured multi-material fixture.");

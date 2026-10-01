@@ -12,7 +12,9 @@ export class World {
     wallHeights = { west: 4.55, east: .48 };
     interactionFx = new Map();
     constructor() { const obstacles = [{ x: -9, z: 4.8, w: 3.5, d: 1.2 }, { x: -9, z: -5.8, w: 4.4, d: 1.35 }, { x: 8.6, z: 5.6, w: 3.8, d: 1.8 }, { x: 9.2, z: -4.6, w: 3.8, d: 1.7 }, { x: -7.5, z: .2, w: 1.7, d: 1.4 }, { x: 10.2, z: 3.9, w: 1.7, d: 1.3 }, { x: 6.7, z: -6.3, w: 1.7, d: 1.0 }, { x: -8.05, z: 1.6, w: 1.0, d: 2.7 }, { x: -11.2, z: -2.2, w: 1.1, d: 1.1 }, { x: -11.5, z: -.95, w: 1.0, d: 1.1 }, { x: -10.35, z: 6.35, w: 1.9, d: 1.25 }, { x: -10.35, z: 8.05, w: 1.9, d: 1.25 }, { x: -9.0, z: 7.2, w: 1.0, d: 1.0 }, { x: 11.35, z: .3, w: 1.2, d: 3.5 }, { x: 10.42, z: .05, w: 1.0, d: 3.2 }, { x: -2.6, z: 8.35, w: 3.2, d: 1.2 }, { x: 1.0, z: 8.35, w: 3.2, d: 1.2 }, { x: 4.6, z: 8.35, w: 3.2, d: 1.2 }, { x: -4.8, z: 7.9, w: .9, d: .9 }, { x: 5.6, z: 7.9, w: .9, d: .9 }, { x: -1.4, z: -8.3, w: 2.5, d: 1.0 }]; this.nav = new Navigation(obstacles); this.build(); }
-    triggerInteraction(kind, duration = 1.35) { this.interactionFx.set(kind, performance.now() / 1000 + duration); }
+    triggerInteraction(kind, duration = 1.35, position) {
+        this.interactionFx.set(kind, { until: performance.now() / 1000 + duration, position: position?.clone() });
+    }
     add(kind, x, y, z, sx, sy, sz, color, rotY = 0, alpha = 1, unlit = false, id, material) { this.meshes.push({ kind, position: new Vec3(x, y, z), rotation: new Vec3(0, rotY, 0), scale: new Vec3(sx, sy, sz), color, alpha, unlit, id, material }); }
     rb(x, y, z, sx, sy, sz, color, rotY = 0, alpha = 1, unlit = false, id, material) { this.add('roundBox', x, y, z, sx, sy, sz, color, rotY, alpha, unlit, id, material); }
     shadow(_x, _z, _sx, _sz, _a = .055) { }
@@ -97,6 +99,9 @@ export class World {
         for (let i = 0; i < 5; i++)
             this.add('sphere', -11.45 + (i % 3) * .52, 2.56 - Math.floor(i / 3) * .46, -9.18, .12, .12, .12, [palette.peach, palette.gold, palette.blue][i % 3], 0, 1, true);
         this.objects.push({ id: 'reception', label: 'Front desk', kind: 'reception', position: new Vec3(-9, 0, 4.8), radius: 2.2, description: 'Bookings, greetings, and the club’s calm command center.' });
+        // A shaded desk lamp: an actual practical source for the reception island.
+        this.add('cylinder', -8.8, 1.65, 4.8, .045, 1.04, .045, '#64513a', 0, 1, false, undefined, 'metal');
+        this.add('cone', -8.8, 2.26, 4.8, .56, .40, .56, '#cd9b6b', 0, 1, false, undefined, 'fabric');
         // Matcha bar: cups, stools, shelf, tea tins, hanging menu.
         this.rb(-9.1, .55, -5.8, 4.35, 1.1, 1.28, palette.woodDark, 0, 1, false, undefined, 'wood');
         this.rb(-9.1, 1.14, -5.8, 4.45, .11, 1.38, '#d0a47b', 0, 1, false, undefined, 'wood');
@@ -116,6 +121,10 @@ export class World {
         this.rb(-6.62, 2.58, -9.33, 2.65, 1.15, .08, '#f2e6d4');
         this.rb(-6.62, 2.58, -9.26, 2.30, .82, .06, '#7e957f');
         this.objects.push({ id: 'cafe', label: 'Matcha nook', kind: 'cafe', position: new Vec3(-9.1, 0, -5.8), radius: 2.5, description: 'Warm cups, little rituals, and half the club’s best conversations.' });
+        this.add('cylinder', -8.8, 3.12, -5.4, .024, 1.25, .024, '#514b40', 0, 1, false, undefined, 'metal');
+        this.add('cone', -8.8, 2.53, -5.4, .74, .34, .74, '#b88054', 0, 1, false, undefined, 'metal');
+        this.add('cylinder', 9.2, 3.12, -4.6, .024, 1.25, .024, '#514b40', 0, 1, false, undefined, 'metal');
+        this.add('cone', 9.2, 2.45, -4.6, .64, .32, .64, '#c19460', 0, 1, false, undefined, 'metal');
         // Training nook: a rounder ball machine, cones and floor ladder.
         this.add('sphere', -7.5, .72, .2, 1.02, .92, .92, '#6f9477');
         this.add('sphere', -7.45, .84, -.02, .62, .48, .48, '#96b19b');
@@ -151,6 +160,8 @@ export class World {
         for (let i = 0; i < 8; i++)
             this.book(10.28 + (i % 4) * .34, .72 + Math.floor(i / 4) * .54, 6.06, [palette.peach, palette.sage, palette.blue, palette.gold][i % 4], (i % 2) * .04 - .02);
         this.objects.push({ id: 'lounge', label: 'Player lounge', kind: 'lounge', position: new Vec3(8.5, 0, 5.8), radius: 2.7, description: 'A soft place to watch, talk, recover, or simply let the club happen around you.' });
+        this.objects.push({ id: 'journal', label: 'Club journal', kind: 'paper', position: new Vec3(6.9, 0, 4.55), radius: .65, description: 'Pages softened by years of post-match conversations.' });
+        this.objects.push({ id: 'historyShelf', label: 'Club history', kind: 'trophy', position: new Vec3(4.25, 0, -8.8), radius: .75, description: 'Small victories kept where everyone can see them.' });
         // Signature bonsai corner: a windswept miniature tree on a low crafted cabinet.
         this.rb(10.2, .55, 3.9, 1.72, 1.1, 1.24, palette.woodDark, 0, 1, false, undefined, 'wood');
         this.addBonsai(10.2, 3.9, 1.05, 'windswept', 1.08, '#8f6657');
@@ -378,35 +389,42 @@ export class World {
     addPlant(x, z, s = 1) { this.add('cone', x, .38 * s, z, .66 * s, .76 * s, .66 * s, palette.terracotta, 0, 1, false, undefined, 'ceramic'); this.add('cylinder', x, .94 * s, z, .12 * s, 1.0 * s, .12 * s, '#5d725e', 0, 1, false, undefined, 'wood'); for (const [dx, dy, dz, c] of [[-.28, .0, 0, '#6d896f'], [.28, .08, 0, '#78aa82'], [0, .16, .18, '#7b987b'], [0, .08, -.2, '#668268']])
         this.add('sphere', x + dx * s, 1.28 * s + dy * s, z + dz * s, .56 * s, .28 * s, .31 * s, c, 0, 1, false, undefined, 'leaf'); }
     addLamp(x, z) { this.add('cylinder', x, 1.1, z, .07, 2.2, .07, '#56665b', 0, 1, false, undefined, 'metal'); this.add('cone', x, 2.18, z, .80, .68, .80, palette.peach, 0, 1, true, undefined, 'fabric'); this.add('sphere', x, 1.9, z, .22, .22, .22, '#f3d99b', 0, 1, true); }
-    lighting(minutes) {
+    lighting(minutes, focus = 0) {
         const h = minutes / 60;
         const daylight = smoothstep(5.45, 7.9, h) * (1 - smoothstep(18.15, 20.65, h));
         const golden = Math.exp(-Math.pow((h - 17.15) / 1.65, 2));
         const over = this.weather === 'cloudy', rain = this.weather === 'rain';
-        const ambient = rain ? (.19 + .53 * daylight) : over ? (.17 + .60 * daylight) : (.145 + .675 * daylight);
+        // Keep the room slightly cooler and quieter than the practical fixtures.
+        // Cozy contrast comes from warm islands inside a calm ambient field, not
+        // from simply making the entire academy orange or bright.
+        const ambientBase = rain ? (.16 + .47 * daylight) : over ? (.155 + .52 * daylight) : (.135 + .59 * daylight);
+        const ambient = ambientBase * .88 + .035 + focus * .14;
         const t = clamp01((h - 6) / 13);
         const az = -1.0 + t * 1.6;
         const elevation = .34 + Math.sin(Math.PI * t) * .80;
         const sunDir = new Vec3(-Math.sin(az) * Math.cos(elevation), -Math.sin(elevation), -Math.cos(az) * Math.cos(elevation));
-        const dayBg = rain ? [.70, .75, .74] : over ? [.83, .84, .80] : [.89 + .04 * daylight, .87 + .06 * daylight, .82 + .09 * daylight];
-        const nightBg = [.121, .137, .168];
+        const dayBg = rain ? [.62, .69, .69] : over ? [.75, .78, .75] : [.82 + .035 * daylight, .82 + .045 * daylight, .78 + .065 * daylight];
+        const nightBg = [.045, .070, .091];
         const mixBg = (a, b) => a + (b - a) * daylight;
         const bg = [mixBg(nightBg[0], dayBg[0]), mixBg(nightBg[1], dayBg[1]), mixBg(nightBg[2], dayBg[2]), 1];
-        const lamps = clamp01((1 - daylight) * 1.45 + (rain ? .24 : 0)), courtLamps = Math.max(lamps, .22);
+        const nightDrive = clamp01((1 - daylight) * 1.35 + (rain ? .18 : 0));
+        const practical = (.24 + golden * .20 + nightDrive * .92) * (1 - focus * .35);
+        const courtLamps = .12 + nightDrive * .58 + focus * .42;
         const warm = (r, g, b) => [r, g, b];
         const pointLights = [
             { position: new Vec3(-1.3, 3.85, 0), color: warm(1, .88, .68), intensity: 2.15 * courtLamps, radius: 10.5 },
             { position: new Vec3(3.7, 3.85, 0), color: warm(1, .88, .68), intensity: 2.15 * courtLamps, radius: 10.5 },
-            { position: new Vec3(-8.8, 2.45, -5.4), color: warm(1, .79, .50), intensity: 1.55 * lamps, radius: 6.6 },
-            { position: new Vec3(8.5, 2.5, 5.8), color: warm(1, .78, .51), intensity: 1.48 * lamps, radius: 6.4 },
-            { position: new Vec3(-8.8, 2.5, 4.8), color: warm(1, .81, .57), intensity: 1.36 * lamps, radius: 6.2 },
-            { position: new Vec3(9.2, 2.45, -4.6), color: warm(1, .74, .47), intensity: 1.40 * lamps, radius: 6.2 },
-            { position: new Vec3(-9.4, 2.40, 1.6), color: warm(1, .80, .55), intensity: 1.12 * lamps, radius: 5.8 },
-            { position: new Vec3(-9.5, 2.40, 7.2), color: warm(1, .82, .59), intensity: 1.20 * lamps, radius: 5.8 }
+            { position: new Vec3(-8.8, 2.45, -5.4), color: warm(1, .79, .50), intensity: 1.68 * practical, radius: 6.6 },
+            { position: new Vec3(10.7, 2.0, 7.1), color: warm(1, .78, .51), intensity: 1.62 * practical, radius: 6.4 },
+            { position: new Vec3(-8.8, 2.5, 4.8), color: warm(1, .81, .57), intensity: 1.50 * practical, radius: 6.2 },
+            { position: new Vec3(9.2, 2.45, -4.6), color: warm(1, .74, .47), intensity: 1.58 * practical, radius: 6.2 },
+            { position: new Vec3(-9.4, 2.40, 1.6), color: warm(1, .80, .55), intensity: 1.34 * practical, radius: 5.8 },
+            { position: new Vec3(-9.5, 2.40, 7.2), color: warm(1, .82, .59), intensity: 1.42 * practical, radius: 5.8 }
         ];
         const shadowStrength = (rain ? .22 : over ? .44 : .62 + .38 * daylight) * (.25 + .75 * daylight);
-        const warmMix = Math.min(1, golden * .95);
-        const sunColor = [1.0 + .06 * warmMix, .965 - .085 * warmMix - (rain ? .02 : 0), .905 - .225 * warmMix + (rain ? .03 : 0)];
+        const warmMix = Math.min(1, golden * .78 + nightDrive * .18);
+        const sunEnergy = .10 + .90 * daylight;
+        const sunColor = [(1 + .06 * warmMix) * sunEnergy, (.965 - .085 * warmMix) * sunEnergy, (.905 - .225 * warmMix) * sunEnergy];
         const lerp3 = (a, b) => [a[0] + (b[0] - a[0]) * daylight, a[1] + (b[1] - a[1]) * daylight, a[2] + (b[2] - a[2]) * daylight];
         const skyDay = rain ? [.83, .87, .93] : [.86 + .02 * daylight, .905, .99];
         const skyColor = lerp3([.50, .60, .90], skyDay);
@@ -414,7 +432,7 @@ export class World {
         const castingLight = { centre: new Vec3(1.2, .75, 0), radius: 8.2, direction: new Vec3(.16, -1, .18).normalize(), position: pointLights[0].position.clone(), strength: Math.max(0, pointLights[0].intensity * .32) };
         return { sunDir, ambient, background: bg, warmth: warmMix, pointLights, shadowStrength, sunColor, skyColor, bounceColor, castingLight };
     }
-    dynamicMeshes(time, minutes, cameraPosition, dt = 1 / 60) {
+    dynamicMeshes(time, minutes, cameraPosition, dt = 1 / 60, focus = 0, effectTime = time) {
         const m = [];
         // Camera-aware dollhouse cutaway. The far side wall stays tall; the near wall sinks smoothly to a low architectural lip.
         const camX = cameraPosition?.x ?? 20, targetWest = camX >= 0 ? 4.55 : .48, targetEast = camX >= 0 ? .48 : 4.55, k = 1 - Math.exp(-dt * 7.5);
@@ -467,15 +485,23 @@ export class World {
             const ph = time * .46 + i * 1.37, dx = Math.sin(ph) * .026, dz = Math.cos(ph * .83) * .018;
             m.push({ kind: 'sphere', position: new Vec3(10.43 + i * .11 + dx, 2.34 + (i % 3) * .12, 3.90 + dz), scale: new Vec3(.23, .075, .18), color: i % 2 ? '#67986e' : '#7baa79', material: 'leaf', alpha: .20 });
         }
-        // Evening pools of light and string-light halos.
-        const h = minutes / 60, night = h > 18.2 || h < 6.2;
-        if (night) {
-            for (const [x, z] of [[-6.4, -7], [10.7, 7.1]])
-                m.push({ kind: 'sphere', position: new Vec3(x, 1.72, z), scale: new Vec3(1.35, .08, 1.35), color: '#e7c987', alpha: .16, unlit: true });
-            for (let i = 0; i < 10; i++) {
-                const x = -10.7 + i * 2.25, y = 3.76 - Math.sin(i * .72) * .18;
-                m.push({ kind: 'sphere', position: new Vec3(x, y, -9.02), scale: new Vec3(.34, .34, .18), color: '#f0d08b', alpha: .09, unlit: true });
-            }
+        // Practical-light pools exist even during the day at very low strength.
+        // This gives the club distinct little destinations instead of one flat wash.
+        const h = minutes / 60, daylight = smoothstep(5.45, 7.9, h) * (1 - smoothstep(18.15, 20.65, h));
+        const cozyDrive = clamp01(.20 + (1 - daylight) * .80 + (this.weather === 'rain' ? .10 : 0)) * (1 - focus * .8);
+        const cozyPools = [[-8.8, -5.4, 1.45], [-8.8, 4.8, 1.30], [8.5, 5.8, 1.55], [9.2, -4.6, 1.40], [-9.5, 7.2, 1.32]];
+        for (const [x, z, size] of cozyPools) {
+            m.push({ kind: 'sphere', position: new Vec3(x, .075, z), scale: new Vec3(size, .055, size), color: '#efc985', alpha: (.035 + .105 * cozyDrive), unlit: true, noShadow: true });
+            m.push({ kind: 'sphere', position: new Vec3(x, 1.72, z), scale: new Vec3(size * .58, .75, size * .58), color: '#f3d6a0', alpha: (.012 + .035 * cozyDrive), unlit: true, noShadow: true });
+        }
+        for (const [x, y, z] of [[-8.8, 2.30, -5.4], [-8.8, 2.07, 4.8], [10.7, 1.9, 7.1], [9.2, 2.22, -4.6]]) {
+            m.push({ kind: 'sphere', position: new Vec3(x, y, z), scale: new Vec3(.20, .12, .20), color: '#ffeac2', unlit: true, emission: 2.4, noShadow: true });
+            m.push({ kind: 'sphere', position: new Vec3(x, y - .03, z), scale: new Vec3(.60, .34, .60), color: '#ffca7b', alpha: .09 * cozyDrive, unlit: true, noShadow: true });
+        }
+        // String-light halos are deliberately tiny and irregular.
+        for (let i = 0; i < 10; i++) {
+            const x = -10.7 + i * 2.25, y = 3.76 - Math.sin(i * .72) * .18, pulse = .78 + .22 * Math.sin(time * .83 + i * 1.7);
+            m.push({ kind: 'sphere', position: new Vec3(x, y, -9.02), scale: new Vec3(.20, .20, .12), color: '#f2d493', alpha: (.025 + .055 * cozyDrive) * pulse, unlit: true, noShadow: true });
         }
         // Secondary motion: curtains, towels and a loose court ball move at different rhythms so the room never breathes in unison.
         const curtain = Math.sin(time * .72) * .035;
@@ -486,35 +512,80 @@ export class World {
         }
         const roll = (time * .20) % 1, ballX = 5.58 + roll * .55;
         m.push({ kind: 'sphere', position: new Vec3(ballX, .105, 3.32 + Math.sin(time * .7) * .035), scale: new Vec3(.15, .15, .15), color: '#d9c65f', alpha: .72, unlit: true });
-        const active = (k) => (this.interactionFx.get(k) ?? -1) > time;
-        if (active('cafe')) {
+        const pulse = (kind) => {
+            const value = this.interactionFx.get(kind);
+            if (value && value.until <= effectTime)
+                this.interactionFx.delete(kind);
+            return value && value.until > effectTime ? value : undefined;
+        };
+        const origin = (value, fallback) => value?.position ?? fallback;
+        const cafeFx = pulse('cafe');
+        if (cafeFx) {
+            const base = origin(cafeFx, new Vec3(-8.2, 0, -5.52));
             for (let i = 0; i < 5; i++) {
-                const ph = ((time * 1.4 + i * .17) % 1), x = -8.2 + Math.sin(time * 4 + i) * .08;
-                m.push({ kind: 'sphere', position: new Vec3(x, 1.55 + ph * .72, -5.52), scale: new Vec3(.055 + .04 * ph, .10 + .05 * ph, .055), color: '#fff4e8', alpha: .26 * (1 - ph), unlit: true });
+                const ph = ((time * 1.4 + i * .17) % 1), x = base.x + Math.sin(time * 4 + i) * .08;
+                m.push({ kind: 'sphere', position: new Vec3(x, 1.05 + base.y + ph * .72, base.z), scale: new Vec3(.055 + .04 * ph, .10 + .05 * ph, .055), color: '#fff4e8', alpha: .26 * (1 - ph), unlit: true });
             }
         }
-        if (active('bonsai')) {
+        const bonsaiFx = pulse('bonsai');
+        if (bonsaiFx) {
+            const base = origin(bonsaiFx, new Vec3(10.0, 1.30, 3.72));
             for (let i = 0; i < 7; i++) {
                 const ph = ((time * 1.9 + i * .13) % 1);
-                m.push({ kind: 'sphere', position: new Vec3(10.0 + (i % 3) * .10, 2.35 - ph * 1.05, 3.72 + Math.sin(i) * .08), scale: new Vec3(.035, .055, .035), color: '#8fb8bd', alpha: .42 * (1 - ph), unlit: true });
+                m.push({ kind: 'sphere', position: new Vec3(base.x + (i % 3) * .10, base.y + 1.05 - ph * 1.05, base.z + Math.sin(i) * .08), scale: new Vec3(.035, .055, .035), color: '#8fb8bd', alpha: .42 * (1 - ph), unlit: true });
             }
         }
-        if (active('water')) {
+        const waterFx = pulse('water');
+        if (waterFx) {
+            const base = origin(waterFx, new Vec3(-5.48, .52, 5.68));
             for (let i = 0; i < 5; i++) {
                 const ph = ((time * 2 + i * .14) % 1);
-                m.push({ kind: 'sphere', position: new Vec3(-5.48, 1.28 - ph * .75, 5.68), scale: new Vec3(.028, .07, .028), color: '#a9c8ca', alpha: .50 * (1 - ph), unlit: true });
+                m.push({ kind: 'sphere', position: new Vec3(base.x, base.y + .76 - ph * .75, base.z), scale: new Vec3(.028, .07, .028), color: '#a9c8ca', alpha: .50 * (1 - ph), unlit: true });
             }
         }
-        if (active('stringing')) {
-            const pulse = Math.sin(time * 14) * .035;
-            m.push({ kind: 'torus', position: new Vec3(9.2, 1.74 + pulse, -3.24), rotation: new Vec3(0, 0, time * .9), scale: new Vec3(.95, .95, .22), color: '#eadfca', alpha: .78 }, { kind: 'roundBox', position: new Vec3(9.2, 1.74, -3.20), rotation: new Vec3(0, time * 1.6, 0), scale: new Vec3(1.25, .025, .025), color: '#d2b778', alpha: .65, unlit: true });
+        const stringFx = pulse('stringing');
+        if (stringFx) {
+            const base = origin(stringFx, new Vec3(9.2, 0, -3.24)), wobble = Math.sin(time * 14) * .035;
+            m.push({ kind: 'torus', position: new Vec3(base.x, base.y + 1.74 + wobble, base.z), rotation: new Vec3(0, 0, time * .9), scale: new Vec3(.95, .95, .22), color: '#eadfca', alpha: .78 }, { kind: 'roundBox', position: new Vec3(base.x, base.y + 1.74, base.z + .04), rotation: new Vec3(0, time * 1.6, 0), scale: new Vec3(1.25, .025, .025), color: '#d2b778', alpha: .65, unlit: true });
         }
-        if (active('training')) {
+        const trainingFx = pulse('training');
+        if (trainingFx) {
+            const base = origin(trainingFx, new Vec3(-7.15, 0, .05));
             for (let i = 0; i < 3; i++) {
                 const ph = ((time * 1.2 + i * .27) % 1);
-                m.push({ kind: 'sphere', position: new Vec3(-7.15 + ph * 1.6, .78 + Math.sin(ph * Math.PI) * .5, .05 + i * .08), scale: new Vec3(.13, .13, .13), color: '#d9c65f', alpha: .74, unlit: true });
+                m.push({ kind: 'sphere', position: new Vec3(base.x + ph * 1.2, base.y + .78 + Math.sin(ph * Math.PI) * .5, base.z + i * .08), scale: new Vec3(.13, .13, .13), color: '#d9c65f', alpha: .74, unlit: true });
             }
         }
+        const bellFx = pulse('bell');
+        if (bellFx) {
+            const base = origin(bellFx, new Vec3(-8.45, 1.28, 4.35));
+            for (let i = 0; i < 3; i++) {
+                const ph = ((time * 2.1 + i * .22) % 1);
+                m.push({ kind: 'torus', position: new Vec3(base.x, base.y + .16 + ph * .42, base.z), rotation: new Vec3(Math.PI / 2, 0, 0), scale: new Vec3(.16 + ph * .25, .16 + ph * .25, .07), color: '#e4c879', alpha: .30 * (1 - ph), unlit: true });
+            }
+        }
+        const comfortFx = pulse('comfort');
+        if (comfortFx) {
+            const base = origin(comfortFx, new Vec3(8.5, .35, 5.8));
+            for (let i = 0; i < 6; i++) {
+                const ph = ((time * .72 + i * .16) % 1);
+                m.push({ kind: 'sphere', position: new Vec3(base.x + Math.sin(i * 2.1) * (.25 + ph * .18), base.y + .35 + ph * .55, base.z + Math.cos(i * 1.7) * .22), scale: new Vec3(.035, .035, .035), color: '#f1d8ae', alpha: .18 * (1 - ph), unlit: true });
+            }
+        }
+        const lampFx = pulse('lamp');
+        if (lampFx) {
+            const base = origin(lampFx, new Vec3(8.35, 1.2, 8.45)), glow = .75 + .25 * Math.sin(time * 8);
+            m.push({ kind: 'sphere', position: new Vec3(base.x, base.y + 1.20, base.z), scale: new Vec3(1.05, .08, 1.05), color: '#efd28f', alpha: .14 * glow, unlit: true });
+        }
+        const paperFx = pulse('paper');
+        if (paperFx) {
+            const p = paperFx.position ?? new Vec3(6.9, .8, 4.55);
+            m.push({ kind: 'roundBox', position: new Vec3(p.x, p.y + .35, p.z), rotation: new Vec3(0, 0, Math.sin(effectTime * 6) * .22), scale: new Vec3(.42, .025, .55), color: '#f5e7c8', material: 'matte', noShadow: true });
+        }
+        // Expiry uses real time even when reduced motion freezes decorative motion.
+        for (const [kind, value] of this.interactionFx)
+            if (value.until <= effectTime)
+                this.interactionFx.delete(kind);
         return m;
     }
     decorMeshes(p, override, alphaScale = 1) {

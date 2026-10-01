@@ -1,0 +1,139 @@
+{
+  "desktop": {
+    "metrics": {
+      "transport": "glb",
+      "lod": 0,
+      "loadMs": 43.20000000298023,
+      "drawCalls": 7,
+      "triangles": 35444,
+      "vertices": 20687,
+      "textures": 1,
+      "shadowMapTextureBytes": 4194304,
+      "shadowDepthAttachmentEstimatedBytes": 4194304,
+      "sourceTextureBytes": 0,
+      "dpr": 1,
+      "samples": 133,
+      "meanFrameMs": 16.665413533834588,
+      "p95FrameMs": 16.80000000000109
+    },
+    "resources": [
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/studio.css",
+        "bytes": 12580,
+        "duration": 12.600000001490116
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/app.js",
+        "bytes": 20657,
+        "duration": 12.100000001490116
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/vendor/three.module.min.js",
+        "bytes": 339208,
+        "duration": 4.399999998509884
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/interaction.js",
+        "bytes": 3183,
+        "duration": 5.100000001490116
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/scene.js",
+        "bytes": 13962,
+        "duration": 5.300000004470348
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/model.js",
+        "bytes": 9271,
+        "duration": 5.4000000059604645
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/vendor/three.core.min.js",
+        "bytes": 381424,
+        "duration": 14.099999994039536
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/vendor/loaders/OBJLoader.js",
+        "bytes": 23222,
+        "duration": 14.200000002980232
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/vendor/loaders/GLTFLoader.js",
+        "bytes": 115039,
+        "duration": 13.5
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/vendor/mesh-bvh.js",
+        "bytes": 193003,
+        "duration": 14.400000005960464
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/vendor/utils/BufferGeometryUtils.js",
+        "bytes": 35839,
+        "duration": 4.100000001490116
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/assets/provenance.json",
+        "bytes": 47240,
+        "duration": 1.2000000029802322
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/assets/shoulder-lod0.glb",
+        "bytes": 1130808,
+        "duration": 2.4000000059604645
+      }
+    ],
+    "interactive": 171.70000000298023
+  },
+  "mobile": {
+    "transport": "glb",
+    "lod": 0,
+    "loadMs": 33,
+    "drawCalls": 7,
+    "triangles": 35444,
+    "vertices": 20687,
+    "textures": 1,
+    "shadowMapTextureBytes": 4194304,
+    "shadowDepthAttachmentEstimatedBytes": 4194304,
+    "sourceTextureBytes": 0,
+    "dpr": 1.5,
+    "samples": 129,
+    "meanFrameMs": 17.4411007751938,
+    "p95FrameMs": 16.799999999999727
+  },
+  "obj": {
+    "transport": "obj",
+    "lod": 0,
+    "loadMs": 135.60000000149012,
+    "drawCalls": 7,
+    "triangles": 35444,
+    "vertices": 106332,
+    "textures": 1,
+    "shadowMapTextureBytes": 4194304,
+    "shadowDepthAttachmentEstimatedBytes": 4194304,
+    "sourceTextureBytes": 0,
+    "dpr": 1,
+    "samples": 1,
+    "meanFrameMs": 99.99600000000001,
+    "p95FrameMs": 99.99600000000001
+  },
+  "lod2": {
+    "transport": "glb",
+    "lod": 2,
+    "loadMs": 39.80000000447035,
+    "drawCalls": 7,
+    "triangles": 18432,
+    "vertices": 12174,
+    "textures": 1,
+    "shadowMapTextureBytes": 4194304,
+    "shadowDepthAttachmentEstimatedBytes": 4194304,
+    "sourceTextureBytes": 0,
+    "dpr": 1,
+    "samples": 1,
+    "meanFrameMs": 33.33200000000001,
+    "p95FrameMs": 33.33200000000001
+  },
+  "status": "PASS",
+  "errors": [],
+  "failures": []
+}

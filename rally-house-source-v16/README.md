@@ -1,3 +1,15 @@
+# Rally House — living club / Championship studio pass
+
+A miniature tennis club with independent social life, tactile objects and a continuous transition into playable arcade tennis. The September 2026 pass adds warm practical lighting, embodied object interactions, direct Championship play and regression coverage while preserving the existing simulation and decoration catalog.
+
+Run `npm run serve`, then open [Rally House](http://127.0.0.1:8078/). The compiled game is included. Use `npm test` for deterministic validation and `npm run qa:studio` for the four-viewport browser gate while the server is running.
+
+Read [IMPLEMENTATION-REPORT.md](IMPLEMENTATION-REPORT.md), [VALIDATION.md](VALIDATION.md), and [PLAYTEST-CHECKLIST.md](PLAYTEST-CHECKLIST.md). The build is a verified playtest candidate; human feel and physical-device approval remain open.
+
+---
+
+## Earlier v16 project notes
+
 # Rally House v16 — Presence & Acting
 
 A playable development candidate focused on people being easier to read: grounded movement, social spacing, quieter listening, reactions that linger, and a few conversations earned by what actually happened. It preserves the club simulation, contact-based coaching, building history and selectable Taylor/Arjan avatars.

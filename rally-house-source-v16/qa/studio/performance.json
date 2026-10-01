@@ -1,0 +1,34 @@
+[
+  {
+    "label": "before",
+    "medianFrameMs": 16.699999999999818,
+    "p95FrameMs": 16.799999999999727,
+    "perf": {
+      "simMs": 0.0004798147482521436,
+      "renderMs": 2.2020766618898264,
+      "drawCalls": 755,
+      "triangles": 234812,
+      "entities": 5,
+      "memoryMB": 10.10894775390625
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "renderScale": 1,
+    "items": 755
+  },
+  {
+    "label": "after",
+    "medianFrameMs": 16.699999999999818,
+    "p95FrameMs": 16.700000000000728,
+    "perf": {
+      "simMs": 0.008903334428907679,
+      "renderMs": 2.002288077979707,
+      "drawCalls": 777,
+      "triangles": 244252,
+      "entities": 5,
+      "memoryMB": 9.5367431640625
+    },
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "renderScale": 1,
+    "items": 777
+  }
+]

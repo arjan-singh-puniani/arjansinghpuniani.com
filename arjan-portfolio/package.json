@@ -16,7 +16,9 @@
     "test:e2e:deployed": "playwright test e2e/smoke.spec.ts e2e/metadata.spec.ts e2e/platform.spec.ts --project=desktop-chromium",
     "test:e2e:headed": "playwright test --headed",
     "lighthouse": "lhci autorun",
-    "verify": "npm run lint && npm run typecheck && npm run test:coverage && npm run build"
+    "verify": "npm run lint && npm run typecheck && npm run test:coverage && npm run build",
+    "test:shoulder": "node --test tools/shoulder/domain.test.mjs",
+    "test:shoulder:browser": "node tools/shoulder/browser-qa.mjs"
   },
   "dependencies": {
     "next": "15.5.24",

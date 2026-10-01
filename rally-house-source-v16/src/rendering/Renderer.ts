@@ -17,6 +17,7 @@ export interface Mesh {
   material?:MaterialKind;
   alpha?:number;
   unlit?:boolean;
+  emission?:number;
   /** Opt a mesh out of the shadow pass. Floor decals and glass set this. */
   noShadow?:boolean;
   id?:string;
@@ -46,7 +47,7 @@ export interface Lighting {
 
 /** Shared lighting maths. One source of truth for both the rigid and skinned fragment shaders. */
 const LIGHT_UNIFORMS=`
-uniform vec3 u_color;uniform vec3 u_sun;uniform vec3 u_viewPos;uniform float u_ambient;uniform float u_alpha;uniform float u_unlit;uniform float u_warmth;uniform float u_roughness;uniform float u_specular;uniform float u_softness;
+uniform vec3 u_color;uniform vec3 u_sun;uniform vec3 u_viewPos;uniform float u_ambient;uniform float u_alpha;uniform float u_unlit;uniform float u_emission;uniform float u_warmth;uniform float u_roughness;uniform float u_specular;uniform float u_softness;
 uniform vec3 u_pointPos[8];uniform vec3 u_pointColor[8];uniform vec2 u_pointParams[8];
 uniform mat4 u_lightVP;uniform highp sampler2DShadow u_shadowMap;uniform float u_shadowStrength;uniform float u_shadowTexel;
 uniform mat4 u_lampVP;uniform highp sampler2DShadow u_lampShadow;uniform float u_lampStrength;uniform vec3 u_lampDir;uniform float u_lampTexel;
@@ -122,20 +123,29 @@ vec3 shade(vec3 N,vec3 world){
   float spec=pow(max(dot(N,H),0.0),glossExp)*u_specular*(0.18+ndl*0.82)*shadow;
   float velvet=pow(1.0-max(dot(N,V),0.0),2.0)*u_softness*0.055;
   vec3 local=vec3(0.0);
+  vec3 localSpec=vec3(0.0);
   float lampOcc=lampFactor(world,N);
   for(int i=0;i<8;i++){
     float intensity=u_pointParams[i].x;float radius=max(.001,u_pointParams[i].y);
     if(intensity>0.0){
       vec3 D=u_pointPos[i]-world;float dist=length(D);
       float att=pow(clamp(1.0-dist/radius,0.0,1.0),2.0);
-      float nl=max(dot(N,normalize(D)),0.0);
+      vec3 localL=normalize(D);
+      float nl=max(dot(N,localL),0.0);
       float occ=(i==0)?lampOcc:mix(1.0,lampOcc,0.55);
       local+=u_pointColor[i]*intensity*att*(0.24+nl*0.76)*occ;
+      // Practical lights should reveal what objects are made from. A tiny local
+      // specular response lets glazed cups, metal, glass and satin wood catch
+      // warm highlights without turning the whole room glossy.
+      vec3 localH=normalize(localL+V);
+      float localGloss=mix(58.0,8.0,clamp(u_roughness,0.0,1.0));
+      float ls=pow(max(dot(N,localH),0.0),localGloss)*u_specular*att*intensity*.20*occ;
+      localSpec+=u_pointColor[i]*ls;
     }
   }
   vec3 warmTint=mix(vec3(1.0),vec3(1.06,0.985,0.905),clamp(u_warmth,0.0,1.0));
-  vec3 c=u_color*warmTint*((ambient+direct)*ground)+u_color*local+u_sunColor*rim+u_sunColor*spec+u_color*velvet;
-  c=mix(c,u_color,u_unlit);
+  vec3 c=u_color*warmTint*((ambient+direct)*ground)+u_color*local+localSpec+u_sunColor*rim+u_sunColor*spec+u_color*velvet;
+  c=mix(c,u_color,u_unlit)+u_color*u_emission;
   // Filmic-ish roll off, then a small saturation lift so the pastel palette does not go grey.
   c=1.0-exp(-max(c,vec3(0.0))*1.18);
   float luma=dot(c,vec3(0.2126,0.7152,0.0722));
@@ -146,6 +156,8 @@ vec3 shade(vec3 N,vec3 world){
 
 export class Renderer {
   gl:WebGL2RenderingContext;
+  private staticData=new WeakMap<Mesh,{model:Mat4;color:[number,number,number];material:{roughness:number;specular:number;softness:number}}>();
+  private lightPositions=new Float32Array(24);private lightColors=new Float32Array(24);private lightParams=new Float32Array(16);
   private program:WebGLProgram;
   private skinProgram:WebGLProgram;
   private depthProgram:WebGLProgram;
@@ -173,7 +185,7 @@ export class Renderer {
     this.depthProgram=this.link(this.rigidVS(true),this.depthFS());
     this.depthSkinProgram=this.link(this.skinVS(true),this.depthFS());
 
-    const litNames=['u_model','u_vp','u_color','u_sun','u_ambient','u_alpha','u_unlit','u_viewPos','u_warmth','u_roughness','u_specular','u_softness','u_pointPos[0]','u_pointColor[0]','u_pointParams[0]','u_lightVP','u_shadowMap','u_shadowStrength','u_shadowTexel','u_lampVP','u_lampShadow','u_lampStrength','u_lampDir','u_lampTexel','u_sunColor','u_skyColor','u_bounceColor'];
+    const litNames=['u_model','u_vp','u_color','u_sun','u_ambient','u_alpha','u_unlit','u_emission','u_viewPos','u_warmth','u_roughness','u_specular','u_softness','u_pointPos[0]','u_pointColor[0]','u_pointParams[0]','u_lightVP','u_shadowMap','u_shadowStrength','u_shadowTexel','u_lampVP','u_lampShadow','u_lampStrength','u_lampDir','u_lampTexel','u_sunColor','u_skyColor','u_bounceColor'];
     const grab=(p:WebGLProgram,names:string[],required:string[])=>{
       const map:Record<string,WebGLUniformLocation>={};
       for(const n of names){const loc=gl.getUniformLocation(p,n);if(loc)map[n.replace('[0]','')]=loc;else if(required.includes(n))throw new Error(`Missing uniform ${n}`);}
@@ -269,6 +281,11 @@ export class Renderer {
     gl.depthMask(true);
   }
 
+  /** World architecture is immutable after construction. Reuse its CPU data in all three passes. */
+  cacheStatic(meshes:Mesh[]){
+    for(const m of meshes)this.staticData.set(m,{model:compose(m.position,m.rotation??new Vec3(),m.scale),color:hexToRgb(m.color),material:this.materialParams(m.material)});
+  }
+
   private shadowPass(meshes:Mesh[],skins:SkinnedMesh[],lightVP:Mat4,fb:WebGLFramebuffer,res:number){
     const gl=this.gl;
     gl.bindFramebuffer(gl.FRAMEBUFFER,fb);
@@ -280,7 +297,7 @@ export class Renderer {
     for(const m of meshes){
       if(!this.casts(m))continue;
       const g=this.geos.get(m.kind)!;
-      gl.uniformMatrix4fv(this.du['u_model'],false,compose(m.position,m.rotation??new Vec3(),m.scale));
+      gl.uniformMatrix4fv(this.du['u_model'],false,(this.staticData.get(m)?.model??compose(m.position,m.rotation??new Vec3(),m.scale)));
       gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.shadowCasters++;
     }
     gl.useProgram(this.depthSkinProgram);gl.uniformMatrix4fv(this.dsu['u_lightVP'],false,lightVP);
@@ -297,7 +314,7 @@ export class Renderer {
 
   private setupProgram(program:WebGLProgram,u:Record<string,WebGLUniformLocation>,vp:Mat4,lighting:Lighting,viewPosition:Vec3,lightVP:Mat4,strength:number,lampVP:Mat4,lampStrength:number){
     const gl=this.gl;gl.useProgram(program);
-    const pls=(lighting.pointLights??[]).slice(0,8),pos=new Float32Array(24),col=new Float32Array(24),par=new Float32Array(16);
+    const pls=lighting.pointLights??[],pos=this.lightPositions,col=this.lightColors,par=this.lightParams;pos.fill(0);col.fill(0);par.fill(0);
     for(let i=0;i<8;i++){const l=pls[i];if(l){pos.set([l.position.x,l.position.y,l.position.z],i*3);col.set(l.color,i*3);par.set([l.intensity,l.radius],i*2)}}
     const set=(n:string,fn:(loc:WebGLUniformLocation)=>void)=>{const loc=u[n];if(loc)fn(loc)};
     set('u_vp',l=>gl.uniformMatrix4fv(l,false,vp));
@@ -325,12 +342,12 @@ export class Renderer {
 
   private materialParams(kind:MaterialKind|undefined){
     switch(kind){
-      case 'wood': return {roughness:.70,specular:.065,softness:.035};
+      case 'wood': return {roughness:.58,specular:.090,softness:.040};
       case 'fabric': return {roughness:.96,specular:.012,softness:.52};
-      case 'ceramic': return {roughness:.30,specular:.17,softness:.025};
-      case 'metal': return {roughness:.24,specular:.24,softness:0};
-      case 'glass': return {roughness:.10,specular:.30,softness:0};
-      case 'court': return {roughness:.90,specular:.020,softness:.04};
+      case 'ceramic': return {roughness:.22,specular:.215,softness:.020};
+      case 'metal': return {roughness:.20,specular:.285,softness:0};
+      case 'glass': return {roughness:.075,specular:.36,softness:0};
+      case 'court': return {roughness:.84,specular:.026,softness:.035};
       case 'skin': return {roughness:.68,specular:.040,softness:.30};
       case 'hair': return {roughness:.48,specular:.090,softness:.14};
       case 'leaf': return {roughness:.67,specular:.052,softness:.18};
@@ -338,8 +355,8 @@ export class Renderer {
     }
   }
 
-  private drawMesh(m:Mesh){const gl=this.gl,g=this.geos.get(m.kind)!;gl.uniformMatrix4fv(this.u['u_model'],false,compose(m.position,m.rotation??new Vec3(),m.scale));const c=hexToRgb(m.color),mp=this.materialParams(m.material);gl.uniform3f(this.u['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.u['u_alpha'],m.alpha??1);gl.uniform1f(this.u['u_unlit'],m.unlit?1:0);gl.uniform1f(this.u['u_roughness'],mp.roughness);gl.uniform1f(this.u['u_specular'],mp.specular);gl.uniform1f(this.u['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
-  private drawSkin(m:SkinnedMesh){const gl=this.gl,g=this.skinGeometry(m.skin);gl.uniformMatrix4fv(this.su['u_model'],false,compose(m.position,m.rotation??new Vec3(),m.scale??new Vec3(1,1,1)));gl.uniformMatrix4fv(this.su['u_bones'],false,m.boneMatrices);const c=hexToRgb(m.color),mp=this.materialParams(m.material);gl.uniform3f(this.su['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.su['u_alpha'],m.alpha??1);gl.uniform1f(this.su['u_unlit'],m.unlit?1:0);gl.uniform1f(this.su['u_roughness'],mp.roughness);gl.uniform1f(this.su['u_specular'],mp.specular);gl.uniform1f(this.su['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
+  private drawMesh(m:Mesh){const gl=this.gl,g=this.geos.get(m.kind)!;gl.uniformMatrix4fv(this.u['u_model'],false,(this.staticData.get(m)?.model??compose(m.position,m.rotation??new Vec3(),m.scale)));const cached=this.staticData.get(m),c=cached?.color??hexToRgb(m.color),mp=cached?.material??this.materialParams(m.material);gl.uniform3f(this.u['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.u['u_alpha'],m.alpha??1);gl.uniform1f(this.u['u_unlit'],m.unlit?1:0);gl.uniform1f(this.u['u_emission'],m.emission??0);gl.uniform1f(this.u['u_roughness'],mp.roughness);gl.uniform1f(this.u['u_specular'],mp.specular);gl.uniform1f(this.u['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
+  private drawSkin(m:SkinnedMesh){const gl=this.gl,g=this.skinGeometry(m.skin);gl.uniformMatrix4fv(this.su['u_model'],false,compose(m.position,m.rotation??new Vec3(),m.scale??new Vec3(1,1,1)));gl.uniformMatrix4fv(this.su['u_bones'],false,m.boneMatrices);const c=hexToRgb(m.color),mp=this.materialParams(m.material);gl.uniform3f(this.su['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.su['u_alpha'],m.alpha??1);gl.uniform1f(this.su['u_unlit'],m.unlit?1:0);gl.uniform1f(this.su['u_emission'],0);gl.uniform1f(this.su['u_roughness'],mp.roughness);gl.uniform1f(this.su['u_specular'],mp.specular);gl.uniform1f(this.su['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
   private skinGeometry(data:SkinGeometry){const hit=this.skinGeos.get(data.id);if(hit)return hit;const gl=this.gl,vao=gl.createVertexArray()!;gl.bindVertexArray(vao);const put=(loc:number,arr:Float32Array,size:number)=>{const b=gl.createBuffer()!;gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,arr,gl.STATIC_DRAW);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,0,0);};put(0,data.positions,3);put(1,data.normals,3);put(2,data.boneIndices,4);put(3,data.boneWeights,4);gl.bindVertexArray(null);const geo={vao,count:data.positions.length/3};this.skinGeos.set(data.id,geo);return geo;}
 
   private rigidVS(depthOnly:boolean){
@@ -348,7 +365,7 @@ export class Renderer {
     uniform mat4 u_model;uniform mat4 ${depthOnly?'u_lightVP':'u_vp'};
     ${depthOnly?'':'out vec3 v_normal;out vec3 v_world;'}
     void main(){vec4 wp=u_model*vec4(a_position,1.0);
-    ${depthOnly?'':'v_world=wp.xyz;v_normal=normalize(mat3(u_model)*a_normal);'}
+    ${depthOnly?'':'v_world=wp.xyz;mat3 basis=mat3(u_model);vec3 axisScale=vec3(dot(basis[0],basis[0]),dot(basis[1],basis[1]),dot(basis[2],basis[2]));v_normal=normalize(basis*(a_normal/max(axisScale,vec3(.000001))));'}
     gl_Position=${depthOnly?'u_lightVP':'u_vp'}*wp;}`;
   }
   private skinVS(depthOnly:boolean){
