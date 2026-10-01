@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | Arjan Singh Puniani",
   },
   description:
-    "Official portfolio of Arjan Singh Puniani (Arjan Puniani), a neural engineer pursuing medicine, with work in neurotechnology, clinical reasoning, rehabilitation, and motorsport safety.",
+    "Arjan Singh Puniani is a neural engineer pursuing medicine. His portfolio includes brain-computer interface research, clinical research, research software, and neurotechnology concepts.",
   authors: [{ name: "Arjan Singh Puniani", url: siteUrl }],
   creator: "Arjan Singh Puniani",
   publisher: "Arjan Singh Puniani",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
     description:
-      "Official portfolio of Arjan Singh Puniani across neural engineering, neurotechnology, rehabilitation, clinical reasoning, and motorsport safety.",
+      "Neural engineer pursuing medicine, with brain-computer interface research, clinical research, research software, and proposed medical devices.",
     siteName: "Arjan Singh Puniani",
     images: [
       {
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
     description:
-      "Official portfolio of Arjan Singh Puniani across neural engineering, neurotechnology, rehabilitation, clinical reasoning, and motorsport safety.",
+      "Neural engineer pursuing medicine, with brain-computer interface research, clinical research, research software, and proposed medical devices.",
     images: ["/images/hero/arj_kuzneski-hero.png"],
   },
   robots: {
@@ -84,7 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       image: `${siteUrl}/images/hero/arj_kuzneski-hero.png`,
       jobTitle: "Neural engineer",
       description:
-        "Arjan Singh Puniani is a neural engineer pursuing medicine and working across rehabilitation, clinical reasoning, neurotechnology, and motorsport safety.",
+        "Arjan Singh Puniani is a neural engineer pursuing medicine with experience in brain-computer interface research, clinical research, and research software.",
       sameAs: [links.github, links.physicsWorldAuthor],
       alumniOf: [
         { "@type": "CollegeOrUniversity", name: "University of Pittsburgh" },

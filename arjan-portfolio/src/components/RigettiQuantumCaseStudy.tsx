@@ -12,8 +12,8 @@ export function RigettiQuantumCaseStudy() {
     <header className="rq-hero">
       <div className="shell">
         <p className="rq-kicker">Rigetti Computing / 2013–2015</p>
-        <h1>Operating around<br /><em>the machine.</em></h1>
-        <p className="rq-deck">A retrospective case study connecting early-stage company operations with an independent interactive model of the superconducting quantum-computing stack.</p>
+        <h1>Quantum systems operations</h1>
+        <p className="rq-deck">I worked in company operations at Rigetti Computing from 2013 to 2015. In 2026, I independently built this educational model of a superconducting quantum-computing control chain.</p>
         <dl className="rq-facts">
           <div><dt>Documented role</dt><dd>Chief of Staff</dd></div>
           <div><dt>Company context</dt><dd>Early-stage quantum computing</dd></div>
@@ -29,7 +29,7 @@ export function RigettiQuantumCaseStudy() {
     <section className="rq-section rq-context">
       <div className="shell rq-two-column">
         <p className="rq-index">00 / The operating role</p>
-        <div><h2>Technical companies are also coordination systems.</h2><p className="rq-lede">At Rigetti Computing, my documented role centered on early-stage company operations, investor communications, and strategic execution. The work required translating across technical ambition, organizational priorities, external stakeholders, and the practical demands of building a company around difficult hardware.</p><p>The model provides technical context for the system that the organization existed to build; my historical role remained company operations, investor communications, and strategic execution.</p></div>
+        <div><h2>My operations role at Rigetti</h2><p className="rq-lede">At Rigetti Computing, my documented role centered on early-stage company operations, investor communications, and strategic execution. The résumé records this role; it does not establish processor, cryostat, or control-hardware engineering.</p><p>The later model is a separate software project. It depicts generic hardware and uses simulated telemetry; it is not a Rigetti product or a reconstruction of confidential designs.</p></div>
       </div>
     </section>
 
@@ -46,18 +46,18 @@ export function RigettiQuantumCaseStudy() {
     <section className="rq-section rq-system">
       <div className="shell">
         <p className="rq-index">02 / System anatomy</p>
-        <h2>Control, cool, drive, read.</h2>
+        <h2>Components in the educational model</h2>
         <div className="rq-system-grid">{systemLayers.map(layer => <article key={layer.index}><span>{layer.index}</span><h3>{layer.title}</h3><p>{layer.body}</p></article>)}</div>
       </div>
     </section>
 
     <section className="rq-section rq-record">
       <div className="shell rq-two-column">
-        <div><p className="rq-index">03 / Record</p><h2>Two chapters, connected by systems thinking.</h2></div>
+        <div><p className="rq-index">03 / Record</p><h2>Evidence and limitations</h2></div>
         <div className="rq-record-list">
           <article><span>Documented</span><h3>Company operations</h3><p>Chief of Staff at Rigetti Computing from 2013 through 2015, focused on early-stage operations, investor communications, and strategic execution.</p></article>
           <article><span>Implemented later</span><h3>Interactive explainer</h3><p>A tested Three.js educational model built independently in 2026 to make the surrounding control chain inspectable.</p></article>
-          <article><span>Connection</span><h3>System-level translation</h3><p>The interactive model turns the surrounding technical stack into an inspectable systems explainer that complements the earlier operating experience.</p></article>
+          <article><span>Connection</span><h3>Model scope</h3><p>The model source and build records support the software artifact. Its simulated operation does not demonstrate quantum processor performance.</p></article>
         </div>
       </div>
     </section>

@@ -88,7 +88,7 @@ export default function Research() {
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(publicationSchema) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(scienceWritingSchema) }} />
-    <header className="page-hero"><div className="shell"><p className="eyebrow">Research record</p><h1>Research by Arjan Singh Puniani</h1><p>Peer-reviewed work, manuscripts, active research themes, and science writing across neural engineering and adjacent systems.</p></div></header>
+    <header className="page-hero"><div className="shell"><p className="eyebrow">Research record</p><h1>Research by Arjan Singh Puniani</h1><p>Two theoretical reviews co-authored with Michael C. Wiest, a collaborative BCI calibration manuscript, and science reporting for Physics World.</p></div></header>
 
     <section className="section"><div className="shell"><div className="section-head"><div><p className="eyebrow">Publications</p><h2>Peer-reviewed work and manuscripts</h2></div></div>{publications.map((publication) => {
       const citation = `${publication.authors} (${publication.year}). ${publication.title}. ${publication.venue}.`;
@@ -115,9 +115,9 @@ export default function Research() {
       </article>;
     })}</div></section>
 
-    <section className="section"><div className="shell"><div className="section-head"><div><p className="eyebrow">Science journalism</p><h2>Selected science writing</h2></div><p>Research features written by Arjan Singh Puniani for Physics World. These articles report on other researchers’ work and are listed separately from Arjan’s own research publications.</p></div><p><a className="text-link" href={links.physicsWorldAuthor} target="_blank" rel="noreferrer">Physics World contributor archive <span aria-hidden="true">↗</span></a></p>{scienceWriting.map((article) => <article className="publication" key={article.href}><p className="publication-meta">By Arjan Singh Puniani · {article.venue} · {article.publishedAt}</p><h3>{article.title}</h3><p>{article.summary}</p><a className="text-link" href={article.href} target="_blank" rel="noreferrer">Read at Physics World <span aria-hidden="true">↗</span><span className="sr-only">: {article.title}</span></a></article>)}</div></section>
+    <section className="section"><div className="shell"><div className="section-head"><div><p className="eyebrow">Science journalism</p><h2>Selected science writing</h2></div><p>Research features written by Arjan Singh Puniani for Physics World. These articles report on other researchers’ work.</p></div><p><a className="text-link" href={links.physicsWorldAuthor} target="_blank" rel="noreferrer">Physics World contributor archive <span aria-hidden="true">↗</span></a></p>{scienceWriting.map((article) => <article className="publication" key={article.href}><p className="publication-meta">By Arjan Singh Puniani · {article.venue} · {article.publishedAt}</p><h3>{article.title}</h3><p>{article.summary}</p><a className="text-link" href={article.href} target="_blank" rel="noreferrer">Read at Physics World <span aria-hidden="true">↗</span><span className="sr-only">: {article.title}</span></a></article>)}</div></section>
 
-    <section className="section"><div className="shell bio-grid"><div><p className="eyebrow">Research projects</p><h2>Questions under active development</h2></div><div>{researchProjects.map((project, index) => <article className="publication" key={project}><span className="publication-meta">0{index + 1}</span><h3>{project}</h3></article>)}</div></div></section>
+    <section className="section"><div className="shell bio-grid"><div><p className="eyebrow">Research projects</p><h2>Research topics</h2></div><div>{researchProjects.map((project, index) => <article className="publication" key={project}><span className="publication-meta">0{index + 1}</span><h3>{project}</h3></article>)}</div></div></section>
 
   </>;
 }

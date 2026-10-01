@@ -8,7 +8,7 @@ export const publications: Publication[] = [
     venue: "Computational and Structural Biotechnology Journal, 30, 108–121",
     year: 2025,
     type: "Peer-reviewed review article",
-    summary: "A theoretical argument that quantum dynamics may provide a biologically plausible implementation of the path integration required for temporally deep active inference.",
+    summary: "A theoretical review proposing quantum dynamics as a possible implementation of path integration in temporally deep active inference. It does not demonstrate that implementation in neurons.",
     href: "https://doi.org/10.1016/j.csbj.2025.09.017",
     doi: "10.1016/j.csbj.2025.09.017",
     pubmed: "https://pubmed.ncbi.nlm.nih.gov/41036467/",

@@ -48,12 +48,12 @@ export function CuratedProjectFilter() {
           <section className="work-tier" aria-labelledby="flagship-work-heading">
             <div className="work-tier-head">
               <div>
-                <p className="eyebrow">Flagship systems</p>
-                <h2 id="flagship-work-heading">Start here.</h2>
+                <p className="eyebrow">Selected projects</p>
+                <h2 id="flagship-work-heading">BCI research, software, and device concepts</h2>
               </div>
               <p>
-                Four projects that best show research depth, technical ownership,
-                scientific communication, and systems thinking.
+                Experimental interfaces from RNEL, independent educational models,
+                an ECG prototype, and an early cortical-cooling concept.
               </p>
             </div>
             <div className="project-grid">
@@ -70,11 +70,11 @@ export function CuratedProjectFilter() {
             <div className="work-tier-head">
               <div>
                 <p className="eyebrow">More work</p>
-                <h2 id="additional-work-heading">Other systems and field studies.</h2>
+                <h2 id="additional-work-heading">Publications, clinical research, and planning studies</h2>
               </div>
               <p>
                 Clinical research, motorsport systems, public-health concepts, and
-                exploratory work that rounds out the record.
+                exploratory documentation projects.
               </p>
             </div>
             <div className="project-grid">

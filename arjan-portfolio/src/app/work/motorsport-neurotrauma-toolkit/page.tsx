@@ -4,7 +4,7 @@ import { statusNotes } from "@/content/statuses";
 
 export const metadata: Metadata = {
   title: "Motorsport Neurotrauma Toolkit",
-  description: "An exploratory documentation and escalation framework connecting crash mechanics with acute neurologic assessment.",
+  description: "A Version 0.2 pilot intake card and disposition algorithm I drafted for motorsport medicine. It records crash mechanics, occupant protection, and acute neurologic observations for medical handoff.",
   alternates: { canonical: "/work/motorsport-neurotrauma-toolkit" },
 };
 
@@ -34,8 +34,8 @@ export default function MotorsportNeurotraumaToolkit() {
           <span className="status status-caution">{statusNotes.notClinicallyValidated}</span>
         </div>
         <p className="eyebrow">Motorsport neurotrauma · Documentation systems · 2026</p>
-        <h1>Carry the crash mechanism into the medical handoff.</h1>
-        <p>An exploratory documentation and escalation framework connecting crash mechanics with acute neurologic assessment.</p>
+        <h1>Mechanism-to-Medical Center</h1>
+        <p>A Version 0.2 pilot intake card and disposition algorithm I drafted for motorsport medicine. It records crash mechanics, occupant protection, and acute neurologic observations for medical handoff.</p>
       </div>
     </header>
 
@@ -43,8 +43,8 @@ export default function MotorsportNeurotraumaToolkit() {
       <div className="shell case-intro">
         <p className="eyebrow">Clinical boundary</p>
         <div>
-          <h2 id="neurotrauma-boundary">A documentation structure is not a clinical protocol.</h2>
-          <p>This pilot is not a validated diagnostic instrument, sanctioning-body standard, or substitute for licensed clinical judgment. Feedback was requested and received; the work has not been validated, endorsed, adopted, or deployed.</p>
+          <h2 id="neurotrauma-boundary">Status and role</h2>
+          <p>I designed and wrote the pilot documentation. It is not a validated diagnostic instrument or substitute for licensed clinical judgment. It has no sanctioning-body endorsement, adoption, or deployment.</p>
         </div>
       </div>
     </section>
@@ -52,7 +52,7 @@ export default function MotorsportNeurotraumaToolkit() {
     <section className="section" aria-labelledby="handoff-architecture">
       <div className="shell">
         <p className="eyebrow">Handoff architecture</p>
-        <h2 id="handoff-architecture">Preserve context across a changing chain of custody.</h2>
+        <h2 id="handoff-architecture">Proposed intake and handoff workflow</h2>
         <ol className="system-sequence" aria-label="Crash mechanism leads to occupant-protection context, neurologic observations, escalation or disposition, and structured handoff">
           {workflow.map(([title, question], index) => <li key={title}>
             <span>{String(index + 1).padStart(2, "0")}</span>
@@ -67,7 +67,7 @@ export default function MotorsportNeurotraumaToolkit() {
     <section className="section technical-surface" aria-labelledby="separation-heading">
       <div className="shell">
         <p className="eyebrow">Decision separation</p>
-        <h2 id="separation-heading">One record; different kinds of authority.</h2>
+        <h2 id="separation-heading">Responder, medical, and Race Control responsibilities</h2>
         <div className="decision-lanes">
           <article><span>OBSERVATION</span><h3>Responder record</h3><p>Mechanism, occupant context, visible signs, stated symptoms, time, and source.</p></article>
           <article><span>CLINICAL</span><h3>Medical disposition</h3><p>Assessment, treatment, transport, and return-to-activity decisions remain with qualified clinical personnel and applicable protocols.</p></article>
@@ -78,7 +78,7 @@ export default function MotorsportNeurotraumaToolkit() {
 
     <section className="section" aria-labelledby="feedback-heading">
       <div className="shell case-intro">
-        <div><p className="eyebrow">Review record</p><h2 id="feedback-heading">Critique changed the questions.</h2></div>
+        <div><p className="eyebrow">Review record</p><h2 id="feedback-heading">Questions raised in expert feedback</h2></div>
         <div>
           <div className="review-state" aria-label="Feedback received; validation, endorsement, adoption, and deployment not established">
             <div><strong>Feedback</strong><span className="yes">Received</span></div>
@@ -87,7 +87,7 @@ export default function MotorsportNeurotraumaToolkit() {
             <div><strong>Adoption</strong><span>No</span></div>
             <div><strong>Deployment</strong><span>No</span></div>
           </div>
-          <p>March 2026 correspondence documented expert critique. The public record reports the questions raised without naming private contacts or turning review into implied approval.</p>
+          <p>March 2026 correspondence documented expert critique. The questions concerned terminology, responder roles, observation reliability, workflow location, and series rules. Reviewer identities remain private.</p>
         </div>
       </div>
       <div className="shell critique-grid">{critique.map(([title, question]) => <article key={title}><span>{title}</span><p>{question}</p></article>)}</div>
@@ -96,7 +96,7 @@ export default function MotorsportNeurotraumaToolkit() {
     <section className="section evidence-surface" aria-labelledby="evidence-heading">
       <div className="shell">
         <p className="eyebrow">Evidence and limits</p>
-        <h2 id="evidence-heading">What the record supports</h2>
+        <h2 id="evidence-heading">Evidence</h2>
         <div className="evidence-table" role="table" aria-label="Project evidence and limits">
           <div role="row" className="evidence-head"><span role="columnheader">Artifact</span><span role="columnheader">Supported statement</span><span role="columnheader">Does not establish</span></div>
           <div role="row"><strong role="cell">Version 0.2 pilot card</strong><span role="cell">A structured intake artifact exists.</span><span role="cell">Reliability, clinical utility, or field use.</span></div>
@@ -110,8 +110,8 @@ export default function MotorsportNeurotraumaToolkit() {
       <div className="shell case-intro">
         <p className="eyebrow">Before operational use</p>
         <div>
-          <h2>Reconcile the artifact with the system that holds authority.</h2>
-          <p>Any operational version would require review against current venue procedures, sanctioning-body and series rules, EMS and hospital protocols, communications plans, credentialing, user training, privacy controls, and agency authority.</p>
+          <h2>Requirements before field use</h2>
+          <p>The current scope is four-wheeled racing; motorcycle events would need a separate framework. Any operational version would require review against current venue procedures, sanctioning-body and series rules, EMS and hospital protocols, communications plans, credentialing, user training, privacy controls, and agency authority.</p>
           <Link className="text-link" href="/work/belmont-motorsport-systems">See the related emergency-operations study →</Link>
         </div>
       </div>

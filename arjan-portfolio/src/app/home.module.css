@@ -1,0 +1,142 @@
+.heroScope {
+  min-height: auto !important;
+}
+
+.heroScope :global(.v2-hero-grid) {
+  min-height: 660px;
+}
+
+.heroScope :global(.v2-hero-copy) {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.heroTitle {
+  max-width: 780px;
+  margin: 42px 0 24px !important;
+  font-size: clamp(64px, 7.2vw, 108px) !important;
+  line-height: .86 !important;
+}
+
+.heroFocus {
+  max-width: 700px;
+  margin: 0;
+  color: #5b6064;
+  font-size: clamp(19px, 1.6vw, 23px);
+  line-height: 1.5;
+}
+
+.heroScope :global(.v2-actions) {
+  margin-top: 34px;
+}
+
+.projectPreviewFrame {
+  position: relative;
+  overflow: hidden;
+  background: #0f1218;
+}
+
+.projectPreviewImage {
+  object-fit: cover;
+}
+
+.lightPreviewFrame {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(92, 126, 255, 0.13), transparent 34%),
+    linear-gradient(145deg, #eef2f7 0%, #f8f6ef 100%);
+}
+
+.lightPreviewFrame .projectPreviewImage {
+  object-fit: contain;
+  padding: clamp(14px, 1.6vw, 24px);
+}
+
+.darkPreviewFrame {
+  background: linear-gradient(135deg, #06111f 0%, #0a1627 42%, #050a12 100%);
+}
+
+.darkPreviewFrame .projectPreviewImage {
+  object-fit: contain;
+  padding: clamp(16px, 1.8vw, 28px);
+}
+
+.contact {
+  padding: 92px 0;
+  background: #f2efe8;
+  color: #303033;
+  border-top: 1px solid var(--line);
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr);
+  gap: 72px;
+  align-items: end;
+}
+
+.contact h2 {
+  margin: 26px 0 0;
+  font-size: clamp(48px, 7vw, 88px);
+}
+
+.contactActions {
+  display: grid;
+  border-top: 1px solid currentColor;
+}
+
+.contactActions a {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid currentColor;
+  color: inherit;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+@media (max-width: 800px) {
+  .heroScope :global(.v2-hero-grid) {
+    min-height: auto;
+  }
+
+  .heroScope :global(.v2-hero-copy) {
+    padding-top: 42px;
+    padding-bottom: 34px;
+  }
+
+  .heroTitle {
+    margin: 32px 0 20px !important;
+    font-size: clamp(50px, 14vw, 68px) !important;
+  }
+
+  .heroFocus {
+    font-size: 18px;
+  }
+
+  .heroScope :global(.v2-actions) {
+    margin-top: 24px;
+  }
+
+  .heroScope :global(.v2-visual) {
+    min-height: 390px;
+  }
+
+  .projectPreviewFrame {
+    min-height: 360px;
+  }
+
+  .lightPreviewFrame .projectPreviewImage,
+  .darkPreviewFrame .projectPreviewImage {
+    padding: 14px;
+  }
+
+  .contactGrid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .contact {
+    padding: 72px 0;
+  }
+}

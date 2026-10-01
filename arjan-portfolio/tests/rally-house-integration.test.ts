@@ -12,7 +12,7 @@ describe("Rally House portfolio integration", () => {
       "/playground/rally-house",
       "/playground/pit-stop",
       "/playground/hemodynamic-observatory",
-    ]) expect(page).toContain(`href="${route}"`);
+    ]) expect(page).toContain(`href: "${route}"`);
   });
 
   it("ships an accessible, full-screen-capable game frame", () => {

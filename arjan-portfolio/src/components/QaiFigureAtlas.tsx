@@ -8,7 +8,7 @@ const figures: { id: FigureId; number: string; label: string; status: string }[]
   { id: "levels", number: "01", label: "Levels of explanation", status: "Conceptual" },
   { id: "policy", number: "02", label: "Quantum policy space", status: "Theoretical" },
   { id: "orch", number: "03", label: "Orch OR mechanism", status: "Theoretical" },
-  { id: "experiments", number: "04", label: "Decisive experiments", status: "Roadmap" },
+  { id: "experiments", number: "04", label: "Proposed experiments", status: "Roadmap" },
 ];
 
 function LevelsPlate() {
@@ -55,14 +55,14 @@ function OrchPlate() {
 
 function ExperimentPlate() {
   const steps=["Measure a candidate quantum degree of freedom in living neural tissue.","Perturb it while preserving conventional microtubule function as far as possible.","Test prespecified conscious-state measures or tightly defined neural correlates.","Compare quantum and classical model predictions on intervention outcomes.","Replicate independently under preregistered conditions and negative controls."];
-  return <div className="qai-atlas-plate qai-atlas-experiments"><div className="qai-atlas-plate-head"><strong>8. What would move the field</strong><span>A roadmap for discriminating experiments.</span></div><div className="qai-atlas-exp-list">{steps.map((step,i)=><article key={step}><span>{i+1}</span><p>{step}</p></article>)}</div><div className="qai-atlas-decision"><strong>Falsifiability</strong><p>A quantum account should earn explanatory status only if it predicts intervention outcomes that viable classical models do not, and those predictions replicate.</p></div></div>;
+  return <div className="qai-atlas-plate qai-atlas-experiments"><div className="qai-atlas-plate-head"><strong>8. Proposed experimental tests</strong><span>A roadmap for discriminating experiments.</span></div><div className="qai-atlas-exp-list">{steps.map((step,i)=><article key={step}><span>{i+1}</span><p>{step}</p></article>)}</div><div className="qai-atlas-decision"><strong>Falsifiability</strong><p>A quantum account should earn explanatory status only if it predicts intervention outcomes that viable classical models do not, and those predictions replicate.</p></div></div>;
 }
 
 export function QaiFigureAtlas() {
   const [active,setActive]=useState<FigureId>("levels");
   const id=useId();
   return <section id="qai-atlas" className="qai-section qai-atlas" aria-labelledby={`${id}-title`}>
-    <div className="shell qai-atlas-heading"><div><p className="qai-index">Visual appendix / Figure atlas</p><h2 id={`${id}-title`}>Selected figures, <em>without turning the page into a gallery.</em></h2></div><p>A restrained visual appendix for conceptual figures that survive the publication check. Experimental-result graphics stay native HTML/SVG so every label and number remains auditable.</p></div>
+    <div className="shell qai-atlas-heading"><div><p className="qai-index">Visual appendix / Figure atlas</p><h2 id={`${id}-title`}>Conceptual figure appendix</h2></div><p>Switch between diagrams of the three explanatory levels, possible policy trajectories, the Orch OR proposal, and experimental requirements.</p></div>
     <div className="shell qai-atlas-layout">
       <div className="qai-atlas-tabs" role="tablist" aria-label="Figure atlas">
         {figures.map(fig=><button key={fig.id} type="button" role="tab" aria-selected={active===fig.id} onClick={()=>setActive(fig.id)}><span>{fig.number}</span><b>{fig.label}</b><small>{fig.status}</small></button>)}

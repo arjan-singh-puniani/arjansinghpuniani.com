@@ -5,34 +5,109 @@ import { siteUrl } from "@/lib/site";
 import styles from "./playground.module.css";
 
 export const metadata: Metadata = {
-  title: "Interactive Playground",
-  description:
-    "Interactive experiments by Arjan Singh Puniani in cozy social simulation, tennis, embodied learning, mechanically causal physics, and Formula-style mechanical systems.",
+  title: "Playground",
+  description: "Small interactive experiments by Arjan Singh Puniani in anatomy, tennis, cozy games, motorsport, and cardiovascular flow.",
   alternates: { canonical: "/playground" },
   openGraph: {
     type: "website",
     url: `${siteUrl}/playground`,
-    title: "Interactive Playground | Arjan Singh Puniani",
-    description:
-      "Interactive experiments in cozy social simulation, tennis, embodied learning, physics, and Formula-style mechanical systems.",
-    images: ["/video/tennis-racket-background-poster.jpg"],
+    title: "Playground | Arjan Singh Puniani",
+    description: "Small interactive experiments in anatomy, tennis, cozy games, motorsport, and cardiovascular flow.",
+    images: ["/images/playground/anatomy-learner.webp"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Interactive Playground | Arjan Singh Puniani",
-    description:
-      "Interactive experiments in cozy social simulation, tennis, embodied learning, physics, and Formula-style mechanical systems.",
-    images: ["/video/tennis-racket-background-poster.jpg"],
+    title: "Playground | Arjan Singh Puniani",
+    description: "Small interactive experiments in anatomy, tennis, cozy games, motorsport, and cardiovascular flow.",
+    images: ["/images/playground/anatomy-learner.webp"],
   },
 };
 
+const cards = [
+  {
+    status: "INTERACTIVE ANATOMY",
+    eyebrow: "HoloAnatomy",
+    title: "Anatomy Learner",
+    description: "An anatomy prototype with rotatable head and neck, shoulder, and heart models.",
+    href: "/playground/holoanatomy",
+    button: "Open Anatomy Learner",
+    image: "/images/playground/anatomy-learner.webp",
+    alt: "Detailed anatomical heart cutaway used as the Anatomy Learner project thumbnail",
+    tone: "dark",
+  },
+  {
+    status: "TENNIS GAME",
+    eyebrow: "Vector Tennis",
+    title: "Endless Rally",
+    description: "A simple one-input tennis rally game.",
+    href: "/playground/vector-tennis",
+    button: "Play Endless Rally",
+    image: "/images/playground/endless-rally.webp",
+    alt: "Tennis racket and ball in motion for the Endless Rally game",
+    tone: "dark",
+  },
+  {
+    status: "COZY GAME",
+    eyebrow: "Rally House",
+    title: "Rally House",
+    description: "A playable tennis-club prototype with walking, decorating, and character routines.",
+    href: "/playground/rally-house",
+    button: "Enter Rally House",
+    image: "/rally-house/preview-cozy.webp",
+    alt: "Cozy Rally House tennis clubhouse with friends chatting and playing",
+    tone: "light",
+  },
+  {
+    status: "MECHANICAL MODEL",
+    eyebrow: "Pit Stop Lab",
+    title: "Pit Stop Lab",
+    description: "An interactive model of a Formula-style center-lock wheel-change sequence.",
+    href: "/playground/pit-stop",
+    button: "Open Pit Stop Lab",
+    image: "/images/playground/pit-stop-simulator.webp",
+    alt: "Race car wheel being changed during a pit stop",
+    tone: "dark",
+  },
+  {
+    status: "CARDIO FLOW",
+    eyebrow: "Hemodynamic Observatory",
+    title: "Carotid Flow Visualizer",
+    description: "A synthetic carotid-flow model using a reduced-order velocity field, not a full Navier–Stokes solver.",
+    href: "/playground/hemodynamic-observatory",
+    button: "Open Carotid Flow Visualizer",
+    image: "/images/playground/cardio-visualizer.webp",
+    alt: "Heart with red and blue computational flow streamlines",
+    tone: "dark",
+  },
+] as const;
+
 export default function Playground() {
   return <>
-    <header className="page-hero playground-hero"><div className="shell"><p className="eyebrow">Playground · Interactive experiments</p><h1>Ideas you can move.</h1><p>Small, original experiments in games, simulation, tennis, embodied learning, and playful systems.</p></div></header>
-    <section className={`section ${styles.playSection}`}><div className="shell"><article className="playground-card"><div><span className="status">INTERACTIVE ANATOMY LAB</span><p className="eyebrow">HoloAnatomy · Spatial learning</p><h2>Take anatomy into your own hands.</h2><p>Explore the head and neck, rotator cuff, and heart in 3D. Pull structures apart, inspect their relationships, and test your recall with built-in identification quizzes.</p><div className="mini-causal-chain" aria-label="Explore, dissect, identify, quiz">{["Explore", "Dissect", "Identify", "Quiz"].map((item) => <span key={item}>{item}</span>)}</div><Link className="button" href="/playground/holoanatomy">Explore HoloAnatomy</Link></div></article></div></section>
-    <section className={`section ${styles.playSection}`}><div className="shell"><article className="playground-card"><div><span className="status">PLAYGROUND EXPERIMENT</span><p className="eyebrow">Vector Tennis / Endless Rally</p><h2>One input. Every contact counts.</h2><p>A deterministic arcade rally built over mechanically causal racket and ball physics. Start instantly, then open Racket Lab to inspect the deeper model.</p><div className="mini-causal-chain" aria-label="Read leads to timing, contact, ball state, survival, and restart">{["Read", "Time", "Strike", "Survive", "Restart"].map((item) => <span key={item}>{item}</span>)}</div><Link className="button" href="/playground/vector-tennis">Play Endless Rally</Link></div><div className="racket-mark" aria-hidden="true"><i /><b>↗</b></div></article></div></section>
-    <section className={`section ${styles.playSection}`}><div className="shell"><article className={styles.rallyEntry}><div className={styles.rallyCopy}><span className="status">FEATURED COZY GAME</span><p className="eyebrow">Rally House · Cozy tennis life sim</p><h2>Come hang out for a while.</h2><p>Hit a few balls. Make some matcha. Move a chair into the sun. Chat with whoever’s around—or don’t. Rally House is a little tennis club for wandering, decorating, and letting the day unfold at its own pace.</p><div className={styles.rallyRhythm} aria-label="Hit, hang out, decorate, make matcha, stay awhile"><span>Hit</span><span>Hang out</span><span>Decorate</span><span>Make matcha</span><span>Stay awhile</span></div><Link className="button" href="/playground/rally-house">Enter Rally House</Link></div><figure className={styles.rallyPreview}><Image src="/rally-house/preview-cozy.webp" alt="Cozy Rally House tennis clubhouse with friends chatting in the lounge and playing on court" fill sizes="(max-width: 800px) 100vw, 55vw" priority /></figure></article></div></section>
-    <section className={`section ${styles.playSection}`}><div className="shell"><article className={styles.pitEntry}><div className={styles.pitCopy}><span className="status">INTERACTIVE MECHANICAL LAB</span><p className="eyebrow">Formula Systems / Pit Stop Lab</p><h2>Inspect the mechanical chain.</h2><p>Take apart a center-lock wheel change and see how the wheel gun, retained nut, splined hub, brake assembly, incoming wheel, jack release, and timing work as one system.</p><div className={styles.pitRhythm} aria-label="Disassemble, inspect, rebuild, replay"><span>Disassemble</span><span>Inspect</span><span>Rebuild</span><span>Replay</span></div><Link className="button" href="/playground/pit-stop">Open Pit Stop Lab</Link></div><figure className={styles.pitHero}><Image src="/pit-stop-lab/preview-hero.webp" alt="Close-up Formula-style center-lock wheel, hub, and wheel gun for Pit Stop Lab" fill sizes="(max-width: 800px) 100vw, 52vw" /></figure></article></div></section>
-    <section className={`section ${styles.playSection}`}><div className="shell"><article className={styles.hemoEntry}><div className={styles.hemoCopy}><span className="status">SCIENTIFIC VISUALIZATION</span><p className="eyebrow">Hemodynamic Observatory / Carotid flow</p><h2>See a narrowing become a jet.</h2><p>Explore a provenance-aware reduced-order model of flow through an idealized stenosed carotid artery. Compare streamlines, velocity, vorticity, modeled pressure, wall shear, and a longitudinal section.</p><div className={styles.hemoChain} aria-label="Narrowing leads to acceleration, jet formation, recirculation, and recovery"><span>Narrow</span><span>Accelerate</span><span>Jet</span><span>Recirculate</span><span>Recover</span></div><Link className="button" href="/playground/hemodynamic-observatory">Open Observatory</Link></div><figure className={styles.hemoPreview}><Image src="/hemodynamic-observatory/preview.png" alt="Hemodynamic Observatory showing an idealized stenosed carotid artery and reduced-order flow field" fill sizes="(max-width: 800px) 100vw, 46vw" /></figure></article></div></section>
+    <header className={`page-hero ${styles.hero}`}>
+      <div className="shell">
+        <p className="eyebrow">Playground</p>
+        <h1>Playground.</h1>
+        <p>I built these small browser experiments in anatomy, tennis, mechanical systems, and cardiovascular flow. They are prototypes and educational models.</p>
+      </div>
+    </header>
+
+    <section className={styles.stack}>
+      <div className="shell">
+        {cards.map((card) => (
+          <article className={`${styles.card} ${card.tone === "light" ? styles.light : styles.dark}`} key={card.href}>
+            <div className={styles.copy}>
+              <span className="status">{card.status}</span>
+              <p className="eyebrow">{card.eyebrow}</p>
+              <h2>{card.title}</h2>
+              <p>{card.description}</p>
+              <Link className="button" href={card.href}>{card.button}</Link>
+            </div>
+            <figure className={styles.preview}>
+              <Image src={card.image} alt={card.alt} fill sizes="(max-width: 800px) 100vw, 55vw" />
+            </figure>
+          </article>
+        ))}
+      </div>
+    </section>
   </>;
 }

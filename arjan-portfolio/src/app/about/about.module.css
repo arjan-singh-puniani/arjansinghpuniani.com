@@ -4,20 +4,24 @@
 
 .personalGrid {
   display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   gap: clamp(44px, 6vw, 88px);
   align-items: start;
 }
 
-.portrait {
+.photoStack {
+  display: grid;
+  gap: 14px;
+}
+
+.photoWide {
   margin: 0;
 }
 
-.portrait img {
+.photoWide img {
   display: block;
   width: 100%;
   height: auto;
-  max-height: none;
   border: 1px solid var(--line);
   background: var(--paper);
 }
@@ -50,7 +54,7 @@
 }
 
 .interests {
-  margin-top: 48px;
+  margin-top: 42px;
 }
 
 .interests h3 {
@@ -102,8 +106,8 @@
     gap: 38px;
   }
 
-  .portrait {
-    max-width: 680px;
+  .photoStack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .personalCopy {
@@ -112,6 +116,10 @@
 }
 
 @media (max-width: 560px) {
+  .photoStack {
+    grid-template-columns: 1fr;
+  }
+
   .personalProse {
     margin-top: 26px;
   }
@@ -127,4 +135,8 @@
   .interestList {
     grid-template-columns: 1fr;
   }
+}
+
+.biography p + p {
+  margin-top: 1.25rem;
 }

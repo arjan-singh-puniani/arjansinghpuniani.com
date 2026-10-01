@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-const categories = ["Research collaboration", "Clinical translation", "Speaking or teaching", "Neurotechnology", "Motorsport medicine", "Media", "Other"];
+const categories = ["Research collaboration", "Medical-device development", "Speaking or teaching", "Neurotechnology", "Motorsport medicine", "Media", "Other"];
 export function ContactForm() {
   const [state, setState] = useState<{status: "idle"|"sending"|"success"|"error"; message?: string}>({status:"idle"});
   async function submit(event: React.FormEvent<HTMLFormElement>) {

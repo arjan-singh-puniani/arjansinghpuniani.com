@@ -1,12 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "./holoanatomy.module.css";
+import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "HoloAnatomy — Rotator Cuff Studio",
+  title: "HoloAnatomy | Rotator Cuff Studio",
   description:
     "Explore the right rotator cuff in 3D. Inspect source anatomy, peel layers, follow a spatial lesson, and practice identification in HoloAnatomy.",
   alternates: { canonical: "/playground/holoanatomy" },
+  openGraph: {
+    type: "website", url: `${siteUrl}/playground/holoanatomy`,
+    title: "HoloAnatomy | Arjan Singh Puniani",
+    description: "An interactive right rotator cuff prototype using BodyParts3D geometry, with layer controls, guided lessons, and identification exercises.",
+    images: ["/images/playground/anatomy-learner.webp"],
+  },
+  twitter: {
+    card: "summary_large_image", title: "HoloAnatomy | Arjan Singh Puniani",
+    description: "An interactive rotator cuff prototype using BodyParts3D geometry. Learning outcomes have not been tested.",
+    images: ["/images/playground/anatomy-learner.webp"],
+  },
 };
 
 export default function HoloAnatomyPage() {
@@ -15,19 +27,16 @@ export default function HoloAnatomyPage() {
       <header className={`page-hero ${styles.hero}`}>
         <div className="shell">
           <Link href="/playground">← Playground</Link>
-          <p className="eyebrow">HoloAnatomy · The shoulder study</p>
-          <h1>
-            Four muscles.
-            <br />A spatial understanding.
-          </h1>
+          <p className="eyebrow">HoloAnatomy · Anatomy prototype</p>
+          <h1>HoloAnatomy rotator cuff studio</h1>
           <p>
-            Explore the right rotator cuff from every side. Peel back the
-            available layers, follow a guided lesson, and find the anatomy
-            yourself.
+            I built this anatomy prototype using BodyParts3D geometry.
+            Explore the right rotator cuff, separate the available layers,
+            and practice identifying structures.
           </p>
           <div className={styles.actions}>
             <a className="button" href="#anatomy">
-              Enter the studio ↓
+              Explore the shoulder ↓
             </a>
             <a
               href="/holoanatomy/shoulder/index.html"
@@ -72,7 +81,7 @@ export default function HoloAnatomyPage() {
         <div className={`shell ${styles.basis}`}>
           <div>
             <p className="eyebrow">Source and scope</p>
-            <h2>Anatomy with a source.</h2>
+            <h2>Geometry source and limitations</h2>
           </div>
           <div>
             <p>
@@ -80,7 +89,7 @@ export default function HoloAnatomyPage() {
               muscles can be explored in context, but separate tendons,
               insertion footprints, cartilage and shoulder nerves are not
               supplied. Curriculum text is distinguished from source geometry
-              throughout the studio.
+              throughout the studio. Learning outcomes have not been tested.
             </p>
             <p>
               BodyParts3D, © The Database Center for Life Science licensed
