@@ -81,15 +81,6 @@ export default function About() {
           <p>{profile.headline}</p>
         </div>
       </header>
-      <section className="section">
-        <div className="shell bio-grid">
-          <aside>
-            <p className="eyebrow">Background</p>
-            <h2>{profile.descriptor}</h2>
-          </aside>
-          <article className={styles.biography}>{profile.biography.map((p) => <p className="large" style={{ fontSize: "22px" }} key={p}>{p}</p>)}</article>
-        </div>
-      </section>
 
       <section className="section">
         <div className="shell">
