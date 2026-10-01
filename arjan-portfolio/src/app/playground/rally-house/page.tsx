@@ -6,14 +6,14 @@ import styles from "./rally-house.module.css";
 export const metadata: Metadata = {
   title: "Rally House — Cozy Tennis Life Sim",
   description:
-    "Play Rally House, Arjan Singh Puniani's cozy social tennis simulation where coaching, routines, relationships, witnessed moments, decorating, and club history shape a living academy.",
+    "Rally House is Arjan Singh Puniani's playable tennis-club prototype with walking, decorating, coaching, character routines, and saved event history.",
   alternates: { canonical: "/playground/rally-house" },
   openGraph: {
     type: "website",
     url: `${siteUrl}/playground/rally-house`,
     title: "Rally House | Arjan Singh Puniani",
     description:
-      "A cozy living tennis academy where people notice what happens, reactions linger, conversations are earned, and the club remembers.",
+      "A playable tennis-club prototype with character reactions, routines, decorating, and saved event history.",
     images: [{
       url: "/rally-house/preview.png",
       width: 1100,
@@ -48,7 +48,7 @@ export default function RallyHousePage() {
             </div>
           </div>
           <aside className={styles.summary} aria-label="Rally House game summary">
-            <p>PLAYABLE WEB GAME</p>
+            <p>PLAYABLE WEB PROTOTYPE</p>
             <dl>
               <div><dt>Do</dt><dd>Coach · wander · decorate</dd></div>
               <div><dt>People</dt><dd>Notice · react · remember</dd></div>
@@ -72,11 +72,11 @@ export default function RallyHousePage() {
 
       <section className={styles.whySection}>
         <div className="shell">
-          <p className="eyebrow">Why it feels alive</p>
+          <p className="eyebrow">Character behavior</p>
           <div className={styles.whyGrid}>
-            <article><span>01</span><h2>People notice.</h2><p>Witnesses pause, outcomes affect mood, and reactions can persist after the moment instead of vanishing when the animation ends.</p></article>
-            <article><span>02</span><h2>Conversations are earned.</h2><p>Follow-ups, reflections, and reconciliation draw from actual club events rather than manufacturing history the player never created.</p></article>
-            <article><span>03</span><h2>The place remembers.</h2><p>Coaching evidence, favorite objects, routines, relationships, and bounded memories influence what people do later.</p></article>
+            <article><span>01</span><h2>Event reactions</h2><p>Witnesses pause, outcomes affect mood, and reactions can persist after the moment instead of vanishing when the animation ends.</p></article>
+            <article><span>02</span><h2>Event-based dialogue</h2><p>Follow-ups, reflections, and reconciliation draw from actual club events rather than manufacturing history the player never created.</p></article>
+            <article><span>03</span><h2>Saved routines and history</h2><p>Coaching evidence, favorite objects, routines, relationships, and bounded memories influence what people do later.</p></article>
           </div>
         </div>
       </section>

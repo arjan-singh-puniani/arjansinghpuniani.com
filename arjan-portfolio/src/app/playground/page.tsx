@@ -28,7 +28,7 @@ const cards = [
     status: "INTERACTIVE ANATOMY",
     eyebrow: "HoloAnatomy",
     title: "Anatomy Learner",
-    description: "Explore 3D anatomy, isolate structures, and test yourself.",
+    description: "An anatomy prototype with rotatable head and neck, shoulder, and heart models.",
     href: "/playground/holoanatomy",
     button: "Open Anatomy Learner",
     image: "/images/playground/anatomy-learner.webp",
@@ -50,7 +50,7 @@ const cards = [
     status: "COZY GAME",
     eyebrow: "Rally House",
     title: "Rally House",
-    description: "A cozy tennis life sim about hanging out, decorating, and playing.",
+    description: "A playable tennis-club prototype with walking, decorating, and character routines.",
     href: "/playground/rally-house",
     button: "Enter Rally House",
     image: "/rally-house/preview-cozy.webp",
@@ -58,12 +58,12 @@ const cards = [
     tone: "light",
   },
   {
-    status: "PIT STOP GAME",
+    status: "MECHANICAL MODEL",
     eyebrow: "Pit Stop Lab",
-    title: "Pit Stop Simulator",
-    description: "A fun pit-stop simulator: change the wheel and beat the clock.",
+    title: "Pit Stop Lab",
+    description: "An interactive model of a Formula-style center-lock wheel-change sequence.",
     href: "/playground/pit-stop",
-    button: "Play Pit Stop",
+    button: "Open Pit Stop Lab",
     image: "/images/playground/pit-stop-simulator.webp",
     alt: "Race car wheel being changed during a pit stop",
     tone: "dark",
@@ -71,10 +71,10 @@ const cards = [
   {
     status: "CARDIO FLOW",
     eyebrow: "Hemodynamic Observatory",
-    title: "Navier–Stokes Cardio Visualizer",
-    description: "A cardiovascular-flow visualizer inspired by Navier–Stokes fluid dynamics.",
+    title: "Carotid Flow Visualizer",
+    description: "A synthetic carotid-flow model using a reduced-order velocity field, not a full Navier–Stokes solver.",
     href: "/playground/hemodynamic-observatory",
-    button: "Open Cardio Visualizer",
+    button: "Open Carotid Flow Visualizer",
     image: "/images/playground/cardio-visualizer.webp",
     alt: "Heart with red and blue computational flow streamlines",
     tone: "dark",
@@ -87,7 +87,7 @@ export default function Playground() {
       <div className="shell">
         <p className="eyebrow">Playground</p>
         <h1>Playground.</h1>
-        <p>Small interactive experiments.</p>
+        <p>I built these small browser experiments in anatomy, tennis, mechanical systems, and cardiovascular flow. They are prototypes and educational models.</p>
       </div>
     </header>
 

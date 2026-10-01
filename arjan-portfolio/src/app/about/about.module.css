@@ -136,3 +136,7 @@
     grid-template-columns: 1fr;
   }
 }
+
+.biography p + p {
+  margin-top: 1.25rem;
+}

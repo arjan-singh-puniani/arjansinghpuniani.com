@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     url,
     title: "Motorsport Neurotrauma Toolkit | Arjan Singh Puniani",
     description:
-      "An exploratory documentation and escalation framework connecting crash mechanics with acute neurologic assessment and structured medical handoff.",
+      "A Version 0.2 pilot intake card and disposition algorithm drafted by Arjan Singh Puniani for motorsport medical handoff. Not clinically validated.",
     images: [{ url: "/og.png", alt: "Motorsport Neurotrauma Toolkit — Arjan Singh Puniani" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Motorsport Neurotrauma Toolkit | Arjan Singh Puniani",
     description:
-      "An exploratory documentation and escalation framework connecting crash mechanics with acute neurologic assessment and structured medical handoff.",
+      "A Version 0.2 pilot intake card and disposition algorithm drafted by Arjan Singh Puniani for motorsport medical handoff. Not clinically validated.",
     images: ["/og.png"],
   },
 };
@@ -29,7 +29,7 @@ export default function MotorsportNeurotraumaLayout({ children }: { children: Re
       "@id": `${url}#work`,
       name: "Motorsport Neurotrauma Toolkit",
       description:
-        "An exploratory documentation and escalation framework connecting crash mechanics with acute neurologic assessment and structured medical handoff.",
+        "A Version 0.2 pilot intake card and disposition algorithm drafted by Arjan Singh Puniani for motorsport medical handoff. Not clinically validated.",
       url,
       author: { "@type": "Person", "@id": `${siteUrl}/#arjan-singh-puniani`, name: "Arjan Singh Puniani" },
       isAccessibleForFree: true,

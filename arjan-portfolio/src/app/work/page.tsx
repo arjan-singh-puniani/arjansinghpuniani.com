@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function Work() {
   return <>
-    <header className="page-hero"><div className="shell"><p className="eyebrow">Project index</p><h1>Work</h1><p>Start with the main projects. Each case study separates the problem, what I did, the evidence, and the limits.</p><p><Link className="text-link" href="/notes">For shorter notes on design choices and lessons, read Notes →</Link></p></div></header>
+    <header className="page-hero"><div className="shell"><p className="eyebrow">Project index</p><h1>Work</h1><p>Experimental BCI interfaces, educational software, theoretical reviews, and proposed medical devices. The cards list my role, each project’s status, and its output.</p><p><Link className="text-link" href="/notes">For shorter notes on design choices and lessons, read Notes →</Link></p></div></header>
     <section className="section"><div className="shell"><CuratedProjectFilter/></div></section>
   </>;
 }

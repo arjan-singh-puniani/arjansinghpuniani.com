@@ -10,14 +10,14 @@ import styles from "./about.module.css";
 export const metadata: Metadata = {
   title: "About Arjan Singh Puniani",
   description:
-    "Biography of Arjan Singh Puniani (Arjan Puniani), a neural engineer pursuing medicine and working across brain-computer interfaces, rehabilitation, clinical reasoning, neurotechnology, and motorsport safety.",
+    "Biography of Arjan Singh Puniani, a neural engineer pursuing medicine. BCI research at Pitt RNEL, clinical research at UCSF, independent research software, and personal interests.",
   alternates: { canonical: "/about" },
   openGraph: {
     type: "website",
     url: `${siteUrl}/about`,
     title: "About Arjan Singh Puniani",
     description:
-      "Neural engineer pursuing medicine and working across brain-computer interfaces, rehabilitation, clinical reasoning, neurotechnology, and motorsport safety.",
+      "Neural engineer pursuing medicine, with BCI research at Pitt RNEL, clinical research at UCSF, and independent research software.",
     images: [
       {
         url: "/images/about/arjan-candid.jpg",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Arjan Singh Puniani",
     description:
-      "Neural engineer pursuing medicine and working across brain-computer interfaces, rehabilitation, clinical reasoning, neurotechnology, and motorsport safety.",
+      "Neural engineer pursuing medicine, with BCI research at Pitt RNEL, clinical research at UCSF, and independent research software.",
     images: ["/images/about/arjan-candid.jpg"],
   },
 };
@@ -87,7 +87,7 @@ export default function About() {
             <p className="eyebrow">Background</p>
             <h2>{profile.descriptor}</h2>
           </aside>
-          <article>{profile.biography.map((p) => <p className="large" style={{ fontSize: "22px" }} key={p}>{p}</p>)}</article>
+          <article className={styles.biography}>{profile.biography.map((p) => <p className="large" style={{ fontSize: "22px" }} key={p}>{p}</p>)}</article>
         </div>
       </section>
 
@@ -95,16 +95,16 @@ export default function About() {
         <div className="shell">
           <div className="section-head">
             <div>
-              <p className="eyebrow">Interests → projects</p>
+              <p className="eyebrow">Personal projects</p>
               <h2>Tennis, motorsport, and interactive models.</h2>
             </div>
-            <p>Those interests have become useful places to test ideas about feedback, interfaces, and learning.</p>
+            <p>Some of my independent projects grew out of tennis and motorsport.</p>
           </div>
           <div className="directions">
             <article className="direction">
               <span>01 / Tennis</span>
               <h3>Tennis</h3>
-              <p>I play and teach tennis. It became a natural place to test timing, feedback, and interaction design.</p>
+              <p>I play and teach tennis. I also built a small arcade tennis game.</p>
               <p><Link href="/playground/vector-tennis">Open Vector Tennis →</Link></p>
             </article>
             <article className="direction">
@@ -133,7 +133,7 @@ export default function About() {
             <p>I wrote reported features for <em>Physics World</em> on neural engineering, brain–computer interfaces, and neuroimaging research.</p>
           </div>
           <p><a className="text-link" href={links.physicsWorldAuthor} target="_blank" rel="noreferrer">Physics World contributor archive <span aria-hidden="true">↗</span></a></p>
-          <p><Link className="text-link" href="/research">See peer-reviewed research and current research themes →</Link></p>
+          <p><Link className="text-link" href="/research">See publications and research topics →</Link></p>
           {scienceWriting.map((article) => (
             <article className="publication" key={article.href}>
               <p className="publication-meta">By Arjan Singh Puniani · {article.venue} · {article.publishedAt}</p>

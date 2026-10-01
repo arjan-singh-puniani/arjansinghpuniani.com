@@ -64,7 +64,7 @@ export default function HemodynamicObservatoryPage() {
               ← Playground
             </Link>
             <p className="eyebrow">Hemodynamic Observatory · Cardiovascular mechanics</p>
-            <h1>See a narrowing become a jet.</h1>
+            <h1>Hemodynamic Observatory</h1>
             <p className={styles.deck}>
               An interactive study of how an idealized carotid stenosis reshapes flow. Rotate the
               vessel, scrub the cardiac cycle, expose the longitudinal section, and trace every
@@ -109,9 +109,7 @@ export default function HemodynamicObservatoryPage() {
               <h2>Flow field</h2>
             </div>
             <p>
-              Narrowing → acceleration → jet → near-wall reversal → recovery. The embedded view
-              uses the portfolio itself as its frame; open full screen only when you want the
-              complete scientific instrument.
+              Explore acceleration through the narrowing and the modeled post-stenotic flow. Use the full-screen view for more room to inspect the vessel.
             </p>
           </div>
 
@@ -138,13 +136,12 @@ export default function HemodynamicObservatoryPage() {
         <div className={`shell ${styles.explainGrid}`}>
           <div>
             <p className={styles.index}>02 / MODEL BASIS</p>
-            <h2>Mechanism first.<br />Assumptions in view.</h2>
+            <h2>Model assumptions and limitations</h2>
           </div>
           <div className={styles.explainCopy}>
             <p>
               The model uses synthetic geometry and a deterministic reduced-order field so every
-              displayed quantity remains traceable to an explicit assumption. Geometry, velocity,
-              derived quantities, and the pressure approximation stay distinct.
+              displayed quantity remains traceable to an explicit assumption. It is an educational approximation, not a full Navier–Stokes solution or a patient-specific model. It has not been clinically validated.
             </p>
             <p>
               Switch between the three-dimensional vessel, longitudinal section, and cross-sectional

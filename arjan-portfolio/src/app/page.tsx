@@ -7,16 +7,16 @@ import { siteUrl } from "@/lib/site";
 import styles from "./home.module.css";
 
 export const metadata: Metadata = {
-  title: { absolute: "Arjan Singh Puniani | Neural Engineering" },
+  title: { absolute: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine" },
   description:
-    "Arjan Singh Puniani: SeizeFreeze, brain-computer interface research, conscious active inference, and independent engineering projects.",
+    "Arjan Singh Puniani is a neural engineer pursuing medicine. Explore his brain-computer interface work, clinical research, research software, and medical-device concepts.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: siteUrl,
-    title: "Arjan Singh Puniani | Neural Engineering",
+    title: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
     description:
-      "SeizeFreeze, brain-computer interface research, conscious active inference, and independent engineering projects.",
+      "Neural engineer pursuing medicine. Brain-computer interface research, clinical research, research software, and early medical-device development.",
     images: [
       {
         url: "/images/hero/arjan-portrait-2026.jpg",
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arjan Singh Puniani | Neural Engineering",
+    title: "Arjan Singh Puniani | Neural Engineer Pursuing Medicine",
     description:
-      "SeizeFreeze, brain-computer interface research, conscious active inference, and independent engineering projects.",
+      "Neural engineer pursuing medicine. Brain-computer interface research, clinical research, research software, and early medical-device development.",
     images: ["/images/hero/arjan-portrait-2026.jpg"],
   },
 };
@@ -51,8 +51,9 @@ export default function Home() {
             </p>
             <h1 className={styles.heroTitle}>Arjan Singh Puniani</h1>
             <p className={styles.heroFocus}>
-              SeizeFreeze · BCI research · conscious active inference
+              I am a neural engineer pursuing medicine. I have worked on human brain-computer interfaces, clinical research, and research software.
             </p>
+            <p>Explore the experiments, software, publications, and device concepts below.</p>
             <div className="v2-actions">
               <Link href="#selected-work" data-analytics-event="hero_project_click">
                 Selected work <b>↗</b>
@@ -106,7 +107,7 @@ export default function Home() {
             <p>02 / Active inference · Orch OR</p>
             <h3>Conscious active inference</h3>
             <p className="v2-feature-lead">
-              Two peer-reviewed 2025 reviews connecting active inference with quantum dynamics and Orch OR as a candidate physical implementation.
+              Two peer-reviewed theoretical reviews, co-authored with Michael C. Wiest in 2025, on quantum dynamics as a possible implementation of active inference.
             </p>
             <dl>
               <div>
@@ -137,10 +138,10 @@ export default function Home() {
             />
           </div>
           <div className="v2-feature-copy">
-            <p>03 / Reasoning systems · Medical education</p>
+            <p>03 / Research software · ECG education</p>
             <h3>Vector EKG + ReasonOS</h3>
             <p className="v2-feature-lead">
-              A reasoning interface for medicine that keeps source data, measurements, calculations, alternatives, and revisions visible.
+              An educational ECG prototype I built to record measurements, calculations, alternative explanations, and revisions.
             </p>
             <dl>
               <div>

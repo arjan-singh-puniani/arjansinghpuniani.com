@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Vector EKG and ReasonOS | Arjan Singh Puniani",
     description:
-      "An inspectable educational reasoning architecture applied to electrocardiography, with explicit evidence, contradictions, provenance, and revisions.",
+      "An educational ECG prototype that records measurements, calculations, rejected claims, and revisions.",
     images: ["/og.png"],
   },
 };

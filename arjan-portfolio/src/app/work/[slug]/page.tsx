@@ -24,7 +24,9 @@ const quantumKeywords = [
 ];
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  // These projects have dedicated static pages; generating them here shadows those pages.
+  const dedicatedRoutes = new Set(["motorsport-neurotrauma-toolkit", "belmont-motorsport-systems", "vector-ekg-reasonos"]);
+  return projects.filter((project) => !dedicatedRoutes.has(project.slug)).map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -119,13 +121,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   return <>
     <StructuredData slug={slug} />
-    <header className="page-hero"><div className="shell"><p className="eyebrow">{project.category.join(" · ")}</p><h1>{project.title}</h1><p>{project.shortDescription}</p></div></header>
+    <header className="page-hero"><div className="shell"><p className="eyebrow">{project.category.join(" · ")}</p><h1>{project.title}</h1><p>{project.shortDescription}</p><p><span className="status">{statusLabels[project.status]}</span> · {project.role}</p></div></header>
     <section className="section"><div className="shell case-grid"><div className="case-main">
       {project.media?.[0] && <figure className="case-hero"><Image src={project.media[0].src} alt={project.media[0].alt} width={1400} height={900} priority /><figcaption>{project.media[0].caption}</figcaption></figure>}
       <section><h2>Problem</h2><p>{project.problem}</p></section>
-      <section><h2>Approach</h2><ul>{project.approach.map((item) => <li key={item}>{item}</li>)}</ul></section>
+      <section><h2>My contribution</h2><ul>{project.approach.map((item) => <li key={item}>{item}</li>)}</ul></section>
       <section><h2>Results</h2><ul>{project.results.map((item) => <li key={item}>{item}</li>)}</ul></section>
-      {project.limitations && <section><h2>Open questions</h2><ul>{project.limitations.map((item) => <li key={item}>{item}</li>)}</ul></section>}
+      {project.limitations && <section><h2>Limitations</h2><ul>{project.limitations.map((item) => <li key={item}>{item}</li>)}</ul></section>}
       <section><h2>Sources</h2><div className="case-source-list">{project.evidence.map((source) => <p key={source.label}><strong>{source.label}</strong>{source.url ? <> · <a className="text-link" href={source.url} target="_blank" rel="noreferrer">Open source ↗</a></> : <span> · supporting project record</span>}</p>)}</div></section>
       {project.media && project.media.length > 1 && <section><h2>Gallery</h2><div className="media-grid">{project.media.slice(1).map((media) => <figure key={media.src}><Image src={media.src} alt={media.alt} width={1000} height={700} /><figcaption>{media.caption}</figcaption></figure>)}</div></section>}
       {related.length > 0 && <section><h2>Related work</h2>{related.map((item) => <p key={item.slug}><Link className="text-link" href={`/work/${item.slug}`}>{item.title} ↗</Link></p>)}</section>}

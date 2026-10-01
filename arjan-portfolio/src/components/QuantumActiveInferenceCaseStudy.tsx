@@ -241,7 +241,7 @@ function OrchORInlineFigure() {
     <div className="qai-orch-figure-grid">
       <div className="qai-orch-copy">
         <p className="qai-figure-label">Where Orch OR enters the argument</p>
-        <h3 id="qai-orch-title">A deliberately narrow mechanistic bridge.</h3>
+        <h3 id="qai-orch-title">Orch OR as a proposed mechanism</h3>
         <p>Paper II evaluates Orch OR as one candidate physical mechanism for discrete perceptual cycles. It is not a requirement of active inference and is not presented as an established substrate of consciousness.</p>
         <div className="qai-orch-boundary"><strong>Evidence boundary</strong><span>Tubulin quantum states, orchestrated coherence, and objective reduction remain theoretical propositions. The schematic visualizes the hypothesis rather than an experimental observation.</span></div>
       </div>
@@ -327,7 +327,7 @@ export function QuantumActiveInferenceCaseStudy() {
         <p className="qai-kicker">02 / Theoretical neuroscience · Peer-reviewed research</p>
         <div className="qai-hero-status"><span>Published 2025</span><span>Two companion reviews</span><span>Open-access record</span></div>
         <h1>Conscious<br /><em>active inference.</em></h1>
-        <p className="qai-deck">A two-paper theoretical program asking whether quantum dynamics could provide a mechanistic implementation for the probabilistic planning and discrete perceptual cycles required by temporally deep active inference.</p>
+        <p className="qai-deck">I co-authored two theoretical reviews with Michael C. Wiest in 2025. They examine quantum dynamics as a possible implementation of planning and perceptual cycles in active inference.</p>
         <div className="qai-hero-links">
           <a href={DOI.paperI} target="_blank" rel="noreferrer">Read Paper I ↗</a>
           <a href={DOI.paperII} target="_blank" rel="noreferrer">Read Paper II ↗</a>
@@ -363,7 +363,7 @@ export function QuantumActiveInferenceCaseStudy() {
       <div className="shell">
         <article><span>Formal level</span><strong>What must be computed?</strong><p>Active inference specifies belief updating and policy selection under variational free-energy minimization.</p></article>
         <article><span>Mechanistic candidate</span><strong>What could implement it?</strong><p>The papers evaluate quantum dynamics and Orch OR as candidate physical implementations, not prerequisites of active inference itself.</p></article>
-        <article><span>Standard of proof</span><strong>What would count?</strong><p>A quantum account must outperform viable classical alternatives on discriminating, reproducible intervention predictions.</p></article>
+        <article><span>Standard of proof</span><strong>Proposed experimental tests</strong><p>A quantum account must outperform viable classical alternatives on discriminating, reproducible intervention predictions.</p></article>
       </div>
     </section>
 
@@ -371,7 +371,7 @@ export function QuantumActiveInferenceCaseStudy() {
       <div className="shell qai-two-column">
         <p className="qai-index">00 / From process to mechanism</p>
         <div>
-          <h2 id="qai-question-title">Active inference says what the system must compute.<br /><em>What physical system actually computes it?</em></h2>
+          <h2 id="qai-question-title">Computational objectives, neural processes, and physical mechanisms</h2>
           <p className="qai-lede">The project begins by separating three levels of explanation. Active inference supplies a normative objective. Process theories map belief updating onto neuronal populations and message passing. Mechanistic models must still explain how real biophysics realizes those computations.</p>
           <p className="qai-source-line">Scientific basis: Ma et al. 2006; Friston et al. 2006, 2017; Friston 2018; Parr, Pezzulo &amp; Friston 2022. <ReferenceLink href={DOI.ma} label="Open Ma et al. 2006">[3]</ReferenceLink> <ReferenceLink href={DOI.friston2006} label="Open Friston et al. 2006">[4]</ReferenceLink> <ReferenceLink href={DOI.friston2017} label="Open Friston et al. 2017">[5]</ReferenceLink> <ReferenceLink href={DOI.friston2018} label="Open Friston 2018">[6]</ReferenceLink> <ReferenceLink href={DOI.parr2022} label="Open Parr, Pezzulo and Friston 2022">[7]</ReferenceLink></p>
         </div>
@@ -383,7 +383,7 @@ export function QuantumActiveInferenceCaseStudy() {
       <div className="shell qai-two-column">
         <p className="qai-index">01 / The decoherence challenge</p>
         <div>
-          <h2 id="qai-objection-title">The original objection was brutally simple:<br /><em>the brain is warm, wet, and noisy.</em></h2>
+          <h2 id="qai-objection-title">Decoherence estimates and the neural timescale</h2>
           <p className="qai-lede">Tegmark calculated extremely short decoherence times for candidate neural quantum states, roughly 10<sup>−13</sup> to 10<sup>−20</sup> seconds, compared with neural dynamics on roughly 10<sup>−3</sup> to 10<sup>−1</sup> second scales. The calculation became a central physical objection to quantum models of cognition. <ReferenceLink href={DOI.tegmark} label="Open Tegmark 2000">[1]</ReferenceLink></p>
         </div>
       </div>
@@ -409,8 +409,8 @@ export function QuantumActiveInferenceCaseStudy() {
       <div className="shell qai-two-column">
         <p className="qai-index">02 / Anesthesia as a perturbation</p>
         <div>
-          <h2 id="qai-anesthesia-title">Instead of asking whether microtubules look quantum,<br /><em>ask whether changing them changes consciousness-related behavior.</em></h2>
-          <p className="qai-lede">Volatile anesthetics act through multiple targets. Microtubules are one candidate. The useful question is therefore narrower: does selectively stabilizing microtubules alter a standard behavioral endpoint of anesthesia?</p>
+          <h2 id="qai-anesthesia-title">Microtubule stabilization and anesthetic sensitivity</h2>
+          <p className="qai-lede">Volatile anesthetics act through multiple targets. Microtubules are one candidate. The cited experiments tested whether microtubule stabilization changes loss-of-righting-reflex latency.</p>
         </div>
       </div>
       <div className="shell qai-anesthesia-grid">
@@ -435,7 +435,7 @@ export function QuantumActiveInferenceCaseStudy() {
         <p className="qai-endpoint-note"><strong>Endpoint note:</strong> loss of righting reflex is a standard rodent behavioral proxy for anesthetic-induced unconsciousness. It is not a direct measurement of phenomenal consciousness.</p>
         <div className="qai-evidence-ladder" aria-label="Interpretive limits of the anesthesia experiments">
           <article><span>Observation</span><h3>Microtubule stabilization changes anesthetic sensitivity.</h3><p>The rat and mouse experiments report delayed loss of righting reflex after epothilone B. <ReferenceLink href={DOI.khan} label="Open Khan et al. 2024">[11]</ReferenceLink> <ReferenceLink href={DOI.huang} label="Open Huang et al. 2026">[16]</ReferenceLink></p></article>
-          <article><span>Supports</span><h3>A functional microtubule contribution to anesthetic action.</h3><p>The cross-species direction of effect makes microtubules harder to dismiss as irrelevant to the anesthetic phenotype.</p></article>
+          <article><span>Supports</span><h3>A functional microtubule contribution to anesthetic action.</h3><p>The reported effects are consistent with a microtubule contribution. Classical molecular explanations remain possible.</p></article>
           <article><span>Does not establish</span><h3>A quantum mechanism of consciousness.</h3><p>The experiments do not by themselves demonstrate quantum coherence, entanglement, objective reduction, or a microtubular substrate of phenomenal consciousness.</p></article>
         </div>
       </div>
@@ -445,7 +445,7 @@ export function QuantumActiveInferenceCaseStudy() {
       <div className="shell qai-two-column">
         <p className="qai-index">03 / Our contribution</p>
         <div>
-          <h2 id="qai-contribution-title">The question we asked was computational:<br /><em>how does a biological system evaluate possible futures quickly enough?</em></h2>
+          <h2 id="qai-contribution-title">Our reviews: planning and perceptual cycles</h2>
           <p className="qai-lede">The two companion reviews connect temporally deep active inference to a candidate physical implementation. Paper I focuses on integration over possible future trajectories. Paper II focuses on discrete perceptual cycles and evaluates Orch OR as a proposed mechanism.</p>
         </div>
       </div>
@@ -471,7 +471,7 @@ export function QuantumActiveInferenceCaseStudy() {
       <div className="shell qai-two-column">
         <p className="qai-index">04 / A disputed signal</p>
         <div>
-          <h2 id="qai-mri-title">Some evidence is intriguing precisely because<br /><em>it is contested.</em></h2>
+          <h2 id="qai-mri-title">The disputed MRI interpretation</h2>
           <p className="qai-lede">A 2022 MRI study interpreted multiple-quantum-coherence measurements as possible evidence of a non-classical mediator associated with brain function. A published 2023 comment argued that the measurements did not justify an entanglement claim. The original authors published a reply.</p>
         </div>
       </div>
@@ -498,8 +498,8 @@ export function QuantumActiveInferenceCaseStudy() {
 
     <section id="qai-map" data-section="05" className="qai-section qai-map" aria-labelledby="qai-map-title">
       <div className="shell">
-        <p className="qai-index">05 / What survives scrutiny</p>
-        <h2 id="qai-map-title">A useful theory should make it easy to see what is known,<br /><em>what is suggestive, and what remains conjecture.</em></h2>
+        <p className="qai-index">05 / Evidence</p>
+        <h2 id="qai-map-title">Established findings, contested interpretations, and hypotheses</h2>
         <div className="qai-figure-label qai-map-label">Evidence map</div>
         <div className="qai-evidence-map">
           {evidenceGroups.map((group) => <article key={group.label} data-evidence={group.label.toLowerCase().replace(" ", "-")}>
@@ -516,8 +516,8 @@ export function QuantumActiveInferenceCaseStudy() {
       <div className="shell qai-two-column">
         <p className="qai-index">06 / Falsifiability</p>
         <div>
-          <h2 id="qai-falsifiability-title">The next advance is not another argument.<br /><em>It is a discriminating experiment.</em></h2>
-          <p className="qai-lede">The decisive experiment must separate a specifically quantum mechanism from conventional microtubule biology and classical network dynamics.</p>
+          <h2 id="qai-falsifiability-title">Proposed experiments to distinguish quantum and classical models</h2>
+          <p className="qai-lede">A useful experiment would separate a specifically quantum mechanism from conventional microtubule biology and classical network dynamics.</p>
         </div>
       </div>
       <div className="shell qai-experiment-list">
@@ -531,7 +531,7 @@ export function QuantumActiveInferenceCaseStudy() {
     <section id="qai-publications" data-section="07" className="qai-section qai-publications" aria-labelledby="qai-publications-title">
       <div className="shell">
         <p className="qai-index">07 / Published work</p>
-        <h2 id="qai-publications-title">Two companion reviews.<br /><em>One mechanistic question.</em></h2>
+        <h2 id="qai-publications-title">Published reviews</h2>
         <div className="qai-publication-grid">
           {quantumPapers.map((publication, index) => <PublicationCard publication={publication} index={index} key={publication.doi} />)}
         </div>
@@ -539,7 +539,7 @@ export function QuantumActiveInferenceCaseStudy() {
     </section>
 
     <aside className="qai-coda" aria-label="Research position">
-      <div className="shell"><span>Research position</span><p>The scientifically useful claim is deliberately narrow: quantum active inference is a mechanistic hypothesis with emerging experimentally addressable consequences, not an established account of consciousness.</p></div>
+      <div className="shell"><span>Research position</span><p>These reviews propose a mechanism; they do not demonstrate it in neurons. The anesthesia and MRI studies discussed here were conducted by other researchers. My contribution beyond co-authorship is not separately specified in the public record.</p></div>
     </aside>
 
     <section className="qai-section qai-references" aria-labelledby="qai-references-title">
@@ -548,7 +548,7 @@ export function QuantumActiveInferenceCaseStudy() {
         <div>
           <h2 id="qai-references-title">Sources behind the argument.</h2>
           <ol>{references.map((reference) => <li key={reference.id}><span>{reference.id}</span><a href={reference.href} target="_blank" rel="noreferrer">{reference.citation} ↗</a></li>)}</ol>
-          <p className="qai-reference-note">The social-media carousel that motivated this redesign is not used as evidence. Scientific claims on this page are tied to the primary literature, the peer-reviewed reviews, and the published comment/reply record.</p>
+          <p className="qai-reference-note">The references include the original studies, published critiques and replies, both reviews, and the Paper II corrigendum.</p>
         </div>
       </div>
     </section>

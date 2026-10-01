@@ -31,7 +31,7 @@ const notes = [
     title: "BCI calibration: interface effects",
     body: [
       "Sensors are not the only thing shaping a measurement. Instructions, feedback, pacing, fatigue, attention, and task effort can change the conditions under which data are collected.",
-      "That was the challenge in my BCI calibration work. We could make a repetitive task easier to stay with, but we could not quietly change what the experiment measured. The public record supports real-time neural and behavioral interfaces and analysis across more than 940 sessions; I leave unreleased engagement and validity results out.",
+      "That was the challenge in my BCI calibration work. We could make a repetitive task easier to stay with, but we could not quietly change what the experiment measured. The case study describes preliminary engagement and threshold results in three participants. The more-than-940-session count belongs to my broader RNEL calibration work.",
     ],
     takeaway: "Decide what must stay fixed before redesigning the task. Then improve the experience around that constraint.",
     href: "/work/bci-calibration",
@@ -67,7 +67,7 @@ const notes = [
     title: "HoloAnatomy: spatial context",
     body: [
       "A labeled structure can still be hard to understand when its neighbors disappear. In anatomy, the relationships around a structure are often part of what makes it make sense.",
-      "HoloAnatomy lets you separate structures, inspect their neighbors, identify them, and test your recall. It is an interactive learning exhibit; I have not tested whether it improves learning outcomes.",
+      "HoloAnatomy lets you rotate anatomy models, separate structures, and inspect their neighbors. It is an interactive learning exhibit; I have not tested whether it improves learning outcomes.",
     ],
     takeaway: "Let people pull structures apart without losing the context around them, then move straight into identification and recall.",
     href: "/playground/holoanatomy",
@@ -96,9 +96,9 @@ export default function Notes() {
 
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-    <header className="page-hero"><div className="shell"><p className="eyebrow">Notes</p><h1>Project notes.</h1><p>Short write-ups tied to specific projects. Private implementation details stay private.</p></div></header>
+    <header className="page-hero"><div className="shell"><p className="eyebrow">Notes</p><h1>Project notes.</h1><p>Short notes on interface design, recorded reasoning, medical handoff, and spatial anatomy.</p></div></header>
     <section className="section"><div className="shell">
-      <div className="section-head"><div><p className="eyebrow">Four notes</p><h2>Four project notes.</h2></div><p>Each note stays within what the public work supports.</p></div>
+      <div className="section-head"><div><p className="eyebrow">Four notes</p><h2>Four project notes.</h2></div><p>Links below lead to the corresponding project.</p></div>
       {notes.map((note, index) => (
         <article className="publication" id={note.id} key={note.id} style={{ scrollMarginTop: "96px" }}>
           <p className="publication-meta">0{index + 1} · {note.meta}</p>
@@ -109,6 +109,6 @@ export default function Notes() {
         </article>
       ))}
     </div></section>
-    <section className="section"><div className="shell bio-grid"><div><p className="eyebrow">Scope</p><h2>Limits.</h2></div><div><p className="large" style={{ fontSize: "22px" }}>These are project notes, not claims of clinical validation. I leave unpublished implementation details out.</p><p><Link className="text-link" href="/work">Browse the projects →</Link></p></div></div></section>
+    <section className="section"><div className="shell bio-grid"><div><p className="eyebrow">Scope</p><h2>Limits.</h2></div><div><p className="large" style={{ fontSize: "22px" }}>BCI findings are preliminary. ReasonOS and HoloAnatomy have no demonstrated learning benefit, and the motorsport toolkit has not been clinically validated.</p><p><Link className="text-link" href="/work">Browse the projects →</Link></p></div></div></section>
   </>;
 }

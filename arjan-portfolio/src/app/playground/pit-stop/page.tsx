@@ -99,7 +99,7 @@ export default function PitStopLabPage() {
         <div className="shell case-intro">
           <div>
             <p className="eyebrow">What to inspect</p>
-            <h2>A pit stop as a timed mechanical handoff.</h2>
+            <h2>Wheel-change sequence and camera controls</h2>
           </div>
           <div>
             <p>

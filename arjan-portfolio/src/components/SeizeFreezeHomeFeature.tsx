@@ -18,8 +18,8 @@ export function SeizeFreezeHomeFeature() {
       <p className="v2-feature-lead">A focal cortical-cooling concept for drug-resistant epilepsy.</p>
       <dl>
         <div><dt>Role</dt><dd>Founder + device lead</dd></div>
-        <div><dt>State</dt><dd>Prototype</dd></div>
-        <div><dt>Evidence</dt><dd>$12.5K documented awards</dd></div>
+        <div><dt>State</dt><dd>Concept + prototype planning</dd></div>
+        <div><dt>Output</dt><dd>Architecture diagrams + thermal models</dd></div>
       </dl>
       <Link href="/work/seizefreeze">Open case study <span>↗</span></Link>
     </div>

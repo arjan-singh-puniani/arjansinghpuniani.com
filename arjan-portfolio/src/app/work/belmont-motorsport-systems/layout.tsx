@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     url,
     title: "Belmont Motorsport Systems | Arjan Singh Puniani",
     description:
-      "An academic systems study of motorsport risk, mitigation, emergency operations, medical coordination, and recovery under race-day constraints.",
+      "Belmont Abbey College coursework: a 16-item risk register, mitigation plan, and proposed emergency and medical operations annex.",
     images: [{ url: "/og.png", alt: "Belmont Motorsport Systems — Arjan Singh Puniani" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Belmont Motorsport Systems | Arjan Singh Puniani",
     description:
-      "An academic systems study of motorsport risk, mitigation, emergency operations, medical coordination, and recovery under race-day constraints.",
+      "Belmont Abbey College coursework: a 16-item risk register, mitigation plan, and proposed emergency and medical operations annex.",
     images: ["/og.png"],
   },
 };
@@ -29,7 +29,7 @@ export default function BelmontMotorsportLayout({ children }: { children: React.
       "@id": `${url}#work`,
       name: "Belmont Motorsport Systems",
       description:
-        "An academic systems study of motorsport risk, mitigation, emergency operations, medical coordination, and recovery under race-day constraints.",
+        "Belmont Abbey College coursework: a 16-item risk register, mitigation plan, and proposed emergency and medical operations annex.",
       url,
       author: { "@type": "Person", "@id": `${siteUrl}/#arjan-singh-puniani`, name: "Arjan Singh Puniani" },
       isAccessibleForFree: true,

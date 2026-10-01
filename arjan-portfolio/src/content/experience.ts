@@ -1,5 +1,5 @@
 export const experience = [
-  { organization: "Cyberpunk Reality", role: "Founder", dates: "2022–Present", summary: "Early translational neurotechnology venture developing a focal cortical-cooling concept for drug-resistant epilepsy." },
+  { organization: "Cyberpunk Reality", role: "Founder", dates: "2022–Present", summary: "Early-stage neurotechnology project developing a focal cortical-cooling concept for drug-resistant epilepsy." },
   { organization: "Rehab Neural Engineering Labs, University of Pittsburgh", role: "R&D Neural Engineer", dates: "2022–2024", summary: "Psychophysics, experimental software, neural-interface workflows, calibration analysis, and signal-degradation investigation." },
   { organization: "Sensorimotor Integration Laboratory", role: "Neurophysiology Analyst", dates: "2021–2022", summary: "Electrophysiology and eye-movement analysis using MATLAB and Hidden Markov Models." },
   { organization: "UCSF Eureka Platform", role: "Clinical Research Coordinator", dates: "2021", summary: "Clinical-research operations, protocol development, and study deployment support." },

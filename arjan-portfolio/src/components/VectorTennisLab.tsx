@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type PointerEvent } from "react";
 import {
   createArcadeBall,
   stepArcadeBallInPlace,
@@ -29,7 +29,7 @@ const INITIAL_HUD: Hud = {
   speed: 0,
   spin: 0,
   shot: "READY",
-  status: "Press Space or click the court to start.",
+  status: "Press J or click the court to start.",
   waiting: true,
 };
 
@@ -187,7 +187,7 @@ export function VectorTennisLab() {
       energy = 22;
       gameStarted = false;
       newRally("rival");
-      announce("New Racket Lab match. Press Space or click the court when you are ready.");
+      announce("New Racket Lab match. Press J or click the court when you are ready.");
     };
 
     const scorePoint = (winner: "player" | "rival", reason: string) => {
@@ -607,18 +607,35 @@ export function VectorTennisLab() {
       frame = requestAnimationFrame(tick);
     };
 
+    const releaseInput = () => {
+      keys.clear();
+      movementRequestRef.current = { x: 0, z: 0 };
+    };
     const keyDown = (event: globalThis.KeyboardEvent) => {
+      // Native buttons retain Enter/Space activation. Game shortcuts belong
+      // to the focused court, never to the surrounding page or form controls.
+      if (event.target !== stage || event.ctrlKey || event.metaKey || event.altKey) return;
       const key = event.key.toLowerCase();
-      if (["arrowleft", "arrowright", "arrowup", "arrowdown", " ", "k", "l"].includes(key)) event.preventDefault();
+      if (key === " ") {
+        event.preventDefault(); // An old Space habit must not scroll the court away.
+        return;
+      }
+      if (!["arrowleft", "arrowright", "arrowup", "arrowdown", "w", "a", "s", "d", "j", "k", "l", "r"].includes(key)) return;
+      event.preventDefault();
       keys.add(key);
-      if (key === " ") requestShot("flat");
+      if (event.repeat) return;
+      if (key === "j") requestShot("flat");
       if (key === "k") requestShot("topspin");
       if (key === "l") requestShot("slice");
       if (key === "r") resetMatch();
     };
     const keyUp = (event: globalThis.KeyboardEvent) => { keys.delete(event.key.toLowerCase()); };
+    const visibilityChange = () => { if (document.hidden) releaseInput(); };
     stage.addEventListener("keydown", keyDown);
     stage.addEventListener("keyup", keyUp);
+    stage.addEventListener("blur", releaseInput, true);
+    window.addEventListener("blur", releaseInput);
+    document.addEventListener("visibilitychange", visibilityChange);
     const observer = new ResizeObserver(resize);
     observer.observe(canvas);
     const intersection = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; previous = performance.now(); }, { rootMargin: "100px" });
@@ -631,6 +648,9 @@ export function VectorTennisLab() {
       intersection.disconnect();
       stage.removeEventListener("keydown", keyDown);
       stage.removeEventListener("keyup", keyUp);
+      stage.removeEventListener("blur", releaseInput, true);
+      window.removeEventListener("blur", releaseInput);
+      document.removeEventListener("visibilitychange", visibilityChange);
     };
   }, []);
 
@@ -638,17 +658,13 @@ export function VectorTennisLab() {
     unlockAudio();
     shotRequestRef.current = shot;
     setSelectedShot(shot);
-    stageRef.current?.focus();
+    stageRef.current?.focus({ preventScroll: true });
   };
 
   const nudge = (x: number, z: number) => {
     movementRequestRef.current = { x, z };
     window.setTimeout(() => { movementRequestRef.current = { x: 0, z: 0 }; }, 160);
-    stageRef.current?.focus();
-  };
-
-  const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if ([" ", "k", "l"].includes(event.key.toLowerCase())) event.preventDefault();
+    stageRef.current?.focus({ preventScroll: true });
   };
 
   const onPointerMove = (event: PointerEvent<HTMLDivElement>) => {
@@ -682,15 +698,14 @@ export function VectorTennisLab() {
       role="application"
       aria-label="Vector Tennis advanced Racket Lab"
       aria-describedby="tennis-instructions tennis-status"
-      onKeyDown={onKeyDown}
       onPointerMove={onPointerMove}
       onPointerUp={() => { movementRequestRef.current = { x: 0, z: 0 }; }}
       onPointerLeave={() => { movementRequestRef.current = { x: 0, z: 0 }; }}
-      onPointerDown={(event) => { if (event.pointerType === "mouse") shoot("flat"); }}
+      onPointerDown={(event) => { if (event.pointerType === "mouse" && !(event.target as HTMLElement).closest("button")) shoot("flat"); }}
     >
       <canvas ref={canvasRef} aria-hidden="true" />
-      <div className="stage-focus-hint control-map" aria-label="Keyboard controls"><span><kbd>W</kbd><i><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></i><b>Move</b></span><span><kbd className="key-wide">Space</kbd><b>Start / Flat</b></span><span><kbd>K</kbd><b>Topspin</b></span><span><kbd>L</kbd><b>Slice</b></span><span><kbd className="key-wide">Click</kbd><b>Flat</b></span></div>
-      {hud.waiting && <button type="button" className="start-prompt" onClick={() => shoot("flat")}><span>Space / Click</span><strong>Start rally</strong><small>Your first flat swing is buffered.</small></button>}
+      <div className="stage-focus-hint control-map" aria-label="Keyboard controls"><span><kbd>W</kbd><i><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></i><b>Move</b></span><span><kbd className="key-wide">J</kbd><b>Start / Flat</b></span><span><kbd>K</kbd><b>Topspin</b></span><span><kbd>L</kbd><b>Slice</b></span><span><kbd className="key-wide">Click</kbd><b>Flat</b></span></div>
+      {hud.waiting && <button type="button" className="start-prompt" onClick={() => shoot("flat")}><span>J / Click</span><strong>Start rally</strong><small>Your first flat swing is buffered.</small></button>}
       <div className="overdrive-meter"><span>Overdrive</span><i><b style={{ width: `${hud.energy}%` }} /></i><strong>{hud.energy >= 92 ? "READY" : `${hud.energy}%`}</strong></div>
     </div>
 
@@ -698,7 +713,7 @@ export function VectorTennisLab() {
 
     <div className="arcade-console">
       <div className="shot-deck" role="group" aria-label="Choose and play shot">
-        {(["flat", "topspin", "slice"] as const).map((shot, index) => <button key={shot} type="button" className={`shot-card shot-${shot}`} aria-pressed={selectedShot === shot} onClick={() => shoot(shot)}><span>{["SPACE", "K", "L"][index]}</span><strong>{shot}</strong><small>{shot === "flat" ? "fast cannon shot" : shot === "topspin" ? "high arc + hard kick" : "wide bend + low skid"}</small></button>)}
+        {(["flat", "topspin", "slice"] as const).map((shot, index) => <button key={shot} type="button" className={`shot-card shot-${shot}`} aria-pressed={selectedShot === shot} onClick={() => shoot(shot)}><span>{["J", "K", "L"][index]}</span><strong>{shot}</strong><small>{shot === "flat" ? "fast cannon shot" : shot === "topspin" ? "high arc + hard kick" : "wide bend + low skid"}</small></button>)}
       </div>
       <div className="arcade-readouts" aria-label="Live ball telemetry">
         <div><span>Pace</span><strong>{hud.speed}</strong><small>km/h*</small></div>
@@ -713,7 +728,7 @@ export function VectorTennisLab() {
 
     <div id="tennis-instructions" className="tennis-instructions">
       <p><strong>Move:</strong> WASD or arrows. On pointer, drag across your half of the court.</p>
-      <p><strong>Hit:</strong> Space or click for flat · K topspin · L slice. Early presses buffer generously.</p>
+      <p><strong>Hit:</strong> J or click for flat · K topspin · L slice. Early presses buffer generously.</p>
       <p><strong>Overdrive:</strong> clean returns charge the meter. At full charge, your next shot detonates automatically.</p>
     </div>
     <p className="model-units-note">*Telemetry is intentionally game-relative, not measurement-grade.</p>

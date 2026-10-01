@@ -22,12 +22,8 @@
   max-width: 700px;
   margin: 0;
   color: #5b6064;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .08em;
-  line-height: 1.55;
-  text-transform: uppercase;
+  font-size: clamp(19px, 1.6vw, 23px);
+  line-height: 1.5;
 }
 
 .heroScope :global(.v2-actions) {
@@ -115,7 +111,7 @@
   }
 
   .heroFocus {
-    font-size: 10px;
+    font-size: 18px;
   }
 
   .heroScope :global(.v2-actions) {

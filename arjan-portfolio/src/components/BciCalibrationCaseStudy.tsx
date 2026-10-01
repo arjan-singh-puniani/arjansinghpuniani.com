@@ -29,12 +29,11 @@ export function BciCalibrationCaseStudy() {
             <p className={styles.eyebrow}>RNEL · HUMAN BCI RESEARCH · 2022–2024</p>
             <h1>Gamified BCI calibration</h1>
             <p className={styles.heroThesis}>
-              Can a repetitive psychophysical task become more engaging without changing what it measures?
+              An arcade-style task for measuring intracortical stimulation detection thresholds.
             </p>
             <p className={styles.heroBody}>
               In the Rehab Neural Engineering Labs, I worked on a research redesign of an intracortical
-              microstimulation detection-threshold task. The redesign preserved the underlying psychophysical measurement while making repeated
-              calibration more engaging, participant-centered, and easier to sustain.
+              microstimulation detection-threshold task. We retained the two-alternative forced-choice trial structure and compared engagement and detection thresholds in three implanted BCI participants. The results are preliminary and described in a working manuscript.
             </p>
             <div className={styles.heroMeta} role="group" aria-label="Project details">
               <div><span>Role</span><strong>R&amp;D neural engineer</strong></div>
@@ -64,7 +63,7 @@ export function BciCalibrationCaseStudy() {
         <div className="shell">
           <div className={styles.sectionHead}>
             <span>01 / THE PROBLEM</span>
-            <h2>Calibration can be scientifically necessary and experientially tedious.</h2>
+            <h2>Problem: repetitive detection-threshold trials</h2>
           </div>
           <div className={styles.twoCol}>
             <p className={styles.lede}>
@@ -86,7 +85,7 @@ export function BciCalibrationCaseStudy() {
         <div className="shell">
           <div className={styles.sectionHead}>
             <span>02 / THE DESIGN QUESTION</span>
-            <h2>Change the experience. Hold the measurement logic still.</h2>
+            <h2>Method: retain the two-interval detection task</h2>
           </div>
           <div className={styles.questionCard}>
             <p>
@@ -101,7 +100,7 @@ export function BciCalibrationCaseStudy() {
         <div className="shell">
           <div className={styles.sectionHead}>
             <span>03 / BEFORE → AFTER</span>
-            <h2>The gamified task wrapped a familiar psychophysical paradigm in a more engaging interface.</h2>
+            <h2>Implementation: arcade cues and tablet responses</h2>
           </div>
 
           <div className={styles.compareGrid}>
@@ -165,7 +164,7 @@ export function BciCalibrationCaseStudy() {
         <div className="shell">
           <div className={styles.sectionHead}>
             <span>04 / THE SYSTEM</span>
-            <h2>A deliberately constrained experimental pipeline.</h2>
+            <h2>Experimental workflow</h2>
           </div>
           <p className={styles.systemNote}>
             This diagram follows the experimental pipeline used in the study, from channel selection and
@@ -187,7 +186,7 @@ export function BciCalibrationCaseStudy() {
         <div className="shell">
           <div className={styles.sectionHead}>
             <span>05 / EXPERIMENT</span>
-            <h2>Direct comparison, repeated within participants.</h2>
+            <h2>Within-participant comparison</h2>
           </div>
 
           <div className={styles.factGrid}>
@@ -220,7 +219,7 @@ export function BciCalibrationCaseStudy() {
         <div className="shell">
           <div className={styles.sectionHead}>
             <span>06 / WHAT I BUILT</span>
-            <h2>Interface design was only one part of the research problem.</h2>
+            <h2>My contribution</h2>
           </div>
 
           <div className={styles.contributionGrid}>
@@ -232,7 +231,7 @@ export function BciCalibrationCaseStudy() {
             <article>
               <span>02</span>
               <h3>Game layer</h3>
-              <p>Worked within a Pygame-based research interface using animated cues, progress, challenge, and feedback rather than a decorative overlay.</p>
+              <p>Worked within a Pygame-based research interface using animated cues, progress, challenge, and feedback.</p>
             </article>
             <article>
               <span>03</span>
@@ -247,7 +246,7 @@ export function BciCalibrationCaseStudy() {
           </div>
 
           <p className={styles.collaborationNote}>
-            This was collaborative human-subjects research across RNEL and a broader multi-site effort. My contribution centered on task redesign, participant-facing interaction, response flow, and analysis.
+            I worked on task redesign, participant-facing interaction, tablet response flow, and analysis. The manuscript credits Chantal Verbaarschot, Charles Greenspon, Hannah Higgins, Sliman Bensmaia, and Robert Gaunt alongside me. The study methods and findings are collaborative work.
           </p>
         </div>
       </section>
@@ -256,7 +255,7 @@ export function BciCalibrationCaseStudy() {
         <div className="shell">
           <div className={styles.sectionHead}>
             <span>07 / PRELIMINARY FINDINGS</span>
-            <h2>More engaging, without a clear aggregate shift in detection threshold.</h2>
+            <h2>Preliminary engagement and threshold results</h2>
           </div>
 
           <div className={styles.findingsGrid}>
@@ -282,7 +281,7 @@ export function BciCalibrationCaseStudy() {
           </div>
 
           <div className={styles.boundary}>
-            <strong>What the early data say</strong>
+            <strong>Result summary</strong>
             <p>
               Working analyses showed stronger engagement across participants while aggregate detection
               thresholds did not shift significantly. The manuscript contains the full statistical treatment.
@@ -295,16 +294,14 @@ export function BciCalibrationCaseStudy() {
         <div className="shell">
           <div className={styles.sectionHead}>
             <span>08 / RESEARCH IN PRACTICE</span>
-            <h2>Engagement was a systems constraint, not a cosmetic feature.</h2>
+            <h2>Design implications</h2>
           </div>
           <div className={styles.practiceGrid}>
             <p className={styles.lede}>
-              A calibration task can be technically correct and still be difficult to live with. Human-centered
-              engineering in this setting meant treating participant attention, fatigue, agency, and feedback as
-              part of experimental reliability.
+              For repeated calibration sessions, I used animated cues, direct tablet responses, and immediate feedback to make the task easier to follow. The study compared participant experience as well as detection thresholds.
             </p>
             <blockquote>
-              Preserve the measurement. Improve the experience around it.
+              The study retained the two-interval trial structure while changing the visual cues and response interface.
             </blockquote>
           </div>
         </div>
@@ -314,7 +311,7 @@ export function BciCalibrationCaseStudy() {
         <div className="shell">
           <div className={styles.sectionHead}>
             <span>09 / TEAM</span>
-            <h2>Research happens in a community.</h2>
+            <h2>RNEL research team</h2>
           </div>
           <figure className={styles.teamFigure}>
             <Image
@@ -348,7 +345,7 @@ export function BciCalibrationCaseStudy() {
         <div className="shell">
           <div className={styles.sectionHead}>
             <span>10 / SCOPE + SOURCES</span>
-            <h2>What remains open, and where the record comes from.</h2>
+            <h2>Evidence and limitations</h2>
           </div>
 
           <div className={styles.bottomGrid}>
@@ -359,7 +356,7 @@ export function BciCalibrationCaseStudy() {
                 <li>The novelty of a gamified task may diminish with repeated exposure.</li>
                 <li>A tablet response interface may not generalize to participants without usable upper-extremity movement.</li>
                 <li>Gamification adds implementation complexity and does not automatically improve every outcome.</li>
-                <li>The statistical summary reflects working research materials; the submitted manuscript is the authoritative research record.</li>
+                <li>The statistical summary comes from a working manuscript. Peer-reviewed publication and formal equivalence testing are not established here.</li>
               </ul>
             </div>
 
@@ -367,12 +364,12 @@ export function BciCalibrationCaseStudy() {
               <article>
                 <span>RESEARCH ARTIFACT</span>
                 <h3>2023 technical talk</h3>
-                <p>Supports the task redesign, 2AFC structure, gamified response flow, experimental sequence, and preliminary questionnaire framing.</p>
+                <p>The supplied talk describes the task design, two-interval trials, tablet response flow, and questionnaire. A public recording is not linked here.</p>
               </article>
               <article>
                 <span>WORKING MANUSCRIPT</span>
                 <h3>Gamified BCI calibration preprint</h3>
-                <p>Supports the three-participant methods, 6–8 channel sampling, session duration, survey design, engagement findings, and threshold analyses.</p>
+                <p>The supplied manuscript, “Making routine psychophysical calibration tasks for bidirectional brain-computer interfaces more fun,” contains the methods and preliminary analyses. A public manuscript link is not available here.</p>
               </article>
               <article>
                 <span>LAB PHOTOGRAPHY</span>
