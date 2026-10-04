@@ -1,0 +1,34 @@
+/* Warm paper labels, attached to the miniature rather than a fixed dashboard. */
+.spatial-layer{position:absolute;inset:0;z-index:11;pointer-events:none;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.spatial-layer[hidden],.spatial-card[hidden],.spatial-return[hidden]{display:none!important}
+.spatial-leader{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.spatial-leader path{fill:none;stroke:#668572;stroke-width:1;stroke-opacity:.55;stroke-dasharray:2 3}
+.spatial-card{position:absolute;left:0;top:0;width:294px;max-width:calc(100% - 28px);max-height:calc(100dvh - 162px);padding:14px;border-radius:18px;border:1px solid #d4decc;background:linear-gradient(135deg,rgba(255,252,243,.97),rgba(247,242,229,.96));box-shadow:0 12px 32px #354b3822;pointer-events:auto;overflow-y:auto;overscroll-behavior:contain;opacity:0;translate:0 5px;transition:opacity .16s,translate .16s;will-change:transform}
+.spatial-card.entered{opacity:1;translate:0 0}
+.spatial-card .close{height:44px;width:44px;right:4px;top:4px;background:transparent;font-size:23px;color:#597361}
+.spatial-card .eyebrow{font-size:10px;letter-spacing:.09em;margin:0 34px 4px 0;color:#5b725f}
+.spatial-card h2{font-size:21px;line-height:1.2;letter-spacing:-.04em;margin:0 34px 4px 0}
+.spatial-subtitle{font-size:12px;line-height:1.4;margin:0 0 10px;color:#52685d}
+.spatial-status{font-size:12px;line-height:1.4;padding:8px 9px;margin:0 0 10px;border-radius:9px;background:#e8eddf;color:#355846}
+.spatial-facts{display:grid;gap:9px;margin:0 0 12px}
+.spatial-facts:empty{display:none}
+.spatial-facts small{display:block;font-size:10px;color:#607563;margin-bottom:2px}
+.spatial-facts span{display:block;font-size:12px;line-height:1.4;color:#334f40}
+.spatial-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.spatial-actions button{min-height:48px;border-radius:10px;padding:8px 9px;background:#eee9dc;border:1px solid #e0ddcf;text-align:left;cursor:pointer}
+.spatial-actions button strong{font-size:12px;line-height:1.3;display:block}
+.spatial-actions button span{font-size:10px;line-height:1.3;display:block;margin-top:3px;color:#52685d}
+.spatial-actions button.primary{grid-column:1/-1;background:#426b54;border-color:#426b54;color:#fffaf0}
+.spatial-actions button.primary span{color:#e3eddb}
+.spatial-actions button:hover{filter:brightness(1.04)}
+.world-notice{position:absolute;left:0;top:0;max-width:220px;min-height:44px;padding:6px 10px;background:rgba(250,247,234,.91);box-shadow:0 3px 13px #384b3720;border:1px solid #d2dbc8;border-radius:12px;color:#385942;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:auto;cursor:pointer}
+.world-notice::before{content:'•';color:#7b9b6d;margin-right:6px}
+.spatial-return{position:absolute;left:50%;bottom:84px;transform:translateX(-50%);min-height:44px;padding:10px 16px;background:#f8f3e6;border:1px solid #ced8c2;border-radius:12px;pointer-events:auto;cursor:pointer}
+body:has(.spatial-card:not([hidden])) .objective,body:has(.spatial-card:not([hidden])) #hint{opacity:0}
+/* Day/time belongs at the edge; orientation stays quiet and out of the court. */
+.objective{left:16px;top:78px;transform:none;width:min(390px,calc(100% - 32px));padding:8px 11px;transition:opacity .15s}
+.objective .taskIcon{width:29px;height:29px;font-size:15px}
+@media(max-width:720px){.spatial-card{width:274px}.spatial-card h2{font-size:19px}.world-notice{max-width:175px;font-size:10px}.objective{left:14px;top:74px;width:calc(100% - 28px)}.spatial-actions button span{display:none}.spatial-facts{gap:7px}.spatial-card{padding:14px}.spatial-subtitle{margin-bottom:8px}}
+@media(max-height:480px){.spatial-card{max-height:calc(100dvh - 162px)}.spatial-subtitle{display:none}.spatial-status{margin-bottom:7px;padding:6px 8px}.spatial-facts{gap:6px;margin-bottom:8px}.spatial-actions button{min-height:44px}.spatial-actions button span{display:none}.objective{max-width:260px}.objective small{display:none}.world-notice{max-width:170px}}
+.spatial-layer.reduced-motion *{transition:none!important;animation:none!important}
+@media(prefers-reduced-motion:reduce){.spatial-layer *{transition:none!important;animation:none!important}}

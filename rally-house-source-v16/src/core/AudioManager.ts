@@ -159,7 +159,7 @@ export class AudioManager {
       source.buffer=this.tennisMaterialBuffer(quality,variant);
       body.type='peaking';body.frequency.value=quality==='frame'?190:155;body.Q.value=.8;body.gain.value=quality==='perfect'?3.0:quality==='clean'?2.2:1.2;
       presence.type='peaking';presence.frequency.value=quality==='frame'?1150:2250;presence.Q.value=.72;presence.gain.value=quality==='perfect'?3.2:quality==='clean'?2.2:quality==='defensive'?.8:-1.0;
-      const level=quality==='perfect'?.055:quality==='clean'?.049:quality==='defensive'?.039:.043;
+      const level=quality==='perfect'?.078:quality==='clean'?.067:quality==='defensive'?.052:.043;
       gain.gain.setValueAtTime(level*this.volume,c.currentTime);
       source.connect(body).connect(presence).connect(gain).connect(c.destination);
       source.onended=()=>{source.disconnect();body.disconnect();presence.disconnect();gain.disconnect();};

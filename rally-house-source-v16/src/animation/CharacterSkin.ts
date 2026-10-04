@@ -56,8 +56,13 @@ for(const [garment,width] of [[top,.37],[feminineTop,.355]] as const){
 const pants=build();
 addSegment(pants,bind.thighL,bind.shinL,[.155,.14],[.13,.12],BONE.thighL,BONE.shinL,10);addSegment(pants,bind.shinL,bind.footL,[.13,.12],[.105,.10],BONE.shinL,BONE.shinL,10);
 addSegment(pants,bind.thighR,bind.shinR,[.155,.14],[.13,.12],BONE.thighR,BONE.shinR,10);addSegment(pants,bind.shinR,bind.footR,[.13,.12],[.105,.10],BONE.shinR,BONE.shinR,10);
+// Tennis separates reveal the moving calves, with a tailored short over the upper leg.
+const shorts=build();
+for(const side of ['L','R'] as const){const thigh=bind[`thigh${side}`],shin=bind[`shin${side}`];addSegment(shorts,thigh,Vec3.lerp(thigh,shin,.48),[.175,.155],[.16,.145],BONE[`thigh${side}`],BONE[`thigh${side}`],12);}
+const skirt=build();
+addSegment(skirt,new Vec3(0,.93,0),new Vec3(0,.59,0),[.295,.22],[.43,.34],BONE.pelvis,BONE.pelvis,24);
 const arms=build();
 addSegment(arms,bind.upperArmL,bind.foreArmL,[.14,.13],[.12,.105],BONE.upperArmL,BONE.foreArmL,10);addSegment(arms,bind.foreArmL,bind.handL,[.12,.105],[.095,.085],BONE.foreArmL,BONE.handL,10);
 addSegment(arms,bind.upperArmR,bind.foreArmR,[.14,.13],[.12,.105],BONE.upperArmR,BONE.foreArmR,10);addSegment(arms,bind.foreArmR,bind.handR,[.12,.105],[.095,.085],BONE.foreArmR,BONE.handR,10);
 
-export const CHARACTER_SKIN={top:finish('char-top-v1',top),feminineTop:finish('char-top-feminine-v1',feminineTop),pants:finish('char-pants-v1',pants),arms:finish('char-arms-v1',arms)};
+export const CHARACTER_SKIN={top:finish('char-top-v1',top),feminineTop:finish('char-top-feminine-v1',feminineTop),pants:finish('char-pants-v1',pants),arms:finish('char-arms-v1',arms),shorts:finish('char-shorts-v1',shorts),skirt:finish('char-skirt-v1',skirt)};

@@ -1,3 +1,4 @@
+import {CHAMPIONSHIP_TUNING} from '../tennis/ChampionshipTuning.js';
 import {ActingState,type ReactionName} from '../animation/ActingState.js';
 import {WalkCycle} from '../animation/WalkCycle.js';
 import {Vec3, clamp, smoothstep} from '../rendering/Math3D.js';
@@ -125,7 +126,7 @@ export class Character {
     if(!alreadySteering&&!isShot(this.state)){this.courtPhase='recover';this.courtPhaseAge=0;this.changeState('shuffle',false);}
   }
   /** Championship can scale court translation without bypassing the existing shuffle/foot solver. */
-  setCourtSpeedScale(scale:number){this.courtSpeedScale=clamp(scale,.05,1.5);}
+  setCourtSpeedScale(scale:number){this.courtSpeedScale=clamp(scale,.05,this.matchCompetitor?3:1.5);}
   getCourtSpeedScale(){return this.courtSpeedScale;}
   clearCourtMove(){this.courtTarget=undefined;this.courtFacing=undefined;if(!isShot(this.state)){this.courtPhase='neutral';this.courtPhaseAge=0;}}
   setLook(target?:Vec3){this.targetLook=target?.clone();this.transientLookRemaining=0;}
@@ -168,8 +169,8 @@ export class Character {
   setIncomingContact(point:Vec3){this.incomingContact=point.clone();}
   triggerShot(state:ShotState,outgoingTarget:Vec3){this.outgoingTarget=outgoingTarget.clone();this.contactTarget=this.solveContactTarget(state,this.incomingContact);this.incomingContact=null;this.courtPhase='stroke';this.courtPhaseAge=0;this.setEmotion('focused',this.shotDuration(state));this.trigger(state);}
   clearShotIntent(){this.contactTarget=null;this.outgoingTarget=null;this.incomingContact=null;this.courtPhase='recover';this.courtPhaseAge=0;}
-  shotContactTime(state:ShotState=this.state as ShotState){const style=this.strokeStyle();const base=state==='serve'?.48:state==='volley'?.21:state==='swingBackhand'?.35:.33;const dev=this.spec.id==='mika'?(this.development-50)*.0007:0;return Math.max(.16,base*style.timing+dev+this.preparationBonus+(this.practiceCue==='preparation'?.065:0));}
-  shotDuration(state:ShotState=this.state as ShotState){const style=this.strokeStyle();const base=state==='serve'?.96:state==='volley'?.50:state==='swingBackhand'?.78:.76;return base*style.tempo;}
+  shotContactTime(state:ShotState=this.state as ShotState){const style=this.strokeStyle();const base=state==='serve'?.48:state==='volley'?.21:state==='swingBackhand'?.35:.33;const dev=this.spec.id==='mika'?(this.development-50)*.0007:0;const tempo=this.matchCompetitor?CHAMPIONSHIP_TUNING.arcadeContactTempo:1;return Math.max(.11,(base*style.timing+dev+this.preparationBonus+(this.practiceCue==='preparation'?.065:0))*tempo);}
+  shotDuration(state:ShotState=this.state as ShotState){const style=this.strokeStyle();const base=state==='serve'?.96:state==='volley'?.50:state==='swingBackhand'?.78:.76;return base*style.tempo*(this.matchCompetitor?CHAMPIONSHIP_TUNING.arcadeStrokeTempo:1);}
   serveTossPoint(){const p=this.pose();return p.handL.clone();}
 
   private strokeStyle(){
@@ -213,7 +214,7 @@ export class Character {
       if(this.courtFacing&&!stroking){const fd=Vec3.sub(this.courtFacing,this.position);this.targetYaw=Math.atan2(fd.x,fd.z);}
       if(this.courtMoveDelay>0){this.courtMoveDelay=Math.max(0,this.courtMoveDelay-dt);this.courtPhase='split';}
       else if(dist<.055){this.position.x=this.courtTarget.x;this.position.z=this.courtTarget.z;this.courtTarget=undefined;if(!stroking){this.courtPhase='load';this.courtPhaseAge=0;this.changeState('ready',false);}}
-      else{const plant=stroking&&Math.abs(this.animTime-this.shotContactTime())<.07;const strokeScale=plant?0:stroking?.6:1;const step=Math.min(dist,(this.courtSpeed+this.recoveryBonus+(this.practiceCue==='recovery'?.6:0))*this.courtSpeedScale*strokeScale*dt);this.position.x+=d.x/dist*step;this.position.z+=d.z/dist*step;moved=step;if(!stroking){this.courtPhase='adjust';this.changeState('shuffle',false);}}
+      else{const plant=stroking&&Math.abs(this.animTime-this.shotContactTime())<(this.matchCompetitor?.025:.07);const strokeScale=plant?0:stroking?(this.matchCompetitor?.92:.6):1;const step=Math.min(dist,(this.courtSpeed+this.recoveryBonus+(this.practiceCue==='recovery'?.6:0))*this.courtSpeedScale*strokeScale*dt);this.position.x+=d.x/dist*step;this.position.z+=d.z/dist*step;moved=step;if(!stroking){this.courtPhase='adjust';this.changeState('shuffle',false);}}
     }else {this.travelSpeed=expDamp(this.travelSpeed,0,7.5,dt);if(this.courtPhase==='recover'&&this.courtPhaseAge>.28){this.courtPhase='neutral';this.courtPhaseAge=0;}}
     const locomotionStyle=locomotionStyleFor(this.spec.id);this.yaw=dampAngle(this.yaw,this.targetYaw,isShot(this.state)?12:this.acting.role==='speak'||this.acting.role==='listen'?2.8:locomotionStyle.turnSharpness,dt);
     const worldVel=Vec3.sub(this.position,before).scale(dt>0?1/dt:0);const s=Math.sin(this.yaw),c=Math.cos(this.yaw);this.localVelocity.set(c*worldVel.x-s*worldVel.z,0,s*worldVel.x+c*worldVel.z);
@@ -421,17 +422,19 @@ export class Character {
     m.push({kind:'sphere',position:new Vec3(p.x,.028,p.z),scale:new Vec3(.78,.045,.50),color:'#4f5d53',alpha:.16,unlit:true});
     if(selected)m.push({kind:'torus',position:new Vec3(p.x,.055,p.z),rotation:new Vec3(Math.PI/2,0,0),scale:new Vec3(1.35,1.35,.55),color:'#e4c967',alpha:.52,unlit:true});
     const local=(v:Vec3)=>this.localFromWorld(v);const rig:RigPoseLocal={pelvis:local(pelvisCenter),spine:local(Vec3.lerp(pelvisCenter,torsoCenter,.62)),chest:local(Vec3.lerp(shoulderL,shoulderR,.5)),neck:local(Vec3.lerp(Vec3.lerp(shoulderL,shoulderR,.5),head,.58)),head:local(head),upperArmL:local(shoulderL),foreArmL:local(elbowL),handL:local(handL),upperArmR:local(shoulderR),foreArmR:local(elbowR),handR:local(handR),thighL:local(hipL),shinL:local(kneeL),footL:local(footL),thighR:local(hipR),shinR:local(kneeR),footR:local(footR),forward:new Vec3(Math.sin(torsoYaw-this.yaw),0,Math.cos(torsoYaw-this.yaw))};const bones=skinMatrices(rig);const skinRoot={position:new Vec3(p.x,0,p.z),rotation:new Vec3(0,this.yaw,0),boneMatrices:bones};
-    const torsoSkin=this.spec.presentation==='feminine'?CHARACTER_SKIN.feminineTop:CHARACTER_SKIN.top;m.push({...skinRoot,skin:torsoSkin,color:this.spec.shirt,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.pants,color:this.spec.avatar==='arjan'?'#28383c':this.spec.outfit==='skirt'||this.spec.outfit==='skort'?mixHex(this.spec.shirt,'#5d665f',.18):'#625f59',material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.arms,color:this.spec.skin,material:'skin'} as SkinnedMesh);
-    m.push({kind:'roundBox',position:torsoCenter.clone().add(new Vec3(0,.025,0)),rotation:new Vec3(0,torsoYaw,0),scale:new Vec3(this.spec.presentation==='feminine'?.65:.70,.66,.46),color:this.spec.shirt,material:'fabric'});
+    const torsoSkin=this.spec.presentation==='feminine'?CHARACTER_SKIN.feminineTop:CHARACTER_SKIN.top;m.push({...skinRoot,skin:torsoSkin,color:this.spec.shirt,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.pants,color:this.spec.skin,material:'skin'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.arms,color:this.spec.skin,material:'skin'} as SkinnedMesh);
+    // A fitted core closes shoulder seams while preserving the waist taper.
+    m.push({kind:'roundBox',position:torsoCenter.clone().add(new Vec3(0,.025,0)),rotation:new Vec3(0,torsoYaw,0),scale:new Vec3(this.spec.presentation==='feminine'?.54:.60,.61,.415),color:this.spec.shirt,material:'fabric'});
+    if(this.spec.outfit==='shorts')m.push({...skinRoot,skin:CHARACTER_SKIN.shorts,color:mixHex(this.spec.shirt,'#192d37',.28),material:'fabric'} as SkinnedMesh);
     for(const elbow of [elbowL,elbowR])m.push({kind:'sphere',position:elbow,scale:new Vec3(.25,.25,.24),color:this.spec.skin,material:'skin'});
-    for(const shoulder of [shoulderL,shoulderR])m.push({kind:'sphere',position:Vec3.lerp(shoulder,Vec3.lerp(shoulderL,shoulderR,.5),.25).add(new Vec3(0,-.035,0)),scale:new Vec3(.34,.34,.34),color:this.spec.shirt,material:'fabric'});
+    for(const shoulder of [shoulderL,shoulderR])m.push({kind:'sphere',position:Vec3.lerp(shoulder,Vec3.lerp(shoulderL,shoulderR,.5),.25).add(new Vec3(0,-.035,0)),scale:new Vec3(.29,.29,.29),color:this.spec.shirt,material:'fabric'});
     const leftShoePitch=pose.walking&&!this.leftFootLock?clamp(-pose.gait*.18,-.18,.18):0,rightShoePitch=pose.walking&&!this.rightFootLock?clamp(pose.gait*.18,-.18,.18):0;
     const leftShoeYaw=pose.walking?this.walkCycle.yaws[0]:this.yaw,rightShoeYaw=pose.walking?this.walkCycle.yaws[1]:this.yaw;
     const shoeColor=this.spec.shoe??'#fff8ee',soleColor=mixHex(shoeColor,'#ffffff',.62);
     m.push({kind:'roundBox',position:footL,rotation:new Vec3(leftShoePitch,leftShoeYaw,0),scale:new Vec3(.29,.135,.43),color:shoeColor,material:'fabric'},{kind:'roundBox',position:footR,rotation:new Vec3(rightShoePitch,rightShoeYaw,0),scale:new Vec3(.29,.135,.43),color:shoeColor,material:'fabric'});
     m.push({kind:'roundBox',position:new Vec3(footL.x,footL.y-.055,footL.z),rotation:new Vec3(leftShoePitch,leftShoeYaw,0),scale:new Vec3(.30,.055,.445),color:soleColor,material:'fabric'},{kind:'roundBox',position:new Vec3(footR.x,footR.y-.055,footR.z),rotation:new Vec3(rightShoePitch,rightShoeYaw,0),scale:new Vec3(.30,.055,.445),color:soleColor,material:'fabric'});
-    m.push({kind:'roundBox',position:this.worldLocal(0,1.43+baseY+pose.breathe-pose.knee,.20,torsoYaw),rotation:new Vec3(0,torsoYaw,0),scale:new Vec3(.24,.08,.05),color:this.spec.accent??'#efe7d9',material:'fabric'});
-    m.push({kind:'sphere',position:handL,scale:new Vec3(.22,.24,.18),color:this.spec.skin,material:'skin'},{kind:'sphere',position:handR,scale:new Vec3(.22,.24,.18),color:this.spec.skin,material:'skin'});
+
+    m.push({kind:'sphere',position:handL,scale:new Vec3(.19,.22,.17),color:this.spec.skin,material:'skin'},{kind:'sphere',position:handR,scale:new Vec3(.19,.22,.17),color:this.spec.skin,material:'skin'});
 
     for(const [hand,side] of [[handL,-1],[handR,1]] as const)m.push({kind:'sphere',position:Vec3.add(hand,this.localVector(-side*.075,.025,.045)),scale:new Vec3(.095,.12,.10),color:this.spec.skin,material:'skin'});
     const headStart=m.length;
@@ -439,7 +442,7 @@ export class Character {
     m.push({kind:'sphere',position:head,scale:faceShape,color:this.spec.skin,material:'skin'});
     // A tiny neck bridge and outfit silhouette make the skinned body read as one soft adult figure rather than stacked primitives.
     const neck=Vec3.lerp(Vec3.lerp(shoulderL,shoulderR,.5),head,.30);m.push({kind:'cylinder',position:neck,scale:new Vec3(.18,.25,.18),color:this.spec.skin,material:'skin'});
-    if(this.spec.outfit==='skirt'||this.spec.outfit==='skort'||this.spec.outfit==='host'){const skirtY=pelvisCenter.y+.02;const skirtColor=this.spec.outfit==='host'?mixHex(this.spec.shirt,'#f1e5d7',.12):mixHex(this.spec.shirt,'#ffffff',.08);m.push({kind:'cone',position:new Vec3(pelvisCenter.x,skirtY,pelvisCenter.z),rotation:new Vec3(0,hipYaw,Math.sin(this.animTime*2.0+seed)*.008),scale:new Vec3(this.spec.outfit==='host'?.58:.54,this.spec.outfit==='host'?.38:.32,this.spec.outfit==='host'?.58:.54),color:skirtColor,material:'fabric'});m.push({kind:'roundBox',position:new Vec3(pelvisCenter.x,pelvisCenter.y+.14,pelvisCenter.z),rotation:new Vec3(0,hipYaw,0),scale:new Vec3(.49,.10,.36),color:mixHex(skirtColor,'#ffffff',.12),material:'fabric'});}
+    if(this.spec.outfit==='skirt'||this.spec.outfit==='skort'||this.spec.outfit==='host')m.push({...skinRoot,skin:CHARACTER_SKIN.skirt,color:mixHex(this.spec.shirt,'#ffffff',.12),material:'fabric'} as SkinnedMesh);
     // Boutique outfit details: bright collar, socks and a tiny club badge improve readability without texture assets.
     const collar=Vec3.lerp(torsoCenter,Vec3.lerp(shoulderL,shoulderR,.5),.72);m.push({kind:'torus',position:collar,rotation:new Vec3(Math.PI/2,torsoYaw,0),scale:new Vec3(.42,.34,.08),color:this.spec.accent??'#fff0d7',material:'fabric',alpha:.86});
     const sockColor=mixHex(this.spec.shoe??'#fffaf0','#ffffff',.35);for(const f of [footL,footR])m.push({kind:'cylinder',position:new Vec3(f.x,f.y+.16,f.z-.035),rotation:new Vec3(0,this.yaw,0),scale:new Vec3(.145,.18,.145),color:sockColor,material:'fabric'});
@@ -450,10 +453,10 @@ export class Character {
     const hair=(position:Vec3,scale:Vec3,alpha=1)=>m.push({kind:'sphere' as const,position,scale,color:this.spec.hair,material:'hair' as const,alpha});
     if(hairStyle==='long'){
       hair(Vec3.add(head,new Vec3(0,.17,0)),new Vec3(.58,.34,.54));
-      hair(Vec3.add(head,forward.clone().scale(-.20)).add(new Vec3(0,-.27,0)),new Vec3(.53,.74,.25));
-      for(const side of [-1,1])hair(Vec3.add(head,right.clone().scale(side*.255)).add(forward.clone().scale(.015)).add(new Vec3(0,-.19,0)),new Vec3(.17,.66,.20));
+      hair(Vec3.add(head,forward.clone().scale(-.20)).add(new Vec3(0,-.27,0)),new Vec3(.48,.62,.25));
+      for(const side of [-1,1])hair(Vec3.add(head,right.clone().scale(side*.255)).add(forward.clone().scale(.015)).add(new Vec3(0,-.19,0)),new Vec3(.145,.55,.20));
       // Navy-and-gold cat-ear headband; the face remains human.
-      for(const side of [-1,1]){const ear=Vec3.add(head,right.clone().scale(side*.22)).add(new Vec3(0,.43,0));m.push({kind:'cone',position:ear,rotation:new Vec3(0,headYaw,side*-.18),scale:new Vec3(.22,.34,.15),color:'#172a49',material:'fabric'},{kind:'cone',position:Vec3.add(ear,forward.clone().scale(.055)),rotation:new Vec3(0,headYaw,side*-.18),scale:new Vec3(.115,.20,.04),color:'#dfbb50',material:'metal'});}
+      for(const side of [-1,1]){const ear=Vec3.add(head,right.clone().scale(side*.22)).add(new Vec3(0,.34,0));m.push({kind:'cone',position:ear,rotation:new Vec3(0,headYaw,side*-.18),scale:new Vec3(.15,.18,.12),color:'#172a49',material:'fabric'},{kind:'cone',position:Vec3.add(ear,forward.clone().scale(.055)),rotation:new Vec3(0,headYaw,side*-.18),scale:new Vec3(.080,.105,.035),color:'#dfbb50',material:'metal'});}
     }else if(hairStyle==='swept'){
       hair(Vec3.add(head,new Vec3(0,.16,0)),new Vec3(.58,.35,.54));
       for(let i=0;i<5;i++){const tuft=Vec3.add(head,right.clone().scale(-.22+i*.10)).add(forward.clone().scale(.06)).add(new Vec3(0,.26+Math.sin(i*.7)*.045,0));hair(tuft,new Vec3(.23,.24,.33));}
@@ -475,6 +478,10 @@ export class Character {
       for(const side of [-1,1]){hair(Vec3.add(head,right.clone().scale(side*.28)).add(new Vec3(0,-.02,0)),new Vec3(.18,.33,.16),.96);hair(Vec3.add(head,right.clone().scale(side*.30)).add(new Vec3(0,-.30,0)),new Vec3(.14,.28,.13),.92);}
     }else if(hairStyle==='crop'){hair(new Vec3(head.x,head.y+.20,head.z-.02),new Vec3(.54,.26,.51));}
     else hair(new Vec3(head.x,head.y+.17,head.z-.015),new Vec3(.55,.31,.525));
+    if(this.spec.presentation==='feminine'){
+      for(const side of [-1,1]){const ear=Vec3.add(head,right.clone().scale(side*.27)).add(forward.clone().scale(.01)).add(new Vec3(0,-.075,0));m.push({kind:'torus',position:ear,rotation:new Vec3(0,headYaw,0),scale:new Vec3(.065,.09,.026),color:'#dcb76c',material:'metal'});}
+      if(hairStyle==='bun'||hairStyle==='ponytail')hair(Vec3.add(head,right.clone().scale(-.14)).add(forward.clone().scale(.20)).add(new Vec3(0,.17,0)),new Vec3(.30,.17,.15));
+    }
     // Small sheen patch gives hair a soft illustrated highlight rather than a plastic gloss.
     hair(Vec3.add(head,right.clone().scale(-.12)).add(forward.clone().scale(.11)).add(new Vec3(0,.24,0)),new Vec3(.16,.060,.11),.16);
 
@@ -482,17 +489,17 @@ export class Character {
     // Face: sclera + pupils + independently posed brows + cheeks + two-corner mouth give us cheap but readable deformation.
     const blinkPhase=(this.animTime+seed*.113)%3.75,blink=blinkPhase<.085?1-smoothstep(0,.085,blinkPhase):0;let gaze=0;if(this.targetLook){const aim=Math.atan2(this.targetLook.x-p.x,this.targetLook.z-p.z)-headYaw;gaze=clamp(aim,-.22,.22)*.12;}
     const eyeOpen=clamp(1-blink-pose.face.squint*.55,.08,1);
-    const eyeSpacing=this.spec.id==='mika'?.112:this.spec.id==='nia'?.106:this.spec.id==='coach'?.102:.108;for(const sideEye of [-1,1]){const ep=Vec3.add(head,forward.clone().scale(.224)).add(right.clone().scale(sideEye*eyeSpacing));ep.y+=.032;m.push({kind:'sphere',position:ep,scale:new Vec3(.108,.088*eyeOpen,.038),color:'#fffdf7',material:'ceramic',unlit:true});const pupil=Vec3.add(ep,forward.clone().scale(.018)).add(right.clone().scale(gaze));m.push({kind:'sphere',position:pupil,scale:new Vec3(.053,.063*eyeOpen,.023),color:mixHex(this.spec.eye??'#34483f','#17271f',.55),material:'hair',unlit:true});const sparkle=Vec3.add(pupil,forward.clone().scale(.012)).add(right.clone().scale(-sideEye*.008));sparkle.y+=.010;m.push({kind:'sphere',position:sparkle,scale:new Vec3(.010,.010,.008),color:'#ffffff',unlit:true});const brow=Vec3.add(ep,new Vec3(0,.102+pose.face.browRaise*.045,0)).add(right.clone().scale(sideEye*.005));m.push({kind:'roundBox',position:brow,rotation:new Vec3(0,headYaw,sideEye*(-.02-pose.face.smile*.09)),scale:new Vec3(this.spec.avatar==='arjan'?.115:.090,this.spec.avatar==='arjan'?.035:.018,.015),color:this.spec.hair,material:'hair',unlit:true});}
+    const eyeSpacing=this.spec.id==='mika'?.112:this.spec.id==='nia'?.106:this.spec.id==='coach'?.102:.108;for(const sideEye of [-1,1]){const ep=Vec3.add(head,forward.clone().scale(.224)).add(right.clone().scale(sideEye*eyeSpacing));ep.y+=.032;m.push({kind:'sphere',position:ep,scale:new Vec3(.119,.080*eyeOpen,.038),color:'#fffdf7',material:'ceramic',unlit:true});const pupil=Vec3.add(ep,forward.clone().scale(.018)).add(right.clone().scale(gaze));m.push({kind:'sphere',position:pupil,scale:new Vec3(.065,.066*eyeOpen,.023),color:this.spec.eye??'#34483f',material:'hair',unlit:true});m.push({kind:'sphere',position:Vec3.add(pupil,forward.clone().scale(.009)),scale:new Vec3(.030,.045*eyeOpen,.015),color:'#182a2c',unlit:true});const sparkle=Vec3.add(pupil,forward.clone().scale(.021)).add(right.clone().scale(-sideEye*.011));sparkle.y+=.010;m.push({kind:'sphere',position:sparkle,scale:new Vec3(.016,.016,.008),color:'#ffffff',unlit:true});const brow=Vec3.add(ep,new Vec3(0,.102+pose.face.browRaise*.045,0)).add(right.clone().scale(sideEye*.005));m.push({kind:'roundBox',position:brow,rotation:new Vec3(0,headYaw,sideEye*(-.02-pose.face.smile*.09)),scale:new Vec3(this.spec.avatar==='arjan'?.115:.090,this.spec.avatar==='arjan'?.035:.018,.015),color:this.spec.hair,material:'hair',unlit:true});}
     const nose=Vec3.add(head,forward.clone().scale(.254));nose.y-=.040;m.push({kind:'sphere',position:nose,scale:new Vec3(.035,.050,.032),color:mixHex(this.spec.skin,'#86594f',.20),material:'skin'});
-    const cheekY=head.y-.075;for(const s of [-1,1]){const cp=Vec3.add(head,forward.clone().scale(.215)).add(right.clone().scale(s*.15));cp.y=cheekY;m.push({kind:'sphere',position:cp,scale:new Vec3(.060,.034,.018),color:mixHex(this.spec.skin,'#dd8e91',.42),alpha:.14+.10*Math.max(0,pose.face.smile),unlit:true});}
-    const mouthBase=Vec3.add(head,forward.clone().scale(.250));mouthBase.y-=.135;const width=.085+.035*Math.max(0,pose.face.smile),cornerLift=pose.face.smile*.045;
-    for(const s of [-1,1]){const corner=Vec3.add(mouthBase,right.clone().scale(s*width));corner.y+=cornerLift;m.push({kind:'sphere',position:corner,scale:new Vec3(.026,.020,.016),color:mixHex(this.spec.skin,'#6c3f46',.48),unlit:true});}
-    m.push({kind:'roundBox',position:new Vec3(mouthBase.x,mouthBase.y+cornerLift*.5,mouthBase.z),rotation:new Vec3(0,headYaw,0),scale:new Vec3(width*1.7,.018+.055*pose.face.mouthOpen,.020),color:pose.face.mouthOpen>.18?'#5b3d43':mixHex(this.spec.skin,'#6c3f46',.48),unlit:true});
+    const cheekY=head.y-.075;for(const s of [-1,1]){const cp=Vec3.add(head,forward.clone().scale(.215)).add(right.clone().scale(s*.15));cp.y=cheekY;m.push({kind:'sphere',position:cp,scale:new Vec3(.060,.034,.018),color:mixHex(this.spec.skin,'#dd8e91',.42),alpha:.32+.12*Math.max(0,pose.face.smile),unlit:true});}
+    const mouthBase=Vec3.add(head,forward.clone().scale(.250));mouthBase.y-=.135;const width=.065+.025*Math.max(0,pose.face.smile),cornerLift=pose.face.smile*.045;
+    for(const s of [-1,1]){const corner=Vec3.add(mouthBase,right.clone().scale(s*width*.72));corner.y+=cornerLift;m.push({kind:'sphere',position:corner,scale:new Vec3(.026,.020,.016),color:mixHex(this.spec.skin,'#6c3f46',.48),unlit:true});}
+    m.push({kind:'sphere',position:new Vec3(mouthBase.x,mouthBase.y+cornerLift*.5,mouthBase.z),rotation:new Vec3(0,headYaw,0),scale:new Vec3(width*1.7,.018+.042*pose.face.mouthOpen,.020),color:pose.face.mouthOpen>.18?'#5b3d43':mixHex(this.spec.skin,'#6c3f46',.48),unlit:true});
     if(this.spec.presentation==='feminine'){for(const sideEye of [-1,1]){const lash=Vec3.add(head,forward.clone().scale(.229)).add(right.clone().scale(sideEye*.156));lash.y+=.066;m.push({kind:'roundBox',position:lash,rotation:new Vec3(0,headYaw,sideEye*-.08),scale:new Vec3(.038,.010,.008),color:this.spec.hair,unlit:true});}if(this.spec.id==='mika'){const band=Vec3.add(head,new Vec3(0,.245,0));m.push({kind:'torus',position:band,rotation:new Vec3(Math.PI/2,headYaw,0),scale:new Vec3(.64,.65,.09),color:this.spec.accent??'#efd7bb',material:'fabric',alpha:.86});}}
 
     // Scale the existing face/hair together, retaining identity and the skeletal contact rig.
     const tilt=this.majorActivity?0:this.acting.values.headTilt+(this.acting.reaction?.tilt??0)*this.acting.reactionWeight;
-    for(const item of [m[headStart],...m.slice(faceDetailsStart)]){if('skin' in item)continue;const offset=Vec3.sub(item.position,head),x=Vec3.dot(offset,right),y=offset.y;item.position.add(right.clone().scale((x*Math.cos(tilt)-y*Math.sin(tilt)-x))).add(new Vec3(0,x*Math.sin(tilt)+y*Math.cos(tilt)-y,0));item.position=Vec3.add(head,Vec3.sub(item.position,head).scale(1.10));item.scale.scale(1.10);}
+    for(const item of [m[headStart],...m.slice(faceDetailsStart)]){if('skin' in item)continue;const offset=Vec3.sub(item.position,head),x=Vec3.dot(offset,right),y=offset.y;item.position.add(right.clone().scale((x*Math.cos(tilt)-y*Math.sin(tilt)-x))).add(new Vec3(0,x*Math.sin(tilt)+y*Math.cos(tilt)-y,0));item.position=Vec3.add(head,Vec3.sub(item.position,head).scale(.92));item.scale.scale(.92);}
     if(this.spec.avatar){
       const charm=this.worldLocal(0,1.28+baseY+pose.breathe-pose.knee,.235,torsoYaw);
       m.push({kind:'torus',position:Vec3.add(charm,new Vec3(0,.07,0)),rotation:new Vec3(.3,torsoYaw,0),scale:new Vec3(.28,.20,.025),color:this.spec.avatar==='taylor'?'#dbb447':'#c6c6bd',material:'metal'});

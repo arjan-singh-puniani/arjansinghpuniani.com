@@ -108,5 +108,5 @@ export class CameraController {
     groundPoint(clientX, clientY) { const ray = this.rayFromScreen(clientX, clientY); if (Math.abs(ray.dir.y) < 1e-5)
         return null; const t = -ray.origin.y / ray.dir.y; if (t < 0)
         return null; return ray.origin.add(ray.dir.scale(t)); }
-    project(v) { const p = transformPoint(this.viewProjection(), v), r = this.canvas.getBoundingClientRect(); return { x: (p.x * .5 + .5) * r.width, y: (1 - (p.y * .5 + .5)) * r.height, visible: p.z > -1 && p.z < 1 }; }
+    project(v, viewport) { const p = transformPoint(this.viewProjection(), v), r = viewport ?? this.canvas.getBoundingClientRect(); return { x: r.left + (p.x * .5 + .5) * r.width, y: r.top + (1 - (p.y * .5 + .5)) * r.height, visible: p.z > -1 && p.z < 1 }; }
 }

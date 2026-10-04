@@ -5,3 +5,11 @@ qa/**/session.json
 qa/*-soak/
 qa/*-mixed/
 qa/*.log
+
+# Reproducible local captures and machine-specific delivery manifests
+qa/arcade-feel/
+qa/character-polish/
+qa/world-interface/
+*-SYNC.json
+STUDIO-DELIVERY.json
+node_modules

@@ -122,8 +122,14 @@ export class ChampionshipHUD {
             return snapshot.server === 'player' ? (matchMedia('(pointer:coarse)').matches ? 'TAP SWING TO SERVE' : 'SPACE TO SERVE') : 'WATCH THE BALL';
         }
         if (phase === 'rally') {
+            if (cue === 'queued')
+                return 'READY TO RETURN';
+            if (cue === 'sweet')
+                return 'SWEET SPOT!';
+            if (cue === 'nice')
+                return 'NICE RETURN';
             if (cue === 'swing')
-                return 'SWING';
+                return 'SWING · EARLY IS OK';
             return '';
         }
         if (phase === 'pointResult') {
