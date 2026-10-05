@@ -36,6 +36,8 @@ import {AmbientSocialPlanner} from './simulation/AmbientSocialPlanner.js';
 import {SaveSystem,SaveConflictError} from './persistence/SaveSystem.js';
 import {migrateGameSave} from './persistence/migrations.js';
 import type {GameSave} from './core/types.js';
+import {SpatialInteractionSystem,type WorldNotice} from './ui/SpatialInteractionSystem.js';
+import {characterContext,objectContext,furnitureContext} from './ui/ClubContextPresenter.js';
 import {HUD,type MemberBook} from './ui/HUD.js';
 import {DECOR_BY_ID,rotatedFootprint} from './content/DecorCatalog.js';
 
@@ -58,6 +60,9 @@ export class Game {
   private championshipOpponentId: string | null = null;
   private championshipPriorSpeed = 1;
   private championshipPriorPaused = false;
+  private spatial!:SpatialInteractionSystem;
+  private noticeTimer=0;
+  private worldNotices:WorldNotice[]=[];
   private renderDt=1/60;
   private sportFocus=0;
   private atmosphere=new ClubAtmosphere();
@@ -70,7 +75,7 @@ export class Game {
   mind=new CharacterMind();grammar=new SceneGrammar();telemetry=new LifeTelemetry();private mindTimer=0;private routineNotices=new Map<string,{target:Vec3;after:AnimState;activity:string;remaining:number}>();private lastNotice=new Map<string,number>();
   everyday=new EverydayLife();private lifeRuns=new Map<string,{scene:LifeScene;id:string;beat:number;age:number;pause:number;interrupted?:string;matchId?:string;objectId?:string;why?:string;sawCourt?:boolean}>();private speechOwner:string|null=null;
   activities=new ActivitySystem();evidence=new CoachingEvidence();history=new ClubHistory();affordances=new ObjectAffordances();ambientSocial=new AmbientSocialPlanner();development={preparation:0,recovery:0};settings:{volume:number;visuals:'auto'|'detail';reducedMotion:boolean}={volume:.65,visuals:'auto',reducedMotion:matchMedia('(prefers-reduced-motion: reduce)').matches};private queuedLesson:string|null=null;private movingPlacement:string|null=null;private decisionTimer=0;private observationStarted=false;
-  private saveSystem=new SaveSystem<GameSave>();private selectedId:string|null=null;private buildType:Placement['type']|null=null;private buildRotation=0;private hoverGround:Vec3|null=null;
+  private saveSystem=new SaveSystem<GameSave>();private buildType:Placement['type']|null=null;private buildRotation=0;private hoverGround:Vec3|null=null;
   private frameSamples:number[]=[];private graphicsLost=false;private last=performance.now();private simAcc=0;private lessonUntil=-1;private lessonActive=false;private rallyWasRunning=false;private autosave=0;private lastDay=1;
   private playerWatchingRally=false;private playerWatchActivityId:string|null=null;private playerWatchPeak=0;private playerWatchNextReaction=8;
   private pointers=new Map<number,{x:number;y:number}>();private pointerStart:{x:number;y:number}|null=null;private lastPointer:{x:number;y:number}|null=null;private dragged=false;private pinchDistance=0;
@@ -93,6 +98,11 @@ export class Game {
       onReturnToClub: () => this.requestChampionshipExit(),
     });
 
+    this.spatial=new SpatialInteractionSystem(this.camera,this.canvas);
+
+    this.ui.onContextClose=()=>this.spatial.dismiss(true);
+    this.ui.onPanelOpen=()=>this.spatial.dismiss();
+    window.addEventListener('pagehide',()=>this.spatial.dispose(),{once:true});
     this.lastDay=this.clock.day;this.bindUI();this.bindInput();
   }
 
@@ -132,7 +142,14 @@ export class Game {
 
   private bindUI(){
     this.ui.onBuildClose=()=>{this.buildType=null;this.buildRotation=0;this.movingPlacement=null;};
-    document.getElementById('scenePeek')!.onclick=()=>{const run=this.lifeRuns.values().next().value;if(run){const people=run.scene.people.map(id=>this.actor(id));this.camera.focus(people.reduce((v,c)=>v+c.position.x,0)/people.length,people.reduce((v,c)=>v+c.position.z,0)/people.length,25);}};
+    document.getElementById('scenePeek')!.onclick=()=>{
+      const run=this.lifeRuns.values().next().value;
+      const court=this.activities.active.find(a=>a.resource==='court');
+      const people=run?run.scene.people.map(id=>this.byId(id)).filter((c):c is Character=>!!c):court?court.participants.map(id=>this.byId(id)).filter((c):c is Character=>!!c):[];
+      if(!people.length)return;
+      this.openCharacter(people[0]);
+      this.camera.nudgeFocus(people.reduce((v,c)=>v+c.position.x,0)/people.length,people.reduce((v,c)=>v+c.position.z,0)/people.length,.6);
+    };
     document.getElementById('settingsBtn')!.onclick=()=>this.openSettings();
     this.ui.onPlay=()=>{this.clock.paused=!this.clock.paused;this.audio.click()};
     this.ui.onSpeed=()=>{this.clock.speed=this.clock.speed===1?2:this.clock.speed===2?.5:1;this.ui.toast(`Time ${this.clock.speed}×`);this.audio.click()};
@@ -143,7 +160,7 @@ export class Game {
   }
 
   private bindInput(){
-    this.canvas.addEventListener('dblclick',e=>{if(this.championship.active)return;const c=this.pickCharacter(e.clientX,e.clientY);if(c){this.camera.focus(c.position.x,c.position.z,17,1);this.ui.closeContext();}});
+    this.canvas.addEventListener('dblclick',e=>{if(this.championship.active)return;this.spatial.dismiss();const c=this.pickCharacter(e.clientX,e.clientY);if(c){this.camera.focus(c.position.x,c.position.z,17,1);this.ui.closeContext();}});
 
     document.addEventListener('visibilitychange',()=>{this.last=performance.now();this.simAcc=0;this.matchInput.reset();if(document.hidden)this.audio.stopAmbience();});
     window.addEventListener('blur',()=>this.matchInput.reset());
@@ -169,7 +186,7 @@ export class Game {
       }
 
       const key=e.key.toLowerCase();
-      if(e.key==='Escape'){const hadPanel=!!document.querySelector('#context.open,#book.open');this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);this.buildType=null;this.buildRotation=0;this.movingPlacement=null;if(!hadPanel)this.canvas.focus();return;}
+      if(e.key==='Escape'){const hadPanel=!!this.spatial.selectedId||!!document.querySelector('#context.open,#book.open');this.spatial.dismiss(true);this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);this.buildType=null;this.buildRotation=0;this.movingPlacement=null;if(!hadPanel)this.canvas.focus();return;}
       if(this.buildType&&(key==='q'||key==='e')){e.preventDefault();this.rotateBuild(key==='q'?-1:1,e.shiftKey);return;}
       if(e.target!==this.canvas)return;
       const c=this.characters[Number(e.key)-1];if(c)this.openCharacter(c);if(key==='c')this.openCoaching();if(key==='b')this.ui.toggleBuild();if(e.key.startsWith('Arrow')){e.preventDefault();this.camera.pan(e.key==='ArrowLeft'?-25:e.key==='ArrowRight'?25:0,e.key==='ArrowUp'?-25:e.key==='ArrowDown'?25:0);}
@@ -181,7 +198,8 @@ export class Game {
     this.canvas.addEventListener('wheel',e=>{e.preventDefault();if(this.championship.active)return;this.camera.zoom(e.deltaY*.012)},{passive:false});
     this.canvas.addEventListener('contextmenu',e=>e.preventDefault());
     this.canvas.addEventListener('pointerdown',e=>{if(this.championship.active)return;this.canvas.setPointerCapture(e.pointerId);this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(this.pointers.size===1){this.pointerStart={x:e.clientX,y:e.clientY};this.lastPointer={x:e.clientX,y:e.clientY};this.dragged=false}else if(this.pointers.size===2)this.pinchDistance=this.currentPinch()});
-    this.canvas.addEventListener('pointermove',e=>{const prev=this.pointers.get(e.pointerId);if(prev)this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});this.hoverGround=this.camera.groundPoint(e.clientX,e.clientY);if(this.pointers.size===2){const d=this.currentPinch();if(this.pinchDistance>0)this.camera.zoom((this.pinchDistance-d)*.035);this.pinchDistance=d;this.dragged=true;return}if(prev&&this.lastPointer&&this.pointers.size===1){const dx=e.clientX-this.lastPointer.x,dy=e.clientY-this.lastPointer.y;if(this.pointerStart&&Math.hypot(e.clientX-this.pointerStart.x,e.clientY-this.pointerStart.y)>7)this.dragged=true;if(this.dragged){if(e.shiftKey||e.buttons===2)this.camera.rotate(dx);else this.camera.pan(dx,dy);}this.lastPointer={x:e.clientX,y:e.clientY}}});
+    this.canvas.addEventListener('pointermove',e=>{const prev=this.pointers.get(e.pointerId);if(prev)this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(this.championship.active)return;this.hoverGround=this.camera.groundPoint(e.clientX,e.clientY);if(!prev&&!this.buildType){const c=this.pickCharacter(e.clientX,e.clientY),o=c?null:this.pickObject(e.clientX,e.clientY);this.spatial.setHover(c?.position??o?.position??null);this.canvas.style.cursor=c||o?'pointer':'';}if(this.pointers.size===2){const d=this.currentPinch();if(this.pinchDistance>0)this.camera.zoom((this.pinchDistance-d)*.035);this.pinchDistance=d;this.dragged=true;return}if(prev&&this.lastPointer&&this.pointers.size===1){const dx=e.clientX-this.lastPointer.x,dy=e.clientY-this.lastPointer.y;if(this.pointerStart&&Math.hypot(e.clientX-this.pointerStart.x,e.clientY-this.pointerStart.y)>7)this.dragged=true;if(this.dragged){if(e.shiftKey||e.buttons===2)this.camera.rotate(dx);else this.camera.pan(dx,dy);}this.lastPointer={x:e.clientX,y:e.clientY}}});
+    this.canvas.addEventListener('pointerleave',()=>{this.spatial.setHover(null);this.canvas.style.cursor='';});
     this.canvas.addEventListener('pointerup',e=>{if(!this.dragged&&this.pointers.size===1)this.handleTap(e.clientX,e.clientY);this.pointers.delete(e.pointerId);this.pointerStart=null;this.lastPointer=null;this.pinchDistance=0;this.ui.hideHint()});
     this.canvas.addEventListener('pointercancel',e=>{this.pointers.delete(e.pointerId);this.pointerStart=null;this.lastPointer=null;this.pinchDistance=0});
   }
@@ -213,22 +231,27 @@ export class Game {
     this.audio.click();
     if(this.movingPlacement){const g=this.camera.groundPoint(x,y);if(g)this.moveFurniture(this.movingPlacement,g.x,g.z);return;}
     if(this.buildType){const g=this.camera.groundPoint(x,y);if(g)this.place(this.buildType,g.x,g.z);return}
-    const placed=this.world.placements.find(p=>{const q=this.camera.project(new Vec3(p.x,.6,p.z)),d=DECOR_BY_ID[p.type],threshold=Math.min(62,24+Math.max(d.footprintX,d.footprintZ)*12);return Math.hypot(q.x-x,q.y-y)<threshold;});if(placed){this.openFurniture(placed);return;}
     const c=this.pickCharacter(x,y);if(c){this.openCharacter(c);return}
+    const placed=this.world.placements.find(p=>{const q=this.camera.project(new Vec3(p.x,.6,p.z)),d=DECOR_BY_ID[p.type],threshold=Math.min(62,24+Math.max(d.footprintX,d.footprintZ)*12);return Math.hypot(q.x-x,q.y-y)<threshold;});if(placed){this.openFurniture(placed);return;}
     const o=this.pickObject(x,y);if(o){this.openObject(o);return}
-    const g=this.camera.groundPoint(x,y);if(g&&!this.activities.busy('player')&&g.x>-12.2&&g.x<12.2&&g.z>-9.2&&g.z<9.2){this.stopPlayerWatching(false);this.selectedId=null;this.ui.closeContext();this.player.goTo(new Vec3(clamp(g.x,-12,12),0,clamp(g.z,-9,9)),'idle')}
+    this.spatial.dismiss();
+    const g=this.camera.groundPoint(x,y);if(g&&!this.activities.busy('player')&&g.x>-12.2&&g.x<12.2&&g.z>-9.2&&g.z<9.2){this.stopPlayerWatching(false);this.ui.closeContext();this.player.goTo(new Vec3(clamp(g.x,-12,12),0,clamp(g.z,-9,9)),'idle')}
   }
-  private pickCharacter(x:number,y:number){let best:Character|null=null,bd=48;for(const c of this.characters){const p=this.camera.project(new Vec3(c.position.x,1.25,c.position.z)),d=Math.hypot(x-p.x,y-p.y);if(d<bd){bd=d;best=c}}return best}
-  private pickObject(x:number,y:number){let best:InteractiveObject|null=null,bd=Infinity;for(const o of this.world.objects){const p=this.camera.project(new Vec3(o.position.x,.75,o.position.z)),d=Math.hypot(x-p.x,y-p.y),threshold=Math.min(78,28+o.radius*7);if(d<threshold&&d<bd){bd=d;best=o}}return best}
+  private pickCharacter(x:number,y:number){let best:Character|null=null,bd=48;for(const c of this.characters){const p=this.camera.project(new Vec3(c.position.x,1.25,c.position.z)),d=Math.hypot(x-p.x,y-p.y);if(p.visible&&d<bd){bd=d;best=c}}return best}
+  private pickObject(x:number,y:number){let best:InteractiveObject|null=null,bd=Infinity;for(const o of this.world.objects){const p=this.camera.project(new Vec3(o.position.x,.75,o.position.z)),d=Math.hypot(x-p.x,y-p.y),threshold=Math.min(78,28+o.radius*7);if(p.visible&&d<threshold&&d<bd){bd=d;best=o}}return best}
 
   private openCharacter(c:Character){
-    this.selectedId=c.id;this.camera.focus(c.position.x,c.position.z,27);
-    this.ui.showContext(c.spec.role,c.spec.name,`${c.activity||c.spec.goal}. ${this.mind.mood(c.id as MemberId)}.`,[this.relations.label(c.id),c.spec.quirk??''],[
-      {title:'Challenge to Match',subtitle:'First to 7, win by 2',run:()=>this.startChampionship(c)},
-      {title:'Spend a moment',subtitle:'Walk over and listen',run:()=>this.visitMember(c,false)},
-      {title:'Share matcha',subtitle:'Make time for a shared break',run:()=>this.visitMember(c,true)},
-      ...(c.id==='mika'?[{title:'Coach a lesson',subtitle:'Observe, choose a cue, then practice',run:()=>this.openCoaching()}]:[])
-    ]);
+    this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);
+    this.camera.nudgeFocus(c.position.x,c.position.z,this.canvas.clientWidth<720?1:.24);this.audio.paper();
+    this.spatial.select({id:c.id,position:()=>this.byId(c.id)?.position??null,
+      present:()=>characterContext(c,{mind:this.mind,relations:this.relations,activities:this.activities,history:this.history,affordances:this.affordances,placements:this.world.placements,characters:this.characters,progress:this.mikaProgress}),
+      act:id=>{
+        if(id==='challenge')this.startChampionship(c);
+        else if(id==='talk')this.visitMember(c,false);
+        else if(id==='tea')this.visitMember(c,true);
+        else if(id==='watch')this.watchRallyAsPlayer();
+        else if(id==='coach')this.openCoaching();
+      }});
   }
 
   private startChampionship(opponent:Character){
@@ -267,6 +290,7 @@ export class Game {
     this.interactiveMatch=this.createInteractiveMatch(opponent,profile);
     this.matchInput.setEnabled(false);
     this.championshipCamera.begin();
+    this.spatial.dismiss();
     opponent.glanceAt(this.player.position,1.5);
     opponent.socialGesture='nod';opponent.setEmotion('pleased',1.5);
     this.player.matchCompetitor=opponent.matchCompetitor=true;
@@ -313,7 +337,7 @@ export class Game {
 
   private playChampionshipHit(quality:InteractiveShotQuality){
     this.audio.tennisImpact(quality);
-    if(!this.settings.reducedMotion)this.championshipCamera.pulseImpact(quality==='perfect'?1:quality==='clean'?.65:quality==='defensive'?.25:.35);
+    if(!this.settings.reducedMotion)this.championshipCamera.pulseImpact(quality==='perfect'?1.25:quality==='clean'?.95:quality==='defensive'?.5:.35);
     for(const c of this.characters)if(!this.activities.busy(c.id)&&c.state==='watch')c.setEmotion(quality==='perfect'?'surprised':'attentive',.45);
   }
 
@@ -430,15 +454,18 @@ export class Game {
     this.ui.toast(a?'You make time to meet.':'They are busy just now. Try after their activity.');if(a)this.ui.closeContext();
   }
   private openObject(o:InteractiveObject){
-    this.selectedId=o.id;const actions:{title:string;subtitle:string;run:()=>void}[]=[];
-    const touch=o.id==='warmup'?touchForDecor('towelRack'):CLUB_TOUCHES[o.kind];
-    if(touch)actions.push({title:touch.title,subtitle:touch.detail,run:()=>this.startClubTouch(o.id,o.label,o.position,touch)});
-    if(o.kind==='cafe')actions.push({title:'Make matcha',subtitle:'A tiny ritual with immediate feedback',run:()=>{this.visitMember(this.actor('nia'),true)}});
-    if(o.kind==='equipment')actions.push({title:'Customize racket',subtitle:`${this.equipment.frame} · ${this.equipment.tension} lb`,run:()=>this.openEquipment()});
-    if(o.kind==='training')actions.push({title:'Run ball-machine drill',subtitle:'A short rhythm block',run:()=>{this.beginLesson('dropFeed')}});
-    if(o.kind==='court')actions.push({title:'Watch a rally',subtitle:'Walk to the sideline and follow the ball',run:()=>this.watchRallyAsPlayer()});
-    if(!actions.length)actions.push({title:'Admire it',subtitle:'The club is allowed to be pretty',run:()=>this.startClubTouch(o.id,o.label,o.position,CLUB_TOUCHES.trophy)});
-    this.ui.showContext(o.kind,o.label,o.description,[],actions);
+    this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);
+    this.camera.nudgeFocus(o.position.x,o.position.z,this.canvas.clientWidth<720?1:.18);this.audio.paper();
+    this.spatial.select({id:o.id,position:()=>this.world.objects.find(v=>v.id===o.id)?.position??null,
+      present:()=>objectContext(o,this.activities,this.equipment,this.life.memories),
+      act:id=>{
+        const touch=o.id==='warmup'?touchForDecor('towelRack'):o.id==='spectatorRow'?CLUB_TOUCHES.lounge:CLUB_TOUCHES[o.kind];
+        if(id==='touch'&&touch)this.startClubTouch(o.id,o.label,o.position,touch);
+        else if(id==='tea')this.visitMember(this.actor('nia'),true);
+        else if(id==='equipment')this.openEquipment();
+        else if(id==='drill')this.beginLesson('dropFeed');
+        else if(id==='watch')this.watchRallyAsPlayer();
+      }});
   }
 
   private startClubTouch(objectId:string,label:string,origin:Vec3,touch:ClubTouch){
@@ -598,6 +625,17 @@ export class Game {
   }
 
   private openFurniture(p:Placement){
+    this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);
+    this.camera.nudgeFocus(p.x,p.z,this.canvas.clientWidth<720?1:.18);this.audio.paper();
+    this.spatial.select({id:p.id!,position:()=>this.world.placements.includes(p)?new Vec3(p.x,0,p.z):null,
+      present:()=>furnitureContext(p,this.affordances,this.activities,id=>id==='player'?this.player.spec.name:this.byId(id)?.spec.name??id),
+      act:id=>{
+        if(id==='touch')this.startClubTouch(p.id!,DECOR_BY_ID[p.type].label,new Vec3(p.x,0,p.z),touchForDecor(p.type));
+        else if(id==='watch')this.watchRallyAsPlayer();
+        else if(id==='arrange')this.arrangeFurniture(p);
+      }});
+  }
+  private arrangeFurniture(p:Placement){
     const h=this.affordances.objects[p.id!],def=DECOR_BY_ID[p.type],favorites=h?.favoriteOf.map(id=>this.actor(id).spec.name).join(', ');
     this.ui.showContext('YOUR ACADEMY',def.label,favorites?`A favorite place for ${favorites}.`:h?.memories[0]??'A new place for a club ritual.',this.affordances.affordances(p),[
       {title:touchForDecor(p.type).title,subtitle:'Use this little part of your club',run:()=>this.startClubTouch(p.id!,def.label,new Vec3(p.x,0,p.z),touchForDecor(p.type))},
@@ -970,7 +1008,7 @@ export class Game {
     }else{
       this.championshipHud.hide();
     }
-    const peek=document.getElementById('scenePeek')!,run=this.lifeRuns.values().next().value;const title=run?.scene.title??'';if(peek.querySelector('strong')!.textContent!==title)peek.querySelector('strong')!.textContent=title;peek.hidden=!run||!!document.querySelector('.context.open,.book.open,.build.open');
+    const peek=document.getElementById('scenePeek')!,run=this.lifeRuns.values().next().value;const courtEvent=this.activities.active.find(a=>a.resource==='court');const title=run?.scene.title??courtEvent?.detail??'';if(peek.querySelector('strong')!.textContent!==title)peek.querySelector('strong')!.textContent=title;peek.hidden=(!run&&!courtEvent)||!!this.spatial.selectedId||!!document.querySelector('.context.open,.book.open,.build.open');
     const aspect=this.renderer.resize();this.camera.setAspect(aspect);
     if(this.championship.active&&this.championshipOpponentId){
       const opponent=this.byId(this.championshipOpponentId);
@@ -980,8 +1018,18 @@ export class Game {
       }
     }
     if(this.settings.reducedMotion){this.camera.target=this.camera.desiredTarget.clone();this.camera.distance=this.camera.desiredDistance;this.camera.azimuth=this.camera.desiredAzimuth;this.camera.elevation=this.camera.desiredElevation;this.camera.update(0);}else this.camera.update(this.renderDt);
-    const meshes:RenderItem[]=[...this.world.meshes,...this.world.placementMeshes(),...this.world.dynamicMeshes(this.settings.reducedMotion?0:now/1000,this.clock.minutes,this.camera.position,this.renderDt,this.sportFocus,now/1000)];for(const c of this.characters){
-      const body=c.meshes(this.selectedId===c.spec.id);
+    this.noticeTimer-=this.renderDt;
+    if(this.noticeTimer<=0){
+      this.noticeTimer=.5;
+      this.worldNotices=this.characters.filter(c=>this.activities.busy(c.id)).map(c=>{
+        const a=this.activities.active.find(a=>a.participants.includes(c.id))!;
+        const label=a.phase==='traveling'?'On the way':a.kind==='lesson'?'In a lesson':a.kind==='match'||a.kind==='observe'?'On court':a.kind==='everyday'?'A club moment':a.detail;
+        return {id:c.id,position:c.position,name:c.spec.name,activity:label,select:()=>this.openCharacter(c)};
+      });
+    }
+    this.spatial.update(this.renderDt,this.championship.active||!!document.querySelector('#context.open,#book.open,#buildPanel.open'),this.settings.reducedMotion,this.worldNotices);
+    const meshes:RenderItem[]=[...this.world.meshes,...this.spatial.meshes(),...this.world.placementMeshes(),...this.world.dynamicMeshes(this.settings.reducedMotion?0:now/1000,this.clock.minutes,this.camera.position,this.renderDt,this.sportFocus,now/1000)];for(const c of this.characters){
+      const body=c.meshes(false);
       // A walking club member may pass in front of the sports camera. Keep their
       // activity intact while softly cutting them away from the player's silhouette.
       if(c.id!==this.championshipOpponentId&&c.position.z>5.8&&Math.abs(c.position.x-this.player.position.x)<1.25)

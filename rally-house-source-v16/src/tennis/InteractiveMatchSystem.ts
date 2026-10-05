@@ -84,6 +84,8 @@ export class InteractiveMatchSystem {
   rallyLength = 0;
   bestRally = 0;
 
+  private playerHitPraise=0;
+  private lastPlayerQuality:InteractiveShotQuality='clean';
   private movementX=0;
   private movementZ=0;
   private priorPlayerSpeed=1;
@@ -131,6 +133,7 @@ export class InteractiveMatchSystem {
     this.opponent.setCourtSpeedScale(this.opponentProfile.movementSpeed);
     this.movementX=this.movementZ=0;
     this.bouncePulse=0;
+    this.playerHitPraise=0;
     this.server = server;
     this.receiver = server === 'player' ? 'opponent' : 'player';
     this.flightHitter = null;
@@ -168,6 +171,7 @@ export class InteractiveMatchSystem {
     this.player.matchCompetitor=this.opponent.matchCompetitor=false;
     this.movementX=this.movementZ=0;
     this.bouncePulse=0;
+    this.playerHitPraise=0;
     this.enabled = false;
     this.ball.active = false;
     this.pending = null;
@@ -188,6 +192,7 @@ export class InteractiveMatchSystem {
     }
 
     this.input.update(dt);
+    this.playerHitPraise=Math.max(0,this.playerHitPraise-dt);
     this.bouncePulse=Math.max(0,this.bouncePulse-dt*3);
     this.impactBurst = Math.max(0, this.impactBurst - dt * 5.2);
 
@@ -242,9 +247,14 @@ export class InteractiveMatchSystem {
       return;
     }
     this.player.setCourtSpeedScale(CHAMPIONSHIP_TUNING.playerMaxCourtSpeedScale*strength);
+    const striking=this.pending?.hitter===this.player&&this.pending.stroke!=='serve'&&!this.pending.released;
+    // Fast steering stays live through the stroke, but a forward chase may not
+    // carry the body through its own planted string-bed contact.
+    const contactZ=striking?this.pending?.contactTarget?.z:undefined;
+    const frontLimit=contactZ===undefined?.9:Math.min(5.65,Math.max(.9,contactZ+.48));
     this.player.steerOnCourt(new Vec3(
       clamp(this.player.position.x+this.movementX/strength*.8,SINGLES_MIN_X+.15,SINGLES_MAX_X-.15),0,
-      clamp(this.player.position.z+this.movementZ/strength*.8,.9,5.65)),this.opponent.position);
+      clamp(this.player.position.z+this.movementZ/strength*.8,frontLimit,5.65)),this.opponent.position);
   }
 
   /** Meet the ball ahead of the body, not at the baseline under our feet. */
@@ -254,16 +264,27 @@ export class InteractiveMatchSystem {
   }
 
   /** An edge HUD cue shares the physical return window with the input consumer. */
-  playerCue():'none'|'swing' {
+  playerCue():'none'|'swing'|'queued'|'sweet'|'nice' {
+    if(this.playerHitPraise>0)return this.lastPlayerQuality==='perfect'?'sweet':'nice';
+    if(this.enabled&&!this.pending&&this.ball.active&&this.receiver==='player'&&this.input.hasBufferedSwing())return 'queued';
     if(!this.enabled||this.pending||!this.ball.active||this.receiver!=='player'||!this.firstBounceSeen)return 'none';
     const t=this.timeToStrikePlane(this.player);
-    return t>.04&&t<.65&&Math.abs(this.ball.position.x-this.player.position.x)<CHAMPIONSHIP_TUNING.playerReturnReach?'swing':'none';
+    return t>-CHAMPIONSHIP_TUNING.returnLateGraceSeconds&&t<.85&&Math.abs(this.ball.position.x-this.player.position.x)<CHAMPIONSHIP_TUNING.playerReturnReach?'swing':'none';
   }
 
   private updateBall(dt: number) {
     this.player.setLook(this.ball.position);
     this.opponent.setLook(this.ball.position);
 
+    // Consume the player's current intention before advancing the ball. A late
+    // press must not lose another whole frame of its already narrow distance.
+    if(this.receiver==='player'&&!this.pending){
+      this.tryPlayerReturn();
+      if(this.pending){
+        this.updatePendingContact(0);
+        if(!this.ball.active)return;
+      }
+    }
     const beforeActive = this.ball.active;
     const event = this.ball.update(dt);
     const speed = this.ball.velocity.len();
@@ -323,13 +344,17 @@ export class InteractiveMatchSystem {
     const velocityZ = this.ball.velocity.z;
     if (velocityZ <= 0.05) return;
 
-    const contactAt = this.player.shotContactTime(this.strokeFor(this.player));
     const timeToPlayer = this.timeToStrikePlane(this.player);
+    const stroke = timeToPlayer < .13 ? 'volley' : this.strokeFor(this.player);
+    const contactAt = this.player.shotContactTime(stroke);
 
     // Do not consume a buffered press until the ball can plausibly meet the
     // player's racket during this animation. Slightly early inputs remain alive
     // through MatchInput's buffer instead of disappearing.
-    if (timeToPlayer < 0.08 || timeToPlayer > contactAt + 0.22) return;
+    const inFront=this.player.position.z-this.ball.position.z;
+    if (timeToPlayer < -CHAMPIONSHIP_TUNING.returnLateGraceSeconds ||
+        timeToPlayer > contactAt + CHAMPIONSHIP_TUNING.returnEarlyLeadSeconds ||
+        inFront < .12) return;
 
     const lateralGap = Math.abs(this.ball.position.x - this.player.position.x);
     if (lateralGap > CHAMPIONSHIP_TUNING.playerReturnReach) return;
@@ -340,7 +365,7 @@ export class InteractiveMatchSystem {
     const quality = this.playerQuality(timingError, lateralGap);
 
     this.input.consumeSwing();
-    this.prepareShot('player', this.strokeFor(this.player), quality);
+    this.prepareShot('player', stroke, quality);
   }
 
   private tryOpponentReturn(dt: number) {
@@ -450,7 +475,7 @@ export class InteractiveMatchSystem {
 
         if (pending.captured && contactWindow && gap <= 0.12) {
           pending.impactStarted = true;
-          pending.latchRemaining = pending.quality === 'perfect' ? 0.060 : 0.050;
+          pending.latchRemaining = pending.quality === 'perfect' ? 0.042 : 0.034;
           this.flightHitter = pending.side;
           this.receiver = this.otherSide(pending.side);
           this.firstBounceSeen = false;
@@ -467,7 +492,11 @@ export class InteractiveMatchSystem {
           pending.normalDirection=Vec3.dot(Vec3.sub(pending.target,frame.center),frame.normal)>=0?1:-1;
           pending.hitter.notifyRacketImpact(pending.quality,pending.normalDirection);
 
-          this.impactBurst = pending.quality === 'perfect' ? 1.2 : 1;
+          this.impactBurst = pending.quality === 'perfect' ? 1.35 : 1.1;
+          if(pending.side==='player'){
+            this.playerHitPraise=.42;
+            this.lastPlayerQuality=pending.quality;
+          }
           this.callbacks.onHit?.(pending.quality);
           this.callbacks.onRallyContact?.(pending.side, pending.quality);
         }
@@ -575,7 +604,9 @@ export class InteractiveMatchSystem {
     if (adjusted <= CHAMPIONSHIP_TUNING.perfectWindowSeconds) return 'perfect';
     if (adjusted <= CHAMPIONSHIP_TUNING.cleanWindowSeconds) return 'clean';
     if (adjusted <= CHAMPIONSHIP_TUNING.defensiveWindowSeconds) return 'defensive';
-    return 'frame';
+    // An intentional return in the generous physical window stays playable.
+    // Timing rewards power and feedback; it does not randomly spray a novice's ball out.
+    return 'defensive';
   }
 
   private aiQuality(serve: boolean): InteractiveShotQuality {
@@ -608,6 +639,12 @@ export class InteractiveMatchSystem {
     let x=clamp(receiver.position.x+variation,SINGLES_MIN_X+.75,SINGLES_MAX_X-.75);
     let depth=quality==='perfect'?3.25:quality==='clean'?2.95:2.25;
     if(assisted){x=clamp(receiver.position.x+.20+variation,-2.3,4.3);depth=clamp(receiver.position.z-2.3,1.5,3.1);}
+    if(side==='player'){
+      // Steering also places the next shot. Releasing the stick gives a forgiving
+      // neutral return; holding left/right rewards chasing with a chosen angle.
+      const aim=this.input.movement().x;
+      if(Math.abs(aim)>.18)x=clamp(COURT_CENTER_X+aim*3.15+variation*.2,SINGLES_MIN_X+.6,SINGLES_MAX_X-.6);
+    }
     if(quality==='frame'){
       x+=(hash(seed+18.4)-.5)*2.1;
       depth=hash(seed+9)>.85?6.45:2.15;
@@ -619,7 +656,7 @@ export class InteractiveMatchSystem {
     if(side==='opponent'&&this.rallyLength<CHAMPIONSHIP_TUNING.assistContacts)
       return this.rallyLength===0?CHAMPIONSHIP_TUNING.assistOpponentServeFlightSeconds:CHAMPIONSHIP_TUNING.assistOpponentFlightSeconds;
     const power=side==='opponent'?this.opponentProfile.power:.78;
-    return (quality==='perfect'?.99:quality==='clean'?1.06:1.18)-(power-.75)*.12;
+    return (quality==='perfect'?.96:quality==='clean'?1.02:1.14)-(power-.75)*.12;
   }
 
   private inSinglesCourt(position: Vec3) {
@@ -713,6 +750,15 @@ export class InteractiveMatchSystem {
     if (!reducedMotion && this.impactBurst > 0 && this.lastContact && this.lastContactFrame) {
       const frame = this.lastContactFrame;
       const expansion = 0.3 + (1 - Math.min(1, this.impactBurst)) * 0.28;
+      const age=1-Math.min(1,this.impactBurst);
+      for(let i=0;i<5;i++){
+        const angle=i*Math.PI*2/5;
+        const spark=this.lastContact.clone()
+          .add(frame.horizontal.clone().scale(Math.cos(angle)*(.12+age*.42)))
+          .add(frame.vertical.clone().scale(Math.sin(angle)*(.12+age*.42)));
+        meshes.push({kind:'sphere',position:spark,scale:new Vec3(.055,.055,.055),color:i%2?'#fff5d0':'#dcf781',alpha:Math.min(.85,this.impactBurst*.65),unlit:true,noShadow:true});
+      }
+
 
       meshes.push({
         kind: 'torus',
