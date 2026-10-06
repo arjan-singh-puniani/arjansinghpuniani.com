@@ -11,7 +11,30 @@ export class World {
     rainSeed = Array.from({ length: 78 }, (_, i) => ({ x: ((i * 47) % 250) / 10 - 12.5, z: -9.78 - ((i * 13) % 8) / 20, y: 1 + ((i * 59) % 60) / 10 }));
     wallHeights = { west: 4.55, east: .48 };
     interactionFx = new Map();
-    constructor() { const obstacles = [{ x: -9, z: 4.8, w: 3.5, d: 1.2 }, { x: -9, z: -5.8, w: 4.4, d: 1.35 }, { x: 8.6, z: 5.6, w: 3.8, d: 1.8 }, { x: 9.2, z: -4.6, w: 3.8, d: 1.7 }, { x: -7.5, z: .2, w: 1.7, d: 1.4 }, { x: 10.2, z: 3.9, w: 1.7, d: 1.3 }, { x: 6.7, z: -6.3, w: 1.7, d: 1.0 }, { x: -8.05, z: 1.6, w: 1.0, d: 2.7 }, { x: -11.2, z: -2.2, w: 1.1, d: 1.1 }, { x: -11.5, z: -.95, w: 1.0, d: 1.1 }, { x: -10.35, z: 6.35, w: 1.9, d: 1.25 }, { x: -10.35, z: 8.05, w: 1.9, d: 1.25 }, { x: -9.0, z: 7.2, w: 1.0, d: 1.0 }, { x: 11.35, z: .3, w: 1.2, d: 3.5 }, { x: 10.42, z: .05, w: 1.0, d: 3.2 }, { x: -2.6, z: 8.35, w: 3.2, d: 1.2 }, { x: 1.0, z: 8.35, w: 3.2, d: 1.2 }, { x: 4.6, z: 8.35, w: 3.2, d: 1.2 }, { x: -4.8, z: 7.9, w: .9, d: .9 }, { x: 5.6, z: 7.9, w: .9, d: .9 }, { x: -1.4, z: -8.3, w: 2.5, d: 1.0 }]; this.nav = new Navigation(obstacles); this.build(); }
+    constructor() {
+        const obstacles = [
+            // Ordinary circulation goes around the posts, including travel to the far baseline.
+            { x: 1, z: 0, w: 8.82, d: .16 }, { x: -9, z: 4.8, w: 3.5, d: 1.2 }, { x: -9, z: -5.8, w: 4.4, d: 1.35 }, { x: 8.6, z: 5.6, w: 3.8, d: 1.8 }, { x: 9.2, z: -4.6, w: 3.8, d: 1.7 }, { x: -7.5, z: .2, w: 1.7, d: 1.4 }, { x: 10.2, z: 3.9, w: 1.7, d: 1.3 }, { x: 6.7, z: -6.3, w: 1.7, d: 1.0 }, { x: -8.05, z: 1.6, w: 1.0, d: 2.7 }, { x: -11.2, z: -2.2, w: 1.1, d: 1.1 }, { x: -11.5, z: -.95, w: 1.0, d: 1.1 }, { x: -10.35, z: 6.35, w: 1.9, d: 1.25 }, { x: -10.35, z: 8.05, w: 1.9, d: 1.25 }, { x: -9.0, z: 7.2, w: 1.0, d: 1.0 }, { x: 11.35, z: .3, w: 1.2, d: 3.5 }, { x: 10.42, z: .05, w: 1.0, d: 3.2 }, { x: -2.6, z: 8.35, w: 3.2, d: 1.2 }, { x: 1.0, z: 8.35, w: 3.2, d: 1.2 }, { x: 4.6, z: 8.35, w: 3.2, d: 1.2 }, { x: -4.8, z: 7.9, w: .9, d: .9 }, { x: 5.6, z: 7.9, w: .9, d: .9 }, { x: -1.4, z: -8.3, w: 2.5, d: 1.0 }
+        ];
+        this.nav = new Navigation(obstacles);
+        this.build();
+        // Surface contacts are distinct from floor centres used by navigation/selection.
+        const contacts = {
+            reception: new Vec3(-8.35, 1.30, 5.22), cafe: new Vec3(-8.08, 1.47, -5.57),
+            proshop: new Vec3(9.2, 1.74, -3.24), bonsai: new Vec3(10.0, 2.35, 3.72),
+            water: new Vec3(-5.5, 1.43, 5.68), machine: new Vec3(-7.15, .78, .05),
+            journal: new Vec3(6.95, .67, 4.52), lounge: new Vec3(8.5, .70, 5.8),
+        };
+        for (const object of this.objects)
+            object.interactionPoint = contacts[object.id];
+    }
+    interactionPoint(id, origin, kind) {
+        const contact = this.objects.find(o => o.id === id)?.interactionPoint;
+        if (contact)
+            return contact.clone();
+        const height = { cafe: 1.05, bonsai: 1.05, stringing: 1.34, water: 1.28, training: .78, bell: 1.30, comfort: .70, lamp: 2.05, paper: 1.15 };
+        return new Vec3(origin.x, height[kind], origin.z);
+    }
     triggerInteraction(kind, duration = 1.35, position) {
         this.interactionFx.set(kind, { until: performance.now() / 1000 + duration, position: position?.clone() });
     }
@@ -94,7 +117,7 @@ export class World {
         this.rb(-9.0, 1.13, 4.8, 3.55, .11, 1.25, '#c99c72', 0, 1, false, undefined, 'wood');
         this.rb(-9.70, 1.38, 4.55, .82, .50, .09, '#f7f0e2', -.08);
         this.rb(-8.25, 1.22, 4.55, .52, .08, .72, '#f0e5d3');
-        this.add('sphere', -8.45, 1.30, 4.35, .12, .08, .12, '#d8ba6c', 0, 1, true);
+        this.add('sphere', -8.35, 1.30, 5.22, .12, .08, .12, '#d8ba6c', 0, 1, true);
         this.rb(-10.85, 2.36, -9.30, 1.85, 1.25, .10, '#8b9b84');
         for (let i = 0; i < 5; i++)
             this.add('sphere', -11.45 + (i % 3) * .52, 2.56 - Math.floor(i / 3) * .46, -9.18, .12, .12, .12, [palette.peach, palette.gold, palette.blue][i % 3], 0, 1, true);
@@ -521,44 +544,44 @@ export class World {
         const origin = (value, fallback) => value?.position ?? fallback;
         const cafeFx = pulse('cafe');
         if (cafeFx) {
-            const base = origin(cafeFx, new Vec3(-8.2, 0, -5.52));
+            const base = origin(cafeFx, new Vec3(-8.2, 1.55, -5.52));
             for (let i = 0; i < 5; i++) {
                 const ph = ((time * 1.4 + i * .17) % 1), x = base.x + Math.sin(time * 4 + i) * .08;
-                m.push({ kind: 'sphere', position: new Vec3(x, 1.05 + base.y + ph * .72, base.z), scale: new Vec3(.055 + .04 * ph, .10 + .05 * ph, .055), color: '#fff4e8', alpha: .26 * (1 - ph), unlit: true });
+                m.push({ kind: 'sphere', position: new Vec3(x, base.y + ph * .72, base.z), scale: new Vec3(.055 + .04 * ph, .10 + .05 * ph, .055), color: '#fff4e8', alpha: .26 * (1 - ph), unlit: true });
             }
         }
         const bonsaiFx = pulse('bonsai');
         if (bonsaiFx) {
-            const base = origin(bonsaiFx, new Vec3(10.0, 1.30, 3.72));
+            const base = origin(bonsaiFx, new Vec3(10.0, 2.35, 3.72));
             for (let i = 0; i < 7; i++) {
                 const ph = ((time * 1.9 + i * .13) % 1);
-                m.push({ kind: 'sphere', position: new Vec3(base.x + (i % 3) * .10, base.y + 1.05 - ph * 1.05, base.z + Math.sin(i) * .08), scale: new Vec3(.035, .055, .035), color: '#8fb8bd', alpha: .42 * (1 - ph), unlit: true });
+                m.push({ kind: 'sphere', position: new Vec3(base.x + (i % 3) * .10, base.y - ph * 1.05, base.z + Math.sin(i) * .08), scale: new Vec3(.035, .055, .035), color: '#8fb8bd', alpha: .42 * (1 - ph), unlit: true });
             }
         }
         const waterFx = pulse('water');
         if (waterFx) {
-            const base = origin(waterFx, new Vec3(-5.48, .52, 5.68));
+            const base = origin(waterFx, new Vec3(-5.48, 1.28, 5.68));
             for (let i = 0; i < 5; i++) {
                 const ph = ((time * 2 + i * .14) % 1);
-                m.push({ kind: 'sphere', position: new Vec3(base.x, base.y + .76 - ph * .75, base.z), scale: new Vec3(.028, .07, .028), color: '#a9c8ca', alpha: .50 * (1 - ph), unlit: true });
+                m.push({ kind: 'sphere', position: new Vec3(base.x, base.y - ph * .75, base.z), scale: new Vec3(.028, .07, .028), color: '#a9c8ca', alpha: .50 * (1 - ph), unlit: true });
             }
         }
         const stringFx = pulse('stringing');
         if (stringFx) {
-            const base = origin(stringFx, new Vec3(9.2, 0, -3.24)), wobble = Math.sin(time * 14) * .035;
-            m.push({ kind: 'torus', position: new Vec3(base.x, base.y + 1.74 + wobble, base.z), rotation: new Vec3(0, 0, time * .9), scale: new Vec3(.95, .95, .22), color: '#eadfca', alpha: .78 }, { kind: 'roundBox', position: new Vec3(base.x, base.y + 1.74, base.z + .04), rotation: new Vec3(0, time * 1.6, 0), scale: new Vec3(1.25, .025, .025), color: '#d2b778', alpha: .65, unlit: true });
+            const base = origin(stringFx, new Vec3(9.2, 1.74, -3.24)), wobble = Math.sin(time * 14) * .035;
+            m.push({ kind: 'torus', position: new Vec3(base.x, base.y + wobble, base.z), rotation: new Vec3(0, 0, time * .9), scale: new Vec3(.95, .95, .22), color: '#eadfca', alpha: .78 }, { kind: 'roundBox', position: new Vec3(base.x, base.y, base.z + .04), rotation: new Vec3(0, time * 1.6, 0), scale: new Vec3(1.25, .025, .025), color: '#d2b778', alpha: .65, unlit: true });
         }
         const trainingFx = pulse('training');
         if (trainingFx) {
-            const base = origin(trainingFx, new Vec3(-7.15, 0, .05));
+            const base = origin(trainingFx, new Vec3(-7.15, .78, .05));
             for (let i = 0; i < 3; i++) {
                 const ph = ((time * 1.2 + i * .27) % 1);
-                m.push({ kind: 'sphere', position: new Vec3(base.x + ph * 1.2, base.y + .78 + Math.sin(ph * Math.PI) * .5, base.z + i * .08), scale: new Vec3(.13, .13, .13), color: '#d9c65f', alpha: .74, unlit: true });
+                m.push({ kind: 'sphere', position: new Vec3(base.x + ph * 1.2, base.y + Math.sin(ph * Math.PI) * .5, base.z + i * .08), scale: new Vec3(.13, .13, .13), color: '#d9c65f', alpha: .74, unlit: true });
             }
         }
         const bellFx = pulse('bell');
         if (bellFx) {
-            const base = origin(bellFx, new Vec3(-8.45, 1.28, 4.35));
+            const base = origin(bellFx, new Vec3(-8.35, 1.30, 5.22));
             for (let i = 0; i < 3; i++) {
                 const ph = ((time * 2.1 + i * .22) % 1);
                 m.push({ kind: 'torus', position: new Vec3(base.x, base.y + .16 + ph * .42, base.z), rotation: new Vec3(Math.PI / 2, 0, 0), scale: new Vec3(.16 + ph * .25, .16 + ph * .25, .07), color: '#e4c879', alpha: .30 * (1 - ph), unlit: true });
@@ -566,21 +589,21 @@ export class World {
         }
         const comfortFx = pulse('comfort');
         if (comfortFx) {
-            const base = origin(comfortFx, new Vec3(8.5, .35, 5.8));
+            const base = origin(comfortFx, new Vec3(8.5, .70, 5.8));
             for (let i = 0; i < 6; i++) {
                 const ph = ((time * .72 + i * .16) % 1);
-                m.push({ kind: 'sphere', position: new Vec3(base.x + Math.sin(i * 2.1) * (.25 + ph * .18), base.y + .35 + ph * .55, base.z + Math.cos(i * 1.7) * .22), scale: new Vec3(.035, .035, .035), color: '#f1d8ae', alpha: .18 * (1 - ph), unlit: true });
+                m.push({ kind: 'sphere', position: new Vec3(base.x + Math.sin(i * 2.1) * (.25 + ph * .18), base.y + ph * .55, base.z + Math.cos(i * 1.7) * .22), scale: new Vec3(.035, .035, .035), color: '#f1d8ae', alpha: .18 * (1 - ph), unlit: true });
             }
         }
         const lampFx = pulse('lamp');
         if (lampFx) {
-            const base = origin(lampFx, new Vec3(8.35, 1.2, 8.45)), glow = .75 + .25 * Math.sin(time * 8);
-            m.push({ kind: 'sphere', position: new Vec3(base.x, base.y + 1.20, base.z), scale: new Vec3(1.05, .08, 1.05), color: '#efd28f', alpha: .14 * glow, unlit: true });
+            const base = origin(lampFx, new Vec3(8.35, 2.4, 8.45)), glow = .75 + .25 * Math.sin(time * 8);
+            m.push({ kind: 'sphere', position: new Vec3(base.x, base.y, base.z), scale: new Vec3(1.05, .08, 1.05), color: '#efd28f', alpha: .14 * glow, unlit: true });
         }
         const paperFx = pulse('paper');
         if (paperFx) {
-            const p = paperFx.position ?? new Vec3(6.9, .8, 4.55);
-            m.push({ kind: 'roundBox', position: new Vec3(p.x, p.y + .35, p.z), rotation: new Vec3(0, 0, Math.sin(effectTime * 6) * .22), scale: new Vec3(.42, .025, .55), color: '#f5e7c8', material: 'matte', noShadow: true });
+            const p = paperFx.position ?? new Vec3(6.9, 1.15, 4.55);
+            m.push({ kind: 'roundBox', position: new Vec3(p.x, p.y, p.z), rotation: new Vec3(0, 0, Math.sin(effectTime * 6) * .22), scale: new Vec3(.42, .025, .55), color: '#f5e7c8', material: 'matte', noShadow: true });
         }
         // Expiry uses real time even when reduced motion freezes decorative motion.
         for (const [kind, value] of this.interactionFx)

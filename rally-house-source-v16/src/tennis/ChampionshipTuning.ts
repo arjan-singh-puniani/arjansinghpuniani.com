@@ -50,15 +50,25 @@ export const CHAMPIONSHIP_TUNING = {
   playerReturnReach: 2.85,
   returnEarlyLeadSeconds: 0.5,
   returnLateGraceSeconds: 0.065,
+  /** Cue the buffered intention before the bounce; contact still waits for legality. */
+  returnCueLeadSeconds: 0.65,
   arcadeStrokeTempo: 0.72,
   arcadeContactTempo: 0.7,
   opponentServeReadSeconds: 0.3,
+
+  /** Portrait profile B: larger court, with measured corner clearance. */
+  portraitCameraDistance: 28.6,
+  portraitCameraElevation: 0.60,
+  portraitCameraFovDegrees: 48,
 
   /** Presentation scale for the championship ball and its locator. */
   ballVisualRadius: 0.235,
   /** A livelier rebound, without changing flight targets or horizontal pace. */
   ballRestitution: 0.64,
   ballHaloRadius: 0.35,
+  /** A quiet incoming landing cue keeps the player's attention on the court. */
+  landingCueOpacity: 0.46,
+  landingCueScale: 1.25,
 } as const;
 
 export type ChampionshipTuning = typeof CHAMPIONSHIP_TUNING;

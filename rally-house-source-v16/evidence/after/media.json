@@ -1,0 +1,51 @@
+{
+  "errors": [],
+  "failedRequests": [],
+  "mediaRangeCancellations": [
+    {
+      "url": "http://127.0.0.1:3096/rally-house/media/club-to-court.webm",
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3096/rally-house/media/club-to-court.webm",
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3096/rally-house/media/club-to-court.webm",
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3096/rally-house/media/club-to-court.webm",
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3096/rally-house/media/club-to-court.webm",
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3096/rally-house/media/club-to-court.webm",
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    }
+  ],
+  "packageReloads": 5,
+  "video": {
+    "duration": 29.8,
+    "width": 1280,
+    "height": 800,
+    "tracks": 1
+  },
+  "keyboardLoadsGame": true,
+  "fullscreenFallback": true
+}

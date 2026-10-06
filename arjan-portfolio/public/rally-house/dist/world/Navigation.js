@@ -48,7 +48,7 @@ export class Navigation {
             }
             for (const [dx, dz] of dirs) {
                 const nx = cur.x + dx, nz = cur.z + dz, w = this.world(nx, nz);
-                if (this.isBlocked(w.x, w.z))
+                if (!this.clearSegment(this.world(cur.x, cur.z), w))
                     continue;
                 if (dx && dz) {
                     const a = this.world(cur.x + dx, cur.z), b = this.world(cur.x, cur.z + dz);

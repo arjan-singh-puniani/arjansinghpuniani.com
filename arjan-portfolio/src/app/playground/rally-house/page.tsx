@@ -1,85 +1,17 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { siteUrl } from "@/lib/site";
-import styles from "./rally-house.module.css";
+import RallyHouseExperience from "./RallyHouseExperience";
 
 export const metadata: Metadata = {
-  title: "Rally House — Cozy Tennis Life Sim",
-  description:
-    "Rally House is Arjan Singh Puniani's playable tennis-club prototype with walking, decorating, coaching, character routines, and saved event history.",
+  title: "Rally House — A Living Club, Playable Arcade Tennis",
+  description: "Explore Arjan Singh Puniani’s miniature tennis club, challenge its members, and play arcade tennis on the same continuous court.",
   alternates: { canonical: "/playground/rally-house" },
   openGraph: {
-    type: "website",
-    url: `${siteUrl}/playground/rally-house`,
+    type: "website", url: `${siteUrl}/playground/rally-house`,
     title: "Rally House | Arjan Singh Puniani",
-    description:
-      "A playable tennis-club prototype with character reactions, routines, decorating, and saved event history.",
-    images: [{
-      url: "/rally-house/preview.png",
-      width: 1100,
-      height: 760,
-      alt: "Rally House living tennis academy with characters gathered around an isometric court after hours",
-    }],
+    description: "A living miniature club that becomes a playable tennis game.",
+    images: [{ url: "/rally-house/media/club.webp", width: 1440, height: 1000, alt: "Actual Rally House gameplay in a living miniature tennis club" }],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Rally House | Arjan Singh Puniani",
-    description:
-      "A cozy social tennis simulation about coaching, presence, relationships, and a club that develops a history.",
-    images: ["/rally-house/preview.png"],
-  },
+  twitter: { card: "summary_large_image", title: "Rally House | Arjan Singh Puniani", description: "A living miniature club that becomes a playable tennis game.", images: ["/rally-house/media/club.webp"] },
 };
-
-export default function RallyHousePage() {
-  return (
-    <>
-      <header className={styles.hero}>
-        <div className={`shell ${styles.heroGrid}`}>
-          <div>
-            <Link className={styles.back} href="/playground">← Playground</Link>
-            <p className="eyebrow">Rally House · Playable cozy tennis life sim</p>
-            <h1>Come hang out for a while.</h1>
-            <p className={styles.deck}>
-              Coach a lesson, wander through the academy, decorate a corner, and watch people react to what actually happened. Relationships, witnessed moments, routines, favorite places, and club history carry forward.
-            </p>
-            <div className={styles.actions}>
-              <a className="button" href="#play">Start playing ↓</a>
-              <a className={styles.textLink} href="/rally-house/index.html" target="_blank" rel="noreferrer">Open full screen ↗</a>
-            </div>
-          </div>
-          <aside className={styles.summary} aria-label="Rally House game summary">
-            <p>PLAYABLE WEB PROTOTYPE</p>
-            <dl>
-              <div><dt>Do</dt><dd>Coach · wander · decorate</dd></div>
-              <div><dt>People</dt><dd>Notice · react · remember</dd></div>
-              <div><dt>Club</dt><dd>Routines · rituals · history</dd></div>
-            </dl>
-          </aside>
-        </div>
-      </header>
-
-      <section className={styles.gameSection} id="play" aria-label="Playable Rally House game">
-        <div className="shell">
-          <div className={styles.frameShell}>
-            <iframe className={styles.gameFrame} src="/rally-house/index.html" title="Play Rally House, an interactive living tennis academy" loading="eager" allow="fullscreen" allowFullScreen aria-describedby="rally-house-controls" />
-          </div>
-          <div className={styles.gameFooter}>
-            <p id="rally-house-controls">Tap to walk · drag to pan · Shift/right-drag to orbit · pinch or scroll to zoom.</p>
-            <a href="/rally-house/index.html" target="_blank" rel="noreferrer">Full-screen game ↗</a>
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.whySection}>
-        <div className="shell">
-          <p className="eyebrow">Character behavior</p>
-          <div className={styles.whyGrid}>
-            <article><span>01</span><h2>Event reactions</h2><p>Witnesses pause, outcomes affect mood, and reactions can persist after the moment instead of vanishing when the animation ends.</p></article>
-            <article><span>02</span><h2>Event-based dialogue</h2><p>Follow-ups, reflections, and reconciliation draw from actual club events rather than manufacturing history the player never created.</p></article>
-            <article><span>03</span><h2>Saved routines and history</h2><p>Coaching evidence, favorite objects, routines, relationships, and bounded memories influence what people do later.</p></article>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
+export default function RallyHousePage() { return <RallyHouseExperience />; }

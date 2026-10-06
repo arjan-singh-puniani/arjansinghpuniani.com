@@ -9,6 +9,7 @@ export interface MemoryEvent {
   sentiment:number;
   strength:number;
   detail:string;place?:string;subject?:string;
+  sourceId?:string;
 }
 
 export interface Relationship {
@@ -76,7 +77,7 @@ export class RelationshipSystem {
   }
 
   private pushEvent(r:Relationship,event:Omit<MemoryEvent,'id'>){
-    const id=`${event.day}:${event.type}:${event.people.join('-')}:${event.detail}`;
+    const id=event.sourceId??`${event.day}:${event.type}:${event.people.join('-')}:${event.detail}`;
     r.events.unshift({id,...event});
     const dedup=new Map<string,MemoryEvent>();for(const e of r.events)if(!dedup.has(e.id))dedup.set(e.id,e);
     const all=[...dedup.values()],major=all.filter(e=>e.strength>=.95).slice(0,8);const ids=new Set(major.map(e=>e.id));r.events=[...major,...all.filter(e=>!ids.has(e.id)).slice(0,16-major.length)].sort((a,b)=>b.day-a.day);

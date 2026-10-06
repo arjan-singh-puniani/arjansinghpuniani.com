@@ -16,7 +16,7 @@ describe("Rally House portfolio integration", () => {
   });
 
   it("ships an accessible, full-screen-capable game frame", () => {
-    const page = read("src/app/playground/rally-house/page.tsx");
+    const page = read("src/app/playground/rally-house/RallyHouseExperience.tsx");
     expect(page).toContain("allowFullScreen");
     expect(page).toContain("aria-describedby=\"rally-house-controls\"");
     expect(page).toContain("title=\"Play Rally House");

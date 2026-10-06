@@ -1,0 +1,1951 @@
+{
+  "method": "Conservative proxy warnings: shoe centers < .08 apart, shoe center below .08 floor, hand center inside .13 torso-axis radius at y .8–1.45, racket center inside .20 head radius at y 1.78. These proxies do not prove mesh clearance.",
+  "samples": 30240,
+  "rows": [
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "idle",
+      "floor": 0.1128615713290369,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6504885388161012
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "walk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "jog",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "ready",
+      "floor": 0.08800317438812587,
+      "shoeGap": 0.35636967789038543,
+      "handTorso": 0.17494579839992305,
+      "racketHead": 0.5021203404001872
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "sit",
+      "floor": 0.11,
+      "shoeGap": 0.3407619818270706,
+      "handTorso": 0.4453053837742454,
+      "racketHead": 0.6383238578530017
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "talk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4186307432779305,
+      "racketHead": 0.6256386304540406
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "drink",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.3667063511306433,
+      "racketHead": 0.49815214084482146
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "stretch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4270609335966524,
+      "racketHead": 0.4511690784933798
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "watch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.16741510663885892,
+      "racketHead": 0.4944787287635127
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "swingForehand",
+      "floor": 0.11,
+      "shoeGap": 0.394011985904093,
+      "handTorso": 0.3310589071449369,
+      "racketHead": 0.6222120307027281
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "swingBackhand",
+      "floor": 0.11,
+      "shoeGap": 0.39291940423769744,
+      "handTorso": 0.18432560415302063,
+      "racketHead": 0.3793709510068692
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "serve",
+      "floor": 0.11,
+      "shoeGap": 0.3576598473442014,
+      "handTorso": 0.28980443004749357,
+      "racketHead": 0.33740960224844685
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "volley",
+      "floor": 0.11,
+      "shoeGap": 0.3719905415881432,
+      "handTorso": 0.2842534080710379,
+      "racketHead": 0.6097133965905616
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "celebrate",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4404005917366727,
+      "racketHead": 0.4716281008355841
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "reactMiss",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.48205990710510027,
+      "racketHead": 0.6597144579275646
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "coachFeed",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4368065933568311,
+      "racketHead": 0.6588758236801859
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "coachExplain",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4238544933694114,
+      "racketHead": 0.6467560373026104
+    },
+    {
+      "person": "coach",
+      "hz": 30,
+      "state": "recover",
+      "floor": 0.11267755195328966,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6512303162379743
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "idle",
+      "floor": 0.1128207464746986,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6504885388161012
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "walk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "jog",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "ready",
+      "floor": 0.08800317438812587,
+      "shoeGap": 0.3442577735699816,
+      "handTorso": 0.16257980307253508,
+      "racketHead": 0.5021203404001872
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "sit",
+      "floor": 0.11,
+      "shoeGap": 0.3401938670577724,
+      "handTorso": 0.4452638361935071,
+      "racketHead": 0.6381697557080459
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "talk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4186307432779305,
+      "racketHead": 0.6256386304540407
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "drink",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.3667063511306433,
+      "racketHead": 0.4950591351151869
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "stretch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4270609335966524,
+      "racketHead": 0.44875367469319116
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "watch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.15419461255134484,
+      "racketHead": 0.4944787287635127
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "swingForehand",
+      "floor": 0.11,
+      "shoeGap": 0.3546602301207536,
+      "handTorso": 0.3310589071449369,
+      "racketHead": 0.617418429853988
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "swingBackhand",
+      "floor": 0.11,
+      "shoeGap": 0.35440514758811115,
+      "handTorso": 0.1603822630391474,
+      "racketHead": 0.3793709510068692
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "serve",
+      "floor": 0.11,
+      "shoeGap": 0.34429018012883567,
+      "handTorso": 0.28969943075562915,
+      "racketHead": 0.33740960224844685
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "volley",
+      "floor": 0.11,
+      "shoeGap": 0.34864274926860206,
+      "handTorso": 0.2842534080710379,
+      "racketHead": 0.6097133965905616
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "celebrate",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.42923238087396326,
+      "racketHead": 0.46756528736468517
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "reactMiss",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.480833696142081,
+      "racketHead": 0.6568010092695554
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "coachFeed",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4368065933568311,
+      "racketHead": 0.6565478514169838
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "coachExplain",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4238544933694114,
+      "racketHead": 0.6458593694481054
+    },
+    {
+      "person": "coach",
+      "hz": 60,
+      "state": "recover",
+      "floor": 0.11267755195328966,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6512303162379743
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "idle",
+      "floor": 0.11280788417274137,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6504885388161012
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "walk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "jog",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "ready",
+      "floor": 0.088,
+      "shoeGap": 0.34108638995880275,
+      "handTorso": 0.16257980307253508,
+      "racketHead": 0.5013759754786021
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "sit",
+      "floor": 0.11,
+      "shoeGap": 0.3400488882145687,
+      "handTorso": 0.44514607116673066,
+      "racketHead": 0.6381396334893036
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "talk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4186307432779305,
+      "racketHead": 0.6256386304540409
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "drink",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.3663597047353831,
+      "racketHead": 0.4950591351151869
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "stretch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4195862242394104,
+      "racketHead": 0.44717558423520637
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "watch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.15419461255134484,
+      "racketHead": 0.49320049157707496
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "swingForehand",
+      "floor": 0.11,
+      "shoeGap": 0.3438165455913451,
+      "handTorso": 0.3310589071449369,
+      "racketHead": 0.6173809038953053
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "swingBackhand",
+      "floor": 0.11,
+      "shoeGap": 0.343753725405279,
+      "handTorso": 0.1603822630391474,
+      "racketHead": 0.3793709510068692
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "serve",
+      "floor": 0.11,
+      "shoeGap": 0.3410780591408145,
+      "handTorso": 0.2896451856580685,
+      "racketHead": 0.3369419842283734
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "volley",
+      "floor": 0.11,
+      "shoeGap": 0.34224732279618664,
+      "handTorso": 0.2842534080710379,
+      "racketHead": 0.6097133965905616
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "celebrate",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.42923238087396326,
+      "racketHead": 0.466785233266757
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "reactMiss",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4805222513947842,
+      "racketHead": 0.6560444064217907
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "coachFeed",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4368065933568311,
+      "racketHead": 0.6559766579354139
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "coachExplain",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.42385172777615304,
+      "racketHead": 0.6458593694481054
+    },
+    {
+      "person": "coach",
+      "hz": 120,
+      "state": "recover",
+      "floor": 0.11267755195328966,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6512296088823516
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "idle",
+      "floor": 0.11481414329000506,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6493769907329786
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "walk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "jog",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "ready",
+      "floor": 0.08800317438812587,
+      "shoeGap": 0.35636967789038543,
+      "handTorso": 0.17494579839992305,
+      "racketHead": 0.5013845470218994
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "sit",
+      "floor": 0.11,
+      "shoeGap": 0.3407619818270706,
+      "handTorso": 0.4453053837742454,
+      "racketHead": 0.6371031706363418
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "talk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4186307432779305,
+      "racketHead": 0.6199377454228178
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "drink",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.3667063511306433,
+      "racketHead": 0.4978921019256545
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "stretch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4270609335966524,
+      "racketHead": 0.4514287252883865
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "watch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.16741510663885892,
+      "racketHead": 0.49373861295214133
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "swingForehand",
+      "floor": 0.11,
+      "shoeGap": 0.394011985904093,
+      "handTorso": 0.3310589071449369,
+      "racketHead": 0.6302539635618877
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "swingBackhand",
+      "floor": 0.11,
+      "shoeGap": 0.39291940423769744,
+      "handTorso": 0.1795821579020925,
+      "racketHead": 0.3884949296060692
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "serve",
+      "floor": 0.11,
+      "shoeGap": 0.3576598473442014,
+      "handTorso": 0.28931960526645795,
+      "racketHead": 0.3391346724776198
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "volley",
+      "floor": 0.11,
+      "shoeGap": 0.3719905415881432,
+      "handTorso": 0.2842534080710378,
+      "racketHead": 0.6077307435402901
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "celebrate",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4404005917366727,
+      "racketHead": 0.4718554374607753
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "reactMiss",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.48205990710510027,
+      "racketHead": 0.6584638612265695
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "coachFeed",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4368065933568311,
+      "racketHead": 0.6576426768300587
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "coachExplain",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4238544933694114,
+      "racketHead": 0.6458024541482336
+    },
+    {
+      "person": "mika",
+      "hz": 30,
+      "state": "recover",
+      "floor": 0.11350720486602378,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6512303162379743
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "idle",
+      "floor": 0.11481414329000507,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6493732183990817
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "walk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "jog",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "ready",
+      "floor": 0.08800317438812587,
+      "shoeGap": 0.3442577735699816,
+      "handTorso": 0.16257980307253508,
+      "racketHead": 0.5013845470218994
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "sit",
+      "floor": 0.11,
+      "shoeGap": 0.3401938670577724,
+      "handTorso": 0.4452638361935071,
+      "racketHead": 0.6369240819640151
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "talk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4186307432779305,
+      "racketHead": 0.6199377454228179
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "drink",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.3667063511306433,
+      "racketHead": 0.4949374531577925
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "stretch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4270609335966524,
+      "racketHead": 0.4488035482776817
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "watch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.15419461255134484,
+      "racketHead": 0.49373861295214133
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "swingForehand",
+      "floor": 0.11,
+      "shoeGap": 0.3546602301207536,
+      "handTorso": 0.3310589071449369,
+      "racketHead": 0.6222016981501587
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "swingBackhand",
+      "floor": 0.11,
+      "shoeGap": 0.35440514758811115,
+      "handTorso": 0.15815673703022376,
+      "racketHead": 0.3884949296060692
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "serve",
+      "floor": 0.11,
+      "shoeGap": 0.34429018012883567,
+      "handTorso": 0.2892603044053141,
+      "racketHead": 0.33722029589636
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "volley",
+      "floor": 0.11,
+      "shoeGap": 0.34864274926860206,
+      "handTorso": 0.2842534080710378,
+      "racketHead": 0.6077307435402901
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "celebrate",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.42923238087396326,
+      "racketHead": 0.4675814243464388
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "reactMiss",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.480833696142081,
+      "racketHead": 0.655507080965879
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "coachFeed",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4368065933568311,
+      "racketHead": 0.6552585690430112
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "coachExplain",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4238544933694114,
+      "racketHead": 0.645064153498887
+    },
+    {
+      "person": "mika",
+      "hz": 60,
+      "state": "recover",
+      "floor": 0.11348583192590384,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6512303162379743
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "idle",
+      "floor": 0.11481414329000507,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6493732183990817
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "walk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "jog",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "ready",
+      "floor": 0.088,
+      "shoeGap": 0.34108638995880275,
+      "handTorso": 0.16257980307253508,
+      "racketHead": 0.5007197183253472
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "sit",
+      "floor": 0.11,
+      "shoeGap": 0.3400488882145687,
+      "handTorso": 0.44514607116673066,
+      "racketHead": 0.6369058285105015
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "talk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4186307432779305,
+      "racketHead": 0.6199377454228182
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "drink",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.3663597047353831,
+      "racketHead": 0.4949374531577925
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "stretch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4195862242394104,
+      "racketHead": 0.4473422411809768
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "watch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.15419461255134484,
+      "racketHead": 0.49254052172423435
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "swingForehand",
+      "floor": 0.11,
+      "shoeGap": 0.3438165455913451,
+      "handTorso": 0.3310589071449369,
+      "racketHead": 0.6222016981501587
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "swingBackhand",
+      "floor": 0.11,
+      "shoeGap": 0.343753725405279,
+      "handTorso": 0.15674382841411155,
+      "racketHead": 0.3884949296060692
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "serve",
+      "floor": 0.11,
+      "shoeGap": 0.3410780591408145,
+      "handTorso": 0.28919099432760415,
+      "racketHead": 0.33722029589636004
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "volley",
+      "floor": 0.11,
+      "shoeGap": 0.34224732279618664,
+      "handTorso": 0.2842534080710379,
+      "racketHead": 0.6077067767565596
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "celebrate",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.42923238087396326,
+      "racketHead": 0.4669179808528212
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "reactMiss",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4805222513947842,
+      "racketHead": 0.6547394007735533
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "coachFeed",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4368065933568311,
+      "racketHead": 0.6546728428859611
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "coachExplain",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.42385172777615304,
+      "racketHead": 0.645064153498887
+    },
+    {
+      "person": "mika",
+      "hz": 120,
+      "state": "recover",
+      "floor": 0.11348583192590384,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6512296088823516
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "idle",
+      "floor": 0.11391929747009198,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6500243841864449
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "walk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "jog",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "ready",
+      "floor": 0.08800317438812587,
+      "shoeGap": 0.35636967789038543,
+      "handTorso": 0.17494579839992305,
+      "racketHead": 0.5017455400188047
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "sit",
+      "floor": 0.11,
+      "shoeGap": 0.3407619818270706,
+      "handTorso": 0.4453053837742454,
+      "racketHead": 0.6377071900159562
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "talk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4186307432779305,
+      "racketHead": 0.6199377454228178
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "drink",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.3667063511306433,
+      "racketHead": 0.49801948840217597
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "stretch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4270609335966524,
+      "racketHead": 0.45130104055063064
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "watch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.16741510663885892,
+      "racketHead": 0.4941017271337048
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "swingForehand",
+      "floor": 0.11,
+      "shoeGap": 0.394011985904093,
+      "handTorso": 0.3310589071449369,
+      "racketHead": 0.6337041382701366
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "swingBackhand",
+      "floor": 0.11,
+      "shoeGap": 0.39291940423769744,
+      "handTorso": 0.16371659428246155,
+      "racketHead": 0.4219518348115069
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "serve",
+      "floor": 0.11,
+      "shoeGap": 0.3576598473442014,
+      "handTorso": 0.28846535437823645,
+      "racketHead": 0.3377189319560508
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "volley",
+      "floor": 0.11,
+      "shoeGap": 0.3719905415881432,
+      "handTorso": 0.2842534080710379,
+      "racketHead": 0.6075527508349287
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "celebrate",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4404005917366727,
+      "racketHead": 0.47174361662683295
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "reactMiss",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.48205990710510027,
+      "racketHead": 0.6590689236789594
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "coachFeed",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4368065933568311,
+      "racketHead": 0.6582392817997783
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "coachExplain",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4238544933694114,
+      "racketHead": 0.6462658802980621
+    },
+    {
+      "person": "leo",
+      "hz": 30,
+      "state": "recover",
+      "floor": 0.11321687814921585,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6512303162379743
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "idle",
+      "floor": 0.11388318829218094,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.650023353754438
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "walk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "jog",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "ready",
+      "floor": 0.08800317438812587,
+      "shoeGap": 0.3442577735699816,
+      "handTorso": 0.16257980307253508,
+      "racketHead": 0.5017455400188047
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "sit",
+      "floor": 0.11,
+      "shoeGap": 0.3401938670577724,
+      "handTorso": 0.4452638361935071,
+      "racketHead": 0.6375391392224914
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "talk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4186307432779305,
+      "racketHead": 0.6199377454228179
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "drink",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.3667063511306433,
+      "racketHead": 0.4949971428794636
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "stretch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4270609335966524,
+      "racketHead": 0.4487787275572096
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "watch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.15419461255134484,
+      "racketHead": 0.4941017271337048
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "swingForehand",
+      "floor": 0.11,
+      "shoeGap": 0.3546602301207536,
+      "handTorso": 0.3310589071449369,
+      "racketHead": 0.6270966577916292
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "swingBackhand",
+      "floor": 0.11,
+      "shoeGap": 0.35440514758811115,
+      "handTorso": 0.144879787155399,
+      "racketHead": 0.4219518348115069
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "serve",
+      "floor": 0.11,
+      "shoeGap": 0.34429018012883567,
+      "handTorso": 0.28817306529192277,
+      "racketHead": 0.3377189319560508
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "volley",
+      "floor": 0.11,
+      "shoeGap": 0.34864274926860206,
+      "handTorso": 0.2842534080710378,
+      "racketHead": 0.6075527508349287
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "celebrate",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.42923238087396326,
+      "racketHead": 0.4675731396226974
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "reactMiss",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.480833696142081,
+      "racketHead": 0.6561316275627213
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "coachFeed",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4368065933568311,
+      "racketHead": 0.6558808690090944
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "coachExplain",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4238544933694114,
+      "racketHead": 0.6454514760107561
+    },
+    {
+      "person": "leo",
+      "hz": 60,
+      "state": "recover",
+      "floor": 0.11320679189175972,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6512303162379743
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "idle",
+      "floor": 0.11387264512319949,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6500226074665367
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "walk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "jog",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "ready",
+      "floor": 0.088,
+      "shoeGap": 0.34108638995880275,
+      "handTorso": 0.16257980307253508,
+      "racketHead": 0.5010420479436669
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "sit",
+      "floor": 0.11,
+      "shoeGap": 0.3400488882145687,
+      "handTorso": 0.44514607116673066,
+      "racketHead": 0.6375156836046831
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "talk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4186307432779305,
+      "racketHead": 0.6199377454228182
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "drink",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.3663597047353831,
+      "racketHead": 0.4949971428794636
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "stretch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4195862242394104,
+      "racketHead": 0.447260211340657
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "watch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.15419461255134484,
+      "racketHead": 0.492864675092101
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "swingForehand",
+      "floor": 0.11,
+      "shoeGap": 0.3438165455913451,
+      "handTorso": 0.3310589071449369,
+      "racketHead": 0.6270966577916292
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "swingBackhand",
+      "floor": 0.11,
+      "shoeGap": 0.343753725405279,
+      "handTorso": 0.14019676553594884,
+      "racketHead": 0.4219518348115069
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "serve",
+      "floor": 0.11,
+      "shoeGap": 0.3410780591408145,
+      "handTorso": 0.28817306529192277,
+      "racketHead": 0.3377189319560509
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "volley",
+      "floor": 0.11,
+      "shoeGap": 0.34224732279618664,
+      "handTorso": 0.2842534080710379,
+      "racketHead": 0.6071296547677667
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "celebrate",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.42923238087396326,
+      "racketHead": 0.4668525856119388
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "reactMiss",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4805222513947842,
+      "racketHead": 0.6553685471060852
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "coachFeed",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4368065933568311,
+      "racketHead": 0.6553014141494732
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "coachExplain",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.42385172777615304,
+      "racketHead": 0.6454514760107561
+    },
+    {
+      "person": "leo",
+      "hz": 120,
+      "state": "recover",
+      "floor": 0.11320659889553171,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6512296088823516
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "idle",
+      "floor": 0.11371726380808257,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6498019605265859
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "walk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "jog",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "ready",
+      "floor": 0.08800317438812587,
+      "shoeGap": 0.35636967789038543,
+      "handTorso": 0.17494579839992305,
+      "racketHead": 0.5018171115285912
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "sit",
+      "floor": 0.11,
+      "shoeGap": 0.3407619818270706,
+      "handTorso": 0.4453053837742454,
+      "racketHead": 0.6378174726016234
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "talk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4186307432779305,
+      "racketHead": 0.6171163984495192
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "drink",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.3667063511306433,
+      "racketHead": 0.4980447886313336
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "stretch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4270609335966524,
+      "racketHead": 0.45127579351071834
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "watch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.16741510663885892,
+      "racketHead": 0.4941737190759656
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "swingForehand",
+      "floor": 0.11,
+      "shoeGap": 0.394011985904093,
+      "handTorso": 0.3310589071449369,
+      "racketHead": 0.6242703642140761
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "swingBackhand",
+      "floor": 0.11,
+      "shoeGap": 0.39291940423769744,
+      "handTorso": 0.1943158289708362,
+      "racketHead": 0.36585474548218044
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "serve",
+      "floor": 0.11,
+      "shoeGap": 0.3576598473442014,
+      "handTorso": 0.2901476146855923,
+      "racketHead": 0.3387085230330123
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "volley",
+      "floor": 0.11,
+      "shoeGap": 0.3719905415881432,
+      "handTorso": 0.2842534080710379,
+      "racketHead": 0.6070144160086408
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "celebrate",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4404005917366727,
+      "racketHead": 0.471721512070751
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "reactMiss",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.48205990710510027,
+      "racketHead": 0.6592038206005401
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "coachFeed",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4368065933568311,
+      "racketHead": 0.658372296967482
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "coachExplain",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4238544933694114,
+      "racketHead": 0.6463653498375527
+    },
+    {
+      "person": "nia",
+      "hz": 30,
+      "state": "recover",
+      "floor": 0.1131391556118354,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6512303162379743
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "idle",
+      "floor": 0.11366743356371427,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6498019605265859
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "walk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "jog",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "ready",
+      "floor": 0.08800317438812587,
+      "shoeGap": 0.3442577735699816,
+      "handTorso": 0.16257980307253508,
+      "racketHead": 0.5018171115285912
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "sit",
+      "floor": 0.11,
+      "shoeGap": 0.3401938670577724,
+      "handTorso": 0.4452638361935071,
+      "racketHead": 0.6376538255248666
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "talk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4186307432779305,
+      "racketHead": 0.6171163984495193
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "drink",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.3667063511306433,
+      "racketHead": 0.49500877137134386
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "stretch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4270609335966524,
+      "racketHead": 0.44877380172017484
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "watch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.15419461255134484,
+      "racketHead": 0.4941737190759656
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "swingForehand",
+      "floor": 0.11,
+      "shoeGap": 0.3546602301207536,
+      "handTorso": 0.3310589071449369,
+      "racketHead": 0.6168743751950618
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "swingBackhand",
+      "floor": 0.11,
+      "shoeGap": 0.35440514758811115,
+      "handTorso": 0.17156668239918468,
+      "racketHead": 0.36585474548218044
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "serve",
+      "floor": 0.11,
+      "shoeGap": 0.34429018012883567,
+      "handTorso": 0.2901476146855923,
+      "racketHead": 0.33675286300628154
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "volley",
+      "floor": 0.11,
+      "shoeGap": 0.34864274926860206,
+      "handTorso": 0.2842534080710378,
+      "racketHead": 0.6070144160086408
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "celebrate",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.42923238087396326,
+      "racketHead": 0.4675715537141988
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "reactMiss",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.480833696142081,
+      "racketHead": 0.6562735140519914
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "coachFeed",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4368065933568311,
+      "racketHead": 0.6560222461849178
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "coachExplain",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4238544933694114,
+      "racketHead": 0.6455330206115318
+    },
+    {
+      "person": "nia",
+      "hz": 60,
+      "state": "recover",
+      "floor": 0.11313022271279695,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6512303162379743
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "idle",
+      "floor": 0.11365001497453717,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6498019605265859
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "walk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "jog",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.43,
+      "racketHead": 0.5963924882156044
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "ready",
+      "floor": 0.088,
+      "shoeGap": 0.34108638995880275,
+      "handTorso": 0.16257980307253508,
+      "racketHead": 0.5011053107464831
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "sit",
+      "floor": 0.11,
+      "shoeGap": 0.3400488882145687,
+      "handTorso": 0.44514607116673066,
+      "racketHead": 0.637628213286071
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "talk",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4186307432779305,
+      "racketHead": 0.6171163984495194
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "drink",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.3663597047353831,
+      "racketHead": 0.49500877137134386
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "stretch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4195862242394104,
+      "racketHead": 0.447243865851469
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "watch",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.15419461255134484,
+      "racketHead": 0.4929282957909043
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "swingForehand",
+      "floor": 0.11,
+      "shoeGap": 0.3438165455913451,
+      "handTorso": 0.3310589071449369,
+      "racketHead": 0.6168743751950619
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "swingBackhand",
+      "floor": 0.11,
+      "shoeGap": 0.343753725405279,
+      "handTorso": 0.17156668239918468,
+      "racketHead": 0.36585474548218044
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "serve",
+      "floor": 0.11,
+      "shoeGap": 0.3410780591408145,
+      "handTorso": 0.2901476146855923,
+      "racketHead": 0.33675286300628143
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "volley",
+      "floor": 0.11,
+      "shoeGap": 0.34224732279618664,
+      "handTorso": 0.2842534080710379,
+      "racketHead": 0.6061366525950717
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "celebrate",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.42923238087396326,
+      "racketHead": 0.4668395676319237
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "reactMiss",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4805222513947842,
+      "racketHead": 0.6555128193789039
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "coachFeed",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.4368065933568311,
+      "racketHead": 0.6554455548342256
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "coachExplain",
+      "floor": 0.11,
+      "shoeGap": 0.34,
+      "handTorso": 0.42385172777615304,
+      "racketHead": 0.6455330206115318
+    },
+    {
+      "person": "nia",
+      "hz": 120,
+      "state": "recover",
+      "floor": 0.11313020429703115,
+      "shoeGap": 0.34,
+      "handTorso": 0.4804164859785725,
+      "racketHead": 0.6512296088823516
+    }
+  ],
+  "warnings": []
+}

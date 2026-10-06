@@ -1,0 +1,968 @@
+{
+  "viewports": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "axeViolations": 0,
+      "iframeOnIntent": true
+    },
+    {
+      "width": 1728,
+      "height": 1117,
+      "overflow": false,
+      "axeViolations": 0,
+      "iframeOnIntent": true
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "axeViolations": 0,
+      "iframeOnIntent": true
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "overflow": false,
+      "axeViolations": 0,
+      "iframeOnIntent": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "axeViolations": 0,
+      "iframeOnIntent": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "axeViolations": 0,
+      "iframeOnIntent": true
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "axeViolations": 0,
+      "iframeOnIntent": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "axeViolations": 0,
+      "iframeOnIntent": true
+    },
+    {
+      "width": 720,
+      "height": 900,
+      "overflow": false,
+      "axeViolations": 0,
+      "iframeOnIntent": true
+    }
+  ],
+  "errors": [],
+  "cycles": [
+    {
+      "cycle": 0,
+      "opponent": "leo",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 1,
+      "opponent": "coach",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 2,
+      "opponent": "mika",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 3,
+      "opponent": "nia",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 4,
+      "opponent": "leo",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 5,
+      "opponent": "coach",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 6,
+      "opponent": "mika",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 7,
+      "opponent": "nia",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 8,
+      "opponent": "leo",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 9,
+      "opponent": "coach",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 10,
+      "opponent": "mika",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 11,
+      "opponent": "nia",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 12,
+      "opponent": "leo",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 13,
+      "opponent": "coach",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 14,
+      "opponent": "mika",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 15,
+      "opponent": "nia",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 16,
+      "opponent": "leo",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 17,
+      "opponent": "coach",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 18,
+      "opponent": "mika",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 19,
+      "opponent": "nia",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 20,
+      "opponent": "leo",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 21,
+      "opponent": "coach",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 22,
+      "opponent": "mika",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 23,
+      "opponent": "nia",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 24,
+      "opponent": "leo",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 25,
+      "opponent": "coach",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 26,
+      "opponent": "mika",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 27,
+      "opponent": "nia",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 28,
+      "opponent": "leo",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 29,
+      "opponent": "coach",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 30,
+      "opponent": "mika",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    },
+    {
+      "cycle": 31,
+      "opponent": "nia",
+      "reserved": false,
+      "active": false,
+      "input": false,
+      "match": false,
+      "touchRuns": 0,
+      "dom": 193,
+      "heap": 11200000,
+      "cameraRestored": true,
+      "paused": true
+    }
+  ],
+  "performance": [
+    {
+      "frames": 594,
+      "median": 16.699999999999818,
+      "p95": 16.700000000000728,
+      "p99": 16.800000000000182,
+      "heap": 11200000,
+      "dom": 195,
+      "perf": {
+        "simMs": 0.016855730805863438,
+        "renderMs": 2.4732908478717053,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "p99": 16.80000000000109,
+      "heap": 11200000,
+      "dom": 195,
+      "perf": {
+        "simMs": 0.04266012635339139,
+        "renderMs": 2.7070029257193378,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 594,
+      "median": 16.700000000000728,
+      "p95": 16.799999999999272,
+      "p99": 16.80000000000291,
+      "heap": 11200000,
+      "dom": 195,
+      "perf": {
+        "simMs": 0.02869757272513654,
+        "renderMs": 2.782422823530888,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.69999999999709,
+      "p95": 16.799999999995634,
+      "p99": 16.80000000000291,
+      "heap": 11200000,
+      "dom": 195,
+      "perf": {
+        "simMs": 0.01999714726329783,
+        "renderMs": 2.815412973996589,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.69999999999709,
+      "p95": 16.700000000004366,
+      "p99": 16.80000000000291,
+      "heap": 11200000,
+      "dom": 195,
+      "perf": {
+        "simMs": 0.29515289672062733,
+        "renderMs": 2.5942574793238085,
+        "drawCalls": 802,
+        "triangles": 262156,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 600,
+      "median": 16.69999999999709,
+      "p95": 16.799999999995634,
+      "p99": 16.80000000000291,
+      "heap": 11200000,
+      "dom": 195,
+      "perf": {
+        "simMs": 0.03519890842493124,
+        "renderMs": 2.4514589303781746,
+        "drawCalls": 802,
+        "triangles": 262156,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.69999999999709,
+      "p95": 16.70000000001164,
+      "p99": 16.80000000000291,
+      "heap": 11200000,
+      "dom": 194,
+      "perf": {
+        "simMs": 0.05737034992756202,
+        "renderMs": 1.6214299127364524,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.69999999999709,
+      "p95": 16.70000000001164,
+      "p99": 16.80000000000291,
+      "heap": 11200000,
+      "dom": 193,
+      "perf": {
+        "simMs": 0.04786377549514947,
+        "renderMs": 1.4234039016200388,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.69999999999709,
+      "p95": 16.70000000001164,
+      "p99": 16.80000000000291,
+      "heap": 11200000,
+      "dom": 193,
+      "perf": {
+        "simMs": 0.030419758808737964,
+        "renderMs": 1.7521573910582382,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.69999999999709,
+      "p95": 16.79999999998836,
+      "p99": 16.80000000000291,
+      "heap": 11200000,
+      "dom": 194,
+      "perf": {
+        "simMs": 0.04384985489981183,
+        "renderMs": 2.7591780264041708,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.69999999999709,
+      "p95": 16.79999999998836,
+      "p99": 16.80000000000291,
+      "heap": 11200000,
+      "dom": 194,
+      "perf": {
+        "simMs": 0.138449302572962,
+        "renderMs": 2.5632915816784454,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.69999999999709,
+      "p95": 16.70000000001164,
+      "p99": 16.80000000000291,
+      "heap": 11200000,
+      "dom": 194,
+      "perf": {
+        "simMs": 0.05772253501154838,
+        "renderMs": 1.5981375723379845,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.69999999999709,
+      "p95": 16.70000000001164,
+      "p99": 16.80000000000291,
+      "heap": 11200000,
+      "dom": 193,
+      "perf": {
+        "simMs": 0.09499180439639794,
+        "renderMs": 2.851922957432323,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.699999999982538,
+      "p95": 16.79999999998836,
+      "p99": 16.800000000017462,
+      "heap": 11200000,
+      "dom": 194,
+      "perf": {
+        "simMs": 0.06116994243799857,
+        "renderMs": 2.7566496578776323,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.699999999982538,
+      "p95": 16.70000000001164,
+      "p99": 16.800000000017462,
+      "heap": 11200000,
+      "dom": 194,
+      "perf": {
+        "simMs": 0.08672966944163078,
+        "renderMs": 2.0785364141344735,
+        "drawCalls": 831,
+        "triangles": 264476,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 600,
+      "median": 16.699999999982538,
+      "p95": 16.70000000001164,
+      "p99": 16.800000000017462,
+      "heap": 11200000,
+      "dom": 194,
+      "perf": {
+        "simMs": 0.0767606053191352,
+        "renderMs": 1.8461668353774645,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.699999999982538,
+      "p95": 16.70000000001164,
+      "p99": 16.79999999998836,
+      "heap": 11200000,
+      "dom": 195,
+      "perf": {
+        "simMs": 0.08676066198972666,
+        "renderMs": 1.963590227186886,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 591,
+      "median": 16.699999999982538,
+      "p95": 16.70000000001164,
+      "p99": 16.800000000017462,
+      "heap": 11200000,
+      "dom": 195,
+      "perf": {
+        "simMs": 0.056987429731642406,
+        "renderMs": 1.611877591150015,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.699999999982538,
+      "p95": 16.79999999998836,
+      "p99": 16.800000000017462,
+      "heap": 11200000,
+      "dom": 195,
+      "perf": {
+        "simMs": 0.050139459614318975,
+        "renderMs": 1.8352409758151536,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.699999999982538,
+      "p95": 16.79999999998836,
+      "p99": 16.800000000017462,
+      "heap": 11200000,
+      "dom": 195,
+      "perf": {
+        "simMs": 0.07946560330310451,
+        "renderMs": 2.6593679175204854,
+        "drawCalls": 800,
+        "triangles": 261148,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.699999999982538,
+      "p95": 16.70000000001164,
+      "p99": 16.800000000017462,
+      "heap": 11200000,
+      "dom": 195,
+      "perf": {
+        "simMs": 0.046409248153638255,
+        "renderMs": 2.567909093904565,
+        "drawCalls": 800,
+        "triangles": 261148,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.699999999982538,
+      "p95": 16.79999999998836,
+      "p99": 16.800000000017462,
+      "heap": 11200000,
+      "dom": 195,
+      "perf": {
+        "simMs": 0.030742419610894498,
+        "renderMs": 2.152810068483882,
+        "drawCalls": 802,
+        "triangles": 262156,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 600,
+      "median": 16.699999999982538,
+      "p95": 16.79999999998836,
+      "p99": 16.800000000017462,
+      "heap": 11200000,
+      "dom": 194,
+      "perf": {
+        "simMs": 0.0445715477007422,
+        "renderMs": 2.423978265375349,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.699999999982538,
+      "p95": 16.70000000001164,
+      "p99": 16.800000000017462,
+      "heap": 11200000,
+      "dom": 193,
+      "perf": {
+        "simMs": 0.03570699749944806,
+        "renderMs": 2.722294574916462,
+        "drawCalls": 831,
+        "triangles": 264476,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.699999999982538,
+      "p95": 16.70000000001164,
+      "p99": 16.800000000017462,
+      "heap": 11200000,
+      "dom": 193,
+      "perf": {
+        "simMs": 0.05415285917662603,
+        "renderMs": 2.6080946690079574,
+        "drawCalls": 831,
+        "triangles": 264476,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.699999999982538,
+      "p95": 16.70000000001164,
+      "p99": 16.800000000017462,
+      "heap": 11200000,
+      "dom": 194,
+      "perf": {
+        "simMs": 0.01724242202356483,
+        "renderMs": 2.524994598195334,
+        "drawCalls": 831,
+        "triangles": 264476,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.699999999953434,
+      "p95": 16.70000000001164,
+      "p99": 16.800000000046566,
+      "heap": 11200000,
+      "dom": 194,
+      "perf": {
+        "simMs": 0.0157843084768087,
+        "renderMs": 2.607602275583119,
+        "drawCalls": 831,
+        "triangles": 264476,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.70000000001164,
+      "p95": 16.70000000001164,
+      "p99": 16.79999999998836,
+      "heap": 11200000,
+      "dom": 193,
+      "perf": {
+        "simMs": 0.06473055066149551,
+        "renderMs": 2.6291221099010182,
+        "drawCalls": 831,
+        "triangles": 264476,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 601,
+      "median": 16.699999999953434,
+      "p95": 16.79999999998836,
+      "p99": 16.800000000046566,
+      "heap": 11200000,
+      "dom": 193,
+      "perf": {
+        "simMs": 0.005460859860556683,
+        "renderMs": 2.5459636449637064,
+        "drawCalls": 831,
+        "triangles": 264476,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    },
+    {
+      "frames": 600,
+      "median": 16.70000000001164,
+      "p95": 16.79999999998836,
+      "p99": 16.800000000046566,
+      "heap": 11200000,
+      "dom": 194,
+      "perf": {
+        "simMs": 0.052463683731203095,
+        "renderMs": 2.3794472242950353,
+        "drawCalls": 799,
+        "triangles": 260956,
+        "entities": 5,
+        "memoryMB": 10.68115234375
+      }
+    }
+  ]
+}

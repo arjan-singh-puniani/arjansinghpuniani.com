@@ -61,7 +61,7 @@ export class RelationshipSystem {
         return r;
     }
     pushEvent(r, event) {
-        const id = `${event.day}:${event.type}:${event.people.join('-')}:${event.detail}`;
+        const id = event.sourceId ?? `${event.day}:${event.type}:${event.people.join('-')}:${event.detail}`;
         r.events.unshift({ id, ...event });
         const dedup = new Map();
         for (const e of r.events)

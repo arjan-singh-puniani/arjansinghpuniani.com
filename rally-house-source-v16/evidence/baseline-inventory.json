@@ -1,0 +1,2474 @@
+[
+  {
+    "path": "rally-house-source-v16/.gitignore",
+    "kind": "source",
+    "size": 270,
+    "sha256": "c5330ad638e876a3afb2b29303c2b0e834edc46fce034d9cb194b0a037d1aa0b"
+  },
+  {
+    "path": "rally-house-source-v16/ACTING-SYSTEM.md",
+    "kind": "documentation",
+    "size": 5324,
+    "sha256": "72d389ab21e9e0aab8f161f98e3ac9ed91381241776c92e29e18207d2c400029"
+  },
+  {
+    "path": "rally-house-source-v16/ACTIVITY-SYSTEM.md",
+    "kind": "documentation",
+    "size": 2223,
+    "sha256": "ab22fe2cbcb9be4d755304c3ec95a853fca91715cab83a615f5dfaa831ae15b9"
+  },
+  {
+    "path": "rally-house-source-v16/ALIVENESS-v13.md",
+    "kind": "documentation",
+    "size": 1622,
+    "sha256": "0a216e0a15785350c86034db9765c7a1f8c36d60f9482dd8b0640c23a6a58ddd"
+  },
+  {
+    "path": "rally-house-source-v16/ANIMATION-ARCHITECTURE.md",
+    "kind": "documentation",
+    "size": 3328,
+    "sha256": "f0aa26678a5ce1f6ed5ecd4c11870ceac4f904dad026049d04c197542f634a70"
+  },
+  {
+    "path": "rally-house-source-v16/ANIMATION-POLISH.md",
+    "kind": "documentation",
+    "size": 3012,
+    "sha256": "5b320a3fb46c4eb58665f16677dd654022bde3f0d211762c8376d5b7a6ecdfcb"
+  },
+  {
+    "path": "rally-house-source-v16/ARCADE-FEEL.md",
+    "kind": "documentation",
+    "size": 3173,
+    "sha256": "c6de1cc77a4eaed0b7a4228bfe2e004e51eb82245981efd321d2dabb44852fa6"
+  },
+  {
+    "path": "rally-house-source-v16/ARCHITECTURE.md",
+    "kind": "documentation",
+    "size": 8116,
+    "sha256": "35e069b085ffe0467346230f6ad69b6cef7425a7052a3e87af1ebbcc74ba80e1"
+  },
+  {
+    "path": "rally-house-source-v16/ART-DIRECTION-v8.md",
+    "kind": "documentation",
+    "size": 3707,
+    "sha256": "accb0dd066a35988a71fb4aa47d9ddc9a9dbcbf8ef2d227016804d9925b88f25"
+  },
+  {
+    "path": "rally-house-source-v16/ART-DIRECTION-v9.md",
+    "kind": "documentation",
+    "size": 1712,
+    "sha256": "909e6a18e25153589d516c494f42544f304cbbe1e387103e7c4f3f1be3f6604b"
+  },
+  {
+    "path": "rally-house-source-v16/AUDIT-v15.md",
+    "kind": "documentation",
+    "size": 4962,
+    "sha256": "9658a616e235378a5a4839033269675e8c0cff74f399f142b66567528b8418a9"
+  },
+  {
+    "path": "rally-house-source-v16/AUDIT-v16.md",
+    "kind": "documentation",
+    "size": 3620,
+    "sha256": "8cfb22a52934362e8d77d83291e089cc3705f5d4d3710d2cd7a42284e6d077ad"
+  },
+  {
+    "path": "rally-house-source-v16/BUILDING-AFFORDANCES.md",
+    "kind": "documentation",
+    "size": 1512,
+    "sha256": "f336460df80b48b9a6d2ab80e1b5cc19f308b3b19d5d584710e85f95fd8c4c9c"
+  },
+  {
+    "path": "rally-house-source-v16/CHAMPIONSHIP.md",
+    "kind": "documentation",
+    "size": 1675,
+    "sha256": "d5d4086d2a0edd135a50ee7d1485b64e1fc610c0e7a0438edfa93e300de7a134"
+  },
+  {
+    "path": "rally-house-source-v16/CHANGELOG-v10.md",
+    "kind": "documentation",
+    "size": 601,
+    "sha256": "ba36e543964b6703605c040a1726a33ca987f7e1929015cc2eb866fb5b3c5225"
+  },
+  {
+    "path": "rally-house-source-v16/CHANGELOG-v11.md",
+    "kind": "documentation",
+    "size": 6240,
+    "sha256": "d4d5fd3be4b25ead40d51342caed7263263a687bb35461f66c25b66749ec03e8"
+  },
+  {
+    "path": "rally-house-source-v16/CHANGELOG-v13.md",
+    "kind": "documentation",
+    "size": 1147,
+    "sha256": "63c9b93d4fe3f2c12fca9e1e4ec564d82ff84af30ac0357551c96d094e40a55f"
+  },
+  {
+    "path": "rally-house-source-v16/CHANGELOG-v9.md",
+    "kind": "documentation",
+    "size": 998,
+    "sha256": "b982d212142b5f031da27671dd0aff78fb012b28a356024d3ae12d8d7fc43579"
+  },
+  {
+    "path": "rally-house-source-v16/CHANGELOG.md",
+    "kind": "documentation",
+    "size": 1520,
+    "sha256": "d040b28ba2d0990b548eaf76ee82ea26656b50b510789c18e2c7e2b0ff78aa62"
+  },
+  {
+    "path": "rally-house-source-v16/CHARACTER-ASSET-PIPELINE.md",
+    "kind": "documentation",
+    "size": 2257,
+    "sha256": "7f14715c37bd6cb60d7ece77c1a5882c1a958d137356bdec3cce927f3f843fe7"
+  },
+  {
+    "path": "rally-house-source-v16/CHARACTER-ASSETS.md",
+    "kind": "documentation",
+    "size": 1714,
+    "sha256": "d0bb2709a1dfe9d6717697fdf9484453a33b07149be5b4d0d91206330f35970b"
+  },
+  {
+    "path": "rally-house-source-v16/CHARACTER-MIND.md",
+    "kind": "documentation",
+    "size": 3300,
+    "sha256": "c1efaad35f0e105255f55e72a36fd86b488413ebf8b8117183371785b2ad3c80"
+  },
+  {
+    "path": "rally-house-source-v16/CHARACTER-POLISH.md",
+    "kind": "documentation",
+    "size": 754,
+    "sha256": "1aa4aa3dc0c582a57fa0c8b978a222afc9cc320c447339e54be1d957b3edb997"
+  },
+  {
+    "path": "rally-house-source-v16/CHARACTER-SYSTEM.md",
+    "kind": "documentation",
+    "size": 1300,
+    "sha256": "8cdfd196c70d7be22e28ddab3a4a8f125c16685d504b11c00ab557f41722d4d9"
+  },
+  {
+    "path": "rally-house-source-v16/CLUB-CULTURE.md",
+    "kind": "documentation",
+    "size": 1326,
+    "sha256": "dfb40282587f8a02096c47f9fd6fb0f795d50133aa9e73a503d624c544e74a80"
+  },
+  {
+    "path": "rally-house-source-v16/COACHING-SYSTEM.md",
+    "kind": "documentation",
+    "size": 1090,
+    "sha256": "62c06e3febe59fec00eb1cf166fda460bcf1dfa6491be99290233b836485511f"
+  },
+  {
+    "path": "rally-house-source-v16/COACHING-vNEXT.md",
+    "kind": "documentation",
+    "size": 2209,
+    "sha256": "1100de435160c7a1f3e6d5492687d4e2736d490003422f320ad9fe1da05775ff"
+  },
+  {
+    "path": "rally-house-source-v16/DESIGN-BIBLE.md",
+    "kind": "documentation",
+    "size": 4919,
+    "sha256": "34c65039323bc7043835a2163a44243c88f26b0975b598dc067486ab59d2364b"
+  },
+  {
+    "path": "rally-house-source-v16/DEVICE-QA.md",
+    "kind": "documentation",
+    "size": 2838,
+    "sha256": "4c2c2fdd85af05c91713e16a3f0a15308e176ac378c0d4952036d39095110a68"
+  },
+  {
+    "path": "rally-house-source-v16/DIALOGUE-COMPOSITION.md",
+    "kind": "documentation",
+    "size": 1661,
+    "sha256": "913027aa02e3e7e344b5c5ace8fd1572dcf58317726c442598002b675d502823"
+  },
+  {
+    "path": "rally-house-source-v16/EVERYDAY-LIFE-v14.md",
+    "kind": "documentation",
+    "size": 6401,
+    "sha256": "5877a9caf4ed23094cdcff479b86bc4d082c43aaaad77788816b92d2bb804264"
+  },
+  {
+    "path": "rally-house-source-v16/HUMAN-PLAYTEST.md",
+    "kind": "documentation",
+    "size": 1477,
+    "sha256": "6fac46a13224cb9c23d06fcd9eec67bbe06d3c5a7139d3cc5246fcc6deb6611d"
+  },
+  {
+    "path": "rally-house-source-v16/HUMAN-RESPONSES.md",
+    "kind": "documentation",
+    "size": 303,
+    "sha256": "d236e4826d7bd350ad7d87db93e0afc89092e13105fdb5f234e36ba9ec633495"
+  },
+  {
+    "path": "rally-house-source-v16/HYBRID-ANIMATION.md",
+    "kind": "documentation",
+    "size": 3922,
+    "sha256": "9ce020a6247c00e079230a9d4bc9119236ea2ec83123b8e3be608ac10a32fb14"
+  },
+  {
+    "path": "rally-house-source-v16/IMPLEMENTATION-NOTES-v15.md",
+    "kind": "documentation",
+    "size": 3019,
+    "sha256": "241d0c534ae3f6fd32ba225b102464ddd11194f9930a1488b837c4926ed4658c"
+  },
+  {
+    "path": "rally-house-source-v16/IMPLEMENTATION-REPORT.md",
+    "kind": "documentation",
+    "size": 8468,
+    "sha256": "f3b8c30a103958a0cc56f153ff487ecf79abf62198f426d79b5f9a826e6deb45"
+  },
+  {
+    "path": "rally-house-source-v16/LONG-HORIZON-QA.md",
+    "kind": "documentation",
+    "size": 3339,
+    "sha256": "6691ec12645e498235e0822be0cf5b6061d0573c52ca9cdda8aef0ebb45be9dd"
+  },
+  {
+    "path": "rally-house-source-v16/MEMORY-RETENTION.md",
+    "kind": "documentation",
+    "size": 1891,
+    "sha256": "3fbb24d90175d2f605da2d8de51ca96399b6484c84dbdd5886fa2da017d8aff0"
+  },
+  {
+    "path": "rally-house-source-v16/MERGE-NOTES.md",
+    "kind": "documentation",
+    "size": 1401,
+    "sha256": "7791fd4287b50d3e336661640775a7f18e2573aa23ae474212a32d98382243d5"
+  },
+  {
+    "path": "rally-house-source-v16/OBJECT-HISTORY.md",
+    "kind": "documentation",
+    "size": 1657,
+    "sha256": "56e53008f4e6d17910d73f7e7c8b9d7fccf0d7de67b46c865b4f38a369b4998d"
+  },
+  {
+    "path": "rally-house-source-v16/PLAYTEST-CHECKLIST.md",
+    "kind": "documentation",
+    "size": 4848,
+    "sha256": "cae48b19375e03227856e51e4bbacd51d622699e8646a611b702217168bb8958"
+  },
+  {
+    "path": "rally-house-source-v16/PLAYTEST-v14.md",
+    "kind": "documentation",
+    "size": 1643,
+    "sha256": "1360b258bd3a56b05d82cae26bcb3a45c3d329e81f9bd9f35d550515f6bb3dff"
+  },
+  {
+    "path": "rally-house-source-v16/PLAYTEST-v9.md",
+    "kind": "documentation",
+    "size": 1032,
+    "sha256": "29edd90067a2a181e334a5bfdf7da9575e9efe734bf83c1fef3d5e99e48fc5e9"
+  },
+  {
+    "path": "rally-house-source-v16/PLAYTEST.md",
+    "kind": "documentation",
+    "size": 6155,
+    "sha256": "c29e06521fb349eb36d44b9c9db5b6b36d9e7026d88c3d173f3fc4381f492a88"
+  },
+  {
+    "path": "rally-house-source-v16/QA-HYBRID-ANIMATION.md",
+    "kind": "documentation",
+    "size": 1790,
+    "sha256": "b33ccb243add49f0f12f542f5f9b532695bdc2a9c24e80fb589bcced4ca5b4e3"
+  },
+  {
+    "path": "rally-house-source-v16/QA-PLAN-v15.md",
+    "kind": "documentation",
+    "size": 2949,
+    "sha256": "d185fdad9d4917128860fb39ae7744bd28f4d18eb1f91af1b9de7057079703ae"
+  },
+  {
+    "path": "rally-house-source-v16/QA-REPORT-v8.md",
+    "kind": "documentation",
+    "size": 1479,
+    "sha256": "36f63372f2f6f315bd79627999e926dc94e480f4ca8fd7960b77b70c831cac09"
+  },
+  {
+    "path": "rally-house-source-v16/QA-inherited-v13.md",
+    "kind": "documentation",
+    "size": 10909,
+    "sha256": "4a302ef9e6f50ce9367ed9a1bb17d09da4de6cea5f6c31e5a7d013f8f00a01df"
+  },
+  {
+    "path": "rally-house-source-v16/QA-v14.md",
+    "kind": "documentation",
+    "size": 10214,
+    "sha256": "90c44889e123bb99c6382aab1f0aa31fb41a6b683a2d0c074de450e3466e2885"
+  },
+  {
+    "path": "rally-house-source-v16/QA-v9.md",
+    "kind": "documentation",
+    "size": 465,
+    "sha256": "b30a11aab995d16c41891601e1678cbed023a9e70aba0c7372eac666722aee21"
+  },
+  {
+    "path": "rally-house-source-v16/QA.md",
+    "kind": "documentation",
+    "size": 7930,
+    "sha256": "0094a6e507d2a84f9e615d321d333451c6a40d67a73da1a656213e2c0f2efb68"
+  },
+  {
+    "path": "rally-house-source-v16/README.md",
+    "kind": "documentation",
+    "size": 4508,
+    "sha256": "ba6aa00b3d0aa6eb535a1507e953e38876b0102b2bd909a09ce39216c684ecd9"
+  },
+  {
+    "path": "rally-house-source-v16/RELATIONSHIP-BEHAVIOR.md",
+    "kind": "documentation",
+    "size": 1632,
+    "sha256": "ce3018bdeccb4288b4cad818dcf081c253b0dc9464f41f2cec218495918169e7"
+  },
+  {
+    "path": "rally-house-source-v16/RELEASE-AUDIT.md",
+    "kind": "documentation",
+    "size": 4010,
+    "sha256": "7c97aa68a8e44419fd7e14ac6902eed8a114cd8177765754350f408ae5a4fa95"
+  },
+  {
+    "path": "rally-house-source-v16/RELEASE-CHECKLIST.md",
+    "kind": "documentation",
+    "size": 2483,
+    "sha256": "f51473500bc9d41c21e3c1deff53f9a71708395af406d771b6aef26c3cd9dd81"
+  },
+  {
+    "path": "rally-house-source-v16/RELEASE-MANIFEST.json",
+    "kind": "source",
+    "size": 141323,
+    "sha256": "5cfd636d87b23b5c34723878d54af4bbcfd18cf7a07339e6a8a67d8519f48475"
+  },
+  {
+    "path": "rally-house-source-v16/RENDERING-v7.md",
+    "kind": "documentation",
+    "size": 4313,
+    "sha256": "dafc9d11eb6cd8c5e6049b781e35874af184e342cfe794056239b5aadf91522e"
+  },
+  {
+    "path": "rally-house-source-v16/RITUALS.md",
+    "kind": "documentation",
+    "size": 1864,
+    "sha256": "62fab3b21eb74b35a58bb90ad94ae8bcd58c3073746e5e0b2e0e446900db6d46"
+  },
+  {
+    "path": "rally-house-source-v16/SAVE-CONCURRENCY.md",
+    "kind": "documentation",
+    "size": 2141,
+    "sha256": "881ceedb6b0e4dfd119b0bfacdaa5f8adfbf65e690f5e6552ed51e44a399055b"
+  },
+  {
+    "path": "rally-house-source-v16/SAVE-MIGRATION.md",
+    "kind": "documentation",
+    "size": 2564,
+    "sha256": "a650326dd0d3cf86c8c71e74fd7a81f2ae226294ce4aaa29663027f4ad0106c5"
+  },
+  {
+    "path": "rally-house-source-v16/SCENE-GRAMMAR.md",
+    "kind": "documentation",
+    "size": 2822,
+    "sha256": "58fa924911542e97e7744c13be17bcf9b38897f58c5d62d84e056a427bf4612e"
+  },
+  {
+    "path": "rally-house-source-v16/SIMULATION-NOTES.md",
+    "kind": "documentation",
+    "size": 2405,
+    "sha256": "d871a6aedf0edeb890627ea85bb8dba31ebdae02807777b129df1c7beb1275d6"
+  },
+  {
+    "path": "rally-house-source-v16/SIMULATION.md",
+    "kind": "documentation",
+    "size": 1041,
+    "sha256": "03c83a289b392e9c8da4c4038786948d8372bbefec31995392051f258e39f757"
+  },
+  {
+    "path": "rally-house-source-v16/SOCIAL-SIMULATION.md",
+    "kind": "documentation",
+    "size": 1958,
+    "sha256": "622f437404d36edd746691f814682493c82e452e64bff0484ebcb78c1c44b174"
+  },
+  {
+    "path": "rally-house-source-v16/SOURCE-REFERENCE.md",
+    "kind": "documentation",
+    "size": 413,
+    "sha256": "10a6a8c05abfab52b73eb016c99ba164b955b51c35edc0c3f9277876de5f24dd"
+  },
+  {
+    "path": "rally-house-source-v16/SPECTATOR-LOG-v15.md",
+    "kind": "documentation",
+    "size": 5257,
+    "sha256": "c8c7be16de7e6fb75ff868176ed4e9a310fa47402a1e47c17c27ebb8eb5cb0b5"
+  },
+  {
+    "path": "rally-house-source-v16/STUDIO-DELIVERY.json",
+    "kind": "source",
+    "size": 20262,
+    "sha256": "0c7bcfb8d605720972d395dd3b389edfb7b0add4f937737e0783c36e09a99a38"
+  },
+  {
+    "path": "rally-house-source-v16/TESTER-HANDOFF.md",
+    "kind": "documentation",
+    "size": 866,
+    "sha256": "d40ae62ac69d35a886fe83df6950353868e499398ca8740c53049e0e0410fa5f"
+  },
+  {
+    "path": "rally-house-source-v16/VALIDATION.md",
+    "kind": "documentation",
+    "size": 6852,
+    "sha256": "1114ce709e3e9076c776ea4c2925294d0a7d0bb5b841a41a605492b114c7b8b5"
+  },
+  {
+    "path": "rally-house-source-v16/VISUAL-QA-v8.md",
+    "kind": "documentation",
+    "size": 1930,
+    "sha256": "8e75939abc1dfe9ec1e90ad7fcfd0f98b3c8da5539dcce8ee539b5fa34ddf7a6"
+  },
+  {
+    "path": "rally-house-source-v16/WALKING-v14.1.md",
+    "kind": "documentation",
+    "size": 3042,
+    "sha256": "f4f9f2c354605f5e065287a9e0839ffdbe92ae8114f8e41c431dfbff4ef22fbb"
+  },
+  {
+    "path": "rally-house-source-v16/WORLD-AS-INTERFACE-IMPLEMENTATION.md",
+    "kind": "documentation",
+    "size": 6614,
+    "sha256": "23cbc716fcdcdef7e0d56fc1634c6937dab1de15a8d843de3dc46daa04544933"
+  },
+  {
+    "path": "rally-house-source-v16/WORLD-AS-INTERFACE-VALIDATION.md",
+    "kind": "documentation",
+    "size": 5443,
+    "sha256": "c02bc935abbcd2930687ed1c5f9b51896e10dfc4d97d124ac8594a551d5db4c8"
+  },
+  {
+    "path": "rally-house-source-v16/championship.css",
+    "kind": "source",
+    "size": 8086,
+    "sha256": "dd96e0017857ca439d553deff1de96b9c8f0a64e661a7f7df29e0687702dd96f"
+  },
+  {
+    "path": "rally-house-source-v16/dist/Game.js",
+    "kind": "generated",
+    "size": 124619,
+    "sha256": "912f7a9e3d9d035f22b8fa27d3d4753425969e70115d6d74ab59c9ae48b99eeb"
+  },
+  {
+    "path": "rally-house-source-v16/dist/animation/ActingState.js",
+    "kind": "generated",
+    "size": 4288,
+    "sha256": "dbd1f380d6dad242a52197c328f7991be3d5820173ac06c5d7a002b41864fe74"
+  },
+  {
+    "path": "rally-house-source-v16/dist/animation/CharacterAssetIntake.js",
+    "kind": "generated",
+    "size": 8297,
+    "sha256": "04e7ed6afbabc8e06ec3c85300a372f2657fdae13fd3939ba2a4f2f3a0768b3e"
+  },
+  {
+    "path": "rally-house-source-v16/dist/animation/CharacterSkin.js",
+    "kind": "generated",
+    "size": 7175,
+    "sha256": "ecd039b2ecfce3f34dbf1c81c97af03d37765febc06754ba9db43b229589c138"
+  },
+  {
+    "path": "rally-house-source-v16/dist/animation/ClipLibrary.js",
+    "kind": "generated",
+    "size": 11426,
+    "sha256": "d21862a2e3f5dca8c1a19931c8346a3d582d597b0c974da05c0b80ed19cbd549"
+  },
+  {
+    "path": "rally-house-source-v16/dist/animation/WalkCycle.js",
+    "kind": "generated",
+    "size": 2238,
+    "sha256": "33c4b3f1b844f9ab6a788058740111d334ee81256afc8b90796ab1eb7e479990"
+  },
+  {
+    "path": "rally-house-source-v16/dist/content/DecorCatalog.js",
+    "kind": "generated",
+    "size": 3474,
+    "sha256": "033888bc54ae6a646e3b600dab99ed96993e4fba87de2446b63a2325cd26fdbc"
+  },
+  {
+    "path": "rally-house-source-v16/dist/content/PlayerAvatars.js",
+    "kind": "generated",
+    "size": 826,
+    "sha256": "4ed2daa5e8edd7387c3f825785070b1b1f2f78e75c9dbbb8018dadfe4c20e936"
+  },
+  {
+    "path": "rally-house-source-v16/dist/content/content.js",
+    "kind": "generated",
+    "size": 10473,
+    "sha256": "e55bba6007d231110c7cafbc50840eb4ba6805f55943856583d7d8a44baa32cc"
+  },
+  {
+    "path": "rally-house-source-v16/dist/core/AudioManager.js",
+    "kind": "generated",
+    "size": 13099,
+    "sha256": "46e29aea1efd5aadbc1f7feefce7f82f9b32a8e02fe0ba4ede6781a607c4897b"
+  },
+  {
+    "path": "rally-house-source-v16/dist/core/GameClock.js",
+    "kind": "generated",
+    "size": 1003,
+    "sha256": "69cd20915f9ddfcaef9374712cabe1f1b8d8b5b72f8857b98827159aebeae77a"
+  },
+  {
+    "path": "rally-house-source-v16/dist/core/PerformanceMonitor.js",
+    "kind": "generated",
+    "size": 941,
+    "sha256": "d1a059f671ceb4733d85b487f55ba294139df164156e04786bb01bf380b740dd"
+  },
+  {
+    "path": "rally-house-source-v16/dist/core/types.js",
+    "kind": "generated",
+    "size": 11,
+    "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+  },
+  {
+    "path": "rally-house-source-v16/dist/entities/Character.js",
+    "kind": "generated",
+    "size": 78658,
+    "sha256": "22b230a92276cea0092f6780d98ad380057efbec2a450205bd9b422d6e21da2d"
+  },
+  {
+    "path": "rally-house-source-v16/dist/main.js",
+    "kind": "generated",
+    "size": 1101,
+    "sha256": "6882fb9d631136df4b0258fea497add778f33270244fde5ded9a47b7492cd795"
+  },
+  {
+    "path": "rally-house-source-v16/dist/persistence/SaveSystem.js",
+    "kind": "generated",
+    "size": 7513,
+    "sha256": "e81456e4cf4ddf9e77434a0f4def912058d53c849caef52a1f4f1c7ba801dbaf"
+  },
+  {
+    "path": "rally-house-source-v16/dist/persistence/migrations.js",
+    "kind": "generated",
+    "size": 4674,
+    "sha256": "0994a8edaa733ff4a67cb57904f97056022aa439c7d03609bc3d37b768eb0571"
+  },
+  {
+    "path": "rally-house-source-v16/dist/rendering/CameraController.js",
+    "kind": "generated",
+    "size": 8292,
+    "sha256": "469724f3e10ee270c076c791aeb2ffd333528d1459f5160b5680ca9f25a7562e"
+  },
+  {
+    "path": "rally-house-source-v16/dist/rendering/ClubAtmosphere.js",
+    "kind": "generated",
+    "size": 1833,
+    "sha256": "88b0e722ae8d0783facd91bdb1bcb82415ff3d8df555f6c2e6243b076fd48beb"
+  },
+  {
+    "path": "rally-house-source-v16/dist/rendering/Math3D.js",
+    "kind": "generated",
+    "size": 6225,
+    "sha256": "08de61af994d91fc4b11f054ec36573535d2844661d5764e3be8a39e5b30f529"
+  },
+  {
+    "path": "rally-house-source-v16/dist/rendering/Renderer.js",
+    "kind": "generated",
+    "size": 29104,
+    "sha256": "0364249fd263f0751cc9dc6bd45cb083a041522a4c6f94ded0405dea9e7d552f"
+  },
+  {
+    "path": "rally-house-source-v16/dist/simulation/ActivitySystem.js",
+    "kind": "generated",
+    "size": 2357,
+    "sha256": "6eb53519a3d661bbde08eec252812def68905ff74091bdaf8c9f0cbaeac3fce1"
+  },
+  {
+    "path": "rally-house-source-v16/dist/simulation/AmbientSocialPlanner.js",
+    "kind": "generated",
+    "size": 2139,
+    "sha256": "aa08271e94d62711321679b24c11b62930fe8a4df1f6e8e7690bef103242ea6b"
+  },
+  {
+    "path": "rally-house-source-v16/dist/simulation/CharacterMind.js",
+    "kind": "generated",
+    "size": 18315,
+    "sha256": "0f5a10eb21fc2c0c8d59907987033726a3af623d72c8ef5c0af661e77b34526b"
+  },
+  {
+    "path": "rally-house-source-v16/dist/simulation/ClubHistory.js",
+    "kind": "generated",
+    "size": 1486,
+    "sha256": "cee2ea095e1c08e8384fefffb68e63739fbff87ff8b21291a8fe5e1eb995ff5c"
+  },
+  {
+    "path": "rally-house-source-v16/dist/simulation/ClubInteractions.js",
+    "kind": "generated",
+    "size": 3110,
+    "sha256": "1edbe01fbc9662513543c8c6583f4a91436b6c3b8af575b9e70c3db42609e031"
+  },
+  {
+    "path": "rally-house-source-v16/dist/simulation/ClubLifeSystem.js",
+    "kind": "generated",
+    "size": 1981,
+    "sha256": "a0a6799077e7b2ae2ffaaafe1eda58c7fe4b273e52f8f05d2912c954653f171d"
+  },
+  {
+    "path": "rally-house-source-v16/dist/simulation/CoachingEvidence.js",
+    "kind": "generated",
+    "size": 1676,
+    "sha256": "84a8520c3c9a8b918e3780557a1c8511585e71696ca8aac38f83a9e6f4a0c35a"
+  },
+  {
+    "path": "rally-house-source-v16/dist/simulation/DailyGoalsSystem.js",
+    "kind": "generated",
+    "size": 1582,
+    "sha256": "d477d44c749396da5c1a0229eb918b6c6bd3cd6f2f265c107e73411451b199f9"
+  },
+  {
+    "path": "rally-house-source-v16/dist/simulation/DialogueComposer.js",
+    "kind": "generated",
+    "size": 1652,
+    "sha256": "19ea893e98e8badaa65bbc23b6a9e610db6b1f485a237d4b81ac063f1ba358a6"
+  },
+  {
+    "path": "rally-house-source-v16/dist/simulation/EmergentSocialSystem.js",
+    "kind": "generated",
+    "size": 3625,
+    "sha256": "dd9bd47c05e06fb91b9adc63569e25daadff2a7b8bb121ab84d058e64999f18d"
+  },
+  {
+    "path": "rally-house-source-v16/dist/simulation/EverydayLife.js",
+    "kind": "generated",
+    "size": 14211,
+    "sha256": "65f1a17dc15f42bf2591c05a7c18cad350711d9dd9a46eccfdbf0ee5011377f7"
+  },
+  {
+    "path": "rally-house-source-v16/dist/simulation/LifeTelemetry.js",
+    "kind": "generated",
+    "size": 2250,
+    "sha256": "7476ea68a68f8a9b2cd8c8ddfe90276f8f489cb181daca964c6f6bae21e2fe4f"
+  },
+  {
+    "path": "rally-house-source-v16/dist/simulation/ObjectAffordances.js",
+    "kind": "generated",
+    "size": 3937,
+    "sha256": "975c77e1d628c289310267b83eb3e44ab1ac4f6f74e561c95d3c9aa05712a590"
+  },
+  {
+    "path": "rally-house-source-v16/dist/simulation/RelationshipSystem.js",
+    "kind": "generated",
+    "size": 4498,
+    "sha256": "ede85da2b5cc05ef44d07abc886996cd6f5d8b44c695e9daff37bf4136b0ef91"
+  },
+  {
+    "path": "rally-house-source-v16/dist/simulation/SceneGrammar.js",
+    "kind": "generated",
+    "size": 12576,
+    "sha256": "fbf875ccedc2f4fb2a9dbd7e9085a224ccaf04262f3bc411c84dbb0efdc05dc3"
+  },
+  {
+    "path": "rally-house-source-v16/dist/simulation/ScheduleSystem.js",
+    "kind": "generated",
+    "size": 700,
+    "sha256": "f39fdaefa9898436984bf829f2ad753d1b2f6132221721f370a617ad0d268e57"
+  },
+  {
+    "path": "rally-house-source-v16/dist/tennis/BallPhysics.js",
+    "kind": "generated",
+    "size": 2041,
+    "sha256": "2f4c93dff67a953fd5895aad0ca0f553e0dcb8b62ce21d64bfff95704c520f87"
+  },
+  {
+    "path": "rally-house-source-v16/dist/tennis/BallTrail.js",
+    "kind": "generated",
+    "size": 2389,
+    "sha256": "ddc697827fa1f667f3b59eb8af81ddc79554d34fd75e1b75165c5dd112120208"
+  },
+  {
+    "path": "rally-house-source-v16/dist/tennis/ChampionshipCameraRig.js",
+    "kind": "generated",
+    "size": 9573,
+    "sha256": "691cdb48c77f0f17dd0f5045fed4d1275f5f984204aa1cafc1ed3fa0736bb1ff"
+  },
+  {
+    "path": "rally-house-source-v16/dist/tennis/ChampionshipController.js",
+    "kind": "generated",
+    "size": 7035,
+    "sha256": "be96b48e7005c385d1dd15814b02e0574afe93d41cd3eee4cb18f8443bfbde4a"
+  },
+  {
+    "path": "rally-house-source-v16/dist/tennis/ChampionshipOpponents.js",
+    "kind": "generated",
+    "size": 1733,
+    "sha256": "2d5ae00f6e3a3206e3bde450c689f4e40cae9ff183c614c49c86d620cc24d138"
+  },
+  {
+    "path": "rally-house-source-v16/dist/tennis/ChampionshipTuning.js",
+    "kind": "generated",
+    "size": 2248,
+    "sha256": "2e5b3d960e29ed35cbffecad95f64823c569439f2232c69dd951320700d65618"
+  },
+  {
+    "path": "rally-house-source-v16/dist/tennis/InteractiveMatchSystem.js",
+    "kind": "generated",
+    "size": 31580,
+    "sha256": "e437505b34def343dc17270d02b44744047be5d6dd3305e966e42ff4d234a0b2"
+  },
+  {
+    "path": "rally-house-source-v16/dist/tennis/MatchInput.js",
+    "kind": "generated",
+    "size": 3784,
+    "sha256": "465b8feb7e9d73c955e57a418959d26ec23b7a74fb0c3aa65a9074ea85377675"
+  },
+  {
+    "path": "rally-house-source-v16/dist/tennis/RallySystem.js",
+    "kind": "generated",
+    "size": 16313,
+    "sha256": "df981ff5be4774534409c8da5a1bf581b41ccda042cac1a8e85cdb21a3ee2945"
+  },
+  {
+    "path": "rally-house-source-v16/dist/ui/ChampionshipHUD.js",
+    "kind": "generated",
+    "size": 8033,
+    "sha256": "cd1d756f96bafcdc4d4e0ff3316fbf52db10f5d0b00eac0905cc56eedf00b873"
+  },
+  {
+    "path": "rally-house-source-v16/dist/ui/ClubContextPresenter.js",
+    "kind": "generated",
+    "size": 5887,
+    "sha256": "8efbde72629dc2c13270e6d81b6d2b2287eca09bd9a6df4c09404127555d69a9"
+  },
+  {
+    "path": "rally-house-source-v16/dist/ui/HUD.js",
+    "kind": "generated",
+    "size": 11682,
+    "sha256": "e5c263c85e7fc3aaeab5f443d80701957e8bc9fc244331fedd270fbd4cff6a43"
+  },
+  {
+    "path": "rally-house-source-v16/dist/ui/SpatialInteractionSystem.js",
+    "kind": "generated",
+    "size": 12168,
+    "sha256": "cbbff3029e2d96b371ac78256c4ab908f66aa8bd3f009f91eb37bbcabf2badfd"
+  },
+  {
+    "path": "rally-house-source-v16/dist/ui/WorldAnchor.js",
+    "kind": "generated",
+    "size": 856,
+    "sha256": "d48fe14549c0690c53f2a78f77cd5038579bb5c9e88c2523661a02c3738ac101"
+  },
+  {
+    "path": "rally-house-source-v16/dist/world/Navigation.js",
+    "kind": "generated",
+    "size": 5843,
+    "sha256": "aab0a0e200d4efe9b627857d7065669449202ce7b702ecde785b6bfb5a5981de"
+  },
+  {
+    "path": "rally-house-source-v16/dist/world/World.js",
+    "kind": "generated",
+    "size": 56198,
+    "sha256": "6e844f81359a0e4f349425db9f3a9ca3dd1ed95eac9761f5ed946a2c7c6baca5"
+  },
+  {
+    "path": "rally-house-source-v16/docs/screenshots/v6-baseline-desktop.png",
+    "kind": "source",
+    "size": 262006,
+    "sha256": "9ab73dddaa90ea3781ac930645dacaddb5c0408677974b7391ed3bb78d46be3e"
+  },
+  {
+    "path": "rally-house-source-v16/docs/screenshots/v6-baseline-mobile.png",
+    "kind": "source",
+    "size": 84870,
+    "sha256": "48a1f5408d4addbda41b16f2f00a817221367ea174801546fb74f44ea1af6bbd"
+  },
+  {
+    "path": "rally-house-source-v16/docs/screenshots/v7-01-morning.png",
+    "kind": "source",
+    "size": 381052,
+    "sha256": "afde070dabd88f47bf9d5756bd044471fa2beb5b24634b282f08e0e9cb82b6f5"
+  },
+  {
+    "path": "rally-house-source-v16/docs/screenshots/v7-02-midday.png",
+    "kind": "source",
+    "size": 383222,
+    "sha256": "c10d74ca3f8470e91fccc7f6f264eb4dcdf9dd40e30b7246351bce926490b39a"
+  },
+  {
+    "path": "rally-house-source-v16/docs/screenshots/v7-03-golden.png",
+    "kind": "source",
+    "size": 364575,
+    "sha256": "fa8aad4ced1a7a2152d2d7095bc6b485a0c82ff9557dbbce62c12cd79e1340e2"
+  },
+  {
+    "path": "rally-house-source-v16/docs/screenshots/v7-04-rain.png",
+    "kind": "source",
+    "size": 362337,
+    "sha256": "5ab46c1ad13230ee96dcd94d8d80d101eb2c6e0150efca2304258bb5a5a80ffe"
+  },
+  {
+    "path": "rally-house-source-v16/docs/screenshots/v7-05-evening.png",
+    "kind": "source",
+    "size": 382950,
+    "sha256": "d279144809375c1711048bd2f9aafe690af037bf1ce8adb6c9a4480cbd9a6378"
+  },
+  {
+    "path": "rally-house-source-v16/docs/screenshots/v7-06-mobile.png",
+    "kind": "source",
+    "size": 152678,
+    "sha256": "39d7f2d918df99083b0997462befb46945ef050d9e32e02f690d4f472ea8a0f9"
+  },
+  {
+    "path": "rally-house-source-v16/index.html",
+    "kind": "source",
+    "size": 5012,
+    "sha256": "a9533ec6125681b12e0a96b8736161edcc2fb630bc45c647fc3c5096300eb14a"
+  },
+  {
+    "path": "rally-house-source-v16/legacy/README.txt",
+    "kind": "source",
+    "size": 398,
+    "sha256": "f82386a3a2ff989955d0111e24d946e7b218c7f2099a3180c495e223999722a7"
+  },
+  {
+    "path": "rally-house-source-v16/legacy/index.html",
+    "kind": "source",
+    "size": 38132,
+    "sha256": "147171b14279660300d47c2735af55dad665a7b44a49ecea8463b5a074c0cac2"
+  },
+  {
+    "path": "rally-house-source-v16/package-lock.json",
+    "kind": "source",
+    "size": 727,
+    "sha256": "de6aaef2cd0a528ec57b48cba822e5aa138165083ea7fba73290a90580dabd15"
+  },
+  {
+    "path": "rally-house-source-v16/package.json",
+    "kind": "source",
+    "size": 968,
+    "sha256": "06bf16c87ebc50db4496d8be5cd474f7505530704289f4ca89d0065c7a11c46e"
+  },
+  {
+    "path": "rally-house-source-v16/preview-cozy.webp",
+    "kind": "source",
+    "size": 136614,
+    "sha256": "7a77eaf0a7414fa5a67a3c5e814c94d9040446755edab60a43aa164298c89a65"
+  },
+  {
+    "path": "rally-house-source-v16/qa/acting-check.mjs",
+    "kind": "QA",
+    "size": 2843,
+    "sha256": "9fe35bf72abb55e49992cd192be52e3b7b9ba359d3f16b948e76b6a121d24731"
+  },
+  {
+    "path": "rally-house-source-v16/qa/arcade-feel/desktop-rally.png",
+    "kind": "QA",
+    "size": 506191,
+    "sha256": "c9c9605b7971956b4654cb48080672cbf83e49e16bdbd53f3350eb90d70971e9"
+  },
+  {
+    "path": "rally-house-source-v16/qa/arcade-feel/results.json",
+    "kind": "QA",
+    "size": 2091,
+    "sha256": "7d8523121d735860fab5ecdb39168be279c89be45935d77846771b4f09e15f87"
+  },
+  {
+    "path": "rally-house-source-v16/qa/arcade-feel/touch-rally.png",
+    "kind": "QA",
+    "size": 242929,
+    "sha256": "27278a44132e50052eb765f1ccdd04e822060f1ed2fb34f5da995f0e5f579bd5"
+  },
+  {
+    "path": "rally-house-source-v16/qa/arcade-feel.mjs",
+    "kind": "QA",
+    "size": 4273,
+    "sha256": "c358c188c67b8a8944aff2dc8873160f75bd65615ed997dde3babeb16eec4187"
+  },
+  {
+    "path": "rally-house-source-v16/qa/audit-coaching.mjs",
+    "kind": "QA",
+    "size": 770,
+    "sha256": "2959b3a93bbf935f003d5fd281bb8e97fe16828fb3279637ab217bfa0d3ac5f5"
+  },
+  {
+    "path": "rally-house-source-v16/qa/audit-long-horizon.mjs",
+    "kind": "QA",
+    "size": 839,
+    "sha256": "7866e0ff0b38734e32a76eae0e04846d26bbd76f4e66867dff999a5c2486a9f1"
+  },
+  {
+    "path": "rally-house-source-v16/qa/audit-poses.mjs",
+    "kind": "QA",
+    "size": 2517,
+    "sha256": "0fca03a5f7ba789198f8770901545b17fe24d65ac2fedaf8c0632e23c9c3921c"
+  },
+  {
+    "path": "rally-house-source-v16/qa/audit-simulation.mjs",
+    "kind": "QA",
+    "size": 1134,
+    "sha256": "46e36779b635c6ec07abad64c4b0514736019c51374ed945ad5fe74b43b997d7"
+  },
+  {
+    "path": "rally-house-source-v16/qa/avatar-results.json",
+    "kind": "QA",
+    "size": 696,
+    "sha256": "70ae3c4474aad62fb7588801869ea035884f7309ed6aa6e0c9c92979c3d66ef8"
+  },
+  {
+    "path": "rally-house-source-v16/qa/avatars.mjs",
+    "kind": "QA",
+    "size": 1972,
+    "sha256": "d85117e5cdd4670de39854eaba551d65b82ad2e014efcbcd15915e7d94d9947c"
+  },
+  {
+    "path": "rally-house-source-v16/qa/ball-feel.mjs",
+    "kind": "QA",
+    "size": 2735,
+    "sha256": "13ef02b3c59f819b507dc5be9a76c85e8fe40f62d8988b3edd5a8a2bd97fa53f"
+  },
+  {
+    "path": "rally-house-source-v16/qa/baseline-coaching-cancellation.json",
+    "kind": "QA",
+    "size": 549,
+    "sha256": "40c3ddedb9c94604dc567e8c23a80a7018fde1e42ceda502b868ac749c8b8f53"
+  },
+  {
+    "path": "rally-house-source-v16/qa/baseline-long-horizon.json",
+    "kind": "QA",
+    "size": 2000,
+    "sha256": "4f58af00d1190b4a590dfe73f26bb0566ce1e3c667b403011caab378677d86c4"
+  },
+  {
+    "path": "rally-house-source-v16/qa/baseline-major-stress.json",
+    "kind": "QA",
+    "size": 62,
+    "sha256": "448833c5f6ee3255b0856082e3420e167261bd8baeddd3e30c85b2dad6826501"
+  },
+  {
+    "path": "rally-house-source-v16/qa/baseline-matrix.json",
+    "kind": "QA",
+    "size": 2875,
+    "sha256": "93f4a68862192acfe23f0f3ee9e985066a6f217b8be8c3e46f9d742e10189d5a"
+  },
+  {
+    "path": "rally-house-source-v16/qa/baseline-performance.json",
+    "kind": "QA",
+    "size": 555,
+    "sha256": "e5935b1e9c60699acffc73e239ff4a6d59b73a797cd2a502a0eb7e6bd32dc401"
+  },
+  {
+    "path": "rally-house-source-v16/qa/baseline-poses/frames.json",
+    "kind": "QA",
+    "size": 224898,
+    "sha256": "2fdfafbd585360bc4fa48ac5219adda4c1311a3539bb8df364cdbd6869cffbab"
+  },
+  {
+    "path": "rally-house-source-v16/qa/baseline-simulation-audit.json",
+    "kind": "QA",
+    "size": 19306,
+    "sha256": "e115f445ee92eefc346c39ba9c59d2bebf1f9baec6ec3ac0e9a07ef35c6f17f1"
+  },
+  {
+    "path": "rally-house-source-v16/qa/browser-matrix.mjs",
+    "kind": "QA",
+    "size": 3230,
+    "sha256": "cc752115c0733dbf0787012a7908b57707d97b6b5c287500a6e9728fdd4842f9"
+  },
+  {
+    "path": "rally-house-source-v16/qa/browser.mjs",
+    "kind": "QA",
+    "size": 4841,
+    "sha256": "e6ce7633d21c731246d011be7bc0bce4f863da9325f4938c4fa40f3f1d9bb7c3"
+  },
+  {
+    "path": "rally-house-source-v16/qa/championship-smoke.mjs",
+    "kind": "QA",
+    "size": 4188,
+    "sha256": "db905743dd92d7a463f44f051f4f98768d57298ac0ffdefdaeae4468fb03a76d"
+  },
+  {
+    "path": "rally-house-source-v16/qa/character-polish.mjs",
+    "kind": "QA",
+    "size": 1790,
+    "sha256": "89869a2d1966732f1cabc9ea4d39a37b93f0320c0a0c379f9729b3f2d07cc57c"
+  },
+  {
+    "path": "rally-house-source-v16/qa/check-everyday.mjs",
+    "kind": "QA",
+    "size": 3203,
+    "sha256": "89cf0d32fc3df6538f3eec7986d67b8bc956cdc3554ff69f289b80f795dfe31b"
+  },
+  {
+    "path": "rally-house-source-v16/qa/check-release.mjs",
+    "kind": "QA",
+    "size": 1395,
+    "sha256": "420a67fc3c5fa915efd8ca0476534b1b4109cb87e1b8d8e6456e0384991b148f"
+  },
+  {
+    "path": "rally-house-source-v16/qa/club-contact.mjs",
+    "kind": "QA",
+    "size": 2052,
+    "sha256": "75327f59fd257f464379b6bb041138634bfaa7687ac4397704aa1e042b0ae869"
+  },
+  {
+    "path": "rally-house-source-v16/qa/coaching-v15.mjs",
+    "kind": "QA",
+    "size": 3166,
+    "sha256": "4191bfdbf5629b05de16a63f954ee52470eac27d3002896f24b6ce3d4ab8e0cc"
+  },
+  {
+    "path": "rally-house-source-v16/qa/contact-trace.mjs",
+    "kind": "QA",
+    "size": 1669,
+    "sha256": "869e16375ad958083ebf410b51b9e50b31df4492b3167b1c018fd23dbf444343"
+  },
+  {
+    "path": "rally-house-source-v16/qa/core-v14.mjs",
+    "kind": "QA",
+    "size": 2084,
+    "sha256": "497d1e4650e91b3b38854efb232416745cc18e64c5302da66133079681ebc4dd"
+  },
+  {
+    "path": "rally-house-source-v16/qa/crowd-failures-latest.json",
+    "kind": "QA",
+    "size": 38679,
+    "sha256": "cb2386bdff02bafa904238de9078a94721ecd9a94bf621e62b7e912f591a3ec4"
+  },
+  {
+    "path": "rally-house-source-v16/qa/crowd-failures.json",
+    "kind": "QA",
+    "size": 68976,
+    "sha256": "4f361ef3466cab65d66043c102a0e626e8505af9cb7de0cf76ce9f5e68f9eb7a"
+  },
+  {
+    "path": "rally-house-source-v16/qa/debug-presence.mjs",
+    "kind": "QA",
+    "size": 458,
+    "sha256": "50ad7f5edc73048e6ebd079646dbd6c44d34cb23105ee0e6b1a506e17950be57"
+  },
+  {
+    "path": "rally-house-source-v16/qa/debug-variety.mjs",
+    "kind": "QA",
+    "size": 681,
+    "sha256": "25ae8fce832616480ee7f5b247ed1a19ffcb6fadc853049417ed32906db0fd3c"
+  },
+  {
+    "path": "rally-house-source-v16/qa/final-shot.mjs",
+    "kind": "QA",
+    "size": 517,
+    "sha256": "2eb995fd6a77a6cc81b1e41f7efe1276cc33328be7f2fbddba46fccedcbd3a28"
+  },
+  {
+    "path": "rally-house-source-v16/qa/frame-check.mjs",
+    "kind": "QA",
+    "size": 1364,
+    "sha256": "c09b30922a6b099a5cd7b2969435fbf8f0a3af7cb7bf5ed80a4d723f5416b597"
+  },
+  {
+    "path": "rally-house-source-v16/qa/guided-play.mjs",
+    "kind": "QA",
+    "size": 5510,
+    "sha256": "d4c1b9a9927d75036e3d51f3f8dc3eff8b25529ffb697cbc42cd95dbc6647913"
+  },
+  {
+    "path": "rally-house-source-v16/qa/implement-v16.py",
+    "kind": "QA",
+    "size": 11547,
+    "sha256": "6f930ba672771734f976ca63e0fa7ed02b28477d6fa0bf8e6b5ba69f0b960f9e"
+  },
+  {
+    "path": "rally-house-source-v16/qa/integrate-v16.py",
+    "kind": "QA",
+    "size": 11099,
+    "sha256": "d85785eb997d0e4c9e5290a96e1128a769a2fff8391f03fe41daee09af63c75c"
+  },
+  {
+    "path": "rally-house-source-v16/qa/long-horizon.mjs",
+    "kind": "QA",
+    "size": 1298,
+    "sha256": "3a1dc146655039680424a90ad896cd4345bc9c3b6470a23ea548c7b810f831c5"
+  },
+  {
+    "path": "rally-house-source-v16/qa/longrun.mjs",
+    "kind": "QA",
+    "size": 3224,
+    "sha256": "e75d4a9888dece11648afd7a2151adec944532092b70151eaea875f2846ebfea"
+  },
+  {
+    "path": "rally-house-source-v16/qa/migration-v15.mjs",
+    "kind": "QA",
+    "size": 1722,
+    "sha256": "bc11c1d5a73f144bf764fc1165a14b23ab06cea9c7da496cc13d8df4e54a0cb3"
+  },
+  {
+    "path": "rally-house-source-v16/qa/migration-v16.mjs",
+    "kind": "QA",
+    "size": 1707,
+    "sha256": "04b7370f568f1e8cf2576480d68e9e625ee9da56cdddefbb7373725a9f45f720"
+  },
+  {
+    "path": "rally-house-source-v16/qa/mobile.mjs",
+    "kind": "QA",
+    "size": 2632,
+    "sha256": "77e1c7daf4de24a7fbe902a92a495e16d8906b75134ec50830b665d600070113"
+  },
+  {
+    "path": "rally-house-source-v16/qa/night-v15.mjs",
+    "kind": "QA",
+    "size": 1179,
+    "sha256": "e06294d5be00ae3efb4f5f6b4be245aebec43f2ea5bc52879e9673b9796ab506"
+  },
+  {
+    "path": "rally-house-source-v16/qa/package-playtest.py",
+    "kind": "QA",
+    "size": 576,
+    "sha256": "cd1a2a34598655e2186611b093b321d9d04aaee318655d584f293ba2c963742b"
+  },
+  {
+    "path": "rally-house-source-v16/qa/package.py",
+    "kind": "QA",
+    "size": 1579,
+    "sha256": "46ce278d4e4f2b5b0e144078fadcf0b781acd1e72640114fa2bd7309e24dd64b"
+  },
+  {
+    "path": "rally-house-source-v16/qa/polish-v16.py",
+    "kind": "QA",
+    "size": 3441,
+    "sha256": "781c5aaf6fbeffec0bd668b73d18762edcf31e61a29ae85d193c09c24b577d23"
+  },
+  {
+    "path": "rally-house-source-v16/qa/pose-review.html",
+    "kind": "QA",
+    "size": 2944,
+    "sha256": "c81b9dfa8e3ffa0bfe148b4d8003fbee5a1fa17c24d7a33b98b66301bd87dc48"
+  },
+  {
+    "path": "rally-house-source-v16/qa/pose-sheets.py",
+    "kind": "QA",
+    "size": 578,
+    "sha256": "4a2d0554d42499a2800fa9eb2afefebd0b25e9b57a5977ea4ce1e2c9d7214f85"
+  },
+  {
+    "path": "rally-house-source-v16/qa/presence-browser.mjs",
+    "kind": "QA",
+    "size": 2401,
+    "sha256": "67f4a65234ad2ff64edd327ffa049111569a7aba2b35892d234aa475a9aae7a0"
+  },
+  {
+    "path": "rally-house-source-v16/qa/props-v16.py",
+    "kind": "QA",
+    "size": 3850,
+    "sha256": "505ffed5af078875aa52dd9ea1ab914936b97506758a6255d7ed65c5c031fc02"
+  },
+  {
+    "path": "rally-house-source-v16/qa/randomized-life.mjs",
+    "kind": "QA",
+    "size": 2390,
+    "sha256": "3b9a1f8106108c40efd4f67de8cae281ba4ef06b0c03fd467f87af062de07829"
+  },
+  {
+    "path": "rally-house-source-v16/qa/reliability-v14.mjs",
+    "kind": "QA",
+    "size": 2394,
+    "sha256": "aef36c5b195e984769ec908183ae891db92dfbbc91eb3d77733cff7a601d3a53"
+  },
+  {
+    "path": "rally-house-source-v16/qa/reload-safety.mjs",
+    "kind": "QA",
+    "size": 1340,
+    "sha256": "01c114b8ddfd74bbf722204f752e56607b395128a7750222df2147ea28fc7891"
+  },
+  {
+    "path": "rally-house-source-v16/qa/runtime.mjs",
+    "kind": "QA",
+    "size": 941,
+    "sha256": "aeb41e6caec7b8490866ba9221bfc9f8b76c7cc04be7f02a918ce4b13ad42ef3"
+  },
+  {
+    "path": "rally-house-source-v16/qa/scenes-v16.py",
+    "kind": "QA",
+    "size": 3023,
+    "sha256": "8005da3d47342ae95e6b75c530c4ebb5a74a8d4c4c4935e0d9e67845c2c2a097"
+  },
+  {
+    "path": "rally-house-source-v16/qa/serve.mjs",
+    "kind": "QA",
+    "size": 884,
+    "sha256": "23e41bf7575fb0188ff9869760baa7601a26b866dfdc2206fb2f8ee15476f517"
+  },
+  {
+    "path": "rally-house-source-v16/qa/sim-harness.mjs",
+    "kind": "QA",
+    "size": 3222,
+    "sha256": "0eeba4c24637032e4e21cae97465bf86e16843562bafa5439cc38f893fe332b9"
+  },
+  {
+    "path": "rally-house-source-v16/qa/smoke-package.mjs",
+    "kind": "QA",
+    "size": 2093,
+    "sha256": "b6e6500bb09e162cd1a897c3064319c004eca39a6cf1252cf8113eeb0d66d550"
+  },
+  {
+    "path": "rally-house-source-v16/qa/stalls.jsonl",
+    "kind": "QA",
+    "size": 3246,
+    "sha256": "31c19911f58ef2b9364b3bb485f19a82cd8dd3b39e85dc325ceee5641313d1fd"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/ball-bounce.png",
+    "kind": "QA",
+    "size": 509177,
+    "sha256": "a38fe970b7acabbe47fc011ec8e1b9e0b5056f52375a3e9acc381857b079d582"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/ball-contact.png",
+    "kind": "QA",
+    "size": 514778,
+    "sha256": "0e30181746fff14beb016d72e2a4420f0e4afb0e1e20da6f2d02572ed07c4e4d"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/ball-feel.json",
+    "kind": "QA",
+    "size": 983,
+    "sha256": "29c474547658591b73e91d0c1ad3ca74b3fc35d4664c56ad563ec266da638cd3"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/ball-flight.png",
+    "kind": "QA",
+    "size": 512512,
+    "sha256": "1d69eb6a8975943287a8c4d67c3796131806bcfb08176dc8856f92cfca82c10f"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/club-desktop.png",
+    "kind": "QA",
+    "size": 681012,
+    "sha256": "38943955e88dfc5d03d22b776cdfc4ee242393686cb51e238315146968646301"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/club-front-contact.json",
+    "kind": "QA",
+    "size": 119,
+    "sha256": "5ee1fbc709de0eae18129c52a7639fe8b8628047769cc73c5ede3ad2de43012c"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/club-front-contact.png",
+    "kind": "QA",
+    "size": 663288,
+    "sha256": "3c2c1e4fb6e6597977dc024a9733dcc97b391d6fd09fa8a152ee78f7cc80ad6e"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/club-landscape.png",
+    "kind": "QA",
+    "size": 232474,
+    "sha256": "18bb5b23d64c157f51820e733a80cd2a4e2a8ad311080e4007a2365573981bd1"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/club-portrait.png",
+    "kind": "QA",
+    "size": 284210,
+    "sha256": "491aa8062edfcf5b237cee4f41dadb70efc3d12cbd2322e9cf377ef7c1a81c70"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/club-tablet.png",
+    "kind": "QA",
+    "size": 603814,
+    "sha256": "49635adb80a777db332c9831d8d425987a9d7841acab66a8a0f1cc41a6f0e3c0"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/desk-interaction.png",
+    "kind": "QA",
+    "size": 558136,
+    "sha256": "cab6abd8a64533ae81c1d9e237e5453d1cf0a67df4ae0368956270d3e1ba4560"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/failure-portrait.png",
+    "kind": "QA",
+    "size": 269740,
+    "sha256": "e085dc910c2a02c1e2944171bfc395dfdd905de8b38f03a08145491b875caa43"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/match-desktop.png",
+    "kind": "QA",
+    "size": 581470,
+    "sha256": "356310c268fe5c41a96389f2acdd6757d12d8c82ef2df6a2b3a7b0c0b69a5bd1"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/match-landscape.png",
+    "kind": "QA",
+    "size": 263712,
+    "sha256": "af32c45e1016aeb456133fe28c543e8b3df5567acb8f85e775cc01dc72067208"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/match-portrait.png",
+    "kind": "QA",
+    "size": 161479,
+    "sha256": "169d95390dd23b83dc80f557e10d1edb07372e13f39a2b8a3bd115ce77903100"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/match-tablet.png",
+    "kind": "QA",
+    "size": 454224,
+    "sha256": "36701010da24a9ee47c6021fbed093a791ac8eba8f1da981380bcaf537a65311"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/matrix.json",
+    "kind": "QA",
+    "size": 882,
+    "sha256": "5fefa3fc120d64450faf7d30d815fe4d1af551bc8163478d62810b79aaf22545"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/objects.json",
+    "kind": "QA",
+    "size": 150,
+    "sha256": "2f9b3d8e2980e1d82db4b98a03e4b7057cd03011e462b068d6e1db79b8fc5436"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/performance-active.json",
+    "kind": "QA",
+    "size": 875,
+    "sha256": "e3f594b78b0d0bf5209b5e4960151ba997885757137179a1a6045762f7898b39"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/performance.json",
+    "kind": "QA",
+    "size": 879,
+    "sha256": "702ada6f3bf16b9d002a3a217a1980771b00e48a324b7d4235fc869ba2e9181c"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/verified-after-evening.png",
+    "kind": "QA",
+    "size": 654760,
+    "sha256": "30fa5b1d48348c7c525a8be2e8744a70d34abe90f10a68f317f7d7e28d8192f2"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/verified-before-evening.png",
+    "kind": "QA",
+    "size": 476738,
+    "sha256": "35b82a1609e97afe256df9eff6dbdfe223cb3883b57ddf28460a2aeb61269811"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio/welcome-golden.png",
+    "kind": "QA",
+    "size": 652094,
+    "sha256": "8cee3380ec416262efd8768b22f53d990ec11f7d3c0910d10118d920b2bc229d"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio-browsers-chromium.png",
+    "kind": "QA",
+    "size": 268899,
+    "sha256": "eb75600e789d8ffb5213d51281b10f7bd4c58de76c25f04b3c0775f8cdde5296"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio-browsers-firefox.png",
+    "kind": "QA",
+    "size": 232526,
+    "sha256": "7849ed3cd9fb8d5787624dcd32b98768d5a900a7df51bf8e6cc64ed86732a7ab"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio-browsers-webkit.png",
+    "kind": "QA",
+    "size": 438994,
+    "sha256": "64fe18d386fc87a544ef3c0dd5b64643d283f8fc84fa049555a7cbe0fe89248f"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio-browsers.json",
+    "kind": "QA",
+    "size": 2805,
+    "sha256": "9a9b337b86743ce4c90f6ca12c8cfef48f839ad8ff5192b5b46a45cc0000eb7a"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio-matrix.mjs",
+    "kind": "QA",
+    "size": 5155,
+    "sha256": "8fb40b493fe7aefad30516775a9175489cdd7c305b5ba155e1957d59e3396fa2"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio-objects.mjs",
+    "kind": "QA",
+    "size": 2398,
+    "sha256": "b4f94420614bcadd389309c27c40ee226100a1cf7f4d6b141312d22ba96be0de"
+  },
+  {
+    "path": "rally-house-source-v16/qa/studio-performance.mjs",
+    "kind": "QA",
+    "size": 1772,
+    "sha256": "6d0936ec62e42f1befd469a44768fa7f0a6fa2b2ebc78e8391b05306281b0110"
+  },
+  {
+    "path": "rally-house-source-v16/qa/summarize-performance.py",
+    "kind": "QA",
+    "size": 1633,
+    "sha256": "452889d49081f5f93bdd3a72cca0eb8079de51b2f697a22c51da19c99dcdec51"
+  },
+  {
+    "path": "rally-house-source-v16/qa/tomorrow.mjs",
+    "kind": "QA",
+    "size": 1077,
+    "sha256": "1656c4428ac36f46b327d4c12eddbc67135ca9ffa4025e203b35f9931bad3d0e"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v14-frame-check.json",
+    "kind": "QA",
+    "size": 92,
+    "sha256": "58c41e0dd934eed066fea447c2c79627bbda07d7fe866694a2e1d82e0e287e25"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v14-reliability.json",
+    "kind": "QA",
+    "size": 308,
+    "sha256": "3d46e99fc44b28864e07ee423f8fecbbe883517312285c4c32e696ee46485432"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v15-after-hours.json",
+    "kind": "QA",
+    "size": 2029,
+    "sha256": "2415e9cacaa817487601c3b6c74a3b4a560fb13ec5d50d92e9bada5ee9785105"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v15-browser.mjs",
+    "kind": "QA",
+    "size": 5487,
+    "sha256": "87941fc8d23c2f256795417d9a3fac3003162fa0f36959b20f3038b1458dfeb7"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v15-long-variety.json",
+    "kind": "QA",
+    "size": 41414,
+    "sha256": "5d789d3737b22148b4be5b4439116b8b5bad23d0b0117159b3f34a26af63805a"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v15-simulation.json",
+    "kind": "QA",
+    "size": 29091,
+    "sha256": "fa4a029af3c2acad68268a6907588dd70148dd5bd0726fb02652a9b579ca2d8a"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v15-ui-coaching-progress.json",
+    "kind": "QA",
+    "size": 6833,
+    "sha256": "b69e6cb84a7afeb97ae2762281ca348d2c4d4cc1895359dca4eab765cf29af55"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v15-ui-coaching.json",
+    "kind": "QA",
+    "size": 8478,
+    "sha256": "a70a962c6e7d4cdf7be34ae78b70de2e01b778d972413d86787e4c3643d8458a"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-asset-intake.log",
+    "kind": "QA",
+    "size": 217,
+    "sha256": "f322aaa867740e09953a12bb4d97ffd949ebd1adf4f67a84980397003171c0b4"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-coaching-recovery.json",
+    "kind": "QA",
+    "size": 1961,
+    "sha256": "dc3306b66f566700ebea9fc937379410b768cc7a03d1cb32a4cf09a59a067a37"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-code-count.json",
+    "kind": "QA",
+    "size": 307,
+    "sha256": "0719384d0095ba53c9004f6cf0e6ac1c6c61e95c929504d11acfba3fa43cda38"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-late-attempts.json",
+    "kind": "QA",
+    "size": 344,
+    "sha256": "fb16c00a550df6f900af75642842f9d3c48547cdfa4d0006f643319fbf1c7a95"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-long-failures.json",
+    "kind": "QA",
+    "size": 2,
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-long-horizon.json",
+    "kind": "QA",
+    "size": 2411,
+    "sha256": "b01c7d2dd3338b355295279bb7d50350af533b3a35cb6b28cc4e9cf2b1e62845"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-long-horizon.log",
+    "kind": "QA",
+    "size": 2057,
+    "sha256": "8bef92d73ac9c5fb5f426372351bd608610376f46645e7720f422f6310e7e7db"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-matrix.json",
+    "kind": "QA",
+    "size": 2853,
+    "sha256": "306b34452d8b759a9fc193aa88e75a0e7da377cbbfa782c49e5780ade5af0e8d"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-migration.json",
+    "kind": "QA",
+    "size": 78347,
+    "sha256": "3cfbd115eb5e3ad70f8ed9a72d38a9824747e8632a47f43625c536208cfc1083"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-package-smoke.json",
+    "kind": "QA",
+    "size": 147,
+    "sha256": "5f7fc1606d6f075617518aa30a1b3cb7dad96abfd1253f9e6aad01aede0aa348"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-performance-summary.log",
+    "kind": "QA",
+    "size": 2987,
+    "sha256": "443c21ba805feb5c122c1750f9b1b2b63704575966f1f6537100b792c0fae395"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-performance.json",
+    "kind": "QA",
+    "size": 2986,
+    "sha256": "bf27de061170fe4580639460997afb45f0d5250c0c725b53b1771a30d5501b36"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-poses/frames.json",
+    "kind": "QA",
+    "size": 452033,
+    "sha256": "ce2e5cb72dc9246cec396e64083e44e23c2302721e7ab7ebf773115939eeb2e4"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-poses.mjs",
+    "kind": "QA",
+    "size": 2798,
+    "sha256": "6e25d6b56a38482d828d1e5bc31ab29db353dac4836abecfa7e2ed8aac983f55"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-pre-swap-failures.json",
+    "kind": "QA",
+    "size": 2085,
+    "sha256": "0843b74049b69648cc140d42fb7b4715a50193e51e5f13430a8a372695db6e11"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-presence-browser.json",
+    "kind": "QA",
+    "size": 364,
+    "sha256": "a8331858613b97c7da1698a34486d652ff50deffbbb389741e36e2631ffa1b96"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-provenance.json",
+    "kind": "QA",
+    "size": 749,
+    "sha256": "d4ea9470d8683a32329411318e5877cf6f204c812f4d3bf8e3c9bad549401267"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-randomized-17.json",
+    "kind": "QA",
+    "size": 4250,
+    "sha256": "f816530d4a863b4029563e8c3e71bcf5fc4adbfd429296d69587d8550c6e8a9d"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-randomized-923.json",
+    "kind": "QA",
+    "size": 4452,
+    "sha256": "871c47fae5ffb8cfb43c88f6cb72c9f5431fa862d3902faf80f92f83783b562c"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-randomized.json",
+    "kind": "QA",
+    "size": 5240,
+    "sha256": "cf77ed67f869d97f526b9df7f1af6afc222da16167d0943304427ae7b6ca1c98"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-release-poses/frames.json",
+    "kind": "QA",
+    "size": 451593,
+    "sha256": "d4e5e6fe49ce96331dca88aed9342c1778ef2218c591c9b2dbe5749e3c1e8bfe"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-source-hashes.json",
+    "kind": "QA",
+    "size": 4132,
+    "sha256": "f1f904122048c722f98f3b45b92f558670dac73364e59f97e13ea6599e3fbdfa"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-story-causality.json",
+    "kind": "QA",
+    "size": 730,
+    "sha256": "76da48fb30fb021338d1f2ecfff63839858980eb6aaebae78cf7e3f5d4c2b67f"
+  },
+  {
+    "path": "rally-house-source-v16/qa/v16-tests-twelfth.log",
+    "kind": "QA",
+    "size": 10933,
+    "sha256": "930f940558ff5f7452f84c2ce57295de0c6470e9116fdd91735a87286d104d77"
+  },
+  {
+    "path": "rally-house-source-v16/qa/variety-stalls.jsonl",
+    "kind": "QA",
+    "size": 4278,
+    "sha256": "3000adb02b271016c4180d26b3bec174a4c853adabb359b944420f85dd7d79dc"
+  },
+  {
+    "path": "rally-house-source-v16/qa/verify-browser.mjs",
+    "kind": "QA",
+    "size": 2948,
+    "sha256": "2733e6dc9695c77652a9a0e3a8c4370f9d31b58ef117dee889ff903d63a6fcdd"
+  },
+  {
+    "path": "rally-house-source-v16/qa/walking-check.mjs",
+    "kind": "QA",
+    "size": 1150,
+    "sha256": "efb91735460e6fafa65956c5837fcd9d0653c9840aeaa9ee13c0db33a22c7667"
+  },
+  {
+    "path": "rally-house-source-v16/qa/watch.mjs",
+    "kind": "QA",
+    "size": 2240,
+    "sha256": "d783e60b2320a45704a33f533594b47c71fd7f04c4fb9b5a1c70f02f8656595d"
+  },
+  {
+    "path": "rally-house-source-v16/qa/world-before.mjs",
+    "kind": "QA",
+    "size": 906,
+    "sha256": "23ad88a8507e45f6fb70f707e6183f935272a0bc96d627e0fd1d4ea1363c21be"
+  },
+  {
+    "path": "rally-house-source-v16/qa/world-final-check.mjs",
+    "kind": "QA",
+    "size": 2953,
+    "sha256": "7e4e996f9b1896d4aa93c3030ece4975dd7d7bbcacab20457a764772fd839a61"
+  },
+  {
+    "path": "rally-house-source-v16/qa/world-interface/final-check.json",
+    "kind": "QA",
+    "size": 155,
+    "sha256": "126732e629c5575aa69876d11c88fd28185625d11121edd46911226632c41359"
+  },
+  {
+    "path": "rally-house-source-v16/qa/world-interface/final-touch-landscape.png",
+    "kind": "QA",
+    "size": 247520,
+    "sha256": "528a8d14c619140742404e1ad4713408b14591185049eeedb803410a3466cbd7"
+  },
+  {
+    "path": "rally-house-source-v16/qa/world-interface.mjs",
+    "kind": "QA",
+    "size": 10310,
+    "sha256": "bbebc076a01a6f0e0f79573083487b98c28b5907944d254d2095aa7880fdc1a4"
+  },
+  {
+    "path": "rally-house-source-v16/qa/world-performance.mjs",
+    "kind": "QA",
+    "size": 1974,
+    "sha256": "6460924e858f23c7cdca2bd0acd0c883b0a7bcc2d26cd154c207dea8dbf48013"
+  },
+  {
+    "path": "rally-house-source-v16/run.command",
+    "kind": "source",
+    "size": 592,
+    "sha256": "ad80f0872855252d89fabff47938ab37657fcf9c9263f20f7f6fa4ce4b5a3d1b"
+  },
+  {
+    "path": "rally-house-source-v16/spatial.css",
+    "kind": "source",
+    "size": 4270,
+    "sha256": "27d3b39f79fa19350d57e58bef5eb17adf527afc2af674f8b9fefd1375593fd7"
+  },
+  {
+    "path": "rally-house-source-v16/src/Game.ts",
+    "kind": "source",
+    "size": 103098,
+    "sha256": "b48a2da73f6b5c77a7019b6ef7f72da56ff61d82f02104960b2bf3314f5a09cd"
+  },
+  {
+    "path": "rally-house-source-v16/src/animation/ActingState.ts",
+    "kind": "source",
+    "size": 4302,
+    "sha256": "e1fdd88bca9bbca98c401ffe2e6133e895657894d201e163b1eec74b5cf3c075"
+  },
+  {
+    "path": "rally-house-source-v16/src/animation/CharacterAssetIntake.ts",
+    "kind": "source",
+    "size": 6855,
+    "sha256": "74a1706cc3677c8c7401ffd34a1b99c335e8b9975fa41b53ef50349768752f21"
+  },
+  {
+    "path": "rally-house-source-v16/src/animation/CharacterSkin.ts",
+    "kind": "source",
+    "size": 7073,
+    "sha256": "302b60024fae495c0f449ee31e0f3b7cbfad6541ef877c0a7e1e86e031cfd4ee"
+  },
+  {
+    "path": "rally-house-source-v16/src/animation/ClipLibrary.ts",
+    "kind": "source",
+    "size": 10496,
+    "sha256": "4987fc770bacd50e25677044ae7cc153578044d8a2cd8cebfb63626cb0a38f63"
+  },
+  {
+    "path": "rally-house-source-v16/src/animation/WalkCycle.ts",
+    "kind": "source",
+    "size": 1710,
+    "sha256": "5fe48a2547806c1b06468ddd4a4e42a261785fa79cfa47b26927e54b63e254c9"
+  },
+  {
+    "path": "rally-house-source-v16/src/content/DecorCatalog.ts",
+    "kind": "source",
+    "size": 3708,
+    "sha256": "6fa3ce942f0d0e287236c4ec05bdf0ebc8bbd2033e5c3e96a6bcf97c6a218403"
+  },
+  {
+    "path": "rally-house-source-v16/src/content/PlayerAvatars.ts",
+    "kind": "source",
+    "size": 910,
+    "sha256": "362d72ed8d70b8410677eb696979a018117a06216792d5bb2bd725ded3427eba"
+  },
+  {
+    "path": "rally-house-source-v16/src/content/content.ts",
+    "kind": "source",
+    "size": 9492,
+    "sha256": "3002c1512adb08ea57e7319fae009ff02ce6bdc9dbab2c18eda0b697ce3c712d"
+  },
+  {
+    "path": "rally-house-source-v16/src/core/AudioManager.ts",
+    "kind": "source",
+    "size": 10839,
+    "sha256": "f94f3d78ce087023e82fd5bae5d42164e9ba77de64836bcc05eaad8bbfa5b711"
+  },
+  {
+    "path": "rally-house-source-v16/src/core/GameClock.ts",
+    "kind": "source",
+    "size": 807,
+    "sha256": "f9d6f2215b0df44aac945b627719706cff2762788c2ce8afbb4001b49cd29e87"
+  },
+  {
+    "path": "rally-house-source-v16/src/core/PerformanceMonitor.ts",
+    "kind": "source",
+    "size": 991,
+    "sha256": "d55d73a2b3de046a33b5b6e9dc7cf038c6446b7b683e8a1b3b0480ed0c94a717"
+  },
+  {
+    "path": "rally-house-source-v16/src/core/types.ts",
+    "kind": "source",
+    "size": 1376,
+    "sha256": "ec71d5c0d05922b8c6f8f09036cd7fe8ba0ff312d13eb57e681c5ae556e5f1b7"
+  },
+  {
+    "path": "rally-house-source-v16/src/entities/Character.ts",
+    "kind": "source",
+    "size": 66390,
+    "sha256": "a7888f9b88d6abac2b89d1853fd2fa36fe40ba3afdec5c87ef4c62c105ae69d1"
+  },
+  {
+    "path": "rally-house-source-v16/src/main.ts",
+    "kind": "source",
+    "size": 1044,
+    "sha256": "d8aa5cff55c4e75fa4646280a71e5d2e25df9b1caf669e81ade0f6746c8bd509"
+  },
+  {
+    "path": "rally-house-source-v16/src/persistence/SaveSystem.ts",
+    "kind": "source",
+    "size": 6601,
+    "sha256": "7e30ee61ff965498b41ce585f63b6b3f055a4e9c6ac79a247facc5a8d3a216b6"
+  },
+  {
+    "path": "rally-house-source-v16/src/persistence/migrations.ts",
+    "kind": "source",
+    "size": 4003,
+    "sha256": "bf5ccdf52d415cd867a5599385dd3e2fb156b9c488dd01d765e8fc33d1c31753"
+  },
+  {
+    "path": "rally-house-source-v16/src/rendering/CameraController.ts",
+    "kind": "source",
+    "size": 7466,
+    "sha256": "58db7dc7881c854dfc8f2b6e92f948f21f0ce52dbef5e7ff9571e64ff89a7d00"
+  },
+  {
+    "path": "rally-house-source-v16/src/rendering/ClubAtmosphere.ts",
+    "kind": "source",
+    "size": 1551,
+    "sha256": "7daa4f7fe445ce40b02e9e6222752f97cbc91e4b0617c1804f90ca0457b895a3"
+  },
+  {
+    "path": "rally-house-source-v16/src/rendering/Math3D.ts",
+    "kind": "source",
+    "size": 5454,
+    "sha256": "0365aa1723af8505aa93140f8b16e0065b3231e517fcce81c231ceaa8725f7d4"
+  },
+  {
+    "path": "rally-house-source-v16/src/rendering/Renderer.ts",
+    "kind": "source",
+    "size": 28121,
+    "sha256": "6895ce23f453e356eba6e0a4a48441cd9adfc9aeab095bce4b78a1f08879e8e3"
+  },
+  {
+    "path": "rally-house-source-v16/src/simulation/ActivitySystem.ts",
+    "kind": "source",
+    "size": 2531,
+    "sha256": "9095a050bf01bf6a27b55fabb8c58e33eaeaff0e1e5e75b0d4c8651686a6b306"
+  },
+  {
+    "path": "rally-house-source-v16/src/simulation/AmbientSocialPlanner.ts",
+    "kind": "source",
+    "size": 2185,
+    "sha256": "c61888e90636ba390e8a08dfdb8807c2a02225642aefd72a8563f2b4368cc692"
+  },
+  {
+    "path": "rally-house-source-v16/src/simulation/CharacterMind.ts",
+    "kind": "source",
+    "size": 17369,
+    "sha256": "585e8cff27d6481a1d485c60757da30bc5b29c62b82d0f9a515d69e3273bc981"
+  },
+  {
+    "path": "rally-house-source-v16/src/simulation/ClubHistory.ts",
+    "kind": "source",
+    "size": 1762,
+    "sha256": "aa38168e1cef733f3e96d61cd022b223b9cad527024b1cb5badcc8b525d39ffd"
+  },
+  {
+    "path": "rally-house-source-v16/src/simulation/ClubInteractions.ts",
+    "kind": "source",
+    "size": 3210,
+    "sha256": "278389027f2fa67120130ace7c6aab1215b9b7b1c721920a70ef74d040631e5c"
+  },
+  {
+    "path": "rally-house-source-v16/src/simulation/ClubLifeSystem.ts",
+    "kind": "source",
+    "size": 2006,
+    "sha256": "bbdc33e801d7102117f965e988a907e5bc27caee21ae40109c31c15242bd9d1a"
+  },
+  {
+    "path": "rally-house-source-v16/src/simulation/CoachingEvidence.ts",
+    "kind": "source",
+    "size": 1712,
+    "sha256": "50331cca341af747766bde7297ea749845b3d1bff484962cca9520009d0f7c6d"
+  },
+  {
+    "path": "rally-house-source-v16/src/simulation/DailyGoalsSystem.ts",
+    "kind": "source",
+    "size": 1681,
+    "sha256": "a4c2b808cfc65c5d94880aefb6d2f5e2c605de2381f729bf1166d9fdbd85bc83"
+  },
+  {
+    "path": "rally-house-source-v16/src/simulation/DialogueComposer.ts",
+    "kind": "source",
+    "size": 1828,
+    "sha256": "3c9abb86c1b2e273363fc43e8131c91c272298796430855ee6d98b61a19c12b4"
+  },
+  {
+    "path": "rally-house-source-v16/src/simulation/EmergentSocialSystem.ts",
+    "kind": "source",
+    "size": 3913,
+    "sha256": "71feb22000a70e8d0dfb8037362257f20462e5a0b0c3f4a8b103e4be3b1e7175"
+  },
+  {
+    "path": "rally-house-source-v16/src/simulation/EverydayLife.ts",
+    "kind": "source",
+    "size": 13917,
+    "sha256": "24426c482baa55da524189390481979280e0d54b5b45b96b2cf3856869e78cc5"
+  },
+  {
+    "path": "rally-house-source-v16/src/simulation/LifeTelemetry.ts",
+    "kind": "source",
+    "size": 2227,
+    "sha256": "343cf89e8e6781db54a5c62f9d3f6e99458e6bc116d242a0e7f831f9cbd8501b"
+  },
+  {
+    "path": "rally-house-source-v16/src/simulation/ObjectAffordances.ts",
+    "kind": "source",
+    "size": 3706,
+    "sha256": "01de5cf377fb37fb7cab84dcc6ab450c451e8bc7098f6d59d4bcf6484445f04e"
+  },
+  {
+    "path": "rally-house-source-v16/src/simulation/RelationshipSystem.ts",
+    "kind": "source",
+    "size": 4642,
+    "sha256": "6c2554c8bd4de2648c65b5c5c4fb80811fc1abbd44fc0e3ec1623e0ac68ea15c"
+  },
+  {
+    "path": "rally-house-source-v16/src/simulation/SceneGrammar.ts",
+    "kind": "source",
+    "size": 11403,
+    "sha256": "351900aa58add51231e3e7219917cfadf05d81fd251b035561f2dffdf9a82584"
+  },
+  {
+    "path": "rally-house-source-v16/src/simulation/ScheduleSystem.ts",
+    "kind": "source",
+    "size": 788,
+    "sha256": "bb7c2236755d21a2b5c80de224c497e0427af6b52f0e6192ab6187d47f881685"
+  },
+  {
+    "path": "rally-house-source-v16/src/tennis/BallPhysics.ts",
+    "kind": "source",
+    "size": 1484,
+    "sha256": "32abbd4a41ac23da6975f6e0ac14c7229deba2bc93de90aefe8203360e9cc99b"
+  },
+  {
+    "path": "rally-house-source-v16/src/tennis/BallTrail.ts",
+    "kind": "source",
+    "size": 2120,
+    "sha256": "4515a279f9637702cde7a4e90be6e656523e3f2a9679d089a2723067ad58856f"
+  },
+  {
+    "path": "rally-house-source-v16/src/tennis/ChampionshipCameraRig.ts",
+    "kind": "source",
+    "size": 9629,
+    "sha256": "261ded10f581bc2f2bcb752d69f3f3a68e6f2d6e1fb987ed869da33445d931bc"
+  },
+  {
+    "path": "rally-house-source-v16/src/tennis/ChampionshipController.ts",
+    "kind": "source",
+    "size": 8714,
+    "sha256": "2ecb00c590c62a751255d07daccb95c732b9c20504264de3ea60c847a0f24ebd"
+  },
+  {
+    "path": "rally-house-source-v16/src/tennis/ChampionshipOpponents.ts",
+    "kind": "source",
+    "size": 1665,
+    "sha256": "99b9067dcbb8dd2f5e50aa5e60d8b51c3f936d4d0b9cae9705f0ee5bcf05b49b"
+  },
+  {
+    "path": "rally-house-source-v16/src/tennis/ChampionshipTuning.ts",
+    "kind": "source",
+    "size": 2228,
+    "sha256": "61ccd4c67722af941f8fc8c8e040a78eee84894747b2b41c2d078b13b324bc2d"
+  },
+  {
+    "path": "rally-house-source-v16/src/tennis/InteractiveMatchSystem.ts",
+    "kind": "source",
+    "size": 30094,
+    "sha256": "0aba08164fadfe023622bf51f9d043516682acdb71c46041914c581b1fc87a0f"
+  },
+  {
+    "path": "rally-house-source-v16/src/tennis/MatchInput.ts",
+    "kind": "source",
+    "size": 3500,
+    "sha256": "95a8b9769cc306e4b2044db056352fa1ea9651904ff8b06c9728d0593ff6e85e"
+  },
+  {
+    "path": "rally-house-source-v16/src/tennis/RallySystem.ts",
+    "kind": "source",
+    "size": 13809,
+    "sha256": "9baf5605f40e22281251e3ae984947d53de3b69f4b5eb5a3f3e892ccbc7386bd"
+  },
+  {
+    "path": "rally-house-source-v16/src/ui/ChampionshipHUD.ts",
+    "kind": "source",
+    "size": 8285,
+    "sha256": "6cb22f2dcf92a96c4142fd3fdf5d5f305445d8df0b48b60a52bad99a6723a2c8"
+  },
+  {
+    "path": "rally-house-source-v16/src/ui/ClubContextPresenter.ts",
+    "kind": "source",
+    "size": 7484,
+    "sha256": "b73ff7167ad4d0cc05a20033fc42dfb3b4f936c0c47c02cebf74ab80ba67bdea"
+  },
+  {
+    "path": "rally-house-source-v16/src/ui/HUD.ts",
+    "kind": "source",
+    "size": 12092,
+    "sha256": "931e8486d2b48bbd0cca8130fcadf8d3ed7ac321a8a3dcbe3bf517ecac8aaedd"
+  },
+  {
+    "path": "rally-house-source-v16/src/ui/SpatialInteractionSystem.ts",
+    "kind": "source",
+    "size": 13089,
+    "sha256": "dd5aa28c741f2e244ca2eca4ce052f09ab954385d18b1ad266afdca9ae9c5e9d"
+  },
+  {
+    "path": "rally-house-source-v16/src/ui/WorldAnchor.ts",
+    "kind": "source",
+    "size": 1293,
+    "sha256": "08d943e1c83d9df89b8b0c78144dbc992b3a3b6accde4a37301cede04bd73e33"
+  },
+  {
+    "path": "rally-house-source-v16/src/world/Navigation.ts",
+    "kind": "source",
+    "size": 4143,
+    "sha256": "79cf03aac648b49621474c5962cfa4511051de2258f40847c20162552d445611"
+  },
+  {
+    "path": "rally-house-source-v16/src/world/World.ts",
+    "kind": "source",
+    "size": 46337,
+    "sha256": "ced95d292abe467fd57b7e533e6564a88c16942a986930742effc2c484a50f66"
+  },
+  {
+    "path": "rally-house-source-v16/style.css",
+    "kind": "source",
+    "size": 15024,
+    "sha256": "6203f1c55ef04f8f383be0fa31317e26520f5acafc918fa07e05898bc592023c"
+  },
+  {
+    "path": "rally-house-source-v16/tests/arcade-feel.mjs",
+    "kind": "QA",
+    "size": 3296,
+    "sha256": "6034e79dc73b4028ddb063ddc70dab05ab9e937c162456b05021a543befd35fe"
+  },
+  {
+    "path": "rally-house-source-v16/tests/asset-intake.mjs",
+    "kind": "QA",
+    "size": 4263,
+    "sha256": "00fdf0550f6cb9a453ccac47c4e97f84c7326ddc098ade3d3f9c10915b4266e1"
+  },
+  {
+    "path": "rally-house-source-v16/tests/causality.mjs",
+    "kind": "QA",
+    "size": 8704,
+    "sha256": "ad9213c9f3b87be4f1012c42a63d3b019d335864b86cccd41b5352cd53093f65"
+  },
+  {
+    "path": "rally-house-source-v16/tests/championship-controller.mjs",
+    "kind": "QA",
+    "size": 2598,
+    "sha256": "32e9c790bc52066751971c9103b432a84609a79ffd794babbb64c358750e6a3c"
+  },
+  {
+    "path": "rally-house-source-v16/tests/character-life.mjs",
+    "kind": "QA",
+    "size": 11967,
+    "sha256": "365e7985aa9405d7798b2fce1a52697ee8e9cfd4275b145aa6247e1e48221ab1"
+  },
+  {
+    "path": "rally-house-source-v16/tests/contact-interception.mjs",
+    "kind": "QA",
+    "size": 3355,
+    "sha256": "dd76290c4b9c5dcf4aec0bc548f9a4752c9bd418aad676f443a9ea6531c86e5c"
+  },
+  {
+    "path": "rally-house-source-v16/tests/everyday.mjs",
+    "kind": "QA",
+    "size": 5070,
+    "sha256": "c53747257bc8288bd0a817b564d1c20a698ef53c2bab7221c226fc118186181b"
+  },
+  {
+    "path": "rally-house-source-v16/tests/life-integration.mjs",
+    "kind": "QA",
+    "size": 4761,
+    "sha256": "35b582ff9a0cf84a766a949c4f94ca5a12fe343fad4e812d2086e797382fa50b"
+  },
+  {
+    "path": "rally-house-source-v16/tests/life-variety.mjs",
+    "kind": "QA",
+    "size": 1485,
+    "sha256": "b9fa770c67d60ba92aeecc2f1aec2cbf92418555e80c3c4e43b82bd32b1d12a4"
+  },
+  {
+    "path": "rally-house-source-v16/tests/presence-integration.mjs",
+    "kind": "QA",
+    "size": 2695,
+    "sha256": "c8abe67a32816fa4b3bafec5683a88ca488a1d32346e7297252d411a4fc6adf0"
+  },
+  {
+    "path": "rally-house-source-v16/tests/presence.mjs",
+    "kind": "QA",
+    "size": 4817,
+    "sha256": "8a5126da2fc2e75f4327d99e5a431889044fec522654cd907724e1e8c2989192"
+  },
+  {
+    "path": "rally-house-source-v16/tests/run.mjs",
+    "kind": "QA",
+    "size": 21045,
+    "sha256": "2c6f91a3e5d5f38e172fb151161d5a5a4a234ba4a3f9a5423667d058669bb215"
+  },
+  {
+    "path": "rally-house-source-v16/tests/story-presence.mjs",
+    "kind": "QA",
+    "size": 2368,
+    "sha256": "8b1cfb4c463f7cc5d31fc75f30ea8fad6d3b03d42bce8cdcb8fa353d085a259c"
+  },
+  {
+    "path": "rally-house-source-v16/tests/studio-polish.mjs",
+    "kind": "QA",
+    "size": 11364,
+    "sha256": "1f0840b0ddef0b318f0ae8e3f8755556762572ae9537f597d846aaee55ea9c24"
+  },
+  {
+    "path": "rally-house-source-v16/tests/walking.mjs",
+    "kind": "QA",
+    "size": 2639,
+    "sha256": "a7808402a3c92ad76a82cdcb3222e685fbff52ad93fe989c8ef5e7505da7c4c0"
+  },
+  {
+    "path": "rally-house-source-v16/tests/world-interface.mjs",
+    "kind": "QA",
+    "size": 2967,
+    "sha256": "eab0e0a6727dac009f8d8327d30851e56ec116c917a54808f5eeaf39ca0dea66"
+  },
+  {
+    "path": "rally-house-source-v16/tools/inspect-character.mjs",
+    "kind": "source",
+    "size": 1561,
+    "sha256": "a04269455319a38286ca27a63dbf3cbc00b4d5d7b48c86723fb294f97bed8635"
+  },
+  {
+    "path": "rally-house-source-v16/tools/shoot.mjs",
+    "kind": "source",
+    "size": 2879,
+    "sha256": "2b1adfc636c4f29751ecd9b7645c96128e7c064aaf31fc8f1d4bd8c9aac21696"
+  },
+  {
+    "path": "rally-house-source-v16/tools/shots.json",
+    "kind": "source",
+    "size": 792,
+    "sha256": "03aae81350e593160120796cea2ce91568fa3e6176d03d49cef514cb8dc75a92"
+  },
+  {
+    "path": "rally-house-source-v16/tsconfig.json",
+    "kind": "source",
+    "size": 359,
+    "sha256": "e834df350334e18ba8dcdf325f01a10dfa460d08698a7dd1dc0ca1cd6824d509"
+  },
+  {
+    "path": "arjan-portfolio/src/app/playground/rally-house/page.tsx",
+    "kind": "source",
+    "size": 4230,
+    "sha256": "291a0b5151ad673c09edfe73c4076d33e3575dade484e047ec23b7ef73016927"
+  },
+  {
+    "path": "arjan-portfolio/src/app/playground/rally-house/rally-house.module.css",
+    "kind": "source",
+    "size": 3459,
+    "sha256": "0bdf9ff0c2cfeb9aedac5637af8bf9ff6390d7d8aaf91bb2c281754f2b902206"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/championship.css",
+    "kind": "served",
+    "size": 8086,
+    "sha256": "dd96e0017857ca439d553deff1de96b9c8f0a64e661a7f7df29e0687702dd96f"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/Game.js",
+    "kind": "generated",
+    "size": 124619,
+    "sha256": "912f7a9e3d9d035f22b8fa27d3d4753425969e70115d6d74ab59c9ae48b99eeb"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/animation/ActingState.js",
+    "kind": "generated",
+    "size": 4288,
+    "sha256": "dbd1f380d6dad242a52197c328f7991be3d5820173ac06c5d7a002b41864fe74"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/animation/CharacterAssetIntake.js",
+    "kind": "generated",
+    "size": 8297,
+    "sha256": "04e7ed6afbabc8e06ec3c85300a372f2657fdae13fd3939ba2a4f2f3a0768b3e"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/animation/CharacterSkin.js",
+    "kind": "generated",
+    "size": 7175,
+    "sha256": "ecd039b2ecfce3f34dbf1c81c97af03d37765febc06754ba9db43b229589c138"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/animation/ClipLibrary.js",
+    "kind": "generated",
+    "size": 11426,
+    "sha256": "d21862a2e3f5dca8c1a19931c8346a3d582d597b0c974da05c0b80ed19cbd549"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/animation/WalkCycle.js",
+    "kind": "generated",
+    "size": 2238,
+    "sha256": "33c4b3f1b844f9ab6a788058740111d334ee81256afc8b90796ab1eb7e479990"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/content/DecorCatalog.js",
+    "kind": "generated",
+    "size": 3474,
+    "sha256": "033888bc54ae6a646e3b600dab99ed96993e4fba87de2446b63a2325cd26fdbc"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/content/PlayerAvatars.js",
+    "kind": "generated",
+    "size": 826,
+    "sha256": "4ed2daa5e8edd7387c3f825785070b1b1f2f78e75c9dbbb8018dadfe4c20e936"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/content/content.js",
+    "kind": "generated",
+    "size": 10473,
+    "sha256": "e55bba6007d231110c7cafbc50840eb4ba6805f55943856583d7d8a44baa32cc"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/core/AudioManager.js",
+    "kind": "generated",
+    "size": 13099,
+    "sha256": "46e29aea1efd5aadbc1f7feefce7f82f9b32a8e02fe0ba4ede6781a607c4897b"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/core/GameClock.js",
+    "kind": "generated",
+    "size": 1003,
+    "sha256": "69cd20915f9ddfcaef9374712cabe1f1b8d8b5b72f8857b98827159aebeae77a"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/core/PerformanceMonitor.js",
+    "kind": "generated",
+    "size": 941,
+    "sha256": "d1a059f671ceb4733d85b487f55ba294139df164156e04786bb01bf380b740dd"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/core/types.js",
+    "kind": "generated",
+    "size": 11,
+    "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/entities/Character.js",
+    "kind": "generated",
+    "size": 78658,
+    "sha256": "22b230a92276cea0092f6780d98ad380057efbec2a450205bd9b422d6e21da2d"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/main.js",
+    "kind": "generated",
+    "size": 1101,
+    "sha256": "6882fb9d631136df4b0258fea497add778f33270244fde5ded9a47b7492cd795"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/persistence/SaveSystem.js",
+    "kind": "generated",
+    "size": 7513,
+    "sha256": "e81456e4cf4ddf9e77434a0f4def912058d53c849caef52a1f4f1c7ba801dbaf"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/persistence/migrations.js",
+    "kind": "generated",
+    "size": 4674,
+    "sha256": "0994a8edaa733ff4a67cb57904f97056022aa439c7d03609bc3d37b768eb0571"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/rendering/CameraController.js",
+    "kind": "generated",
+    "size": 8292,
+    "sha256": "469724f3e10ee270c076c791aeb2ffd333528d1459f5160b5680ca9f25a7562e"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/rendering/ClubAtmosphere.js",
+    "kind": "generated",
+    "size": 1833,
+    "sha256": "88b0e722ae8d0783facd91bdb1bcb82415ff3d8df555f6c2e6243b076fd48beb"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/rendering/Math3D.js",
+    "kind": "generated",
+    "size": 6225,
+    "sha256": "08de61af994d91fc4b11f054ec36573535d2844661d5764e3be8a39e5b30f529"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/rendering/Renderer.js",
+    "kind": "generated",
+    "size": 29104,
+    "sha256": "0364249fd263f0751cc9dc6bd45cb083a041522a4c6f94ded0405dea9e7d552f"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/simulation/ActivitySystem.js",
+    "kind": "generated",
+    "size": 2357,
+    "sha256": "6eb53519a3d661bbde08eec252812def68905ff74091bdaf8c9f0cbaeac3fce1"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/simulation/AmbientSocialPlanner.js",
+    "kind": "generated",
+    "size": 2139,
+    "sha256": "aa08271e94d62711321679b24c11b62930fe8a4df1f6e8e7690bef103242ea6b"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/simulation/CharacterMind.js",
+    "kind": "generated",
+    "size": 18315,
+    "sha256": "0f5a10eb21fc2c0c8d59907987033726a3af623d72c8ef5c0af661e77b34526b"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/simulation/ClubHistory.js",
+    "kind": "generated",
+    "size": 1486,
+    "sha256": "cee2ea095e1c08e8384fefffb68e63739fbff87ff8b21291a8fe5e1eb995ff5c"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/simulation/ClubInteractions.js",
+    "kind": "generated",
+    "size": 3110,
+    "sha256": "1edbe01fbc9662513543c8c6583f4a91436b6c3b8af575b9e70c3db42609e031"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/simulation/ClubLifeSystem.js",
+    "kind": "generated",
+    "size": 1981,
+    "sha256": "a0a6799077e7b2ae2ffaaafe1eda58c7fe4b273e52f8f05d2912c954653f171d"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/simulation/CoachingEvidence.js",
+    "kind": "generated",
+    "size": 1676,
+    "sha256": "84a8520c3c9a8b918e3780557a1c8511585e71696ca8aac38f83a9e6f4a0c35a"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/simulation/DailyGoalsSystem.js",
+    "kind": "generated",
+    "size": 1582,
+    "sha256": "d477d44c749396da5c1a0229eb918b6c6bd3cd6f2f265c107e73411451b199f9"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/simulation/DialogueComposer.js",
+    "kind": "generated",
+    "size": 1652,
+    "sha256": "19ea893e98e8badaa65bbc23b6a9e610db6b1f485a237d4b81ac063f1ba358a6"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/simulation/EmergentSocialSystem.js",
+    "kind": "generated",
+    "size": 3625,
+    "sha256": "dd9bd47c05e06fb91b9adc63569e25daadff2a7b8bb121ab84d058e64999f18d"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/simulation/EverydayLife.js",
+    "kind": "generated",
+    "size": 14211,
+    "sha256": "65f1a17dc15f42bf2591c05a7c18cad350711d9dd9a46eccfdbf0ee5011377f7"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/simulation/LifeTelemetry.js",
+    "kind": "generated",
+    "size": 2250,
+    "sha256": "7476ea68a68f8a9b2cd8c8ddfe90276f8f489cb181daca964c6f6bae21e2fe4f"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/simulation/ObjectAffordances.js",
+    "kind": "generated",
+    "size": 3937,
+    "sha256": "975c77e1d628c289310267b83eb3e44ab1ac4f6f74e561c95d3c9aa05712a590"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/simulation/RelationshipSystem.js",
+    "kind": "generated",
+    "size": 4498,
+    "sha256": "ede85da2b5cc05ef44d07abc886996cd6f5d8b44c695e9daff37bf4136b0ef91"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/simulation/SceneGrammar.js",
+    "kind": "generated",
+    "size": 12576,
+    "sha256": "fbf875ccedc2f4fb2a9dbd7e9085a224ccaf04262f3bc411c84dbb0efdc05dc3"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/simulation/ScheduleSystem.js",
+    "kind": "generated",
+    "size": 700,
+    "sha256": "f39fdaefa9898436984bf829f2ad753d1b2f6132221721f370a617ad0d268e57"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/tennis/BallPhysics.js",
+    "kind": "generated",
+    "size": 2041,
+    "sha256": "2f4c93dff67a953fd5895aad0ca0f553e0dcb8b62ce21d64bfff95704c520f87"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/tennis/BallTrail.js",
+    "kind": "generated",
+    "size": 2389,
+    "sha256": "ddc697827fa1f667f3b59eb8af81ddc79554d34fd75e1b75165c5dd112120208"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/tennis/ChampionshipCameraRig.js",
+    "kind": "generated",
+    "size": 9573,
+    "sha256": "691cdb48c77f0f17dd0f5045fed4d1275f5f984204aa1cafc1ed3fa0736bb1ff"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/tennis/ChampionshipController.js",
+    "kind": "generated",
+    "size": 7035,
+    "sha256": "be96b48e7005c385d1dd15814b02e0574afe93d41cd3eee4cb18f8443bfbde4a"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/tennis/ChampionshipOpponents.js",
+    "kind": "generated",
+    "size": 1733,
+    "sha256": "2d5ae00f6e3a3206e3bde450c689f4e40cae9ff183c614c49c86d620cc24d138"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/tennis/ChampionshipTuning.js",
+    "kind": "generated",
+    "size": 2248,
+    "sha256": "2e5b3d960e29ed35cbffecad95f64823c569439f2232c69dd951320700d65618"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/tennis/InteractiveMatchSystem.js",
+    "kind": "generated",
+    "size": 31580,
+    "sha256": "e437505b34def343dc17270d02b44744047be5d6dd3305e966e42ff4d234a0b2"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/tennis/MatchInput.js",
+    "kind": "generated",
+    "size": 3784,
+    "sha256": "465b8feb7e9d73c955e57a418959d26ec23b7a74fb0c3aa65a9074ea85377675"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/tennis/RallySystem.js",
+    "kind": "generated",
+    "size": 16313,
+    "sha256": "df981ff5be4774534409c8da5a1bf581b41ccda042cac1a8e85cdb21a3ee2945"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/ui/ChampionshipHUD.js",
+    "kind": "generated",
+    "size": 8033,
+    "sha256": "cd1d756f96bafcdc4d4e0ff3316fbf52db10f5d0b00eac0905cc56eedf00b873"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/ui/ClubContextPresenter.js",
+    "kind": "generated",
+    "size": 5887,
+    "sha256": "8efbde72629dc2c13270e6d81b6d2b2287eca09bd9a6df4c09404127555d69a9"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/ui/HUD.js",
+    "kind": "generated",
+    "size": 11682,
+    "sha256": "e5c263c85e7fc3aaeab5f443d80701957e8bc9fc244331fedd270fbd4cff6a43"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/ui/SpatialInteractionSystem.js",
+    "kind": "generated",
+    "size": 12168,
+    "sha256": "cbbff3029e2d96b371ac78256c4ab908f66aa8bd3f009f91eb37bbcabf2badfd"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/ui/WorldAnchor.js",
+    "kind": "generated",
+    "size": 856,
+    "sha256": "d48fe14549c0690c53f2a78f77cd5038579bb5c9e88c2523661a02c3738ac101"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/world/Navigation.js",
+    "kind": "generated",
+    "size": 5843,
+    "sha256": "aab0a0e200d4efe9b627857d7065669449202ce7b702ecde785b6bfb5a5981de"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/dist/world/World.js",
+    "kind": "generated",
+    "size": 56198,
+    "sha256": "6e844f81359a0e4f349425db9f3a9ca3dd1ed95eac9761f5ed946a2c7c6baca5"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/index.html",
+    "kind": "served",
+    "size": 5012,
+    "sha256": "a9533ec6125681b12e0a96b8736161edcc2fb630bc45c647fc3c5096300eb14a"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/preview-cozy.webp",
+    "kind": "served",
+    "size": 136614,
+    "sha256": "7a77eaf0a7414fa5a67a3c5e814c94d9040446755edab60a43aa164298c89a65"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/preview.png",
+    "kind": "served",
+    "size": 611442,
+    "sha256": "c9fd88d626b24f615aa29d8b263de6c9f7fb2c424de634e882b1ccba34f5725d"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/spatial.css",
+    "kind": "served",
+    "size": 4270,
+    "sha256": "27d3b39f79fa19350d57e58bef5eb17adf527afc2af674f8b9fefd1375593fd7"
+  },
+  {
+    "path": "arjan-portfolio/public/rally-house/style.css",
+    "kind": "served",
+    "size": 15024,
+    "sha256": "6203f1c55ef04f8f383be0fa31317e26520f5acafc918fa07e05898bc592023c"
+  }
+]

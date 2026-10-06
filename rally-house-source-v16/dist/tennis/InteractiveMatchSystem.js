@@ -42,6 +42,7 @@ export class InteractiveMatchSystem {
     matchClaimed = false;
     bouncePulse = 0;
     bouncePosition = new Vec3();
+    landingTarget = null;
     server = 'player';
     receiver = 'opponent';
     flightHitter = null;
@@ -64,6 +65,7 @@ export class InteractiveMatchSystem {
         this.ball.restitution = CHAMPIONSHIP_TUNING.ballRestitution;
     }
     startPoint(server) {
+        this.landingTarget = null;
         if (!this.matchClaimed) {
             this.priorPlayerSpeed = this.player.getCourtSpeedScale();
             this.priorOpponentSpeed = this.opponent.getCourtSpeedScale();
@@ -103,6 +105,7 @@ export class InteractiveMatchSystem {
         this.opponent.face(this.player.position);
     }
     stop() {
+        this.landingTarget = null;
         if (this.matchClaimed) {
             this.player.setCourtSpeedScale(this.priorPlayerSpeed);
             this.opponent.setCourtSpeedScale(this.priorOpponentSpeed);
@@ -197,10 +200,10 @@ export class InteractiveMatchSystem {
             return this.lastPlayerQuality === 'perfect' ? 'sweet' : 'nice';
         if (this.enabled && !this.pending && this.ball.active && this.receiver === 'player' && this.input.hasBufferedSwing())
             return 'queued';
-        if (!this.enabled || this.pending || !this.ball.active || this.receiver !== 'player' || !this.firstBounceSeen)
+        if (!this.enabled || this.pending || !this.ball.active || this.receiver !== 'player')
             return 'none';
         const t = this.timeToStrikePlane(this.player);
-        return t > -CHAMPIONSHIP_TUNING.returnLateGraceSeconds && t < .85 && Math.abs(this.ball.position.x - this.player.position.x) < CHAMPIONSHIP_TUNING.playerReturnReach ? 'swing' : 'none';
+        return t > -CHAMPIONSHIP_TUNING.returnLateGraceSeconds && t < CHAMPIONSHIP_TUNING.returnCueLeadSeconds && Math.abs(this.ball.position.x - this.player.position.x) < CHAMPIONSHIP_TUNING.playerReturnReach ? 'swing' : 'none';
     }
     updateBall(dt) {
         this.player.setLook(this.ball.position);
@@ -226,6 +229,7 @@ export class InteractiveMatchSystem {
             return;
         }
         if (event.bounced) {
+            this.landingTarget = this.ball.position.clone();
             this.bouncePosition = this.ball.position.clone();
             this.bouncePulse = 1;
             this.callbacks.onBounce?.();
@@ -404,6 +408,7 @@ export class InteractiveMatchSystem {
                     const frame = pending.hitter.racketContactFrame();
                     pending.released = true;
                     this.ball.launch(frame.center, pending.target, pending.flightTime);
+                    this.landingTarget = this.ball.firstLanding();
                     this.trail.reset();
                     this.trailSpeed = this.ball.velocity.len();
                 }
@@ -503,7 +508,7 @@ export class InteractiveMatchSystem {
         const receiver = side === 'player' ? this.opponent : this.player;
         const assisted = side === 'opponent' && this.rallyLength < CHAMPIONSHIP_TUNING.assistContacts;
         const seed = this.shotSequence * 4.37 + (side === 'player' ? 2.1 : 9.3) + this.rallyLength * 1.7;
-        const variation = (hash(seed) * 2 - 1) * (assisted ? .28 : .55 + this.opponentProfile.angleBias * .9);
+        const variation = (hash(seed) * 2 - 1) * (assisted ? CHAMPIONSHIP_TUNING.assistOpponentSpread : .55 + this.opponentProfile.angleBias * .9);
         // Bounce BEFORE the receiver's strike zone. Baseline-targeting made the
         // old first return effectively impossible, because the ball bounced at the feet.
         let x = clamp(receiver.position.x + variation, SINGLES_MIN_X + .75, SINGLES_MAX_X - .75);
@@ -541,6 +546,7 @@ export class InteractiveMatchSystem {
         if (this.pointResolved)
             return;
         this.pointResolved = true;
+        this.landingTarget = null;
         this.ball.active = false;
         this.pending = null;
         this.trail.reset();
@@ -564,6 +570,14 @@ export class InteractiveMatchSystem {
     }
     meshes(reducedMotion = false) {
         const meshes = [];
+        // Only the incoming player's flight gets a cue. It predicts the actual
+        // bounce; it never moves the player or creates a successful return.
+        const landing = this.landingTarget;
+        if (this.ball.active && this.receiver === 'player' && landing && this.inSinglesCourt(landing) && !this.pending?.captured) {
+            meshes.push({ id: 'incoming-landing', kind: 'torus', position: new Vec3(landing.x, .116, landing.z),
+                rotation: new Vec3(Math.PI / 2, 0, 0), scale: new Vec3(CHAMPIONSHIP_TUNING.landingCueScale, CHAMPIONSHIP_TUNING.landingCueScale, .065),
+                color: '#fff4bd', alpha: CHAMPIONSHIP_TUNING.landingCueOpacity, unlit: true, noShadow: true });
+        }
         const visible = this.pending && this.pending.captured && !this.pending.released ? this.stagedBall(this.pending) : this.ball.active ? this.ball.position : null;
         if (visible) {
             meshes.push({ kind: 'sphere', position: new Vec3(visible.x, .108, visible.z), scale: new Vec3(.25, .015, .25), color: '#152c23', alpha: .48, unlit: true, noShadow: true });

@@ -1,0 +1,35 @@
+{
+  "events": [
+    {
+      "seconds": 1.242,
+      "text": "A living miniature tennis club. People share the space around the court."
+    },
+    {
+      "seconds": 4.451,
+      "text": "Select Leo. His actual state and available actions appear beside him."
+    },
+    {
+      "seconds": 4.522,
+      "text": "Both players walk to the court. The same club becomes a match."
+    },
+    {
+      "seconds": 14.399,
+      "text": "The camera moves into the court for Championship tennis."
+    },
+    {
+      "seconds": 16.753,
+      "text": "Space starts the serve. The racket releases the ball at contact."
+    },
+    {
+      "seconds": 25.786,
+      "text": "Preparing swings before the bounce keeps the rally going. Contact remains physical."
+    },
+    {
+      "seconds": 26.684,
+      "text": "Return to the same club, with the previous camera and pause state restored."
+    }
+  ],
+  "durationWallSeconds": 29.286,
+  "contacts": 7,
+  "errors": []
+}

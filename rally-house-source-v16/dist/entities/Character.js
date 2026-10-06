@@ -102,6 +102,17 @@ export class Character {
     racketVibration = 0;
     stepEvent = false;
     lastStanceKey = '';
+    interactionTarget;
+    interactionWeight = 0;
+    interactionRelease;
+    /** A short reach toward a real surface, bounded by the stylized arm's length. */
+    setInteractionTarget(target) {
+        if (target)
+            this.interactionRelease = undefined;
+        else
+            this.interactionRelease = this.interactionTarget?.clone();
+        this.interactionTarget = target?.clone();
+    }
     constructor(spec, start, nav, destinations) {
         this.spec = spec;
         this.nav = nav;
@@ -290,6 +301,11 @@ export class Character {
         return { timing: 1, tempo: 1, coil: 1, follow: 1, reach: 1 };
     }
     update(dt) {
+        // Reach promptly; let the hand settle back more gently after completion.
+        const reachSharpness = this.interactionTarget ? 10 : 4;
+        this.interactionWeight = expDamp(this.interactionWeight, this.interactionTarget ? 1 : 0, reachSharpness, dt);
+        if (this.interactionWeight < .001)
+            this.interactionRelease = undefined;
         this.propAge += dt;
         this.departureDelay = Math.max(0, this.departureDelay - dt);
         if (!this.propWanted && this.propAge >= .65) {
@@ -762,6 +778,13 @@ export class Character {
                 handL = contact;
             else
                 handR = contact;
+        }
+        const surfaceTarget = this.interactionTarget ?? this.interactionRelease;
+        if (surfaceTarget && !shot && !moving && !this.propKind) {
+            const reach = Vec3.sub(surfaceTarget, shoulderR);
+            if (reach.len() > .80)
+                reach.normalize().scale(.80);
+            handR = Vec3.lerp(handR, Vec3.add(shoulderR, reach), this.interactionWeight);
         }
         // Racket constraint: the hand owns the grip. At contact, solve the hand backwards from the requested sweet spot.
         const racketForward = Vec3.sub(this.outgoingTarget ?? this.worldLocal(0, 1, 2), this.position);
