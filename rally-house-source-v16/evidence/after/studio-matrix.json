@@ -1,0 +1,166 @@
+[
+  {
+    "name": "desktop",
+    "width": 1280,
+    "height": 800,
+    "status": "PASS",
+    "rally": 5,
+    "frame": {
+      "corners": [
+        {
+          "x": 436.1638968841406,
+          "y": 300.2438262860208,
+          "visible": true
+        },
+        {
+          "x": 851.2400684837323,
+          "y": 300.26571548762337,
+          "visible": true
+        },
+        {
+          "x": 292.17106063601483,
+          "y": 700.2536315249737,
+          "visible": true
+        },
+        {
+          "x": 1000.2047794734044,
+          "y": 700.3173231015751,
+          "visible": true
+        }
+      ],
+      "overflow": false,
+      "perf": {
+        "simMs": 0.0959186162223695,
+        "renderMs": 2.7442004804209756,
+        "drawCalls": 866,
+        "triangles": 269196,
+        "entities": 5,
+        "memoryMB": 10.10894775390625
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "tablet",
+    "width": 1024,
+    "height": 768,
+    "status": "PASS",
+    "rally": 5,
+    "frame": {
+      "corners": [
+        {
+          "x": 316.3263635024546,
+          "y": 288.2315589796293,
+          "visible": true
+        },
+        {
+          "x": 714.7987169824061,
+          "y": 288.25735843348195,
+          "visible": true
+        },
+        {
+          "x": 178.07243004198892,
+          "y": 672.235719752734,
+          "visible": true
+        },
+        {
+          "x": 857.7823348234454,
+          "y": 672.3107888311167,
+          "visible": true
+        }
+      ],
+      "overflow": false,
+      "perf": {
+        "simMs": 0.13116032803154684,
+        "renderMs": 2.382178857529414,
+        "drawCalls": 863,
+        "triangles": 267996,
+        "entities": 5,
+        "memoryMB": 11.348724365234375
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "portrait",
+    "width": 390,
+    "height": 844,
+    "status": "PASS",
+    "rally": 5,
+    "frame": {
+      "corners": [
+        {
+          "x": 77.03062730951817,
+          "y": 348.5012491954847,
+          "visible": true
+        },
+        {
+          "x": 317.2833057913607,
+          "y": 348.52770718990774,
+          "visible": true
+        },
+        {
+          "x": 27.480664187237263,
+          "y": 589.4712775771868,
+          "visible": true
+        },
+        {
+          "x": 368.4329401548373,
+          "y": 589.524562885952,
+          "visible": true
+        }
+      ],
+      "overflow": false,
+      "perf": {
+        "simMs": 0.13754725879460988,
+        "renderMs": 3.37576289564888,
+        "drawCalls": 863,
+        "triangles": 267996,
+        "entities": 5,
+        "memoryMB": 13.637542724609375
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "landscape",
+    "width": 844,
+    "height": 390,
+    "status": "PASS",
+    "rally": 5,
+    "frame": {
+      "corners": [
+        {
+          "x": 322.64338748733394,
+          "y": 146.36510537145315,
+          "visible": true
+        },
+        {
+          "x": 524.9918477146721,
+          "y": 146.38292905617521,
+          "visible": true
+        },
+        {
+          "x": 252.4158101343593,
+          "y": 341.361976432059,
+          "visible": true
+        },
+        {
+          "x": 597.5784656238951,
+          "y": 341.4138379209141,
+          "visible": true
+        }
+      ],
+      "overflow": false,
+      "perf": {
+        "simMs": 0.12806659823921376,
+        "renderMs": 3.299336188041308,
+        "drawCalls": 863,
+        "triangles": 267996,
+        "entities": 5,
+        "memoryMB": 11.348724365234375
+      }
+    },
+    "errors": []
+  }
+]

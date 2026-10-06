@@ -1,0 +1,172 @@
+
+> arjan-singh-puniani-portfolio@1.0.0 verify
+> npm run lint && npm run typecheck && npm run test:coverage && npm run build
+
+
+> arjan-singh-puniani-portfolio@1.0.0 lint
+> eslint . --ignore-pattern 'playwright-report/**' --ignore-pattern 'test-results/**' --ignore-pattern 'public/hemodynamic-observatory/**'
+
+
+/private/tmp/portfolio-push-validation-20261006/arjan-portfolio/public/holoanatomy/src/engine/renderer.js
+  2:32  warning  'bboxInclude' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/portfolio-push-validation-20261006/arjan-portfolio/public/rally-house/dist/Game.js
+  524:30  warning  '_side' is defined but never used    @typescript-eslint/no-unused-vars
+  524:37  warning  'quality' is defined but never used  @typescript-eslint/no-unused-vars
+  747:24  warning  'dt' is defined but never used       @typescript-eslint/no-unused-vars
+
+/private/tmp/portfolio-push-validation-20261006/arjan-portfolio/public/rally-house/dist/animation/ActingState.js
+  7:77  warning  'social' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/portfolio-push-validation-20261006/arjan-portfolio/public/rally-house/dist/entities/Character.js
+  606:15  warning  'gaitCounter' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  783:15  warning  'racketRight' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  899:34  warning  'hipYaw' is assigned a value but never used       @typescript-eslint/no-unused-vars
+  900:15  warning  'ready' is assigned a value but never used        @typescript-eslint/no-unused-vars
+
+/private/tmp/portfolio-push-validation-20261006/arjan-portfolio/public/rally-house/dist/simulation/EverydayLife.js
+  74:13  warning  'scene' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/portfolio-push-validation-20261006/arjan-portfolio/public/rally-house/dist/tennis/ChampionshipCameraRig.js
+  171:21  warning  '_reducedMotion' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/portfolio-push-validation-20261006/arjan-portfolio/public/rally-house/dist/tennis/InteractiveMatchSystem.js
+  295:23  warning  'dt' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/portfolio-push-validation-20261006/arjan-portfolio/public/rally-house/dist/ui/HUD.js
+  15:22  warning  'type' is defined but never used       @typescript-eslint/no-unused-vars
+  16:22  warning  'direction' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/portfolio-push-validation-20261006/arjan-portfolio/public/rally-house/dist/world/World.js
+  43:30  warning  '_a' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 15 problems (0 errors, 15 warnings)
+
+
+> arjan-singh-puniani-portfolio@1.0.0 typecheck
+> tsc --noEmit
+
+
+> arjan-singh-puniani-portfolio@1.0.0 test:coverage
+> vitest run tests --coverage
+
+
+ RUN  v4.0.8 /private/tmp/portfolio-push-validation-20261006/arjan-portfolio
+      Coverage enabled with v8
+
+ ✓ tests/rally-house-experience.test.tsx (3 tests) 210ms
+ ✓ tests/components.test.tsx (3 tests) 165ms
+ ✓ tests/content.test.ts (6 tests) 4ms
+ ✓ tests/endless-rally.test.ts (48 tests) 128ms
+ ✓ tests/vector-tennis.test.ts (11 tests) 6ms
+ ✓ tests/reasonos-kernel.test.ts (6 tests) 6ms
+ ✓ tests/reasonos-vector.test.ts (8 tests) 2ms
+ ✓ tests/rally-house-integration.test.ts (5 tests) 3ms
+ ✓ tests/project-routes.test.ts (1 test) 2ms
+
+ Test Files  9 passed (9)
+      Tests  91 passed (91)
+   Start at  15:34:02
+   Duration  3.27s (transform 588ms, setup 481ms, collect 936ms, tests 527ms, environment 2.71s, prepare 195ms)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   51.96 |    54.87 |   54.18 |   54.22 |
+ ...nd/rally-house |      95 |    91.66 |     100 |   94.11 |
+  ...xperience.tsx |      95 |    91.66 |     100 |   94.11 | 28
+  ...se.module.css |       0 |        0 |       0 |       0 |
+ app/work/[slug]   |   11.62 |        0 |      20 |     8.1 |
+  page.tsx         |   11.62 |        0 |      20 |     8.1 | 33-134
+ components        |   10.68 |      8.3 |      16 |    10.9 |
+  ...dy.module.css |       0 |        0 |       0 |       0 |
+  ...CaseStudy.tsx |      40 |      100 |       0 |      40 | 23-194
+  Header.tsx       |     100 |      100 |     100 |     100 |
+  MobileNav.tsx    |   60.86 |       40 |   33.33 |   66.66 | 18,20-22,31-36
+  ProjectCard.tsx  |     100 |      100 |     100 |     100 |
+  ...ectFilter.tsx |     100 |    91.66 |     100 |     100 | 17
+  ...gureAtlas.tsx |    5.55 |        0 |       0 |    6.25 | 15-72
+  ...CaseStudy.tsx |   10.25 |        0 |       0 |   11.11 | 103-550
+  ...CaseStudy.tsx |   33.33 |      100 |       0 |   33.33 | 11-50
+  ...CaseStudy.tsx |      25 |      100 |       0 |   33.33 | 23-28
+  ...TennisLab.tsx |    5.73 |     4.84 |   12.69 |    6.14 | ...74,689-708,725
+ content           |     100 |      100 |     100 |     100 |
+  links.ts         |     100 |      100 |     100 |     100 |
+  projects.ts      |     100 |      100 |     100 |     100 |
+  publications.ts  |     100 |      100 |     100 |     100 |
+  statuses.ts      |     100 |      100 |     100 |     100 |
+ lib               |    79.2 |    72.85 |      80 |   84.54 |
+  contact.ts       |     100 |      100 |     100 |     100 |
+  site.ts          |   66.66 |        0 |       0 |     100 | 2
+  vector-tennis.ts |   79.33 |    73.38 |   85.71 |   84.11 | 107-126,191-192
+ lib/reasonos      |     100 |    97.56 |     100 |     100 |
+  kernel.ts        |     100 |    95.65 |     100 |     100 | 122
+  vector.ts        |     100 |      100 |     100 |     100 |
+ lib/tennis        |   90.89 |    80.11 |   93.68 |   93.11 |
+  audio.ts         |   85.77 |     68.1 |   89.65 |   87.56 | ...59-262,279-285
+  config.ts        |     100 |      100 |     100 |     100 |
+  contact-cue.ts   |   98.43 |    75.71 |     100 |   98.33 | 129
+  contact.ts       |     100 |    98.43 |     100 |     100 | 55
+  ...lly-driver.ts |   97.14 |    76.19 |     100 |   98.36 | 55
+  ...ly-machine.ts |   67.85 |    62.35 |   83.33 |    73.8 | ...05-112,160-162
+  persistence.ts   |   93.93 |    80.76 |     100 |     100 | 25,39-43,88
+  ...ct-physics.ts |   89.47 |    88.31 |     100 |      96 | 98,104
+  ...-generator.ts |   99.09 |    98.73 |   94.44 |   98.95 | 109
+-------------------|---------|----------|---------|---------|-------------------
+
+> arjan-singh-puniani-portfolio@1.0.0 build
+> next build
+
+   ▲ Next.js 15.5.24
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 2.8s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/31) ...
+   Generating static pages (7/31)
+   Generating static pages (15/31)
+   Generating static pages (23/31)
+ ✓ Generating static pages (31/31)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                  Size  First Load JS
+┌ ○ /                                       420 B         111 kB
+├ ○ /_not-found                             145 B         103 kB
+├ ○ /about                                  366 B         111 kB
+├ ƒ /api/contact                            145 B         103 kB
+├ ○ /contact                                984 B         103 kB
+├ ○ /cv                                     172 B         106 kB
+├ ○ /icon.svg                                 0 B            0 B
+├ ○ /manifest.webmanifest                   145 B         103 kB
+├ ○ /notes                                  172 B         106 kB
+├ ○ /playground                             336 B         111 kB
+├ ○ /playground/hemodynamic-observatory     518 B         106 kB
+├ ○ /playground/holoanatomy                 306 B         106 kB
+├ ○ /playground/pit-stop                    308 B         106 kB
+├ ○ /playground/rally-house               4.09 kB         115 kB
+├ ○ /playground/vector-tennis             23.6 kB         129 kB
+├ ○ /privacy                                145 B         103 kB
+├ ○ /research                               398 B         106 kB
+├ ○ /robots.txt                             145 B         103 kB
+├ ○ /sitemap.xml                            145 B         103 kB
+├ ○ /work                                 7.23 kB         113 kB
+├ ● /work/[slug]                          3.61 kB         115 kB
+├   ├ /work/seizefreeze
+├   ├ /work/bci-calibration
+├   ├ /work/rigetti-quantum-operations
+├   └ [+3 more paths]
+├ ○ /work/belmont-motorsport-systems        172 B         106 kB
+├ ○ /work/motorsport-neurotrauma-toolkit    172 B         106 kB
+└ ○ /work/vector-ekg-reasonos             4.54 kB         116 kB
++ First Load JS shared by all              102 kB
+  ├ chunks/362-3573cdf926c157ec.js        46.3 kB
+  ├ chunks/4d1e2c37-b97742d6d549625e.js   54.2 kB
+  └ other shared chunks (total)           1.98 kB
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand

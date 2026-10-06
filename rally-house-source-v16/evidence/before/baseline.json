@@ -1,0 +1,46 @@
+{
+  "pages": [
+    {
+      "name": "desktop",
+      "errors": [],
+      "overflow": false
+    },
+    {
+      "name": "portrait",
+      "errors": [],
+      "overflow": false
+    },
+    {
+      "name": "landscape",
+      "errors": [],
+      "overflow": false
+    }
+  ],
+  "live": [
+    {
+      "url": "https://arjansinghpuniani.com/playground/rally-house",
+      "status": 200,
+      "title": "Rally House — Cozy Tennis Life Sim | Arjan Singh Puniani"
+    },
+    {
+      "url": "https://arjansinghpuniani.com/rally-house/index.html",
+      "status": 200,
+      "title": "Rally House — A living tennis club"
+    }
+  ],
+  "performance": {
+    "median": 16.699999999254942,
+    "p95": 17.299999999813735,
+    "p99": 17.700000000186265,
+    "perf": {
+      "simMs": 0.0030146914230017676,
+      "renderMs": 1.7843921787121455,
+      "drawCalls": 802,
+      "triangles": 262156,
+      "entities": 5,
+      "memoryMB": 11.348724365234375
+    },
+    "heap": 11900000,
+    "items": 802
+  }
+}

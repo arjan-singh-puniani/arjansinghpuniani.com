@@ -1,0 +1,31 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {chromium,browserOptions} from './runtime.mjs';
+const output=path.resolve('../arjan-portfolio/public/rally-house/media');
+const browser=await chromium.launch({...browserOptions,args:['--use-angle=metal']});
+const context=await browser.newContext({viewport:{width:1280,height:800},recordVideo:{dir:path.resolve('../takeover-evidence/video'),size:{width:1280,height:800}}});
+const page=await context.newPage(),events=[],errors=[];const start=Date.now();
+const mark=text=>events.push({seconds:(Date.now()-start)/1000,text});
+page.on('pageerror',e=>errors.push(e.message));
+try {
+  await page.goto(process.env.QA_BASE_URL??'http://127.0.0.1:8078/?debug');
+  await page.waitForFunction(()=>window.__rh?.ready);await page.getByText('Arjan',{exact:true}).click();
+  await page.evaluate(()=>{const g=window.__rh.game;g.clock.minutes=1040;g.clock.paused=true;g.autosave=-10000;g.camera.frameAcademy();});
+  mark('A living miniature tennis club. People share the space around the court.');await page.waitForTimeout(1800);
+  await page.evaluate(()=>window.__rh.game.openCharacter(window.__rh.game.actor('leo')));await page.waitForTimeout(1400);
+  mark('Select Leo. His actual state and available actions appear beside him.');
+  await page.getByText('Challenge to Match',{exact:true}).click();mark('Both players walk to the court. The same club becomes a match.');
+  await page.waitForFunction(()=>window.__rh.championship().phase==='intro',null,{timeout:40000});mark('The camera moves into the court for Championship tennis.');
+  await page.waitForFunction(()=>window.__rh.championship().phase==='serving');
+  await page.keyboard.press('Space');mark('Space starts the serve. The racket releases the ball at contact.');
+  const contacts=await page.evaluate(async()=>{const g=window.__rh.game;let max=0;const end=performance.now()+9000;while(performance.now()<end){const m=g.interactiveMatch;if(!m)break;max=Math.max(max,m.rallyLength);if(m.playerCue()==='swing')g.matchInput.queueSwing();if(g.championship.phase==='serving')g.matchInput.queueSwing();await new Promise(r=>setTimeout(r,30));}return max;});
+  assert(contacts>=3);mark('Preparing swings before the bounce keeps the rally going. Contact remains physical.');
+  await page.getByText('Exit match',{exact:true}).click();await page.waitForFunction(()=>!window.__rh.game.championship.active);mark('Return to the same club, with the previous camera and pause state restored.');
+  await page.waitForTimeout(2300);assert.deepEqual(errors,[]);
+  const video=page.video();await context.close();await video.saveAs(path.join(output,'club-to-court.webm'));
+  const end=(Date.now()-start)/1000;
+  const stamp=s=>{const ms=Math.round(s*1000);return `${String(Math.floor(ms/3600000)).padStart(2,'0')}:${String(Math.floor(ms/60000)%60).padStart(2,'0')}:${String(Math.floor(ms/1000)%60).padStart(2,'0')}.${String(ms%1000).padStart(3,'0')}`;};
+  fs.writeFileSync(path.join(output,'club-to-court.vtt'),'WEBVTT\n\n'+events.map((e,i)=>`${stamp(e.seconds)} --> ${stamp(events[i+1]?.seconds??end)}\n${e.text}\n`).join('\n'));
+  fs.writeFileSync('../takeover-evidence/after/film.json',JSON.stringify({events,durationWallSeconds:end,contacts,errors},null,2));console.log('Continuous film PASS',end.toFixed(2),'seconds',contacts,'contacts');
+}finally{await context.close();await browser.close();}

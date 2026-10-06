@@ -1,0 +1,149 @@
+{
+  "errors": [],
+  "performance": [
+    {
+      "mode": "club",
+      "frames": 600,
+      "median": 16.699999999999818,
+      "p95": 16.700000000000728,
+      "p99": 16.800000000000182,
+      "heap": 15200000,
+      "perf": {
+        "simMs": 0.044827871355651645,
+        "renderMs": 2.7964579287323965,
+        "drawCalls": 802,
+        "triangles": 262156,
+        "entities": 5,
+        "memoryMB": 14.495849609375
+      },
+      "matchActive": false
+    },
+    {
+      "mode": "match",
+      "frames": 600,
+      "median": 16.69999999999891,
+      "p95": 16.799999999999272,
+      "p99": 16.80000000000109,
+      "heap": 15200000,
+      "perf": {
+        "simMs": 0.10343798049774837,
+        "renderMs": 1.8442358271160653,
+        "drawCalls": 876,
+        "triangles": 274316,
+        "entities": 5,
+        "memoryMB": 14.495849609375
+      },
+      "matchActive": true,
+      "rallyLength": 8
+    }
+  ],
+  "saved": [
+    {
+      "id": "activity-2:round-1",
+      "sourceId": "activity-2:round-1",
+      "type": "championship_result",
+      "day": 1,
+      "people": [
+        "player",
+        "leo"
+      ],
+      "tags": [
+        "tennis",
+        "championship"
+      ],
+      "sentiment": 0.6,
+      "strength": 0.95,
+      "detail": "Arjan 7–0 Leo · completed Championship.",
+      "place": "court"
+    }
+  ],
+  "restored": {
+    "events": [
+      {
+        "id": "activity-2:round-1",
+        "sourceId": "activity-2:round-1",
+        "type": "championship_result",
+        "day": 1,
+        "people": [
+          "player",
+          "leo"
+        ],
+        "tags": [
+          "tennis",
+          "championship"
+        ],
+        "sentiment": 0.6,
+        "strength": 0.95,
+        "detail": "Arjan 7–0 Leo · completed Championship.",
+        "place": "court"
+      }
+    ],
+    "context": "R\nRally House\nliving tennis academy\n◌\n100\n♥\n1\n✦\n3\n☀\n17:40\n🎾\nDay 1 · Evening at Rally House\nFollow a member, build a corner, or simply watch.\nTap to walk · drag to pan · Shift/right-drag to orbit · pinch or scroll to zoom\nⅡ\n1×\n☰ Club\n🎾 Coach\n🪴 Build\n☀\n⌖\n↓\n⚙\nR\nRally House\nopening the club…\n×\n\nMember\n\nLeo\n\ncounterpuncher\n\nSettling into the day · Energy 78%\n\nNew face\nEvening hit\nLast Championship with you\nArjan 7–0 Leo · completed Championship.\nSpend a moment\nWalk over and listen\nShare matcha\nMeet at the matcha nook\nChallenge to Match\nFirst to 7 · win by 2",
+    "reserved": false,
+    "active": false
+  },
+  "audio": {
+    "silentContextAbsent": true,
+    "cached": 12,
+    "rows": [
+      {
+        "duration": 0.105,
+        "peak": 0.9200000166893005
+      },
+      {
+        "duration": 0.105,
+        "peak": 0.9200000166893005
+      },
+      {
+        "duration": 0.105,
+        "peak": 0.9200000166893005
+      },
+      {
+        "duration": 0.082,
+        "peak": 0.9200000166893005
+      },
+      {
+        "duration": 0.105,
+        "peak": 0.9200000166893005
+      },
+      {
+        "duration": 0.105,
+        "peak": 0.9200000166893005
+      },
+      {
+        "duration": 0.105,
+        "peak": 0.9200000166893005
+      },
+      {
+        "duration": 0.082,
+        "peak": 0.9200000166893005
+      },
+      {
+        "duration": 0.105,
+        "peak": 0.9200000166893005
+      },
+      {
+        "duration": 0.105,
+        "peak": 0.9200000166893005
+      },
+      {
+        "duration": 0.105,
+        "peak": 0.9200000166893005
+      },
+      {
+        "duration": 0.082,
+        "peak": 0.9200000166893005
+      }
+    ],
+    "state": "running",
+    "disposed": true
+  },
+  "package": {
+    "styles": [
+      "http://127.0.0.1:8079/style.css",
+      "http://127.0.0.1:8079/championship.css",
+      "http://127.0.0.1:8079/spatial.css"
+    ],
+    "ready": true
+  }
+}

@@ -80,6 +80,16 @@ export class Character {
   private stringImpactStrength=0;
   private stringImpactDirection=1;
   private racketVibration=0;private stepEvent=false;private lastStanceKey='';
+  private interactionTarget?:Vec3;
+  private interactionWeight=0;
+  private interactionRelease?:Vec3;
+
+  /** A short reach toward a real surface, bounded by the stylized arm's length. */
+  setInteractionTarget(target?:Vec3){
+    if(target)this.interactionRelease=undefined;
+    else this.interactionRelease=this.interactionTarget?.clone();
+    this.interactionTarget=target?.clone();
+  }
 
   constructor(public spec:CharacterSpec,start:Vec3,private nav:Navigation,private destinations:Record<string,Vec3>){this.acting=new ActingState(spec.id);this.position=start.clone();this.prevPosition=start.clone();this.targetYaw=this.yaw;}
 
@@ -182,6 +192,10 @@ export class Character {
   }
 
   update(dt:number){
+    // Reach promptly; let the hand settle back more gently after completion.
+    const reachSharpness=this.interactionTarget?10:4;
+    this.interactionWeight=expDamp(this.interactionWeight,this.interactionTarget?1:0,reachSharpness,dt);
+    if(this.interactionWeight<.001)this.interactionRelease=undefined;
     this.propAge+=dt;this.departureDelay=Math.max(0,this.departureDelay-dt);if(!this.propWanted&&this.propAge>=.65){this.propKind=null;this.propAnchor=null;this.propRelease=null;}
     this.acting.update(dt,this.majorActivity||isShot(this.state)||this.state==='shuffle');this.crowdCooldown-=dt;this.gazeClock+=dt;
     if(this.transientLookRemaining>0){this.transientLookRemaining=Math.max(0,this.transientLookRemaining-dt);if(this.transientLookRemaining===0)this.targetLook=undefined;}
@@ -373,6 +387,12 @@ export class Character {
       const left=this.propKind==='notebook',target=left?handL:handR,neutral=left?neutralL:neutralR;
       const contact=this.propWanted?(this.propAge<.4?Vec3.lerp(neutral,this.propAnchor,smoothstep(0,.4,this.propAge)):Vec3.lerp(this.propAnchor,target,smoothstep(.4,1,this.propAge))):Vec3.lerp(this.propRelease??target,this.propAnchor,smoothstep(0,.65,this.propAge));
       if(left)handL=contact;else handR=contact;
+    }
+    const surfaceTarget=this.interactionTarget??this.interactionRelease;
+    if(surfaceTarget&&!shot&&!moving&&!this.propKind){
+      const reach=Vec3.sub(surfaceTarget,shoulderR);
+      if(reach.len()>.80)reach.normalize().scale(.80);
+      handR=Vec3.lerp(handR,Vec3.add(shoulderR,reach),this.interactionWeight);
     }
     // Racket constraint: the hand owns the grip. At contact, solve the hand backwards from the requested sweet spot.
     const racketForward=Vec3.sub(this.outgoingTarget??this.worldLocal(0,1,2),this.position);racketForward.y=0;if(racketForward.len()<.001)racketForward.set(Math.sin(this.yaw),0,Math.cos(this.yaw));racketForward.normalize();

@@ -1,0 +1,2530 @@
+{
+  "baseline": {
+    "introSeconds": 1.9,
+    "readySeconds": 0.42,
+    "pointResultSeconds": 1.05,
+    "exitSeconds": 0.85,
+    "pointsToWin": 7,
+    "winBy": 2,
+    "swingBufferSeconds": 1.1,
+    "perfectWindowSeconds": 0.15,
+    "cleanWindowSeconds": 0.42,
+    "defensiveWindowSeconds": 0.85,
+    "movementAcceleration": 38,
+    "movementDeceleration": 44,
+    "movementReverseSharpness": 62,
+    "playerMinCourtSpeedScale": 0.08,
+    "playerMaxCourtSpeedScale": 2.45,
+    "assistContacts": 5,
+    "assistOpponentFlightSeconds": 1.14,
+    "assistOpponentServeFlightSeconds": 1.24,
+    "assistOpponentSpread": 0.28,
+    "playerReturnReach": 2.85,
+    "returnEarlyLeadSeconds": 0.5,
+    "returnLateGraceSeconds": 0.065,
+    "arcadeStrokeTempo": 0.72,
+    "arcadeContactTempo": 0.7,
+    "opponentServeReadSeconds": 0.3,
+    "ballVisualRadius": 0.235,
+    "ballRestitution": 0.64,
+    "ballHaloRadius": 0.35,
+    "landingCueOpacity": 0.46,
+    "landingCueScale": 1.25
+  },
+  "method": "tracking bot, 18-second point, 80/400ms cue delays; no human feel score",
+  "profiles": [
+    {
+      "movement": "calm",
+      "feed": "generous",
+      "values": {
+        "movementAcceleration": 28,
+        "movementDeceleration": 32,
+        "movementReverseSharpness": 44,
+        "playerMaxCourtSpeedScale": 2.05,
+        "swingBufferSeconds": 1.3,
+        "assistOpponentFlightSeconds": 1.28,
+        "assistOpponentServeFlightSeconds": 1.35,
+        "playerReturnReach": 3.05,
+        "assistOpponentSpread": 0.22
+      },
+      "steering": [
+        {
+          "hz": 30,
+          "distance350ms": 2.013008799502976,
+          "reversal90Seconds": 0.1,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 60,
+          "distance350ms": 1.971533200265704,
+          "reversal90Seconds": 0.1,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 120,
+          "distance350ms": 2.00156268256288,
+          "reversal90Seconds": 0.1,
+          "releaseDrift": 0
+        }
+      ],
+      "scenarios": [
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 13,
+          "result": {
+            "winner": "player",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 13,
+          "result": null,
+          "maxContactGap": 0.050000000000000225
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000023
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000032
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000036
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 13,
+          "result": null,
+          "maxContactGap": 0.050000000000000364
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999965
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.0500000000000004
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 13,
+          "result": {
+            "winner": "player",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.05000000000000041
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999962
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000028
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999955
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000036
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034700000000000064
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000041
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 11,
+          "result": {
+            "winner": "player",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.05000000000000044
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034699999999999995
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000034
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000013
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000246
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999974
+        }
+      ],
+      "summary": {
+        "meanContacts": 7.708333333333333,
+        "accessibleFirstRallies": 12,
+        "total": 24,
+        "maxContactGap": 0.05000000000000044
+      }
+    },
+    {
+      "movement": "calm",
+      "feed": "current",
+      "values": {
+        "movementAcceleration": 28,
+        "movementDeceleration": 32,
+        "movementReverseSharpness": 44,
+        "playerMaxCourtSpeedScale": 2.05,
+        "swingBufferSeconds": 1.1,
+        "assistOpponentFlightSeconds": 1.14,
+        "assistOpponentServeFlightSeconds": 1.24,
+        "playerReturnReach": 2.85,
+        "assistOpponentSpread": 0.28
+      },
+      "steering": [
+        {
+          "hz": 30,
+          "distance350ms": 2.013008799502976,
+          "reversal90Seconds": 0.1,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 60,
+          "distance350ms": 1.971533200265704,
+          "reversal90Seconds": 0.1,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 120,
+          "distance350ms": 2.00156268256288,
+          "reversal90Seconds": 0.1,
+          "releaseDrift": 0
+        }
+      ],
+      "scenarios": [
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 13,
+          "result": {
+            "winner": "player",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000294
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000023
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000035
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000036
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999965
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000364
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 13,
+          "result": {
+            "winner": "player",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.05000000000000031
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999962
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999955
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034700000000000064
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000027
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 11,
+          "result": {
+            "winner": "player",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.05000000000000004
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034699999999999995
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000034
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000013
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000033
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999974
+        }
+      ],
+      "summary": {
+        "meanContacts": 7.791666666666667,
+        "accessibleFirstRallies": 12,
+        "total": 24,
+        "maxContactGap": 0.050000000000000426
+      }
+    },
+    {
+      "movement": "calm",
+      "feed": "demanding",
+      "values": {
+        "movementAcceleration": 28,
+        "movementDeceleration": 32,
+        "movementReverseSharpness": 44,
+        "playerMaxCourtSpeedScale": 2.05,
+        "swingBufferSeconds": 0.75,
+        "assistOpponentFlightSeconds": 1,
+        "assistOpponentServeFlightSeconds": 1.08,
+        "playerReturnReach": 2.5,
+        "assistOpponentSpread": 0.45
+      },
+      "steering": [
+        {
+          "hz": 30,
+          "distance350ms": 2.013008799502976,
+          "reversal90Seconds": 0.1,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 60,
+          "distance350ms": 1.971533200265704,
+          "reversal90Seconds": 0.1,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 120,
+          "distance350ms": 2.00156268256288,
+          "reversal90Seconds": 0.1,
+          "releaseDrift": 0
+        }
+      ],
+      "scenarios": [
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 13,
+          "result": {
+            "winner": "player",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000038
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000023
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000024
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000036
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000013
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999965
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000364
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 13,
+          "result": {
+            "winner": "player",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.05000000000000031
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999962
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999955
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034700000000000064
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 8,
+          "result": {
+            "winner": "player",
+            "reason": "long"
+          },
+          "maxContactGap": 0.05000000000000003
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 11,
+          "result": {
+            "winner": "player",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.05000000000000031
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034699999999999995
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000027
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000013
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999974
+        }
+      ],
+      "summary": {
+        "meanContacts": 7.541666666666667,
+        "accessibleFirstRallies": 12,
+        "total": 24,
+        "maxContactGap": 0.050000000000000426
+      }
+    },
+    {
+      "movement": "current",
+      "feed": "generous",
+      "values": {
+        "movementAcceleration": 38,
+        "movementDeceleration": 44,
+        "movementReverseSharpness": 62,
+        "playerMaxCourtSpeedScale": 2.45,
+        "swingBufferSeconds": 1.3,
+        "assistOpponentFlightSeconds": 1.28,
+        "assistOpponentServeFlightSeconds": 1.35,
+        "playerReturnReach": 3.05,
+        "assistOpponentSpread": 0.22
+      },
+      "steering": [
+        {
+          "hz": 30,
+          "distance350ms": 2.4715784996219945,
+          "reversal90Seconds": 0.06666666666666667,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 60,
+          "distance350ms": 2.426977265673875,
+          "reversal90Seconds": 0.08333333333333333,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 120,
+          "distance350ms": 2.4641827357399917,
+          "reversal90Seconds": 0.075,
+          "releaseDrift": 0
+        }
+      ],
+      "scenarios": [
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 13,
+          "result": null,
+          "maxContactGap": 0.050000000000000225
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000023
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000032
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000036
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 13,
+          "result": null,
+          "maxContactGap": 0.050000000000000364
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999965
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 7,
+          "result": {
+            "winner": "player",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.0500000000000004
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000029
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999962
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000032
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999955
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000036
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034700000000000064
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000364
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034699999999999995
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000336
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000013
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000246
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999974
+        }
+      ],
+      "summary": {
+        "meanContacts": 7.625,
+        "accessibleFirstRallies": 12,
+        "total": 24,
+        "maxContactGap": 0.050000000000000426
+      }
+    },
+    {
+      "movement": "current",
+      "feed": "current",
+      "values": {
+        "movementAcceleration": 38,
+        "movementDeceleration": 44,
+        "movementReverseSharpness": 62,
+        "playerMaxCourtSpeedScale": 2.45,
+        "swingBufferSeconds": 1.1,
+        "assistOpponentFlightSeconds": 1.14,
+        "assistOpponentServeFlightSeconds": 1.24,
+        "playerReturnReach": 2.85,
+        "assistOpponentSpread": 0.28
+      },
+      "steering": [
+        {
+          "hz": 30,
+          "distance350ms": 2.4715784996219945,
+          "reversal90Seconds": 0.06666666666666667,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 60,
+          "distance350ms": 2.426977265673875,
+          "reversal90Seconds": 0.08333333333333333,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 120,
+          "distance350ms": 2.4641827357399917,
+          "reversal90Seconds": 0.075,
+          "releaseDrift": 0
+        }
+      ],
+      "scenarios": [
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000384
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000023
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000037
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000036
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999965
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 7,
+          "result": {
+            "winner": "player",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.050000000000000204
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999962
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999955
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034700000000000064
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000034
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000034
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034699999999999995
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.0500000000000003
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000013
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000033
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999974
+        }
+      ],
+      "summary": {
+        "meanContacts": 7.708333333333333,
+        "accessibleFirstRallies": 12,
+        "total": 24,
+        "maxContactGap": 0.050000000000000426
+      }
+    },
+    {
+      "movement": "current",
+      "feed": "demanding",
+      "values": {
+        "movementAcceleration": 38,
+        "movementDeceleration": 44,
+        "movementReverseSharpness": 62,
+        "playerMaxCourtSpeedScale": 2.45,
+        "swingBufferSeconds": 0.75,
+        "assistOpponentFlightSeconds": 1,
+        "assistOpponentServeFlightSeconds": 1.08,
+        "playerReturnReach": 2.5,
+        "assistOpponentSpread": 0.45
+      },
+      "steering": [
+        {
+          "hz": 30,
+          "distance350ms": 2.4715784996219945,
+          "reversal90Seconds": 0.06666666666666667,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 60,
+          "distance350ms": 2.426977265673875,
+          "reversal90Seconds": 0.08333333333333333,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 120,
+          "distance350ms": 2.4641827357399917,
+          "reversal90Seconds": 0.075,
+          "releaseDrift": 0
+        }
+      ],
+      "scenarios": [
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000038
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000023
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000176
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000036
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000013
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999965
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 7,
+          "result": {
+            "winner": "player",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.050000000000000225
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999962
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999955
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034700000000000064
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 8,
+          "result": {
+            "winner": "player",
+            "reason": "long"
+          },
+          "maxContactGap": 0.05000000000000008
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000024
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034699999999999995
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000027
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000013
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999974
+        }
+      ],
+      "summary": {
+        "meanContacts": 7.458333333333333,
+        "accessibleFirstRallies": 12,
+        "total": 24,
+        "maxContactGap": 0.050000000000000426
+      }
+    },
+    {
+      "movement": "fast",
+      "feed": "generous",
+      "values": {
+        "movementAcceleration": 50,
+        "movementDeceleration": 54,
+        "movementReverseSharpness": 78,
+        "playerMaxCourtSpeedScale": 2.7,
+        "swingBufferSeconds": 1.3,
+        "assistOpponentFlightSeconds": 1.28,
+        "assistOpponentServeFlightSeconds": 1.35,
+        "playerReturnReach": 3.05,
+        "assistOpponentSpread": 0.22
+      },
+      "steering": [
+        {
+          "hz": 30,
+          "distance350ms": 2.7689851809438806,
+          "reversal90Seconds": 0.06666666666666667,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 60,
+          "distance350ms": 2.7260433369270496,
+          "reversal90Seconds": 0.06666666666666667,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 120,
+          "distance350ms": 2.768758659183693,
+          "reversal90Seconds": 0.058333333333333334,
+          "releaseDrift": 0
+        }
+      ],
+      "scenarios": [
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 13,
+          "result": null,
+          "maxContactGap": 0.050000000000000225
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000023
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.0500000000000004
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000036
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 13,
+          "result": null,
+          "maxContactGap": 0.050000000000000364
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999965
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000045
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.04999999999999996
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999962
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 13,
+          "result": {
+            "winner": "player",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.05000000000000028
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999955
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000036
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034700000000000064
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000041
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000038
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034699999999999995
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000384
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000013
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000246
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999974
+        }
+      ],
+      "summary": {
+        "meanContacts": 7.875,
+        "accessibleFirstRallies": 12,
+        "total": 24,
+        "maxContactGap": 0.05000000000000045
+      }
+    },
+    {
+      "movement": "fast",
+      "feed": "current",
+      "values": {
+        "movementAcceleration": 50,
+        "movementDeceleration": 54,
+        "movementReverseSharpness": 78,
+        "playerMaxCourtSpeedScale": 2.7,
+        "swingBufferSeconds": 1.1,
+        "assistOpponentFlightSeconds": 1.14,
+        "assistOpponentServeFlightSeconds": 1.24,
+        "playerReturnReach": 2.85,
+        "assistOpponentSpread": 0.28
+      },
+      "steering": [
+        {
+          "hz": 30,
+          "distance350ms": 2.7689851809438806,
+          "reversal90Seconds": 0.06666666666666667,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 60,
+          "distance350ms": 2.7260433369270496,
+          "reversal90Seconds": 0.06666666666666667,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 120,
+          "distance350ms": 2.768758659183693,
+          "reversal90Seconds": 0.058333333333333334,
+          "releaseDrift": 0
+        }
+      ],
+      "scenarios": [
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000294
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000023
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000035
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000036
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999965
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000266
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000031
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999962
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 13,
+          "result": {
+            "winner": "player",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999955
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034700000000000064
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000038
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000038
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034699999999999995
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000384
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000013
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000033
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999974
+        }
+      ],
+      "summary": {
+        "meanContacts": 7.958333333333333,
+        "accessibleFirstRallies": 12,
+        "total": 24,
+        "maxContactGap": 0.050000000000000426
+      }
+    },
+    {
+      "movement": "fast",
+      "feed": "demanding",
+      "values": {
+        "movementAcceleration": 50,
+        "movementDeceleration": 54,
+        "movementReverseSharpness": 78,
+        "playerMaxCourtSpeedScale": 2.7,
+        "swingBufferSeconds": 0.75,
+        "assistOpponentFlightSeconds": 1,
+        "assistOpponentServeFlightSeconds": 1.08,
+        "playerReturnReach": 2.5,
+        "assistOpponentSpread": 0.45
+      },
+      "steering": [
+        {
+          "hz": 30,
+          "distance350ms": 2.7689851809438806,
+          "reversal90Seconds": 0.06666666666666667,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 60,
+          "distance350ms": 2.7260433369270496,
+          "reversal90Seconds": 0.06666666666666667,
+          "releaseDrift": 0
+        },
+        {
+          "hz": 120,
+          "distance350ms": 2.768758659183693,
+          "reversal90Seconds": 0.058333333333333334,
+          "releaseDrift": 0
+        }
+      ],
+      "scenarios": [
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.050000000000000426
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000038
+        },
+        {
+          "hz": 30,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000023
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000017
+        },
+        {
+          "hz": 30,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000036
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000315
+        },
+        {
+          "hz": 30,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999965
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.050000000000000266
+        },
+        {
+          "hz": 60,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000031
+        },
+        {
+          "hz": 60,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999962
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 13,
+          "result": {
+            "winner": "player",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 60,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999955
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 60,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034700000000000064
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.08,
+          "contacts": 8,
+          "result": {
+            "winner": "player",
+            "reason": "long"
+          },
+          "maxContactGap": 0.05000000000000003
+        },
+        {
+          "hz": 120,
+          "opponent": "coach",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.04999999999999977
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000033
+        },
+        {
+          "hz": 120,
+          "opponent": "mika",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.034699999999999995
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000027
+        },
+        {
+          "hz": 120,
+          "opponent": "leo",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03470000000000013
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.08,
+          "contacts": 14,
+          "result": null,
+          "maxContactGap": 0.05000000000000042
+        },
+        {
+          "hz": 120,
+          "opponent": "nia",
+          "delay": 0.4,
+          "contacts": 2,
+          "result": {
+            "winner": "opponent",
+            "reason": "miss"
+          },
+          "maxContactGap": 0.03469999999999974
+        }
+      ],
+      "summary": {
+        "meanContacts": 7.708333333333333,
+        "accessibleFirstRallies": 12,
+        "total": 24,
+        "maxContactGap": 0.050000000000000426
+      }
+    }
+  ]
+}

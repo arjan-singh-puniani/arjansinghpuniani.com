@@ -10,7 +10,11 @@ export function characterContext(c, s) {
     const free = !s.activities.busy(c.id) && !s.activities.busy('player'), facts = [];
     const match = s.history.matches.find(m => Object.hasOwn(m.score, c.id)), memory = s.mind.recall(c.id)[0];
     const favorite = Object.entries(s.affordances.objects).find(([, h]) => h.favoriteOf.includes(c.id));
-    if (match) {
+    const championship = s.relations.recall(c.id, 'championship');
+    if (championship) {
+        facts.push({ label: 'Last Championship with you', text: championship.detail });
+    }
+    else if (match) {
         const score = Object.entries(match.score).map(([id, n]) => `${s.characters.find(p => p.id === id)?.spec.name ?? id} ${n}`).join(' · ');
         facts.push({ label: 'Last club match', text: `${match.winner === 'draw' ? 'Draw' : match.winner === c.id ? 'Won' : 'Lost'} · ${score}` });
     }
@@ -51,6 +55,9 @@ export function objectContext(o, a, e, memories) {
     if (o.kind === 'court' && !a.busy('player'))
         actions.push({ id: 'watch', title: 'Watch a rally', detail: 'Head to the sideline' });
     const facts = [];
+    const lastVisit = a.history.find(receipt => receipt.kind === 'touch' && receipt.resource === o.id && receipt.phase === 'completed');
+    if (lastVisit)
+        facts.push({ label: 'Your last completed visit', text: lastVisit.result ?? lastVisit.detail });
     if (o.kind === 'equipment')
         facts.push({ label: 'Your racket', text: `${e.frame} · ${e.string} · ${e.tension} lb` });
     if (['board', 'paper', 'trophy'].includes(o.kind) && memories[0])

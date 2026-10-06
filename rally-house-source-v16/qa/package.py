@@ -13,7 +13,7 @@ with zipfile.ZipFile(archive) as z:
  assert len(z.namelist())==len(files)
 print(str(archive));print(f'{len(files)} files; {archive.stat().st_size/1048576:.1f} MiB; ZIP CRC verified')
 # Neutral tester package excludes design documents, personalities and QA answers.
-tester=[root/'index.html',root/'style.css',root/'run.command',root/'TESTER-HANDOFF.md',*sorted((root/'dist').rglob('*.js'))]
+tester=[root/'index.html',root/'style.css',root/'championship.css',root/'spatial.css',root/'run.command',root/'TESTER-HANDOFF.md',*sorted((root/'dist').rglob('*.js'))]
 small=root.parent/'Rally-House-v16-Playtest.zip'
 with zipfile.ZipFile(small,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
  for p in tester:z.write(p,str(Path('Rally-House-v16-Playtest')/p.relative_to(root)))

@@ -9,6 +9,20 @@ export class BallPhysics {
     bounces = 0;
     lastZ = 0;
     launch(start, target, flightTime = .82) { this.position = start.clone(); this.lastZ = start.z; this.velocity = new Vec3((target.x - start.x) / flightTime, (target.y - start.y - .5 * this.gravity * flightTime * flightTime) / flightTime, (target.z - start.z) / flightTime); this.active = true; this.bounces = 0; }
+    /** Forecast the first landing using the same semi-implicit fixed step as update. */
+    firstLanding(step = 1 / 60) {
+        if (!this.active || this.bounces > 0 || this.gravity >= 0 || step <= 0)
+            return null;
+        const v = this.velocity.y + this.gravity * step / 2;
+        const discriminant = v * v - 2 * this.gravity * (this.position.y - this.radius);
+        if (discriminant < 0)
+            return null;
+        const seconds = (-v - Math.sqrt(discriminant)) / this.gravity;
+        const frames = Math.ceil(seconds / step);
+        if (!Number.isFinite(frames) || frames < 1)
+            return null;
+        return new Vec3(this.position.x + this.velocity.x * frames * step, this.radius, this.position.z + this.velocity.z * frames * step);
+    }
     update(dt) {
         if (!this.active)
             return { bounced: false, net: false };

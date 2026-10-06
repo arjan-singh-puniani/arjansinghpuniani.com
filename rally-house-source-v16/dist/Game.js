@@ -69,6 +69,8 @@ export class Game {
     championshipOpponentId = null;
     championshipPriorSpeed = 1;
     championshipPriorPaused = false;
+    championshipRound = 1;
+    championshipCompletedRound = 0;
     spatial;
     noticeTimer = 0;
     worldNotices = [];
@@ -486,6 +488,8 @@ export class Game {
         this.clock.paused = false;
         this.clock.speed = 1;
         this.championshipActivityId = activity.id;
+        this.championshipRound = 1;
+        this.championshipCompletedRound = 0;
         this.championshipOpponentId = opponent.id;
         this.interactiveMatch = this.createInteractiveMatch(opponent, profile);
         this.matchInput.setEnabled(false);
@@ -541,14 +545,17 @@ export class Game {
                 c.setEmotion(quality === 'perfect' ? 'surprised' : 'attentive', .45);
     }
     rematchChampionship() {
+        this.rememberChampionshipResult();
         if (!this.championship.rematch())
             return;
+        this.championshipRound++;
         this.matchInput.setEnabled(false);
         this.ui.toast('Again.');
     }
     requestChampionshipExit() {
         if (!this.championship.active)
             return;
+        this.rememberChampionshipResult();
         this.matchInput.setEnabled(false);
         this.interactiveMatch?.stop();
         this.championship.requestExit();
@@ -582,7 +589,12 @@ export class Game {
         if (this.championship.phase === 'exiting') {
             this.championship.update(dt, this.settings.reducedMotion);
             if (!this.championship.active) {
-                this.activities.cancel(a, 'Returned to club');
+                if (this.championshipCompletedRound > 0 && a.phase === 'active') {
+                    this.activities.transition(a, 'resolving');
+                    this.activities.finish(a, `Completed ${this.championshipCompletedRound} Championship match${this.championshipCompletedRound === 1 ? '' : 'es'}; returned to club`, () => { });
+                }
+                else
+                    this.activities.cancel(a, 'Returned to club');
                 this.releaseActivity(a);
             }
             return;
@@ -631,9 +643,12 @@ export class Game {
             if (acceptsInput) {
                 this.interactiveMatch?.update(dt);
             }
-            if (after === 'matchResult' && before !== 'matchResult') {
+            // Contact callbacks may change phase during match.update, after `after`
+            // was sampled. Read the owner again so the final point cannot lose its receipt.
+            if (this.championship.phase === 'matchResult') {
                 this.matchInput.setEnabled(false);
                 this.interactiveMatch?.stop();
+                this.rememberChampionshipResult();
             }
             if (after === 'inactive') {
                 this.activities.transition(a, 'resolving');
@@ -644,6 +659,33 @@ export class Game {
             this.activities.finish(a, 'championship', () => { });
             this.releaseActivity(a);
         }
+    }
+    rememberChampionshipResult() {
+        const completed = this.championship.phase === 'matchResult';
+        if (!completed || this.championshipCompletedRound === this.championshipRound)
+            return;
+        const opponent = this.byId(this.championshipOpponentId ?? '');
+        if (!opponent || !this.championshipActivityId)
+            return;
+        this.championshipCompletedRound = this.championshipRound;
+        const score = this.championship.snapshot().score;
+        const detail = `${this.player.spec.name} ${score.player}–${score.opponent} ${opponent.spec.name} · completed Championship.`;
+        this.relations.remember(opponent.id, {
+            // Equal scores on separate rematches are still distinct completed events.
+            sourceId: `${this.championshipActivityId}:round-${this.championshipRound}`,
+            type: 'championship_result',
+            day: this.clock.day,
+            people: ['player', opponent.id],
+            tags: ['tennis', 'championship'],
+            sentiment: .6,
+            strength: .95,
+            detail,
+            place: 'court',
+        });
+        this.life.addMemory(this.clock.day, detail);
+        this.mind.reinforceCulture('competition', .035);
+        opponent.setEmotion(score.opponent > score.player ? 'pleased' : 'attentive', 2);
+        void this.save();
     }
     visitMember(c, tea) {
         const base = tea ? destinations.cafe : new Vec3(c.position.x, 0, c.position.z);
@@ -679,15 +721,19 @@ export class Game {
             this.ui.toast('Let the current moment finish first.');
             return;
         }
+        const contact = this.world.interactionPoint(objectId, origin, touch.effect);
+        const centre = touch.animation === 'sit' ? origin : contact;
         const options = [];
         // Approach a free side of the real object. Never put the actor in furniture.
-        for (const radius of [1.1, 1.65, 2.25, 2.8])
+        for (const radius of [.65, .9, 1.1, 1.65, 2.25, 2.8])
             for (let i = 0; i < 12; i++) {
-                const angle = i * Math.PI / 6, p = new Vec3(origin.x + Math.cos(angle) * radius, 0, origin.z + Math.sin(angle) * radius);
+                const angle = i * Math.PI / 6, p = new Vec3(centre.x + Math.cos(angle) * radius, 0, centre.z + Math.sin(angle) * radius);
                 if (!this.world.nav.isBlocked(p.x, p.z) && this.characters.every(c => Vec3.sub(c.position, p).len() > .75))
                     options.push(p);
             }
-        options.sort((a, b) => Vec3.sub(a, this.player.position).len() - Vec3.sub(b, this.player.position).len());
+        // Prefer a reachable contact before minimizing travel; a far-side shortcut cannot touch a bell.
+        const cost = (p) => Math.hypot(p.x - centre.x, p.z - centre.z) * 8 + Vec3.sub(p, this.player.position).len();
+        options.sort((a, b) => cost(a) - cost(b));
         if (touch.animation === 'sit') {
             const placement = this.world.placements.find(p => p.id === objectId), angle = placement?.rotation ?? 0;
             const distance = placement ? 1.05 : 1.6;
@@ -703,7 +749,7 @@ export class Game {
         const activity = this.startActivity('touch', ['player'], objectId, [target], touch.title);
         if (!activity)
             return;
-        this.touchRuns.set(activity.id, { touch, origin: origin.clone(), objectId, label });
+        this.touchRuns.set(activity.id, { touch, origin: origin.clone(), contact, objectId, label });
         this.ui.closeContext();
     }
     updateClubTouch(a, dt) {
@@ -720,9 +766,11 @@ export class Game {
             if (this.player.pathIndex < this.player.path.length)
                 return;
             this.activities.transition(a, 'starting');
-            this.player.face(run.origin);
-            this.player.setLook(new Vec3(run.origin.x, 1.2, run.origin.z));
-            this.player.racketStowed = run.touch.effect !== 'stringing';
+            this.player.face(run.contact);
+            this.player.setLook(run.contact);
+            if (['bell', 'paper', 'stringing'].includes(run.touch.effect))
+                this.player.setInteractionTarget(run.contact);
+            this.player.racketStowed = true;
             this.player.socialGesture = run.touch.effect === 'stringing' ? 'inspect' : run.touch.effect === 'bell' ? 'point' : run.touch.effect === 'lamp' ? 'offer' : 'none';
             this.player.socialProp = run.touch.prop;
             if (run.touch.animation === 'sit') {
@@ -735,11 +783,11 @@ export class Game {
         }
         if (a.phase === 'starting' && a.phaseTime > .7) {
             this.activities.transition(a, 'active');
-            this.world.triggerInteraction(run.touch.effect, run.touch.seconds, run.origin);
+            this.world.triggerInteraction(run.touch.effect, run.touch.seconds, run.contact);
             this.playObjectSound(run.touch.effect);
             const now = this.everyday.time;
             for (const c of interactionWitnesses(this.characters, run.origin, id => this.activities.busy(id), this.witnessTimes, now)) {
-                c.glanceAt(new Vec3(run.origin.x, 1.2, run.origin.z), 1.4);
+                c.glanceAt(run.contact, 1.4);
                 c.setEmotion(run.touch.effect === 'bell' ? 'surprised' : 'pleased', .8);
                 this.witnessTimes.set(c.id, now);
             }
@@ -1155,6 +1203,7 @@ export class Game {
             c.seatDepth = 0;
             c.socialGesture = 'none';
             c.socialProp = null;
+            c.setInteractionTarget(undefined);
             c.racketStowed = false;
             c.acting.setRole('exit');
         }

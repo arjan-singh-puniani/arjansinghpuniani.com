@@ -14,7 +14,9 @@ for(const [name,width,height,touch] of [['desktop',1280,800,false],['tablet',102
  await page.evaluate(()=>{const g=window.__rh.game;g.settings.visuals='detail';g.autosave=-10000;g.clock.minutes=1190;g.clock.paused=true;g.camera.frameAcademy();});
  await page.waitForTimeout(1000);await page.screenshot({path:`qa/studio/club-${name}.png`});
  // A visible UI action starts the reservation and natural travel. No teleporting actors.
- await page.evaluate(()=>{const g=window.__rh.game;g.openCharacter(g.characters.find(c=>c.id==='leo'));g.camera.pin();window.qaCamera=g.camera.captureState();});
+ await page.evaluate(()=>{const g=window.__rh.game;g.openCharacter(g.characters.find(c=>c.id==='leo'));});
+ await page.waitForTimeout(1200);
+ await page.evaluate(()=>{const g=window.__rh.game;g.camera.pin();window.qaCamera=g.camera.captureState();});
  await page.getByText('Challenge to Match',{exact:true}).click();
  await page.waitForFunction(()=>window.__rh.championship().phase==='serving',null,{timeout:35000});
  await page.waitForTimeout(500);await page.screenshot({path:`qa/studio/match-${name}.png`});

@@ -191,10 +191,10 @@ export class ChampionshipCameraRig {
             (ball?.x ?? courtCenter.x) * ballInfluence;
         return {
             target: new Vec3(focusX, 0.74 + kick * 0.028, -0.46),
-            distance: 20.4 + portrait * 12.2 - kick * 0.11,
+            distance: 20.4 + portrait * (CHAMPIONSHIP_TUNING.portraitCameraDistance - 20.4) - kick * 0.11,
             azimuth: 0,
-            elevation: 0.49 + portrait * 0.075,
-            fov: (35.5 + portrait * 9.5) * Math.PI / 180,
+            elevation: 0.49 + portrait * (CHAMPIONSHIP_TUNING.portraitCameraElevation - 0.49),
+            fov: (35.5 + portrait * (CHAMPIONSHIP_TUNING.portraitCameraFovDegrees - 35.5)) * Math.PI / 180,
         };
     }
     currentPose() {
