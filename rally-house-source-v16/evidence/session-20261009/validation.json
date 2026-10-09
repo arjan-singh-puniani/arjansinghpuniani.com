@@ -1,0 +1,278 @@
+{
+  "views": [
+    {
+      "width": 1280,
+      "height": 800,
+      "axe": 0,
+      "pauseBounds": {
+        "x": 480,
+        "y": 257.15625,
+        "width": 320,
+        "height": 285.6875
+      },
+      "exitWhilePaused": {
+        "paused": true,
+        "speed": 2,
+        "reserved": false,
+        "owner": null
+      },
+      "nativeExitWhilePlaying": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "axe": 0,
+      "pauseBounds": {
+        "x": 35,
+        "y": 279.15625,
+        "width": 320,
+        "height": 285.6875
+      },
+      "multitouch": {
+        "initial": 0.7999999482752913,
+        "together": 0.7999999482752913,
+        "released": 0
+      },
+      "exitWhilePaused": {
+        "paused": true,
+        "speed": 2,
+        "reserved": false,
+        "owner": null
+      },
+      "nativeExitWhilePlaying": true
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "axe": 0,
+      "pauseBounds": {
+        "x": 262,
+        "y": 52.15625,
+        "width": 320,
+        "height": 285.6875
+      },
+      "multitouch": {
+        "initial": 0.7999999306418679,
+        "together": 0.7999999306418679,
+        "released": 0
+      },
+      "exitWhilePaused": {
+        "paused": true,
+        "speed": 2,
+        "reserved": false,
+        "owner": null
+      },
+      "nativeExitWhilePlaying": true
+    },
+    {
+      "width": 390,
+      "height": 280,
+      "axe": 0,
+      "pauseBounds": {
+        "x": 35,
+        "y": 34.5,
+        "width": 320,
+        "height": 211
+      },
+      "multitouch": {
+        "initial": 0.7999999306418679,
+        "together": 0.7999999306418679,
+        "released": 0
+      },
+      "exitWhilePaused": {
+        "paused": true,
+        "speed": 2,
+        "reserved": false,
+        "owner": null
+      },
+      "nativeExitWhilePlaying": true
+    }
+  ],
+  "pauses": [
+    {
+      "width": 1280,
+      "kind": "flight",
+      "exactFreeze": true,
+      "contactsAfterResume": 1
+    },
+    {
+      "width": 1280,
+      "kind": "contact",
+      "exactFreeze": true,
+      "contactsAfterResume": 1
+    },
+    {
+      "width": 390,
+      "kind": "flight",
+      "exactFreeze": true,
+      "contactsAfterResume": 1
+    },
+    {
+      "width": 390,
+      "kind": "contact",
+      "exactFreeze": true,
+      "contactsAfterResume": 1
+    },
+    {
+      "width": 844,
+      "kind": "flight",
+      "exactFreeze": true,
+      "contactsAfterResume": 1
+    },
+    {
+      "width": 844,
+      "kind": "contact",
+      "exactFreeze": true,
+      "contactsAfterResume": 1
+    },
+    {
+      "width": 390,
+      "kind": "flight",
+      "exactFreeze": true,
+      "contactsAfterResume": 1
+    },
+    {
+      "width": 390,
+      "kind": "contact",
+      "exactFreeze": true,
+      "contactsAfterResume": 1
+    }
+  ],
+  "stalls": [
+    {
+      "kind": "serving",
+      "milliseconds": 100,
+      "ticks": 6,
+      "debt": 2.0816681711721685e-17,
+      "ballFinite": true,
+      "score": {
+        "player": 0,
+        "opponent": 0
+      }
+    },
+    {
+      "kind": "serving",
+      "milliseconds": 500,
+      "ticks": 6,
+      "debt": 2.0816681711721685e-17,
+      "ballFinite": true,
+      "score": {
+        "player": 0,
+        "opponent": 0
+      }
+    },
+    {
+      "kind": "serving",
+      "milliseconds": 2000,
+      "ticks": 6,
+      "debt": 2.0816681711721685e-17,
+      "ballFinite": true,
+      "score": {
+        "player": 0,
+        "opponent": 0
+      }
+    },
+    {
+      "kind": "flight",
+      "milliseconds": 100,
+      "ticks": 6,
+      "debt": 2.0816681711721685e-17,
+      "ballFinite": true,
+      "score": {
+        "player": 0,
+        "opponent": 0
+      }
+    },
+    {
+      "kind": "flight",
+      "milliseconds": 500,
+      "ticks": 6,
+      "debt": 2.0816681711721685e-17,
+      "ballFinite": true,
+      "score": {
+        "player": 0,
+        "opponent": 0
+      }
+    },
+    {
+      "kind": "flight",
+      "milliseconds": 2000,
+      "ticks": 6,
+      "debt": 2.0816681711721685e-17,
+      "ballFinite": true,
+      "score": {
+        "player": 0,
+        "opponent": 0
+      }
+    },
+    {
+      "kind": "contact",
+      "milliseconds": 100,
+      "ticks": 5,
+      "debt": 0.008966666660706037,
+      "ballFinite": true,
+      "score": {
+        "player": 0,
+        "opponent": 0
+      }
+    },
+    {
+      "kind": "contact",
+      "milliseconds": 500,
+      "ticks": 6,
+      "debt": 2.0816681711721685e-17,
+      "ballFinite": true,
+      "score": {
+        "player": 0,
+        "opponent": 0
+      }
+    },
+    {
+      "kind": "contact",
+      "milliseconds": 2000,
+      "ticks": 6,
+      "debt": 2.0816681711721685e-17,
+      "ballFinite": true,
+      "score": {
+        "player": 0,
+        "opponent": 0
+      }
+    }
+  ],
+  "saves": [
+    {
+      "kind": "malformed",
+      "width": 1280,
+      "height": 800,
+      "preserved": true,
+      "fallback": "Your saved club could not open\nYour saved data has been left untouched. Try the latest game in a new tab. If this browser’s storage is unavailable, reopen the browser and retry.\nTry again\nOpen game in a new tab ↗"
+    },
+    {
+      "kind": "future",
+      "width": 390,
+      "height": 844,
+      "preserved": true,
+      "fallback": "Your saved club could not open\nYour saved data has been left untouched. Try the latest game in a new tab. If this browser’s storage is unavailable, reopen the browser and retry.\nTry again\nOpen game in a new tab ↗"
+    },
+    {
+      "kind": "invalid",
+      "width": 844,
+      "height": 390,
+      "preserved": true,
+      "fallback": "Your saved club could not open\nYour saved data has been left untouched. Try the latest game in a new tab. If this browser’s storage is unavailable, reopen the browser and retry.\nTry again\nOpen game in a new tab ↗"
+    },
+    {
+      "kind": "unavailable",
+      "preserved": true
+    }
+  ],
+  "errors": [],
+  "pageSwitch": {
+    "hidden": false,
+    "paused": false,
+    "input": true,
+    "lifecycleDelivered": false,
+    "explicitResumeRequired": true
+  },
+  "graphicsFallback": "The club’s graphics could not start\nRally House needs WebGL 2. Check hardware acceleration, or try another current browser.\nTry again\nOpen game in a new tab ↗"
+}

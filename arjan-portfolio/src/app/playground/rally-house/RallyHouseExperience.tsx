@@ -71,7 +71,7 @@ export default function RallyHouseExperience() {
         </div>
         <div className={styles.playerFooter}><span>{playing ? "Live game" : "The game starts when you enter"} · browser play</span>{playing && <button onClick={fullscreen}>Enter fullscreen ↗</button>}</div>
         {fullscreenMessage && <p role="status">{fullscreenMessage}</p>}
-        <div className={styles.controls} id="rally-house-controls"><p><strong>In the club</strong>Tap to walk. Tap people and objects. Drag to pan; scroll or pinch to zoom.</p><p><strong>On the court</strong>WASD or arrows to move. Space to swing. On touch screens, use the stick and Swing. Esc returns to the club.</p><p><strong>At your pace</strong>Pause, volume, and reduced motion are in the game settings. A match preserves your view of the club.</p></div>
+        <div className={styles.controls} id="rally-house-controls"><p><strong>In the club</strong>Tap to walk. Tap people and objects. Drag to pan; scroll or pinch to zoom.</p><p><strong>On the court</strong>WASD or arrows to move. Space to swing. On touch screens, use the stick and Swing. Esc returns to the club.</p><p><strong>At your pace</strong>Pause the match to adjust sound and motion. Leaving the game pauses the point until you resume. Your view of the club is preserved.</p></div>
       </div>
     </section>
 

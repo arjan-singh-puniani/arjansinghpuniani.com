@@ -1,0 +1,17 @@
+{
+  "focusedExit": {
+    "phase": "serving",
+    "exiting": false,
+    "swinging": true
+  },
+  "touch": {
+    "first": 0.8999999999999999,
+    "second": -0.9,
+    "ownerAfterPoint": 22
+  },
+  "stall": {
+    "ticks": 120
+  },
+  "pauseControl": 0,
+  "protectedSave": "Rally House needs WebGL 2Turn on hardware acceleration or open the game in current Safari, Chrome, Edge, or Firefox.Try again"
+}

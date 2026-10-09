@@ -264,6 +264,18 @@ body.championship-transitioning .championshipSwing {
 .championshipMessage{top:auto;bottom:max(52px,calc(env(safe-area-inset-bottom) + 40px));font-size:12px;max-width:calc(100vw - 32px)}
 .championshipMessage:empty{display:none}
 .championshipExit{position:absolute;right:max(16px,env(safe-area-inset-right));top:max(14px,env(safe-area-inset-top));pointer-events:auto;min-height:44px;padding:8px 13px;border:1px solid #d9decd;border-radius:14px;background:#f2ebdc;color:#294f43;font:600 12px inherit;cursor:pointer}
+.championshipPause{position:absolute;right:max(16px,env(safe-area-inset-right));top:max(64px,calc(env(safe-area-inset-top) + 50px));pointer-events:auto;min-height:44px;padding:8px 13px;border:1px solid #d9decd;border-radius:14px;background:#f2ebdc;color:#294f43;font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+.championshipPausePanel{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(320px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;padding:20px;display:grid;gap:10px;border-radius:18px;pointer-events:auto;color:#294f43}
+.championshipPausePanel strong{font-size:22px}
+.championshipPausePanel p{margin:0 0 4px;font-size:13px;line-height:1.45}
+.championshipPausePanel button{min-height:44px;padding:9px 12px;border-radius:12px;background:#f2ebdc;color:#294f43;font:inherit;font-size:13px;cursor:pointer}
+.championshipPausePanel button[aria-pressed="true"]{background:#416d59;color:#fffdf7}
+.championshipPauseActions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.championshipPauseActions button:first-child{background:#416d59;color:#fffdf7;font-weight:750}
+.championshipExit[hidden]{display:none}
+@media(max-height:320px){.championshipPausePanel{padding:14px;gap:8px}.championshipPausePanel strong{font-size:18px}.championshipPausePanel p{display:none}}
+.championshipPause[hidden],.championshipPausePanel[hidden]{display:none}
+.championshipHud[data-paused="true"]{background:#192e231f}
 .championshipResultSummary{color:#405e51}
 .championshipHud[data-phase="intro"] .championshipScore{transform:translateY(-7px)}
 .championshipHud[data-phase="challenge"] .championshipMatchup,.championshipHud[data-phase="challenge"] .championshipScore,.championshipHud[data-phase="challenge"] .championshipControlsHint{display:none}
