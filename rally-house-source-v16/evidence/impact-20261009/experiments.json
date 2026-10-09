@@ -1,0 +1,769 @@
+{
+  "simulation": [
+    {
+      "profile": "restrained",
+      "hz": 30,
+      "opponent": "leo",
+      "contacts": 34,
+      "releases": 34,
+      "points": 0,
+      "maxCompressionGap": 0.050000000000000405,
+      "lastContact": 44.06666666666667
+    },
+    {
+      "profile": "restrained",
+      "hz": 30,
+      "opponent": "coach",
+      "contacts": 34,
+      "releases": 34,
+      "points": 1,
+      "maxCompressionGap": 0.050000000000000426,
+      "lastContact": 44.13333333333333
+    },
+    {
+      "profile": "restrained",
+      "hz": 30,
+      "opponent": "mika",
+      "contacts": 34,
+      "releases": 34,
+      "points": 0,
+      "maxCompressionGap": 0.050000000000000266,
+      "lastContact": 44.63333333333333
+    },
+    {
+      "profile": "restrained",
+      "hz": 30,
+      "opponent": "nia",
+      "contacts": 34,
+      "releases": 34,
+      "points": 0,
+      "maxCompressionGap": 0.05000000000000037,
+      "lastContact": 44.56666666666667
+    },
+    {
+      "profile": "restrained",
+      "hz": 60,
+      "opponent": "leo",
+      "contacts": 33,
+      "releases": 33,
+      "points": 0,
+      "maxCompressionGap": 0.04999999999999965,
+      "lastContact": 43.88333333333333
+    },
+    {
+      "profile": "restrained",
+      "hz": 60,
+      "opponent": "coach",
+      "contacts": 33,
+      "releases": 33,
+      "points": 0,
+      "maxCompressionGap": 0.050000000000000155,
+      "lastContact": 44.53333333333333
+    },
+    {
+      "profile": "restrained",
+      "hz": 60,
+      "opponent": "mika",
+      "contacts": 32,
+      "releases": 32,
+      "points": 1,
+      "maxCompressionGap": 0.049999999999999954,
+      "lastContact": 43.78333333333333
+    },
+    {
+      "profile": "restrained",
+      "hz": 60,
+      "opponent": "nia",
+      "contacts": 33,
+      "releases": 33,
+      "points": 0,
+      "maxCompressionGap": 0.0500000000000003,
+      "lastContact": 44.733333333333334
+    },
+    {
+      "profile": "restrained",
+      "hz": 120,
+      "opponent": "leo",
+      "contacts": 33,
+      "releases": 33,
+      "points": 0,
+      "maxCompressionGap": 0.05000000000000028,
+      "lastContact": 43.541666666666664
+    },
+    {
+      "profile": "restrained",
+      "hz": 120,
+      "opponent": "coach",
+      "contacts": 33,
+      "releases": 33,
+      "points": 0,
+      "maxCompressionGap": 0.04999999999999992,
+      "lastContact": 44.09166666666667
+    },
+    {
+      "profile": "restrained",
+      "hz": 120,
+      "opponent": "mika",
+      "contacts": 33,
+      "releases": 33,
+      "points": 0,
+      "maxCompressionGap": 0.03470000000000042,
+      "lastContact": 44.675
+    },
+    {
+      "profile": "restrained",
+      "hz": 120,
+      "opponent": "nia",
+      "contacts": 33,
+      "releases": 33,
+      "points": 0,
+      "maxCompressionGap": 0.049999999999999954,
+      "lastContact": 44.65833333333333
+    },
+    {
+      "profile": "selected",
+      "hz": 30,
+      "opponent": "leo",
+      "contacts": 34,
+      "releases": 34,
+      "points": 0,
+      "maxCompressionGap": 0.05000000000000013,
+      "lastContact": 43.733333333333334
+    },
+    {
+      "profile": "selected",
+      "hz": 30,
+      "opponent": "coach",
+      "contacts": 34,
+      "releases": 34,
+      "points": 1,
+      "maxCompressionGap": 0.050000000000000426,
+      "lastContact": 44.43333333333333
+    },
+    {
+      "profile": "selected",
+      "hz": 30,
+      "opponent": "mika",
+      "contacts": 34,
+      "releases": 34,
+      "points": 0,
+      "maxCompressionGap": 0.05000000000000035,
+      "lastContact": 43.96666666666667
+    },
+    {
+      "profile": "selected",
+      "hz": 30,
+      "opponent": "nia",
+      "contacts": 32,
+      "releases": 32,
+      "points": 0,
+      "maxCompressionGap": 0.049999999999999864,
+      "lastContact": 43.8
+    },
+    {
+      "profile": "selected",
+      "hz": 60,
+      "opponent": "leo",
+      "contacts": 33,
+      "releases": 33,
+      "points": 0,
+      "maxCompressionGap": 0.04999999999999971,
+      "lastContact": 44.4
+    },
+    {
+      "profile": "selected",
+      "hz": 60,
+      "opponent": "coach",
+      "contacts": 33,
+      "releases": 33,
+      "points": 0,
+      "maxCompressionGap": 0.05000000000000033,
+      "lastContact": 43.85
+    },
+    {
+      "profile": "selected",
+      "hz": 60,
+      "opponent": "mika",
+      "contacts": 33,
+      "releases": 33,
+      "points": 1,
+      "maxCompressionGap": 0.05000000000000032,
+      "lastContact": 44.8
+    },
+    {
+      "profile": "selected",
+      "hz": 60,
+      "opponent": "nia",
+      "contacts": 32,
+      "releases": 32,
+      "points": 0,
+      "maxCompressionGap": 0.04999999999999966,
+      "lastContact": 44.18333333333333
+    },
+    {
+      "profile": "selected",
+      "hz": 120,
+      "opponent": "leo",
+      "contacts": 33,
+      "releases": 33,
+      "points": 0,
+      "maxCompressionGap": 0.04999999999999977,
+      "lastContact": 44.25
+    },
+    {
+      "profile": "selected",
+      "hz": 120,
+      "opponent": "coach",
+      "contacts": 33,
+      "releases": 33,
+      "points": 0,
+      "maxCompressionGap": 0.050000000000000405,
+      "lastContact": 44.675
+    },
+    {
+      "profile": "selected",
+      "hz": 120,
+      "opponent": "mika",
+      "contacts": 32,
+      "releases": 32,
+      "points": 0,
+      "maxCompressionGap": 0.034700000000000286,
+      "lastContact": 44
+    },
+    {
+      "profile": "selected",
+      "hz": 120,
+      "opponent": "nia",
+      "contacts": 32,
+      "releases": 32,
+      "points": 0,
+      "maxCompressionGap": 0.05000000000000022,
+      "lastContact": 44.125
+    },
+    {
+      "profile": "extra-heavy",
+      "hz": 30,
+      "opponent": "leo",
+      "contacts": 34,
+      "releases": 34,
+      "points": 0,
+      "maxCompressionGap": 0.05740553417844695,
+      "lastContact": 44.666666666666664
+    },
+    {
+      "profile": "extra-heavy",
+      "hz": 30,
+      "opponent": "coach",
+      "contacts": 33,
+      "releases": 33,
+      "points": 1,
+      "maxCompressionGap": 0.057405534178446974,
+      "lastContact": 43.8
+    },
+    {
+      "profile": "extra-heavy",
+      "hz": 30,
+      "opponent": "mika",
+      "contacts": 33,
+      "releases": 33,
+      "points": 0,
+      "maxCompressionGap": 0.057405534178446925,
+      "lastContact": 43.7
+    },
+    {
+      "profile": "extra-heavy",
+      "hz": 30,
+      "opponent": "nia",
+      "contacts": 33,
+      "releases": 33,
+      "points": 0,
+      "maxCompressionGap": 0.05740553417844642,
+      "lastContact": 43.9
+    },
+    {
+      "profile": "extra-heavy",
+      "hz": 60,
+      "opponent": "leo",
+      "contacts": 32,
+      "releases": 32,
+      "points": 0,
+      "maxCompressionGap": 0.06281131164138021,
+      "lastContact": 44.15
+    },
+    {
+      "profile": "extra-heavy",
+      "hz": 60,
+      "opponent": "coach",
+      "contacts": 32,
+      "releases": 32,
+      "points": 0,
+      "maxCompressionGap": 0.06281131164138011,
+      "lastContact": 44.46666666666667
+    },
+    {
+      "profile": "extra-heavy",
+      "hz": 60,
+      "opponent": "mika",
+      "contacts": 32,
+      "releases": 32,
+      "points": 1,
+      "maxCompressionGap": 0.06281131164138003,
+      "lastContact": 44.18333333333333
+    },
+    {
+      "profile": "extra-heavy",
+      "hz": 60,
+      "opponent": "nia",
+      "contacts": 32,
+      "releases": 32,
+      "points": 0,
+      "maxCompressionGap": 0.06281131164137968,
+      "lastContact": 44.88333333333333
+    },
+    {
+      "profile": "extra-heavy",
+      "hz": 120,
+      "opponent": "leo",
+      "contacts": 32,
+      "releases": 32,
+      "points": 0,
+      "maxCompressionGap": 0.06310942549653485,
+      "lastContact": 44.65
+    },
+    {
+      "profile": "extra-heavy",
+      "hz": 120,
+      "opponent": "coach",
+      "contacts": 32,
+      "releases": 32,
+      "points": 0,
+      "maxCompressionGap": 0.06310942549653488,
+      "lastContact": 44.3
+    },
+    {
+      "profile": "extra-heavy",
+      "hz": 120,
+      "opponent": "mika",
+      "contacts": 32,
+      "releases": 32,
+      "points": 0,
+      "maxCompressionGap": 0.06310942549653484,
+      "lastContact": 44.6
+    },
+    {
+      "profile": "extra-heavy",
+      "hz": 120,
+      "opponent": "nia",
+      "contacts": 31,
+      "releases": 31,
+      "points": 0,
+      "maxCompressionGap": 0.06310942549653488,
+      "lastContact": 43.74166666666667
+    }
+  ],
+  "camera": [
+    {
+      "profile": "restrained",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "impulse": {
+        "pushIn": 0.36454138473080805,
+        "offset": {
+          "x": -0.0029964762978631075,
+          "y": 0.01458,
+          "z": 0
+        }
+      },
+      "corners": [
+        {
+          "plain": {
+            "x": 436.2194954463262,
+            "y": 300.2351379842676,
+            "visible": true
+          },
+          "impact": {
+            "x": 433.47948858635095,
+            "y": 299.4581046352895,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 851.2610399100362,
+            "y": 300.2733630551371,
+            "visible": true
+          },
+          "impact": {
+            "x": 854.4040576934142,
+            "y": 299.496818400182,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 292.19458120049666,
+            "y": 700.1888441114623,
+            "visible": true
+          },
+          "impact": {
+            "x": 283.95682608909937,
+            "y": 708.616978151546,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 1000.1216611120537,
+            "y": 700.3000536080551,
+            "visible": true
+          },
+          "impact": {
+            "x": 1009.1725348178763,
+            "y": 708.7318969029092,
+            "visible": true
+          }
+        }
+      ],
+      "hold": 0.043199999999999995,
+      "dwell": 0.052199999999999996
+    },
+    {
+      "profile": "selected",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "impulse": {
+        "pushIn": 0.6075149555589341,
+        "offset": {
+          "x": -0.004994848413726725,
+          "y": 0.0243,
+          "z": 0
+        }
+      },
+      "corners": [
+        {
+          "plain": {
+            "x": 436.14642646108456,
+            "y": 300.25004482904575,
+            "visible": true
+          },
+          "impact": {
+            "x": 431.53446332552875,
+            "y": 298.94306947230467,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 851.2175389424709,
+            "y": 300.25991829911794,
+            "visible": true
+          },
+          "impact": {
+            "x": 856.5046618283886,
+            "y": 298.9531551072236,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 292.2142030713522,
+            "y": 700.265086504376,
+            "visible": true
+          },
+          "impact": {
+            "x": 278.25709848671465,
+            "y": 714.548983469584,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 1000.2326004177542,
+            "y": 700.2938150589855,
+            "visible": true
+          },
+          "impact": {
+            "x": 1015.5717096367575,
+            "y": 714.579342776613,
+            "visible": true
+          }
+        }
+      ],
+      "hold": 0.072,
+      "dwell": 0.087
+    },
+    {
+      "profile": "extra-heavy",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "impulse": {
+        "pushIn": 0.6075036103634315,
+        "offset": {
+          "x": -0.004994869655871736,
+          "y": 0.0243,
+          "z": 0
+        }
+      },
+      "corners": [
+        {
+          "plain": {
+            "x": 436.12923726471854,
+            "y": 300.2537751293538,
+            "visible": true
+          },
+          "impact": {
+            "x": 431.51686236316607,
+            "y": 298.94690657718786,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 851.206532705826,
+            "y": 300.25657521746956,
+            "visible": true
+          },
+          "impact": {
+            "x": 856.4933444791711,
+            "y": 298.9497668344379,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 292.22163236099004,
+            "y": 700.2823814250379,
+            "visible": true
+          },
+          "impact": {
+            "x": 278.2645761342801,
+            "y": 714.5673087745754,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 1000.2592371535701,
+            "y": 700.2905289624524,
+            "visible": true
+          },
+          "impact": {
+            "x": 1015.5994217873399,
+            "y": 714.5759188070141,
+            "visible": true
+          }
+        }
+      ],
+      "hold": 0.075,
+      "dwell": 0.12614999999999998
+    },
+    {
+      "profile": "restrained",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "impulse": {
+        "pushIn": 0.5103000000000001,
+        "offset": {
+          "x": -0.0029964762978631075,
+          "y": 0.01458,
+          "z": 0
+        }
+      },
+      "corners": [
+        {
+          "plain": {
+            "x": 77.04959174472562,
+            "y": 348.5033948349484,
+            "visible": true
+          },
+          "impact": {
+            "x": 75.34297543179582,
+            "y": 347.7316726780977,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 317.2800744762098,
+            "y": 348.5346631033252,
+            "visible": true
+          },
+          "impact": {
+            "x": 319.22454043446703,
+            "y": 347.76337357439564,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 27.495708421900297,
+            "y": 589.4456657349688,
+            "visible": true
+          },
+          "impact": {
+            "x": 23.982826349462773,
+            "y": 593.5731478295023,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 368.4020786009548,
+            "y": 589.5086334135198,
+            "visible": true
+          },
+          "impact": {
+            "x": 372.28883697949533,
+            "y": 593.6378077797368,
+            "visible": true
+          }
+        }
+      ],
+      "hold": 0.043199999999999995,
+      "dwell": 0.052199999999999996
+    },
+    {
+      "profile": "selected",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "impulse": {
+        "pushIn": 0.8505,
+        "offset": {
+          "x": -0.004994848413726725,
+          "y": 0.0243,
+          "z": 0
+        }
+      },
+      "corners": [
+        {
+          "plain": {
+            "x": 77.02037685562864,
+            "y": 348.50866206064137,
+            "visible": true
+          },
+          "impact": {
+            "x": 74.14598980666753,
+            "y": 347.20932687434663,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 317.26269949065346,
+            "y": 348.52378612894097,
+            "visible": true
+          },
+          "impact": {
+            "x": 320.5363547907284,
+            "y": 347.22480293423564,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 27.514270719586303,
+            "y": 589.474023028973,
+            "visible": true
+          },
+          "impact": {
+            "x": 21.573655327519077,
+            "y": 596.4558499527006,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 368.4447253866161,
+            "y": 589.5044810091778,
+            "visible": true
+          },
+          "impact": {
+            "x": 375.019736074067,
+            "y": 596.4876962686658,
+            "visible": true
+          }
+        }
+      ],
+      "hold": 0.072,
+      "dwell": 0.087
+    },
+    {
+      "profile": "extra-heavy",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "impulse": {
+        "pushIn": 0.8505,
+        "offset": {
+          "x": -0.004994869655871736,
+          "y": 0.0243,
+          "z": 0
+        }
+      },
+      "corners": [
+        {
+          "plain": {
+            "x": 77.0064922719911,
+            "y": 348.51131332044883,
+            "visible": true
+          },
+          "impact": {
+            "x": 74.13166930566638,
+            "y": 347.21200893692935,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 317.2540582895509,
+            "y": 348.51859761492113,
+            "visible": true
+          },
+          "impact": {
+            "x": 320.5275330772689,
+            "y": 347.2194627660751,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 27.523868402940458,
+            "y": 589.4872384164936,
+            "visible": true
+          },
+          "impact": {
+            "x": 21.58336251298196,
+            "y": 596.4698291384583,
+            "visible": true
+          }
+        },
+        {
+          "plain": {
+            "x": 368.4649875911707,
+            "y": 589.5019083531655,
+            "visible": true
+          },
+          "impact": {
+            "x": 375.0408714116311,
+            "y": 596.4851677835968,
+            "visible": true
+          }
+        }
+      ],
+      "hold": 0.075,
+      "dwell": 0.12614999999999998
+    }
+  ],
+  "errors": []
+}

@@ -1,7 +1,7 @@
 import { Vec3, clamp, smoothstep } from '../rendering/Math3D.js';
 import { BallPhysics } from './BallPhysics.js';
 import { BallTrail } from './BallTrail.js';
-import { CHAMPIONSHIP_TUNING } from './ChampionshipTuning.js';
+import { CHAMPIONSHIP_TUNING, CHAMPIONSHIP_CONTACT_FEEL } from './ChampionshipTuning.js';
 const COURT_CENTER_X = 1;
 const PLAYER_BASELINE_Z = 5;
 const OPPONENT_BASELINE_Z = -5;
@@ -54,6 +54,8 @@ export class InteractiveMatchSystem {
     trail = new BallTrail();
     trailSpeed = 0;
     impactBurst = 0;
+    impactAge = 1;
+    impactQuality = 'clean';
     lastContact = null;
     lastContactFrame = null;
     constructor(player, opponent, opponentProfile, input, callbacks = {}) {
@@ -89,6 +91,7 @@ export class InteractiveMatchSystem {
         this.trail.reset();
         this.trailSpeed = 0;
         this.impactBurst = 0;
+        this.impactAge = 1;
         this.lastContact = null;
         this.lastContactFrame = null;
         this.opponentServeDelay = server === 'opponent' ? CHAMPIONSHIP_TUNING.opponentServeReadSeconds + this.opponentProfile.serveCadence : 0;
@@ -121,6 +124,7 @@ export class InteractiveMatchSystem {
         this.trail.reset();
         this.trailSpeed = 0;
         this.impactBurst = 0;
+        this.impactAge = 1;
         this.player.clearCourtMove();
         this.opponent.clearCourtMove();
         this.player.clearShotIntent();
@@ -135,7 +139,8 @@ export class InteractiveMatchSystem {
         this.input.update(dt);
         this.playerHitPraise = Math.max(0, this.playerHitPraise - dt);
         this.bouncePulse = Math.max(0, this.bouncePulse - dt * 3);
-        this.impactBurst = Math.max(0, this.impactBurst - dt * 5.2);
+        this.impactAge += dt;
+        this.impactBurst = Math.max(0, 1 - this.impactAge / CHAMPIONSHIP_CONTACT_FEEL[this.impactQuality].duration);
         this.updatePlayerMovement(dt);
         if (this.pending) {
             this.updatePendingContact(dt);
@@ -379,7 +384,8 @@ export class InteractiveMatchSystem {
                 const contactWindow = pending.hitter.animTime >= pending.contactAt - 0.025;
                 if (pending.captured && contactWindow && gap <= 0.12) {
                     pending.impactStarted = true;
-                    pending.latchRemaining = pending.quality === 'perfect' ? 0.042 : 0.034;
+                    const feel = CHAMPIONSHIP_CONTACT_FEEL[pending.quality];
+                    pending.latchRemaining = feel.dwell;
                     this.flightHitter = pending.side;
                     this.receiver = this.otherSide(pending.side);
                     this.firstBounceSeen = false;
@@ -393,12 +399,15 @@ export class InteractiveMatchSystem {
                     };
                     pending.normalDirection = Vec3.dot(Vec3.sub(pending.target, frame.center), frame.normal) >= 0 ? 1 : -1;
                     pending.hitter.notifyRacketImpact(pending.quality, pending.normalDirection);
-                    this.impactBurst = pending.quality === 'perfect' ? 1.35 : 1.1;
+                    pending.hitter.holdRacketContact(feel.hold);
+                    this.impactAge = 0;
+                    this.impactQuality = pending.quality;
+                    this.impactBurst = 1;
                     if (pending.side === 'player') {
                         this.playerHitPraise = .42;
                         this.lastPlayerQuality = pending.quality;
                     }
-                    this.callbacks.onHit?.(pending.quality);
+                    this.callbacks.onHit?.(pending.quality, pending.side, clamp((pending.target.x - frame.center.x) / 4, -1, 1));
                     this.callbacks.onRallyContact?.(pending.side, pending.quality);
                 }
             }
@@ -546,6 +555,10 @@ export class InteractiveMatchSystem {
         if (this.pointResolved)
             return;
         this.pointResolved = true;
+        this.impactBurst = 0;
+        this.impactAge = 1;
+        this.player.clearShotIntent();
+        this.opponent.clearShotIntent();
         this.landingTarget = null;
         this.ball.active = false;
         this.pending = null;
@@ -622,22 +635,27 @@ export class InteractiveMatchSystem {
         }
         if (!reducedMotion && this.impactBurst > 0 && this.lastContact && this.lastContactFrame) {
             const frame = this.lastContactFrame;
-            const expansion = 0.3 + (1 - Math.min(1, this.impactBurst)) * 0.28;
-            const age = 1 - Math.min(1, this.impactBurst);
-            for (let i = 0; i < 5; i++) {
-                const angle = i * Math.PI * 2 / 5;
+            const feel = CHAMPIONSHIP_CONTACT_FEEL[this.impactQuality];
+            const age = 1 - this.impactBurst;
+            const release = 1 - (1 - age) * (1 - age);
+            const expansion = .18 + release * .48 * feel.flare;
+            const color = this.impactQuality === 'perfect' ? '#fff1b7' : this.impactQuality === 'frame' ? '#d9b7a4' : '#dcf781';
+            const count = this.impactQuality === 'perfect' ? 8 : this.impactQuality === 'clean' ? 5 : 3;
+            for (let i = 0; i < count; i++) {
+                const angle = i * Math.PI * 2 / count;
                 const spark = this.lastContact.clone()
-                    .add(frame.horizontal.clone().scale(Math.cos(angle) * (.12 + age * .42)))
-                    .add(frame.vertical.clone().scale(Math.sin(angle) * (.12 + age * .42)));
-                meshes.push({ kind: 'sphere', position: spark, scale: new Vec3(.055, .055, .055), color: i % 2 ? '#fff5d0' : '#dcf781', alpha: Math.min(.85, this.impactBurst * .65), unlit: true, noShadow: true });
+                    .add(frame.horizontal.clone().scale(Math.cos(angle) * (.10 + release * .52 * feel.flare)))
+                    .add(frame.vertical.clone().scale(Math.sin(angle) * (.10 + release * .52 * feel.flare)));
+                const size = .055 * (.5 + this.impactBurst * .5) * feel.flare;
+                meshes.push({ kind: 'sphere', position: spark, scale: new Vec3(size, size, size), color: i % 2 ? '#fff5d0' : color, alpha: this.impactBurst * .85, unlit: true, noShadow: true });
             }
             meshes.push({
                 kind: 'torus',
                 position: this.lastContact.clone(),
                 rotation: frame.rotation.clone(),
                 scale: new Vec3(expansion, expansion * 1.08, 0.13),
-                color: '#fff0c8',
-                alpha: Math.min(0.72, 0.56 * this.impactBurst),
+                color,
+                alpha: Math.min(.85, this.impactBurst * .72 * feel.flare),
                 unlit: true,
                 noShadow: true,
             });

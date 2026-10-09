@@ -1,5 +1,7 @@
 # Rally House validation — 6 October 2026
 
+The October 9 Championship contact follow-up is recorded separately in [Championship impact](CHAMPIONSHIP-IMPACT-20261009.md), with its own dated evidence. The results below describe the October 6 pass.
+
 All final automated checks listed below passed. Results refer to the isolated candidate branch, not physical phones or independent human play. Exact JSON and selected captures are in `evidence`.
 
 | Check | Baseline | Candidate evidence |

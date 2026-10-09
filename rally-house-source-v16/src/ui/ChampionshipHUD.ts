@@ -121,6 +121,7 @@ export class ChampionshipHUD {
     playerName: string,
     opponentName: string,
     cue: ChampionshipPlayerCue = 'none',
+    reducedMotion=false,
   ) {
     if (snapshot.phase === 'inactive') {
       // The challenge walk belongs to the dollhouse. Keep the sports HUD out
@@ -133,6 +134,8 @@ export class ChampionshipHUD {
     this.controlsHint.hidden=snapshot.phase==='matchResult';
     this.exitButton.hidden=snapshot.phase==='matchResult';
     this.root.dataset.phase = snapshot.phase;
+    this.root.dataset.cue=this.gameplayPhase(snapshot.phase)?cue:'none';
+    this.root.dataset.motion=reducedMotion?'reduced':'full';
 
     this.matchup.textContent = `${playerName.toUpperCase()}  vs  ${opponentName.toUpperCase()}`;
     this.score.textContent = `${snapshot.score.player}  –  ${snapshot.score.opponent}`;

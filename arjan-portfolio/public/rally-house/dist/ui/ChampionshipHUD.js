@@ -81,7 +81,7 @@ export class ChampionshipHUD {
         this.results.hidden = true;
         this.input.setTouchMovement(0, 0);
     }
-    render(snapshot, playerName, opponentName, cue = 'none') {
+    render(snapshot, playerName, opponentName, cue = 'none', reducedMotion = false) {
         if (snapshot.phase === 'inactive') {
             // The challenge walk belongs to the dollhouse. Keep the sports HUD out
             // of the way until the camera actually begins its transformation.
@@ -92,6 +92,8 @@ export class ChampionshipHUD {
         this.controlsHint.hidden = snapshot.phase === 'matchResult';
         this.exitButton.hidden = snapshot.phase === 'matchResult';
         this.root.dataset.phase = snapshot.phase;
+        this.root.dataset.cue = this.gameplayPhase(snapshot.phase) ? cue : 'none';
+        this.root.dataset.motion = reducedMotion ? 'reduced' : 'full';
         this.matchup.textContent = `${playerName.toUpperCase()}  vs  ${opponentName.toUpperCase()}`;
         this.score.textContent = `${snapshot.score.player}  –  ${snapshot.score.opponent}`;
         const message = this.messageFor(snapshot, cue);

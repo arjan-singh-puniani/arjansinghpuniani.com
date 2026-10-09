@@ -22,6 +22,7 @@ import { EmergentSocialSystem } from './simulation/EmergentSocialSystem.js';
 import { RallySystem } from './tennis/RallySystem.js';
 import { ChampionshipController } from './tennis/ChampionshipController.js';
 import { championshipOpponentFor } from './tennis/ChampionshipOpponents.js';
+import { CHAMPIONSHIP_CONTACT_FEEL } from './tennis/ChampionshipTuning.js';
 import { ChampionshipCameraRig } from './tennis/ChampionshipCameraRig.js';
 import { InteractiveMatchSystem } from './tennis/InteractiveMatchSystem.js';
 import { MatchInput } from './tennis/MatchInput.js';
@@ -518,7 +519,7 @@ export class Game {
     }
     createInteractiveMatch(opponent, profile) {
         return new InteractiveMatchSystem(this.player, opponent, profile, this.matchInput, {
-            onHit: (quality) => this.playChampionshipHit(quality),
+            onHit: (quality, side, direction) => this.playChampionshipHit(quality, side, direction),
             onBounce: () => this.audio.bounce(),
             onNet: () => this.audio.net(),
             onRallyContact: (_side, quality) => {
@@ -536,10 +537,10 @@ export class Game {
             },
         });
     }
-    playChampionshipHit(quality) {
+    playChampionshipHit(quality, side, direction) {
         this.audio.tennisImpact(quality);
         if (!this.settings.reducedMotion)
-            this.championshipCamera.pulseImpact(quality === 'perfect' ? 1.25 : quality === 'clean' ? .95 : quality === 'defensive' ? .5 : .35);
+            this.championshipCamera.pulseImpact(CHAMPIONSHIP_CONTACT_FEEL[quality].camera * (side === 'player' ? 1 : .45), direction);
         for (const c of this.characters)
             if (!this.activities.busy(c.id) && c.state === 'watch')
                 c.setEmotion(quality === 'perfect' ? 'surprised' : 'attentive', .45);
@@ -1900,7 +1901,7 @@ export class Game {
         if (this.championship.active && this.championshipOpponentId) {
             const opponent = this.byId(this.championshipOpponentId);
             if (opponent)
-                this.championshipHud.render(this.championship.snapshot(), this.player.spec.name, opponent.spec.name, this.interactiveMatch?.playerCue());
+                this.championshipHud.render(this.championship.snapshot(), this.player.spec.name, opponent.spec.name, this.interactiveMatch?.playerCue(), this.settings.reducedMotion);
         }
         else {
             this.championshipHud.hide();
@@ -1956,12 +1957,13 @@ export class Game {
         }
         if (this.history.breakthrough || this.history.firstMikaWin)
             meshes.push({ kind: 'roundBox', position: new Vec3(4.25, 2.12, -9.1), scale: new Vec3(.7, .12, .45), color: '#c58a5b', material: 'wood' }, { kind: 'sphere', position: new Vec3(4.25, 2.3, -9.1), scale: new Vec3(.24, .24, .24), color: '#e6c65f', material: 'fabric' });
+        const contactView = this.championshipCamera.renderImpulse(this.settings.reducedMotion);
         this.renderItems = meshes.length;
-        this.renderer.render(meshes, this.camera.viewProjection(), this.atmosphere.update(this.world.lighting(this.clock.minutes, this.sportFocus), this.renderDt), this.camera.position);
+        this.renderer.render(meshes, this.camera.viewProjection(contactView), this.atmosphere.update(this.world.lighting(this.clock.minutes, this.sportFocus), this.renderDt), this.camera.position);
         if (this.activeSpeechId && performance.now() < this.speechUntil) {
             const c = this.byId(this.activeSpeechId);
             if (c) {
-                const p = this.camera.project(new Vec3(c.position.x, 2.55, c.position.z));
+                const p = this.camera.project(new Vec3(c.position.x, 2.55, c.position.z), undefined, contactView);
                 this.ui.positionSpeech(p.x, p.y);
             }
         }

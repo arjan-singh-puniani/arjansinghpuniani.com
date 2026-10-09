@@ -274,3 +274,10 @@ body.championship-active .toast{display:none}
 button:focus-visible{outline:3px solid #d6a745;outline-offset:3px}
 
 .championshipMatchup,.championshipScore{border-radius:12px;box-shadow:0 4px 18px #17291a18}
+
+/* Contact praise stays at the edge of the court and matches its material flash. */
+.championshipHud[data-cue="sweet"] .championshipMessage{background:#f4edb5;color:#294f43;text-shadow:none;box-shadow:0 3px 14px #283d2f26;animation:contactPraise 180ms ease-out}
+.championshipHud[data-cue="nice"] .championshipMessage{background:#d8e8bb;color:#294f43;text-shadow:none}
+@keyframes contactPraise{from{transform:translateX(-50%) scale(1.08)}to{transform:translateX(-50%) scale(1)}}
+.championshipHud[data-motion="reduced"] .championshipMessage{animation:none}
+@media(prefers-reduced-motion:reduce){.championshipMessage{animation:none!important}}

@@ -1,3 +1,5 @@
+import {tennisImpactSignal} from './TennisImpactSound.js';
+
 export class AudioManager {
   private ctx?:AudioContext;enabled=true;volume=.65;private noise?:AudioBuffer;
   private tennisMaterialBuffers=new Map<string,AudioBuffer[]>();private tennisVariant=0;
@@ -77,69 +79,9 @@ export class AudioManager {
     if(cached)return cached;
 
     const c=this.ensure();
-    const seconds=quality==='frame'?.082:.105;
-    const length=Math.max(1,Math.floor(c.sampleRate*seconds));
-    const buffer=c.createBuffer(1,length,c.sampleRate);
-    const data=buffer.getChannelData(0);
-
-    let seed=(variant+1)*7919+quality.length*104729;
-    const random=()=>{
-      seed=(seed*1664525+1013904223)>>>0;
-      return seed/4294967296;
-    };
-
-    const profile=quality==='perfect'
-      ?{body:138,modes:[420,672,1015,1540],ring:.060,click:.72,bodyGain:.50}
-      :quality==='clean'
-        ?{body:132,modes:[398,638,948,1435],ring:.052,click:.62,bodyGain:.47}
-        :quality==='defensive'
-          ?{body:122,modes:[360,575,845,1240],ring:.043,click:.43,bodyGain:.39}
-          :{body:108,modes:[228,338,610,920],ring:.035,click:.56,bodyGain:.55};
-
-    let lowNoise=0;
-    for(let i=0;i<length;i++){
-      const t=i/c.sampleRate;
-      const white=random()*2-1;
-      lowNoise+=(white-lowNoise)*.18;
-      const highNoise=white-lowNoise;
-
-      // The ball/string collision itself: extremely short and broadband.
-      const click=highNoise*Math.exp(-t/.0034)*profile.click;
-
-      // A low racket/ball body component gives the hit weight in small speakers.
-      const body=(
-        Math.sin(Math.PI*2*profile.body*t)+
-        .42*Math.sin(Math.PI*2*profile.body*2.04*t+.35)
-      )*Math.exp(-t/.024)*profile.bodyGain;
-
-      // Several inharmonic, quickly damped modes read as strings and frame rather
-      // than as a pitched musical note.
-      let strings=0;
-      for(let m=0;m<profile.modes.length;m++){
-        const f=profile.modes[m]*(1+(variant-1)*.006+(m%2?.003:-.002));
-        const decay=profile.ring*(1-m*.10);
-        strings+=Math.sin(Math.PI*2*f*t+(m*.71))
-          *Math.exp(-t/Math.max(.012,decay))
-          *(m===0?.23:m===1?.17:m===2?.105:.065);
-      }
-
-      // A tiny low-passed felt component prevents the transient from becoming a
-      // brittle click, especially on laptop and phone speakers.
-      const felt=lowNoise*Math.exp(-t/.010)*(quality==='frame'?.20:.11);
-      data[i]=(click+body+strings+felt)*.72;
-    }
-
-    // Two early reflections add material depth without making the court sound
-    // like a cavern. They are copies of the already-generated physical impulse.
-    for(const [delay,gain] of [[.009,.15],[.019,.075]] as [number,number][]){
-      const offset=Math.floor(delay*c.sampleRate);
-      for(let i=offset;i<length;i++)data[i]+=data[i-offset]*gain;
-    }
-
-    let peak=.0001;
-    for(let i=0;i<length;i++)peak=Math.max(peak,Math.abs(data[i]));
-    const normalize=.92/peak;
-    for(let i=0;i<length;i++)data[i]*=normalize;
+    const data=tennisImpactSignal(quality,variant,c.sampleRate);
+    const buffer=c.createBuffer(1,data.length,c.sampleRate);
+    buffer.getChannelData(0).set(data);
 
     this.tennisMaterialBuffers.set(key,[buffer]);
     return buffer;

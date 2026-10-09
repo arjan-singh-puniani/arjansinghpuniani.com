@@ -1,5 +1,7 @@
 import {Vec3, clamp, lookAt, multiply, perspective, transformPoint, type Mat4} from './Math3D.js';
 
+export interface CameraViewImpulse {pushIn:number;offset:Vec3;}
+
 function spring(current:number,velocity:number,target:number,omega:number,dt:number){
   if(current===target&&velocity===0)return [current,0] as const;
   const f=1+2*dt*omega,oo=omega*omega,hoo=dt*oo,hhoo=dt*hoo,det=1/(f+hhoo);
@@ -60,7 +62,12 @@ export class CameraController {
     [this.elevation,this.elevationVelocity]=spring(this.elevation,this.elevationVelocity,this.desiredElevation,7.5,dt);
     const ce=Math.cos(this.elevation);this.position.set(this.target.x+Math.sin(this.azimuth)*ce*this.distance,this.target.y+Math.sin(this.elevation)*this.distance,this.target.z+Math.cos(this.azimuth)*ce*this.distance);
   }
-  viewProjection():Mat4{return multiply(perspective(this.fov,this.aspect,.1,120),lookAt(this.position,this.target));}
+  /** A render-only contact pulse never feeds back into the camera springs. */
+  viewProjection(impulse?:CameraViewImpulse):Mat4{
+    if(!impulse)return multiply(perspective(this.fov,this.aspect,.1,120),lookAt(this.position,this.target));
+    const eye=this.position.clone().add(Vec3.sub(this.target,this.position).normalize().scale(impulse.pushIn)).add(impulse.offset);
+    return multiply(perspective(this.fov,this.aspect,.1,120),lookAt(eye,this.target.clone().add(impulse.offset)));
+  }
   focus(x=0,z=0,distance=this.fitDistance,height=0){if(this.locked)return;this.autoFrame=false;this.desiredTarget.set(clamp(x,-12,12),height,clamp(z,-9,9));this.desiredDistance=clamp(distance,this.minDistance,this.maxDistance);}
   nudgeFocus(x:number,z:number,amount=.18){if(this.locked)return;this.desiredTarget.x=clamp(this.desiredTarget.x+(x-this.desiredTarget.x)*amount,-8,8);this.desiredTarget.z=clamp(this.desiredTarget.z+(z-this.desiredTarget.z)*amount,-5.5,5.5);}
   zoom(delta:number){if(this.locked)return;this.autoFrame=false;this.desiredDistance=clamp(this.desiredDistance+delta*(this.desiredDistance/40),this.minDistance,this.maxDistance);}
@@ -69,5 +76,5 @@ export class CameraController {
   cycleView(){this.viewIndex=(this.viewIndex+1)%3;this.desiredAzimuth=[Math.PI/4,-Math.PI/4,0][this.viewIndex];this.desiredElevation=[.62,.62,.69][this.viewIndex];this.frameAcademy();return this.viewIndex;}
   rayFromScreen(clientX:number,clientY:number){const r=this.canvas.getBoundingClientRect();const nx=((clientX-r.left)/r.width)*2-1,ny=1-((clientY-r.top)/r.height)*2;const forward=Vec3.sub(this.target,this.position).normalize();const right=Vec3.cross(forward,new Vec3(0,1,0)).normalize();const up=Vec3.cross(right,forward).normalize();const hh=Math.tan(this.fov/2);const dir=forward.clone().add(right.scale(nx*hh*this.aspect)).add(up.scale(ny*hh)).normalize();return {origin:this.position.clone(),dir};}
   groundPoint(clientX:number,clientY:number){const ray=this.rayFromScreen(clientX,clientY);if(Math.abs(ray.dir.y)<1e-5)return null;const t=-ray.origin.y/ray.dir.y;if(t<0)return null;return ray.origin.add(ray.dir.scale(t));}
-  project(v:Vec3,viewport?:{left:number;top:number;width:number;height:number}){const p=transformPoint(this.viewProjection(),v),r=viewport??this.canvas.getBoundingClientRect();return {x:r.left+(p.x*.5+.5)*r.width,y:r.top+(1-(p.y*.5+.5))*r.height,visible:p.z>-1&&p.z<1};}
+  project(v:Vec3,viewport?:{left:number;top:number;width:number;height:number},impulse?:CameraViewImpulse){const p=transformPoint(this.viewProjection(impulse),v),r=viewport??this.canvas.getBoundingClientRect();return {x:r.left+(p.x*.5+.5)*r.width,y:r.top+(1-(p.y*.5+.5))*r.height,visible:p.z>-1&&p.z<1};}
 }

@@ -1,4 +1,5 @@
 .experience { background: #f4f1e7; color: #244c3e; }
+:global(html):has(.experience) { scroll-padding-top: 84px; }
 .hero { padding: 46px 0 64px; }
 .heroGrid { display: grid; grid-template-columns: .82fr 1.18fr; gap: 42px; align-items: center; }
 .back { font-size: 13px; text-decoration: none; }
@@ -38,7 +39,7 @@
 .playPoster img { display: block; width: 100%; height: 510px; object-fit: cover; filter: brightness(.7); }
 .posterButton { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); background: #fffdf4; color: #244c3e; padding: 19px 29px; white-space: nowrap; }
 .posterButton span { margin-left: 24px; }
-.gameFrame { display: block; width: 100%; height: 720px; border: 0; }
+.gameFrame { display: block; width: 100%; height: min(720px, calc(100dvh - 100px)); min-height: 280px; border: 0; scroll-margin-top: 84px; }
 .frameShell:fullscreen { border-radius: 0; width: 100vw; height: 100dvh; }
 .frameShell:fullscreen .gameFrame { height: 100dvh; }
 .loading { position: absolute; top: 12px; left: 20px; background: #244c3e; padding: 12px; border-radius: 5px; }
@@ -72,9 +73,9 @@
   .playHeading { align-items: start; }
   .controls { grid-template-columns: 1fr; gap: 18px; }
   .playPoster img { height: 430px; }
-  .gameFrame { height: min(780px, 85dvh); min-height: 500px; }
+  .gameFrame { height: min(780px, calc(100dvh - 100px)); min-height: 280px; }
   .details { padding-top: 48px; padding-bottom: 42px; gap: 32px; }
 }
 @media (max-width: 430px) { .actions { align-items: start; flex-direction: column; } .playHeading { flex-direction: column; gap: 18px; } .playSection { padding-top: 36px; } .decisions { grid-template-columns: 1fr; gap: 20px; } .decisions h3 { margin-bottom: 8px; } }
-@media (max-height: 500px) and (orientation: landscape) { .gameFrame { height: 440px; min-height: 0; } }
+@media (max-height: 500px) and (orientation: landscape) { .gameFrame { height: calc(100dvh - 100px); min-height: 0; } }
 @media (prefers-reduced-motion: reduce) { .experience *, .experience *::before, .experience *::after { scroll-behavior: auto; transition: none; animation: none; } }
