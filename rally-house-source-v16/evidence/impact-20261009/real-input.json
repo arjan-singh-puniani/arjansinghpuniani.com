@@ -1,0 +1,108 @@
+[
+  {
+    "touch": false,
+    "movement": 1.6552473271085217,
+    "contacts": [
+      {
+        "side": "player",
+        "quality": "clean",
+        "frame": 15932.70000000298,
+        "gap": 0
+      },
+      {
+        "side": "opponent",
+        "quality": "defensive",
+        "frame": 17231.80000000447,
+        "gap": 0
+      },
+      {
+        "side": "player",
+        "quality": "defensive",
+        "frame": 18618.5,
+        "gap": 0
+      },
+      {
+        "side": "opponent",
+        "quality": "clean",
+        "frame": 20129.70000000298,
+        "gap": 0
+      },
+      {
+        "side": "player",
+        "quality": "defensive",
+        "frame": 21546.20000000298,
+        "gap": 0
+      },
+      {
+        "side": "opponent",
+        "quality": "clean",
+        "frame": 23080.89999999851,
+        "gap": 0
+      },
+      {
+        "side": "player",
+        "quality": "defensive",
+        "frame": 24367.70000000298,
+        "gap": 0
+      }
+    ],
+    "restored": {
+      "speed": 1,
+      "competitor": false
+    },
+    "errors": []
+  },
+  {
+    "touch": true,
+    "movement": 1.7212342634705058,
+    "contacts": [
+      {
+        "side": "player",
+        "quality": "clean",
+        "frame": 14281,
+        "gap": 0
+      },
+      {
+        "side": "opponent",
+        "quality": "defensive",
+        "frame": 15579.89999999851,
+        "gap": 0
+      },
+      {
+        "side": "player",
+        "quality": "defensive",
+        "frame": 16966.59999999404,
+        "gap": 0
+      },
+      {
+        "side": "opponent",
+        "quality": "clean",
+        "frame": 18478.29999999702,
+        "gap": 0
+      },
+      {
+        "side": "player",
+        "quality": "defensive",
+        "frame": 19894.69999999553,
+        "gap": 0
+      },
+      {
+        "side": "opponent",
+        "quality": "clean",
+        "frame": 21431,
+        "gap": 0
+      },
+      {
+        "side": "player",
+        "quality": "defensive",
+        "frame": 22715.59999999404,
+        "gap": 0
+      }
+    ],
+    "restored": {
+      "speed": 1,
+      "competitor": false
+    },
+    "errors": []
+  }
+]

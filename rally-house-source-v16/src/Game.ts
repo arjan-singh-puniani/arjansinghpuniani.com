@@ -22,6 +22,7 @@ import {EmergentSocialSystem,type EmergentSocialEvent} from './simulation/Emerge
 import {RallySystem} from './tennis/RallySystem.js';
 import {ChampionshipController} from './tennis/ChampionshipController.js';
 import {championshipOpponentFor} from './tennis/ChampionshipOpponents.js';
+import {CHAMPIONSHIP_CONTACT_FEEL} from './tennis/ChampionshipTuning.js';
 import {ChampionshipCameraRig} from './tennis/ChampionshipCameraRig.js';
 import {InteractiveMatchSystem,type InteractiveShotQuality} from './tennis/InteractiveMatchSystem.js';
 import {MatchInput} from './tennis/MatchInput.js';
@@ -44,6 +45,10 @@ import {DECOR_BY_ID,rotatedFootprint} from './content/DecorCatalog.js';
 const LESSON_FEE=18;
 const weatherOrder:Weather[]=['clear','cloudy','rain'];
 
+export class SavedClubLoadError extends Error {
+  constructor(cause:unknown){super('The saved club could not be restored.',{cause});}
+}
+
 export class Game {
   renderer:Renderer;camera:CameraController;world:World;clock=new GameClock(17*60+20,1);ui=new HUD();audio=new AudioManager();
   relations=new RelationshipSystem();schedule=new ScheduleSystem(schedules);daily=new DailyGoalsSystem(1);life=new ClubLifeSystem();socialSimulation=new EmergentSocialSystem(this.relations);
@@ -62,6 +67,7 @@ export class Game {
   private championshipPriorPaused = false;
   private championshipRound = 1;
   private championshipCompletedRound = 0;
+  private championshipAudibleVolume = .65;
   private spatial!:SpatialInteractionSystem;
   private noticeTimer=0;
   private worldNotices:WorldNotice[]=[];
@@ -98,6 +104,19 @@ export class Game {
     this.championshipHud = new ChampionshipHUD(this.matchInput, {
       onRematch: () => this.rematchChampionship(),
       onReturnToClub: () => this.requestChampionshipExit(),
+      onTogglePause: () => this.setChampionshipPaused(!this.clock.paused),
+      onToggleSound: () => {
+        if(this.audio.volume>0){
+          this.championshipAudibleVolume=this.audio.volume;
+          this.settings.volume=this.audio.volume=0;
+          this.audio.stopAmbience();
+        }else this.settings.volume=this.audio.volume=this.championshipAudibleVolume;
+        void this.save();
+      },
+      onToggleMotion: () => {
+        this.settings.reducedMotion = !this.settings.reducedMotion;
+        void this.save();
+      },
     });
 
     this.spatial=new SpatialInteractionSystem(this.camera,this.canvas);
@@ -108,7 +127,10 @@ export class Game {
     this.lastDay=this.clock.day;this.bindUI();this.bindInput();
   }
 
-  async init(){await this.restore();this.daily.ensureDay(this.clock.day);this.lastDay=this.clock.day;for(const c of this.characters)this.schedule.update(c,this.clock.minutes);this.updateObjective();this.ui.hideLoading();this.exposeDebugHooks();this.loop(performance.now());if(!this.playerAvatar)this.openAvatarPicker();}
+  async init(){
+    try{await this.restore();}catch(err){throw new SavedClubLoadError(err);}
+    this.daily.ensureDay(this.clock.day);this.lastDay=this.clock.day;for(const c of this.characters)this.schedule.update(c,this.clock.minutes);this.updateObjective();this.ui.hideLoading();this.exposeDebugHooks();this.loop(performance.now());if(!this.playerAvatar)this.openAvatarPicker();
+  }
 
   /** Local, dev-only instrumentation. No network, no user data. Used by tools/shoot.mjs and by hand in the console. */
   private exposeDebugHooks(){
@@ -164,8 +186,19 @@ export class Game {
   private bindInput(){
     this.canvas.addEventListener('dblclick',e=>{if(this.championship.active)return;this.spatial.dismiss();const c=this.pickCharacter(e.clientX,e.clientY);if(c){this.camera.focus(c.position.x,c.position.z,17,1);this.ui.closeContext();}});
 
-    document.addEventListener('visibilitychange',()=>{this.last=performance.now();this.simAcc=0;this.matchInput.reset();if(document.hidden)this.audio.stopAmbience();});
-    window.addEventListener('blur',()=>this.matchInput.reset());
+    document.addEventListener('visibilitychange',()=>{
+      this.last=performance.now();this.simAcc=0;
+      this.matchInput.reset();this.championshipHud.resetTouch();
+      if(document.hidden){this.setChampionshipPaused(true);this.audio.stopAmbience();}
+    });
+    window.addEventListener('blur',()=>{
+      this.matchInput.reset();this.championshipHud.resetTouch();
+      this.setChampionshipPaused(true);
+    });
+    document.addEventListener('focusin',e=>{
+      if(this.championship.active && e.target instanceof Element &&
+        e.target.closest('button,a,input,textarea,select,[contenteditable]'))this.matchInput.reset();
+    });
     window.addEventListener('pagehide',()=>this.audio.dispose(),{once:true});
     this.canvas.tabIndex=0;
     this.canvas.addEventListener('webglcontextlost',e=>{
@@ -183,6 +216,10 @@ export class Game {
           return;
         }
 
+        // Space belongs to a focused native button; it must never serve a ball
+        // when the visitor is trying to pause, exit or activate a control.
+        if(e.target instanceof Element &&
+          e.target.closest('button,a,input,textarea,select,[contenteditable]'))return;
         if (this.matchInput.handleKeyDown(e)) return;
         return;
       }
@@ -320,7 +357,7 @@ export class Game {
       profile,
       this.matchInput,
       {
-        onHit:(quality)=>this.playChampionshipHit(quality),
+        onHit:(quality,side,direction)=>this.playChampionshipHit(quality,side,direction),
         onBounce:()=>this.audio.bounce(),
         onNet:()=>this.audio.net(),
         onRallyContact:(_side,quality)=>{
@@ -339,9 +376,9 @@ export class Game {
     );
   }
 
-  private playChampionshipHit(quality:InteractiveShotQuality){
+  private playChampionshipHit(quality:InteractiveShotQuality,side:'player'|'opponent',direction:number){
     this.audio.tennisImpact(quality);
-    if(!this.settings.reducedMotion)this.championshipCamera.pulseImpact(quality==='perfect'?1.25:quality==='clean'?.95:quality==='defensive'?.5:.35);
+    if(!this.settings.reducedMotion)this.championshipCamera.pulseImpact(CHAMPIONSHIP_CONTACT_FEEL[quality].camera*(side==='player'?1:.45),direction);
     for(const c of this.characters)if(!this.activities.busy(c.id)&&c.state==='watch')c.setEmotion(quality==='perfect'?'surprised':'attentive',.45);
   }
 
@@ -357,12 +394,26 @@ export class Game {
     if(!this.championship.active)return;
     this.rememberChampionshipResult();
     this.matchInput.setEnabled(false);
+    this.championshipHud.resetTouch();
+    this.clock.paused=false;
     this.interactiveMatch?.stop();
     this.championship.requestExit();
     this.championshipCamera.beginReturn();
     // Exit must advance even during approach/intro, before the active phase.
     const a=this.activities.active.find(a=>a.id===this.championshipActivityId);
     if(a){this.player.path=[];const opponent=this.byId(this.championshipOpponentId??'');if(opponent)opponent.path=[];}
+  }
+
+  private setChampionshipPaused(paused:boolean){
+    if(!this.championship.active || this.championship.phase==='exiting' ||
+      this.championship.phase==='matchResult')return;
+    this.clock.paused=paused;
+    this.matchInput.setEnabled(!paused && this.championship.acceptsGameplayInput);
+    this.matchInput.reset();
+    this.championshipHud.resetTouch();
+    // Resuming starts from the frozen rally, never accumulated wall-clock debt.
+    this.simAcc=0;this.last=performance.now();
+    if(!paused)this.canvas.focus({preventScroll:true});
   }
 
   private cleanupChampionship(){
@@ -1052,7 +1103,7 @@ export class Game {
     document.body.classList.toggle('championship-transitioning',this.championship.phase==='intro');
     if(this.championship.active&&this.championshipOpponentId){
       const opponent=this.byId(this.championshipOpponentId);
-      if(opponent)this.championshipHud.render(this.championship.snapshot(),this.player.spec.name,opponent.spec.name,this.interactiveMatch?.playerCue());
+      if(opponent)this.championshipHud.render(this.championship.snapshot(),this.player.spec.name,opponent.spec.name,this.interactiveMatch?.playerCue(),this.settings.reducedMotion,this.clock.paused,!this.audio.enabled||this.audio.volume===0);
     }else{
       this.championshipHud.hide();
     }
@@ -1086,8 +1137,9 @@ export class Game {
     }meshes.push(...this.player.meshes(false),...this.rally.meshes(),...this.socialRally.meshes(),...(this.interactiveMatch?.meshes(this.settings.reducedMotion)??[]));
     if(this.buildType&&this.hoverGround){const x=Math.round(this.hoverGround.x*2)/2,z=Math.round(this.hoverGround.z*2)/2;meshes.push(...this.previewMeshes(this.buildType,x,z,this.placementClear(this.buildType,x,z,this.buildRotation)))}
     if(this.history.breakthrough||this.history.firstMikaWin)meshes.push({kind:'roundBox',position:new Vec3(4.25,2.12,-9.1),scale:new Vec3(.7,.12,.45),color:'#c58a5b',material:'wood'},{kind:'sphere',position:new Vec3(4.25,2.3,-9.1),scale:new Vec3(.24,.24,.24),color:'#e6c65f',material:'fabric'});
-    this.renderItems=meshes.length;this.renderer.render(meshes,this.camera.viewProjection(),this.atmosphere.update(this.world.lighting(this.clock.minutes,this.sportFocus),this.renderDt),this.camera.position);
-    if(this.activeSpeechId&&performance.now()<this.speechUntil){const c=this.byId(this.activeSpeechId);if(c){const p=this.camera.project(new Vec3(c.position.x,2.55,c.position.z));this.ui.positionSpeech(p.x,p.y)}}else this.activeSpeechId=null;
+    const contactView=this.championshipCamera.renderImpulse(this.settings.reducedMotion);
+    this.renderItems=meshes.length;this.renderer.render(meshes,this.camera.viewProjection(contactView),this.atmosphere.update(this.world.lighting(this.clock.minutes,this.sportFocus),this.renderDt),this.camera.position);
+    if(this.activeSpeechId&&performance.now()<this.speechUntil){const c=this.byId(this.activeSpeechId);if(c){const p=this.camera.project(new Vec3(c.position.x,2.55,c.position.z),undefined,contactView);this.ui.positionSpeech(p.x,p.y)}}else this.activeSpeechId=null;
   }
 
   private previewMeshes(type:Placement['type'],x:number,z:number,valid:boolean):Mesh[]{return this.world.previewPlacement(type,x,z,this.buildRotation,valid)}
@@ -1098,8 +1150,13 @@ export class Game {
     const elapsed=Math.max(0,(now-this.last)/1000),realDt=Math.min(2,elapsed);this.last=now;this.renderDt=Math.min(.05,realDt);
     this.audio.updateClubAmbience(realDt,this.clock.minutes,this.world.weather,this.championship.active);
     if(this.settings.visuals==='auto'){this.frameSamples.push(elapsed);if(this.frameSamples.length>=12){const mean=this.frameSamples.reduce((a,b)=>a+b,0)/this.frameSamples.length;this.renderer.renderScale=clamp(this.renderer.renderScale+(mean>.055?-.12:mean<.024?.04:0),.64,1);this.frameSamples=[];}}else this.renderer.renderScale=1;
-    this.simAcc+=realDt;const step=1/60;let loops=0;const simStart=performance.now();
-    while(this.simAcc>=step&&loops++<120){this.updateFixed(step);this.simAcc-=step}const simMs=performance.now()-simStart;
+    const step=1/60,maxSteps=this.championship.active?6:120;
+    // Tennis must remain observable after a visible stall. Drop excess debt
+    // rather than simulate an unseen return window; club catch-up stays intact.
+    this.simAcc=Math.min(this.simAcc+realDt,step*maxSteps);
+    if(this.championship.active&&this.clock.paused)this.simAcc=0;
+    let loops=0;const simStart=performance.now();
+    while(this.simAcc>=step&&loops++<maxSteps){this.updateFixed(step);this.simAcc-=step}const simMs=performance.now()-simStart;
     this.autosave+=realDt;if(this.autosave>15){this.autosave=0;void this.save(false)}this.ui.update({coins:this.coins,stars:this.stars,heart:this.clubHeart,clock:this.clock.formatted(),weather:this.world.weather,day:this.clock.day},this.clock.paused,this.clock.speed);this.updateObjective();
     const renderStart=performance.now();this.render(now);const renderMs=performance.now()-renderStart;this.perf.sample({simMs,renderMs,drawCalls:this.renderer.drawCalls,triangles:this.renderer.triangles,entities:this.characters.length+1},now);requestAnimationFrame(this.loop)
   };

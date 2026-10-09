@@ -1,5 +1,7 @@
 # Rally House implementation report
 
+For the October 9 contact, sound and camera refinements, see [Championship impact](CHAMPIONSHIP-IMPACT-20261009.md). The subsequent four-role audit, input fixes, pause/recovery behavior, and independent review are in [event demo resilience](DEMO-RESILIENCE-20261009.md). This report describes the preceding club-to-court pass.
+
 The club now routes people around the net, places interaction feedback on real surfaces, gives completed Championships a saved social consequence, and announces incoming swings early enough to use the existing input buffer. The portfolio shows the actual club-to-court experience before asking a visitor to load the game.
 
 ## Changes and boundaries

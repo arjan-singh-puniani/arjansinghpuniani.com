@@ -113,6 +113,7 @@ export class MatchInput {
   }
 
   setTouchMovement(x: number, z: number) {
+    if (!this.enabled) return;
     this.touchMovement = {
       x: clamp(x, -1, 1),
       z: clamp(z, -1, 1),

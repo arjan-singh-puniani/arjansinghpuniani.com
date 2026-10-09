@@ -1,0 +1,352 @@
+{
+  "viewports": [
+    {
+      "width": 844,
+      "height": 390,
+      "axe": 0,
+      "overflow": false,
+      "score": "0  –  0",
+      "motion": "reduced",
+      "styles": [
+        "http://127.0.0.1:3096/rally-house/style.css",
+        "http://127.0.0.1:3096/rally-house/championship.css",
+        "http://127.0.0.1:3096/rally-house/spatial.css"
+      ]
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "axe": 0,
+      "overflow": false,
+      "score": "0  –  0",
+      "motion": "reduced",
+      "styles": [
+        "http://127.0.0.1:3096/rally-house/style.css",
+        "http://127.0.0.1:3096/rally-house/championship.css",
+        "http://127.0.0.1:3096/rally-house/spatial.css"
+      ]
+    },
+    {
+      "width": 1728,
+      "height": 1117,
+      "axe": 0,
+      "overflow": false,
+      "score": "0  –  0",
+      "motion": "reduced",
+      "styles": [
+        "http://127.0.0.1:3096/rally-house/style.css",
+        "http://127.0.0.1:3096/rally-house/championship.css",
+        "http://127.0.0.1:3096/rally-house/spatial.css"
+      ]
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "axe": 0,
+      "overflow": false,
+      "score": "0  –  0",
+      "motion": "reduced",
+      "styles": [
+        "http://127.0.0.1:3096/rally-house/style.css",
+        "http://127.0.0.1:3096/rally-house/championship.css",
+        "http://127.0.0.1:3096/rally-house/spatial.css"
+      ]
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "axe": 0,
+      "overflow": false,
+      "score": "0  –  0",
+      "motion": "reduced",
+      "styles": [
+        "http://127.0.0.1:3096/rally-house/style.css",
+        "http://127.0.0.1:3096/rally-house/championship.css",
+        "http://127.0.0.1:3096/rally-house/spatial.css"
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "axe": 0,
+      "overflow": false,
+      "score": "0  –  0",
+      "motion": "reduced",
+      "styles": [
+        "http://127.0.0.1:3096/rally-house/style.css",
+        "http://127.0.0.1:3096/rally-house/championship.css",
+        "http://127.0.0.1:3096/rally-house/spatial.css"
+      ]
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "axe": 0,
+      "overflow": false,
+      "score": "0  –  0",
+      "motion": "reduced",
+      "styles": [
+        "http://127.0.0.1:3096/rally-house/style.css",
+        "http://127.0.0.1:3096/rally-house/championship.css",
+        "http://127.0.0.1:3096/rally-house/spatial.css"
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "axe": 0,
+      "overflow": false,
+      "score": "0  –  0",
+      "motion": "reduced",
+      "styles": [
+        "http://127.0.0.1:3096/rally-house/style.css",
+        "http://127.0.0.1:3096/rally-house/championship.css",
+        "http://127.0.0.1:3096/rally-house/spatial.css"
+      ]
+    },
+    {
+      "width": 720,
+      "height": 900,
+      "axe": 0,
+      "overflow": false,
+      "score": "0  –  0",
+      "motion": "reduced",
+      "styles": [
+        "http://127.0.0.1:3096/rally-house/style.css",
+        "http://127.0.0.1:3096/rally-house/championship.css",
+        "http://127.0.0.1:3096/rally-house/spatial.css"
+      ]
+    }
+  ],
+  "cycles": [
+    {
+      "cycle": 0,
+      "opponent": "leo",
+      "heldAtExit": 0.072,
+      "holdAfter": 0,
+      "active": false,
+      "reserved": false,
+      "input": false,
+      "match": false,
+      "impulse": false,
+      "cameraRestored": true,
+      "dom": 202
+    },
+    {
+      "cycle": 1,
+      "opponent": "coach",
+      "heldAtExit": 0.072,
+      "holdAfter": 0,
+      "active": false,
+      "reserved": false,
+      "input": false,
+      "match": false,
+      "impulse": false,
+      "cameraRestored": true,
+      "dom": 202
+    },
+    {
+      "cycle": 2,
+      "opponent": "mika",
+      "heldAtExit": 0.072,
+      "holdAfter": 0,
+      "active": false,
+      "reserved": false,
+      "input": false,
+      "match": false,
+      "impulse": false,
+      "cameraRestored": true,
+      "dom": 202
+    },
+    {
+      "cycle": 3,
+      "opponent": "nia",
+      "heldAtExit": 0.072,
+      "holdAfter": 0,
+      "active": false,
+      "reserved": false,
+      "input": false,
+      "match": false,
+      "impulse": false,
+      "cameraRestored": true,
+      "dom": 202
+    },
+    {
+      "cycle": 4,
+      "opponent": "leo",
+      "heldAtExit": 0.072,
+      "holdAfter": 0,
+      "active": false,
+      "reserved": false,
+      "input": false,
+      "match": false,
+      "impulse": false,
+      "cameraRestored": true,
+      "dom": 202
+    },
+    {
+      "cycle": 5,
+      "opponent": "coach",
+      "heldAtExit": 0.072,
+      "holdAfter": 0,
+      "active": false,
+      "reserved": false,
+      "input": false,
+      "match": false,
+      "impulse": false,
+      "cameraRestored": true,
+      "dom": 202
+    },
+    {
+      "cycle": 6,
+      "opponent": "mika",
+      "heldAtExit": 0.072,
+      "holdAfter": 0,
+      "active": false,
+      "reserved": false,
+      "input": false,
+      "match": false,
+      "impulse": false,
+      "cameraRestored": true,
+      "dom": 202
+    },
+    {
+      "cycle": 7,
+      "opponent": "nia",
+      "heldAtExit": 0.072,
+      "holdAfter": 0,
+      "active": false,
+      "reserved": false,
+      "input": false,
+      "match": false,
+      "impulse": false,
+      "cameraRestored": true,
+      "dom": 202
+    },
+    {
+      "cycle": 8,
+      "opponent": "leo",
+      "heldAtExit": 0.072,
+      "holdAfter": 0,
+      "active": false,
+      "reserved": false,
+      "input": false,
+      "match": false,
+      "impulse": false,
+      "cameraRestored": true,
+      "dom": 202
+    },
+    {
+      "cycle": 9,
+      "opponent": "coach",
+      "heldAtExit": 0.072,
+      "holdAfter": 0,
+      "active": false,
+      "reserved": false,
+      "input": false,
+      "match": false,
+      "impulse": false,
+      "cameraRestored": true,
+      "dom": 202
+    },
+    {
+      "cycle": 10,
+      "opponent": "mika",
+      "heldAtExit": 0.072,
+      "holdAfter": 0,
+      "active": false,
+      "reserved": false,
+      "input": false,
+      "match": false,
+      "impulse": false,
+      "cameraRestored": true,
+      "dom": 202
+    },
+    {
+      "cycle": 11,
+      "opponent": "nia",
+      "heldAtExit": 0.072,
+      "holdAfter": 0,
+      "active": false,
+      "reserved": false,
+      "input": false,
+      "match": false,
+      "impulse": false,
+      "cameraRestored": true,
+      "dom": 202
+    },
+    {
+      "cycle": 12,
+      "opponent": "leo",
+      "heldAtExit": 0.072,
+      "holdAfter": 0,
+      "active": false,
+      "reserved": false,
+      "input": false,
+      "match": false,
+      "impulse": false,
+      "cameraRestored": true,
+      "dom": 202
+    },
+    {
+      "cycle": 13,
+      "opponent": "coach",
+      "heldAtExit": 0.072,
+      "holdAfter": 0,
+      "active": false,
+      "reserved": false,
+      "input": false,
+      "match": false,
+      "impulse": false,
+      "cameraRestored": true,
+      "dom": 202
+    },
+    {
+      "cycle": 14,
+      "opponent": "mika",
+      "heldAtExit": 0.072,
+      "holdAfter": 0,
+      "active": false,
+      "reserved": false,
+      "input": false,
+      "match": false,
+      "impulse": false,
+      "cameraRestored": true,
+      "dom": 202
+    },
+    {
+      "cycle": 15,
+      "opponent": "nia",
+      "heldAtExit": 0.072,
+      "holdAfter": 0,
+      "active": false,
+      "reserved": false,
+      "input": false,
+      "match": false,
+      "impulse": false,
+      "cameraRestored": true,
+      "dom": 202
+    }
+  ],
+  "errors": [],
+  "audio": {
+    "mutedContextAbsent": true,
+    "cached": 12,
+    "peaks": [
+      0.9200000166893005,
+      0.9200000166893005,
+      0.9200000166893005,
+      0.9200000166893005,
+      0.9200000166893005,
+      0.9200000166893005,
+      0.9200000166893005,
+      0.9200000166893005,
+      0.9200000166893005,
+      0.9200000166893005,
+      0.9200000166893005,
+      0.9200000166893005
+    ],
+    "disposed": true
+  },
+  "packageReloads": 5
+}

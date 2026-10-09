@@ -57,13 +57,13 @@ function lerpAngle(from: number, to: number, t: number) {
  *             -> orbit around the court
  *             -> descend behind the player's baseline
  *
- * CameraController still owns the actual spring motion. This class only feeds
- * it authored targets, which keeps the transition soft and consistent with the
- * rest of Rally House rather than introducing a second camera system.
+ * CameraController owns the orbit springs; contact adds a bounded, render-only
+ * pulse so the impact does not disappear inside those slow springs.
  */
 export class ChampionshipCameraRig {
   private savedClubView: CameraSnapshot | null = null;
   private impactKick = 0;
+  private impactDirection = 0;
   private exactState:ReturnType<CameraController['captureState']>|null=null;
   private returning=false;
   private lastMode: ChampionshipCameraMode = 'club';
@@ -73,12 +73,18 @@ export class ChampionshipCameraRig {
   constructor(private readonly camera: CameraController) {}
 
   /**
-   * Add a tiny camera impulse at authoritative string-bed contact. The normal
-   * spring camera still performs all motion; this only nudges its target for a
-   * few frames so impact is felt rather than merely seen.
+   * Contact is immediate; its short render-only pulse bypasses the orbit springs.
    */
-  pulseImpact(strength = 1) {
+  pulseImpact(strength = 1,direction = 0) {
     this.impactKick = Math.max(this.impactKick, clamp(strength, 0, 1.35));
+    this.impactDirection=clamp(direction,-1,1);
+  }
+
+  renderImpulse(reducedMotion=false){
+    if(reducedMotion){this.impactKick=0;return undefined;}
+    if(!this.savedClubView||this.returning||this.impactKick<=0)return undefined;
+    return {pushIn:this.impactKick*.45*Math.min(1.4,this.camera.distance/20.4),
+      offset:new Vec3(this.impactDirection*this.impactKick*.025,this.impactKick*.018,0)};
   }
 
   begin() {
@@ -130,7 +136,6 @@ export class ChampionshipCameraRig {
     }
 
     const safeDt = Math.max(0, dt);
-    const kick = this.impactKick;
     this.impactKick = Math.max(0, this.impactKick - safeDt * 8.5);
 
     const portrait = clamp((1.0 - aspect) / 0.35, 0, 1);
@@ -180,7 +185,7 @@ export class ChampionshipCameraRig {
         fov: (31.5 + portrait * 8.5) * Math.PI / 180,
       };
 
-      const gameplay = this.gameplayPose(player, courtCenter, null, portrait, 0);
+      const gameplay = this.gameplayPose(player, courtCenter, null, portrait);
 
       if (progress < 0.28) {
         this.applyBlendedPose(start, establish, smooth01(progress / 0.28));
@@ -195,7 +200,7 @@ export class ChampionshipCameraRig {
     }
 
     if (mode === 'behindPlayer' || mode === 'pointReaction') {
-      const pose = this.gameplayPose(player, courtCenter, ball, portrait, kick);
+      const pose = this.gameplayPose(player, courtCenter, ball, portrait);
 
       if (mode === 'pointReaction') {
         // A small broadcast-like exhale after the point. It is deliberately
@@ -236,7 +241,6 @@ export class ChampionshipCameraRig {
     courtCenter: Vec3,
     ball: Vec3 | null,
     portrait: number,
-    kick: number,
   ): CameraPose {
     // Keep the ball involved in framing, but only slightly. The old close view
     // let the ball tug the camera around too much and made the player's avatar
@@ -250,8 +254,8 @@ export class ChampionshipCameraRig {
       (ball?.x ?? courtCenter.x) * ballInfluence;
 
     return {
-      target: new Vec3(focusX, 0.74 + kick * 0.028, -0.46),
-      distance: 20.4 + portrait * (CHAMPIONSHIP_TUNING.portraitCameraDistance - 20.4) - kick * 0.11,
+      target: new Vec3(focusX, 0.74, -0.46),
+      distance: 20.4 + portrait * (CHAMPIONSHIP_TUNING.portraitCameraDistance - 20.4),
       azimuth: 0,
       elevation: 0.49 + portrait * (CHAMPIONSHIP_TUNING.portraitCameraElevation - 0.49),
       fov: (35.5 + portrait * (CHAMPIONSHIP_TUNING.portraitCameraFovDegrees - 35.5)) * Math.PI / 180,

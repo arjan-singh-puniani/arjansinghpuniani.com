@@ -92,7 +92,13 @@ export class CameraController {
         const ce = Math.cos(this.elevation);
         this.position.set(this.target.x + Math.sin(this.azimuth) * ce * this.distance, this.target.y + Math.sin(this.elevation) * this.distance, this.target.z + Math.cos(this.azimuth) * ce * this.distance);
     }
-    viewProjection() { return multiply(perspective(this.fov, this.aspect, .1, 120), lookAt(this.position, this.target)); }
+    /** A render-only contact pulse never feeds back into the camera springs. */
+    viewProjection(impulse) {
+        if (!impulse)
+            return multiply(perspective(this.fov, this.aspect, .1, 120), lookAt(this.position, this.target));
+        const eye = this.position.clone().add(Vec3.sub(this.target, this.position).normalize().scale(impulse.pushIn)).add(impulse.offset);
+        return multiply(perspective(this.fov, this.aspect, .1, 120), lookAt(eye, this.target.clone().add(impulse.offset)));
+    }
     focus(x = 0, z = 0, distance = this.fitDistance, height = 0) { if (this.locked)
         return; this.autoFrame = false; this.desiredTarget.set(clamp(x, -12, 12), height, clamp(z, -9, 9)); this.desiredDistance = clamp(distance, this.minDistance, this.maxDistance); }
     nudgeFocus(x, z, amount = .18) { if (this.locked)
@@ -108,5 +114,5 @@ export class CameraController {
     groundPoint(clientX, clientY) { const ray = this.rayFromScreen(clientX, clientY); if (Math.abs(ray.dir.y) < 1e-5)
         return null; const t = -ray.origin.y / ray.dir.y; if (t < 0)
         return null; return ray.origin.add(ray.dir.scale(t)); }
-    project(v, viewport) { const p = transformPoint(this.viewProjection(), v), r = viewport ?? this.canvas.getBoundingClientRect(); return { x: r.left + (p.x * .5 + .5) * r.width, y: r.top + (1 - (p.y * .5 + .5)) * r.height, visible: p.z > -1 && p.z < 1 }; }
+    project(v, viewport, impulse) { const p = transformPoint(this.viewProjection(impulse), v), r = viewport ?? this.canvas.getBoundingClientRect(); return { x: r.left + (p.x * .5 + .5) * r.width, y: r.top + (1 - (p.y * .5 + .5)) * r.height, visible: p.z > -1 && p.z < 1 }; }
 }

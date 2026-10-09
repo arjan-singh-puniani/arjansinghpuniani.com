@@ -22,6 +22,7 @@ import { EmergentSocialSystem } from './simulation/EmergentSocialSystem.js';
 import { RallySystem } from './tennis/RallySystem.js';
 import { ChampionshipController } from './tennis/ChampionshipController.js';
 import { championshipOpponentFor } from './tennis/ChampionshipOpponents.js';
+import { CHAMPIONSHIP_CONTACT_FEEL } from './tennis/ChampionshipTuning.js';
 import { ChampionshipCameraRig } from './tennis/ChampionshipCameraRig.js';
 import { InteractiveMatchSystem } from './tennis/InteractiveMatchSystem.js';
 import { MatchInput } from './tennis/MatchInput.js';
@@ -41,6 +42,9 @@ import { HUD } from './ui/HUD.js';
 import { DECOR_BY_ID, rotatedFootprint } from './content/DecorCatalog.js';
 const LESSON_FEE = 18;
 const weatherOrder = ['clear', 'cloudy', 'rain'];
+export class SavedClubLoadError extends Error {
+    constructor(cause) { super('The saved club could not be restored.', { cause }); }
+}
 export class Game {
     canvas;
     renderer;
@@ -71,6 +75,7 @@ export class Game {
     championshipPriorPaused = false;
     championshipRound = 1;
     championshipCompletedRound = 0;
+    championshipAudibleVolume = .65;
     spatial;
     noticeTimer = 0;
     worldNotices = [];
@@ -164,6 +169,21 @@ export class Game {
         this.championshipHud = new ChampionshipHUD(this.matchInput, {
             onRematch: () => this.rematchChampionship(),
             onReturnToClub: () => this.requestChampionshipExit(),
+            onTogglePause: () => this.setChampionshipPaused(!this.clock.paused),
+            onToggleSound: () => {
+                if (this.audio.volume > 0) {
+                    this.championshipAudibleVolume = this.audio.volume;
+                    this.settings.volume = this.audio.volume = 0;
+                    this.audio.stopAmbience();
+                }
+                else
+                    this.settings.volume = this.audio.volume = this.championshipAudibleVolume;
+                void this.save();
+            },
+            onToggleMotion: () => {
+                this.settings.reducedMotion = !this.settings.reducedMotion;
+                void this.save();
+            },
         });
         this.spatial = new SpatialInteractionSystem(this.camera, this.canvas);
         this.ui.onContextClose = () => this.spatial.dismiss(true);
@@ -173,9 +193,24 @@ export class Game {
         this.bindUI();
         this.bindInput();
     }
-    async init() { await this.restore(); this.daily.ensureDay(this.clock.day); this.lastDay = this.clock.day; for (const c of this.characters)
-        this.schedule.update(c, this.clock.minutes); this.updateObjective(); this.ui.hideLoading(); this.exposeDebugHooks(); this.loop(performance.now()); if (!this.playerAvatar)
-        this.openAvatarPicker(); }
+    async init() {
+        try {
+            await this.restore();
+        }
+        catch (err) {
+            throw new SavedClubLoadError(err);
+        }
+        this.daily.ensureDay(this.clock.day);
+        this.lastDay = this.clock.day;
+        for (const c of this.characters)
+            this.schedule.update(c, this.clock.minutes);
+        this.updateObjective();
+        this.ui.hideLoading();
+        this.exposeDebugHooks();
+        this.loop(performance.now());
+        if (!this.playerAvatar)
+            this.openAvatarPicker();
+    }
     /** Local, dev-only instrumentation. No network, no user data. Used by tools/shoot.mjs and by hand in the console. */
     exposeDebugHooks() {
         if (!new URLSearchParams(location.search).has('debug'))
@@ -242,9 +277,26 @@ export class Game {
             this.camera.focus(c.position.x, c.position.z, 17, 1);
             this.ui.closeContext();
         } });
-        document.addEventListener('visibilitychange', () => { this.last = performance.now(); this.simAcc = 0; this.matchInput.reset(); if (document.hidden)
-            this.audio.stopAmbience(); });
-        window.addEventListener('blur', () => this.matchInput.reset());
+        document.addEventListener('visibilitychange', () => {
+            this.last = performance.now();
+            this.simAcc = 0;
+            this.matchInput.reset();
+            this.championshipHud.resetTouch();
+            if (document.hidden) {
+                this.setChampionshipPaused(true);
+                this.audio.stopAmbience();
+            }
+        });
+        window.addEventListener('blur', () => {
+            this.matchInput.reset();
+            this.championshipHud.resetTouch();
+            this.setChampionshipPaused(true);
+        });
+        document.addEventListener('focusin', e => {
+            if (this.championship.active && e.target instanceof Element &&
+                e.target.closest('button,a,input,textarea,select,[contenteditable]'))
+                this.matchInput.reset();
+        });
         window.addEventListener('pagehide', () => this.audio.dispose(), { once: true });
         this.canvas.tabIndex = 0;
         this.canvas.addEventListener('webglcontextlost', e => {
@@ -270,6 +322,11 @@ export class Game {
                     this.requestChampionshipExit();
                     return;
                 }
+                // Space belongs to a focused native button; it must never serve a ball
+                // when the visitor is trying to pause, exit or activate a control.
+                if (e.target instanceof Element &&
+                    e.target.closest('button,a,input,textarea,select,[contenteditable]'))
+                    return;
                 if (this.matchInput.handleKeyDown(e))
                     return;
                 return;
@@ -518,7 +575,7 @@ export class Game {
     }
     createInteractiveMatch(opponent, profile) {
         return new InteractiveMatchSystem(this.player, opponent, profile, this.matchInput, {
-            onHit: (quality) => this.playChampionshipHit(quality),
+            onHit: (quality, side, direction) => this.playChampionshipHit(quality, side, direction),
             onBounce: () => this.audio.bounce(),
             onNet: () => this.audio.net(),
             onRallyContact: (_side, quality) => {
@@ -536,10 +593,10 @@ export class Game {
             },
         });
     }
-    playChampionshipHit(quality) {
+    playChampionshipHit(quality, side, direction) {
         this.audio.tennisImpact(quality);
         if (!this.settings.reducedMotion)
-            this.championshipCamera.pulseImpact(quality === 'perfect' ? 1.25 : quality === 'clean' ? .95 : quality === 'defensive' ? .5 : .35);
+            this.championshipCamera.pulseImpact(CHAMPIONSHIP_CONTACT_FEEL[quality].camera * (side === 'player' ? 1 : .45), direction);
         for (const c of this.characters)
             if (!this.activities.busy(c.id) && c.state === 'watch')
                 c.setEmotion(quality === 'perfect' ? 'surprised' : 'attentive', .45);
@@ -557,6 +614,8 @@ export class Game {
             return;
         this.rememberChampionshipResult();
         this.matchInput.setEnabled(false);
+        this.championshipHud.resetTouch();
+        this.clock.paused = false;
         this.interactiveMatch?.stop();
         this.championship.requestExit();
         this.championshipCamera.beginReturn();
@@ -568,6 +627,20 @@ export class Game {
             if (opponent)
                 opponent.path = [];
         }
+    }
+    setChampionshipPaused(paused) {
+        if (!this.championship.active || this.championship.phase === 'exiting' ||
+            this.championship.phase === 'matchResult')
+            return;
+        this.clock.paused = paused;
+        this.matchInput.setEnabled(!paused && this.championship.acceptsGameplayInput);
+        this.matchInput.reset();
+        this.championshipHud.resetTouch();
+        // Resuming starts from the frozen rally, never accumulated wall-clock debt.
+        this.simAcc = 0;
+        this.last = performance.now();
+        if (!paused)
+            this.canvas.focus({ preventScroll: true });
     }
     cleanupChampionship() {
         this.matchInput.setEnabled(false);
@@ -1900,7 +1973,7 @@ export class Game {
         if (this.championship.active && this.championshipOpponentId) {
             const opponent = this.byId(this.championshipOpponentId);
             if (opponent)
-                this.championshipHud.render(this.championship.snapshot(), this.player.spec.name, opponent.spec.name, this.interactiveMatch?.playerCue());
+                this.championshipHud.render(this.championship.snapshot(), this.player.spec.name, opponent.spec.name, this.interactiveMatch?.playerCue(), this.settings.reducedMotion, this.clock.paused, !this.audio.enabled || this.audio.volume === 0);
         }
         else {
             this.championshipHud.hide();
@@ -1956,12 +2029,13 @@ export class Game {
         }
         if (this.history.breakthrough || this.history.firstMikaWin)
             meshes.push({ kind: 'roundBox', position: new Vec3(4.25, 2.12, -9.1), scale: new Vec3(.7, .12, .45), color: '#c58a5b', material: 'wood' }, { kind: 'sphere', position: new Vec3(4.25, 2.3, -9.1), scale: new Vec3(.24, .24, .24), color: '#e6c65f', material: 'fabric' });
+        const contactView = this.championshipCamera.renderImpulse(this.settings.reducedMotion);
         this.renderItems = meshes.length;
-        this.renderer.render(meshes, this.camera.viewProjection(), this.atmosphere.update(this.world.lighting(this.clock.minutes, this.sportFocus), this.renderDt), this.camera.position);
+        this.renderer.render(meshes, this.camera.viewProjection(contactView), this.atmosphere.update(this.world.lighting(this.clock.minutes, this.sportFocus), this.renderDt), this.camera.position);
         if (this.activeSpeechId && performance.now() < this.speechUntil) {
             const c = this.byId(this.activeSpeechId);
             if (c) {
-                const p = this.camera.project(new Vec3(c.position.x, 2.55, c.position.z));
+                const p = this.camera.project(new Vec3(c.position.x, 2.55, c.position.z), undefined, contactView);
                 this.ui.positionSpeech(p.x, p.y);
             }
         }
@@ -1992,11 +2066,15 @@ export class Game {
         }
         else
             this.renderer.renderScale = 1;
-        this.simAcc += realDt;
-        const step = 1 / 60;
+        const step = 1 / 60, maxSteps = this.championship.active ? 6 : 120;
+        // Tennis must remain observable after a visible stall. Drop excess debt
+        // rather than simulate an unseen return window; club catch-up stays intact.
+        this.simAcc = Math.min(this.simAcc + realDt, step * maxSteps);
+        if (this.championship.active && this.clock.paused)
+            this.simAcc = 0;
         let loops = 0;
         const simStart = performance.now();
-        while (this.simAcc >= step && loops++ < 120) {
+        while (this.simAcc >= step && loops++ < maxSteps) {
             this.updateFixed(step);
             this.simAcc -= step;
         }

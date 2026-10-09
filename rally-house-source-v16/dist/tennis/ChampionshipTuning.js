@@ -64,3 +64,10 @@ export const CHAMPIONSHIP_TUNING = {
     landingCueOpacity: 0.46,
     landingCueScale: 1.25,
 };
+/** One contact event drives pose resistance, ball compression and presentation. */
+export const CHAMPIONSHIP_CONTACT_FEEL = {
+    perfect: { hold: .072, dwell: .087, camera: 1.35, flare: 1.65, duration: .24 },
+    clean: { hold: .046, dwell: .065, camera: 1.05, flare: 1.15, duration: .20 },
+    defensive: { hold: .023, dwell: .041, camera: .55, flare: .65, duration: .14 },
+    frame: { hold: .012, dwell: .029, camera: .32, flare: .45, duration: .12 },
+};

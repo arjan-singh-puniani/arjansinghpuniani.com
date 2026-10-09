@@ -77,6 +77,7 @@ export class Character {
   private courtPhase:CourtPhase='neutral';private courtPhaseAge=0;private courtMoveDelay=0;private development=50;
   private emotion:EmotionState='neutral';private emotionUntil=0;private conversationTarget?:Vec3;
   private racketImpactAge=1;
+  private contactHoldRemaining=0;
   private stringImpactStrength=0;
   private stringImpactDirection=1;
   private racketVibration=0;private stepEvent=false;private lastStanceKey='';
@@ -164,6 +165,11 @@ export class Character {
     this.racketVibration=quality==='perfect'?1.42:quality==='clean'?1.05:quality==='defensive'?.72:quality==='frame'?1.5:.75;
     this.setEmotion(quality==='perfect'||quality==='clean'?'pleased':quality==='frame'?'surprised':quality==='defensive'?'focused':'disappointed',quality==='perfect'?.7:.55);
   }
+  /** Hold only the stroke clock. Input, feet, gaze and string recoil stay live. */
+  holdRacketContact(seconds:number){
+    if(this.matchCompetitor&&isShot(this.state)&&Number.isFinite(seconds))
+      this.contactHoldRemaining=Math.max(this.contactHoldRemaining,clamp(seconds,0,.075));
+  }
   /** Signed local depth shared by the visible strings and the latched ball. */
   racketStringOffset(){
     const age=this.racketImpactAge;
@@ -178,7 +184,7 @@ export class Character {
   setAnimation(state:AnimState){this.changeState(state,false);}
   setIncomingContact(point:Vec3){this.incomingContact=point.clone();}
   triggerShot(state:ShotState,outgoingTarget:Vec3){this.outgoingTarget=outgoingTarget.clone();this.contactTarget=this.solveContactTarget(state,this.incomingContact);this.incomingContact=null;this.courtPhase='stroke';this.courtPhaseAge=0;this.setEmotion('focused',this.shotDuration(state));this.trigger(state);}
-  clearShotIntent(){this.contactTarget=null;this.outgoingTarget=null;this.incomingContact=null;this.courtPhase='recover';this.courtPhaseAge=0;}
+  clearShotIntent(){this.contactHoldRemaining=0;this.contactTarget=null;this.outgoingTarget=null;this.incomingContact=null;this.courtPhase='recover';this.courtPhaseAge=0;}
   shotContactTime(state:ShotState=this.state as ShotState){const style=this.strokeStyle();const base=state==='serve'?.48:state==='volley'?.21:state==='swingBackhand'?.35:.33;const dev=this.spec.id==='mika'?(this.development-50)*.0007:0;const tempo=this.matchCompetitor?CHAMPIONSHIP_TUNING.arcadeContactTempo:1;return Math.max(.11,(base*style.timing+dev+this.preparationBonus+(this.practiceCue==='preparation'?.065:0))*tempo);}
   shotDuration(state:ShotState=this.state as ShotState){const style=this.strokeStyle();const base=state==='serve'?.96:state==='volley'?.50:state==='swingBackhand'?.78:.76;return base*style.tempo*(this.matchCompetitor?CHAMPIONSHIP_TUNING.arcadeStrokeTempo:1);}
   serveTossPoint(){const p=this.pose();return p.handL.clone();}
@@ -202,7 +208,10 @@ export class Character {
     const look=this.targetLook??this.conversationTarget;let aim=look?Math.atan2(look.x-this.position.x,look.z-this.position.z):this.yaw;
     if(look&&!this.spectating&&this.state!=='watch'&&!this.majorActivity&&this.acting.role!=='none'&&this.gazeClock%(this.acting.values.gazeHold+1)>this.acting.values.gazeHold)aim+=.24;
     if(!this.gazeStarted){this.gazeYaw=this.yaw;this.gazeStarted=true;}this.gazeYaw=dampAngle(this.gazeYaw,aim,5,dt);
-    this.racketImpactAge+=dt;this.animTime+=dt;this.gestureAge+=dt;this.transitionAge+=dt;this.courtPhaseAge+=dt;this.racketVibration=expDamp(this.racketVibration,0,18,dt);
+    const held=Math.min(dt,this.contactHoldRemaining);
+    this.contactHoldRemaining=Math.max(0,this.contactHoldRemaining-dt);
+    const strokeDt=dt-held;
+    this.racketImpactAge+=dt;this.animTime+=strokeDt;this.gestureAge+=dt;this.transitionAge+=dt;this.courtPhaseAge+=strokeDt;this.racketVibration=expDamp(this.racketVibration,0,18,dt);
     if(this.emotionUntil>0){this.emotionUntil=Math.max(0,this.emotionUntil-dt);if(this.emotionUntil===0)this.emotion='neutral';}
     const before=this.position.clone();let moved=0;
     if(this.pathIndex<this.path.length&&this.departureDelay<=0){
@@ -228,7 +237,7 @@ export class Character {
       if(this.courtFacing&&!stroking){const fd=Vec3.sub(this.courtFacing,this.position);this.targetYaw=Math.atan2(fd.x,fd.z);}
       if(this.courtMoveDelay>0){this.courtMoveDelay=Math.max(0,this.courtMoveDelay-dt);this.courtPhase='split';}
       else if(dist<.055){this.position.x=this.courtTarget.x;this.position.z=this.courtTarget.z;this.courtTarget=undefined;if(!stroking){this.courtPhase='load';this.courtPhaseAge=0;this.changeState('ready',false);}}
-      else{const plant=stroking&&Math.abs(this.animTime-this.shotContactTime())<(this.matchCompetitor?.025:.07);const strokeScale=plant?0:stroking?(this.matchCompetitor?.92:.6):1;const step=Math.min(dist,(this.courtSpeed+this.recoveryBonus+(this.practiceCue==='recovery'?.6:0))*this.courtSpeedScale*strokeScale*dt);this.position.x+=d.x/dist*step;this.position.z+=d.z/dist*step;moved=step;if(!stroking){this.courtPhase='adjust';this.changeState('shuffle',false);}}
+      else{const plant=stroking&&!this.matchCompetitor&&Math.abs(this.animTime-this.shotContactTime())<.07;const strokeScale=plant?0:stroking?(this.matchCompetitor?.92:.6):1;const step=Math.min(dist,(this.courtSpeed+this.recoveryBonus+(this.practiceCue==='recovery'?.6:0))*this.courtSpeedScale*strokeScale*dt);this.position.x+=d.x/dist*step;this.position.z+=d.z/dist*step;moved=step;if(!stroking){this.courtPhase='adjust';this.changeState('shuffle',false);}}
     }else {this.travelSpeed=expDamp(this.travelSpeed,0,7.5,dt);if(this.courtPhase==='recover'&&this.courtPhaseAge>.28){this.courtPhase='neutral';this.courtPhaseAge=0;}}
     const locomotionStyle=locomotionStyleFor(this.spec.id);this.yaw=dampAngle(this.yaw,this.targetYaw,isShot(this.state)?12:this.acting.role==='speak'||this.acting.role==='listen'?2.8:locomotionStyle.turnSharpness,dt);
     const worldVel=Vec3.sub(this.position,before).scale(dt>0?1/dt:0);const s=Math.sin(this.yaw),c=Math.cos(this.yaw);this.localVelocity.set(c*worldVel.x-s*worldVel.z,0,s*worldVel.x+c*worldVel.z);
@@ -246,7 +255,8 @@ export class Character {
   debugKinematics():CharacterKinematics{const p=this.pose();const err=this.contactTarget?Vec3.sub(p.racketCenter,this.contactTarget).len():0;const lateral=Math.min(1,Math.abs(this.localVelocity.x)/Math.max(.01,this.courtSpeed)),forward=Math.min(1,Math.max(0,this.localVelocity.z)/Math.max(.01,this.courtSpeed)),backward=Math.min(1,Math.max(0,-this.localVelocity.z)/Math.max(.01,this.courtSpeed)),jog=Math.min(1,Math.max(0,(this.horizontalSpeed-1.45)/.8)),walk=Math.min(1,this.horizontalSpeed/1.55)*(1-jog);return {leftFoot:p.footL.clone(),rightFoot:p.footR.clone(),leftHand:p.handL.clone(),rightHand:p.handR.clone(),leftFootPlanted:this.leftFootLock!==null,rightFootPlanted:this.rightFootLock!==null,racketGrip:p.racketGrip.clone(),racketCenter:p.racketCenter.clone(),contactTarget:this.contactTarget?.clone()??null,contactError:err,state:this.state,transition:clamp(this.transitionAge/this.transitionDuration,0,1),locomotion:this.locomotion,courtPhase:this.courtPhase,development:this.development,racketVibration:this.racketVibration,motionBlend:{idle:1-this.locomotion,walk,jog,lateral,forward,backward}};}
 
   private changeState(next:AnimState,resetTime:boolean){
-    if(next===this.state){if(resetTime)this.animTime=0;return;}
+    if(next===this.state){if(resetTime){this.animTime=0;this.contactHoldRemaining=0;}return;}
+    this.contactHoldRemaining=0;
     if((next==='walk'||next==='jog')&&this.state!=='walk'&&this.state!=='jog'){this.walkCycle.reset();this.walkCycle.update(this.position,this.yaw,0,1.02*locomotionStyleFor(this.spec.id).stride);}
     this.exitWalkPose=((this.state==='walk'||this.state==='jog')&&!MOVING.has(next)||this.state==='sit')?this.pose():null;
     if(!MOVING.has(next))this.walkCycle.reset();
