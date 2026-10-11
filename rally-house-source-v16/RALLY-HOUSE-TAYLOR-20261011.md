@@ -38,3 +38,20 @@ Current validation is saved in `evidence/taylor-glamour-20261011`:
 - The controlled idle scene measured 880 draw calls and 283,644 rendered triangles in each browser engine. This includes the complete academy and other actors, not just Taylor.
 
 The expression captures call the real `setEmotion` method and let the existing character update blend the face before capture. Neutral emotion is restored before Championship. Selected images are retained alongside the full capture reports; the screenshots remain actual WebGL renders with the inspection controls described above.
+
+## Silhouette and club idle sculpt
+
+Taylor's thick primitive forearms, oversized mitten hands and straight boots gave the body an avatar-like silhouette. Dense interpolated cross sections now taper the upper arms, elbows, wrists, calves and ankles. Smaller rounded shoulder caps meet the dress's softened shoulder line. The dress retains its neckline and hem coverage; its edging samples the revised fabric profile. Gold paws are smaller and lowered to meet the floor. Two palms, four rounded fingers and a thumb on each glove are cached together as one skinned mesh, replacing four rigid hand primitives.
+
+In ordinary club idle, the visible elbows and wrists gradually settle beside the dress. This is a cosmetic render pose: the physical skeleton remains unchanged. Match participation, shots, props, surface reaches, spectator poses and social acting immediately use the authoritative pose. Championship contact holds, racket attachment, movement and scoring retain their existing behavior.
+
+Validation is saved in `evidence/taylor-sculpt-20261011`:
+
+- All 21 game suites passed. New regressions validate bounded, normalized finger skinning, manifold boot surfaces with only their four intended open rims, and immediate visible-arm restoration for ready/shot/match/prop/reach/gesture cases. Exact gameplay kinematics still match the baseline across eleven states at 30, 60 and 120 Hz.
+- Portfolio verification passed: 91 tests, type checking, all 31 production routes, zero lint errors and 13 existing warnings.
+- Chromium, Firefox and WebKit each rendered 16 desktop/phone inspection and Championship views with zero JavaScript or WebGL errors. The camera places Taylor on a clear section of court to avoid furniture or the net obscuring the new hands and legs. These are controlled running-game views.
+- The shipped 390×844 portfolio flow passed with zero Axe, overflow, JavaScript or request errors. Sixteen held-contact exits across four opponents and both motion modes, twelve bounded audio buffers, disposal and five extracted-package reloads passed.
+- One initial exit run failed a blanket assertion that the court could never be reserved after 200 recovery steps. The club continues scheduling during those steps. The QA now records the departing transaction ID and any new court owners, and checks that neither that transaction nor another Championship reservation survives. The repeated run passed all sixteen exits; its court reservations were all clear. The initial report is retained as `exit-reservation-investigation.json`, not represented as a passing run. No game scheduling code was changed.
+- A 1,200-frame real-time Championship rally recorded 16 aligned contacts with a local p95 frame interval of 16.7 ms. This is a local headless-browser measurement, not a physical-device certification.
+- All 63 source/served artifacts match, and all 65 entries in the CRC-checked standalone package match their current source files.
+- Each engine observed 877 draw calls and 287,916 rendered triangles in the controlled idle scene, including the academy, other actors and shadows. The previous glamour scene measured 880 draws and 283,644 triangles. The glove geometry adds detail while reducing hand draw calls.
