@@ -290,7 +290,7 @@ export const transferQuestions: Question[] = [
     options: [
       "The drug must bind helicase directly",
       "The drug targets ligase exclusively",
-      "An upstream template-access step is impaired; the exact target needs another assay",
+      "A ready template bypasses the defect; the exact target needs another assay",
       "Polymerase cannot use a 3′ OH",
     ],
     correct: 2,
