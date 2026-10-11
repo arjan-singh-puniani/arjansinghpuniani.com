@@ -947,7 +947,7 @@ export class Character {
         const bones = skinMatrices(rig);
         const skinRoot = { position: new Vec3(p.x, 0, p.z), rotation: new Vec3(0, this.yaw, 0), boneMatrices: bones };
         const torsoSkin = feline ? CHARACTER_SKIN.taylorDress : this.spec.presentation === 'feminine' ? CHARACTER_SKIN.feminineTop : CHARACTER_SKIN.top;
-        m.push({ ...skinRoot, skin: torsoSkin, color: this.spec.shirt, material: 'fabric' }, { ...skinRoot, skin: feline ? CHARACTER_SKIN.taylorLegs : CHARACTER_SKIN.pants, color: this.spec.skin, material: 'skin' }, { ...skinRoot, skin: CHARACTER_SKIN.arms, color: this.spec.skin, material: 'skin' });
+        m.push({ ...skinRoot, skin: torsoSkin, color: this.spec.shirt, material: 'fabric' }, { ...skinRoot, skin: feline ? CHARACTER_SKIN.taylorLegs : CHARACTER_SKIN.pants, color: this.spec.skin, material: 'skin' }, { ...skinRoot, skin: feline ? CHARACTER_SKIN.taylorArms : CHARACTER_SKIN.arms, color: this.spec.skin, material: 'skin' });
         if (feline)
             m.push({ ...skinRoot, skin: CHARACTER_SKIN.taylorBoots, color: TAYLOR_PALETTE.indigo, material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorGloves, color: TAYLOR_PALETTE.indigo, material: 'fabric' });
         else {
@@ -957,15 +957,9 @@ export class Character {
             for (const shoulder of [shoulderL, shoulderR])
                 m.push({ kind: 'sphere', position: Vec3.lerp(shoulder, Vec3.lerp(shoulderL, shoulderR, .5), .25).add(new Vec3(0, -.035, 0)), scale: new Vec3(.265, .265, .265), color: this.spec.shirt, material: 'fabric' });
         }
-        if (feline)
-            for (const shoulder of [shoulderL, shoulderR]) {
-                const bridge = this.limb(Vec3.lerp(Vec3.lerp(shoulderL, shoulderR, .5), shoulder, .70), shoulder, .20, this.spec.skin);
-                bridge.material = 'skin';
-                m.push(bridge);
-                m.push({ kind: 'sphere', position: shoulder, scale: new Vec3(.218, .218, .205), color: this.spec.skin, material: 'skin' });
-            }
-        for (const elbow of [elbowL, elbowR])
-            m.push({ kind: 'sphere', position: elbow, scale: new Vec3(.20, .20, .19), color: this.spec.skin, material: 'skin' });
+        if (!feline)
+            for (const elbow of [elbowL, elbowR])
+                m.push({ kind: 'sphere', position: elbow, scale: new Vec3(.20, .20, .19), color: this.spec.skin, material: 'skin' });
         const leftShoePitch = pose.walking && !this.leftFootLock ? clamp(-pose.gait * .18, -.18, .18) : 0, rightShoePitch = pose.walking && !this.rightFootLock ? clamp(pose.gait * .18, -.18, .18) : 0;
         const leftShoeYaw = pose.walking ? this.walkCycle.yaws[0] : this.yaw, rightShoeYaw = pose.walking ? this.walkCycle.yaws[1] : this.yaw;
         const shoeColor = feline ? this.spec.skin : this.spec.shoe ?? '#fff8ee', soleColor = mixHex(shoeColor, '#ffffff', .62);

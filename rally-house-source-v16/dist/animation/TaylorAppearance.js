@@ -1,24 +1,19 @@
 import { Vec3, identity, smoothstep } from '../rendering/Math3D.js';
-export const TAYLOR_PALETTE = { indigo: '#2531a1', fur: '#ffe052', gold: '#e9bd46', ink: '#22245e', white: '#fffaf1' };
-// Original geometry authored from the supplied visual reference. Each rigid
-// piece uses a single identity skin bone, so it reuses the existing renderer
-// without new shader branches, textures, or changes to contact-space joints.
+export const TAYLOR_PALETTE = { indigo: '#202d91', fur: '#ffe257', gold: '#e8b947', ink: '#202050', white: '#fffdf2' };
 const rigidBones = new Float32Array(15 * 16);
 for (let i = 0; i < 15; i++)
     rigidBones.set(identity(), i * 16);
 function geometry(id, emit, smooth = false) {
     const positions = [], normals = [], indices = [], weights = [];
-    const tri = (a, b, c) => { const u = Vec3.sub(new Vec3(...b), new Vec3(...a)), v = Vec3.sub(new Vec3(...c), new Vec3(...a)), n = Vec3.cross(u, v); if (n.len() < 1e-8)
+    emit((a, b, c) => { const n = Vec3.cross(Vec3.sub(new Vec3(...b), new Vec3(...a)), Vec3.sub(new Vec3(...c), new Vec3(...a))); if (n.len() < 1e-8)
         return; n.normalize(); for (const p of [a, b, c]) {
         positions.push(...p);
         normals.push(n.x, n.y, n.z);
         indices.push(0, 0, 0, 0);
         weights.push(1, 0, 0, 0);
-    } };
-    emit(tri);
+    } });
     if (smooth) {
-        const sums = new Map();
-        const key = (i) => positions.slice(i, i + 3).map(n => n.toFixed(6)).join(',');
+        const sums = new Map(), key = (i) => positions.slice(i, i + 3).map(n => n.toFixed(6)).join(',');
         for (let i = 0; i < positions.length; i += 3) {
             const k = key(i), n = sums.get(k) ?? new Vec3();
             n.add(new Vec3(...normals.slice(i, i + 3)));
@@ -26,39 +21,74 @@ function geometry(id, emit, smooth = false) {
         }
         for (let i = 0; i < positions.length; i += 3) {
             const n = sums.get(key(i)).clone().normalize();
-            normals.splice(i, 3, n.x, n.y, n.z);
+            normals[i] = n.x;
+            normals[i + 1] = n.y;
+            normals[i + 2] = n.z;
         }
     }
     return { id, positions: new Float32Array(positions), normals: new Float32Array(normals), boneIndices: new Float32Array(indices), boneWeights: new Float32Array(weights) };
 }
-const hood = geometry('taylor-sculpted-bob-v1', tri => {
-    // Three shaped rings form a blunt bob with an open face, rather than balls
-    // intersecting the cheeks. A separate crown closes the upper silhouette.
-    const rings = [[-.31, .32, .21], [-.22, .365, .25], [.09, .365, .265], [.23, .31, .245]];
-    const at = (r, i) => { const [y, rx, rz] = rings[r], a = .85 + i / 32 * (Math.PI * 2 - 1.70); return [Math.sin(a) * rx, y, Math.cos(a) * rz]; };
-    for (let r = 0; r < rings.length - 1; r++)
-        for (let i = 0; i < 32; i++) {
+// Monotone cubic radius interpolation avoids pinched chins and bulges between
+// authored cross sections. The same profile projects the face graphics onto
+// the skin surface, giving them actual cheek curvature rather than flat cards.
+function profile(points, y) {
+    let i = 0;
+    while (i < points.length - 2 && y > points[i + 1][0])
+        i++;
+    const a = points[i], b = points[i + 1], t = Math.max(0, Math.min(1, (y - a[0]) / (b[0] - a[0])));
+    return [1, 2].map(k => {
+        const slope = (j) => { if (j === 0 || j === points.length - 1)
+            return 0; const p = points[j - 1], q = points[j], r = points[j + 1], u = (q[k] - p[k]) / (q[0] - p[0]), v = (r[k] - q[k]) / (r[0] - q[0]); return u * v <= 0 ? 0 : 2 * u * v / (u + v); };
+        const d = b[0] - a[0];
+        return (2 * t ** 3 - 3 * t * t + 1) * a[k] + (t ** 3 - 2 * t * t + t) * d * slope(i) + (-2 * t ** 3 + 3 * t * t) * b[k] + (t ** 3 - t * t) * d * slope(i + 1);
+    });
+}
+const faceProfile = [[-.303, 0, 0], [-.286, .16, .145], [-.245, .29, .219], [-.13, .38, .263], [.015, .406, .274], [.115, .394, .264], [.22, .33, .233], [.292, .18, .135], [.315, 0, 0]];
+const surfaceZ = (x, y, depth) => { const [rx, rz] = profile(faceProfile, y); return rz * Math.sqrt(Math.max(.001, 1 - (x / Math.max(.001, rx)) ** 2)) + depth; };
+const face = geometry('taylor-shaped-face-v2', tri => {
+    const at = (r, i) => { const y = -.303 + r / 30 * .618, [rx, rz] = profile(faceProfile, y), a = i / 48 * Math.PI * 2; return [Math.sin(a) * rx, y, Math.cos(a) * rz]; };
+    for (let r = 0; r < 30; r++)
+        for (let i = 0; i < 48; i++) {
             const a = at(r, i), b = at(r, i + 1), c = at(r + 1, i + 1), d = at(r + 1, i);
             tri(a, b, c);
             tri(a, c, d);
         }
-    for (let i = 0; i < 32; i++) {
-        const a = at(0, i), b = at(0, i + 1);
-        tri([0, -.31, -.04], b, a);
-    }
-    const crown = (r, i) => { const a = i / 40 * Math.PI * 2, t = r / 10 * 1.26; return [.365 * Math.sin(t) * Math.sin(a), .34 * Math.cos(t), .27 * Math.sin(t) * Math.cos(a)]; };
-    for (let r = 0; r < 10; r++)
-        for (let i = 0; i < 40; i++) {
-            const a = crown(r, i), b = crown(r, i + 1), c = crown(r + 1, i + 1), d = crown(r + 1, i);
+}, true);
+const bobProfile = [[-.35, .29, .205], [-.325, .365, .248], [-.245, .432, .292], [-.12, .449, .303], [.055, .445, .298], [.17, .414, .281], [.23, .353, .261]];
+const hood = geometry('taylor-contoured-headdress-v2', tri => {
+    const at = (r, i) => { const y = -.35 + r / 18 * .58, [rx, rz] = profile(bobProfile, y), opening = .71 + .23 * Math.sin((y + .35) / .58 * Math.PI), a = opening + i / 48 * (Math.PI * 2 - opening * 2); return [Math.sin(a) * rx, y, Math.cos(a) * rz]; };
+    for (let r = 0; r < 18; r++)
+        for (let i = 0; i < 48; i++) {
+            const a = at(r, i), b = at(r, i + 1), c = at(r + 1, i + 1), d = at(r + 1, i);
+            tri(a, b, c);
+            tri(a, c, d);
+        }
+    for (let i = 0; i < 48; i++)
+        tri([0, -.35, -.04], at(0, i + 1), at(0, i));
+    const bottom = Math.acos(.23 / .34), rad = Math.sin(bottom), angles = Array.from({ length: 65 }, (_, i) => i <= 48 ? .71 + i / 48 * (Math.PI * 2 - 1.42) : Math.PI * 2 - .71 + (i - 48) / 16 * 1.42);
+    const atCrown = (r, i) => { const a = angles[i], t = r / 12 * bottom; return [.353 / rad * Math.sin(t) * Math.sin(a), .34 * Math.cos(t), .261 / rad * Math.sin(t) * Math.cos(a)]; };
+    for (let r = 0; r < 12; r++)
+        for (let i = 0; i < 64; i++) {
+            const a = atCrown(r, i), b = atCrown(r, i + 1), c = atCrown(r + 1, i + 1), d = atCrown(r + 1, i);
             tri(a, c, b);
             tri(a, d, c);
         }
 }, true);
-const ears = geometry('taylor-pointed-ears-v1', tri => {
+const hairline = geometry('taylor-authored-hairline-v2', tri => {
+    const xs = [-.35, -.29, -.21, -.12, -.035, 0, .035, .12, .21, .29, .35], ys = [.12, .18, .225, .237, .20, .235, .20, .237, .225, .18, .12];
+    const pt = (i, upper) => { const x = xs[i], y = upper ? .285 + Math.sqrt(Math.max(0, 1 - (x / .37) ** 2)) * .022 : ys[i]; return [x, y, surfaceZ(x, Math.min(y, .284), .016)]; };
+    for (let i = 0; i < xs.length - 1; i++) {
+        const a = pt(i, false), b = pt(i + 1, false), c = pt(i + 1, true), d = pt(i, true);
+        tri(a, b, c);
+        tri(a, c, d);
+    }
+}, true);
+// Triangular prisms retain the reference's tall ears. The broad front
+// planes, gold inlays and rear planes have their own normals and thickness.
+const ears = geometry('taylor-solid-ears-v2', tri => {
     for (const side of [-1, 1]) {
-        const a = [side * .34, .19, .10], b = [side * .105, .26, .10], c = [side * .25, .77, .04];
-        const back = (p) => [p[0], p[1], p[2] - .17];
-        const aa = back(a), bb = back(b), cc = back(c);
+        const a = [side * .375, .205, .083], b = [side * .115, .26, .083], c = [side * .254, .805, .025];
+        const back = (p) => [p[0], p[1], p[2] - .125], aa = back(a), bb = back(b), cc = back(c);
         if (side === 1) {
             tri(a, c, b);
             tri(aa, bb, cc);
@@ -80,84 +110,135 @@ const ears = geometry('taylor-pointed-ears-v1', tri => {
         }
     }
 });
-const earInlays = geometry('taylor-ear-gold-inlays-v1', tri => {
+const earInlays = geometry('taylor-gold-ear-insets-v2', tri => {
     for (const side of [-1, 1]) {
-        const a = [side * .294, .29, .108], b = [side * .15, .31, .108], c = [side * .247, .66, .066];
+        const a = [side * .325, .294, .080], b = [side * .16, .322, .080], c = [side * .251, .705, .037];
         if (side === 1)
             tri(a, c, b);
         else
             tri(a, b, c);
     }
 });
-const stripes = geometry('taylor-bob-gold-stripes-v1', tri => {
+const stripes = geometry('taylor-curved-headdress-stripes-v2', tri => {
     for (const side of [-1, 1])
-        for (const y of [-.20, -.07]) {
-            const a = [side * .278, y + .063, .177], b = [side * .354, y + .020, .104], c = [side * .347, y - .035, .101], d = [side * .28, y + .006, .18];
-            if (side === 1) {
-                tri(a, c, b);
-                tri(a, d, c);
-            }
-            else {
-                tri(a, b, c);
-                tri(a, c, d);
+        for (const base of [-.23, -.09, .045]) {
+            const at = (r, i) => { const a = .87 + i / 8 * .68, y = base + (r ? -.016 : .040) - i / 8 * .040, [rx, rz] = profile(bobProfile, y); return [side * Math.sin(a) * (rx + .007), y, Math.cos(a) * (rz + .007)]; };
+            for (let i = 0; i < 8; i++) {
+                const a = at(0, i), b = at(0, i + 1), c = at(1, i + 1), d = at(1, i);
+                if (side === 1) {
+                    tri(a, c, b);
+                    tri(a, d, c);
+                }
+                else {
+                    tri(a, b, c);
+                    tri(a, c, d);
+                }
             }
         }
 });
-function almond(id, width, top, bottom) {
-    return geometry(id, tri => { const center = [0, 0, .011]; const pt = (a) => { const x = Math.cos(a) * width / 2, s = Math.sin(a), y = s * (s > 0 ? top : bottom); return [x, y, .011 * (1 - (x / (width / 2)) ** 2)]; }; for (let i = 0; i < 32; i++)
-        tri(center, pt(i / 32 * Math.PI * 2), pt((i + 1) / 32 * Math.PI * 2)); });
+// Subdivide graphic patches radially. A single triangle fan would cut below
+// the convex face between its vertices and leave gold specks in the eye white.
+function curvedPatch(tri, cx, cy, width, top, bottom, depth) {
+    const at = (r, i) => { const t = r / 6, a = i / 40 * Math.PI * 2, x = cx + Math.cos(a) * width / 2 * t, v = Math.sin(a), y = cy + v * (v > 0 ? top : bottom) * t; return [x, y, surfaceZ(x, y, depth)]; };
+    for (let r = 0; r < 6; r++)
+        for (let i = 0; i < 40; i++) {
+            const a = at(r, i), b = at(r, i + 1), c = at(r + 1, i + 1), d = at(r + 1, i);
+            tri(a, d, c);
+            tri(a, c, b);
+        }
 }
-const eyeOutline = almond('taylor-almond-outline-v1', .249, .038, .059), eyeWhite = almond('taylor-almond-white-v1', .221, .025, .044), eyelid = almond('taylor-heavy-lid-v1', .239, .080, .002);
-export const TAYLOR_GEOMETRY = { hood, ears, earInlays, stripes, eyeOutline, eyeWhite, eyelid };
-export function taylorHeadMeshes(head, yaw, tilt, face, time) {
+function eyes(id, width, top, bottom, depth, pupil = false) {
+    return geometry(id, tri => { for (const side of [-1, 1])
+        curvedPatch(tri, side * (pupil ? .128 : .183), .040, width, top, bottom, depth); }, true);
+}
+const eyeOutline = eyes('taylor-eye-ink-v3', .311, .027, .075, .009), eyeWhite = eyes('taylor-eye-white-v3', .287, .020, .061, .012), pupils = eyes('taylor-half-lidded-pupils-v3', .125, .024, .060, .015, true);
+const eyelid = geometry('taylor-curved-upper-lids-v3', tri => { for (const side of [-1, 1])
+    curvedPatch(tri, side * .183, .054, .306, .105, .008, .019); }, true);
+const eyeGlints = geometry('taylor-eye-glints-v2', tri => {
+    for (const side of [-1, 1]) {
+        const x = side * .130, y = .034;
+        tri([x - .016, y + .003, surfaceZ(x - .016, y + .003, .025)], [x - .003, y - .012, surfaceZ(x - .003, y - .012, .025)], [x + .013, y + .003, surfaceZ(x + .013, y + .003, .025)]);
+    }
+});
+const lashes = geometry('taylor-eyelash-corners-v2', tri => {
+    for (const side of [-1, 1]) {
+        const cx = side * .323, cy = .002;
+        const a = [cx, cy + .009, surfaceZ(cx, cy + .009, .009)], b = [cx + side * .025, cy - .012, surfaceZ(cx + side * .025, cy - .012, .009)], c = [cx, cy - .011, surfaceZ(cx, cy - .011, .009)];
+        if (side === 1)
+            tri(a, c, b);
+        else
+            tri(a, b, c);
+    }
+});
+function mouth(id, smile) {
+    return geometry(id, tri => {
+        const pt = (i, upper) => { const x = -.071 + i / 16 * .142, t = x / .071, y = -.111 + (smile ? -.027 : .035) * (1 - t * t) + (upper ? .006 : -.006); return [x, y, surfaceZ(x, y, .008)]; };
+        for (let i = 0; i < 16; i++) {
+            const a = pt(i, false), b = pt(i + 1, false), c = pt(i + 1, true), d = pt(i, true);
+            tri(a, b, c);
+            tri(a, c, d);
+        }
+    });
+}
+const frown = mouth('taylor-curved-frown-v2', false), smile = mouth('taylor-curved-smile-v2', true);
+const crest = geometry('taylor-cobra-crest-v2', tri => {
+    const outline = [[-.037, .283, .276], [-.047, .337, .268], [-.039, .382, .255], [0, .402, .246], [.039, .382, .255], [.047, .337, .268], [.037, .283, .276], [0, .254, .282]];
+    const center = [0, .335, .291];
+    for (let i = 0; i < outline.length; i++)
+        tri(center, outline[(i + 1) % outline.length], outline[i]);
+}, true);
+export const TAYLOR_GEOMETRY = { face, hood, hairline, ears, earInlays, stripes, eyeOutline, eyeWhite, pupils, eyelid, eyeGlints, lashes, frown, smile, crest };
+export function taylorHeadMeshes(head, yaw, tilt, expression, time) {
     const out = [], right = new Vec3(Math.cos(yaw), 0, -Math.sin(yaw)), forward = new Vec3(Math.sin(yaw), 0, Math.cos(yaw));
     const point = (x, y, z) => head.clone().add(right.clone().scale(x * Math.cos(tilt) - y * Math.sin(tilt))).add(new Vec3(0, x * Math.sin(tilt) + y * Math.cos(tilt), 0)).add(forward.clone().scale(z));
-    const add = (kind, x, y, z, scale, color, material = 'matte', unlit = false) => out.push({ kind, position: point(x, y, z), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(...scale), color, material, unlit });
-    const piece = (skin, color, x = 0, y = 0, z = 0, scale = [1, 1, 1], unlit = false) => out.push({ skin, boneMatrices: rigidBones, position: point(x, y, z), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(...scale), color, material: 'matte', unlit });
-    add('sphere', 0, -.012, .025, [.665, .605, .475], TAYLOR_PALETTE.fur, 'skin');
+    const piece = (skin, color, unlit = false, y = 0, scaleY = 1, material = 'matte') => out.push({ skin, boneMatrices: rigidBones, position: point(0, y, 0), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(1, scaleY, 1), color, material, unlit });
+    piece(face, TAYLOR_PALETTE.fur, false, 0, 1, 'skin');
     piece(hood, TAYLOR_PALETTE.indigo);
+    piece(hairline, TAYLOR_PALETTE.indigo);
     piece(ears, TAYLOR_PALETTE.indigo);
     piece(earInlays, TAYLOR_PALETTE.fur);
     piece(stripes, TAYLOR_PALETTE.fur);
-    // Forehead cobra jewel: gold crest, engraved indigo inset, and a small nose.
-    add('sphere', 0, .30, .224, [.095, .135, .048], TAYLOR_PALETTE.gold, 'metal');
-    add('cone', 0, .235, .244, [.049, .12, .027], TAYLOR_PALETTE.gold, 'metal');
-    add('sphere', 0, .32, .252, [.035, .022, .015], TAYLOR_PALETTE.ink, 'matte', true);
-    const phase = (time + .47) % 3.75, blink = phase < .10 ? 1 - smoothstep(0, .10, phase) : 0, open = Math.max(.07, 1 - blink - face.squint * .45);
-    for (const side of [-1, 1]) {
-        // Each eye has its own normal-aligned frame; it stays on the cheek as the
-        // character turns, rather than floating on a world-facing plane.
-        const eyeYaw = yaw + side * .20;
-        const start = out.length;
-        piece(eyeOutline, TAYLOR_PALETTE.ink, side * .152, .03, .224, [1, open, 1], true);
-        piece(eyeWhite, TAYLOR_PALETTE.white, side * .152, .03, .231, [1, open, 1], true);
-        add('sphere', side * .135, .018, .253, [.078, .074 * open, .020], TAYLOR_PALETTE.ink, 'matte', true);
-        add('sphere', side * .128, .033, .266, [.015, .018 * open, .007], '#ffffff', 'matte', true);
-        piece(eyelid, '#d5b84e', side * .152, .033 + face.browRaise * .010, .266, [1, 1, 1]);
-        for (let i = start; i < out.length; i++)
-            out[i].rotation.y = eyeYaw;
-        add('roundBox', side * .25, .021, .218, [.035, .014, .011], TAYLOR_PALETTE.ink, 'matte', true);
-    }
-    // The tiny chevron mouth follows the existing emotions, without overriding
-    // gesture or social systems. No sexual poses or gameplay timing changes.
-    const lift = face.smile * .016;
-    for (const side of [-1, 1]) {
-        const a = point(side * .044, -.087 + lift, .252), b = point(0, -.069, .256), delta = Vec3.sub(b, a);
-        out.push({ kind: 'cylinder', position: Vec3.lerp(a, b, .5), rotation: new Vec3(0, yaw, -Math.atan2(delta.x, delta.y)), scale: new Vec3(.009, delta.len(), .009), color: TAYLOR_PALETTE.ink, unlit: true });
-    }
-    if (face.mouthOpen > .18)
-        add('sphere', 0, -.096, .26, [.043, .025 + face.mouthOpen * .018, .010], TAYLOR_PALETTE.ink, 'matte', true);
+    const phase = (time + .47) % 3.75, blink = phase < .10 ? 1 - smoothstep(0, .10, phase) : 0, open = Math.max(.065, 1 - blink - expression.squint * .35);
+    piece(eyeOutline, TAYLOR_PALETTE.ink, true, .040 * (1 - open), open);
+    piece(eyeWhite, TAYLOR_PALETTE.white, true, .040 * (1 - open), open);
+    piece(pupils, TAYLOR_PALETTE.ink, true, .040 * (1 - open), open);
+    piece(eyeGlints, TAYLOR_PALETTE.white, true, .040 * (1 - open), open);
+    piece(eyelid, '#c9ac45', false, expression.browRaise * .004);
+    piece(lashes, TAYLOR_PALETTE.ink, true);
+    piece(expression.smile > .35 ? smile : frown, TAYLOR_PALETTE.ink, true);
+    piece(crest, TAYLOR_PALETTE.gold, false, 0, 1, 'metal');
+    out.push({ kind: 'sphere', position: point(0, .351, .294), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.049, .050, .021), color: TAYLOR_PALETTE.gold, material: 'metal' });
+    for (const side of [-1, 1])
+        out.push({ kind: 'sphere', position: point(side * .016, .353, .291), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.010, .012, .005), color: TAYLOR_PALETTE.ink, unlit: true });
+    out.push({ kind: 'cone', position: point(0, .300, .294), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.022, .054, .014), color: TAYLOR_PALETTE.gold, material: 'metal' });
+    if (expression.mouthOpen > .18)
+        out.push({ kind: 'sphere', position: point(0, -.105, surfaceZ(0, -.105, .012)), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.050, .020 + expression.mouthOpen * .028, .009), color: TAYLOR_PALETTE.ink, unlit: true });
     return out;
 }
-export function taylorTailMeshes(pelvis, yaw, time, speed) {
-    const out = [], right = new Vec3(Math.cos(yaw), 0, -Math.sin(yaw)), forward = new Vec3(Math.sin(yaw), 0, Math.cos(yaw));
-    const sway = Math.sin(time * 2.1) * (.025 + Math.min(.04, speed * .015));
-    const point = (t) => pelvis.clone().add(right.clone().scale(.50 * Math.sin(t * 1.3) + sway * t)).add(forward.clone().scale(-.16 - .27 * Math.sin(t * Math.PI / 2))).add(new Vec3(0, -.065 - .17 * Math.sin(t * Math.PI), 0));
-    for (let i = 0; i < 10; i++) {
-        const a = point(i / 10), b = point((i + 1) / 10), d = Vec3.sub(b, a), radius = .068 - i * .0016;
-        const color = i % 4 < 2 ? TAYLOR_PALETTE.indigo : TAYLOR_PALETTE.fur;
-        out.push({ kind: 'cylinder', position: Vec3.lerp(a, b, .5), rotation: new Vec3(Math.atan2(Math.hypot(d.x, d.z), d.y), Math.atan2(d.x, d.z), 0), scale: new Vec3(radius, d.len() + .009, radius), color, material: 'skin' });
+const tailPoint = (t) => new Vec3(.50 * Math.sin(t * 1.3), -.065 - .17 * Math.sin(t * Math.PI), -.16 - .27 * Math.sin(t * Math.PI / 2));
+const tailGeometry = (gold) => geometry(`taylor-smooth-tail-${gold ? 'gold' : 'indigo'}-v2`, tri => {
+    const at = (r, i) => { const t = r / 60, c = tailPoint(t), d = Vec3.sub(tailPoint(Math.min(1, t + .001)), tailPoint(Math.max(0, t - .001))).normalize(), x = Vec3.cross(d, new Vec3(0, 1, 0)).normalize(), y = Vec3.cross(x, d).normalize(), a = i / 16 * Math.PI * 2, radius = .034 - t * .006; const p = c.add(x.scale(Math.cos(a) * radius)).add(y.scale(Math.sin(a) * radius)); return [p.x, p.y, p.z]; };
+    for (let r = 0; r < 60; r++)
+        if ((r >= 54 || Math.floor(r / 6) % 4 >= 2) === gold)
+            for (let i = 0; i < 16; i++) {
+                const a = at(r, i), b = at(r, i + 1), c = at(r + 1, i + 1), d = at(r + 1, i);
+                tri(a, c, b);
+                tri(a, d, c);
+            }
+    if (gold) {
+        const end = tailPoint(1), axis = Vec3.sub(end, tailPoint(.999)).normalize(), x = Vec3.cross(axis, new Vec3(0, 1, 0)).normalize(), y = Vec3.cross(x, axis).normalize();
+        const cap = (r, i) => { const theta = r / 6 * Math.PI / 2, a = i / 16 * Math.PI * 2, p = end.clone().add(axis.clone().scale(Math.sin(theta) * .028)).add(x.clone().scale(Math.cos(theta) * Math.cos(a) * .028)).add(y.clone().scale(Math.cos(theta) * Math.sin(a) * .028)); return [p.x, p.y, p.z]; };
+        for (let r = 0; r < 6; r++)
+            for (let i = 0; i < 16; i++) {
+                const a = cap(r, i), b = cap(r, i + 1), c = cap(r + 1, i + 1), d = cap(r + 1, i);
+                tri(a, c, b);
+                tri(a, d, c);
+            }
     }
-    out.push({ kind: 'sphere', position: point(1), scale: new Vec3(.053, .053, .053), color: TAYLOR_PALETTE.fur, material: 'skin' });
-    return out;
+}, true);
+const tailGold = tailGeometry(true), tailIndigo = tailGeometry(false);
+export const TAYLOR_TAIL_GEOMETRY = { tailGold, tailIndigo };
+export function taylorTailMeshes(pelvis, yaw, time, speed) {
+    const rotation = new Vec3(0, yaw + Math.sin(time * 2.1) * (.025 + Math.min(.04, speed * .015)), 0);
+    return [tailGold, tailIndigo].map(skin => ({ skin, boneMatrices: rigidBones, position: pelvis.clone(), rotation, scale: new Vec3(1, 1, 1), color: skin === tailGold ? TAYLOR_PALETTE.fur : TAYLOR_PALETTE.indigo, material: 'skin' }));
 }

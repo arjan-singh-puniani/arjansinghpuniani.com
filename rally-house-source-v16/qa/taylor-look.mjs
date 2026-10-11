@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {chromium,firefox,webkit,browserOptions} from './runtime.mjs';
 const engine=process.argv[2]??'chromium';
-const out=path.resolve('evidence/taylor-20261011',engine);fs.mkdirSync(out,{recursive:true});
+const out=path.resolve('evidence/taylor-refined-20261011',engine);fs.mkdirSync(out,{recursive:true});
 const {homedir}=await import('node:os');
 const browser=engine==='chromium'?await chromium.launch({...browserOptions,args:['--use-angle=metal']}):await ({firefox,webkit}[engine]).launch({headless:true,executablePath:path.join(homedir(),'Library/Caches/ms-playwright',engine==='firefox'?'firefox-1538/firefox/Nightly.app/Contents/MacOS/firefox':'webkit-2359/pw_run.sh')});
 const report={errors:[],shots:[]};
