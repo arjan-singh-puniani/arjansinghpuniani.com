@@ -1,0 +1,104 @@
+{
+  "label": "final",
+  "errors": [],
+  "shots": [
+    {
+      "portrait": "coach",
+      "controlledIdle": true,
+      "position": {
+        "x": 1,
+        "y": 0,
+        "z": -5
+      },
+      "gl": 0
+    },
+    {
+      "portrait": "mika",
+      "controlledIdle": true,
+      "position": {
+        "x": 1,
+        "y": 0,
+        "z": 5
+      },
+      "gl": 0
+    },
+    {
+      "portrait": "leo",
+      "controlledIdle": true,
+      "position": {
+        "x": 10.50674783380939,
+        "y": 0,
+        "z": -6
+      },
+      "gl": 0
+    },
+    {
+      "portrait": "nia",
+      "controlledIdle": true,
+      "position": {
+        "x": -9,
+        "y": 0,
+        "z": -4.5
+      },
+      "gl": 0
+    },
+    {
+      "portrait": "taylor",
+      "controlledIdle": true,
+      "position": {
+        "x": -11.9,
+        "y": 0,
+        "z": 8.1
+      },
+      "gl": 0
+    },
+    {
+      "viewport": 1440,
+      "drawCalls": 953,
+      "triangles": 287932,
+      "gl": 0
+    },
+    {
+      "viewport": 1440,
+      "gl": 0,
+      "time": 722.25,
+      "weather": "clear"
+    },
+    {
+      "viewport": 1440,
+      "gl": 0,
+      "time": 1252.5,
+      "weather": "clear"
+    },
+    {
+      "viewport": 1440,
+      "gl": 0,
+      "time": 1042.5,
+      "weather": "rain"
+    },
+    {
+      "viewport": 390,
+      "drawCalls": 953,
+      "triangles": 287932,
+      "gl": 0
+    },
+    {
+      "viewport": 390,
+      "gl": 0,
+      "time": 722.25,
+      "weather": "clear"
+    },
+    {
+      "viewport": 390,
+      "gl": 0,
+      "time": 1252.25,
+      "weather": "clear"
+    },
+    {
+      "viewport": 390,
+      "gl": 0,
+      "time": 1042.25,
+      "weather": "rain"
+    }
+  ]
+}

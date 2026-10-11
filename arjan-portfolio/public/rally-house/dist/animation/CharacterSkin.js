@@ -45,7 +45,22 @@ function connect(out, startVertex, seg = 10) { const p = [], n = [], bi = [], bw
         bw.push(...out.bw.slice(idx * 4, idx * 4 + 4));
     }
 } return { p, n, bi, bw }; }
-function addSegment(out, a, b, ra, rb, boneA, boneB, seg = 10) { const temp = build(), dir = Vec3.sub(b, a); ring(temp, a, dir, ra[0], ra[1], [boneA, boneB], [1, 0], seg); const mid = Vec3.lerp(a, b, .5); ring(temp, mid, dir, (ra[0] + rb[0]) * .5, (ra[1] + rb[1]) * .5, [boneA, boneB], [.5, .5], seg); ring(temp, b, dir, rb[0], rb[1], [boneA, boneB], [0, 1], seg); const c1 = connect(temp, 0, seg), c2 = connect(temp, seg, seg); out.p.push(...c1.p, ...c2.p); out.n.push(...c1.n, ...c2.n); out.bi.push(...c1.bi, ...c2.bi); out.bw.push(...c1.bw, ...c2.bw); }
+function addSegment(out, a, b, ra, rb, boneA, boneB, seg = 10) {
+    const temp = build();
+    // Adjacent segments share the same joint ring plane. Using each segment's
+    // own axis left hairline gaps at the waist, knees and elbows after skinning.
+    const direction = Vec3.sub(b, a);
+    const axis = (bone) => { const d = defs[bone], v = Vec3.sub(bind[d.child], bind[d.joint]).normalize(); return Vec3.dot(v, direction) < 0 ? v.scale(-1) : v; };
+    const axisA = axis(boneA), axisB = axis(boneB), mid = Vec3.lerp(a, b, .5);
+    ring(temp, a, axisA, ra[0], ra[1], [boneA, boneB], [1, 0], seg);
+    ring(temp, mid, Vec3.lerp(axisA, axisB, .5), (ra[0] + rb[0]) * .5, (ra[1] + rb[1]) * .5, [boneA, boneB], [.5, .5], seg);
+    ring(temp, b, axisB, rb[0], rb[1], [boneA, boneB], [0, 1], seg);
+    const c1 = connect(temp, 0, seg), c2 = connect(temp, seg, seg);
+    out.p.push(...c1.p, ...c2.p);
+    out.n.push(...c1.n, ...c2.n);
+    out.bi.push(...c1.bi, ...c2.bi);
+    out.bw.push(...c1.bw, ...c2.bw);
+}
 function finish(id, b) { return { id, positions: new Float32Array(b.p), normals: new Float32Array(b.n), boneIndices: new Float32Array(b.bi), boneWeights: new Float32Array(b.bw) }; }
 const top = build();
 addSegment(top, bind.pelvis, bind.spine, [.28, .20], [.31, .21], BONE.pelvis, BONE.spine, 12);
@@ -64,10 +79,10 @@ for (const [garment, width] of [[top, .37], [feminineTop, .355]]) {
     }
 }
 const pants = build();
-addSegment(pants, bind.thighL, bind.shinL, [.155, .14], [.13, .12], BONE.thighL, BONE.shinL, 10);
-addSegment(pants, bind.shinL, bind.footL, [.13, .12], [.105, .10], BONE.shinL, BONE.shinL, 10);
-addSegment(pants, bind.thighR, bind.shinR, [.155, .14], [.13, .12], BONE.thighR, BONE.shinR, 10);
-addSegment(pants, bind.shinR, bind.footR, [.13, .12], [.105, .10], BONE.shinR, BONE.shinR, 10);
+addSegment(pants, bind.thighL, bind.shinL, [.120, .105], [.105, .095], BONE.thighL, BONE.shinL, 10);
+addSegment(pants, bind.shinL, bind.footL, [.105, .095], [.085, .08], BONE.shinL, BONE.shinL, 10);
+addSegment(pants, bind.thighR, bind.shinR, [.120, .105], [.105, .095], BONE.thighR, BONE.shinR, 10);
+addSegment(pants, bind.shinR, bind.footR, [.105, .095], [.085, .08], BONE.shinR, BONE.shinR, 10);
 // Tennis separates reveal the moving calves, with a tailored short over the upper leg.
 const shorts = build();
 for (const side of ['L', 'R']) {
@@ -77,8 +92,8 @@ for (const side of ['L', 'R']) {
 const skirt = build();
 addSegment(skirt, new Vec3(0, .93, 0), new Vec3(0, .59, 0), [.295, .22], [.43, .34], BONE.pelvis, BONE.pelvis, 24);
 const arms = build();
-addSegment(arms, bind.upperArmL, bind.foreArmL, [.14, .13], [.12, .105], BONE.upperArmL, BONE.foreArmL, 10);
-addSegment(arms, bind.foreArmL, bind.handL, [.12, .105], [.095, .085], BONE.foreArmL, BONE.handL, 10);
-addSegment(arms, bind.upperArmR, bind.foreArmR, [.14, .13], [.12, .105], BONE.upperArmR, BONE.foreArmR, 10);
-addSegment(arms, bind.foreArmR, bind.handR, [.12, .105], [.095, .085], BONE.foreArmR, BONE.handR, 10);
+addSegment(arms, bind.upperArmL, bind.foreArmL, [.105, .095], [.09, .08], BONE.upperArmL, BONE.foreArmL, 10);
+addSegment(arms, bind.foreArmL, bind.handL, [.09, .08], [.070, .065], BONE.foreArmL, BONE.handL, 10);
+addSegment(arms, bind.upperArmR, bind.foreArmR, [.105, .095], [.09, .08], BONE.upperArmR, BONE.foreArmR, 10);
+addSegment(arms, bind.foreArmR, bind.handR, [.09, .08], [.070, .065], BONE.foreArmR, BONE.handR, 10);
 export const CHARACTER_SKIN = { top: finish('char-top-v1', top), feminineTop: finish('char-top-feminine-v1', feminineTop), pants: finish('char-pants-v1', pants), arms: finish('char-arms-v1', arms), shorts: finish('char-shorts-v1', shorts), skirt: finish('char-skirt-v1', skirt) };

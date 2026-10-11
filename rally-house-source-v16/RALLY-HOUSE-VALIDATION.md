@@ -89,3 +89,8 @@ Failures repaired: wrong/hard-to-select surface targets; static cached foliage t
 Reproduce with `npm test`, `npm run release:check`, `node qa/object-inventory.mjs`, `node qa/object-browser.mjs`, `node qa/object-engines.mjs`, `node qa/session-lifecycle.mjs`, `node qa/session-validation.mjs`, `node qa/impact-validation.mjs` and `node qa/impact-browser.mjs objects-release`; portfolio verification is `npm run verify`. Browser fixtures expect source 8078, the production portfolio 3096, and the extracted package 8079. `python3 qa/package-playtest.py` creates the CRC-checked standalone ZIP.
 
 Native UI actions are real, while fixed-step acceleration makes travel/use/session coverage efficient. Headless RAF is vsync-capped and heap readings are coarse; there is no measured speedup, zero-leak proof or physical-phone performance claim. Page-switch tests explicitly exercise lifecycle handlers when headless switching does not deliver a true OS event. Independent human enjoyment, audio balance, character appeal and physical-device lifecycle checks remain required before a studio-caliber claim. The stronger contact pause/camera profile from PR9 is preserved, not relabeled as a new tuning result.
+
+
+## Art pass — 2026-10-11
+
+All 20 game suites pass, including the new geometry and shop-circulation regressions. Portfolio verification passes 91 tests and 31 routes, with zero lint errors and 14 retained warnings. Original runtime before/after captures and browser, touch, accessibility, package and rally measurements are curated under evidence/art-20261011. The detailed scope and remaining human/physical-device gates are recorded in RALLY-HOUSE-ART-DIRECTION-20261011.md.

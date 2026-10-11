@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     type: "website", url: `${siteUrl}/playground/rally-house`,
     title: "Rally House | Arjan Singh Puniani",
     description: "A living miniature club that becomes a playable tennis game.",
-    images: [{ url: "/rally-house/media/club.webp", width: 1440, height: 1000, alt: "Actual Rally House gameplay in a living miniature tennis club" }],
+    images: [{ url: "/rally-house/media/club.webp", width: 1440, height: 900, alt: "Actual Rally House gameplay in a living miniature tennis club" }],
   },
   twitter: { card: "summary_large_image", title: "Rally House | Arjan Singh Puniani", description: "A living miniature club that becomes a playable tennis game.", images: ["/rally-house/media/club.webp"] },
 };
