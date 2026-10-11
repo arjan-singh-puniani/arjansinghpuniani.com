@@ -15,6 +15,7 @@ node tools/replisome/sync-build.mjs
 npm run verify
 REPLISOME_QA_URL=http://127.0.0.1:3000 node tools/replisome/browser-qa.mjs
 REPLISOME_QA_URL=http://127.0.0.1:3000 node tools/replisome/study-qa.mjs
+REPLISOME_QA_URL=http://127.0.0.1:3000 node tools/replisome/motion-qa.mjs
 ```
 
 Start the production portfolio server separately before browser QA. The QA tool
