@@ -1,0 +1,38 @@
+{
+  "engine": "webkit",
+  "errors": [],
+  "requests": [],
+  "views": [
+    {
+      "width": 1440,
+      "height": 900,
+      "avatar": "taylor",
+      "stowed": true,
+      "folded": true,
+      "sharedRig": true,
+      "toonMeshes": 23,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "avatar": "taylor",
+      "stowed": true,
+      "folded": true,
+      "sharedRig": true,
+      "toonMeshes": 23,
+      "overflow": false
+    }
+  ],
+  "contact": {
+    "stowed": false,
+    "match": true,
+    "source": "game-recording",
+    "samples": 50,
+    "contactError": 0.050000000000000225
+  },
+  "restored": {
+    "avatar": "taylor",
+    "stowed": true
+  }
+}

@@ -5,7 +5,7 @@ export const SHADOW_CENTRE = new Vec3(-.4, 1.5, -1.0);
 export const SHADOW_RADIUS = 17.0;
 export const SHADOW_RESOLUTION = 2048;
 export const LAMP_SHADOW_RESOLUTION = 1024;
-const MATERIAL_ID = { matte: 0, wood: 1, fabric: 2, ceramic: 3, metal: 4, glass: 5, court: 6, skin: 7, hair: 8, leaf: 9, stone: 10 };
+const MATERIAL_ID = { matte: 0, wood: 1, fabric: 2, ceramic: 3, metal: 4, glass: 5, court: 6, skin: 7, hair: 8, leaf: 9, stone: 10, toon: 11 };
 /** Shared lighting maths. One source of truth for both the rigid and skinned fragment shaders. */
 const LIGHT_UNIFORMS = `
 uniform int u_material;uniform vec3 u_color;uniform vec3 u_sun;uniform vec3 u_viewPos;uniform float u_ambient;uniform float u_alpha;uniform float u_unlit;uniform float u_emission;uniform float u_warmth;uniform float u_roughness;uniform float u_specular;uniform float u_softness;
@@ -97,6 +97,14 @@ vec3 shade(vec3 N,vec3 world){
   float wrap=clamp((dot(N,L)+0.16)/1.16,0.0,1.0);
   float hemi=N.y*0.5+0.5;
   float shadow=shadowFactor(world,N,ndl);
+
+  // Authored cartoon colours keep their reference palette. A restrained
+  // cel band reveals curvature; both rigid and skinned paths use this branch.
+  if(u_material==11){
+    if(u_unlit>0.5)return u_color;
+    float band=mix(0.91,1.0,smoothstep(0.08,0.55,wrap));
+    return u_color*band*mix(0.96,1.0,shadow);
+  }
 
   // Ambient: sky above, warm bounce below. This is what gives the model its soft modelled look.
   vec3 ambient=u_ambient*mix(u_bounceColor,u_skyColor,hemi);

@@ -1,0 +1,54 @@
+{
+  "checks": [
+    {
+      "avatar": "arjan",
+      "kind": "forehand",
+      "interpolated": 90,
+      "moving": 89,
+      "maxSync": 0,
+      "maxNodeError": 0
+    },
+    {
+      "avatar": "arjan",
+      "kind": "serve",
+      "interpolated": 89,
+      "moving": 89,
+      "maxSync": 6.661338147750939e-16,
+      "maxNodeError": 0
+    },
+    {
+      "avatar": "arjan",
+      "kind": "gait",
+      "interpolated": 84,
+      "moving": 89,
+      "maxSync": 1.3322676295501878e-15,
+      "maxNodeError": 0
+    },
+    {
+      "avatar": "taylor",
+      "kind": "forehand",
+      "interpolated": 89,
+      "moving": 89,
+      "maxSync": 1.1102230246251565e-16,
+      "maxNodeError": 0
+    },
+    {
+      "avatar": "taylor",
+      "kind": "serve",
+      "interpolated": 84,
+      "moving": 89,
+      "maxSync": 2.4424906541753444e-15,
+      "maxNodeError": 0
+    },
+    {
+      "avatar": "taylor",
+      "kind": "gait",
+      "interpolated": 86,
+      "moving": 89,
+      "maxSync": 1.3322676295501878e-15,
+      "maxNodeError": 0
+    }
+  ],
+  "errors": [],
+  "fractionalCanvasPick": true
+}

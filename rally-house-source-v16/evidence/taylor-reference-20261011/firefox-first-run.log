@@ -1,0 +1,24 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   '[JavaScript Error: "InvalidStateError: Navigated away from page"]'
++ ]
+- []
+
+    at file:///private/tmp/rally-art-20261011/rally-house-source-v16/qa/taylor-reference.mjs:43:9 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    '[JavaScript Error: "InvalidStateError: Navigated away from page"]'
+  ],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.2

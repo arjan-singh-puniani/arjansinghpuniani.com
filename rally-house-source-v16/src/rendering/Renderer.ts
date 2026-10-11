@@ -8,8 +8,8 @@ export const SHADOW_RESOLUTION=2048;
 export const LAMP_SHADOW_RESOLUTION=1024;
 
 export type GeometryKind='box'|'roundBox'|'sphere'|'cylinder'|'cone'|'torus'|'foliage';
-export type MaterialKind='matte'|'wood'|'fabric'|'ceramic'|'metal'|'glass'|'court'|'skin'|'hair'|'leaf'|'stone';
-const MATERIAL_ID:Record<MaterialKind,number>={matte:0,wood:1,fabric:2,ceramic:3,metal:4,glass:5,court:6,skin:7,hair:8,leaf:9,stone:10};
+export type MaterialKind='matte'|'wood'|'fabric'|'ceramic'|'metal'|'glass'|'court'|'skin'|'hair'|'leaf'|'stone'|'toon';
+const MATERIAL_ID:Record<MaterialKind,number>={matte:0,wood:1,fabric:2,ceramic:3,metal:4,glass:5,court:6,skin:7,hair:8,leaf:9,stone:10,toon:11};
 export interface Mesh {
   kind:GeometryKind;
   position:Vec3;
@@ -143,6 +143,14 @@ vec3 shade(vec3 N,vec3 world){
   float wrap=clamp((dot(N,L)+0.16)/1.16,0.0,1.0);
   float hemi=N.y*0.5+0.5;
   float shadow=shadowFactor(world,N,ndl);
+
+  // Authored cartoon colours keep their reference palette. A restrained
+  // cel band reveals curvature; both rigid and skinned paths use this branch.
+  if(u_material==11){
+    if(u_unlit>0.5)return u_color;
+    float band=mix(0.91,1.0,smoothstep(0.08,0.55,wrap));
+    return u_color*band*mix(0.96,1.0,shadow);
+  }
 
   // Ambient: sky above, warm bounce below. This is what gives the model its soft modelled look.
   vec3 ambient=u_ambient*mix(u_bounceColor,u_skyColor,hemi);

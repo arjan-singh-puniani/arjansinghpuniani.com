@@ -58,3 +58,15 @@ for(const rate of [22050,44100,48000])for(const quality of Object.keys(CHAMPIONS
 }
 assert.equal(signatures.size,36,'Quality and variation create distinct bounded material strikes');
 console.log('Impact feel PASS: 12 physical contacts, live steering during pose hold, exact release and cleanup, 9 peak camera framings/restores, 36 audio envelopes');
+
+// Browser audio may reject outstanding work as a page leaves. Teardown and
+// autoplay-denied resumes must not become unhandled promise rejections.
+const {AudioManager}=await import('../dist/core/AudioManager.js');
+const priorAudioContext=globalThis.AudioContext,rejections=[],onRejection=e=>rejections.push(e);
+process.on('unhandledRejection',onRejection);
+try{
+ globalThis.AudioContext=class {state='suspended';resume(){return Promise.reject(new Error('Autoplay denied'));}close(){return Promise.reject(new Error('Navigated away from page'));}};
+ const audio=new AudioManager();audio.ensure();await new Promise(r=>setTimeout(r,0));audio.dispose();await new Promise(r=>setTimeout(r,0));
+ assert.deepEqual(rejections,[],'Expected browser audio lifecycle rejection is handled');assert.equal(audio.ctx,undefined,'Audio context is released immediately');
+}finally{process.off('unhandledRejection',onRejection);if(priorAudioContext)globalThis.AudioContext=priorAudioContext;else delete globalThis.AudioContext;}
+console.log('Audio lifecycle PASS: rejected resume and page-exit shutdown are handled without retaining a context.');

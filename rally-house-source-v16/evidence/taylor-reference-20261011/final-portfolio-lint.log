@@ -1,0 +1,36 @@
+
+> arjan-singh-puniani-portfolio@1.0.0 lint
+> eslint . --ignore-pattern 'playwright-report/**' --ignore-pattern 'test-results/**' --ignore-pattern 'public/hemodynamic-observatory/**'
+
+
+/private/tmp/rally-art-20261011/arjan-portfolio/public/holoanatomy/src/engine/renderer.js
+  2:32  warning  'bboxInclude' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/rally-art-20261011/arjan-portfolio/public/rally-house/dist/Game.js
+  633:37  warning  'quality' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/rally-art-20261011/arjan-portfolio/public/rally-house/dist/animation/ActingState.js
+  7:77  warning  'social' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/rally-art-20261011/arjan-portfolio/public/rally-house/dist/entities/Character.js
+  634:15  warning  'gaitCounter' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  821:15  warning  'racketRight' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  965:15  warning  'ready' is assigned a value but never used        @typescript-eslint/no-unused-vars
+
+/private/tmp/rally-art-20261011/arjan-portfolio/public/rally-house/dist/simulation/EverydayLife.js
+  74:13  warning  'scene' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/rally-art-20261011/arjan-portfolio/public/rally-house/dist/tennis/ChampionshipCameraRig.js
+  179:21  warning  '_reducedMotion' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/rally-art-20261011/arjan-portfolio/public/rally-house/dist/tennis/InteractiveMatchSystem.js
+  300:23  warning  'dt' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/rally-art-20261011/arjan-portfolio/public/rally-house/dist/ui/HUD.js
+  15:22  warning  'type' is defined but never used       @typescript-eslint/no-unused-vars
+  16:22  warning  'direction' is defined but never used  @typescript-eslint/no-unused-vars
+
+/private/tmp/rally-art-20261011/arjan-portfolio/public/rally-house/dist/world/World.js
+  74:30  warning  '_a' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 12 problems (0 errors, 12 warnings)

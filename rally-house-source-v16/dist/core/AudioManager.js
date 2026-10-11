@@ -13,7 +13,7 @@ export class AudioManager {
     ambienceTarget = -1;
     ensure() { if (!this.ctx)
         this.ctx = new AudioContext(); if (this.ctx.state === 'suspended')
-        void this.ctx.resume(); return this.ctx; }
+        void this.ctx.resume().catch(() => { }); return this.ctx; }
     getNoise() { const c = this.ensure(); if (this.noise)
         return this.noise; const b = c.createBuffer(1, Math.floor(c.sampleRate * .11), c.sampleRate), d = b.getChannelData(0); for (let i = 0; i < d.length; i++)
         d[i] = (Math.random() * 2 - 1) * (1 - i / d.length); this.noise = b; return b; }
@@ -111,7 +111,7 @@ export class AudioManager {
         this.ambienceTarget = -1;
     }
     dispose() { this.enabled = false; this.stopAmbience(); if (this.ctx) {
-        void this.ctx.close();
+        void this.ctx.close().catch(() => { });
         this.ctx = undefined;
     } this.tennisMaterialBuffers.clear(); this.noise = undefined; }
     machine() { this.tone(85, .24, .009, 'triangle'); this.noiseBurst(420, .10, .004, .6); }

@@ -26,7 +26,7 @@ function frameFor(p, def) { const a = p[def.joint], b = p[def.child]; let target
 const bindInv = defs.map(d => invertRigid(frameFor(bind, d)));
 export function skinMatrices(p) { const out = new Float32Array(BONE_COUNT * 16); for (let i = 0; i < BONE_COUNT; i++) {
     const d = defs[i], length = Vec3.sub(p[d.child], p[d.joint]).len(), rest = Vec3.sub(bind[d.child], bind[d.joint]).len();
-    const m = multiply(multiply(frameFor(p, d), scaling(new Vec3(1, length / Math.max(.001, rest), 1))), bindInv[i]);
+    const m = multiply(multiply(frameFor(p, d), scaling(new Vec3(1, d.joint === 'handL' || d.joint === 'handR' ? 1 : length / Math.max(.001, rest), 1))), bindInv[i]);
     out.set(m, i * 16);
 } return out; }
 const build = () => ({ p: [], n: [], bi: [], bw: [] });
@@ -175,12 +175,12 @@ const taylorDress = build();
 // The supplied front crop establishes the head-to-waist and upper-hip
 // contrast. Keep the anatomical joints fixed and author the costume contour;
 // the cropped lower body is not evidence for new limb lengths.
-const dressProfile = [[.59, .515, .30], [.64, .505, .297], [.79, .390, .247], [1.05, .207, .158], [1.105, .214, .164], [1.22, .278, .194], [1.30, .305, .204], [1.34, .305, .202], [1.38, .263, .179], [1.415, .190, .136], [1.445, .13, .113]];
+const dressProfile = [[.35, 1.05, .35], [.50, .87, .335], [.64, .65, .305], [.79, .43, .257], [1.115, .185, .158], [1.17, .190, .164], [1.24, .225, .184], [1.30, .247, .194], [1.34, .257, .198], [1.38, .235, .176], [1.415, .190, .136], [1.445, .13, .113]];
 const dressAt = (y) => radiusAt(dressProfile, y);
 function clampUnit(t) { return Math.max(0, Math.min(1, t)); }
 const dressRings = build();
 for (let row = 0; row <= 40; row++) {
-    const y = .59 + row / 40 * .855, [rx, rz] = dressAt(y), before = dressAt(Math.max(.59, y - .001)), after = dressAt(Math.min(1.445, y + .001)), dy = Math.min(1.445, y + .001) - Math.max(.59, y - .001), sx = (after[0] - before[0]) / dy, sz = (after[1] - before[1]) / dy;
+    const y = .35 + row / 40 * 1.095, [rx, rz] = dressAt(y), before = dressAt(Math.max(.35, y - .001)), after = dressAt(Math.min(1.445, y + .001)), dy = Math.min(1.445, y + .001) - Math.max(.35, y - .001), sx = (after[0] - before[0]) / dy, sz = (after[1] - before[1]) / dy;
     const a = y < 1.05 ? BONE.pelvis : BONE.spine, b = y < 1.05 ? BONE.spine : BONE.chest, t = y < 1.05 ? clampUnit((y - .79) / .26) : clampUnit((y - 1.05) / .29);
     for (let i = 0; i < 32; i++) {
         const angle = i / 32 * Math.PI * 2, c = Math.cos(angle), s = Math.sin(angle), n = new Vec3(c / rx, -sx * c * c / rx - sz * s * s / rz, s / rz).normalize();
@@ -203,7 +203,7 @@ const taylorNeckline = build(), taylorDressEdging = build();
 function dressBand(out, low, high, rows, offset) {
     const rings = build();
     for (let row = 0; row <= rows; row++) {
-        const y = low + row / rows * (high - low), r = dressAt(y), rx = r[0] + offset, rz = r[1] + offset, before = dressAt(Math.max(.59, y - .001)), after = dressAt(Math.min(1.445, y + .001)), dy = Math.min(1.445, y + .001) - Math.max(.59, y - .001), sx = (after[0] - before[0]) / dy, sz = (after[1] - before[1]) / dy;
+        const y = low + row / rows * (high - low), r = dressAt(y), rx = r[0] + offset, rz = r[1] + offset, before = dressAt(Math.max(.35, y - .001)), after = dressAt(Math.min(1.445, y + .001)), dy = Math.min(1.445, y + .001) - Math.max(.35, y - .001), sx = (after[0] - before[0]) / dy, sz = (after[1] - before[1]) / dy;
         const a = y < 1.05 ? BONE.pelvis : BONE.spine, b = y < 1.05 ? BONE.spine : BONE.chest, t = y < 1.05 ? clampUnit((y - .79) / .26) : clampUnit((y - 1.05) / .29);
         for (let i = 0; i < 32; i++) {
             const angle = i / 32 * Math.PI * 2, c = Math.cos(angle), s = Math.sin(angle), n = new Vec3(c / rx, -sx * c * c / rx - sz * s * s / rz, s / rz).normalize();
@@ -225,6 +225,18 @@ dressBand(taylorNeckline, 1.36, 1.435, 8, .004);
 dressBand(taylorDressEdging, 1.36, 1.370, 2, .007);
 dressBand(taylorDressEdging, 1.424, 1.437, 2, .007);
 dressBand(taylorDressEdging, .596, .609, 1, .004);
+// A small embroidered crescent recreates the reference's central gold detail.
+// It samples the same surface and weights as the tunic, including in replay.
+const taylorTunicMark = build();
+const markPoint = (i, side) => { const t = i / 12, y = 1.115 - t * .050, x = .011 * Math.sin(t * Math.PI) - .004 + side * .003, [rx, rz] = dressAt(y), z = .015 * clampUnit((y - .79) / .55) + rz * Math.sqrt(1 - (x / rx) ** 2) + .003; return new Vec3(x, y, z); };
+for (let i = 0; i < 12; i++)
+    for (const index of [[i, -1], [i + 1, -1], [i + 1, 1], [i, -1], [i + 1, 1], [i, 1]]) {
+        const p = markPoint(index[0], index[1]), t = clampUnit((p.y - 1.05) / .29);
+        taylorTunicMark.p.push(p.x, p.y, p.z);
+        taylorTunicMark.n.push(0, 0, 1);
+        taylorTunicMark.bi.push(BONE.spine, BONE.chest, 0, 0);
+        taylorTunicMark.bw.push(1 - t, t, 0, 0);
+    }
 const taylorArms = build();
 function shoulderCap(out, c, dir, bone, rx = .078, rz = .070, seg = 24) {
     const frame = basis(dir), rings = build();
@@ -255,12 +267,12 @@ for (const side of ['L', 'R']) {
     sculptSegment(taylorGloves, Vec3.lerp(elbow, hand, .32), hand, [[0, .067, .061], [.35, .064, .057], [1, .049, .044]], BONE[`foreArm${side}`], BONE[`hand${side}`], 8);
     const bone = BONE[`hand${side}`], frame = basis(Vec3.sub(hand, elbow)), sign = side === 'L' ? -1 : 1;
     const point = (x, y, z) => hand.clone().add(frame.x.clone().scale(x)).add(frame.y.clone().scale(y)).add(frame.z.clone().scale(z));
-    handVolume(taylorHands, point(0, .017, .003), frame, new Vec3(.056, .071, .040), bone);
+    handVolume(taylorHands, point(0, .017, .003), frame, new Vec3(.062, .073, .043), bone);
     for (const [i, x] of [-.036, -.012, .012, .036].entries()) {
-        const length = [.048, .061, .056, .043][i], a = point(x, .063, .009), b = point(x, .063 + length, .026);
-        handVolume(taylorHands, Vec3.lerp(a, b, .5), basis(Vec3.sub(b, a)), new Vec3(.014, Vec3.sub(b, a).len() * .5 + .007, .017), bone, 6, 12);
+        const length = [.027, .033, .032, .025][i], a = point(x, .046, .009), b = point(x, .046 + length, .018);
+        handVolume(taylorHands, Vec3.lerp(a, b, .5), basis(Vec3.sub(b, a)), new Vec3(.017, Vec3.sub(b, a).len() * .5 + .008, .018), bone, 6, 12);
     }
     const thumbA = point(sign * .042, .006, .027), thumbB = point(sign * .065, .043, .040);
     handVolume(taylorHands, Vec3.lerp(thumbA, thumbB, .5), basis(Vec3.sub(thumbB, thumbA)), new Vec3(.019, Vec3.sub(thumbB, thumbA).len() * .5 + .014, .019), bone, 6, 12);
 }
-export const CHARACTER_SKIN = { taylorHands: finish('taylor-sculpted-hands-v1', taylorHands), taylorNeckline: finish('taylor-indigo-neckline-v2', taylorNeckline), taylorDressEdging: finish('taylor-gold-dress-edging-v3', taylorDressEdging), taylorArms: finish('taylor-sculpted-arms-v3', taylorArms), taylorLegs: finish('taylor-legs-v2', taylorLegs), taylorDress: finish('taylor-dress-v4', taylorDress), taylorBoots: finish('taylor-sculpted-boots-v2', taylorBoots), taylorGloves: finish('taylor-tapered-gloves-v2', taylorGloves), top: finish('char-top-v1', top), feminineTop: finish('char-top-feminine-v1', feminineTop), pants: finish('char-pants-v1', pants), arms: finish('char-arms-v1', arms), shorts: finish('char-shorts-v1', shorts), skirt: finish('char-skirt-v1', skirt) };
+export const CHARACTER_SKIN = { taylorTunicMark: finish('taylor-embroidered-crescent-v1', taylorTunicMark), taylorHands: finish('taylor-rounded-reference-hands-v2', taylorHands), taylorNeckline: finish('taylor-indigo-neckline-v3', taylorNeckline), taylorDressEdging: finish('taylor-gold-dress-edging-v4', taylorDressEdging), taylorArms: finish('taylor-sculpted-arms-v3', taylorArms), taylorLegs: finish('taylor-legs-v2', taylorLegs), taylorDress: finish('taylor-reference-gold-tunic-v7', taylorDress), taylorBoots: finish('taylor-sculpted-boots-v2', taylorBoots), taylorGloves: finish('taylor-tapered-gloves-v2', taylorGloves), top: finish('char-top-v1', top), feminineTop: finish('char-top-feminine-v1', feminineTop), pants: finish('char-pants-v1', pants), arms: finish('char-arms-v1', arms), shorts: finish('char-shorts-v1', shorts), skirt: finish('char-skirt-v1', skirt) };

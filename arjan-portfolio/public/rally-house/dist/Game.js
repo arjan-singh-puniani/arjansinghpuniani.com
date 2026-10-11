@@ -1252,6 +1252,8 @@ export class Game {
     choosePlayerAvatar(id) {
         this.playerAvatar = id;
         this.player.spec = playerSpec(id);
+        if (id === 'taylor' && !this.player.matchCompetitor)
+            this.player.racketStowed = true;
         this.ui.closeContext();
         this.camera.focus(this.player.position.x, this.player.position.z, 22);
         this.ui.toast(`${this.player.spec.name} · Welcome to your club.`);
@@ -1259,7 +1261,7 @@ export class Game {
     }
     openAvatarPicker() {
         this.ui.showContext('YOUR CHARACTER', 'Who’s arriving at Rally House?', 'Choose your look. You can switch anytime in Settings.', [], [
-            { title: 'Taylor', subtitle: 'Gold and indigo feline · sculpted bob · white dress', run: () => this.choosePlayerAvatar('taylor') },
+            { title: 'Taylor', subtitle: 'Gold and indigo feline · folded-arm stance · flowing gold tunic', run: () => this.choosePlayerAvatar('taylor') },
             { title: 'Arjan', subtitle: 'Swept dark hair · strong brows · charcoal tenniswear', run: () => this.choosePlayerAvatar('arjan') }
         ]);
     }
@@ -1389,7 +1391,7 @@ export class Game {
             c.socialGesture = 'none';
             c.socialProp = null;
             c.setInteractionTarget(undefined);
-            c.racketStowed = false;
+            c.racketStowed = c.spec.avatar === 'taylor';
             c.acting.setRole('exit');
         }
         this.routes.delete(a.id);
@@ -2259,6 +2261,7 @@ export class Game {
         return; const s = migrateGameSave(env.version, env.state); if (s.playerAvatar) {
         this.playerAvatar = s.playerAvatar;
         this.player.spec = playerSpec(s.playerAvatar);
+        this.player.racketStowed = s.playerAvatar === 'taylor';
     } this.clock.minutes = s.clock.minutes; this.clock.day = s.clock.day; this.clock.paused = false; this.clock.speed = s.clock.speed || 1; this.coins = s.coins; this.stars = s.stars; this.coachXP = s.coachXP ?? 14; this.mikaProgress = s.mikaProgress; this.world.weather = s.weather; this.world.placements = s.placements || []; this.relations.load(s.relationships || {}); this.daily.load(s.dailyGoals); this.daily.ensureDay(this.clock.day); this.life.load(s.clubLife); this.equipment = { ...this.equipment, ...s.equipment }; this.rally.bestRally = s.bestRally ?? 0; this.socialSimulation.load(s.emergentSocial); this.byId('mika')?.setDevelopment(this.mikaProgress); this.player.position.set(s.player.x, 0, s.player.z); this.player.goTo(this.player.position, 'idle'); this.settings = { ...this.settings, ...s.settings }; this.audio.volume = this.settings.volume; this.activities.load(s.activities); this.everyday.load(s.everyday); this.mind.load(s.mind); this.queuedLesson = s.queuedLesson && s.queuedLesson in drills ? s.queuedLesson : null; this.history.load(s.history); this.world.identity.load(s.objectIdentity); this.affordances.load(s.affordances); this.affordances.sync(this.world.placements, this.clock.day); this.development = s.development ?? { preparation: 0, recovery: 0 }; this.actor('mika').preparationBonus = this.development.preparation; this.actor('mika').recoveryBonus = this.development.recovery; this.observationStarted = !!s.history; this.rebuildFurnitureObstacles(); if (this.world.nav.isBlocked(this.player.position.x, this.player.position.z)) {
         const safe = destinations.entrance;
         this.player.position.set(safe.x, 0, safe.z);
