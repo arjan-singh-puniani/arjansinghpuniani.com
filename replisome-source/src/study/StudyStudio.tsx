@@ -153,7 +153,9 @@ function Chemistry({
       viewBox="0 0 540 310"
       role="img"
       aria-label={
-        blocked
+        !revealed
+          ? "An existing DNA primer ends in 3 prime H. An incoming dNTP has three phosphates. Predict whether the primer can be extended."
+          : blocked
           ? "A primer ending in 3 prime H cannot add the next dNTP."
           : "A primer 3 prime OH reacts with an incoming dNTP to form a phosphodiester bond and release pyrophosphate."
       }
