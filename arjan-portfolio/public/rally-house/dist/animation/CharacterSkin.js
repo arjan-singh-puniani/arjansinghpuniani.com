@@ -123,6 +123,34 @@ for (let row = 0; row < 40; row++) {
     taylorDress.bi.push(...mesh.bi);
     taylorDress.bw.push(...mesh.bw);
 }
+// Costume edging samples the same apparel profile and weights. It follows
+// shoulder/spine motion instead of floating as a rigid world-space ring.
+const taylorNeckline = build(), taylorDressEdging = build();
+function dressBand(out, low, high, rows, offset) {
+    const rings = build();
+    for (let row = 0; row <= rows; row++) {
+        const y = low + row / rows * (high - low), r = dressAt(y), rx = r[0] + offset, rz = r[1] + offset, before = dressAt(Math.max(.59, y - .001)), after = dressAt(Math.min(1.445, y + .001)), dy = Math.min(1.445, y + .001) - Math.max(.59, y - .001), sx = (after[0] - before[0]) / dy, sz = (after[1] - before[1]) / dy;
+        const a = y < 1.05 ? BONE.pelvis : BONE.spine, b = y < 1.05 ? BONE.spine : BONE.chest, t = y < 1.05 ? clampUnit((y - .79) / .26) : clampUnit((y - 1.05) / .29);
+        for (let i = 0; i < 32; i++) {
+            const angle = i / 32 * Math.PI * 2, c = Math.cos(angle), s = Math.sin(angle), n = new Vec3(c / rx, -sx * c * c / rx - sz * s * s / rz, s / rz).normalize();
+            rings.p.push(c * rx, y, .015 * clampUnit((y - .79) / .55) + s * rz);
+            rings.n.push(n.x, n.y, n.z);
+            rings.bi.push(a, b, 0, 0);
+            rings.bw.push(1 - t, t, 0, 0);
+        }
+    }
+    for (let row = 0; row < rows; row++) {
+        const mesh = connect(rings, row * 32, 32);
+        out.p.push(...mesh.p);
+        out.n.push(...mesh.n);
+        out.bi.push(...mesh.bi);
+        out.bw.push(...mesh.bw);
+    }
+}
+dressBand(taylorNeckline, 1.36, 1.435, 8, .004);
+dressBand(taylorDressEdging, 1.36, 1.370, 2, .007);
+dressBand(taylorDressEdging, 1.424, 1.437, 2, .007);
+dressBand(taylorDressEdging, .596, .609, 1, .004);
 const taylorArms = build();
 function shoulderCap(out, c, dir, bone) {
     const frame = basis(dir), rings = build();
@@ -166,4 +194,4 @@ for (const side of ['L', 'R']) {
     addSegment(taylorBoots, shin, foot, [.108, .098], [.087, .082], BONE[`shin${side}`], BONE[`shin${side}`], 16);
     addSegment(taylorGloves, Vec3.lerp(elbow, hand, .32), hand, [.097, .087], [.079, .074], BONE[`foreArm${side}`], BONE[`hand${side}`], 16);
 }
-export const CHARACTER_SKIN = { taylorArms: finish('taylor-arms-v2', taylorArms), taylorLegs: finish('taylor-legs-v1', taylorLegs), taylorDress: finish('taylor-dress-v2', taylorDress), taylorBoots: finish('taylor-boots-v1', taylorBoots), taylorGloves: finish('taylor-gloves-v1', taylorGloves), top: finish('char-top-v1', top), feminineTop: finish('char-top-feminine-v1', feminineTop), pants: finish('char-pants-v1', pants), arms: finish('char-arms-v1', arms), shorts: finish('char-shorts-v1', shorts), skirt: finish('char-skirt-v1', skirt) };
+export const CHARACTER_SKIN = { taylorNeckline: finish('taylor-indigo-neckline-v1', taylorNeckline), taylorDressEdging: finish('taylor-gold-dress-edging-v1', taylorDressEdging), taylorArms: finish('taylor-arms-v2', taylorArms), taylorLegs: finish('taylor-legs-v1', taylorLegs), taylorDress: finish('taylor-dress-v2', taylorDress), taylorBoots: finish('taylor-boots-v1', taylorBoots), taylorGloves: finish('taylor-gloves-v1', taylorGloves), top: finish('char-top-v1', top), feminineTop: finish('char-top-feminine-v1', feminineTop), pants: finish('char-pants-v1', pants), arms: finish('char-arms-v1', arms), shorts: finish('char-shorts-v1', shorts), skirt: finish('char-skirt-v1', skirt) };

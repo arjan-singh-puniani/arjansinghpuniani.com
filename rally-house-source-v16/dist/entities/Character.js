@@ -949,7 +949,7 @@ export class Character {
         const torsoSkin = feline ? CHARACTER_SKIN.taylorDress : this.spec.presentation === 'feminine' ? CHARACTER_SKIN.feminineTop : CHARACTER_SKIN.top;
         m.push({ ...skinRoot, skin: torsoSkin, color: this.spec.shirt, material: 'fabric' }, { ...skinRoot, skin: feline ? CHARACTER_SKIN.taylorLegs : CHARACTER_SKIN.pants, color: this.spec.skin, material: 'skin' }, { ...skinRoot, skin: feline ? CHARACTER_SKIN.taylorArms : CHARACTER_SKIN.arms, color: this.spec.skin, material: 'skin' });
         if (feline)
-            m.push({ ...skinRoot, skin: CHARACTER_SKIN.taylorBoots, color: TAYLOR_PALETTE.indigo, material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorGloves, color: TAYLOR_PALETTE.indigo, material: 'fabric' });
+            m.push({ ...skinRoot, skin: CHARACTER_SKIN.taylorBoots, color: TAYLOR_PALETTE.indigo, material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorGloves, color: TAYLOR_PALETTE.indigo, material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorNeckline, color: TAYLOR_PALETTE.indigo, material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorDressEdging, color: TAYLOR_PALETTE.gold, material: 'metal' });
         else {
             m.push({ kind: 'sphere', position: torsoCenter.clone().add(new Vec3(0, .025, 0)), rotation: new Vec3(0, torsoYaw, 0), scale: new Vec3(this.spec.presentation === 'feminine' ? .53 : .57, .68, .40), color: this.spec.shirt, material: 'fabric' });
             if (this.spec.outfit === 'shorts')

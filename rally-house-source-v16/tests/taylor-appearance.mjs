@@ -35,10 +35,12 @@ function faceDepth(x,y){
   if(a>=-1e-5&&b>=-1e-5&&c>=-1e-5)depth=Math.max(depth,a*fp[i+2]+b*fp[i+5]+c*fp[i+8]);
  }return depth;
 }
-for(const time of [0,3.28])for(const m of taylorHeadMeshes(new Vec3(),0,0,{smile:.1,mouthOpen:0,squint:0,browRaise:0},time).filter(m=>'skin' in m&&[TAYLOR_GEOMETRY.eyeWhite,TAYLOR_GEOMETRY.pupils].includes(m.skin))){
+const expressions=[{smile:.12,mouthOpen:0,squint:0,browRaise:.08},{smile:.72,mouthOpen:.14,squint:.16,browRaise:.22},{smile:-.3,mouthOpen:.06,squint:.24,browRaise:-.1},{smile:.06,mouthOpen:.28,squint:0,browRaise:.58}];
+const graphics=['eyeOutline','eyeWhite','pupils','eyeGlints','eyeliner','lashes','frown','smirk','smile'].map(name=>TAYLOR_GEOMETRY[name]);
+for(const expression of expressions)for(const time of [0,3.28])for(const m of taylorHeadMeshes(new Vec3(),0,0,expression,time).filter(m=>'skin' in m&&graphics.includes(m.skin))){
  for(let i=0;i<m.skin.positions.length;i+=9){
   const p=m.skin.positions,x=(p[i]+p[i+3]+p[i+6])/3,y=(p[i+1]+p[i+4]+p[i+7])/3*m.scale.y+m.position.y,z=(p[i+2]+p[i+5]+p[i+8])/3;
-  assert(z>faceDepth(x,y)+.001,'Eye graphics stay above the actual face surface');
+  assert(z>faceDepth(x,y)+.001,'Expression graphics stay above the actual face surface');
  }
 }
 // Ear inset triangles face the camera (+Z), catching the first inverted-ear prototype.

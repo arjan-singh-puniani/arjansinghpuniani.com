@@ -138,10 +138,10 @@ const stripes = geometry('taylor-curved-headdress-stripes-v2', tri => {
 });
 // Subdivide graphic patches radially. A single triangle fan would cut below
 // the convex face between its vertices and leave gold specks in the eye white.
-function curvedPatch(tri, cx, cy, width, top, bottom, depth) {
-    const at = (r, i) => { const t = r / 6, a = i / 40 * Math.PI * 2, x = cx + Math.cos(a) * width / 2 * t, v = Math.sin(a), y = cy + v * (v > 0 ? top : bottom) * t; return [x, y, surfaceZ(x, y, depth)]; };
-    for (let r = 0; r < 6; r++)
-        for (let i = 0; i < 40; i++) {
+function curvedPatch(tri, cx, cy, width, top, bottom, depth, rows = 6, sectors = 40) {
+    const at = (r, i) => { const t = r / rows, a = i / sectors * Math.PI * 2, x = cx + Math.cos(a) * width / 2 * t, v = Math.sin(a), y = cy + v * (v > 0 ? top : bottom) * t; return [x, y, surfaceZ(x, y, depth)]; };
+    for (let r = 0; r < rows; r++)
+        for (let i = 0; i < sectors; i++) {
             const a = at(r, i), b = at(r, i + 1), c = at(r + 1, i + 1), d = at(r + 1, i);
             tri(a, d, c);
             tri(a, c, b);
@@ -154,25 +154,36 @@ function eyes(id, width, top, bottom, depth, pupil = false) {
 const eyeOutline = eyes('taylor-eye-ink-v3', .311, .027, .075, .009), eyeWhite = eyes('taylor-eye-white-v3', .287, .020, .061, .012), pupils = eyes('taylor-half-lidded-pupils-v3', .125, .024, .060, .015, true);
 const eyelid = geometry('taylor-curved-upper-lids-v3', tri => { for (const side of [-1, 1])
     curvedPatch(tri, side * .183, .054, .306, .105, .008, .019); }, true);
-const eyeGlints = geometry('taylor-eye-glints-v2', tri => {
+const eyeGlints = geometry('taylor-rounded-eye-glints-v3', tri => {
     for (const side of [-1, 1]) {
-        const x = side * .130, y = .034;
-        tri([x - .016, y + .003, surfaceZ(x - .016, y + .003, .025)], [x - .003, y - .012, surfaceZ(x - .003, y - .012, .025)], [x + .013, y + .003, surfaceZ(x + .013, y + .003, .025)]);
+        const x = side * .132, y = .029;
+        curvedPatch(tri, x, y, .022, .010, .013, .027, 3, 16);
+        curvedPatch(tri, side * .112, -.006, .009, .004, .004, .027, 3, 16);
     }
 });
-const lashes = geometry('taylor-eyelash-corners-v2', tri => {
+const eyeliner = geometry('taylor-swept-eyeliner-v1', tri => {
     for (const side of [-1, 1]) {
-        const cx = side * .323, cy = .002;
-        const a = [cx, cy + .009, surfaceZ(cx, cy + .009, .009)], b = [cx + side * .025, cy - .012, surfaceZ(cx + side * .025, cy - .012, .009)], c = [cx, cy - .011, surfaceZ(cx, cy - .011, .009)];
+        const at = (i, upper) => { const u = -1 + i / 24 * 2, x = side * .183 + u * .151, y = .054 - .008 * Math.sqrt(Math.max(0, 1 - u * u)) + (upper ? .004 : -.003); return [x, y, surfaceZ(x, y, .024)]; };
+        for (let i = 0; i < 24; i++) {
+            const a = at(i, false), b = at(i + 1, false), c = at(i + 1, true), d = at(i, true);
+            tri(a, b, c);
+            tri(a, c, d);
+        }
+    }
+});
+const lashes = geometry('taylor-swept-lash-corners-v3', tri => {
+    for (const side of [-1, 1]) {
+        const p = (x, y) => [side * x, y, surfaceZ(side * x, y, .024)];
+        const a = p(.322, .046), b = p(.361, .074), c = p(.338, .041);
         if (side === 1)
             tri(a, c, b);
         else
             tri(a, b, c);
     }
 });
-function mouth(id, smile) {
+function mouth(id, width, curve, asymmetry = 0) {
     return geometry(id, tri => {
-        const pt = (i, upper) => { const x = -.071 + i / 16 * .142, t = x / .071, y = -.111 + (smile ? -.027 : .035) * (1 - t * t) + (upper ? .006 : -.006); return [x, y, surfaceZ(x, y, .008)]; };
+        const pt = (i, upper) => { const x = -width + i / 16 * width * 2, t = x / width, y = -.111 + curve * (1 - t * t) + asymmetry * t + (upper ? .0045 : -.0045); return [x, y, surfaceZ(x, y, .010)]; };
         for (let i = 0; i < 16; i++) {
             const a = pt(i, false), b = pt(i + 1, false), c = pt(i + 1, true), d = pt(i, true);
             tri(a, b, c);
@@ -180,14 +191,14 @@ function mouth(id, smile) {
         }
     });
 }
-const frown = mouth('taylor-curved-frown-v2', false), smile = mouth('taylor-curved-smile-v2', true);
+const frown = mouth('taylor-curved-frown-v3', .071, .035), smirk = mouth('taylor-confident-smile-v1', .075, -.009, .008), smile = mouth('taylor-warm-smile-v3', .089, -.027);
 const crest = geometry('taylor-cobra-crest-v2', tri => {
     const outline = [[-.037, .283, .276], [-.047, .337, .268], [-.039, .382, .255], [0, .402, .246], [.039, .382, .255], [.047, .337, .268], [.037, .283, .276], [0, .254, .282]];
     const center = [0, .335, .291];
     for (let i = 0; i < outline.length; i++)
         tri(center, outline[(i + 1) % outline.length], outline[i]);
 }, true);
-export const TAYLOR_GEOMETRY = { face, hood, hairline, ears, earInlays, stripes, eyeOutline, eyeWhite, pupils, eyelid, eyeGlints, lashes, frown, smile, crest };
+export const TAYLOR_GEOMETRY = { face, hood, hairline, ears, earInlays, stripes, eyeOutline, eyeWhite, pupils, eyelid, eyeGlints, eyeliner, lashes, frown, smirk, smile, crest };
 export function taylorHeadMeshes(head, yaw, tilt, expression, time) {
     const out = [], right = new Vec3(Math.cos(yaw), 0, -Math.sin(yaw)), forward = new Vec3(Math.sin(yaw), 0, Math.cos(yaw));
     const point = (x, y, z) => head.clone().add(right.clone().scale(x * Math.cos(tilt) - y * Math.sin(tilt))).add(new Vec3(0, x * Math.sin(tilt) + y * Math.cos(tilt), 0)).add(forward.clone().scale(z));
@@ -199,17 +210,23 @@ export function taylorHeadMeshes(head, yaw, tilt, expression, time) {
     piece(earInlays, TAYLOR_PALETTE.fur);
     piece(stripes, TAYLOR_PALETTE.fur);
     const phase = (time + .47) % 3.75, blink = phase < .10 ? 1 - smoothstep(0, .10, phase) : 0, open = Math.max(.065, 1 - blink - expression.squint * .35);
+    const lidLift = expression.browRaise * .008;
     piece(eyeOutline, TAYLOR_PALETTE.ink, true, .040 * (1 - open), open);
     piece(eyeWhite, TAYLOR_PALETTE.white, true, .040 * (1 - open), open);
     piece(pupils, TAYLOR_PALETTE.ink, true, .040 * (1 - open), open);
     piece(eyeGlints, TAYLOR_PALETTE.white, true, .040 * (1 - open), open);
-    piece(eyelid, '#c9ac45', false, expression.browRaise * .004);
+    piece(eyelid, '#d1ad4c', false, lidLift);
+    piece(eyeliner, TAYLOR_PALETTE.ink, true, lidLift);
     piece(lashes, TAYLOR_PALETTE.ink, true);
-    piece(expression.smile > .35 ? smile : frown, TAYLOR_PALETTE.ink, true);
+    // Quiet confidence at rest, genuine warmth in social/celebration states,
+    // and the original skeptical frown when focused or disappointed.
+    piece(expression.smile > .35 ? smile : expression.smile > .055 ? smirk : frown, TAYLOR_PALETTE.ink, true);
     piece(crest, TAYLOR_PALETTE.gold, false, 0, 1, 'metal');
     out.push({ kind: 'sphere', position: point(0, .351, .294), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.049, .050, .021), color: TAYLOR_PALETTE.gold, material: 'metal' });
-    for (const side of [-1, 1])
-        out.push({ kind: 'sphere', position: point(side * .016, .353, .291), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.010, .012, .005), color: TAYLOR_PALETTE.ink, unlit: true });
+    for (const side of [-1, 1]) {
+        out.push({ kind: 'sphere', position: point(side * .012, .353, .3065), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.010, .008, .004), color: TAYLOR_PALETTE.ink, unlit: true });
+        out.push({ kind: 'sphere', position: point(side * .392, -.190, .148), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.022, .020, .019), color: TAYLOR_PALETTE.gold, material: 'metal' }, { kind: 'torus', position: point(side * .392, -.226, .156), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.052, .066, .017), color: TAYLOR_PALETTE.gold, material: 'metal' }, { kind: 'sphere', position: point(side * .392, -.282, .157), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.033, .043, .023), color: '#308d99', material: 'ceramic' });
+    }
     out.push({ kind: 'cone', position: point(0, .300, .294), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.022, .054, .014), color: TAYLOR_PALETTE.gold, material: 'metal' });
     if (expression.mouthOpen > .18)
         out.push({ kind: 'sphere', position: point(0, -.105, surfaceZ(0, -.105, .012)), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.050, .020 + expression.mouthOpen * .028, .009), color: TAYLOR_PALETTE.ink, unlit: true });
