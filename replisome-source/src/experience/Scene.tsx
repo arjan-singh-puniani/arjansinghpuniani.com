@@ -35,6 +35,7 @@ interface SceneProps {
   onReady: (status: string) => void;
   resetKey: number;
   selected: string;
+  suspended?: boolean;
 }
 const positions: Record<string, Point> = {
   cmg: [0, 1.6, 0],
@@ -658,6 +659,12 @@ export function MolecularScene(props: SceneProps) {
       if (gone) return;
       raf = requestAnimationFrame(frame);
       const p = live.current;
+      root.dataset.renderState = p.suspended ? "suspended" : "active";
+      if (p.suspended) {
+        frames = 0;
+        fpsStart = performance.now();
+        return;
+      }
       if (requestedQuality !== p.quality) {
         requestedQuality = p.quality;
         effectiveQuality = p.quality;

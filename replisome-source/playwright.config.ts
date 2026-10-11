@@ -26,6 +26,7 @@ export default defineConfig({
       name: "chromium",
       use: {
         browserName: "chromium",
+        channel: process.env.REPLISOME_TEST_CHROME === "1" ? "chrome" : undefined,
         launchOptions: { args: ["--enable-webgl"] },
       },
     },
