@@ -22,3 +22,10 @@ Every relevant file received a size and SHA-256 inventory; every relevant ZIP's 
 The inventory and per-file disposition are in `evidence/objects-20261010/forensic-*` and `cleanup-classification.json`. Archived data is retained at `/Users/arjan/Desktop/arjansinghpuniani-hardening/rally-house-forensic-archive-20261010`. Archive SHA-256: `a134d6e9b6bcc8d8a628295a7cbbf5b55f7d2490c10a79be240b2bdff98f2e47`. All 886 member hashes were checked by reading the archive back.
 
 The source rollback archive is `rally-object-canonical-20261010.tar` beside it. Neither archive is a dependency of the game. Restore into a separate directory before comparing; never extract over the dirty original checkout.
+
+
+## 11 October — new source mining
+
+VectorCourt's active entry point and personal-shot measurement contract distinguish bounding-box tracking from planned body/racket estimation. Retained its coordinate/provenance boundaries and court-display concept. AnatomyMotion's newest 0.6 archive contributes torso-relative upper-arm geometry, elbow flexion, replay missingness and scientific provenance principles; 77 core tests were rerun in an isolated copy. Earlier XcodeFix copies remain preserved. The native runtime is not embedded or falsely claimed to run in the browser.
+
+No unique dirty source was deleted. Current generated simulation JSON from the new station was copied into `evidence/performance-lab-20261011/generated-simulation`; the five dated historical QA fixtures were restored to their original bytes instead of overwriting historical evidence.

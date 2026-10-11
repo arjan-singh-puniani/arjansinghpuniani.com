@@ -1,0 +1,318 @@
+{
+  "state": {
+    "loading": "RRally Houseopening the club…",
+    "urls": [
+      "http://127.0.0.1:8079/dist/main.js"
+    ]
+  },
+  "events": [
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/tennis/ChampionshipController.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/tennis/ChampionshipTuning.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/tennis/ChampionshipCameraRig.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/tennis/InteractiveMatchSystem.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/tennis/MatchInput.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/ui/ChampionshipHUD.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/simulation/ActivitySystem.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/simulation/CoachingEvidence.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/simulation/ClubHistory.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/simulation/ClubInteractions.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/simulation/ObjectAffordances.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/simulation/EverydayLife.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/simulation/AmbientSocialPlanner.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/persistence/SaveSystem.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/persistence/migrations.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/ui/SpatialInteractionSystem.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/ui/ClubContextPresenter.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/world/ObjectIdentity.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/ui/HUD.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/analysis/PerformanceLab.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/analysis/MotionCapture.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/content/DecorCatalog.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/rendering/FoliageGeometry.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/world/Navigation.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/world/AuthoredObjects.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/world/PerformanceStation.js",
+      {
+        "errorText": "net::ERR_SOCKET_NOT_CONNECTED"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/core/TennisImpactSound.js",
+      {
+        "errorText": "net::ERR_SOCKET_NOT_CONNECTED"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED"
+    ],
+    [
+      "failed",
+      "http://127.0.0.1:8079/dist/animation/WalkCycle.js",
+      {
+        "errorText": "net::ERR_CONNECTION_RESET"
+      }
+    ],
+    [
+      "console",
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ]
+  ]
+}

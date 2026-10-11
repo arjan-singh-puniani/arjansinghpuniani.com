@@ -715,6 +715,11 @@ export class InteractiveMatchSystem {
     return side === 'player' ? 'opponent' : 'player';
   }
 
+  /** Same authoritative visible ball for rendering and detached replay capture. */
+  visibleBallPosition():Vec3|null {
+    return this.pending&&this.pending.captured&&!this.pending.released?this.stagedBall(this.pending):this.ball.active?this.ball.position.clone():null;
+  }
+
   meshes(reducedMotion=false): Mesh[] {
     const meshes: Mesh[] = [];
     // Only the incoming player's flight gets a cue. It predicts the actual
@@ -725,7 +730,7 @@ export class InteractiveMatchSystem {
         rotation:new Vec3(Math.PI/2,0,0),scale:new Vec3(CHAMPIONSHIP_TUNING.landingCueScale,CHAMPIONSHIP_TUNING.landingCueScale,.065),
         color:'#fff4bd',alpha:CHAMPIONSHIP_TUNING.landingCueOpacity,unlit:true,noShadow:true});
     }
-    const visible=this.pending&&this.pending.captured&&!this.pending.released?this.stagedBall(this.pending):this.ball.active?this.ball.position:null;
+    const visible=this.visibleBallPosition();
     if(visible){
       meshes.push({kind:'sphere',position:new Vec3(visible.x,.108,visible.z),scale:new Vec3(.25,.015,.25),color:'#152c23',alpha:.48,unlit:true,noShadow:true});
       meshes.push({kind:'sphere',position:visible.clone(),scale:new Vec3(CHAMPIONSHIP_TUNING.ballHaloRadius,CHAMPIONSHIP_TUNING.ballHaloRadius,CHAMPIONSHIP_TUNING.ballHaloRadius),color:'#fffbc3',alpha:.13,unlit:true,noShadow:true});

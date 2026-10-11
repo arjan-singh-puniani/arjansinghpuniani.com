@@ -3,7 +3,7 @@ import { siteUrl } from "@/lib/site";
 import RallyHouseExperience from "./RallyHouseExperience";
 
 export const metadata: Metadata = {
-  title: "Rally House — A Living Club, Playable Arcade Tennis",
+  title: "Rally House — A Living Club, Arcade Tennis & Performance Lab",
   description: "Explore Arjan Singh Puniani’s miniature tennis club, challenge its members, and play arcade tennis on the same continuous court.",
   alternates: { canonical: "/playground/rally-house" },
   openGraph: {

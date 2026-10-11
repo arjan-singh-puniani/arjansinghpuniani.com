@@ -41,6 +41,8 @@ import {SpatialInteractionSystem,type WorldNotice} from './ui/SpatialInteraction
 import {characterContext,objectContext,furnitureContext} from './ui/ClubContextPresenter.js';
 import {rayBox,type ObjectAction} from './world/ObjectIdentity.js';
 import {HUD,type MemberBook} from './ui/HUD.js';
+import {PerformanceLab} from './analysis/PerformanceLab.js';
+import {MotionRecorder} from './analysis/MotionCapture.js';
 import {DECOR_BY_ID,rotatedFootprint} from './content/DecorCatalog.js';
 
 const LESSON_FEE=18;
@@ -70,6 +72,8 @@ export class Game {
   private championshipCompletedRound = 0;
   private championshipAudibleVolume = .65;
   private spatial!:SpatialInteractionSystem;
+  private performanceLab!:PerformanceLab;
+  private motionRecorder=new MotionRecorder();
   private noticeTimer=0;
   private worldNotices:WorldNotice[]=[];
   private renderDt=1/60;
@@ -121,10 +125,13 @@ export class Game {
     });
 
     this.spatial=new SpatialInteractionSystem(this.camera,this.canvas);
+    this.performanceLab=new PerformanceLab(this.camera,this.canvas);
+    this.performanceLab.onReturn=()=>{this.pointers.clear();this.pointerStart=null;this.lastPointer=null;this.pinchDistance=0;this.dragged=false;this.spatial.setHover(null);this.canvas.style.cursor='';};
+    window.addEventListener('pagehide',e=>{if(e.persisted)this.performanceLab.close();else this.performanceLab.dispose();});
 
     this.ui.onContextClose=()=>this.spatial.dismiss(true);
     this.ui.onPanelOpen=()=>this.spatial.dismiss();
-    window.addEventListener('pagehide',()=>this.spatial.dispose(),{once:true});
+    window.addEventListener('pagehide',e=>{if(e.persisted)this.spatial.dismiss(true);else this.spatial.dispose();});
     this.lastDay=this.clock.day;this.bindUI();this.bindInput();
   }
 
@@ -148,6 +155,8 @@ export class Game {
       focus:(x:number,z:number,distance:number)=>this.camera.focus(x,z,distance),
       challenge:(id:string)=>{const opponent=this.byId(id);if(opponent)this.startChampionship(opponent);},
       championship:()=>this.championship.snapshot(),
+      lab:()=>this.performanceLab.report(),
+      openLab:()=>this.openPerformanceLab(),
       championshipPoint:(winner:'player'|'opponent')=>{
         if(this.championship.phase!=='serving'&&this.championship.phase!=='rally')return false;
         this.interactiveMatch?.stop();
@@ -175,6 +184,7 @@ export class Game {
       this.openCharacter(people[0]);
       this.camera.nudgeFocus(people.reduce((v,c)=>v+c.position.x,0)/people.length,people.reduce((v,c)=>v+c.position.z,0)/people.length,.6);
     };
+    document.getElementById('labBtn')!.onclick=()=>{const o=this.world.objects.find(o=>o.id==='performanceLab')!;this.camera.focus(o.position.x,o.position.z,28,1.35);this.openObject(o);};
     document.getElementById('settingsBtn')!.onclick=()=>this.openSettings();
     this.ui.onPlay=()=>{this.clock.paused=!this.clock.paused;this.audio.click()};
     this.ui.onSpeed=()=>{this.clock.speed=this.clock.speed===1?2:this.clock.speed===2?.5:1;this.ui.toast(`Time ${this.clock.speed}×`);this.audio.click()};
@@ -185,7 +195,7 @@ export class Game {
   }
 
   private bindInput(){
-    this.canvas.addEventListener('dblclick',e=>{if(this.championship.active)return;this.spatial.dismiss();const c=this.pickCharacter(e.clientX,e.clientY);if(c){this.camera.focus(c.position.x,c.position.z,17,1);this.ui.closeContext();}});
+    this.canvas.addEventListener('dblclick',e=>{if(this.championship.active||this.performanceLab.active)return;this.spatial.dismiss();const c=this.pickCharacter(e.clientX,e.clientY);if(c){this.camera.focus(c.position.x,c.position.z,17,1);this.ui.closeContext();}});
 
     document.addEventListener('visibilitychange',()=>{
       this.last=performance.now();this.simAcc=0;
@@ -208,6 +218,7 @@ export class Game {
       void this.saveSystem.save(this.snapshot()).then(()=>{detail.textContent='Your club is saved. Reload to restore the view.';const button=document.createElement('button');button.textContent='Reload saved club';button.onclick=()=>location.reload();box.append(button);}).catch(()=>{detail.textContent='Graphics stopped, and recent changes could not be saved. Keep this tab open.';});
     });
     document.addEventListener('keydown',e=>{
+      if(this.performanceLab?.active){this.performanceLab.key(e);return;}
       if(e.target instanceof HTMLInputElement||e.target instanceof HTMLTextAreaElement)return;
 
       if (this.championship.active) {
@@ -235,10 +246,10 @@ export class Game {
       if (this.championship.active) this.matchInput.handleKeyUp(e);
     });
 
-    this.canvas.addEventListener('wheel',e=>{e.preventDefault();if(this.championship.active)return;this.camera.zoom(e.deltaY*.012)},{passive:false});
+    this.canvas.addEventListener('wheel',e=>{e.preventDefault();if(this.championship.active)return;if(this.performanceLab.active){this.performanceLab.zoom(e.deltaY*.012);return;}this.camera.zoom(e.deltaY*.012)},{passive:false});
     this.canvas.addEventListener('contextmenu',e=>e.preventDefault());
     this.canvas.addEventListener('pointerdown',e=>{if(this.championship.active)return;this.canvas.setPointerCapture(e.pointerId);this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(this.pointers.size===1){this.pointerStart={x:e.clientX,y:e.clientY};this.lastPointer={x:e.clientX,y:e.clientY};this.dragged=false}else if(this.pointers.size===2)this.pinchDistance=this.currentPinch()});
-    this.canvas.addEventListener('pointermove',e=>{const prev=this.pointers.get(e.pointerId);if(prev)this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(this.championship.active)return;this.hoverGround=this.camera.groundPoint(e.clientX,e.clientY);if(!prev&&!this.buildType){const selected=this.pickWorld(e.clientX,e.clientY);const anchor=selected?.object?.selection?.centre??selected?.character?.position??(selected?.placement?new Vec3(selected.placement.x,.65,selected.placement.z):null);this.spatial.setHover(anchor,selected?.object?.label??selected?.character?.spec.name??(selected?.placement?DECOR_BY_ID[selected.placement.type].label:''));this.canvas.style.cursor=selected?'pointer':'';}if(this.pointers.size===2){const d=this.currentPinch();if(this.pinchDistance>0)this.camera.zoom((this.pinchDistance-d)*.035);this.pinchDistance=d;this.dragged=true;return}if(prev&&this.lastPointer&&this.pointers.size===1){const dx=e.clientX-this.lastPointer.x,dy=e.clientY-this.lastPointer.y;if(this.pointerStart&&Math.hypot(e.clientX-this.pointerStart.x,e.clientY-this.pointerStart.y)>7)this.dragged=true;if(this.dragged){if(e.shiftKey||e.buttons===2)this.camera.rotate(dx);else this.camera.pan(dx,dy);}this.lastPointer={x:e.clientX,y:e.clientY}}});
+    this.canvas.addEventListener('pointermove',e=>{const prev=this.pointers.get(e.pointerId);if(prev)this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(this.championship.active)return;if(!this.performanceLab.active)this.hoverGround=this.camera.groundPoint(e.clientX,e.clientY);if(!this.performanceLab.active&&!prev&&!this.buildType){const selected=this.pickWorld(e.clientX,e.clientY);const anchor=selected?.object?.selection?.centre??selected?.character?.position??(selected?.placement?new Vec3(selected.placement.x,.65,selected.placement.z):null);this.spatial.setHover(anchor,selected?.object?.label??selected?.character?.spec.name??(selected?.placement?DECOR_BY_ID[selected.placement.type].label:''));this.canvas.style.cursor=selected?'pointer':'';}if(this.pointers.size===2){const d=this.currentPinch();if(this.pinchDistance>0){const delta=(this.pinchDistance-d)*.035;if(this.performanceLab.active)this.performanceLab.zoom(delta);else this.camera.zoom(delta);}this.pinchDistance=d;this.dragged=true;return}if(prev&&this.lastPointer&&this.pointers.size===1){const dx=e.clientX-this.lastPointer.x,dy=e.clientY-this.lastPointer.y;if(this.pointerStart&&Math.hypot(e.clientX-this.pointerStart.x,e.clientY-this.pointerStart.y)>7)this.dragged=true;if(this.dragged){if(this.performanceLab?.active)this.camera.desiredAzimuth+=dx*.006;else if(e.shiftKey||e.buttons===2)this.camera.rotate(dx);else this.camera.pan(dx,dy);}this.lastPointer={x:e.clientX,y:e.clientY}}});
     this.canvas.addEventListener('pointerleave',()=>{this.spatial.setHover(null);this.canvas.style.cursor='';});
     this.canvas.addEventListener('pointerup',e=>{if(!this.dragged&&this.pointers.size===1)this.handleTap(e.clientX,e.clientY);this.pointers.delete(e.pointerId);this.pointerStart=null;this.lastPointer=null;this.pinchDistance=0;this.ui.hideHint()});
     this.canvas.addEventListener('pointercancel',e=>{this.pointers.delete(e.pointerId);this.pointerStart=null;this.lastPointer=null;this.pinchDistance=0});
@@ -268,6 +279,7 @@ export class Game {
 
   private handleTap(x:number,y:number){
     if (this.championship.active) return;
+    if(this.performanceLab?.active){this.performanceLab.pickJoint(x,y,this.settings.reducedMotion);return;}
     this.audio.click();
     if(this.movingPlacement){const g=this.camera.groundPoint(x,y);if(g)this.moveFurniture(this.movingPlacement,g.x,g.z);return;}
     if(this.buildType){const g=this.camera.groundPoint(x,y);if(g)this.place(this.buildType,g.x,g.z);return}
@@ -310,6 +322,7 @@ export class Game {
   }
 
   private startChampionship(opponent:Character){
+    if(this.performanceLab?.active)return;
     const profile=championshipOpponentFor(opponent.id);
     if(!profile){this.ui.toast('They are not available for Championship play.');return;}
     if(this.championship.active){this.ui.toast('Finish the current Championship match first.');return;}
@@ -344,6 +357,7 @@ export class Game {
     this.championshipRound=1;
     this.championshipCompletedRound=0;
     this.championshipOpponentId=opponent.id;
+    this.motionRecorder?.reset();
     this.interactiveMatch=this.createInteractiveMatch(opponent,profile);
     this.matchInput.setEnabled(false);
     this.championshipCamera.begin();
@@ -374,9 +388,10 @@ export class Game {
       this.matchInput,
       {
         onHit:(quality,side,direction)=>this.playChampionshipHit(quality,side,direction),
-        onBounce:()=>this.audio.bounce(),
+        onBounce:()=>{this.audio.bounce();this.motionRecorder?.markBounce();},
         onNet:()=>this.audio.net(),
         onRallyContact:(_side,quality)=>{
+          if(_side==='player')this.motionRecorder?.markContact();
           // The first authoritative contact is the serve. Promote lifecycle
           // state before counting it so the controller records that contact.
           if(this.championship.phase==='serving')this.championship.markServeStarted();
@@ -662,7 +677,15 @@ export class Game {
         this.life.addMemory(this.clock.day,`${run.touch.title} · ${run.label}.`);
       });
       this.releaseActivity(a);void this.save();
+      if(run.objectId==='performanceLab')this.openPerformanceLab();
     }
+  }
+
+  private openPerformanceLab(){
+    if(!this.performanceLab||this.championship?.active||this.performanceLab.active)return;
+    this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);this.buildType=null;this.movingPlacement=null;
+    this.spatial.dismiss();this.matchInput.reset();this.pointers.clear();this.pointerStart=null;this.lastPointer=null;
+    this.audio.click();this.performanceLab.open(this.player.spec,this.motionRecorder?.clip??null);
   }
 
   private playObjectSound(effect:string,contact?:Vec3){
@@ -800,13 +823,13 @@ export class Game {
   }
   private playerAvatar:PlayerAvatar|null=null;
   private choosePlayerAvatar(id:PlayerAvatar){
-    this.playerAvatar=id;this.player.spec=playerSpec(id);this.ui.closeContext();
+    this.playerAvatar=id;this.player.spec=playerSpec(id);if(id==='taylor'&&!this.player.matchCompetitor)this.player.racketStowed=true;this.ui.closeContext();
     this.camera.focus(this.player.position.x,this.player.position.z,22);
     this.ui.toast(`${this.player.spec.name} · Welcome to your club.`);void this.save();
   }
   private openAvatarPicker(){
     this.ui.showContext('YOUR CHARACTER','Who’s arriving at Rally House?','Choose your look. You can switch anytime in Settings.',[],[
-      {title:'Taylor',subtitle:'Gold and indigo feline · sculpted bob · white dress',run:()=>this.choosePlayerAvatar('taylor')},
+      {title:'Taylor',subtitle:'Gold and indigo feline · folded-arm stance · flowing gold tunic',run:()=>this.choosePlayerAvatar('taylor')},
       {title:'Arjan',subtitle:'Swept dark hair · strong brows · charcoal tenniswear',run:()=>this.choosePlayerAvatar('arjan')}
     ]);
   }
@@ -867,7 +890,7 @@ export class Game {
     const touchRun=this.touchRuns?.get(a.id);if(touchRun)this.world.authored.cancel(touchRun.objectId);this.touchRuns?.delete(a.id);
     this.lifeRuns.delete(a.id);if(this.speechOwner===a.id){this.speechOwner=null;this.ui.hideSpeech();this.activeSpeechId=null;}
     if(a.resource==='court'){this.rally.stop();this.socialRally.stop();this.byId('mika')!.practiceCue='';this.evidence.practicing=false;}
-    for(const id of a.participants){const c=this.actor(id);c.currentScheduleIndex=-1;c.clearCourtMove();c.clearShotIntent();c.path=[];c.setLook(undefined);c.setConversationPartner(undefined);c.setAnimation('idle');c.seatDepth=0;c.seatHeight=.54;c.socialGesture='none';c.socialProp=null;c.setInteractionTarget(undefined);c.racketStowed=false;c.acting.setRole('exit');}
+    for(const id of a.participants){const c=this.actor(id);c.currentScheduleIndex=-1;c.clearCourtMove();c.clearShotIntent();c.path=[];c.setLook(undefined);c.setConversationPartner(undefined);c.setAnimation('idle');c.seatDepth=0;c.seatHeight=.54;c.socialGesture='none';c.socialProp=null;c.setInteractionTarget(undefined);c.racketStowed=c.spec.avatar==='taylor';c.acting.setRole('exit');}
     this.routes.delete(a.id);this.lessonActive=false;
   }
   private cancelActivity(a:Activity,retry=false){if(a.kind==='lesson'){this.traceCoaching('cancelled',{id:a.id,retry,phase:a.phase,seconds:a.phaseTime,positions:a.participants.map(id=>({id,position:this.actor(id).position,path:this.actor(id).path, index:this.actor(id).pathIndex}))});if(retry)this.queuedLesson=this.lessonKeys?.get(a.id)??this.queuedLesson;this.lessonKeys?.delete(a.id);}this.telemetry.cancellations++;const run=this.lifeRuns.get(a.id);if(run)this.everyday.failed(run.scene);this.activities.cancel(a,'Interrupted safely; no completion rewards.');this.releaseActivity(a);}
@@ -1049,6 +1072,7 @@ export class Game {
     if(this.world.weather==='rain'&&!this.activities.busy('nia')){this.history.nextObject=Math.min(this.history.nextObject,this.absoluteMinute);}
   }
   private updateFixed(dt:number){
+    if(this.performanceLab?.active)return;
     this.clock.update(dt);const step=this.clock.paused?0:dt*this.clock.speed;if(!step)return;
     if(this.clock.day!==this.lastDay){this.lastDay=this.clock.day;this.daily.ensureDay(this.clock.day);for(const c of this.characters)c.currentScheduleIndex=-1;}
     if(this.world.updateObjects(step,this.absoluteMinute,this.settings.reducedMotion))this.audio.bounce();
@@ -1160,6 +1184,7 @@ export class Game {
     }
     const peek=document.getElementById('scenePeek')!,run=this.lifeRuns.values().next().value;const courtEvent=this.activities.active.find(a=>a.resource==='court');const title=run?.scene.title??courtEvent?.detail??'';if(peek.querySelector('strong')!.textContent!==title)peek.querySelector('strong')!.textContent=title;peek.hidden=(!run&&!courtEvent)||!!this.spatial.selectedId||!!document.querySelector('.context.open,.book.open,.build.open');
     const aspect=this.renderer.resize();this.camera.setAspect(aspect);
+    this.performanceLab?.update(this.renderDt,this.settings.reducedMotion);
     if(this.championship.active&&this.championshipOpponentId){
       const opponent=this.byId(this.championshipOpponentId);
       if(opponent){
@@ -1177,8 +1202,9 @@ export class Game {
         return {id:c.id,position:c.position,name:c.spec.name,activity:label,select:()=>this.openCharacter(c)};
       });
     }
-    this.spatial.update(this.renderDt,this.championship.active||!!document.querySelector('#context.open,#book.open,#buildPanel.open'),this.settings.reducedMotion,this.worldNotices);
-    const meshes:RenderItem[]=[...this.world.meshes,...this.spatial.meshes(),...this.world.placementMeshes(),...this.world.dynamicMeshes(this.settings.reducedMotion?0:now/1000,this.clock.minutes,this.camera.position,this.renderDt,this.sportFocus,now/1000)];for(const c of this.characters){
+    this.spatial.update(this.renderDt,this.performanceLab.active||this.championship.active||!!document.querySelector('#context.open,#book.open,#buildPanel.open'),this.settings.reducedMotion,this.worldNotices);
+    const architecture=this.performanceLab.active?this.world.meshes.filter(m=>m.id!=='court-pendant'):this.world.meshes;
+    const meshes:RenderItem[]=[...architecture,...this.spatial.meshes(),...this.world.placementMeshes(),...this.world.dynamicMeshes(this.settings.reducedMotion?0:now/1000,this.clock.minutes,this.camera.position,this.renderDt,this.sportFocus,now/1000)];if(!this.performanceLab.active){for(const c of this.characters){
       const body=c.meshes(false);
       // A walking club member may pass in front of the sports camera. Keep their
       // activity intact while softly cutting them away from the player's silhouette.
@@ -1186,6 +1212,8 @@ export class Game {
         for(const part of body)part.alpha=(part.alpha??1)*(1-this.sportFocus*.78);
       meshes.push(...body);
     }meshes.push(...this.player.meshes(false),...this.rally.meshes(),...this.socialRally.meshes(),...(this.interactiveMatch?.meshes(this.settings.reducedMotion)??[]));
+    }else meshes.push(...this.performanceLab.meshes(this.settings.reducedMotion));
+    if(Math.hypot(this.player.position.x+3.8,this.player.position.z+8.35)<3||this.performanceLab.active)meshes.push({kind:'roundBox',position:new Vec3(-3.8,1.48,-8.18),scale:new Vec3(1.48,.92,.01),color:'#92d5c0',alpha:.08,unlit:true,noShadow:true});
     if(this.buildType&&this.hoverGround){const x=Math.round(this.hoverGround.x*2)/2,z=Math.round(this.hoverGround.z*2)/2;meshes.push(...this.previewMeshes(this.buildType,x,z,this.placementClear(this.buildType,x,z,this.buildRotation)))}
     if(this.history.breakthrough||this.history.firstMikaWin)meshes.push({kind:'roundBox',position:new Vec3(4.25,2.12,-9.1),scale:new Vec3(.7,.12,.45),color:'#c58a5b',material:'wood'},{kind:'sphere',position:new Vec3(4.25,2.3,-9.1),scale:new Vec3(.24,.24,.24),color:'#e6c65f',material:'fabric'});
     const contactView=this.championshipCamera.renderImpulse(this.settings.reducedMotion);
@@ -1207,12 +1235,12 @@ export class Game {
     this.simAcc=Math.min(this.simAcc+realDt,step*maxSteps);
     if(this.championship.active&&this.clock.paused)this.simAcc=0;
     let loops=0;const simStart=performance.now();
-    while(this.simAcc>=step&&loops++<maxSteps){this.updateFixed(step);this.simAcc-=step}const simMs=performance.now()-simStart;
+    while(this.simAcc>=step&&loops++<maxSteps){this.updateFixed(step);if(!this.clock.paused&&!this.performanceLab.active&&this.interactiveMatch&&['serving','rally'].includes(this.championship.phase))this.motionRecorder.record(step,this.player,this.interactiveMatch.visibleBallPosition());this.simAcc-=step}const simMs=performance.now()-simStart;
     this.autosave+=realDt;if(this.autosave>15){this.autosave=0;void this.save(false)}this.ui.update({coins:this.coins,stars:this.stars,heart:this.clubHeart,clock:this.clock.formatted(),weather:this.world.weather,day:this.clock.day},this.clock.paused,this.clock.speed);this.updateObjective();
     const renderStart=performance.now();this.render(now);const renderMs=performance.now()-renderStart;this.perf.sample({simMs,renderMs,drawCalls:this.renderer.drawCalls,triangles:this.renderer.triangles,entities:this.characters.length+1},now);requestAnimationFrame(this.loop)
   };
 
   private snapshot():GameSave{return {playerAvatar:this.playerAvatar,queuedLesson:this.queuedLesson??(this.activities.active.find(a=>a.kind==='lesson')?this.lessonKeys?.get(this.activities.active.find(a=>a.kind==='lesson')!.id):null)??null,mind:this.mind.serialize(),clock:this.clock.serialize(),coins:this.coins,stars:this.stars,coachXP:this.coachXP,mikaProgress:this.mikaProgress,weather:this.world.weather,placements:this.world.placements,relationships:this.relations.serialize(),dailyGoals:this.daily.serialize(),clubLife:this.life.serialize(),equipment:{...this.equipment},player:{x:this.player.position.x,z:this.player.position.z},bestRally:this.rally.bestRally,emergentSocial:this.socialSimulation.serialize(),activities:this.activities.serialize(),history:this.history.serialize(),affordances:this.affordances.serialize(),objectIdentity:this.world.identity.serialize(),development:{...this.development},settings:{...this.settings},everyday:this.everyday.serialize()}}
   private async save(showToast=false){if(this.saveBlocked)return;try{await this.saveSystem.save(this.snapshot());if(showToast){this.ui.toast('Club saved.');this.audio.success()}}catch(e){if(e instanceof SaveConflictError){this.saveBlocked=true;this.ui.showContext('SAVE CONFLICT','Another tab saved this club',e.message,[],[{title:'Reload the newer save',subtitle:'Discard unsaved changes in this tab',run:()=>location.reload()},{title:'Export this tab',subtitle:'Keep a separate JSON copy before reloading',run:()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(this.snapshot(),null,2)],{type:'application/json'}));const link=document.createElement('a');link.href=url;link.download='rally-house-unsaved-club.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}}]);}else{this.ui.toast('Could not save. Keep this tab open and check browser storage.');console.error('Save failed',e)}}}
-  private async restore(){const env=await this.saveSystem.load();if(!env)return;const s=migrateGameSave(env.version,env.state);if(s.playerAvatar){this.playerAvatar=s.playerAvatar;this.player.spec=playerSpec(s.playerAvatar);}this.clock.minutes=s.clock.minutes;this.clock.day=s.clock.day;this.clock.paused=false;this.clock.speed=s.clock.speed||1;this.coins=s.coins;this.stars=s.stars;this.coachXP=s.coachXP??14;this.mikaProgress=s.mikaProgress;this.world.weather=s.weather;this.world.placements=s.placements||[];this.relations.load(s.relationships||{});this.daily.load(s.dailyGoals);this.daily.ensureDay(this.clock.day);this.life.load(s.clubLife);this.equipment={...this.equipment,...s.equipment};this.rally.bestRally=s.bestRally??0;this.socialSimulation.load(s.emergentSocial);this.byId('mika')?.setDevelopment(this.mikaProgress);this.player.position.set(s.player.x,0,s.player.z);this.player.goTo(this.player.position,'idle');this.settings={...this.settings,...s.settings};this.audio.volume=this.settings.volume;this.activities.load(s.activities);this.everyday.load(s.everyday);this.mind.load(s.mind);this.queuedLesson=s.queuedLesson&&s.queuedLesson in drills?s.queuedLesson:null;this.history.load(s.history);this.world.identity.load(s.objectIdentity);this.affordances.load(s.affordances);this.affordances.sync(this.world.placements,this.clock.day);this.development=s.development??{preparation:0,recovery:0};this.actor('mika').preparationBonus=this.development.preparation;this.actor('mika').recoveryBonus=this.development.recovery;this.observationStarted=!!s.history;this.rebuildFurnitureObstacles();if(this.world.nav.isBlocked(this.player.position.x,this.player.position.z)){const safe=destinations.entrance;this.player.position.set(safe.x,0,safe.z);this.player.path=[];}}
+  private async restore(){const env=await this.saveSystem.load();if(!env)return;const s=migrateGameSave(env.version,env.state);if(s.playerAvatar){this.playerAvatar=s.playerAvatar;this.player.spec=playerSpec(s.playerAvatar);this.player.racketStowed=s.playerAvatar==='taylor';}this.clock.minutes=s.clock.minutes;this.clock.day=s.clock.day;this.clock.paused=false;this.clock.speed=s.clock.speed||1;this.coins=s.coins;this.stars=s.stars;this.coachXP=s.coachXP??14;this.mikaProgress=s.mikaProgress;this.world.weather=s.weather;this.world.placements=s.placements||[];this.relations.load(s.relationships||{});this.daily.load(s.dailyGoals);this.daily.ensureDay(this.clock.day);this.life.load(s.clubLife);this.equipment={...this.equipment,...s.equipment};this.rally.bestRally=s.bestRally??0;this.socialSimulation.load(s.emergentSocial);this.byId('mika')?.setDevelopment(this.mikaProgress);this.player.position.set(s.player.x,0,s.player.z);this.player.goTo(this.player.position,'idle');this.settings={...this.settings,...s.settings};this.audio.volume=this.settings.volume;this.activities.load(s.activities);this.everyday.load(s.everyday);this.mind.load(s.mind);this.queuedLesson=s.queuedLesson&&s.queuedLesson in drills?s.queuedLesson:null;this.history.load(s.history);this.world.identity.load(s.objectIdentity);this.affordances.load(s.affordances);this.affordances.sync(this.world.placements,this.clock.day);this.development=s.development??{preparation:0,recovery:0};this.actor('mika').preparationBonus=this.development.preparation;this.actor('mika').recoveryBonus=this.development.recovery;this.observationStarted=!!s.history;this.rebuildFurnitureObstacles();if(this.world.nav.isBlocked(this.player.position.x,this.player.position.z)){const safe=destinations.entrance;this.player.position.set(safe.x,0,safe.z);this.player.path=[];}}
 }

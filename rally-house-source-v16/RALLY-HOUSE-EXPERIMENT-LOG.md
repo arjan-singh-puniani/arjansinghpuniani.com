@@ -80,3 +80,24 @@ The secondary seated-watch browser check exposed two ordering failures: the exhi
 ## Art direction — 2026-10-11
 
 Compared the original view with a brighter material candidate and a lower-exposure refinement. Rejected the pale candidate, reduced grain strength, refined coordinated head/hair geometry, corrected skin/garment intersections and joint-ring seams, and replaced canopy ellipsoids with bounded leaf geometry. Full-cast review caught descending-skirt winding and a missing racket-display footprint; both have regression coverage. See RALLY-HOUSE-ART-DIRECTION-20261011.md and evidence/art-20261011 for actual captures, provenance and limits.
+
+## Performance Lab — 2026-10-11
+
+| Trial | Observed result | Decision |
+|---|---|---|
+| Opaque avatar with registered skeleton | Body surfaces hid several joints | Keep the face opaque and make body surfaces translucent in body/combined views |
+| Back-facing replay camera | Face and arm chain were harder to read | Front diagonal at azimuth 2.55, with framing offset that clears the instrument panel |
+| Floor overlay at .052 | Real rendered court coverage was invisible inside the .07-high floor | Register coverage at .076 beneath markings; paths/events at .115 above markings; regression compares against the actual World mesh |
+| A: quiet .8-grid cells | Root residence, footsteps and lines remain distinct | Selected |
+| B: overlapping 1.05 discs at 72% opacity | Repeated circles read as spots rather than one residence surface | Rejected |
+| C: same cells at 2.4× opacity | Heat surface dominated the footsteps and court | Rejected |
+| Free-flight-only recorder | Actual Championship contact sample omitted the compressed ball | Share the renderer's authoritative staged/flight ball position with capture |
+| Ceiling pendants during serve replay | Foreground light hid the ball/racket at contact | Cut away pendants only while analysis is active |
+| Default Safari selects | Native select height was 23px despite the desired touch target | Explicit appearance and 44px height |
+| Contact lens / reduced motion | Slowdown and separation aid inspection; unnecessary motion in reduced mode | Preserve measurements and controls; suppress contact slowdown/separation for reduced motion |
+| Separated skeleton hit target | Physical-joint projection could disagree with the visible inspection node | Share the same eased presentation offset for rendering and picking; test the node at peak separation |
+| Lab button in a short landscape embed | A small camera nudge could leave the instrument offscreen | Frame the instrument directly while retaining the authored approach/use flow |
+
+A/B/C captures use the same real-solver gait clip at 4.70s and the same camera. The render-only test overrides are removed before the shipped flow, with no production tuning menu. `qa/lab-release.mjs` reproduces the comparison and the real RAF Championship capture. Human preference was not measured.
+
+The existing heavy Championship profile and previously validated movement/feed/cue winner remain unchanged. This pass does not invent a new tennis parameter search result. New experiments address replay readability, registration and contact fidelity where the running product exposed actual gaps.

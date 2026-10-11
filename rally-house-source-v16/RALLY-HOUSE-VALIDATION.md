@@ -94,3 +94,74 @@ Native UI actions are real, while fixed-step acceleration makes travel/use/sessi
 ## Art pass — 2026-10-11
 
 All 20 game suites pass, including the new geometry and shop-circulation regressions. Portfolio verification passes 91 tests and 31 routes, with zero lint errors and 14 retained warnings. Original runtime before/after captures and browser, touch, accessibility, package and rally measurements are curated under evidence/art-20261011. The detailed scope and remaining human/physical-device gates are recorded in RALLY-HOUSE-ART-DIRECTION-20261011.md.
+
+## Performance Lab — 11 October 2026
+
+Candidate begins at merged main `8790d34`. Taylor's prior likeness/rig work and the selected heavy Championship profile are preserved. This evidence is separate from the older counts above.
+
+| Gate | Result |
+|---|---|
+| Game | All **22 suites pass**; includes 43 actual object flows, held-contact ball snapshot isolation, three real-solver lab demos, derived metrics, missing-gap abstention, cosine contact-lens envelope, bounded 360-sample capture and live-state freeze |
+| Portfolio | 91 tests pass; TypeScript and production build pass; latest lint has zero errors and 12 retained warnings |
+| Source/served boundary | **68 artifacts match**, including lab.css and four new compiled modules; relative imports resolve |
+| Lab browser matrix | Chromium, Firefox and WebKit each pass **24 viewports/modes**, native station use, native controls, visible joint picking at peak separation, 100 replay cycles, exact camera restoration, simulation isolation and persisted-pagehide/native reopening |
+| Shipped portfolio | Eight viewport sizes pass: Analyze image loads, no iframe before Play, zero Axe violations, native station entry and all three lab modes, source labels, ankle-height terminology, return, no production debug hooks and no recorded JS/asset errors |
+| Real Championship replay | Fresh RAF capture: 61 samples, one player contact, one actual bounce; contact ball/string-center gap .050 club units; selected timeline time and frame both .3166667s |
+| Match regression | Native shipped 390×844 match; 16 exits during held contact across four opponents/full and reduced motion; exact restoration, no stale hold/input/match; 12 bounded audio buffers/disposal |
+| Standalone package | 70 files, approximately 221 KiB, CRC verified; refreshed extraction survives five independent reloads |
+| Native capability checks | VectorCourt: 35 Swift + 28 Python tests. AnatomyMotion archive core: 77 Swift tests. No native source modified or private footage copied |
+| Original dirty trees | Both Desktop trees preserved; scoped status/patch/hash inventories retained outside the release; no blanket reset/clean/deletion |
+
+Viewport sizes: 1920×1080, 1728×1117, 1440×900, 1280×800, 1024×768, 844×390, 430×932, 390×844. Browser tests use native actions, with explicit fixed-step acceleration for long travel and repeated lifecycle checks. Real recording uses the ordinary RAF loop. Automation is not a human participant.
+
+### Observed frame intervals
+
+120 RAF intervals per scene, 1440×900, same local Mac, sequential engine runs. The lab sample is playing gait, so differing engine elapsed time also means differing rendered trail prefixes. Values are milliseconds; these are observed frame intervals, not an isolated GPU benchmark.
+
+| Engine | Club median / p95 / p99 | Lab median / p95 / p99 |
+|---|---|---|
+| Chromium, ANGLE Metal Apple M2 | 16.7 / 18.4 / 18.6 | 16.7 / 19.4 / 24.3 |
+| WebKit, Apple GPU | 17 / 18 / 19 | 17 / 18 / 19 |
+| Firefox, renderer reports Apple M1 or similar | 16 / 22 / 35 | 28 / 30 / 32 |
+
+Chromium and WebKit remain around 60 fps here; Firefox lab is approximately 35 fps. This is not a universal 60-fps or physical-phone claim. An earlier software-backend Chromium run was very slow even at baseline; its separate report is preserved rather than hidden or used as hardware evidence.
+
+Failures found and fixed: coverage buried inside the court; a held contact ball absent from free-flight-only capture; foreground pendants hiding serve contact; Safari native selects below the intended target height; small landscape station framing; pointer/pinch/hover isolation; persisted-pagehide removing reusable controls; and picking the unshifted joint instead of the contact-lens node. Harness fixes include exact action names, explicit Axe contexts and fresh first-run contexts. A/B/C quiet cells, overlapping discs and strong cells were actually captured; the quiet cells remain selected.
+
+Reproduce: `npm test`, `npm run release:check`, `npm run qa:lab`, `QA_ENGINE=firefox npm run qa:lab`, `QA_ENGINE=webkit npm run qa:lab`, `node qa/lab-release.mjs`, `QA_RECORDING_ONLY=1 node qa/lab-release.mjs`, `python3 qa/package-playtest.py`, and `QA_WIDTH=390 QA_OUT=evidence/performance-lab-20261011/impact node qa/impact-validation.mjs`. Source 8078, portfolio 3096 and extracted package 8079 are QA URLs. Set `WEBKIT_EXECUTABLE` when needed; the harness uses the available installed runtime or the normal Playwright default. `node qa/curate-lab-evidence.mjs` produces smaller genuine capture copies and the portfolio still.
+
+See [current evidence](evidence/performance-lab-20261011/README.md). Raw PNGs remain locally preserved; curated WebP copies and source hashes accompany the release. The five nondeterministic simulation outputs are retained under the new evidence folder while dated historical QA fixtures retain their original bytes.
+
+Open gates: independent human taste/listening, physical iPhone/Android performance and OS lifecycle, Firefox optimization, specialist assets, and native camera/held-out research validation. The browser lab computes **simulation geometry**. It does not run CV, infer ground reaction force, measure muscle activation or make a clinical claim. The scripted page-cache event exercises handlers; it is not proof of every OS/browser cache behavior or a zero-memory-leak result.
+
+## Avatar and rig registration correction — October 11 follow-up
+
+The registered replay now preserves the captured avatar opacity and keeps all joint annotations at their captured positions, including contact. Slow contact changes replay speed only; an explicit Separate rig control offers a fixed inspection offset and resets on entry. Human limbs and shirts use smoother cross-sections with localized joint weights and closed, skinned shoulder caps. Taylor geometry and Championship contact/feel remain intact.
+
+All 23 game suites pass, including actual GPU surface registration and garment topology. The new pass checks 766 overlay samples and 84 surface samples, 72 browser size/view combinations, 300 replay lifecycle cycles and both registered/separated joint picking. Portfolio tests (91), TypeScript, production build and lint (0 errors / 12 retained warnings) pass. A real RAF Championship recording contains 60 samples, one contact and one bounce, with synchronized replay. See [dated evidence and reproduction](evidence/rig-registration-20261011/README.md). Older results above retain their original evidence and behavior.
+
+## Continuous pose reconstruction — October 11 follow-up
+
+Replay no longer holds the nearest 30 Hz snapshot or throttles the readout to 15 Hz. One cached pose advances each rendered instant; the anatomical skin is rebuilt from the same landmarks as the joint overlay, measurements, camera target and canvas hit targets. Exact recorded contact/bounce frames remain untouched. Gaps remain missing. Static curve and court-prefix caches bound reconstruction work. The moving root/racket/ball trail ends at the current pose, and history cannot display a future event early. Facial geometry changes no longer freeze Taylor's body.
+
+All 24 game suites and 91 portfolio tests pass; TypeScript, production build (32 routes), lint (0 errors / 12 retained warnings), 68 source/served artifacts and 70-file CRC-verified standalone package pass. Expanded registration tests inspect 324 actual GPU surface samples and 1,006 overlays. The new suite checks 3,800 intermediate poses for Arjan/Taylor across gait/forehand/serve; maximum GPU joint registration error is 4.90e-7 club units. Real browser motion checks cover 540 RAF frames with current measurement/cursor agreement and fractional joint picking.
+
+Three browser engines pass 72 responsive view/mode combinations and 300 open/close cycles. Chromium and WebKit held roughly 60 fps locally; Firefox remains slower in this session and its profile reaches the clip end. The loaded run and repeat are both preserved, with limitations recorded; these measurements do not establish an isolated regression or physical-phone performance. See [current continuous-replay evidence](evidence/replay-smoothness-20261011/README.md), including actual unedited browser video.
+
+The shipped 390×844 check reports zero Axe violations, 16 held-contact exits across four opponents and both motion modes, 12 bounded audio buffers with disposal, and five refreshed standalone reloads. A first startup wait timed out after the shipped/audio checks; both its partial report and the successful full repeat are retained. Fresh actual Championship capture has 60 samples, one player contact and one bounce; the replay retains the exact .3166667s contact sample and .050-unit ball/string-center gap.
+
+The uncached standalone diagnostic traced failed parallel module loads to connection resets through the old default QA server. The QA server was corrected to match the existing packaged launcher’s 128-connection accept queue. Five independent fresh-context startups pass; original failed evidence is retained.
+
+## Taylor reference silhouette — October 11 follow-up
+
+Taylor’s dress now narrows at the waist and widens through the upper hip and hem, following the contrast visible in the supplied reference crop. Gold edging shares the contour. The head, face, limb lengths, joint positions, skin weights and Championship solver remain unchanged; the cropped reference is not used to invent full-body dimensions. This is a closer costume silhouette, not an exact reference pose or outfit.
+
+All 24 game suites, 91 portfolio tests, TypeScript, lint (zero errors / 12 retained warnings), 68 release artifacts and the 70-file standalone CRC check pass. Actual moving replay checks cover 540 RAF frames with zero joint-node disagreement; seven registered-rig captures include Taylor on a phone viewport. Five independent uncached standalone startups pass. See [actual before/after and reproduction](evidence/taylor-proportions-20261011/README.md).
+
+## Taylor reference likeness rebuild — October 11 follow-up
+
+The visible character now has inward-pointing ears, higher-set skeptical facial features, a sawtooth cheek frame with gold bands clipped to its actual surface, a real folded-paw club pose, upright striped tail and saturated gold tunic silhouette. A shared cel material supports both rigid and skinned surfaces. The tunic is a full-body interpretation of the reference crop; this is not a pixel-identical recreation of the flat image or its backdrop.
+
+Folded shoulders/elbows/hands are authoritative landmarks, shared by skin and tracking, and release for active interactions. Paw bones retain rigid volume instead of stretching with the forearm. All 24 game suites pass, including new pose/attachment and audio-rejection regressions. Chromium, Firefox and WebKit each pass native selection, two actual club viewports, real Championship serve contact, exit and saved-avatar reload. The first Firefox reload exposed an audio shutdown rejection; its evidence remains, and the corrected repeat has no errors.
+
+The full portfolio verification passes (91 tests with coverage, TypeScript, 32-route build, lint zero errors / 12 retained warnings). Moving replay passes 540 RAF frames; 68 source/served artifacts match. The refreshed 70-file standalone ZIP passes CRC, exact runtime-byte comparison and five fresh starts. See [actual comparison and reproduction](evidence/taylor-reference-20261011/README.md).

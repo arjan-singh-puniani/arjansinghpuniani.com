@@ -1,0 +1,77 @@
+[
+  {
+    "source": "after-front.png",
+    "sha256": "972904120f6dc0710e94781533f1b4f6e53ef30b3686c9464ae01fbd2507a4b8",
+    "curated": "after-front.webp"
+  },
+  {
+    "source": "after-three-quarter.png",
+    "sha256": "16fe9ba9eca62ab7adea3eca5da13e669ed6cb57f10032391db1a5a8f8fb1f9a",
+    "curated": "after-three-quarter.webp"
+  },
+  {
+    "source": "before-front.png",
+    "sha256": "0ac32b441f8e84536ec9674c4eea91b694728a15499f2c18ec643d144d51d3f9",
+    "curated": "before-front.webp"
+  },
+  {
+    "source": "before-three-quarter.png",
+    "sha256": "df5314875c63063d09d2a9d85719275eedc51a1d388828a9e1f3d85de1fca171",
+    "curated": "before-three-quarter.webp"
+  },
+  {
+    "source": "chromium/1440-club.png",
+    "sha256": "f55aed973c0d6c12d92d99fd668a65d2b034cb2e174acc5c5065100ec98acefd",
+    "curated": "chromium/1440-club.webp"
+  },
+  {
+    "source": "chromium/390-club.png",
+    "sha256": "1363d01bec121a46d124f5e717a40bc1e1a3884ca41b04564e9d7bc7e7ff2a95",
+    "curated": "chromium/390-club.webp"
+  },
+  {
+    "source": "chromium/championship.png",
+    "sha256": "1873440bbe2bdc439e0227b54355e581f6fcc25bd66e612cc611e70822981bfa",
+    "curated": "chromium/championship.webp"
+  },
+  {
+    "source": "firefox/1440-club.png",
+    "sha256": "b9c736215fe8c57aa98a81a48890a8dc9a5346c040e991c63d57db99cbcf9148",
+    "curated": "firefox/1440-club.webp"
+  },
+  {
+    "source": "firefox/390-club.png",
+    "sha256": "df3f11430efe1f5ef2a5fe5267ee675c18113ee8f1e37fb95070a9a95ea0081d",
+    "curated": "firefox/390-club.webp"
+  },
+  {
+    "source": "firefox/championship.png",
+    "sha256": "c19d5c86d1d306ae900d429ebebdcf4527b72f6110f072fa3b1772db1e936e5e",
+    "curated": "firefox/championship.webp"
+  },
+  {
+    "source": "motion/fractional-joint-pick.png",
+    "sha256": "54317e8cdfe6c294bc4e7ca6012fbddda6982bd3f3c52e3164b2b5a3284d9395",
+    "curated": "motion/fractional-joint-pick.webp"
+  },
+  {
+    "source": "motion/taylor-continuous.png",
+    "sha256": "bb82b109563b6d925bbb611eccf623438c2c9a95b66312646e5268e32b7be6c8",
+    "curated": "motion/taylor-continuous.webp"
+  },
+  {
+    "source": "webkit/1440-club.png",
+    "sha256": "e73a3bfda3ba8e8b9746b57cbef00b2da4d5aa8f3bb12580885a9c21cfdfb00b",
+    "curated": "webkit/1440-club.webp"
+  },
+  {
+    "source": "webkit/390-club.png",
+    "sha256": "306190213b2b39f03b818c22aa3dd5d8b413a79e4c927136d83b2efa3553e0d5",
+    "curated": "webkit/390-club.webp"
+  },
+  {
+    "source": "webkit/championship.png",
+    "sha256": "7730490af3c57713833b8f7550c29df15f902b82789fa1682ca55b85b4fbfcfe",
+    "curated": "webkit/championship.webp"
+  }
+]

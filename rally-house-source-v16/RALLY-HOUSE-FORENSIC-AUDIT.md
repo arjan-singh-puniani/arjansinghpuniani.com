@@ -92,3 +92,12 @@ Completed built-in visit context is bounded by the 48-entry activity ledger. It 
 ## Object identity follow-up — 10 October 2026
 
 Current authority is main `846d1c7` (merged impact PR #9), isolated on `rally-house-object-identity-20261010`. The 2026-10-06 counts above remain historical. Current source has three new owners: `ObjectIdentity`, `AuthoredObjects` and `ReversibleAssembly`; source/served parity now checks 61 artifacts and persistence is schema 9. No RC or backup is imported by the runtime. The current nine-ZIP, 886-file inventory, adopted sip cycle, preserved cast alternatives and verified archive are documented in DIRTY-TREE-MINING and CLEANUP-MANIFEST. Original unrelated work remains preserved.
+
+
+## 11 October — Performance Lab continuation
+
+Started from fetched merged main `8790d34` in `/tmp/rally-art-20261011`, isolated branch `rally-house-performance-lab-20261011`. This preserves the merged Taylor facial/sculpt/attachment work and the user's selected heavy contact feel. The two dirty Desktop checkouts remain historical/unrelated working trees, untouched. Their tracked binary patches, complete status and Rally source hashes were captured in `/tmp/rally-lab-audit-20261011` before implementation; earlier verified 886-member archive remains authoritative historical preservation. No HoloAnatomy quiz deletion or OBJ work was consolidated.
+
+Canonical browser source: `rally-house-source-v16/src`; production copy: `arjan-portfolio/public/rally-house`; generated output: `dist`; active lab QA: `qa/performance-lab.mjs` and dated evidence folder. ZIP is a generated portable distribution, not a second authoring tree. Actual native VectorCourt and AnatomyMotion roots were discovered and audited separately; see capability audits. Live deployment is reviewed separately from local source, and no private source video, archive or native app is bundled in the game.
+
+The broad object/Championship forensic baseline was already mined on 10 October. This pass extends that authority with the lab's capture, replay, UI, metrics and lifecycle owners; it does not pretend the native projects have production accuracy or reclassify uninspected private media for deletion.

@@ -13,3 +13,8 @@ Geometry is deliberately modest. The whiteboard has a light surface, marker tray
 Reversible assembly samples immutable TRS per invocation; normal clock hands may tick between invocations. Completed, cancelled and reduced-motion paths restore exactly. State changes occur at actual interaction onset; completed usage/history requires resolution. Thus a cancelled pour can leave genuinely wet soil but cannot invent a completed visit. Transient props, reach targets and clock state clear on release.
 
 Object witnesses respect range, availability, cooldown and tall occluders. A low net or bench does not obstruct adult eye-level visibility. A witness is conditional; there is no promise that every click summons a reaction.
+
+
+## Performance Lab station
+
+Stable ID `performanceLab`, distinct wood/metal housing, schematic instrument face, independent 1.7×2.25×0.65 selection proxy and 1.7×0.75 navigation footprint. Explicit reachable approach spot at (-3.8,-7.35). Lab control and Club → Details select this identity; `analyze` uses normal travel/look/point/visibility-witness/history transaction. Proximity gently wakes the screen. Completion opens replay; it does not attach arbitrary click handlers to decorative parts.

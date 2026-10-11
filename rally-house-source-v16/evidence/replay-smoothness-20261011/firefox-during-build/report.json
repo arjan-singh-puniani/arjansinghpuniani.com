@@ -1,0 +1,2570 @@
+{
+  "engine": "firefox",
+  "views": 24,
+  "baseline": {
+    "median": 80,
+    "p95": 168,
+    "p99": 262,
+    "renderer": "Apple M1, or similar"
+  },
+  "profile": {
+    "median": 91,
+    "p95": 134,
+    "p99": 167,
+    "drawCalls": 820,
+    "triangles": 222884,
+    "active": true,
+    "kind": "gait",
+    "mode": "combined",
+    "focus": "knee",
+    "time": 5.8,
+    "samples": 175,
+    "playing": false,
+    "frame": 5.8,
+    "interpolated": false,
+    "meshes": 191
+  },
+  "synchronized": {
+    "time": 1.428,
+    "frame": 1.428,
+    "root": {
+      "x": -3.8,
+      "y": 0,
+      "z": -7.35
+    },
+    "clock": 1056.5,
+    "speed": 1,
+    "angle": "174°"
+  },
+  "soak": {
+    "cycles": 100,
+    "maxMeshes": 194,
+    "labLayers": 1,
+    "samples": 0
+  },
+  "jointCanvasPick": true,
+  "errors": [],
+  "requests": [],
+  "viewportMatrix": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "mode": "combined",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 144.28334045410156,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 87.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 270,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 50.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 70,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 407.316650390625,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 84.68333435058594,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "forehand",
+        "mode": "combined",
+        "focus": "elbow",
+        "time": 1.0666666666666667,
+        "samples": 103,
+        "playing": false,
+        "frame": 1.0666666666666667,
+        "interpolated": false,
+        "meshes": 169
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "mode": "body",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 144.28334045410156,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 87.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 270,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 50.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 70,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 407.316650390625,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 84.68333435058594,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "forehand",
+        "mode": "body",
+        "focus": "elbow",
+        "time": 1.0666666666666667,
+        "samples": 103,
+        "playing": false,
+        "frame": 1.0666666666666667,
+        "interpolated": false,
+        "meshes": 141
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "mode": "court",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 144.28334045410156,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 87.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 270,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 50.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 70,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 407.316650390625,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 84.68333435058594,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "gait",
+        "mode": "court",
+        "focus": "knee",
+        "time": 3,
+        "samples": 175,
+        "playing": false,
+        "frame": 3,
+        "interpolated": false,
+        "meshes": 107
+      }
+    },
+    {
+      "width": 1728,
+      "height": 1117,
+      "mode": "combined",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 144.28334045410156,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 87.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 270,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 50.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 70,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 407.316650390625,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 84.68333435058594,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "forehand",
+        "mode": "combined",
+        "focus": "elbow",
+        "time": 1.0666666666666667,
+        "samples": 103,
+        "playing": false,
+        "frame": 1.0666666666666667,
+        "interpolated": false,
+        "meshes": 169
+      }
+    },
+    {
+      "width": 1728,
+      "height": 1117,
+      "mode": "body",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 144.28334045410156,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 87.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 270,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 50.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 70,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 407.316650390625,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 84.68333435058594,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "forehand",
+        "mode": "body",
+        "focus": "elbow",
+        "time": 1.0666666666666667,
+        "samples": 103,
+        "playing": false,
+        "frame": 1.0666666666666667,
+        "interpolated": false,
+        "meshes": 141
+      }
+    },
+    {
+      "width": 1728,
+      "height": 1117,
+      "mode": "court",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 144.28334045410156,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 87.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 270,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 50.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 70,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 407.316650390625,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 84.68333435058594,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "gait",
+        "mode": "court",
+        "focus": "knee",
+        "time": 3,
+        "samples": 175,
+        "playing": false,
+        "frame": 3,
+        "interpolated": false,
+        "meshes": 107
+      }
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "mode": "combined",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 144.28334045410156,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 87.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 270,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 50.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 70,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 407.316650390625,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 84.68333435058594,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "forehand",
+        "mode": "combined",
+        "focus": "elbow",
+        "time": 1.0666666666666667,
+        "samples": 103,
+        "playing": false,
+        "frame": 1.0666666666666667,
+        "interpolated": false,
+        "meshes": 169
+      }
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "mode": "body",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 144.28334045410156,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 87.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 270,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 50.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 70,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 407.316650390625,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 84.68333435058594,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "forehand",
+        "mode": "body",
+        "focus": "elbow",
+        "time": 1.0666666666666667,
+        "samples": 103,
+        "playing": false,
+        "frame": 1.0666666666666667,
+        "interpolated": false,
+        "meshes": 141
+      }
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "mode": "court",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 144.28334045410156,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 87.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 270,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 50.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 70,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 407.316650390625,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 84.68333435058594,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "gait",
+        "mode": "court",
+        "focus": "knee",
+        "time": 3,
+        "samples": 175,
+        "playing": false,
+        "frame": 3,
+        "interpolated": false,
+        "meshes": 107
+      }
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "mode": "combined",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 144.28334045410156,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 87.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 270,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 50.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 70,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 407.316650390625,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 84.68333435058594,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "forehand",
+        "mode": "combined",
+        "focus": "elbow",
+        "time": 1.0666666666666667,
+        "samples": 103,
+        "playing": false,
+        "frame": 1.0666666666666667,
+        "interpolated": false,
+        "meshes": 169
+      }
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "mode": "body",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 144.28334045410156,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 87.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 270,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 50.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 70,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 407.316650390625,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 84.68333435058594,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "forehand",
+        "mode": "body",
+        "focus": "elbow",
+        "time": 1.0666666666666667,
+        "samples": 103,
+        "playing": false,
+        "frame": 1.0666666666666667,
+        "interpolated": false,
+        "meshes": 141
+      }
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "mode": "court",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 144.28334045410156,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 87.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 270,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 50.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 70,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 407.316650390625,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 84.68333435058594,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "gait",
+        "mode": "court",
+        "focus": "knee",
+        "time": 3,
+        "samples": 175,
+        "playing": false,
+        "frame": 3,
+        "interpolated": false,
+        "meshes": 107
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "mode": "combined",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 144.28334045410156,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 87.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 270,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 50.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 70,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 407.316650390625,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 84.68333435058594,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "forehand",
+        "mode": "combined",
+        "focus": "elbow",
+        "time": 1.0666666666666667,
+        "samples": 103,
+        "playing": false,
+        "frame": 1.0666666666666667,
+        "interpolated": false,
+        "meshes": 169
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "mode": "body",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 144.28334045410156,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 87.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 270,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 50.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 70,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 407.316650390625,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 84.68333435058594,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "forehand",
+        "mode": "body",
+        "focus": "elbow",
+        "time": 1.0666666666666667,
+        "samples": 103,
+        "playing": false,
+        "frame": 1.0666666666666667,
+        "interpolated": false,
+        "meshes": 141
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "mode": "court",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 144.28334045410156,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 87.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 87.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 270,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 50.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 50.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 70,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 407.316650390625,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 84.68333435058594,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "gait",
+        "mode": "court",
+        "focus": "knee",
+        "time": 3,
+        "samples": 175,
+        "playing": false,
+        "frame": 3,
+        "interpolated": false,
+        "meshes": 107
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "mode": "combined",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 106.89999389648438,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 80.66667175292969,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 80.66665649414062,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 80.66667175292969,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 250,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 46.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 46.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 46.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 46.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 46.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 52,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 398,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "forehand",
+        "mode": "combined",
+        "focus": "elbow",
+        "time": 1.0666666666666667,
+        "samples": 103,
+        "playing": false,
+        "frame": 1.0666666666666667,
+        "interpolated": false,
+        "meshes": 169
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "mode": "body",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 106.89999389648438,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 80.66667175292969,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 80.66665649414062,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 80.66667175292969,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 250,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 46.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 46.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 46.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 46.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 46.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 52,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 398,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "forehand",
+        "mode": "body",
+        "focus": "elbow",
+        "time": 1.0666666666666667,
+        "samples": 103,
+        "playing": false,
+        "frame": 1.0666666666666667,
+        "interpolated": false,
+        "meshes": 141
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "mode": "court",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 106.89999389648438,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 80.66667175292969,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 80.66665649414062,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 80.66667175292969,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 250,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 46.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 46.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 46.79998779296875,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 46.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 46.80000305175781,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 95.36666870117188,
+          "height": 44
+        },
+        {
+          "label": "Separate rig",
+          "width": 92.68333435058594,
+          "height": 44
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 44
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 44
+        },
+        {
+          "label": "Play",
+          "width": 52,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 398,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "gait",
+        "mode": "court",
+        "focus": "knee",
+        "time": 3,
+        "samples": 175,
+        "playing": false,
+        "frame": 3,
+        "interpolated": false,
+        "meshes": 107
+      }
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "mode": "combined",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 106.89999389648438,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 122.66667175292969,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 122.66665649414062,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 122.66667175292969,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 376,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 89.21665954589844,
+          "height": 52
+        },
+        {
+          "label": "Separate rig",
+          "width": 86.78334045410156,
+          "height": 52
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 52
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 52
+        },
+        {
+          "label": "Play",
+          "width": 52,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 184,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "forehand",
+        "mode": "combined",
+        "focus": "elbow",
+        "time": 1.0666666666666667,
+        "samples": 103,
+        "playing": false,
+        "frame": 1.0666666666666667,
+        "interpolated": false,
+        "meshes": 169
+      }
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "mode": "body",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 106.89999389648438,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 122.66667175292969,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 122.66665649414062,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 122.66667175292969,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 376,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 89.21665954589844,
+          "height": 52
+        },
+        {
+          "label": "Separate rig",
+          "width": 86.78334045410156,
+          "height": 52
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 52
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 52
+        },
+        {
+          "label": "Play",
+          "width": 52,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 184,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "forehand",
+        "mode": "body",
+        "focus": "elbow",
+        "time": 1.0666666666666667,
+        "samples": 103,
+        "playing": false,
+        "frame": 1.0666666666666667,
+        "interpolated": false,
+        "meshes": 141
+      }
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "mode": "court",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 106.89999389648438,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 122.66667175292969,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 122.66665649414062,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 122.66667175292969,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 376,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 72,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 89.21665954589844,
+          "height": 52
+        },
+        {
+          "label": "Separate rig",
+          "width": 86.78334045410156,
+          "height": 52
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 52
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 52
+        },
+        {
+          "label": "Play",
+          "width": 52,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 184,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "gait",
+        "mode": "court",
+        "focus": "knee",
+        "time": 3,
+        "samples": 175,
+        "playing": false,
+        "frame": 3,
+        "interpolated": false,
+        "meshes": 107
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "mode": "combined",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 106.89999389648438,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 109.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 109.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 109.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 336,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 64,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 64,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 64,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 64,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 64,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 79.03334045410156,
+          "height": 52
+        },
+        {
+          "label": "Separate rig",
+          "width": 76.96665954589844,
+          "height": 52
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 52
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 52
+        },
+        {
+          "label": "Play",
+          "width": 52,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 144,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "forehand",
+        "mode": "combined",
+        "focus": "elbow",
+        "time": 1.0666666666666667,
+        "samples": 103,
+        "playing": false,
+        "frame": 1.0666666666666667,
+        "interpolated": false,
+        "meshes": 169
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "mode": "body",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 106.89999389648438,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 109.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 109.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 109.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 336,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 64,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 64,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 64,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 64,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 64,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 79.03334045410156,
+          "height": 52
+        },
+        {
+          "label": "Separate rig",
+          "width": 76.96665954589844,
+          "height": 52
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 52
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 52
+        },
+        {
+          "label": "Play",
+          "width": 52,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 144,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "forehand",
+        "mode": "body",
+        "focus": "elbow",
+        "time": 1.0666666666666667,
+        "samples": 103,
+        "playing": false,
+        "frame": 1.0666666666666667,
+        "interpolated": false,
+        "meshes": 141
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "mode": "court",
+      "overflow": 0,
+      "buttons": [
+        {
+          "label": "Return to club ↗",
+          "width": 106.89999389648438,
+          "height": 44
+        },
+        {
+          "label": "VectorCourt",
+          "width": 109.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "AnatomyMotion",
+          "width": 109.33334350585938,
+          "height": 44
+        },
+        {
+          "label": "Combined",
+          "width": 109.33332824707031,
+          "height": 44
+        },
+        {
+          "label": "Walk the analysis stripForehand · load to follow-throughServe · toss to recovery",
+          "width": 336,
+          "height": 44
+        },
+        {
+          "label": "knee",
+          "width": 64,
+          "height": 44
+        },
+        {
+          "label": "hip",
+          "width": 64,
+          "height": 44
+        },
+        {
+          "label": "ankle",
+          "width": 64,
+          "height": 44
+        },
+        {
+          "label": "shoulder",
+          "width": 64,
+          "height": 44
+        },
+        {
+          "label": "elbow",
+          "width": 64,
+          "height": 44
+        },
+        {
+          "label": "Slow contact",
+          "width": 79.03334045410156,
+          "height": 52
+        },
+        {
+          "label": "Separate rig",
+          "width": 76.96665954589844,
+          "height": 52
+        },
+        {
+          "label": "↶ Orbit",
+          "width": 66.31666564941406,
+          "height": 52
+        },
+        {
+          "label": "Orbit ↷",
+          "width": 65.91667175292969,
+          "height": 52
+        },
+        {
+          "label": "Play",
+          "width": 52,
+          "height": 44
+        },
+        {
+          "label": "Replay time",
+          "width": 144,
+          "height": 44
+        },
+        {
+          "label": "0.25×0.5×1×",
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "report": {
+        "active": true,
+        "kind": "gait",
+        "mode": "court",
+        "focus": "knee",
+        "time": 3,
+        "samples": 175,
+        "playing": false,
+        "frame": 3,
+        "interpolated": false,
+        "meshes": 107
+      }
+    }
+  ]
+}

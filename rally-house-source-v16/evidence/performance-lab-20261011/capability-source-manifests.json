@@ -1,0 +1,926 @@
+{
+  "VectorCourt": [
+    {
+      "path": "ARCHITECTURE.md",
+      "bytes": 12467,
+      "sha256": "836df716f9183cbe2928042129c60e47c1a822e1c9bdebb43e367cf39070d488"
+    },
+    {
+      "path": "PRIVACY_ARCHITECTURE.md",
+      "bytes": 1223,
+      "sha256": "9d59ddcd5e26e1798984240488bf84173eda95a5096fa88f35f31de126127711"
+    },
+    {
+      "path": "NO_VIDEO_UPLOAD_WORKFLOW.md",
+      "bytes": 1318,
+      "sha256": "8d60b793310db0d4daee944666508e45ed2374147d937de1bfcf1d684cfbd15b"
+    },
+    {
+      "path": "MODEL_CARD.md",
+      "bytes": 3193,
+      "sha256": "965e7707146363809079de36ecd68c83dc2fa7d8d77e5a0f0fdd153357e4549c"
+    },
+    {
+      "path": "project.yml",
+      "bytes": 663,
+      "sha256": "f916e869602925e4d67e1edb892d16173ddb5d313489ae320552ba2aba3457e3"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 1462,
+      "sha256": "734995651d209785eee3462aac9c8bad6c744ce74718dcbdc256a95faab6d605"
+    },
+    {
+      "path": "RELEASE_CHECKLIST.md",
+      "bytes": 1983,
+      "sha256": "7965c98362640439094448a57aaaa70b7e8828efa5172719b4353ea7250fc946"
+    },
+    {
+      "path": "RESEARCH_NOTES_2026-09-11.md",
+      "bytes": 5532,
+      "sha256": "79df7e18539232954be2c906abb2f2905a2903aafc6222c8c44fae4ef27d5919"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7048,
+      "sha256": "06872f420f48a347733918c83c4bb32589249034675af22f44e952aa515453b0"
+    },
+    {
+      "path": "Package.swift",
+      "bytes": 745,
+      "sha256": "4dbe84e7708ba3b2904789cda33ecb9fcc1fea0e6e24c638839dbc502407c87e"
+    },
+    {
+      "path": "CONTINUATION_NOTES.md",
+      "bytes": 5508,
+      "sha256": "19471f915b84f9c955c122d671eee1f785e46058c74def95d14b22e770be38d6"
+    },
+    {
+      "path": "BUILD_STATUS.md",
+      "bytes": 6256,
+      "sha256": "6442c2c86da1c1662f4c57767d0520ae4a7811fb60e02d4bdb7ebe1ca713cdbd"
+    },
+    {
+      "path": "APP_STORE_NOTES.md",
+      "bytes": 883,
+      "sha256": "e0ac0b5264e53b5e7707c65850e686ee8574946cfe6be30ecbc603f535afe892"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 4119,
+      "sha256": "1e10349f1bf7be73e099b2a6d4f34e6816038274f4c1812f5f1d4ccf6799ec96"
+    },
+    {
+      "path": "MONETIZATION.md",
+      "bytes": 993,
+      "sha256": "8a0ee368a6cf8b573f2d3e7a5c10c13cc76f5828fd1efce12c339f70c2d2cac6"
+    },
+    {
+      "path": "DATASET_CARD.md",
+      "bytes": 1852,
+      "sha256": "87d498faae0bb170d8be0bd1f80b47fe4bd92c1a55cfb50cc24e6f9976abe1e4"
+    },
+    {
+      "path": "IMPLEMENTATION_BACKLOG.md",
+      "bytes": 2691,
+      "sha256": "faa6e91e00071a402f32fe9d2e1a38439ddb334ab78b081fffa36ae8dc3aac05"
+    },
+    {
+      "path": "MODEL_TRAINING.md",
+      "bytes": 8566,
+      "sha256": "dc0eef46d1c0d59f9dbe63eae21c73443d94f1248c573305337878de5d170301"
+    },
+    {
+      "path": "EVALUATION.md",
+      "bytes": 6816,
+      "sha256": "bf0a4a3894dd33dc17c69fd0ba4cdcacfededa3f995a60298a008a6e8d8d46bd"
+    },
+    {
+      "path": "ITERATION_REPORT_2026-09-11.md",
+      "bytes": 4027,
+      "sha256": "d144e088563dee856bc5040e419490119a504d195174aec059e90086f243dc31"
+    },
+    {
+      "path": "VectorCourt/UI/HomeView.swift",
+      "bytes": 2050,
+      "sha256": "26e9c9774fd62e1e21722e735fe7575886cd821c22fd7442b7d8ab84c35c6c00"
+    },
+    {
+      "path": "VectorCourt/UI/ResultsView.swift",
+      "bytes": 11962,
+      "sha256": "feb95ae78a11e45965e6e50678929a808e6bad6a5408dcd56c899da952567a25"
+    },
+    {
+      "path": "VectorCourt/UI/PlaybackView.swift",
+      "bytes": 11861,
+      "sha256": "17ac31a12e29d7e951e84f9b8069f2a8fb6e927078248b438c6dd71cd000356b"
+    },
+    {
+      "path": "VectorCourt/UI/RecordSessionCoordinator.swift",
+      "bytes": 8710,
+      "sha256": "f0003d3ae1165cea85e39221642b84770132bd3a66ef1e6fbf43083923f8fbb8"
+    },
+    {
+      "path": "VectorCourt/UI/SetupOptionsView.swift",
+      "bytes": 1511,
+      "sha256": "d22528144ad7a07c8a3cf135e9a15d5bcb9b0d34594a5f24c2eda498679046e0"
+    },
+    {
+      "path": "VectorCourt/UI/VisionDebugView.swift",
+      "bytes": 3701,
+      "sha256": "a90fb76201abc2d232bf49ea757265682f8f6e7a90ba0949f45496b4f109b894"
+    },
+    {
+      "path": "VectorCourt/UI/ProcessingView.swift",
+      "bytes": 927,
+      "sha256": "2aec7d2dc13f92ae595a8d88b3df248f249895dbbaa02de2980e97545c223b5f"
+    },
+    {
+      "path": "VectorCourt/UI/ImportVideoCoordinator.swift",
+      "bytes": 5351,
+      "sha256": "e783156ac728cdf6da314919b93c3de08c332422710bdcbbcd0ace7e2266cc1a"
+    },
+    {
+      "path": "VectorCourt/Capture/CameraPreviewView.swift",
+      "bytes": 672,
+      "sha256": "10549e8b22f4a4d77d22b0c01f0a21e6cf88bbaa286907132f439bd50b23d064"
+    },
+    {
+      "path": "VectorCourt/Capture/CaptureManager.swift",
+      "bytes": 16128,
+      "sha256": "dfe5a962d64fadfb9ea5897701929d140b1d27a188b6b01924d0ee1a8b4ad103"
+    },
+    {
+      "path": "VectorCourt/Analysis/VideoFrameExtractor.swift",
+      "bytes": 1121,
+      "sha256": "a212407268e2b48661eb500ae4dbc0f0d0702c925eaa92bc9cb7d63bda23a2a3"
+    },
+    {
+      "path": "VectorCourt/Analysis/FrameProcessor.swift",
+      "bytes": 315,
+      "sha256": "4bd6646b99efe5d31472d8a27bd9d87d626a78ba488c4c7e7b9e61cb86b53aec"
+    },
+    {
+      "path": "VectorCourt/Analysis/SessionAnalyzer.swift",
+      "bytes": 15201,
+      "sha256": "ae4be6bb29fa5b6ddb7958660f09538ef3d920f3db4b3a7d757496bf27276ae8"
+    },
+    {
+      "path": "VectorCourt/App/VectorCourtApp.swift",
+      "bytes": 356,
+      "sha256": "73bf12cd0309557356ac5f4c65dea50ddd7a0cf2aab6fb90421bc14c646ab966"
+    },
+    {
+      "path": "VectorCourt/Calibration/CalibrationView.swift",
+      "bytes": 6570,
+      "sha256": "a23e8ddd6a20cb24798d8a82a91924a345db7b1fd1fa3ed38ed94903928d9305"
+    },
+    {
+      "path": "VectorCourt/Calibration/CourtCalibrationViewModel.swift",
+      "bytes": 2959,
+      "sha256": "c818b4bf1a8b49e2144a1bf8a22cac98c5d37f083a9c7926113c492c960fae8f"
+    },
+    {
+      "path": "VectorCourt/Resources/Info.plist",
+      "bytes": 1539,
+      "sha256": "bb91ade8251f0a31e05feb530cf035f2dc76f1bd263f29fea106e48d928e52bd"
+    },
+    {
+      "path": "VectorCourt/Models/DomainModels.swift",
+      "bytes": 9389,
+      "sha256": "32648f3e91a26982dc9525baff3583f484d4aa6088d22723bddd9ddc8772d3bd"
+    },
+    {
+      "path": "VectorCourt/Vision/BallDetector.swift",
+      "bytes": 30045,
+      "sha256": "0dc040bfb267a33a08da305cf2d7c82aaa62c80457724e1393aabbcb4f4ede46"
+    },
+    {
+      "path": "VectorCourt/Vision/PlayerDetector.swift",
+      "bytes": 4205,
+      "sha256": "5056b5728a51d3c9fdfe4e00fcf7acb1f8f21fd31abd8943f11a28512c2f560c"
+    },
+    {
+      "path": "VectorCourt/Vision/WASBTemporalBallDetector.swift",
+      "bytes": 14551,
+      "sha256": "d7e6bb8a0e1f088504ee9343ccec6d7da1d1d5acebfb20e7806ed94ea0700041"
+    },
+    {
+      "path": "VectorCourt/BounceDetection/BounceDetector.swift",
+      "bytes": 11867,
+      "sha256": "916cd5f273b6373ec0fc3d6eac3bad14a9b16eee2178b2cd6a9ff20dc1044ac5"
+    },
+    {
+      "path": "VectorCourt/ShotClassification/TargetProbability.swift",
+      "bytes": 6100,
+      "sha256": "00d79e20b97068a8a8d48617c3c5c444994fda18df4d4f3b3be9a85bbb35c5f3"
+    },
+    {
+      "path": "VectorCourt/ShotClassification/ShotClassifier.swift",
+      "bytes": 1625,
+      "sha256": "521e01f3b77fef8fd11717cb2a6cc7bc481e679732c30c3c88bb82cdaa3565f9"
+    },
+    {
+      "path": "VectorCourt/Utilities/Math.swift",
+      "bytes": 412,
+      "sha256": "fca7ecbbaa5b27484b9cf99676c6e87f27e38282facaf5cf07374febab8cf98f"
+    },
+    {
+      "path": "VectorCourt/Persistence/SessionStore.swift",
+      "bytes": 4501,
+      "sha256": "8f2ce1c6f24da1c28ee3015da64cbeb5b630201aa81a718e0c0dfaa43af941f9"
+    },
+    {
+      "path": "VectorCourt/Persistence/CalibrationStore.swift",
+      "bytes": 2388,
+      "sha256": "20a796861347bcfdadab0e2c060e7facd137f4762343821b7f83cc84c3e24d14"
+    },
+    {
+      "path": "VectorCourt/Tracking/PlayerTracker.swift",
+      "bytes": 10607,
+      "sha256": "49d0d4831e90974096c3163cdf9bdc566a35c129be7ca507a3edf2e3476c7553"
+    },
+    {
+      "path": "VectorCourt/Tracking/BallTracker.swift",
+      "bytes": 12346,
+      "sha256": "a78aa384db6dc340c1937529f1fe4f71730638450d6a8b08cc2d94b2b34e0967"
+    },
+    {
+      "path": "VectorCourt/Rendering/CourtRendererView.swift",
+      "bytes": 5539,
+      "sha256": "3ce6fb352cd14f48bf4f38de6cedc3d77dd1e994665cd068efb55bc73e23ec19"
+    },
+    {
+      "path": "VectorCourt/Geometry/Homography.swift",
+      "bytes": 9813,
+      "sha256": "e5cc7d6eb0872638d06fa2b62930782a1bc5b67c3a7523ecc8cf3d020db36208"
+    },
+    {
+      "path": "VectorCourt/Geometry/CourtCalibration.swift",
+      "bytes": 2073,
+      "sha256": "074478294247223e21a72fc9d95792b630711ed7f059bf74bb6d9dc8f7afee51"
+    },
+    {
+      "path": "VectorCourt/Geometry/CourtGeometry.swift",
+      "bytes": 4992,
+      "sha256": "7c6303e85dc99b498669a901e00ca2b748eee7b2fc05b8ae2b748cf195c0ea47"
+    },
+    {
+      "path": "tools/annotation_metrics.py",
+      "bytes": 1859,
+      "sha256": "ce6c015d0e0d309f3e9b83a41852b8b97b77ae0d4c230331220993151d6112aa"
+    },
+    {
+      "path": "tools/verify_production.py",
+      "bytes": 2961,
+      "sha256": "ab3e22902b3db07737ed41e15f75486db4734b8dffefa6c8d168e1b279effafa"
+    },
+    {
+      "path": "tools/yolo_to_createml.py",
+      "bytes": 2226,
+      "sha256": "078c1f9641a6cafecabecd30e8b0206ca81576a77731d9b1937fd72136d8b3d4"
+    },
+    {
+      "path": "tools/extract_frames.py",
+      "bytes": 1398,
+      "sha256": "1db5c1a47a6ca1aeb15bc3b6c188ca05bd5be9fc77657589fa7f6ed4b1b46e78"
+    },
+    {
+      "path": "tools/label_video.py",
+      "bytes": 24069,
+      "sha256": "1ca808284ddb7ffa64493218b62ac51e5c4175a76d10bdcb3df388a1f9b4eecf"
+    },
+    {
+      "path": "tools/labeler_web/README.md",
+      "bytes": 1373,
+      "sha256": "94100a0094e85c118a316409efdbf621ff4c7d0682a710a4ad1985d066912cdb"
+    },
+    {
+      "path": "tools/dataset/annotation.schema.json",
+      "bytes": 9221,
+      "sha256": "6a56e9a292ee66a8485a784324c5f569dcd91fef01d6e02a13a361f13cf554ec"
+    },
+    {
+      "path": "tools/dataset/correction.schema.json",
+      "bytes": 1318,
+      "sha256": "93a30b7a1960379798405b3ed0898ba7a04afba088b7c18dcb2b02287d4fa759"
+    },
+    {
+      "path": "tools/dataset/validate_dataset.py",
+      "bytes": 4287,
+      "sha256": "d5bc987cb48bc57aa15d75320765d6778d2db9a6b1442ea1249e1f3bd277abee"
+    },
+    {
+      "path": "tools/dataset/split_sessions.py",
+      "bytes": 1520,
+      "sha256": "6e04d81cac58ad215c31e55f933c0feaf78ce1a1ec34210ec7d52ff80e765e09"
+    },
+    {
+      "path": "tools/dataset/select_hard_examples.py",
+      "bytes": 2997,
+      "sha256": "4baa6e62c8f00abebf569165f3f9bce44a2f4b10cb071fa7c8f1d50f01aefe25"
+    },
+    {
+      "path": "tools/dataset/prediction.schema.json",
+      "bytes": 5539,
+      "sha256": "9922e8129a06c9ef4b847f3b9947db375dd1c609a40274e5032c8f9813e7fc1d"
+    },
+    {
+      "path": "tools/training/example_experiment.json",
+      "bytes": 532,
+      "sha256": "f8ccdf9f518ef9e3170bc201457885d2709933443f72d8287a33cfba3ec6c401"
+    },
+    {
+      "path": "tools/training/run_experiment.py",
+      "bytes": 3652,
+      "sha256": "91a47714a98f93a909f1a3b459a0ffbbb06909409f6088bd05be630e60321b40"
+    },
+    {
+      "path": "tools/training/experiment.schema.json",
+      "bytes": 1357,
+      "sha256": "3b3a5692329cde1fb6e39c1b7cad51580bf3b01f30681f62469da89a3ecb7c31"
+    },
+    {
+      "path": "tools/tests/test_evaluation.py",
+      "bytes": 11234,
+      "sha256": "783268566d688815695b98882e3a2d8f7dfa427ad84b16792e69e01754319f8f"
+    },
+    {
+      "path": "tools/tests/test_labeling.py",
+      "bytes": 3086,
+      "sha256": "771ca056655d26f175aaabd05241a82d7ec362597b54db3a53e6c78820e41cf3"
+    },
+    {
+      "path": "tools/tests/fixtures/predictions.json",
+      "bytes": 1084,
+      "sha256": "70c4bfeba52721fd0904c667f84999f411786eae6a23d8a93196f704193ee0c5"
+    },
+    {
+      "path": "tools/tests/fixtures/ground_truth.json",
+      "bytes": 2520,
+      "sha256": "cb9e9331f2aafc79ff74c7f8c6148d47f76a95a74915e5b63c934c21641ea4b1"
+    },
+    {
+      "path": "tools/models/wasb_model_contract.json",
+      "bytes": 651,
+      "sha256": "255e8b6b5ddd5d2d95d0b259564831e37e8f63c56ed67c72a9131d6b07a1f8e3"
+    },
+    {
+      "path": "tools/models/convert_official_wasb_to_coreml.py",
+      "bytes": 6464,
+      "sha256": "1a45fcbc9bbeea1010f228647bcaaa90d5f0d6a73bf2b8a855296aaa427dfbf4"
+    },
+    {
+      "path": "tools/models/README_WASB_COREML.md",
+      "bytes": 2364,
+      "sha256": "4848b632ac07bf4478591860f5bae1c87745736983498040ccbab991f5f059cf"
+    },
+    {
+      "path": "tools/evaluation/run_video_baseline.py",
+      "bytes": 2622,
+      "sha256": "38e842db2d60cef05e484af8703b5a8386be20563ab326c198086b4fb3181ce0"
+    },
+    {
+      "path": "tools/evaluation/preprocessing_report.py",
+      "bytes": 1868,
+      "sha256": "8a3eacbbf8b9443c9a148500aacde336668800a854d2259057e12988ad0735ca"
+    },
+    {
+      "path": "tools/evaluation/evaluate.py",
+      "bytes": 24467,
+      "sha256": "e4b50ede8b58dc25335640620f5310d40cc552c471b9a3f55fc31a5c6210e879"
+    },
+    {
+      "path": "tools/evaluation/export_review_bundle.py",
+      "bytes": 17694,
+      "sha256": "8cc0e7bf2115c20a661abc867954e56a141091e8a8d409d85e5af5e4bf6b58c3"
+    },
+    {
+      "path": "tools/evaluation/VideoBaseline.swift",
+      "bytes": 5955,
+      "sha256": "52612250fcb2f2cc9314e8d2f04a4c5458d60d61e6f3b7c4b16902a30b52e74e"
+    },
+    {
+      "path": "tools/annotation_studio_macos/BUILD_DIAGNOSTICS.md",
+      "bytes": 686,
+      "sha256": "a25caf076a6ebe6fc8462cf7d4cec563408b047a9e8b9cf4cca38e95eced29d5"
+    },
+    {
+      "path": "tools/annotation_studio_macos/README.md",
+      "bytes": 4312,
+      "sha256": "85fdee7841abcd6618ec422417f982d9cc3c9a057e5be9706119adcf0bd4367f"
+    },
+    {
+      "path": "tools/annotation_studio_macos/SWIFT_6_REPAIR_NOTES.md",
+      "bytes": 1004,
+      "sha256": "8ce0c350348a0b0a826a8b8428527f109a3664abe395f7a2eed4c43ee94f4a7e"
+    },
+    {
+      "path": "tools/annotation_studio_macos/GROUND_TRUTH_PROTOCOL.md",
+      "bytes": 2681,
+      "sha256": "110a52317c8c6faab81d79f03dc9d21795a077e5b19bbba1066b8cb9e84f430a"
+    },
+    {
+      "path": "tools/annotation_studio_macos/Package.swift",
+      "bytes": 641,
+      "sha256": "4cfa44bdf93352184b9f014088222929a0bda52166715c2a01cc9ab1e3b6c919"
+    },
+    {
+      "path": "tools/annotation_studio_macos/Tests/VectorCourtAnnotationStudioTests/QualityTests.swift",
+      "bytes": 2430,
+      "sha256": "c71e8df2b2ca51e659593638f8ea8c56a45705e15ce8396b0fa2cd2d093a604d"
+    },
+    {
+      "path": "tools/annotation_studio_macos/Sources/VectorCourtAnnotationStudio/Quality.swift",
+      "bytes": 6692,
+      "sha256": "4e526295a8b3ad8ef433fa320952719874be105d0da1a0699a38a703093e660f"
+    },
+    {
+      "path": "tools/annotation_studio_macos/Sources/VectorCourtAnnotationStudio/ImageViews.swift",
+      "bytes": 13661,
+      "sha256": "b813cb9edd556e8b116a3ef83908586bf6cc541b4a9cf929f4ac16911b144cc9"
+    },
+    {
+      "path": "tools/annotation_studio_macos/Sources/VectorCourtAnnotationStudio/ViewModel.swift",
+      "bytes": 25613,
+      "sha256": "280f908a00736bdeba651c04f2ca8445f58b48a02fed33cb4bd97f787b54a7f7"
+    },
+    {
+      "path": "tools/annotation_studio_macos/Sources/VectorCourtAnnotationStudio/ProposalEngine.swift",
+      "bytes": 5494,
+      "sha256": "ad74903d4ca6efeba397c332234b624d98b8f03d6e63643c48ac1613ed1dbaab"
+    },
+    {
+      "path": "tools/annotation_studio_macos/Sources/VectorCourtAnnotationStudio/ProjectStore.swift",
+      "bytes": 10242,
+      "sha256": "d32aaa9853824db4a611a9633fd83111bd07259f4ca91b2c08b98c85d35fe184"
+    },
+    {
+      "path": "tools/annotation_studio_macos/Sources/VectorCourtAnnotationStudio/Media.swift",
+      "bytes": 6816,
+      "sha256": "72cf38256ebc172fe58b8096f50f0f4a5e9b5f7396564086b299a9153175a9e6"
+    },
+    {
+      "path": "tools/annotation_studio_macos/Sources/VectorCourtAnnotationStudio/Domain.swift",
+      "bytes": 7830,
+      "sha256": "440e6a31896a5b7a82baa7e3830067eb7e021ee734aea24694ebcb6583c2d24b"
+    },
+    {
+      "path": "tools/annotation_studio_macos/Sources/VectorCourtAnnotationStudio/App.swift",
+      "bytes": 1781,
+      "sha256": "bc1c5753c99a33091cf5f50ff6a822c80a08f488e486d3e812c07ec0501ac586"
+    },
+    {
+      "path": "tools/annotation_studio_macos/Sources/VectorCourtAnnotationStudio/ContentView.swift",
+      "bytes": 17738,
+      "sha256": "282ebe831fb678490497b43c5a6421299c5db3880d318e319a45ef6421a057e9"
+    },
+    {
+      "path": "VectorCourt.xcodeproj/xcuserdata/arjan.xcuserdatad/xcschemes/xcschememanagement.plist",
+      "bytes": 346,
+      "sha256": "03282f5350e19d1ef940f3ead7f0f26b213201b8909d2d329a314eafa7da12ad"
+    },
+    {
+      "path": "VectorCourtTests/GeometryTests.swift",
+      "bytes": 11058,
+      "sha256": "6ecf0a44846267400b2b943d5dbc7e21b940e204d73afc3365861a27a0d4530a"
+    },
+    {
+      "path": "VectorCourtTests/TrajectoryTests.swift",
+      "bytes": 14433,
+      "sha256": "fb10e39b62fb0a910c439045cc368c068c5d93ba13f54de09e40e115473f556f"
+    },
+    {
+      "path": "production/README.md",
+      "bytes": 5463,
+      "sha256": "371ef8f04dbfe88135deebba52ea3da2fb64e1be6ca98b288b002dea8c363cd6"
+    },
+    {
+      "path": "production/PERSONAL_SHOT_ANALYSIS.md",
+      "bytes": 4832,
+      "sha256": "3e02231e80adb6407fbb6893d53b180b7df70daa4e9a985747d6841dc5f42596"
+    },
+    {
+      "path": "production/footage_review/source_availability.json",
+      "bytes": 1249,
+      "sha256": "ba941e49aabab08d1e76a468b1bd31d3db235d042d24e6f6c416c8e1549bf805"
+    },
+    {
+      "path": "production/footage_review/inventory.json",
+      "bytes": 880,
+      "sha256": "51c441a5a67a7357525de00eacb27779d77515f6d2fd9d0714d3fea8e3c35787"
+    },
+    {
+      "path": "production/footage_review/REVIEW.md",
+      "bytes": 1744,
+      "sha256": "3c1964fc829112d587d79a933ebb69ab19221b14a94e145959cc0c1b257e9c64"
+    }
+  ],
+  "AnatomyMotion": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 2115,
+      "sha256": "27b329956e3d2671b096677a6dc51bfff7ae7052fcaee8a2ef3e36fff310ae60"
+    },
+    {
+      "path": "project.yml",
+      "bytes": 1682,
+      "sha256": "13d771fa74dfee866ae71e3068e1077f1de8710c4dac63d745ddefc1efbba5fa"
+    },
+    {
+      "path": "verify.sh",
+      "bytes": 697,
+      "sha256": "cacae0d1e4845876297d9e208a2dac61ea7d2195ed0f930095bd46d517c29c7c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7200,
+      "sha256": "b7dfda2b20fb5f834d87ceb8d65c52686d87920ca72d0b7f53198b7086c79722"
+    },
+    {
+      "path": "bootstrap.sh",
+      "bytes": 215,
+      "sha256": "ec24886ab3faa737ce7c4cc99c9b3d6dbad3cf20d2ca2102b7520812a647c18e"
+    },
+    {
+      "path": "Package.swift",
+      "bytes": 466,
+      "sha256": "4076d77bfdc4dcacf7cf82d05fa1a319692b534ee90fc267ba8e2af5d25d5b81"
+    },
+    {
+      "path": "BUILD_REPORT.md",
+      "bytes": 5717,
+      "sha256": "560f9d3d7ae3b54e5697ece84d5fbf45ccb7d33b167ade2e801c59cdca699646"
+    },
+    {
+      "path": "Capture/CapturePreviewSource.swift",
+      "bytes": 542,
+      "sha256": "3966023f0314a5031351ce2a77d04312b611d5c72d61b2403bdcdcdf4dd60a54"
+    },
+    {
+      "path": "Capture/CaptureService.swift",
+      "bytes": 12297,
+      "sha256": "87ce6429d2b98c21f28b40fddd055fd6aa94e1dabc0a525d04e0f43f7151a856"
+    },
+    {
+      "path": "App/PainEntryView.swift",
+      "bytes": 2330,
+      "sha256": "edcec72eeb1aaedf698d402e6408ef354380bf8ebc49c764a20054f180c19f4b"
+    },
+    {
+      "path": "App/AppModel.swift",
+      "bytes": 8807,
+      "sha256": "78cf53c4f7d61c679b91911892e8878682cfaaea087761964aff4aa88683abf4"
+    },
+    {
+      "path": "App/AnatomyMotionApp.swift",
+      "bytes": 112,
+      "sha256": "a809c4bac3f650506da1d0e4e138f98212f1af1fe8335c1aa9a9da6ff59b0aba"
+    },
+    {
+      "path": "App/ContentView.swift",
+      "bytes": 11240,
+      "sha256": "4fe797d7e8c4183760c2eb84750a18492038cc3d7c25756c4868b731a0cd2722"
+    },
+    {
+      "path": "App/ReplayView.swift",
+      "bytes": 4539,
+      "sha256": "2a7bd24d08183c7913c2bdf3ba83c0bc4d19bf1b8f7305fd1c5a81370c62bce6"
+    },
+    {
+      "path": "Resources/AnatomyAssetManifest.json",
+      "bytes": 1162,
+      "sha256": "e3b128fdb1c64a9add077b358c34cdf3899d633e7e8edd37e9e4c096e8e35558"
+    },
+    {
+      "path": "Tests/AnatomyMotionCoreTests/MathAndKinematicsTests.swift",
+      "bytes": 3151,
+      "sha256": "0c3c8df9de902b4e6dacce0ac3d63fd9f3a9148af583fad3540de948be22052e"
+    },
+    {
+      "path": "Tests/AnatomyMotionCoreTests/CalibrationTests.swift",
+      "bytes": 2728,
+      "sha256": "079787f5232909569a8aadebde4d1d92bf48b0bee9741d1dfc3ddaa7a45e6361"
+    },
+    {
+      "path": "Tests/AnatomyMotionCoreTests/TemporalFilterTests.swift",
+      "bytes": 3654,
+      "sha256": "1e2ab310d868dc65e6b313fd0c4ed11de7190c15efdeba970025eeb25855f533"
+    },
+    {
+      "path": "Tests/AnatomyMotionCoreTests/TestFixtures.swift",
+      "bytes": 1957,
+      "sha256": "55af7c573603d14c59bc90062b59ac90aadca09004c512231549e001e243cf57"
+    },
+    {
+      "path": "Tests/AnatomyMotionCoreTests/PainQualitySessionTests.swift",
+      "bytes": 4047,
+      "sha256": "840c4829c1910c8f1cd04aa7824afccf542351822dc291015ef078f56bdfa5a1"
+    },
+    {
+      "path": "Tests/AnatomyMotionCoreTests/ShoulderLabTests.swift",
+      "bytes": 5590,
+      "sha256": "6f39dcbdda233e5e87b966ad07245f74cc54e93dd8895e06b47023085ab0a0bd"
+    },
+    {
+      "path": "Tests/AnatomyMotionCoreTests/SyntheticPoseTests.swift",
+      "bytes": 751,
+      "sha256": "fe8cd89b59f6504871eb6fed3ff2611e6f1ec5af2aa9fde711882ce858a0baa8"
+    },
+    {
+      "path": "Tests/AnatomyMotionCoreTests/ReplayTimelineTests.swift",
+      "bytes": 1189,
+      "sha256": "5d8f10a76c4aa8f8bec799d3a59f00289beb4a35be2f68edfbc60b3e486e71de"
+    },
+    {
+      "path": "Tests/AnatomyMotionCoreTests/ValidationMarkerTests.swift",
+      "bytes": 1850,
+      "sha256": "fbe527585fbc954ef1f951a3d35908ddd83439a87b7ecfd056eef9a7e22f7684"
+    },
+    {
+      "path": "Tests/AnatomyMotionCoreTests/ProvenanceReplayTests.swift",
+      "bytes": 4242,
+      "sha256": "9e863f2c215eabdbbfc6602a944fa111354222177c34d01e8be4f98ae0bee0ed"
+    },
+    {
+      "path": "Docs/PAIN_DATA_MODEL.md",
+      "bytes": 551,
+      "sha256": "46b4a87bf68664d3dc114322e07d4ab1ae97e1375d47485e50f31bf915afa610"
+    },
+    {
+      "path": "Docs/PHASE_PLAN.md",
+      "bytes": 3256,
+      "sha256": "9242bddea680174b5fa489addd1d1ecb3d1221f70e4ee2f9b53e505ad2df89e4"
+    },
+    {
+      "path": "Docs/SCIENTIFIC_BOUNDARIES.md",
+      "bytes": 1380,
+      "sha256": "32c160fdf8a0d388fa0a0dfc6c8bf896d91ce1c37e332b924632c6845140833e"
+    },
+    {
+      "path": "Docs/ARCHITECTURE.md",
+      "bytes": 1732,
+      "sha256": "5b30272733bb2e002af26f3cb19e56373eb7d2da2dd812441c0bfe400cc7ceb1"
+    },
+    {
+      "path": "Docs/LIMITATIONS.md",
+      "bytes": 920,
+      "sha256": "5bc6094b88b35e53b0be2c066c788955ceca7c543ddd6464cf6a73b6ba3211d0"
+    },
+    {
+      "path": "Docs/BLOCKERS.md",
+      "bytes": 2271,
+      "sha256": "55571a169ca6a74c84b878bd3649e24e4d6023e4228bea97fe9d4c7097f36510"
+    },
+    {
+      "path": "Docs/PORTFOLIO_CASE_STUDY.md",
+      "bytes": 1834,
+      "sha256": "93e55e07dde22ed3ca3c53508c83b664d7bb7b087f260197662d9cc4a72a56d2"
+    },
+    {
+      "path": "Docs/XCODE_26_BUILD_FIX.md",
+      "bytes": 1200,
+      "sha256": "b35cdf0ab91d578aa05d8551267d5f4ee5a08261ea0c9afd7a2684368b3cfe28"
+    },
+    {
+      "path": "Docs/VALIDATION.md",
+      "bytes": 1122,
+      "sha256": "54c3d106a4ef2774594d415e22ec03a4436948d7812b2bb70b92f54e889dfb16"
+    },
+    {
+      "path": "Docs/BIOMECHANICS.md",
+      "bytes": 933,
+      "sha256": "70bd698f57a6f7b89110359170eaa2929bac87ae041177111ae523a354db149c"
+    },
+    {
+      "path": "Docs/0.6_DEVICE_READY_AUDIT.md",
+      "bytes": 2423,
+      "sha256": "ec3323a2382c7381420fd22a45acb06d914c6867f1f292d7da54ace6abc2890f"
+    },
+    {
+      "path": "Docs/PRIVACY.md",
+      "bytes": 326,
+      "sha256": "ecd017b8b080f3f483087ccfecdc898ef63cbe636ef11d0bb171102031385117"
+    },
+    {
+      "path": "Docs/TECHNICAL_OVERVIEW.md",
+      "bytes": 2331,
+      "sha256": "b13efff11b5fe890f3fc9408c3ac06d955fe34c1c7a06532f99ec526531d7077"
+    },
+    {
+      "path": "Docs/COORDINATE_SYSTEMS.md",
+      "bytes": 722,
+      "sha256": "85cc83e7dfab6bf6ca1fa890334ad7a27adc208e69c9d07d3c60ad17c843b4d4"
+    },
+    {
+      "path": "Docs/RELEASE_CHECKLIST.md",
+      "bytes": 1442,
+      "sha256": "e8b156099c7a5f920442b1670ffa0721e496890d2789d8e9af7c0dd2db53e29a"
+    },
+    {
+      "path": "Docs/DEVICE_TEST_SCRIPT.md",
+      "bytes": 2111,
+      "sha256": "65bec668fd9e742083f60ff8ef2a88a6c5c1f213214ec52431a7eaec8b0e606b"
+    },
+    {
+      "path": "Docs/DEVICE_VALIDATION_CHECKLIST.md",
+      "bytes": 1158,
+      "sha256": "a6bf57055fb9a9aa9f8ddfcb7de81fd4413f26003529cb51e24d806c4afa0676"
+    },
+    {
+      "path": "Docs/DEPENDENCY_AUDIT.md",
+      "bytes": 2138,
+      "sha256": "74aa03e405f630d863f24874fd0e8cd1bdc12950aa896fc23e6d06eceeb7aeca"
+    },
+    {
+      "path": "Docs/SHOULDER_VALIDATION_PROTOCOL.md",
+      "bytes": 2056,
+      "sha256": "f94ebc0c1810b9c82eb9c50fda6e25807427502fad0c2abfc47e781b9c41d034"
+    },
+    {
+      "path": "Docs/DEMO_SCRIPT.md",
+      "bytes": 985,
+      "sha256": "681de9a13ffc941b7316523519de94434eeb7ff966ab5f25e17172631a957b0a"
+    },
+    {
+      "path": "Docs/FAILURE_ENVELOPE.md",
+      "bytes": 835,
+      "sha256": "e3964cbc9178fb09f7d4f3eff6c242b92049e3c44deb60753f6bdc7da5cd1cd5"
+    },
+    {
+      "path": "Docs/QUALITY_GATES.md",
+      "bytes": 1996,
+      "sha256": "4ed5ab7cef54d34831dde3d1da9b19944350dd3e92cd3a063d285bd2d04e0023"
+    },
+    {
+      "path": "Docs/VALIDATION_SUMMARY.md",
+      "bytes": 1302,
+      "sha256": "75f37762a5edca6d38e13b4cfaa04dbad5511a3a66a5b1636148f867a85962eb"
+    },
+    {
+      "path": "Docs/ANATOMY_ASSETS.md",
+      "bytes": 659,
+      "sha256": "3d77fc2a7bb3256378a1beb4d1e0f8061e4957211a754b406595ef3792ae80e8"
+    },
+    {
+      "path": "Docs/PRODUCTION_SCORECARD.md",
+      "bytes": 1854,
+      "sha256": "c613d11926a3bbc51a888c4bd90a3fda3b97ed5f76e1122382e1f19364404e1d"
+    },
+    {
+      "path": "Docs/BASELINE_AUDIT.md",
+      "bytes": 1853,
+      "sha256": "48ed74544bec0664c28333c04c314f42f7ac28f3dd507da09b64970f23cd2f1b"
+    },
+    {
+      "path": "Pose/CapturedFrame.swift",
+      "bytes": 516,
+      "sha256": "2ecb2621355a21cd74fbb7343cc6c947ac67dd499bf5570b4178f4491018534d"
+    },
+    {
+      "path": "Pose/PosePipeline.swift",
+      "bytes": 3087,
+      "sha256": "5969824c8b3de203b57a2daf0ea6048ec382b46a5333f00d001bd73c6ccfe39c"
+    },
+    {
+      "path": "Pose/PoseProvider.swift",
+      "bytes": 150,
+      "sha256": "a56ebe033c93d2c36949ee99d73376f3d157e08f93027ba70a1ae1d3ff88fbcf"
+    },
+    {
+      "path": "Pose/AppleVision3DPoseProvider.swift",
+      "bytes": 3568,
+      "sha256": "098beb972d9fc16e35b6a0748d778ffcd9cb660ba0394a9646715fb40aa77fba"
+    },
+    {
+      "path": "Persistence/SessionWriter.swift",
+      "bytes": 1893,
+      "sha256": "15866bfe858a674c4ce18f90653c94144ed396bf071b334748dff121f0bf8bda"
+    },
+    {
+      "path": "Persistence/SessionReader.swift",
+      "bytes": 2656,
+      "sha256": "4fff9b001b032f898c6c8cf34ca5274c1fcef4fbcbc891206c74f1ba6486553c"
+    },
+    {
+      "path": "Diagnostics/PerformanceMonitor.swift",
+      "bytes": 650,
+      "sha256": "6ce0bd65dae29ab314c903417a7cb12ab4b3772baabd8ce41a83139bcfba71a3"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/ReplayTimeline.swift",
+      "bytes": 5022,
+      "sha256": "26e45525ec4c5d3c284a9162b4ddb92f3d5a636c3917c2cec4495f1cdd8d6279"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/SyntheticPoseGenerator.swift",
+      "bytes": 2014,
+      "sha256": "e2a7907b66b7e4ba0ecd17762959a2f5f79872d6686982de564ce7b2b563c5f3"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/RobustStatistics.swift",
+      "bytes": 2408,
+      "sha256": "5fc3290309ba55dcedca54974c27e503e737c878882964eaf1a689cb8830fe2c"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/MathTypes.swift",
+      "bytes": 4555,
+      "sha256": "f8173506117ad2d1f5d65420f30cf7fd87b48742fc55cd172dbfbcaa903993e1"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/SessionModels.swift",
+      "bytes": 4316,
+      "sha256": "e7c396ecaf0b9f3269b11966c9eed5b6578afe26c3e6bf319604a6a0ec2fe314"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/PoseModels.swift",
+      "bytes": 2192,
+      "sha256": "3966dfa0228c266d5e7bbde3d5bbadaf2c76a3b83bd11b3fa1a0d0b90f3a47d1"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/KinematicsEngine.swift",
+      "bytes": 6680,
+      "sha256": "651df227941ac3798f6f71c14532a1542c96be5573c2e41c8133401e7c356f24"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/PoseTemporalFilter.swift",
+      "bytes": 6211,
+      "sha256": "e4398378d2c297ceae5c314118f96263faf721232aca33ea7253175a0f31d38d"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/ValidationMarkers.swift",
+      "bytes": 4101,
+      "sha256": "9ef75b3fad729834987048a4605bd88051c48c438ae81aa60e435904f5008a3a"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/OneEuroFilter.swift",
+      "bytes": 1737,
+      "sha256": "7eb21a51b344524f2c1fc174158ea9b40779fb669eef43cef3bcc3ed3cf9749b"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/ShoulderMotionLab.swift",
+      "bytes": 4267,
+      "sha256": "6cac7c252a453ff310f4569eaf3acfe62beac65dddcd57f87bf0312425855ed4"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/AnatomyKnowledge.swift",
+      "bytes": 2784,
+      "sha256": "fb0eb3bfb270874a14642a35398b1a3ca7aacbb622bef6cfecdddefaf1afd8ae"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/PainModels.swift",
+      "bytes": 4575,
+      "sha256": "b46ffe7270bd647b12a217dc78fe58639fe054f0bea550649c3419a93f7a928a"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/MuscleModel.swift",
+      "bytes": 1313,
+      "sha256": "98882789c114d799b897f9e514872e05b40942ff50f6fb20d80982ba639e713e"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/Skeleton.swift",
+      "bytes": 1454,
+      "sha256": "a4fe8334278bdc161de1b3629a7833cd786ce42387e5ea147df971eccf287128"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/Evidence.swift",
+      "bytes": 3031,
+      "sha256": "75251de6ee869a8f2d8b5ab88d5c3b5d4443cfc10920f3c5c415397088ecf844"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/ScientificProvenance.swift",
+      "bytes": 7013,
+      "sha256": "2ae3d0b38df713abe15c5ade2017404c54ec99fbae4cbebfdb362a329c8f75ca"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/BodyCalibration.swift",
+      "bytes": 6642,
+      "sha256": "eb0debdc0a5ec06a9316bf6672f277b6664f73059bee3088c7b916f02144befa"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/CameraQuality.swift",
+      "bytes": 2579,
+      "sha256": "aa256f817e40c5925a698848bda50dd6d3eba4ba6e7bcf38847e6887e9b81798"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/MovementSegmentation.swift",
+      "bytes": 13310,
+      "sha256": "68cf02c0bcf7c53a92f326440c39804f4d8aa1e6545ce0c837cbab6ca8d34c65"
+    },
+    {
+      "path": "Sources/AnatomyMotionCore/SessionTimebase.swift",
+      "bytes": 1411,
+      "sha256": "ebb0de79a62671f4a132dc6ff73e46085a5b8c0f5ef61614b91d4bc1546bfa2f"
+    },
+    {
+      "path": "Rendering/CameraPoseView.swift",
+      "bytes": 2744,
+      "sha256": "c9f43c2261f15ec03711f555a9240697eb53ec59445f7aca8f5774fbdb946796"
+    },
+    {
+      "path": "Rendering/RealitySkeletonView.swift",
+      "bytes": 5765,
+      "sha256": "8865db6f5c3fd011f4d296a2d7fc9076ffc43be3263ddfd077d3d11850af5949"
+    }
+  ]
+}

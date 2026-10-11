@@ -1,0 +1,21 @@
+
+> arjan-singh-puniani-portfolio@1.0.0 test
+> vitest run tests
+
+
+ RUN  v4.0.8 /private/tmp/rally-art-20261011/arjan-portfolio
+
+ ✓ tests/rally-house-experience.test.tsx (3 tests) 199ms
+ ✓ tests/components.test.tsx (3 tests) 158ms
+ ✓ tests/vector-tennis.test.ts (11 tests) 7ms
+ ✓ tests/endless-rally.test.ts (48 tests) 59ms
+ ✓ tests/content.test.ts (6 tests) 4ms
+ ✓ tests/rally-house-integration.test.ts (5 tests) 4ms
+ ✓ tests/reasonos-kernel.test.ts (6 tests) 4ms
+ ✓ tests/project-routes.test.ts (1 test) 2ms
+ ✓ tests/reasonos-vector.test.ts (8 tests) 2ms
+
+ Test Files  9 passed (9)
+      Tests  91 passed (91)
+   Start at  14:45:56
+   Duration  2.76s (transform 568ms, setup 386ms, collect 928ms, tests 437ms, environment 2.41s, prepare 24ms)

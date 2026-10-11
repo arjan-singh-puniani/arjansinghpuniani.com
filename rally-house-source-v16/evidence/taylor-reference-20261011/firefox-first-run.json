@@ -1,0 +1,40 @@
+{
+  "engine": "firefox",
+  "errors": [
+    "[JavaScript Error: \"InvalidStateError: Navigated away from page\"]"
+  ],
+  "requests": [],
+  "views": [
+    {
+      "width": 1440,
+      "height": 900,
+      "avatar": "taylor",
+      "stowed": true,
+      "folded": true,
+      "sharedRig": true,
+      "toonMeshes": 23,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "avatar": "taylor",
+      "stowed": true,
+      "folded": true,
+      "sharedRig": true,
+      "toonMeshes": 23,
+      "overflow": false
+    }
+  ],
+  "contact": {
+    "stowed": false,
+    "match": true,
+    "source": "game-recording",
+    "samples": 52,
+    "contactError": 0.050000000000000336
+  },
+  "restored": {
+    "avatar": "taylor",
+    "stowed": true
+  }
+}

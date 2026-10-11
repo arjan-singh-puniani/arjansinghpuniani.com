@@ -8,8 +8,8 @@ export const SHADOW_RESOLUTION=2048;
 export const LAMP_SHADOW_RESOLUTION=1024;
 
 export type GeometryKind='box'|'roundBox'|'sphere'|'cylinder'|'cone'|'torus'|'foliage';
-export type MaterialKind='matte'|'wood'|'fabric'|'ceramic'|'metal'|'glass'|'court'|'skin'|'hair'|'leaf'|'stone';
-const MATERIAL_ID:Record<MaterialKind,number>={matte:0,wood:1,fabric:2,ceramic:3,metal:4,glass:5,court:6,skin:7,hair:8,leaf:9,stone:10};
+export type MaterialKind='matte'|'wood'|'fabric'|'ceramic'|'metal'|'glass'|'court'|'skin'|'hair'|'leaf'|'stone'|'toon';
+const MATERIAL_ID:Record<MaterialKind,number>={matte:0,wood:1,fabric:2,ceramic:3,metal:4,glass:5,court:6,skin:7,hair:8,leaf:9,stone:10,toon:11};
 export interface Mesh {
   kind:GeometryKind;
   position:Vec3;
@@ -22,11 +22,15 @@ export interface Mesh {
   emission?:number;
   /** Opt a mesh out of the shadow pass. Floor decals and glass set this. */
   noShadow?:boolean;
+  /** Explicit analysis annotation, rendered over the visible body without moving its coordinates. */
+  overlay?:boolean;
   id?:string;
 }
 
 export interface SkinGeometry {id:string;positions:Float32Array;normals:Float32Array;boneIndices:Float32Array;boneWeights:Float32Array}
 export interface SkinnedMesh {
+  /** Character body skin driven by the authoritative anatomical landmarks. */
+  poseRig?:boolean;
   skin:SkinGeometry; boneMatrices:Float32Array; position:Vec3; rotation?:Vec3; scale?:Vec3; color:string; material?:MaterialKind; alpha?:number; unlit?:boolean; noShadow?:boolean; id?:string;
 }
 export type RenderItem=Mesh|SkinnedMesh;
@@ -139,6 +143,14 @@ vec3 shade(vec3 N,vec3 world){
   float wrap=clamp((dot(N,L)+0.16)/1.16,0.0,1.0);
   float hemi=N.y*0.5+0.5;
   float shadow=shadowFactor(world,N,ndl);
+
+  // Authored cartoon colours keep their reference palette. A restrained
+  // cel band reveals curvature; both rigid and skinned paths use this branch.
+  if(u_material==11){
+    if(u_unlit>0.5)return u_color;
+    float band=mix(0.91,1.0,smoothstep(0.08,0.55,wrap));
+    return u_color*band*mix(0.96,1.0,shadow);
+  }
 
   // Ambient: sky above, warm bounce below. This is what gives the model its soft modelled look.
   vec3 ambient=u_ambient*mix(u_bounceColor,u_skyColor,hemi);
@@ -277,7 +289,7 @@ export class Renderer {
   render(items:RenderItem[],viewProjection:Mat4,lighting:Lighting,viewPosition:Vec3){
     const gl=this.gl;
     this.drawCalls=0;this.triangles=0;this.shadowCasters=0;this.instancedDraws=0;
-    const meshes:Mesh[]=[],skins:SkinnedMesh[]=[];for(const it of items){if('skin' in it)skins.push(it);else meshes.push(it);}
+    const meshes:Mesh[]=[],skins:SkinnedMesh[]=[],overlays:Mesh[]=[];for(const it of items){if('skin' in it)skins.push(it);else if(it.overlay)overlays.push(it);else meshes.push(it);}
     const lightVP=sunViewProjection(lighting.sunDir,SHADOW_CENTRE,SHADOW_RADIUS,SHADOW_RESOLUTION);
     const strength=this.shadowEnabled?(lighting.shadowStrength??1):0;
     const lamp=lighting.castingLight;
@@ -309,6 +321,13 @@ export class Renderer {
     for(const m of trans)this.drawMesh(m);
     this.setupProgram(this.skinProgram,this.su,viewProjection,lighting,viewPosition,lightVP,strength,lampVP,lampStrength);
     for(const sk of skinTrans)this.drawSkin(sk);
+    // Annotation depth is presentation only: world geometry and captured joints stay untouched.
+    if(overlays.length){
+      gl.disable(gl.DEPTH_TEST);
+      this.setupProgram(this.program,this.u,viewProjection,lighting,viewPosition,lightVP,strength,lampVP,lampStrength);
+      for(const m of overlays)this.drawMesh(m);
+      gl.enable(gl.DEPTH_TEST);
+    }
     gl.depthMask(true);
   }
 

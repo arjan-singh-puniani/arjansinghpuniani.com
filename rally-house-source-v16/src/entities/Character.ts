@@ -6,7 +6,7 @@ import type {Mesh,RenderItem,SkinnedMesh} from '../rendering/Renderer.js';
 import {Navigation} from '../world/Navigation.js';
 import {clipForState,sampleClip} from '../animation/ClipLibrary.js';
 import {taylorHeadMeshes,taylorTailMeshes,TAYLOR_PALETTE} from '../animation/TaylorAppearance.js';
-import {CHARACTER_SKIN,skinMatrices,type RigPoseLocal} from '../animation/CharacterSkin.js';
+import {CHARACTER_SKIN,skinMatrices,rigFromPose} from '../animation/CharacterSkin.js';
 
 export type AnimState='idle'|'walk'|'jog'|'ready'|'shuffle'|'sit'|'talk'|'drink'|'stretch'|'watch'|'swingForehand'|'swingBackhand'|'serve'|'volley'|'celebrate'|'reactMiss'|'coachFeed'|'coachExplain';
 export type EmotionState='neutral'|'attentive'|'friendly'|'focused'|'amused'|'pleased'|'disappointed'|'tired'|'surprised'|'proud'|'frustrated';
@@ -31,12 +31,13 @@ const isShot=(s:AnimState):s is ShotState=>s==='swingForehand'||s==='swingBackha
 const MOVING=new Set<AnimState>(['walk','jog','shuffle']);
 
 interface FacePose {smile:number;mouthOpen:number;browRaise:number;squint:number;focus:number;}
-interface Pose {
+export interface CharacterPose {
   baseY:number;breathe:number;walking:boolean;gait:number;torsoYaw:number;hipYaw:number;headYaw:number;right:Vec3;forward:Vec3;
   shoulderL:Vec3;shoulderR:Vec3;elbowL:Vec3;elbowR:Vec3;handL:Vec3;handR:Vec3;hipL:Vec3;hipR:Vec3;kneeL:Vec3;kneeR:Vec3;footL:Vec3;footR:Vec3;
   torsoCenter:Vec3;pelvisCenter:Vec3;head:Vec3;racketGrip:Vec3;racketHandleTop:Vec3;racketCenter:Vec3;racketRot:Vec3;
   lean:number;knee:number;shot:boolean;sp:number;face:FacePose;weightShift:number;
 }
+type Pose=CharacterPose;
 
 export interface CharacterKinematics {
   leftFoot:Vec3;rightFoot:Vec3;leftHand:Vec3;rightHand:Vec3;leftFootPlanted:boolean;rightFootPlanted:boolean;racketGrip:Vec3;racketCenter:Vec3;
@@ -83,6 +84,7 @@ export class Character {
   private stringImpactDirection=1;
   private racketVibration=0;private stepEvent=false;private lastStanceKey='';
   private clubIdleRelax=0;
+  private canFoldReferenceIdle(){return this.racketStowed&&this.canRelaxClubIdle()&&!this.acting.micro;}
   private canRelaxClubIdle(){return this.spec.avatar==='taylor'&&this.state==='idle'&&!this.majorActivity&&!this.matchCompetitor&&!this.spectating&&!this.propKind&&!this.interactionTarget&&this.interactionWeight<.001&&this.socialGesture==='none'&&this.acting.role==='none';}
   private interactionTarget?:Vec3;
   private interactionWeight=0;
@@ -450,27 +452,42 @@ export class Character {
       if(this.leftFootLock){result.footL=this.leftFootLock.clone();result.kneeL=Vec3.lerp(result.hipL,result.footL,.54).add(this.localVector(-.015,.04,.10));}
       if(this.rightFootLock){result.footR=this.rightFootLock.clone();result.kneeR=Vec3.lerp(result.hipR,result.footR,.54).add(this.localVector(.015,.04,.10));}
     }
+    // The reference stance is a real pose: analysis, skin and replay all see
+    // these landmarks. Tennis, props, reaches and gestures leave it immediately.
+    if(this.canFoldReferenceIdle()){
+      const w=this.clubIdleRelax,y=result.baseY+result.breathe-result.knee;
+      const fold=(key:'shoulderL'|'shoulderR'|'elbowL'|'elbowR'|'handL'|'handR',x:number,height:number,z:number)=>{result[key]=Vec3.lerp(result[key],this.worldLocal(x,height+y,z,result.torsoYaw),w);};
+      fold('shoulderL',-.225,1.34,.035);fold('shoulderR',.225,1.34,.035);
+      fold('elbowL',-.235,1.20,.225);fold('elbowR',.235,1.17,.245);
+      fold('handL',.105,1.315,.33);fold('handR',-.115,1.24,.38);
+      const delta=Vec3.sub(result.handR,result.racketGrip);result.racketGrip=result.handR.clone();result.racketHandleTop.add(delta);result.racketCenter.add(delta);
+    }
     this.lastPose=result;return result;
   }
 
+  /** Read-only, detached world-space landmarks from the same solver that owns contact. */
+  analysisPose():CharacterPose{
+    const p=this.pose();
+    return Object.fromEntries(Object.entries(p).map(([k,v])=>[k,v instanceof Vec3?v.clone():typeof v==='object'?{...v}:v])) as unknown as CharacterPose;
+  }
+
   meshes(selected=false):RenderItem[]{
-    const m:RenderItem[]=[];const p=this.position;const pose=this.pose();const {baseY,torsoYaw,hipYaw,headYaw,right,forward,shoulderL,shoulderR,elbowL,elbowR,handL,handR,racketGrip,racketHandleTop,racketCenter,racketRot,hipL,hipR,kneeL,kneeR,footL,footR,torsoCenter,pelvisCenter,head}=pose;
+    const m:RenderItem[]=[];const p=this.position;const pose=this.pose();const {baseY,torsoYaw,hipYaw,headYaw,right,forward,shoulderL,shoulderR,elbowL,elbowR,handL,handR,racketGrip,racketHandleTop,racketCenter,racketRot,footL,footR,torsoCenter,pelvisCenter,head}=pose;
     const feline=this.spec.avatar==='taylor';
     const ready=this.state==='ready'||this.state==='shuffle';const seed=this.seed();
     m.push({kind:'sphere',position:new Vec3(p.x,.028,p.z),scale:new Vec3(.78,.045,.50),color:'#4f5d53',alpha:.16,unlit:true});
     if(selected)m.push({kind:'torus',position:new Vec3(p.x,.055,p.z),rotation:new Vec3(Math.PI/2,0,0),scale:new Vec3(1.35,1.35,.55),color:'#e4c967',alpha:.52,unlit:true});
-    const local=(v:Vec3)=>this.localFromWorld(v);
-    // Club idle is presentation only. Props, reaches and every match pose use the contact rig exactly.
-    const relax=this.canRelaxClubIdle()?this.clubIdleRelax:0;
-    const idleArm=(joint:Vec3,x:number,y:number)=>Vec3.lerp(local(joint),new Vec3(x,y+baseY-pose.knee,-.015),relax);
-    const rig:RigPoseLocal={pelvis:local(pelvisCenter),spine:local(Vec3.lerp(pelvisCenter,torsoCenter,.62)),chest:local(Vec3.lerp(shoulderL,shoulderR,.5)),neck:local(Vec3.lerp(Vec3.lerp(shoulderL,shoulderR,.5),head,.58)),head:local(head),upperArmL:local(shoulderL),foreArmL:idleArm(elbowL,-.397,1.095),handL:idleArm(handL,-.36,.89),upperArmR:local(shoulderR),foreArmR:idleArm(elbowR,.397,1.095),handR:idleArm(handR,.36,.89),thighL:local(hipL),shinL:local(kneeL),footL:local(footL),thighR:local(hipR),shinR:local(kneeR),footR:local(footR),forward:new Vec3(Math.sin(torsoYaw-this.yaw),0,Math.cos(torsoYaw-this.yaw))};const bones=skinMatrices(rig);const skinRoot={position:new Vec3(p.x,0,p.z),rotation:new Vec3(0,this.yaw,0),boneMatrices:bones};
+    // Idle may use the authored club stance. Props, reaches and every match pose retain the contact rig.
+    const relax=this.canFoldReferenceIdle()?0:this.canRelaxClubIdle()?this.clubIdleRelax:0;
+    const bones=skinMatrices(rigFromPose(pose,p,this.yaw,relax));const skinRoot={position:new Vec3(p.x,0,p.z),rotation:new Vec3(0,this.yaw,0),boneMatrices:bones,poseRig:true};
     const torsoSkin=feline?CHARACTER_SKIN.taylorDress:this.spec.presentation==='feminine'?CHARACTER_SKIN.feminineTop:CHARACTER_SKIN.top;
-    m.push({...skinRoot,skin:torsoSkin,color:this.spec.shirt,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:feline?CHARACTER_SKIN.taylorLegs:CHARACTER_SKIN.pants,color:this.spec.skin,material:'skin'} as SkinnedMesh,{...skinRoot,skin:feline?CHARACTER_SKIN.taylorArms:CHARACTER_SKIN.arms,color:this.spec.skin,material:'skin'} as SkinnedMesh);
-    if(feline)m.push({...skinRoot,skin:CHARACTER_SKIN.taylorBoots,color:TAYLOR_PALETTE.indigo,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorGloves,color:TAYLOR_PALETTE.indigo,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorNeckline,color:TAYLOR_PALETTE.indigo,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorDressEdging,color:TAYLOR_PALETTE.gold,material:'metal'} as SkinnedMesh);
+    m.push({...skinRoot,skin:torsoSkin,color:this.spec.shirt,material:feline?'toon':'fabric'} as SkinnedMesh,{...skinRoot,skin:feline?CHARACTER_SKIN.taylorLegs:CHARACTER_SKIN.pants,color:this.spec.skin,material:feline?'toon':'skin'} as SkinnedMesh,{...skinRoot,skin:feline?CHARACTER_SKIN.taylorArms:CHARACTER_SKIN.arms,color:this.spec.skin,material:feline?'toon':'skin'} as SkinnedMesh);
+    if(feline)m.push({...skinRoot,skin:CHARACTER_SKIN.taylorTunicMark,color:'#b69a2a',material:'toon',unlit:true} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorBoots,color:TAYLOR_PALETTE.indigo,material:'toon'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorGloves,color:TAYLOR_PALETTE.indigo,material:'toon'} as SkinnedMesh);
     else {
       m.push({kind:'sphere',position:torsoCenter.clone().add(new Vec3(0,.025,0)),rotation:new Vec3(0,torsoYaw,0),scale:new Vec3(this.spec.presentation==='feminine'?.53:.57,.68,.40),color:this.spec.shirt,material:'fabric'});
       if(this.spec.outfit==='shorts')m.push({...skinRoot,skin:CHARACTER_SKIN.shorts,color:mixHex(this.spec.shirt,'#192d37',.28),material:'fabric'} as SkinnedMesh);
-      for(const shoulder of [shoulderL,shoulderR])m.push({kind:'sphere',position:Vec3.lerp(shoulder,Vec3.lerp(shoulderL,shoulderR,.5),.25).add(new Vec3(0,-.035,0)),scale:new Vec3(.265,.265,.265),color:this.spec.shirt,material:'fabric'});
+      // Rounded sleeve caps belong to the upper-arm skin and its exact shoulder
+      // pivot; separate inward-shifted spheres left gaps when the arm lifted.
     }
     if(!feline)for(const elbow of [elbowL,elbowR])m.push({kind:'sphere',position:elbow,scale:new Vec3(.20,.20,.19),color:this.spec.skin,material:'skin'});
     const leftShoePitch=pose.walking&&!this.leftFootLock?clamp(-pose.gait*.18,-.18,.18):0,rightShoePitch=pose.walking&&!this.rightFootLock?clamp(pose.gait*.18,-.18,.18):0;
@@ -482,7 +499,7 @@ export class Character {
     m.push({kind:'roundBox',position:new Vec3(footL.x,footL.y-.055,footL.z),rotation:new Vec3(leftShoePitch,leftShoeYaw,0),scale:new Vec3(.30,.055,.445),color:soleColor,material:'fabric'},{kind:'roundBox',position:new Vec3(footR.x,footR.y-.055,footR.z),rotation:new Vec3(rightShoePitch,rightShoeYaw,0),scale:new Vec3(.30,.055,.445),color:soleColor,material:'fabric'});
     }
 
-    if(feline)m.push({...skinRoot,skin:CHARACTER_SKIN.taylorHands,color:TAYLOR_PALETTE.indigo,material:'fabric'} as SkinnedMesh);
+    if(feline)m.push({...skinRoot,skin:CHARACTER_SKIN.taylorHands,color:TAYLOR_PALETTE.indigo,material:'toon'} as SkinnedMesh);
     else {
       m.push({kind:'sphere',position:handL,scale:new Vec3(.16,.20,.15),color:this.spec.skin,material:'skin'},{kind:'sphere',position:handR,scale:new Vec3(.16,.20,.15),color:this.spec.skin,material:'skin'});
       for(const [hand,side] of [[handL,-1],[handR,1]] as const)m.push({kind:'sphere',position:Vec3.add(hand,this.localVector(-side*.075,.025,.045)),scale:new Vec3(.095,.12,.10),color:this.spec.skin,material:'skin'});
@@ -491,10 +508,7 @@ export class Character {
     if(feline){
       m.push(...taylorHeadMeshes(head,headYaw,tilt,pose.face,this.animTime));
       const neck=Vec3.lerp(Vec3.lerp(shoulderL,shoulderR,.5),head,.30);
-      m.push({kind:'cylinder',position:neck,scale:new Vec3(.17,.25,.17),color:this.spec.skin,material:'skin'});
-      const collar=Vec3.lerp(Vec3.lerp(shoulderL,shoulderR,.5),head,.15);
-      m.push({kind:'cylinder',position:collar,rotation:new Vec3(0,torsoYaw,0),scale:new Vec3(.29,.085,.25),color:TAYLOR_PALETTE.gold,material:'metal'},
-        {kind:'torus',position:collar.clone().add(new Vec3(0,-.045,0)),rotation:new Vec3(Math.PI/2,torsoYaw,0),scale:new Vec3(.42,.35,.075),color:TAYLOR_PALETTE.indigo,material:'fabric'});
+      m.push({kind:'cylinder',position:neck,scale:new Vec3(.17,.25,.17),color:this.spec.skin,material:'toon'});
       m.push(...taylorTailMeshes(pelvisCenter,hipYaw,this.animTime,this.horizontalSpeed));
     }else {
     const headStart=m.length;

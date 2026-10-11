@@ -1,0 +1,30 @@
+{
+  "recording": {
+    "samples": 60,
+    "source": "game-recording",
+    "contacts": 1,
+    "bounces": 1,
+    "contactError": 0.05000000000000025
+  },
+  "replay": {
+    "active": true,
+    "kind": "championship",
+    "mode": "combined",
+    "focus": "elbow",
+    "time": 0.31666666666666665,
+    "samples": 60,
+    "playing": false,
+    "frame": 0.31666666666666665,
+    "meshes": 138,
+    "angle": "19°",
+    "clock": 1072.75,
+    "root": {
+      "x": -3.8,
+      "y": 0,
+      "z": -7.35
+    }
+  },
+  "viewports": [],
+  "errors": [],
+  "requests": []
+}

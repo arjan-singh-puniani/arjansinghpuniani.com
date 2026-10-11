@@ -10,6 +10,7 @@ const scenes = [
   { name: "Discover", image: "clock-mechanism", title: "Little things have their secrets.", text: "Water the bonsai. Sketch a crosscourt arrow. Play with the clock: its gears separate, pause, and find their way home.", alt: "Actual Rally House gameplay: the club clock separates into its face, hands, gears, and brass housing" },
   { name: "Challenge", image: "transition", title: "Same place. A different perspective.", text: "Challenge a member. Both players walk to the court as the camera moves from the miniature into the match.", alt: "Actual Championship transition as the camera moves toward the court" },
   { name: "Rally", image: "rally", title: "Then it becomes a tennis game.", text: "Move, prepare your swing, and meet the ball. A landing cue helps you read the return; the racket still has to make contact.", alt: "Actual arcade tennis gameplay with a visible ball, two players, and a small swing prompt" },
+  { name: "Analyze", image: "performance-lab", title: "See what the movement did.", text: "Visit the Performance Lab. Scrub your recent Championship or a walking, forehand, or serve demonstration. Court paths, body joints, and the chart follow the same moment.", alt: "Actual Performance Lab gameplay: a character with a registered skeleton, joint-angle chart and replay controls" },
 ] as const;
 
 export default function RallyHouseExperience() {
@@ -53,7 +54,7 @@ export default function RallyHouseExperience() {
     </header>
 
     <section className={`shell ${styles.inside}`} id="inside" aria-labelledby="inside-title">
-      <div className={styles.sectionHead}><p className={styles.kicker}>One place. Two rhythms.</p><h2 id="inside-title">From watching life<br />to playing the point.</h2></div>
+      <div className={styles.sectionHead}><p className={styles.kicker}>One place. Three perspectives.</p><h2 id="inside-title">Watch the life.<br />Play the point. See the motion.</h2></div>
       <div className={styles.sceneLayout}>
         <div className={styles.sceneChoices} aria-label="Gameplay scenes">
           {scenes.map((item, i) => <button key={item.name} aria-pressed={scene === i} onClick={() => setScene(i)}><span>0{i + 1}</span><strong>{item.name}</strong><span aria-hidden="true">↗</span></button>)}
@@ -72,8 +73,12 @@ export default function RallyHouseExperience() {
         </div>
         <div className={styles.playerFooter}><span>{playing ? "Live game" : "The game starts when you enter"} · browser play</span>{playing && <button onClick={fullscreen}>Enter fullscreen ↗</button>}</div>
         {fullscreenMessage && <p role="status">{fullscreenMessage}</p>}
-        <div className={styles.controls} id="rally-house-controls"><p><strong>In the club</strong>Tap to walk. Tap people and objects. Drag to pan; scroll or pinch to zoom.</p><p><strong>On the court</strong>WASD or arrows to move. Space to swing. On touch screens, use the stick and Swing. Esc returns to the club.</p><p><strong>At your pace</strong>Pause the match to adjust sound and motion. Leaving the game pauses the point until you resume. Your view of the club is preserved.</p></div>
+        <div className={styles.controls} id="rally-house-controls"><p><strong>In the club</strong>Tap to walk. Tap people and objects. Drag to pan; scroll or pinch to zoom.</p><p><strong>On the court</strong>WASD or arrows to move. Space to swing. On touch screens, use the stick and Swing. Esc returns to the club.</p><p><strong>In the lab</strong>Choose Lab, then See the movement. Pause, scrub, orbit, and select a joint. Return to the same club view.</p><p><strong>At your pace</strong>Pause the match to adjust sound and motion. Leaving the game pauses the point until you resume. Your view of the club is preserved.</p></div>
       </div>
+    </section>
+    <section className={`shell ${styles.details}`} aria-labelledby="motion-title">
+      <figure><Image src="/rally-house/media/performance-lab.webp" width={1440} height={900} sizes="(max-width: 800px) 100vw, 50vw" alt="Performance Lab showing a recorded character pose, selected elbow and synchronized replay chart" /><figcaption>Simulated rig geometry. Captured from the playable lab.</figcaption></figure>
+      <div><p className={styles.kicker}>Rally House × VectorCourt × AnatomyMotion</p><h2 id="motion-title">One interest:<br />how bodies move.</h2><p>Rally House makes movement playable. VectorCourt explores tennis video and court-space analysis. AnatomyMotion explores estimated body poses and joint kinematics. The Performance Lab brings their questions into one place: what happened on the court, and how did the body move?</p><p>In this browser demo, the data comes from the game’s animation and ball simulation. Knee and elbow angles, foot contacts, paths, and replay share their source. The native projects remain experimental; this demo does not run camera analysis or measure forces, muscle activation, or clinical outcomes.</p></div>
     </section>
 
     <section className={`shell ${styles.details}`} aria-labelledby="detail-title">
@@ -86,6 +91,7 @@ export default function RallyHouseExperience() {
         ["Contact has one source", "The racket’s string bed determines the strike. Ball release, impact sound, and feedback follow that contact."],
         ["Memory follows events", "Object visits and Championship results enter history only when the action actually completes."],
         ["A continuous court", "Walking routes go around the net posts. The match changes camera and controls, then returns to the same club."],
+        ["Every number has a source", "The lab reads captured rig poses and game events. A single replay timestamp drives the avatar, ball, joint measurement and chart; missing samples stay missing."],
       ].map(([title, text], i) => <article key={title}><span>0{i + 1}</span><h3>{title}</h3><p>{text}</p></article>)}
     </section>
     <footer className={`shell ${styles.colophon}`}><p>Built by Arjan Singh Puniani</p><p>Gameplay, simulation, interaction, and animation · TypeScript · custom WebGL2 renderer · fixed-step simulation · local saves</p><p>All images and footage on this page come from Rally House.</p></footer>

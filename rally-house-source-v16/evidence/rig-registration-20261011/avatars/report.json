@@ -1,0 +1,71 @@
+{
+  "captures": [
+    {
+      "avatar": "arjan",
+      "source": "forehand",
+      "offset": 0,
+      "preservedSurfaceAlpha": true,
+      "contact": true,
+      "selected": "elbow",
+      "time": 1.0666666666666667,
+      "annotationNodes": 13,
+      "file": "evidence/rig-registration-20261011/avatars/arjan-forehand.png"
+    },
+    {
+      "avatar": "arjan",
+      "source": "serve",
+      "offset": 0,
+      "preservedSurfaceAlpha": true,
+      "contact": true,
+      "selected": "shoulder",
+      "time": 1.2166666666666666,
+      "annotationNodes": 13,
+      "file": "evidence/rig-registration-20261011/avatars/arjan-serve.png"
+    },
+    {
+      "avatar": "arjan",
+      "source": "gait",
+      "offset": 0,
+      "preservedSurfaceAlpha": true,
+      "contact": false,
+      "selected": "knee",
+      "time": 3,
+      "annotationNodes": 13,
+      "file": "evidence/rig-registration-20261011/avatars/arjan-gait.png"
+    },
+    {
+      "avatar": "taylor",
+      "source": "forehand",
+      "offset": 0,
+      "preservedSurfaceAlpha": true,
+      "contact": true,
+      "selected": "elbow",
+      "time": 1.0666666666666667,
+      "annotationNodes": 13,
+      "file": "evidence/rig-registration-20261011/avatars/taylor-forehand.png"
+    },
+    {
+      "avatar": "taylor",
+      "source": "serve",
+      "offset": 0,
+      "preservedSurfaceAlpha": true,
+      "contact": true,
+      "selected": "shoulder",
+      "time": 1.2166666666666666,
+      "annotationNodes": 13,
+      "file": "evidence/rig-registration-20261011/avatars/taylor-serve.png"
+    },
+    {
+      "avatar": "taylor",
+      "source": "gait",
+      "offset": 0,
+      "preservedSurfaceAlpha": true,
+      "contact": false,
+      "selected": "knee",
+      "time": 3,
+      "annotationNodes": 13,
+      "file": "evidence/rig-registration-20261011/avatars/taylor-gait.png"
+    }
+  ],
+  "errors": []
+}

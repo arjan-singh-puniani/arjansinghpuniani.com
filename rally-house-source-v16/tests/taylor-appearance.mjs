@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
 import {TAYLOR_GEOMETRY,TAYLOR_TAIL_GEOMETRY,taylorHeadMeshes,taylorTailMeshes} from '../dist/animation/TaylorAppearance.js';
-import {CHARACTER_SKIN,BONE} from '../dist/animation/CharacterSkin.js';
+import {CHARACTER_SKIN,BONE,rigFromPose,skinMatrices} from '../dist/animation/CharacterSkin.js';
 import {Character} from '../dist/entities/Character.js';
 import {playerSpec} from '../dist/content/PlayerAvatars.js';
 import {Navigation} from '../dist/world/Navigation.js';
-import {Vec3} from '../dist/rendering/Math3D.js';
+import {Vec3,transformPoint,compose} from '../dist/rendering/Math3D.js';
 
 for(const [name,g] of Object.entries({...TAYLOR_GEOMETRY,...TAYLOR_TAIL_GEOMETRY})){
  assert.equal(g.positions.length,g.normals.length);
@@ -97,9 +97,41 @@ for(let i=0;i<pupils.length;i+=9){const x=(pupils[i]+pupils[i+3]+pupils[i+6])/3,
 for(const [expression,mouth] of [[{smile:.08,mouthOpen:0,squint:0,browRaise:0},'frown'],[{smile:.72,mouthOpen:0,squint:0,browRaise:.2},'smile']])assert(taylorHeadMeshes(new Vec3(),0,0,expression,0).some(m=>m.skin===TAYLOR_GEOMETRY[mouth]),'Resting and friendly expressions retain distinct mouths');
 console.log('Taylor likeness PASS: clipped pupil apertures and distinct resting/social expressions.');
 
-// Slice the actual hood triangles at each stripe sample's height, then find
-// the radial surface intersection. Stripes must sit on fabric, not over an opening.
-const hood=TAYLOR_GEOMETRY.hood.positions,stripes=TAYLOR_GEOMETRY.stripes.positions;
-function hoodRadius(x,y,z){const length=Math.hypot(x,z),dx=x/length,dz=z/length;let best=-Infinity;for(let i=0;i<hood.length;i+=9){const cuts=[];for(let j=0;j<3;j++){const a=i+j*3,b=i+((j+1)%3)*3;if((hood[a+1]<=y&&hood[b+1]>y)||(hood[b+1]<=y&&hood[a+1]>y)){const t=(y-hood[a+1])/(hood[b+1]-hood[a+1]);cuts.push([hood[a]+(hood[b]-hood[a])*t,hood[a+2]+(hood[b+2]-hood[a+2])*t]);}}if(cuts.length!==2)continue;const [[ax,az],[bx,bz]]=cuts,sx=bx-ax,sz=bz-az,den=dx*sz-dz*sx;if(Math.abs(den)<1e-9)continue;const radial=(ax*sz-az*sx)/den,u=(ax*dz-az*dx)/den;if(u>=-1e-5&&u<=1+1e-5&&radial>0)best=Math.max(best,radial);}return best;}
-for(let i=0;i<stripes.length;i+=9){const x=(stripes[i]+stripes[i+3]+stripes[i+6])/3,y=(stripes[i+1]+stripes[i+4]+stripes[i+7])/3,z=(stripes[i+2]+stripes[i+5]+stripes[i+8])/3,surface=hoodRadius(x,y,z);assert(Number.isFinite(surface)&&Math.abs(Math.hypot(x,z)-surface)<.020,'Headdress stripe is attached to the actual hood surface');}
+// Measure closest distance to the actual 3D headdress triangles. A radial
+// outer-envelope test assumes a convex cross-section and cannot validate the
+// new concave cheek panels or stripe vertices at their clipped boundary.
+const hood=TAYLOR_GEOMETRY.hood.positions,stripes=TAYLOR_GEOMETRY.stripes.positions,triangles=[];
+for(let i=0;i<hood.length;i+=9){const a=new Vec3(...hood.slice(i,i+3)),b=new Vec3(...hood.slice(i+3,i+6)),c=new Vec3(...hood.slice(i+6,i+9)),ab=Vec3.sub(b,a),ac=Vec3.sub(c,a),n=Vec3.cross(ab,ac);triangles.push({a,b,c,ab,ac,n,nn:Vec3.dot(n,n),lo:[0,1,2].map(k=>Math.min(hood[i+k],hood[i+3+k],hood[i+6+k])-.012),hi:[0,1,2].map(k=>Math.max(hood[i+k],hood[i+3+k],hood[i+6+k])+.012)});}
+function surfaceDistance(p){
+ let best=Infinity;
+ const segment=(a,b)=>{const d=Vec3.sub(b,a),t=Math.max(0,Math.min(1,Vec3.dot(Vec3.sub(p,a),d)/Vec3.dot(d,d)));return Vec3.sub(p,a.clone().add(d.scale(t))).len();};
+ for(const t of triangles){
+  if([p.x,p.y,p.z].some((v,k)=>v<t.lo[k]||v>t.hi[k]))continue;
+  const h=Vec3.dot(Vec3.sub(p,t.a),t.n)/t.nn,q=p.clone().sub(t.n.clone().scale(h)),aq=Vec3.sub(q,t.a),aa=Vec3.dot(t.ab,t.ab),bb=Vec3.dot(t.ab,t.ac),cc=Vec3.dot(t.ac,t.ac),d=aa*cc-bb*bb,u=(cc*Vec3.dot(aq,t.ab)-bb*Vec3.dot(aq,t.ac))/d,v=(aa*Vec3.dot(aq,t.ac)-bb*Vec3.dot(aq,t.ab))/d;
+  const distance=u>=-1e-6&&v>=-1e-6&&u+v<=1+1e-6?Vec3.sub(p,q).len():Math.min(segment(t.a,t.b),segment(t.b,t.c),segment(t.c,t.a));best=Math.min(best,distance);
+ }return best;
+}
+let maximumStripeGap=0;
+for(let i=0;i<stripes.length;i+=9){
+ const points=[0,3,6].map(k=>new Vec3(...stripes.slice(i+k,i+k+3)));points.push(points.reduce((sum,p)=>sum.add(p),new Vec3()).scale(1/3));
+ for(const p of points){const distance=surfaceDistance(p);maximumStripeGap=Math.max(maximumStripeGap,distance);assert(distance<.010,'Every gold band vertex and triangle centre is attached to actual headdress fabric');}
+}
+console.log(JSON.stringify({maximumStripeSurfaceGap:maximumStripeGap}));
 console.log('Taylor attachment PASS: stripes follow actual fabric geometry.');
+
+// The reference stance belongs to the authoritative pose, not a second render rig.
+for(const hz of [30,60,120])for(const yaw of [0,.7,Math.PI]){
+ const c=new Character(playerSpec('taylor'),new Vec3(2,0,-3),new Navigation([]),{});c.racketStowed=true;
+ for(let i=0;i<hz*3;i++)c.update(1/hz);c.yaw=yaw;
+ const p=c.analysisPose(),mesh=c.meshes().find(m=>m.skin===CHARACTER_SKIN.taylorHands),expected=skinMatrices(rigFromPose(p,c.position,yaw));
+ assert.deepEqual(mesh.boneMatrices,expected,'Folded-arm skin and analysis use exactly the same landmarks');
+ const localX=v=>Math.cos(yaw)*(v.x-c.position.x)-Math.sin(yaw)*(v.z-c.position.z);
+ assert(localX(p.handL)>0&&localX(p.handR)<0,'Resting paws cross coherently in front of the torso');
+ for(const side of ['L','R']){
+  const bone=mesh.boneMatrices.slice(BONE['hand'+side]*16,BONE['hand'+side]*16+16),rest=new Vec3(side==='L'?-.50:.50,.94,.01),local=transformPoint(bone,rest),world=transformPoint(compose(mesh.position,mesh.rotation),new Vec3(local.x,local.y,local.z)),hand=p['hand'+side];
+  assert(Math.hypot(world.x-hand.x,world.y-hand.y,world.z-hand.z)<1e-6,'Actual GPU hand anchors remain registered');
+  for(const column of [0,4,8])assert(Math.abs(Math.hypot(...bone.slice(column,column+3))-1)<1e-6,'Paws never stretch when the forearm changes length');
+ }
+ c.matchCompetitor=true;const matchPose=c.analysisPose();assert(localX(matchPose.handL)<0&&localX(matchPose.handR)>0,'Match entry immediately releases the authored club fold');
+}
+console.log('Taylor reference stance PASS: shared GPU/analysis pose at three update rates and three rotations, rigid paw volumes, immediate match release.');
