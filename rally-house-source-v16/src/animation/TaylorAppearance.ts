@@ -26,16 +26,23 @@ function profile(points:Point[],y:number):[number,number]{
   const d=b[0]-a[0];return (2*t**3-3*t*t+1)*a[k]+(t**3-2*t*t+t)*d*slope(i)+(-2*t**3+3*t*t)*b[k]+(t**3-t*t)*d*slope(i+1);
  }) as [number,number];
 }
-const faceProfile:Point[]=[[-.303,0,0],[-.286,.16,.145],[-.245,.29,.219],[-.13,.38,.263],[.015,.406,.274],[.115,.394,.264],[.22,.33,.233],[.292,.18,.135],[.315,0,0]];
+const faceProfile:Point[]=[[-.277,0,0],[-.270,.15,.118],[-.248,.279,.197],[-.211,.365,.240],[-.12,.424,.269],[.015,.412,.276],[.115,.394,.266],[.22,.33,.233],[.292,.18,.135],[.315,0,0]];
 const surfaceZ=(x:number,y:number,depth:number)=>{const [rx,rz]=profile(faceProfile,y);return rz*Math.sqrt(Math.max(.001,1-(x/Math.max(.001,rx))**2))+depth;};
-const face=geometry('taylor-shaped-face-v2',tri=>{
- const at=(r:number,i:number):Point=>{const y=-.303+r/30*.618,[rx,rz]=profile(faceProfile,y),a=i/48*Math.PI*2;return [Math.sin(a)*rx,y,Math.cos(a)*rz];};
- for(let r=0;r<30;r++)for(let i=0;i<48;i++){const a=at(r,i),b=at(r,i+1),c=at(r+1,i+1),d=at(r+1,i);tri(a,b,c);tri(a,c,d);}
+const face=geometry('taylor-reference-cheeks-v3',tri=>{
+ const at=(r:number,i:number):Point=>{const y=-.277+r/36*.592,[rx,rz]=profile(faceProfile,y),a=i/48*Math.PI*2;return [Math.sin(a)*rx,y,Math.cos(a)*rz];};
+ for(let r=0;r<36;r++)for(let i=0;i<48;i++){const a=at(r,i),b=at(r,i+1),c=at(r+1,i+1),d=at(r+1,i);tri(a,b,c);tri(a,c,d);}
 },true);
 const bobProfile:Point[]=[[-.35,.29,.205],[-.325,.365,.248],[-.245,.432,.292],[-.12,.449,.303],[.055,.445,.298],[.17,.414,.281],[.23,.353,.261]];
-const hood=geometry('taylor-contoured-headdress-v2',tri=>{
- const at=(r:number,i:number):Point=>{const y=-.35+r/18*.58,[rx,rz]=profile(bobProfile,y),opening=.71+.23*Math.sin((y+.35)/.58*Math.PI),a=opening+i/48*(Math.PI*2-opening*2);return [Math.sin(a)*rx,y,Math.cos(a)*rz];};
+const hoodOpening=(y:number)=>.71+.40*Math.sin((y+.35)/.58*Math.PI);
+const hood=geometry('taylor-cheek-framed-headdress-v3',tri=>{
+ const at=(r:number,i:number):Point=>{const y=-.35+r/18*.58,[rx,rz]=profile(bobProfile,y),opening=hoodOpening(y),a=opening+i/48*(Math.PI*2-opening*2);return [Math.sin(a)*rx,y,Math.cos(a)*rz];};
  for(let r=0;r<18;r++)for(let i=0;i<48;i++){const a=at(r,i),b=at(r,i+1),c=at(r+1,i+1),d=at(r+1,i);tri(a,b,c);tri(a,c,d);}
+ // Continue the lower bob around the neck instead of leaving an open gap
+ // beneath the shortened chin. Outer vertices share the hood's sampled edge.
+ for(const side of [-1,1]){
+  const front=(r:number,i:number):Point=>{const edge=at(r,0),t=i/6,y=edge[1],innerX=.050+r/5*.020,innerZ=.10+r/5*.07;return [side*(innerX+(edge[0]-innerX)*t),y,innerZ+(edge[2]-innerZ)*t+.014*Math.sin(t*Math.PI)];};
+  for(let r=0;r<5;r++)for(let i=0;i<6;i++){const a=front(r,i),b=front(r,i+1),c=front(r+1,i+1),d=front(r+1,i);if(side===1){tri(a,b,c);tri(a,c,d);}else{tri(a,c,b);tri(a,d,c);}}
+ }
  for(let i=0;i<48;i++)tri([0,-.35,-.04],at(0,i+1),at(0,i));
  const bottom=Math.acos(.23/.34),rad=Math.sin(bottom),angles=Array.from({length:65},(_,i)=>i<=48?.71+i/48*(Math.PI*2-1.42):Math.PI*2-.71+(i-48)/16*1.42);
  const atCrown=(r:number,i:number):Point=>{const a=angles[i],t=r/12*bottom;return [.353/rad*Math.sin(t)*Math.sin(a),.34*Math.cos(t),.261/rad*Math.sin(t)*Math.cos(a)];};
@@ -59,9 +66,9 @@ const ears=geometry('taylor-solid-ears-v2',tri=>{
 const earInlays=geometry('taylor-gold-ear-insets-v2',tri=>{
  for(const side of [-1,1]){const a:Point=[side*.325,.294,.080],b:Point=[side*.16,.322,.080],c:Point=[side*.251,.705,.037];if(side===1)tri(a,c,b);else tri(a,b,c);}
 });
-const stripes=geometry('taylor-curved-headdress-stripes-v2',tri=>{
+const stripes=geometry('taylor-attached-headdress-stripes-v3',tri=>{
  for(const side of [-1,1])for(const base of [-.23,-.09,.045]){
-  const at=(r:number,i:number):Point=>{const a=.87+i/8*.68,y=base+(r?-.016:.040)-i/8*.040,[rx,rz]=profile(bobProfile,y);return [side*Math.sin(a)*(rx+.007),y,Math.cos(a)*(rz+.007)];};
+  const at=(r:number,i:number):Point=>{const y=base+(r?-.016:.040)-i/8*.040,start=Math.max(.87,hoodOpening(y)+.012),a=start+i/8*(1.55-start),[rx,rz]=profile(bobProfile,y);return [side*Math.sin(a)*(rx+.007),y,Math.cos(a)*(rz+.007)];};
   for(let i=0;i<8;i++){const a=at(0,i),b=at(0,i+1),c=at(1,i+1),d=at(1,i);if(side===1){tri(a,c,b);tri(a,d,c);}else{tri(a,b,c);tri(a,c,d);}}
  }
 });
@@ -71,16 +78,34 @@ function curvedPatch(tri:Tri,cx:number,cy:number,width:number,top:number,bottom:
  const at=(r:number,i:number):Point=>{const t=r/rows,a=i/sectors*Math.PI*2,x=cx+Math.cos(a)*width/2*t,v=Math.sin(a),y=cy+v*(v>0?top:bottom)*t;return [x,y,surfaceZ(x,y,depth)];};
  for(let r=0;r<rows;r++)for(let i=0;i<sectors;i++){const a=at(r,i),b=at(r,i+1),c=at(r+1,i+1),d=at(r+1,i);tri(a,d,c);tri(a,c,b);}
 }
-function eyes(id:string,width:number,top:number,bottom:number,depth:number,pupil=false){
- return geometry(id,tri=>{for(const side of [-1,1])curvedPatch(tri,side*(pupil?.128:.183),.040,width,top,bottom,depth);},true);
+// Eye borders are authored as a nearly straight upper lid and an almond
+// lower arc. Pupils are intersected with the white aperture, so their border
+// stays clean under close inspection rather than painting over the eyeliner.
+function eyeBounds(x:number,side:number,width:number,top:number,bottom:number):[number,number]{
+ const u=(x-side*.183)/(width/2),arc=Math.sqrt(Math.max(0,1-u*u));
+ return [.040-bottom*arc,.040+top*(1-u*u)];
 }
-const eyeOutline=eyes('taylor-eye-ink-v3',.311,.027,.075,.009),eyeWhite=eyes('taylor-eye-white-v3',.287,.020,.061,.012),pupils=eyes('taylor-half-lidded-pupils-v3',.125,.024,.060,.015,true);
+function eyes(id:string,width:number,top:number,bottom:number,depth:number,pupil=false){
+ return geometry(id,tri=>{
+  for(const side of [-1,1]){
+   const at=(col:number,row:number):Point=>{
+    const u=-1+col/40*2,x=side*(pupil?.128:.183)+u*width/2;
+    let low:number,high:number;
+    if(pupil){const arc=Math.sqrt(Math.max(0,1-u*u)),white=eyeBounds(x,side,.281,.014,.059);low=Math.max(.040-bottom*arc,white[0]+.001);high=Math.min(.040+top*arc,white[1]-.001);}
+    else [low,high]=eyeBounds(x,side,width,top,bottom);
+    const y=low+(Math.max(low,high)-low)*row/6;return [x,y,surfaceZ(x,y,depth)];
+   };
+   for(let col=0;col<40;col++)for(let row=0;row<6;row++){const a=at(col,row),b=at(col+1,row),c=at(col+1,row+1),d=at(col,row+1);tri(a,b,c);tri(a,c,d);}
+  }
+ },true);
+}
+const eyeOutline=eyes('taylor-almond-eye-ink-v4',.305,.020,.071,.009),eyeWhite=eyes('taylor-almond-eye-white-v4',.281,.014,.059,.012),pupils=eyes('taylor-clipped-half-lidded-pupils-v4',.124,.024,.064,.015,true);
 const eyelid=geometry('taylor-curved-upper-lids-v3',tri=>{for(const side of [-1,1])curvedPatch(tri,side*.183,.054,.306,.105,.008,.019);},true);
-const eyeGlints=geometry('taylor-rounded-eye-glints-v3',tri=>{
+const eyeGlints=geometry('taylor-small-eye-catchlights-v4',tri=>{
  for(const side of [-1,1]){
   const x=side*.132,y=.029;
-  curvedPatch(tri,x,y,.022,.010,.013,.027,3,16);
-  curvedPatch(tri,side*.112,-.006,.009,.004,.004,.027,3,16);
+  curvedPatch(tri,x,y,.011,.005,.006,.027,3,16);
+  curvedPatch(tri,side*.112,-.006,.005,.002,.002,.027,3,16);
  }
 });
 const eyeliner=geometry('taylor-swept-eyeliner-v1',tri=>{
@@ -97,10 +122,10 @@ const lashes=geometry('taylor-swept-lash-corners-v3',tri=>{
  }
 });
 function mouth(id:string,width:number,curve:number,asymmetry=0){return geometry(id,tri=>{
- const pt=(i:number,upper:boolean):Point=>{const x=-width+i/16*width*2,t=x/width,y=-.111+curve*(1-t*t)+asymmetry*t+(upper?.0045:-.0045);return [x,y,surfaceZ(x,y,.010)];};
+ const pt=(i:number,upper:boolean):Point=>{const x=-width+i/16*width*2,t=x/width,y=-.084+curve*(1-t*t)+asymmetry*t+(upper?.0045:-.0045);return [x,y,surfaceZ(x,y,.010)];};
  for(let i=0;i<16;i++){const a=pt(i,false),b=pt(i+1,false),c=pt(i+1,true),d=pt(i,true);tri(a,b,c);tri(a,c,d);}
 });}
-const frown=mouth('taylor-curved-frown-v3',.071,.035),smirk=mouth('taylor-confident-smile-v1',.075,-.009,.008),smile=mouth('taylor-warm-smile-v3',.089,-.027);
+const frown=mouth('taylor-reference-frown-v4',.078,.038),smirk=mouth('taylor-confident-smile-v2',.075,-.009,.008),smile=mouth('taylor-warm-smile-v4',.089,-.027);
 const crest=geometry('taylor-cobra-crest-v2',tri=>{
  const outline:Point[]=[[-.037,.283,.276],[-.047,.337,.268],[-.039,.382,.255],[0,.402,.246],[.039,.382,.255],[.047,.337,.268],[.037,.283,.276],[0,.254,.282]];
  const center:Point=[0,.335,.291];for(let i=0;i<outline.length;i++)tri(center,outline[(i+1)%outline.length],outline[i]);
@@ -114,10 +139,10 @@ export function taylorHeadMeshes(head:Vec3,yaw:number,tilt:number,expression:{sm
  piece(face,TAYLOR_PALETTE.fur,false,0,1,'skin');piece(hood,TAYLOR_PALETTE.indigo);piece(hairline,TAYLOR_PALETTE.indigo);piece(ears,TAYLOR_PALETTE.indigo);piece(earInlays,TAYLOR_PALETTE.fur);piece(stripes,TAYLOR_PALETTE.fur);
  const phase=(time+.47)%3.75,blink=phase<.10?1-smoothstep(0,.10,phase):0,open=Math.max(.065,1-blink-expression.squint*.35);
  const lidLift=expression.browRaise*.008;
- piece(eyeOutline,TAYLOR_PALETTE.ink,true,.040*(1-open),open);piece(eyeWhite,TAYLOR_PALETTE.white,true,.040*(1-open),open);piece(pupils,TAYLOR_PALETTE.ink,true,.040*(1-open),open);piece(eyeGlints,TAYLOR_PALETTE.white,true,.040*(1-open),open);piece(eyelid,'#d1ad4c',false,lidLift);piece(eyeliner,TAYLOR_PALETTE.ink,true,lidLift);piece(lashes,TAYLOR_PALETTE.ink,true);
- // Quiet confidence at rest, genuine warmth in social/celebration states,
- // and the original skeptical frown when focused or disappointed.
- piece(expression.smile>.35?smile:expression.smile>.055?smirk:frown,TAYLOR_PALETTE.ink,true);piece(crest,TAYLOR_PALETTE.gold,false,0,1,'metal');
+ piece(eyeOutline,TAYLOR_PALETTE.ink,true,.040*(1-open),open);piece(eyeWhite,TAYLOR_PALETTE.white,true,.040*(1-open),open);piece(pupils,TAYLOR_PALETTE.ink,true,.040*(1-open),open);piece(eyeGlints,TAYLOR_PALETTE.white,true,.040*(1-open),open);piece(eyelid,'#bd9b3d',false,lidLift);piece(eyeliner,TAYLOR_PALETTE.ink,true,lidLift);piece(lashes,TAYLOR_PALETTE.ink,true);
+ // The reference's skeptical resting mouth gives way to the real social
+ // expression when warmth or celebration rises, rather than a permanent grin.
+ piece(expression.smile>.35?smile:expression.smile>.24?smirk:frown,TAYLOR_PALETTE.ink,true);piece(crest,TAYLOR_PALETTE.gold,false,0,1,'metal');
  out.push({kind:'sphere',position:point(0,.351,.294),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(.049,.050,.021),color:TAYLOR_PALETTE.gold,material:'metal'});
  for(const side of [-1,1]){
   out.push({kind:'sphere',position:point(side*.012,.353,.3065),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(.010,.008,.004),color:TAYLOR_PALETTE.ink,unlit:true});
@@ -126,7 +151,7 @@ export function taylorHeadMeshes(head:Vec3,yaw:number,tilt:number,expression:{sm
    {kind:'sphere',position:point(side*.392,-.282,.157),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(.033,.043,.023),color:'#308d99',material:'ceramic'});
  }
  out.push({kind:'cone',position:point(0,.300,.294),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(.022,.054,.014),color:TAYLOR_PALETTE.gold,material:'metal'});
- if(expression.mouthOpen>.18)out.push({kind:'sphere',position:point(0,-.105,surfaceZ(0,-.105,.012)),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(.050,.020+expression.mouthOpen*.028,.009),color:TAYLOR_PALETTE.ink,unlit:true});
+ if(expression.mouthOpen>.18)out.push({kind:'sphere',position:point(0,-.078,surfaceZ(0,-.078,.012)),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(.050,.020+expression.mouthOpen*.028,.009),color:TAYLOR_PALETTE.ink,unlit:true});
  return out;
 }
 const tailPoint=(t:number)=>new Vec3(.50*Math.sin(t*1.3),-.065-.17*Math.sin(t*Math.PI),-.16-.27*Math.sin(t*Math.PI/2));
