@@ -1,0 +1,67 @@
+[
+  {
+    "source": "after-front.png",
+    "sha256": "8f68aea5f86461f76e26d6215cff933d186b096532fd057f89a9b23113621cc7",
+    "curated": "after-front.webp"
+  },
+  {
+    "source": "after-three-quarter.png",
+    "sha256": "4969d7c83219e3bdf497a44716fa53582e7aee921683416e338e0bdd89f99089",
+    "curated": "after-three-quarter.webp"
+  },
+  {
+    "source": "avatars/arjan-forehand.png",
+    "sha256": "0d37da8598250e430ac7d30d555764c363bcab43960f00bb63dd5161d85067fd",
+    "curated": "avatars/arjan-forehand.webp"
+  },
+  {
+    "source": "avatars/arjan-gait.png",
+    "sha256": "3e15c237a760d6b079212004e8fdf1799d5adc5d4e182d5ee983b09363d7c78d",
+    "curated": "avatars/arjan-gait.webp"
+  },
+  {
+    "source": "avatars/arjan-serve.png",
+    "sha256": "8a721e09280325787ca2f0c09827600d7b317b4fd22d96b107bc1046d17b0767",
+    "curated": "avatars/arjan-serve.webp"
+  },
+  {
+    "source": "avatars/taylor-forehand.png",
+    "sha256": "a490d3fea9c6dfc26ab6ae98e0a15b294337503e5b38673c0b73f72222086db9",
+    "curated": "avatars/taylor-forehand.webp"
+  },
+  {
+    "source": "avatars/taylor-gait.png",
+    "sha256": "ee9e62a23a2b71d194dd73f0d536424aeef931caa2a57c1a46a7de18136dcce9",
+    "curated": "avatars/taylor-gait.webp"
+  },
+  {
+    "source": "avatars/taylor-phone.png",
+    "sha256": "d1a154c9e16dbfcf679efb6bf62a12a3170dd177b1c6a4ad3505eb5d24274e91",
+    "curated": "avatars/taylor-phone.webp"
+  },
+  {
+    "source": "avatars/taylor-serve.png",
+    "sha256": "5ab12e6c3ba2349f474e1409eabc82277f47e3c29e883fddffa1f83676627914",
+    "curated": "avatars/taylor-serve.webp"
+  },
+  {
+    "source": "before-front.png",
+    "sha256": "ae16dd43ee151fef1cc05af21c541225795c93c61aa20153c1ef28dd322b3d81",
+    "curated": "before-front.webp"
+  },
+  {
+    "source": "before-three-quarter.png",
+    "sha256": "545dc589d331f20941d1b700352aacaa34046e7b910cb5df2c0bc46cb45be728",
+    "curated": "before-three-quarter.webp"
+  },
+  {
+    "source": "motion/fractional-joint-pick.png",
+    "sha256": "b5c2876de80ec60eb5e78bb86f7704db8860e9f3043e95f3696194ad45ef983b",
+    "curated": "motion/fractional-joint-pick.webp"
+  },
+  {
+    "source": "motion/taylor-continuous.png",
+    "sha256": "577c354821f329ce569996b4185fb645478f89d200356b99049edb678c2a6897",
+    "curated": "motion/taylor-continuous.webp"
+  }
+]

@@ -142,7 +142,10 @@ for(const side of ['L','R'] as const){
 // A continuous, densely sampled clothing surface follows the existing spine
 // weights. Its profile is apparel, with no changes to the body or contact rig.
 const taylorDress=build();
-const dressProfile=[[.59,.389,.279],[.64,.386,.275],[.79,.302,.210],[1.05,.245,.175],[1.22,.294,.199],[1.30,.308,.204],[1.34,.305,.202],[1.38,.263,.179],[1.415,.190,.136],[1.445,.13,.113]];
+// The supplied front crop establishes the head-to-waist and upper-hip
+// contrast. Keep the anatomical joints fixed and author the costume contour;
+// the cropped lower body is not evidence for new limb lengths.
+const dressProfile=[[.59,.515,.30],[.64,.505,.297],[.79,.390,.247],[1.05,.207,.158],[1.105,.214,.164],[1.22,.278,.194],[1.30,.305,.204],[1.34,.305,.202],[1.38,.263,.179],[1.415,.190,.136],[1.445,.13,.113]];
 const dressAt=(y:number)=>radiusAt(dressProfile,y);
 function clampUnit(t:number){return Math.max(0,Math.min(1,t));}
 const dressRings=build();
@@ -197,4 +200,4 @@ for(const side of ['L','R'] as const){
  const thumbA=point(sign*.042,.006,.027),thumbB=point(sign*.065,.043,.040);
  handVolume(taylorHands,Vec3.lerp(thumbA,thumbB,.5),basis(Vec3.sub(thumbB,thumbA)),new Vec3(.019,Vec3.sub(thumbB,thumbA).len()*.5+.014,.019),bone,6,12);
 }
-export const CHARACTER_SKIN={taylorHands:finish('taylor-sculpted-hands-v1',taylorHands),taylorNeckline:finish('taylor-indigo-neckline-v2',taylorNeckline),taylorDressEdging:finish('taylor-gold-dress-edging-v2',taylorDressEdging),taylorArms:finish('taylor-sculpted-arms-v3',taylorArms),taylorLegs:finish('taylor-legs-v2',taylorLegs),taylorDress:finish('taylor-dress-v3',taylorDress),taylorBoots:finish('taylor-sculpted-boots-v2',taylorBoots),taylorGloves:finish('taylor-tapered-gloves-v2',taylorGloves),top:finish('char-top-v1',top),feminineTop:finish('char-top-feminine-v1',feminineTop),pants:finish('char-pants-v1',pants),arms:finish('char-arms-v1',arms),shorts:finish('char-shorts-v1',shorts),skirt:finish('char-skirt-v1',skirt)};
+export const CHARACTER_SKIN={taylorHands:finish('taylor-sculpted-hands-v1',taylorHands),taylorNeckline:finish('taylor-indigo-neckline-v2',taylorNeckline),taylorDressEdging:finish('taylor-gold-dress-edging-v3',taylorDressEdging),taylorArms:finish('taylor-sculpted-arms-v3',taylorArms),taylorLegs:finish('taylor-legs-v2',taylorLegs),taylorDress:finish('taylor-dress-v4',taylorDress),taylorBoots:finish('taylor-sculpted-boots-v2',taylorBoots),taylorGloves:finish('taylor-tapered-gloves-v2',taylorGloves),top:finish('char-top-v1',top),feminineTop:finish('char-top-feminine-v1',feminineTop),pants:finish('char-pants-v1',pants),arms:finish('char-arms-v1',arms),shorts:finish('char-shorts-v1',shorts),skirt:finish('char-skirt-v1',skirt)};

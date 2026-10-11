@@ -151,3 +151,9 @@ Three browser engines pass 72 responsive view/mode combinations and 300 open/clo
 The shipped 390×844 check reports zero Axe violations, 16 held-contact exits across four opponents and both motion modes, 12 bounded audio buffers with disposal, and five refreshed standalone reloads. A first startup wait timed out after the shipped/audio checks; both its partial report and the successful full repeat are retained. Fresh actual Championship capture has 60 samples, one player contact and one bounce; the replay retains the exact .3166667s contact sample and .050-unit ball/string-center gap.
 
 The uncached standalone diagnostic traced failed parallel module loads to connection resets through the old default QA server. The QA server was corrected to match the existing packaged launcher’s 128-connection accept queue. Five independent fresh-context startups pass; original failed evidence is retained.
+
+## Taylor reference silhouette — October 11 follow-up
+
+Taylor’s dress now narrows at the waist and widens through the upper hip and hem, following the contrast visible in the supplied reference crop. Gold edging shares the contour. The head, face, limb lengths, joint positions, skin weights and Championship solver remain unchanged; the cropped reference is not used to invent full-body dimensions. This is a closer costume silhouette, not an exact reference pose or outfit.
+
+All 24 game suites, 91 portfolio tests, TypeScript, lint (zero errors / 12 retained warnings), 68 release artifacts and the 70-file standalone CRC check pass. Actual moving replay checks cover 540 RAF frames with zero joint-node disagreement; seven registered-rig captures include Taylor on a phone viewport. Five independent uncached standalone startups pass. See [actual before/after and reproduction](evidence/taylor-proportions-20261011/README.md).
