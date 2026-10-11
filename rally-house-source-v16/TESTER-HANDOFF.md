@@ -17,6 +17,10 @@ Then open http://127.0.0.1:8080/ in your browser. Keep that terminal open while 
 
 ## Performance Lab
 
+To capture a new video, choose Taylor or Arjan, select Lab, then Mount phone & record. Your selected avatar seats the phone in a clamp on the courtside post, steps back, and records a short side-step, forehand and recovery. There is one anchored phone and no tripod. Return to the club or cancel whenever you like; cancelled recordings do not count as completed interactions.
+
+The lab opens with the local video beside the recorded motion. Its video, avatar, joint overlay and chart share playback and scrubbing. Save this video downloads your capture. On narrow screens, expand Your anchored-phone video to watch it. Rally House, VectorCourt and AnatomyMotion are identified as apps by Arjan Singh Puniani. This is an in-game camera capture with known animation data; it does not activate your device camera or upload footage. Browsers without a supported video encoder offer the recorded motion alone. Starting another recording replaces the previous recording in this tab.
+
 Choose Lab in the club controls, then See the movement. Your character walks to the instrument before it opens. Switch between Combined, VectorCourt and AnatomyMotion; choose a walk, forehand or serve demo. Pause and scrub to watch the chart, avatar, skeleton and ball stay together. Select Knee, Hip, Ankle, Shoulder or Elbow, or tap a joint in the scene. Use Orbit or drag the scene. Escape or Return to club restores your view.
 
 After playing Championship and returning to the club, the lab also offers your recent 360 captured samples. These captures stay in memory only and reset on a new Championship. The demonstrations use the actual animation and ball solvers; all quantities describe simulated rigs, not camera measurements or a medical assessment. Distances are in club units.

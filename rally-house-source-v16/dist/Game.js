@@ -1,3 +1,4 @@
+import { PhoneCapture } from './analysis/PhoneCapture.js';
 import { deriveActing } from './animation/ActingState.js';
 import { DialogueComposer } from './simulation/DialogueComposer.js';
 import { playerSpec } from './content/PlayerAvatars.js';
@@ -81,6 +82,7 @@ export class Game {
     championshipAudibleVolume = .65;
     spatial;
     performanceLab;
+    phoneCapture;
     motionRecorder = new MotionRecorder();
     noticeTimer = 0;
     worldNotices = [];
@@ -192,6 +194,12 @@ export class Game {
         });
         this.spatial = new SpatialInteractionSystem(this.camera, this.canvas);
         this.performanceLab = new PerformanceLab(this.camera, this.canvas);
+        this.phoneCapture = new PhoneCapture(this.camera, this.canvas);
+        this.performanceLab.onRecord = () => { this.performanceLab.close(); const o = this.world.objects.find(o => o.id === 'performanceLab'), action = this.world.identity.actions(o, this.absoluteMinute).find(a => a.id === 'capture'); this.startClubTouch(o.id, o.label, o.position, action); };
+        window.addEventListener('pagehide', e => { if (e.persisted)
+            this.phoneCapture.cancel();
+        else
+            this.phoneCapture.dispose(); });
         this.performanceLab.onReturn = () => { this.pointers.clear(); this.pointerStart = null; this.lastPointer = null; this.pinchDistance = 0; this.dragged = false; this.spatial.setHover(null); this.canvas.style.cursor = ''; };
         window.addEventListener('pagehide', e => { if (e.persisted)
             this.performanceLab.close();
@@ -245,7 +253,7 @@ export class Game {
             challenge: (id) => { const opponent = this.byId(id); if (opponent)
                 this.startChampionship(opponent); },
             championship: () => this.championship.snapshot(),
-            lab: () => this.performanceLab.report(),
+            lab: () => this.performanceLab.report(), phone: () => this.phoneCapture.report(),
             openLab: () => this.openPerformanceLab(),
             championshipPoint: (winner) => {
                 if (this.championship.phase !== 'serving' && this.championship.phase !== 'rally')
@@ -289,7 +297,7 @@ export class Game {
         this.ui.onSave = () => void this.save(true);
     }
     bindInput() {
-        this.canvas.addEventListener('dblclick', e => { if (this.championship.active || this.performanceLab.active)
+        this.canvas.addEventListener('dblclick', e => { if (this.championship.active || this.performanceLab.active || this.phoneCapture?.active)
             return; this.spatial.dismiss(); const c = this.pickCharacter(e.clientX, e.clientY); if (c) {
             this.camera.focus(c.position.x, c.position.z, 17, 1);
             this.ui.closeContext();
@@ -300,6 +308,7 @@ export class Game {
             this.matchInput.reset();
             this.championshipHud.resetTouch();
             if (document.hidden) {
+                this.phoneCapture?.cancel();
                 this.setChampionshipPaused(true);
                 this.audio.stopAmbience();
             }
@@ -331,6 +340,10 @@ export class Game {
             void this.saveSystem.save(this.snapshot()).then(() => { detail.textContent = 'Your club is saved. Reload to restore the view.'; const button = document.createElement('button'); button.textContent = 'Reload saved club'; button.onclick = () => location.reload(); box.append(button); }).catch(() => { detail.textContent = 'Graphics stopped, and recent changes could not be saved. Keep this tab open.'; });
         });
         document.addEventListener('keydown', e => {
+            if (this.phoneCapture?.active) {
+                this.phoneCapture.key(e);
+                return;
+            }
             if (this.performanceLab?.active) {
                 this.performanceLab.key(e);
                 return;
@@ -389,7 +402,7 @@ export class Game {
             if (this.championship.active)
                 this.matchInput.handleKeyUp(e);
         });
-        this.canvas.addEventListener('wheel', e => { e.preventDefault(); if (this.championship.active)
+        this.canvas.addEventListener('wheel', e => { e.preventDefault(); if (this.championship.active || this.phoneCapture?.active)
             return; if (this.performanceLab.active) {
             this.performanceLab.zoom(e.deltaY * .012);
             return;
@@ -404,7 +417,7 @@ export class Game {
         else if (this.pointers.size === 2)
             this.pinchDistance = this.currentPinch(); });
         this.canvas.addEventListener('pointermove', e => { const prev = this.pointers.get(e.pointerId); if (prev)
-            this.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY }); if (this.championship.active)
+            this.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY }); if (this.championship.active || this.phoneCapture?.active)
             return; if (!this.performanceLab.active)
             this.hoverGround = this.camera.groundPoint(e.clientX, e.clientY); if (!this.performanceLab.active && !prev && !this.buildType) {
             const selected = this.pickWorld(e.clientX, e.clientY);
@@ -477,6 +490,8 @@ export class Game {
     interact(c, type, detail) { return this.relations.interact(c.spec.id, type, this.clock.day, detail); }
     handleTap(x, y) {
         if (this.championship.active)
+            return;
+        if (this.phoneCapture?.active)
             return;
         if (this.performanceLab?.active) {
             this.performanceLab.pickJoint(x, y, this.settings.reducedMotion);
@@ -566,7 +581,7 @@ export class Game {
             } });
     }
     startChampionship(opponent) {
-        if (this.performanceLab?.active)
+        if (this.performanceLab?.active || this.phoneCapture?.active)
             return;
         const profile = championshipOpponentFor(opponent.id);
         if (!profile) {
@@ -953,6 +968,14 @@ export class Game {
             this.activities.transition(a, 'resolving');
         }
         if (a.phase === 'resolving' && a.phaseTime > .7) {
+            if (run.objectId === 'performanceLab' && run.touch.id === 'capture' && this.phoneCapture) {
+                this.ui.closeContext();
+                this.spatial.dismiss();
+                this.phoneCapture.onComplete = () => { this.activities.finish(a, run.touch.title, () => { this.world.identity.complete(run.objectId, run.touch.title); this.life.addMemory(this.clock.day, `${this.player.spec.name} recorded movement with the anchored phone.`); }); this.releaseActivity(a); void this.save(); this.openPerformanceLab(); };
+                this.phoneCapture.onCancel = () => this.cancelActivity(a);
+                this.phoneCapture.open(this.player);
+                return;
+            }
             this.activities.finish(a, run.touch.title, () => {
                 if (this.affordances.objects[run.objectId])
                     this.affordances.visit(run.objectId, ['player'], this.clock.day);
@@ -980,7 +1003,7 @@ export class Game {
         this.pointerStart = null;
         this.lastPointer = null;
         this.audio.click();
-        this.performanceLab.open(this.player.spec, this.motionRecorder?.clip ?? null);
+        this.performanceLab.open(this.player.spec, this.motionRecorder?.clip ?? null, this.phoneCapture?.last ?? null);
     }
     playObjectSound(effect, contact) {
         if (['clock', 'stringing', 'bell'].includes(effect) && contact && this.canvas) {
@@ -1843,6 +1866,10 @@ export class Game {
         }
     }
     updateFixed(dt) {
+        if (this.phoneCapture?.active) {
+            this.phoneCapture.update(dt);
+            return;
+        }
         if (this.performanceLab?.active)
             return;
         this.clock.update(dt);
@@ -2123,6 +2150,7 @@ export class Game {
         const aspect = this.renderer.resize();
         this.camera.setAspect(aspect);
         this.performanceLab?.update(this.renderDt, this.settings.reducedMotion);
+        this.phoneCapture?.frameCamera(this.settings.reducedMotion);
         if (this.championship.active && this.championshipOpponentId) {
             const opponent = this.byId(this.championshipOpponentId);
             if (opponent) {
@@ -2148,7 +2176,7 @@ export class Game {
                 return { id: c.id, position: c.position, name: c.spec.name, activity: label, select: () => this.openCharacter(c) };
             });
         }
-        this.spatial.update(this.renderDt, this.performanceLab.active || this.championship.active || !!document.querySelector('#context.open,#book.open,#buildPanel.open'), this.settings.reducedMotion, this.worldNotices);
+        this.spatial.update(this.renderDt, this.performanceLab.active || this.championship.active || this.phoneCapture?.active || !!document.querySelector('#context.open,#book.open,#buildPanel.open'), this.settings.reducedMotion, this.worldNotices);
         const architecture = this.performanceLab.active ? this.world.meshes.filter(m => m.id !== 'court-pendant') : this.world.meshes;
         const meshes = [...architecture, ...this.spatial.meshes(), ...this.world.placementMeshes(), ...this.world.dynamicMeshes(this.settings.reducedMotion ? 0 : now / 1000, this.clock.minutes, this.camera.position, this.renderDt, this.sportFocus, now / 1000)];
         if (!this.performanceLab.active) {
@@ -2165,8 +2193,7 @@ export class Game {
         }
         else
             meshes.push(...this.performanceLab.meshes(this.settings.reducedMotion));
-        if (Math.hypot(this.player.position.x + 3.8, this.player.position.z + 8.35) < 3 || this.performanceLab.active)
-            meshes.push({ kind: 'roundBox', position: new Vec3(-3.8, 1.48, -8.18), scale: new Vec3(1.48, .92, .01), color: '#92d5c0', alpha: .08, unlit: true, noShadow: true });
+        meshes.push(...(this.phoneCapture?.meshes() ?? []));
         if (this.buildType && this.hoverGround) {
             const x = Math.round(this.hoverGround.x * 2) / 2, z = Math.round(this.hoverGround.z * 2) / 2;
             meshes.push(...this.previewMeshes(this.buildType, x, z, this.placementClear(this.buildType, x, z, this.buildRotation)));
@@ -2176,6 +2203,7 @@ export class Game {
         const contactView = this.championshipCamera.renderImpulse(this.settings.reducedMotion);
         this.renderItems = meshes.length;
         this.renderer.render(meshes, this.camera.viewProjection(contactView), this.atmosphere.update(this.world.lighting(this.clock.minutes, this.sportFocus), this.renderDt), this.camera.position);
+        this.phoneCapture?.afterRender();
         if (this.activeSpeechId && performance.now() < this.speechUntil) {
             const c = this.byId(this.activeSpeechId);
             if (c) {

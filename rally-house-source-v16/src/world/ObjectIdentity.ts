@@ -11,7 +11,7 @@ const observe:ObjectAction={id:'observe',title:'Observe',detail:'Follow the bran
 const water:ObjectAction={id:'water',title:'Water',detail:'A small pour into the soil. Then let it drink.',animation:'watch',effect:'bonsai',prop:'wateringCan',seconds:3,gesture:'offer',water:true};
 const action=(id:string,touch:ClubTouch):ObjectAction=>({id,...touch});
 export const OBJECT_ACTIONS:Record<string,readonly ObjectAction[]>={
-  performanceLab:[{id:'analyze',title:'See the movement',detail:'Walk to the instrument. Replay court paths and body joints.',animation:'watch',effect:'read',prop:null,seconds:1.0,gesture:'point'}],
+  performanceLab:[{id:'analyze',title:'See the movement',detail:'Walk to the instrument. Replay court paths and body joints.',animation:'watch',effect:'read',prop:null,seconds:1.0,gesture:'point'},{id:'capture',title:'Mount phone & record',detail:'Seat your phone in the post anchor. Step back, record, then open VectorCourt and AnatomyMotion.',animation:'watch',effect:'read',prop:null,seconds:.3,gesture:'point'}],
   bonsai:[observe,water],plant:[{...observe,detail:'Notice the shape and the moving leaves.'},water],
   clock:[{id:'inspect',title:'Play with the mechanism',detail:'A tiny exploded view. Every piece finds its way home.',animation:'watch',effect:'clock',prop:null,seconds:3.5,gesture:'think',assembly:true}],
   board:[{id:'read',title:'Read',detail:'Look at the club’s board and remembered moments.',animation:'watch',effect:'read',prop:null,seconds:2.8,gesture:'think'},

@@ -1,0 +1,5 @@
+{
+  "errors": [],
+  "http": [],
+  "harnessIssue": "Initial check read page.frames immediately after React click, before the iframe attached. Corrected check waits for the iframe and native avatar controls."
+}
