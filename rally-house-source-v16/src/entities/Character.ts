@@ -31,12 +31,13 @@ const isShot=(s:AnimState):s is ShotState=>s==='swingForehand'||s==='swingBackha
 const MOVING=new Set<AnimState>(['walk','jog','shuffle']);
 
 interface FacePose {smile:number;mouthOpen:number;browRaise:number;squint:number;focus:number;}
-interface Pose {
+export interface CharacterPose {
   baseY:number;breathe:number;walking:boolean;gait:number;torsoYaw:number;hipYaw:number;headYaw:number;right:Vec3;forward:Vec3;
   shoulderL:Vec3;shoulderR:Vec3;elbowL:Vec3;elbowR:Vec3;handL:Vec3;handR:Vec3;hipL:Vec3;hipR:Vec3;kneeL:Vec3;kneeR:Vec3;footL:Vec3;footR:Vec3;
   torsoCenter:Vec3;pelvisCenter:Vec3;head:Vec3;racketGrip:Vec3;racketHandleTop:Vec3;racketCenter:Vec3;racketRot:Vec3;
   lean:number;knee:number;shot:boolean;sp:number;face:FacePose;weightShift:number;
 }
+type Pose=CharacterPose;
 
 export interface CharacterKinematics {
   leftFoot:Vec3;rightFoot:Vec3;leftHand:Vec3;rightHand:Vec3;leftFootPlanted:boolean;rightFootPlanted:boolean;racketGrip:Vec3;racketCenter:Vec3;
@@ -451,6 +452,12 @@ export class Character {
       if(this.rightFootLock){result.footR=this.rightFootLock.clone();result.kneeR=Vec3.lerp(result.hipR,result.footR,.54).add(this.localVector(.015,.04,.10));}
     }
     this.lastPose=result;return result;
+  }
+
+  /** Read-only, detached world-space landmarks from the same solver that owns contact. */
+  analysisPose():CharacterPose{
+    const p=this.pose();
+    return Object.fromEntries(Object.entries(p).map(([k,v])=>[k,v instanceof Vec3?v.clone():typeof v==='object'?{...v}:v])) as unknown as CharacterPose;
   }
 
   meshes(selected=false):RenderItem[]{

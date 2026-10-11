@@ -1,0 +1,87 @@
+{
+  "recording": {
+    "samples": 36,
+    "source": "game-recording",
+    "contacts": 1,
+    "bounces": 0,
+    "contactError": 0.05000000000000025
+  },
+  "replay": {
+    "active": true,
+    "kind": "championship",
+    "mode": "combined",
+    "focus": "elbow",
+    "time": 0.31666666666666665,
+    "samples": 36,
+    "playing": false,
+    "frame": 0.31666666666666665,
+    "meshes": 138,
+    "angle": "19°",
+    "clock": 1072,
+    "root": {
+      "x": -3.8,
+      "y": 0,
+      "z": -7.35
+    }
+  },
+  "viewports": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "axe": 0,
+      "shippedLab": true,
+      "debugHooks": false
+    },
+    {
+      "width": 1728,
+      "height": 1117,
+      "axe": 0,
+      "shippedLab": true,
+      "debugHooks": false
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "axe": 0,
+      "shippedLab": true,
+      "debugHooks": false
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "axe": 0,
+      "shippedLab": true,
+      "debugHooks": false
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "axe": 0,
+      "shippedLab": true,
+      "debugHooks": false
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "axe": 0,
+      "shippedLab": true,
+      "debugHooks": false
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "axe": 0,
+      "shippedLab": true,
+      "debugHooks": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "axe": 0,
+      "shippedLab": true,
+      "debugHooks": false
+    }
+  ],
+  "errors": [],
+  "requests": []
+}

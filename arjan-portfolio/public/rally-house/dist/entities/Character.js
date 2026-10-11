@@ -934,6 +934,11 @@ export class Character {
         this.lastPose = result;
         return result;
     }
+    /** Read-only, detached world-space landmarks from the same solver that owns contact. */
+    analysisPose() {
+        const p = this.pose();
+        return Object.fromEntries(Object.entries(p).map(([k, v]) => [k, v instanceof Vec3 ? v.clone() : typeof v === 'object' ? { ...v } : v]));
+    }
     meshes(selected = false) {
         const m = [];
         const p = this.position;

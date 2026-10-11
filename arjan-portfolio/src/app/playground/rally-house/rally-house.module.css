@@ -45,12 +45,12 @@
 .loading { position: absolute; top: 12px; left: 20px; background: #244c3e; padding: 12px; border-radius: 5px; }
 .playerFooter { display: flex; justify-content: space-between; align-items: center; padding: 14px 0 25px; font-size: 11px; color: #d2dfc9; }
 .playerFooter button { border: 0; background: transparent; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: 5px; cursor: pointer; padding: 8px; }
-.controls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; border-top: 1px solid #ffffff30; padding-top: 19px; }
+.controls { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; border-top: 1px solid #ffffff30; padding-top: 19px; }
 .controls p { margin: 0; font-size: 12px; line-height: 1.8; color: #d2dfc9; }
 .controls strong { display: block; color: #fffdf4; margin-bottom: 7px; font-size: 13px; }
 .details { display: grid; grid-template-columns: 1.1fr .9fr; gap: 65px; align-items: center; padding-top: 86px; padding-bottom: 68px; }
 .details h2 { margin-bottom: 28px; }
-.decisions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; padding-top: 32px; padding-bottom: 55px; border-top: 1px solid #244c3e25; }
+.decisions { display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px; padding-top: 32px; padding-bottom: 55px; border-top: 1px solid #244c3e25; }
 .decisions article > span { font-size: 11px; color: #526358; }
 .decisions h3 { font-size: 17px; font-weight: 500; margin-top: 18px; line-height: 1.5; }
 .decisions p { font-size: 12px; }

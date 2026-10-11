@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {chromium,browserOptions} from './runtime.mjs';
 const avatar=process.argv[2]??'Arjan';
-const output=path.resolve('../takeover-evidence/impact-20261009'),report={viewports:[],cycles:[],errors:[],requests:[]};
+const output=path.resolve(process.env.QA_OUT??'../takeover-evidence/impact-20261009'),report={viewports:[],cycles:[],errors:[],requests:[]};fs.mkdirSync(output,{recursive:true});
 const browser=await chromium.launch({...browserOptions,args:['--use-angle=metal']});
 const widths=[[844,390],[1920,1080],[1728,1117],[1440,900],[1280,800],[1024,768],[430,932],[390,844],[720,900]];
 try{

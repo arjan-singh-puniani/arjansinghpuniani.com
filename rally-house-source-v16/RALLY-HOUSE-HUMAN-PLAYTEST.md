@@ -56,3 +56,10 @@ For this candidate, start with a fresh or preserved club save. In 30 seconds, as
 Record wrong selections, uncertainty about an object, unreadable cues, invisible hands, overlap, slow approach, ignored intent, and the exact first time the visitor smiles or wants another try. Test sound at conversational Tech Week volume; compare mute and the selected heavy impact. Do not coach timing before observing the first return. Ask which contact feels earned, which interaction feels authored, and which feels decorative.
 
 Open gates: independent human enjoyment/appeal judgment; physical iPhone/iPad Safari and Android performance/touch/safe areas; real OS/tab interruption; extended sessions beyond the automated soak. Firefox/WebKit automation is engine coverage, not a physical Safari device certification. No professional character asset was supplied in this pass.
+
+
+## Performance Lab handoff
+
+This pass has automated browser play, source tests and inspected screenshots; it does not claim a new human study. The user's earlier Championship enthusiasm is actual unsolicited feedback about that mode, not validation of lab measurement accuracy.
+
+Tech Week test: let a new visitor enter without narration, find Lab, trigger See the movement, switch sources, pause at contact, select the elbow and return. Ask: what is recorded versus demonstrated? Can they find replay without help? Does the selected joint match what they expect? Does the chart cursor explain the pose? Do they understand club units and the source labels? Can they return and still play another point? Record device/browser, time, confusion, quotes and failures. Do not count scripted automation as participants or fabricate results.

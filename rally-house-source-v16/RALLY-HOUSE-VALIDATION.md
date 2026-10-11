@@ -94,3 +94,42 @@ Native UI actions are real, while fixed-step acceleration makes travel/use/sessi
 ## Art pass — 2026-10-11
 
 All 20 game suites pass, including the new geometry and shop-circulation regressions. Portfolio verification passes 91 tests and 31 routes, with zero lint errors and 14 retained warnings. Original runtime before/after captures and browser, touch, accessibility, package and rally measurements are curated under evidence/art-20261011. The detailed scope and remaining human/physical-device gates are recorded in RALLY-HOUSE-ART-DIRECTION-20261011.md.
+
+## Performance Lab — 11 October 2026
+
+Candidate begins at merged main `8790d34`. Taylor's prior likeness/rig work and the selected heavy Championship profile are preserved. This evidence is separate from the older counts above.
+
+| Gate | Result |
+|---|---|
+| Game | All **22 suites pass**; includes 43 actual object flows, held-contact ball snapshot isolation, three real-solver lab demos, derived metrics, missing-gap abstention, cosine contact-lens envelope, bounded 360-sample capture and live-state freeze |
+| Portfolio | 91 tests pass; TypeScript and production build pass; latest lint has zero errors and 12 retained warnings |
+| Source/served boundary | **68 artifacts match**, including lab.css and four new compiled modules; relative imports resolve |
+| Lab browser matrix | Chromium, Firefox and WebKit each pass **24 viewports/modes**, native station use, native controls, visible joint picking at peak separation, 100 replay cycles, exact camera restoration, simulation isolation and persisted-pagehide/native reopening |
+| Shipped portfolio | Eight viewport sizes pass: Analyze image loads, no iframe before Play, zero Axe violations, native station entry and all three lab modes, source labels, ankle-height terminology, return, no production debug hooks and no recorded JS/asset errors |
+| Real Championship replay | Fresh RAF capture: 61 samples, one player contact, one actual bounce; contact ball/string-center gap .050 club units; selected timeline time and frame both .3166667s |
+| Match regression | Native shipped 390×844 match; 16 exits during held contact across four opponents/full and reduced motion; exact restoration, no stale hold/input/match; 12 bounded audio buffers/disposal |
+| Standalone package | 70 files, approximately 221 KiB, CRC verified; refreshed extraction survives five independent reloads |
+| Native capability checks | VectorCourt: 35 Swift + 28 Python tests. AnatomyMotion archive core: 77 Swift tests. No native source modified or private footage copied |
+| Original dirty trees | Both Desktop trees preserved; scoped status/patch/hash inventories retained outside the release; no blanket reset/clean/deletion |
+
+Viewport sizes: 1920×1080, 1728×1117, 1440×900, 1280×800, 1024×768, 844×390, 430×932, 390×844. Browser tests use native actions, with explicit fixed-step acceleration for long travel and repeated lifecycle checks. Real recording uses the ordinary RAF loop. Automation is not a human participant.
+
+### Observed frame intervals
+
+120 RAF intervals per scene, 1440×900, same local Mac, sequential engine runs. The lab sample is playing gait, so differing engine elapsed time also means differing rendered trail prefixes. Values are milliseconds; these are observed frame intervals, not an isolated GPU benchmark.
+
+| Engine | Club median / p95 / p99 | Lab median / p95 / p99 |
+|---|---|---|
+| Chromium, ANGLE Metal Apple M2 | 16.7 / 18.4 / 18.6 | 16.7 / 19.4 / 24.3 |
+| WebKit, Apple GPU | 17 / 18 / 19 | 17 / 18 / 19 |
+| Firefox, renderer reports Apple M1 or similar | 16 / 22 / 35 | 28 / 30 / 32 |
+
+Chromium and WebKit remain around 60 fps here; Firefox lab is approximately 35 fps. This is not a universal 60-fps or physical-phone claim. An earlier software-backend Chromium run was very slow even at baseline; its separate report is preserved rather than hidden or used as hardware evidence.
+
+Failures found and fixed: coverage buried inside the court; a held contact ball absent from free-flight-only capture; foreground pendants hiding serve contact; Safari native selects below the intended target height; small landscape station framing; pointer/pinch/hover isolation; persisted-pagehide removing reusable controls; and picking the unshifted joint instead of the contact-lens node. Harness fixes include exact action names, explicit Axe contexts and fresh first-run contexts. A/B/C quiet cells, overlapping discs and strong cells were actually captured; the quiet cells remain selected.
+
+Reproduce: `npm test`, `npm run release:check`, `npm run qa:lab`, `QA_ENGINE=firefox npm run qa:lab`, `QA_ENGINE=webkit npm run qa:lab`, `node qa/lab-release.mjs`, `QA_RECORDING_ONLY=1 node qa/lab-release.mjs`, `python3 qa/package-playtest.py`, and `QA_WIDTH=390 QA_OUT=evidence/performance-lab-20261011/impact node qa/impact-validation.mjs`. Source 8078, portfolio 3096 and extracted package 8079 are QA URLs. Set `WEBKIT_EXECUTABLE` when needed; the harness uses the available installed runtime or the normal Playwright default. `node qa/curate-lab-evidence.mjs` produces smaller genuine capture copies and the portfolio still.
+
+See [current evidence](evidence/performance-lab-20261011/README.md). Raw PNGs remain locally preserved; curated WebP copies and source hashes accompany the release. The five nondeterministic simulation outputs are retained under the new evidence folder while dated historical QA fixtures retain their original bytes.
+
+Open gates: independent human taste/listening, physical iPhone/Android performance and OS lifecycle, Firefox optimization, specialist assets, and native camera/held-out research validation. The browser lab computes **simulation geometry**. It does not run CV, infer ground reaction force, measure muscle activation or make a clinical claim. The scripted page-cache event exercises handlers; it is not proof of every OS/browser cache behavior or a zero-memory-leak result.

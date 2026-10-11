@@ -4,6 +4,7 @@ import { Navigation } from './Navigation.js';
 import { rotatedFootprint } from '../content/DecorCatalog.js';
 import { ObjectIdentity, rayBox } from './ObjectIdentity.js';
 import { AuthoredObjects, authorObjectTargets } from './AuthoredObjects.js';
+import { PERFORMANCE_STATION, stationMeshes } from './PerformanceStation.js';
 export class World {
     meshes = [];
     objects = [];
@@ -45,6 +46,9 @@ export class World {
         for (const object of this.objects)
             object.interactionPoint = contacts[object.id];
         authorObjectTargets(this.objects);
+        this.objects.push(PERFORMANCE_STATION);
+        this.meshes.push(...stationMeshes());
+        this.nav.obstacles.push({ x: -3.8, z: -8.35, w: 1.7, d: .75 });
         this.identity = new ObjectIdentity(this.objects);
         this.authored = new AuthoredObjects(this.meshes, this.identity);
         // The wall display includes projecting shelves and hanging handles. Its
@@ -303,6 +307,7 @@ export class World {
     buildFloorProgram() {
         const t = palette.terracotta, pe = palette.peach, bl = palette.blue, pk = palette.pink, mi = palette.mint, gd = palette.gold;
         for (const px of [-1.3, 3.7]) {
+            const first = this.meshes.length;
             const noCast = () => { this.meshes[this.meshes.length - 1].noShadow = true; };
             for (const rz of [-1.15, 1.15]) {
                 this.add('cylinder', px, 4.33, rz, .04, .66, .04, '#8d968c', 0, 1, false, undefined, 'metal');
@@ -314,6 +319,8 @@ export class World {
             noCast();
             this.rb(px, 3.86, 0, 3.16, .11, .34, '#f0c98a', 0, 1, true, undefined, 'glass');
             this.rb(px, 3.83, 0, 3.24, .05, .42, '#e8b877', 0, .45, true, undefined, 'glass');
+            for (let i = first; i < this.meshes.length; i++)
+                this.meshes[i].id = 'court-pendant';
         }
         this.add('box', -9.3, .055, 1.6, 3.5, .06, 4.3, '#8fb0b3', 0, 1, false, undefined, 'fabric');
         this.add('box', -9.3, .075, 1.6, 3.1, .05, 3.9, '#9dbcbd', 0, 1, false, undefined, 'fabric');

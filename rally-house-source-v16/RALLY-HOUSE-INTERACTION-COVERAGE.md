@@ -55,3 +55,8 @@ Buildable objects use specific mappings: leaves brush, seats sit, tables tea/rea
 Clock: 240 full + 240 cancelled + 240 reduced-motion restores, plus three live-time invocation snapshots. Water: actual hand/soil contact; cooldown and reload. Board: sketch → erase → sketch native UI and actual generated ink. Bell/rack: targeted reach and actual owned geometry. Machine: one BallPhysics launch/bounce, rather than repeated fake effect balls. Seats: actual height, approach, release, and seated ball gaze.
 
 Browser coverage, isolated simulation fixtures, measured frame timings and device limits are recorded separately in RALLY-HOUSE-VALIDATION.md. Count is coverage, not a numerical enjoyment score.
+
+
+| New identity | Affordance | Selection / collision | Actor / object feedback | Social / persistence | QA |
+|---|---|---|---|---|---|
+| Performance Lab | See the movement; choose court/body/combined; pause/scrub/orbit/select joint | Deliberate ray box, separate physical footprint, free authored approach | Walk, look, point; proximity screen wake; registered replay and plot | Existing visibility/cooldown witness; completed visit history saved; captures transient | Core math/capture tests, native station transaction, 8 viewport × 3 mode matrix, repeated exact returns |

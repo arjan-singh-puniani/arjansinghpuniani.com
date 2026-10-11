@@ -25,6 +25,8 @@ for(const hz of [30,60,120])for(const quality of Object.keys(CHAMPIONSHIP_CONTAC
  assert.equal(player.animTime,contactTime,'Stroke holds at the real contact pose');
  assert(player.position.x>x,'Contact resistance never freezes steering');
  assert(Vec3.sub(match.stagedBall(match.pending),player.racketContactFrame().center).len()<.12);
+ assert.deepEqual(match.visibleBallPosition(),match.stagedBall(match.pending),'Replay captures the held ball that rendering displays');
+ const captured=match.visibleBallPosition();captured.x+=100;assert(Vec3.sub(match.visibleBallPosition(),player.racketContactFrame().center).len()<.12,'Replay snapshots cannot mutate the live staged ball');
  let elapsed=part,release=null;
  while(elapsed<.16){player.update(1/hz);opponent.update(1/hz);match.update(1/hz);elapsed+=1/hz;if(match.pending.released&&release===null)release=elapsed;}
  assert(Math.abs(player.animTime-contactTime-(elapsed-feel.hold))<1e-7,'Only the authored hold is removed from the animation clock');

@@ -50,3 +50,8 @@ npm test
 Node 22 and TypeScript 5.9.3 were used. Browser QA additionally requires Playwright and installed browser executables; qa/runtime.mjs supports PLAYWRIGHT_MODULE and CHROMIUM_EXECUTABLE overrides. No runtime network service, account, paid API or generated portrait asset is required.
 
 Current technical documents: ACTING-SYSTEM.md, DIALOGUE-COMPOSITION.md, MEMORY-RETENTION.md, SAVE-CONCURRENCY.md, CHARACTER-ASSET-PIPELINE.md, LONG-HORIZON-QA.md and DEVICE-QA.md. Older version-labelled documents describe historical builds and are not fresh verification claims. The original canonical v15 ZIP is preserved intact under reference-v15/.
+
+
+### Performance Lab (11 October 2026)
+
+A native in-world analysis station connects court-space replay with body-space rig inspection. Find it with Lab, complete See the movement, then scrub walking/forehand/serve demonstrations or your recent Championship. Court paths, coverage, contact/bounce markers, joints and the chart share one timestamp. Source labels distinguish authored demos from game recordings; no native camera/CV pipeline or clinical measurement is claimed. See PERFORMANCE-LAB-DESIGN.md and PERFORMANCE-LAB-IMPLEMENTATION.md. Run `npm run qa:lab` for the real-browser matrix, lifecycle and profile harness.
