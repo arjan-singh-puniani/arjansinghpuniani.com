@@ -1,6 +1,7 @@
 import type {AnimState, Character} from '../entities/Character.js';
 import type {InteractionFxKind} from '../world/World.js';
 import type {Vec3} from '../rendering/Math3D.js';
+import type {DecorType} from '../content/DecorCatalog.js';
 
 export interface ClubTouch {
   title:string;
@@ -9,6 +10,7 @@ export interface ClubTouch {
   effect:InteractionFxKind;
   prop:Character['socialProp'];
   seconds:number;
+  gesture?:'think'|'point'|'inspect'|'offer';
 }
 
 /** Shared by built-in objects and player-placed furniture. No new inventory. */
@@ -22,20 +24,24 @@ export const CLUB_TOUCHES:Record<string,ClubTouch>={
   water:{title:'Take a cool drink',detail:'Fill, lift, take a breath.',animation:'drink',effect:'water',prop:'cup',seconds:3.2},
   board:{title:'Leaf through the notes',detail:'One useful cue from the last lesson.',animation:'watch',effect:'paper',prop:'notebook',seconds:3},
   paper:{title:'Turn a page',detail:'The club journal has a little history.',animation:'watch',effect:'paper',prop:'notebook',seconds:3},
-  lamp:{title:'Warm your hands',detail:'A small pool of light to pause beside.',animation:'watch',effect:'lamp',prop:null,seconds:2.5},
+  lamp:{title:'Adjust the glow',detail:'A small pool of light to pause beside.',animation:'watch',effect:'lamp',prop:null,seconds:2.5},
   trophy:{title:'Look a little closer',detail:'A club memory, kept on the shelf.',animation:'watch',effect:'comfort',prop:null,seconds:2.5},
 };
 
-export function touchForDecor(type:string){
+export function touchForDecor(type:DecorType):ClubTouch{
   if(['bench','stool'].includes(type))return CLUB_TOUCHES.lounge;
-  if(['plant','planter'].includes(type))return CLUB_TOUCHES.bonsai;
-  if(['lamp','lantern'].includes(type))return CLUB_TOUCHES.lamp;
-  if(['racketRack','tennisBag'].includes(type))return CLUB_TOUCHES.equipment;
-  if(['cafeTable','sideTable'].includes(type))return CLUB_TOUCHES.cafe;
+  if(['plant','planter'].includes(type))return {...CLUB_TOUCHES.bonsai,title:'Brush the leaves',detail:'A light touch, a little leaf motion.',effect:'leaves',prop:null,gesture:'offer'};
+  if(['lamp','lantern'].includes(type))return {...CLUB_TOUCHES.lamp,title:'Pause in the light',gesture:'think'};
+  if(type==='racketRack')return {...CLUB_TOUCHES.equipment,gesture:'inspect'};
+  if(type==='tennisBag')return {...CLUB_TOUCHES.trophy,title:'Check your kit',effect:'read',gesture:'inspect'};
+  if(type==='cafeTable')return CLUB_TOUCHES.cafe;
+  if(type==='sideTable')return {...CLUB_TOUCHES.paper,title:'Read at the table'};
   if(type==='towelRack')return {...CLUB_TOUCHES.lounge,title:'Cool down',animation:'stretch' as AnimState,seconds:2.8};
   if(type==='trophy')return CLUB_TOUCHES.trophy;
   if(type==='scoreboard')return CLUB_TOUCHES.board;
-  return CLUB_TOUCHES.training;
+  if(['basket','ballHopper'].includes(type))return {...CLUB_TOUCHES.training,title:'Check the ball supply',effect:'read',prop:'ball'};
+  if(type==='coneSet')return {...CLUB_TOUCHES.trophy,title:'Trace the footwork pattern',effect:'read',animation:'stretch'};
+  throw new Error(`Missing authored interaction for decor: ${type}`);
 }
 
 /** Attention is bounded, distance-based, and never interrupts a reservation. */

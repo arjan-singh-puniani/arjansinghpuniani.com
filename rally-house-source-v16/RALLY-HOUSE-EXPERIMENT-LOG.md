@@ -56,3 +56,22 @@ Initial tiny decision numbers failed contrast at approximately 3.91:1. A darker 
 ## Experiments deliberately not shipped
 
 No net hop was attempted: route-around meets ordinary traversal with a much smaller animation risk. No new hit-stop/audio/lighting profile was shipped without a convincing comparison. Existing continuous movement, shot safety, tactile effects, procedural atmosphere and spectator tracking already passed baseline tests. Historical patch scripts were not rerun over newer owners. Scope stayed concentrated on perceptible gaps; an authored motion library and physical-device/listening tests remain the next sources of useful evidence.
+
+## Object identity follow-up — 10 October 2026
+
+| Trial | Evidence / failure | Decision |
+|---|---|---|
+| Floor-circle picks vs geometry-aligned depth boxes | Clock/board anchors did not correspond to visible geometry | Adopt separated proxies and actual surface anchors |
+| Broad character screen-radius priority | Foreground/distant selections could conflict | Use unified nearest-depth picks; small prop tolerance remains depth checked |
+| Bonsai front vs side approach | Initial approach overlapped sectional; canopy obscured pose | Keep clear north/west view/care spots; inspect both camera views |
+| Fake floating racket / repeated machine effect balls | Response did not belong to the selected thing | Delete those effects from candidate; move actual grid and launch one physics ball |
+| Reachable pluck vs high hanging display | Shop frame head is above reliable standing-arm reach | Inspect high frames; pluck reachable court/bench frames |
+| Old shared court-side exit | Repeated challenges congested narrow circulation | Assign four distinct safe spectator spots |
+| Adjacent bench pair / basket beside bench | Collision and settled actor blocked the second arrival | Move basket beside rack; nearer arrival occupies far seat first |
+| Walking-clearance visibility | Low bench/net blocked actual witness visibility | Use eye-level tall-solid occlusion separate from navigation |
+| Fixed 250 ms cross-engine Find check | Firefox/WebKit harness raced camera RAF | Await settled visible card; native keyboard completion passes |
+| Lifecycle assertion with autonomous bookings | Legitimate new booking after return failed a no-owner assertion | Isolate autonomous scheduling for session cleanup; broad social tests still run separately |
+
+Rejected effects were removed from the current code; their historical originals remain in the verified archive. See current validation for final runs and limits.
+
+The secondary seated-watch browser check exposed two ordering failures: the exhibition could finish during the player's walk, and its launch tick changed the ball after gaze was sampled. Exhibition creation now waits for seated arrival; watch duration counts actual active-ball time with a bounded wait, and gaze uses the final court pose. A real Game regression and 120 native-browser active-ball samples verify the resulting behavior. Unknown future decor types also fail explicitly instead of inventing Inspect.

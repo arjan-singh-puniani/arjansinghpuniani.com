@@ -14,9 +14,11 @@ try{
  await page.waitForFunction(()=>window.__rh?.ready);
  await page.getByText('Arjan',{exact:true}).click();
  await page.waitForTimeout(800);
- await page.evaluate(()=>{
-  const g=window.__rh.game;
-  g.autosave=-10000;g.clock.paused=true;g.camera.pin();
+  await page.evaluate(()=>{
+   const g=window.__rh.game;
+   g.autosave=-10000;g.clock.paused=true;g.camera.pin();
+   // Isolate session ownership from legitimate new autonomous bookings after return.
+   g.observationStarted=true;g.schedule.update=()=>{};g.quietLife=()=>{};g.everyday.next=g.history.nextSocial=g.history.nextObject=1e12;
   window.optimizerAudio={nodes:new Set(),connected:0,disconnected:0};
   const connect=AudioNode.prototype.connect,disconnect=AudioNode.prototype.disconnect;
   AudioNode.prototype.connect=function(...args){
@@ -36,7 +38,7 @@ try{
    const camera=JSON.stringify(g.camera.captureState());
    g.startChampionship(g.actor(['leo','coach','mika','nia'][i%4]));
    for(let n=0;n<6000&&g.championship.phase!=='serving';n++)g.updateFixed(1/60);
-   if(g.championship.phase!=='serving')throw Error('Court entry failed '+i);
+   if(g.championship.phase!=='serving')throw Error('Court entry failed '+i+' '+JSON.stringify({phase:g.championship.phase,actors:g.characters.map(c=>({id:c.id,position:c.position,path:c.path,index:c.pathIndex,major:c.majorActivity})),activities:g.activities.active,routes:[...g.routes]}));
    g.interactiveMatch.prepareShot('player','serve','perfect');
    for(let n=0;n<200&&!g.interactiveMatch.pending?.impactStarted;n++)g.updateFixed(1/120);
    if(!g.interactiveMatch.pending?.impactStarted)throw Error('Contact entry failed '+i);
@@ -77,7 +79,7 @@ try{
  console.log('32 lifecycle cycles PASS',JSON.stringify(report.summary));
  await context.close();
 }finally{
- report.limits=['Manual fixed ticks accelerate approach/exit; paused freeze, Resume click and short flight use live RAF.','Total DOM can vary transiently by one node; bounded range and final return are checked.','AudioNode instrumentation starts after initial ambience and tracks later outgoing connections, not browser-internal allocation.','Heap is coarse, without forced garbage collection or long-duration leak proof.'];
+ report.limits=['Manual fixed ticks accelerate approach/exit; paused freeze, Resume click and short flight use live RAF. Autonomous scheduling is held during this lifecycle isolation test.','Total DOM can vary transiently by one node; bounded range and final return are checked.','AudioNode instrumentation starts after initial ambience and tracks later outgoing connections, not browser-internal allocation.','Heap is coarse, without forced garbage collection or long-duration leak proof.'];
  fs.mkdirSync('../takeover-evidence/session-20261009',{recursive:true});
  fs.writeFileSync('../takeover-evidence/session-20261009/optimizer-lifecycle.json',JSON.stringify(report,null,2));
  await browser.close();

@@ -1,0 +1,261 @@
+[
+  {
+    "archive": "/Users/arjan/Desktop/arjansinghpuniani.com/Rally-House-Playable-RC3.4-cozy-atmosphere.zip",
+    "entries": 28,
+    "source": [
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/apply_hotfix.py",
+        "sha256": "3f5fe5b187104c9424b9a3c1e21e1f59558e373c62910530b62d3dad350ff5e9",
+        "size": 2825
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/release_candidate.py",
+        "sha256": "ea1429e26072ca66356095f0a6b6925b74967e999269ec4158fa943fbc609cab",
+        "size": 6569
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/championship.css",
+        "sha256": "f72c00614e37dc7ff5a231c04113e12f84c65fad33dfaadf25c47f16e6a6eeaf",
+        "size": 6161
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/qa/cozy-smoke.mjs",
+        "sha256": "15a7bebd9d2b731062415accd932b2a885f9595bd7dcde654fbb3699eceac4c2",
+        "size": 1856
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/src/world/World.ts",
+        "sha256": "97907b6667b7295bcb6063bfc82ef1053016f47f334fcdcf580cfb4cc001c44f",
+        "size": 39416
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/src/rendering/Renderer.ts",
+        "sha256": "da86be0775da13969270bfda68d99d4abc64cba982c7ec6e82896cfc512dbacc",
+        "size": 27093
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/src/entities/Character.ts",
+        "sha256": "a6681d5f6b90cc7a627e23e00875a47aff6eebd6ac9a109a09ffa89dbca36eca",
+        "size": 64016
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/src/tennis/ChampionshipTuning.ts",
+        "sha256": "94d4573abd1a999702ee8a04e2a84a68cb9dbc0aed15482c1ec286d846823020",
+        "size": 1992
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/src/tennis/ChampionshipController.ts",
+        "sha256": "2ecb00c590c62a751255d07daccb95c732b9c20504264de3ea60c847a0f24ebd",
+        "size": 8714
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/src/tennis/ChampionshipCameraRig.ts",
+        "sha256": "a4e7c47e84c68b4751b89ccfabcb67cc77682ab0de3289a832bf2e1ee1f11697",
+        "size": 9654
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/src/ui/ChampionshipHUD.ts",
+        "sha256": "ee11f35ae7a6cb0841d867891dc16cfb7dae2ce777440ebf9b2e3c9093fdd2f6",
+        "size": 7328
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/src/core/AudioManager.ts",
+        "sha256": "849ac47bf3569631eb21cc3a6dfc26c7eddffed3fa76f11987b90c3e9eb7330a",
+        "size": 9901
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/src/Game.ts",
+        "sha256": "6071e94081ad594a717600ae1ff92b5c7d9148a2ae98fda619acb179e102136c",
+        "size": 108010
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/CHAMPIONSHIP.md",
+        "sha256": "1b907ea44ebb9f3bd266ba85eb504f340c7a7df74e50e47ef6b816c2c9a59555",
+        "size": 4468
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/style.css",
+        "sha256": "d1c45916b8e1daa838ea189442826ca60c570ffcc41948057ffe0311ae70bb18",
+        "size": 14447
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/COZY-ATMOSPHERE-RC3.4.md",
+        "sha256": "c914c758096c2844a246cd055b94172452fe9e508033efcb688d36e4106c5b15",
+        "size": 893
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/tests/cozy-atmosphere.mjs",
+        "sha256": "8e5563df9990249dbbf34a4cc64be020a951b44b90a47ce1cc0d338eeb71afd1",
+        "size": 1582
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/tests/championship-controller.mjs",
+        "sha256": "59d6f03248fce4899dd1ad74424568f27246e42c184eac27f49d27a6d2c6b015",
+        "size": 2693
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/tests/championship-presentation.mjs",
+        "sha256": "fc12386c550f990e6aec4d68845c71188ba9d14c50358df922e3f5409ebe2444",
+        "size": 5206
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/README-FIRST.md",
+        "sha256": "519da49d9bd584e5dd310ee91777609bc06c9e586bc84050ddea224ac8ee73b2",
+        "size": 1425
+      },
+      {
+        "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/VALIDATION.md",
+        "sha256": "7647ed0af03216db13e7603a7e95091723d0a77982e2aae8bf872608e2dd119e",
+        "size": 1076
+      }
+    ]
+  },
+  {
+    "archive": "/Users/arjan/Desktop/arjansinghpuniani.com/Rally-House-v18.3-Visual-Production.zip",
+    "entries": 8,
+    "source": [
+      {
+        "path": "rally-house-v18-3-production/rally-house-visual-production.test.ts",
+        "sha256": "34e49372b5b5d53bc45263a01f227daf01d59978f455d3920711b1dd7e3ad0f6",
+        "size": 2541
+      },
+      {
+        "path": "rally-house-v18-3-production/visual-production.css",
+        "sha256": "71d8ba0204c7a138903c2e331aec5f8cd5671e0497cc17fd57bf77f54b5413fc",
+        "size": 3114
+      },
+      {
+        "path": "rally-house-v18-3-production/README.md",
+        "sha256": "c6c2697faf9b881bbb53df26a1e762d0d8055611b5bcb3dc19dec47e62492b6e",
+        "size": 1781
+      },
+      {
+        "path": "rally-house-v18-3-production/PRODUCTION-REVIEW.md",
+        "sha256": "72d6bf59aab30371d76228a361eec306ed6a0f036566b30e47586f512222a361",
+        "size": 1302
+      },
+      {
+        "path": "rally-house-v18-3-production/intro.html",
+        "sha256": "990f9cde80df2040cff00e89381a33d5615b4a34abff62f98b96d568ab7257c6",
+        "size": 486
+      }
+    ]
+  },
+  {
+    "archive": "/Users/arjan/Desktop/arjansinghpuniani-hardening/Rally-House-v17.4.1-SceneGrammar-Hotfix.zip",
+    "entries": 2,
+    "source": [
+      {
+        "path": "apply_rally_house_v17_4_1_scenegrammar_hotfix.py",
+        "sha256": "2750f71c282eed3d01077338154255b234eeeff7db0a5874e07549cfc96b5196",
+        "size": 4883
+      },
+      {
+        "path": "README.md",
+        "sha256": "c003e45daf4dead32797b509b0614198b4501660770f5be5d87512a825697ede",
+        "size": 1029
+      }
+    ]
+  },
+  {
+    "archive": "/Users/arjan/Desktop/arjansinghpuniani-hardening/Rally-House-v17.3-Embodied-Spectator-Patch-Kit.zip",
+    "entries": 2,
+    "source": [
+      {
+        "path": "apply_rally_house_v17_3_embodied_spectator.py",
+        "sha256": "c22076ff522f5796df97679f271ad3e38341ebffd3aae1977e598bba380a7adb",
+        "size": 10039
+      },
+      {
+        "path": "README.md",
+        "sha256": "1f1d2589f1b2ec2e211d4f69072f9f6ca3c6f524a3dbf0b800421afc55a5a272",
+        "size": 1348
+      }
+    ]
+  },
+  {
+    "archive": "/Users/arjan/Desktop/arjansinghpuniani-hardening/Rally-House-v17-Patch-Kit.zip",
+    "entries": 2,
+    "source": [
+      {
+        "path": "apply_rally_house_v17.py",
+        "sha256": "0a0be8375cfbf9f5f0f0eb4632bb695c66c2a3a56538314164e2b86858759fc8",
+        "size": 64812
+      },
+      {
+        "path": "README.md",
+        "sha256": "575c1748a77d594896312678ffd15ac5c158340ae467cb2e5840bef3b16025ab",
+        "size": 3767
+      }
+    ]
+  },
+  {
+    "archive": "/Users/arjan/Desktop/arjansinghpuniani-hardening/Rally-House-v17.1-Toy-Contact-Patch-Kit.zip",
+    "entries": 2,
+    "source": [
+      {
+        "path": "apply_rally_house_v17_1_toy_contact.py",
+        "sha256": "4f231b46d5a97fdf6cb719df089547dc06569f764c4021c1499f29f683c81384",
+        "size": 17791
+      },
+      {
+        "path": "README.md",
+        "sha256": "00763d63d89e93c365429801c9ae2e8e1b12f151bc42252356f97aaf8fc52579",
+        "size": 2533
+      }
+    ]
+  },
+  {
+    "archive": "/Users/arjan/Desktop/arjansinghpuniani-hardening/Rally-House-v17.5-Human-Space-Championship.zip",
+    "entries": 4,
+    "source": [
+      {
+        "path": "Rally-House-v17.5-Human-Space-Championship/README.md",
+        "sha256": "0c8e8026048b7f9214cf0e869d2c5d99e7ac9241c19f047b54d4ce39b0db501a",
+        "size": 1254
+      },
+      {
+        "path": "Rally-House-v17.5-Human-Space-Championship/ChampionshipRally.ts",
+        "sha256": "8a7d0fd4694fe94cc29c01375be574bdcf263a45f81d2faa7de0e3482145af53",
+        "size": 6769
+      },
+      {
+        "path": "Rally-House-v17.5-Human-Space-Championship/apply_rally_house_v17_5.py",
+        "sha256": "03971ed7d256563278552d1c951b3b3cad374e68c0fcee2d265d2d747a53465f",
+        "size": 20560
+      }
+    ]
+  },
+  {
+    "archive": "/Users/arjan/Desktop/arjansinghpuniani-hardening/Rally-House-v17.4-Cozy-Life-Patch-Kit.zip",
+    "entries": 2,
+    "source": [
+      {
+        "path": "apply_rally_house_v17_4_cozy_life.py",
+        "sha256": "688e4806890a73dea5e33dae2b71ce5f02f68b50a263c8173b1d6bea26666585",
+        "size": 26388
+      },
+      {
+        "path": "README.md",
+        "sha256": "f3768b7878637214e3ffc491a3c1a47f1e643edd43304147946dca5622a2f981",
+        "size": 2282
+      }
+    ]
+  },
+  {
+    "archive": "/Users/arjan/Desktop/arjansinghpuniani-hardening/Rally-House-v17.2-Readable-Contact-Patch-Kit.zip",
+    "entries": 2,
+    "source": [
+      {
+        "path": "apply_rally_house_v17_2_readable_contact.py",
+        "sha256": "331bf635293bd4a552649dd0f7ff2b46577c5a43acb2eeed8ec5136b270081dd",
+        "size": 8752
+      },
+      {
+        "path": "README.md",
+        "sha256": "9d11e9d43a14d169829cd1c8adddf94a91b0d35b9211394b132fe12be12922e3",
+        "size": 1912
+      }
+    ]
+  }
+]

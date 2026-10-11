@@ -7,6 +7,7 @@ import styles from "./rally-house.module.css";
 
 const scenes = [
   { name: "Wander", image: "club", title: "A club with a life of its own.", text: "People practise, take tea, watch the court, and find their usual corners. Tap a person or an object to join in.", alt: "Actual Rally House gameplay: a miniature club with people, tea, plants, and a tennis court" },
+  { name: "Discover", image: "clock-mechanism", title: "Little things have their secrets.", text: "Water the bonsai. Sketch a crosscourt arrow. Play with the clock: its gears separate, pause, and find their way home.", alt: "Actual Rally House gameplay: the club clock separates into its face, hands, gears, and brass housing" },
   { name: "Challenge", image: "transition", title: "Same place. A different perspective.", text: "Challenge a member. Both players walk to the court as the camera moves from the miniature into the match.", alt: "Actual Championship transition as the camera moves toward the court" },
   { name: "Rally", image: "rally", title: "Then it becomes a tennis game.", text: "Move, prepare your swing, and meet the ball. A landing cue helps you read the return; the racket still has to make contact.", alt: "Actual arcade tennis gameplay with a visible ball, two players, and a small swing prompt" },
 ] as const;
@@ -76,12 +77,12 @@ export default function RallyHouseExperience() {
     </section>
 
     <section className={`shell ${styles.details}`} aria-labelledby="detail-title">
-      <figure><Image src="/rally-house/media/bell-reach.webp" width={1440} height={1000} sizes="(max-width: 800px) 100vw, 50vw" alt="Actual gameplay: the player reaching for the bell on the front edge of the reception counter" /><figcaption>A small action, with a visible response.</figcaption></figure>
-      <div><p className={styles.kicker}>Attention, not administration</p><h2 id="detail-title">Small things<br />make a place.</h2><p>Ring the bell. Tend a plant. Read the club journal. An action can bring a reach, a sound, a glance, and a record of what happened.</p><p>Those records matter. Completed matches enter club memory; a member’s last Championship with you appears when you select them. An unfinished match never becomes an invented result.</p></div>
+      <figure><Image src="/rally-house/media/bonsai-water.webp" width={1280} height={800} sizes="(max-width: 800px) 100vw, 50vw" alt="Actual gameplay: the player pours from a small watering can into the bonsai’s soil" /><figcaption>A small pour. The club remembers.</figcaption></figure>
+      <div><p className={styles.kicker}>Attention, not administration</p><h2 id="detail-title">Small things<br />make a place.</h2><p>Observe the bonsai with a thoughtful pause. Water it, and its soil stays damp. Pluck a racket’s strings, ring the brass bell, or settle into a bench and follow the rally. Open Club → Details to find a small object.</p><p>Those records matter. Your sketch stays on the whiteboard; a member’s last completed Championship with you appears when you select them. Nearby people can notice your actions when they have a view and a moment to spare.</p></div>
     </section>
     <section className={`shell ${styles.decisions}`} aria-label="Design and engineering decisions">
       {[
-        ["The world is the interface", "Context follows the person or object you select. Facts come from the simulation and its saved records."],
+        ["The world is the interface", "Objects have stable identities, deliberate selection volumes, and their own verbs. The clock reveals its mechanism; the bonsai remembers its last watering."],
         ["Contact has one source", "The racket’s string bed determines the strike. Ball release, impact sound, and feedback follow that contact."],
         ["Memory follows events", "Object visits and Championship results enter history only when the action actually completes."],
         ["A continuous court", "Walking routes go around the net posts. The match changes camera and controls, then returns to the same club."],

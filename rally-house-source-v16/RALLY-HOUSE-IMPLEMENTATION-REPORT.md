@@ -29,3 +29,13 @@ The six reports and selected baseline/candidate evidence live alongside canonica
 ## Remaining ceiling
 
 The procedural characters still show coarse hands, garment seams and limited shoulder deformation in close views. Reach is bounded rather than full-body IK. Pose proxies cannot establish that all meshes remain clear in every transition or dense custom layout. Quiet motion, cup pickup and seating merit artist-led work. Headless timing and a tracking bot cannot establish movement pleasure, satisfying sound or “one more point” motivation. Physical iOS/Android browsers, Safari, real touch ergonomics and speaker/headphone listening remain open gates documented in the human-playtest report. The branch is reviewable and tested; no claim of commercial studio quality or public deployment follows from that.
+
+## Object identity follow-up — 10 October 2026
+
+Built-in identity grew from 17 place targets to 43 semantic objects. All 42 non-court primary rituals have real travel/reservation/action/completion regression flows. Object-owned leaves, strings, bell, clock, whiteboard and lamp state produce actual responses; machine feeding uses BallPhysics. Specific verbs replace unrelated catalog fallbacks. The Club Details directory provides progressive discovery and a keyboard/touch path to small or occluded objects.
+
+Schema 9 adds bounded optional built-in state without handing it to furniture sync, which would delete unknown built-in IDs. Active state changes and completed history have separate semantics. Invalid values are rejected before adoption. Clock snapshots refresh at each trigger and cancel restores before release. New oscillator nodes disconnect after their short spatial object notes.
+
+Travel review repaired occupied social destinations, narrow-aisle arrival order and shared spectator exits. Visibility uses adult eye-level occlusion against tall solids. The recovered sip cycle augments current character embodiment; cast/schema expansion remains archived. The portfolio adds a Discover scene and actual clock/bonsai captures, with plain descriptions of what visitors can do. Prior tennis impact/camera tuning is preserved.
+
+No backend, account, external asset pipeline or generic mesh-click layer was introduced. The original Desktop work remains preserved; the safe clone is the reviewable release. See current validation and human-playtest docs for evidence and limits.

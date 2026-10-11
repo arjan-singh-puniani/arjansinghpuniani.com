@@ -1,0 +1,11 @@
+# Character appeal and embodiment — 10 October 2026
+
+The candidate preserves the four established adult members and the current avatars: Coach Contessa's calm technician stance, Lucresia's learner preparation and ponytail, Leo's relaxed equipment interest, and Barbara's tea/social posture. Existing skin/outfit/hair/eye signatures and expression/relationship ownership remain intact. This pass does not claim a new professional character asset or fifth cast member.
+
+Observe now has an actual chin-hand pose, supporting arm, restrained shoulder/torso lean and gaze at the canopy. Care attaches the can to the reaching hand and targets soil, rather than foliage. The recovered v17.4 sip cycle raises, holds and lowers the cup with a small lean; foot planting remains the current solver. Sit actions use actual per-seat height and clear depth/pose on release. Spectators track the real tennis ball and use four separate clear destinations instead of crowding one spot.
+
+Clipping review found and repaired more than a mesh intersection: the old rack-side schedule destination was inside new collision; the basket constricted the bench approach; two people could block each other in a narrow aisle; and nonparticipants shared one exit. The basket moved beside the rack, the nearer bench arrival takes the far seat first, three-person conversations stand in clear space, and nonparticipants have separate view positions. Tests require clear destinations and real completed social scenes.
+
+Actual screenshots were inspected for bonsai Observe/Water, clock, sketch, rack, bell and seating. The watering capture was repeated from the club's mirrored camera to show the hand/can rather than hide it behind foliage. Automated pose/route checks and screenshots catch specific defects; they do not certify every outfit/body intersection at every camera.
+
+Remaining appeal gates are human: silhouette readability at phone scale, charisma, facial attraction, gesture timing and whether the cup/hand motion feels convincing. A specialist could improve the geometric cast with newly authored assets. Historical Steph/Taylor and detailed cup experiments are preserved for a deliberate art/cast pass, not silently mixed into current persistence and schedules.

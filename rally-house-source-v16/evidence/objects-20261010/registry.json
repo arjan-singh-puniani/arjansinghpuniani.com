@@ -1,0 +1,2054 @@
+{
+  "builtInCount": 43,
+  "objects": [
+    {
+      "id": "reception",
+      "name": "Front desk",
+      "category": "reception",
+      "description": "Bookings, greetings, and the club’s calm command center.",
+      "position": {
+        "x": -9,
+        "y": 0,
+        "z": 4.8
+      },
+      "selection": {
+        "centre": {
+          "x": -9,
+          "y": 0.67,
+          "z": 4.8
+        },
+        "size": {
+          "x": 3.55,
+          "y": 1.35,
+          "z": 1.25
+        }
+      },
+      "contact": {
+        "x": -8.35,
+        "y": 1.3,
+        "z": 5.22
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "ring",
+          "verb": "Ring the desk bell",
+          "animation": "watch",
+          "effect": "bell",
+          "seconds": 1.7,
+          "prop": null,
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "cafe",
+      "name": "Matcha nook",
+      "category": "cafe",
+      "description": "Warm cups, little rituals, and half the club’s best conversations.",
+      "position": {
+        "x": -9.1,
+        "y": 0,
+        "z": -5.8
+      },
+      "selection": {
+        "centre": {
+          "x": -9.1,
+          "y": 0.75,
+          "z": -5.8
+        },
+        "size": {
+          "x": 4.45,
+          "y": 1.5,
+          "z": 1.38
+        }
+      },
+      "contact": {
+        "x": -8.08,
+        "y": 1.47,
+        "z": -5.57
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "sip",
+          "verb": "Sip a warm cup",
+          "animation": "drink",
+          "effect": "cafe",
+          "seconds": 3.4,
+          "prop": "cup",
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "machine",
+      "name": "Ball machine",
+      "category": "training",
+      "description": "A quiet rhythm machine for finding timing without pressure.",
+      "position": {
+        "x": -7.5,
+        "y": 0,
+        "z": 0.2
+      },
+      "selection": {
+        "centre": {
+          "x": -7.5,
+          "y": 0.72,
+          "z": 0.2
+        },
+        "size": {
+          "x": 1.1,
+          "y": 1.3,
+          "z": 1.1
+        }
+      },
+      "contact": {
+        "x": -7.15,
+        "y": 0.78,
+        "z": 0.05
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "feed",
+          "verb": "Feed one ball",
+          "animation": "watch",
+          "effect": "training",
+          "seconds": 2.6,
+          "prop": "ball",
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "water",
+      "name": "Water station",
+      "category": "water",
+      "description": "Cold water, clean towels, no hydration mini-game required.",
+      "position": {
+        "x": -5.5,
+        "y": 0,
+        "z": 5.9
+      },
+      "selection": {
+        "centre": {
+          "x": -5.5,
+          "y": 0.85,
+          "z": 5.9
+        },
+        "size": {
+          "x": 1.25,
+          "y": 1.7,
+          "z": 0.85
+        }
+      },
+      "contact": {
+        "x": -5.5,
+        "y": 1.43,
+        "z": 5.68
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "drink",
+          "verb": "Take a cool drink",
+          "animation": "drink",
+          "effect": "water",
+          "seconds": 3.2,
+          "prop": "cup",
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "lounge",
+      "name": "Player lounge",
+      "category": "lounge",
+      "description": "A soft place to watch, talk, recover, or simply let the club happen around you.",
+      "position": {
+        "x": 8.5,
+        "y": 0,
+        "z": 5.8
+      },
+      "selection": {
+        "centre": {
+          "x": 8.5,
+          "y": 0.7,
+          "z": 5.8
+        },
+        "size": {
+          "x": 3.75,
+          "y": 1.4,
+          "z": 1.48
+        }
+      },
+      "contact": {
+        "x": 8.5,
+        "y": 0.87,
+        "z": 5.8
+      },
+      "seatHeight": 0.87,
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "sit",
+          "verb": "Sit",
+          "animation": "sit",
+          "effect": "comfort",
+          "seconds": 5,
+          "prop": null,
+          "gesture": "none"
+        },
+        {
+          "id": "watchSeat",
+          "verb": "Watch a rally from here",
+          "animation": "sit",
+          "effect": "comfort",
+          "seconds": 10,
+          "prop": null,
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "journal",
+      "name": "Club journal",
+      "category": "paper",
+      "description": "Pages softened by years of post-match conversations.",
+      "position": {
+        "x": 6.9,
+        "y": 0,
+        "z": 4.55
+      },
+      "selection": {
+        "centre": {
+          "x": 6.95,
+          "y": 0.66,
+          "z": 4.52
+        },
+        "size": {
+          "x": 0.45,
+          "y": 0.3,
+          "z": 0.65
+        }
+      },
+      "contact": {
+        "x": 6.95,
+        "y": 0.67,
+        "z": 4.52
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "read",
+          "verb": "Turn a page",
+          "animation": "watch",
+          "effect": "paper",
+          "seconds": 3,
+          "prop": "notebook",
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "historyShelf",
+      "name": "Club history",
+      "category": "trophy",
+      "description": "Small victories kept where everyone can see them.",
+      "position": {
+        "x": 4.25,
+        "y": 0,
+        "z": -8.8
+      },
+      "selection": {
+        "centre": {
+          "x": 4.25,
+          "y": 1.4,
+          "z": -9.1
+        },
+        "size": {
+          "x": 0.75,
+          "y": 0.8,
+          "z": 0.35
+        }
+      },
+      "contact": {
+        "x": 4.25,
+        "y": 1.4,
+        "z": -9.1
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "inspect",
+          "verb": "Inspect the display",
+          "animation": "watch",
+          "effect": "read",
+          "seconds": 2.6,
+          "prop": null,
+          "gesture": "think"
+        }
+      ]
+    },
+    {
+      "id": "bonsai",
+      "name": "Bonsai corner",
+      "category": "bonsai",
+      "description": "The quietest coach in the academy. Somehow Leo takes it seriously.",
+      "position": {
+        "x": 10.2,
+        "y": 0,
+        "z": 3.9
+      },
+      "selection": {
+        "centre": {
+          "x": 10.54,
+          "y": 2.1,
+          "z": 3.9
+        },
+        "size": {
+          "x": 1.5,
+          "y": 1.4,
+          "z": 0.9
+        }
+      },
+      "contact": {
+        "x": 10.2,
+        "y": 1.36,
+        "z": 3.9
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "observe",
+          "verb": "Observe",
+          "animation": "watch",
+          "effect": "leaves",
+          "seconds": 3.8,
+          "prop": null,
+          "gesture": "think"
+        },
+        {
+          "id": "water",
+          "verb": "Water",
+          "animation": "watch",
+          "effect": "bonsai",
+          "seconds": 3,
+          "prop": "wateringCan",
+          "gesture": "offer"
+        }
+      ]
+    },
+    {
+      "id": "proshop",
+      "name": "Pro shop & stringing",
+      "category": "equipment",
+      "description": "Frames, grips, fresh strings, and a satisfyingly mechanical stringing bench.",
+      "position": {
+        "x": 9.2,
+        "y": 0,
+        "z": -4.5
+      },
+      "selection": {
+        "centre": {
+          "x": 9.2,
+          "y": 1.05,
+          "z": -3.4
+        },
+        "size": {
+          "x": 2.3,
+          "y": 1.95,
+          "z": 1.3
+        }
+      },
+      "contact": {
+        "x": 9.2,
+        "y": 1.74,
+        "z": -3.24
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "pluck",
+          "verb": "Pluck the strings",
+          "animation": "watch",
+          "effect": "stringing",
+          "seconds": 2.2,
+          "prop": null,
+          "gesture": "inspect"
+        }
+      ]
+    },
+    {
+      "id": "court",
+      "name": "Main court",
+      "category": "court",
+      "description": "The heart of Rally House: one court, long rallies, and enough room to notice the details.",
+      "position": {
+        "x": 1,
+        "y": 0,
+        "z": 0
+      },
+      "selection": {
+        "centre": {
+          "x": 1,
+          "y": 0.08,
+          "z": 0
+        },
+        "size": {
+          "x": 8.5,
+          "y": 0.12,
+          "z": 12
+        }
+      },
+      "observeOnly": false,
+      "actions": []
+    },
+    {
+      "id": "clubBoard",
+      "name": "Club whiteboard",
+      "category": "board",
+      "description": "Read the club scrapbook, or leave a small crosscourt sketch in the clean corner.",
+      "position": {
+        "x": 2.8,
+        "y": 0,
+        "z": -7.8
+      },
+      "selection": {
+        "centre": {
+          "x": 2.8,
+          "y": 2.58,
+          "z": -9.27
+        },
+        "size": {
+          "x": 4.15,
+          "y": 1.18,
+          "z": 0.32
+        }
+      },
+      "contact": {
+        "x": 2.8,
+        "y": 2.05,
+        "z": -9.16
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "read",
+          "verb": "Read",
+          "animation": "watch",
+          "effect": "read",
+          "seconds": 2.8,
+          "prop": null,
+          "gesture": "think"
+        },
+        {
+          "id": "sketch",
+          "verb": "Sketch a crosscourt arrow",
+          "animation": "watch",
+          "effect": "sketch",
+          "seconds": 2.5,
+          "prop": null,
+          "gesture": "point"
+        }
+      ]
+    },
+    {
+      "id": "warmup",
+      "name": "Warm-up bay",
+      "category": "warmup",
+      "description": "Mats, a mirror, and the five quiet minutes that decide how the next hour goes.",
+      "position": {
+        "x": -9.3,
+        "y": 0,
+        "z": 1.6
+      },
+      "selection": {
+        "centre": {
+          "x": -9.3,
+          "y": 0.15,
+          "z": 1.6
+        },
+        "size": {
+          "x": 3.1,
+          "y": 0.3,
+          "z": 3.9
+        }
+      },
+      "contact": {
+        "x": -9.3,
+        "y": 1.2,
+        "z": 1.6
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "stretch",
+          "verb": "Stretch",
+          "animation": "stretch",
+          "effect": "comfort",
+          "seconds": 2.8,
+          "prop": null,
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "westWater",
+      "name": "Water & towels",
+      "category": "water",
+      "description": "Cold water, folded towels, and a bin that somebody quietly empties every evening.",
+      "position": {
+        "x": -10.2,
+        "y": 0,
+        "z": -2.2
+      },
+      "selection": {
+        "centre": {
+          "x": -11.2,
+          "y": 0.8,
+          "z": -2.2
+        },
+        "size": {
+          "x": 0.9,
+          "y": 1.6,
+          "z": 0.9
+        }
+      },
+      "contact": {
+        "x": -11,
+        "y": 1.15,
+        "z": -2.2
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "drink",
+          "verb": "Take a cool drink",
+          "animation": "drink",
+          "effect": "water",
+          "seconds": 3.2,
+          "prop": "cup",
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "lobby",
+      "name": "Entrance lounge",
+      "category": "lounge",
+      "description": "Where people land before they become players, and linger after they stop being one.",
+      "position": {
+        "x": -9.6,
+        "y": 0,
+        "z": 7.2
+      },
+      "selection": {
+        "centre": {
+          "x": -10.35,
+          "y": 0.65,
+          "z": 6.35
+        },
+        "size": {
+          "x": 1.35,
+          "y": 1.3,
+          "z": 1.15
+        }
+      },
+      "contact": {
+        "x": -10.35,
+        "y": 0.8,
+        "z": 6.35
+      },
+      "seatHeight": 0.8,
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "sit",
+          "verb": "Sit",
+          "animation": "sit",
+          "effect": "comfort",
+          "seconds": 5,
+          "prop": null,
+          "gesture": "none"
+        },
+        {
+          "id": "watchSeat",
+          "verb": "Watch a rally from here",
+          "animation": "sit",
+          "effect": "comfort",
+          "seconds": 10,
+          "prop": null,
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "gearWall",
+      "name": "Gear wall",
+      "category": "gear",
+      "description": "Shoes, bags, and the shelf Leo pretends he is not looking at again.",
+      "position": {
+        "x": 10.1,
+        "y": 0,
+        "z": 0.3
+      },
+      "selection": {
+        "centre": {
+          "x": 11.3,
+          "y": 0.95,
+          "z": 0.3
+        },
+        "size": {
+          "x": 0.75,
+          "y": 1.9,
+          "z": 3.3
+        }
+      },
+      "contact": {
+        "x": 11,
+        "y": 1.3,
+        "z": 0.3
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "inspect",
+          "verb": "Check your kit",
+          "animation": "watch",
+          "effect": "read",
+          "seconds": 2.3,
+          "prop": null,
+          "gesture": "inspect"
+        }
+      ]
+    },
+    {
+      "id": "spectatorRow",
+      "name": "Spectator row",
+      "category": "lounge",
+      "description": "A long backed bench, a low side perch, two ball hoppers, and the best seat in the club for a long rally.",
+      "position": {
+        "x": 1,
+        "y": 0,
+        "z": 7.6
+      },
+      "selection": {
+        "centre": {
+          "x": -3.9,
+          "y": 0.65,
+          "z": 8.22
+        },
+        "size": {
+          "x": 3.35,
+          "y": 1.3,
+          "z": 0.85
+        }
+      },
+      "contact": {
+        "x": -3.9,
+        "y": 0.67,
+        "z": 8.22
+      },
+      "seatHeight": 0.67,
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "sit",
+          "verb": "Sit",
+          "animation": "sit",
+          "effect": "comfort",
+          "seconds": 5,
+          "prop": null,
+          "gesture": "none"
+        },
+        {
+          "id": "watchSeat",
+          "verb": "Watch a rally from here",
+          "animation": "sit",
+          "effect": "comfort",
+          "seconds": 10,
+          "prop": null,
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "equipment",
+      "name": "Equipment trolley",
+      "category": "trolley",
+      "description": "Spare frames, a cone stack, and whatever the last session forgot to put back.",
+      "position": {
+        "x": -1.4,
+        "y": 0,
+        "z": -7.5
+      },
+      "selection": {
+        "centre": {
+          "x": -1.4,
+          "y": 1.05,
+          "z": -8.3
+        },
+        "size": {
+          "x": 2.4,
+          "y": 1.95,
+          "z": 0.9
+        }
+      },
+      "contact": {
+        "x": -1.4,
+        "y": 1.72,
+        "z": -8.2
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "pluck",
+          "verb": "Pluck a spare frame",
+          "animation": "watch",
+          "effect": "stringing",
+          "seconds": 2.2,
+          "prop": null,
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "clubClock",
+      "name": "Club clock",
+      "category": "clock",
+      "description": "A brass-hearted clock. Its mechanism has a little secret.",
+      "position": {
+        "x": 5.7,
+        "y": 0,
+        "z": -9.12
+      },
+      "selection": {
+        "centre": {
+          "x": 5.7,
+          "y": 2.75,
+          "z": -9.12
+        },
+        "size": {
+          "x": 0.95,
+          "y": 0.95,
+          "z": 0.45
+        }
+      },
+      "contact": {
+        "x": 5.7,
+        "y": 2.75,
+        "z": -9.12
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "inspect",
+          "verb": "Play with the mechanism",
+          "animation": "watch",
+          "effect": "clock",
+          "seconds": 3.5,
+          "prop": null,
+          "gesture": "think"
+        }
+      ]
+    },
+    {
+      "id": "deskBell",
+      "name": "Brass desk bell",
+      "category": "reception",
+      "description": "One clear note. A polite interruption.",
+      "position": {
+        "x": -8.35,
+        "y": 0,
+        "z": 5.22
+      },
+      "selection": {
+        "centre": {
+          "x": -8.35,
+          "y": 1.31,
+          "z": 5.22
+        },
+        "size": {
+          "x": 0.26,
+          "y": 0.22,
+          "z": 0.26
+        }
+      },
+      "contact": {
+        "x": -8.35,
+        "y": 1.3,
+        "z": 5.22
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "ring",
+          "verb": "Ring the desk bell",
+          "animation": "watch",
+          "effect": "bell",
+          "seconds": 1.7,
+          "prop": null,
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "courtRack",
+      "name": "Court-side racket rack",
+      "category": "equipment",
+      "description": "Three frames, three different voices.",
+      "position": {
+        "x": 6.54,
+        "y": 0,
+        "z": 2.83
+      },
+      "selection": {
+        "centre": {
+          "x": 6.54,
+          "y": 0.85,
+          "z": 2.83
+        },
+        "size": {
+          "x": 1.62,
+          "y": 1.35,
+          "z": 0.4
+        }
+      },
+      "contact": {
+        "x": 6.53,
+        "y": 0.99,
+        "z": 2.87
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "pluck",
+          "verb": "Pluck the strings",
+          "animation": "watch",
+          "effect": "stringing",
+          "seconds": 2.2,
+          "prop": null,
+          "gesture": "inspect"
+        }
+      ]
+    },
+    {
+      "id": "shopRack",
+      "name": "Pro-shop racket display",
+      "category": "displayRackets",
+      "description": "Five frames above the shop shelf. Look them over; pluck the reachable frame at the stringing bench.",
+      "position": {
+        "x": 9.14,
+        "y": 0,
+        "z": -7.02
+      },
+      "selection": {
+        "centre": {
+          "x": 9.14,
+          "y": 2.15,
+          "z": -7.02
+        },
+        "size": {
+          "x": 3.65,
+          "y": 1.55,
+          "z": 0.42
+        }
+      },
+      "contact": {
+        "x": 9.14,
+        "y": 2.43,
+        "z": -6.98
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "inspect",
+          "verb": "Inspect the hanging frames",
+          "animation": "watch",
+          "effect": "read",
+          "seconds": 2.8,
+          "prop": null,
+          "gesture": "think"
+        }
+      ]
+    },
+    {
+      "id": "courtBench",
+      "name": "Courtside bench",
+      "category": "lounge",
+      "description": "A short pause between points.",
+      "position": {
+        "x": 6.5,
+        "y": 0,
+        "z": 4.8
+      },
+      "selection": {
+        "centre": {
+          "x": 6.5,
+          "y": 0.65,
+          "z": 4.8
+        },
+        "size": {
+          "x": 2.22,
+          "y": 1.1,
+          "z": 0.8
+        }
+      },
+      "contact": {
+        "x": 6.5,
+        "y": 0.55,
+        "z": 4.8
+      },
+      "seatHeight": 0.55,
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "sit",
+          "verb": "Sit",
+          "animation": "sit",
+          "effect": "comfort",
+          "seconds": 5,
+          "prop": null,
+          "gesture": "none"
+        },
+        {
+          "id": "watchSeat",
+          "verb": "Watch a rally from here",
+          "animation": "sit",
+          "effect": "comfort",
+          "seconds": 10,
+          "prop": null,
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "sidePerch",
+      "name": "Mint spectator perch",
+      "category": "lounge",
+      "description": "Watch the far baseline from here.",
+      "position": {
+        "x": 4.55,
+        "y": 0,
+        "z": 8
+      },
+      "selection": {
+        "centre": {
+          "x": 4.55,
+          "y": 0.62,
+          "z": 8
+        },
+        "size": {
+          "x": 2.35,
+          "y": 1.2,
+          "z": 0.86
+        }
+      },
+      "contact": {
+        "x": 4.55,
+        "y": 0.82,
+        "z": 8
+      },
+      "seatHeight": 0.82,
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "sit",
+          "verb": "Sit",
+          "animation": "sit",
+          "effect": "comfort",
+          "seconds": 5,
+          "prop": null,
+          "gesture": "none"
+        },
+        {
+          "id": "watchSeat",
+          "verb": "Watch a rally from here",
+          "animation": "sit",
+          "effect": "comfort",
+          "seconds": 10,
+          "prop": null,
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "lobbyChair",
+      "name": "Peach entrance chair",
+      "category": "lounge",
+      "description": "A softer landing before the first serve.",
+      "position": {
+        "x": -10.35,
+        "y": 0,
+        "z": 8.05
+      },
+      "selection": {
+        "centre": {
+          "x": -10.35,
+          "y": 0.65,
+          "z": 8.05
+        },
+        "size": {
+          "x": 1.35,
+          "y": 1.3,
+          "z": 1.15
+        }
+      },
+      "contact": {
+        "x": -10.35,
+        "y": 0.8,
+        "z": 8.05
+      },
+      "seatHeight": 0.8,
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "sit",
+          "verb": "Sit",
+          "animation": "sit",
+          "effect": "comfort",
+          "seconds": 5,
+          "prop": null,
+          "gesture": "none"
+        },
+        {
+          "id": "watchSeat",
+          "verb": "Watch a rally from here",
+          "animation": "sit",
+          "effect": "comfort",
+          "seconds": 10,
+          "prop": null,
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "courtScoreboard",
+      "name": "Court scoreboard",
+      "category": "score",
+      "description": "The last completed court result, when there is one.",
+      "position": {
+        "x": 7.22,
+        "y": 0,
+        "z": 8.5
+      },
+      "selection": {
+        "centre": {
+          "x": 7.22,
+          "y": 1.62,
+          "z": 8.5
+        },
+        "size": {
+          "x": 1,
+          "y": 0.75,
+          "z": 0.2
+        }
+      },
+      "contact": {
+        "x": 7.22,
+        "y": 1.62,
+        "z": 8.44
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "read",
+          "verb": "Read the scoreboard",
+          "animation": "watch",
+          "effect": "read",
+          "seconds": 2.4,
+          "prop": null,
+          "gesture": "think"
+        }
+      ]
+    },
+    {
+      "id": "loungeLamp",
+      "name": "Lounge floor lamp",
+      "category": "lamp",
+      "description": "A warm shade beside the reading corner.",
+      "position": {
+        "x": 10.7,
+        "y": 0,
+        "z": 7.1
+      },
+      "selection": {
+        "centre": {
+          "x": 10.7,
+          "y": 1.5,
+          "z": 7.1
+        },
+        "size": {
+          "x": 0.85,
+          "y": 2.5,
+          "z": 0.85
+        }
+      },
+      "contact": {
+        "x": 10.7,
+        "y": 1.35,
+        "z": 7.1
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "light",
+          "verb": "Adjust the glow",
+          "animation": "watch",
+          "effect": "lamp",
+          "seconds": 2,
+          "prop": null,
+          "gesture": "point"
+        }
+      ]
+    },
+    {
+      "id": "windowLamp",
+      "name": "Window floor lamp",
+      "category": "lamp",
+      "description": "A quiet light under the window.",
+      "position": {
+        "x": -6.4,
+        "y": 0,
+        "z": -7
+      },
+      "selection": {
+        "centre": {
+          "x": -6.4,
+          "y": 1.5,
+          "z": -7
+        },
+        "size": {
+          "x": 0.85,
+          "y": 2.5,
+          "z": 0.85
+        }
+      },
+      "contact": {
+        "x": -6.4,
+        "y": 1.35,
+        "z": -7
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "light",
+          "verb": "Adjust the glow",
+          "animation": "watch",
+          "effect": "lamp",
+          "seconds": 2,
+          "prop": null,
+          "gesture": "point"
+        }
+      ]
+    },
+    {
+      "id": "entranceLamp",
+      "name": "Entrance floor lamp",
+      "category": "lamp",
+      "description": "A peach shade for the last cup before heading home.",
+      "position": {
+        "x": -8.35,
+        "y": 0,
+        "z": 8.45
+      },
+      "selection": {
+        "centre": {
+          "x": -8.35,
+          "y": 1.5,
+          "z": 8.45
+        },
+        "size": {
+          "x": 0.86,
+          "y": 2.6,
+          "z": 0.86
+        }
+      },
+      "contact": {
+        "x": -8.35,
+        "y": 1.35,
+        "z": 8.45
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "light",
+          "verb": "Adjust the glow",
+          "animation": "watch",
+          "effect": "lamp",
+          "seconds": 2,
+          "prop": null,
+          "gesture": "point"
+        }
+      ]
+    },
+    {
+      "id": "courtBasket",
+      "name": "Practice ball basket",
+      "category": "supply",
+      "description": "Eight visible balls stacked beside the rack. A supply for the next practice.",
+      "position": {
+        "x": 6,
+        "y": 0,
+        "z": 1.95
+      },
+      "selection": {
+        "centre": {
+          "x": 6,
+          "y": 0.6,
+          "z": 1.95
+        },
+        "size": {
+          "x": 0.75,
+          "y": 1,
+          "z": 0.75
+        }
+      },
+      "contact": {
+        "x": 6,
+        "y": 0.8,
+        "z": 1.95
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "inspect",
+          "verb": "Check the ball supply",
+          "animation": "watch",
+          "effect": "read",
+          "seconds": 2.3,
+          "prop": null,
+          "gesture": "think"
+        }
+      ]
+    },
+    {
+      "id": "westHopper",
+      "name": "West spectator hopper",
+      "category": "supply",
+      "description": "Six visible balls, close to the long spectator bench.",
+      "position": {
+        "x": -4.8,
+        "y": 0,
+        "z": 7.9
+      },
+      "selection": {
+        "centre": {
+          "x": -4.8,
+          "y": 0.55,
+          "z": 7.9
+        },
+        "size": {
+          "x": 0.78,
+          "y": 1.1,
+          "z": 0.78
+        }
+      },
+      "contact": {
+        "x": -4.8,
+        "y": 0.7,
+        "z": 7.9
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "inspect",
+          "verb": "Check the ball supply",
+          "animation": "watch",
+          "effect": "read",
+          "seconds": 2.3,
+          "prop": null,
+          "gesture": "think"
+        }
+      ]
+    },
+    {
+      "id": "eastHopper",
+      "name": "East spectator hopper",
+      "category": "supply",
+      "description": "Six visible balls beside the mint perch.",
+      "position": {
+        "x": 5.6,
+        "y": 0,
+        "z": 7.9
+      },
+      "selection": {
+        "centre": {
+          "x": 5.6,
+          "y": 0.55,
+          "z": 7.9
+        },
+        "size": {
+          "x": 0.78,
+          "y": 1.1,
+          "z": 0.78
+        }
+      },
+      "contact": {
+        "x": 5.6,
+        "y": 0.7,
+        "z": 7.9
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "inspect",
+          "verb": "Check the ball supply",
+          "animation": "watch",
+          "effect": "read",
+          "seconds": 2.3,
+          "prop": null,
+          "gesture": "think"
+        }
+      ]
+    },
+    {
+      "id": "spectatorTea",
+      "name": "Spectator tea table",
+      "category": "cafe",
+      "description": "A pink cup and a folded note between the baseline seats.",
+      "position": {
+        "x": 1.32,
+        "y": 0,
+        "z": 7.55
+      },
+      "selection": {
+        "centre": {
+          "x": 1.32,
+          "y": 0.62,
+          "z": 7.55
+        },
+        "size": {
+          "x": 0.9,
+          "y": 1,
+          "z": 0.9
+        }
+      },
+      "contact": {
+        "x": 1.2,
+        "y": 0.8,
+        "z": 7.5
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "sip",
+          "verb": "Sip a warm cup",
+          "animation": "drink",
+          "effect": "cafe",
+          "seconds": 3.4,
+          "prop": "cup",
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "entranceTea",
+      "name": "Entrance tea table",
+      "category": "cafe",
+      "description": "A mint cup between the two entrance chairs.",
+      "position": {
+        "x": -9,
+        "y": 0,
+        "z": 7.2
+      },
+      "selection": {
+        "centre": {
+          "x": -9,
+          "y": 0.62,
+          "z": 7.2
+        },
+        "size": {
+          "x": 0.85,
+          "y": 1,
+          "z": 0.85
+        }
+      },
+      "contact": {
+        "x": -9.05,
+        "y": 0.83,
+        "z": 7.15
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "sip",
+          "verb": "Sip a warm cup",
+          "animation": "drink",
+          "effect": "cafe",
+          "seconds": 3.4,
+          "prop": "cup",
+          "gesture": "none"
+        }
+      ]
+    },
+    {
+      "id": "windowPlant",
+      "name": "Window fern",
+      "category": "plant",
+      "description": "A small green companion with its own watering history.",
+      "position": {
+        "x": -11.1,
+        "y": 0,
+        "z": -7.2
+      },
+      "selection": {
+        "centre": {
+          "x": -11.1,
+          "y": 1.045,
+          "z": -7.2
+        },
+        "size": {
+          "x": 1.375,
+          "y": 1.815,
+          "z": 0.9900000000000001
+        }
+      },
+      "contact": {
+        "x": -11.1,
+        "y": 0.902,
+        "z": -7.2
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "observe",
+          "verb": "Observe",
+          "animation": "watch",
+          "effect": "leaves",
+          "seconds": 3.8,
+          "prop": null,
+          "gesture": "think"
+        },
+        {
+          "id": "water",
+          "verb": "Water",
+          "animation": "watch",
+          "effect": "bonsai",
+          "seconds": 3,
+          "prop": "wateringCan",
+          "gesture": "offer"
+        }
+      ]
+    },
+    {
+      "id": "gearPlant",
+      "name": "Gear-room fern",
+      "category": "plant",
+      "description": "A small green companion with its own watering history.",
+      "position": {
+        "x": 11.2,
+        "y": 0,
+        "z": -1.5
+      },
+      "selection": {
+        "centre": {
+          "x": 11.2,
+          "y": 0.855,
+          "z": -1.5
+        },
+        "size": {
+          "x": 1.125,
+          "y": 1.4849999999999999,
+          "z": 0.81
+        }
+      },
+      "contact": {
+        "x": 11.2,
+        "y": 0.738,
+        "z": -1.5
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "observe",
+          "verb": "Observe",
+          "animation": "watch",
+          "effect": "leaves",
+          "seconds": 3.8,
+          "prop": null,
+          "gesture": "think"
+        },
+        {
+          "id": "water",
+          "verb": "Water",
+          "animation": "watch",
+          "effect": "bonsai",
+          "seconds": 3,
+          "prop": "wateringCan",
+          "gesture": "offer"
+        }
+      ]
+    },
+    {
+      "id": "loungePlant",
+      "name": "Reading-corner fern",
+      "category": "plant",
+      "description": "A small green companion with its own watering history.",
+      "position": {
+        "x": 7,
+        "y": 0,
+        "z": 7.3
+      },
+      "selection": {
+        "centre": {
+          "x": 7,
+          "y": 0.95,
+          "z": 7.3
+        },
+        "size": {
+          "x": 1.25,
+          "y": 1.65,
+          "z": 0.9
+        }
+      },
+      "contact": {
+        "x": 7,
+        "y": 0.82,
+        "z": 7.3
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "observe",
+          "verb": "Observe",
+          "animation": "watch",
+          "effect": "leaves",
+          "seconds": 3.8,
+          "prop": null,
+          "gesture": "think"
+        },
+        {
+          "id": "water",
+          "verb": "Water",
+          "animation": "watch",
+          "effect": "bonsai",
+          "seconds": 3,
+          "prop": "wateringCan",
+          "gesture": "offer"
+        }
+      ]
+    },
+    {
+      "id": "windowSprig",
+      "name": "Small window fern",
+      "category": "plant",
+      "description": "A small green companion with its own watering history.",
+      "position": {
+        "x": -5.75,
+        "y": 0,
+        "z": -7.5
+      },
+      "selection": {
+        "centre": {
+          "x": -5.75,
+          "y": 0.6839999999999999,
+          "z": -7.5
+        },
+        "size": {
+          "x": 0.8999999999999999,
+          "y": 1.188,
+          "z": 0.648
+        }
+      },
+      "contact": {
+        "x": -5.75,
+        "y": 0.5903999999999999,
+        "z": -7.5
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "observe",
+          "verb": "Observe",
+          "animation": "watch",
+          "effect": "leaves",
+          "seconds": 3.8,
+          "prop": null,
+          "gesture": "think"
+        },
+        {
+          "id": "water",
+          "verb": "Water",
+          "animation": "watch",
+          "effect": "bonsai",
+          "seconds": 3,
+          "prop": "wateringCan",
+          "gesture": "offer"
+        }
+      ]
+    },
+    {
+      "id": "entryPlant",
+      "name": "Entrance fern",
+      "category": "plant",
+      "description": "A small green companion with its own watering history.",
+      "position": {
+        "x": -6.3,
+        "y": 0,
+        "z": 8.5
+      },
+      "selection": {
+        "centre": {
+          "x": -6.3,
+          "y": 0.874,
+          "z": 8.5
+        },
+        "size": {
+          "x": 1.1500000000000001,
+          "y": 1.518,
+          "z": 0.8280000000000001
+        }
+      },
+      "contact": {
+        "x": -6.3,
+        "y": 0.7544,
+        "z": 8.5
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "observe",
+          "verb": "Observe",
+          "animation": "watch",
+          "effect": "leaves",
+          "seconds": 3.8,
+          "prop": null,
+          "gesture": "think"
+        },
+        {
+          "id": "water",
+          "verb": "Water",
+          "animation": "watch",
+          "effect": "bonsai",
+          "seconds": 3,
+          "prop": "wateringCan",
+          "gesture": "offer"
+        }
+      ]
+    },
+    {
+      "id": "perchPlant",
+      "name": "Spectator fern",
+      "category": "plant",
+      "description": "A small green companion with its own watering history.",
+      "position": {
+        "x": 9,
+        "y": 0,
+        "z": 8.4
+      },
+      "selection": {
+        "centre": {
+          "x": 9,
+          "y": 0.817,
+          "z": 8.4
+        },
+        "size": {
+          "x": 1.075,
+          "y": 1.4189999999999998,
+          "z": 0.774
+        }
+      },
+      "contact": {
+        "x": 9,
+        "y": 0.7051999999999999,
+        "z": 8.4
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "observe",
+          "verb": "Observe",
+          "animation": "watch",
+          "effect": "leaves",
+          "seconds": 3.8,
+          "prop": null,
+          "gesture": "think"
+        },
+        {
+          "id": "water",
+          "verb": "Water",
+          "animation": "watch",
+          "effect": "bonsai",
+          "seconds": 3,
+          "prop": "wateringCan",
+          "gesture": "offer"
+        }
+      ]
+    },
+    {
+      "id": "deskPine",
+      "name": "Reception pine",
+      "category": "bonsai",
+      "description": "A different silhouette, a different quiet moment.",
+      "position": {
+        "x": -8.22,
+        "y": 0,
+        "z": 4.48
+      },
+      "selection": {
+        "centre": {
+          "x": -8.22,
+          "y": 1.4689999999999999,
+          "z": 4.48
+        },
+        "size": {
+          "x": 0.35700000000000004,
+          "y": 0.561,
+          "z": 0.28900000000000003
+        }
+      },
+      "contact": {
+        "x": -8.22,
+        "y": 1.2752,
+        "z": 4.48
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "observe",
+          "verb": "Observe",
+          "animation": "watch",
+          "effect": "leaves",
+          "seconds": 3.8,
+          "prop": null,
+          "gesture": "think"
+        },
+        {
+          "id": "water",
+          "verb": "Water",
+          "animation": "watch",
+          "effect": "bonsai",
+          "seconds": 3,
+          "prop": "wateringCan",
+          "gesture": "offer"
+        }
+      ]
+    },
+    {
+      "id": "teaCascade",
+      "name": "Tea-shelf cascade",
+      "category": "bonsai",
+      "description": "A different silhouette, a different quiet moment.",
+      "position": {
+        "x": -10.58,
+        "y": 0,
+        "z": -8.91
+      },
+      "selection": {
+        "centre": {
+          "x": -10.58,
+          "y": 2.4835000000000003,
+          "z": -8.91
+        },
+        "size": {
+          "x": 0.3255,
+          "y": 0.5115,
+          "z": 0.2635
+        }
+      },
+      "contact": {
+        "x": -10.58,
+        "y": 2.3068000000000004,
+        "z": -8.91
+      },
+      "observeOnly": true,
+      "actions": [
+        {
+          "id": "observe",
+          "verb": "Observe",
+          "animation": "watch",
+          "effect": "leaves",
+          "seconds": 3.8,
+          "prop": null,
+          "gesture": "think"
+        }
+      ]
+    },
+    {
+      "id": "tableMaple",
+      "name": "Lounge maple",
+      "category": "bonsai",
+      "description": "A different silhouette, a different quiet moment.",
+      "position": {
+        "x": 7.06,
+        "y": 0,
+        "z": 4.58
+      },
+      "selection": {
+        "centre": {
+          "x": 7.06,
+          "y": 0.955,
+          "z": 4.58
+        },
+        "size": {
+          "x": 0.315,
+          "y": 0.49499999999999994,
+          "z": 0.255
+        }
+      },
+      "contact": {
+        "x": 7.06,
+        "y": 0.7839999999999999,
+        "z": 4.58
+      },
+      "observeOnly": false,
+      "actions": [
+        {
+          "id": "observe",
+          "verb": "Observe",
+          "animation": "watch",
+          "effect": "leaves",
+          "seconds": 3.8,
+          "prop": null,
+          "gesture": "think"
+        },
+        {
+          "id": "water",
+          "verb": "Water",
+          "animation": "watch",
+          "effect": "bonsai",
+          "seconds": 3,
+          "prop": "wateringCan",
+          "gesture": "offer"
+        }
+      ]
+    },
+    {
+      "id": "shopFlower",
+      "name": "Flowering shop bonsai",
+      "category": "bonsai",
+      "description": "A different silhouette, a different quiet moment.",
+      "position": {
+        "x": 10.62,
+        "y": 0,
+        "z": -7.04
+      },
+      "selection": {
+        "centre": {
+          "x": 10.62,
+          "y": 2.4595,
+          "z": -7.04
+        },
+        "size": {
+          "x": 0.28350000000000003,
+          "y": 0.4455,
+          "z": 0.2295
+        }
+      },
+      "contact": {
+        "x": 10.62,
+        "y": 2.3056,
+        "z": -7.04
+      },
+      "observeOnly": true,
+      "actions": [
+        {
+          "id": "observe",
+          "verb": "Observe",
+          "animation": "watch",
+          "effect": "leaves",
+          "seconds": 3.8,
+          "prop": null,
+          "gesture": "think"
+        }
+      ]
+    }
+  ],
+  "decorCatalog": [
+    {
+      "id": "racketRack",
+      "label": "Racket rack",
+      "icon": "🎾",
+      "category": "tennis",
+      "cost": 50,
+      "footprintX": 1.55,
+      "footprintZ": 0.58,
+      "blocksNavigation": true,
+      "rotationStep": 0.39269908169872414,
+      "culture": "training"
+    },
+    {
+      "id": "ballHopper",
+      "label": "Ball hopper",
+      "icon": "🟢",
+      "category": "tennis",
+      "cost": 38,
+      "footprintX": 0.86,
+      "footprintZ": 0.72,
+      "blocksNavigation": true,
+      "rotationStep": 0.39269908169872414,
+      "culture": "training"
+    },
+    {
+      "id": "basket",
+      "label": "Ball basket",
+      "icon": "🎾",
+      "category": "tennis",
+      "cost": 25,
+      "footprintX": 0.78,
+      "footprintZ": 0.78,
+      "blocksNavigation": false,
+      "rotationStep": 0.39269908169872414,
+      "culture": "training"
+    },
+    {
+      "id": "coneSet",
+      "label": "Coaching cones",
+      "icon": "🔶",
+      "category": "tennis",
+      "cost": 18,
+      "footprintX": 1.28,
+      "footprintZ": 0.68,
+      "blocksNavigation": false,
+      "rotationStep": 0.39269908169872414,
+      "culture": "training"
+    },
+    {
+      "id": "tennisBag",
+      "label": "Tennis bag",
+      "icon": "🎒",
+      "category": "tennis",
+      "cost": 28,
+      "footprintX": 1.18,
+      "footprintZ": 0.52,
+      "blocksNavigation": false,
+      "rotationStep": 0.39269908169872414,
+      "culture": "training"
+    },
+    {
+      "id": "scoreboard",
+      "label": "Scoreboard",
+      "icon": "🔢",
+      "category": "tennis",
+      "cost": 44,
+      "footprintX": 1.42,
+      "footprintZ": 0.46,
+      "blocksNavigation": true,
+      "rotationStep": 0.39269908169872414,
+      "culture": "training"
+    },
+    {
+      "id": "bench",
+      "label": "Court bench",
+      "icon": "🪑",
+      "category": "clubhouse",
+      "cost": 45,
+      "footprintX": 1.9,
+      "footprintZ": 0.9,
+      "blocksNavigation": true,
+      "rotationStep": 0.39269908169872414,
+      "culture": "social"
+    },
+    {
+      "id": "cafeTable",
+      "label": "Café table",
+      "icon": "☕",
+      "category": "clubhouse",
+      "cost": 40,
+      "footprintX": 1.05,
+      "footprintZ": 1.05,
+      "blocksNavigation": true,
+      "rotationStep": 0.39269908169872414,
+      "culture": "social"
+    },
+    {
+      "id": "stool",
+      "label": "Club stool",
+      "icon": "🪑",
+      "category": "clubhouse",
+      "cost": 20,
+      "footprintX": 0.62,
+      "footprintZ": 0.62,
+      "blocksNavigation": true,
+      "rotationStep": 0.39269908169872414,
+      "culture": "social"
+    },
+    {
+      "id": "sideTable",
+      "label": "Side table",
+      "icon": "▣",
+      "category": "clubhouse",
+      "cost": 30,
+      "footprintX": 0.86,
+      "footprintZ": 0.72,
+      "blocksNavigation": true,
+      "rotationStep": 0.39269908169872414,
+      "culture": "social"
+    },
+    {
+      "id": "trophy",
+      "label": "Club trophy",
+      "icon": "🏆",
+      "category": "clubhouse",
+      "cost": 35,
+      "footprintX": 0.54,
+      "footprintZ": 0.54,
+      "blocksNavigation": false,
+      "rotationStep": 0.39269908169872414,
+      "culture": "calm"
+    },
+    {
+      "id": "towelRack",
+      "label": "Towel rack",
+      "icon": "🧺",
+      "category": "clubhouse",
+      "cost": 32,
+      "footprintX": 1.18,
+      "footprintZ": 0.48,
+      "blocksNavigation": true,
+      "rotationStep": 0.39269908169872414,
+      "culture": "care"
+    },
+    {
+      "id": "plant",
+      "label": "Floor plant",
+      "icon": "🪴",
+      "category": "greenery",
+      "cost": 30,
+      "footprintX": 0.82,
+      "footprintZ": 0.82,
+      "blocksNavigation": false,
+      "rotationStep": 0.39269908169872414,
+      "culture": "care"
+    },
+    {
+      "id": "planter",
+      "label": "Planter box",
+      "icon": "🌿",
+      "category": "greenery",
+      "cost": 24,
+      "footprintX": 1.35,
+      "footprintZ": 0.58,
+      "blocksNavigation": false,
+      "rotationStep": 0.39269908169872414,
+      "culture": "care"
+    },
+    {
+      "id": "lamp",
+      "label": "Floor lamp",
+      "icon": "💡",
+      "category": "ambience",
+      "cost": 35,
+      "footprintX": 0.42,
+      "footprintZ": 0.42,
+      "blocksNavigation": false,
+      "rotationStep": 0.39269908169872414,
+      "culture": "calm"
+    },
+    {
+      "id": "lantern",
+      "label": "Club lantern",
+      "icon": "🏮",
+      "category": "ambience",
+      "cost": 18,
+      "footprintX": 0.46,
+      "footprintZ": 0.46,
+      "blocksNavigation": false,
+      "rotationStep": 0.39269908169872414,
+      "culture": "calm"
+    }
+  ]
+}

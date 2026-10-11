@@ -1,27 +1,13 @@
-# Rally House — event demo execution brief
+# Rally House — authored curiosity and satisfying tennis
 
-Apply this brief to the existing Rally House game and its portfolio page. The goal is a memorable, reliable SF Tech Week demonstration: a living miniature tennis club reveals itself, responds to the visitor, and turns the same court into satisfying arcade tennis. Preserve the club reveal, the Championship camera orbit, and the user's selected heavier contact pauses and camera punch.
+Take over the existing game as architect, engineer, reviewer and optimizer, in that order. Preserve unrelated dirty work; establish canonical source from Git ancestry and runtime imports. Inventory and narrowly archive relevant files before changing them. Mine unique historical code, tuning, media, tests and documentation; adopt only candidates that improve the current experience under evidence. Never delete uncertain historical work or blindly execute patch scripts.
 
-Work sequentially as architect, engineer, reviewer, and optimizer. Each role must use evidence from the previous role. An independent review should challenge the implementation before it is pushed.
+Build a miniature club whose meaningful objects remain recognisable things across time. Stable identity, deliberate hit targets, discoverable affordances, physical blockers, contact/gaze anchors, appropriate verbs, actual responses and bounded saved history must agree. Do not interpret this as generic handlers for every mesh. Author coherent assemblies and different behavior for different things. A cup can be sipped; a bench can be sat on; a high shelf can be observed without pretending the arm reaches it.
 
-## Architect
+Make the bonsai an embodied Observe/Water exemplar with thoughtful pose, real reach, a small pour, wet soil and remembered cooldown. Give the clock an authored exploded mechanism with immutable per-invocation transforms, easing, hold, reverse and exact restoration on completion, cancellation and reduced motion. Give the whiteboard Read/Sketch/Erase with actual persistent geometry. Keep rack strings, bell depression, one physical machine ball, tea, seats and lamps appropriate to their identities. Reactions require eligible observers with actual visibility and spare attention.
 
-Verify the canonical source, compiled game, portfolio embed, branch, release path, and existing validation. Preserve unrelated dirty work. Map the actual data flow from input through fixed-step simulation, racket contact, presentation, UI, and local persistence. Identify concrete root causes in the current product, with file references and reproducible triggers. Rank them by player impact, frequency, event-demo value, regression risk, and implementation cost. Use the existing client architecture; introduce services, APIs, accounts, caching, or schemas only if a demonstrated requirement needs them.
+Preserve the opening reveal, living club, adult member identities, continuous court, Championship orbit, authoritative racket contact, exact return and the user's chosen heavier contact pauses and camera punch. Diagnose visual clipping and travel deadlocks at their causes. Preserve causal social memory and protected old saves. Measure real frame times and repeated session/resource behavior before optimizing.
 
-## Engineer
+Use audit → reproduce → implement → build → run → capture → inspect → compare → repair → validate. Check desktop/phone sizes, real keyboard and touch, accessibility, reduced motion, Firefox/WebKit, portfolio integration, extracted package and repeated interactions/matches. Document exact evidence and open human/physical-device gates. Safely consolidate only selected work; archive before any narrowly classified deletion. Restart from fresh processes and verify the release boundary.
 
-Reproduce the highest-value failures before fixing them. Make focused, readable changes at their source. Preserve authoritative contact, completed-event memory, character identity, and original assets. Keep simulation, input, camera, audio, rendering, and UI responsibilities clear. Handle interruption, loading, recovery, responsive layouts, keyboard, touch, focus, and reduced motion wherever the changed flow requires them. Extend shared components only where actual reuse warrants it. Research unresolved technical choices using primary documentation, then run and inspect the result.
-
-## Reviewer
-
-Review the actual diff and running product independently. Challenge assumptions, edge cases, and claims. Check lifecycle cleanup, physical contact, input ownership, camera restoration, saved data, accessible controls, and deployment artifacts. Report actionable findings with precise triggers and file references. Fix material findings and rerun the affected checks.
-
-## Optimizer
-
-Measure actual frame times and repeated-session resource behavior. Inspect hot paths and lifecycle work, and optimize only bottlenecks supported by evidence. Compare meaningful alternatives when tuning changes the experience. Preserve the chosen game feel. Explain the limits of short browser trials, automated play, and device coverage.
-
-## Execution and delivery
-
-Use the loop: audit → reproduce → implement → run → inspect → compare → review → repair → validate. Keep an evidence-based decision log. Run the game suites, portfolio checks, release synchronization, and browser flows appropriate to the changes. Capture actual gameplay, including the opening club, Championship, return, and relevant phone layouts. Record baseline and final results separately.
-
-Push changes only after the required checks pass, and update the reviewable pull request. Report what improved, why it improved, what was tested, and remaining human/device gates. Do not equate passing tests with fun or promise studio hiring. A human playtest judges whether the experience earns another rally.
+Push only after required internal checks pass; create a reviewable PR. Do not merge or claim the new branch is live without deployment evidence. Human playtesting judges delight, appeal and contact satisfaction; automated passes do not prove perfection or hiring outcomes.

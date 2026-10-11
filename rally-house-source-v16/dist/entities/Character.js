@@ -628,6 +628,9 @@ export class Character {
         const stepLift = moving ? Math.pow(Math.abs(Math.sin(this.gaitPhase)), 1.7) * gaitStyle.bounce : 0;
         const gaitCounter = moving ? Math.sin(this.gaitPhase) * gaitStyle.torsoCounter : 0;
         const splitHop = this.courtPhase === 'split' ? Math.sin(Math.min(1, this.courtPhaseAge / .10) * Math.PI) * .055 : 0;
+        if (!shot && !moving && this.socialGesture === 'think') {
+            lean += .055;
+        }
         if (state === 'idle') {
             const phase = time * this.acting.values.idleFidgetRate * (this.spec.id === 'mika' ? .92 : this.spec.id === 'nia' ? .68 : .58) + this.seed() * .037;
             const amp = this.spec.id === 'coach' ? .010 : this.spec.id === 'mika' ? .024 : this.spec.id === 'nia' ? .018 : .015;
@@ -682,8 +685,11 @@ export class Character {
             handR = this.worldLocal(.20, .88 + baseY, .28);
         }
         if (state === 'drink') {
-            handR = this.worldLocal(.20, 1.56 + baseY, .33);
-            handL = this.worldLocal(-.38, 1.06 + baseY, .04);
+            const sip = (time % 3.4) / 3.4, raise = smoothstep(.18, .40, sip) * (1 - smoothstep(.68, .88, sip)), hold = smoothstep(.40, .48, sip) * (1 - smoothstep(.60, .68, sip));
+            handR = this.worldLocal(.24, 1.16 + baseY + raise * .43, .25 + raise * .11);
+            handL = this.worldLocal(-.36, 1.07 + baseY, .04);
+            lean -= hold * .018;
+            coil += Math.sin(sip * Math.PI) * .012;
         }
         if (state === 'stretch') {
             handL = this.worldLocal(-.30, 2.05 + baseY, .02);
@@ -748,8 +754,10 @@ export class Character {
                 }
                 if (g === 'point')
                     r = this.worldLocal(.35, 1.38 + baseY, .59);
-                if (g === 'think')
-                    r = this.worldLocal(.17, 1.63 + baseY, .22);
+                if (g === 'think') {
+                    r = this.worldLocal(.17, 1.63 + baseY + Math.sin(time * 2.6) * .012, .22);
+                    l = this.worldLocal(-.22, 1.09 + baseY, .2);
+                }
                 if (g === 'offer')
                     r = this.worldLocal(.24, 1.17 + baseY, .52);
                 if (g === 'inspect') {
@@ -792,10 +800,11 @@ export class Character {
                 handR = contact;
         }
         const surfaceTarget = this.interactionTarget ?? this.interactionRelease;
-        if (surfaceTarget && !shot && !moving && !this.propKind) {
+        if (surfaceTarget && !shot && !moving && (!this.propKind || this.propKind === 'wateringCan')) {
             const reach = Vec3.sub(surfaceTarget, shoulderR);
-            if (reach.len() > .80)
-                reach.normalize().scale(.80);
+            const maxReach = this.propKind === 'wateringCan' ? .98 : .80;
+            if (reach.len() > maxReach)
+                reach.normalize().scale(maxReach);
             handR = Vec3.lerp(handR, Vec3.add(shoulderR, reach), this.interactionWeight);
         }
         // Racket constraint: the hand owns the grip. At contact, solve the hand backwards from the requested sweet spot.
@@ -880,6 +889,11 @@ export class Character {
             const l = this.worldLocal(-.22, this.seatHeight + .08, .35), r = this.worldLocal(.22, this.seatHeight + .08, .35);
             kneeL.set(l.x, l.y, l.z);
             kneeR.set(r.x, r.y, r.z);
+        }
+        if (!shot && !moving && this.socialGesture === 'think') {
+            torsoCenter.add(this.localVector(0, 0, .035));
+            shoulderL.add(this.localVector(0, 0, .045));
+            shoulderR.add(this.localVector(0, 0, .045));
         }
         const headStabilize = moving ? stepLift * gaitStyle.headStabilize : 0;
         const head = this.worldLocal(pelvisShiftX * .25, 1.80 + baseY + actingLift + breathe - knee + splitHop + clip.headNod - headStabilize + (!shot && !moving && (this.socialGesture === 'nod' || this.socialGesture === 'laugh') ? Math.sin(time * 6) * .022 : 0), .01 + pelvisShiftZ * .45, headYaw);
@@ -1130,8 +1144,8 @@ export class Character {
         }
         const propHandR = this.propKind && this.propWanted && this.propAge < .4 && this.propAnchor ? this.propAnchor : handR, propHandL = this.propKind && this.propWanted && this.propAge < .4 && this.propAnchor ? this.propAnchor : handL;
         if (this.propKind === 'wateringCan') {
-            const can = Vec3.add(propHandR, new Vec3(0, .015, .1));
-            m.push({ kind: 'cylinder', position: can, scale: new Vec3(.24, .25, .24), color: '#769c92', material: 'metal' }, { kind: 'cone', position: Vec3.add(can, this.localVector(0, .02, .17)), rotation: new Vec3(.95, this.yaw, 0), scale: new Vec3(.08, .27, .08), color: '#769c92', material: 'metal' });
+            const pour = smoothstep(.8, 1.5, this.propAge), can = Vec3.add(propHandR, this.localVector(0, .055, -.13));
+            m.push({ kind: 'cylinder', position: can, rotation: new Vec3(.28 * pour, this.yaw, 0), scale: new Vec3(.24, .25, .24), color: '#769c92', material: 'metal' }, { kind: 'cone', position: Vec3.add(can, this.localVector(0, .02, .17)), rotation: new Vec3(.95 + .25 * pour, this.yaw, 0), scale: new Vec3(.08, .27, .08), color: '#769c92', material: 'metal' });
         }
         if (this.propKind === 'notebook')
             m.push({ kind: 'roundBox', position: Vec3.add(propHandL, new Vec3(0, .035, .08)), rotation: new Vec3(.25, this.yaw, 0), scale: new Vec3(.29, .045, .36), color: '#f2e4be', material: 'fabric' });

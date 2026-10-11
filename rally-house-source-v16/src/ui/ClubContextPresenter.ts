@@ -8,6 +8,7 @@ import type { ObjectAffordances } from '../simulation/ObjectAffordances.js';
 import type { InteractiveObject, Placement } from '../world/World.js';
 import { DECOR_BY_ID } from '../content/DecorCatalog.js';
 import { CLUB_TOUCHES, touchForDecor } from '../simulation/ClubInteractions.js';
+import type {ObjectIdentity} from '../world/ObjectIdentity.js';
 import { championshipOpponentFor } from '../tennis/ChampionshipOpponents.js';
 export interface ContextAction {
     id: string;
@@ -82,18 +83,22 @@ export function objectContext(o: InteractiveObject, a: ActivitySystem, e: {
     frame: string;
     tension: number;
     string: string;
-}, memories: string[]): ClubContext {
+}, memories: string[], identity?:ObjectIdentity, minute=0): ClubContext {
     const touch = o.id === 'warmup' ? touchForDecor('towelRack') : o.id === 'spectatorRow' ? CLUB_TOUCHES.lounge : CLUB_TOUCHES[o.kind], free = !a.busy('player') && !a.reserved(o.id);
-    const actions: ContextAction[] = free && touch ? [{ id: 'touch', title: touch.title, detail: touch.detail, primary: true }] : [];
+    const actions: ContextAction[] = identity?(free?identity.actions(o,minute).map((t,i)=>({id:t.id,title:t.title,detail:t.detail,primary:i===0})):[]):free&&touch?[{id:'touch',title:touch.title,detail:touch.detail,primary:true}]:[];
     if (o.kind === 'cafe' && free && !a.busy('nia') && !a.reserved('cafe-table'))
         actions.push({ id: 'tea', title: 'Share matcha', detail: 'Make time with Barbara' });
     if (o.kind === 'equipment')
         actions.push({ id: 'equipment', title: 'Customize racket', detail: 'Frames, strings and tension' });
     if (o.id === 'machine' && !a.busy('coach') && !a.busy('mika') && !a.reserved('court'))
         actions.push({ id: 'drill', title: 'Run ball-machine drill', detail: 'Contessa guides a rhythm block' });
-    if (o.kind === 'court' && !a.busy('player'))
+    if (o.kind==='court' && !a.busy('player'))
         actions.push({ id: 'watch', title: 'Watch a rally', detail: 'Head to the sideline' });
     const facts: ClubContext['facts'] = [];
+    if(o.kind==='score'){const result=a.history.find(r=>['championship','match'].includes(r.kind)&&r.phase==='completed');facts.push({label:'Last completed result',text:result?.result??'No completed match recorded yet.'});}
+    const state=identity?.state(o.id);
+    if(state?.lastWater!==null&&state?.lastWater!==undefined&&minute-state.lastWater<30)facts.push({label:'Soil is still damp',text:`Water again in ${Math.ceil(30-(minute-state.lastWater))} club minutes.`});
+    if(state?.uses)facts.push({label:'Your history here',text:`${state.uses} completed ${state.uses===1?'visit':'visits'} · ${state.lastAction}`});
     const lastVisit=a.history.find(receipt=>receipt.kind==='touch'&&receipt.resource===o.id&&receipt.phase==='completed');
     if(lastVisit)facts.push({label:'Your last completed visit',text:lastVisit.result??lastVisit.detail});
     if (o.kind === 'equipment')

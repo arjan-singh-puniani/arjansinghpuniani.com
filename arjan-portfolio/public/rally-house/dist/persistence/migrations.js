@@ -1,5 +1,5 @@
 import { DECOR_BY_ID } from '../content/DecorCatalog.js';
-export const CURRENT_SAVE_VERSION = 8;
+export const CURRENT_SAVE_VERSION = 9;
 const invalid = () => { throw new Error('Saved club data is invalid. Storage has been left untouched.'); };
 function scan(v, depth = 0) {
     if (depth > 20)
@@ -68,6 +68,14 @@ export function migrateGameSave(version, state) {
         invalid();
     if (state.queuedLesson != null && !['spacing', 'dropFeed', 'crosscourt', 'movement', 'shadowPrep'].includes(state.queuedLesson))
         invalid();
+    if (state.objectIdentity !== undefined) {
+        if (!state.objectIdentity || typeof state.objectIdentity !== 'object' || Array.isArray(state.objectIdentity) || Object.keys(state.objectIdentity).length > 128)
+            invalid();
+        for (const s of Object.values(state.objectIdentity)) {
+            if (!s || !Number.isSafeInteger(s.uses) || s.uses < 0 || s.uses > 9999 || typeof s.lastAction !== 'string' || s.lastAction.length > 120 || typeof s.sketched !== 'boolean' || (s.dimmed !== undefined && typeof s.dimmed !== 'boolean') || (s.lastWater !== null && (!Number.isFinite(s.lastWater) || s.lastWater < 0 || s.lastWater > state.clock.day * 1440 + state.clock.minutes)))
+                invalid();
+        }
+    }
     const relationships = {};
     for (const [k, v] of Object.entries(state.relationships ?? {}))
         relationships[k] = normalizeRelationship(v);

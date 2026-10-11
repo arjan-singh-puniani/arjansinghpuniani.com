@@ -327,6 +327,7 @@ export class Character {
     if(state==='serve'){coil+=(-.36+sp*.72)*style.coil;hipCoil+=(-.18+sp*.34)*style.coil;lean+=-.045+sp*.12;knee+=.15*Math.sin(Math.min(1,sp/.57)*Math.PI);weightShift=smoothstep(.34,.82,sp);}
     if(state==='volley'){coil+=(sp<contact?-.14:.20);hipCoil+=coil*.35;knee+=.055;weightShift=smoothstep(.18,.66,sp);}
     const moving=state==='walk'||state==='jog';const shuffle=state==='shuffle';const gait=moving?Math.cos(this.gaitPhase):0;const gaitStyle=locomotionStyleFor(this.spec.id);const stepLift=moving?Math.pow(Math.abs(Math.sin(this.gaitPhase)),1.7)*gaitStyle.bounce:0;const gaitCounter=moving?Math.sin(this.gaitPhase)*gaitStyle.torsoCounter:0;const splitHop=this.courtPhase==='split'?Math.sin(Math.min(1,this.courtPhaseAge/.10)*Math.PI)*.055:0;
+    if(!shot&&!moving&&this.socialGesture==='think'){lean+=.055;}
     if(state==='idle'){const phase=time*this.acting.values.idleFidgetRate*(this.spec.id==='mika'?.92:this.spec.id==='nia'?.68:.58)+this.seed()*.037;const amp=this.spec.id==='coach'?.010:this.spec.id==='mika'?.024:this.spec.id==='nia'?.018:.015;hipCoil+=Math.sin(phase)*amp;coil-=Math.sin(phase)*amp*.72;baseY+=Math.sin(phase*1.7)*amp*.13;}
     if(moving){coil=gait*gaitStyle.torsoCounter*.45;hipCoil=-gait*gaitStyle.hipSwing*.45;baseY=.008+Math.sin(this.gaitPhase*2)*.012;lean=0;knee=0;}const watchDelta=(state==='watch'||this.spectating)?clamp(angleDelta(this.yaw,this.gazeYaw),-.78,.78):0;const torsoYaw=this.yaw+coil+watchDelta*.30,hipYaw=this.yaw+hipCoil+watchDelta*.07;
     const targetHeadYaw=this.gazeYaw;const headLimit=(state==='watch'||this.spectating)?.70:.42;const headYaw=this.yaw+clamp(angleDelta(this.yaw,targetHeadYaw),-headLimit,headLimit)+clip.headTurn;
@@ -346,7 +347,7 @@ export class Character {
     if(moving){const swing=gait*gaitStyle.armSwing*.65;const lift=Math.abs(gait)*.015;handL=this.worldLocal(-.43,1.06+baseY+lift,-swing);handR=this.worldLocal(.43,1.06+baseY+lift,swing);}
     if(state==='talk'){const amp=this.acting.values.gestureAmplitude;handL=this.worldLocal(-.39,1.08+baseY,.14+.035*Math.sin(time*2.1));handR=this.worldLocal(.38,1.18+baseY,.26+.09*amp*Math.sin(time*2.4));}
     if(sit){handL=this.worldLocal(-.20,.88+baseY,.28);handR=this.worldLocal(.20,.88+baseY,.28);}
-    if(state==='drink'){handR=this.worldLocal(.20,1.56+baseY,.33);handL=this.worldLocal(-.38,1.06+baseY,.04);}
+    if(state==='drink'){const sip=(time%3.4)/3.4,raise=smoothstep(.18,.40,sip)*(1-smoothstep(.68,.88,sip)),hold=smoothstep(.40,.48,sip)*(1-smoothstep(.60,.68,sip));handR=this.worldLocal(.24,1.16+baseY+raise*.43,.25+raise*.11);handL=this.worldLocal(-.36,1.07+baseY,.04);lean-=hold*.018;coil+=Math.sin(sip*Math.PI)*.012;}
     if(state==='stretch'){handL=this.worldLocal(-.30,2.05+baseY,.02);handR=this.worldLocal(.30,2.05+baseY,.02);}
     if(state==='watch'||state==='ready'){handL=this.worldLocal(.22,1.12+baseY,.25);handR=this.worldLocal(-.22,1.12+baseY,.27);}
     if(state==='shuffle'){const pulse=Math.sin(time*8.5);handL=this.worldLocal(.20,1.10+baseY,.24+pulse*.03);handR=this.worldLocal(-.20,1.10+baseY,.26-pulse*.03);}
@@ -377,7 +378,7 @@ export class Character {
         let l=handL.clone(),r=handR.clone();const pulse=Math.sin(time*4)*.025;
         if(g==='shrug'){l=this.worldLocal(-.57,1.34+baseY,.18);r=this.worldLocal(.57,1.34+baseY,.18);}
         if(g==='point')r=this.worldLocal(.35,1.38+baseY,.59);
-        if(g==='think')r=this.worldLocal(.17,1.63+baseY,.22);
+        if(g==='think'){r=this.worldLocal(.17,1.63+baseY+Math.sin(time*2.6)*.012,.22);l=this.worldLocal(-.22,1.09+baseY,.2);}
         if(g==='offer')r=this.worldLocal(.24,1.17+baseY,.52);
         if(g==='inspect'){r=this.worldLocal(.12,1.22+baseY,.38);l=this.worldLocal(-.12,1.18+baseY,.4);}
         if(g==='laugh'){l=this.worldLocal(-.28,1.2+baseY+pulse,.28);r=this.worldLocal(.28,1.2+baseY+pulse,.28);}
@@ -399,9 +400,10 @@ export class Character {
       if(left)handL=contact;else handR=contact;
     }
     const surfaceTarget=this.interactionTarget??this.interactionRelease;
-    if(surfaceTarget&&!shot&&!moving&&!this.propKind){
+    if(surfaceTarget&&!shot&&!moving&&(!this.propKind||this.propKind==='wateringCan')){
       const reach=Vec3.sub(surfaceTarget,shoulderR);
-      if(reach.len()>.80)reach.normalize().scale(.80);
+      const maxReach=this.propKind==='wateringCan'?.98:.80;
+      if(reach.len()>maxReach)reach.normalize().scale(maxReach);
       handR=Vec3.lerp(handR,Vec3.add(shoulderR,reach),this.interactionWeight);
     }
     // Racket constraint: the hand owns the grip. At contact, solve the hand backwards from the requested sweet spot.
@@ -422,6 +424,7 @@ export class Character {
     if(!moving&&!this.leftFootLock)footL.add(this.localVector(-clip.stance+clip.footL.x,clip.footL.y,clip.footL.z));if(!moving&&!this.rightFootLock)footR.add(this.localVector(clip.stance+clip.footR.x,clip.footR.y,clip.footR.z));
     const kneePulse=moving?Math.max(0,-Math.cos(this.gaitPhase*2))*.018:0;const kneeL=Vec3.lerp(hipL,footL,.54).add(this.localVector(-.015,.04-kneePulse,.10)),kneeR=Vec3.lerp(hipR,footR,.54).add(this.localVector(.015,.04-kneePulse,.10));
     if(sit){const l=this.worldLocal(-.22,this.seatHeight+.08,.35),r=this.worldLocal(.22,this.seatHeight+.08,.35);kneeL.set(l.x,l.y,l.z);kneeR.set(r.x,r.y,r.z);}
+    if(!shot&&!moving&&this.socialGesture==='think'){torsoCenter.add(this.localVector(0,0,.035));shoulderL.add(this.localVector(0,0,.045));shoulderR.add(this.localVector(0,0,.045));}
     const headStabilize=moving?stepLift*gaitStyle.headStabilize:0;const head=this.worldLocal(pelvisShiftX*.25,1.80+baseY+actingLift+breathe-knee+splitHop+clip.headNod-headStabilize+(!shot&&!moving&&(this.socialGesture==='nod'||this.socialGesture==='laugh')?Math.sin(time*6)*.022:0),.01+pelvisShiftZ*.45,headYaw);
     const elbowL=Vec3.lerp(shoulderL,handL,.50).add(forward.clone().scale(.055)).add(right.clone().scale(-.035));const elbowR=Vec3.lerp(shoulderR,handR,.50).add(forward.clone().scale(.055)).add(right.clone().scale(.035));
     return {baseY,breathe,walking:moving,gait,torsoYaw,hipYaw,headYaw,right,forward,shoulderL,shoulderR,elbowL,elbowR,handL,handR,hipL,hipR,kneeL,kneeR,footL,footR,torsoCenter,pelvisCenter,head,racketGrip,racketHandleTop,racketCenter,racketRot,lean,knee,shot,sp,face:{...this.facePose},weightShift};
@@ -568,7 +571,7 @@ export class Character {
       m.push({kind:'cylinder',position:racketGrip,rotation:new Vec3(Math.PI/2,this.yaw,0),scale:new Vec3(.075,.10,.075),color:'#44372f',material:'fabric'});
     }
     const propHandR=this.propKind&&this.propWanted&&this.propAge<.4&&this.propAnchor?this.propAnchor:handR,propHandL=this.propKind&&this.propWanted&&this.propAge<.4&&this.propAnchor?this.propAnchor:handL;
-    if(this.propKind==='wateringCan'){const can=Vec3.add(propHandR,new Vec3(0,.015,.1));m.push({kind:'cylinder',position:can,scale:new Vec3(.24,.25,.24),color:'#769c92',material:'metal'},{kind:'cone',position:Vec3.add(can,this.localVector(0,.02,.17)),rotation:new Vec3(.95,this.yaw,0),scale:new Vec3(.08,.27,.08),color:'#769c92',material:'metal'});}
+    if(this.propKind==='wateringCan'){const pour=smoothstep(.8,1.5,this.propAge),can=Vec3.add(propHandR,this.localVector(0,.055,-.13));m.push({kind:'cylinder',position:can,rotation:new Vec3(.28*pour,this.yaw,0),scale:new Vec3(.24,.25,.24),color:'#769c92',material:'metal'},{kind:'cone',position:Vec3.add(can,this.localVector(0,.02,.17)),rotation:new Vec3(.95+.25*pour,this.yaw,0),scale:new Vec3(.08,.27,.08),color:'#769c92',material:'metal'});}
     if(this.propKind==='notebook')m.push({kind:'roundBox',position:Vec3.add(propHandL,new Vec3(0,.035,.08)),rotation:new Vec3(.25,this.yaw,0),scale:new Vec3(.29,.045,.36),color:'#f2e4be',material:'fabric'});
     if(this.propKind==='ball')m.push({kind:'sphere',position:Vec3.add(propHandR,new Vec3(0,.08,0)),scale:new Vec3(.13,.13,.13),color:'#d7dc79'});
     if(this.state==='drink'||this.propKind==='cup'){const cup=Vec3.add(propHandR,new Vec3(0,.05,0));m.push({kind:'cylinder',position:cup,scale:new Vec3(.16,.28,.16),color:'#f0e8d8',material:'ceramic'});for(let i=0;i<2;i++){const ph=(this.animTime*.55+i*.43)%1;m.push({kind:'sphere',position:new Vec3(cup.x+Math.sin(this.animTime*2+i)*.025,cup.y+.19+ph*.24,cup.z),scale:new Vec3(.035,.07,.035),color:'#f6f1e8',alpha:.18*(1-ph),unlit:true});}}

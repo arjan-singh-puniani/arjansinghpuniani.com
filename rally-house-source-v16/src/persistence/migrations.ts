@@ -1,7 +1,7 @@
 import type {GameSave} from '../core/types.js';
 import type {Relationship} from '../simulation/RelationshipSystem.js';
 import {DECOR_BY_ID} from '../content/DecorCatalog.js';
-export const CURRENT_SAVE_VERSION=8;
+export const CURRENT_SAVE_VERSION=9;
 const invalid=()=>{throw new Error('Saved club data is invalid. Storage has been left untouched.');};
 function scan(v:unknown,depth=0){
  if(depth>20)invalid();if(typeof v==='number'&&!Number.isFinite(v))invalid();
@@ -25,6 +25,7 @@ export function migrateGameSave(version:number,state:GameSave):GameSave{
  if(state.history){const h=state.history;if(!Array.isArray(h.matches)||!Array.isArray(h.intentions)||![h.nextSocial,h.nextObject].every(Number.isFinite))invalid();for(const m of h.matches)if(!m||typeof m.id!=='string'||!['mika','leo','draw'].includes(m.winner)||!m.score||!Object.values(m.score).every(n=>Number.isFinite(n)&&n>=0)||!Number.isFinite(m.day))invalid();for(const i of h.intentions)if(!i||typeof i.id!=='string'||typeof i.text!=='string'||!Number.isFinite(i.notBefore))invalid();}
  if(state.playerAvatar!=null&&!['taylor','arjan'].includes(state.playerAvatar))invalid();
  if(state.queuedLesson!=null&&!['spacing','dropFeed','crosscourt','movement','shadowPrep'].includes(state.queuedLesson))invalid();
+ if(state.objectIdentity!==undefined){if(!state.objectIdentity||typeof state.objectIdentity!=='object'||Array.isArray(state.objectIdentity)||Object.keys(state.objectIdentity).length>128)invalid();for(const s of Object.values(state.objectIdentity)){if(!s||!Number.isSafeInteger(s.uses)||s.uses<0||s.uses>9999||typeof s.lastAction!=='string'||s.lastAction.length>120||typeof s.sketched!=='boolean'||(s.dimmed!==undefined&&typeof s.dimmed!=='boolean')||(s.lastWater!==null&&(!Number.isFinite(s.lastWater)||s.lastWater<0||s.lastWater>state.clock.day*1440+state.clock.minutes)))invalid();}}
  const relationships:Record<string,Relationship>={};for(const [k,v] of Object.entries(state.relationships??{}))relationships[k]=normalizeRelationship(v);
  return {...state,stars:state.stars??3,coachXP:state.coachXP??14,weather:state.weather??'clear',placements:state.placements??[],equipment:state.equipment??{frame:'Cedar 98',tension:52,string:'Soft poly'},relationships,bestRally:state.bestRally??0,development:state.development??{preparation:0,recovery:0},emergentSocial:version>=4?state.emergentSocial:undefined,mind:version>=7?state.mind:undefined};
 }

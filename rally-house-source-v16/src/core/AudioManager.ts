@@ -117,6 +117,19 @@ export class AudioManager {
   door(){this.noiseBurst(310,.09,.004,.55);this.tone(138,.07,.0025,'triangle')}
   stringing(){this.tone(940,.045,.004,'triangle');setTimeout(()=>this.tone(1160,.035,.003,'triangle'),45)}
   watering(){this.noiseBurst(750,.10,.003,.5);}
+  /** Short original object notes, placed across the visible room; every transient node disconnects. */
+  objectNote(kind:string,pan:number,variant=0){
+    if(!this.enabled||this.volume<=0)return;
+    try{
+      const c=this.ensure(),p=c.createStereoPanner();p.pan.value=pan;p.connect(c.destination);
+      const notes=kind==='bell'?[1240,1860,930]:kind==='clock'?[380,510,290]:[850+Math.abs(variant%3)*75,1130];
+      let remaining=notes.length;
+      notes.forEach((freq,i)=>{const o=c.createOscillator(),g=c.createGain(),at=c.currentTime+i*(kind==='clock'?.11:.025),duration=kind==='bell'?.16:.10;
+        o.type=kind==='bell'?'sine':'triangle';o.frequency.value=freq;g.gain.setValueAtTime(.004*this.volume,at);g.gain.exponentialRampToValueAtTime(.0001,at+duration);o.connect(g).connect(p);
+        o.onended=()=>{o.disconnect();g.disconnect();if(--remaining===0)p.disconnect();};o.start(at);o.stop(at+duration+.01);
+      });
+    }catch{}
+  }
   chuckle(){this.tone(230,.055,.002,'triangle');setTimeout(()=>this.tone(270,.07,.0015,'triangle'),90);}
   success(){this.tone(660,.08,.013);setTimeout(()=>this.tone(880,.10,.011),70)}
 }
