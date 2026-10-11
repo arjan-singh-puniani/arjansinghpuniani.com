@@ -1,0 +1,122 @@
+[
+  {
+    "source": "chromium-arjan-1440/mount.png",
+    "sha256": "55b83474c427b466d4c712fe6940149055421ad66c3166c351fa4fd4347491f8",
+    "copy": "chromium-arjan-1440/mount.webp"
+  },
+  {
+    "source": "chromium-arjan-1440/record.png",
+    "sha256": "bd53c5807a018ce702ae23d6e2c2be9bb70d26e9fc4259d7f1c0c695a2cf3005",
+    "copy": "chromium-arjan-1440/record.webp"
+  },
+  {
+    "source": "chromium-arjan-1440/review.png",
+    "sha256": "bf27fe88affe750c2ac024d00a99eb33ac42fb6f7676b1c901e654dc4324ae3d",
+    "copy": "chromium-arjan-1440/review.webp"
+  },
+  {
+    "source": "chromium-arjan-390/mount.png",
+    "sha256": "f4adc9403dded0f39bbf788a19b3ae72b9adb3b7fea7772367956dff700b76af",
+    "copy": "chromium-arjan-390/mount.webp"
+  },
+  {
+    "source": "chromium-arjan-390/record.png",
+    "sha256": "35423871a4ee6e553997bbf49c626197bb1f50427d8f6e70e53e591cb48dd12d",
+    "copy": "chromium-arjan-390/record.webp"
+  },
+  {
+    "source": "chromium-arjan-390/review.png",
+    "sha256": "125cf9565e6196c618f78aa3feefa28389c8aec033981f1a17c18957a2369372",
+    "copy": "chromium-arjan-390/review.webp"
+  },
+  {
+    "source": "chromium-taylor-1440/mount.png",
+    "sha256": "4e1dd986f393359ad1cd8096f91c43b014e96feacd0aef9df6ad7af403582369",
+    "copy": "chromium-taylor-1440/mount.webp"
+  },
+  {
+    "source": "chromium-taylor-1440/record.png",
+    "sha256": "320d964934d6db9589eaa17382bd6fd0dae5c7d073c5905488e7b591b7c70a33",
+    "copy": "chromium-taylor-1440/record.webp"
+  },
+  {
+    "source": "chromium-taylor-1440/review.png",
+    "sha256": "a6044c887d280f799cca31808ea28a5dae01fdc584427d8c68ad0e86646ff1eb",
+    "copy": "chromium-taylor-1440/review.webp"
+  },
+  {
+    "source": "firefox-arjan-390/mount.png",
+    "sha256": "8b88eb869445618c90afa7025046d36f3f5fc50752334848763b8f8ffd7f6ff2",
+    "copy": "firefox-arjan-390/mount.webp"
+  },
+  {
+    "source": "firefox-arjan-390/record.png",
+    "sha256": "3de69e448ee120025b96a8b828953721eb5ab4df4d10b7a30a15c24b33d366b1",
+    "copy": "firefox-arjan-390/record.webp"
+  },
+  {
+    "source": "firefox-arjan-390/review.png",
+    "sha256": "e177a4fca66080590aba4e1b3a180970cd2add8cdb1415e6b5198ec2ea97b517",
+    "copy": "firefox-arjan-390/review.webp"
+  },
+  {
+    "source": "firefox-taylor-1440/mount.png",
+    "sha256": "a2221cd1940965ff8af17cbbc1cfb85e3a41e5df3e66be44f8058e17445e3b34",
+    "copy": "firefox-taylor-1440/mount.webp"
+  },
+  {
+    "source": "firefox-taylor-1440/record.png",
+    "sha256": "f2b7fafa231c35e7d22f24d1fc4eb580afe01d7847a4227a49e7a87616f2e9cb",
+    "copy": "firefox-taylor-1440/record.webp"
+  },
+  {
+    "source": "firefox-taylor-1440/review.png",
+    "sha256": "94dc2e60e8be389cf333811b1ee6792005e6657f7d5f977ab61de15b65d26d2c",
+    "copy": "firefox-taylor-1440/review.webp"
+  },
+  {
+    "source": "webkit-arjan-390/mount.png",
+    "sha256": "fd6b36d5acdb5b4e5ffd76c4e064ee329cc2fac52e22302e713e95b7e3a4d2cd",
+    "copy": "webkit-arjan-390/mount.webp"
+  },
+  {
+    "source": "webkit-arjan-390/record.png",
+    "sha256": "e9a99306a1806020863d6c9a5d5602de11b1b54279267bc56594580de96f9715",
+    "copy": "webkit-arjan-390/record.webp"
+  },
+  {
+    "source": "webkit-arjan-390/review.png",
+    "sha256": "4509216a67c31f5e5cb9d6c2e4709641637c6735894168a2e103b31a8346791f",
+    "copy": "webkit-arjan-390/review.webp"
+  },
+  {
+    "source": "webkit-taylor-1440/mount.png",
+    "sha256": "e2e5cacb9df79b2aa7226a0acb124d21e41bb563051cfaef3c98f95ecc405da4",
+    "copy": "webkit-taylor-1440/mount.webp"
+  },
+  {
+    "source": "webkit-taylor-1440/record.png",
+    "sha256": "dff5962b1bd2ce9b68e233ed1c7c3566a740b747c513bcff039db033c3b168e1",
+    "copy": "webkit-taylor-1440/record.webp"
+  },
+  {
+    "source": "webkit-taylor-1440/review.png",
+    "sha256": "72308d71675d694130ef09474b6b2e4014854cf4ad08a01f0ad5f72d6795a774",
+    "copy": "webkit-taylor-1440/review.webp"
+  },
+  {
+    "source": "final-lifecycle/mount.png",
+    "sha256": "70b986802061c82b271a1e66595b5d39e9bc8b7fb13ab2c1940b5a396f69e9dc",
+    "copy": "final-lifecycle/mount.webp"
+  },
+  {
+    "source": "final-lifecycle/record.png",
+    "sha256": "30a2283f02a7606f46d82c76ba108f079426a2e406eb0a27e0f2ea5fa71171be",
+    "copy": "final-lifecycle/record.webp"
+  },
+  {
+    "source": "final-lifecycle/review.png",
+    "sha256": "2281f1f67c6fe710ab79e353e9cd1fc7f0a689c410560024816d5b3809f97f76",
+    "copy": "final-lifecycle/review.webp"
+  }
+]

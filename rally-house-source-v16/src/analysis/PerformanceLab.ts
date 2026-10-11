@@ -2,6 +2,7 @@ import {Vec3,clamp} from '../rendering/Math3D.js';
 import type {Mesh,RenderItem} from '../rendering/Renderer.js';
 import type {CameraController} from '../rendering/CameraController.js';
 import type {CharacterSpec} from '../entities/Character.js';
+import type {PhoneRecording} from './PhoneCapture.js';
 import {demonstration} from './LabDemonstrations.js';
 import {ReplayTimeline,FOCUS_KEYS,JOINT_KEYS,LIMBS,METRIC_NAMES,jointTriplet,value,summary,type Joint,type LabMode,type MotionClip,type MotionFrame,type SampleKind} from './MotionCapture.js';
 
@@ -47,19 +48,20 @@ export class PerformanceLab {
   private restoreFocus:HTMLElement|null=null;
   private lastAspect=0;
   private priorAspect=0;
-  onReturn=()=>{};
+  onReturn=()=>{};onRecord=()=>{};
+  private phone:PhoneRecording|null=null;private video=document.createElement('video');private videoBox=document.createElement('details');
   constructor(private camera:CameraController,private canvas:HTMLCanvasElement){
     this.layer.className='performance-lab';this.layer.dataset.worldUi='true';this.layer.hidden=true;
     this.layer.setAttribute('aria-label','Performance Lab replay');
     const header=document.createElement('header'),identity=document.createElement('div'),brand=document.createElement('span'),close=document.createElement('button');
     brand.textContent='RALLY HOUSE / PERFORMANCE LAB';
-    const sub=document.createElement('small');sub.textContent='Court space ↔ body space';identity.append(brand,sub);
+    const sub=document.createElement('small');sub.textContent='Three apps by Arjan Singh Puniani';identity.append(brand,sub);
     close.textContent='Return to club ↗';close.dataset.labAction='close';close.onclick=()=>this.close();header.append(identity,close);
     this.panel.className='lab-panel';this.panel.setAttribute('aria-labelledby','labTitle');this.heading.id='labTitle';this.heading.textContent='See the movement.';
     this.provenance.className='lab-provenance';
     const modes=document.createElement('div');modes.className='lab-modes';modes.setAttribute('role','group');modes.setAttribute('aria-label','Analysis view');
     for(const [id,title] of [['court','VectorCourt'],['body','AnatomyMotion'],['combined','Combined']] as [LabMode,string][]){
-      const b=document.createElement('button');b.textContent=title;b.dataset.mode=id;b.onclick=()=>{if(!this.timeline)return;this.timeline.mode=id;this.invalidate();this.frameCamera();this.syncControls();};modes.append(b);
+      const b=document.createElement('button');b.textContent=title;b.title=id==='combined'?'Both apps, one movement':`${title} · an app by Arjan Singh Puniani`;b.dataset.mode=id;b.onclick=()=>{if(!this.timeline)return;this.timeline.mode=id;this.invalidate();this.frameCamera();this.syncControls();};modes.append(b);
     }
     const label=document.createElement('label');label.textContent='Replay source';label.htmlFor='labSource';this.source.id='labSource';
     this.source.onchange=()=>this.load(this.source.value as SampleKind);
@@ -74,29 +76,36 @@ export class PerformanceLab {
     this.separation.textContent='Separate rig';this.separation.dataset.labAction='separate';this.separation.title='Optional exploded view. Return to the registered overlay by switching this off.';this.separation.onclick=()=>{this.separateRig=!this.separateRig;this.syncControls();this.invalidate();};
     const orbit=document.createElement('div');orbit.className='lab-orbit';
     for(const [sign,text] of [[-1,'↶ Orbit'],[1,'Orbit ↷']] as [number,string][]){const b=document.createElement('button');b.textContent=text;b.onclick=()=>this.camera.desiredAzimuth+=sign*.35;orbit.append(b);}
+    const record=document.createElement('button');record.textContent='Mount phone & record';record.className='lab-record';record.onclick=()=>this.onRecord();
+    const products=document.createElement('p');products.className='lab-products';products.textContent='VectorCourt · court movement / AnatomyMotion · body movement';
+    const videoTitle=document.createElement('summary');videoTitle.textContent='Your anchored-phone video';this.videoBox.className='lab-video';this.videoBox.hidden=true;this.video.controls=true;this.video.muted=true;this.video.setAttribute('muted','');this.video.playsInline=true;this.video.preload='metadata';this.video.setAttribute('aria-label','Recorded in-game phone video');
+    this.video.onplay=()=>{if(this.timeline?.clip.kind==='phone')this.timeline.playing=true;};this.video.onpause=()=>{if(this.timeline?.clip.kind==='phone')this.timeline.playing=false;};this.video.onseeked=()=>{if(this.timeline?.clip.kind==='phone'){this.timeline.seek(this.video.currentTime);this.refresh();}};
+    const download=document.createElement('a');download.textContent='Save this video';download.className='lab-video-download';this.videoBox.append(videoTitle,this.video,download);
     const note=document.createElement('p');note.className='lab-note';note.textContent='Simulated rig geometry · distances in club units. Camera pose estimates, forces and muscle activation are not measured here.';
     this.phase.className='lab-phase';
     const inspection=document.createElement('div');inspection.className='lab-orbit';inspection.append(this.lens,this.separation);
-    this.panel.append(this.heading,this.provenance,modes,label,this.source,focus,this.readout,this.plotTitle,this.plot,this.phase,this.stats,inspection,orbit,note);
+    const metrics=document.createElement('div');metrics.className='lab-metrics';metrics.append(this.readout,this.plotTitle,this.plot);
+    this.panel.append(this.heading,this.provenance,products,record,modes,label,this.source,focus,metrics,this.phase,this.stats,inspection,orbit,note);
     this.transport.className='lab-transport';this.play.dataset.labAction='play';this.play.onclick=()=>this.togglePlay();
     this.scrub.type='range';this.scrub.min='0';this.scrub.max='1000';this.scrub.step='1';this.scrub.setAttribute('aria-label','Replay time');
-    this.scrub.oninput=()=>{if(!this.timeline)return;this.timeline.playing=false;this.timeline.seek(this.timeline.start+(this.timeline.end-this.timeline.start)*Number(this.scrub.value)/1000);this.invalidate();this.refresh();};
+    this.scrub.oninput=()=>{if(!this.timeline)return;this.timeline.playing=false;this.timeline.seek(this.timeline.start+(this.timeline.end-this.timeline.start)*Number(this.scrub.value)/1000);if(this.timeline.clip.kind==='phone'&&this.phone?.url){this.video.pause();this.video.currentTime=this.timeline.time;}this.invalidate();this.refresh();};
     const speed=document.createElement('select');speed.setAttribute('aria-label','Replay speed');
-    for(const n of [.25,.5,1]){const o=document.createElement('option');o.value=String(n);o.textContent=`${n}×`;speed.append(o);}speed.value='1';speed.onchange=()=>{if(this.timeline)this.timeline.speed=Number(speed.value);};
-    this.transport.append(this.play,this.scrub,this.timeLabel,speed);this.layer.append(header,this.panel,this.transport);
+    for(const n of [.25,.5,1]){const o=document.createElement('option');o.value=String(n);o.textContent=`${n}×`;speed.append(o);}speed.value='1';speed.onchange=()=>{if(this.timeline){this.timeline.speed=Number(speed.value);this.video.playbackRate=Number(speed.value);}};
+    this.transport.append(this.play,this.scrub,this.timeLabel,speed);this.layer.append(header,this.panel,this.videoBox,this.transport);
     for(const event of ['pointerdown','pointerup','pointermove','wheel','dblclick','keydown','keyup'])this.layer.addEventListener(event,e=>{e.stopPropagation();if(event==='keydown')this.key(e as KeyboardEvent);});
     document.getElementById('app')!.append(this.layer);
   }
-  open(spec:CharacterSpec,recording:MotionClip|null){
+  open(spec:CharacterSpec,recording:MotionClip|null,phone:PhoneRecording|null=null){
     if(this.active)return;
     this.restoreFocus=document.activeElement instanceof HTMLElement&&document.activeElement!==document.body?document.activeElement:this.canvas;
     this.prior=this.camera.captureState();this.priorAspect=this.camera.aspect;this.active=true;this.separateRig=false;this.clips.clear();
     for(const kind of ['gait','forehand','serve'] as const)this.clips.set(kind,demonstration(kind,spec));
     if(recording&&recording.frames.length>2)this.clips.set('championship',recording);
+    this.phone=phone;if(phone&&phone.clip.frames.length>2)this.clips.set('phone',phone.clip);
     this.source.replaceChildren(...[...this.clips].map(([key,clip])=>{const o=document.createElement('option');o.value=key;o.textContent=clip.name;return o;}));
     this.layer.hidden=false;document.body.classList.add('lab-active');
     for(const el of document.querySelectorAll<HTMLElement>('.topbar,.hud,.objective,#scenePeek'))el.inert=true;
-    this.load(this.clips.has('championship')?'championship':'forehand');
+    this.load(this.clips.has('phone')?'phone':this.clips.has('championship')?'championship':'forehand');
     this.layer.querySelector<HTMLButtonElement>('header button')!.focus({preventScroll:true});
   }
   close(){
@@ -104,6 +113,7 @@ export class PerformanceLab {
     this.active=false;this.layer.hidden=true;document.body.classList.remove('lab-active');
     if(this.prior)this.camera.restoreState(this.prior);
     if(this.camera.aspect!==this.priorAspect){const aspect=this.camera.aspect;this.camera.aspect=0;this.camera.setAspect(aspect);this.camera.update(0);}
+    this.video.pause();this.video.removeAttribute('src');this.video.load();this.videoBox.hidden=true;this.phone=null;
     this.prior=null;this.timeline=null;this.cached=[];this.clips.clear();this.plotClip=null;this.courtClip=null;this.courtHistory=[];
     for(const el of document.querySelectorAll<HTMLElement>('.topbar,.hud,.objective,#scenePeek'))el.inert=false;
     const target=this.restoreFocus?.isConnected&&!this.restoreFocus.closest('[hidden]')?this.restoreFocus:this.canvas;
@@ -115,19 +125,21 @@ export class PerformanceLab {
     this.timeline=new ReplayTimeline(clip);this.timeline.mode=mode;this.timeline.focus=focus;
     this.timeline.speed=Number(this.transport.querySelector<HTMLSelectElement>('select')?.value??1);
     this.source.value=kind;
-    this.provenance.textContent=clip.source==='game-recording'?'GAME RECORDING · your last 360 samples':'AUTHORED DEMO · simulated movement';
+    this.video.pause();this.videoBox.hidden=clip.kind!=='phone'||!this.phone?.url;
+    if(clip.kind==='phone'&&this.phone?.url){if(this.video.getAttribute('src')!==this.phone.url)this.video.src=this.phone.url;this.video.defaultPlaybackRate=this.timeline.speed;this.video.playbackRate=this.timeline.speed;this.video.currentTime=this.timeline.start;this.timeline.playing=false;this.videoBox.open=this.canvas.clientWidth>850;const a=this.videoBox.querySelector('a')!;a.href=this.phone.url;a.download=`Rally-House-phone-capture.${this.phone.mime.includes('mp4')?'mp4':'webm'}`;}
+    this.provenance.textContent=clip.source==='phone-recording'?`IN-GAME PHONE CAPTURE · ${this.phone?.url?'video + shared motion':'motion replay; video encoder unavailable'}`:clip.source==='game-recording'?'GAME RECORDING · your last 360 samples':'AUTHORED DEMO · simulated movement';
     const s=summary(clip);
     this.stats.textContent=`${format(s.distance,1)} club units travelled · ${s.contacts} player racket contacts${s.cadence===null?'':` · ${format(s.cadence)} steps/min · ${format(s.stride,2)} u stride · stance L ${format(s.stance[0])}% / R ${format(s.stance[1])}% · footsteps: L mint / R gold`}`;
     this.invalidate();this.frameCamera();this.syncControls();this.refresh();
   }
   focus(j:Joint){if(!this.timeline)return;this.timeline.focus=j;this.invalidate();this.syncControls();this.refresh();}
-  togglePlay(){if(!this.timeline)return;if(this.timeline.time>=this.timeline.end)this.timeline.seek(this.timeline.start);this.timeline.playing=!this.timeline.playing;this.refresh();}
-  zoom(delta:number){this.camera.desiredDistance=clamp(this.camera.desiredDistance+delta*(this.camera.desiredDistance/20),this.camera.aspect<.9?12:7,60);}
+  togglePlay(){if(!this.timeline)return;if(this.timeline.time>=this.timeline.end)this.timeline.seek(this.timeline.start);if(this.timeline.clip.kind==='phone'&&this.phone?.url){if(this.video.paused){if(this.video.ended)this.video.currentTime=this.timeline.start;void this.video.play().catch(()=>{if(this.timeline)this.timeline.playing=false;});}else this.video.pause();}else this.timeline.playing=!this.timeline.playing;this.refresh();}
+  zoom(delta:number){const phone=this.timeline?.clip.kind==='phone'&&this.timeline.mode!=='court';this.camera.desiredDistance=clamp(this.camera.desiredDistance+delta*(this.camera.desiredDistance/20),phone?(this.camera.aspect<.9?9:7):this.camera.aspect<.9?12:7,phone?(this.camera.aspect<.9?14:10):60);}
   key(e:KeyboardEvent){
     if(!this.active)return;
     if(e.key==='Escape'){e.preventDefault();this.close();}
     else if(e.key===' '&&e.target===this.canvas){e.preventDefault();this.togglePlay();}
-    else if(e.target===this.canvas&&(e.key==='ArrowLeft'||e.key==='ArrowRight')){e.preventDefault();if(this.timeline){this.timeline.playing=false;this.timeline.seek(this.timeline.time+(e.key==='ArrowLeft'?-.1:.1));this.invalidate();this.refresh();}}
+    else if(e.target===this.canvas&&(e.key==='ArrowLeft'||e.key==='ArrowRight')){e.preventDefault();if(this.timeline){this.timeline.playing=false;this.timeline.seek(this.timeline.time+(e.key==='ArrowLeft'?-.1:.1));if(this.timeline.clip.kind==='phone'&&this.phone?.url){this.video.pause();this.video.currentTime=this.timeline.time;}this.invalidate();this.refresh();}}
   }
   rigOffset(_reducedMotion:boolean):Vec3{
     void _reducedMotion; // Retain the caller contract; this inspection offset never animates.
@@ -145,6 +157,7 @@ export class PerformanceLab {
   private syncControls(){
     for(const b of this.panel.querySelectorAll<HTMLButtonElement>('[data-mode]'))b.setAttribute('aria-pressed',String(b.dataset.mode===this.timeline?.mode));
     for(const b of this.panel.querySelectorAll<HTMLButtonElement>('[data-joint]'))b.setAttribute('aria-pressed',String(b.dataset.joint===this.timeline?.focus));
+    this.lens.disabled=this.timeline?.clip.kind==='phone';
     this.lens.setAttribute('aria-pressed',String(this.contactLens));
     this.separation.setAttribute('aria-pressed',String(this.separateRig));
     this.separation.textContent=this.separateRig?'Register rig':'Separate rig';
@@ -152,8 +165,8 @@ export class PerformanceLab {
   private frameCamera(){
     const t=this.timeline;if(!t)return;const f=t.frame??t.clip.frames[0],portrait=this.camera.aspect<.9;
     this.camera.autoFrame=false;
-    this.camera.desiredAzimuth=t.mode==='court'?.36:2.55;this.camera.desiredElevation=t.mode==='court'?.72:.36;
-    this.camera.desiredDistance=t.mode==='court'?(portrait?48:35):t.mode==='body'?(portrait?14:9):(portrait?18:13);
+    this.camera.desiredAzimuth=t.mode==='court'?.36:t.clip.kind==='phone'?1.85:2.55;this.camera.desiredElevation=t.mode==='court'?.72:.36;
+    this.camera.desiredDistance=t.mode==='court'?(portrait?48:35):t.clip.kind==='phone'?(t.mode==='body'?(portrait?12:8):(portrait?14:10)):t.mode==='body'?(portrait?14:9):(portrait?18:13);
     this.lastAspect=this.camera.aspect;this.trackCamera(f);
   }
   private trackCamera(f:MotionFrame){
@@ -165,8 +178,9 @@ export class PerformanceLab {
   }
   update(dt:number,reducedMotion:boolean){
     if(!this.active||!this.timeline)return;
-    this.timeline.update(dt,this.contactLens&&!reducedMotion);
+    if(this.timeline.clip.kind==='phone'&&this.phone?.url){this.timeline.seek(this.video.currentTime);this.timeline.playing=!this.video.paused&&!this.video.ended;}else this.timeline.update(dt,this.contactLens&&!reducedMotion);
     if(this.lastAspect!==this.camera.aspect)this.frameCamera();
+    if(this.timeline.clip.kind==='phone'&&this.timeline.mode!=='court')this.camera.desiredAzimuth=clamp(this.camera.desiredAzimuth,-.85,1.9);
     const f=this.timeline.frame;if(f)this.trackCamera(f);
     this.refresh();
   }

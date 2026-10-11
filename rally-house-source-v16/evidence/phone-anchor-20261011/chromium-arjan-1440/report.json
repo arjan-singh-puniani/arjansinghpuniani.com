@@ -1,0 +1,108 @@
+{
+  "engine": "chromium",
+  "avatar": "Arjan",
+  "width": 1440,
+  "errors": [],
+  "requests": [],
+  "hand": {
+    "phone": {
+      "active": true,
+      "phase": "mounting",
+      "mounted": false,
+      "avatar": "arjan",
+      "samples": 0,
+      "video": false,
+      "liveTracks": 0,
+      "anchor": {
+        "x": -3.8,
+        "y": 1.42,
+        "z": -8
+      }
+    },
+    "handError": 0
+  },
+  "result": {
+    "phone": {
+      "active": false,
+      "phase": "finishing",
+      "mounted": true,
+      "avatar": "arjan",
+      "samples": 162,
+      "video": true,
+      "liveTracks": 0,
+      "anchor": {
+        "x": -3.8,
+        "y": 1.42,
+        "z": -8
+      }
+    },
+    "source": "phone-recording",
+    "kind": "phone",
+    "samples": 162,
+    "bytes": 1215431,
+    "mime": "video/webm",
+    "duration": 5.374354,
+    "width": 1440,
+    "height": 900,
+    "owner": "Three apps by Arjan Singh Puniani",
+    "uses": 1
+  },
+  "sync": {
+    "video": 0.664379,
+    "time": 0.654075,
+    "frame": 0.654075,
+    "error": 0.01030400000000009,
+    "overflow": false
+  },
+  "seek": {
+    "video": 2.6976,
+    "time": 2.6976,
+    "readout": "6°",
+    "camera": {
+      "x": 3.0062075108402,
+      "y": 3.9716800259768403,
+      "z": -7.76129677779429
+    },
+    "opaqueSurfaces": 77
+  },
+  "axe": [],
+  "cancel": {
+    "phone": {
+      "active": false,
+      "phase": "recording",
+      "mounted": true,
+      "avatar": "arjan",
+      "samples": 0,
+      "video": false,
+      "liveTracks": 0,
+      "anchor": {
+        "x": -3.8,
+        "y": 1.42,
+        "z": -8
+      }
+    },
+    "last": null,
+    "uses": 1,
+    "major": false,
+    "activity": 0
+  },
+  "rerecord": {
+    "phone": {
+      "active": false,
+      "phase": "finishing",
+      "mounted": true,
+      "avatar": "arjan",
+      "samples": 163,
+      "video": true,
+      "liveTracks": 0,
+      "anchor": {
+        "x": -3.8,
+        "y": 1.42,
+        "z": -8
+      }
+    },
+    "url": "blob:http://127.0.0.1:8078/3795405e-21e5-4bb2-80be-ad7745f124ce",
+    "uses": 2
+  },
+  "disposed": true
+}

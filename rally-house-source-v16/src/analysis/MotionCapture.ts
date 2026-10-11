@@ -5,13 +5,13 @@ import {rigFromPose,skinMatrices} from '../animation/CharacterSkin.js';
 
 export type Joint='knee'|'hip'|'ankle'|'shoulder'|'elbow';
 export type LabMode='combined'|'court'|'body';
-export type SampleKind='gait'|'forehand'|'serve'|'championship';
+export type SampleKind='gait'|'forehand'|'serve'|'championship'|'phone';
 export interface MotionFrame {
   time:number;root:Vec3;pose:CharacterPose;body:RenderItem[];ball:Vec3|null;
   planted:[boolean,boolean];state:string;contact:boolean;bounce:boolean;
   interpolated?:boolean;
 }
-export interface MotionClip {name:string;kind:SampleKind;source:'authored-demo'|'game-recording';frames:MotionFrame[];}
+export interface MotionClip {name:string;kind:SampleKind;source:'authored-demo'|'game-recording'|'phone-recording';frames:MotionFrame[];}
 export const LIMBS=[['shoulderL','elbowL'],['elbowL','handL'],['shoulderR','elbowR'],['elbowR','handR'],['shoulderL','shoulderR'],['shoulderL','hipL'],['shoulderR','hipR'],['hipL','hipR'],['hipL','kneeL'],['kneeL','footL'],['hipR','kneeR'],['kneeR','footR']] as const;
 export const JOINT_KEYS=['shoulderL','shoulderR','elbowL','elbowR','handL','handR','hipL','hipR','kneeL','kneeR','footL','footR','pelvisCenter'] as const;
 export const FOCUS_KEYS:Record<Joint,keyof CharacterPose>={knee:'kneeR',hip:'hipR',ankle:'footR',shoulder:'shoulderR',elbow:'elbowR'};

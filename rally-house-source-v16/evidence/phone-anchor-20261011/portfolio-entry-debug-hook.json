@@ -1,0 +1,5 @@
+{
+  "errors": [],
+  "http": [],
+  "harnessIssue": "Second check waited for dev-only __rh hooks on the production iframe, which correctly omits them. Final check uses native loading and game controls."
+}

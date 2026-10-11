@@ -5,7 +5,7 @@ import {BallPhysics} from '../tennis/BallPhysics.js';
 import {captureFrame,type MotionClip,type SampleKind} from './MotionCapture.js';
 
 /** The real animation/foot/contact solvers generate these explicitly authored demonstrations. */
-export function demonstration(kind:Exclude<SampleKind,'championship'>,spec:CharacterSpec):MotionClip{
+export function demonstration(kind:Exclude<SampleKind,'championship'|'phone'>,spec:CharacterSpec):MotionClip{
   const clip:MotionClip={name:kind==='gait'?'Walk the analysis strip':kind==='serve'?'Serve · toss to recovery':'Forehand · load to follow-through',kind,source:'authored-demo',frames:[]};
   const c=new Character({...spec},new Vec3(kind==='gait'?-1:1,0,4.1),new Navigation([]),{});
   const ball=new BallPhysics();

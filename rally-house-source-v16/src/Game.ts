@@ -1,3 +1,4 @@
+import {PhoneCapture} from './analysis/PhoneCapture.js';
 import {deriveActing} from './animation/ActingState.js';
 import {DialogueComposer} from './simulation/DialogueComposer.js';
 import {playerSpec,type PlayerAvatar} from './content/PlayerAvatars.js';
@@ -72,7 +73,7 @@ export class Game {
   private championshipCompletedRound = 0;
   private championshipAudibleVolume = .65;
   private spatial!:SpatialInteractionSystem;
-  private performanceLab!:PerformanceLab;
+  private performanceLab!:PerformanceLab;private phoneCapture!:PhoneCapture;
   private motionRecorder=new MotionRecorder();
   private noticeTimer=0;
   private worldNotices:WorldNotice[]=[];
@@ -125,7 +126,9 @@ export class Game {
     });
 
     this.spatial=new SpatialInteractionSystem(this.camera,this.canvas);
-    this.performanceLab=new PerformanceLab(this.camera,this.canvas);
+    this.performanceLab=new PerformanceLab(this.camera,this.canvas);this.phoneCapture=new PhoneCapture(this.camera,this.canvas);
+    this.performanceLab.onRecord=()=>{this.performanceLab.close();const o=this.world.objects.find(o=>o.id==='performanceLab')!,action=this.world.identity.actions(o,this.absoluteMinute).find(a=>a.id==='capture')!;this.startClubTouch(o.id,o.label,o.position,action);};
+    window.addEventListener('pagehide',e=>{if(e.persisted)this.phoneCapture.cancel();else this.phoneCapture.dispose();});
     this.performanceLab.onReturn=()=>{this.pointers.clear();this.pointerStart=null;this.lastPointer=null;this.pinchDistance=0;this.dragged=false;this.spatial.setHover(null);this.canvas.style.cursor='';};
     window.addEventListener('pagehide',e=>{if(e.persisted)this.performanceLab.close();else this.performanceLab.dispose();});
 
@@ -155,7 +158,7 @@ export class Game {
       focus:(x:number,z:number,distance:number)=>this.camera.focus(x,z,distance),
       challenge:(id:string)=>{const opponent=this.byId(id);if(opponent)this.startChampionship(opponent);},
       championship:()=>this.championship.snapshot(),
-      lab:()=>this.performanceLab.report(),
+      lab:()=>this.performanceLab.report(),phone:()=>this.phoneCapture.report(),
       openLab:()=>this.openPerformanceLab(),
       championshipPoint:(winner:'player'|'opponent')=>{
         if(this.championship.phase!=='serving'&&this.championship.phase!=='rally')return false;
@@ -195,12 +198,12 @@ export class Game {
   }
 
   private bindInput(){
-    this.canvas.addEventListener('dblclick',e=>{if(this.championship.active||this.performanceLab.active)return;this.spatial.dismiss();const c=this.pickCharacter(e.clientX,e.clientY);if(c){this.camera.focus(c.position.x,c.position.z,17,1);this.ui.closeContext();}});
+    this.canvas.addEventListener('dblclick',e=>{if(this.championship.active||this.performanceLab.active||this.phoneCapture?.active)return;this.spatial.dismiss();const c=this.pickCharacter(e.clientX,e.clientY);if(c){this.camera.focus(c.position.x,c.position.z,17,1);this.ui.closeContext();}});
 
     document.addEventListener('visibilitychange',()=>{
       this.last=performance.now();this.simAcc=0;
       this.matchInput.reset();this.championshipHud.resetTouch();
-      if(document.hidden){this.setChampionshipPaused(true);this.audio.stopAmbience();}
+      if(document.hidden){this.phoneCapture?.cancel();this.setChampionshipPaused(true);this.audio.stopAmbience();}
     });
     window.addEventListener('blur',()=>{
       this.matchInput.reset();this.championshipHud.resetTouch();
@@ -218,6 +221,7 @@ export class Game {
       void this.saveSystem.save(this.snapshot()).then(()=>{detail.textContent='Your club is saved. Reload to restore the view.';const button=document.createElement('button');button.textContent='Reload saved club';button.onclick=()=>location.reload();box.append(button);}).catch(()=>{detail.textContent='Graphics stopped, and recent changes could not be saved. Keep this tab open.';});
     });
     document.addEventListener('keydown',e=>{
+      if(this.phoneCapture?.active){this.phoneCapture.key(e);return;}
       if(this.performanceLab?.active){this.performanceLab.key(e);return;}
       if(e.target instanceof HTMLInputElement||e.target instanceof HTMLTextAreaElement)return;
 
@@ -246,10 +250,10 @@ export class Game {
       if (this.championship.active) this.matchInput.handleKeyUp(e);
     });
 
-    this.canvas.addEventListener('wheel',e=>{e.preventDefault();if(this.championship.active)return;if(this.performanceLab.active){this.performanceLab.zoom(e.deltaY*.012);return;}this.camera.zoom(e.deltaY*.012)},{passive:false});
+    this.canvas.addEventListener('wheel',e=>{e.preventDefault();if(this.championship.active||this.phoneCapture?.active)return;if(this.performanceLab.active){this.performanceLab.zoom(e.deltaY*.012);return;}this.camera.zoom(e.deltaY*.012)},{passive:false});
     this.canvas.addEventListener('contextmenu',e=>e.preventDefault());
     this.canvas.addEventListener('pointerdown',e=>{if(this.championship.active)return;this.canvas.setPointerCapture(e.pointerId);this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(this.pointers.size===1){this.pointerStart={x:e.clientX,y:e.clientY};this.lastPointer={x:e.clientX,y:e.clientY};this.dragged=false}else if(this.pointers.size===2)this.pinchDistance=this.currentPinch()});
-    this.canvas.addEventListener('pointermove',e=>{const prev=this.pointers.get(e.pointerId);if(prev)this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(this.championship.active)return;if(!this.performanceLab.active)this.hoverGround=this.camera.groundPoint(e.clientX,e.clientY);if(!this.performanceLab.active&&!prev&&!this.buildType){const selected=this.pickWorld(e.clientX,e.clientY);const anchor=selected?.object?.selection?.centre??selected?.character?.position??(selected?.placement?new Vec3(selected.placement.x,.65,selected.placement.z):null);this.spatial.setHover(anchor,selected?.object?.label??selected?.character?.spec.name??(selected?.placement?DECOR_BY_ID[selected.placement.type].label:''));this.canvas.style.cursor=selected?'pointer':'';}if(this.pointers.size===2){const d=this.currentPinch();if(this.pinchDistance>0){const delta=(this.pinchDistance-d)*.035;if(this.performanceLab.active)this.performanceLab.zoom(delta);else this.camera.zoom(delta);}this.pinchDistance=d;this.dragged=true;return}if(prev&&this.lastPointer&&this.pointers.size===1){const dx=e.clientX-this.lastPointer.x,dy=e.clientY-this.lastPointer.y;if(this.pointerStart&&Math.hypot(e.clientX-this.pointerStart.x,e.clientY-this.pointerStart.y)>7)this.dragged=true;if(this.dragged){if(this.performanceLab?.active)this.camera.desiredAzimuth+=dx*.006;else if(e.shiftKey||e.buttons===2)this.camera.rotate(dx);else this.camera.pan(dx,dy);}this.lastPointer={x:e.clientX,y:e.clientY}}});
+    this.canvas.addEventListener('pointermove',e=>{const prev=this.pointers.get(e.pointerId);if(prev)this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(this.championship.active||this.phoneCapture?.active)return;if(!this.performanceLab.active)this.hoverGround=this.camera.groundPoint(e.clientX,e.clientY);if(!this.performanceLab.active&&!prev&&!this.buildType){const selected=this.pickWorld(e.clientX,e.clientY);const anchor=selected?.object?.selection?.centre??selected?.character?.position??(selected?.placement?new Vec3(selected.placement.x,.65,selected.placement.z):null);this.spatial.setHover(anchor,selected?.object?.label??selected?.character?.spec.name??(selected?.placement?DECOR_BY_ID[selected.placement.type].label:''));this.canvas.style.cursor=selected?'pointer':'';}if(this.pointers.size===2){const d=this.currentPinch();if(this.pinchDistance>0){const delta=(this.pinchDistance-d)*.035;if(this.performanceLab.active)this.performanceLab.zoom(delta);else this.camera.zoom(delta);}this.pinchDistance=d;this.dragged=true;return}if(prev&&this.lastPointer&&this.pointers.size===1){const dx=e.clientX-this.lastPointer.x,dy=e.clientY-this.lastPointer.y;if(this.pointerStart&&Math.hypot(e.clientX-this.pointerStart.x,e.clientY-this.pointerStart.y)>7)this.dragged=true;if(this.dragged){if(this.performanceLab?.active)this.camera.desiredAzimuth+=dx*.006;else if(e.shiftKey||e.buttons===2)this.camera.rotate(dx);else this.camera.pan(dx,dy);}this.lastPointer={x:e.clientX,y:e.clientY}}});
     this.canvas.addEventListener('pointerleave',()=>{this.spatial.setHover(null);this.canvas.style.cursor='';});
     this.canvas.addEventListener('pointerup',e=>{if(!this.dragged&&this.pointers.size===1)this.handleTap(e.clientX,e.clientY);this.pointers.delete(e.pointerId);this.pointerStart=null;this.lastPointer=null;this.pinchDistance=0;this.ui.hideHint()});
     this.canvas.addEventListener('pointercancel',e=>{this.pointers.delete(e.pointerId);this.pointerStart=null;this.lastPointer=null;this.pinchDistance=0});
@@ -279,6 +283,7 @@ export class Game {
 
   private handleTap(x:number,y:number){
     if (this.championship.active) return;
+    if(this.phoneCapture?.active)return;
     if(this.performanceLab?.active){this.performanceLab.pickJoint(x,y,this.settings.reducedMotion);return;}
     this.audio.click();
     if(this.movingPlacement){const g=this.camera.groundPoint(x,y);if(g)this.moveFurniture(this.movingPlacement,g.x,g.z);return;}
@@ -322,7 +327,7 @@ export class Game {
   }
 
   private startChampionship(opponent:Character){
-    if(this.performanceLab?.active)return;
+    if(this.performanceLab?.active||this.phoneCapture?.active)return;
     const profile=championshipOpponentFor(opponent.id);
     if(!profile){this.ui.toast('They are not available for Championship play.');return;}
     if(this.championship.active){this.ui.toast('Finish the current Championship match first.');return;}
@@ -671,6 +676,9 @@ export class Game {
       this.player.socialProp=null;this.activities.transition(a,'resolving');
     }
     if(a.phase==='resolving'&&a.phaseTime>.7){
+      if(run.objectId==='performanceLab'&&run.touch.id==='capture'&&this.phoneCapture){
+        this.ui.closeContext();this.spatial.dismiss();this.phoneCapture.onComplete=()=>{this.activities.finish(a,run.touch.title,()=>{this.world.identity.complete(run.objectId,run.touch.title);this.life.addMemory(this.clock.day,`${this.player.spec.name} recorded movement with the anchored phone.`);});this.releaseActivity(a);void this.save();this.openPerformanceLab();};this.phoneCapture.onCancel=()=>this.cancelActivity(a);this.phoneCapture.open(this.player);return;
+      }
       this.activities.finish(a,run.touch.title,()=>{
         if(this.affordances.objects[run.objectId])this.affordances.visit(run.objectId,['player'],this.clock.day);
         if(run.touch.id)this.world.identity.complete(run.objectId,run.touch.title);
@@ -685,7 +693,7 @@ export class Game {
     if(!this.performanceLab||this.championship?.active||this.performanceLab.active)return;
     this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);this.buildType=null;this.movingPlacement=null;
     this.spatial.dismiss();this.matchInput.reset();this.pointers.clear();this.pointerStart=null;this.lastPointer=null;
-    this.audio.click();this.performanceLab.open(this.player.spec,this.motionRecorder?.clip??null);
+    this.audio.click();this.performanceLab.open(this.player.spec,this.motionRecorder?.clip??null,this.phoneCapture?.last??null);
   }
 
   private playObjectSound(effect:string,contact?:Vec3){
@@ -1072,6 +1080,7 @@ export class Game {
     if(this.world.weather==='rain'&&!this.activities.busy('nia')){this.history.nextObject=Math.min(this.history.nextObject,this.absoluteMinute);}
   }
   private updateFixed(dt:number){
+    if(this.phoneCapture?.active){this.phoneCapture.update(dt);return;}
     if(this.performanceLab?.active)return;
     this.clock.update(dt);const step=this.clock.paused?0:dt*this.clock.speed;if(!step)return;
     if(this.clock.day!==this.lastDay){this.lastDay=this.clock.day;this.daily.ensureDay(this.clock.day);for(const c of this.characters)c.currentScheduleIndex=-1;}
@@ -1184,7 +1193,7 @@ export class Game {
     }
     const peek=document.getElementById('scenePeek')!,run=this.lifeRuns.values().next().value;const courtEvent=this.activities.active.find(a=>a.resource==='court');const title=run?.scene.title??courtEvent?.detail??'';if(peek.querySelector('strong')!.textContent!==title)peek.querySelector('strong')!.textContent=title;peek.hidden=(!run&&!courtEvent)||!!this.spatial.selectedId||!!document.querySelector('.context.open,.book.open,.build.open');
     const aspect=this.renderer.resize();this.camera.setAspect(aspect);
-    this.performanceLab?.update(this.renderDt,this.settings.reducedMotion);
+    this.performanceLab?.update(this.renderDt,this.settings.reducedMotion);this.phoneCapture?.frameCamera(this.settings.reducedMotion);
     if(this.championship.active&&this.championshipOpponentId){
       const opponent=this.byId(this.championshipOpponentId);
       if(opponent){
@@ -1202,7 +1211,7 @@ export class Game {
         return {id:c.id,position:c.position,name:c.spec.name,activity:label,select:()=>this.openCharacter(c)};
       });
     }
-    this.spatial.update(this.renderDt,this.performanceLab.active||this.championship.active||!!document.querySelector('#context.open,#book.open,#buildPanel.open'),this.settings.reducedMotion,this.worldNotices);
+    this.spatial.update(this.renderDt,this.performanceLab.active||this.championship.active||this.phoneCapture?.active||!!document.querySelector('#context.open,#book.open,#buildPanel.open'),this.settings.reducedMotion,this.worldNotices);
     const architecture=this.performanceLab.active?this.world.meshes.filter(m=>m.id!=='court-pendant'):this.world.meshes;
     const meshes:RenderItem[]=[...architecture,...this.spatial.meshes(),...this.world.placementMeshes(),...this.world.dynamicMeshes(this.settings.reducedMotion?0:now/1000,this.clock.minutes,this.camera.position,this.renderDt,this.sportFocus,now/1000)];if(!this.performanceLab.active){for(const c of this.characters){
       const body=c.meshes(false);
@@ -1213,11 +1222,12 @@ export class Game {
       meshes.push(...body);
     }meshes.push(...this.player.meshes(false),...this.rally.meshes(),...this.socialRally.meshes(),...(this.interactiveMatch?.meshes(this.settings.reducedMotion)??[]));
     }else meshes.push(...this.performanceLab.meshes(this.settings.reducedMotion));
-    if(Math.hypot(this.player.position.x+3.8,this.player.position.z+8.35)<3||this.performanceLab.active)meshes.push({kind:'roundBox',position:new Vec3(-3.8,1.48,-8.18),scale:new Vec3(1.48,.92,.01),color:'#92d5c0',alpha:.08,unlit:true,noShadow:true});
+    meshes.push(...(this.phoneCapture?.meshes()??[]));
+
     if(this.buildType&&this.hoverGround){const x=Math.round(this.hoverGround.x*2)/2,z=Math.round(this.hoverGround.z*2)/2;meshes.push(...this.previewMeshes(this.buildType,x,z,this.placementClear(this.buildType,x,z,this.buildRotation)))}
     if(this.history.breakthrough||this.history.firstMikaWin)meshes.push({kind:'roundBox',position:new Vec3(4.25,2.12,-9.1),scale:new Vec3(.7,.12,.45),color:'#c58a5b',material:'wood'},{kind:'sphere',position:new Vec3(4.25,2.3,-9.1),scale:new Vec3(.24,.24,.24),color:'#e6c65f',material:'fabric'});
     const contactView=this.championshipCamera.renderImpulse(this.settings.reducedMotion);
-    this.renderItems=meshes.length;this.renderer.render(meshes,this.camera.viewProjection(contactView),this.atmosphere.update(this.world.lighting(this.clock.minutes,this.sportFocus),this.renderDt),this.camera.position);
+    this.renderItems=meshes.length;this.renderer.render(meshes,this.camera.viewProjection(contactView),this.atmosphere.update(this.world.lighting(this.clock.minutes,this.sportFocus),this.renderDt),this.camera.position);this.phoneCapture?.afterRender();
     if(this.activeSpeechId&&performance.now()<this.speechUntil){const c=this.byId(this.activeSpeechId);if(c){const p=this.camera.project(new Vec3(c.position.x,2.55,c.position.z),undefined,contactView);this.ui.positionSpeech(p.x,p.y)}}else this.activeSpeechId=null;
   }
 
