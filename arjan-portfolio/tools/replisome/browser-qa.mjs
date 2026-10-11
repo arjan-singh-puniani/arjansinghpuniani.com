@@ -50,6 +50,7 @@ for (const [name, type] of [['chromium', chromium], ['webkit', webkit]]) {
       await page.keyboard.press('Enter');
       const frame = page.frameLocator('iframe');
       await expect(frame.locator('canvas')).toBeVisible({ timeout: 30000 });
+      expect(await page.locator('iframe').evaluate(el => el.getBoundingClientRect().top >= document.querySelector('.site-header').getBoundingClientRect().bottom - 1)).toBe(true);
       await expect(frame.getByText('Preparing molecular structures…')).toBeHidden({ timeout: 30000 });
       expect(requests.some(url => /\/replisome\/molecules\/7pfo\.json/.test(url))).toBe(true);
       expect(requests.some(url => /\/replisome\/fonts\/.*\.ttf/.test(url))).toBe(true);
@@ -97,6 +98,15 @@ for (const [name, type] of [['chromium', chromium], ['webkit', webkit]]) {
     await fallback.getByRole('button', { name: 'Close experience', exact: true }).click();
     results.push({ case: `${name}-no-webgl`, checks: ['readable fallback', 'close remains available'] });
     await fallback.close();
+    const standalonePage = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+    standalonePage.on('pageerror', e => errors.push({ case: `${name}-standalone`, message: e.message }));
+    standalonePage.on('response', r => { if (r.status() >= 400) failed.push({ case: `${name}-standalone`, status: r.status(), url: r.url() }); });
+    await standalonePage.goto(`${base}/replisome/index.html`);
+    await expect(standalonePage.locator('canvas')).toBeVisible({ timeout: 30000 });
+    await expect(standalonePage.getByText('Preparing molecular structures…')).toBeHidden({ timeout: 30000 });
+    expect(await standalonePage.locator('link[rel="icon"]').getAttribute('href')).toBe('/icon.svg');
+    results.push({ case: `${name}-standalone`, checks: ['direct/new-tab launch', 'local icon', 'rendered molecular view'] });
+    await standalonePage.close();
     if (name === 'chromium') {
       const page = await browser.newPage();
       for (const route of routes) {

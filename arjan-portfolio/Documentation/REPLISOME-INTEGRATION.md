@@ -21,8 +21,8 @@ No existing experience bundle, shared layout, global CSS, contact behavior, or p
 - `npm run verify`: lint (0 errors; 13 pre-existing warnings in anatomy/Rally House bundles), TypeScript, 91 existing tests with coverage, production build passed.
 - `npm test --prefix ../replisome-source`: 22 unit tests passed.
 - `node tools/replisome/sync-build.mjs`: strict TypeScript and standalone production build passed, using `/replisome/` as the asset base.
-- `REPLISOME_QA_URL=http://127.0.0.1:3072 node tools/replisome/browser-qa.mjs`: 18 integration/regression scenarios passed, no page errors or failed HTTP responses.
-- Chromium and WebKit at 1440×900 and 390×844: card placement, decoded preview images, zero eager app requests, responsive parent/iframe layouts, automated WCAG A/AA scan of the introduction, keyboard launch, local fonts and molecular data, all three modes, fullscreen or its fallback, close/focus restoration, reopen and Playground navigation.
+- `REPLISOME_QA_URL=http://127.0.0.1:3072 node tools/replisome/browser-qa.mjs`: 20 integration/regression scenarios passed, no page errors or failed HTTP responses.
+- Chromium and WebKit at 1440×900 and 390×844: card placement, decoded preview images, zero eager app requests, responsive parent/iframe layouts, automated WCAG A/AA scan of the introduction, keyboard launch, local fonts and molecular data, all three modes, fullscreen or its fallback, close/focus restoration, reopen, direct/new-tab launch and Playground navigation. The card title stays within its column, and the site header does not cover the launched experience.
 - Missing-WebGL checks in both engines retain readable guidance and a working close control.
 - Twelve established routes return HTTP 200 and retain their heading and shared navigation.
 
@@ -32,6 +32,6 @@ Automated browser checks do not replace physical iPhone, thermal, or VoiceOver v
 
 ## Release and rollback
 
-Push only the isolated feature branch, inspect its Vercel preview, and repeat browser QA against the preview before merging. Confirm the resulting production deployment and public routes. Do not deploy unrelated dirty local checkouts.
+Push only the isolated feature branch and require a successful Vercel preview build. Repeat browser QA against the hosted preview when access permits. Vercel currently protects preview URLs with sign-in, so unauthenticated hosted browser QA is unavailable; the full local production-build checks above provide the pre-release validation. Confirm the resulting public production deployment and repeat browser QA immediately after release. Do not deploy unrelated dirty local checkouts.
 
 For rollback, revert the integration merge commit through a new commit and redeploy, or restore the previous production deployment above in Vercel. Existing experiences have not been rebuilt or replaced by this integration.

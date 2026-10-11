@@ -22,7 +22,7 @@ try {
   if (build.status !== 0) throw new Error('Standalone build failed; deployed assets were not changed.');
   const index = join(output, 'index.html');
   let html = readFileSync(index, 'utf8');
-  html = html.replace('<head>', '<head>\n    <meta name="robots" content="noindex,follow" />\n    <link rel="canonical" href="https://arjansinghpuniani.com/playground/replisome" />');
+  html = html.replace('<head>', '<head>\n    <link rel="icon" href="/icon.svg" type="image/svg+xml" />\n    <meta name="robots" content="noindex,follow" />\n    <link rel="canonical" href="https://arjansinghpuniani.com/playground/replisome" />');
   // Keep font loading relative to the standalone document, independently of the portfolio.
   html = html.replace('href="./fonts/fonts.css"', 'href="/replisome/fonts/fonts.css"');
   writeFileSync(index, html);

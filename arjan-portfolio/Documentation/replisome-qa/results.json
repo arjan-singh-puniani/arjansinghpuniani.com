@@ -43,6 +43,14 @@
       ]
     },
     {
+      "case": "chromium-standalone",
+      "checks": [
+        "direct/new-tab launch",
+        "local icon",
+        "rendered molecular view"
+      ]
+    },
+    {
       "case": "/",
       "checks": [
         "existing route HTTP 200",
@@ -177,6 +185,14 @@
       "checks": [
         "readable fallback",
         "close remains available"
+      ]
+    },
+    {
+      "case": "webkit-standalone",
+      "checks": [
+        "direct/new-tab launch",
+        "local icon",
+        "rendered molecular view"
       ]
     }
   ],
