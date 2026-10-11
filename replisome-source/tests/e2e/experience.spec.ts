@@ -94,7 +94,10 @@ test("completes the first fragment and recovers from wrong biological actions", 
     await page.locator(".pairing-template strong").innerText()
   ).trim();
   await page
-    .getByRole("button", { name: first === "A" ? "C" : "A", exact: true })
+    .getByRole("button", {
+      name: Object.keys(pairs).find((base) => base !== pairs[first])!,
+      exact: true,
+    })
     .click();
   await page.getByRole("button", { name: "Proofread the mismatch" }).click();
   for (let i = 0; i < 4; i++) {
@@ -151,7 +154,11 @@ for (const [width, height] of [
     await page.screenshot({
       path: `evidence/${browserName}-${width}x${height}.png`,
     });
-    if(width>=1101){const intro=await page.locator(".intro").boundingBox(),hud=await page.locator(".hud").boundingBox();expect(intro!.y+intro!.height+5).toBeLessThan(hud!.y);}
+    if (width >= 1101) {
+      const intro = await page.locator(".intro").boundingBox(),
+        hud = await page.locator(".hud").boundingBox();
+      expect(intro!.y + intro!.height + 5).toBeLessThan(hud!.y);
+    }
     await page.getByRole("button", { name: "PLAY", exact: true }).click();
     const button = page.getByRole("button", { name: /Just behind the fork/ });
     await expect(button).toBeVisible();

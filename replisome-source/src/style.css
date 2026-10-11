@@ -1813,3 +1813,6 @@ h2 {
 .timeline input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:8px;height:8px;border-radius:50%;border:0;background:#b0dae4;margin-top:-3px}
 .timeline input::-moz-range-track{height:2px;border-radius:2px;background:#a4c4d435}
 .timeline input::-moz-range-thumb{width:8px;height:8px;border-radius:50%;border:0;background:#b0dae4}
+@media (min-width: 701px) and (max-height: 800px) {
+  .a-leading { top: 57%; left: 32%; }
+}

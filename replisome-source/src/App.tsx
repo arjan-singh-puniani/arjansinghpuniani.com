@@ -37,6 +37,8 @@ import {
   type Action,
 } from "./simulation/engine";
 import { molecules } from "./data/molecules";
+import StudyStudio from "./study/StudyStudio";
+import MotionPanel, { beats } from "./motion/MotionPanel";
 
 const read = (key: string, fallback: string) => {
   try {
@@ -79,13 +81,19 @@ export default function App() {
   const [, render] = useState(0);
   const [mode, setMode] = useState<Mode>("watch");
   const [selected, setSelected] = useState("cmg");
-  const [inspector, setInspector] = useState(window.innerWidth >= 700);
+  const [inspector, setInspector] = useState(false);
+  const [tool, setTool] = useState<"orbit" | "grab">("orbit");
+  const [follow, setFollow] = useState(false);
   const [tier, setTier] = useState<"overview" | "mechanism" | "evidence">(
     "overview",
   );
   const [labels, setLabels] = useState(true);
   const [settings, setSettings] = useState(false);
   const [sources, setSources] = useState(false);
+  const [study, setStudy] = useState(false);
+  const studyRef = useRef(study);
+  const studyLaunchRef = useRef<HTMLButtonElement>(null);
+  studyRef.current = study;
   const [rep, setRep] = useState<Representation>("surface");
   const [camera, setCamera] = useState<CameraMode>("cinematic");
   const [quality, setQuality] = useState<Quality>(
@@ -107,6 +115,14 @@ export default function App() {
   speedRef.current = speed;
   const mutedRef = useRef(muted);
   mutedRef.current = muted;
+  useEffect(() => {
+    if (!study) return;
+    const wasPaused = engine.paused;
+    engine.paused = true;
+    return () => {
+      engine.paused = wasPaused;
+    };
+  }, [study, engine]);
   useEffect(() => {
     if (!sources) return;
     const previous = document.activeElement as HTMLElement | null;
@@ -147,7 +163,7 @@ export default function App() {
       last = now;
       engine.advance(dt * speedRef.current);
       if (engine.time >= 600) engine.paused = true;
-      if (now - lastUI > 80) {
+      if (!studyRef.current && now - lastUI > 80) {
         render((n) => n + 1);
         lastUI = now;
       }
@@ -182,6 +198,7 @@ export default function App() {
   }, [engine.finished, engine.score, best]);
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
+      if (study) return;
       if ((e.target as HTMLElement).closest("button,input,select,textarea"))
         return;
       if (e.code === "Space") {
@@ -197,9 +214,10 @@ export default function App() {
     };
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
-  }, [engine]);
+  }, [engine, study]);
   const switchMode = (m: Mode) => {
     if (m === mode) return;
+    if (m === "explore" || m === "play") setRep("surface");
     if (m === "play") engine.reset("play");
     else {
       if (mode === "play") engine.reset(m);
@@ -207,12 +225,15 @@ export default function App() {
     }
     setMode(m);
     setCamera(m === "explore" ? "free" : "cinematic");
-    setInspector(m !== "play");
+    setInspector(false);
+    setFollow(false);
+    setTool("orbit");
+    if (m === "play") engine.held.clear();
     setSettings(false);
   };
   const choose = (id: string) => {
     setSelected(id);
-    setInspector(true);
+    setInspector(mode === "watch");
     setTier("overview");
   };
   const action = (a: Action, position?: number) => {
@@ -294,21 +315,32 @@ export default function App() {
       "Ligase I seals the phosphodiester bond. The nick disappears from the molecular state.";
   }
   return (
-    <main className="experience">
+    <main className="experience" data-mode={mode}>
       <MolecularScene
         engine={engine}
         representation={rep}
-        cameraMode={camera}
+        cameraMode={follow ? "follow" : camera}
         quality={quality}
         reduceMotion={reduced}
         onSelect={choose}
         onReady={setStatus}
         resetKey={resetKey}
-        selected={selected}
+        selected={follow && mode === "watch" ? beats[f.stage].actor : selected}
+        manipulationTool={mode === "explore" ? tool : "orbit"}
+        onHeld={(id, held) => {
+          engine.setHeld(id, held);
+          setSelected(id);
+          setNotice(
+            held ? `${id} removed from DNA.` : `${id} returned to DNA.`,
+          );
+          render((n) => n + 1);
+        }}
+        suspended={study}
+        labels={labels}
       />
       <div className="vignette" />
       <header className="topbar">
-        <a href="./" className="brand" aria-label="Replisome home">
+        <a href="./index.html" className="brand" aria-label="Replisome home">
           <span className="brand-symbol">
             <Dna size={26} />
           </span>
@@ -336,9 +368,17 @@ export default function App() {
           ))}
         </nav>
         <div className="header-right">
-          <span className="live-mark">
-            <i /> HUMAN REPLISOME
-          </span>
+          <button
+            ref={studyLaunchRef}
+            className="study-launch"
+            onClick={() => {
+              setSettings(false);
+              setSources(false);
+              setStudy(true);
+            }}
+          >
+            <BookOpen size={15} /> <span>MCAT lens</span>
+          </button>
           <IconButton
             label="Settings"
             onClick={() => setSettings((v) => !v)}
@@ -369,29 +409,6 @@ export default function App() {
       <div className="scene-top-note">
         <span className="thin-line" /> A LIVING MOLECULAR MACHINE
       </div>
-      {labels && rep !== "structure" && (
-        <div className="scene-labels" aria-label="Scene annotations">
-          <button className="annotation a-parent" onClick={() => choose("cmg")}>
-            PARENTAL DNA <span>3′ / 5′</span>
-          </button>
-          <button className="annotation a-cmg" onClick={() => choose("cmg")}>
-            <i style={{ background: molecules[0].color }} /> CMG HELICASE{" "}
-            <span>Unwinding the helix</span>
-          </button>
-          <button
-            className="annotation a-leading"
-            onClick={() => choose("epsilon")}
-          >
-            LEADING STRAND <span>5′ → 3′ · continuous</span>
-          </button>
-          <button
-            className="annotation a-lagging"
-            onClick={() => choose("delta")}
-          >
-            LAGGING STRAND <span>5′ → 3′ · in fragments</span>
-          </button>
-        </div>
-      )}
       <section className="hud" aria-label="Live simulation counters">
         <div className="hud-card">
           <div className="hud-label cyan">
@@ -441,7 +458,7 @@ export default function App() {
           </div>
         </div>
       </section>
-      {mode !== "play" && inspector && !sources && !settings && (
+      {mode === "watch" && inspector && !sources && !settings && (
         <aside className="inspector glass">
           <div className="panel-eyebrow">
             MOLECULAR SPOTLIGHT{" "}
@@ -491,6 +508,7 @@ export default function App() {
             </span>
             <button
               onClick={() => {
+                setFollow(false);
                 setCamera("detail");
               }}
             >
@@ -499,6 +517,47 @@ export default function App() {
           </div>
         </aside>
       )}
+      {mode !== "play" &&
+        !sources &&
+        !settings &&
+        !(mode === "watch" && inspector) && (
+          <MotionPanel
+            engine={engine}
+            selected={selected}
+            interactive={mode === "explore"}
+            tool={tool}
+            follow={follow}
+            onTool={(t) => {
+              if (t === "grab") setRep("surface");
+              setTool(t);
+              setFollow(false);
+              setCamera("free");
+            }}
+            onFollow={() => {
+              setRep("surface");
+              setFollow((v) => !v);
+              setTool("orbit");
+            }}
+            onChoose={(id) => {
+              setSelected(id);
+              setInspector(false);
+            }}
+            onReplay={(id) => {
+              setSelected(id);
+              setFollow(true);
+              setTool("orbit");
+              setInspector(false);
+            }}
+            onChange={() => {
+              setRep("surface");
+              render((n) => n + 1);
+            }}
+            onEnter={() => {
+              setRep("surface");
+              switchMode("explore");
+            }}
+          />
+        )}
       {mode === "play" && !settings && !sources && (
         <aside className="challenge glass">
           <div className="panel-eyebrow">
@@ -683,7 +742,10 @@ export default function App() {
             <select
               aria-label="Camera"
               value={camera}
-              onChange={(e) => setCamera(e.target.value as CameraMode)}
+              onChange={(e) => {
+                setFollow(false);
+                setCamera(e.target.value as CameraMode);
+              }}
             >
               <option value="cinematic">Cinematic</option>
               <option value="free">Free exploration</option>
@@ -821,6 +883,7 @@ export default function App() {
             <IconButton
               label="Reset camera"
               onClick={() => {
+                setFollow(false);
                 setCamera(mode === "explore" ? "free" : "cinematic");
                 setResetKey((n) => n + 1);
               }}
@@ -849,7 +912,11 @@ export default function App() {
       </div>
       {mode === "explore" && (
         <div className="exploration-tools glass">
-          <span>DRAG TO ORBIT · PINCH TO ZOOM</span>
+          <span>
+            {tool === "grab"
+              ? "DRAG AN ENZYME · RETURN TO ITS TARGET"
+              : "DRAG TO ORBIT · PINCH TO ZOOM"}
+          </span>
           <div>
             <IconButton
               label="Rotate left"
@@ -904,6 +971,14 @@ export default function App() {
       <div className="sr-only" role="status">
         {notice}
       </div>
+      {study && (
+        <StudyStudio
+          onClose={() => {
+            setStudy(false);
+            requestAnimationFrame(() => studyLaunchRef.current?.focus());
+          }}
+        />
+      )}
       {sources && (
         <div className="modal-backdrop" onClick={() => setSources(false)}>
           <section
