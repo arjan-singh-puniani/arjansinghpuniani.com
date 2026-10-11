@@ -217,6 +217,7 @@ export default function App() {
   }, [engine, study]);
   const switchMode = (m: Mode) => {
     if (m === mode) return;
+    if (m === "explore" || m === "play") setRep("surface");
     if (m === "play") engine.reset("play");
     else {
       if (mode === "play") engine.reset(m);
@@ -533,6 +534,7 @@ export default function App() {
               setCamera("free");
             }}
             onFollow={() => {
+              setRep("surface");
               setFollow((v) => !v);
               setTool("orbit");
             }}
@@ -546,7 +548,10 @@ export default function App() {
               setTool("orbit");
               setInspector(false);
             }}
-            onChange={() => render((n) => n + 1)}
+            onChange={() => {
+              setRep("surface");
+              render((n) => n + 1);
+            }}
             onEnter={() => {
               setRep("surface");
               switchMode("explore");

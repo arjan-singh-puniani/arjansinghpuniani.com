@@ -21,10 +21,24 @@ for (const size of [
       .poll(() => page.locator(".current-reaction small").innerText())
       .not.toBe(fork);
     await page.getByLabel("Molecule to manipulate").selectOption("cmg");
+    await page.getByRole("button", { name: "Settings", exact: true }).click();
+    await page
+      .getByLabel("Representation", { exact: true })
+      .selectOption("structure");
+    await page
+      .getByRole("button", { name: "Close settings", exact: true })
+      .click();
     await page
       .getByRole("button", { name: "Pull off DNA", exact: true })
       .click();
     await expect(scene).toHaveAttribute("data-held", "cmg");
+    await page.getByRole("button", { name: "Settings", exact: true }).click();
+    await expect(
+      page.getByLabel("Representation", { exact: true }),
+    ).toHaveValue("surface");
+    await page
+      .getByRole("button", { name: "Close settings", exact: true })
+      .click();
     const stopped = await page.locator(".current-reaction small").innerText();
     await page.waitForTimeout(350);
     expect(await page.locator(".current-reaction small").innerText()).toBe(
