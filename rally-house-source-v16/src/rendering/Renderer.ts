@@ -1,3 +1,4 @@
+import {foliageGeometry} from './FoliageGeometry.js';
 import {Mat4, Vec3, clamp, compose, hexToRgb, sunViewProjection} from './Math3D.js';
 
 /** The academy footprint. The shadow frustum is fitted to this once, so texel density stays constant all day. */
@@ -6,8 +7,9 @@ export const SHADOW_RADIUS=17.0;
 export const SHADOW_RESOLUTION=2048;
 export const LAMP_SHADOW_RESOLUTION=1024;
 
-export type GeometryKind='box'|'roundBox'|'sphere'|'cylinder'|'cone'|'torus';
-export type MaterialKind='matte'|'wood'|'fabric'|'ceramic'|'metal'|'glass'|'court'|'skin'|'hair'|'leaf';
+export type GeometryKind='box'|'roundBox'|'sphere'|'cylinder'|'cone'|'torus'|'foliage';
+export type MaterialKind='matte'|'wood'|'fabric'|'ceramic'|'metal'|'glass'|'court'|'skin'|'hair'|'leaf'|'stone';
+const MATERIAL_ID:Record<MaterialKind,number>={matte:0,wood:1,fabric:2,ceramic:3,metal:4,glass:5,court:6,skin:7,hair:8,leaf:9,stone:10};
 export interface Mesh {
   kind:GeometryKind;
   position:Vec3;
@@ -47,7 +49,7 @@ export interface Lighting {
 
 /** Shared lighting maths. One source of truth for both the rigid and skinned fragment shaders. */
 const LIGHT_UNIFORMS=`
-uniform vec3 u_color;uniform vec3 u_sun;uniform vec3 u_viewPos;uniform float u_ambient;uniform float u_alpha;uniform float u_unlit;uniform float u_emission;uniform float u_warmth;uniform float u_roughness;uniform float u_specular;uniform float u_softness;
+uniform int u_material;uniform vec3 u_color;uniform vec3 u_sun;uniform vec3 u_viewPos;uniform float u_ambient;uniform float u_alpha;uniform float u_unlit;uniform float u_emission;uniform float u_warmth;uniform float u_roughness;uniform float u_specular;uniform float u_softness;
 uniform vec3 u_pointPos[8];uniform vec3 u_pointColor[8];uniform vec2 u_pointParams[8];
 uniform mat4 u_lightVP;uniform highp sampler2DShadow u_shadowMap;uniform float u_shadowStrength;uniform float u_shadowTexel;
 uniform mat4 u_lampVP;uniform highp sampler2DShadow u_lampShadow;uniform float u_lampStrength;uniform vec3 u_lampDir;uniform float u_lampTexel;
@@ -102,10 +104,39 @@ float lampFactor(vec3 world,vec3 N){
   return mix(1.0,mix(1.0,lit,fade),u_lampStrength);
 }
 
+// Rest/local coordinates keep grain attached to furniture and to animated cloth.
+// Filter periodic detail with screen derivatives to avoid sparkling on phones.
+float filteredWave(float phase){return sin(phase)*(1.0-smoothstep(0.6,3.0,fwidth(phase)));}
+vec3 surfaceColor(vec3 p){
+  float variation=0.0;
+  if(u_material==1){
+    float grain=p.x*72.0+sin(p.z*4.0)*3.0+sin(p.y*3.0);
+    variation=filteredWave(grain)*.034+filteredWave(grain*2.3)*.014;
+  }else if(u_material==2){
+    variation=filteredWave(p.x*420.0)*filteredWave(p.y*420.0)*.035;
+  }else if(u_material==6){
+    variation=filteredWave(p.x*195.0+sin(p.z*137.0))*.022;
+  }else if(u_material==8){
+    variation=filteredWave(p.y*95.0+p.x*11.0)*.065;
+  }else if(u_material==9){
+    variation=sin(p.x*43.0+p.z*31.0)*.10;
+  }else if(u_material==10){
+    vec2 tile=p.xz/1.5;
+    vec2 edge=min(fract(tile),1.0-fract(tile));
+    vec2 aa=max(fwidth(tile),vec2(.001));
+    float grout=1.0-min(smoothstep(.009-aa.x,.009+aa.x,edge.x),smoothstep(.009-aa.y,.009+aa.y,edge.y));
+    variation=sin(dot(floor(tile),vec2(3.1,7.7)))*.025-grout*.12;
+    variation+=filteredWave(p.x*110.0+sin(p.z*97.0))*.014;
+  }else if(u_material==0){
+    variation=filteredWave(p.x*77.0+sin(p.y*61.0+p.z*43.0))*.018;
+  }
+  return pow(max(u_color,vec3(0.0)),vec3(2.2))*(1.0+variation);
+}
 vec3 shade(vec3 N,vec3 world){
+  vec3 base=surfaceColor(v_surface);
   vec3 L=normalize(-u_sun);vec3 V=normalize(u_viewPos-world);
   float ndl=max(dot(N,L),0.0);
-  float wrap=clamp((dot(N,L)+0.32)/1.32,0.0,1.0);
+  float wrap=clamp((dot(N,L)+0.16)/1.16,0.0,1.0);
   float hemi=N.y*0.5+0.5;
   float shadow=shadowFactor(world,N,ndl);
 
@@ -144,13 +175,12 @@ vec3 shade(vec3 N,vec3 world){
     }
   }
   vec3 warmTint=mix(vec3(1.0),vec3(1.06,0.985,0.905),clamp(u_warmth,0.0,1.0));
-  vec3 c=u_color*warmTint*((ambient+direct)*ground)+u_color*local+localSpec+u_sunColor*rim+u_sunColor*spec+u_color*velvet;
-  c=mix(c,u_color,u_unlit)+u_color*u_emission;
-  // Filmic-ish roll off, then a small saturation lift so the pastel palette does not go grey.
-  c=1.0-exp(-max(c,vec3(0.0))*1.18);
-  float luma=dot(c,vec3(0.2126,0.7152,0.0722));
-  c=mix(vec3(luma),c,1.15);
-  c=pow(clamp(c,0.0,1.0),vec3(0.94));
+  vec3 c=base*warmTint*((ambient+direct)*ground)+base*local+localSpec+u_sunColor*rim+u_sunColor*spec+base*velvet;
+  c=mix(c,base,u_unlit)+base*u_emission;
+  // Linear-light shading and a filmic highlight roll-off preserve wood/skin colour.
+  c=max(c,vec3(0.0))*.78;
+  c=clamp((c*(2.51*c+.03))/(c*(2.43*c+.59)+.14),0.0,1.0);
+  c=pow(c,vec3(1.0/2.2));
   return c;
 }`;
 
@@ -185,7 +215,7 @@ export class Renderer {
     this.depthProgram=this.link(this.rigidVS(true),this.depthFS());
     this.depthSkinProgram=this.link(this.skinVS(true),this.depthFS());
 
-    const litNames=['u_model','u_vp','u_color','u_sun','u_ambient','u_alpha','u_unlit','u_emission','u_viewPos','u_warmth','u_roughness','u_specular','u_softness','u_pointPos[0]','u_pointColor[0]','u_pointParams[0]','u_lightVP','u_shadowMap','u_shadowStrength','u_shadowTexel','u_lampVP','u_lampShadow','u_lampStrength','u_lampDir','u_lampTexel','u_sunColor','u_skyColor','u_bounceColor'];
+    const litNames=['u_model','u_vp','u_material','u_color','u_sun','u_ambient','u_alpha','u_unlit','u_emission','u_viewPos','u_warmth','u_roughness','u_specular','u_softness','u_pointPos[0]','u_pointColor[0]','u_pointParams[0]','u_lightVP','u_shadowMap','u_shadowStrength','u_shadowTexel','u_lampVP','u_lampShadow','u_lampStrength','u_lampDir','u_lampTexel','u_sunColor','u_skyColor','u_bounceColor'];
     const grab=(p:WebGLProgram,names:string[],required:string[])=>{
       const map:Record<string,WebGLUniformLocation>={};
       for(const n of names){const loc=gl.getUniformLocation(p,n);if(loc)map[n.replace('[0]','')]=loc;else if(required.includes(n))throw new Error(`Missing uniform ${n}`);}
@@ -197,6 +227,7 @@ export class Renderer {
     this.du=grab(this.depthProgram,['u_model','u_lightVP'],['u_model','u_lightVP']);
     this.dsu=grab(this.depthSkinProgram,['u_model','u_lightVP','u_bones[0]'],['u_model','u_lightVP','u_bones[0]']);
 
+    const foliage=foliageGeometry();this.geos.set('foliage',this.upload({p:[...foliage.positions],n:[...foliage.normals]}));
     this.geos.set('box',this.upload(this.boxGeometry()));
     this.geos.set('roundBox',this.upload(this.roundedBoxGeometry(4,.095)));
     this.geos.set('sphere',this.upload(this.sphereGeometry(14,20)));
@@ -340,8 +371,10 @@ export class Renderer {
     set('u_bounceColor',l=>gl.uniform3fv(l,lighting.bounceColor??[.82,.77,.70]));
   }
 
+  private materialId(kind:MaterialKind|undefined){return MATERIAL_ID[kind??'matte'];}
   private materialParams(kind:MaterialKind|undefined){
     switch(kind){
+      case 'stone': return {roughness:.92,specular:.020,softness:.02};
       case 'wood': return {roughness:.58,specular:.090,softness:.040};
       case 'fabric': return {roughness:.96,specular:.012,softness:.52};
       case 'ceramic': return {roughness:.22,specular:.215,softness:.020};
@@ -349,38 +382,38 @@ export class Renderer {
       case 'glass': return {roughness:.075,specular:.36,softness:0};
       case 'court': return {roughness:.84,specular:.026,softness:.035};
       case 'skin': return {roughness:.68,specular:.040,softness:.30};
-      case 'hair': return {roughness:.48,specular:.090,softness:.14};
+      case 'hair': return {roughness:.72,specular:.028,softness:.14};
       case 'leaf': return {roughness:.67,specular:.052,softness:.18};
       default: return {roughness:.82,specular:.028,softness:.04};
     }
   }
 
-  private drawMesh(m:Mesh){const gl=this.gl,g=this.geos.get(m.kind)!;gl.uniformMatrix4fv(this.u['u_model'],false,(this.staticData.get(m)?.model??compose(m.position,m.rotation??new Vec3(),m.scale)));const cached=this.staticData.get(m),c=cached?.color??hexToRgb(m.color),mp=cached?.material??this.materialParams(m.material);gl.uniform3f(this.u['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.u['u_alpha'],m.alpha??1);gl.uniform1f(this.u['u_unlit'],m.unlit?1:0);gl.uniform1f(this.u['u_emission'],m.emission??0);gl.uniform1f(this.u['u_roughness'],mp.roughness);gl.uniform1f(this.u['u_specular'],mp.specular);gl.uniform1f(this.u['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
-  private drawSkin(m:SkinnedMesh){const gl=this.gl,g=this.skinGeometry(m.skin);gl.uniformMatrix4fv(this.su['u_model'],false,compose(m.position,m.rotation??new Vec3(),m.scale??new Vec3(1,1,1)));gl.uniformMatrix4fv(this.su['u_bones'],false,m.boneMatrices);const c=hexToRgb(m.color),mp=this.materialParams(m.material);gl.uniform3f(this.su['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.su['u_alpha'],m.alpha??1);gl.uniform1f(this.su['u_unlit'],m.unlit?1:0);gl.uniform1f(this.su['u_emission'],0);gl.uniform1f(this.su['u_roughness'],mp.roughness);gl.uniform1f(this.su['u_specular'],mp.specular);gl.uniform1f(this.su['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
+  private drawMesh(m:Mesh){const gl=this.gl,g=this.geos.get(m.kind)!;gl.uniformMatrix4fv(this.u['u_model'],false,(this.staticData.get(m)?.model??compose(m.position,m.rotation??new Vec3(),m.scale)));const cached=this.staticData.get(m),c=cached?.color??hexToRgb(m.color),mp=cached?.material??this.materialParams(m.material);gl.uniform1i(this.u['u_material'],this.materialId(m.material));gl.uniform3f(this.u['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.u['u_alpha'],m.alpha??1);gl.uniform1f(this.u['u_unlit'],m.unlit?1:0);gl.uniform1f(this.u['u_emission'],m.emission??0);gl.uniform1f(this.u['u_roughness'],mp.roughness);gl.uniform1f(this.u['u_specular'],mp.specular);gl.uniform1f(this.u['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
+  private drawSkin(m:SkinnedMesh){const gl=this.gl,g=this.skinGeometry(m.skin);gl.uniformMatrix4fv(this.su['u_model'],false,compose(m.position,m.rotation??new Vec3(),m.scale??new Vec3(1,1,1)));gl.uniformMatrix4fv(this.su['u_bones'],false,m.boneMatrices);const c=hexToRgb(m.color),mp=this.materialParams(m.material);gl.uniform1i(this.su['u_material'],this.materialId(m.material));gl.uniform3f(this.su['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.su['u_alpha'],m.alpha??1);gl.uniform1f(this.su['u_unlit'],m.unlit?1:0);gl.uniform1f(this.su['u_emission'],0);gl.uniform1f(this.su['u_roughness'],mp.roughness);gl.uniform1f(this.su['u_specular'],mp.specular);gl.uniform1f(this.su['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
   private skinGeometry(data:SkinGeometry){const hit=this.skinGeos.get(data.id);if(hit)return hit;const gl=this.gl,vao=gl.createVertexArray()!;gl.bindVertexArray(vao);const put=(loc:number,arr:Float32Array,size:number)=>{const b=gl.createBuffer()!;gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,arr,gl.STATIC_DRAW);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,0,0);};put(0,data.positions,3);put(1,data.normals,3);put(2,data.boneIndices,4);put(3,data.boneWeights,4);gl.bindVertexArray(null);const geo={vao,count:data.positions.length/3};this.skinGeos.set(data.id,geo);return geo;}
 
   private rigidVS(depthOnly:boolean){
     return `#version 300 es
     precision highp float;layout(location=0) in vec3 a_position;layout(location=1) in vec3 a_normal;
     uniform mat4 u_model;uniform mat4 ${depthOnly?'u_lightVP':'u_vp'};
-    ${depthOnly?'':'out vec3 v_normal;out vec3 v_world;'}
+    ${depthOnly?'':'out vec3 v_normal;out vec3 v_world;out vec3 v_surface;'}
     void main(){vec4 wp=u_model*vec4(a_position,1.0);
-    ${depthOnly?'':'v_world=wp.xyz;mat3 basis=mat3(u_model);vec3 axisScale=vec3(dot(basis[0],basis[0]),dot(basis[1],basis[1]),dot(basis[2],basis[2]));v_normal=normalize(basis*(a_normal/max(axisScale,vec3(.000001))));'}
+    ${depthOnly?'':'v_world=wp.xyz;mat3 basis=mat3(u_model);vec3 axisScale=vec3(dot(basis[0],basis[0]),dot(basis[1],basis[1]),dot(basis[2],basis[2]));v_normal=normalize(basis*(a_normal/max(axisScale,vec3(.000001))));v_surface=a_position*sqrt(axisScale);'}
     gl_Position=${depthOnly?'u_lightVP':'u_vp'}*wp;}`;
   }
   private skinVS(depthOnly:boolean){
     return `#version 300 es
     precision highp float;layout(location=0) in vec3 a_position;layout(location=1) in vec3 a_normal;layout(location=2) in vec4 a_bones;layout(location=3) in vec4 a_weights;
     uniform mat4 u_model;uniform mat4 ${depthOnly?'u_lightVP':'u_vp'};uniform mat4 u_bones[15];
-    ${depthOnly?'':'out vec3 v_normal;out vec3 v_world;'}
+    ${depthOnly?'':'out vec3 v_normal;out vec3 v_world;out vec3 v_surface;'}
     mat4 skin(){ivec4 b=ivec4(a_bones+.5);return u_bones[b.x]*a_weights.x+u_bones[b.y]*a_weights.y+u_bones[b.z]*a_weights.z+u_bones[b.w]*a_weights.w;}
     void main(){mat4 S=skin();vec4 wp=u_model*(S*vec4(a_position,1.0));
-    ${depthOnly?'':'v_world=wp.xyz;v_normal=normalize(mat3(u_model)*mat3(S)*a_normal);'}
+    ${depthOnly?'':'v_world=wp.xyz;v_surface=a_position;v_normal=normalize(mat3(u_model)*mat3(S)*a_normal);'}
     gl_Position=${depthOnly?'u_lightVP':'u_vp'}*wp;}`;
   }
   private litFS(){
     return `#version 300 es
-    precision highp float;in vec3 v_normal;in vec3 v_world;out vec4 outColor;
+    precision highp float;in vec3 v_normal;in vec3 v_world;in vec3 v_surface;out vec4 outColor;
     ${LIGHT_UNIFORMS}
     ${LIGHT_BODY}
     void main(){outColor=vec4(shade(normalize(v_normal),v_world),u_alpha);}`;

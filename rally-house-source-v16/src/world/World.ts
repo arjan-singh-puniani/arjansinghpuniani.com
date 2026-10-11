@@ -38,6 +38,9 @@ export class World {
     for(const object of this.objects)object.interactionPoint=contacts[object.id];
     authorObjectTargets(this.objects);
     this.identity=new ObjectIdentity(this.objects);this.authored=new AuthoredObjects(this.meshes,this.identity);
+    // The wall display includes projecting shelves and hanging handles. Its
+    // physical footprint must keep circulating members out of that assembly.
+    this.nav.obstacles.push({x:9.2,z:-7.35,w:4.5,d:1.05});
     // Large floor pots and the court bench occupy circulation, independently of selection proxies.
     for(const o of this.objects.filter(o=>o.kind==='plant'))this.nav.obstacles.push({x:o.position.x,z:o.position.z,w:.75,d:.75});
     this.nav.obstacles.push({x:6.5,z:4.8,w:2.22,d:.8},{x:6.54,z:2.85,w:1.62,d:.48},{x:6.0,z:1.95,w:.70,d:.70},{x:1.32,z:7.55,w:.86,d:.86});
@@ -63,7 +66,7 @@ export class World {
     this.rb(0,.22,-9.45,25.2,.24,.20,'#7fa28a');
     // Side walls are camera-aware cutaways and are emitted dynamically.
     // Floor zones. Court remains crisp; social areas get tiny tile seams.
-    this.add('box',1,.035,0,9.3,.07,12.8,palette.court,0,1,false,undefined,'court');this.add('box',-8.8,.02,0,6.3,.05,18.5,'#f8ead6');this.add('box',8.9,.02,0,6.0,.05,18.5,'#f5e6d2');
+    this.add('box',1,.035,0,9.3,.07,12.8,palette.court,0,1,false,undefined,'court');this.add('box',-8.8,.02,0,6.3,.05,18.5,'#f8ead6',0,1,false,undefined,'stone');this.add('box',8.9,.02,0,6.0,.05,18.5,'#f5e6d2',0,1,false,undefined,'stone');
     for(let z=-8;z<=8;z+=2)this.add('box',-8.8,.051,z,6.0,.012,.025,'#dfc8ae',0,.30,true);
     for(let x=-11;x<=-6;x+=1.5)this.add('box',x,.052,0,.022,.012,18.1,'#e4ceb7',0,.22,true);
     // Court lines.
@@ -76,7 +79,10 @@ export class World {
     // Statement window: layered panes, trim, soft curtains and a rounded top hint.
     this.rb(-1.3,2.42,-9.50,5.1,2.55,.06,'#a9d8d7',0,.78,true,undefined,'glass');this.add('sphere',-1.3,3.38,-9.47,5.0,1.75,.09,'#c0e0dc',0,.58,true,undefined,'glass');
     for(const x of [-3.76,-1.3,1.16])this.rb(x,2.58,-9.43,.075,2.75,.07,'#f4ecdc');this.rb(-1.3,2.58,-9.42,5.18,.075,.07,'#f4ecdc');
-    this.rb(-4.16,2.45,-9.28,.55,2.65,.12,'#e7bca0',0,.56,true);this.rb(1.56,2.45,-9.28,.55,2.65,.12,'#e7bca0',0,.56,true);
+    // Opaque folded linen, with a fine brass rail and deep window reveal.
+    for(const centre of [-4.16,1.56])for(let i=0;i<5;i++)this.add('cylinder',centre+(i-2)*.10,2.45,-9.25,.13,2.65,.16,'#e7c9ac',0,1,false,undefined,'fabric');
+    this.rb(-1.3,3.92,-9.26,6.55,.055,.07,'#a78758',0,1,false,undefined,'metal');
+    this.rb(-1.3,1.10,-9.32,5.35,.13,.40,'#d5bd98',0,1,false,undefined,'stone');
 
     // Wall art, framed snapshots and a little club clock.
     const art=[[-9.8,2.85,'#d8a37c'],[-8.45,2.28,'#79937c'],[7.15,2.78,'#c98572'],[8.55,2.28,'#d9bd73']];for(const [x,y,c] of art as [number,number,string][]){this.rb(x,y,-9.40,.86,1.04,.09,'#f6edde');this.rb(x,y,-9.33,.58,.75,.06,c)}
@@ -94,12 +100,14 @@ export class World {
     this.rb(-10.85,2.36,-9.30,1.85,1.25,.10,'#8b9b84');for(let i=0;i<5;i++)this.add('sphere',-11.45+(i%3)*.52,2.56-Math.floor(i/3)*.46,-9.18,.12,.12,.12,[palette.peach,palette.gold,palette.blue][i%3],0,1,true);
     this.objects.push({id:'reception',label:'Front desk',kind:'reception',position:new Vec3(-9,0,4.8),radius:2.2,description:'Bookings, greetings, and the club’s calm command center.'});
 
+    // Cabinet joinery belongs to the front desk's existing semantic assembly.
+    for(let i=0;i<12;i++)this.rb(-10.49+i*.27,.57,5.367,.025,.94,.014,'#95623e',0,1,false,undefined,'wood');
     // A shaded desk lamp: an actual practical source for the reception island.
     this.add('cylinder',-8.8,1.65,4.8,.045,1.04,.045,'#64513a',0,1,false,undefined,'metal');
     this.add('cone',-8.8,2.26,4.8,.56,.40,.56,'#cd9b6b',0,1,false,undefined,'fabric');
     // Matcha bar: cups, stools, shelf, tea tins, hanging menu.
     this.rb(-9.1,.55,-5.8,4.35,1.1,1.28,palette.woodDark,0,1,false,undefined,'wood');this.rb(-9.1,1.14,-5.8,4.45,.11,1.38,'#d0a47b',0,1,false,undefined,'wood');this.rb(-9.82,1.48,-5.64,.88,.56,.68,'#78a28a');
-    for(const x of [-8.62,-8.08,-7.54]){this.add('cylinder',x,1.33,-5.57,.16,.28,.16,'#fff5e7',0,1,false,undefined,'ceramic');this.add('torus',x+.12,1.34,-5.57,.16,.16,.12,'#fff5e7',0,1,false,undefined,'ceramic');}
+    for(const x of [-8.62,-8.08,-7.54]){this.add('cylinder',x,1.474,-5.57,.125,.008,.125,'#65804a',0,1,false,undefined,'ceramic');this.add('torus',x,1.472,-5.57,.18,.18,.13,'#fff5e7',0,1,false,undefined,'ceramic');this.meshes[this.meshes.length-1].rotation=new Vec3(Math.PI/2,0,0);this.add('cylinder',x,1.33,-5.57,.16,.28,.16,'#fff5e7',0,1,false,undefined,'ceramic');this.add('torus',x+.12,1.34,-5.57,.16,.16,.12,'#fff5e7',0,1,false,undefined,'ceramic');}
     for(const x of [-10.15,-9.15,-8.15]){this.add('cylinder',x,.45,-4.70,.62,.12,.62,'#ac7d59');this.add('cylinder',x,.23,-4.70,.14,.47,.14,'#705744');}
     this.shelf(-9.2,2.15,-9.20,4.1);for(let i=0;i<5;i++){this.add('cylinder',-10.55+i*.65,2.47,-9.02,.34,.44,.34,[palette.sage,palette.gold,palette.peach,'#91a8a0','#c68a6e'][i]);}
     this.rb(-6.62,2.58,-9.33,2.65,1.15,.08,'#f2e6d4');this.rb(-6.62,2.58,-9.26,2.30,.82,.06,'#7e957f');
@@ -271,7 +279,7 @@ export class World {
     const potY=baseY+.13*s;M('roundBox',x,potY,z,.64*s,.26*s,.50*s,potColor,new Vec3(), 'ceramic');M('roundBox',x,baseY+.025*s,z,.78*s,.07*s,.62*s,mixColor(potColor,'#5f554d',.16),new Vec3(), 'ceramic');M('roundBox',x,baseY+.26*s,z,.56*s,.05*s,.42*s,'#57483d',new Vec3(), 'matte');
     const bark='#664d3a',dark='#526f58',mid='#69876b',light='#809a78',maple='#8a9a65';
     const branch=(dx:number,dy:number,dz:number,len:number,tilt:number,rotY:number,r=.095)=>{const by=baseY+.28*s+dy*s;M('cylinder',x+dx*s,by,z+dz*s,r*s,len*s,r*s,bark,new Vec3(0,rotY,tilt),'wood');};
-    const cloud=(dx:number,dy:number,dz:number,rx:number,ry:number,rz:number,c=mid)=>M('sphere',x+dx*s,baseY+dy*s,z+dz*s,rx*s,ry*s,rz*s,c,new Vec3(), 'leaf');
+    const cloud=(dx:number,dy:number,dz:number,rx:number,ry:number,rz:number,c=mid)=>M('foliage',x+dx*s,baseY+dy*s,z+dz*s,rx*s,ry*s,rz*s,c,new Vec3(), 'leaf');
     branch(0,.32,0,.84,.06,0,.105);
     if(style==='windswept'){branch(.12,.74,0,.72,-.78,-.12,.082);branch(.42,.98,.02,.60,-1.05,.18,.068);branch(-.04,1.05,.02,.47,.56,-.15,.060);cloud(.53,1.18,.02,.52,.22,.40,dark);cloud(.88,1.34,.03,.48,.20,.34,mid);cloud(.22,1.49,-.01,.43,.20,.35,light);cloud(.66,1.59,-.02,.37,.18,.31,dark);}
     else if(style==='cascade'){branch(.06,.76,.02,.58,-.86,.05,.072);branch(.30,.98,.02,.72,-1.58,.10,.060);cloud(.24,1.10,0,.38,.18,.30,dark);cloud(.47,.86,.02,.34,.17,.28,mid);cloud(.54,.60,.03,.28,.15,.24,light);cloud(-.12,1.36,0,.32,.18,.27,mid);}
@@ -279,7 +287,7 @@ export class World {
     else {branch(-.02,.78,0,.44,.50,-.28,.060);branch(.03,.90,0,.48,-.52,.31,.060);cloud(0,1.12,0,.47,.19,.36,dark);cloud(-.18,1.36,.01,.42,.18,.34,mid);cloud(.20,1.54,-.01,.36,.17,.30,light);if(style==='flower'){for(const [dx,dy,dz] of [[-.12,1.47,.20],[.26,1.55,.08],[.04,1.30,-.19],[-.28,1.28,-.05]] as number[][])M('sphere',x+dx*s,baseY+dy*s,z+dz*s,.065*s,.052*s,.065*s,'#dba1a0',new Vec3(),'leaf');}}
   }
 
-  private addPlant(x:number,z:number,s=1){this.add('cone',x,.38*s,z,.66*s,.76*s,.66*s,palette.terracotta,0,1,false,undefined,'ceramic');this.add('cylinder',x,.94*s,z,.12*s,1.0*s,.12*s,'#5d725e',0,1,false,undefined,'wood');for(const [dx,dy,dz,c] of [[-.28,.0,0,'#6d896f'],[.28,.08,0,'#78aa82'],[0,.16,.18,'#7b987b'],[0,.08,-.2,'#668268']] as [number,number,number,string][])this.add('sphere',x+dx*s,1.28*s+dy*s,z+dz*s,.56*s,.28*s,.31*s,c,0,1,false,undefined,'leaf');}
+  private addPlant(x:number,z:number,s=1){this.add('cone',x,.38*s,z,.66*s,.76*s,.66*s,palette.terracotta,0,1,false,undefined,'ceramic');this.add('cylinder',x,.94*s,z,.12*s,1.0*s,.12*s,'#5d725e',0,1,false,undefined,'wood');for(const [dx,dy,dz,c] of [[-.28,.0,0,'#6d896f'],[.28,.08,0,'#78aa82'],[0,.16,.18,'#7b987b'],[0,.08,-.2,'#668268']] as [number,number,number,string][])this.add('foliage',x+dx*s,1.28*s+dy*s,z+dz*s,.56*s,.28*s,.31*s,c,0,1,false,undefined,'leaf');}
   private addLamp(x:number,z:number){this.add('cylinder',x,1.1,z,.07,2.2,.07,'#56665b',0,1,false,undefined,'metal');this.add('cone',x,2.18,z,.80,.68,.80,palette.peach,0,1,true,undefined,'fabric');this.add('sphere',x,1.9,z,.22,.22,.22,'#f3d99b',0,1,true)}
   lighting(minutes:number,focus=0):Lighting{
     const h=minutes/60;const daylight=smoothstep(5.45,7.9,h)*(1-smoothstep(18.15,20.65,h));const golden=Math.exp(-Math.pow((h-17.15)/1.65,2));const over=this.weather==='cloudy',rain=this.weather==='rain';
@@ -287,7 +295,7 @@ export class World {
     // Cozy contrast comes from warm islands inside a calm ambient field, not
     // from simply making the entire academy orange or bright.
     const ambientBase=rain?(.16+.47*daylight):over?(.155+.52*daylight):(.135+.59*daylight);
-    const ambient=ambientBase*.88+.035+focus*.14;
+    const ambient=ambientBase*.64+.025+focus*.14;
     const t=clamp01((h-6)/13);const az=-1.0+t*1.6;const elevation=.34+Math.sin(Math.PI*t)*.80;const sunDir=new Vec3(-Math.sin(az)*Math.cos(elevation),-Math.sin(elevation),-Math.cos(az)*Math.cos(elevation));
     const dayBg=rain?[.62,.69,.69]:over?[.75,.78,.75]:[.82+.035*daylight,.82+.045*daylight,.78+.065*daylight];const nightBg=[.045,.070,.091];const mixBg=(a:number,b:number)=>a+(b-a)*daylight;
     const bg:Lighting['background']=[mixBg(nightBg[0],dayBg[0]),mixBg(nightBg[1],dayBg[1]),mixBg(nightBg[2],dayBg[2]),1];
@@ -331,10 +339,7 @@ export class World {
     for(let i=0;i<7;i++){const phase=time*.55+i*.9,y=1.58+((phase*.33)%1)*.62,x=-8.62+(i%3)*.54+Math.sin(phase)*.06,z=-5.57+Math.cos(phase*.7)*.05;m.push({kind:'sphere',position:new Vec3(x,y,z),scale:new Vec3(.12,.18,.09),color:'#f5efe6',alpha:.18*(1-((phase*.33)%1)),unlit:true});}
     // Ceiling fan / kinetic detail near the lounge.
     const a=time*.65;for(let i=0;i<3;i++){const aa=a+i*Math.PI*2/3;m.push({kind:'roundBox',position:new Vec3(8.4+Math.cos(aa)*.72,3.65,1.95+Math.sin(aa)*.72),rotation:new Vec3(0,-aa,0),scale:new Vec3(1.25,.045,.18),color:'#8d9d8c',alpha:.80});}m.push({kind:'cylinder',position:new Vec3(8.4,3.55,1.95),scale:new Vec3(.18,.35,.18),color:'#68766c'});
-    // Tiny leaf sway on one foreground plant.
-    for(let i=0;i<3;i++){const ph=time*.7+i*1.9;m.push({kind:'sphere',position:new Vec3(7.0+Math.sin(ph)*.07,1.33+i*.12,7.3+Math.cos(ph*.8)*.05),scale:new Vec3(.48,.20,.28),color:i%2?'#78aa82':'#689a73',alpha:.74});}
-    // Signature bonsai micro-motion: only a few leaf pads move, keeping the tree sculptural rather than wobbly.
-    for(let i=0;i<5;i++){const ph=time*.46+i*1.37,dx=Math.sin(ph)*.026,dz=Math.cos(ph*.83)*.018;m.push({kind:'sphere',position:new Vec3(10.43+i*.11+dx,2.34+(i%3)*.12,3.90+dz),scale:new Vec3(.23,.075,.18),color:i%2?'#67986e':'#7baa79',material:'leaf',alpha:.20});}
+    // Foliage motion belongs to AuthoredObjects, keeping the canopy and hit target coherent.
     // Practical-light pools exist even during the day at very low strength.
     // This gives the club distinct little destinations instead of one flat wash.
     const h=minutes/60,daylight=smoothstep(5.45,7.9,h)*(1-smoothstep(18.15,20.65,h));

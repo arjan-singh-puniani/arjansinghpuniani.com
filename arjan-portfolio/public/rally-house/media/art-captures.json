@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-11",
+  "captures": [
+    {
+      "file": "club.webp",
+      "format": "webp",
+      "mediaType": "image/webp",
+      "width": 1440,
+      "height": 900,
+      "space": "srgb",
+      "channels": 3,
+      "depth": "uchar",
+      "isProgressive": false,
+      "isPalette": false,
+      "hasProfile": false,
+      "hasAlpha": false,
+      "autoOrient": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "file": "rally.webp",
+      "format": "webp",
+      "mediaType": "image/webp",
+      "width": 1280,
+      "height": 800,
+      "space": "srgb",
+      "channels": 3,
+      "depth": "uchar",
+      "isProgressive": false,
+      "isPalette": false,
+      "hasProfile": false,
+      "hasAlpha": false,
+      "autoOrient": {
+        "width": 1280,
+        "height": 800
+      }
+    }
+  ],
+  "source": "Original running Rally House game; qa/art-direction.mjs and qa/impact-browser.mjs art-final; automated controls; encoded only, no generated imagery."
+}

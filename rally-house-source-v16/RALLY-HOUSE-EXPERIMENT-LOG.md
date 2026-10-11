@@ -75,3 +75,8 @@ No net hop was attempted: route-around meets ordinary traversal with a much smal
 Rejected effects were removed from the current code; their historical originals remain in the verified archive. See current validation for final runs and limits.
 
 The secondary seated-watch browser check exposed two ordering failures: the exhibition could finish during the player's walk, and its launch tick changed the ball after gaze was sampled. Exhibition creation now waits for seated arrival; watch duration counts actual active-ball time with a bounded wait, and gaze uses the final court pose. A real Game regression and 120 native-browser active-ball samples verify the resulting behavior. Unknown future decor types also fail explicitly instead of inventing Inspect.
+
+
+## Art direction — 2026-10-11
+
+Compared the original view with a brighter material candidate and a lower-exposure refinement. Rejected the pale candidate, reduced grain strength, refined coordinated head/hair geometry, corrected skin/garment intersections and joint-ring seams, and replaced canopy ellipsoids with bounded leaf geometry. Full-cast review caught descending-skirt winding and a missing racket-display footprint; both have regression coverage. See RALLY-HOUSE-ART-DIRECTION-20261011.md and evidence/art-20261011 for actual captures, provenance and limits.

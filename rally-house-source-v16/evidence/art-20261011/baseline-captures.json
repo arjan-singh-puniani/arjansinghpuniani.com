@@ -1,0 +1,18 @@
+{
+  "label": "before",
+  "errors": [],
+  "shots": [
+    {
+      "viewport": 1440,
+      "drawCalls": 920,
+      "triangles": 280444,
+      "gl": 0
+    },
+    {
+      "viewport": 390,
+      "drawCalls": 920,
+      "triangles": 280444,
+      "gl": 0
+    }
+  ]
+}
