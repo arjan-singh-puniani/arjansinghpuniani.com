@@ -98,7 +98,10 @@ export class ReplicationEngine {
   mistakes = 0;
   paired = 0;
   message = "";
+  held = new Set<string>();
   private budget = 0;
+  private forkProgress = 150;
+  private leadingProgress = 146;
   private nextStart = 150;
   constructor(seed = 7) {
     this.seed = seed;
@@ -127,9 +130,7 @@ export class ReplicationEngine {
   get active() {
     return this.mode === "play"
       ? this.fragments[0]
-      : ([...this.fragments]
-          .reverse()
-          .find((f) => f.stage !== "MATURE_FRAGMENT") ??
+      : (this.fragments.find((f) => f.stage !== "MATURE_FRAGMENT") ??
           this.fragments.at(-1)!);
   }
   get percent() {
@@ -164,7 +165,7 @@ export class ReplicationEngine {
     return f;
   }
   advance(seconds: number) {
-    if (this.paused || this.mode === "explore") return;
+    if (this.paused) return;
     this.budget += seconds;
     while (this.budget + 1e-9 >= STEP) {
       this.budget -= STEP;
@@ -174,9 +175,15 @@ export class ReplicationEngine {
   fixedStep() {
     this.tick++;
     const old = this.fork;
-    this.fork = 150 + Math.floor(this.time * 14);
+    if (!this.held.has("cmg")) this.forkProgress += 14 * STEP;
+    this.fork = Math.floor(this.forkProgress + 1e-8);
     this.motorATP += Math.floor(this.fork / 10) - Math.floor(old / 10);
-    const lead = this.fork - 4;
+    if (!this.held.has("epsilon"))
+      this.leadingProgress = Math.min(
+        this.forkProgress - 4,
+        this.leadingProgress + 14 * STEP,
+      );
+    const lead = Math.floor(this.leadingProgress + 1e-8);
     this.dntpUsed += lead - this.leading;
     this.leading = lead;
     if (this.mode !== "play" && this.fork >= this.nextStart) {
@@ -185,6 +192,7 @@ export class ReplicationEngine {
     }
     for (const f of this.fragments) {
       if (f.stage === "MATURE_FRAGMENT") continue;
+      if (this.blocker(f)) continue;
       f.age += STEP;
       const index = STAGES.indexOf(f.stage);
       if (f.stage === "RNA_PRIMER_SYNTHESIS")
@@ -221,6 +229,26 @@ export class ReplicationEngine {
         else this.transition(f, STAGES[index + 1]);
       }
     }
+  }
+  setHeld(id: string, held: boolean) {
+    if (held) this.held.add(id);
+    else this.held.delete(id);
+  }
+  blocker(f: Fragment): string | undefined {
+    const required: Partial<Record<Stage, string[]>> = {
+      TEMPLATE_EXPOSED: ["alpha"],
+      PRIMER_INITIATION: ["alpha"],
+      RNA_PRIMER_SYNTHESIS: ["alpha"],
+      POL_ALPHA_DNA_EXTENSION: ["alpha"],
+      RFC_PCNA_LOADING: ["rfc", "pcna"],
+      POL_DELTA_ELONGATION: ["delta", "pcna"],
+      FRAGMENT_COMPLETED: ["delta"],
+      PRIMER_PROCESSING: ["delta", "fen1"],
+      NICK_READY: ["ligase"],
+      LIGATION: ["ligase"],
+    };
+    if (this.held.has("rpa") && f.stage !== "MATURE_FRAGMENT") return "rpa";
+    return required[f.stage]?.find((id) => this.held.has(id));
   }
   extend(f: Fragment, target: number) {
     while (f.dna < target) {
@@ -359,10 +387,12 @@ export class ReplicationEngine {
   }
   seek(seconds: number) {
     const mode = this.mode,
-      paused = this.paused;
+      paused = this.paused,
+      held = new Set(this.held);
     this.reset("watch");
     this.advance(Math.max(0, seconds));
     this.mode = mode;
     this.paused = paused;
+    this.held = held;
   }
 }

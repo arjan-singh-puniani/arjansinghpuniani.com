@@ -11,7 +11,8 @@ export type CameraMode =
   | "free"
   | "polymerase"
   | "okazaki"
-  | "detail";
+  | "detail"
+  | "follow";
 export type Quality = "Ultra" | "High" | "Balanced" | "Mobile";
 type Point = [number, number, number];
 interface MolecularGroup {
@@ -36,6 +37,9 @@ interface SceneProps {
   resetKey: number;
   selected: string;
   suspended?: boolean;
+  labels?: boolean;
+  manipulationTool?: "orbit" | "grab";
+  onHeld?: (id: string, held: boolean) => void;
 }
 const positions: Record<string, Point> = {
   cmg: [0, 1.6, 0],
@@ -237,7 +241,7 @@ function dnaPath(points: Point[], single = false) {
   const updateFlow = (offset: number) => {
     for (let strand = 0; strand < beads.length; strand++) {
       for (let i = 0; i < n; i++) {
-        const t = (i + (offset % 1)) / n,
+        const t = (i + (((offset % 1) + 1) % 1)) / n,
           p = curve.getPoint(t),
           tangent = curve.getTangent(t),
           normal = new T.Vector3().crossVectors(tangent, basis).normalize(),
@@ -276,7 +280,7 @@ function dnaPath(points: Point[], single = false) {
       links.instanceMatrix.needsUpdate = true;
     }
   };
-  return { group, beads, n, matrices, updateFlow };
+  return { group, beads, n, matrices, updateFlow, curve };
 }
 function dispose(group: T.Object3D) {
   const geometries = new Set<T.BufferGeometry>(),
@@ -336,9 +340,9 @@ export function MolecularScene(props: SceneProps) {
     );
     renderer.domElement.setAttribute("role", "img");
     const camera = new T.PerspectiveCamera(36, 1, 0.1, 150);
-    camera.position.set(0, 1, 23);
+    camera.position.set(1.8, -1.5, 32);
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.target.set(0, 0, 0);
+    controls.target.set(1.8, -2.5, 0);
     controls.enableDamping = true;
     controls.dampingFactor = 0.06;
     controls.minDistance = 5;
@@ -381,16 +385,17 @@ export function MolecularScene(props: SceneProps) {
         [0.4, 1.4, 0],
         [2.7, 3, -0.1],
         [4.2, 1.4, 0.2],
-        [2.7, -0.6, 0.3],
-        [2.6, -3.8, 0.2],
-        [1.2, -5.6, 0.1],
+        [2.9, -0.4, 0.3],
+        [3, -3, 0.2],
+        [2, -5.7, 0.1],
         [0.2, -8.7, 0.2],
       ],
       true,
     );
     const lagDaughter = dnaPath([
-      [2.6, -3.8, 0.2],
-      [1.2, -5.6, 0.1],
+      [2.9, -0.4, 0.3],
+      [3, -3, 0.2],
+      [2, -5.7, 0.1],
       [0.2, -8.7, 0.2],
     ]);
     world.add(
@@ -401,9 +406,9 @@ export function MolecularScene(props: SceneProps) {
     );
     const primer = dnaPath(
       [
-        [2.9, 0.1, 0.25],
-        [3.2, -0.3, 0.3],
-        [3, -0.8, 0.2],
+        [2.9, -0.4, 0.3],
+        [3, -0.7, 0.3],
+        [3.05, -1, 0.2],
       ],
       true,
     );
@@ -411,9 +416,9 @@ export function MolecularScene(props: SceneProps) {
     world.add(primer.group);
     const flap = dnaPath(
       [
-        [2.6, -4.4, 0.2],
-        [3.1, -4.65, 0.5],
-        [3.5, -4.3, 0.6],
+        [0.2, -8.7, 0.2],
+        [1, -8.2, 0.5],
+        [1.3, -7.6, 0.6],
       ],
       true,
     );
@@ -429,6 +434,49 @@ export function MolecularScene(props: SceneProps) {
     );
     nick.position.set(0.35, -7.7, 0.7);
     world.add(nick);
+    const docking = new T.Mesh(
+      new T.TorusGeometry(0.55, 0.035, 8, 48),
+      new T.MeshBasicMaterial({
+        color: "#a6ecd6",
+        transparent: true,
+        opacity: 0.85,
+      }),
+    );
+    world.add(docking);
+    const tip = new T.Mesh(
+      new T.SphereGeometry(0.14, 12, 8),
+      new T.MeshBasicMaterial({ color: "#f5d093" }),
+    );
+    world.add(tip);
+    const pin = document.createElement("div"),
+      endPin = document.createElement("div");
+    pin.className = "actor-pin";
+    endPin.className = "end-pin";
+    pin.setAttribute("aria-hidden", "true");
+    endPin.setAttribute("aria-hidden", "true");
+    root.append(pin, endPin);
+    const strandPins = [
+      "Parental DNA",
+      "Leading · 5′→3′",
+      "Lagging · 5′→3′",
+    ].map((text) => {
+      const element = document.createElement("div");
+      element.className = "strand-pin";
+      element.textContent = text;
+      element.setAttribute("aria-hidden", "true");
+      root.append(element);
+      return element;
+    });
+    strandPins[0].classList.add("strand-parent");
+    const poses: Record<string, T.Vector3> = {};
+    let dragging: {
+      id: string;
+      plane: T.Plane;
+      offset: T.Vector3;
+      moved: boolean;
+      start: T.Vector2;
+      pointerId: number;
+    } | null = null;
     const particleCount = 44;
     const particles = new T.InstancedMesh(
       sphere,
@@ -594,29 +642,100 @@ export function MolecularScene(props: SceneProps) {
     const ray = new T.Raycaster(),
       pointer = new T.Vector2();
     let down = [0, 0];
-    const pointerDown = (e: PointerEvent) => {
-      down = [e.clientX, e.clientY];
-    };
-    const select = (e: PointerEvent) => {
-      if (Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 6) return;
+    const cast = (e: PointerEvent) => {
       const rect = root.getBoundingClientRect();
       pointer.set(
         ((e.clientX - rect.left) / rect.width) * 2 - 1,
-        (-(e.clientY - rect.top) / rect.height) * 2 + 1,
+        -((e.clientY - rect.top) / rect.height) * 2 + 1,
       );
       ray.setFromCamera(pointer, camera);
-      const hit = ray.intersectObjects(Object.values(proteins), true)[0];
-      if (hit) {
-        let o: T.Object3D | null = hit.object;
-        while (o && !o.userData.molecule) o = o.parent;
-        if (o) {
-          selected = o.userData.molecule;
-          live.current.onSelect(selected);
-        }
+    };
+    const hitProtein = () => {
+      const hit = ray.intersectObjects(
+        Object.values(proteins).filter((g) => g.visible),
+        true,
+      )[0];
+      let o: T.Object3D | null = hit?.object ?? null;
+      while (o && !o.userData.molecule) o = o.parent;
+      return o?.userData.molecule as string | undefined;
+    };
+    const pointerDown = (e: PointerEvent) => {
+      down = [e.clientX, e.clientY];
+      if (
+        live.current.manipulationTool !== "grab" ||
+        live.current.representation === "structure" ||
+        !e.isPrimary ||
+        e.button !== 0
+      )
+        return;
+      cast(e);
+      const id = hitProtein();
+      if (!id || !proteins[id]) return;
+      selected = id;
+      live.current.onSelect(id);
+      const position = proteins[id].getWorldPosition(new T.Vector3());
+      const plane = new T.Plane().setFromNormalAndCoplanarPoint(
+        camera.getWorldDirection(new T.Vector3()),
+        position,
+      );
+      const intersection = ray.ray.intersectPlane(plane, new T.Vector3());
+      if (!intersection) return;
+      dragging = {
+        id,
+        plane,
+        offset: position.sub(intersection),
+        moved: false,
+        start: new T.Vector2(e.clientX, e.clientY),
+        pointerId: e.pointerId,
+      };
+      controls.enabled = false;
+      renderer.domElement.setPointerCapture(e.pointerId);
+      root.dataset.dragging = "true";
+      e.preventDefault();
+    };
+    const pointerMove = (e: PointerEvent) => {
+      if (!dragging || dragging.pointerId !== e.pointerId) return;
+      if (dragging.start.distanceTo(new T.Vector2(e.clientX, e.clientY)) > 10)
+        dragging.moved = true;
+      if (!dragging.moved) return;
+      cast(e);
+      const point = ray.ray.intersectPlane(dragging.plane, new T.Vector3());
+      if (point)
+        proteins[dragging.id].position.copy(
+          world.worldToLocal(point.add(dragging.offset)),
+        );
+    };
+    const finishDrag = (cancelled = false) => {
+      if (!dragging) return;
+      const { id, moved, pointerId } = dragging;
+      if (moved && !cancelled && poses[id])
+        live.current.onHeld?.(
+          id,
+          proteins[id].position.distanceTo(poses[id]) > 1.35,
+        );
+      if (renderer.domElement.hasPointerCapture(pointerId))
+        renderer.domElement.releasePointerCapture(pointerId);
+      dragging = null;
+      root.dataset.dragging = "false";
+    };
+    const select = (e: PointerEvent) => {
+      if (dragging) {
+        finishDrag();
+        return;
+      }
+      if (Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 6) return;
+      cast(e);
+      const id = hitProtein();
+      if (id) {
+        selected = id;
+        live.current.onSelect(id);
       }
     };
+    const cancelDrag = () => finishDrag(true);
     renderer.domElement.addEventListener("pointerdown", pointerDown);
+    renderer.domElement.addEventListener("pointermove", pointerMove);
     renderer.domElement.addEventListener("pointerup", select);
+    renderer.domElement.addEventListener("pointercancel", cancelDrag);
     const focus = () => {
       const id = selected || "cmg";
       live.current.onSelect(id);
@@ -731,70 +850,220 @@ export function MolecularScene(props: SceneProps) {
         trail.polymerase.visible =
           p.representation !== "structure" && f.polymerase === "delta";
       }
-      controls.enabled = p.cameraMode === "free" || p.engine.mode === "explore";
+      root.dataset.tool = p.manipulationTool ?? "orbit";
+      controls.enabled =
+        !dragging &&
+        p.manipulationTool !== "grab" &&
+        (p.cameraMode === "free" ||
+          (p.engine.mode === "explore" && p.cameraMode !== "follow"));
       if (oldCamera !== p.cameraMode || oldReset !== p.resetKey) {
         oldCamera = p.cameraMode;
         oldReset = p.resetKey;
-        controls.target.set(0, 0, 0);
-        if (p.cameraMode === "free") camera.position.set(0, 1, 23);
+        controls.target.set(1.8, -2.5, 0);
+        if (p.cameraMode === "free") camera.position.set(1.8, -1.5, 32);
       }
-      if (!controls.enabled) {
+      if (!controls.enabled && p.cameraMode !== "free") {
         target.set(
           p.cameraMode === "polymerase"
             ? -1.7
             : p.cameraMode === "okazaki"
               ? 2
-              : 0,
-          p.cameraMode === "okazaki" ? -3 : 0,
+              : 1.8,
+          p.cameraMode === "okazaki" ? -3 : -2.5,
           0,
         );
-        if (p.cameraMode === "detail" && proteins[p.selected])
+        if (
+          (p.cameraMode === "detail" || p.cameraMode === "follow") &&
+          proteins[p.selected]
+        )
           target.copy(proteins[p.selected].position);
         const distance =
-          p.cameraMode === "detail"
-            ? 11
+          p.cameraMode === "detail" || p.cameraMode === "follow"
+            ? camera.aspect < 0.8
+              ? 17
+              : 12
             : p.cameraMode === "okazaki" || p.cameraMode === "polymerase"
               ? 15
               : camera.aspect < 0.8
                 ? 30
-                : 23;
+                : 32;
         desired.set(
           target.x + (p.reduceMotion ? 0 : Math.sin(t * 0.07) * 0.9),
           target.y + 1,
-          distance,
+          target.z + distance,
         );
         camera.position.lerp(desired, 0.04);
         controls.target.lerp(target, 0.04);
       }
       controls.update();
+      const fraction = Math.min(1, (active.rna + active.dna) / 150);
+      const growPoint = lagDaughter.curve.getPoint(fraction);
+      const junction = lagDaughter.curve.getPoint(0.2);
+      const finishPoint = lagDaughter.curve.getPoint(1);
+      const leadingGapFraction = Math.min(
+        1,
+        Math.max(0, p.engine.fork - 4 - p.engine.leading) / 150,
+      );
+      const leadingEnd = leading.curve.getPoint(leadingGapFraction);
+      const dockAlpha = lagDaughter.curve.getPoint(Math.min(0.2, fraction));
+      const blend = (a: T.Vector3, b: T.Vector3, value: number) =>
+        a.clone().lerp(b, T.MathUtils.smoothstep(value, 0, 1));
       for (const [id, group] of Object.entries(proteins)) {
         if (p.representation !== "structure") {
-          const origin = positions[id];
-          let dx = 0,
-            dy = 0;
-          if (id === "alpha") {
-            dx = s < 4 ? -0.15 : 0.5;
+          const origin = new T.Vector3(...positions[id]);
+          let pose = origin;
+          if (id === "epsilon")
+            pose = leading.curve
+              .getPoint(Math.max(0.11, leadingGapFraction))
+              .add(new T.Vector3(0.25, 0.15, 0.2));
+          if (id === "alpha")
+            pose =
+              s >= 1 && s <= 3
+                ? dockAlpha.clone().add(new T.Vector3(0.65, 0.15, 0.35))
+                : new T.Vector3(5, 1, 0.4);
+          if (id === "rfc")
+            pose =
+              s === 4
+                ? blend(
+                    new T.Vector3(5, -1.5, 0.4),
+                    junction.clone().add(new T.Vector3(0.65, 0.4, 0.25)),
+                    active.age / 0.65,
+                  )
+                : new T.Vector3(5, -1.5, 0.4);
+          if (id === "pcna")
+            pose =
+              s < 4
+                ? new T.Vector3(5, -3, 0.3)
+                : s === 4
+                  ? blend(new T.Vector3(5, -3, 0.3), junction, active.age / 1.2)
+                  : growPoint.clone();
+          if (id === "delta")
+            pose =
+              s === 5 || s === 6 || s === 7
+                ? growPoint.clone().add(new T.Vector3(-0.65, 0.35, 0.25))
+                : new T.Vector3(5, -5, 0.3);
+          if (id === "fen1")
+            pose =
+              s === 7
+                ? blend(
+                    new T.Vector3(3.4, -7, 0.3),
+                    finishPoint.clone().add(new T.Vector3(0.65, 0.25, 0.3)),
+                    active.age / 0.6,
+                  )
+                : new T.Vector3(3.4, -7, 0.3);
+          if (id === "ligase")
+            pose =
+              s === 8 || s === 9
+                ? blend(
+                    new T.Vector3(-1.8, -7, 0.2),
+                    finishPoint.clone().add(new T.Vector3(-0.5, 0.2, 0.4)),
+                    s === 9 ? 1 : active.age / 0.8,
+                  )
+                : new T.Vector3(-1.8, -7, 0.2);
+          poses[id] = pose.clone();
+          if (dragging?.id !== id) {
+            if (p.engine.held.has(id))
+              pose = pose.clone().add(new T.Vector3(2.8, 1.3, 1.2));
+            group.position.lerp(pose, p.reduceMotion ? 1 : 0.16);
           }
-          if (id === "rfc") {
-            dx = s === 4 ? -1.15 : 0.3;
-          }
-          if (id === "delta") {
-            dy = s === 5 ? -Math.min(1.3, active.dna / 150) : 0.25;
-          }
-          if (id === "fen1") {
-            dx = s === 7 ? -0.55 : 0.15;
-          }
-          if (id === "ligase") {
-            dx = s >= 8 && s <= 9 ? 0.4 : 0;
-            dy = s === 9 ? -2.9 : 0;
-          }
-          group.position.set(origin[0] + dx, origin[1] + dy, origin[2]);
+          // Schematic contact/return paths; no inferred atomic conformational cycle.
           if (!p.reduceMotion) {
-            group.position.y += Math.sin(t * 0.65 + id.length) * 0.045;
-            group.rotation.y = Math.sin(t * 0.22 + id.length) * 0.08;
+            group.rotation.y = Math.sin(t * 0.4 + id.length) * 0.12;
+            if (id === "pcna")
+              group.rotation.z =
+                s === 4 ? (1 - Math.min(1, active.age / 1.2)) * 0.7 : 0;
           }
         }
       }
+      // The exposed lagging loop grows and releases in an illustrative trombone cycle.
+      const loopSize = s === 5 ? Math.min(1, active.dna / 140) : 0;
+      const bend = lagTemplate.curve.points[1],
+        outer = lagTemplate.curve.points[2];
+      if (!p.reduceMotion) {
+        bend.x = T.MathUtils.lerp(bend.x, 2.7 + loopSize * 0.75, 0.08);
+        bend.y = T.MathUtils.lerp(bend.y, 3 + loopSize * 0.35, 0.08);
+        outer.x = T.MathUtils.lerp(outer.x, 4.2 + loopSize * 0.75, 0.08);
+        lagTemplate.updateFlow(0);
+      }
+      const activeProtein = proteins[p.selected];
+      docking.visible =
+        p.representation !== "structure" &&
+        p.engine.mode === "explore" &&
+        (p.engine.held.has(p.selected) || !!dragging);
+      if (poses[p.selected]) docking.position.copy(poses[p.selected]);
+      tip.position
+        .copy(p.selected === "epsilon" ? leadingEnd : growPoint)
+        .add(new T.Vector3(0, 0, 0.45));
+      tip.visible =
+        p.representation !== "structure" &&
+        (p.selected === "epsilon" || (s >= 2 && s <= 6));
+      const placePin = (
+        element: HTMLElement,
+        position: T.Vector3,
+        visible: boolean,
+      ) => {
+        world.updateMatrixWorld();
+        const projected = world.localToWorld(position.clone()).project(camera);
+        const onscreen =
+          projected.z < 1 &&
+          Math.abs(projected.x) < 0.92 &&
+          Math.abs(projected.y) < 0.85;
+        element.hidden = !(visible && onscreen);
+        element.style.left = `${(projected.x * 0.5 + 0.5) * root.clientWidth}px`;
+        element.style.top = `${(-projected.y * 0.5 + 0.5) * root.clientHeight}px`;
+      };
+      const actor = molecules.find((m) => m.id === p.selected);
+      pin.textContent = `${actor?.name ?? ""}${p.engine.held.has(p.selected) ? " · removed" : ""}`;
+      pin.style.setProperty("--actor-color", actor?.color ?? "#fff");
+      if (activeProtein)
+        placePin(
+          pin,
+          activeProtein.position
+            .clone()
+            .add(new T.Vector3(0, (sizes[p.selected] ?? 2) * 0.55, 0)),
+          p.labels !== false &&
+            p.representation !== "structure" &&
+            p.engine.mode !== "play",
+        );
+      endPin.textContent =
+        p.selected === "epsilon" ? "3′ · leading end" : "3′ · growing end";
+      placePin(
+        endPin,
+        (p.selected === "epsilon" ? leadingEnd : growPoint)
+          .clone()
+          .add(new T.Vector3(0.7, -0.1, 0.4)),
+        p.labels !== false &&
+          p.representation !== "structure" &&
+          (p.selected === "epsilon" || (s >= 2 && s <= 6)),
+      );
+      [
+        parent.curve.getPoint(0.25),
+        leading.curve.getPoint(0.48),
+        lagDaughter.curve.getPoint(0.55),
+      ].forEach((point, index) =>
+        placePin(
+          strandPins[index],
+          point.add(new T.Vector3(index === 1 ? -0.8 : 0.6, 0.2, 0.4)),
+          p.labels !== false &&
+            p.engine.mode === "watch" &&
+            p.representation !== "structure" &&
+            p.cameraMode !== "follow" &&
+            p.cameraMode !== "detail",
+        ),
+      );
+      root.dataset.fragmentStage = active.stage;
+      root.dataset.held = [...p.engine.held].join(",");
+      if (activeProtein) {
+        const screen = activeProtein
+          .getWorldPosition(new T.Vector3())
+          .project(camera);
+        root.dataset.actorScreen = `${(screen.x * 0.5 + 0.5) * root.clientWidth},${(-screen.y * 0.5 + 0.5) * root.clientHeight}`;
+      }
+      if (activeProtein)
+        root.dataset.actorPosition = activeProtein.position
+          .toArray()
+          .map((n) => n.toFixed(2))
+          .join(",");
       primer.group.visible =
         p.representation !== "structure" && s >= 2 && s <= 7;
       primer.beads[0].count = Math.min(
@@ -806,7 +1075,9 @@ export function MolecularScene(props: SceneProps) {
       lagDaughter.beads[1].count = Math.floor(
         (lagDaughter.n * (active.dna + active.rna)) / 150,
       );
-      lagDaughter.group.children[2].visible = s >= 6;
+      (lagDaughter.group.children[2] as T.InstancedMesh).count = Math.floor(
+        (lagDaughter.n / 2) * fraction,
+      );
       const endMatrix = lagDaughter.matrices[1][lagDaughter.n - 1].clone();
       if (active.nick) endMatrix.scale(new T.Vector3(0, 0, 0));
       lagDaughter.beads[1].setMatrixAt(lagDaughter.n - 1, endMatrix);
@@ -814,16 +1085,52 @@ export function MolecularScene(props: SceneProps) {
       nick.position.set(0.2, -8.7, 0.6); // Only paired daughter has base bridges.
       if (oldFlow !== p.engine.fork && !p.reduceMotion) {
         oldFlow = p.engine.fork;
-        parent.updateFlow(p.engine.fork * 0.2);
+        parent.updateFlow(-p.engine.fork * 0.2);
         leading.updateFlow(p.engine.fork * 0.2);
       }
+      // Exposed leading template stays visible when Pol ε is removed; the missing
+      // daughter segment grows from the fork rather than appearing to keep copying.
+      const leadGap = Math.min(
+        1,
+        Math.max(0, p.engine.fork - 4 - p.engine.leading) / 150,
+      );
+      const leadLinks = leading.group.children[2] as T.InstancedMesh;
+      for (let i = 0; i < leading.n; i++) {
+        const matrix = leading.matrices[1][i].clone();
+        if (i / leading.n < leadGap) matrix.scale(new T.Vector3(0, 0, 0));
+        leading.beads[1].setMatrixAt(i, matrix);
+      }
+      leading.beads[1].instanceMatrix.needsUpdate = true;
+      for (let i = 0; i < leadLinks.count; i++) {
+        const a = new T.Vector3().setFromMatrixPosition(
+          leading.matrices[0][i * 2],
+        );
+        const b = new T.Vector3().setFromMatrixPosition(
+          leading.matrices[1][i * 2],
+        );
+        obj.position.copy(a).lerp(b, 0.5);
+        obj.quaternion.setFromUnitVectors(
+          new T.Vector3(0, 1, 0),
+          b.clone().sub(a).normalize(),
+        );
+        obj.scale.set(1, a.distanceTo(b), 1);
+        if ((i * 2) / leading.n < leadGap) obj.scale.setScalar(0);
+        obj.updateMatrix();
+        leadLinks.setMatrixAt(i, obj.matrix);
+      }
+      leadLinks.instanceMatrix.needsUpdate = true;
+      root.dataset.leadingGap = String(
+        Math.max(0, p.engine.fork - 4 - p.engine.leading),
+      );
       parent.group.rotation.y = 0;
       leading.group.rotation.y = 0;
       for (let i = 0; i < particleCount; i++) {
         const clock = p.reduceMotion ? 0 : t;
         const progress = (clock * 0.14 + seeded(i * 4)) % 1;
         const destination =
-          s === 5 && i % 2 ? positions.delta : positions.epsilon;
+          s === 5 && i % 2
+            ? proteins.delta.position.toArray()
+            : proteins.epsilon.position.toArray();
         obj.position.set(
           (seeded(i * 9) - 0.5) * 16 * (1 - progress) +
             destination[0] * progress,
@@ -871,6 +1178,11 @@ export function MolecularScene(props: SceneProps) {
       window.removeEventListener("replisome-camera", cameraCommand);
       renderer.domElement.removeEventListener("pointerdown", pointerDown);
       renderer.domElement.removeEventListener("pointerup", select);
+      renderer.domElement.removeEventListener("pointermove", pointerMove);
+      renderer.domElement.removeEventListener("pointercancel", cancelDrag);
+      strandPins.forEach((element) => element.remove());
+      pin.remove();
+      endPin.remove();
       renderer.domElement.removeEventListener("dblclick", focus);
       renderer.domElement.removeEventListener("webglcontextlost", lost);
       renderer.domElement.removeEventListener("webglcontextrestored", restored);

@@ -28,7 +28,7 @@ export default function ReplisomePage() {
         <p className="eyebrow">DNA replication · An interactive molecular experience</p>
         <h1>REPLISOME</h1>
         <p className={styles.deck}>One fork. Two strands. A living molecular machine.</p>
-        <p className={styles.intro}>Follow the proteins that open DNA, copy its instructions, and join the new strands. Watch the choreography, inspect the structures, or assemble an Okazaki fragment yourself. Open the MCAT lens to trace strand polarity, predict enzyme effects, and interpret replication experiments.</p>
+        <p className={styles.intro}>Follow the proteins that open DNA, copy its instructions, and join the new strands. Follow the handoffs in motion, orbit the running fork, and pull individual enzymes off the DNA to see what changes. Replay a reaction slowly or build an Okazaki fragment yourself.</p>
       </div>
     </header>
 
@@ -43,7 +43,7 @@ export default function ReplisomePage() {
     <section className={`shell ${styles.modes}`} aria-label="Three ways to explore">
       {[
         ["01", "Watch", "Follow a continuous view of leading-strand synthesis and the repeating steps that build lagging-strand fragments."],
-        ["02", "Explore", "Select a protein, inspect its role, and compare the cinematic view with deposited structural coordinates."],
+        ["02", "Explore", "Orbit the machine in motion, follow an enzyme, and remove or restore it. Watch copying stall or unsealed nicks accumulate."],
         ["03", "Play", "Place a primer, load the clamp, choose a polymerase, pair nucleotides, and process and seal a fragment."],
       ].map(([number, title, text]) => <article key={title}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}
     </section>
