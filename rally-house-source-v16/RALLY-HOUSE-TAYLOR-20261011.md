@@ -55,3 +55,21 @@ Validation is saved in `evidence/taylor-sculpt-20261011`:
 - A 1,200-frame real-time Championship rally recorded 16 aligned contacts with a local p95 frame interval of 16.7 ms. This is a local headless-browser measurement, not a physical-device certification.
 - All 63 source/served artifacts match, and all 65 entries in the CRC-checked standalone package match their current source files.
 - Each engine observed 877 draw calls and 287,916 rendered triangles in the controlled idle scene, including the academy, other actors and shadows. The previous glamour scene measured 880 draws and 283,644 triangles. The glove geometry adds detail while reducing hand draw calls.
+
+## Reference facial-likeness pass
+
+The reference's face has wider lower cheeks, a shorter chin, restrained half-lidded eyes and a skeptical resting mouth. Taylor now uses revised authored cheek/chin cross sections with denser face sampling. The headdress opening follows those cheeks, with lower panels around the neck. Gold stripes start on the revised fabric surface rather than crossing the opening.
+
+The eye whites use flatter upper borders and almond lower arcs. Pupils intersect that aperture instead of drawing beyond it. Smaller catchlights and warmer amber lids keep the face restrained. The curved frown is raised and becomes the ordinary resting mouth; friendly and proud emotions still produce the existing warm smile. This is a fully clothed, stylized adaptation from one reference view, not a verified exact 3D reconstruction. No reference pixels, ripped models or reference sexual content are included.
+
+Evidence is in `evidence/taylor-likeness-20261011`:
+
+- All 21 game suites passed. Independent mesh intersections check pupil containment, graphics above the actual face during compressed blinking, and gold stripe attachment to the actual hood. Resting and friendly mouth selection are distinct. Finite unit normals, triangle winding, geometry budgets and exact unchanged gameplay kinematics remain covered.
+- Portfolio verification passed: 91 tests, type checking, the 31-route production build, zero lint errors and 13 existing warnings.
+- Chromium, Firefox and WebKit each passed 16 desktop/phone views covering front, three-quarter, rear, actual emotion states and Championship, without JavaScript or WebGL errors. The controlled scene measured 877 draws and 288,780 triangles in each engine, including the academy, other actors and shadow passes.
+- The final shipped 390×844 portfolio flow passed with zero Axe, overflow, JavaScript or request errors. Sixteen held-contact exits across four opponents and both motion modes, bounded audio disposal and five extracted-package reloads passed.
+- All 63 source/served artifacts match. All 65 entries in the CRC-checked standalone ZIP match their source files.
+
+The final 1,200-frame live Championship rally recorded 16 aligned contacts and a local p95 interval of 16.7 ms. This is a local headless-browser observation, not physical-device certification.
+
+The appearance pass changes no movement solver, physical contact pose, scoring, camera tuning or costume coverage. Screenshots are running WebGL inspection captures, not generated concept art.

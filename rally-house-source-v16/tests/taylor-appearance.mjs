@@ -88,3 +88,18 @@ for(const mode of ['ready','swingForehand','swingBackhand','serve','match','prop
  assert.deepEqual(a.meshes().find(m=>m.skin===CHARACTER_SKIN.taylorArms).boneMatrices,b.meshes().find(m=>m.skin===CHARACTER_SKIN.arms).boneMatrices,mode+': visible hands use the authoritative rig immediately');
 }
 console.log('Taylor sculpt PASS: bounded finger geometry and immediate contact/prop/reach pose restoration.');
+
+// Independently intersect pupil sample points with the actual eye-white mesh.
+// This catches graphic spill without repeating the eye generator's bounds.
+function whiteAt(x,y){const p=TAYLOR_GEOMETRY.eyeWhite.positions;let z=-Infinity;for(let i=0;i<p.length;i+=9){const ax=p[i],ay=p[i+1],bx=p[i+3],by=p[i+4],cx=p[i+6],cy=p[i+7],det=(by-cy)*(ax-cx)+(cx-bx)*(ay-cy);if(Math.abs(det)<1e-10)continue;const a=((by-cy)*(x-cx)+(cx-bx)*(y-cy))/det,b=((cy-ay)*(x-cx)+(ax-cx)*(y-cy))/det,c=1-a-b;if(a>=-1e-5&&b>=-1e-5&&c>=-1e-5)z=Math.max(z,a*p[i+2]+b*p[i+5]+c*p[i+8]);}return z;}
+const pupils=TAYLOR_GEOMETRY.pupils.positions;
+for(let i=0;i<pupils.length;i+=9){const x=(pupils[i]+pupils[i+3]+pupils[i+6])/3,y=(pupils[i+1]+pupils[i+4]+pupils[i+7])/3,z=(pupils[i+2]+pupils[i+5]+pupils[i+8])/3,white=whiteAt(x,y);assert(Number.isFinite(white),'Every pupil triangle sits within the authored white aperture');assert(z>white+.001,'Pupils sit above the eye white');}
+for(const [expression,mouth] of [[{smile:.08,mouthOpen:0,squint:0,browRaise:0},'frown'],[{smile:.72,mouthOpen:0,squint:0,browRaise:.2},'smile']])assert(taylorHeadMeshes(new Vec3(),0,0,expression,0).some(m=>m.skin===TAYLOR_GEOMETRY[mouth]),'Resting and friendly expressions retain distinct mouths');
+console.log('Taylor likeness PASS: clipped pupil apertures and distinct resting/social expressions.');
+
+// Slice the actual hood triangles at each stripe sample's height, then find
+// the radial surface intersection. Stripes must sit on fabric, not over an opening.
+const hood=TAYLOR_GEOMETRY.hood.positions,stripes=TAYLOR_GEOMETRY.stripes.positions;
+function hoodRadius(x,y,z){const length=Math.hypot(x,z),dx=x/length,dz=z/length;let best=-Infinity;for(let i=0;i<hood.length;i+=9){const cuts=[];for(let j=0;j<3;j++){const a=i+j*3,b=i+((j+1)%3)*3;if((hood[a+1]<=y&&hood[b+1]>y)||(hood[b+1]<=y&&hood[a+1]>y)){const t=(y-hood[a+1])/(hood[b+1]-hood[a+1]);cuts.push([hood[a]+(hood[b]-hood[a])*t,hood[a+2]+(hood[b+2]-hood[a+2])*t]);}}if(cuts.length!==2)continue;const [[ax,az],[bx,bz]]=cuts,sx=bx-ax,sz=bz-az,den=dx*sz-dz*sx;if(Math.abs(den)<1e-9)continue;const radial=(ax*sz-az*sx)/den,u=(ax*dz-az*dx)/den;if(u>=-1e-5&&u<=1+1e-5&&radial>0)best=Math.max(best,radial);}return best;}
+for(let i=0;i<stripes.length;i+=9){const x=(stripes[i]+stripes[i+3]+stripes[i+6])/3,y=(stripes[i+1]+stripes[i+4]+stripes[i+7])/3,z=(stripes[i+2]+stripes[i+5]+stripes[i+8])/3,surface=hoodRadius(x,y,z);assert(Number.isFinite(surface)&&Math.abs(Math.hypot(x,z)-surface)<.020,'Headdress stripe is attached to the actual hood surface');}
+console.log('Taylor attachment PASS: stripes follow actual fabric geometry.');
