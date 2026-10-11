@@ -109,7 +109,7 @@ export default function Playground() {
             <div className={styles.copy}>
               <span className="status">{card.status}</span>
               <p className="eyebrow">{card.eyebrow}</p>
-              <h2>{card.title}</h2>
+              <h2 className={card.href === "/playground/replisome" ? styles.replisomeTitle : undefined}>{card.title}</h2>
               <p>{card.description}</p>
               <Link className="button" href={card.href}>{card.button}</Link>
             </div>

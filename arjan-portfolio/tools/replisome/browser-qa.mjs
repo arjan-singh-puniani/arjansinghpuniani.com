@@ -26,6 +26,7 @@ for (const [name, type] of [['chromium', chromium], ['webkit', webkit]]) {
       await expect(cards).toHaveCount(6);
       await expect(cards.nth(0).getByRole('heading')).toHaveText('Anatomy Learner');
       await expect(cards.nth(1).getByRole('heading')).toHaveText('REPLISOME');
+      expect(await cards.nth(1).getByRole('heading').evaluate(h => h.scrollWidth <= h.clientWidth + 1)).toBe(true);
       const runtimeRequests = () => requests.filter(url => /\/replisome\/(?:index\.html|assets\/|molecules\/|fonts\/)/.test(url));
       expect(runtimeRequests()).toEqual([]);
       await cards.nth(1).scrollIntoViewIfNeeded();

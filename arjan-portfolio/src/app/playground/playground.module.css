@@ -53,6 +53,10 @@
   line-height: 1.5;
 }
 
+.copy h2.replisomeTitle {
+  font-size: clamp(32px, 3.5vw, 46px);
+}
+
 .preview {
   position: relative;
   min-height: 470px;
