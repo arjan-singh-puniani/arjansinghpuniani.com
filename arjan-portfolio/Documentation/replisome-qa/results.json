@@ -1,0 +1,185 @@
+{
+  "base": "http://127.0.0.1:3072",
+  "results": [
+    {
+      "case": "chromium-1440",
+      "checks": [
+        "card placement",
+        "no eager runtime requests",
+        "canonical/sitemap",
+        "responsive layout",
+        "WCAG scan",
+        "keyboard launch",
+        "embedded assets/fonts",
+        "Watch/Explore/Play",
+        "fullscreen/fallback",
+        "close and focus restoration",
+        "reopen",
+        "back navigation"
+      ]
+    },
+    {
+      "case": "chromium-390",
+      "checks": [
+        "card placement",
+        "no eager runtime requests",
+        "canonical/sitemap",
+        "responsive layout",
+        "WCAG scan",
+        "keyboard launch",
+        "embedded assets/fonts",
+        "Watch/Explore/Play",
+        "fullscreen/fallback",
+        "close and focus restoration",
+        "reopen",
+        "back navigation"
+      ]
+    },
+    {
+      "case": "chromium-no-webgl",
+      "checks": [
+        "readable fallback",
+        "close remains available"
+      ]
+    },
+    {
+      "case": "/",
+      "checks": [
+        "existing route HTTP 200",
+        "page heading",
+        "shared accessibility/navigation"
+      ]
+    },
+    {
+      "case": "/about",
+      "checks": [
+        "existing route HTTP 200",
+        "page heading",
+        "shared accessibility/navigation"
+      ]
+    },
+    {
+      "case": "/cv",
+      "checks": [
+        "existing route HTTP 200",
+        "page heading",
+        "shared accessibility/navigation"
+      ]
+    },
+    {
+      "case": "/work",
+      "checks": [
+        "existing route HTTP 200",
+        "page heading",
+        "shared accessibility/navigation"
+      ]
+    },
+    {
+      "case": "/research",
+      "checks": [
+        "existing route HTTP 200",
+        "page heading",
+        "shared accessibility/navigation"
+      ]
+    },
+    {
+      "case": "/notes",
+      "checks": [
+        "existing route HTTP 200",
+        "page heading",
+        "shared accessibility/navigation"
+      ]
+    },
+    {
+      "case": "/contact",
+      "checks": [
+        "existing route HTTP 200",
+        "page heading",
+        "shared accessibility/navigation"
+      ]
+    },
+    {
+      "case": "/playground/holoanatomy",
+      "checks": [
+        "existing route HTTP 200",
+        "page heading",
+        "shared accessibility/navigation"
+      ]
+    },
+    {
+      "case": "/playground/vector-tennis",
+      "checks": [
+        "existing route HTTP 200",
+        "page heading",
+        "shared accessibility/navigation"
+      ]
+    },
+    {
+      "case": "/playground/rally-house",
+      "checks": [
+        "existing route HTTP 200",
+        "page heading",
+        "shared accessibility/navigation"
+      ]
+    },
+    {
+      "case": "/playground/pit-stop",
+      "checks": [
+        "existing route HTTP 200",
+        "page heading",
+        "shared accessibility/navigation"
+      ]
+    },
+    {
+      "case": "/playground/hemodynamic-observatory",
+      "checks": [
+        "existing route HTTP 200",
+        "page heading",
+        "shared accessibility/navigation"
+      ]
+    },
+    {
+      "case": "webkit-1440",
+      "checks": [
+        "card placement",
+        "no eager runtime requests",
+        "canonical/sitemap",
+        "responsive layout",
+        "WCAG scan",
+        "keyboard launch",
+        "embedded assets/fonts",
+        "Watch/Explore/Play",
+        "fullscreen/fallback",
+        "close and focus restoration",
+        "reopen",
+        "back navigation"
+      ]
+    },
+    {
+      "case": "webkit-390",
+      "checks": [
+        "card placement",
+        "no eager runtime requests",
+        "canonical/sitemap",
+        "responsive layout",
+        "WCAG scan",
+        "keyboard launch",
+        "embedded assets/fonts",
+        "Watch/Explore/Play",
+        "fullscreen/fallback",
+        "close and focus restoration",
+        "reopen",
+        "back navigation"
+      ]
+    },
+    {
+      "case": "webkit-no-webgl",
+      "checks": [
+        "readable fallback",
+        "close remains available"
+      ]
+    }
+  ],
+  "errors": [],
+  "failed": []
+}

@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
     "/playground",
     "/playground/holoanatomy",
+    "/playground/replisome",
     "/playground/vector-tennis",
     "/playground/pit-stop",
     "/playground/rally-house",

@@ -6,19 +6,19 @@ import styles from "./playground.module.css";
 
 export const metadata: Metadata = {
   title: "Playground",
-  description: "Small interactive experiments by Arjan Singh Puniani in anatomy, tennis, cozy games, motorsport, and cardiovascular flow.",
+  description: "Small interactive experiments by Arjan Singh Puniani in anatomy, DNA replication, tennis, cozy games, motorsport, and cardiovascular flow.",
   alternates: { canonical: "/playground" },
   openGraph: {
     type: "website",
     url: `${siteUrl}/playground`,
     title: "Playground | Arjan Singh Puniani",
-    description: "Small interactive experiments in anatomy, tennis, cozy games, motorsport, and cardiovascular flow.",
+    description: "Small interactive experiments in anatomy, DNA replication, tennis, cozy games, motorsport, and cardiovascular flow.",
     images: ["/images/playground/anatomy-learner.webp"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Playground | Arjan Singh Puniani",
-    description: "Small interactive experiments in anatomy, tennis, cozy games, motorsport, and cardiovascular flow.",
+    description: "Small interactive experiments in anatomy, DNA replication, tennis, cozy games, motorsport, and cardiovascular flow.",
     images: ["/images/playground/anatomy-learner.webp"],
   },
 };
@@ -33,6 +33,17 @@ const cards = [
     button: "Open Anatomy Learner",
     image: "/images/playground/anatomy-learner.webp",
     alt: "Detailed anatomical heart cutaway used as the Anatomy Learner project thumbnail",
+    tone: "dark",
+  },
+  {
+    status: "MOLECULAR EXPERIENCE",
+    eyebrow: "DNA replication",
+    title: "REPLISOME",
+    description: "Watch, explore, and build the molecular machinery that copies DNA.",
+    href: "/playground/replisome",
+    button: "Explore DNA replication",
+    image: "/replisome/preview.webp",
+    alt: "REPLISOME showing the colorful protein complexes and DNA strands at a replication fork",
     tone: "dark",
   },
   {
@@ -87,7 +98,7 @@ export default function Playground() {
       <div className="shell">
         <p className="eyebrow">Playground</p>
         <h1>Playground.</h1>
-        <p>I built these small browser experiments in anatomy, tennis, mechanical systems, and cardiovascular flow. They are prototypes and educational models.</p>
+        <p>I built these small browser experiments in anatomy, DNA replication, tennis, mechanical systems, and cardiovascular flow. They are prototypes and educational models.</p>
       </div>
     </header>
 
