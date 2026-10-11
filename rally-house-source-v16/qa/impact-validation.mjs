@@ -2,14 +2,15 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import {chromium,browserOptions} from './runtime.mjs';
-const output=path.resolve('../takeover-evidence/impact-20261009'),report={viewports:[],cycles:[],errors:[]};
+const output=path.resolve('../takeover-evidence/impact-20261009'),report={viewports:[],cycles:[],errors:[],requests:[]};
 const browser=await chromium.launch({...browserOptions,args:['--use-angle=metal']});
 const widths=[[844,390],[1920,1080],[1728,1117],[1440,900],[1280,800],[1024,768],[430,932],[390,844],[720,900]];
 try{
  for(const [width,height] of widths.filter(([width])=>!process.env.QA_WIDTH||width===Number(process.env.QA_WIDTH))){
-  const context=await browser.newContext({viewport:{width,height},hasTouch:width<1100,reducedMotion:'reduce'}),page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));
+  const context=await browser.newContext({viewport:{width,height},hasTouch:width<1100,reducedMotion:'reduce'}),page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));page.on('response',r=>{if(r.status()>=400)report.requests.push([r.status(),r.url()]);});
   await page.goto('http://127.0.0.1:3096/playground/rally-house');
   assert.equal(await page.locator('iframe').count(),0);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  await page.getByRole('button',{name:/Discover/}).click();await page.waitForFunction(()=>[...document.images].some(i=>i.alt.includes('clock separates')&&i.complete&&i.naturalWidth>0));
   const {default:AxeBuilder}=await import('../../arjan-portfolio/node_modules/@axe-core/playwright/dist/index.js');
   const axe=await new AxeBuilder({page}).analyze();assert.deepEqual(axe.violations,[]);
   await page.getByRole('button',{name:'Play Rally House ↗'}).click();await page.frameLocator('iframe').getByText('Arjan',{exact:true}).click();
@@ -40,7 +41,7 @@ try{
    const opponent=['leo','coach','mika','nia'][cycle%4];g.settings.reducedMotion=cycle>=8;
    for(const a of [...g.activities.active])g.cancelActivity(a);const saved=g.camera.captureState();g.startChampionship(g.actor(opponent));
    for(let i=0;i<6000&&g.championship.phase!=='serving';i++)g.updateFixed(1/60);
-   if(g.championship.phase!=='serving')throw Error('Entry '+cycle);
+   if(g.championship.phase!=='serving')throw Error('Entry '+cycle+' '+JSON.stringify({phase:g.championship.phase,opponent,actors:g.characters.map(c=>({id:c.id,position:c.position,path:c.path,idx:c.pathIndex})),activities:g.activities.active}));
    const m=g.interactiveMatch;m.prepareShot('player','serve','perfect');
    for(let i=0;i<120&&!m.pending.impactStarted;i++)g.updateFixed(1/120);
    if(!m.pending?.impactStarted||!g.player.contactHoldRemaining)throw Error('No held contact '+cycle);
@@ -62,5 +63,5 @@ try{
   await page.goto('http://127.0.0.1:8079/?debug');await page.waitForFunction(()=>window.__rh?.ready);if(await page.getByText('Arjan',{exact:true}).isVisible())await page.getByText('Arjan',{exact:true}).click();
   assert(await page.evaluate(async()=>{const {tennisImpactSignal}=await import('./dist/core/TennisImpactSound.js');return tennisImpactSignal('perfect',0,48000).length>0&&[...document.styleSheets].some(s=>s.href?.endsWith('/championship.css'));}));report.packageReloads++;
  }
- assert.deepEqual(report.errors,[]);console.log('12 bounded audio buffers, disposal, and five extracted-package reloads PASS');
+ assert.deepEqual(report.errors,[]);assert.deepEqual(report.requests,[]);console.log('12 bounded audio buffers, disposal, and five extracted-package reloads PASS');
 }finally{fs.writeFileSync(path.join(output,'validation.json'),JSON.stringify(report,null,2));await browser.close();}

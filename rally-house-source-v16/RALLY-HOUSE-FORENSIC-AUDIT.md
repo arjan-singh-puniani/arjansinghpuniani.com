@@ -88,3 +88,7 @@ All 17 built-in selections and all 16 catalog types were mapped. In the table, P
 | Built scoreboard, trophy, towel rack | On placement / yes | Paper/comfort / yes / notebook-inspect-stretch / conditional / visits / yes | Saved visits, favorites and move history; no fabricated score |
 
 Completed built-in visit context is bounded by the 48-entry activity ledger. It is a recent receipt, not an unlimited lifetime counter. Decor uses its separate saved affordance visits. Championship relationships are bounded separately. Shared effects and approximate props are explicit limits; making every mesh a separate button would increase administration without improving this small club.
+
+## Object identity follow-up — 10 October 2026
+
+Current authority is main `846d1c7` (merged impact PR #9), isolated on `rally-house-object-identity-20261010`. The 2026-10-06 counts above remain historical. Current source has three new owners: `ObjectIdentity`, `AuthoredObjects` and `ReversibleAssembly`; source/served parity now checks 61 artifacts and persistence is schema 9. No RC or backup is imported by the runtime. The current nine-ZIP, 886-file inventory, adopted sip cycle, preserved cast alternatives and verified archive are documented in DIRTY-TREE-MINING and CLEANUP-MANIFEST. Original unrelated work remains preserved.

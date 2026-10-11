@@ -57,3 +57,35 @@ From the game folder, run `npm test`, `npm run release:check`, and `npm run qa:s
 The new QA scripts document local URLs: game 8078 and portfolio production 3096. `experience-browser.mjs` runs the matrix, 32 accelerated lifecycle cycles and five-minute active soak. `experience-tuning.mjs` runs the Node-only matrix. `experience-capture.mjs`, `experience-detail.mjs`, `experience-poses.mjs` and `experience-film.mjs` capture live evidence. `experience-final.mjs` also expects an extracted ZIP served on 8079; `experience-media.mjs` expects the launcher's Python server on 8082. Create an output directory at `../takeover-evidence/after` and `../takeover-evidence/experiments` when running them in another checkout. These fixed URLs are QA setup, not production dependencies.
 
 The strongest unsupported claims remain subjective and device-specific. Follow the human protocol before describing sound as materially satisfying, the camera as excellent, the cast as lovable, or the game as unusually fun.
+
+
+## Authored object identity — 10 October 2026
+
+This is a fresh candidate pass on main `846d1c7`, distinct from the October 6/9 historical results above. Current reports, provenance and selected actual captures are in [evidence/objects-20261010](evidence/objects-20261010/README.md).
+
+| Check | Current result |
+|---|---|
+| Game build/tests | All 19 suites pass, including 42 real primary object travel/use/completion flows and a secondary seated-rally regression |
+| Portfolio verify | 91 tests / 9 files, TypeScript, 31-route production build; 0 lint errors, 14 retained warnings |
+| Release boundary | 61 source/served artifacts match; relative imports resolve |
+| Stable identity | 43 built-in assemblies plus all 16 existing furniture catalog types have deliberate mappings; unknown catalog types cannot invent a generic action |
+| Clock | 240 full, 240 cancelled, 240 reduced-motion exact TRS restores; three live-clock invocation snapshots |
+| Embodied state | Water hand/soil gap 0.000; actual wet soil/cooldown/reload; real sketch/erase geometry; interrupted use does not invent a completion |
+| Native object browser | 13 flows, 12 viewports, zero Axe WCAG A/AA violations, native touch and saved-state reload |
+| Seated watch | Exhibition requested after arrival, 120 actual-ball gaze samples at zero target gap, then seat release |
+| Engines | Firefox and WebKit: three layouts each, native keyboard action, clock completion/restoration, no recorded errors or failed requests |
+| Repeated Championship | 32 cycles across four opponents/motion modes; exact pause/return, DOM 204 throughout, zero instrumented transient audio nodes after settle |
+| Resilience | Four layouts, eight exact paused-flight/contact freezes, nine stall cases, protected saves and native multi-touch; physical OS focus remains open |
+| Portfolio/package | Nine embed layouts/Axe 0, Discover capture loads, 16 held-contact exits, bounded audio/disposal, five extracted-package reloads |
+| Standalone ZIP | 63 files / about 195 KiB, CRC verified and re-extracted from final source |
+| Isolated real frames | 16 physical contacts / 1200 RAF frames, median 16.70 ms, p95 16.70 ms, p99 16.80 ms; no recorded errors |
+| Autonomous life | 600 seconds: 17 completed scenes, no interruptions. Simulated hour: 20 scene variants, 10 places, all initiators, one safe cancellation |
+| Historical preservation | 886 scoped original files archived and read back against hashes; originals remain in place |
+
+Viewports for the object matrix: 1920×1080, 1728×1117, 1440×900, 1280×800, 1024×768, 768×1024, 430×932, 390×844, 375×667, 844×390, 640×800 and 390×280. Actual clock, bonsai and seat captures were inspected; their modest procedural art is not claimed to equal studio character work.
+
+Failures repaired: wrong/hard-to-select surface targets; static cached foliage that could not respond; an inaccessible basket/bench aisle; two actors blocking a shared narrow bench entry; nonparticipants sharing one court exit; high hanging frames falsely implying reachable string contact; and a seated watch starting its exhibition before the spectator arrived. Gaze now samples the court's final authoritative ball pose. Cross-engine Find timing needed a RAF-aware harness wait. Rebuilding Next while its old server stayed alive caused stale chunk requests; the final integration run uses a restarted production server.
+
+Reproduce with `npm test`, `npm run release:check`, `node qa/object-inventory.mjs`, `node qa/object-browser.mjs`, `node qa/object-engines.mjs`, `node qa/session-lifecycle.mjs`, `node qa/session-validation.mjs`, `node qa/impact-validation.mjs` and `node qa/impact-browser.mjs objects-release`; portfolio verification is `npm run verify`. Browser fixtures expect source 8078, the production portfolio 3096, and the extracted package 8079. `python3 qa/package-playtest.py` creates the CRC-checked standalone ZIP.
+
+Native UI actions are real, while fixed-step acceleration makes travel/use/session coverage efficient. Headless RAF is vsync-capped and heap readings are coarse; there is no measured speedup, zero-leak proof or physical-phone performance claim. Page-switch tests explicitly exercise lifecycle handlers when headless switching does not deliver a true OS event. Independent human enjoyment, audio balance, character appeal and physical-device lifecycle checks remain required before a studio-caliber claim. The stronger contact pause/camera profile from PR9 is preserved, not relabeled as a new tuning result.

@@ -1,0 +1,41 @@
+{
+  "match": {
+    "id": "activity-1",
+    "day": 1,
+    "winner": "mika",
+    "score": {
+      "leo": 1,
+      "mika": 3
+    },
+    "longest": 17,
+    "contacts": 54,
+    "errors": {
+      "leo": 3,
+      "mika": 1
+    }
+  },
+  "event": {
+    "id": "activity-1",
+    "kind": "match",
+    "subject": "mika",
+    "detail": "Lucresia 3 · Leo 1. Lucresia takes their practice game. Longest rally: 17.",
+    "winner": "mika",
+    "importance": 1,
+    "day": 1,
+    "place": "court",
+    "at": 82.00000000000003,
+    "witnesses": [
+      "coach"
+    ],
+    "pending": [
+      "mika",
+      "leo"
+    ]
+  },
+  "scene": "three-activity-1-coach",
+  "threeCompleted": "activity-2",
+  "friction": [
+    "activity-1",
+    "activity-2"
+  ]
+}

@@ -8,6 +8,8 @@ catch(error){
  api=await import(pathToFileURL(bundled).href);
 }
 export const chromium=api.chromium;
+export const firefox=api.firefox;
+export const webkit=api.webkit;
 const cached=path.join(homedir(),'Library/Caches/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-mac-arm64/chrome-headless-shell');
 const executablePath=process.env.CHROMIUM_EXECUTABLE||(existsSync(cached)?cached:undefined);
 export const browserOptions={headless:true,...executablePath?{executablePath}:{}};

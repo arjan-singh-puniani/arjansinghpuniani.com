@@ -23,6 +23,7 @@ export interface GameSave {
   player:{x:number;z:number};
   activities?:import('../simulation/ActivitySystem.js').ActivitySave;
   history?:import('../simulation/ClubHistory.js').ClubHistorySave;
+  objectIdentity?:import('../world/ObjectIdentity.js').ObjectIdentitySave;
   affordances?:import('../simulation/ObjectAffordances.js').AffordanceSave;
   development?:{preparation:number;recovery:number};
   settings?:{volume:number;reducedMotion:boolean;visuals?:'auto'|'detail'};

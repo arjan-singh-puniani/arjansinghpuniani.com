@@ -1,0 +1,15 @@
+# Object identity audit — 10 October 2026
+
+The initial world had 17 place selections, often represented by floor circles. A clock or hanging board could visibly exist while having no identity or a target far from its geometry. A stringing effect could draw a new floating frame. Generic furniture fallbacks could feed a ball for an unrelated object. These were failures of ownership and affordance, not a shortage of click handlers.
+
+The candidate has 43 stable built-in identities, including 26 newly named details. Buildable furniture keeps its existing placement IDs and `ObjectAffordances` histories. `ObjectIdentity` owns bounded built-in usage, last completed verb, watering time, board sketch and lamp state. `AuthoredObjects` owns mutable geometry. `Game` owns travel, reservation, contact, conditional witnesses and completed receipts. Spatial cards read those live owners. Schema 9 validates the new optional state while preserving schema 8 progress.
+
+Selection boxes, floor blockers, eye-level occluders and hand contact points are separate. The pointer picks the closest ray depth among objects, furniture and characters. Tiny tabletop props have a restrained depth-checked 12-pixel tolerance. Foreground furniture can legitimately occlude a distant prop; Club → Details provides a keyboard/touch directory and Find action. Hover reveals one name, without permanent markers on every mesh.
+
+The registry describes semantic assemblies: a racket rack includes its supports and frames; a plant includes pot, trunk and canopy. Books/towels/cones remain within the named journal, gear or equipment vignette. Walls, window panes, trim, floor markings, string-light bulbs and dust are architectural/presentation geometry. No claim is made that each constituent mesh has its own action. Additional individually authored art/window/curtain experiences remain possible; they were not converted into generic menus.
+
+Geometry is deliberately modest. The whiteboard has a light surface, marker tray and persistent crosscourt drawing. The clock has face, hands, housing, pin and two revealed gear assemblies. Rackets have real local string grids. The high shop display offers inspection: a standing arm cannot genuinely pluck its high frames. High bonsai shelves likewise offer Observe without Water. Main bonsai viewing and care positions avoid the sectional, and the can reaches the soil.
+
+Reversible assembly samples immutable TRS per invocation; normal clock hands may tick between invocations. Completed, cancelled and reduced-motion paths restore exactly. State changes occur at actual interaction onset; completed usage/history requires resolution. Thus a cancelled pour can leave genuinely wet soil but cannot invent a completed visit. Transient props, reach targets and clock state clear on release.
+
+Object witnesses respect range, availability, cooldown and tall occluders. A low net or bench does not obstruct adult eye-level visibility. A witness is conditional; there is no promise that every click summons a reaction.

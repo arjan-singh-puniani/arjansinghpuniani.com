@@ -1,0 +1,525 @@
+{
+  "errors": [],
+  "requests": [],
+  "flows": [
+    {
+      "id": "bonsai",
+      "action": "observe",
+      "phase": "active",
+      "position": {
+        "x": 9,
+        "y": 0,
+        "z": 3
+      },
+      "gesture": "think",
+      "prop": null,
+      "hand": {
+        "x": 9.27600908893579,
+        "y": 1.6416293095465653,
+        "z": 2.9665487993513806
+      },
+      "history": {
+        "uses": 1,
+        "lastAction": "Observe",
+        "lastWater": null,
+        "sketched": false
+      }
+    },
+    {
+      "id": "bonsai",
+      "action": "water",
+      "phase": "active",
+      "position": {
+        "x": 10.2,
+        "y": 0,
+        "z": 3
+      },
+      "gesture": "offer",
+      "prop": "wateringCan",
+      "hand": {
+        "x": 10.200169916411205,
+        "y": 1.359744673049645,
+        "z": 3.89926082867782
+      },
+      "history": {
+        "uses": 2,
+        "lastAction": "Water",
+        "lastWater": 2509.75,
+        "sketched": false
+      }
+    },
+    {
+      "id": "clubClock",
+      "action": "inspect",
+      "phase": "active",
+      "position": {
+        "x": 6.025,
+        "y": 0,
+        "z": -8.557083487540114
+      },
+      "gesture": "think",
+      "prop": null,
+      "hand": {
+        "x": 5.767484850767156,
+        "y": 1.6416293095465653,
+        "z": -8.661897360264987
+      },
+      "history": {
+        "uses": 1,
+        "lastAction": "Play with the mechanism",
+        "lastWater": null,
+        "sketched": false
+      }
+    },
+    {
+      "id": "clubBoard",
+      "action": "sketch",
+      "phase": "active",
+      "position": {
+        "x": 2.8,
+        "y": 0,
+        "z": -8.7
+      },
+      "gesture": "point",
+      "prop": null,
+      "hand": {
+        "x": 2.7542042073337445,
+        "y": 1.9687224767995553,
+        "z": -9.1069435943871
+      },
+      "history": {
+        "uses": 1,
+        "lastAction": "Sketch a crosscourt arrow",
+        "lastWater": null,
+        "sketched": true
+      }
+    },
+    {
+      "id": "clubBoard",
+      "action": "erase",
+      "phase": "active",
+      "position": {
+        "x": 2.8,
+        "y": 0,
+        "z": -8.7
+      },
+      "gesture": "point",
+      "prop": null,
+      "hand": {
+        "x": 2.755753126052634,
+        "y": 1.971466243189762,
+        "z": -9.109021377822893
+      },
+      "history": {
+        "uses": 2,
+        "lastAction": "Erase your sketch",
+        "lastWater": null,
+        "sketched": false
+      }
+    },
+    {
+      "id": "clubBoard",
+      "action": "sketch",
+      "phase": "active",
+      "position": {
+        "x": 2.8,
+        "y": 0,
+        "z": -8.7
+      },
+      "gesture": "point",
+      "prop": null,
+      "hand": {
+        "x": 2.7557531260556147,
+        "y": 1.9714662431949312,
+        "z": -9.109021377827984
+      },
+      "history": {
+        "uses": 3,
+        "lastAction": "Sketch a crosscourt arrow",
+        "lastWater": null,
+        "sketched": true
+      }
+    },
+    {
+      "id": "courtRack",
+      "action": "pluck",
+      "phase": "active",
+      "position": {
+        "x": 6.855,
+        "y": 0,
+        "z": 2.307083487540115
+      },
+      "gesture": "inspect",
+      "prop": null,
+      "hand": {
+        "x": 6.55587342153198,
+        "y": 1.004959876024289,
+        "z": 2.855779466923031
+      },
+      "history": {
+        "uses": 1,
+        "lastAction": "Pluck the strings",
+        "lastWater": null,
+        "sketched": false
+      }
+    },
+    {
+      "id": "deskBell",
+      "action": "ring",
+      "phase": "active",
+      "position": {
+        "x": -8.025,
+        "y": 0,
+        "z": 5.7829165124598845
+      },
+      "gesture": "point",
+      "prop": null,
+      "hand": {
+        "x": -8.350249485681854,
+        "y": 1.3000729505572444,
+        "z": 5.22020775144545
+      },
+      "history": {
+        "uses": 1,
+        "lastAction": "Ring the desk bell",
+        "lastWater": null,
+        "sketched": false
+      }
+    },
+    {
+      "id": "machine",
+      "action": "feed",
+      "phase": "active",
+      "position": {
+        "x": -6.370577136594005,
+        "y": 0,
+        "z": 0.49999999999999994
+      },
+      "gesture": "none",
+      "prop": "ball",
+      "hand": {
+        "x": -6.507165276941791,
+        "y": 1.0550000000000002,
+        "z": 0.5034182177536123
+      },
+      "history": {
+        "uses": 1,
+        "lastAction": "Feed one ball",
+        "lastWater": null,
+        "sketched": false
+      }
+    },
+    {
+      "id": "courtBench",
+      "action": "sit",
+      "phase": "active",
+      "position": {
+        "x": 6.5,
+        "y": 0,
+        "z": 4.1499999999999995
+      },
+      "gesture": "none",
+      "prop": null,
+      "hand": {
+        "x": 6.30098843554686,
+        "y": 0.7462384259259259,
+        "z": 4.297599088791697
+      },
+      "history": {
+        "uses": 1,
+        "lastAction": "Sit",
+        "lastWater": null,
+        "sketched": false
+      }
+    },
+    {
+      "id": "loungeLamp",
+      "action": "light",
+      "phase": "active",
+      "position": {
+        "x": 10.137083487540114,
+        "y": 0,
+        "z": 6.7749999999999995
+      },
+      "gesture": "point",
+      "prop": null,
+      "hand": {
+        "x": 10.700112238162777,
+        "y": 1.3500273564589667,
+        "z": 7.099702014255858
+      },
+      "history": {
+        "uses": 1,
+        "lastAction": "Adjust the glow",
+        "lastWater": null,
+        "sketched": false,
+        "dimmed": true
+      }
+    },
+    {
+      "id": "cafe",
+      "action": "sip",
+      "phase": "active",
+      "position": {
+        "x": -7.63,
+        "y": 0,
+        "z": -4.790577136594005
+      },
+      "gesture": "none",
+      "prop": "cup",
+      "hand": {
+        "x": -7.9873111685645855,
+        "y": 1.1178430905342327,
+        "z": -4.8387272523833
+      },
+      "history": {
+        "uses": 1,
+        "lastAction": "Sip a warm cup",
+        "lastWater": null,
+        "sketched": false
+      }
+    },
+    {
+      "id": "courtBench",
+      "action": "watchSeat",
+      "phase": "active",
+      "position": {
+        "x": 6.5,
+        "y": 0,
+        "z": 4.1499999999999995
+      },
+      "gesture": "none",
+      "prop": null,
+      "hand": {
+        "x": 6.300934887285998,
+        "y": 0.7462384259259259,
+        "z": 4.297526860938566
+      },
+      "history": {
+        "uses": 2,
+        "lastAction": "Watch a rally from here",
+        "lastWater": null,
+        "sketched": false
+      }
+    }
+  ],
+  "viewports": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "box": {
+        "x": 1372.5999755859375,
+        "y": 262.29998779296875,
+        "width": 294,
+        "height": 299.765625
+      }
+    },
+    {
+      "width": 1728,
+      "height": 1117,
+      "box": {
+        "x": 1291.0999755859375,
+        "y": 275.3999938964844,
+        "width": 294,
+        "height": 299.7656555175781
+      }
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "box": {
+        "x": 1071.5,
+        "y": 197.3000030517578,
+        "width": 294,
+        "height": 299.76560974121094
+      }
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "box": {
+        "x": 956.0999755859375,
+        "y": 161.39999389648438,
+        "width": 294,
+        "height": 299.765625
+      }
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "box": {
+        "x": 458.70001220703125,
+        "y": 149.89999389648438,
+        "width": 294,
+        "height": 299.765625
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "box": {
+        "x": 381.70001220703125,
+        "y": 257.6000061035156,
+        "width": 294,
+        "height": 299.7655944824219
+      }
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "box": {
+        "x": 142,
+        "y": 74,
+        "width": 274,
+        "height": 291.78125
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "box": {
+        "x": 102,
+        "y": 74,
+        "width": 274,
+        "height": 291.78125
+      }
+    },
+    {
+      "width": 375,
+      "height": 667,
+      "box": {
+        "x": 87,
+        "y": 74,
+        "width": 274,
+        "height": 291.78125
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "box": {
+        "x": 234.89999389648438,
+        "y": 74,
+        "width": 294.0000305175781,
+        "height": 228
+      }
+    },
+    {
+      "width": 640,
+      "height": 800,
+      "box": {
+        "x": 136.6999969482422,
+        "y": 165.6999969482422,
+        "width": 274.00001525878906,
+        "height": 291.78126525878906
+      }
+    },
+    {
+      "width": 390,
+      "height": 280,
+      "box": {
+        "x": 102,
+        "y": 74,
+        "width": 274,
+        "height": 118
+      }
+    }
+  ],
+  "accessibility": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "violations": []
+    },
+    {
+      "width": 1728,
+      "height": 1117,
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "violations": []
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "violations": []
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "violations": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "violations": []
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "violations": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "violations": []
+    },
+    {
+      "width": 375,
+      "height": 667,
+      "violations": []
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "violations": []
+    },
+    {
+      "width": 640,
+      "height": 800,
+      "violations": []
+    },
+    {
+      "width": 390,
+      "height": 280,
+      "violations": []
+    }
+  ],
+  "touch": [
+    {
+      "viewport": "390x844",
+      "id": "clubClock",
+      "nativeTap": true,
+      "activityCount": 1
+    }
+  ],
+  "seatedWatch": {
+    "samples": 120,
+    "seated": true,
+    "height": 0.55,
+    "gap": 0
+  },
+  "restored": {
+    "bonsai": {
+      "uses": 2,
+      "lastAction": "Water",
+      "lastWater": 2509.75,
+      "sketched": false
+    },
+    "board": {
+      "uses": 3,
+      "lastAction": "Sketch a crosscourt arrow",
+      "lastWater": null,
+      "sketched": true
+    },
+    "lamp": {
+      "uses": 1,
+      "lastAction": "Adjust the glow",
+      "lastWater": null,
+      "sketched": false,
+      "dimmed": true
+    }
+  }
+}

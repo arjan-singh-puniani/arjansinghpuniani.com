@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';import fs from 'node:fs';import {simulation,advance} from '../qa/sim-harness.mjs';
 const g=simulation();g.clock.minutes=700;g.observationStarted=true;g.schedule.update=()=>{};g.history.nextSocial=g.history.nextObject=g.everyday.next=1e12;
-g.actor('coach').position.set(6.3,0,2.7);g.actor('nia').position.set(-9,0,-4.5);g.relations.getBetween('mika','leo').familiarity=25;
+g.actor('coach').position.set(6.9,0,3.7);g.actor('nia').position.set(-9,0,-4.5);g.relations.getBetween('mika','leo').familiarity=25;
 assert(!g.grammar.compose(g.mind,g.sceneContext()).some(s=>s.people.length===3));const match=g.startMatch();assert(match);g.history.nextSocial=1e12;
 for(let i=0;i<120*60&&!g.activities.history.some(a=>a.id===match.id);i++)g.updateFixed(1/60);
 assert(g.activities.history.some(a=>a.id===match.id&&a.phase==='completed'));const event=g.mind.events.find(e=>e.id===match.id);assert(event);assert(event.witnesses.includes('coach'));

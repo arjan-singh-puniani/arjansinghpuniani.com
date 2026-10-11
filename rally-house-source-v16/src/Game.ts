@@ -13,7 +13,7 @@ import {GameClock} from './core/GameClock.js';
 import {AudioManager} from './core/AudioManager.js';
 import {PerformanceMonitor} from './core/PerformanceMonitor.js';
 import {Character,type AnimState} from './entities/Character.js';
-import {memberData,destinations,schedules,drills,conversationLines} from './content/content.js';
+import {memberData,destinations,courtSpectatorSpots,schedules,drills,conversationLines} from './content/content.js';
 import {ScheduleSystem} from './simulation/ScheduleSystem.js';
 import {RelationshipSystem,type InteractionType} from './simulation/RelationshipSystem.js';
 import {DailyGoalsSystem,type GoalKind} from './simulation/DailyGoalsSystem.js';
@@ -39,6 +39,7 @@ import {migrateGameSave} from './persistence/migrations.js';
 import type {GameSave} from './core/types.js';
 import {SpatialInteractionSystem,type WorldNotice} from './ui/SpatialInteractionSystem.js';
 import {characterContext,objectContext,furnitureContext} from './ui/ClubContextPresenter.js';
+import {rayBox,type ObjectAction} from './world/ObjectIdentity.js';
 import {HUD,type MemberBook} from './ui/HUD.js';
 import {DECOR_BY_ID,rotatedFootprint} from './content/DecorCatalog.js';
 
@@ -74,7 +75,7 @@ export class Game {
   private renderDt=1/60;
   private sportFocus=0;
   private atmosphere=new ClubAtmosphere();
-  private touchRuns=new Map<string,{touch:ClubTouch;origin:Vec3;contact:Vec3;objectId:string;label:string}>();
+  private touchRuns=new Map<string,{touch:ClubTouch & Partial<ObjectAction>;origin:Vec3;contact:Vec3;objectId:string;label:string;watchTime?:number}>();
   private witnessTimes=new Map<string,number>();
   coins=100;stars=3;mikaProgress=28;coachXP=14;equipment={frame:'Cedar 98',tension:52,string:'Soft poly'};
 
@@ -237,7 +238,7 @@ export class Game {
     this.canvas.addEventListener('wheel',e=>{e.preventDefault();if(this.championship.active)return;this.camera.zoom(e.deltaY*.012)},{passive:false});
     this.canvas.addEventListener('contextmenu',e=>e.preventDefault());
     this.canvas.addEventListener('pointerdown',e=>{if(this.championship.active)return;this.canvas.setPointerCapture(e.pointerId);this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(this.pointers.size===1){this.pointerStart={x:e.clientX,y:e.clientY};this.lastPointer={x:e.clientX,y:e.clientY};this.dragged=false}else if(this.pointers.size===2)this.pinchDistance=this.currentPinch()});
-    this.canvas.addEventListener('pointermove',e=>{const prev=this.pointers.get(e.pointerId);if(prev)this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(this.championship.active)return;this.hoverGround=this.camera.groundPoint(e.clientX,e.clientY);if(!prev&&!this.buildType){const c=this.pickCharacter(e.clientX,e.clientY),o=c?null:this.pickObject(e.clientX,e.clientY);this.spatial.setHover(c?.position??o?.position??null);this.canvas.style.cursor=c||o?'pointer':'';}if(this.pointers.size===2){const d=this.currentPinch();if(this.pinchDistance>0)this.camera.zoom((this.pinchDistance-d)*.035);this.pinchDistance=d;this.dragged=true;return}if(prev&&this.lastPointer&&this.pointers.size===1){const dx=e.clientX-this.lastPointer.x,dy=e.clientY-this.lastPointer.y;if(this.pointerStart&&Math.hypot(e.clientX-this.pointerStart.x,e.clientY-this.pointerStart.y)>7)this.dragged=true;if(this.dragged){if(e.shiftKey||e.buttons===2)this.camera.rotate(dx);else this.camera.pan(dx,dy);}this.lastPointer={x:e.clientX,y:e.clientY}}});
+    this.canvas.addEventListener('pointermove',e=>{const prev=this.pointers.get(e.pointerId);if(prev)this.pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(this.championship.active)return;this.hoverGround=this.camera.groundPoint(e.clientX,e.clientY);if(!prev&&!this.buildType){const selected=this.pickWorld(e.clientX,e.clientY);const anchor=selected?.object?.selection?.centre??selected?.character?.position??(selected?.placement?new Vec3(selected.placement.x,.65,selected.placement.z):null);this.spatial.setHover(anchor,selected?.object?.label??selected?.character?.spec.name??(selected?.placement?DECOR_BY_ID[selected.placement.type].label:''));this.canvas.style.cursor=selected?'pointer':'';}if(this.pointers.size===2){const d=this.currentPinch();if(this.pinchDistance>0)this.camera.zoom((this.pinchDistance-d)*.035);this.pinchDistance=d;this.dragged=true;return}if(prev&&this.lastPointer&&this.pointers.size===1){const dx=e.clientX-this.lastPointer.x,dy=e.clientY-this.lastPointer.y;if(this.pointerStart&&Math.hypot(e.clientX-this.pointerStart.x,e.clientY-this.pointerStart.y)>7)this.dragged=true;if(this.dragged){if(e.shiftKey||e.buttons===2)this.camera.rotate(dx);else this.camera.pan(dx,dy);}this.lastPointer={x:e.clientX,y:e.clientY}}});
     this.canvas.addEventListener('pointerleave',()=>{this.spatial.setHover(null);this.canvas.style.cursor='';});
     this.canvas.addEventListener('pointerup',e=>{if(!this.dragged&&this.pointers.size===1)this.handleTap(e.clientX,e.clientY);this.pointers.delete(e.pointerId);this.pointerStart=null;this.lastPointer=null;this.pinchDistance=0;this.ui.hideHint()});
     this.canvas.addEventListener('pointercancel',e=>{this.pointers.delete(e.pointerId);this.pointerStart=null;this.lastPointer=null;this.pinchDistance=0});
@@ -270,14 +271,29 @@ export class Game {
     this.audio.click();
     if(this.movingPlacement){const g=this.camera.groundPoint(x,y);if(g)this.moveFurniture(this.movingPlacement,g.x,g.z);return;}
     if(this.buildType){const g=this.camera.groundPoint(x,y);if(g)this.place(this.buildType,g.x,g.z);return}
-    const c=this.pickCharacter(x,y);if(c){this.openCharacter(c);return}
-    const placed=this.world.placements.find(p=>{const q=this.camera.project(new Vec3(p.x,.6,p.z)),d=DECOR_BY_ID[p.type],threshold=Math.min(62,24+Math.max(d.footprintX,d.footprintZ)*12);return Math.hypot(q.x-x,q.y-y)<threshold;});if(placed){this.openFurniture(placed);return;}
-    const o=this.pickObject(x,y);if(o){this.openObject(o);return}
+    const picked=this.pickWorld(x,y);
+    if(picked?.character){this.openCharacter(picked.character);return;}
+    if(picked?.placement){this.openFurniture(picked.placement);return;}
+    if(picked?.object){this.openObject(picked.object);return;}
     this.spatial.dismiss();
     const g=this.camera.groundPoint(x,y);if(g&&!this.activities.busy('player')&&g.x>-12.2&&g.x<12.2&&g.z>-9.2&&g.z<9.2){this.stopPlayerWatching(false);this.ui.closeContext();this.player.goTo(new Vec3(clamp(g.x,-12,12),0,clamp(g.z,-9,9)),'idle')}
   }
-  private pickCharacter(x:number,y:number){let best:Character|null=null,bd=48;for(const c of this.characters){const p=this.camera.project(new Vec3(c.position.x,1.25,c.position.z)),d=Math.hypot(x-p.x,y-p.y);if(p.visible&&d<bd){bd=d;best=c}}return best}
-  private pickObject(x:number,y:number){let best:InteractiveObject|null=null,bd=Infinity;for(const o of this.world.objects){const p=this.camera.project(new Vec3(o.position.x,.75,o.position.z)),d=Math.hypot(x-p.x,y-p.y),threshold=Math.min(78,28+o.radius*7);if(p.visible&&d<threshold&&d<bd){bd=d;best=o}}return best}
+  private pickWorld(x:number,y:number){
+    const ray=this.camera.rayFromScreen(x,y);
+    let closest=Infinity,result:{object?:InteractiveObject;placement?:Placement;character?:Character}|null=null;
+    const accept=(distance:number|null,value:NonNullable<typeof result>)=>{if(distance!==null&&distance<closest){closest=distance;result=value;}};
+    for(const o of this.world.objects)if(o.selection)accept(rayBox(ray.origin,ray.dir,o.selection),{object:o});
+    for(const p of this.world.placements){const size=rotatedFootprint(p.type,p.rotation);accept(rayBox(ray.origin,ray.dir,{centre:new Vec3(p.x,.65,p.z),size:new Vec3(size.w,1.3,size.d)}),{placement:p});}
+    for(const c of this.characters)accept(rayBox(ray.origin,ray.dir,{centre:new Vec3(c.position.x,.95,c.position.z),size:new Vec3(.72,1.85,.72)}),{character:c});
+    // Tiny tabletop props get a restrained, depth-checked screen tolerance, useful for touch.
+    for(const o of this.world.objects.filter(o=>o.selection&&Math.max(o.selection.size.x,o.selection.size.y)<.7)){
+      const p=this.camera.project(o.selection!.centre),depth=Vec3.sub(o.selection!.centre,ray.origin).len();
+      if(p.visible&&Math.hypot(p.x-x,p.y-y)<12&&depth<closest+.15){closest=depth;result={object:o};}
+    }
+    return result;
+  }
+  private pickObject(x:number,y:number){return this.pickWorld(x,y)?.object??null;}
+  private pickCharacter(x:number,y:number){return this.pickWorld(x,y)?.character??null;}
 
   private openCharacter(c:Character){
     this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);
@@ -549,12 +565,12 @@ export class Game {
   }
   private openObject(o:InteractiveObject){
     this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);
-    this.camera.nudgeFocus(o.position.x,o.position.z,this.canvas.clientWidth<720?1:.18);this.audio.paper();
-    this.spatial.select({id:o.id,position:()=>this.world.objects.find(v=>v.id===o.id)?.position??null,
-      present:()=>objectContext(o,this.activities,this.equipment,this.life.memories),
+    if(this.camera.autoFrame)this.camera.nudgeFocus(o.position.x,o.position.z,this.canvas.clientWidth<720?1:.18);this.audio.paper();
+    this.spatial.select({id:o.id,anchorLift:.15,position:()=>this.world.objects.find(v=>v.id===o.id)?.selection?.centre??null,
+      present:()=>objectContext(o,this.activities,this.equipment,this.life.memories,this.world.identity,this.absoluteMinute),
       act:id=>{
-        const touch=o.id==='warmup'?touchForDecor('towelRack'):o.id==='spectatorRow'?CLUB_TOUCHES.lounge:CLUB_TOUCHES[o.kind];
-        if(id==='touch'&&touch)this.startClubTouch(o.id,o.label,o.position,touch);
+        const touch=this.world.identity.actions(o,this.absoluteMinute).find(a=>a.id===id);
+        if(touch)this.startClubTouch(o.id,o.label,o.position,touch);
         else if(id==='tea')this.visitMember(this.actor('nia'),true);
         else if(id==='equipment')this.openEquipment();
         else if(id==='drill')this.beginLesson('dropFeed');
@@ -562,11 +578,14 @@ export class Game {
       }});
   }
 
-  private startClubTouch(objectId:string,label:string,origin:Vec3,touch:ClubTouch){
+  private startClubTouch(objectId:string,label:string,origin:Vec3,touch:ClubTouch & Partial<ObjectAction>){
     if(this.activities.busy('player')||this.activities.reserved(objectId)){
       this.ui.toast('Let the current moment finish first.');return;
     }
-    const contact=this.world.interactionPoint(objectId,origin,touch.effect);
+    const object=this.world.objects.find(o=>o.id===objectId);
+    if(object&&touch.id&&!this.world.identity.actions(object,this.absoluteMinute).some(a=>a.id===touch.id))return;
+    const contact=touch.effect==='leaves'&&object?.selection?object.selection.centre.clone():this.world.interactionPoint(objectId,origin,touch.effect);
+    if(touch.animation==='sit'&&object?.selection)origin=object.seatCentre?.clone()??new Vec3(object.selection.centre.x,0,object.selection.centre.z);
     const centre=touch.animation==='sit'?origin:contact;
     const options:Vec3[]=[];
     // Approach a free side of the real object. Never put the actor in furniture.
@@ -577,8 +596,10 @@ export class Game {
     // Prefer a reachable contact before minimizing travel; a far-side shortcut cannot touch a bell.
     const cost=(p:Vec3)=>Math.hypot(p.x-centre.x,p.z-centre.z)*8+Vec3.sub(p,this.player.position).len();
     options.sort((a,b)=>cost(a)-cost(b));
+    const authoredSpot=touch.effect==='leaves'?object?.viewSpot:object?.careSpot;
+    if(authoredSpot&&!this.world.nav.isBlocked(authoredSpot.x,authoredSpot.z)&&this.characters.every(c=>Vec3.sub(c.position,authoredSpot).len()>.75))options.unshift(authoredSpot.clone());
     if(touch.animation==='sit'){
-      const placement=this.world.placements.find(p=>p.id===objectId),angle=placement?.rotation??0;
+      const placement=this.world.placements.find(p=>p.id===objectId),angle=placement?.rotation??object?.seatYaw??0;
       const distance=placement?1.05:1.6;
       const front=new Vec3(origin.x-Math.sin(angle)*distance,0,origin.z-Math.cos(angle)*distance);
       if(!this.world.nav.isBlocked(front.x,front.z))options.unshift(front);
@@ -599,11 +620,12 @@ export class Game {
       if(this.player.pathIndex<this.player.path.length)return;
       this.activities.transition(a,'starting');
       this.player.face(run.contact);this.player.setLook(run.contact);
-      if(['bell','paper','stringing'].includes(run.touch.effect))this.player.setInteractionTarget(run.contact);
+      if(['bell','paper','stringing','sketch','lamp','bonsai'].includes(run.touch.effect))this.player.setInteractionTarget(run.contact);
       this.player.racketStowed=true;
-      this.player.socialGesture=run.touch.effect==='stringing'?'inspect':run.touch.effect==='bell'?'point':run.touch.effect==='lamp'?'offer':'none';
+      this.player.socialGesture=run.touch.gesture??(run.touch.effect==='stringing'?'inspect':run.touch.effect==='bell'?'point':run.touch.effect==='lamp'?'point':'none');
       this.player.socialProp=run.touch.prop;
       if(run.touch.animation==='sit'){
+        this.player.seatHeight=this.world.objects.find(o=>o.id===run.objectId)?.seatHeight??.54;
         const away=Vec3.sub(this.player.position,run.origin).normalize();
         this.player.face(this.player.position.clone().add(away));
         this.player.seatDepth=Math.max(0,Math.min(1.35,Vec3.sub(this.player.position,run.origin).len()-.22));
@@ -611,34 +633,47 @@ export class Game {
       this.player.setAnimation(run.touch.animation);this.player.setEmotion('pleased',run.touch.seconds);
     }
     if(a.phase==='starting'&&a.phaseTime>.7){
+      // Start a requested exhibition once the spectator is seated, so walking there cannot consume it.
+      if(run.touch.watchCourt&&!this.beginExhibition()){this.cancelActivity(a);this.ui.toast('The court is not ready just yet.');return;}
       this.activities.transition(a,'active');
       this.world.triggerInteraction(run.touch.effect,run.touch.seconds,run.contact);
-      this.playObjectSound(run.touch.effect);
+      if(run.touch.id)this.world.authored.start(run.objectId,run.touch as ObjectAction,this.absoluteMinute);
+      this.playObjectSound(run.touch.effect,run.contact);
       const now=this.everyday.time;
-      for(const c of interactionWitnesses(this.characters,run.origin,id=>this.activities.busy(id),this.witnessTimes,now)){
+      for(const c of interactionWitnesses(this.characters,run.origin,id=>this.activities.busy(id),this.witnessTimes,now).filter(c=>this.world.canSee(c.position,run.origin))){
         c.glanceAt(run.contact,1.4);
         c.setEmotion(run.touch.effect==='bell'?'surprised':'pleased',.8);this.witnessTimes.set(c.id,now);
       }
     }
-    if(a.phase==='active'&&a.phaseTime>run.touch.seconds){
+    let watchFinished=false;
+    if(a.phase==='active'&&run.touch.watchCourt){
+      const ball=this.interactiveMatch?.ball.active?this.interactiveMatch.ball:this.socialRally.enabled?this.socialRally.ball:this.rally.ball;
+      if(ball.active){run.watchTime=(run.watchTime??0)+dt;this.player.setLook(ball.position);}
+      else this.player.setLook(new Vec3(1,1,0));
+      watchFinished=(run.watchTime??0)>=run.touch.seconds||!this.activities.reserved('court')||a.phaseTime>75;
+    }
+    if(a.phase==='active'&&(run.touch.watchCourt?watchFinished:a.phaseTime>run.touch.seconds)){
       this.player.socialProp=null;this.activities.transition(a,'resolving');
     }
     if(a.phase==='resolving'&&a.phaseTime>.7){
       this.activities.finish(a,run.touch.title,()=>{
         if(this.affordances.objects[run.objectId])this.affordances.visit(run.objectId,['player'],this.clock.day);
+        if(run.touch.id)this.world.identity.complete(run.objectId,run.touch.title);
         this.life.addMemory(this.clock.day,`${run.touch.title} · ${run.label}.`);
       });
       this.releaseActivity(a);void this.save();
     }
   }
 
-  private playObjectSound(effect:string){
+  private playObjectSound(effect:string,contact?:Vec3){
+    if(['clock','stringing','bell'].includes(effect)&&contact&&this.canvas){const p=this.camera.project(contact),bounds=this.canvas.getBoundingClientRect();this.audio.objectNote(effect,Math.max(-.8,Math.min(.8,((p.x-bounds.left)/bounds.width-.5)*1.6)),contact.x);return;}
+    if(effect==='leaves'||effect==='read')return;
     if(effect==='cafe'||effect==='water')this.audio.cup();
     else if(effect==='bell')this.audio.deskBell();
     else if(effect==='stringing')this.audio.stringing();
-    else if(effect==='paper')this.audio.paper();
+    else if(effect==='paper'||effect==='sketch')this.audio.paper();
     else if(effect==='bonsai')this.audio.watering();
-    else if(effect==='training'){this.audio.machine();this.audio.bounce();}
+    else if(effect==='training')this.audio.machine();
     else if(effect==='comfort'){this.audio.fabric();this.audio.woodTap();}
     else this.audio.woodTap();
   }
@@ -720,7 +755,7 @@ export class Game {
 
   private openBook(){
     const members:MemberBook[]=this.characters.map(c=>{const r=this.relations.get(c.spec.id);const favorite=Object.entries(this.affordances.objects).find(([,h])=>h.favoriteOf.includes(c.id)),memory=this.mind.recall(c.id as MemberId)[0];return {mood:this.mind.mood(c.id as MemberId),intention:c.activity||this.history.intentions.find(i=>i.person===c.id)?.text||c.spec.goal,favorite:favorite?`Your ${this.world.placements.find(p=>p.id===favorite[0])?.type??'quiet corner'}`:undefined,personalMemory:memory?.detail,possessions:this.mind.possessions.filter(p=>p.owner===c.id).map(p=>`${p.kind==='wateringCan'?'Watering can':p.kind} · ${p.uses?'part of a familiar ritual':'a familiar belonging'}`),name:c.spec.name,role:c.spec.role,tier:this.relations.label(c.spec.id),familiarity:r.familiarity,warmth:r.warmth,trust:r.trust,goal:c.spec.goal,quirk:c.spec.quirk??'',memories:[...r.memories,...this.characters.filter(o=>o.id!==c.id).flatMap(o=>this.relations.getBetween(c.id,o.id).memories)].slice(0,8)}});
-    this.audio.paper();this.ui.showBook({culture:this.mind.cultureDescription(),philosophy:this.coachingIdentity(),mikaProgress:this.mikaProgress,equipment:this.equipment,coins:Math.floor(this.coins),day:this.clock.day,time:this.clock.formatted(),weather:this.world.weather,heart:this.clubHeart,coachLevel:this.coachLevel,coachXP:this.coachXP,bestRally:this.rally.bestRally,placements:this.world.placements.length,goals:this.daily.goals,moments:[...Array.from(this.lifeRuns.values()).map(r=>'Happening now · '+r.scene.title),...this.history.intentions.map(i=>i.text),...this.life.memories],members});this.audio.click();
+    this.audio.paper();this.ui.showBook({details:this.world.objects.filter(o=>o.kind!=="court").map(o=>({title:o.label,subtitle:o.description,run:()=>this.openObject(o)})),culture:this.mind.cultureDescription(),philosophy:this.coachingIdentity(),mikaProgress:this.mikaProgress,equipment:this.equipment,coins:Math.floor(this.coins),day:this.clock.day,time:this.clock.formatted(),weather:this.world.weather,heart:this.clubHeart,coachLevel:this.coachLevel,coachXP:this.coachXP,bestRally:this.rally.bestRally,placements:this.world.placements.length,goals:this.daily.goals,moments:[...Array.from(this.lifeRuns.values()).map(r=>'Happening now · '+r.scene.title),...this.history.intentions.map(i=>i.text),...this.life.memories],members});this.audio.click();
   }
 
   private openFurniture(p:Placement){
@@ -829,10 +864,10 @@ export class Game {
   }
   private releaseActivity(a:Activity){
     if(a.kind==='championship')this.cleanupChampionship();
-    this.touchRuns?.delete(a.id);
+    const touchRun=this.touchRuns?.get(a.id);if(touchRun)this.world.authored.cancel(touchRun.objectId);this.touchRuns?.delete(a.id);
     this.lifeRuns.delete(a.id);if(this.speechOwner===a.id){this.speechOwner=null;this.ui.hideSpeech();this.activeSpeechId=null;}
     if(a.resource==='court'){this.rally.stop();this.socialRally.stop();this.byId('mika')!.practiceCue='';this.evidence.practicing=false;}
-    for(const id of a.participants){const c=this.actor(id);c.currentScheduleIndex=-1;c.clearCourtMove();c.clearShotIntent();c.path=[];c.setLook(undefined);c.setConversationPartner(undefined);c.setAnimation('idle');c.seatDepth=0;c.socialGesture='none';c.socialProp=null;c.setInteractionTarget(undefined);c.racketStowed=false;c.acting.setRole('exit');}
+    for(const id of a.participants){const c=this.actor(id);c.currentScheduleIndex=-1;c.clearCourtMove();c.clearShotIntent();c.path=[];c.setLook(undefined);c.setConversationPartner(undefined);c.setAnimation('idle');c.seatDepth=0;c.seatHeight=.54;c.socialGesture='none';c.socialProp=null;c.setInteractionTarget(undefined);c.racketStowed=false;c.acting.setRole('exit');}
     this.routes.delete(a.id);this.lessonActive=false;
   }
   private cancelActivity(a:Activity,retry=false){if(a.kind==='lesson'){this.traceCoaching('cancelled',{id:a.id,retry,phase:a.phase,seconds:a.phaseTime,positions:a.participants.map(id=>({id,position:this.actor(id).position,path:this.actor(id).path, index:this.actor(id).pathIndex}))});if(retry)this.queuedLesson=this.lessonKeys?.get(a.id)??this.queuedLesson;this.lessonKeys?.delete(a.id);}this.telemetry.cancellations++;const run=this.lifeRuns.get(a.id);if(run)this.everyday.failed(run.scene);this.activities.cancel(a,'Interrupted safely; no completion rewards.');this.releaseActivity(a);}
@@ -916,7 +951,7 @@ export class Game {
     return `Your completed lessons have emphasized ${names[entries[0][0]]??'patient practice'}.`;
   }
   private recordLifeEvent(a:Activity,kind:'match'|'lesson',subject:MemberId,detail:string,winner?:string,importance=.8){
-    const witnesses=this.mind.recordEvent({id:a.id,kind,subject,detail,winner,importance,day:this.clock.day,place:'court'},Object.fromEntries(this.characters.map(c=>[c.id,c.position])),new Set(this.characters.filter(c=>!this.activities.busy(c.id)||this.activities.active.some(a=>a.participants.includes(c.id)&&a.phase!=='traveling'&&this.lifeRuns.get(a.id)?.scene.family==='watch-court')).map(c=>c.id)),(a,b)=>this.world.nav.clearSegment(a,b));
+    const witnesses=this.mind.recordEvent({id:a.id,kind,subject,detail,winner,importance,day:this.clock.day,place:'court'},Object.fromEntries(this.characters.map(c=>[c.id,c.position])),new Set(this.characters.filter(c=>!this.activities.busy(c.id)||this.activities.active.some(a=>a.participants.includes(c.id)&&a.phase!=='traveling'&&this.lifeRuns.get(a.id)?.scene.family==='watch-court')).map(c=>c.id)),(a,b)=>this.world.canSee(a,b));
     for(const id of witnesses){const c=this.actor(id);if(!this.activities.busy(id)&&c.pathIndex<c.path.length){this.routineNotices.set(id,{target:c.path[c.path.length-1].clone(),after:'watch',activity:c.activity,remaining:.6});c.path=[];c.setAnimation('watch');}c.react(kind==='match'?'acknowledge':'thoughtful',this.actor(subject).position,10);}
   }
   private sceneContext():SceneContext {
@@ -957,7 +992,15 @@ export class Game {
     if(!base){this.everyday.failed(scene);return null;}
     const bond=scene.people.length===2?this.relations.getBetween(...scene.people as [string,string]):null;const gap=deriveActing(this.mind.states[scene.people[0]],bond??undefined,scene.people[0]).personalDistance/2;
     const offsets=scene.people.length===1?[0]:scene.people.length===3?[-.8,.8,0]:object?.type==='bench'?(bond&&bond.warmth>=40?[-.56,.56]:[-.62,.62]):[-gap,gap];
-    const targets=offsets.map((x,i)=>scene.people.length===3?new Vec3(base.x+x,0,base.z+(i===2?1.45:.2)):scene.place==='courtBench'?new Vec3(base.x,0,base.z+x):new Vec3(base.x+x,0,base.z));
+    const targets=scene.place==='courtBench'
+      ?scene.people.length===3?[new Vec3(6.5,0,3.7),new Vec3(8.1,0,3.7),new Vec3(7.3,0,2.25)]
+        :scene.people.length===2?[new Vec3(6.0,0,4.15),new Vec3(7.0,0,4.15)]:[new Vec3(6.5,0,4.15)]
+      :offsets.map((x,i)=>scene.people.length===3?new Vec3(base.x+x,0,base.z+(i===2?1.45:.2)):new Vec3(base.x+x,0,base.z));
+    if(scene.place==='courtBench'&&scene.people.length===2){
+      // Both enter this narrow aisle from the east. The nearer arrival takes the far seat first.
+      const distance=(id:string)=>{const start=this.actor(id).position,path=this.world.nav.clubPath(start,targets[0]);return path.length?path.reduce((n,p,i)=>n+Vec3.sub(p,i?path[i-1]:start).len(),0):Infinity;};
+      if(distance(scene.people[1])<distance(scene.people[0]))[targets[0],targets[1]]=[targets[1],targets[0]];
+    }
     const resource=object?.id??(scene.place==='cafe'||scene.place==='cafeTable'?'cafe-table':`place-${scene.place}`);
     const a=this.startActivity('everyday',scene.people,resource,targets,scene.title);
     if(!a){this.everyday.failed(scene);return null;}
@@ -967,7 +1010,9 @@ export class Game {
   private playLifeBeat(a:Activity,beat:LifeBeat){
     const run=this.lifeRuns.get(a.id)!;
     const seat=run.objectId?this.world.placements.find(p=>p.id===run.objectId):undefined;
-    const seated=seat?.type==='bench'&&['rest','company','witness','celebrate'].includes(motiveFor(run.scene));
+    const builtInSeat=run.scene.place==='courtBench'&&run.scene.people.length<=2&&Object.values(beat.poses??{}).includes('sit');
+    const seated=(seat?.type==='bench'&&['rest','company','witness','celebrate'].includes(motiveFor(run.scene)))||builtInSeat;
+    if(builtInSeat)for(const id of a.participants)this.actor(id).seatHeight=this.world.objects.find(o=>o.id==='courtBench')?.seatHeight??.54;
     for(const id of a.participants){const c=this.actor(id),other=beat.speaker&&beat.speaker!==id?beat.speaker:a.participants.find(p=>p!==id);c.acting.setRole(beat.speaker===id?'speak':beat.speaker?'listen':'pause');c.socialGesture=beat.gestures?.[id as MemberId]??'none';c.socialProp=null;if(seated)c.seatDepth=.8;c.setAnimation(seated?'sit':beat.poses?.[id as MemberId]??'watch');c.setEmotion(beat.emotions?.[id as MemberId]??(beat.gestures?.[id as MemberId]==='laugh'?'amused':this.mind.states[id as MemberId].energy<.35?'tired':this.mind.states[id as MemberId].tone<.4?'disappointed':'attentive'),beat.seconds);if(seated)c.face(new Vec3(c.position.x,0,c.position.z-2));if(other){if(!seated)c.face(this.actor(other).position);c.setLook(this.actor(other).position);}else{const object=run.objectId?this.world.placements.find(p=>p.id===run.objectId):undefined;const target=run.scene.family==='watch-court'?new Vec3(1,0,0):object&&object.type!=='bench'?new Vec3(object.x,0,object.z):run.scene.place==='bonsai'?new Vec3(10.2,0,3.9):new Vec3(c.position.x,0,c.position.z-1);if(!seated)c.face(target);}}
     if(beat.prop){const id=beat.speaker??a.participants[0];this.actor(id).socialProp=beat.prop;}
     if(beat.line&&beat.speaker){const c=this.actor(beat.speaker);this.activeSpeechId=c.id;this.speechOwner=a.id;const duration=0;this.speechUntil=Infinity;let text=beat.line;if(run.beat===0&&run.scene.family==='shared-break'){const partner=run.scene.people.find(id=>id!==c.id)!;const composed=this.dialogue.compose({core:text,speaker:c.id,partner,topic:'company',now:this.everyday.time,relationship:this.relations.getBetween(c.id,partner),memory:this.mind.recall(c.id as MemberId,{topic:'company',partner})[0],favoriteId:run.objectId&&this.affordances.objects[run.objectId]?.favoriteOf.includes(c.id)?run.objectId:undefined});text=composed.text;this.dialogue.commit(composed,this.everyday.time);}this.ui.showSpeech(c.spec.name,text,duration);}
@@ -1006,6 +1051,7 @@ export class Game {
   private updateFixed(dt:number){
     this.clock.update(dt);const step=this.clock.paused?0:dt*this.clock.speed;if(!step)return;
     if(this.clock.day!==this.lastDay){this.lastDay=this.clock.day;this.daily.ensureDay(this.clock.day);for(const c of this.characters)c.currentScheduleIndex=-1;}
+    if(this.world.updateObjects(step,this.absoluteMinute,this.settings.reducedMotion))this.audio.bounce();
     this.activities.tick(step);this.everyday.tick(step);
     this.mindTimer+=step;if(this.mindTimer>=1){
       const aiStart=performance.now(),elapsed=this.mindTimer;this.mindTimer=0;
@@ -1036,14 +1082,14 @@ export class Game {
           }
         }
         // Nonparticipants watch from the side instead of occupying a reserved court.
-        if(this.activities.reserved('court')&&Math.abs(c.position.x-1)<4.5&&Math.abs(c.position.z)<6.3){const exit=new Vec3(6.3,0,c.id==='coach'?1.3:2.7),target=c.path[c.path.length-1];if(!target||Vec3.sub(exit,target).len()>.1)c.goTo(exit,'watch');c.activity='Watching from the side';const court=this.activities.active.find(a=>a.resource==='court');if(court)this.waitingForPlace.set(c.id,court.id);}
+        if(this.activities.reserved('court')&&Math.abs(c.position.x-1)<4.5&&Math.abs(c.position.z)<6.3){const exit=courtSpectatorSpots[c.id],target=c.path[c.path.length-1];if(!target||Vec3.sub(exit,target).len()>.1)c.goTo(exit,'watch');c.activity='Watching from the side';const court=this.activities.active.find(a=>a.resource==='court');if(court)this.waitingForPlace.set(c.id,court.id);}
       }
       c.update(step);if(c.consumeStepEvent())this.audio.shoe(c.state==='shuffle');
     }
     this.player.update(step);this.updatePlayerWatching();this.updateSpectatorAttention();
     for(const a of [...this.activities.active]){
       const people=a.participants.map(id=>this.actor(id)),targets=this.routes.get(a.id)!;
-      if(a.kind==='touch'){this.updateClubTouch(a,dt);continue;}
+      if(a.kind==='touch'){this.updateClubTouch(a,step);continue;}
       if(a.kind==='championship'){this.updateChampionshipActivity(a,dt);continue;}
       if(a.kind==='everyday'){this.updateEveryday(a,step);continue;}
       if(a.elapsed>180){this.cancelActivity(a,true);continue;}
@@ -1068,6 +1114,11 @@ export class Game {
         }else if(Vec3.sub(people[0].position,people[1].position).len()>1.8){this.cancelActivity(a);continue;}else if(a.phaseTime>=10)this.activities.transition(a,'resolving');
       }
       if(a.phase==='resolving'&&a.phaseTime>=2)this.completeActivity(a);
+    }
+    // The court may launch or reset a ball during its update; gaze samples that final authoritative pose.
+    if(this.activities.active.some(a=>a.kind==='touch'&&a.phase==='active'&&this.touchRuns.get(a.id)?.touch.watchCourt)){
+      const ball=this.interactiveMatch?.ball.active?this.interactiveMatch.ball:this.socialRally.enabled?this.socialRally.ball:this.rally.ball;
+      this.player.setLook(ball.active?ball.position:new Vec3(1,1,0));
     }
     if(this.queuedLesson&&Math.floor(this.everyday.time)%5===0&&Math.floor(this.everyday.time-step)%5!==0)this.traceCoaching('waiting',{key:this.queuedLesson,active:this.activities.active.map(a=>({kind:a.kind,phase:a.phase,people:a.participants}))});
     // Low frequency, state-derived opportunities. No autonomous camera control.
@@ -1161,7 +1212,7 @@ export class Game {
     const renderStart=performance.now();this.render(now);const renderMs=performance.now()-renderStart;this.perf.sample({simMs,renderMs,drawCalls:this.renderer.drawCalls,triangles:this.renderer.triangles,entities:this.characters.length+1},now);requestAnimationFrame(this.loop)
   };
 
-  private snapshot():GameSave{return {playerAvatar:this.playerAvatar,queuedLesson:this.queuedLesson??(this.activities.active.find(a=>a.kind==='lesson')?this.lessonKeys?.get(this.activities.active.find(a=>a.kind==='lesson')!.id):null)??null,mind:this.mind.serialize(),clock:this.clock.serialize(),coins:this.coins,stars:this.stars,coachXP:this.coachXP,mikaProgress:this.mikaProgress,weather:this.world.weather,placements:this.world.placements,relationships:this.relations.serialize(),dailyGoals:this.daily.serialize(),clubLife:this.life.serialize(),equipment:{...this.equipment},player:{x:this.player.position.x,z:this.player.position.z},bestRally:this.rally.bestRally,emergentSocial:this.socialSimulation.serialize(),activities:this.activities.serialize(),history:this.history.serialize(),affordances:this.affordances.serialize(),development:{...this.development},settings:{...this.settings},everyday:this.everyday.serialize()}}
+  private snapshot():GameSave{return {playerAvatar:this.playerAvatar,queuedLesson:this.queuedLesson??(this.activities.active.find(a=>a.kind==='lesson')?this.lessonKeys?.get(this.activities.active.find(a=>a.kind==='lesson')!.id):null)??null,mind:this.mind.serialize(),clock:this.clock.serialize(),coins:this.coins,stars:this.stars,coachXP:this.coachXP,mikaProgress:this.mikaProgress,weather:this.world.weather,placements:this.world.placements,relationships:this.relations.serialize(),dailyGoals:this.daily.serialize(),clubLife:this.life.serialize(),equipment:{...this.equipment},player:{x:this.player.position.x,z:this.player.position.z},bestRally:this.rally.bestRally,emergentSocial:this.socialSimulation.serialize(),activities:this.activities.serialize(),history:this.history.serialize(),affordances:this.affordances.serialize(),objectIdentity:this.world.identity.serialize(),development:{...this.development},settings:{...this.settings},everyday:this.everyday.serialize()}}
   private async save(showToast=false){if(this.saveBlocked)return;try{await this.saveSystem.save(this.snapshot());if(showToast){this.ui.toast('Club saved.');this.audio.success()}}catch(e){if(e instanceof SaveConflictError){this.saveBlocked=true;this.ui.showContext('SAVE CONFLICT','Another tab saved this club',e.message,[],[{title:'Reload the newer save',subtitle:'Discard unsaved changes in this tab',run:()=>location.reload()},{title:'Export this tab',subtitle:'Keep a separate JSON copy before reloading',run:()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(this.snapshot(),null,2)],{type:'application/json'}));const link=document.createElement('a');link.href=url;link.download='rally-house-unsaved-club.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}}]);}else{this.ui.toast('Could not save. Keep this tab open and check browser storage.');console.error('Save failed',e)}}}
-  private async restore(){const env=await this.saveSystem.load();if(!env)return;const s=migrateGameSave(env.version,env.state);if(s.playerAvatar){this.playerAvatar=s.playerAvatar;this.player.spec=playerSpec(s.playerAvatar);}this.clock.minutes=s.clock.minutes;this.clock.day=s.clock.day;this.clock.paused=false;this.clock.speed=s.clock.speed||1;this.coins=s.coins;this.stars=s.stars;this.coachXP=s.coachXP??14;this.mikaProgress=s.mikaProgress;this.world.weather=s.weather;this.world.placements=s.placements||[];this.relations.load(s.relationships||{});this.daily.load(s.dailyGoals);this.daily.ensureDay(this.clock.day);this.life.load(s.clubLife);this.equipment={...this.equipment,...s.equipment};this.rally.bestRally=s.bestRally??0;this.socialSimulation.load(s.emergentSocial);this.byId('mika')?.setDevelopment(this.mikaProgress);this.player.position.set(s.player.x,0,s.player.z);this.player.goTo(this.player.position,'idle');this.settings={...this.settings,...s.settings};this.audio.volume=this.settings.volume;this.activities.load(s.activities);this.everyday.load(s.everyday);this.mind.load(s.mind);this.queuedLesson=s.queuedLesson&&s.queuedLesson in drills?s.queuedLesson:null;this.history.load(s.history);this.affordances.load(s.affordances);this.affordances.sync(this.world.placements,this.clock.day);this.development=s.development??{preparation:0,recovery:0};this.actor('mika').preparationBonus=this.development.preparation;this.actor('mika').recoveryBonus=this.development.recovery;this.observationStarted=!!s.history;this.rebuildFurnitureObstacles();if(this.world.nav.isBlocked(this.player.position.x,this.player.position.z)){const safe=destinations.entrance;this.player.position.set(safe.x,0,safe.z);this.player.path=[];}}
+  private async restore(){const env=await this.saveSystem.load();if(!env)return;const s=migrateGameSave(env.version,env.state);if(s.playerAvatar){this.playerAvatar=s.playerAvatar;this.player.spec=playerSpec(s.playerAvatar);}this.clock.minutes=s.clock.minutes;this.clock.day=s.clock.day;this.clock.paused=false;this.clock.speed=s.clock.speed||1;this.coins=s.coins;this.stars=s.stars;this.coachXP=s.coachXP??14;this.mikaProgress=s.mikaProgress;this.world.weather=s.weather;this.world.placements=s.placements||[];this.relations.load(s.relationships||{});this.daily.load(s.dailyGoals);this.daily.ensureDay(this.clock.day);this.life.load(s.clubLife);this.equipment={...this.equipment,...s.equipment};this.rally.bestRally=s.bestRally??0;this.socialSimulation.load(s.emergentSocial);this.byId('mika')?.setDevelopment(this.mikaProgress);this.player.position.set(s.player.x,0,s.player.z);this.player.goTo(this.player.position,'idle');this.settings={...this.settings,...s.settings};this.audio.volume=this.settings.volume;this.activities.load(s.activities);this.everyday.load(s.everyday);this.mind.load(s.mind);this.queuedLesson=s.queuedLesson&&s.queuedLesson in drills?s.queuedLesson:null;this.history.load(s.history);this.world.identity.load(s.objectIdentity);this.affordances.load(s.affordances);this.affordances.sync(this.world.placements,this.clock.day);this.development=s.development??{preparation:0,recovery:0};this.actor('mika').preparationBonus=this.development.preparation;this.actor('mika').recoveryBonus=this.development.recovery;this.observationStarted=!!s.history;this.rebuildFurnitureObstacles();if(this.world.nav.isBlocked(this.player.position.x,this.player.position.z)){const safe=destinations.entrance;this.player.position.set(safe.x,0,safe.z);this.player.path=[];}}
 }

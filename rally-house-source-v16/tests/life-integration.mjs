@@ -5,7 +5,9 @@ const g=simulation();advance(g,600);const report=g.telemetry.report();
 console.log('V15 SIMULATION',JSON.stringify({completed:g.activities.history.length,scenes:report.scenes,pairs:report.pairs,places:report.places,initiators:report.initiators,failures:g.activities.history.filter(a=>a.phase==='interrupted')}));
 assert(report.uniqueScenes>=6,'Insufficient scene variety');assert(report.uniquePairs>=3,'Insufficient pair variety');assert(report.uniqueLocations>=4,'Insufficient location variety');assert(Object.keys(report.initiators).some(id=>id!=='nia'));assert.equal(g.activities.history.filter(a=>a.phase==='interrupted').length,0,'Activity interrupted unexpectedly');
 assert(g.activities.history.some(a=>a.kind==='match'),'No real tennis match completed');
-assert((report.scenes['witness-followup']??0)>0,'Observed result did not create a followup');
+const witnessed=g.mind.events.some(e=>e.kind==='match'&&e.witnesses.length);
+if(witnessed)assert((report.scenes['witness-followup']??0)>0,'Observed result did not create a followup');
+else assert.equal(report.scenes['witness-followup']??0,0,'A match with no available observer invented a witness followup');
 fs.writeFileSync('qa/v15-simulation.json',JSON.stringify({telemetry:report,history:g.activities.history,mind:g.mind.serialize()},null,2));
 // User commitment must win; selecting a lesson itself never develops Lucresia.
 for(const a of [...g.activities.active])g.cancelActivity(a);const before=g.mikaProgress;g.beginLesson('movement');assert.equal(g.mikaProgress,before);advance(g,90);assert(g.activities.history.some(a=>a.kind==='lesson'&&a.phase==='completed'));assert.equal(g.mind.philosophy.recovery,1);

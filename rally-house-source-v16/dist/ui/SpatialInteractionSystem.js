@@ -19,6 +19,7 @@ export class SpatialInteractionSystem {
     actionButtons = new Map();
     selection = null;
     hover = null;
+    hoverLabel = document.createElement('span');
     width = 294;
     height = 320;
     refresh = 0;
@@ -55,13 +56,15 @@ export class SpatialInteractionSystem {
         this.returnButton.onclick = () => {
             const p = this.selection?.position();
             if (p)
-                this.camera.nudgeFocus(p.x, p.z, 1);
+                this.camera.focus(p.x, p.z, Math.max(this.camera.minDistance, 20), p.y);
         };
         this.card.append(close, this.eyebrow, this.title, this.subtitle, this.status, this.facts, this.actions);
         this.leader.classList.add('spatial-leader');
         this.leader.setAttribute('aria-hidden', 'true');
         this.leader.append(this.line);
-        this.layer.append(this.leader, this.card, this.returnButton);
+        this.hoverLabel.className = 'spatial-hover';
+        this.hoverLabel.hidden = true;
+        this.layer.append(this.leader, this.card, this.returnButton, this.hoverLabel);
         document.getElementById('app').append(this.layer);
         // Keep pointer and keyboard traffic out of global gameplay listeners, without
         // preventing native button activation or tab navigation.
@@ -124,7 +127,7 @@ export class SpatialInteractionSystem {
         if (restoreFocus && focused)
             this.canvas.focus({ preventScroll: true });
     }
-    setHover(position) { this.hover = position; }
+    setHover(position, label = '') { this.hover = position; this.hoverLabel.textContent = label; }
     measureBounds() {
         const r = this.canvas.getBoundingClientRect();
         this.viewport = { left: r.left, top: r.top, width: r.width, height: r.height };
@@ -171,6 +174,12 @@ export class SpatialInteractionSystem {
     update(dt, suppressed, reducedMotion, notices) {
         this.layer.classList.toggle('reduced-motion', reducedMotion);
         this.layer.hidden = suppressed;
+        this.hoverLabel.hidden = suppressed || !!this.selection || !this.hover || !this.hoverLabel.textContent;
+        if (!this.hoverLabel.hidden && this.hover) {
+            const p = this.project(this.hover);
+            this.hoverLabel.hidden = !p.visible;
+            this.hoverLabel.style.transform = `translate(${Math.max(80, Math.min(this.viewport.width - 80, p.x))}px,${Math.max(90, p.y - 20)}px) translate(-50%,-100%)`;
+        }
         if (suppressed) {
             this.hover = null;
             for (const m of this.markers.values())
@@ -188,7 +197,7 @@ export class SpatialInteractionSystem {
             this.refresh = .35;
         }
         if (position && this.selection) {
-            const p = this.project(new Vec3(position.x, position.y + 2.1, position.z));
+            const p = this.project(new Vec3(position.x, position.y + (this.selection.anchorLift ?? 2.1), position.z));
             const layout = placeWorldCard(p, this.width, this.height, { width: this.viewport.width, height: this.viewport.height, ...this.margin });
             this.card.hidden = layout.offscreen;
             this.returnButton.hidden = !layout.offscreen;
@@ -243,8 +252,8 @@ export class SpatialInteractionSystem {
         const p = this.selection?.position() ?? this.hover;
         if (!p)
             return [];
-        const selected = !!this.selection, r = selected ? 1.5 : 1.15;
-        return [{ kind: 'torus', position: new Vec3(p.x, .055, p.z), rotation: new Vec3(Math.PI / 2, 0, 0), scale: new Vec3(r, r, .20), unlit: true, color: selected ? '#e8c47f' : '#97b39b', material: 'fabric', alpha: selected ? .85 : .48 }];
+        const selected = !!this.selection, raised = p.y > 1.9, r = raised ? .95 : selected ? 1.5 : 1.15;
+        return [{ kind: 'torus', position: new Vec3(p.x, raised ? p.y : .055, p.z + (raised ? .08 : 0)), rotation: new Vec3(raised ? 0 : Math.PI / 2, 0, 0), scale: new Vec3(r, r, .12), unlit: true, color: selected ? '#e8c47f' : '#97b39b', material: 'fabric', alpha: selected ? .48 : .28 }];
     }
     dispose() { this.observer.disconnect(); window.removeEventListener('resize', this.onResize); this.markers.clear(); this.selection = null; this.layer.remove(); }
 }

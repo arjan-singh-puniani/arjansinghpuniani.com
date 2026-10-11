@@ -106,6 +106,22 @@ export class HUD {
         else if (this.activeTab === 'moments') {
             c.innerHTML = d.moments.length ? d.moments.map(x => `<div class="memory"><i>✦</i><span>${this.escape(x)}</span></div>`).join('') : `<div class="card"><strong>No scrapbook entries yet</strong><small>Watch the club for a while. People will make their own little stories.</small></div>`;
         }
+        else if (this.activeTab === 'details') {
+            c.replaceChildren();
+            const intro = document.createElement('p');
+            intro.textContent = 'Find a detail, then choose its own little ritual. You can also select it directly in the room.';
+            c.append(intro);
+            for (const a of d.details ?? []) {
+                const b = document.createElement('button');
+                b.className = 'object-directory-item';
+                const name = document.createElement('strong'), description = document.createElement('span');
+                name.textContent = a.title;
+                description.textContent = a.subtitle;
+                b.append(name, description);
+                b.onclick = a.run;
+                c.append(b);
+            }
+        }
         else
             c.innerHTML = `<div class="card"><strong>The club is becoming…</strong><small>${this.escape(d.culture ?? 'Still finding its rhythm.')}</small></div><div class="card"><strong>Current racket</strong><small>${this.escape(d.equipment.frame)} · ${this.escape(d.equipment.string)} · ${d.equipment.tension} lb</small></div><div class="card"><strong>Academy snapshot</strong><small>${d.coins} club funds · ${d.placements} placed details · indoor court · matcha nook · pro shop · lounge · bonsai corner</small></div><div class="card"><strong>Design principle</strong><small>Most management is optional. The physical club is the interface and the people remain the point.</small></div>`;
     }

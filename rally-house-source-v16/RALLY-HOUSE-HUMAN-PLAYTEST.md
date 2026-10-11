@@ -48,3 +48,11 @@ Inspect real-time starts/stops, slow/fast diagonals, reversals, corners and reco
 | Portfolio communicates quickly | Real captures, manual scenes, deferred game and Axe pass | Ten-second thesis recall, 30-second transformation recognition, voluntary play |
 
 A bad human/device result calls for another bounded iteration, not a claim that automation already established the intended experience.
+
+## Object identity follow-up — 10 October 2026
+
+For this candidate, start with a fresh or preserved club save. In 30 seconds, ask the visitor to discover one object without instruction. If needed, point to Club → Details; record whether that improves discovery or feels like a directory chore. Observe the bonsai, water it, then inspect it again. Play with the clock twice. Sketch and erase. Pluck the reachable rack, ring the bell, sit and watch a rally, then challenge a member. Return and check that their result is remembered only if completed.
+
+Record wrong selections, uncertainty about an object, unreadable cues, invisible hands, overlap, slow approach, ignored intent, and the exact first time the visitor smiles or wants another try. Test sound at conversational Tech Week volume; compare mute and the selected heavy impact. Do not coach timing before observing the first return. Ask which contact feels earned, which interaction feels authored, and which feels decorative.
+
+Open gates: independent human enjoyment/appeal judgment; physical iPhone/iPad Safari and Android performance/touch/safe areas; real OS/tab interruption; extended sessions beyond the automated soak. Firefox/WebKit automation is engine coverage, not a physical Safari device certification. No professional character asset was supplied in this pass.

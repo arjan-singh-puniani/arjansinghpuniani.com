@@ -32,3 +32,6 @@ body:has(.spatial-card:not([hidden])) .objective,body:has(.spatial-card:not([hid
 @media(max-height:480px){.spatial-card{max-height:calc(100dvh - 162px)}.spatial-subtitle{display:none}.spatial-status{margin-bottom:7px;padding:6px 8px}.spatial-facts{gap:6px;margin-bottom:8px}.spatial-actions button{min-height:44px}.spatial-actions button span{display:none}.objective{max-width:260px}.objective small{display:none}.world-notice{max-width:170px}}
 .spatial-layer.reduced-motion *{transition:none!important;animation:none!important}
 @media(prefers-reduced-motion:reduce){.spatial-layer *{transition:none!important;animation:none!important}}
+.spatial-hover{position:absolute;top:0;left:0;pointer-events:none;padding:7px 11px;border-radius:12px;background:#faf1e4ed;color:#344d40;font-size:12px;font-weight:650;white-space:nowrap;box-shadow:0 3px 14px #26382b1f;}
+.object-directory-item{display:flex;flex-direction:column;gap:4px;width:100%;text-align:left;padding:12px;margin:6px 0;border:1px solid #b6c3b3;border-radius:12px;color:#344d40;background:#fbf4e9;min-height:44px;}
+.object-directory-item span{font-size:12px;line-height:1.4;font-weight:400;}

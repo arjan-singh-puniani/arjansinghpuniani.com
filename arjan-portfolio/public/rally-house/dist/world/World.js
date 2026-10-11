@@ -2,12 +2,29 @@ import { Vec3, smoothstep } from '../rendering/Math3D.js';
 import { palette } from '../content/content.js';
 import { Navigation } from './Navigation.js';
 import { rotatedFootprint } from '../content/DecorCatalog.js';
+import { ObjectIdentity, rayBox } from './ObjectIdentity.js';
+import { AuthoredObjects, authorObjectTargets } from './AuthoredObjects.js';
 export class World {
     meshes = [];
     objects = [];
     nav;
     weather = 'clear';
     placements = [];
+    identity;
+    authored;
+    currentMinute = 0;
+    reducedObjectMotion = false;
+    updateObjects(dt, minute, reducedMotion) { this.currentMinute = minute; this.reducedObjectMotion = reducedMotion; return this.authored.update(dt, reducedMotion); }
+    /** Eye-level visibility: a low bench or net blocks feet, not an adult's view. */
+    canSee(a, b) {
+        const origin = new Vec3(a.x, 1.7, a.z), end = new Vec3(b.x, 1.7, b.z), dir = Vec3.sub(end, origin), distance = dir.len();
+        if (distance < .001)
+            return true;
+        dir.normalize();
+        const solids = [[-12.85, 2.22, 0, .34, 4.55, 19.7], [12.85, 2.22, 0, .34, 4.55, 19.7], [0, 2.22, -9.75, 26, 4.55, .34],
+            [9.2, 1.10, -7.6, 4.45, 2.05, .46], [10.8, .96, 6.7, 1.85, 1.92, .58], [11.35, .95, .3, .72, 1.90, 3.3], [11.3, 1, -5.975, .92, 2, 4.42]];
+        return !solids.some(([x, y, z, w, h, d]) => { const hit = rayBox(origin, dir, { centre: new Vec3(x, y, z), size: new Vec3(w, h, d) }); return hit !== null && hit < distance; });
+    }
     rainSeed = Array.from({ length: 78 }, (_, i) => ({ x: ((i * 47) % 250) / 10 - 12.5, z: -9.78 - ((i * 13) % 8) / 20, y: 1 + ((i * 59) % 60) / 10 }));
     wallHeights = { west: 4.55, east: .48 };
     interactionFx = new Map();
@@ -27,12 +44,19 @@ export class World {
         };
         for (const object of this.objects)
             object.interactionPoint = contacts[object.id];
+        authorObjectTargets(this.objects);
+        this.identity = new ObjectIdentity(this.objects);
+        this.authored = new AuthoredObjects(this.meshes, this.identity);
+        // Large floor pots and the court bench occupy circulation, independently of selection proxies.
+        for (const o of this.objects.filter(o => o.kind === 'plant'))
+            this.nav.obstacles.push({ x: o.position.x, z: o.position.z, w: .75, d: .75 });
+        this.nav.obstacles.push({ x: 6.5, z: 4.8, w: 2.22, d: .8 }, { x: 6.54, z: 2.85, w: 1.62, d: .48 }, { x: 6.0, z: 1.95, w: .70, d: .70 }, { x: 1.32, z: 7.55, w: .86, d: .86 });
     }
     interactionPoint(id, origin, kind) {
         const contact = this.objects.find(o => o.id === id)?.interactionPoint;
         if (contact)
             return contact.clone();
-        const height = { cafe: 1.05, bonsai: 1.05, stringing: 1.34, water: 1.28, training: .78, bell: 1.30, comfort: .70, lamp: 2.05, paper: 1.15 };
+        const height = { cafe: 1.05, bonsai: 1.05, stringing: 1.34, water: 1.28, training: .78, bell: 1.30, comfort: .70, lamp: 1.35, paper: 1.15, leaves: 1.5, clock: 2.75, sketch: 2.05, read: 1.4 };
         return new Vec3(origin.x, height[kind], origin.z);
     }
     triggerInteraction(kind, duration = 1.35, position) {
@@ -91,10 +115,7 @@ export class World {
             this.rb(x, y, -9.40, .86, 1.04, .09, '#f6edde');
             this.rb(x, y, -9.33, .58, .75, .06, c);
         }
-        this.add('torus', 5.7, 2.75, -9.32, .75, .75, .30, '#8b7761');
-        this.add('sphere', 5.7, 2.75, -9.30, .58, .58, .09, '#f5eedf');
-        this.rb(5.7, 2.93, -9.20, .03, .35, .03, '#59645c', -.35);
-        this.rb(5.7, 2.75, -9.20, .28, .025, .03, '#59645c', .22);
+        // The clock’s authored parts are dynamic and are never placed in the static cache.
         // Warm string lights, deliberately sparse.
         for (let i = 0; i < 10; i++) {
             const x = -10.7 + i * 2.25, y = 3.76 - Math.sin(i * .72) * .18;
@@ -117,7 +138,6 @@ export class World {
         this.rb(-9.0, 1.13, 4.8, 3.55, .11, 1.25, '#c99c72', 0, 1, false, undefined, 'wood');
         this.rb(-9.70, 1.38, 4.55, .82, .50, .09, '#f7f0e2', -.08);
         this.rb(-8.25, 1.22, 4.55, .52, .08, .72, '#f0e5d3');
-        this.add('sphere', -8.35, 1.30, 5.22, .12, .08, .12, '#d8ba6c', 0, 1, true);
         this.rb(-10.85, 2.36, -9.30, 1.85, 1.25, .10, '#8b9b84');
         for (let i = 0; i < 5; i++)
             this.add('sphere', -11.45 + (i % 3) * .52, 2.56 - Math.floor(i / 3) * .46, -9.18, .12, .12, .12, [palette.peach, palette.gold, palette.blue][i % 3], 0, 1, true);
@@ -185,6 +205,9 @@ export class World {
         this.objects.push({ id: 'lounge', label: 'Player lounge', kind: 'lounge', position: new Vec3(8.5, 0, 5.8), radius: 2.7, description: 'A soft place to watch, talk, recover, or simply let the club happen around you.' });
         this.objects.push({ id: 'journal', label: 'Club journal', kind: 'paper', position: new Vec3(6.9, 0, 4.55), radius: .65, description: 'Pages softened by years of post-match conversations.' });
         this.objects.push({ id: 'historyShelf', label: 'Club history', kind: 'trophy', position: new Vec3(4.25, 0, -8.8), radius: .75, description: 'Small victories kept where everyone can see them.' });
+        this.shelf(4.25, 1.06, -9.12, .82);
+        this.add('cylinder', 4.25, 1.25, -9.10, .12, .35, .12, '#cba964');
+        this.add('cone', 4.25, 1.49, -9.10, .38, .28, .38, '#d7b773');
         // Signature bonsai corner: a windswept miniature tree on a low crafted cabinet.
         this.rb(10.2, .55, 3.9, 1.72, 1.1, 1.24, palette.woodDark, 0, 1, false, undefined, 'wood');
         this.addBonsai(10.2, 3.9, 1.05, 'windswept', 1.08, '#8f6657');
@@ -214,9 +237,9 @@ export class World {
         // Court benches, baskets, towel and score flip cards.
         this.rb(6.5, .40, 4.8, 2.22, .30, .68, palette.wood, 0, 1, false, undefined, 'wood');
         this.rb(6.5, .76, 5.08, 2.22, .67, .20, palette.woodDark, 0, 1, false, undefined, 'wood');
-        this.add('cylinder', 5.9, .36, 3.8, .70, .58, .70, '#85725d');
+        this.add('cylinder', 6.0, .36, 1.95, .70, .58, .70, '#85725d');
         for (let i = 0; i < 8; i++)
-            this.add('sphere', 5.68 + (i % 3) * .22, .72 + Math.floor(i / 3) * .16, 3.8, .17, .17, .17, '#d6c35f', 0, 1, true);
+            this.add('sphere', 5.78 + (i % 3) * .22, .72 + Math.floor(i / 3) * .16, 1.95, .17, .17, .17, '#d6c35f', 0, 1, true);
         this.rb(6.72, 1.05, 5.02, .72, .50, .09, '#f0e8d8');
         this.rb(6.42, 1.05, 4.94, .21, .27, .04, '#6f8d74');
         this.rb(6.75, 1.05, 4.94, .21, .27, .04, '#d49a78');
@@ -255,11 +278,13 @@ export class World {
         }
         this.rb(7.35, .34, 3.02, .55, .16, .62, palette.paper, .08, 1, false, undefined, 'fabric');
         // Club board with sticky-note rhythm.
-        this.rb(2.8, 2.58, -9.42, 4.15, 1.18, .10, palette.sageDark);
-        this.rb(2.8, 2.58, -9.34, 3.78, .87, .055, '#6f8a73');
-        for (let i = 0; i < 5; i++)
-            this.rb(1.45 + (i % 3) * 1.02, 2.76 - Math.floor(i / 3) * .44, -9.23, .63, .27, .025, [palette.paper, palette.gold, palette.peach][i % 3], (i - 2) * .025, 1, true);
-        this.objects.push({ id: 'clubBoard', label: 'Club board', kind: 'board', position: new Vec3(2.8, 0, -7.8), radius: 1.6, description: 'Bookings, tiny victories, and one useful cue from each lesson.' });
+        this.rb(2.8, 2.58, -9.42, 4.15, 1.18, .10, '#a7aba0');
+        this.rb(2.8, 2.58, -9.34, 3.98, 1.02, .055, '#f4f3e8');
+        for (let i = 0; i < 3; i++)
+            this.rb(1.35 + i * .76, 2.76, -9.23, .58, .27, .025, [palette.paper, palette.gold, palette.peach][i], (i - 1) * .025, 1, true);
+        this.rb(2.8, 1.98, -9.23, 4.0, .055, .17, '#989d92');
+        this.rb(2.75, 2.03, -9.17, .28, .025, .04, '#416775');
+        this.objects.push({ id: 'clubBoard', label: 'Club whiteboard', kind: 'board', position: new Vec3(2.8, 0, -7.8), radius: 1.6, description: 'Read the club scrapbook, or leave a small crosscourt sketch in the clean corner.' });
         this.buildFloorProgram();
     }
     buildFloorProgram() {
@@ -444,6 +469,9 @@ export class World {
             { position: new Vec3(-9.4, 2.40, 1.6), color: warm(1, .80, .55), intensity: 1.34 * practical, radius: 5.8 },
             { position: new Vec3(-9.5, 2.40, 7.2), color: warm(1, .82, .59), intensity: 1.42 * practical, radius: 5.8 }
         ];
+        pointLights[3].intensity *= this.authored.lampLevel('loungeLamp');
+        pointLights.push({ position: new Vec3(-6.4, 2.0, -7), color: warm(1, .80, .54), intensity: .70 * practical * this.authored.lampLevel('windowLamp'), radius: 3.0 });
+        pointLights[7].intensity *= this.authored.lampLevel('entranceLamp');
         const shadowStrength = (rain ? .22 : over ? .44 : .62 + .38 * daylight) * (.25 + .75 * daylight);
         const warmMix = Math.min(1, golden * .78 + nightDrive * .18);
         const sunEnergy = .10 + .90 * daylight;
@@ -552,10 +580,10 @@ export class World {
         }
         const bonsaiFx = pulse('bonsai');
         if (bonsaiFx) {
-            const base = origin(bonsaiFx, new Vec3(10.0, 2.35, 3.72));
+            const base = origin(bonsaiFx, new Vec3(10.2, 1.36, 3.9));
             for (let i = 0; i < 7; i++) {
-                const ph = ((time * 1.9 + i * .13) % 1);
-                m.push({ kind: 'sphere', position: new Vec3(base.x + (i % 3) * .10, base.y - ph * 1.05, base.z + Math.sin(i) * .08), scale: new Vec3(.035, .055, .035), color: '#8fb8bd', alpha: .42 * (1 - ph), unlit: true });
+                const ph = ((effectTime * 1.9 + i * .13) % 1);
+                m.push({ kind: 'sphere', position: new Vec3(base.x + (i % 3 - 1) * .035, base.y + .25 * (1 - ph), base.z + Math.sin(i) * .035), scale: new Vec3(.018, .04, .018), color: '#8fb8bd', alpha: .58, unlit: true });
             }
         }
         const waterFx = pulse('water');
@@ -564,19 +592,6 @@ export class World {
             for (let i = 0; i < 5; i++) {
                 const ph = ((time * 2 + i * .14) % 1);
                 m.push({ kind: 'sphere', position: new Vec3(base.x, base.y - ph * .75, base.z), scale: new Vec3(.028, .07, .028), color: '#a9c8ca', alpha: .50 * (1 - ph), unlit: true });
-            }
-        }
-        const stringFx = pulse('stringing');
-        if (stringFx) {
-            const base = origin(stringFx, new Vec3(9.2, 1.74, -3.24)), wobble = Math.sin(time * 14) * .035;
-            m.push({ kind: 'torus', position: new Vec3(base.x, base.y + wobble, base.z), rotation: new Vec3(0, 0, time * .9), scale: new Vec3(.95, .95, .22), color: '#eadfca', alpha: .78 }, { kind: 'roundBox', position: new Vec3(base.x, base.y, base.z + .04), rotation: new Vec3(0, time * 1.6, 0), scale: new Vec3(1.25, .025, .025), color: '#d2b778', alpha: .65, unlit: true });
-        }
-        const trainingFx = pulse('training');
-        if (trainingFx) {
-            const base = origin(trainingFx, new Vec3(-7.15, .78, .05));
-            for (let i = 0; i < 3; i++) {
-                const ph = ((time * 1.2 + i * .27) % 1);
-                m.push({ kind: 'sphere', position: new Vec3(base.x + ph * 1.2, base.y + Math.sin(ph * Math.PI) * .5, base.z + i * .08), scale: new Vec3(.13, .13, .13), color: '#d9c65f', alpha: .74, unlit: true });
             }
         }
         const bellFx = pulse('bell');
@@ -609,6 +624,7 @@ export class World {
         for (const [kind, value] of this.interactionFx)
             if (value.until <= effectTime)
                 this.interactionFx.delete(kind);
+        m.push(...this.authored.meshes(this.currentMinute, this.reducedObjectMotion));
         return m;
     }
     decorMeshes(p, override, alphaScale = 1) {
@@ -678,6 +694,12 @@ export class World {
                 const color = [palette.sage, palette.gold, palette.peach][i];
                 add('cylinder', x, .70, 0, .055, .72, .055, color, 0, false, 'metal');
                 add('torus', x, 1.34, 0, .38, .48, .19, color, 0, false, 'metal');
+                const fx = this.interactionFx.get('stringing'), selected = fx?.position && Math.hypot(fx.position.x - p.x, fx.position.z - p.z) < .1;
+                const wave = selected && !this.reducedObjectMotion ? Math.sin(performance.now() / 1000 * 42) * .015 : 0;
+                for (let j = -2; j <= 2; j++) {
+                    add('roundBox', x + j * .045, 1.34, .04 + wave, .008, .31, .008, '#e8ddc3');
+                    add('roundBox', x, 1.34 + j * .045, .04 - wave, .26, .008, .008, '#e8ddc3');
+                }
             }
         }
         else if (p.type === 'scoreboard') {
@@ -717,6 +739,11 @@ export class World {
             add('roundBox', -.23, .70, .05, .36, .62, .10, palette.paper, 0, false, 'fabric');
             add('roundBox', .23, .68, .05, .36, .58, .10, palette.peach, 0, false, 'fabric');
         }
+        const leaves = this.interactionFx.get('leaves');
+        if (leaves?.position && Math.hypot(leaves.position.x - p.x, leaves.position.z - p.z) < .1 && !this.reducedObjectMotion)
+            for (const m of out)
+                if (m.material === 'leaf')
+                    m.position.x += Math.sin(performance.now() / 1000 * 2.1) * .035;
         return out;
     }
     placementMeshes() { const out = []; for (const p of this.placements)
