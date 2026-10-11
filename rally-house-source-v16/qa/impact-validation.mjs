@@ -46,11 +46,11 @@ try{
    const m=g.interactiveMatch;m.prepareShot('player','serve','perfect');
    for(let i=0;i<120&&!m.pending.impactStarted;i++)g.updateFixed(1/120);
    if(!m.pending?.impactStarted||!g.player.contactHoldRemaining)throw Error('No held contact '+cycle);
-   const heldAtExit=g.player.contactHoldRemaining;g.requestChampionshipExit();for(let i=0;i<200;i++)g.updateFixed(1/60);
-   rows.push({cycle,opponent,heldAtExit,holdAfter:g.player.contactHoldRemaining,active:g.championship.active,reserved:g.activities.reserved('court'),input:g.matchInput.enabled,match:!!g.interactiveMatch,impulse:!!g.championshipCamera.renderImpulse(),cameraRestored:JSON.stringify(saved)===JSON.stringify(g.camera.captureState()),dom:document.querySelectorAll('*').length});
+   const heldAtExit=g.player.contactHoldRemaining,exitingActivity=g.championshipActivityId;g.requestChampionshipExit();for(let i=0;i<200;i++)g.updateFixed(1/60);
+   rows.push({cycle,opponent,heldAtExit,holdAfter:g.player.contactHoldRemaining,active:g.championship.active,reserved:g.activities.reserved('court'),exitingActivity,courtOwners:g.activities.active.filter(a=>a.resource==='court').map(a=>({id:a.id,kind:a.kind,participants:a.participants})),input:g.matchInput.enabled,match:!!g.interactiveMatch,impulse:!!g.championshipCamera.renderImpulse(),cameraRestored:JSON.stringify(saved)===JSON.stringify(g.camera.captureState()),dom:document.querySelectorAll('*').length});
   }return rows;
  });
- for(const row of report.cycles)assert(!row.active&&!row.reserved&&!row.input&&!row.match&&!row.impulse&&row.holdAfter===0&&row.cameraRestored);
+ for(const row of report.cycles)assert(!row.active&&!row.input&&!row.match&&!row.impulse&&row.holdAfter===0&&row.cameraRestored&&row.courtOwners.every(a=>a.id!==row.exitingActivity&&a.kind!=='championship')); // Other club activities may legitimately reserve the freed court during the 200 recovery steps.
  assert.equal(new Set(report.cycles.map(r=>r.dom)).size,1);assert.deepEqual(report.errors,[]);
  console.log('16 exits during held contact with all opponents and motion modes PASS');
  report.audio=await page.evaluate(async()=>{

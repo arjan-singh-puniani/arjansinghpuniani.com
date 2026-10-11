@@ -38,7 +38,7 @@ function jointRing(skin,segment,half,end,segments){
   if(w[end]>.999){const key=[...skin.positions.slice(i,i+3),...skin.boneIndices.slice(vi*4,vi*4+4),...w].map(v=>v.toFixed(5)).join(',');vertices.push(key);}
  }return new Set(vertices);
 }
-for(const [name,seg,pairs] of [['pants',10,[[0,1],[2,3]]],['arms',10,[[0,1],[2,3]]],['top',12,[[0,1]]],['feminineTop',12,[[0,1]]],['taylorBoots',16,[[0,1],[2,3]]]]){
+for(const [name,seg,pairs] of [['pants',10,[[0,1],[2,3]]],['arms',10,[[0,1],[2,3]]],['top',12,[[0,1]]],['feminineTop',12,[[0,1]]]]){
  for(const [a,b] of pairs){
   const left=jointRing(CHARACTER_SKIN[name],a,1,1,seg),right=jointRing(CHARACTER_SKIN[name],b,0,0,seg);
   assert.equal(left.size,seg);assert.equal(right.size,seg);
@@ -48,3 +48,12 @@ for(const [name,seg,pairs] of [['pants',10,[[0,1],[2,3]]],['arms',10,[[0,1],[2,3
  }
 }
 console.log('Art geometry PASS: bounded non-degenerate foliage and sealed skinned joint rings');
+
+// Weld by position and effective weights: a boot may only have its top and ankle openings.
+const boot=CHARACTER_SKIN.taylorBoots,edges=new Map(),adj=new Map();
+function weldKey(i){const effective=new Map();for(let k=0;k<4;k++){const b=boot.boneIndices[i*4+k],w=boot.boneWeights[i*4+k];if(w>1e-6)effective.set(b,(effective.get(b)||0)+w);}return [...boot.positions.slice(i*3,i*3+3)].map(v=>v.toFixed(5)).join(',')+'|'+[...effective].sort((a,b)=>a[0]-b[0]).map(([b,w])=>b+':'+w.toFixed(5)).join(',');}
+for(let i=0;i<boot.positions.length/3;i+=3){const tri=[0,1,2].map(j=>weldKey(i+j));for(let j=0;j<3;j++){const edge=[tri[j],tri[(j+1)%3]].sort().join(';');edges.set(edge,(edges.get(edge)||0)+1);}}
+for(const [edge,count] of edges){assert(count<=2,'Boot surface is manifold');if(count===1){const [a,b]=edge.split(';');for(const [u,v] of [[a,b],[b,a]]){if(!adj.has(u))adj.set(u,new Set());adj.get(u).add(v);}}}
+for(const neighbors of adj.values())assert.equal(neighbors.size,2,'Open boot boundaries are closed loops');
+const visited=new Set();let loops=0;for(const start of adj.keys()){if(visited.has(start))continue;loops++;const todo=[start];while(todo.length){const v=todo.pop();if(visited.has(v))continue;visited.add(v);todo.push(...adj.get(v));}}
+assert.equal(loops,4,'Two boots have only top and ankle rims; knee seams stay sealed');

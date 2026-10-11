@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {TAYLOR_GEOMETRY,TAYLOR_TAIL_GEOMETRY,taylorHeadMeshes,taylorTailMeshes} from '../dist/animation/TaylorAppearance.js';
+import {CHARACTER_SKIN,BONE} from '../dist/animation/CharacterSkin.js';
 import {Character} from '../dist/entities/Character.js';
 import {playerSpec} from '../dist/content/PlayerAvatars.js';
 import {Navigation} from '../dist/world/Navigation.js';
@@ -61,3 +62,29 @@ for(const hz of [30,60,120]){
  }
 }
 console.log('Taylor appearance PASS: geometry, front-facing ear inlays, bounded tail, and unchanged gameplay rig at 3 rates.');
+
+// New glove surfaces stay local to their hand joints, with finite normalized skinning.
+const hands=CHARACTER_SKIN.taylorHands;
+for(let i=0;i<hands.positions.length/3;i++){
+ const pos=new Vec3(...hands.positions.slice(i*3,i*3+3)),bone=hands.boneIndices[i*4];
+ assert([BONE.handL,BONE.handR].includes(bone));
+ assert(Vec3.sub(pos,new Vec3(bone===BONE.handL?-.50:.50,.94,.01)).len()<.17,'Glove fingers fit the hand envelope');
+ assert(Math.abs(Math.hypot(...hands.normals.slice(i*3,i*3+3))-1)<1e-5);
+ assert.equal(hands.boneWeights.slice(i*4,i*4+4).reduce((a,b)=>a+b,0),1);
+}
+// After settling into the cosmetic idle, visible arms return to the contact
+// skeleton immediately for matches, props, reaches and social gestures.
+for(const mode of ['ready','swingForehand','swingBackhand','serve','match','prop','reach','gesture']){
+ const spec=playerSpec('taylor'),a=new Character(spec,new Vec3(),new Navigation([]),{}),b=new Character({...spec,avatar:undefined},new Vec3(),new Navigation([]),{});
+ for(let i=0;i<120;i++){a.update(1/60);b.update(1/60);}
+ assert.notDeepEqual(a.meshes().find(m=>m.skin===CHARACTER_SKIN.taylorArms).boneMatrices,b.meshes().find(m=>m.skin===CHARACTER_SKIN.arms).boneMatrices,'Idle visibly relaxes the arms');
+ for(const actor of [a,b]){
+  if(mode==='match')actor.matchCompetitor=true;
+  else if(mode==='prop')actor.socialProp='cup';
+  else if(mode==='reach')actor.setInteractionTarget(new Vec3(.3,1.1,.3));
+  else if(mode==='gesture')actor.socialGesture='inspect';
+  else actor.trigger(mode);
+ }
+ assert.deepEqual(a.meshes().find(m=>m.skin===CHARACTER_SKIN.taylorArms).boneMatrices,b.meshes().find(m=>m.skin===CHARACTER_SKIN.arms).boneMatrices,mode+': visible hands use the authoritative rig immediately');
+}
+console.log('Taylor sculpt PASS: bounded finger geometry and immediate contact/prop/reach pose restoration.');
