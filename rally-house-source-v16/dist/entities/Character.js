@@ -965,8 +965,8 @@ export class Character {
             m.push({ kind: 'sphere', position: torsoCenter.clone().add(new Vec3(0, .025, 0)), rotation: new Vec3(0, torsoYaw, 0), scale: new Vec3(this.spec.presentation === 'feminine' ? .53 : .57, .68, .40), color: this.spec.shirt, material: 'fabric' });
             if (this.spec.outfit === 'shorts')
                 m.push({ ...skinRoot, skin: CHARACTER_SKIN.shorts, color: mixHex(this.spec.shirt, '#192d37', .28), material: 'fabric' });
-            for (const shoulder of [shoulderL, shoulderR])
-                m.push({ kind: 'sphere', position: Vec3.lerp(shoulder, Vec3.lerp(shoulderL, shoulderR, .5), .25).add(new Vec3(0, -.035, 0)), scale: new Vec3(.265, .265, .265), color: this.spec.shirt, material: 'fabric' });
+            // Rounded sleeve caps belong to the upper-arm skin and its exact shoulder
+            // pivot; separate inward-shifted spheres left gaps when the arm lifted.
         }
         if (!feline)
             for (const elbow of [elbowL, elbowR])

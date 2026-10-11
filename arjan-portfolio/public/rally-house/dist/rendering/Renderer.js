@@ -263,10 +263,12 @@ export class Renderer {
         this.triangles = 0;
         this.shadowCasters = 0;
         this.instancedDraws = 0;
-        const meshes = [], skins = [];
+        const meshes = [], skins = [], overlays = [];
         for (const it of items) {
             if ('skin' in it)
                 skins.push(it);
+            else if (it.overlay)
+                overlays.push(it);
             else
                 meshes.push(it);
         }
@@ -308,6 +310,14 @@ export class Renderer {
         this.setupProgram(this.skinProgram, this.su, viewProjection, lighting, viewPosition, lightVP, strength, lampVP, lampStrength);
         for (const sk of skinTrans)
             this.drawSkin(sk);
+        // Annotation depth is presentation only: world geometry and captured joints stay untouched.
+        if (overlays.length) {
+            gl.disable(gl.DEPTH_TEST);
+            this.setupProgram(this.program, this.u, viewProjection, lighting, viewPosition, lightVP, strength, lampVP, lampStrength);
+            for (const m of overlays)
+                this.drawMesh(m);
+            gl.enable(gl.DEPTH_TEST);
+        }
         gl.depthMask(true);
     }
     /** World architecture is immutable after construction. Reuse its CPU data in all three passes. */

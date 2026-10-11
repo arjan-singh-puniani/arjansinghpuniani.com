@@ -32,6 +32,7 @@ export class PerformanceLab {
     plotTitle = document.createElement('p');
     phase = document.createElement('p');
     lens = document.createElement('button');
+    separation = document.createElement('button');
     timer = 0;
     renderKey = '';
     cached = [];
@@ -39,6 +40,7 @@ export class PerformanceLab {
     prior = null;
     timeline = null;
     contactLens = true;
+    separateRig = false;
     restoreFocus = null;
     lastAspect = 0;
     priorAspect = 0;
@@ -107,9 +109,13 @@ export class PerformanceLab {
         this.plot.append(this.plotPath, this.plotMarker);
         this.plotTitle.className = 'lab-plot-title';
         this.stats.className = 'lab-stats';
-        this.lens.textContent = 'Contact lens';
-        this.lens.title = 'Slow replay at contact and slightly separate the skeleton for inspection.';
+        this.lens.textContent = 'Slow contact';
+        this.lens.title = 'Slow the replay near racket contact. Joint positions remain registered to the body.';
         this.lens.onclick = () => { this.contactLens = !this.contactLens; this.syncControls(); this.invalidate(); };
+        this.separation.textContent = 'Separate rig';
+        this.separation.dataset.labAction = 'separate';
+        this.separation.title = 'Optional exploded view. Return to the registered overlay by switching this off.';
+        this.separation.onclick = () => { this.separateRig = !this.separateRig; this.syncControls(); this.invalidate(); };
         const orbit = document.createElement('div');
         orbit.className = 'lab-orbit';
         for (const [sign, text] of [[-1, '↶ Orbit'], [1, 'Orbit ↷']]) {
@@ -122,7 +128,10 @@ export class PerformanceLab {
         note.className = 'lab-note';
         note.textContent = 'Simulated rig geometry · distances in club units. Camera pose estimates, forces and muscle activation are not measured here.';
         this.phase.className = 'lab-phase';
-        this.panel.append(this.heading, this.provenance, modes, label, this.source, focus, this.readout, this.plotTitle, this.plot, this.phase, this.stats, this.lens, orbit, note);
+        const inspection = document.createElement('div');
+        inspection.className = 'lab-orbit';
+        inspection.append(this.lens, this.separation);
+        this.panel.append(this.heading, this.provenance, modes, label, this.source, focus, this.readout, this.plotTitle, this.plot, this.phase, this.stats, inspection, orbit, note);
         this.transport.className = 'lab-transport';
         this.play.dataset.labAction = 'play';
         this.play.onclick = () => this.togglePlay();
@@ -158,6 +167,7 @@ export class PerformanceLab {
         this.prior = this.camera.captureState();
         this.priorAspect = this.camera.aspect;
         this.active = true;
+        this.separateRig = false;
         this.clips.clear();
         for (const kind of ['gait', 'forehand', 'serve'])
             this.clips.set(kind, demonstration(kind, spec));
@@ -241,13 +251,11 @@ export class PerformanceLab {
             }
         }
     }
-    rigOffset(reducedMotion) {
-        const t = this.timeline;
-        if (!t || !this.contactLens || reducedMotion)
-            return new Vec3();
-        const distance = Math.min(...t.clip.frames.filter(f => f.contact).map(f => Math.abs(f.time - t.time)));
-        const strength = distance < .16 ? (1 - Math.cos(Math.PI * (1 - distance / .16))) / 2 : 0;
-        return new Vec3(.36 * strength, 0, -.08 * strength);
+    rigOffset(_reducedMotion) {
+        void _reducedMotion; // Retain the caller contract; this inspection offset never animates.
+        // Registration is the default, including at contact. Separation is a static,
+        // explicitly selected inspection view, never a moving visual effect.
+        return this.timeline && this.separateRig ? new Vec3(.85, 0, 0) : new Vec3();
     }
     pickJoint(x, y, reducedMotion = false) {
         const f = this.timeline?.frame;
@@ -265,6 +273,8 @@ export class PerformanceLab {
         for (const b of this.panel.querySelectorAll('[data-joint]'))
             b.setAttribute('aria-pressed', String(b.dataset.joint === this.timeline?.focus));
         this.lens.setAttribute('aria-pressed', String(this.contactLens));
+        this.separation.setAttribute('aria-pressed', String(this.separateRig));
+        this.separation.textContent = this.separateRig ? 'Register rig' : 'Separate rig';
     }
     frameCamera() {
         const t = this.timeline;
@@ -345,7 +355,7 @@ export class PerformanceLab {
         if (this.renderKey === key)
             return this.cached;
         this.renderKey = key;
-        const m = f.body.map(part => t.mode === 'court' ? part : { ...part, alpha: (part.alpha ?? 1) * (part.position.y > 1.65 ? 1 : t.mode === 'body' ? .42 : .58) }), frames = t.clip.frames.slice(0, t.index() + 1), near = offset.x > 0;
+        const m = [...f.body], frames = t.clip.frames.slice(0, t.index() + 1);
         if (f.ball)
             m.push({ kind: 'sphere', position: f.ball, scale: new Vec3(.19, .19, .19), color: '#fff078', unlit: true, noShadow: true });
         if (t.mode !== 'body') {
@@ -387,14 +397,15 @@ export class PerformanceLab {
                     m.push(rod(a.ball, b.ball, '#e6daa0', .018, .42));
             }
         }
-        // Skeleton stays registered to the captured avatar; the brief contact lens separates it slightly.
+        // Opaque surfaces preserve the silhouette. An annotation pass makes the
+        // captured joint centres visible through clothing without displacing them.
         if (t.mode !== 'court') {
             const p = f.pose;
             for (const [a, b] of LIMBS)
-                m.push(rod(p[a].clone().add(offset), p[b].clone().add(offset), '#a4ded0', .03, 1));
+                m.push({ ...rod(p[a].clone().add(offset), p[b].clone().add(offset), '#a4ded0', .022, 1), overlay: true });
             for (const j of JOINT_KEYS) {
-                const selected = j === FOCUS_KEYS[t.focus];
-                m.push({ kind: 'sphere', position: p[j].clone().add(offset), scale: new Vec3(selected ? .12 : .055, selected ? .12 : .055, selected ? .12 : .055), color: selected ? '#ffe3a0' : '#cff2e5', unlit: true, noShadow: true, alpha: selected ? 1 : .76 });
+                const selected = j === FOCUS_KEYS[t.focus], size = selected ? .08 : .042;
+                m.push({ kind: 'sphere', position: p[j].clone().add(offset), scale: new Vec3(size, size, size), color: selected ? '#ffe3a0' : '#cff2e5', unlit: true, noShadow: true, overlay: true });
             }
             const triple = jointTriplet(p, t.focus);
             if (triple) {
@@ -404,16 +415,14 @@ export class PerformanceLab {
                     const blend = Vec3.lerp(u, w, i / 16);
                     if (blend.len() < 1e-5)
                         continue;
-                    const point = v.clone().add(blend.normalize().scale(.28)).add(offset);
+                    const point = v.clone().add(blend.normalize().scale(.20)).add(offset);
                     if (prev)
-                        m.push(rod(prev, point, '#ffe3a0', .025));
+                        m.push({ ...rod(prev, point, '#ffe3a0', .018), overlay: true });
                     prev = point;
                 }
             }
             for (let i = Math.max(1, frames.length - 16); i < frames.length; i++)
                 m.push(rod(frames[i - 1].pose.racketCenter, frames[i].pose.racketCenter, '#e8c889', .015, .20 + .35 * (i / frames.length)));
-            if (near)
-                m.push({ kind: 'torus', position: p.racketCenter, rotation: p.racketRot, scale: new Vec3(.75, .88, .10), color: '#ffe3a0', alpha: .5, unlit: true, noShadow: true });
         }
         return this.cached = m;
     }

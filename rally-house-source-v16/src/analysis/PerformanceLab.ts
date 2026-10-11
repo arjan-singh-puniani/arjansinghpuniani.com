@@ -34,11 +34,13 @@ export class PerformanceLab {
   private plotTitle=document.createElement('p');
   private phase=document.createElement('p');
   private lens=document.createElement('button');
+  private separation=document.createElement('button');
   private timer=0;private renderKey='';private cached:RenderItem[]=[];
   private clips=new Map<SampleKind,MotionClip>();
   private prior:ReturnType<CameraController['captureState']>|null=null;
   timeline:ReplayTimeline|null=null;
   contactLens=true;
+  separateRig=false;
   private restoreFocus:HTMLElement|null=null;
   private lastAspect=0;
   private priorAspect=0;
@@ -65,12 +67,14 @@ export class PerformanceLab {
     this.plotPath.setAttribute('fill','none');this.plotPath.setAttribute('stroke','#e6c889');this.plotPath.setAttribute('stroke-width','2');
     this.plotMarker.setAttribute('y1','4');this.plotMarker.setAttribute('y2','78');this.plotMarker.setAttribute('stroke','#9edbcc');this.plotMarker.setAttribute('stroke-width','1.5');this.plot.append(this.plotPath,this.plotMarker);
     this.plotTitle.className='lab-plot-title';this.stats.className='lab-stats';
-    this.lens.textContent='Contact lens';this.lens.title='Slow replay at contact and slightly separate the skeleton for inspection.';this.lens.onclick=()=>{this.contactLens=!this.contactLens;this.syncControls();this.invalidate();};
+    this.lens.textContent='Slow contact';this.lens.title='Slow the replay near racket contact. Joint positions remain registered to the body.';this.lens.onclick=()=>{this.contactLens=!this.contactLens;this.syncControls();this.invalidate();};
+    this.separation.textContent='Separate rig';this.separation.dataset.labAction='separate';this.separation.title='Optional exploded view. Return to the registered overlay by switching this off.';this.separation.onclick=()=>{this.separateRig=!this.separateRig;this.syncControls();this.invalidate();};
     const orbit=document.createElement('div');orbit.className='lab-orbit';
     for(const [sign,text] of [[-1,'↶ Orbit'],[1,'Orbit ↷']] as [number,string][]){const b=document.createElement('button');b.textContent=text;b.onclick=()=>this.camera.desiredAzimuth+=sign*.35;orbit.append(b);}
     const note=document.createElement('p');note.className='lab-note';note.textContent='Simulated rig geometry · distances in club units. Camera pose estimates, forces and muscle activation are not measured here.';
     this.phase.className='lab-phase';
-    this.panel.append(this.heading,this.provenance,modes,label,this.source,focus,this.readout,this.plotTitle,this.plot,this.phase,this.stats,this.lens,orbit,note);
+    const inspection=document.createElement('div');inspection.className='lab-orbit';inspection.append(this.lens,this.separation);
+    this.panel.append(this.heading,this.provenance,modes,label,this.source,focus,this.readout,this.plotTitle,this.plot,this.phase,this.stats,inspection,orbit,note);
     this.transport.className='lab-transport';this.play.dataset.labAction='play';this.play.onclick=()=>this.togglePlay();
     this.scrub.type='range';this.scrub.min='0';this.scrub.max='1000';this.scrub.step='1';this.scrub.setAttribute('aria-label','Replay time');
     this.scrub.oninput=()=>{if(!this.timeline)return;this.timeline.playing=false;this.timeline.seek(this.timeline.start+(this.timeline.end-this.timeline.start)*Number(this.scrub.value)/1000);this.invalidate();this.refresh();};
@@ -83,7 +87,7 @@ export class PerformanceLab {
   open(spec:CharacterSpec,recording:MotionClip|null){
     if(this.active)return;
     this.restoreFocus=document.activeElement instanceof HTMLElement&&document.activeElement!==document.body?document.activeElement:this.canvas;
-    this.prior=this.camera.captureState();this.priorAspect=this.camera.aspect;this.active=true;this.clips.clear();
+    this.prior=this.camera.captureState();this.priorAspect=this.camera.aspect;this.active=true;this.separateRig=false;this.clips.clear();
     for(const kind of ['gait','forehand','serve'] as const)this.clips.set(kind,demonstration(kind,spec));
     if(recording&&recording.frames.length>2)this.clips.set('championship',recording);
     this.source.replaceChildren(...[...this.clips].map(([key,clip])=>{const o=document.createElement('option');o.value=key;o.textContent=clip.name;return o;}));
@@ -122,11 +126,11 @@ export class PerformanceLab {
     else if(e.key===' '&&e.target===this.canvas){e.preventDefault();this.togglePlay();}
     else if(e.target===this.canvas&&(e.key==='ArrowLeft'||e.key==='ArrowRight')){e.preventDefault();if(this.timeline){this.timeline.playing=false;this.timeline.seek(this.timeline.time+(e.key==='ArrowLeft'?-.1:.1));this.invalidate();this.refresh();}}
   }
-  rigOffset(reducedMotion:boolean):Vec3{
-    const t=this.timeline;if(!t||!this.contactLens||reducedMotion)return new Vec3();
-    const distance=Math.min(...t.clip.frames.filter(f=>f.contact).map(f=>Math.abs(f.time-t.time)));
-    const strength=distance<.16?(1-Math.cos(Math.PI*(1-distance/.16)))/2:0;
-    return new Vec3(.36*strength,0,-.08*strength);
+  rigOffset(_reducedMotion:boolean):Vec3{
+    void _reducedMotion; // Retain the caller contract; this inspection offset never animates.
+    // Registration is the default, including at contact. Separation is a static,
+    // explicitly selected inspection view, never a moving visual effect.
+    return this.timeline&&this.separateRig?new Vec3(.85,0,0):new Vec3();
   }
   pickJoint(x:number,y:number,reducedMotion=false){
     const f=this.timeline?.frame;if(!f||this.timeline?.mode==='court')return;
@@ -139,6 +143,8 @@ export class PerformanceLab {
     for(const b of this.panel.querySelectorAll<HTMLButtonElement>('[data-mode]'))b.setAttribute('aria-pressed',String(b.dataset.mode===this.timeline?.mode));
     for(const b of this.panel.querySelectorAll<HTMLButtonElement>('[data-joint]'))b.setAttribute('aria-pressed',String(b.dataset.joint===this.timeline?.focus));
     this.lens.setAttribute('aria-pressed',String(this.contactLens));
+    this.separation.setAttribute('aria-pressed',String(this.separateRig));
+    this.separation.textContent=this.separateRig?'Register rig':'Separate rig';
   }
   private frameCamera(){
     const t=this.timeline;if(!t)return;const f=t.frame??t.clip.frames[0],portrait=this.camera.aspect<.9;
@@ -189,7 +195,7 @@ export class PerformanceLab {
     const offset=this.rigOffset(reducedMotion),key=`${t.index()}/${t.mode}/${t.focus}/${offset.x.toFixed(4)}/${this.contactLens}/${reducedMotion}`;
     if(this.renderKey===key)return this.cached;
     this.renderKey=key;
-    const m:RenderItem[]=f.body.map(part=>t.mode==='court'?part:{...part,alpha:(part.alpha??1)*(part.position.y>1.65?1:t.mode==='body'?.42:.58)}),frames=t.clip.frames.slice(0,t.index()+1),near=offset.x>0;
+    const m:RenderItem[]=[...f.body],frames=t.clip.frames.slice(0,t.index()+1);
     if(f.ball)m.push({kind:'sphere',position:f.ball,scale:new Vec3(.19,.19,.19),color:'#fff078',unlit:true,noShadow:true});
     if(t.mode!=='body'){
       // Sampling history only. Gaussian kernels, fixed world registration, no airborne projection.
@@ -206,17 +212,17 @@ export class PerformanceLab {
       for(const s of frames.filter(f=>f.bounce&&f.ball))m.push({kind:'torus',position:new Vec3(s.ball!.x,COURT_OVERLAY.path,s.ball!.z),rotation:new Vec3(Math.PI/2,0,0),scale:new Vec3(.26,.26,.14),color:'#c8e5d7',alpha:.7,unlit:true,noShadow:true});
       for(let i=2;i<frames.length;i+=2){const a=frames[i-2],b=frames[i];if(a.ball&&b.ball&&b.time-a.time<.1)m.push(rod(a.ball,b.ball,'#e6daa0',.018,.42));}
     }
-    // Skeleton stays registered to the captured avatar; the brief contact lens separates it slightly.
+    // Opaque surfaces preserve the silhouette. An annotation pass makes the
+    // captured joint centres visible through clothing without displacing them.
     if(t.mode!=='court'){
       const p=f.pose;
-      for(const [a,b] of LIMBS)m.push(rod(p[a].clone().add(offset),p[b].clone().add(offset),'#a4ded0',.03,1));
-      for(const j of JOINT_KEYS){const selected=j===FOCUS_KEYS[t.focus];m.push({kind:'sphere',position:p[j].clone().add(offset),scale:new Vec3(selected?.12:.055,selected?.12:.055,selected?.12:.055),color:selected?'#ffe3a0':'#cff2e5',unlit:true,noShadow:true,alpha:selected?1:.76});}
+      for(const [a,b] of LIMBS)m.push({...rod(p[a].clone().add(offset),p[b].clone().add(offset),'#a4ded0',.022,1),overlay:true});
+      for(const j of JOINT_KEYS){const selected=j===FOCUS_KEYS[t.focus],size=selected?.08:.042;m.push({kind:'sphere',position:p[j].clone().add(offset),scale:new Vec3(size,size,size),color:selected?'#ffe3a0':'#cff2e5',unlit:true,noShadow:true,overlay:true});}
       const triple=jointTriplet(p,t.focus);
       if(triple){const [a,v,b]=triple,u=Vec3.sub(a,v).normalize(),w=Vec3.sub(b,v).normalize();let prev:Vec3|null=null;
-        for(let i=0;i<=16;i++){const blend=Vec3.lerp(u,w,i/16);if(blend.len()<1e-5)continue;const point=v.clone().add(blend.normalize().scale(.28)).add(offset);if(prev)m.push(rod(prev,point,'#ffe3a0',.025));prev=point;}
+        for(let i=0;i<=16;i++){const blend=Vec3.lerp(u,w,i/16);if(blend.len()<1e-5)continue;const point=v.clone().add(blend.normalize().scale(.20)).add(offset);if(prev)m.push({...rod(prev,point,'#ffe3a0',.018),overlay:true});prev=point;}
       }
       for(let i=Math.max(1,frames.length-16);i<frames.length;i++)m.push(rod(frames[i-1].pose.racketCenter,frames[i].pose.racketCenter,'#e8c889',.015,.20+.35*(i/frames.length)));
-      if(near)m.push({kind:'torus',position:p.racketCenter,rotation:p.racketRot,scale:new Vec3(.75,.88,.10),color:'#ffe3a0',alpha:.5,unlit:true,noShadow:true});
     }
     return this.cached=m;
   }

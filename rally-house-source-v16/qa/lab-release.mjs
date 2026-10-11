@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {chromium,browserOptions} from './runtime.mjs';
-const out='evidence/performance-lab-20261011/release';fs.mkdirSync(out,{recursive:true});
+const out=process.env.QA_OUT??'evidence/performance-lab-20261011/release';fs.mkdirSync(out,{recursive:true});
 const b=await chromium.launch({...browserOptions,args:['--use-angle=metal']}),context=await b.newContext({viewport:{width:1440,height:900}}),p=await context.newPage(),errors=[],requests=[];
 p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.status()>=400)requests.push(`${r.status()} ${r.url()}`);});
 try{

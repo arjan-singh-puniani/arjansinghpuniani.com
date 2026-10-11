@@ -22,6 +22,8 @@ export interface Mesh {
   emission?:number;
   /** Opt a mesh out of the shadow pass. Floor decals and glass set this. */
   noShadow?:boolean;
+  /** Explicit analysis annotation, rendered over the visible body without moving its coordinates. */
+  overlay?:boolean;
   id?:string;
 }
 
@@ -277,7 +279,7 @@ export class Renderer {
   render(items:RenderItem[],viewProjection:Mat4,lighting:Lighting,viewPosition:Vec3){
     const gl=this.gl;
     this.drawCalls=0;this.triangles=0;this.shadowCasters=0;this.instancedDraws=0;
-    const meshes:Mesh[]=[],skins:SkinnedMesh[]=[];for(const it of items){if('skin' in it)skins.push(it);else meshes.push(it);}
+    const meshes:Mesh[]=[],skins:SkinnedMesh[]=[],overlays:Mesh[]=[];for(const it of items){if('skin' in it)skins.push(it);else if(it.overlay)overlays.push(it);else meshes.push(it);}
     const lightVP=sunViewProjection(lighting.sunDir,SHADOW_CENTRE,SHADOW_RADIUS,SHADOW_RESOLUTION);
     const strength=this.shadowEnabled?(lighting.shadowStrength??1):0;
     const lamp=lighting.castingLight;
@@ -309,6 +311,13 @@ export class Renderer {
     for(const m of trans)this.drawMesh(m);
     this.setupProgram(this.skinProgram,this.su,viewProjection,lighting,viewPosition,lightVP,strength,lampVP,lampStrength);
     for(const sk of skinTrans)this.drawSkin(sk);
+    // Annotation depth is presentation only: world geometry and captured joints stay untouched.
+    if(overlays.length){
+      gl.disable(gl.DEPTH_TEST);
+      this.setupProgram(this.program,this.u,viewProjection,lighting,viewPosition,lightVP,strength,lampVP,lampStrength);
+      for(const m of overlays)this.drawMesh(m);
+      gl.enable(gl.DEPTH_TEST);
+    }
     gl.depthMask(true);
   }
 

@@ -92,7 +92,7 @@ function appendSurface(out, rings, rows, seg) {
 }
 // Authored cross sections give limbs a continuous taper and softer joint
 // transitions. Endpoint planes still match the authoritative bind joints.
-function sculptSegment(out, a, b, radii, boneA, boneB, rows = 12, seg = 24) {
+function sculptSegment(out, a, b, radii, boneA, boneB, rows = 12, seg = 24, jointBlend = false) {
     const rings = build(), direction = Vec3.sub(b, a), length = direction.len();
     const axis = (bone) => { const d = defs[bone], v = Vec3.sub(bind[d.child], bind[d.joint]).normalize(); return Vec3.dot(v, direction) < 0 ? v.scale(-1) : v; };
     const axisA = axis(boneA), axisB = axis(boneB);
@@ -101,10 +101,13 @@ function sculptSegment(out, a, b, radii, boneA, boneB, rows = 12, seg = 24) {
         for (let i = 0; i < seg; i++) {
             const angle = i / seg * Math.PI * 2, c = Math.cos(angle), s = Math.sin(angle), p = center.clone().add(frame.x.clone().scale(c * rx)).add(frame.z.clone().scale(s * rz));
             const n = frame.x.clone().scale(c / rx).add(frame.z.clone().scale(s / rz)).add(frame.y.clone().scale(-sx * c * c / rx - sz * s * s / rz)).normalize();
+            // Broad child-bone influence bows the whole limb away from its centreline.
+            // Club human limbs keep their volume until the short joint transition.
+            const u = jointBlend ? Math.max(0, Math.min(1, (t - .75) / .25)) : t, w = jointBlend ? u * u * (3 - 2 * u) : u;
             rings.p.push(p.x, p.y, p.z);
             rings.n.push(n.x, n.y, n.z);
             rings.bi.push(boneA, boneB, 0, 0);
-            rings.bw.push(1 - t, t, 0, 0);
+            rings.bw.push(1 - w, w, 0, 0);
         }
     }
     appendSurface(out, rings, rows, seg);
@@ -125,26 +128,27 @@ function handVolume(out, center, frame, radii, bone, rows = 8, seg = 16) {
     appendSurface(out, rings, rows, seg);
 }
 const top = build();
-addSegment(top, bind.pelvis, bind.spine, [.28, .20], [.31, .21], BONE.pelvis, BONE.spine, 12);
-addSegment(top, bind.spine, bind.chest, [.31, .21], [.37, .22], BONE.spine, BONE.chest, 12);
+sculptSegment(top, bind.pelvis, bind.spine, [[0, .28, .20], [.5, .295, .206], [1, .31, .21]], BONE.pelvis, BONE.spine, 12, 20);
+sculptSegment(top, bind.spine, bind.chest, [[0, .31, .21], [.55, .355, .220], [1, .37, .22]], BONE.spine, BONE.chest, 12, 20);
 // Softer boutique-life-sim silhouette for the adult women: a modest waist taper and rounded upper torso.
 // This is deliberately subtle; character appeal comes from face, hair, clothing and acting rather than exaggerated anatomy.
 const feminineTop = build();
-addSegment(feminineTop, bind.pelvis, bind.spine, [.305, .215], [.265, .185], BONE.pelvis, BONE.spine, 12);
-addSegment(feminineTop, bind.spine, bind.chest, [.265, .185], [.355, .218], BONE.spine, BONE.chest, 12);
+sculptSegment(feminineTop, bind.pelvis, bind.spine, [[0, .305, .215], [.6, .270, .189], [1, .265, .185]], BONE.pelvis, BONE.spine, 12, 20);
+sculptSegment(feminineTop, bind.spine, bind.chest, [[0, .265, .185], [.55, .317, .209], [1, .355, .218]], BONE.spine, BONE.chest, 12, 20);
 // Close the shirt over the shoulders and join sleeves to the moving upper arms.
 for (const [garment, width] of [[top, .37], [feminineTop, .355]]) {
-    addSegment(garment, bind.chest, new Vec3(0, 1.44, .015), [width, .22], [.125, .115], BONE.chest, BONE.chest, 12);
+    sculptSegment(garment, bind.chest, new Vec3(0, 1.44, .015), [[0, width, .22], [.45, width * .74, .175], [1, .125, .115]], BONE.chest, BONE.chest, 8, 20);
     for (const side of ['L', 'R']) {
         const a = bind[`upperArm${side}`], b = Vec3.lerp(a, bind[`foreArm${side}`], .6), bone = BONE[`upperArm${side}`];
-        addSegment(garment, a, b, [.155, .145], [.145, .13], bone, bone, 10);
+        sculptSegment(garment, a, b, [[0, .13, .125], [.25, .15, .138], [.75, .14, .126], [1, .127, .117]], bone, bone, 8, 20);
+        shoulderCap(garment, a, Vec3.sub(b, a), bone, .13, .125, 20);
     }
 }
 const pants = build();
-addSegment(pants, bind.thighL, bind.shinL, [.120, .105], [.105, .095], BONE.thighL, BONE.shinL, 10);
-addSegment(pants, bind.shinL, bind.footL, [.105, .095], [.085, .08], BONE.shinL, BONE.shinL, 10);
-addSegment(pants, bind.thighR, bind.shinR, [.120, .105], [.105, .095], BONE.thighR, BONE.shinR, 10);
-addSegment(pants, bind.shinR, bind.footR, [.105, .095], [.085, .08], BONE.shinR, BONE.shinR, 10);
+for (const side of ['L', 'R']) {
+    sculptSegment(pants, bind[`thigh${side}`], bind[`shin${side}`], [[0, .120, .105], [.3, .125, .108], [.7, .108, .096], [1, .105, .095]], BONE[`thigh${side}`], BONE[`shin${side}`], 12, 20, true);
+    sculptSegment(pants, bind[`shin${side}`], bind[`foot${side}`], [[0, .105, .095], [.3, .108, .094], [.7, .092, .082], [1, .085, .08]], BONE[`shin${side}`], BONE[`shin${side}`], 12, 20, true);
+}
 // Tennis separates reveal the moving calves, with a tailored short over the upper leg.
 const shorts = build();
 for (const side of ['L', 'R']) {
@@ -154,10 +158,10 @@ for (const side of ['L', 'R']) {
 const skirt = build();
 addSegment(skirt, new Vec3(0, .93, 0), new Vec3(0, .59, 0), [.295, .22], [.43, .34], BONE.pelvis, BONE.pelvis, 24);
 const arms = build();
-addSegment(arms, bind.upperArmL, bind.foreArmL, [.105, .095], [.09, .08], BONE.upperArmL, BONE.foreArmL, 10);
-addSegment(arms, bind.foreArmL, bind.handL, [.09, .08], [.070, .065], BONE.foreArmL, BONE.handL, 10);
-addSegment(arms, bind.upperArmR, bind.foreArmR, [.105, .095], [.09, .08], BONE.upperArmR, BONE.foreArmR, 10);
-addSegment(arms, bind.foreArmR, bind.handR, [.09, .08], [.070, .065], BONE.foreArmR, BONE.handR, 10);
+for (const side of ['L', 'R']) {
+    sculptSegment(arms, bind[`upperArm${side}`], bind[`foreArm${side}`], [[0, .105, .095], [.3, .108, .096], [.7, .094, .083], [1, .09, .08]], BONE[`upperArm${side}`], BONE[`foreArm${side}`], 12, 20, true);
+    sculptSegment(arms, bind[`foreArm${side}`], bind[`hand${side}`], [[0, .09, .08], [.3, .093, .079], [.7, .078, .069], [1, .070, .065]], BONE[`foreArm${side}`], BONE[`hand${side}`], 12, 20, true);
+}
 // A continuous, densely sampled clothing surface follows the existing spine
 // weights. Its profile is apparel, with no changes to the body or contact rig.
 const taylorDress = build();
@@ -212,19 +216,19 @@ dressBand(taylorDressEdging, 1.36, 1.370, 2, .007);
 dressBand(taylorDressEdging, 1.424, 1.437, 2, .007);
 dressBand(taylorDressEdging, .596, .609, 1, .004);
 const taylorArms = build();
-function shoulderCap(out, c, dir, bone) {
+function shoulderCap(out, c, dir, bone, rx = .078, rz = .070, seg = 24) {
     const frame = basis(dir), rings = build();
     for (let row = 0; row <= 8; row++) {
         const a = row / 8 * Math.PI / 2;
-        for (let i = 0; i < 24; i++) {
-            const angle = i / 24 * Math.PI * 2, x = Math.cos(angle) * Math.sin(a), y = -Math.cos(a), z = Math.sin(angle) * Math.sin(a), v = c.clone().add(frame.x.clone().scale(x * .078)).add(frame.y.clone().scale(y * .078)).add(frame.z.clone().scale(z * .070)), n = frame.x.clone().scale(x / .078).add(frame.y.clone().scale(y / .078)).add(frame.z.clone().scale(z / .070)).normalize();
+        for (let i = 0; i < seg; i++) {
+            const angle = i / seg * Math.PI * 2, x = Math.cos(angle) * Math.sin(a), y = -Math.cos(a), z = Math.sin(angle) * Math.sin(a), v = c.clone().add(frame.x.clone().scale(x * rx)).add(frame.y.clone().scale(y * rx)).add(frame.z.clone().scale(z * rz)), n = frame.x.clone().scale(x / rx).add(frame.y.clone().scale(y / rx)).add(frame.z.clone().scale(z / rz)).normalize();
             rings.p.push(v.x, v.y, v.z);
             rings.n.push(n.x, n.y, n.z);
             rings.bi.push(bone, 0, 0, 0);
             rings.bw.push(1, 0, 0, 0);
         }
     }
-    appendSurface(out, rings, 8, 24);
+    appendSurface(out, rings, 8, seg);
 }
 for (const side of ['L', 'R']) {
     const shoulder = bind[`upperArm${side}`], elbow = bind[`foreArm${side}`], hand = bind[`hand${side}`];
