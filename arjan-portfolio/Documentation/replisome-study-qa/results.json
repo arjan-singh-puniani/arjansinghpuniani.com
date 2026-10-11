@@ -1,0 +1,87 @@
+{
+  "base": "http://127.0.0.1:3000",
+  "results": [
+    {
+      "label": "chromium-1440",
+      "checks": [
+        "no answer before commitment",
+        "all five causal perturbations",
+        "fork-relative polarity",
+        "3-prime OH reaction",
+        "conserved isotope counts",
+        "telomerase and overhang",
+        "first-attempt checkpoint feedback",
+        "confidence capture",
+        "keyboard focus and Escape",
+        "running/paused state restored",
+        "WCAG scan",
+        "responsive screenshots"
+      ]
+    },
+    {
+      "label": "chromium-390",
+      "checks": [
+        "no answer before commitment",
+        "all five causal perturbations",
+        "fork-relative polarity",
+        "3-prime OH reaction",
+        "conserved isotope counts",
+        "telomerase and overhang",
+        "first-attempt checkpoint feedback",
+        "confidence capture",
+        "keyboard focus and Escape",
+        "running/paused state restored",
+        "WCAG scan",
+        "responsive screenshots"
+      ]
+    },
+    {
+      "label": "chromium-no-webgl",
+      "checks": [
+        "complete DOM/SVG reasoning without WebGL"
+      ]
+    },
+    {
+      "label": "webkit-1440",
+      "checks": [
+        "no answer before commitment",
+        "all five causal perturbations",
+        "fork-relative polarity",
+        "3-prime OH reaction",
+        "conserved isotope counts",
+        "telomerase and overhang",
+        "first-attempt checkpoint feedback",
+        "confidence capture",
+        "keyboard focus and Escape",
+        "running/paused state restored",
+        "WCAG scan",
+        "responsive screenshots"
+      ]
+    },
+    {
+      "label": "webkit-390",
+      "checks": [
+        "no answer before commitment",
+        "all five causal perturbations",
+        "fork-relative polarity",
+        "3-prime OH reaction",
+        "conserved isotope counts",
+        "telomerase and overhang",
+        "first-attempt checkpoint feedback",
+        "confidence capture",
+        "keyboard focus and Escape",
+        "running/paused state restored",
+        "WCAG scan",
+        "responsive screenshots"
+      ]
+    },
+    {
+      "label": "webkit-no-webgl",
+      "checks": [
+        "complete DOM/SVG reasoning without WebGL"
+      ]
+    }
+  ],
+  "errors": [],
+  "failures": []
+}

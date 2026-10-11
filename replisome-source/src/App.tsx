@@ -37,6 +37,7 @@ import {
   type Action,
 } from "./simulation/engine";
 import { molecules } from "./data/molecules";
+import StudyStudio from "./study/StudyStudio";
 
 const read = (key: string, fallback: string) => {
   try {
@@ -86,6 +87,10 @@ export default function App() {
   const [labels, setLabels] = useState(true);
   const [settings, setSettings] = useState(false);
   const [sources, setSources] = useState(false);
+  const [study, setStudy] = useState(false);
+  const studyRef = useRef(study);
+  const studyLaunchRef = useRef<HTMLButtonElement>(null);
+  studyRef.current = study;
   const [rep, setRep] = useState<Representation>("surface");
   const [camera, setCamera] = useState<CameraMode>("cinematic");
   const [quality, setQuality] = useState<Quality>(
@@ -107,6 +112,14 @@ export default function App() {
   speedRef.current = speed;
   const mutedRef = useRef(muted);
   mutedRef.current = muted;
+  useEffect(() => {
+    if (!study) return;
+    const wasPaused = engine.paused;
+    engine.paused = true;
+    return () => {
+      engine.paused = wasPaused;
+    };
+  }, [study, engine]);
   useEffect(() => {
     if (!sources) return;
     const previous = document.activeElement as HTMLElement | null;
@@ -147,7 +160,7 @@ export default function App() {
       last = now;
       engine.advance(dt * speedRef.current);
       if (engine.time >= 600) engine.paused = true;
-      if (now - lastUI > 80) {
+      if (!studyRef.current && now - lastUI > 80) {
         render((n) => n + 1);
         lastUI = now;
       }
@@ -182,6 +195,7 @@ export default function App() {
   }, [engine.finished, engine.score, best]);
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
+      if (study) return;
       if ((e.target as HTMLElement).closest("button,input,select,textarea"))
         return;
       if (e.code === "Space") {
@@ -197,7 +211,7 @@ export default function App() {
     };
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
-  }, [engine]);
+  }, [engine, study]);
   const switchMode = (m: Mode) => {
     if (m === mode) return;
     if (m === "play") engine.reset("play");
@@ -305,10 +319,11 @@ export default function App() {
         onReady={setStatus}
         resetKey={resetKey}
         selected={selected}
+        suspended={study}
       />
       <div className="vignette" />
       <header className="topbar">
-        <a href="./" className="brand" aria-label="Replisome home">
+        <a href="./index.html" className="brand" aria-label="Replisome home">
           <span className="brand-symbol">
             <Dna size={26} />
           </span>
@@ -336,9 +351,17 @@ export default function App() {
           ))}
         </nav>
         <div className="header-right">
-          <span className="live-mark">
-            <i /> HUMAN REPLISOME
-          </span>
+          <button
+            ref={studyLaunchRef}
+            className="study-launch"
+            onClick={() => {
+              setSettings(false);
+              setSources(false);
+              setStudy(true);
+            }}
+          >
+            <BookOpen size={15} /> <span>MCAT lens</span>
+          </button>
           <IconButton
             label="Settings"
             onClick={() => setSettings((v) => !v)}
@@ -904,6 +927,14 @@ export default function App() {
       <div className="sr-only" role="status">
         {notice}
       </div>
+      {study && (
+        <StudyStudio
+          onClose={() => {
+            setStudy(false);
+            requestAnimationFrame(() => studyLaunchRef.current?.focus());
+          }}
+        />
+      )}
       {sources && (
         <div className="modal-backdrop" onClick={() => setSources(false)}>
           <section

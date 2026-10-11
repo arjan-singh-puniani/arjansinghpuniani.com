@@ -28,7 +28,7 @@ export default function ReplisomePage() {
         <p className="eyebrow">DNA replication · An interactive molecular experience</p>
         <h1>REPLISOME</h1>
         <p className={styles.deck}>One fork. Two strands. A living molecular machine.</p>
-        <p className={styles.intro}>Follow the proteins that open DNA, copy its instructions, and join the new strands. Watch the choreography, inspect the structures, or assemble an Okazaki fragment yourself.</p>
+        <p className={styles.intro}>Follow the proteins that open DNA, copy its instructions, and join the new strands. Watch the choreography, inspect the structures, or assemble an Okazaki fragment yourself. Open the MCAT lens to trace strand polarity, predict enzyme effects, and interpret replication experiments.</p>
       </div>
     </header>
 
@@ -53,6 +53,7 @@ export default function ReplisomePage() {
       <div>
         <p>The protein models draw on deposited structures from <a href="https://www.rcsb.org/structure/7PFO">7PFO</a>, <a href="https://www.rcsb.org/structure/6TNZ">6TNZ</a>, and <a href="https://www.rcsb.org/structure/8QJ7">8QJ7</a>. Their arrangement, movement, reaction timing, and displayed ATP accounting are illustrative.</p>
         <p>This is an educational model. It combines separately solved complexes; it does not represent a validated atomistic trajectory of the complete replisome. Open “Sources & model notes” inside the experience for provenance and simplifications.</p>
+        <p>The optional MCAT lens adds five visual labs and an original three-question transfer checkpoint. Predict before revealing a mechanism, then examine why each alternative succeeds or fails. It supports replication reasoning; a short checkpoint cannot establish exam readiness.</p>
         <p className={styles.small}>Runs in your browser. WebGL2 is required for the 3D view. Sound starts muted; motion and rendering quality can be adjusted inside the experience.</p>
       </div>
     </section>

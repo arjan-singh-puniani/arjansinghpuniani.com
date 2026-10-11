@@ -14,12 +14,17 @@ cd arjan-portfolio
 node tools/replisome/sync-build.mjs
 npm run verify
 REPLISOME_QA_URL=http://127.0.0.1:3000 node tools/replisome/browser-qa.mjs
+REPLISOME_QA_URL=http://127.0.0.1:3000 node tools/replisome/study-qa.mjs
 ```
 
 Start the production portfolio server separately before browser QA. The QA tool
 uses the portfolio's existing Playwright dependency. It verifies lazy loading,
 embedded paths, keyboard access, responsive layout, error-free rendering,
 closing/reopening, existing routes, and WebGL fallback in Chromium and WebKit.
+The additional study tool verifies the optional MCAT lens, first-attempt
+feedback, diagrams, confidence, modal focus and rendering suspension. For the
+source molecular suite, `REPLISOME_TEST_CHROME=1 npm run test:e2e` selects installed
+Chrome rather than bundled Chromium; WebKit still runs as the second project.
 
 `/playground/replisome` is the crawlable introduction; `/replisome/index.html`
 is the standalone runtime and carries `noindex,follow` plus the canonical page

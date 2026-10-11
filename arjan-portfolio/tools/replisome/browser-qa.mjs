@@ -62,6 +62,11 @@ for (const [name, type] of [['chromium', chromium], ['webkit', webkit]]) {
       await frame.getByRole('button', { name: 'PLAY', exact: true }).click();
       await expect(frame.getByRole('heading', { name: 'Find the starting point', exact: true })).toBeVisible();
       await frame.getByRole('button', { name: 'WATCH', exact: true }).click();
+      await frame.getByRole('button', { name: 'MCAT lens', exact: true }).click();
+      await expect(frame.getByRole('dialog', { name: 'See it. Predict it. Explain it.' })).toBeVisible();
+      expect(await frame.locator('.study-header').evaluate(el => el.getBoundingClientRect().top >= 0)).toBe(true);
+      await frame.getByRole('button', { name: 'Close reasoning studio', exact: true }).click();
+      await expect(frame.getByRole('button', { name: 'MCAT lens', exact: true })).toBeFocused();
       await page.locator('iframe').scrollIntoViewIfNeeded();
       await page.screenshot({ path: `${out}/${label}-embedded.png` });
       const fullscreen = page.getByRole('button', { name: 'Enter fullscreen ↗', exact: true });
