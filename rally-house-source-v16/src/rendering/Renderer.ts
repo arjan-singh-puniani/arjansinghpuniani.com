@@ -29,6 +29,8 @@ export interface Mesh {
 
 export interface SkinGeometry {id:string;positions:Float32Array;normals:Float32Array;boneIndices:Float32Array;boneWeights:Float32Array}
 export interface SkinnedMesh {
+  /** Character body skin driven by the authoritative anatomical landmarks. */
+  poseRig?:boolean;
   skin:SkinGeometry; boneMatrices:Float32Array; position:Vec3; rotation?:Vec3; scale?:Vec3; color:string; material?:MaterialKind; alpha?:number; unlit?:boolean; noShadow?:boolean; id?:string;
 }
 export type RenderItem=Mesh|SkinnedMesh;

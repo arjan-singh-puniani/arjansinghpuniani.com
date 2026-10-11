@@ -25,7 +25,10 @@ function ringCenter(part,segment,row){
 let jointError=0,centreError=0,samples=0,overlaySamples=0;
 for(const presentation of [undefined,'feminine'])for(const kind of ['gait','forehand','serve']){
  const clip=demonstration(kind,{id:'player',name:'Player',role:'member',shirt:'#888888',skin:'#c99977',hair:'#333333',playStyle:'test',goal:'test',presentation});
- for(const f of clip.frames){
+ const timeline=new ReplayTimeline(clip);
+ const frames=[...clip.frames];
+ for(let i=1;i<clip.frames.length;i+=10)for(const fraction of [.25,.5,.75]){timeline.seek(clip.frames[i-1].time+(clip.frames[i].time-clip.frames[i-1].time)*fraction);frames.push(timeline.frame);}
+ for(const f of frames){
   const t=new ReplayTimeline(clip);t.seek(f.time);
   const lab={active:true,timeline:t,contactLens:true,separateRig:false,renderKey:'',cached:[],rigOffset:PerformanceLab.prototype.rigOffset};
   const meshes=PerformanceLab.prototype.meshes.call(lab,false);
@@ -33,7 +36,7 @@ for(const presentation of [undefined,'feminine'])for(const kind of ['gait','fore
   const nodes=meshes.filter(m=>m.overlay&&m.kind==='sphere');assert.equal(nodes.length,JOINT_KEYS.length);
   for(let j=0;j<nodes.length;j++)assert.deepEqual(nodes[j].position,f.pose[JOINT_KEYS[j]],'Annotation sits at the actual captured joint centre');
   overlaySamples++;
-  if(clip.frames.indexOf(f)%10!==0&&!f.contact)continue;
+  if(!f.interpolated&&clip.frames.indexOf(f)%10!==0&&!f.contact)continue;
   samples++;
   for(const part of f.body.filter(m=>pairs[m.skin?.id]))for(let s=0;s<4;s++)for(let row=0;row<=12;row++){
    const [a,b]=pairs[part.skin.id][s],error=Vec3.sub(ringCenter(part,s,row),Vec3.lerp(f.pose[a],f.pose[b],row/12)).len();
@@ -45,4 +48,4 @@ for(const presentation of [undefined,'feminine'])for(const kind of ['gait','fore
 assert(jointError<1e-5,`Visible elbow/knee/ankle/shoulder rings align with their rig: ${jointError}`);
 assert(centreError<.045,`Bounded limb-centre deformation throughout motion: ${centreError}`);
 console.log(JSON.stringify({surfaceSamples:samples,overlaySamples,maxJointRegistrationError:jointError,maxLimbCentreError:centreError}));
-console.log('Rig registration PASS: actual GPU joint-ring centres, bounded limb deformation and every default replay annotation registered to an unchanged opaque avatar.');
+console.log('Rig registration PASS: actual GPU joint-ring centres between samples and at recorded frames, bounded limb deformation and every default replay annotation registered to an unchanged opaque avatar.');

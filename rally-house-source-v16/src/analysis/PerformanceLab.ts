@@ -5,6 +5,7 @@ import type {CharacterSpec} from '../entities/Character.js';
 import {demonstration} from './LabDemonstrations.js';
 import {ReplayTimeline,FOCUS_KEYS,JOINT_KEYS,LIMBS,METRIC_NAMES,jointTriplet,value,summary,type Joint,type LabMode,type MotionClip,type MotionFrame,type SampleKind} from './MotionCapture.js';
 
+const text=(node:HTMLElement,value:string)=>{if(node.textContent!==value)node.textContent=value;};
 const svgNS='http://www.w3.org/2000/svg';
 const format=(v:number|null,digits=0)=>v===null||!Number.isFinite(v)?'—':v.toFixed(digits);
 // Court surface is .07; markings start at .072 and end at .098.
@@ -35,7 +36,9 @@ export class PerformanceLab {
   private phase=document.createElement('p');
   private lens=document.createElement('button');
   private separation=document.createElement('button');
-  private timer=0;private renderKey='';private cached:RenderItem[]=[];
+  private courtClip:MotionClip|null=null;private courtIndex=-1;private courtHistory:RenderItem[]=[];
+  private renderKey='';private cached:RenderItem[]=[];
+  private plotClip:MotionClip|null=null;private plotFocus:Joint|null=null;private plotMin=0;private plotMax=0;
   private clips=new Map<SampleKind,MotionClip>();
   private prior:ReturnType<CameraController['captureState']>|null=null;
   timeline:ReplayTimeline|null=null;
@@ -101,7 +104,7 @@ export class PerformanceLab {
     this.active=false;this.layer.hidden=true;document.body.classList.remove('lab-active');
     if(this.prior)this.camera.restoreState(this.prior);
     if(this.camera.aspect!==this.priorAspect){const aspect=this.camera.aspect;this.camera.aspect=0;this.camera.setAspect(aspect);this.camera.update(0);}
-    this.prior=null;this.timeline=null;this.cached=[];this.clips.clear();
+    this.prior=null;this.timeline=null;this.cached=[];this.clips.clear();this.plotClip=null;this.courtClip=null;this.courtHistory=[];
     for(const el of document.querySelectorAll<HTMLElement>('.topbar,.hud,.objective,#scenePeek'))el.inert=false;
     const target=this.restoreFocus?.isConnected&&!this.restoreFocus.closest('[hidden]')?this.restoreFocus:this.canvas;
     target.focus({preventScroll:true});this.restoreFocus=null;this.onReturn();
@@ -138,7 +141,7 @@ export class PerformanceLab {
     const ranked=(Object.keys(FOCUS_KEYS) as Joint[]).map(j=>{const p=this.camera.project((f.pose[FOCUS_KEYS[j]] as Vec3).clone().add(offset));return {j,d:p.visible?Math.hypot(p.x-x,p.y-y):Infinity};}).sort((a,b)=>a.d-b.d);
     if(ranked[0]?.d<30)this.focus(ranked[0].j);
   }
-  private invalidate(){this.renderKey='';this.timer=0;}
+  private invalidate(){this.renderKey='';}
   private syncControls(){
     for(const b of this.panel.querySelectorAll<HTMLButtonElement>('[data-mode]'))b.setAttribute('aria-pressed',String(b.dataset.mode===this.timeline?.mode));
     for(const b of this.panel.querySelectorAll<HTMLButtonElement>('[data-joint]'))b.setAttribute('aria-pressed',String(b.dataset.joint===this.timeline?.focus));
@@ -162,55 +165,67 @@ export class PerformanceLab {
   }
   update(dt:number,reducedMotion:boolean){
     if(!this.active||!this.timeline)return;
-    this.timeline.update(dt,this.contactLens&&!reducedMotion);this.timer-=dt;
+    this.timeline.update(dt,this.contactLens&&!reducedMotion);
     if(this.lastAspect!==this.camera.aspect)this.frameCamera();
     const f=this.timeline.frame;if(f)this.trackCamera(f);
-    if(this.timer<=0){this.refresh();this.timer=1/15;}
+    this.refresh();
   }
   private refresh(){
     const t=this.timeline;if(!t)return;const f=t.frame;
-    this.play.textContent=t.playing?'Pause':'Play';
+    text(this.play,t.playing?'Pause':'Play');
     this.scrub.value=String(Math.round(1000*(t.time-t.start)/Math.max(.001,t.end-t.start)));
-    this.timeLabel.textContent=`${(t.time-t.start).toFixed(2)} / ${(t.end-t.start).toFixed(2)}s`;
-    this.scrub.setAttribute('aria-valuetext',this.timeLabel.textContent);
+    text(this.timeLabel,`${(t.time-t.start).toFixed(2)} / ${(t.end-t.start).toFixed(2)}s`);
+    this.scrub.setAttribute('aria-valuetext',this.timeLabel.textContent??'');
     const j=t.focus,unit=j==='ankle'?'u':'°',v=f?value(f,j):null;
-    this.readout.textContent=`${format(v,j==='ankle'?2:0)}${v===null?'':unit}`;
-    this.plotTitle.textContent=`${METRIC_NAMES[j]} · ${unit}${f?'':' · no sample in this gap'}`;
-    this.phase.textContent=!f?'No recorded sample':t.clip.kind==='gait'?`Left ${f.planted[0]?'stance':'swing'} · Right ${f.planted[1]?'stance':'swing'}`:f.contact?'Racket contact':f.state==='serve'?'Serve motion':f.state.startsWith('swing')?'Stroke motion':f.state==='ready'?'Ready / recovery':f.state;
-    const values=t.clip.frames.map(f=>value(f,j)),finite=values.filter((v):v is number=>v!==null&&Number.isFinite(v));
-    const min=Math.min(...finite),max=Math.max(...finite),span=Math.max(j==='ankle'?.05:10,max-min);
-    let path='',gap=true;
-    for(let i=0;i<values.length;i++){
-      const v=values[i];if(v===null||!Number.isFinite(v)){gap=true;continue;}
-      const f=t.clip.frames[i];if(i&&f.time-t.clip.frames[i-1].time>.15)gap=true;
-      const x=4+292*(f.time-t.start)/Math.max(.001,t.end-t.start),y=72-58*(v-min)/span;
-      path+=`${gap?'M':'L'}${x.toFixed(1)} ${y.toFixed(1)} `;gap=false;
+    text(this.readout,`${format(v,j==='ankle'?2:0)}${v===null?'':unit}`);
+    text(this.plotTitle,`${METRIC_NAMES[j]} · ${unit}${f?'':' · no sample in this gap'}`);
+    text(this.phase,!f?'No recorded sample':t.clip.kind==='gait'?`Left ${f.planted[0]?'stance':'swing'} · Right ${f.planted[1]?'stance':'swing'}`:f.contact?'Racket contact':f.state==='serve'?'Serve motion':f.state.startsWith('swing')?'Stroke motion':f.state==='ready'?'Ready / recovery':f.state);
+    // The recorded curve is static; only its cursor and current measurement advance.
+    if(this.plotClip!==t.clip||this.plotFocus!==j){
+      const values=t.clip.frames.map(f=>value(f,j)),finite=values.filter((v):v is number=>v!==null&&Number.isFinite(v));
+      const min=Math.min(...finite),max=Math.max(...finite),span=Math.max(j==='ankle'?.05:10,max-min);
+      let path='',gap=true;
+      for(let i=0;i<values.length;i++){
+        const v=values[i];if(v===null||!Number.isFinite(v)){gap=true;continue;}
+        const f=t.clip.frames[i];if(i&&f.time-t.clip.frames[i-1].time>.15)gap=true;
+        const x=4+292*(f.time-t.start)/Math.max(.001,t.end-t.start),y=72-58*(v-min)/span;
+        path+=`${gap?'M':'L'}${x.toFixed(1)} ${y.toFixed(1)} `;gap=false;
+      }
+      if(this.plotPath.getAttribute('d')!==path)this.plotPath.setAttribute('d',path);
+      this.plotMin=min;this.plotMax=max;this.plotClip=t.clip;this.plotFocus=j;
     }
-    if(this.plotPath.getAttribute('d')!==path)this.plotPath.setAttribute('d',path);
     const x=String(4+292*(t.time-t.start)/Math.max(.001,t.end-t.start));this.plotMarker.setAttribute('x1',x);this.plotMarker.setAttribute('x2',x);
-    this.plot.setAttribute('aria-label',`${METRIC_NAMES[j]} from ${format(min,1)} to ${format(max,1)} ${unit}, current ${format(v,1)}`);
+    this.plot.setAttribute('aria-label',`${METRIC_NAMES[j]} from ${format(this.plotMin,1)} to ${format(this.plotMax,1)} ${unit}, current ${format(v,1)}`);
   }
   meshes(reducedMotion:boolean):RenderItem[]{
     const t=this.timeline,f=t?.frame;if(!this.active||!t||!f)return [];
-    const offset=this.rigOffset(reducedMotion),key=`${t.index()}/${t.mode}/${t.focus}/${offset.x.toFixed(4)}/${this.contactLens}/${reducedMotion}`;
+    const offset=this.rigOffset(reducedMotion),key=`${f.time}/${t.mode}/${t.focus}/${offset.x.toFixed(4)}/${this.contactLens}/${reducedMotion}`;
     if(this.renderKey===key)return this.cached;
     this.renderKey=key;
-    const m:RenderItem[]=[...f.body],frames=t.clip.frames.slice(0,t.index()+1);
+    const m:RenderItem[]=[...f.body],frames=t.clip.frames.slice(0,t.historyIndex()+1);
+    const trailFrames=f.interpolated?[...frames,f]:frames;
     if(f.ball)m.push({kind:'sphere',position:f.ball,scale:new Vec3(.19,.19,.19),color:'#fff078',unlit:true,noShadow:true});
     if(t.mode!=='body'){
-      // Sampling history only. Gaussian kernels, fixed world registration, no airborne projection.
-      let peak=0;const cells:{x:number;z:number;v:number}[]=[];
-      for(let x=-3;x<=5;x+=.8)for(let z=-6;z<=6;z+=.8){let v=0;for(let i=0;i<frames.length;i+=4){const p=frames[i].root;v+=Math.exp(-((x-p.x)**2+(z-p.z)**2)/.85);}peak=Math.max(peak,v);cells.push({x,z,v});}
-      for(const c of cells)if(c.v>peak*.08&&peak>0)m.push({kind:'roundBox',position:new Vec3(c.x,COURT_OVERLAY.coverage,c.z),scale:new Vec3(.79,.01,.79),color:c.v>peak*.65?'#dfbd78':'#67b9aa',alpha:.09+.19*c.v/peak,unlit:true,noShadow:true});
-      for(let i=4;i<frames.length;i+=4)if(frames[i].time-frames[i-4].time<=.15)m.push(rod(new Vec3(frames[i-4].root.x,COURT_OVERLAY.path,frames[i-4].root.z),new Vec3(frames[i].root.x,COURT_OVERLAY.path,frames[i].root.z),'#b1ded0',.028,.62));
-      if(t.clip.kind==='gait')for(let i=1;i<frames.length;i++)for(let foot=0;foot<2;foot++){
-        const a=frames[i-1],b=frames[i];if(b.time-a.time>.15||a.planted[foot]||!b.planted[foot])continue;
-        const p=foot?b.pose.footR:b.pose.footL;
-        m.push({kind:'roundBox',position:new Vec3(p.x,COURT_OVERLAY.path,p.z),rotation:new Vec3(0,Math.atan2(b.pose.forward.x,b.pose.forward.z),0),scale:new Vec3(.12,.012,.24),color:foot?'#edcc89':'#b1e7db',alpha:.8,unlit:true,noShadow:true});
+      const index=t.historyIndex();
+      if(this.courtClip!==t.clip||this.courtIndex!==index){
+        const history:RenderItem[]=[];
+        // Sampling history only. Gaussian kernels, fixed world registration, no airborne projection.
+        let peak=0;const cells:{x:number;z:number;v:number}[]=[];
+        for(let x=-3;x<=5;x+=.8)for(let z=-6;z<=6;z+=.8){let v=0;for(let i=0;i<frames.length;i+=4){const p=frames[i].root;v+=Math.exp(-((x-p.x)**2+(z-p.z)**2)/.85);}peak=Math.max(peak,v);cells.push({x,z,v});}
+        for(const c of cells)if(c.v>peak*.08&&peak>0)history.push({kind:'roundBox',position:new Vec3(c.x,COURT_OVERLAY.coverage,c.z),scale:new Vec3(.79,.01,.79),color:c.v>peak*.65?'#dfbd78':'#67b9aa',alpha:.09+.19*c.v/peak,unlit:true,noShadow:true});
+        for(let i=4;i<frames.length;i+=4)if(frames[i].time-frames[i-4].time<=.15)history.push(rod(new Vec3(frames[i-4].root.x,COURT_OVERLAY.path,frames[i-4].root.z),new Vec3(frames[i].root.x,COURT_OVERLAY.path,frames[i].root.z),'#b1ded0',.028,.62));
+        if(t.clip.kind==='gait')for(let i=1;i<frames.length;i++)for(let foot=0;foot<2;foot++){
+          const a=frames[i-1],b=frames[i];if(b.time-a.time>.15||a.planted[foot]||!b.planted[foot])continue;
+          const p=foot?b.pose.footR:b.pose.footL;
+          history.push({kind:'roundBox',position:new Vec3(p.x,COURT_OVERLAY.path,p.z),rotation:new Vec3(0,Math.atan2(b.pose.forward.x,b.pose.forward.z),0),scale:new Vec3(.12,.012,.24),color:foot?'#edcc89':'#b1e7db',alpha:.8,unlit:true,noShadow:true});
+        }
+        for(const s of frames.filter(f=>f.contact))history.push({kind:'torus',position:new Vec3(s.pose.racketCenter.x,COURT_OVERLAY.path,s.pose.racketCenter.z),rotation:new Vec3(Math.PI/2,0,0),scale:new Vec3(.42,.42,.18),color:'#e8c77f',alpha:.7,unlit:true,noShadow:true});
+        for(const s of frames.filter(f=>f.bounce&&f.ball))history.push({kind:'torus',position:new Vec3(s.ball!.x,COURT_OVERLAY.path,s.ball!.z),rotation:new Vec3(Math.PI/2,0,0),scale:new Vec3(.26,.26,.14),color:'#c8e5d7',alpha:.7,unlit:true,noShadow:true});
+        this.courtHistory=history;this.courtClip=t.clip;this.courtIndex=index;
       }
-      for(const s of frames.filter(f=>f.contact))m.push({kind:'torus',position:new Vec3(s.pose.racketCenter.x,COURT_OVERLAY.path,s.pose.racketCenter.z),rotation:new Vec3(Math.PI/2,0,0),scale:new Vec3(.42,.42,.18),color:'#e8c77f',alpha:.7,unlit:true,noShadow:true});
-      for(const s of frames.filter(f=>f.bounce&&f.ball))m.push({kind:'torus',position:new Vec3(s.ball!.x,COURT_OVERLAY.path,s.ball!.z),rotation:new Vec3(Math.PI/2,0,0),scale:new Vec3(.26,.26,.14),color:'#c8e5d7',alpha:.7,unlit:true,noShadow:true});
-      for(let i=2;i<frames.length;i+=2){const a=frames[i-2],b=frames[i];if(a.ball&&b.ball&&b.time-a.time<.1)m.push(rod(a.ball,b.ball,'#e6daa0',.018,.42));}
+      m.push(...this.courtHistory);
+      const last=frames[Math.floor((frames.length-1)/4)*4];if(last&&f.time>last.time&&f.time-last.time<=.15)m.push(rod(new Vec3(last.root.x,COURT_OVERLAY.path,last.root.z),new Vec3(f.root.x,COURT_OVERLAY.path,f.root.z),'#b1ded0',.028,.62));
+      for(let i=1;i<trailFrames.length;i++){const a=trailFrames[i-1],b=trailFrames[i];if(a.ball&&b.ball&&b.time-a.time<.1)m.push(rod(a.ball,b.ball,'#e6daa0',.018,.42));}
     }
     // Opaque surfaces preserve the silhouette. An annotation pass makes the
     // captured joint centres visible through clothing without displacing them.
@@ -222,10 +237,10 @@ export class PerformanceLab {
       if(triple){const [a,v,b]=triple,u=Vec3.sub(a,v).normalize(),w=Vec3.sub(b,v).normalize();let prev:Vec3|null=null;
         for(let i=0;i<=16;i++){const blend=Vec3.lerp(u,w,i/16);if(blend.len()<1e-5)continue;const point=v.clone().add(blend.normalize().scale(.20)).add(offset);if(prev)m.push({...rod(prev,point,'#ffe3a0',.018),overlay:true});prev=point;}
       }
-      for(let i=Math.max(1,frames.length-16);i<frames.length;i++)m.push(rod(frames[i-1].pose.racketCenter,frames[i].pose.racketCenter,'#e8c889',.015,.20+.35*(i/frames.length)));
+      for(let i=Math.max(1,trailFrames.length-16);i<trailFrames.length;i++)if(trailFrames[i].time-trailFrames[i-1].time<=.15)m.push(rod(trailFrames[i-1].pose.racketCenter,trailFrames[i].pose.racketCenter,'#e8c889',.015,.20+.35*(i/trailFrames.length)));
     }
     return this.cached=m;
   }
-  report(){return {active:this.active,kind:this.timeline?.clip.kind,mode:this.timeline?.mode,focus:this.timeline?.focus,time:this.timeline?.time,samples:this.timeline?.clip.frames.length,playing:this.timeline?.playing,frame:this.timeline?.frame?.time??null,meshes:this.cached.length};}
+  report(){return {active:this.active,kind:this.timeline?.clip.kind,mode:this.timeline?.mode,focus:this.timeline?.focus,time:this.timeline?.time,samples:this.timeline?.clip.frames.length,playing:this.timeline?.playing,frame:this.timeline?.frame?.time??null,interpolated:!!this.timeline?.frame?.interpolated,meshes:this.cached.length};}
   dispose(){this.close();this.layer.remove();}
 }

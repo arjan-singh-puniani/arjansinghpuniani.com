@@ -6,7 +6,7 @@ import type {Mesh,RenderItem,SkinnedMesh} from '../rendering/Renderer.js';
 import {Navigation} from '../world/Navigation.js';
 import {clipForState,sampleClip} from '../animation/ClipLibrary.js';
 import {taylorHeadMeshes,taylorTailMeshes,TAYLOR_PALETTE} from '../animation/TaylorAppearance.js';
-import {CHARACTER_SKIN,skinMatrices,type RigPoseLocal} from '../animation/CharacterSkin.js';
+import {CHARACTER_SKIN,skinMatrices,rigFromPose} from '../animation/CharacterSkin.js';
 
 export type AnimState='idle'|'walk'|'jog'|'ready'|'shuffle'|'sit'|'talk'|'drink'|'stretch'|'watch'|'swingForehand'|'swingBackhand'|'serve'|'volley'|'celebrate'|'reactMiss'|'coachFeed'|'coachExplain';
 export type EmotionState='neutral'|'attentive'|'friendly'|'focused'|'amused'|'pleased'|'disappointed'|'tired'|'surprised'|'proud'|'frustrated';
@@ -461,16 +461,14 @@ export class Character {
   }
 
   meshes(selected=false):RenderItem[]{
-    const m:RenderItem[]=[];const p=this.position;const pose=this.pose();const {baseY,torsoYaw,hipYaw,headYaw,right,forward,shoulderL,shoulderR,elbowL,elbowR,handL,handR,racketGrip,racketHandleTop,racketCenter,racketRot,hipL,hipR,kneeL,kneeR,footL,footR,torsoCenter,pelvisCenter,head}=pose;
+    const m:RenderItem[]=[];const p=this.position;const pose=this.pose();const {baseY,torsoYaw,hipYaw,headYaw,right,forward,shoulderL,shoulderR,elbowL,elbowR,handL,handR,racketGrip,racketHandleTop,racketCenter,racketRot,footL,footR,torsoCenter,pelvisCenter,head}=pose;
     const feline=this.spec.avatar==='taylor';
     const ready=this.state==='ready'||this.state==='shuffle';const seed=this.seed();
     m.push({kind:'sphere',position:new Vec3(p.x,.028,p.z),scale:new Vec3(.78,.045,.50),color:'#4f5d53',alpha:.16,unlit:true});
     if(selected)m.push({kind:'torus',position:new Vec3(p.x,.055,p.z),rotation:new Vec3(Math.PI/2,0,0),scale:new Vec3(1.35,1.35,.55),color:'#e4c967',alpha:.52,unlit:true});
-    const local=(v:Vec3)=>this.localFromWorld(v);
     // Club idle is presentation only. Props, reaches and every match pose use the contact rig exactly.
     const relax=this.canRelaxClubIdle()?this.clubIdleRelax:0;
-    const idleArm=(joint:Vec3,x:number,y:number)=>Vec3.lerp(local(joint),new Vec3(x,y+baseY-pose.knee,-.015),relax);
-    const rig:RigPoseLocal={pelvis:local(pelvisCenter),spine:local(Vec3.lerp(pelvisCenter,torsoCenter,.62)),chest:local(Vec3.lerp(shoulderL,shoulderR,.5)),neck:local(Vec3.lerp(Vec3.lerp(shoulderL,shoulderR,.5),head,.58)),head:local(head),upperArmL:local(shoulderL),foreArmL:idleArm(elbowL,-.397,1.095),handL:idleArm(handL,-.36,.89),upperArmR:local(shoulderR),foreArmR:idleArm(elbowR,.397,1.095),handR:idleArm(handR,.36,.89),thighL:local(hipL),shinL:local(kneeL),footL:local(footL),thighR:local(hipR),shinR:local(kneeR),footR:local(footR),forward:new Vec3(Math.sin(torsoYaw-this.yaw),0,Math.cos(torsoYaw-this.yaw))};const bones=skinMatrices(rig);const skinRoot={position:new Vec3(p.x,0,p.z),rotation:new Vec3(0,this.yaw,0),boneMatrices:bones};
+    const bones=skinMatrices(rigFromPose(pose,p,this.yaw,relax));const skinRoot={position:new Vec3(p.x,0,p.z),rotation:new Vec3(0,this.yaw,0),boneMatrices:bones,poseRig:true};
     const torsoSkin=feline?CHARACTER_SKIN.taylorDress:this.spec.presentation==='feminine'?CHARACTER_SKIN.feminineTop:CHARACTER_SKIN.top;
     m.push({...skinRoot,skin:torsoSkin,color:this.spec.shirt,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:feline?CHARACTER_SKIN.taylorLegs:CHARACTER_SKIN.pants,color:this.spec.skin,material:'skin'} as SkinnedMesh,{...skinRoot,skin:feline?CHARACTER_SKIN.taylorArms:CHARACTER_SKIN.arms,color:this.spec.skin,material:'skin'} as SkinnedMesh);
     if(feline)m.push({...skinRoot,skin:CHARACTER_SKIN.taylorBoots,color:TAYLOR_PALETTE.indigo,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorGloves,color:TAYLOR_PALETTE.indigo,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorNeckline,color:TAYLOR_PALETTE.indigo,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorDressEdging,color:TAYLOR_PALETTE.gold,material:'metal'} as SkinnedMesh);

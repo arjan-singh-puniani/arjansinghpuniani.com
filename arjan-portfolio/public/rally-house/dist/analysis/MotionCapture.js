@@ -1,4 +1,5 @@
 import { Vec3, clamp } from '../rendering/Math3D.js';
+import { rigFromPose, skinMatrices } from '../animation/CharacterSkin.js';
 export const LIMBS = [['shoulderL', 'elbowL'], ['elbowL', 'handL'], ['shoulderR', 'elbowR'], ['elbowR', 'handR'], ['shoulderL', 'shoulderR'], ['shoulderL', 'hipL'], ['shoulderR', 'hipR'], ['hipL', 'hipR'], ['hipL', 'kneeL'], ['kneeL', 'footL'], ['hipR', 'kneeR'], ['kneeR', 'footR']];
 export const JOINT_KEYS = ['shoulderL', 'shoulderR', 'elbowL', 'elbowR', 'handL', 'handR', 'hipL', 'hipR', 'kneeL', 'kneeR', 'footL', 'footR', 'pelvisCenter'];
 export const FOCUS_KEYS = { knee: 'kneeR', hip: 'hipR', ankle: 'footR', shoulder: 'shoulderR', elbow: 'elbowR' };
@@ -64,7 +65,41 @@ export class MotionRecorder {
             this.clip.frames.shift();
     }
 }
-/** Replay uses a nearest recorded sample, never bridges an unobserved gap. */
+const angleLerp = (a, b, t) => a + Math.atan2(Math.sin(b - a), Math.cos(b - a)) * t;
+const rotationLerp = (a, b, t) => new Vec3(angleLerp(a?.x ?? 0, b?.x ?? 0, t), angleLerp(a?.y ?? 0, b?.y ?? 0, t), angleLerp(a?.z ?? 0, b?.z ?? 0, t));
+// Facial expression variants keep their observed geometry until the next sample;
+// they must not freeze the moving anatomical skin when the mouth changes.
+function compatibleBody(a, b) { return a.body.length === b.body.length && a.body.every((part, i) => { const other = b.body[i]; return 'skin' in part ? 'skin' in other && part.poseRig === other.poseRig && (!part.poseRig || part.skin.id === other.skin.id) : !('skin' in other) && part.kind === other.kind && part.id === other.id; }); }
+/** Continuous reconstruction between observed neighbours, exact at event/sample times. */
+export function interpolateFrame(a, b, time) {
+    const t = (time - a.time) / (b.time - a.time), root = Vec3.lerp(a.root, b.root, t), pose = { ...a.pose };
+    for (const key of Object.keys(pose)) {
+        const x = a.pose[key], y = b.pose[key];
+        if (x instanceof Vec3 && y instanceof Vec3)
+            pose[key] = key === 'racketRot' ? rotationLerp(x, y, t) : Vec3.lerp(x, y, t);
+        else if (typeof x === 'number' && typeof y === 'number')
+            pose[key] = key.endsWith('Yaw') ? angleLerp(x, y, t) : x + (y - x) * t;
+    }
+    pose.right.normalize();
+    pose.forward.normalize();
+    pose.face = { ...a.pose.face };
+    for (const key of Object.keys(pose.face))
+        pose.face[key] = a.pose.face[key] + (b.pose.face[key] - a.pose.face[key]) * t;
+    let bones;
+    const body = a.body.map((part, i) => {
+        const other = b.body[i], position = Vec3.lerp(part.position, other.position, t), rotation = rotationLerp(part.rotation, other.rotation, t);
+        if ('skin' in part && 'skin' in other) {
+            if (part.poseRig)
+                bones ??= skinMatrices(rigFromPose(pose, root, rotation.y));
+            return { ...part, position, rotation, scale: part.scale && other.scale ? Vec3.lerp(part.scale, other.scale, t) : part.scale, boneMatrices: part.poseRig ? bones : part.boneMatrices };
+        }
+        if ('skin' in part || 'skin' in other)
+            throw Error('Replay topology changed');
+        return { ...part, position, rotation, scale: Vec3.lerp(part.scale, other.scale, t), alpha: (part.alpha ?? 1) + ((other.alpha ?? 1) - (part.alpha ?? 1)) * t };
+    });
+    return { time, root, pose, body, ball: a.ball && b.ball ? Vec3.lerp(a.ball, b.ball, t) : null, planted: [...a.planted], state: a.state, contact: false, bounce: false, interpolated: true };
+}
+/** One continuous pose owns avatar, overlay, hit targets, ball and measurements. Gaps remain missing. */
 export class ReplayTimeline {
     clip;
     time = 0;
@@ -72,6 +107,8 @@ export class ReplayTimeline {
     speed = 1;
     focus = 'knee';
     mode = 'combined';
+    cachedTime = NaN;
+    cachedFrame = null;
     constructor(clip) {
         this.clip = clip;
         this.load(clip);
@@ -84,6 +121,8 @@ export class ReplayTimeline {
         this.clip = clip;
         this.time = this.start;
         this.playing = true;
+        this.cachedTime = NaN;
+        this.cachedFrame = null;
     }
     seek(time) { if (Number.isFinite(time))
         this.time = clamp(time, this.start, this.end); }
@@ -95,7 +134,7 @@ export class ReplayTimeline {
         if (this.time >= this.end)
             this.playing = false;
     }
-    index() {
+    rightIndex() {
         let low = 0, high = this.clip.frames.length;
         while (low < high) {
             const mid = (low + high) >>> 1;
@@ -104,10 +143,27 @@ export class ReplayTimeline {
             else
                 high = mid;
         }
-        const a = Math.max(0, low - 1), b = Math.min(low, this.clip.frames.length - 1);
+        return low;
+    }
+    index() {
+        const low = this.rightIndex(), a = Math.max(0, low - 1), b = Math.min(low, this.clip.frames.length - 1);
         return Math.abs(this.clip.frames[a].time - this.time) <= Math.abs(this.clip.frames[b].time - this.time) ? a : b;
     }
-    get frame() { const f = this.clip.frames[this.index()]; return Math.abs(f.time - this.time) <= .075 ? f : null; }
+    historyIndex() { const low = this.rightIndex(); return Math.min(this.clip.frames.length - 1, Math.max(0, this.clip.frames[low]?.time === this.time ? low : low - 1)); }
+    get frame() {
+        if (this.cachedTime === this.time)
+            return this.cachedFrame;
+        this.cachedTime = this.time;
+        const low = this.rightIndex(), frames = this.clip.frames, a = frames[Math.max(0, low - 1)], b = frames[Math.min(low, frames.length - 1)];
+        if (Math.abs(a.time - this.time) < 1e-9)
+            return this.cachedFrame = a;
+        if (Math.abs(b.time - this.time) < 1e-9)
+            return this.cachedFrame = b;
+        if (b.time - a.time <= .15 && compatibleBody(a, b))
+            return this.cachedFrame = interpolateFrame(a, b, this.time);
+        const nearest = frames[this.index()];
+        return this.cachedFrame = Math.abs(nearest.time - this.time) <= .075 ? nearest : null;
+    }
 }
 export function summary(clip) {
     let distance = 0, steps = 0, observedDuration = 0, hasGap = false;

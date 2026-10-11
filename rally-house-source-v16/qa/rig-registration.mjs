@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {chromium,browserOptions} from './runtime.mjs';
-const out='evidence/rig-registration-20261011/avatars';fs.mkdirSync(out,{recursive:true});
+const out=process.env.QA_OUT??'evidence/rig-registration-20261011/avatars';fs.mkdirSync(out,{recursive:true});
 const browser=await chromium.launch({...browserOptions,args:['--use-angle=metal']}),page=await browser.newPage({viewport:{width:1440,height:900}}),errors=[],captures=[];
 page.on('pageerror',e=>errors.push(e.message));
 await page.goto('http://127.0.0.1:8078/?debug',{waitUntil:'networkidle'});await page.waitForFunction(()=>window.__rh?.ready);

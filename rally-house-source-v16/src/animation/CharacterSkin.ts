@@ -1,5 +1,6 @@
 import {Mat4, Vec3, identity, scaling, multiply, invertRigid, rigidFrame} from '../rendering/Math3D.js';
 import type {SkinGeometry} from '../rendering/Renderer.js';
+import type {CharacterPose} from '../entities/Character.js';
 
 export const BONE={pelvis:0,spine:1,chest:2,neck:3,head:4,upperArmL:5,foreArmL:6,handL:7,upperArmR:8,foreArmR:9,handR:10,thighL:11,shinL:12,thighR:13,shinR:14} as const;
 export const BONE_COUNT=15;
@@ -10,6 +11,14 @@ export interface RigPoseLocal {
   upperArmL:Vec3;foreArmL:Vec3;handL:Vec3;upperArmR:Vec3;foreArmR:Vec3;handR:Vec3;
   thighL:Vec3;shinL:Vec3;footL:Vec3;thighR:Vec3;shinR:Vec3;footR:Vec3;
   forward:Vec3;
+}
+
+/** The mesh and continuous replay use the same landmark-to-skin mapping. */
+export function rigFromPose(p:CharacterPose,root:Vec3,yaw:number,relax=0):RigPoseLocal{
+ const local=(v:Vec3)=>{const dx=v.x-root.x,dz=v.z-root.z,s=Math.sin(yaw),c=Math.cos(yaw);return new Vec3(c*dx-s*dz,v.y,s*dx+c*dz);};
+ const arm=(v:Vec3,x:number,y:number)=>Vec3.lerp(local(v),new Vec3(x,y+p.baseY-p.knee,-.015),relax);
+ const chest=Vec3.lerp(p.shoulderL,p.shoulderR,.5);
+ return {pelvis:local(p.pelvisCenter),spine:local(Vec3.lerp(p.pelvisCenter,p.torsoCenter,.62)),chest:local(chest),neck:local(Vec3.lerp(chest,p.head,.58)),head:local(p.head),upperArmL:local(p.shoulderL),foreArmL:arm(p.elbowL,-.397,1.095),handL:arm(p.handL,-.36,.89),upperArmR:local(p.shoulderR),foreArmR:arm(p.elbowR,.397,1.095),handR:arm(p.handR,.36,.89),thighL:local(p.hipL),shinL:local(p.kneeL),footL:local(p.footL),thighR:local(p.hipR),shinR:local(p.kneeR),footR:local(p.footR),forward:new Vec3(Math.sin(p.torsoYaw-yaw),0,Math.cos(p.torsoYaw-yaw))};
 }
 
 const bind:RigPoseLocal={
