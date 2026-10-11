@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {chromium,browserOptions} from './runtime.mjs';
 
-const label=process.argv[2]??'final';
+const label=process.argv[2]??'final',avatar=process.argv[3]??'Arjan';
 const output=path.resolve('../takeover-evidence/impact-20261009');
 fs.mkdirSync(output,{recursive:true});
 function wav(samples,rate){
@@ -18,7 +18,7 @@ try{
  const page=await context.newPage();
  page.on('pageerror',e=>report.errors.push(e.message));
  await page.goto('http://127.0.0.1:8078/?debug');await page.waitForFunction(()=>window.__rh?.ready);
- await page.getByText('Arjan',{exact:true}).click();await page.waitForTimeout(700);
+ await page.getByText(avatar,{exact:true}).click();await page.waitForTimeout(700);
  await page.screenshot({path:path.join(output,`${label}-club.png`)});
  report.audio=await page.evaluate(async()=>{
   const {AudioManager}=await import('./dist/core/AudioManager.js');const rows=[];

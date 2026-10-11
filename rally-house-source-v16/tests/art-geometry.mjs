@@ -38,7 +38,7 @@ function jointRing(skin,segment,half,end,segments){
   if(w[end]>.999){const key=[...skin.positions.slice(i,i+3),...skin.boneIndices.slice(vi*4,vi*4+4),...w].map(v=>v.toFixed(5)).join(',');vertices.push(key);}
  }return new Set(vertices);
 }
-for(const [name,seg,pairs] of [['pants',10,[[0,1],[2,3]]],['arms',10,[[0,1],[2,3]]],['top',12,[[0,1]]],['feminineTop',12,[[0,1]]]]){
+for(const [name,seg,pairs] of [['pants',10,[[0,1],[2,3]]],['arms',10,[[0,1],[2,3]]],['top',12,[[0,1]]],['feminineTop',12,[[0,1]]],['taylorBoots',16,[[0,1],[2,3]]]]){
  for(const [a,b] of pairs){
   const left=jointRing(CHARACTER_SKIN[name],a,1,1,seg),right=jointRing(CHARACTER_SKIN[name],b,0,0,seg);
   assert.equal(left.size,seg);assert.equal(right.size,seg);

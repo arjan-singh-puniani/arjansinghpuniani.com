@@ -806,7 +806,7 @@ export class Game {
   }
   private openAvatarPicker(){
     this.ui.showContext('YOUR CHARACTER','Who’s arriving at Rally House?','Choose your look. You can switch anytime in Settings.',[],[
-      {title:'Taylor',subtitle:'Long dark hair · navy-and-gold cat ears · turquoise charm',run:()=>this.choosePlayerAvatar('taylor')},
+      {title:'Taylor',subtitle:'Gold and indigo feline · sculpted bob · white dress',run:()=>this.choosePlayerAvatar('taylor')},
       {title:'Arjan',subtitle:'Swept dark hair · strong brows · charcoal tenniswear',run:()=>this.choosePlayerAvatar('arjan')}
     ]);
   }

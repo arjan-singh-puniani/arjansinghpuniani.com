@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import {chromium,browserOptions} from './runtime.mjs';
+const avatar=process.argv[2]??'Arjan';
 const output=path.resolve('../takeover-evidence/impact-20261009'),report={viewports:[],cycles:[],errors:[],requests:[]};
 const browser=await chromium.launch({...browserOptions,args:['--use-angle=metal']});
 const widths=[[844,390],[1920,1080],[1728,1117],[1440,900],[1280,800],[1024,768],[430,932],[390,844],[720,900]];
@@ -13,7 +14,7 @@ try{
   await page.getByRole('button',{name:/Discover/}).click();await page.waitForFunction(()=>[...document.images].some(i=>i.alt.includes('clock separates')&&i.complete&&i.naturalWidth>0));
   const {default:AxeBuilder}=await import('../../arjan-portfolio/node_modules/@axe-core/playwright/dist/index.js');
   const axe=await new AxeBuilder({page}).analyze();assert.deepEqual(axe.violations,[]);
-  await page.getByRole('button',{name:'Play Rally House ↗'}).click();await page.frameLocator('iframe').getByText('Arjan',{exact:true}).click();
+  await page.getByRole('button',{name:'Play Rally House ↗'}).click();await page.frameLocator('iframe').getByText(avatar,{exact:true}).click();
   const frame=page.frames().find(f=>f.url().includes('/rally-house/index.html'));
   // Production deliberately has no debug hooks; inspect the shipped controls
   // through the real character card and challenge button.
@@ -34,7 +35,7 @@ try{
   report.viewports.push({width,height,axe:axe.violations.length,...shipped});await context.close();console.log('Shipped viewport PASS',width,height);
  }
  const page=await browser.newPage({viewport:{width:1280,height:800}});page.on('pageerror',e=>report.errors.push(e.message));
- await page.goto('http://127.0.0.1:8078/?debug');await page.waitForFunction(()=>window.__rh?.ready);await page.getByText('Arjan',{exact:true}).click();
+ await page.goto('http://127.0.0.1:8078/?debug');await page.waitForFunction(()=>window.__rh?.ready);await page.getByText(avatar,{exact:true}).click();
  report.cycles=await page.evaluate(()=>{
   const g=window.__rh.game,rows=[];g.autosave=-10000;g.clock.paused=true;
   for(let cycle=0;cycle<16;cycle++){
@@ -60,8 +61,8 @@ try{
  });assert(report.audio.mutedContextAbsent&&report.audio.disposed);assert.equal(report.audio.cached,12);assert(report.audio.peaks.every(p=>p<=.921));
  report.packageReloads=0;
  for(let i=0;i<5;i++){
-  await page.goto('http://127.0.0.1:8079/?debug');await page.waitForFunction(()=>window.__rh?.ready);if(await page.getByText('Arjan',{exact:true}).isVisible())await page.getByText('Arjan',{exact:true}).click();
+  await page.goto('http://127.0.0.1:8079/?debug');await page.waitForFunction(()=>window.__rh?.ready);if(await page.getByText(avatar,{exact:true}).isVisible())await page.getByText(avatar,{exact:true}).click();
   assert(await page.evaluate(async()=>{const {tennisImpactSignal}=await import('./dist/core/TennisImpactSound.js');return tennisImpactSignal('perfect',0,48000).length>0&&[...document.styleSheets].some(s=>s.href?.endsWith('/championship.css'));}));report.packageReloads++;
  }
  assert.deepEqual(report.errors,[]);assert.deepEqual(report.requests,[]);console.log('12 bounded audio buffers, disposal, and five extracted-package reloads PASS');
-}finally{fs.writeFileSync(path.join(output,'validation.json'),JSON.stringify(report,null,2));await browser.close();}
+}finally{fs.writeFileSync(path.join(output,avatar==='Arjan'?'validation.json':'validation-taylor.json'),JSON.stringify(report,null,2));await browser.close();}
