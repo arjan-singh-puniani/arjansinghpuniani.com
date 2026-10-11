@@ -1,0 +1,57 @@
+{
+  "errors": [],
+  "shots": [
+    {
+      "name": "front",
+      "viewport": 1440,
+      "gl": 0,
+      "draws": 890,
+      "triangles": 272030
+    },
+    {
+      "name": "three-quarter",
+      "viewport": 1440,
+      "gl": 0,
+      "draws": 890,
+      "triangles": 272030
+    },
+    {
+      "name": "back",
+      "viewport": 1440,
+      "gl": 0,
+      "draws": 890,
+      "triangles": 272030
+    },
+    {
+      "name": "championship",
+      "viewport": 1440,
+      "gl": 0
+    },
+    {
+      "name": "front",
+      "viewport": 390,
+      "gl": 0,
+      "draws": 890,
+      "triangles": 272030
+    },
+    {
+      "name": "three-quarter",
+      "viewport": 390,
+      "gl": 0,
+      "draws": 890,
+      "triangles": 272030
+    },
+    {
+      "name": "back",
+      "viewport": 390,
+      "gl": 0,
+      "draws": 890,
+      "triangles": 272030
+    },
+    {
+      "name": "championship",
+      "viewport": 390,
+      "gl": 0
+    }
+  ]
+}

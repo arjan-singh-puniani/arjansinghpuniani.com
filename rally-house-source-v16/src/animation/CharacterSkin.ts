@@ -76,4 +76,18 @@ const arms=build();
 addSegment(arms,bind.upperArmL,bind.foreArmL,[.105,.095],[.09,.08],BONE.upperArmL,BONE.foreArmL,10);addSegment(arms,bind.foreArmL,bind.handL,[.09,.08],[.070,.065],BONE.foreArmL,BONE.handL,10);
 addSegment(arms,bind.upperArmR,bind.foreArmR,[.105,.095],[.09,.08],BONE.upperArmR,BONE.foreArmR,10);addSegment(arms,bind.foreArmR,bind.handR,[.09,.08],[.070,.065],BONE.foreArmR,BONE.handR,10);
 
-export const CHARACTER_SKIN={top:finish('char-top-v1',top),feminineTop:finish('char-top-feminine-v1',feminineTop),pants:finish('char-pants-v1',pants),arms:finish('char-arms-v1',arms),shorts:finish('char-shorts-v1',shorts),skirt:finish('char-skirt-v1',skirt)};
+// Taylor's continuous sleeveless dress shares the authoritative waist ring.
+const taylorDress=build();
+addSegment(taylorDress,new Vec3(0,.59,0),bind.pelvis,[.40,.29],[.295,.205],BONE.pelvis,BONE.pelvis,24);
+addSegment(taylorDress,bind.pelvis,bind.spine,[.295,.205],[.245,.175],BONE.pelvis,BONE.spine,24);
+addSegment(taylorDress,bind.spine,bind.chest,[.245,.175],[.325,.205],BONE.spine,BONE.chest,24);
+addSegment(taylorDress,bind.chest,new Vec3(0,1.42,.015),[.325,.205],[.125,.115],BONE.chest,BONE.chest,24);
+const taylorBoots=build(),taylorGloves=build(),taylorLegs=build();
+for(const side of ['L','R'] as const){
+ const shin=bind[`shin${side}`],foot=bind[`foot${side}`],elbow=bind[`foreArm${side}`],hand=bind[`hand${side}`];
+ addSegment(taylorLegs,bind[`thigh${side}`],Vec3.lerp(shin,bind[`thigh${side}`],.20),[.119,.104],[.092,.083],BONE[`thigh${side}`],BONE[`shin${side}`],16);
+ addSegment(taylorBoots,Vec3.lerp(shin,bind[`thigh${side}`],.20),shin,[.108,.102],[.108,.098],BONE[`shin${side}`],BONE[`shin${side}`],16);
+ addSegment(taylorBoots,shin,foot,[.108,.098],[.087,.082],BONE[`shin${side}`],BONE[`shin${side}`],16);
+ addSegment(taylorGloves,Vec3.lerp(elbow,hand,.32),hand,[.097,.087],[.079,.074],BONE[`foreArm${side}`],BONE[`hand${side}`],16);
+}
+export const CHARACTER_SKIN={taylorLegs:finish('taylor-legs-v1',taylorLegs),taylorDress:finish('taylor-dress-v1',taylorDress),taylorBoots:finish('taylor-boots-v1',taylorBoots),taylorGloves:finish('taylor-gloves-v1',taylorGloves),top:finish('char-top-v1',top),feminineTop:finish('char-top-feminine-v1',feminineTop),pants:finish('char-pants-v1',pants),arms:finish('char-arms-v1',arms),shorts:finish('char-shorts-v1',shorts),skirt:finish('char-skirt-v1',skirt)};
