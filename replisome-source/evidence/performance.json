@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-11",
+  "environment": "Codex in-app browser on this Mac; concurrent browser testing",
+  "viewport": [
+    618,
+    770
+  ],
+  "observations": [
+    {
+      "fps": 60.0,
+      "effectiveQuality": "High",
+      "drawCalls": 20,
+      "triangles": 2420180,
+      "note": "Observed before adaptive geometry reduction under test load"
+    },
+    {
+      "fps": 30.0,
+      "effectiveQuality": "Mobile",
+      "drawCalls": 18,
+      "triangles": 157560,
+      "note": "Final implementation after adaptive reduction; measured in a four-second frame window"
+    }
+  ],
+  "limits": [
+    "Not physical iPhone testing",
+    "Not a sustained benchmark or thermal profile",
+    "Browser visibility and concurrent GPU load affect results"
+  ]
+}

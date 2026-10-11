@@ -1,0 +1,31 @@
+{
+  "app": "REPLISOME",
+  "version": "1.0.0",
+  "base": "/replisome/",
+  "source": "../../../replisome-source",
+  "lockfileSha256": "180cd7b30f14f795f089be8826613c48c0948c6d54d58be07fd4dd954d5af513",
+  "files": {
+    "assets/index-A6noE43w.js": "4e86272eae13a2b5db877ae5c57dd0a0eb57c5841e021491aa85531d93bf32a0",
+    "assets/index-ChlY7kBL.css": "ba0adb4fbee43de3427e222495450c40e8546c23a5b5ff37fcc0964772413a19",
+    "assets/react-DPIr46qh.js": "c0e00f50de6c0c4313118305af3b7781b03c48879475014a86ba2bcd056a65f6",
+    "assets/three-Btkzf33p.js": "a0176efdb19d184a5ed690151e1cd7f36eabd85f362f1a859c839aa811d69135",
+    "fonts/dm-sans-400.ttf": "b0ae3e89a7d3ef2b1838bb4b1ceb0b17cc3435af061eee809d76aa623ff116e9",
+    "fonts/dm-sans-500.ttf": "376427b5322148d8de1e03f263bcca4935a2d60ba71d9f94f4947ab664c711ae",
+    "fonts/dm-sans-600.ttf": "b79a2ea7a38f33fd96a282fadb9ce97626bb0724a44d21075859f0e50239993a",
+    "fonts/dm-sans-700.ttf": "2a8e7f713ee79fbccdef3cef5c787aff47580299f7da60144961e7db2ec08211",
+    "fonts/dmsans-OFL.txt": "9af36190332437f5ecd09974de43c1f7c77a310a996cdd8ceb25628b458840e1",
+    "fonts/fonts.css": "fc10c356740d09161a8169257983874a14074824404fc91ab3e175baae8e8b1a",
+    "fonts/space-grotesk-400.ttf": "ec926d5065eaca49a48f96e312bbae0bbc5733c24215cf5dfabbdccee926fef7",
+    "fonts/space-grotesk-500.ttf": "3e699ead1876244fa392243054ddefe7cf631b488438828a8a100731a22ab995",
+    "fonts/space-grotesk-600.ttf": "6c0346b8d297ebdc225832833e03e884a26ad99d265ecd3924d46e1ba285ea87",
+    "fonts/space-grotesk-700.ttf": "3e756954468ff1cb302dae0414262e72f76a67d87bef3fa1f3226cd0fb9b2d85",
+    "fonts/spacegrotesk-OFL.txt": "564ce565c371c5e5bbf286006565a7c9aa55a9f56e7ca58d56e05d649dd61a72",
+    "index.html": "99a60f7526247c5ec3dfcc21abf5f4e0f17fac87be40477dd6a746ac542d3945",
+    "molecules/6tnz.json": "e2ea1f8ac010e778fbfb36c9f4cd0ab973edee5d0532277173f5037cc58c7280",
+    "molecules/7pfo.json": "55ac3bddfa49eff6363d82a63960ea87689dc3044dfdc6bc575daf610ee494f3",
+    "molecules/8qj7.json": "e0fee46b8fb129ac47ad84c22e76749dc48947dacee135f32289e7d661baf360",
+    "molecules/source/6tnz-assembly1.cif.gz": "5a0f464fb68e61f0c3a42245195034ce3b59c186ef27ecc22b2b7e849a94f628",
+    "molecules/source/7pfo-assembly1.cif.gz": "b86e4e952f5d0c61ffa542c07137f2982f7a8654ec30dec38b5060093583cb70",
+    "molecules/source/8qj7-assembly1.cif.gz": "613babdad7347efa977f7125d8acac6d384b8fee7d8fd3e3050d3fdfc02cc54b"
+  }
+}
