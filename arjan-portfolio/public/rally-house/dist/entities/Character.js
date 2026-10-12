@@ -4,7 +4,8 @@ import { WalkCycle } from '../animation/WalkCycle.js';
 import { Vec3, clamp, smoothstep } from '../rendering/Math3D.js';
 import { Navigation } from '../world/Navigation.js';
 import { clipForState, sampleClip } from '../animation/ClipLibrary.js';
-import { taylorHeadMeshes, taylorTailMeshes, TAYLOR_PALETTE } from '../animation/TaylorAppearance.js';
+import { taylorHeadMeshes, taylorTailMeshes, taylorFootMeshes, TAYLOR_PALETTE } from '../animation/TaylorAppearance.js';
+import { adultTaylorPose, TAYLOR_BODY } from '../animation/TaylorBody.js';
 import { CHARACTER_SKIN, skinMatrices, rigFromPose } from '../animation/CharacterSkin.js';
 export function locomotionStyleFor(id) {
     if (id === 'coach')
@@ -497,7 +498,7 @@ export class Character {
         const aim = this.outgoingTarget;
         const shotYaw = aim ? Math.atan2(aim.x - this.position.x, aim.z - this.position.z) : this.yaw;
         if (state === 'serve')
-            return this.worldLocal(.14, 2.36, .38, shotYaw);
+            return this.worldLocal(.14, this.spec.avatar === 'taylor' ? 3.04 : 2.36, .38, shotYaw);
         const local = incoming ? this.localFromWorld(incoming, shotYaw) : new Vec3(state === 'swingForehand' ? .54 : state === 'swingBackhand' ? -.42 : .30, 1.02, .48);
         local.y = clamp(local.y, state === 'volley' ? .90 : .66, state === 'volley' ? 1.58 : 1.38);
         local.z = clamp(local.z, .55, .90);
@@ -948,7 +949,21 @@ export class Character {
             result.racketHandleTop.add(delta);
             result.racketCenter.add(delta);
         }
+        // Keep the animation-blend snapshot in its authored source coordinates;
+        // retarget once, after blending and planted-foot constraints have settled.
         this.lastPose = result;
+        if (this.spec.avatar === 'taylor') {
+            const contact = isShot(this.state) && this.contactTarget ? bell(result.sp - this.shotContactTime(this.state) / this.shotDuration(this.state), .11) : 0;
+            let right = Math.max(contact, this.interactionWeight), left = this.state === 'swingBackhand' ? contact : 0;
+            if (this.propKind && this.propAnchor) {
+                const weight = this.propWanted ? 1 - smoothstep(.4, 1, this.propAge) : smoothstep(0, .65, this.propAge);
+                if (this.propKind === 'notebook')
+                    left = Math.max(left, weight);
+                else
+                    right = Math.max(right, weight);
+            }
+            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left });
+        }
         return result;
     }
     /** Read-only, detached world-space landmarks from the same solver that owns contact. */
@@ -968,7 +983,7 @@ export class Character {
         if (selected)
             m.push({ kind: 'torus', position: new Vec3(p.x, .055, p.z), rotation: new Vec3(Math.PI / 2, 0, 0), scale: new Vec3(1.35, 1.35, .55), color: '#e4c967', alpha: .52, unlit: true });
         // Idle may use the authored club stance. Props, reaches and every match pose retain the contact rig.
-        const relax = this.canFoldReferenceIdle() ? 0 : this.canRelaxClubIdle() ? this.clubIdleRelax : 0;
+        const relax = 0;
         const bones = skinMatrices(rigFromPose(pose, p, this.yaw, relax));
         const skinRoot = { position: new Vec3(p.x, 0, p.z), rotation: new Vec3(0, this.yaw, 0), boneMatrices: bones, poseRig: true };
         const torsoSkin = feline ? CHARACTER_SKIN.taylorDress : this.spec.presentation === 'feminine' ? CHARACTER_SKIN.feminineTop : CHARACTER_SKIN.top;
@@ -990,7 +1005,7 @@ export class Character {
         const shoeColor = feline ? this.spec.skin : this.spec.shoe ?? '#fff8ee', soleColor = mixHex(shoeColor, '#ffffff', .62);
         if (feline) {
             for (const [foot, pitch, yaw] of [[footL, leftShoePitch, leftShoeYaw], [footR, rightShoePitch, rightShoeYaw]])
-                m.push({ kind: 'sphere', position: foot.clone().add(new Vec3(0, -.035, 0)), rotation: new Vec3(pitch, yaw, 0), scale: new Vec3(.22, .15, .31), color: this.spec.skin, material: 'skin' });
+                m.push(...taylorFootMeshes(foot, pitch, yaw));
         }
         else {
             m.push({ kind: 'roundBox', position: footL, rotation: new Vec3(leftShoePitch, leftShoeYaw, 0), scale: new Vec3(.29, .135, .43), color: shoeColor, material: 'fabric' }, { kind: 'roundBox', position: footR, rotation: new Vec3(rightShoePitch, rightShoeYaw, 0), scale: new Vec3(.29, .135, .43), color: shoeColor, material: 'fabric' });
@@ -1005,9 +1020,10 @@ export class Character {
         }
         const tilt = this.majorActivity ? 0 : this.acting.values.headTilt + (this.acting.reaction?.tilt ?? 0) * this.acting.reactionWeight;
         if (feline) {
-            m.push(...taylorHeadMeshes(head, headYaw, tilt, pose.face, this.animTime));
+            const headScale = TAYLOR_BODY.headScale;
+            m.push(...taylorHeadMeshes(head, headYaw, tilt, pose.face, this.animTime).map(m => ({ ...m, position: head.clone().add(Vec3.sub(m.position, head).scale(headScale)), scale: (m.scale ?? new Vec3(1, 1, 1)).clone().scale(headScale) })));
             const neck = Vec3.lerp(Vec3.lerp(shoulderL, shoulderR, .5), head, .30);
-            m.push({ kind: 'cylinder', position: neck, scale: new Vec3(.17, .25, .17), color: this.spec.skin, material: 'toon' });
+            m.push({ kind: 'sphere', position: neck, scale: new Vec3(.23, .32, .23), color: this.spec.skin, material: 'skin' });
             m.push(...taylorTailMeshes(pelvisCenter, hipYaw, this.animTime, this.horizontalSpeed));
         }
         else {

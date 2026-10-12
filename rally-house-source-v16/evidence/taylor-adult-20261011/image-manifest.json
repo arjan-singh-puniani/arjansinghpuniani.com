@@ -1,0 +1,163 @@
+[
+  {
+    "source": "before-front.png",
+    "file": "before-front.webp",
+    "sourceSHA256": "ffb07eca96b1269d04a8d6a2307ec02f02c93ffc98845d7710fa106b5260e7db",
+    "sha256": "e7a8822cf13952a47bf2081ec934033457079868ce1fa2b7828294db77c7c765",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "before-three-quarter.png",
+    "file": "before-three-quarter.webp",
+    "sourceSHA256": "6e0e045576ac16c20b167a65fd2d418dc7227cda015bdf0194736e2a297280da",
+    "sha256": "da308dabdb3360476b01077bd4106953ab04a22249e5bc37f8f54f9e16f8b3a2",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "final-front.png",
+    "file": "final-front.webp",
+    "sourceSHA256": "d81099691aac647a54aa537ac7d49d32207a2d5b965e81b5c14bfddbd4306bf5",
+    "sha256": "32fa4693d9ab1a5cbb4b4f8bd515aeac1d0f560b1c8c0ff6bbe064af4940d504",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "final-three-quarter.png",
+    "file": "final-three-quarter.webp",
+    "sourceSHA256": "0b2aa8c0b08391291f91c571d66d99cdf5f8ae764beb87fd6d5d778cd5cbb5c1",
+    "sha256": "c4443635a2ed897b6b0e877986c8fb02ce7a566dab010839cb1e00eece1bc8cf",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "chromium/1440-club.png",
+    "file": "chromium/1440-club.webp",
+    "sourceSHA256": "2b107b08cc36130b44fb86624cb097e3b5613869d7f20974815e95ce3a1b502c",
+    "sha256": "6d21b209c6fda422301e5f0df9e2a4955fcdbf1b9ecd58483ede042fc5854009",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "chromium/390-club.png",
+    "file": "chromium/390-club.webp",
+    "sourceSHA256": "f4701467096d0e0986666d592b27fc3f4e5679539a88c2c3c718c29fcde9c771",
+    "sha256": "c88b66308c72d13f55a84944c17969c626129e9cebe6e3c3d226f60622ec5da5",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "chromium/championship.png",
+    "file": "chromium/championship.webp",
+    "sourceSHA256": "bcf2c43353eda5963a23f646bbf9078cdeeda6dccc958053ade063f9413c0ef3",
+    "sha256": "81d4c2c21ce3e92a3ca578c286f968da0f072e85a82602d5059203ffb3f80018",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "firefox/1440-club.png",
+    "file": "firefox/1440-club.webp",
+    "sourceSHA256": "15e3404d6c171788d0c6070e4afcad912ed4e9ec0ba876f4d14bdc859f30199d",
+    "sha256": "879a2a5d22995b3c5968a5f7dbb3a57551176d3b28f079ad714f7fdafe6b5a65",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "firefox/390-club.png",
+    "file": "firefox/390-club.webp",
+    "sourceSHA256": "1fe2731f1073b49215e97d0ee60252ec3186290ca9aa59b62a1bd6e0a7d6ac6f",
+    "sha256": "b6e903c6bfe9c621206da6c9a3a823501b548bb72c39af5c1a2b2aae9929ec35",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "firefox/championship.png",
+    "file": "firefox/championship.webp",
+    "sourceSHA256": "bdd08af699b39f539c43d8aab26405a924ee9e3570e945360d8f70dbcb0e53c2",
+    "sha256": "a16915e228b7e26ce0d42357143092989f42d004055e6dc564f4a4d2af18fe62",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "webkit/1440-club.png",
+    "file": "webkit/1440-club.webp",
+    "sourceSHA256": "158f9ee415c6a17a9023457fd4228dfd74de786cf45ecf6bbae9e91ef5f59bba",
+    "sha256": "bf3abb0ba156d2732a503f107d0404323915840f9ed5f44f45741ef7efca89c8",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "webkit/390-club.png",
+    "file": "webkit/390-club.webp",
+    "sourceSHA256": "dcfe174d7c81150d51d2f0389431d9faa9d4408fea97de9cfa4ceeca7e97c9f9",
+    "sha256": "ac4435bbfe6f4c7ed69ebeb9594eb1e1d9ea6ee04d8e3f3855727c7a9866ea3d",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "webkit/championship.png",
+    "file": "webkit/championship.webp",
+    "sourceSHA256": "b6504e1129fe35a0bf34d49df14aa0bc6474e2d014bab16f5b3bfd08b062e696",
+    "sha256": "4ae0a3d82d751126f342f99150cdb3e494ee65e62e5ab590a039983169224908",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "motion/taylor-continuous.png",
+    "file": "motion/taylor-continuous.webp",
+    "sourceSHA256": "9f622c575ece8c92bfa39e754ded0a5fb73ed0bd225ab39d1082a6420ad44ac2",
+    "sha256": "b0d6d71203d792c6adef8a058feda1637cfc172e959e38c2a9423bcc11b4245a",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "motion/fractional-joint-pick.png",
+    "file": "motion/fractional-joint-pick.webp",
+    "sourceSHA256": "8a03ce2c857284ff5bc5a04bfeaef027298e9aed39145d8dc93c04715e634076",
+    "sha256": "17d70c1d672da319406ef09991bd651f1c0f20ba30f137ce9939b9a57129bde0",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "phone-portrait/mount.png",
+    "file": "phone-portrait/mount.webp",
+    "sourceSHA256": "c687f2e4cf19caaa59d2744d53038c91203c783ee3744d6cee7746290989cecc",
+    "sha256": "3fe3105a442ec38d2a77ba4b48a4ad65fb52beed5dd3c87d153158f6c8ce1858",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "phone-portrait/record.png",
+    "file": "phone-portrait/record.webp",
+    "sourceSHA256": "cf16ade7148d8c2ecca6625b7a4d8022b40842b350310d25d4b051195105333e",
+    "sha256": "8e944f343418aed2c1e492f9ee4dbdf56246df166836905a56cf0689351829c9",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "phone-portrait/review.png",
+    "file": "phone-portrait/review.webp",
+    "sourceSHA256": "1708355a017ea963f23128f19c233d534372f7de30995766ba7a3d1036d639fc",
+    "sha256": "6400ce80459ae2c5860c596b15098b574ccb7b9bbe1143b87214437f09b03a42",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "phone-portrait/review-body.png",
+    "file": "phone-portrait/review-body.webp",
+    "sourceSHA256": "bc1350aef69142cd9f1b476ad8c3bfa906d7e53a00a218c275a67c0348daeda1",
+    "sha256": "f18957daa06c260a8a995731ef41ded5d48c097d2fa7dd5b021d6bd02660f35b",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "phone-portrait-tight-framing/mount.png",
+    "file": "phone-portrait-tight-framing/mount.webp",
+    "sourceSHA256": "12f04cfa0dcbaf5c4ae36bdaab7ccade42e92fc8d75506b7729295f5942e64fe",
+    "sha256": "f412b20ade80e3197b611dbc8b020c8edf777c720e47a0c73c245fdeea30e2c8",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "phone-portrait-tight-framing/record.png",
+    "file": "phone-portrait-tight-framing/record.webp",
+    "sourceSHA256": "2e8201e65b00c90546a2a2b50a15457a7dd0b3861d8f85c24305a1f3e6200535",
+    "sha256": "81e75a2e57d5eba1d2199050e2a771d27e60e8fc39ec85af11ba755530c65588",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "phone-portrait-tight-framing/review.png",
+    "file": "phone-portrait-tight-framing/review.webp",
+    "sourceSHA256": "8e1f245b46c852e23c0c028b210d5b46583310c4fbeaa2a6ac742ebc813288ce",
+    "sha256": "6c8b0a1dea862539e8a97083b2dad050d3965bb8cca7c15632b9011bf508d93c",
+    "conversion": "lossless WebP, no resize or other edits"
+  },
+  {
+    "source": "phone-portrait-tight-framing/review-body.png",
+    "file": "phone-portrait-tight-framing/review-body.webp",
+    "sourceSHA256": "3b5fdd63c3084aae018532aefdd3f0ded130dae307fc0ab6e3e1ca98d5341d35",
+    "sha256": "de21ebf3f33236742f505b6fa0e4fd6d2a26ab62ad24e9188ce783822686998c",
+    "conversion": "lossless WebP, no resize or other edits"
+  }
+]

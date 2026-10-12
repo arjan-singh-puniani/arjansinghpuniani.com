@@ -52,6 +52,7 @@ export class PerformanceLab {
     restoreFocus = null;
     lastAspect = 0;
     priorAspect = 0;
+    cameraBodyLift = 0;
     onReturn = () => { };
     onRecord = () => { };
     phone = null;
@@ -275,6 +276,7 @@ export class PerformanceLab {
         this.timeline = new ReplayTimeline(clip);
         this.timeline.mode = mode;
         this.timeline.focus = focus;
+        this.cameraBodyLift = Math.max(0, Math.min(.7, Math.max(...clip.frames.map(f => f.pose.head.y - f.root.y)) - 1.85));
         this.timeline.speed = Number(this.transport.querySelector('select')?.value ?? 1);
         this.source.value = kind;
         this.video.pause();
@@ -315,7 +317,7 @@ export class PerformanceLab {
     }
     else
         this.timeline.playing = !this.timeline.playing; this.refresh(); }
-    zoom(delta) { const phone = this.timeline?.clip.kind === 'phone' && this.timeline.mode !== 'court'; this.camera.desiredDistance = clamp(this.camera.desiredDistance + delta * (this.camera.desiredDistance / 20), phone ? (this.camera.aspect < .9 ? 9 : 7) : this.camera.aspect < .9 ? 12 : 7, phone ? (this.camera.aspect < .9 ? 14 : 10) : 60); }
+    zoom(delta) { const phone = this.timeline?.clip.kind === 'phone' && this.timeline.mode !== 'court', tall = (this.cameraBodyLift ?? 0) > .2; this.camera.desiredDistance = clamp(this.camera.desiredDistance + delta * (this.camera.desiredDistance / 20), phone ? (this.camera.aspect < .9 ? 9 : 7) : this.camera.aspect < .9 ? 12 : 7, phone ? (this.camera.aspect < .9 ? (tall ? 13 : 14) : 10) : 60); }
     key(e) {
         if (!this.active)
             return;
@@ -371,11 +373,11 @@ export class PerformanceLab {
         const t = this.timeline;
         if (!t)
             return;
-        const f = t.frame ?? t.clip.frames[0], portrait = this.camera.aspect < .9;
+        const f = t.frame ?? t.clip.frames[0], portrait = this.camera.aspect < .9, tall = (this.cameraBodyLift ?? 0) > .2;
         this.camera.autoFrame = false;
         this.camera.desiredAzimuth = t.mode === 'court' ? .36 : t.clip.kind === 'phone' ? 1.85 : 2.55;
         this.camera.desiredElevation = t.mode === 'court' ? .72 : .36;
-        this.camera.desiredDistance = t.mode === 'court' ? (portrait ? 48 : 35) : t.clip.kind === 'phone' ? (t.mode === 'body' ? (portrait ? 12 : 8) : (portrait ? 14 : 10)) : t.mode === 'body' ? (portrait ? 14 : 9) : (portrait ? 18 : 13);
+        this.camera.desiredDistance = t.mode === 'court' ? (portrait ? 48 : 35) : t.clip.kind === 'phone' ? (t.mode === 'body' ? (portrait ? (tall ? 11 : 12) : 8) : (portrait ? (tall ? 13 : 14) : 10)) : t.mode === 'body' ? (portrait ? (tall ? 10 : 14) : 9) : (portrait ? (tall ? 14 : 18) : 13);
         this.lastAspect = this.camera.aspect;
         this.trackCamera(f);
     }
@@ -385,7 +387,7 @@ export class PerformanceLab {
         const portrait = this.camera.aspect < .9, wide = this.canvas.clientWidth > 850;
         const court = this.timeline.mode === 'court';
         const shift = wide && !court ? 1.25 : 0;
-        this.camera.desiredTarget.set(court ? 1 : f.root.x + Math.cos(this.camera.desiredAzimuth) * shift, court ? 0 : f.root.y + (portrait ? -.05 : 1.15), court ? 0 : f.root.z - Math.sin(this.camera.desiredAzimuth) * shift);
+        this.camera.desiredTarget.set(court ? 1 : f.root.x + Math.cos(this.camera.desiredAzimuth) * shift, court ? 0 : f.root.y + (portrait ? -.05 : 1.15) + (this.cameraBodyLift ?? 0) * (portrait ? .5 : .7), court ? 0 : f.root.z - Math.sin(this.camera.desiredAzimuth) * shift);
     }
     update(dt, reducedMotion) {
         if (!this.active || !this.timeline)
@@ -399,7 +401,7 @@ export class PerformanceLab {
         if (this.lastAspect !== this.camera.aspect)
             this.frameCamera();
         if (this.timeline.clip.kind === 'phone' && this.timeline.mode !== 'court')
-            this.camera.desiredAzimuth = clamp(this.camera.desiredAzimuth, -.85, 1.9);
+            this.camera.desiredAzimuth = clamp(this.camera.desiredAzimuth, -.55, 1.9);
         const f = this.timeline.frame;
         if (f)
             this.trackCamera(f);

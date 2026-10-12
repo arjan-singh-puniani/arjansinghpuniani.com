@@ -142,7 +142,7 @@ for(const side of ['L','R'] as const){
 // A fitted athletic bodice and a short, lightly pleated skirt. The anatomical
 // spine and limb landmarks remain the single source for animation and replay.
 const taylorDress=build();
-const dressProfile=[[.575,.365,.245],[.65,.349,.238],[.76,.324,.225],[.84,.310,.220],[.92,.273,.195],[1.055,.224,.163],[1.13,.232,.178],[1.22,.271,.220],[1.28,.294,.225],[1.34,.308,.198],[1.38,.269,.164],[1.415,.192,.125],[1.445,.13,.113]];
+const dressProfile=[[.575,.365,.245],[.65,.349,.238],[.76,.324,.225],[.84,.310,.220],[.92,.273,.195],[1.055,.224,.163],[1.13,.232,.178],[1.22,.271,.220],[1.28,.294,.225],[1.34,.308,.198],[1.38,.269,.164],[1.415,.192,.125],[1.445,.13,.113]].map(([y,x,z])=>[y,x*.84,z*.90]);
 const dressAt=(y:number)=>radiusAt(dressProfile,y);
 function clampUnit(t:number){return Math.max(0,Math.min(1,t));}
 const eased=(t:number)=>{const u=clampUnit(t);return u*u*(3-2*u);};
@@ -185,23 +185,24 @@ for(let i=0;i<12;i++)for(const index of [[i,-1],[i+1,-1],[i+1,1],[i,-1],[i+1,1],
  const p=markPoint(index[0],index[1]),[a,b,t]=dressWeights(p.y);taylorTunicMark.p.push(p.x,p.y,p.z);taylorTunicMark.n.push(0,0,1);taylorTunicMark.bi.push(a,b,0,0);taylorTunicMark.bw.push(1-t,t,0,0);
 }
 const taylorArms=build();
-function shoulderCap(out:Build,c:Vec3,dir:Vec3,bone:number,rx=.078,rz=.070,seg=24){
+function shoulderCap(out:Build,c:Vec3,dir:Vec3,bone:number,rx=.078,rz=.070,seg=24,depth=rx){
  const frame=basis(dir),rings=build();
- for(let row=0;row<=8;row++){const a=row/8*Math.PI/2;for(let i=0;i<seg;i++){const angle=i/seg*Math.PI*2,x=Math.cos(angle)*Math.sin(a),y=-Math.cos(a),z=Math.sin(angle)*Math.sin(a),v=c.clone().add(frame.x.clone().scale(x*rx)).add(frame.y.clone().scale(y*rx)).add(frame.z.clone().scale(z*rz)),n=frame.x.clone().scale(x/rx).add(frame.y.clone().scale(y/rx)).add(frame.z.clone().scale(z/rz)).normalize();rings.p.push(v.x,v.y,v.z);rings.n.push(n.x,n.y,n.z);rings.bi.push(bone,0,0,0);rings.bw.push(1,0,0,0);}}
+ for(let row=0;row<=8;row++){const a=row/8*Math.PI/2;for(let i=0;i<seg;i++){const angle=i/seg*Math.PI*2,x=Math.cos(angle)*Math.sin(a),y=-Math.cos(a),z=Math.sin(angle)*Math.sin(a),v=c.clone().add(frame.x.clone().scale(x*rx)).add(frame.y.clone().scale(y*depth)).add(frame.z.clone().scale(z*rz)),n=frame.x.clone().scale(x/rx).add(frame.y.clone().scale(y/depth)).add(frame.z.clone().scale(z/rz)).normalize();rings.p.push(v.x,v.y,v.z);rings.n.push(n.x,n.y,n.z);rings.bi.push(bone,0,0,0);rings.bw.push(1,0,0,0);}}
  appendSurface(out,rings,8,seg);
 }
+const adultRadii=(profile:number[][],scale:number)=>profile.map(([t,x,z])=>[t,x*scale,z*scale]);
 for(const side of ['L','R'] as const){
  const shoulder=bind[`upperArm${side}`],elbow=bind[`foreArm${side}`],hand=bind[`hand${side}`];
- sculptSegment(taylorArms,shoulder,elbow,[[0,.095,.088],[.22,.097,.086],[.55,.082,.073],[1,.066,.060]],BONE[`upperArm${side}`],BONE[`foreArm${side}`],12,24,true);
- sculptSegment(taylorArms,elbow,hand,[[0,.066,.060],[.3,.073,.061],[.7,.058,.050],[1,.048,.043]],BONE[`foreArm${side}`],BONE[`hand${side}`],12,24,true);
- shoulderCap(taylorArms,shoulder,Vec3.sub(elbow,shoulder),BONE[`upperArm${side}`],.095,.088);
+ sculptSegment(taylorArms,shoulder,elbow,adultRadii([[0,.095,.088],[.22,.097,.086],[.55,.082,.073],[1,.066,.060]],.84),BONE[`upperArm${side}`],BONE[`foreArm${side}`],12,24,true);
+ sculptSegment(taylorArms,elbow,hand,adultRadii([[0,.066,.060],[.3,.073,.061],[.7,.058,.050],[1,.048,.043]],.84),BONE[`foreArm${side}`],BONE[`hand${side}`],12,24,true);
+ shoulderCap(taylorArms,shoulder,Vec3.sub(elbow,shoulder),BONE[`upperArm${side}`],.095*.84,.088*.84,24,.046);
 }
 const taylorBoots=build(),taylorGloves=build(),taylorLegs=build(),taylorHands=build();
 for(const side of ['L','R'] as const){
  const shin=bind[`shin${side}`],foot=bind[`foot${side}`],elbow=bind[`foreArm${side}`],hand=bind[`hand${side}`];
- sculptSegment(taylorLegs,bind[`thigh${side}`],shin,[[0,.124,.112],[.22,.135,.118],[.65,.105,.092],[1,.082,.072]],BONE[`thigh${side}`],BONE[`shin${side}`],16,24,true);
- sculptSegment(taylorBoots,shin,foot,[[0,.083,.074],[.28,.098,.082],[.5,.083,.070],[.78,.063,.054],[1,.052,.047]],BONE[`shin${side}`],BONE[`shin${side}`],16);
- sculptSegment(taylorGloves,Vec3.lerp(elbow,hand,.32),hand,[[0,.077,.066],[.4,.069,.060],[1,.052,.047]],BONE[`foreArm${side}`],BONE[`hand${side}`],8,24,true,[.32,1]);
+ sculptSegment(taylorLegs,bind[`thigh${side}`],shin,adultRadii([[0,.124,.112],[.22,.135,.118],[.65,.105,.092],[1,.082,.072]],.92),BONE[`thigh${side}`],BONE[`shin${side}`],16,24,true);
+ sculptSegment(taylorBoots,shin,foot,adultRadii([[0,.083,.074],[.28,.098,.082],[.5,.083,.070],[.78,.063,.054],[1,.052,.047]],.86),BONE[`shin${side}`],BONE[`shin${side}`],16);
+ sculptSegment(taylorGloves,Vec3.lerp(elbow,hand,.32),hand,adultRadii([[0,.077,.066],[.4,.069,.060],[1,.052,.047]],.84),BONE[`foreArm${side}`],BONE[`hand${side}`],8,24,true,[.32,1]);
  const bone=BONE[`hand${side}`],frame=basis(Vec3.sub(hand,elbow)),sign=side==='L'?-1:1;
  const point=(x:number,y:number,z:number)=>hand.clone().add(frame.x.clone().scale(x)).add(frame.y.clone().scale(y)).add(frame.z.clone().scale(z));
  handVolume(taylorHands,point(0,.017,.003),frame,new Vec3(.062,.073,.043),bone);
@@ -212,4 +213,4 @@ for(const side of ['L','R'] as const){
  const thumbA=point(sign*.042,.006,.027),thumbB=point(sign*.065,.043,.040);
  handVolume(taylorHands,Vec3.lerp(thumbA,thumbB,.5),basis(Vec3.sub(thumbB,thumbA)),new Vec3(.019,Vec3.sub(thumbB,thumbA).len()*.5+.014,.019),bone,6,12);
 }
-export const CHARACTER_SKIN={taylorTunicMark:finish('taylor-embroidered-crescent-v1',taylorTunicMark),taylorHands:finish('taylor-rounded-reference-hands-v2',taylorHands),taylorNeckline:finish('taylor-athletic-trim-v4',taylorNeckline),taylorDressEdging:finish('taylor-gold-dress-edging-v5',taylorDressEdging),taylorArms:finish('taylor-athletic-arms-v4',taylorArms),taylorLegs:finish('taylor-athletic-thighs-v3',taylorLegs),taylorDress:finish('taylor-athletic-tennis-dress-v8',taylorDress),taylorBoots:finish('taylor-athletic-calves-v3',taylorBoots),taylorGloves:finish('taylor-registered-gloves-v3',taylorGloves),top:finish('char-top-v1',top),feminineTop:finish('char-top-feminine-v1',feminineTop),pants:finish('char-pants-v1',pants),arms:finish('char-arms-v1',arms),shorts:finish('char-shorts-v1',shorts),skirt:finish('char-skirt-v1',skirt)};
+export const CHARACTER_SKIN={taylorTunicMark:finish('taylor-embroidered-crescent-v1',taylorTunicMark),taylorHands:finish('taylor-rounded-reference-hands-v2',taylorHands),taylorNeckline:finish('taylor-athletic-trim-v4',taylorNeckline),taylorDressEdging:finish('taylor-gold-dress-edging-v5',taylorDressEdging),taylorArms:finish('taylor-adult-arms-v5',taylorArms),taylorLegs:finish('taylor-adult-thighs-v4',taylorLegs),taylorDress:finish('taylor-adult-tennis-dress-v9',taylorDress),taylorBoots:finish('taylor-adult-calves-v4',taylorBoots),taylorGloves:finish('taylor-adult-registered-gloves-v4',taylorGloves),top:finish('char-top-v1',top),feminineTop:finish('char-top-feminine-v1',feminineTop),pants:finish('char-pants-v1',pants),arms:finish('char-arms-v1',arms),shorts:finish('char-shorts-v1',shorts),skirt:finish('char-skirt-v1',skirt)};

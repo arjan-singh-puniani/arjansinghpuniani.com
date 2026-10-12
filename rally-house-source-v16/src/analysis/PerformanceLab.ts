@@ -48,6 +48,7 @@ export class PerformanceLab {
   private restoreFocus:HTMLElement|null=null;
   private lastAspect=0;
   private priorAspect=0;
+  private cameraBodyLift=0;
   onReturn=()=>{};onRecord=()=>{};
   private phone:PhoneRecording|null=null;private video=document.createElement('video');private videoBox=document.createElement('details');
   constructor(private camera:CameraController,private canvas:HTMLCanvasElement){
@@ -123,6 +124,7 @@ export class PerformanceLab {
     const clip=this.clips.get(kind);if(!clip)return;
     const mode=this.timeline?.mode??'combined',focus=this.timeline?.clip.kind===kind?this.timeline.focus:kind==='gait'?'knee':'elbow';
     this.timeline=new ReplayTimeline(clip);this.timeline.mode=mode;this.timeline.focus=focus;
+    this.cameraBodyLift=Math.max(0,Math.min(.7,Math.max(...clip.frames.map(f=>f.pose.head.y-f.root.y))-1.85));
     this.timeline.speed=Number(this.transport.querySelector<HTMLSelectElement>('select')?.value??1);
     this.source.value=kind;
     this.video.pause();this.videoBox.hidden=clip.kind!=='phone'||!this.phone?.url;
@@ -134,7 +136,7 @@ export class PerformanceLab {
   }
   focus(j:Joint){if(!this.timeline)return;this.timeline.focus=j;this.invalidate();this.syncControls();this.refresh();}
   togglePlay(){if(!this.timeline)return;if(this.timeline.time>=this.timeline.end)this.timeline.seek(this.timeline.start);if(this.timeline.clip.kind==='phone'&&this.phone?.url){if(this.video.paused){if(this.video.ended)this.video.currentTime=this.timeline.start;void this.video.play().catch(()=>{if(this.timeline)this.timeline.playing=false;});}else this.video.pause();}else this.timeline.playing=!this.timeline.playing;this.refresh();}
-  zoom(delta:number){const phone=this.timeline?.clip.kind==='phone'&&this.timeline.mode!=='court';this.camera.desiredDistance=clamp(this.camera.desiredDistance+delta*(this.camera.desiredDistance/20),phone?(this.camera.aspect<.9?9:7):this.camera.aspect<.9?12:7,phone?(this.camera.aspect<.9?14:10):60);}
+  zoom(delta:number){const phone=this.timeline?.clip.kind==='phone'&&this.timeline.mode!=='court',tall=(this.cameraBodyLift??0)>.2;this.camera.desiredDistance=clamp(this.camera.desiredDistance+delta*(this.camera.desiredDistance/20),phone?(this.camera.aspect<.9?9:7):this.camera.aspect<.9?12:7,phone?(this.camera.aspect<.9?(tall?13:14):10):60);}
   key(e:KeyboardEvent){
     if(!this.active)return;
     if(e.key==='Escape'){e.preventDefault();this.close();}
@@ -163,10 +165,10 @@ export class PerformanceLab {
     this.separation.textContent=this.separateRig?'Register rig':'Separate rig';
   }
   private frameCamera(){
-    const t=this.timeline;if(!t)return;const f=t.frame??t.clip.frames[0],portrait=this.camera.aspect<.9;
+    const t=this.timeline;if(!t)return;const f=t.frame??t.clip.frames[0],portrait=this.camera.aspect<.9,tall=(this.cameraBodyLift??0)>.2;
     this.camera.autoFrame=false;
     this.camera.desiredAzimuth=t.mode==='court'?.36:t.clip.kind==='phone'?1.85:2.55;this.camera.desiredElevation=t.mode==='court'?.72:.36;
-    this.camera.desiredDistance=t.mode==='court'?(portrait?48:35):t.clip.kind==='phone'?(t.mode==='body'?(portrait?12:8):(portrait?14:10)):t.mode==='body'?(portrait?14:9):(portrait?18:13);
+    this.camera.desiredDistance=t.mode==='court'?(portrait?48:35):t.clip.kind==='phone'?(t.mode==='body'?(portrait?(tall?11:12):8):(portrait?(tall?13:14):10)):t.mode==='body'?(portrait?(tall?10:14):9):(portrait?(tall?14:18):13);
     this.lastAspect=this.camera.aspect;this.trackCamera(f);
   }
   private trackCamera(f:MotionFrame){
@@ -174,13 +176,13 @@ export class PerformanceLab {
     const portrait=this.camera.aspect<.9,wide=this.canvas.clientWidth>850;
     const court=this.timeline.mode==='court';
     const shift=wide&&!court?1.25:0;
-    this.camera.desiredTarget.set(court?1:f.root.x+Math.cos(this.camera.desiredAzimuth)*shift,court?0:f.root.y+(portrait?-.05:1.15),court?0:f.root.z-Math.sin(this.camera.desiredAzimuth)*shift);
+    this.camera.desiredTarget.set(court?1:f.root.x+Math.cos(this.camera.desiredAzimuth)*shift,court?0:f.root.y+(portrait?-.05:1.15)+(this.cameraBodyLift??0)*(portrait?.5:.7),court?0:f.root.z-Math.sin(this.camera.desiredAzimuth)*shift);
   }
   update(dt:number,reducedMotion:boolean){
     if(!this.active||!this.timeline)return;
     if(this.timeline.clip.kind==='phone'&&this.phone?.url){this.timeline.seek(this.video.currentTime);this.timeline.playing=!this.video.paused&&!this.video.ended;}else this.timeline.update(dt,this.contactLens&&!reducedMotion);
     if(this.lastAspect!==this.camera.aspect)this.frameCamera();
-    if(this.timeline.clip.kind==='phone'&&this.timeline.mode!=='court')this.camera.desiredAzimuth=clamp(this.camera.desiredAzimuth,-.85,1.9);
+    if(this.timeline.clip.kind==='phone'&&this.timeline.mode!=='court')this.camera.desiredAzimuth=clamp(this.camera.desiredAzimuth,-.55,1.9);
     const f=this.timeline.frame;if(f)this.trackCamera(f);
     this.refresh();
   }

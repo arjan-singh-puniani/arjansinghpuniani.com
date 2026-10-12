@@ -15,6 +15,16 @@ function geometry(id:string,emit:(tri:Tri)=>void,smooth=false):SkinGeometry{
  }
  return {id,positions:new Float32Array(positions),normals:new Float32Array(normals),boneIndices:new Float32Array(indices),boneWeights:new Float32Array(weights)};
 }
+
+function footwear(sole:boolean){return geometry(`taylor-contoured-${sole?'sole':'trainer'}-v1`,tri=>{
+ const point=(t:number,angle:number):Point=>{const wave=t===0||t===1?0:Math.max(0,Math.sin(Math.PI*t)),width=.098*Math.pow(wave,.52)*(.9+.1*t),height=sole?.012*Math.pow(wave,.3):Math.pow(wave,.5)*(.047+.036*Math.exp(-(((t-.30)/.23)**2))),bottom=sole?-.105:-.095,c=Math.abs(Math.cos(angle))<1e-12?0:Math.cos(angle),s=Math.abs(Math.sin(angle))<1e-12?0:Math.sin(angle);return [c*width,bottom+height*(1+s),-.18+.39*t];};
+ for(let row=0;row<24;row++)for(let i=0;i<24;i++){const a=point(row/24,i/24*Math.PI*2),b=point(row/24,(i+1)/24*Math.PI*2),c=point((row+1)/24,(i+1)/24*Math.PI*2),d=point((row+1)/24,i/24*Math.PI*2);tri(a,b,c);tri(a,c,d);}
+},true);}
+export const TAYLOR_FOOTWEAR={upper:footwear(false),sole:footwear(true)};
+export function taylorFootMeshes(foot:Vec3,pitch:number,yaw:number):RenderItem[]{return [
+ {skin:TAYLOR_FOOTWEAR.upper,boneMatrices:rigidBones,position:foot.clone(),rotation:new Vec3(pitch,yaw,0),color:TAYLOR_PALETTE.indigo,material:'fabric'},
+ {skin:TAYLOR_FOOTWEAR.sole,boneMatrices:rigidBones,position:foot.clone(),rotation:new Vec3(pitch,yaw,0),color:'#e4c67a',material:'fabric'},
+];}
 // Monotone cubic radius interpolation avoids pinched chins and bulges between
 // authored cross sections. The same profile projects the face graphics onto
 // the skin surface, giving them actual cheek curvature rather than flat cards.

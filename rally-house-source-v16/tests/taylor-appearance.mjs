@@ -53,15 +53,20 @@ for(const yaw of [0,.7,Math.PI,4.5])for(const time of [0,.47,3.29,1000]){
  assert.deepEqual(sourceHead,new Vec3(2,1.78,-3),'Appearance never mutates the rig head');
  for(const m of taylorTailMeshes(new Vec3(0,.79,0),yaw,time,4))assert(m.position.len()<1.2,'Tail stays inside its authored envelope');
 }
-// Appearance must not change movement, planted feet, hands, or racket contact.
+// Adult retargeting changes the upper-body pose; navigation, planted feet,
+// animation timing and the physical hand/racket attachment remain shared.
 for(const hz of [30,60,120]){
  const spec=playerSpec('taylor'),baseline=new Character({...spec,avatar:undefined},new Vec3(),new Navigation([]),{}),taylor=new Character(spec,new Vec3(),new Navigation([]),{});
  for(const state of ['idle','walk','ready','shuffle','swingForehand','swingBackhand','serve','volley','sit','drink','celebrate']){
   for(const actor of [baseline,taylor]){actor.trigger(state);if(state==='walk')actor.goTo(new Vec3(3,0,1));}
-  for(let i=0;i<30;i++){baseline.update(1/hz);taylor.update(1/hz);taylor.meshes();assert.deepEqual(taylor.debugKinematics(),baseline.debugKinematics(),`${state}/${hz}: gameplay rig preserved`);}
+  for(let i=0;i<30;i++){
+   baseline.update(1/hz);taylor.update(1/hz);taylor.meshes();const a=taylor.debugKinematics(),b=baseline.debugKinematics();
+   for(const key of ['leftFoot','rightFoot','leftFootPlanted','rightFootPlanted','state','transition','locomotion','courtPhase','development','racketVibration','motionBlend'])assert.deepEqual(a[key],b[key],`${state}/${hz}: shared ${key}`);
+   assert.deepEqual(a.racketGrip,a.rightHand,'Retargeted hand owns the racket');assert(Vec3.sub(Vec3.sub(a.racketCenter,a.racketGrip),Vec3.sub(b.racketCenter,b.racketGrip)).len()<1e-9,'Racket geometry is preserved');
+  }
  }
 }
-console.log('Taylor appearance PASS: geometry, front-facing ear inlays, bounded tail, and unchanged gameplay rig at 3 rates.');
+console.log('Taylor appearance PASS: geometry, front-facing ear inlays, bounded tail, planted feet, animation timing and hand/racket ownership at 3 rates.');
 
 // New glove surfaces stay local to their hand joints, with finite normalized skinning.
 const hands=CHARACTER_SKIN.taylorHands;
@@ -85,7 +90,7 @@ for(const mode of ['ready','swingForehand','swingBackhand','serve','match','prop
   else if(mode==='gesture')actor.socialGesture='inspect';
   else actor.trigger(mode);
  }
- assert.deepEqual(a.meshes().find(m=>m.skin===CHARACTER_SKIN.taylorArms).boneMatrices,b.meshes().find(m=>m.skin===CHARACTER_SKIN.arms).boneMatrices,mode+': visible hands use the authoritative rig immediately');
+ assert.deepEqual(a.meshes().find(m=>m.skin===CHARACTER_SKIN.taylorArms).boneMatrices,skinMatrices(rigFromPose(a.analysisPose(),a.position,a.yaw)),mode+': visible hands use the authoritative adult rig immediately');
 }
 console.log('Taylor sculpt PASS: bounded finger geometry and immediate contact/prop/reach pose restoration.');
 

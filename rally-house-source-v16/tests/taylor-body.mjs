@@ -7,7 +7,7 @@ const dress=CHARACTER_SKIN.taylorDress,p=dress.positions,ys=[];for(let i=1;i<p.l
 assert(Math.min(...ys)>.55,'The skirt must reveal the knees rather than engulf the lower body');
 assert(Math.max(...p.filter((_,i)=>i%3===0))<.4,'Hem remains within the athletic body envelope');
 const widthAt=y=>{const rows=[...new Set(ys)].sort((a,b)=>a-b),row=rows.reduce((best,v)=>Math.abs(v-y)<Math.abs(best-y)?v:best);let half=0;for(let i=0;i<p.length;i+=3)if(p[i+1]===row)half=Math.max(half,Math.abs(p[i]));return half;};
-const waist=widthAt(1.055),hips=widthAt(.84),ribcage=widthAt(1.28);assert(waist>.19&&waist<.25);assert(hips>waist*1.25&&hips<waist*1.55);assert(ribcage>waist*1.2&&ribcage<waist*1.5);
+const waist=widthAt(1.055),hips=widthAt(.84),ribcage=widthAt(1.28);assert(waist>.17&&waist<.21);assert(hips>waist*1.25&&hips<waist*1.55);assert(ribcage>waist*1.2&&ribcage<waist*1.5);
 for(const name of ['taylorDress','taylorNeckline','taylorDressEdging','taylorArms','taylorLegs','taylorBoots','taylorGloves']){
  const g=CHARACTER_SKIN[name];assert(g.positions.length/9<4500,'Bounded cached garment/limb mesh');
  for(let i=0;i<g.positions.length/3;i++){assert([...g.positions.slice(i*3,i*3+3)].every(Number.isFinite));assert(Math.abs(Math.hypot(...g.normals.slice(i*3,i*3+3))-1)<1e-5);assert(Math.abs(g.boneWeights.slice(i*4,i*4+4).reduce((a,b)=>a+b,0)-1)<1e-6);}
