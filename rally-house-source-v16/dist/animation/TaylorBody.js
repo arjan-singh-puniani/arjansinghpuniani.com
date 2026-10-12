@@ -37,7 +37,7 @@ export function adultTaylorPose(source, root, yaw, constraints) {
     }
     const shoulder = Vec3.lerp(p.shoulderL, p.shoulderR, .5);
     p.head = horizontal(source.head, .80);
-    p.head.y = shoulder.y + (source.head.y - oldShoulder.y) * .82;
+    p.head.y = shoulder.y + (source.head.y - oldShoulder.y) * .82 - (constraints.human ? .065 : 0);
     for (const side of ['L', 'R']) {
         const key = `hip${side}`;
         p[key] = horizontal(source[key], .90);

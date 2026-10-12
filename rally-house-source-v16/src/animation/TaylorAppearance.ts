@@ -21,9 +21,9 @@ function footwear(sole:boolean){return geometry(`taylor-contoured-${sole?'sole':
  for(let row=0;row<24;row++)for(let i=0;i<24;i++){const a=point(row/24,i/24*Math.PI*2),b=point(row/24,(i+1)/24*Math.PI*2),c=point((row+1)/24,(i+1)/24*Math.PI*2),d=point((row+1)/24,i/24*Math.PI*2);tri(a,b,c);tri(a,c,d);}
 },true);}
 export const TAYLOR_FOOTWEAR={upper:footwear(false),sole:footwear(true)};
-export function taylorFootMeshes(foot:Vec3,pitch:number,yaw:number):RenderItem[]{return [
- {skin:TAYLOR_FOOTWEAR.upper,boneMatrices:rigidBones,position:foot.clone(),rotation:new Vec3(pitch,yaw,0),color:TAYLOR_PALETTE.indigo,material:'fabric'},
- {skin:TAYLOR_FOOTWEAR.sole,boneMatrices:rigidBones,position:foot.clone(),rotation:new Vec3(pitch,yaw,0),color:'#e4c67a',material:'fabric'},
+export function taylorFootMeshes(foot:Vec3,pitch:number,yaw:number,upper=TAYLOR_PALETTE.indigo,sole='#e4c67a'):RenderItem[]{return [
+ {skin:TAYLOR_FOOTWEAR.upper,boneMatrices:rigidBones,position:foot.clone(),rotation:new Vec3(pitch,yaw,0),color:upper,material:'fabric'},
+ {skin:TAYLOR_FOOTWEAR.sole,boneMatrices:rigidBones,position:foot.clone(),rotation:new Vec3(pitch,yaw,0),color:sole,material:'fabric'},
 ];}
 // Monotone cubic radius interpolation avoids pinched chins and bulges between
 // authored cross sections. The same profile projects the face graphics onto

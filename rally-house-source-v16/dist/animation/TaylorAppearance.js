@@ -40,10 +40,10 @@ function footwear(sole) {
     }, true);
 }
 export const TAYLOR_FOOTWEAR = { upper: footwear(false), sole: footwear(true) };
-export function taylorFootMeshes(foot, pitch, yaw) {
+export function taylorFootMeshes(foot, pitch, yaw, upper = TAYLOR_PALETTE.indigo, sole = '#e4c67a') {
     return [
-        { skin: TAYLOR_FOOTWEAR.upper, boneMatrices: rigidBones, position: foot.clone(), rotation: new Vec3(pitch, yaw, 0), color: TAYLOR_PALETTE.indigo, material: 'fabric' },
-        { skin: TAYLOR_FOOTWEAR.sole, boneMatrices: rigidBones, position: foot.clone(), rotation: new Vec3(pitch, yaw, 0), color: '#e4c67a', material: 'fabric' },
+        { skin: TAYLOR_FOOTWEAR.upper, boneMatrices: rigidBones, position: foot.clone(), rotation: new Vec3(pitch, yaw, 0), color: upper, material: 'fabric' },
+        { skin: TAYLOR_FOOTWEAR.sole, boneMatrices: rigidBones, position: foot.clone(), rotation: new Vec3(pitch, yaw, 0), color: sole, material: 'fabric' },
     ];
 }
 // Monotone cubic radius interpolation avoids pinched chins and bulges between

@@ -1,12 +1,13 @@
 import assert from 'node:assert/strict';
 import {Character} from '../dist/entities/Character.js';import {playerSpec} from '../dist/content/PlayerAvatars.js';import {Navigation} from '../dist/world/Navigation.js';import {Vec3} from '../dist/rendering/Math3D.js';
-import {TAYLOR_BODY} from '../dist/animation/TaylorBody.js';import {TAYLOR_GEOMETRY,TAYLOR_FOOTWEAR} from '../dist/animation/TaylorAppearance.js';
+import {TAYLOR_BODY} from '../dist/animation/TaylorBody.js';import {TAYLOR_FOOTWEAR} from '../dist/animation/TaylorAppearance.js';
+import {HUMAN_TAYLOR_GEOMETRY} from '../dist/animation/TaylorHuman.js';
 const actor=()=>new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});
 const c=actor();c.racketStowed=true;for(let i=0;i<180;i++)c.update(1/60);const rest=c.analysisPose();
-assert(rest.pelvisCenter.y>1.20&&rest.pelvisCenter.y<1.29);assert(rest.head.y>2.2&&rest.head.y<2.4);assert(rest.shoulderL.y>1.8);
-const face=c.meshes().find(m=>m.skin===TAYLOR_GEOMETRY.face),ys=[];for(let i=1;i<face.skin.positions.length;i+=3)ys.push(face.skin.positions[i]);
+assert(rest.pelvisCenter.y>1.20&&rest.pelvisCenter.y<1.29);assert(rest.head.y>2.1&&rest.head.y<2.4);assert(rest.shoulderL.y>1.8);
+const face=c.meshes().find(m=>m.skin===HUMAN_TAYLOR_GEOMETRY.face),ys=[];for(let i=1;i<face.skin.positions.length;i+=3)ys.push(face.skin.positions[i]);
 const faceHeight=(Math.max(...ys)-Math.min(...ys))*face.scale.y,anatomicalHeight=face.position.y+Math.max(...ys)*face.scale.y-rest.footL.y;
-assert(anatomicalHeight/faceHeight>5.5&&anatomicalHeight/faceHeight<8,'Rendered head/body ratio reads as adult, rather than merely lengthening a chibi costume');assert.equal(face.scale.x,TAYLOR_BODY.headScale);
+assert(anatomicalHeight/faceHeight>5.5&&anatomicalHeight/faceHeight<8,'Rendered head/body ratio reads as adult, rather than merely lengthening a chibi costume');assert.equal(face.scale.x,1);
 let lengths=0,maxStretch=1,maxContactError=0;
 const inspect=pose=>{for(const side of ['L','R'])for(const [a,b,l] of [[`shoulder${side}`,`elbow${side}`,TAYLOR_BODY.upperArm],[`elbow${side}`,`hand${side}`,TAYLOR_BODY.forearm],[`hip${side}`,`knee${side}`,TAYLOR_BODY.thigh],[`knee${side}`,`foot${side}`,TAYLOR_BODY.shin]]){const ratio=Vec3.sub(pose[a],pose[b]).len()/l;maxStretch=Math.max(maxStretch,ratio);assert(ratio>.999&&ratio<1.04,`${a}/${b}: no collapsed or exaggerated limb length (${ratio})`);lengths++;}assert.deepEqual(pose.racketGrip,pose.handR);};
 for(const hz of [30,60,120])for(const state of ['idle','walk','jog','shuffle','ready','swingForehand','swingBackhand','serve','volley','drink','sit','reach']){
