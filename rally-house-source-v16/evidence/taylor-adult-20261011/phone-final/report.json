@@ -1,0 +1,69 @@
+{
+  "engine": "chromium",
+  "avatar": "Taylor",
+  "width": 390,
+  "errors": [],
+  "requests": [],
+  "hand": {
+    "phone": {
+      "active": true,
+      "phase": "mounting",
+      "mounted": false,
+      "avatar": "taylor",
+      "samples": 0,
+      "video": false,
+      "liveTracks": 0,
+      "anchor": {
+        "x": -3.8,
+        "y": 1.42,
+        "z": -8
+      }
+    },
+    "handError": 0
+  },
+  "result": {
+    "phone": {
+      "active": false,
+      "phase": "finishing",
+      "mounted": true,
+      "avatar": "taylor",
+      "samples": 162,
+      "video": true,
+      "liveTracks": 0,
+      "anchor": {
+        "x": -3.8,
+        "y": 1.42,
+        "z": -8
+      }
+    },
+    "source": "phone-recording",
+    "kind": "phone",
+    "samples": 162,
+    "bytes": 994571,
+    "mime": "video/webm",
+    "duration": 5.370324,
+    "width": 390,
+    "height": 844,
+    "owner": "Three apps by Arjan Singh Puniani",
+    "uses": 1
+  },
+  "sync": {
+    "video": 0.666494,
+    "time": 0.659404,
+    "frame": 0.659404,
+    "error": 0.007090000000000041,
+    "overflow": false
+  },
+  "seek": {
+    "video": 2.69985,
+    "time": 2.69985,
+    "readout": "10°",
+    "camera": {
+      "x": 6.964158606151441,
+      "y": 4.469976051408032,
+      "z": -7.562902401744422
+    },
+    "opaqueSurfaces": 65
+  },
+  "axe": []
+}

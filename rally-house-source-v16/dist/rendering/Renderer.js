@@ -443,7 +443,7 @@ export class Renderer {
     ${depthOnly ? '' : 'out vec3 v_normal;out vec3 v_world;out vec3 v_surface;'}
     mat4 skin(){ivec4 b=ivec4(a_bones+.5);return u_bones[b.x]*a_weights.x+u_bones[b.y]*a_weights.y+u_bones[b.z]*a_weights.z+u_bones[b.w]*a_weights.w;}
     void main(){mat4 S=skin();vec4 wp=u_model*(S*vec4(a_position,1.0));
-    ${depthOnly ? '' : 'v_world=wp.xyz;v_surface=a_position;v_normal=normalize(mat3(u_model)*mat3(S)*a_normal);'}
+    ${depthOnly ? '' : 'v_world=wp.xyz;v_surface=a_position;mat3 B=mat3(u_model)*mat3(S);vec3 c0=cross(B[1],B[2]),c1=cross(B[2],B[0]),c2=cross(B[0],B[1]);float determinant=dot(B[0],c0);vec3 corrected=mat3(c0,c1,c2)*a_normal;v_normal=normalize(abs(determinant)<.000001?B*a_normal:corrected*(determinant<0.0?-1.0:1.0));'}
     gl_Position=${depthOnly ? 'u_lightVP' : 'u_vp'}*wp;}`;
     }
     litFS() {

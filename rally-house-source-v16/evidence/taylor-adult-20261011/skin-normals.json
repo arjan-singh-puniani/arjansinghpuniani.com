@@ -1,0 +1,10 @@
+{
+  "baseline": {
+    "maxError": 1.108145982501053
+  },
+  "current": {
+    "maxError": 9.569184055807628e-8
+  },
+  "cases": 27,
+  "glError": 0
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "source": "after-front.png",
+    "sha256": "1bbb813c02f9983b837b49b3c94cca081cb78f167f24220a0a953f703a87948d",
+    "copy": "after-front.webp"
+  },
+  {
+    "source": "after-soft-front.png",
+    "sha256": "a166ddee91979f44e46c7cc18efb705a846bba1627f97081b57827fee77f474d",
+    "copy": "after-soft-front.webp"
+  },
+  {
+    "source": "after-soft-three-quarter.png",
+    "sha256": "e401327e64fd8d2ad7aea1dc2f3746618ff25b487c48b9679fc420af1b85849f",
+    "copy": "after-soft-three-quarter.webp"
+  },
+  {
+    "source": "after-three-quarter.png",
+    "sha256": "8dc824c6d99f4b31f36558fefda9f8cdf5733b485655b33299d4247fdaf0e110",
+    "copy": "after-three-quarter.webp"
+  },
+  {
+    "source": "before-front.png",
+    "sha256": "35d22f7680800254670599839748ab623c4c2dc9f4cbb086d48c060a02dac5b8",
+    "copy": "before-front.webp"
+  },
+  {
+    "source": "before-three-quarter.png",
+    "sha256": "c76e8f7d8c58bea0ff82a59cd9f911c2e116bf01510d2731cb409dcacd69fc1a",
+    "copy": "before-three-quarter.webp"
+  },
+  {
+    "source": "chromium/1440-club.png",
+    "sha256": "96231fc404bee3caa8075c8d66edcad0e2840eeea8e34c18c278c1eb438ed309",
+    "copy": "chromium/1440-club.webp"
+  },
+  {
+    "source": "chromium/390-club.png",
+    "sha256": "62054add2bcc49d6ea631127bb14a66f6f6fb569f09ca08d59f95970315bdc84",
+    "copy": "chromium/390-club.webp"
+  },
+  {
+    "source": "chromium/championship.png",
+    "sha256": "9f6aaf94b8525e4993e2aa76e8803c3e6f52dc78c58db0ecb2df30f78e43e1f7",
+    "copy": "chromium/championship.webp"
+  },
+  {
+    "source": "firefox/1440-club.png",
+    "sha256": "6a8daf84d0c9cf5d0f893c36e9794ec1fe43ff42c9a1b27c470d9ea607e4a000",
+    "copy": "firefox/1440-club.webp"
+  },
+  {
+    "source": "firefox/390-club.png",
+    "sha256": "4b0ea21f1aab90d5943a409bd03917a7338183c2a6ce25506ba8152304668753",
+    "copy": "firefox/390-club.webp"
+  },
+  {
+    "source": "firefox/championship.png",
+    "sha256": "54974b29eec6915ea3db190a41ab290c26bd6f9b085a982febc83a0f264f9115",
+    "copy": "firefox/championship.webp"
+  },
+  {
+    "source": "phone/mount.png",
+    "sha256": "0b5496464ca962aa1597ae198424995aae6190a78cece2ee2b091613b78a51d9",
+    "copy": "phone/mount.webp"
+  },
+  {
+    "source": "phone/record.png",
+    "sha256": "ca6f3ac39514eb4df6356f2cc10db51cae5c058b6495e7add66ad3bc05dad13b",
+    "copy": "phone/record.webp"
+  },
+  {
+    "source": "phone/review.png",
+    "sha256": "852e6d79725cb498e96336f6a6e734696fdb5e74668866cf8e60cec4a864aaec",
+    "copy": "phone/review.webp"
+  },
+  {
+    "source": "phone-final/mount.png",
+    "sha256": "bfebabbaa2437331e5e54bc9dd49ceddd02c4efc668e7a09fa13d9de379108b4",
+    "copy": "phone-final/mount.webp"
+  },
+  {
+    "source": "phone-final/record.png",
+    "sha256": "c9ed7c8448db35b89f26a4cb6bff6d2a06c4f0083a99549e3a75a9f178728925",
+    "copy": "phone-final/record.webp"
+  },
+  {
+    "source": "phone-final/review.png",
+    "sha256": "aa359437616104c864b85faaf93ed88a72d9ebfe0b3dc7ae59d53cc6e324e9ec",
+    "copy": "phone-final/review.webp"
+  },
+  {
+    "source": "webkit/1440-club.png",
+    "sha256": "a78a46391fe04a4dd6137da434ea2d4acf2ff974e2a7c116a8f2b4343325094b",
+    "copy": "webkit/1440-club.webp"
+  },
+  {
+    "source": "webkit/390-club.png",
+    "sha256": "a219a9e8e086ca268ba436ecd928c99254664ec2ebfafcca136b298bc2cccf23",
+    "copy": "webkit/390-club.webp"
+  },
+  {
+    "source": "webkit/championship.png",
+    "sha256": "920f12b2799549d9e4e36ed4590b6acf80bf0c136a4bdbc47b6e8aacfc4672df",
+    "copy": "webkit/championship.webp"
+  }
+]

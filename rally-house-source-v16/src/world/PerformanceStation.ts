@@ -8,7 +8,7 @@ export const PERFORMANCE_STATION:InteractiveObject={
   id:'performanceLab',label:'Performance Lab',kind:'performanceLab',position:new Vec3(-3.8,0,-8.35),radius:1.2,
   description:'Your courtside phone anchor. Mount a phone and record your avatar, then explore VectorCourt and AnatomyMotion—two apps by Arjan Singh Puniani. Championship replay is also here.',
   selection:{centre:new Vec3(-3.8,.86,-8.32),size:new Vec3(1.44,1.8,.85)},
-  interactionPoint:PHONE_ANCHOR.clone(),careSpot:new Vec3(-3.8,0,-7.35),
+  interactionPoint:PHONE_ANCHOR.clone(),careSpot:new Vec3(-3.8,0,-7.55),
 };
 export function stationMeshes():Mesh[]{
   const m:Mesh[]=[];
