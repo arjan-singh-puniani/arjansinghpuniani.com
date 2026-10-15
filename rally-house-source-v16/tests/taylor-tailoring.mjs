@@ -25,7 +25,7 @@ for(const [name,g] of Object.entries(HUMAN_TENNIS_SKIN)){
  }
 }
 const dress=HUMAN_TENNIS_SKIN.dress,yoke=HUMAN_TENNIS_SKIN.yoke,dressEdge=boundary(dress).filter(i=>dress.positions[i*3+1]>1.25),yokeEdge=boundary(yoke).filter(i=>yoke.positions[i*3+1]<1.44);
-assert.equal(dressEdge.length,48);assert.equal(yokeEdge.length,48);
+assert.equal(dressEdge.length,64);assert.equal(yokeEdge.length,64);
 const resting=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});resting.racketStowed=true;for(let i=0;i<180;i++)resting.update(1/60);
 const rest=resting.analysisPose(),shoulderSpan=Vec3.sub(rest.shoulderL,rest.shoulderR).len();
 assert(shoulderSpan>.45&&shoulderSpan<.54,'Human shoulder girdle stays within the adult garment envelope');

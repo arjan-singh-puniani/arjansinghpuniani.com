@@ -1,0 +1,40 @@
+{
+  "engine": "chromium",
+  "errors": [],
+  "requests": [],
+  "views": [
+    {
+      "width": 1440,
+      "height": 900,
+      "avatar": "taylor",
+      "stowed": true,
+      "relaxed": true,
+      "sharedRig": true,
+      "humanFace": true,
+      "felineParts": 0,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "avatar": "taylor",
+      "stowed": true,
+      "relaxed": true,
+      "sharedRig": true,
+      "humanFace": true,
+      "felineParts": 0,
+      "overflow": false
+    }
+  ],
+  "contact": {
+    "stowed": false,
+    "match": true,
+    "source": "game-recording",
+    "samples": 54,
+    "contactError": 0.049999999999999815
+  },
+  "restored": {
+    "avatar": "taylor",
+    "stowed": true
+  }
+}

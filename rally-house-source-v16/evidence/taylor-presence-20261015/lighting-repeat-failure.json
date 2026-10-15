@@ -1,0 +1,8 @@
+{
+  "status": "failed diagnostic setup",
+  "assertion": "Baseline and current framebuffer byte counts must match",
+  "baselineBytes": 583884,
+  "currentBytes": 533408,
+  "cause": "Inspection pages retained adaptive framebuffer sizes; diagnostic now pins full detail and explicitly resizes both renderers.",
+  "productSourceChangedForFix": false
+}

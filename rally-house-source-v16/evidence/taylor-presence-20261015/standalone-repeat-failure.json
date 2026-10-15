@@ -1,0 +1,8 @@
+{
+  "status": "failed QA repeat",
+  "step": "Select Arjan from initial avatar chooser",
+  "error": "locator.click timed out after 30000 ms",
+  "concurrentBrowserQA": false,
+  "productCauseEstablished": false,
+  "next": "Compare old and new compiled runtimes with identical diagnostic startup instrumentation"
+}

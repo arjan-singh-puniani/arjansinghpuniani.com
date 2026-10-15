@@ -1,0 +1,28 @@
+{
+  "root": "/tmp/rally-art-package-20261011/Rally-House-v16-Playtest",
+  "metal": true,
+  "errors": [],
+  "step": "complete",
+  "initial": {
+    "context": "\n    ×\n    YOUR CHARACTER\n    Who’s arriving at Rally House?\n    Choose your look. You can switch anytime in Settings.\n    \n    TaylorGold and indigo feline · folded-arm stance · flowing gold tunicArjanSwept dark hair · strong brows · charcoal tenniswear\n  ",
+    "opacity": "0.637785",
+    "button": {
+      "x": 1096.974609375,
+      "y": 669.8236083984375,
+      "width": 150.89892578125,
+      "height": 94.8392333984375,
+      "top": 669.8236083984375,
+      "right": 1247.87353515625,
+      "bottom": 764.662841796875,
+      "left": 1096.974609375
+    },
+    "hit": "<div class=\"loading\" id=\"loading\"><span class=\"loadingMark\">R</span><strong>Rally House</strong><span>opening the club…</span></div>",
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "scale": 1
+  },
+  "selected": {
+    "avatar": "arjan",
+    "errors": 0
+  },
+  "passed": true
+}

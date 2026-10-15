@@ -234,17 +234,17 @@ function humanNormal(y, angle) {
 function humanSurface(out, low, high, rows, offset = 0) {
     const rings = build();
     for (let r = 0; r <= rows; r++)
-        for (let i = 0; i < 48; i++) {
-            const angle = i / 48 * Math.PI * 2, y = low(angle) + (high(angle) - low(angle)) * r / rows, p = humanContour(y, angle, offset), n = humanNormal(y, angle), [a, b, t] = dressWeights(y);
+        for (let i = 0; i < 64; i++) {
+            const angle = i / 64 * Math.PI * 2, y = low(angle) + (high(angle) - low(angle)) * r / rows, p = humanContour(y, angle, offset), n = humanNormal(y, angle), [a, b, t] = dressWeights(y);
             rings.p.push(p.x, p.y, p.z);
             rings.n.push(n.x, n.y, n.z);
             rings.bi.push(a, b, 0, 0);
             rings.bw.push(1 - t, t, 0, 0);
         }
-    appendSurface(out, rings, rows, 48);
+    appendSurface(out, rings, rows, 64);
 }
 const humanDress = build(), humanYoke = build(), humanTrim = build(), humanSeams = build();
-humanSurface(humanDress, () => .575, humanNeckY, 40, .003);
+humanSurface(humanDress, () => .575, humanNeckY, 32, .003);
 humanSurface(humanYoke, a => humanNeckY(a) - .010, () => 1.445, 14, -.001);
 humanSurface(humanTrim, a => humanNeckY(a) - .012, humanNeckY, 2, .006);
 humanSurface(humanTrim, () => 1.015, () => 1.027, 2, .006);
@@ -268,7 +268,7 @@ for (const side of [-1, 1]) {
             humanSeams.bw.push(...strip.bw.slice(v * 4, v * 4 + 4));
         }
 }
-export const HUMAN_TENNIS_SKIN = { dress: finish('taylor-human-tailored-dress-v1', humanDress), yoke: finish('taylor-human-shoulder-yoke-v1', humanYoke), trim: finish('taylor-human-scoop-piping-v1', humanTrim), seams: finish('taylor-human-princess-seams-v1', humanSeams) };
+export const HUMAN_TENNIS_SKIN = { dress: finish('taylor-human-tailored-dress-v2', humanDress), yoke: finish('taylor-human-shoulder-yoke-v2', humanYoke), trim: finish('taylor-human-scoop-piping-v2', humanTrim), seams: finish('taylor-human-princess-seams-v1', humanSeams) };
 // A small embroidered crescent recreates the reference's central gold detail.
 // It samples the same surface and weights as the tunic, including in replay.
 const taylorTunicMark = build();

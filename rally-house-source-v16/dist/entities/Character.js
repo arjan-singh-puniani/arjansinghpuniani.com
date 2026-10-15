@@ -973,7 +973,7 @@ export class Character {
             if (this.spec.appearance === 'human' && this.canRelaxClubIdle()) {
                 result.face = { ...result.face, smile: Math.max(.55, result.face.smile), squint: Math.max(.08, result.face.squint) };
             }
-            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', posture });
+            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', restWeight: this.canRelaxClubIdle() ? this.clubIdleRelax : 0, posture });
         }
         return result;
     }
@@ -998,11 +998,12 @@ export class Character {
         const bones = skinMatrices(rigFromPose(pose, p, this.yaw, relax));
         const skinRoot = { position: new Vec3(p.x, 0, p.z), rotation: new Vec3(0, this.yaw, 0), boneMatrices: bones, poseRig: true };
         const torsoSkin = taylor ? (feline ? CHARACTER_SKIN.taylorDress : HUMAN_TENNIS_SKIN.dress) : this.spec.presentation === 'feminine' ? CHARACTER_SKIN.feminineTop : CHARACTER_SKIN.top;
-        m.push({ ...skinRoot, skin: torsoSkin, color: this.spec.shirt, material: 'fabric' }, { ...skinRoot, skin: taylor ? CHARACTER_SKIN.taylorLegs : CHARACTER_SKIN.pants, color: this.spec.skin, material: 'skin' }, { ...skinRoot, skin: taylor ? CHARACTER_SKIN.taylorArms : CHARACTER_SKIN.arms, color: this.spec.skin, material: 'skin' });
+        const skinMaterial = taylor && !feline ? 'humanSkin' : 'skin';
+        m.push({ ...skinRoot, skin: torsoSkin, color: this.spec.shirt, material: 'fabric' }, { ...skinRoot, skin: taylor ? CHARACTER_SKIN.taylorLegs : CHARACTER_SKIN.pants, color: this.spec.skin, material: skinMaterial }, { ...skinRoot, skin: taylor ? CHARACTER_SKIN.taylorArms : CHARACTER_SKIN.arms, color: this.spec.skin, material: skinMaterial });
         if (feline)
             m.push({ ...skinRoot, skin: CHARACTER_SKIN.taylorNeckline, color: TAYLOR_PALETTE.indigo, material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorDressEdging, color: '#f6dc7d', material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorTunicMark, color: '#b69a2a', material: 'toon', unlit: true }, { ...skinRoot, skin: CHARACTER_SKIN.taylorBoots, color: TAYLOR_PALETTE.indigo, material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorGloves, color: TAYLOR_PALETTE.indigo, material: 'fabric' });
         else if (taylor) {
-            m.push({ ...skinRoot, skin: HUMAN_TENNIS_SKIN.yoke, color: this.spec.skin, material: 'skin' }, { ...skinRoot, skin: HUMAN_TENNIS_SKIN.trim, color: this.spec.accent ?? '#cedb68', material: 'fabric' }, { ...skinRoot, skin: HUMAN_TENNIS_SKIN.seams, color: mixHex(this.spec.shirt, '#b7cced', .30), material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorBoots, color: this.spec.skin, material: 'skin' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorSocks, color: '#f3f1e8', material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorWristband, color: this.spec.accent ?? '#cedb68', material: 'fabric' });
+            m.push({ ...skinRoot, skin: HUMAN_TENNIS_SKIN.yoke, color: this.spec.skin, material: 'humanSkin' }, { ...skinRoot, skin: HUMAN_TENNIS_SKIN.trim, color: this.spec.accent ?? '#cedb68', material: 'fabric' }, { ...skinRoot, skin: HUMAN_TENNIS_SKIN.seams, color: mixHex(this.spec.shirt, '#b7cced', .30), material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorBoots, color: this.spec.skin, material: 'humanSkin' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorSocks, color: '#f3f1e8', material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorWristband, color: this.spec.accent ?? '#cedb68', material: 'fabric' });
         }
         else {
             m.push({ kind: 'sphere', position: torsoCenter.clone().add(new Vec3(0, .025, 0)), rotation: new Vec3(0, torsoYaw, 0), scale: new Vec3(this.spec.presentation === 'feminine' ? .53 : .57, .68, .40), color: this.spec.shirt, material: 'fabric' });
@@ -1026,7 +1027,7 @@ export class Character {
             m.push({ kind: 'roundBox', position: new Vec3(footL.x, footL.y - .055, footL.z), rotation: new Vec3(leftShoePitch, leftShoeYaw, 0), scale: new Vec3(.30, .055, .445), color: soleColor, material: 'fabric' }, { kind: 'roundBox', position: new Vec3(footR.x, footR.y - .055, footR.z), rotation: new Vec3(rightShoePitch, rightShoeYaw, 0), scale: new Vec3(.30, .055, .445), color: soleColor, material: 'fabric' });
         }
         if (taylor)
-            m.push({ ...skinRoot, skin: CHARACTER_SKIN.taylorHands, color: feline ? TAYLOR_PALETTE.indigo : this.spec.skin, material: feline ? 'toon' : 'skin' });
+            m.push({ ...skinRoot, skin: CHARACTER_SKIN.taylorHands, color: feline ? TAYLOR_PALETTE.indigo : this.spec.skin, material: feline ? 'toon' : 'humanSkin' });
         else {
             m.push({ kind: 'sphere', position: handL, scale: new Vec3(.16, .20, .15), color: this.spec.skin, material: 'skin' }, { kind: 'sphere', position: handR, scale: new Vec3(.16, .20, .15), color: this.spec.skin, material: 'skin' });
             for (const [hand, side] of [[handL, -1], [handR, 1]])
@@ -1043,7 +1044,7 @@ export class Character {
         else if (taylor) {
             m.push(...humanTaylorHead(head, headYaw, tilt, pose.face, this.animTime, this.spec.skin));
             const shoulder = Vec3.lerp(shoulderL, shoulderR, .5), jaw = head.clone().add(new Vec3(0, -.143, 0)), neck = Vec3.lerp(shoulder, jaw, .5);
-            m.push({ kind: 'sphere', position: neck, rotation: new Vec3(0, headYaw, tilt), scale: new Vec3(.099, Math.max(.09, jaw.y - shoulder.y) + .065, .104), color: this.spec.skin, material: 'skin' });
+            m.push({ kind: 'sphere', position: neck, rotation: new Vec3(0, headYaw, tilt), scale: new Vec3(.099, Math.max(.09, jaw.y - shoulder.y) + .065, .104), color: this.spec.skin, material: 'humanSkin' });
         }
         else {
             const headStart = m.length;

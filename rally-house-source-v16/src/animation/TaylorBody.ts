@@ -2,7 +2,7 @@ import {Vec3,clamp} from '../rendering/Math3D.js';
 import type {CharacterPose} from '../entities/Character.js';
 
 export const TAYLOR_BODY={pelvisHeight:1.245,torsoScale:1.20,headScale:.62,upperArm:.425,forearm:.415,thigh:.56,shin:.55} as const;
-interface Constraints {sitting:boolean;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;posture?:{weight:number;right:Vec3;left?:Vec3};}
+interface Constraints {sitting:boolean;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;restWeight?:number;posture?:{weight:number;right:Vec3;left?:Vec3};}
 const smooth=(t:number)=>{const u=clamp(t,0,1);return u*u*(3-2*u);};
 function joint(a:Vec3,b:Vec3,first:number,second:number,pole:Vec3,fallback:Vec3){
  const delta=Vec3.sub(b,a),d=Math.max(.0001,delta.len()),axis=delta.scale(1/d),stretch=Math.max(1,d/(first+second-.001));
@@ -29,6 +29,16 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
  const shoulder=Vec3.lerp(p.shoulderL,p.shoulderR,.5);
  p.head=horizontal(source.head,.80);p.head.y=shoulder.y+(source.head.y-oldShoulder.y)*.82-(constraints.human?.065:0);
  for(const side of ['L','R'] as const){const key=`hip${side}` as const;p[key]=horizontal(source[key],.90);p[key].y=pelvisY+(source[key].y-source.pelvisCenter.y)*1.20;}
+ // A small weight-bearing rest stance replaces the symmetric mannequin pose.
+ // Feet retain their anchors and the knees/arms are solved below. This same
+ // stance is recorded and analysed, rather than being a visual-only offset.
+ if(constraints.human&&constraints.restWeight){
+  const w=clamp(constraints.restWeight,0,1),right=new Vec3(Math.cos(yaw),0,-Math.sin(yaw));
+  for(const key of ['pelvisCenter','hipL','hipR'] as const)p[key].add(right.clone().scale(.023*w));
+  p.torsoCenter.add(right.clone().scale(.006*w));
+  for(const key of ['shoulderL','shoulderR','head'] as const)p[key].add(right.clone().scale(-.007*w));
+  p.shoulderL.y+=.007*w;p.shoulderR.y-=.007*w;
+ }
  const arm=(v:Vec3)=>{const out=horizontal(v,.78),dy=v.y-oldShoulder.y,down=constraints.human?2.55:2.30,scale=down-(down-1.20)*smooth((dy+.10)/.25);out.y=shoulder.y+dy*scale;return out;};
  p.handL=Vec3.lerp(arm(source.handL),source.handL,constraints.leftWorld);p.handR=Vec3.lerp(arm(source.handR),source.handR,constraints.rightWorld);
 

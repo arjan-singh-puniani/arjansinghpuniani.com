@@ -71,12 +71,12 @@ function eyePatch(id, shape, offset) {
     }, false);
 }
 const eyeWhite = eyePatch('taylor-human-almond-sclera-v1', (u, v, side) => [side * eyeX + u * eyeWidth, eyeY + v * eyeHeight * aperture(u) + u * side * .002], .0035);
-const iris = eyePatch('taylor-human-iris-v1', (u, v, side) => [side * eyeX + u * .0072, eyeY + v * .0082], .0052);
-const pupil = eyePatch('taylor-human-pupil-v1', (u, v, side) => [side * eyeX + u * .0034, eyeY + v * .0061], .0062);
+const iris = eyePatch('taylor-human-iris-v2', (u, v, side) => [side * eyeX + u * .0092, eyeY + v * .0092], .0052);
+const pupil = eyePatch('taylor-human-pupil-v2', (u, v, side) => [side * eyeX + u * .0042, eyeY + v * .0070], .0062);
 function ribbon(id, path, width, offset) {
     return surface(id, tri => {
         for (let i = 0; i < 36; i++) {
-            const at = (j, side) => { const [x, y] = path(j / 36), [x1, y1] = path(clamp(j / 36 + .001, 0, 1)), [x0, y0] = path(clamp(j / 36 - .001, 0, 1)), dx = x1 - x0, dy = y1 - y0, l = Math.hypot(dx, dy) || 1, px = x - side * dy / l * width, py = y + side * dx / l * width; return eyePoint(px, py, offset); };
+            const at = (j, side) => { const [x, y] = path(j / 36), [x1, y1] = path(clamp(j / 36 + .001, 0, 1)), [x0, y0] = path(clamp(j / 36 - .001, 0, 1)), dx = x1 - x0, dy = y1 - y0, l = Math.hypot(dx, dy) || 1, w = typeof width === 'number' ? width : width(j / 36), px = x - side * dy / l * w, py = y + side * dx / l * w; return eyePoint(px, py, offset); };
             const a = at(i, -1), b = at(i + 1, -1), c = at(i + 1, 1), d = at(i, 1);
             tri(a, b, c);
             tri(a, c, d);
@@ -84,10 +84,11 @@ function ribbon(id, path, width, offset) {
     }, false);
 }
 const lids = [-1, 1].map(side => ribbon(`taylor-human-lid-${side}-v1`, t => { const u = t * 2 - 1; return [side * eyeX + u * eyeWidth, eyeY + eyeHeight * aperture(u) + u * side * .002]; }, .0012, .0047));
-const brows = [-1, 1].map(side => ribbon(`taylor-human-brow-${side}-v1`, t => [side * (.020 + t * .064), .045 + .009 * Math.sin(t * Math.PI) - t * .002], .0023, .0035));
+const lowerLids = [-1, 1].map(side => ribbon(`taylor-human-lower-lid-${side}-v1`, t => { const u = t * 2 - 1; return [side * eyeX + u * eyeWidth, eyeY - eyeHeight * aperture(u) + u * side * .002]; }, .00065, .0048));
+const brows = [-1, 1].map(side => ribbon(`taylor-human-brow-${side}-v2`, t => [side * (.020 + t * .064), .045 + .009 * Math.sin(t * Math.PI) - t * .002], t => .0023 * (.35 + .65 * Math.sin(t * Math.PI)), .0035));
 function lips(id, smile, upper) {
     return surface(id, tri => {
-        const at = (i, j) => { const u = -1 + i / 40 * 2, t = j / 5, x = u * .030, envelope = Math.pow(Math.max(0, 1 - u * u), .65), seam = -.088 + smile * u * u * .007, height = upper ? (.004 + .003 * Math.exp(-(((Math.abs(u) - .3) / .2) ** 2))) : .007, y = seam + (upper ? 1 : -1) * height * envelope * t, z = humanFaceDepth(x, y) + .003 + .004 * envelope * Math.sin(Math.PI * t); return [x, y, z]; };
+        const at = (i, j) => { const u = -1 + i / 40 * 2, t = j / 5, x = u * .030, envelope = Math.pow(Math.max(0, 1 - u * u), .65), seam = -.088 + smile * u * u * .007, height = upper ? (.005 + .003 * Math.exp(-(((Math.abs(u) - .3) / .2) ** 2))) : .009, y = seam + (upper ? 1 : -1) * height * envelope * t, z = humanFaceDepth(x, y) + .003 + .005 * envelope * Math.sin(Math.PI * t); return [x, y, z]; };
         for (let i = 0; i < 40; i++)
             for (let j = 0; j < 5; j++) {
                 const a = at(i, j), b = at(i + 1, j), c = at(i + 1, j + 1), d = at(i, j + 1);
@@ -104,6 +105,14 @@ function lips(id, smile, upper) {
 }
 const upperLip = lips('taylor-human-upper-lip-v1', 0, true), lowerLip = lips('taylor-human-lower-lip-v1', 0, false), smileUpper = lips('taylor-human-smiling-upper-lip-v1', 1, true), smileLower = lips('taylor-human-smiling-lower-lip-v1', 1, false);
 const seam = ribbon('taylor-human-lip-seam-v1', t => [(t * 2 - 1) * .028, -.088], .0007, .0045);
+const smileSeam = ribbon('taylor-human-smile-seam-v1', t => { const u = t * 2 - 1; return [u * .028, -.088 + u * u * .007]; }, .0006, .0046);
+const nostrils = surface('taylor-human-nostril-contour-v1', tri => {
+    for (const side of [-1, 1])
+        for (let i = 0; i < 12; i++) {
+            const at = (angle) => eyePoint(side * .0115 + Math.cos(angle) * .0034, -.043 + Math.sin(angle) * .0016, .0015);
+            tri(eyePoint(side * .0115, -.043, .0015), at(i / 12 * Math.PI * 2), at((i + 1) / 12 * Math.PI * 2));
+        }
+}, false);
 const mouthGap = surface('taylor-human-mouth-opening-v1', tri => {
     const point = (r, i) => { const a = i / 32 * Math.PI * 2, x = Math.cos(a) * r / 4 * .027, y = -.088 + Math.sin(a) * r / 4 * .008; return eyePoint(x, y, .0035); };
     for (let r = 0; r < 4; r++)
@@ -135,36 +144,39 @@ function lock(id, points, radii, rows = 40, segments = 20) {
     }, true);
 }
 const ponytail = lock('taylor-human-athletic-ponytail-v2', [[0, .133, -.085], [.018, .091, -.159], [.038, -.015, -.183], [.018, -.134, -.157], [.046, -.267, -.131], [.075, -.349, -.113]], [.030, .039, .036, .030, .021, 0]);
-const sweep = lock('taylor-human-side-part-v2', [[-.009, .176, .065], [-.052, .138, .099], [-.095, .076, .080], [-.115, .002, .029], [-.111, -.068, .006]], [0, .023, .018, .010, 0]);
-const fineSweep = lock('taylor-human-temple-strand-v1', [[.079, .095, .076], [.112, .025, .031], [.112, -.045, .018], [.103, -.096, .015]], [0, .006, .005, 0]);
+const sweep = lock('taylor-human-side-part-v3', [[-.009, .184, .025], [-.052, .138, .060], [-.095, .076, .050], [-.115, .002, .010], [-.111, -.068, .006]], [0, .023, .018, .010, 0]);
+const fineSweep = lock('taylor-human-temple-strand-v2', [[.079, .095, .055], [.112, .025, .031], [.112, -.045, .018], [.103, -.096, .015]], [0, .006, .005, 0]);
 const looseLocks = [-1, 1].map(side => lock(`taylor-human-face-framing-lock-${side}-v1`, [[side * .095, .074, .054], [side * .121, .006, .043], [side * .124, -.082, .031], [side * .112, -.155, .043], [side * .130, -.209, .020]], [0, .008, .007, .004, 0], 24, 12));
-export const HUMAN_TAYLOR_GEOMETRY = { face, eyeWhite, iris, pupil, upperLip, lowerLip, smileUpper, smileLower, seam, mouthGap, cap, ponytail, sweep, fineSweep, ...Object.fromEntries(looseLocks.map((g, i) => [`looseLock${i}`, g])), ...Object.fromEntries(lids.map((g, i) => [`lid${i}`, g])), ...Object.fromEntries(brows.map((g, i) => [`brow${i}`, g])) };
+export const HUMAN_TAYLOR_GEOMETRY = { face, eyeWhite, iris, pupil, upperLip, lowerLip, smileUpper, smileLower, seam, smileSeam, nostrils, mouthGap, cap, ponytail, sweep, fineSweep, ...Object.fromEntries(looseLocks.map((g, i) => [`looseLock${i}`, g])), ...Object.fromEntries(lids.map((g, i) => [`lid${i}`, g])), ...Object.fromEntries(lowerLids.map((g, i) => [`lowerLid${i}`, g])), ...Object.fromEntries(brows.map((g, i) => [`brow${i}`, g])) };
 export function humanTaylorHead(head, yaw, tilt, expression, time, skin) {
     const out = [], right = new Vec3(Math.cos(yaw), 0, -Math.sin(yaw)), forward = new Vec3(Math.sin(yaw), 0, Math.cos(yaw));
     const point = (x, y, z) => head.clone().add(right.clone().scale(x * Math.cos(tilt) - y * Math.sin(tilt))).add(new Vec3(0, x * Math.sin(tilt) + y * Math.cos(tilt), 0)).add(forward.clone().scale(z));
-    const part = (geometry, color, material = 'skin', y = 0, sy = 1, unlit = false) => out.push({ skin: geometry, boneMatrices: bones, position: point(0, y, 0), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(1, sy, 1), color, material, unlit });
+    const part = (geometry, color, material = 'humanSkin', y = 0, sy = 1, unlit = false) => out.push({ skin: geometry, boneMatrices: bones, position: point(0, y, 0), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(1, sy, 1), color, material, unlit });
     part(face, skin);
     for (const g of [cap, ponytail])
-        part(g, '#251e1d', 'hair');
+        part(g, '#251e1d', 'groomedHair');
     for (const g of [sweep, fineSweep, ...looseLocks])
-        part(g, '#382820', 'hair');
+        part(g, '#382820', 'groomedHair');
     const phase = (time + .47) % 3.75, blink = phase < .10 ? 1 - smoothstep(0, .10, phase) : 0, open = clamp(1 - blink - expression.squint * .35, .06, 1), offset = eyeY * (1 - open);
     part(eyeWhite, '#eee9e0', 'ceramic', offset, open);
-    part(iris, '#684b35', 'hair', offset, open, true);
+    part(iris, '#876641', 'iris', offset, open);
     part(pupil, '#231d1c', 'hair', offset, open, true);
     for (const g of lids)
         part(g, '#34221f', 'hair', offset, open);
+    for (const g of lowerLids)
+        part(g, '#946454', 'humanSkin', offset, open);
+    part(nostrils, '#8a5141', 'humanSkin');
     for (const g of brows)
         part(g, '#332420', 'hair', expression.browRaise * .003);
     const smiling = expression.smile > .3, mouth = clamp(expression.mouthOpen, 0, 1), gapScale = Math.max(.03, mouth);
     part(mouthGap, '#5a3835', 'skin', -.088 * (1 - gapScale), gapScale);
-    part(smiling ? smileUpper : upperLip, '#b87570', 'skin', mouth * .002);
-    part(smiling ? smileLower : lowerLip, '#c1847a', 'skin', -mouth * .010);
-    part(seam, '#704943', 'skin', -mouth * .004);
+    part(smiling ? smileUpper : upperLip, '#a95b62', 'lip', mouth * .002);
+    part(smiling ? smileLower : lowerLip, '#be7379', 'lip', -mouth * .010);
+    part(smiling ? smileSeam : seam, '#704943', 'skin', -mouth * .004);
     for (const side of [-1, 1]) {
         const x = side * eyeX - .001, y = eyeY + .002;
         out.push({ kind: 'sphere', position: point(x, eyeY + (y - eyeY) * open, humanFaceDepth(x, y) + .008), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.003, .003 * open, .0015), color: '#fff5dc', unlit: true, noShadow: true });
-        out.push({ kind: 'sphere', position: point(side * .110, -.026, -.007), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.027, .058, .037), color: skin, material: 'skin' });
+        out.push({ kind: 'sphere', position: point(side * .110, -.026, -.007), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.027, .058, .037), color: skin, material: 'humanSkin' });
     }
     out.push({ kind: 'torus', position: point(.003, .123, -.105), rotation: new Vec3(Math.PI / 2, yaw, tilt), scale: new Vec3(.066, .057, .012), color: '#cedb68', material: 'fabric' });
     return out;

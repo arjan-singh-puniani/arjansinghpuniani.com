@@ -55,6 +55,19 @@ export function adultTaylorPose(source, root, yaw, constraints) {
         p[key] = horizontal(source[key], .90);
         p[key].y = pelvisY + (source[key].y - source.pelvisCenter.y) * 1.20;
     }
+    // A small weight-bearing rest stance replaces the symmetric mannequin pose.
+    // Feet retain their anchors and the knees/arms are solved below. This same
+    // stance is recorded and analysed, rather than being a visual-only offset.
+    if (constraints.human && constraints.restWeight) {
+        const w = clamp(constraints.restWeight, 0, 1), right = new Vec3(Math.cos(yaw), 0, -Math.sin(yaw));
+        for (const key of ['pelvisCenter', 'hipL', 'hipR'])
+            p[key].add(right.clone().scale(.023 * w));
+        p.torsoCenter.add(right.clone().scale(.006 * w));
+        for (const key of ['shoulderL', 'shoulderR', 'head'])
+            p[key].add(right.clone().scale(-.007 * w));
+        p.shoulderL.y += .007 * w;
+        p.shoulderR.y -= .007 * w;
+    }
     const arm = (v) => { const out = horizontal(v, .78), dy = v.y - oldShoulder.y, down = constraints.human ? 2.55 : 2.30, scale = down - (down - 1.20) * smooth((dy + .10) / .25); out.y = shoulder.y + dy * scale; return out; };
     p.handL = Vec3.lerp(arm(source.handL), source.handL, constraints.leftWorld);
     p.handR = Vec3.lerp(arm(source.handR), source.handR, constraints.rightWorld);
