@@ -4,7 +4,7 @@ import {Character} from '../dist/entities/Character.js';
 import {playerSpec} from '../dist/content/PlayerAvatars.js';
 import {Navigation} from '../dist/world/Navigation.js';
 import {Vec3,compose,transformPoint} from '../dist/rendering/Math3D.js';
-import {CHARACTER_SKIN,skinMatrices,rigFromPose} from '../dist/animation/CharacterSkin.js';
+import {CHARACTER_SKIN,HUMAN_TENNIS_SKIN,skinMatrices,rigFromPose} from '../dist/animation/CharacterSkin.js';
 
 let triangles=0;
 for(const [name,g] of Object.entries(HUMAN_TAYLOR_GEOMETRY)){
@@ -33,7 +33,7 @@ for(const time of [0,3.28,3.32])for(const expression of [{smile:0,mouthOpen:0,sq
 assert.equal(playerSpec('taylor').appearance,'human');
 for(const hz of [30,60,120])for(const state of ['idle','walk','serve','swingForehand','swingBackhand','sit','drink']){
  const c=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});c.racketStowed=true;c.trigger(state);if(state==='walk')c.goTo(new Vec3(1,0,1));
- for(let i=0;i<hz;i++){c.update(1/hz);const pose=c.analysisPose(),meshes=c.meshes(),face=meshes.find(m=>m.skin===HUMAN_TAYLOR_GEOMETRY.face);assert(face);assert.deepEqual(face.position,pose.head);assert(!meshes.some(m=>m.material==='toon'||m.skin?.id.includes('nemes')||m.skin?.id.includes('tail-gold')),'Shipped human appearance has no feline surfaces');const expected=skinMatrices(rigFromPose(pose,c.position,c.yaw));for(const g of [CHARACTER_SKIN.taylorDress,CHARACTER_SKIN.taylorArms,CHARACTER_SKIN.taylorLegs,CHARACTER_SKIN.taylorBoots,CHARACTER_SKIN.taylorHands,CHARACTER_SKIN.taylorSocks,CHARACTER_SKIN.taylorWristband])assert.deepEqual(meshes.find(m=>m.skin===g).boneMatrices,expected,'Clothes and skin share the authoritative pose');}
+ for(let i=0;i<hz;i++){c.update(1/hz);const pose=c.analysisPose(),meshes=c.meshes(),face=meshes.find(m=>m.skin===HUMAN_TAYLOR_GEOMETRY.face);assert(face);assert.deepEqual(face.position,pose.head);assert(!meshes.some(m=>m.material==='toon'||m.skin?.id.includes('nemes')||m.skin?.id.includes('tail-gold')),'Shipped human appearance has no feline surfaces');const expected=skinMatrices(rigFromPose(pose,c.position,c.yaw));for(const g of [...Object.values(HUMAN_TENNIS_SKIN),CHARACTER_SKIN.taylorArms,CHARACTER_SKIN.taylorLegs,CHARACTER_SKIN.taylorBoots,CHARACTER_SKIN.taylorHands,CHARACTER_SKIN.taylorSocks,CHARACTER_SKIN.taylorWristband])assert.deepEqual(meshes.find(m=>m.skin===g).boneMatrices,expected,'Clothes and skin share the authoritative pose');}
 }
 console.log(JSON.stringify({headTriangles:triangles,featureChecks}));
 console.log('Human Taylor PASS: bounded facial surfaces, actual eye/skin separation through blinking, human default, head attachment and registered clothing/skin across seven states and three rates.');

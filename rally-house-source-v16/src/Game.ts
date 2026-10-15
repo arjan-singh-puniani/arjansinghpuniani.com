@@ -25,6 +25,7 @@ import {ChampionshipController} from './tennis/ChampionshipController.js';
 import {championshipOpponentFor} from './tennis/ChampionshipOpponents.js';
 import {CHAMPIONSHIP_CONTACT_FEEL} from './tennis/ChampionshipTuning.js';
 import {ChampionshipCameraRig} from './tennis/ChampionshipCameraRig.js';
+import {ChampionshipArena} from './tennis/ChampionshipArena.js';
 import {InteractiveMatchSystem,type InteractiveShotQuality} from './tennis/InteractiveMatchSystem.js';
 import {MatchInput} from './tennis/MatchInput.js';
 import {ChampionshipHUD} from './ui/ChampionshipHUD.js';
@@ -64,6 +65,7 @@ export class Game {
   private matchInput = new MatchInput();
   private championshipCamera!: ChampionshipCameraRig;
   private championshipHud!: ChampionshipHUD;
+  private championshipArena:ChampionshipArena|null=null;
   private interactiveMatch: InteractiveMatchSystem | null = null;
   private championshipActivityId: string | null = null;
   private championshipOpponentId: string | null = null;
@@ -359,6 +361,7 @@ export class Game {
     this.clock.paused=false;
     this.clock.speed=1;
     this.championshipActivityId=activity.id;
+    this.championshipArena??=new ChampionshipArena();this.championshipArena.begin();
     this.championshipRound=1;
     this.championshipCompletedRound=0;
     this.championshipOpponentId=opponent.id;
@@ -406,6 +409,7 @@ export class Game {
         onPoint:(winner,reason,rallyLength)=>{
           this.matchInput.setEnabled(false);
           this.championship.resolvePoint({winner,reason,rallyLength});
+          this.championshipArena?.react(winner);
           if(this.championship.phase==='matchResult')this.audio.success();
         },
       },
@@ -1212,8 +1216,14 @@ export class Game {
       });
     }
     this.spatial.update(this.renderDt,this.performanceLab.active||this.championship.active||this.phoneCapture?.active||!!document.querySelector('#context.open,#book.open,#buildPanel.open'),this.settings.reducedMotion,this.worldNotices);
-    const architecture=this.performanceLab.active?this.world.meshes.filter(m=>m.id!=='court-pendant'):this.world.meshes;
-    const meshes:RenderItem[]=[...architecture,...this.spatial.meshes(),...this.world.placementMeshes(),...this.world.dynamicMeshes(this.settings.reducedMotion?0:now/1000,this.clock.minutes,this.camera.position,this.renderDt,this.sportFocus,now/1000)];if(!this.performanceLab.active){for(const c of this.characters){
+    // Ceiling fixtures use the same camera cutaway as the lab, so they do not
+    // cover the far player or gallery when the view descends behind baseline.
+    const architecture=this.performanceLab.active||this.sportFocus>.02?this.world.meshes.filter(m=>m.id!=='court-pendant'):this.world.meshes;
+    const meshes:RenderItem[]=[...architecture,...(this.world.courtDetails??[]),...this.spatial.meshes(),...this.world.placementMeshes(),...this.world.dynamicMeshes(this.settings.reducedMotion?0:now/1000,this.clock.minutes,this.camera.position,this.renderDt,this.sportFocus,now/1000)];
+    if(!this.performanceLab.active){
+      meshes.push(...(this.championshipArena?.meshes(this.clock.paused?0:this.renderDt,this.sportFocus,this.settings.reducedMotion)??[]));
+      if(this.sportFocus>.005)meshes.push({kind:'box',position:new Vec3(1,.076,0),scale:new Vec3(8.42,.002,11.92),color:'#427b92',material:'court',alpha:Math.min(1,this.sportFocus*1.01),noShadow:true,id:'court'});
+      for(const c of this.characters){
       const body=c.meshes(false);
       // A walking club member may pass in front of the sports camera. Keep their
       // activity intact while softly cutting them away from the player's silhouette.

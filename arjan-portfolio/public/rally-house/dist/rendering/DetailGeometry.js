@@ -1,0 +1,46 @@
+import { Vec3, identity } from './Math3D.js';
+const rigid = new Float32Array(15 * 16);
+for (let i = 0; i < 15; i++)
+    rigid.set(identity(), i * 16);
+/** Small authored surfaces are baked by material, rather than one draw per detail. */
+export class DetailBatch {
+    id;
+    color;
+    material;
+    p = [];
+    n = [];
+    bi = [];
+    bw = [];
+    constructor(id, color, material = 'matte') {
+        this.id = id;
+        this.color = color;
+        this.material = material;
+    }
+    tri(a, b, c, bone = 0, normals) { const n = Vec3.cross(Vec3.sub(b, a), Vec3.sub(c, a)); if (n.len() < 1e-9)
+        return; n.normalize(); for (const [i, v] of [a, b, c].entries()) {
+        const nn = normals?.[i] ?? n;
+        this.p.push(v.x, v.y, v.z);
+        this.n.push(nn.x, nn.y, nn.z);
+        this.bi.push(bone, 0, 0, 0);
+        this.bw.push(1, 0, 0, 0);
+    } }
+    box(c, s, bone = 0) { const v = (x, y, z) => c.clone().add(new Vec3(x * s.x, y * s.y, z * s.z)); for (const [n, u, w] of [[new Vec3(1, 0, 0), new Vec3(0, 1, 0), new Vec3(0, 0, 1)], [new Vec3(-1, 0, 0), new Vec3(0, 0, 1), new Vec3(0, 1, 0)], [new Vec3(0, 1, 0), new Vec3(0, 0, 1), new Vec3(1, 0, 0)], [new Vec3(0, -1, 0), new Vec3(1, 0, 0), new Vec3(0, 0, 1)], [new Vec3(0, 0, 1), new Vec3(1, 0, 0), new Vec3(0, 1, 0)], [new Vec3(0, 0, -1), new Vec3(0, 1, 0), new Vec3(1, 0, 0)]]) {
+        const at = (x, y) => { const p = n.clone().scale(.5).add(u.clone().scale(x)).add(w.clone().scale(y)); return v(p.x, p.y, p.z); }, a = at(-.5, -.5), b = at(.5, -.5), d = at(-.5, .5), cc = at(.5, .5);
+        this.tri(a, b, cc, bone);
+        this.tri(a, cc, d, bone);
+    } }
+    ellipsoid(c, r, bone = 0, rows = 8, segments = 12) { const at = (i, j) => { const a = i / rows * Math.PI, b = j / segments * Math.PI * 2, n = new Vec3(Math.sin(a) * Math.cos(b), Math.cos(a), Math.sin(a) * Math.sin(b)); return { p: c.clone().add(new Vec3(n.x * r.x, n.y * r.y, n.z * r.z)), n: new Vec3(n.x / r.x, n.y / r.y, n.z / r.z).normalize() }; }; for (let i = 0; i < rows; i++)
+        for (let j = 0; j < segments; j++) {
+            const a = at(i, j), b = at(i + 1, j), d = at(i, j + 1), cc = at(i + 1, j + 1);
+            this.tri(a.p, cc.p, b.p, bone, [a.n, cc.n, b.n]);
+            this.tri(a.p, d.p, cc.p, bone, [a.n, d.n, cc.n]);
+        } }
+    rod(a, b, r, bone = 0, segments = 8, r2 = r) { const y = Vec3.sub(b, a).normalize(), hint = Math.abs(y.y) < .9 ? new Vec3(0, 1, 0) : new Vec3(0, 0, 1), x = Vec3.cross(y, hint).normalize(), z = Vec3.cross(x, y).normalize(); const at = (end, i) => { const t = i / segments * Math.PI * 2, n = x.clone().scale(Math.cos(t)).add(z.clone().scale(Math.sin(t))), p = (end ? b : a).clone().add(n.clone().scale(end ? r2 : r)); return { p, n }; }; for (let i = 0; i < segments; i++) {
+        const aa = at(false, i), bb = at(false, i + 1), cc = at(true, i + 1), d = at(true, i);
+        this.tri(aa.p, cc.p, bb.p, bone, [aa.n, cc.n, bb.n]);
+        this.tri(aa.p, d.p, cc.p, bone, [aa.n, d.n, cc.n]);
+        this.tri(a, aa.p, bb.p, bone);
+        this.tri(b, cc.p, d.p, bone);
+    } }
+    finish() { const skin = { id: this.id, positions: new Float32Array(this.p), normals: new Float32Array(this.n), boneIndices: new Float32Array(this.bi), boneWeights: new Float32Array(this.bw) }; return { skin, boneMatrices: rigid, position: new Vec3(), color: this.color, material: this.material }; }
+}
