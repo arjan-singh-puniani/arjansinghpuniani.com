@@ -1,0 +1,114 @@
+[
+  {
+    "source": "after-front.png",
+    "file": "after-front.webp",
+    "sourceSHA256": "a7e44fc4d9325eda2c5fda50a5f58e1bb9d6dda6698c33a85f8aad2d37613b39",
+    "sha256": "41634d9be40edfaf5dcc830ee3f6618608725fe6cb14ced61e706f54e0fd7f50",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "after-three-quarter.png",
+    "file": "after-three-quarter.webp",
+    "sourceSHA256": "40ba6f11fb75da05bb4f4bca4823adbc7ca0800e722808a25b1bc6e972d25486",
+    "sha256": "25b40751bf3bb3144c9d9876f1b17dcd43f69c115801da42b2f9b151ad225727",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "before-front.png",
+    "file": "before-front.webp",
+    "sourceSHA256": "81943ce9739aa38c7b6dc39845297ce0848a1035185daf45b8c8209176a17438",
+    "sha256": "4c81f8cc6e94137d11cfbac381a06178fc37da652dc91e6430b183ce464fb305",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "before-three-quarter.png",
+    "file": "before-three-quarter.webp",
+    "sourceSHA256": "b7dd98e3f89ff6c99bf0f31749924de8c385b824bd849f8e13fc6c25c5f37a3f",
+    "sha256": "b9388133af98a17b4f3b2aa8f1491dd005b509e8c7ae47be81121dd44df1f603",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "chromium/1440-club.png",
+    "file": "chromium/1440-club.webp",
+    "sourceSHA256": "89b98d393e5e95f1aa33b61ff51ce3420bee873f58e1f24b3796ed173bf8ded0",
+    "sha256": "7a574c6735705e0401dec5f684b74feacb9551b256d56072068780b7af96ce01",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "chromium/390-club.png",
+    "file": "chromium/390-club.webp",
+    "sourceSHA256": "fac800b84ee1f0c5954c391a3e0e12ac5ea5f48579d74568c022c49f2f5c8523",
+    "sha256": "a4a220e88347dd4ec7a62a56dc3f394e0ff8393ec6a6286ba7fb0a13b7b83791",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "chromium/championship.png",
+    "file": "chromium/championship.webp",
+    "sourceSHA256": "243ef09a40e9f32bd18ffb1928ff664e81ed2252017c3d9e074db0a300197574",
+    "sha256": "b19f7225a5c53c4a3631bd9db092b82f67d8a6ad03b8e1edb7ff05c5541488de",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "firefox/1440-club.png",
+    "file": "firefox/1440-club.webp",
+    "sourceSHA256": "d6aca006ce4954ed4cee82b6091a447bf723390acbae5a8345ceb5df0f193915",
+    "sha256": "114cd10773fafde8bb0fc68bd60240c75edba32eea14bae416636c7fb0cac00f",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "firefox/390-club.png",
+    "file": "firefox/390-club.webp",
+    "sourceSHA256": "e26c29768d93e4db1f65b4579cda3d15368a137752389519ee8931bcc308064d",
+    "sha256": "0f9d8539aed5f56ac00d395ebc818e3a43c0b3791277b6879cff65433b40e754",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "firefox/championship.png",
+    "file": "firefox/championship.webp",
+    "sourceSHA256": "2b04e430d8e91590ef1e40bf6e9475c6fda13a7af5b101917c509719bc27e8cc",
+    "sha256": "f5bb5eb4a30ec0acf5177f6994b49275053431e533accaf10f99d1c181c194d6",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "phone/mount.png",
+    "file": "phone/mount.webp",
+    "sourceSHA256": "6e9dcf6cce689684dfb3dca70b9d50df054b2a2c43ba23ef9b8a5c36093b0066",
+    "sha256": "a1459265bbc015d399ac0f2180f5f0dff6bcf4dafec5fd29d5a0c0d289513de2",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "phone/record.png",
+    "file": "phone/record.webp",
+    "sourceSHA256": "be741448a2fee6661d1e432410e413fa5b26628388ece542d08a967d7110ec14",
+    "sha256": "10d7039f9230bfbb3303fdc05b5ece7a495d0d07adb2d32611f0d72bf17841b4",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "phone/review.png",
+    "file": "phone/review.webp",
+    "sourceSHA256": "e51e7d083f7e9719caf37739f01f998a0d74dc24f4de72de742fe8447f75daa5",
+    "sha256": "dfaee1b93375fca2e4e83389caa803049a91d180bf898f73d9210a2fd64ee9d3",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "webkit/1440-club.png",
+    "file": "webkit/1440-club.webp",
+    "sourceSHA256": "ac8bdf09f0a646f62e92ed6d58c9e1c4a258af518ae5674011334dea6331e453",
+    "sha256": "0ad2dab3c4aa4d4d45d6982728fbb80a8a6c2b960cf19722b1fc793fc6c7041c",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "webkit/390-club.png",
+    "file": "webkit/390-club.webp",
+    "sourceSHA256": "e72b83e0329a782adbeefbeb8416dcd7a8c89af9e309336ed63e45b53495d20b",
+    "sha256": "b2b2e2145f458f2b6d66c9b1a67498ffb8d14e478f9e1b005775b2dcf1247ce1",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "webkit/championship.png",
+    "file": "webkit/championship.webp",
+    "sourceSHA256": "a98c7bd4bacf03455082b3cdc3a18cde55e735a69af18f7bf56a8e4018aab989",
+    "sha256": "34f91da8b6de30e1c3cc6878a5fa27be73a7c7717dd029a535596d57f1b27db0",
+    "conversion": "lossless WebP; no resize or other edits"
+  }
+]

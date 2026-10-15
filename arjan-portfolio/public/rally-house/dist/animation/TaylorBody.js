@@ -30,6 +30,18 @@ export function adultTaylorPose(source, root, yaw, constraints) {
     p.torsoCenter = torso(source.torsoCenter);
     p.shoulderL = torso(source.shoulderL);
     p.shoulderR = torso(source.shoulderR);
+    // The compact bind's broad shoulders suit the original stylized avatar.
+    // An adult human needs a narrower shoulder girdle; solve the arms from these
+    // real landmarks so skin, contact and tracking agree on the new proportion.
+    if (constraints.human) {
+        const center = Vec3.lerp(p.shoulderL, p.shoulderR, .5);
+        for (const side of ['L', 'R']) {
+            const delta = Vec3.sub(p[`shoulder${side}`], center);
+            delta.x *= .83;
+            delta.z *= .83;
+            p[`shoulder${side}`] = center.clone().add(delta);
+        }
+    }
     if (constraints.folded) {
         const right = new Vec3(Math.cos(p.torsoYaw), 0, -Math.sin(p.torsoYaw)), center = Vec3.lerp(p.shoulderL, p.shoulderR, .5);
         p.shoulderL = center.clone().add(right.clone().scale(-.284));

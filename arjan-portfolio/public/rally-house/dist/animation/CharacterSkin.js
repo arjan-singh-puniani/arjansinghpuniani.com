@@ -219,6 +219,56 @@ dressBand(taylorNeckline, 1.045, 1.066, 2, .004);
 dressBand(taylorDressEdging, 1.395, 1.402, 2, .007);
 dressBand(taylorDressEdging, 1.431, 1.440, 2, .007);
 dressBand(taylorDressEdging, .580, .591, 2, .004);
+// The human shoulder yoke and sportswear sample one contour and weight field.
+// The scoop neckline stays sewn to the body in live motion and replay.
+const humanProfile = [[.575, .310, .219], [.66, .302, .213], [.78, .284, .206], [.88, .259, .193], [1.02, .197, .153], [1.10, .202, .163], [1.20, .230, .189], [1.27, .254, .202], [1.34, .262, .180], [1.385, .224, .144], [1.42, .153, .104], [1.445, .104, .092]];
+const humanNeckY = (angle) => 1.415 - .108 * Math.pow(Math.max(0, Math.sin(angle)), 2) - .028 * Math.pow(Math.max(0, -Math.sin(angle)), 2);
+function humanContour(y, angle, offset = 0) {
+    const [x, z] = radiusAt(humanProfile, y), pleat = .016 * (1 - eased((y - .575) / .31)) * Math.cos(angle * 12);
+    return new Vec3(Math.cos(angle) * (x + pleat + offset), y, .015 * clampUnit((y - .79) / .55) + Math.sin(angle) * (z + pleat * .65 + offset));
+}
+function humanNormal(y, angle) {
+    const lo = Math.max(.575, y - .001), hi = Math.min(1.445, y + .001);
+    return Vec3.cross(Vec3.sub(humanContour(hi, angle), humanContour(lo, angle)), Vec3.sub(humanContour(y, angle + .001), humanContour(y, angle - .001))).normalize();
+}
+function humanSurface(out, low, high, rows, offset = 0) {
+    const rings = build();
+    for (let r = 0; r <= rows; r++)
+        for (let i = 0; i < 48; i++) {
+            const angle = i / 48 * Math.PI * 2, y = low(angle) + (high(angle) - low(angle)) * r / rows, p = humanContour(y, angle, offset), n = humanNormal(y, angle), [a, b, t] = dressWeights(y);
+            rings.p.push(p.x, p.y, p.z);
+            rings.n.push(n.x, n.y, n.z);
+            rings.bi.push(a, b, 0, 0);
+            rings.bw.push(1 - t, t, 0, 0);
+        }
+    appendSurface(out, rings, rows, 48);
+}
+const humanDress = build(), humanYoke = build(), humanTrim = build(), humanSeams = build();
+humanSurface(humanDress, () => .575, humanNeckY, 40, .003);
+humanSurface(humanYoke, a => humanNeckY(a) - .010, () => 1.445, 14, -.001);
+humanSurface(humanTrim, a => humanNeckY(a) - .012, humanNeckY, 2, .006);
+humanSurface(humanTrim, () => 1.015, () => 1.027, 2, .006);
+humanSurface(humanTrim, () => .577, () => .586, 2, .006);
+// Princess seams describe a tailored cut with the same deformation as fabric.
+for (const side of [-1, 1]) {
+    const strip = build();
+    for (let r = 0; r <= 24; r++)
+        for (let i = 0; i < 2; i++) {
+            const y = .885 + r / 24 * .405, angle = Math.PI / 2 + side * (.72 - .12 * Math.sin(r / 24 * Math.PI)) + (i ? 1 : -1) * .012, p = humanContour(y, angle, .006), n = humanNormal(y, angle), [a, b, t] = dressWeights(y);
+            strip.p.push(p.x, p.y, p.z);
+            strip.n.push(n.x, n.y, n.z);
+            strip.bi.push(a, b, 0, 0);
+            strip.bw.push(1 - t, t, 0, 0);
+        }
+    for (let r = 0; r < 24; r++)
+        for (const v of [r * 2, r * 2 + 3, r * 2 + 1, r * 2, r * 2 + 2, r * 2 + 3]) {
+            humanSeams.p.push(...strip.p.slice(v * 3, v * 3 + 3));
+            humanSeams.n.push(...strip.n.slice(v * 3, v * 3 + 3));
+            humanSeams.bi.push(...strip.bi.slice(v * 4, v * 4 + 4));
+            humanSeams.bw.push(...strip.bw.slice(v * 4, v * 4 + 4));
+        }
+}
+export const HUMAN_TENNIS_SKIN = { dress: finish('taylor-human-tailored-dress-v1', humanDress), yoke: finish('taylor-human-shoulder-yoke-v1', humanYoke), trim: finish('taylor-human-scoop-piping-v1', humanTrim), seams: finish('taylor-human-princess-seams-v1', humanSeams) };
 // A small embroidered crescent recreates the reference's central gold detail.
 // It samples the same surface and weights as the tunic, including in replay.
 const taylorTunicMark = build();

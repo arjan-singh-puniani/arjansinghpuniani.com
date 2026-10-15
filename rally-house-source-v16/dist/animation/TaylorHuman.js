@@ -122,29 +122,32 @@ const cap = surface('taylor-human-swept-hair-cap-v1', tri => {
             tri(a, c, d);
         }
 });
-function lock(id, points, radii) {
+function lock(id, points, radii, rows = 40, segments = 20) {
     return surface(id, tri => {
         const sample = (t) => { const u = t * (points.length - 1), i = Math.min(points.length - 2, Math.floor(u)), v = u - i, a = points[Math.max(0, i - 1)], b = points[i], c = points[i + 1], d = points[Math.min(points.length - 1, i + 2)], p = new Vec3(...[0, 1, 2].map(k => .5 * ((2 * b[k]) + (-a[k] + c[k]) * v + (2 * a[k] - 5 * b[k] + 4 * c[k] - d[k]) * v * v + (-a[k] + 3 * b[k] - 3 * c[k] + d[k]) * v * v * v))); return { p, r: radii[i] + (radii[i + 1] - radii[i]) * v }; };
-        const at = (r, i) => { const t = r / 40, { p, c, radius } = (() => { const s = sample(t); return { p: s.p, c: Vec3.sub(sample(Math.min(1, t + .002)).p, sample(Math.max(0, t - .002)).p).normalize(), radius: s.r }; })(), z = new Vec3(0, 0, 1); z.sub(c.clone().scale(Vec3.dot(z, c))).normalize(); const x = Vec3.cross(c, z).normalize(), a = i / 20 * Math.PI * 2, v = p.add(x.scale(Math.cos(a) * radius)).add(z.scale(Math.sin(a) * radius * .72)); return [v.x, v.y, v.z]; };
-        for (let r = 0; r < 40; r++)
-            for (let i = 0; i < 20; i++) {
+        const at = (r, i) => { const t = r / rows, { p, c, radius } = (() => { const s = sample(t); return { p: s.p, c: Vec3.sub(sample(Math.min(1, t + .002)).p, sample(Math.max(0, t - .002)).p).normalize(), radius: s.r }; })(), z = new Vec3(0, 0, 1); z.sub(c.clone().scale(Vec3.dot(z, c))).normalize(); const x = Vec3.cross(c, z).normalize(), a = i / segments * Math.PI * 2, v = p.add(x.scale(Math.cos(a) * radius)).add(z.scale(Math.sin(a) * radius * .72)); return [v.x, v.y, v.z]; };
+        for (let r = 0; r < rows; r++)
+            for (let i = 0; i < segments; i++) {
                 const a = at(r, i), b = at(r, i + 1), c = at(r + 1, i + 1), d = at(r + 1, i);
                 tri(a, c, b);
                 tri(a, d, c);
             }
     }, true);
 }
-const ponytail = lock('taylor-human-athletic-ponytail-v1', [[0, .123, -.085], [.018, .082, -.159], [.030, -.015, -.183], [.020, -.134, -.157], [.038, -.267, -.131], [.060, -.349, -.113]], [.026, .032, .030, .025, .018, 0]);
-const sweep = lock('taylor-human-side-part-v1', [[-.009, .166, .065], [-.052, .126, .099], [-.095, .076, .074], [-.115, .002, .029], [-.111, -.068, .006]], [0, .015, .013, .009, 0]);
+const ponytail = lock('taylor-human-athletic-ponytail-v2', [[0, .133, -.085], [.018, .091, -.159], [.038, -.015, -.183], [.018, -.134, -.157], [.046, -.267, -.131], [.075, -.349, -.113]], [.030, .039, .036, .030, .021, 0]);
+const sweep = lock('taylor-human-side-part-v2', [[-.009, .176, .065], [-.052, .138, .099], [-.095, .076, .080], [-.115, .002, .029], [-.111, -.068, .006]], [0, .023, .018, .010, 0]);
 const fineSweep = lock('taylor-human-temple-strand-v1', [[.079, .095, .076], [.112, .025, .031], [.112, -.045, .018], [.103, -.096, .015]], [0, .006, .005, 0]);
-export const HUMAN_TAYLOR_GEOMETRY = { face, eyeWhite, iris, pupil, upperLip, lowerLip, smileUpper, smileLower, seam, mouthGap, cap, ponytail, sweep, fineSweep, ...Object.fromEntries(lids.map((g, i) => [`lid${i}`, g])), ...Object.fromEntries(brows.map((g, i) => [`brow${i}`, g])) };
+const looseLocks = [-1, 1].map(side => lock(`taylor-human-face-framing-lock-${side}-v1`, [[side * .095, .074, .054], [side * .121, .006, .043], [side * .124, -.082, .031], [side * .112, -.155, .043], [side * .130, -.209, .020]], [0, .008, .007, .004, 0], 24, 12));
+export const HUMAN_TAYLOR_GEOMETRY = { face, eyeWhite, iris, pupil, upperLip, lowerLip, smileUpper, smileLower, seam, mouthGap, cap, ponytail, sweep, fineSweep, ...Object.fromEntries(looseLocks.map((g, i) => [`looseLock${i}`, g])), ...Object.fromEntries(lids.map((g, i) => [`lid${i}`, g])), ...Object.fromEntries(brows.map((g, i) => [`brow${i}`, g])) };
 export function humanTaylorHead(head, yaw, tilt, expression, time, skin) {
     const out = [], right = new Vec3(Math.cos(yaw), 0, -Math.sin(yaw)), forward = new Vec3(Math.sin(yaw), 0, Math.cos(yaw));
     const point = (x, y, z) => head.clone().add(right.clone().scale(x * Math.cos(tilt) - y * Math.sin(tilt))).add(new Vec3(0, x * Math.sin(tilt) + y * Math.cos(tilt), 0)).add(forward.clone().scale(z));
     const part = (geometry, color, material = 'skin', y = 0, sy = 1, unlit = false) => out.push({ skin: geometry, boneMatrices: bones, position: point(0, y, 0), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(1, sy, 1), color, material, unlit });
     part(face, skin);
-    for (const g of [cap, ponytail, sweep, fineSweep])
+    for (const g of [cap, ponytail])
         part(g, '#251e1d', 'hair');
+    for (const g of [sweep, fineSweep, ...looseLocks])
+        part(g, '#382820', 'hair');
     const phase = (time + .47) % 3.75, blink = phase < .10 ? 1 - smoothstep(0, .10, phase) : 0, open = clamp(1 - blink - expression.squint * .35, .06, 1), offset = eyeY * (1 - open);
     part(eyeWhite, '#eee9e0', 'ceramic', offset, open);
     part(iris, '#684b35', 'hair', offset, open, true);

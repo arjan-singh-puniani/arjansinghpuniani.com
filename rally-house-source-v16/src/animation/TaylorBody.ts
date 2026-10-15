@@ -21,6 +21,10 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
  const horizontal=(v:Vec3,sx:number,sz=1)=>{const dx=v.x-root.x,dz=v.z-root.z,s=Math.sin(yaw),c=Math.cos(yaw),x=(c*dx-s*dz)*sx,z=(s*dx+c*dz)*sz;return new Vec3(root.x+c*x+s*z,v.y,root.z-s*x+c*z);};
  const torso=(v:Vec3)=>{const out=horizontal(v,.80);out.y=pelvisY+(v.y-source.pelvisCenter.y)*TAYLOR_BODY.torsoScale;return out;};
  p.pelvisCenter=torso(source.pelvisCenter);p.torsoCenter=torso(source.torsoCenter);p.shoulderL=torso(source.shoulderL);p.shoulderR=torso(source.shoulderR);
+ // The compact bind's broad shoulders suit the original stylized avatar.
+ // An adult human needs a narrower shoulder girdle; solve the arms from these
+ // real landmarks so skin, contact and tracking agree on the new proportion.
+ if(constraints.human){const center=Vec3.lerp(p.shoulderL,p.shoulderR,.5);for(const side of ['L','R'] as const){const delta=Vec3.sub(p[`shoulder${side}`],center);delta.x*=.83;delta.z*=.83;p[`shoulder${side}`]=center.clone().add(delta);}}
  if(constraints.folded){const right=new Vec3(Math.cos(p.torsoYaw),0,-Math.sin(p.torsoYaw)),center=Vec3.lerp(p.shoulderL,p.shoulderR,.5);p.shoulderL=center.clone().add(right.clone().scale(-.284));p.shoulderR=center.clone().add(right.scale(.284));}
  const shoulder=Vec3.lerp(p.shoulderL,p.shoulderR,.5);
  p.head=horizontal(source.head,.80);p.head.y=shoulder.y+(source.head.y-oldShoulder.y)*.82-(constraints.human?.065:0);
