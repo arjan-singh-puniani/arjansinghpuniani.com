@@ -107,7 +107,7 @@ export class Character {
     stepEvent = false;
     lastStanceKey = '';
     clubIdleRelax = 0;
-    canFoldReferenceIdle() { return this.racketStowed && this.canRelaxClubIdle() && !this.acting.micro; }
+    canFoldReferenceIdle() { return this.spec.appearance !== 'human' && this.racketStowed && this.canRelaxClubIdle() && !this.acting.micro; }
     canRelaxClubIdle() { return this.spec.avatar === 'taylor' && this.state === 'idle' && !this.majorActivity && !this.matchCompetitor && !this.spectating && !this.propKind && !this.interactionTarget && this.interactionWeight < .001 && this.socialGesture === 'none' && this.acting.role === 'none'; }
     interactionTarget;
     interactionWeight = 0;
@@ -963,7 +963,14 @@ export class Character {
                 else
                     right = Math.max(right, weight);
             }
-            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human' });
+            let posture;
+            if (isShot(this.state) && this.contactTarget && this.spec.appearance === 'human') {
+                const offset = Vec3.sub(result.racketCenter, result.racketGrip), grip = Vec3.sub(this.contactTarget, offset), forward = offset.clone();
+                forward.y = 0;
+                forward.normalize();
+                posture = { weight: bell(result.sp - this.shotContactTime(this.state) / this.shotDuration(this.state), .34), right: grip, left: this.state === 'swingBackhand' ? grip.clone().add(forward.scale(-.08)).add(new Vec3(0, .04, 0)) : undefined };
+            }
+            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', posture });
         }
         return result;
     }

@@ -1,0 +1,16 @@
+{
+  "baseline": {
+    "restChecks": 24,
+    "restFailures": 24,
+    "frames": 4200,
+    "maxFlexDegrees": 174.76263943463837,
+    "maxElbowStep": 0.5685253203320221
+  },
+  "current": {
+    "restChecks": 24,
+    "restFailures": 0,
+    "frames": 4200,
+    "maxFlexDegrees": 153.88921130390727,
+    "maxElbowStep": 0.3719291954321915
+  }
+}

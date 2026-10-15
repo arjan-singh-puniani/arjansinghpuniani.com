@@ -43,7 +43,7 @@ export function adultTaylorPose(source, root, yaw, constraints) {
         p[key] = horizontal(source[key], .90);
         p[key].y = pelvisY + (source[key].y - source.pelvisCenter.y) * 1.20;
     }
-    const arm = (v) => { const out = horizontal(v, .78), dy = v.y - oldShoulder.y, scale = 2.30 - 1.10 * smooth((dy + .10) / .25); out.y = shoulder.y + dy * scale; return out; };
+    const arm = (v) => { const out = horizontal(v, .78), dy = v.y - oldShoulder.y, down = constraints.human ? 2.55 : 2.30, scale = down - (down - 1.20) * smooth((dy + .10) / .25); out.y = shoulder.y + dy * scale; return out; };
     p.handL = Vec3.lerp(arm(source.handL), source.handL, constraints.leftWorld);
     p.handR = Vec3.lerp(arm(source.handR), source.handR, constraints.rightWorld);
     const bodyKeys = ['pelvisCenter', 'torsoCenter', 'shoulderL', 'shoulderR', 'head', 'hipL', 'hipR'];
@@ -58,6 +58,26 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             drop = Math.max(drop, hip.y - foot.y - vertical);
         }
         lower(Math.max(0, drop));
+    }
+    // Load the adult body toward the known contact before the short hand-contact
+    // window. Rebuilding the free hand goals from the loaded shoulders prevents
+    // both a one-frame crouch and hands floating above the descending body.
+    if (constraints.human && constraints.posture && constraints.posture.weight > 0) {
+        const load = constraints.posture, weight = load.weight, originalL = p.shoulderL.clone(), originalR = p.shoulderR.clone(), offsetL = Vec3.sub(arm(source.handL), originalL), offsetR = Vec3.sub(arm(source.handR), originalR);
+        const target = load.left ? Vec3.lerp(load.right, load.left, .5) : load.right, centre = Vec3.lerp(originalL, originalR, .5), toward = Vec3.sub(target, centre);
+        toward.y = 0;
+        const distance = toward.len(), lean = distance > .34 ? toward.scale(Math.min(.24, distance - .34) / distance) : new Vec3();
+        let drop = 0;
+        for (const [start, end] of [[originalR, load.right], ...(load.left ? [[originalL, load.left]] : [])]) {
+            const shifted = start.clone().add(lean), horizontal = Math.hypot(end.x - shifted.x, end.z - shifted.z), vertical = Math.sqrt(Math.max(.04, .837 ** 2 - horizontal * horizontal));
+            drop = Math.max(drop, shifted.y - end.y - vertical);
+        }
+        lower(clamp(drop, 0, .65) * weight);
+        for (const key of ['shoulderL', 'shoulderR', 'head'])
+            p[key].add(lean.clone().scale(weight));
+        p.torsoCenter.add(lean.clone().scale(weight * .6));
+        p.handL = Vec3.lerp(p.shoulderL.clone().add(offsetL), source.handL, constraints.leftWorld);
+        p.handR = Vec3.lerp(p.shoulderR.clone().add(offsetR), source.handR, constraints.rightWorld);
     }
     // A constrained low ball or prop is reached with the body, rather than by
     // stretching a forearm through the floor. The hand keeps ownership of contact.
@@ -79,15 +99,22 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             p.torsoCenter.add(hinge.clone().scale(.6));
         }
     }
-    const forward = new Vec3(Math.sin(yaw), 0, Math.cos(yaw));
+    const forward = new Vec3(Math.sin(yaw), 0, Math.cos(yaw)), torsoForward = new Vec3(Math.sin(p.torsoYaw), 0, Math.cos(p.torsoYaw)), torsoRight = new Vec3(Math.cos(p.torsoYaw), 0, -Math.sin(p.torsoYaw));
     for (const side of ['L', 'R']) {
         const shoulder = p[`shoulder${side}`], hand = p[`hand${side}`], world = side === 'L' ? constraints.leftWorld : constraints.rightWorld;
         if (world < .999) {
-            const d = Vec3.sub(hand, shoulder), reach = TAYLOR_BODY.upperArm + TAYLOR_BODY.forearm - .003;
-            if (d.len() > reach)
+            const d = Vec3.sub(hand, shoulder), distance = d.len(), reach = TAYLOR_BODY.upperArm + TAYLOR_BODY.forearm - .003;
+            if (distance > reach)
                 p[`hand${side}`] = shoulder.clone().add(d.normalize().scale(reach));
+            // The compact serve wind-up can place a hand almost on its shoulder,
+            // folding a full-length adult forearm back through the upper arm.
+            if (constraints.human && distance < .19)
+                p[`hand${side}`] = shoulder.clone().add((distance > .001 ? d.normalize() : torsoForward.clone()).scale(.19));
         }
-        const pole = arm(source[`elbow${side}`]).add(forward.clone().scale(.04));
+        // The old compact/feline elbow target can pass through the shoulder/wrist
+        // axis after retargeting. A body-relative human pole keeps elbows down and
+        // outside the ribcage, with posterior loading rather than a reversed fold.
+        const pole = constraints.human ? shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.24 : .24)).add(new Vec3(0, -.28, 0)).add(torsoForward.clone().scale(-.16)) : arm(source[`elbow${side}`]).add(forward.clone().scale(.04));
         p[`elbow${side}`] = joint(shoulder, p[`hand${side}`], TAYLOR_BODY.upperArm, TAYLOR_BODY.forearm, pole, forward);
         const hip = p[`hip${side}`], foot = p[`foot${side}`], kneePole = Vec3.lerp(hip, foot, .5).add(forward.clone().scale(.5));
         p[`knee${side}`] = joint(hip, foot, TAYLOR_BODY.thigh, TAYLOR_BODY.shin, kneePole, forward);

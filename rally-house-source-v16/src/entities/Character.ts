@@ -87,7 +87,7 @@ export class Character {
   private stringImpactDirection=1;
   private racketVibration=0;private stepEvent=false;private lastStanceKey='';
   private clubIdleRelax=0;
-  private canFoldReferenceIdle(){return this.racketStowed&&this.canRelaxClubIdle()&&!this.acting.micro;}
+  private canFoldReferenceIdle(){return this.spec.appearance!=='human'&&this.racketStowed&&this.canRelaxClubIdle()&&!this.acting.micro;}
   private canRelaxClubIdle(){return this.spec.avatar==='taylor'&&this.state==='idle'&&!this.majorActivity&&!this.matchCompetitor&&!this.spectating&&!this.propKind&&!this.interactionTarget&&this.interactionWeight<.001&&this.socialGesture==='none'&&this.acting.role==='none';}
   private interactionTarget?:Vec3;
   private interactionWeight=0;
@@ -472,7 +472,12 @@ export class Character {
       const contact=isShot(this.state)&&this.contactTarget?bell(result.sp-this.shotContactTime(this.state)/this.shotDuration(this.state),.11):0;
       let right=Math.max(contact,this.interactionWeight),left=this.state==='swingBackhand'?contact:0;
       if(this.propKind&&this.propAnchor){const weight=this.propWanted?1-smoothstep(.4,1,this.propAge):smoothstep(0,.65,this.propAge);if(this.propKind==='notebook')left=Math.max(left,weight);else right=Math.max(right,weight);}
-      return adultTaylorPose(result,this.position,this.yaw,{sitting:this.state==='sit',folded:this.canFoldReferenceIdle(),rightWorld:right,leftWorld:left,human:this.spec.appearance==='human'});
+      let posture:Parameters<typeof adultTaylorPose>[3]['posture'];
+      if(isShot(this.state)&&this.contactTarget&&this.spec.appearance==='human'){
+        const offset=Vec3.sub(result.racketCenter,result.racketGrip),grip=Vec3.sub(this.contactTarget,offset),forward=offset.clone();forward.y=0;forward.normalize();
+        posture={weight:bell(result.sp-this.shotContactTime(this.state)/this.shotDuration(this.state),.34),right:grip,left:this.state==='swingBackhand'?grip.clone().add(forward.scale(-.08)).add(new Vec3(0,.04,0)):undefined};
+      }
+      return adultTaylorPose(result,this.position,this.yaw,{sitting:this.state==='sit',folded:this.canFoldReferenceIdle(),rightWorld:right,leftWorld:left,human:this.spec.appearance==='human',posture});
     }
     return result;
   }

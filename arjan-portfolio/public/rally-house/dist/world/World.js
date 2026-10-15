@@ -5,7 +5,9 @@ import { rotatedFootprint } from '../content/DecorCatalog.js';
 import { ObjectIdentity, rayBox } from './ObjectIdentity.js';
 import { AuthoredObjects, authorObjectTargets } from './AuthoredObjects.js';
 import { PERFORMANCE_STATION, stationMeshes } from './PerformanceStation.js';
+import { courtDetails } from './CourtDetail.js';
 export class World {
+    courtDetails = courtDetails();
     meshes = [];
     objects = [];
     nav;
@@ -100,14 +102,10 @@ export class World {
         line(1, -3.7, 8.5, .06);
         line(1, 3.7, 8.5, .06);
         line(1, 0, .055, 7.4);
-        // Net: frame + mesh. Kept fine enough to read without becoming visual noise.
-        this.add('cylinder', -3.35, .62, 0, .09, 1.25, .09, '#56655b');
-        this.add('cylinder', 5.35, .62, 0, .09, 1.25, .09, '#56655b');
-        this.rb(1, .93, 0, 8.72, .055, .055, '#f4eddf');
-        for (let i = 0; i < 15; i++)
-            this.add('box', -3.05 + i * .58, .48, 0, .014, .84, .014, '#e3ded1', 0, .48, true);
-        for (let j = 1; j < 4; j++)
-            this.add('box', 1, .17 + j * .2, 0, 8.25, .014, .014, '#e3ded1', 0, .42, true);
+        // Fine net, bound tape and anchored tension hardware are cached in four
+        // material batches; their top follows the actual ball collision plane.
+        line(1, -5.88, .065, .18);
+        line(1, 5.88, .065, .18);
         // Statement window: layered panes, trim, soft curtains and a rounded top hint.
         this.rb(-1.3, 2.42, -9.50, 5.1, 2.55, .06, '#a9d8d7', 0, .78, true, undefined, 'glass');
         this.add('sphere', -1.3, 3.38, -9.47, 5.0, 1.75, .09, '#c0e0dc', 0, .58, true, undefined, 'glass');

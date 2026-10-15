@@ -1,0 +1,177 @@
+[
+  {
+    "source": "before-front.png",
+    "file": "before-front.webp",
+    "sourceSHA256": "0547cda783413ab42919a01d80dcc130cfeb319d89d1a58acb78d02d4bdadc25",
+    "sha256": "bcce0de45e0d5d1373fa0639ae0d44deccc63ec5de5e553d1a9128314ca0416e",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "before-three-quarter.png",
+    "file": "before-three-quarter.webp",
+    "sourceSHA256": "f8ccc409feb263c4c1dd302b26cbbaa726736a5d1f4ef87d9d9073e562306fa6",
+    "sha256": "d91b4b53fae478760b421b03a026bfdb5a42f7752bad12db9124a19b5d4342b1",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "arms-after-front.png",
+    "file": "arms-after-front.webp",
+    "sourceSHA256": "56d7682f493d605a5536d2b47de4ec2841a5246e719ec2b85a8efdb932d5fe9c",
+    "sha256": "a8ec5eb876a787f57fbb38d1653eb7d17f56366b1bcbd81f675fdaf55c0139cd",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "arms-after-three-quarter.png",
+    "file": "arms-after-three-quarter.webp",
+    "sourceSHA256": "302d0575d82f6cc3eb0d9db50c6d48ede54e29b9c3121eba233989d657a7058e",
+    "sha256": "67ea09e8ea26983a5584ba5b9050c5678e13eb64d70059f12d9af00ac42e816e",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "chromium/1440-club.png",
+    "file": "chromium/1440-club.webp",
+    "sourceSHA256": "02c4df750b83b4919e1000ab0c774df365943814a428b7950c81e138f7e83d70",
+    "sha256": "1d2ef0ec9639593aad88a1e9169a2aa13a64c42c6d7d69a70e792b953f05dba5",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "chromium/390-club.png",
+    "file": "chromium/390-club.webp",
+    "sourceSHA256": "31ded63ae46ffa09dfe880d22b02bac4613194addff36d6712fcb0212f8448f6",
+    "sha256": "b530550b3845d46028b6f6f6ce950735c47c61d60ee1a5fa1cd87451fd34ccd4",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "chromium/championship.png",
+    "file": "chromium/championship.webp",
+    "sourceSHA256": "3671310a6082127fb4577ebb5f2be43a99219f45809d7d0bc48d16190b358c6b",
+    "sha256": "ab87b502bceb1b0e04a8976943e2eeeda0125b62c2994f9a3f322136f85186d0",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "firefox/1440-club.png",
+    "file": "firefox/1440-club.webp",
+    "sourceSHA256": "806c34d8e8dd797b0b3b5801818e5b45bbe0bb830fcb34c3ed55eb3fed129fc5",
+    "sha256": "62e45c1b5c3578db3249a7719e9b5e8c7cf672c8b02f8002f83c85d3f57f7c95",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "firefox/390-club.png",
+    "file": "firefox/390-club.webp",
+    "sourceSHA256": "907f4ebba89d506623d912fbd41693ebda5b7ae5bcc7d2416a660c77a1ec3f2d",
+    "sha256": "ad99a17ff22bfc09feb12c6fe4c049d89ff494c925a614f6da0ecc2bdf75f579",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "firefox/championship.png",
+    "file": "firefox/championship.webp",
+    "sourceSHA256": "41f260282695215ba0dff081f59b640ebd66a1d9c68ac92492aae7be182fe9af",
+    "sha256": "a0bca32a5e0323d6eec7dba72d2b35b24f4bd16312dde72f6ae12bd982d96fd7",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "webkit/1440-club.png",
+    "file": "webkit/1440-club.webp",
+    "sourceSHA256": "c8cdb3bab2a20f8dcc89d88270f7d53f6547a9e0d40857fee6b310c3f953855a",
+    "sha256": "794f5f7814635e5ec9fd4a1b64243f2bf467f88d6041f74aa6a5ef6fe6c59316",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "webkit/390-club.png",
+    "file": "webkit/390-club.webp",
+    "sourceSHA256": "4146563e0236a0ddbcfe7228f753f906231f7f66cb8598ba417a977b1a52cb80",
+    "sha256": "794871cb908e23ee2e65154a079c2895625383e1f1fe83db2d5fd927c468dc3f",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "webkit/championship.png",
+    "file": "webkit/championship.webp",
+    "sourceSHA256": "d837dd56946a2b07d86e7a9638908669872ce5a09a5363ae28e77dc8a7bb474f",
+    "sha256": "4a19d205136d2232ef53b9f22a5d410c44c18ef8199aa67e6a902e2e5665e961",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "match/serving.png",
+    "file": "match/serving.webp",
+    "sourceSHA256": "068539cf4080683aee07055c1ee6fe0f50e94d12d3a5cf63ed3d3bbd0b368db1",
+    "sha256": "b763905516c72b44741de838bafdb7ade224e1bd77e5d65b1be5cd7d7fb989a2",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "match/point.png",
+    "file": "match/point.webp",
+    "sourceSHA256": "401cbc5f4dea510ef5c6dd6c29810e55205ce3aeaedd3c014e635e8eae89d6c5",
+    "sha256": "1694c67b5041d609fc988d5e1b8687efd5a1e98d4d446695ee9248efcca33e73",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "match/portrait.png",
+    "file": "match/portrait.webp",
+    "sourceSHA256": "5cdfb0a97029bf4d39676c94894cb23e924f99824117de42ae8dbdb5507620a8",
+    "sha256": "47d0ff0877ed48c4a55c90263a34a678f5081da6a62b32f0f12398f660e28919",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "before-match/serving.png",
+    "file": "before-match/serving.webp",
+    "sourceSHA256": "efa440cdf426b7226c8b8748ad5e1f9fc47f7f15db9c67829806ef26aa285caa",
+    "sha256": "0f6be2f58f02da1e6dcb7f75150fe338f5bfd9aa6c1345f4a7746c6f58bea3ad",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "before-match/point.png",
+    "file": "before-match/point.webp",
+    "sourceSHA256": "eb950fa0b78eeda50438bcb2913875469a3e6d9de460b22ddf304cf26b1ae4be",
+    "sha256": "f8dc384b2a642026615f9a007b7d59cae9496d44e2da9626f13aa3024f90f3b3",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "before-match/portrait.png",
+    "file": "before-match/portrait.webp",
+    "sourceSHA256": "1636a5e39a6ce3e65e19f493a508148b90909dc5033248ce94e86b070ec0e418",
+    "sha256": "75a5a326faac0c9aa08cd842c09474d1342bdbdd2af660ba06baa5b0c5b2bc79",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "phone/mount.png",
+    "file": "phone/mount.webp",
+    "sourceSHA256": "5fab67b971aa26475d0b14e5f3b2d028ea104554242a23649a035a8f1d93b787",
+    "sha256": "fb3087f19ad0d685595dc01a5a7cae7ea50030ca2e570e6fce6a1b4d75fb5adc",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "phone/record.png",
+    "file": "phone/record.webp",
+    "sourceSHA256": "6be42bb16a38442e50dab57369f235e243154b8f5e87d461743a4b4b76a35151",
+    "sha256": "f394a9d489782443446c068f5adaf552e22ea0064d690616f4573eb2bcacb6d9",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "phone/review.png",
+    "file": "phone/review.webp",
+    "sourceSHA256": "4b864a5ad92b07a7edc653eaf133eb238abb60333d58f9645171f46c188e7a30",
+    "sha256": "d7ca75caefc2428c086b8ef572692ec833cbdbf5b8773a1fef62a0241eb0cd02",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "phone/review-body.png",
+    "file": "phone/review-body.webp",
+    "sourceSHA256": "ecb322720903c7bfd1074f02378bcc4667c3644846eeecdece8e3145e3982b5a",
+    "sha256": "2348a7478a9a273ab879dcdbff89af73742d0be992f2c49887c150eafddbf6f8",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "motion/taylor-continuous.png",
+    "file": "motion/taylor-continuous.webp",
+    "sourceSHA256": "0bd441de4bc7c2b6be4ec25ea5772c7ccd21a5388b125a27133e64bcb43d30b5",
+    "sha256": "5e905d051e4ee71568eb341ba28182aac40d5886bac8f0a643559c855d1dbb4c",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "motion/fractional-joint-pick.png",
+    "file": "motion/fractional-joint-pick.webp",
+    "sourceSHA256": "b3b6ecad3f504f2e8e4c5cfc6a92cd5e748243b6e8a39b47cedde77c94565388",
+    "sha256": "1f3b5a0b33f9ebff4dab48f4ba9f1230af500320bad201c4bb92f9a69029c18f",
+    "conversion": "lossless WebP; no resize or other edits"
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "check": "hand.handError < 1e-6",
+  "result": "failed",
+  "phase": "not recorded by the old check",
+  "oldCheck": "fixed 850ms delay then screenshot then hand check",
+  "correction": "observe the actual mounting phase and retain the hand report before asserting"
+}

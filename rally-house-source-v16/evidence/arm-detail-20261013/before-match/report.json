@@ -1,0 +1,23 @@
+{
+  "errors": [],
+  "http": [],
+  "baseline": "/tmp/taylor-arms-baseline-20261013/dist",
+  "presentation": {
+    "phase": "serving",
+    "arenaDraws": 0,
+    "netDraws": 0,
+    "items": 940,
+    "drawCalls": 940,
+    "triangles": 325276
+  },
+  "contact": {
+    "time": 2.0499999999999976,
+    "error": 0.03470000000000012
+  },
+  "reduced": [],
+  "restored": {
+    "match": false,
+    "focus": 0.000049378275386570726,
+    "gallery": 0
+  }
+}
