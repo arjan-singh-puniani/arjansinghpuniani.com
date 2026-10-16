@@ -2,7 +2,7 @@ import {Vec3,clamp} from '../rendering/Math3D.js';
 import type {CharacterPose} from '../entities/Character.js';
 
 export const TAYLOR_BODY={pelvisHeight:1.245,torsoScale:1.20,headScale:.62,upperArm:.425,forearm:.415,thigh:.56,shin:.55} as const;
-interface Constraints {sitting:boolean;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;restWeight?:number;posture?:{weight:number;right:Vec3;left?:Vec3};}
+interface Constraints {sitting:boolean;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;shoulderScale?:number;restWeight?:number;posture?:{weight:number;right:Vec3;left?:Vec3};}
 const smooth=(t:number)=>{const u=clamp(t,0,1);return u*u*(3-2*u);};
 function joint(a:Vec3,b:Vec3,first:number,second:number,pole:Vec3,fallback:Vec3){
  const delta=Vec3.sub(b,a),d=Math.max(.0001,delta.len()),axis=delta.scale(1/d),stretch=Math.max(1,d/(first+second-.001));
@@ -24,7 +24,7 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
  // The compact bind's broad shoulders suit the original stylized avatar.
  // An adult human needs a narrower shoulder girdle; solve the arms from these
  // real landmarks so skin, contact and tracking agree on the new proportion.
- if(constraints.human){const center=Vec3.lerp(p.shoulderL,p.shoulderR,.5);for(const side of ['L','R'] as const){const delta=Vec3.sub(p[`shoulder${side}`],center);delta.x*=.83;delta.z*=.83;p[`shoulder${side}`]=center.clone().add(delta);}}
+ if(constraints.human){const center=Vec3.lerp(p.shoulderL,p.shoulderR,.5),scale=constraints.shoulderScale??.83;for(const side of ['L','R'] as const){const delta=Vec3.sub(p[`shoulder${side}`],center);delta.x*=scale;delta.z*=scale;p[`shoulder${side}`]=center.clone().add(delta);}}
  if(constraints.folded){const right=new Vec3(Math.cos(p.torsoYaw),0,-Math.sin(p.torsoYaw)),center=Vec3.lerp(p.shoulderL,p.shoulderR,.5);p.shoulderL=center.clone().add(right.clone().scale(-.284));p.shoulderR=center.clone().add(right.scale(.284));}
  const shoulder=Vec3.lerp(p.shoulderL,p.shoulderR,.5);
  p.head=horizontal(source.head,.80);p.head.y=shoulder.y+(source.head.y-oldShoulder.y)*.82-(constraints.human?.065:0);

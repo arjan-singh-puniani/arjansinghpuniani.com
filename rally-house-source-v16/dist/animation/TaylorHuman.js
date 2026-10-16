@@ -147,19 +147,60 @@ const ponytail = lock('taylor-human-athletic-ponytail-v2', [[0, .133, -.085], [.
 const sweep = lock('taylor-human-side-part-v3', [[-.009, .184, .025], [-.052, .138, .060], [-.095, .076, .050], [-.115, .002, .010], [-.111, -.068, .006]], [0, .023, .018, .010, 0]);
 const fineSweep = lock('taylor-human-temple-strand-v2', [[.079, .095, .055], [.112, .025, .031], [.112, -.045, .018], [.103, -.096, .015]], [0, .006, .005, 0]);
 const looseLocks = [-1, 1].map(side => lock(`taylor-human-face-framing-lock-${side}-v1`, [[side * .095, .074, .054], [side * .121, .006, .043], [side * .124, -.082, .031], [side * .112, -.155, .043], [side * .130, -.209, .020]], [0, .008, .007, .004, 0], 24, 12));
+const bob = surface('athlete-sculpted-bob-v1', tri => {
+    const at = (r, i, inside = false) => { const t = r / 12, a = .95 + i / 32 * (Math.PI * 2 - 1.9), rx = .086 + .050 * Math.sin(t * Math.PI / 2), rz = .077 + .029 * Math.sin(t * Math.PI / 2), wall = inside ? .008 : 0; return [Math.sin(a) * (rx - wall), .14 - t * .34, Math.cos(a) * (rz - wall) - .012]; };
+    for (let r = 0; r < 12; r++)
+        for (let i = 0; i < 32; i++)
+            for (const inside of [false, true]) {
+                const a = at(r, i, inside), b = at(r, i + 1, inside), c = at(r + 1, i + 1, inside), d = at(r + 1, i, inside);
+                if (inside) {
+                    tri(a, b, c);
+                    tri(a, c, d);
+                }
+                else {
+                    tri(a, c, b);
+                    tri(a, d, c);
+                }
+            }
+    for (let i = 0; i < 32; i++) {
+        const a = at(12, i), b = at(12, i + 1), c = at(12, i + 1, true), d = at(12, i, true);
+        tri(a, b, c);
+        tri(a, c, d);
+    }
+    for (const i of [0, 32])
+        for (let r = 0; r < 12; r++) {
+            const a = at(r, i), b = at(r + 1, i), c = at(r + 1, i, true), d = at(r, i, true);
+            if (i === 0) {
+                tri(a, c, b);
+                tri(a, d, c);
+            }
+            else {
+                tri(a, b, c);
+                tri(a, c, d);
+            }
+        }
+});
+export const CAST_HAIR_GEOMETRY = { bob };
 export const HUMAN_TAYLOR_GEOMETRY = { face, eyeWhite, iris, pupil, upperLip, lowerLip, smileUpper, smileLower, seam, smileSeam, nostrils, mouthGap, cap, ponytail, sweep, fineSweep, ...Object.fromEntries(looseLocks.map((g, i) => [`looseLock${i}`, g])), ...Object.fromEntries(lids.map((g, i) => [`lid${i}`, g])), ...Object.fromEntries(lowerLids.map((g, i) => [`lowerLid${i}`, g])), ...Object.fromEntries(brows.map((g, i) => [`brow${i}`, g])) };
-export function humanTaylorHead(head, yaw, tilt, expression, time, skin) {
+export function humanTaylorHead(head, yaw, tilt, expression, time, skin, options = {}) {
     const out = [], right = new Vec3(Math.cos(yaw), 0, -Math.sin(yaw)), forward = new Vec3(Math.sin(yaw), 0, Math.cos(yaw));
-    const point = (x, y, z) => head.clone().add(right.clone().scale(x * Math.cos(tilt) - y * Math.sin(tilt))).add(new Vec3(0, x * Math.sin(tilt) + y * Math.cos(tilt), 0)).add(forward.clone().scale(z));
-    const part = (geometry, color, material = 'humanSkin', y = 0, sy = 1, unlit = false) => out.push({ skin: geometry, boneMatrices: bones, position: point(0, y, 0), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(1, sy, 1), color, material, unlit });
+    const width = options.width ?? 1, height = options.height ?? 1, hair = options.hair ?? '#251e1d', style = options.hairStyle ?? 'ponytail';
+    const point = (px, py, z) => { const x = px * width, y = py * height; return head.clone().add(right.clone().scale(x * Math.cos(tilt) - y * Math.sin(tilt))).add(new Vec3(0, x * Math.sin(tilt) + y * Math.cos(tilt), 0)).add(forward.clone().scale(z)); };
+    const part = (geometry, color, material = 'humanSkin', y = 0, sy = 1, unlit = false) => out.push({ skin: geometry, boneMatrices: bones, position: point(0, y, 0), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(width, sy * height, 1), color, material, unlit });
     part(face, skin);
-    for (const g of [cap, ponytail])
-        part(g, '#251e1d', 'groomedHair');
-    for (const g of [sweep, fineSweep, ...looseLocks])
-        part(g, '#382820', 'groomedHair');
+    part(cap, hair, 'groomedHair');
+    if (style === 'ponytail')
+        part(ponytail, hair, 'groomedHair');
+    if (style === 'bob')
+        part(bob, hair, 'groomedHair');
+    if (style !== 'crop')
+        for (const g of [sweep, fineSweep, ...(style === 'ponytail' || style === 'bob' ? looseLocks : [])])
+            part(g, options.hair ?? '#382820', 'groomedHair');
+    if (style === 'bun')
+        out.push({ kind: 'sphere', position: point(.010, .163, -.119), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.104 * width, .096 * height, .102), color: hair, material: 'groomedHair' });
     const phase = (time + .47) % 3.75, blink = phase < .10 ? 1 - smoothstep(0, .10, phase) : 0, open = clamp(1 - blink - expression.squint * .35, .06, 1), offset = eyeY * (1 - open);
     part(eyeWhite, '#eee9e0', 'ceramic', offset, open);
-    part(iris, '#876641', 'iris', offset, open);
+    part(iris, options.eye ?? '#876641', 'iris', offset, open);
     part(pupil, '#231d1c', 'hair', offset, open, true);
     for (const g of lids)
         part(g, '#34221f', 'hair', offset, open);
@@ -167,17 +208,18 @@ export function humanTaylorHead(head, yaw, tilt, expression, time, skin) {
         part(g, '#946454', 'humanSkin', offset, open);
     part(nostrils, '#8a5141', 'humanSkin');
     for (const g of brows)
-        part(g, '#332420', 'hair', expression.browRaise * .003);
+        part(g, options.hair ?? '#332420', 'hair', expression.browRaise * .003 - (options.masculine ? .018 : 0), options.masculine ? 1.4 : 1);
     const smiling = expression.smile > .3, mouth = clamp(expression.mouthOpen, 0, 1), gapScale = Math.max(.03, mouth);
     part(mouthGap, '#5a3835', 'skin', -.088 * (1 - gapScale), gapScale);
-    part(smiling ? smileUpper : upperLip, '#a95b62', 'lip', mouth * .002);
-    part(smiling ? smileLower : lowerLip, '#be7379', 'lip', -mouth * .010);
+    part(smiling ? smileUpper : upperLip, options.lip ?? '#a95b62', 'lip', mouth * .002);
+    part(smiling ? smileLower : lowerLip, options.lip ?? '#be7379', 'lip', -mouth * .010);
     part(smiling ? smileSeam : seam, '#704943', 'skin', -mouth * .004);
     for (const side of [-1, 1]) {
         const x = side * eyeX - .001, y = eyeY + .002;
         out.push({ kind: 'sphere', position: point(x, eyeY + (y - eyeY) * open, humanFaceDepth(x, y) + .008), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.003, .003 * open, .0015), color: '#fff5dc', unlit: true, noShadow: true });
         out.push({ kind: 'sphere', position: point(side * .110, -.026, -.007), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.027, .058, .037), color: skin, material: 'humanSkin' });
     }
-    out.push({ kind: 'torus', position: point(.003, .123, -.105), rotation: new Vec3(Math.PI / 2, yaw, tilt), scale: new Vec3(.066, .057, .012), color: '#cedb68', material: 'fabric' });
+    if (style === 'ponytail' || style === 'bun')
+        out.push({ kind: 'torus', position: point(.003, style === 'bun' ? .163 : .123, style === 'bun' ? -.119 : -.105), rotation: new Vec3(Math.PI / 2, yaw, tilt), scale: new Vec3(.066, .057, .012), color: '#cedb68', material: 'fabric' });
     return out;
 }

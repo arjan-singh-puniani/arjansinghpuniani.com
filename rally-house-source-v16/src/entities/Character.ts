@@ -8,7 +8,8 @@ import {clipForState,sampleClip} from '../animation/ClipLibrary.js';
 import {taylorHeadMeshes,taylorTailMeshes,taylorFootMeshes,TAYLOR_PALETTE} from '../animation/TaylorAppearance.js';
 import {adultTaylorPose,TAYLOR_BODY} from '../animation/TaylorBody.js';
 import {humanTaylorHead} from '../animation/TaylorHuman.js';
-import {CHARACTER_SKIN,HUMAN_TENNIS_SKIN,skinMatrices,rigFromPose} from '../animation/CharacterSkin.js';
+import {CHARACTER_SKIN,HUMAN_TENNIS_SKIN,ATHLETE_WARDROBE,skinMatrices,rigFromPose} from '../animation/CharacterSkin.js';
+import {CAST_DESIGN} from '../content/CastDesign.js';
 
 export type AnimState='idle'|'walk'|'jog'|'ready'|'shuffle'|'sit'|'talk'|'drink'|'stretch'|'watch'|'swingForehand'|'swingBackhand'|'serve'|'volley'|'celebrate'|'reactMiss'|'coachFeed'|'coachExplain';
 export type EmotionState='neutral'|'attentive'|'friendly'|'focused'|'amused'|'pleased'|'disappointed'|'tired'|'surprised'|'proud'|'frustrated';
@@ -88,7 +89,7 @@ export class Character {
   private racketVibration=0;private stepEvent=false;private lastStanceKey='';
   private clubIdleRelax=0;
   private canFoldReferenceIdle(){return this.spec.appearance!=='human'&&this.racketStowed&&this.canRelaxClubIdle()&&!this.acting.micro;}
-  private canRelaxClubIdle(){return this.spec.avatar==='taylor'&&this.state==='idle'&&!this.majorActivity&&!this.matchCompetitor&&!this.spectating&&!this.propKind&&!this.interactionTarget&&this.interactionWeight<.001&&this.socialGesture==='none'&&this.acting.role==='none';}
+  private canRelaxClubIdle(){return (this.spec.avatar==='taylor'||this.spec.appearance==='human')&&this.state==='idle'&&!this.majorActivity&&!this.matchCompetitor&&!this.spectating&&!this.propKind&&!this.interactionTarget&&this.interactionWeight<.001&&this.socialGesture==='none'&&this.acting.role==='none';}
   private interactionTarget?:Vec3;
   private interactionWeight=0;
   private interactionRelease?:Vec3;
@@ -279,7 +280,7 @@ export class Character {
     // out of lateral movement. The previous yaw could put this behind us.
     const aim=this.outgoingTarget;
     const shotYaw=aim?Math.atan2(aim.x-this.position.x,aim.z-this.position.z):this.yaw;
-    if(state==='serve')return this.worldLocal(.14,this.spec.avatar==='taylor'?3.04:2.36,.38,shotYaw);
+    if(state==='serve')return this.worldLocal(.14,this.spec.avatar==='taylor'||this.spec.appearance==='human'?3.04:2.36,.38,shotYaw);
     const local=incoming?this.localFromWorld(incoming,shotYaw):new Vec3(state==='swingForehand'?.54:state==='swingBackhand'?-.42:.30,1.02,.48);
     local.y=clamp(local.y,state==='volley'?.90:.66,state==='volley'?1.58:1.38);local.z=clamp(local.z,.55,.90);
     if(state==='swingForehand')local.x=clamp(Math.abs(local.x)+.18,.46,.88);
@@ -468,7 +469,7 @@ export class Character {
     // Keep the animation-blend snapshot in its authored source coordinates;
     // retarget once, after blending and planted-foot constraints have settled.
     this.lastPose=result;
-    if(this.spec.avatar==='taylor'){
+    if(this.spec.avatar==='taylor'||this.spec.appearance==='human'){
       const contact=isShot(this.state)&&this.contactTarget?bell(result.sp-this.shotContactTime(this.state)/this.shotDuration(this.state),.11):0;
       let right=Math.max(contact,this.interactionWeight),left=this.state==='swingBackhand'?contact:0;
       if(this.propKind&&this.propAnchor){const weight=this.propWanted?1-smoothstep(.4,1,this.propAge):smoothstep(0,.65,this.propAge);if(this.propKind==='notebook')left=Math.max(left,weight);else right=Math.max(right,weight);}
@@ -478,9 +479,10 @@ export class Character {
         posture={weight:bell(result.sp-this.shotContactTime(this.state)/this.shotDuration(this.state),.34),right:grip,left:this.state==='swingBackhand'?grip.clone().add(forward.scale(-.08)).add(new Vec3(0,.04,0)):undefined};
       }
       if(this.spec.appearance==='human'&&this.canRelaxClubIdle()){
-        result.face={...result.face,smile:Math.max(.55,result.face.smile),squint:Math.max(.08,result.face.squint)};
+        result.face={...result.face,smile:Math.max(this.spec.avatar==='taylor'?.55:this.spec.presentation==='masculine'?.18:.32,result.face.smile),squint:Math.max(.08,result.face.squint)};
       }
-      return adultTaylorPose(result,this.position,this.yaw,{sitting:this.state==='sit',folded:this.canFoldReferenceIdle(),rightWorld:right,leftWorld:left,human:this.spec.appearance==='human',restWeight:this.canRelaxClubIdle()?this.clubIdleRelax:0,posture});
+      const design=CAST_DESIGN[this.spec.avatar??this.spec.id]??CAST_DESIGN.taylor;
+      return adultTaylorPose(result,this.position,this.yaw,{sitting:this.state==='sit',folded:this.canFoldReferenceIdle(),rightWorld:right,leftWorld:left,human:this.spec.appearance==='human',shoulderScale:design.shoulderScale,restWeight:this.canRelaxClubIdle()?this.clubIdleRelax:0,posture});
     }
     return result;
   }
@@ -491,38 +493,51 @@ export class Character {
     return Object.fromEntries(Object.entries(p).map(([k,v])=>[k,v instanceof Vec3?v.clone():typeof v==='object'?{...v}:v])) as unknown as CharacterPose;
   }
 
+  /** Selection follows the visible adult pose, including seated heads/reaches. */
+  selectionBounds(){
+    const p=this.pose(),points=[p.shoulderL,p.shoulderR,p.elbowL,p.elbowR,p.handL,p.handR,p.hipL,p.hipR,p.kneeL,p.kneeR,p.footL,p.footR,p.head],pad=.15;
+    const minX=Math.min(...points.map(v=>v.x))-pad,maxX=Math.max(...points.map(v=>v.x))+pad,minZ=Math.min(...points.map(v=>v.z))-pad,maxZ=Math.max(...points.map(v=>v.z))+pad;
+    const low=Math.max(0,Math.min(p.footL.y,p.footR.y)-.12),high=Math.max(p.head.y+(this.spec.appearance==='human'?.23:.42),p.handL.y+.1,p.handR.y+.1);
+    return {centre:new Vec3((minX+maxX)/2,(low+high)/2,(minZ+maxZ)/2),size:new Vec3(maxX-minX,high-low,maxZ-minZ)};
+  }
+
   meshes(selected=false):RenderItem[]{
     const m:RenderItem[]=[];const p=this.position;const pose=this.pose();const {baseY,torsoYaw,hipYaw,headYaw,right,forward,shoulderL,shoulderR,elbowL,elbowR,handL,handR,racketGrip,racketHandleTop,racketCenter,racketRot,footL,footR,torsoCenter,pelvisCenter,head}=pose;
-    const taylor=this.spec.avatar==='taylor',feline=taylor&&this.spec.appearance!=='human';
+    const taylor=this.spec.avatar==='taylor',human=this.spec.appearance==='human',feline=taylor&&!human,athlete=taylor||human,feminine=this.spec.presentation!=='masculine',design=CAST_DESIGN[this.spec.avatar??this.spec.id]??CAST_DESIGN.taylor;
     const ready=this.state==='ready'||this.state==='shuffle';const seed=this.seed();
     m.push({kind:'sphere',position:new Vec3(p.x,.028,p.z),scale:new Vec3(.78,.045,.50),color:'#4f5d53',alpha:.16,unlit:true});
     if(selected)m.push({kind:'torus',position:new Vec3(p.x,.055,p.z),rotation:new Vec3(Math.PI/2,0,0),scale:new Vec3(1.35,1.35,.55),color:'#e4c967',alpha:.52,unlit:true});
     // Idle may use the authored club stance. Props, reaches and every match pose retain the contact rig.
     const relax=0;
     const bones=skinMatrices(rigFromPose(pose,p,this.yaw,relax));const skinRoot={position:new Vec3(p.x,0,p.z),rotation:new Vec3(0,this.yaw,0),boneMatrices:bones,poseRig:true};
-    const torsoSkin=taylor?(feline?CHARACTER_SKIN.taylorDress:HUMAN_TENNIS_SKIN.dress):this.spec.presentation==='feminine'?CHARACTER_SKIN.feminineTop:CHARACTER_SKIN.top;
-    const skinMaterial=taylor&&!feline?'humanSkin':'skin';
-    m.push({...skinRoot,skin:torsoSkin,color:this.spec.shirt,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:taylor?CHARACTER_SKIN.taylorLegs:CHARACTER_SKIN.pants,color:this.spec.skin,material:skinMaterial} as SkinnedMesh,{...skinRoot,skin:taylor?CHARACTER_SKIN.taylorArms:CHARACTER_SKIN.arms,color:this.spec.skin,material:skinMaterial} as SkinnedMesh);
+    const torsoSkin=athlete?(feline?CHARACTER_SKIN.taylorDress:taylor?HUMAN_TENNIS_SKIN.dress:feminine?ATHLETE_WARDROBE.bodice:ATHLETE_WARDROBE.top):this.spec.presentation==='feminine'?CHARACTER_SKIN.feminineTop:CHARACTER_SKIN.top;
+    const skinMaterial=human?'humanSkin':'skin';
+    m.push({...skinRoot,skin:torsoSkin,color:this.spec.shirt,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:athlete?(human&&!feminine?ATHLETE_WARDROBE.legs:CHARACTER_SKIN.taylorLegs):CHARACTER_SKIN.pants,color:this.spec.skin,material:skinMaterial} as SkinnedMesh,{...skinRoot,skin:athlete?(feminine?CHARACTER_SKIN.taylorArms:ATHLETE_WARDROBE.arms):CHARACTER_SKIN.arms,color:this.spec.skin,material:skinMaterial} as SkinnedMesh);
     if(feline)m.push({...skinRoot,skin:CHARACTER_SKIN.taylorNeckline,color:TAYLOR_PALETTE.indigo,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorDressEdging,color:'#f6dc7d',material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorTunicMark,color:'#b69a2a',material:'toon',unlit:true} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorBoots,color:TAYLOR_PALETTE.indigo,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorGloves,color:TAYLOR_PALETTE.indigo,material:'fabric'} as SkinnedMesh);
-    else if(taylor){
-      m.push({...skinRoot,skin:HUMAN_TENNIS_SKIN.yoke,color:this.spec.skin,material:'humanSkin'} as SkinnedMesh,{...skinRoot,skin:HUMAN_TENNIS_SKIN.trim,color:this.spec.accent??'#cedb68',material:'fabric'} as SkinnedMesh,{...skinRoot,skin:HUMAN_TENNIS_SKIN.seams,color:mixHex(this.spec.shirt,'#b7cced',.30),material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorBoots,color:this.spec.skin,material:'humanSkin'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorSocks,color:'#f3f1e8',material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorWristband,color:this.spec.accent??'#cedb68',material:'fabric'} as SkinnedMesh);
+    else if(human){
+      if(feminine){
+        if(!taylor)m.push({...skinRoot,skin:ATHLETE_WARDROBE.skirt,color:design.bottom,material:'fabric'} as SkinnedMesh);
+        m.push({...skinRoot,skin:HUMAN_TENNIS_SKIN.yoke,color:this.spec.skin,material:'humanSkin'} as SkinnedMesh,{...skinRoot,skin:HUMAN_TENNIS_SKIN.trim,color:this.spec.accent??'#cedb68',material:'fabric'} as SkinnedMesh,{...skinRoot,skin:HUMAN_TENNIS_SKIN.seams,color:mixHex(this.spec.shirt,'#b7cced',.30),material:'fabric'} as SkinnedMesh);
+      }else m.push({...skinRoot,skin:ATHLETE_WARDROBE.shorts,color:design.bottom,material:'fabric'} as SkinnedMesh);
+      m.push({...skinRoot,skin:feminine?CHARACTER_SKIN.taylorBoots:ATHLETE_WARDROBE.calves,color:this.spec.skin,material:'humanSkin'} as SkinnedMesh,{...skinRoot,skin:feminine?CHARACTER_SKIN.taylorSocks:ATHLETE_WARDROBE.socks,color:'#f3f1e8',material:'fabric'} as SkinnedMesh,{...skinRoot,skin:feminine?CHARACTER_SKIN.taylorWristband:ATHLETE_WARDROBE.wristband,color:this.spec.accent??'#cedb68',material:'fabric'} as SkinnedMesh);
     }else {
       m.push({kind:'sphere',position:torsoCenter.clone().add(new Vec3(0,.025,0)),rotation:new Vec3(0,torsoYaw,0),scale:new Vec3(this.spec.presentation==='feminine'?.53:.57,.68,.40),color:this.spec.shirt,material:'fabric'});
       if(this.spec.outfit==='shorts')m.push({...skinRoot,skin:CHARACTER_SKIN.shorts,color:mixHex(this.spec.shirt,'#192d37',.28),material:'fabric'} as SkinnedMesh);
       // Rounded sleeve caps belong to the upper-arm skin and its exact shoulder
       // pivot; separate inward-shifted spheres left gaps when the arm lifted.
     }
-    if(!taylor)for(const elbow of [elbowL,elbowR])m.push({kind:'sphere',position:elbow,scale:new Vec3(.20,.20,.19),color:this.spec.skin,material:'skin'});
+    if(!athlete)for(const elbow of [elbowL,elbowR])m.push({kind:'sphere',position:elbow,scale:new Vec3(.20,.20,.19),color:this.spec.skin,material:'skin'});
     const leftShoePitch=pose.walking&&!this.leftFootLock?clamp(-pose.gait*.18,-.18,.18):0,rightShoePitch=pose.walking&&!this.rightFootLock?clamp(pose.gait*.18,-.18,.18):0;
     const leftShoeYaw=pose.walking?this.walkCycle.yaws[0]:this.yaw,rightShoeYaw=pose.walking?this.walkCycle.yaws[1]:this.yaw;
     const shoeColor=feline?this.spec.skin:this.spec.shoe??'#fff8ee',soleColor=mixHex(shoeColor,'#ffffff',.62);
-    if(taylor){for(const [foot,pitch,yaw] of [[footL,leftShoePitch,leftShoeYaw],[footR,rightShoePitch,rightShoeYaw]] as const)m.push(...taylorFootMeshes(foot,pitch,yaw,feline?undefined:this.spec.shoe,feline?undefined:'#b5bcb6'));}
+    if(athlete){for(const [foot,pitch,yaw] of [[footL,leftShoePitch,leftShoeYaw],[footR,rightShoePitch,rightShoeYaw]] as const)m.push(...taylorFootMeshes(foot,pitch,yaw,feline?undefined:this.spec.shoe,feline?undefined:'#b5bcb6'));}
     else {
     m.push({kind:'roundBox',position:footL,rotation:new Vec3(leftShoePitch,leftShoeYaw,0),scale:new Vec3(.29,.135,.43),color:shoeColor,material:'fabric'},{kind:'roundBox',position:footR,rotation:new Vec3(rightShoePitch,rightShoeYaw,0),scale:new Vec3(.29,.135,.43),color:shoeColor,material:'fabric'});
     m.push({kind:'roundBox',position:new Vec3(footL.x,footL.y-.055,footL.z),rotation:new Vec3(leftShoePitch,leftShoeYaw,0),scale:new Vec3(.30,.055,.445),color:soleColor,material:'fabric'},{kind:'roundBox',position:new Vec3(footR.x,footR.y-.055,footR.z),rotation:new Vec3(rightShoePitch,rightShoeYaw,0),scale:new Vec3(.30,.055,.445),color:soleColor,material:'fabric'});
     }
 
-    if(taylor)m.push({...skinRoot,skin:CHARACTER_SKIN.taylorHands,color:feline?TAYLOR_PALETTE.indigo:this.spec.skin,material:feline?'toon':'humanSkin'} as SkinnedMesh);
+    const freeHands=human&&!this.propKind&&!this.interactionTarget&&this.interactionWeight<.001&&['idle','walk','jog','watch','talk','sit'].includes(this.state)&&this.socialGesture!=='inspect';
+    if(athlete)m.push({...skinRoot,skin:freeHands?ATHLETE_WARDROBE.freeHands:CHARACTER_SKIN.taylorHands,color:feline?TAYLOR_PALETTE.indigo:this.spec.skin,material:feline?'toon':'humanSkin'} as SkinnedMesh);
     else {
       m.push({kind:'sphere',position:handL,scale:new Vec3(.16,.20,.15),color:this.spec.skin,material:'skin'},{kind:'sphere',position:handR,scale:new Vec3(.16,.20,.15),color:this.spec.skin,material:'skin'});
       for(const [hand,side] of [[handL,-1],[handR,1]] as const)m.push({kind:'sphere',position:Vec3.add(hand,this.localVector(-side*.075,.025,.045)),scale:new Vec3(.095,.12,.10),color:this.spec.skin,material:'skin'});
@@ -534,8 +549,8 @@ export class Character {
       const neck=Vec3.lerp(Vec3.lerp(shoulderL,shoulderR,.5),head,.30);
       m.push({kind:'sphere',position:neck,scale:new Vec3(.23,.32,.23),color:this.spec.skin,material:'skin'});
       m.push(...taylorTailMeshes(pelvisCenter,hipYaw,this.animTime,this.horizontalSpeed));
-    }else if(taylor){
-      m.push(...humanTaylorHead(head,headYaw,tilt,pose.face,this.animTime,this.spec.skin));
+    }else if(human){
+      m.push(...humanTaylorHead(head,headYaw,tilt,pose.face,this.animTime,this.spec.skin,design.head));
       const shoulder=Vec3.lerp(shoulderL,shoulderR,.5),jaw=head.clone().add(new Vec3(0,-.143,0)),neck=Vec3.lerp(shoulder,jaw,.5);
       m.push({kind:'sphere',position:neck,rotation:new Vec3(0,headYaw,tilt),scale:new Vec3(.099,Math.max(.09,jaw.y-shoulder.y)+.065,.104),color:this.spec.skin,material:'humanSkin'});
     }else {
@@ -603,7 +618,7 @@ export class Character {
     // Scale the existing face/hair together, retaining identity and the skeletal contact rig.
     for(const item of [m[headStart],...m.slice(faceDetailsStart)]){if('skin' in item)continue;const offset=Vec3.sub(item.position,head),x=Vec3.dot(offset,right),y=offset.y;item.position.add(right.clone().scale((x*Math.cos(tilt)-y*Math.sin(tilt)-x))).add(new Vec3(0,x*Math.sin(tilt)+y*Math.cos(tilt)-y,0));item.position=Vec3.add(head,Vec3.sub(item.position,head).scale(.80));item.scale.scale(.80);}
     }
-    if(this.spec.avatar&&!taylor){
+    if(this.spec.avatar&&!athlete){
       const charm=this.worldLocal(0,1.28+baseY+pose.breathe-pose.knee,.235,torsoYaw);
       m.push({kind:'torus',position:Vec3.add(charm,new Vec3(0,.07,0)),rotation:new Vec3(.3,torsoYaw,0),scale:new Vec3(.28,.20,.025),color:this.spec.avatar==='taylor'?'#dbb447':'#c6c6bd',material:'metal'});
       if(this.spec.avatar==='taylor')m.push({kind:'sphere',position:charm,scale:new Vec3(.10,.12,.035),color:'#50b8b4',material:'ceramic'});

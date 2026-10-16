@@ -269,6 +269,38 @@ for (const side of [-1, 1]) {
         }
 }
 export const HUMAN_TENNIS_SKIN = { dress: finish('taylor-human-tailored-dress-v2', humanDress), yoke: finish('taylor-human-shoulder-yoke-v2', humanYoke), trim: finish('taylor-human-scoop-piping-v2', humanTrim), seams: finish('taylor-human-princess-seams-v1', humanSeams) };
+const athleteBodice = build(), athleteSkirt = build(), athleteTop = build(), athleteLegs = build(), athleteCalves = build(), athleteArms = build(), athleteBand = build(), athleteSocks = build(), athleteFreeHands = build(), athleteShorts = { p: [...shorts.p], n: [...shorts.n], bi: [...shorts.bi], bw: [...shorts.bw] };
+humanSurface(athleteBodice, () => .895, humanNeckY, 24, .003);
+humanSurface(athleteSkirt, () => .575, () => .905, 16, .003);
+sculptSegment(athleteTop, bind.pelvis, bind.spine, [[0, .265, .181], [.55, .244, .166], [1, .249, .172]], BONE.pelvis, BONE.spine, 12, 24);
+sculptSegment(athleteTop, bind.spine, bind.chest, [[0, .249, .172], [.58, .300, .197], [1, .329, .204]], BONE.spine, BONE.chest, 12, 24);
+sculptSegment(athleteTop, bind.chest, new Vec3(0, 1.445, .015), [[0, .329, .204], [.4, .253, .175], [1, .108, .098]], BONE.chest, BONE.chest, 10, 24);
+for (const side of ['L', 'R']) {
+    const a = bind[`upperArm${side}`], b = Vec3.lerp(a, bind[`foreArm${side}`], .32), bone = BONE[`upperArm${side}`];
+    sculptSegment(athleteTop, a, b, [[0, .094, .088], [.45, .103, .094], [1, .098, .088]], bone, bone, 8, 24);
+    shoulderCap(athleteTop, a, Vec3.sub(b, a), bone, .094, .088, 24, .040);
+    sculptSegment(athleteArms, a, bind[`foreArm${side}`], [[0, .090, .084], [.28, .101, .089], [.65, .087, .076], [1, .074, .067]], bone, BONE[`foreArm${side}`], 12, 24, true);
+    sculptSegment(athleteArms, bind[`foreArm${side}`], bind[`hand${side}`], [[0, .074, .067], [.30, .083, .070], [.7, .065, .056], [1, .051, .046]], BONE[`foreArm${side}`], BONE[`hand${side}`], 12, 24, true);
+    shoulderCap(athleteArms, a, Vec3.sub(b, a), bone, .090, .084, 24, .04);
+    sculptSegment(athleteLegs, bind[`thigh${side}`], bind[`shin${side}`], [[0, .131, .118], [.22, .142, .125], [.65, .113, .101], [1, .087, .078]], BONE[`thigh${side}`], BONE[`shin${side}`], 16, 24, true);
+    sculptSegment(athleteCalves, bind[`shin${side}`], bind[`foot${side}`], [[0, .087, .078], [.28, .103, .088], [.5, .088, .075], [.78, .065, .057], [1, .052, .047]], BONE[`shin${side}`], BONE[`shin${side}`], 16, 24);
+    const elbow = bind[`foreArm${side}`], hand = bind[`hand${side}`], shin = bind[`shin${side}`], foot = bind[`foot${side}`], handBone = BONE[`hand${side}`], frame = basis(Vec3.sub(hand, elbow)), sign = side === 'L' ? -1 : 1;
+    sculptSegment(athleteBand, Vec3.lerp(elbow, hand, .82), Vec3.lerp(elbow, hand, .96), [[0, .063, .056], [1, .056, .050]], BONE[`foreArm${side}`], handBone, 4, 24, true, [.82, .96]);
+    sculptSegment(athleteSocks, Vec3.lerp(shin, foot, .84), foot, [[0, .064, .057], [.5, .058, .052], [1, .055, .050]], BONE[`shin${side}`], BONE[`shin${side}`], 6, 24);
+    const point = (x, y, z) => hand.clone().add(frame.x.clone().scale(x)).add(frame.y.clone().scale(y)).add(frame.z.clone().scale(z));
+    handVolume(athleteFreeHands, point(0, .020, .002), frame, new Vec3(.058, .047, .030), handBone);
+    for (const [i, x] of [-.036, -.012, .012, .035].entries()) {
+        const length = [.043, .057, .052, .038][i], points = [point(x, .055, .004), point(x, .055 + length * .55, .011), point(x, .055 + length, .026)];
+        for (let j = 0; j < 2; j++) {
+            const p = points[j], q = points[j + 1];
+            handVolume(athleteFreeHands, Vec3.lerp(p, q, .5), basis(Vec3.sub(q, p)), new Vec3(.012, Vec3.sub(q, p).len() * .5 + .005, .012), handBone, 6, 10);
+        }
+    }
+    const thumbA = point(sign * .046, .002, .017), thumbB = point(sign * .069, .040, .031);
+    handVolume(athleteFreeHands, Vec3.lerp(thumbA, thumbB, .5), basis(Vec3.sub(thumbB, thumbA)), new Vec3(.015, Vec3.sub(thumbB, thumbA).len() * .5 + .007, .015), handBone, 6, 12);
+}
+sculptSegment(athleteShorts, new Vec3(0, .74, 0), new Vec3(0, .825, 0), [[0, .323, .170], [.7, .287, .175], [1, .269, .177]], BONE.pelvis, BONE.pelvis, 8, 32);
+export const ATHLETE_WARDROBE = { bodice: finish('athlete-fitted-bodice-v1', athleteBodice), skirt: finish('athlete-pleated-skirt-v1', athleteSkirt), top: finish('athlete-performance-shirt-v2', athleteTop), legs: finish('athlete-shaped-legs-v1', athleteLegs), calves: finish('athlete-shaped-calves-v1', athleteCalves), arms: finish('athlete-shaped-arms-v1', athleteArms), shorts: finish('athlete-performance-shorts-v1', athleteShorts), wristband: finish('athlete-performance-wristband-v1', athleteBand), socks: finish('athlete-court-socks-v1', athleteSocks), freeHands: finish('athlete-relaxed-hands-v1', athleteFreeHands) };
 // A small embroidered crescent recreates the reference's central gold detail.
 // It samples the same surface and weights as the tunic, including in replay.
 const taylorTunicMark = build();

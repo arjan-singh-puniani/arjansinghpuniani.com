@@ -1,0 +1,9 @@
+{
+  "errors": [],
+  "http": [
+    [
+      400,
+      "http://127.0.0.1:3096/_next/static/chunks/webpack-e334f2ec96e96d8c.js"
+    ]
+  ]
+}

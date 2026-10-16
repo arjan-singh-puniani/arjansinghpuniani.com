@@ -34,11 +34,11 @@ export function adultTaylorPose(source, root, yaw, constraints) {
     // An adult human needs a narrower shoulder girdle; solve the arms from these
     // real landmarks so skin, contact and tracking agree on the new proportion.
     if (constraints.human) {
-        const center = Vec3.lerp(p.shoulderL, p.shoulderR, .5);
+        const center = Vec3.lerp(p.shoulderL, p.shoulderR, .5), scale = constraints.shoulderScale ?? .83;
         for (const side of ['L', 'R']) {
             const delta = Vec3.sub(p[`shoulder${side}`], center);
-            delta.x *= .83;
-            delta.z *= .83;
+            delta.x *= scale;
+            delta.z *= scale;
             p[`shoulder${side}`] = center.clone().add(delta);
         }
     }

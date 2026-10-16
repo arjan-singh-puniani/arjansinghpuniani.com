@@ -1,0 +1,17 @@
+{
+  "live/first-attempt.json": {
+    "result": "incomplete",
+    "failure": "Adult cast Championship entry failed after selection fixture deliberately moved all actors",
+    "correction": "Reload genuine saved club before match entry"
+  },
+  "live/second-attempt.json": {
+    "result": "incomplete",
+    "failure": "Asserted >10 recorded frames at exactly 10; contact spacing and GL check passed",
+    "correction": "Wait explicitly for >20 frames as well as real contact"
+  },
+  "portfolio-entry-stale-server.json": {
+    "result": "incomplete",
+    "failure": "Iframe entry timed out; stale webpack chunk returned HTTP 400 after rebuilding with old preview server running",
+    "correction": "Restart only the verified task-owned Next server, then repeat unchanged QA"
+  }
+}
