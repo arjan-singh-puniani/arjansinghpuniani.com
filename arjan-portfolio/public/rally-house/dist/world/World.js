@@ -17,6 +17,20 @@ export class World {
     authored;
     currentMinute = 0;
     reducedObjectMotion = false;
+    fixtureVisibility = new WeakMap();
+    /** The same fixtures remain in the scene. Any low camera gets this reversible
+     * dollhouse cutaway; visibility is independent of Championship or Lab state. */
+    presentationMeshes(camera, target, dt) {
+        const delta = Vec3.sub(camera, target), elevation = Math.atan2(delta.y, Math.hypot(delta.x, delta.z));
+        const opacity = .16 + .84 * smoothstep(.42, .65, elevation), k = 1 - Math.exp(-Math.max(0, dt) * 7);
+        return this.meshes.map(m => {
+            if (m.id !== 'court-pendant')
+                return m;
+            const prior = this.fixtureVisibility.get(m) ?? 1, next = prior + (opacity - prior) * k;
+            this.fixtureVisibility.set(m, next);
+            return { ...m, alpha: (m.alpha ?? 1) * next };
+        });
+    }
     updateObjects(dt, minute, reducedMotion) { this.currentMinute = minute; this.reducedObjectMotion = reducedMotion; return this.authored.update(dt, reducedMotion); }
     /** Eye-level visibility: a low bench or net blocks feet, not an adult's view. */
     canSee(a, b) {
@@ -455,7 +469,7 @@ export class World {
     addPlant(x, z, s = 1) { this.add('cone', x, .38 * s, z, .66 * s, .76 * s, .66 * s, palette.terracotta, 0, 1, false, undefined, 'ceramic'); this.add('cylinder', x, .94 * s, z, .12 * s, 1.0 * s, .12 * s, '#5d725e', 0, 1, false, undefined, 'wood'); for (const [dx, dy, dz, c] of [[-.28, .0, 0, '#6d896f'], [.28, .08, 0, '#78aa82'], [0, .16, .18, '#7b987b'], [0, .08, -.2, '#668268']])
         this.add('foliage', x + dx * s, 1.28 * s + dy * s, z + dz * s, .56 * s, .28 * s, .31 * s, c, 0, 1, false, undefined, 'leaf'); }
     addLamp(x, z) { this.add('cylinder', x, 1.1, z, .07, 2.2, .07, '#56665b', 0, 1, false, undefined, 'metal'); this.add('cone', x, 2.18, z, .80, .68, .80, palette.peach, 0, 1, true, undefined, 'fabric'); this.add('sphere', x, 1.9, z, .22, .22, .22, '#f3d99b', 0, 1, true); }
-    lighting(minutes, focus = 0) {
+    lighting(minutes, _presentationFocus = 0) {
         const h = minutes / 60;
         const daylight = smoothstep(5.45, 7.9, h) * (1 - smoothstep(18.15, 20.65, h));
         const golden = Math.exp(-Math.pow((h - 17.15) / 1.65, 2));
@@ -464,7 +478,7 @@ export class World {
         // Cozy contrast comes from warm islands inside a calm ambient field, not
         // from simply making the entire academy orange or bright.
         const ambientBase = rain ? (.16 + .47 * daylight) : over ? (.155 + .52 * daylight) : (.135 + .59 * daylight);
-        const ambient = ambientBase * .64 + .025 + focus * .14;
+        const ambient = ambientBase * .64 + .025;
         const t = clamp01((h - 6) / 13);
         const az = -1.0 + t * 1.6;
         const elevation = .34 + Math.sin(Math.PI * t) * .80;
@@ -474,8 +488,8 @@ export class World {
         const mixBg = (a, b) => a + (b - a) * daylight;
         const bg = [mixBg(nightBg[0], dayBg[0]), mixBg(nightBg[1], dayBg[1]), mixBg(nightBg[2], dayBg[2]), 1];
         const nightDrive = clamp01((1 - daylight) * 1.35 + (rain ? .18 : 0));
-        const practical = (.24 + golden * .20 + nightDrive * .92) * (1 - focus * .35);
-        const courtLamps = .12 + nightDrive * .58 + focus * .42;
+        const practical = (.24 + golden * .20 + nightDrive * .92);
+        const courtLamps = .12 + nightDrive * .58;
         const warm = (r, g, b) => [r, g, b];
         const pointLights = [
             { position: new Vec3(-1.3, 3.85, 0), color: warm(1, .88, .68), intensity: 2.15 * courtLamps, radius: 10.5 },
@@ -501,7 +515,7 @@ export class World {
         const castingLight = { centre: new Vec3(1.2, .75, 0), radius: 8.2, direction: new Vec3(.16, -1, .18).normalize(), position: pointLights[0].position.clone(), strength: Math.max(0, pointLights[0].intensity * .32) };
         return { sunDir, ambient, background: bg, warmth: warmMix, pointLights, shadowStrength, sunColor, skyColor, bounceColor, castingLight };
     }
-    dynamicMeshes(time, minutes, cameraPosition, dt = 1 / 60, focus = 0, effectTime = time) {
+    dynamicMeshes(time, minutes, cameraPosition, dt = 1 / 60, _presentationFocus = 0, effectTime = time) {
         const m = [];
         // Camera-aware dollhouse cutaway. The far side wall stays tall; the near wall sinks smoothly to a low architectural lip.
         const camX = cameraPosition?.x ?? 20, targetWest = camX >= 0 ? 4.55 : .48, targetEast = camX >= 0 ? .48 : 4.55, k = 1 - Math.exp(-dt * 7.5);
@@ -548,7 +562,7 @@ export class World {
         // Practical-light pools exist even during the day at very low strength.
         // This gives the club distinct little destinations instead of one flat wash.
         const h = minutes / 60, daylight = smoothstep(5.45, 7.9, h) * (1 - smoothstep(18.15, 20.65, h));
-        const cozyDrive = clamp01(.20 + (1 - daylight) * .80 + (this.weather === 'rain' ? .10 : 0)) * (1 - focus * .8);
+        const cozyDrive = clamp01(.20 + (1 - daylight) * .80 + (this.weather === 'rain' ? .10 : 0));
         const cozyPools = [[-8.8, -5.4, 1.45], [-8.8, 4.8, 1.30], [8.5, 5.8, 1.55], [9.2, -4.6, 1.40], [-9.5, 7.2, 1.32]];
         for (const [x, z, size] of cozyPools) {
             m.push({ kind: 'sphere', position: new Vec3(x, .075, z), scale: new Vec3(size, .055, size), color: '#efc985', alpha: (.035 + .105 * cozyDrive), unlit: true, noShadow: true });

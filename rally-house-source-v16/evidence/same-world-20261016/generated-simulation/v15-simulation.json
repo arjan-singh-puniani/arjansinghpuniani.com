@@ -1,0 +1,1018 @@
+{
+  "telemetry": {
+    "seconds": 600.0000000000001,
+    "uniqueScenes": 13,
+    "uniquePairs": 5,
+    "uniqueLocations": 8,
+    "idlePercent": 1.833333333333334,
+    "quietPercent": 56.125,
+    "mostRepeatedBehavior": [
+      "practice",
+      2
+    ],
+    "mostRepeatedPair": [
+      "coach|nia",
+      3
+    ],
+    "flags": [],
+    "initiators": {
+      "coach": 3,
+      "leo": 4,
+      "mika": 4,
+      "nia": 5
+    },
+    "scenes": {
+      "observe": 1,
+      "practice": 2,
+      "counting": 2,
+      "reflect": 1,
+      "match": 1,
+      "shared-break": 1,
+      "tea": 2,
+      "after-result": 1,
+      "bench-room": 1,
+      "rest": 1,
+      "gear-advice": 1,
+      "usual": 1,
+      "closing": 1
+    },
+    "pairs": {
+      "coach|mika": 1,
+      "leo|mika": 2,
+      "coach|nia": 3,
+      "mika|nia": 2,
+      "coach|leo": 1
+    },
+    "places": {
+      "court": 2,
+      "warmup": 5,
+      "cafeTable": 2,
+      "cafe-table": 2,
+      "courtBench": 1,
+      "lounge": 1,
+      "stringing": 1,
+      "cafe": 2
+    },
+    "interruptions": 2,
+    "cancellations": 0,
+    "meaningful": 16,
+    "memoryCount": 21,
+    "favoriteUses": 0,
+    "rituals": 4,
+    "log": [
+      {
+        "at": 26.000000000000025,
+        "day": 1,
+        "minute": 586,
+        "who": [
+          "coach",
+          "mika"
+        ],
+        "what": "Open court practice",
+        "why": "Opening club routine",
+        "changed": "Contessa and Lucresia finished a practice rally of 11 contacts.",
+        "next": "Return to the day"
+      },
+      {
+        "at": 50.00000000000003,
+        "day": 1,
+        "minute": 610,
+        "who": [
+          "leo"
+        ],
+        "what": "Leo works on the unglamorous part",
+        "why": "practice drive, opportunity, personality, energy",
+        "changed": "Leo spent a few quiet minutes rehearsing recovery footwork.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 84.00000000000003,
+        "day": 1,
+        "minute": 644.5,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia starts the count again",
+        "why": "practice drive, personality, energy, opportunity",
+        "changed": "Lucresia quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 143.00000000000003,
+        "day": 1,
+        "minute": 703.25,
+        "who": [
+          "coach"
+        ],
+        "what": "Contessa leaves a little space on the page",
+        "why": "personality, energy, opportunity, ritual",
+        "changed": "Contessa kept her notes short and left room to look up.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 174.00000000000003,
+        "day": 1,
+        "minute": 734,
+        "who": [
+          "leo",
+          "mika"
+        ],
+        "what": "First shared court",
+        "why": "Court opportunity and challenge readiness",
+        "changed": "Lucresia 3 · Leo 1. Lucresia takes their practice game. Longest rally: 17.",
+        "next": "Leo wants another try tomorrow."
+      },
+      {
+        "at": 202.00000000000003,
+        "day": 1,
+        "minute": 762.75,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Barbara makes time for Contessa",
+        "why": "personality, social appetite, schedule, opportunity",
+        "changed": "Barbara invited Contessa to a shared break.",
+        "next": "At home here"
+      },
+      {
+        "at": 221.00000000000003,
+        "day": 1,
+        "minute": 781.25,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Barbara and Coach Contessa shared a break",
+        "why": "Relationship and place preference",
+        "changed": "Barbara and Coach Contessa shared a cup.",
+        "next": "Barbara is keeping a place for a post-court break."
+      },
+      {
+        "at": 260.00000000000006,
+        "day": 1,
+        "minute": 820.5,
+        "who": [
+          "leo"
+        ],
+        "what": "Leo returns to the small things",
+        "why": "memory, practice drive, opportunity, personality",
+        "changed": "Leo quietly worked on recovery after the completed game.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 319.00000000000006,
+        "day": 1,
+        "minute": 879.25,
+        "who": [
+          "mika",
+          "leo"
+        ],
+        "what": "Making room, eventually",
+        "why": "energy, opportunity, shared time, social appetite",
+        "changed": "Lucresia asked Leo to make room. He eventually found somewhere else for his tactical thoughts.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 358.00000000000006,
+        "day": 1,
+        "minute": 918.75,
+        "who": [
+          "nia",
+          "mika"
+        ],
+        "what": "Barbara and Lucresia shared a break",
+        "why": "Relationship and place preference",
+        "changed": "Barbara and Lucresia shared a cup.",
+        "next": "Return to the day"
+      },
+      {
+        "at": 367.00000000000006,
+        "day": 1,
+        "minute": 927.75,
+        "who": [
+          "leo"
+        ],
+        "what": "Leo takes a real minute",
+        "why": "energy, opportunity, ritual",
+        "changed": "Leo took an unhurried break.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 411.00000000000006,
+        "day": 1,
+        "minute": 971.25,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia gives herself a slower count",
+        "why": "practice drive, personality, ritual, energy",
+        "changed": "Lucresia spent a few quiet minutes rehearsing recovery footwork.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 451.00000000000006,
+        "day": 1,
+        "minute": 1011.5,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia starts the count again",
+        "why": "personality, practice drive, opportunity, energy",
+        "changed": "Lucresia quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 499.00000000000006,
+        "day": 1,
+        "minute": 1059.5,
+        "who": [
+          "coach",
+          "leo"
+        ],
+        "what": "Advice Leo almost takes",
+        "why": "personality, opportunity, shared time, confidence",
+        "changed": "Leo asked Contessa about strings. She prescribed footwork, then allowed a future gear conversation.",
+        "next": "At home here"
+      },
+      {
+        "at": 539.0000000000001,
+        "day": 1,
+        "minute": 1099.75,
+        "who": [
+          "nia",
+          "mika"
+        ],
+        "what": "Barbara learns Lucresia’s usual",
+        "why": "personality, schedule, opportunity, shared time",
+        "changed": "Barbara learned that Lucresia likes extra foam. Lucresia stopped apologizing for asking.",
+        "next": "At home here"
+      },
+      {
+        "at": 575.0000000000001,
+        "day": 1,
+        "minute": 1135.25,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "The last cup takes two people",
+        "why": "personality, schedule, opportunity, shared time",
+        "changed": "Contessa volunteered to help Barbara with the last cup. Her first contribution was drinking it.",
+        "next": "At home here"
+      }
+    ]
+  },
+  "history": [
+    {
+      "id": "activity-16",
+      "kind": "everyday",
+      "participants": [
+        "nia",
+        "coach"
+      ],
+      "resource": "cafe-table",
+      "phase": "completed",
+      "elapsed": 22.78333333333332,
+      "phaseTime": 0,
+      "detail": "The last cup takes two people",
+      "result": "Contessa volunteered to help Barbara with the last cup. Her first contribution was drinking it."
+    },
+    {
+      "id": "activity-15",
+      "kind": "everyday",
+      "participants": [
+        "nia",
+        "mika"
+      ],
+      "resource": "cafe-table",
+      "phase": "completed",
+      "elapsed": 27.716666666666374,
+      "phaseTime": 0,
+      "detail": "Barbara learns Lucresia’s usual",
+      "result": "Barbara learned that Lucresia likes extra foam. Lucresia stopped apologizing for asking."
+    },
+    {
+      "id": "activity-14",
+      "kind": "everyday",
+      "participants": [
+        "coach",
+        "leo"
+      ],
+      "resource": "place-stringing",
+      "phase": "completed",
+      "elapsed": 35.866666666665914,
+      "phaseTime": 0,
+      "detail": "Advice Leo almost takes",
+      "result": "Leo asked Contessa about strings. She prescribed footwork, then allowed a future gear conversation."
+    },
+    {
+      "id": "activity-13",
+      "kind": "everyday",
+      "participants": [
+        "mika"
+      ],
+      "resource": "place-warmup",
+      "phase": "completed",
+      "elapsed": 28.149999999999682,
+      "phaseTime": 0,
+      "detail": "Lucresia starts the count again",
+      "result": "Lucresia quietly rehearsed her footwork, then gave herself permission to count the imperfect rep."
+    },
+    {
+      "id": "activity-12",
+      "kind": "everyday",
+      "participants": [
+        "mika"
+      ],
+      "resource": "place-warmup",
+      "phase": "completed",
+      "elapsed": 30.116666666666237,
+      "phaseTime": 0,
+      "detail": "Lucresia gives herself a slower count",
+      "result": "Lucresia spent a few quiet minutes rehearsing recovery footwork."
+    },
+    {
+      "id": "activity-11",
+      "kind": "everyday",
+      "participants": [
+        "leo"
+      ],
+      "resource": "place-lounge",
+      "phase": "completed",
+      "elapsed": 35.06666666666596,
+      "phaseTime": 0,
+      "detail": "Leo takes a real minute",
+      "result": "Leo took an unhurried break."
+    },
+    {
+      "id": "activity-10",
+      "kind": "tea",
+      "participants": [
+        "nia",
+        "mika"
+      ],
+      "resource": "cafe-table",
+      "phase": "completed",
+      "elapsed": 36.099999999999234,
+      "phaseTime": 0,
+      "detail": "Barbara and Lucresia shared a break",
+      "result": "Barbara and Lucresia shared a cup."
+    },
+    {
+      "id": "activity-9",
+      "kind": "everyday",
+      "participants": [
+        "mika",
+        "leo"
+      ],
+      "resource": "place-courtBench",
+      "phase": "completed",
+      "elapsed": 45.016666666665394,
+      "phaseTime": 0,
+      "detail": "Making room, eventually",
+      "result": "Lucresia asked Leo to make room. He eventually found somewhere else for his tactical thoughts."
+    },
+    {
+      "id": "activity-8",
+      "kind": "everyday",
+      "participants": [
+        "leo"
+      ],
+      "resource": "place-warmup",
+      "phase": "completed",
+      "elapsed": 44.73333333333208,
+      "phaseTime": 0,
+      "detail": "Leo returns to the small things",
+      "result": "Leo quietly worked on recovery after the completed game."
+    },
+    {
+      "id": "activity-7",
+      "kind": "tea",
+      "participants": [
+        "nia",
+        "coach"
+      ],
+      "resource": "cafe-table",
+      "phase": "completed",
+      "elapsed": 17.80000000000027,
+      "phaseTime": 0,
+      "detail": "Barbara and Coach Contessa shared a break",
+      "result": "Barbara and Coach Contessa shared a cup."
+    },
+    {
+      "id": "activity-6",
+      "kind": "everyday",
+      "participants": [
+        "nia",
+        "coach"
+      ],
+      "resource": "cafe-table",
+      "phase": "completed",
+      "elapsed": 45.64999999999869,
+      "phaseTime": 0,
+      "detail": "Barbara makes time for Contessa",
+      "result": "Barbara invited Contessa to a shared break."
+    },
+    {
+      "id": "activity-4",
+      "kind": "match",
+      "participants": [
+        "leo",
+        "mika"
+      ],
+      "resource": "court",
+      "phase": "completed",
+      "elapsed": 89.36666666666288,
+      "phaseTime": 0,
+      "detail": "First shared court",
+      "result": "Lucresia 3 · Leo 1. Lucresia takes their practice game. Longest rally: 17."
+    },
+    {
+      "id": "activity-5",
+      "kind": "everyday",
+      "participants": [
+        "coach"
+      ],
+      "resource": "cafe-table",
+      "phase": "completed",
+      "elapsed": 46.49999999999864,
+      "phaseTime": 0,
+      "detail": "Contessa leaves a little space on the page",
+      "result": "Contessa kept her notes short and left room to look up."
+    },
+    {
+      "id": "activity-3",
+      "kind": "everyday",
+      "participants": [
+        "mika"
+      ],
+      "resource": "place-warmup",
+      "phase": "completed",
+      "elapsed": 22.08333333333336,
+      "phaseTime": 0,
+      "detail": "Lucresia starts the count again",
+      "result": "Lucresia quietly rehearsed her footwork, then gave herself permission to count the imperfect rep."
+    },
+    {
+      "id": "activity-2",
+      "kind": "everyday",
+      "participants": [
+        "leo"
+      ],
+      "resource": "place-warmup",
+      "phase": "completed",
+      "elapsed": 42.133333333332224,
+      "phaseTime": 0,
+      "detail": "Leo works on the unglamorous part",
+      "result": "Leo spent a few quiet minutes rehearsing recovery footwork."
+    },
+    {
+      "id": "activity-1",
+      "kind": "observe",
+      "participants": [
+        "coach",
+        "mika"
+      ],
+      "resource": "court",
+      "phase": "completed",
+      "elapsed": 26.13333333333313,
+      "phaseTime": 0,
+      "detail": "Open court practice",
+      "result": "Contessa and Lucresia finished a practice rally of 11 contacts."
+    }
+  ],
+  "mind": {
+    "time": 600.0000000000001,
+    "states": {
+      "coach": {
+        "energy": 1,
+        "confidence": 0.8519294850672707,
+        "social": 0.012500000000000013,
+        "practice": 0.6999999999999769,
+        "comfort": 0.9081916625417442,
+        "tone": 0.7884177047240266
+      },
+      "mika": {
+        "energy": 0.9438000000000119,
+        "confidence": 0.7101935332641484,
+        "social": 0.24250000000001798,
+        "practice": 0.40649999999999525,
+        "comfort": 0.7745664003776265,
+        "tone": 0.901714309952527
+      },
+      "leo": {
+        "energy": 0.9012500000000079,
+        "confidence": 0.7813286352383618,
+        "social": 0.4900000000000235,
+        "practice": 0.44564999999999994,
+        "comfort": 0.7934636731859137,
+        "tone": 0.686338143821741
+      },
+      "nia": {
+        "energy": 1,
+        "confidence": 0.78,
+        "social": 0.10500000000001347,
+        "practice": 0.4300000000000078,
+        "comfort": 0.9852421676215911,
+        "tone": 0.8945868966688928
+      }
+    },
+    "events": [
+      {
+        "id": "activity-4",
+        "kind": "match",
+        "subject": "mika",
+        "detail": "Lucresia 3 · Leo 1. Lucresia takes their practice game. Longest rally: 17.",
+        "winner": "mika",
+        "importance": 1,
+        "day": 1,
+        "place": "court",
+        "at": 174.00000000000003,
+        "witnesses": [],
+        "pending": [
+          "mika"
+        ]
+      }
+    ],
+    "memories": [
+      {
+        "id": "activity-4:participant:leo",
+        "person": "leo",
+        "topic": "match",
+        "place": "court",
+        "people": [
+          "mika",
+          "leo"
+        ],
+        "day": 1,
+        "importance": 1,
+        "detail": "Lucresia 3 · Leo 1. Lucresia takes their practice game. Longest rally: 17.",
+        "memoryClass": "foundational",
+        "count": 1
+      },
+      {
+        "id": "activity-4",
+        "person": "mika",
+        "topic": "match",
+        "place": "court",
+        "people": [
+          "mika",
+          "leo"
+        ],
+        "day": 1,
+        "importance": 1,
+        "detail": "Lucresia 3 · Leo 1. Lucresia takes their practice game. Longest rally: 17.",
+        "memoryClass": "foundational",
+        "count": 1
+      },
+      {
+        "id": "life-12:coach",
+        "person": "coach",
+        "topic": "care",
+        "place": "cafe",
+        "people": [
+          "nia",
+          "coach"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Contessa volunteered to help Barbara with the last cup. Her first contribution was drinking it.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "life-12:nia",
+        "person": "nia",
+        "topic": "care",
+        "place": "cafe",
+        "people": [
+          "nia",
+          "coach"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Contessa volunteered to help Barbara with the last cup. Her first contribution was drinking it.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "life-11:mika",
+        "person": "mika",
+        "topic": "company",
+        "place": "cafe",
+        "people": [
+          "nia",
+          "mika"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Barbara learned that Lucresia likes extra foam. Lucresia stopped apologizing for asking.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "life-11:nia",
+        "person": "nia",
+        "topic": "company",
+        "place": "cafe",
+        "people": [
+          "nia",
+          "mika"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Barbara learned that Lucresia likes extra foam. Lucresia stopped apologizing for asking.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "life-10:leo",
+        "person": "leo",
+        "topic": "advice",
+        "place": "stringing",
+        "people": [
+          "coach",
+          "leo"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Leo asked Contessa about strings. She prescribed footwork, then allowed a future gear conversation.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "life-10:coach",
+        "person": "coach",
+        "topic": "advice",
+        "place": "stringing",
+        "people": [
+          "coach",
+          "leo"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Leo asked Contessa about strings. She prescribed footwork, then allowed a future gear conversation.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "life-9:mika",
+        "person": "mika",
+        "topic": "practice",
+        "place": "warmup",
+        "people": [
+          "mika"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Returned here to rehearse the small things.",
+        "memoryClass": "ordinary",
+        "count": 3
+      },
+      {
+        "id": "life-7:leo",
+        "person": "leo",
+        "topic": "rest",
+        "place": "lounge",
+        "people": [
+          "leo"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Leo took an unhurried break.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "activity-10:mika",
+        "person": "mika",
+        "topic": "company",
+        "place": "cafe",
+        "people": [
+          "nia",
+          "mika"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Barbara and Lucresia shared a cup.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "activity-10:nia",
+        "person": "nia",
+        "topic": "company",
+        "place": "cafe",
+        "people": [
+          "nia",
+          "mika"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Barbara and Lucresia shared a cup.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "life-6:leo",
+        "person": "leo",
+        "topic": "rest",
+        "place": "courtBench",
+        "people": [
+          "mika",
+          "leo"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Lucresia asked Leo to make room. He eventually found somewhere else for his tactical thoughts.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "life-6:mika",
+        "person": "mika",
+        "topic": "rest",
+        "place": "courtBench",
+        "people": [
+          "mika",
+          "leo"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Lucresia asked Leo to make room. He eventually found somewhere else for his tactical thoughts.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "life-5:leo",
+        "person": "leo",
+        "topic": "practice",
+        "place": "warmup",
+        "people": [
+          "leo"
+        ],
+        "day": 1,
+        "importance": 0.78,
+        "detail": "Leo quietly worked on recovery after the completed game.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "activity-7:coach",
+        "person": "coach",
+        "topic": "company",
+        "place": "cafe",
+        "people": [
+          "nia",
+          "coach"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Barbara and Coach Contessa shared a cup.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "activity-7:nia",
+        "person": "nia",
+        "topic": "company",
+        "place": "cafe",
+        "people": [
+          "nia",
+          "coach"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Barbara and Coach Contessa shared a cup.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "life-4:coach",
+        "person": "coach",
+        "topic": "company",
+        "place": "cafeTable",
+        "people": [
+          "nia",
+          "coach"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Barbara invited Contessa to a shared break.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "life-4:nia",
+        "person": "nia",
+        "topic": "company",
+        "place": "cafeTable",
+        "people": [
+          "nia",
+          "coach"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Barbara invited Contessa to a shared break.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "life-3:coach",
+        "person": "coach",
+        "topic": "reflect",
+        "place": "cafeTable",
+        "people": [
+          "coach"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Contessa kept her notes short and left room to look up.",
+        "memoryClass": "ordinary",
+        "count": 1
+      },
+      {
+        "id": "life-1:leo",
+        "person": "leo",
+        "topic": "practice",
+        "place": "warmup",
+        "people": [
+          "leo"
+        ],
+        "day": 1,
+        "importance": 0.4,
+        "detail": "Leo spent a few quiet minutes rehearsing recovery footwork.",
+        "memoryClass": "ordinary",
+        "count": 1
+      }
+    ],
+    "receipts": [
+      "life-1",
+      "life-2",
+      "life-3",
+      "life-4",
+      "activity-7",
+      "life-5",
+      "life-6",
+      "activity-10",
+      "life-7",
+      "life-8",
+      "life-9",
+      "life-10",
+      "life-11",
+      "life-12"
+    ],
+    "recent": [
+      {
+        "scene": "closing",
+        "pair": "coach|nia",
+        "place": "cafe",
+        "motif": "closing",
+        "at": 575.0000000000001
+      },
+      {
+        "scene": "usual",
+        "pair": "mika|nia",
+        "place": "cafe",
+        "motif": "usual",
+        "at": 539.0000000000001
+      },
+      {
+        "scene": "gear-advice",
+        "pair": "coach|leo",
+        "place": "stringing",
+        "motif": "gear-advice",
+        "at": 499.00000000000006
+      },
+      {
+        "scene": "counting",
+        "pair": "mika",
+        "place": "warmup",
+        "motif": "counting",
+        "at": 451.00000000000006
+      },
+      {
+        "scene": "practice",
+        "pair": "mika",
+        "place": "warmup",
+        "motif": "recovery-rehearsal",
+        "at": 411.00000000000006
+      },
+      {
+        "scene": "rest",
+        "pair": "leo",
+        "place": "lounge",
+        "motif": "take-a-minute",
+        "at": 367.00000000000006
+      },
+      {
+        "scene": "tea",
+        "pair": "mika|nia",
+        "place": "cafe",
+        "motif": "tea",
+        "at": 358.00000000000006
+      },
+      {
+        "scene": "bench-room",
+        "pair": "leo|mika",
+        "place": "courtBench",
+        "motif": "bench-room",
+        "at": 319.00000000000006
+      },
+      {
+        "scene": "after-result",
+        "pair": "leo",
+        "place": "warmup",
+        "motif": "reset-after-game",
+        "at": 260.00000000000006
+      },
+      {
+        "scene": "tea",
+        "pair": "coach|nia",
+        "place": "cafe",
+        "motif": "tea",
+        "at": 221.00000000000003
+      },
+      {
+        "scene": "shared-break",
+        "pair": "coach|nia",
+        "place": "cafeTable",
+        "motif": "invitation",
+        "at": 202.00000000000003
+      },
+      {
+        "scene": "reflect",
+        "pair": "coach",
+        "place": "cafeTable",
+        "motif": "quiet-notes",
+        "at": 143.00000000000003
+      },
+      {
+        "scene": "counting",
+        "pair": "mika",
+        "place": "warmup",
+        "motif": "counting",
+        "at": 84.00000000000003
+      },
+      {
+        "scene": "practice",
+        "pair": "leo",
+        "place": "warmup",
+        "motif": "recovery-rehearsal",
+        "at": 50.00000000000003
+      }
+    ],
+    "rituals": {
+      "rehearse-leo": 1,
+      "june-notes": 1,
+      "rest-leo": 1,
+      "rehearse-mika": 1
+    },
+    "culture": {
+      "training": 0.28944015999091866,
+      "social": 0.27481438014140247,
+      "calm": 0.22342775484754998,
+      "competition": 0.21921679561625038,
+      "care": 0.2089963329016736
+    },
+    "philosophy": {},
+    "possessions": [
+      {
+        "id": "june-notebook",
+        "owner": "coach",
+        "kind": "notebook",
+        "uses": 1,
+        "lastPlace": "cafeTable"
+      },
+      {
+        "id": "june-cup",
+        "owner": "coach",
+        "kind": "cup",
+        "uses": 0,
+        "lastPlace": "carried"
+      },
+      {
+        "id": "mika-racket",
+        "owner": "mika",
+        "kind": "racket",
+        "uses": 3,
+        "lastPlace": "warmup"
+      },
+      {
+        "id": "leo-racket",
+        "owner": "leo",
+        "kind": "racket",
+        "uses": 3,
+        "lastPlace": "stringing"
+      },
+      {
+        "id": "nia-can",
+        "owner": "nia",
+        "kind": "wateringCan",
+        "uses": 1,
+        "lastPlace": "cafe"
+      }
+    ]
+  }
+}

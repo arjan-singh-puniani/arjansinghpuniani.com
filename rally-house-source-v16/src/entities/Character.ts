@@ -46,6 +46,7 @@ type Pose=CharacterPose;
 export interface CharacterKinematics {
   leftFoot:Vec3;rightFoot:Vec3;leftHand:Vec3;rightHand:Vec3;leftFootPlanted:boolean;rightFootPlanted:boolean;racketGrip:Vec3;racketCenter:Vec3;
   contactTarget:Vec3|null;contactError:number;state:AnimState;transition:number;locomotion:number;courtPhase:CourtPhase;development:number;racketVibration:number;
+  strokePlant:{foot:'L'|'R';weight:number;anchor:Vec3}|null;
   motionBlend:{idle:number;walk:number;jog:number;lateral:number;forward:number;backward:number};
 }
 
@@ -88,6 +89,13 @@ export class Character {
   private stringImpactDirection=1;
   private racketVibration=0;private stepEvent=false;private lastStanceKey='';
   private clubIdleRelax=0;
+  private strokeAnchor:{foot:'L'|'R';point:Vec3;root:Vec3}|null=null;
+  private strokeSupport(){
+    if(!this.strokeAnchor||!isShot(this.state))return null;
+    const t=this.animTime/this.shotContactTime(),travel=Vec3.sub(this.position,this.strokeAnchor.root).len();
+    const weight=smoothstep(.12,.70,t)*(1-smoothstep(1.30,1.90,t))*(1-smoothstep(.04,.14,travel));
+    return {foot:this.strokeAnchor.foot,weight,anchor:this.strokeAnchor.point.clone()};
+  }
   private canFoldReferenceIdle(){return this.spec.appearance!=='human'&&this.racketStowed&&this.canRelaxClubIdle()&&!this.acting.micro;}
   private canRelaxClubIdle(){return (this.spec.avatar==='taylor'||this.spec.appearance==='human')&&this.state==='idle'&&!this.majorActivity&&!this.matchCompetitor&&!this.spectating&&!this.propKind&&!this.interactionTarget&&this.interactionWeight<.001&&this.socialGesture==='none'&&this.acting.role==='none';}
   private interactionTarget?:Vec3;
@@ -192,8 +200,8 @@ export class Character {
   trigger(state:AnimState){this.changeState(state,true);if(isShot(state))this.clearCourtMove();}
   setAnimation(state:AnimState){this.changeState(state,false);}
   setIncomingContact(point:Vec3){this.incomingContact=point.clone();}
-  triggerShot(state:ShotState,outgoingTarget:Vec3){this.outgoingTarget=outgoingTarget.clone();this.contactTarget=this.solveContactTarget(state,this.incomingContact);this.incomingContact=null;this.courtPhase='stroke';this.courtPhaseAge=0;this.setEmotion('focused',this.shotDuration(state));this.trigger(state);}
-  clearShotIntent(){this.contactHoldRemaining=0;this.contactTarget=null;this.outgoingTarget=null;this.incomingContact=null;this.courtPhase='recover';this.courtPhaseAge=0;}
+  triggerShot(state:ShotState,outgoingTarget:Vec3){this.outgoingTarget=outgoingTarget.clone();this.contactTarget=this.solveContactTarget(state,this.incomingContact);this.incomingContact=null;this.courtPhase='stroke';this.courtPhaseAge=0;this.setEmotion('focused',this.shotDuration(state));this.trigger(state);const foot=state==='swingForehand'?'R':'L',stance=this.poseFor(state,this.shotContactTime(state)*.72),point=stance[`foot${foot}`].clone();point.y=.11;this.strokeAnchor={foot,point,root:this.position.clone()};}
+  clearShotIntent(){this.strokeAnchor=null;this.contactHoldRemaining=0;this.contactTarget=null;this.outgoingTarget=null;this.incomingContact=null;this.courtPhase='recover';this.courtPhaseAge=0;}
   shotContactTime(state:ShotState=this.state as ShotState){const style=this.strokeStyle();const base=state==='serve'?.48:state==='volley'?.21:state==='swingBackhand'?.35:.33;const dev=this.spec.id==='mika'?(this.development-50)*.0007:0;const tempo=this.matchCompetitor?CHAMPIONSHIP_TUNING.arcadeContactTempo:1;return Math.max(.11,(base*style.timing+dev+this.preparationBonus+(this.practiceCue==='preparation'?.065:0))*tempo);}
   shotDuration(state:ShotState=this.state as ShotState){const style=this.strokeStyle();const base=state==='serve'?.96:state==='volley'?.50:state==='swingBackhand'?.78:.76;return base*style.tempo*(this.matchCompetitor?CHAMPIONSHIP_TUNING.arcadeStrokeTempo:1);}
   serveTossPoint(){const p=this.pose();return p.handL.clone();}
@@ -262,11 +270,11 @@ export class Character {
 
   racketContactPoint(){const pose=this.pose();return pose.racketCenter.clone();}
   racketContactFrame(){const pose=this.pose();return {center:pose.racketCenter.clone(),rotation:pose.racketRot.clone(),horizontal:rotateEulerVector(new Vec3(1,0,0),pose.racketRot).normalize(),vertical:rotateEulerVector(new Vec3(0,1,0),pose.racketRot).normalize(),normal:rotateEulerVector(new Vec3(0,0,1),pose.racketRot).normalize()};}
-  debugKinematics():CharacterKinematics{const p=this.pose();const err=this.contactTarget?Vec3.sub(p.racketCenter,this.contactTarget).len():0;const lateral=Math.min(1,Math.abs(this.localVelocity.x)/Math.max(.01,this.courtSpeed)),forward=Math.min(1,Math.max(0,this.localVelocity.z)/Math.max(.01,this.courtSpeed)),backward=Math.min(1,Math.max(0,-this.localVelocity.z)/Math.max(.01,this.courtSpeed)),jog=Math.min(1,Math.max(0,(this.horizontalSpeed-1.45)/.8)),walk=Math.min(1,this.horizontalSpeed/1.55)*(1-jog);return {leftFoot:p.footL.clone(),rightFoot:p.footR.clone(),leftHand:p.handL.clone(),rightHand:p.handR.clone(),leftFootPlanted:this.leftFootLock!==null,rightFootPlanted:this.rightFootLock!==null,racketGrip:p.racketGrip.clone(),racketCenter:p.racketCenter.clone(),contactTarget:this.contactTarget?.clone()??null,contactError:err,state:this.state,transition:clamp(this.transitionAge/this.transitionDuration,0,1),locomotion:this.locomotion,courtPhase:this.courtPhase,development:this.development,racketVibration:this.racketVibration,motionBlend:{idle:1-this.locomotion,walk,jog,lateral,forward,backward}};}
+  debugKinematics():CharacterKinematics{const p=this.pose();const err=this.contactTarget?Vec3.sub(p.racketCenter,this.contactTarget).len():0;const lateral=Math.min(1,Math.abs(this.localVelocity.x)/Math.max(.01,this.courtSpeed)),forward=Math.min(1,Math.max(0,this.localVelocity.z)/Math.max(.01,this.courtSpeed)),backward=Math.min(1,Math.max(0,-this.localVelocity.z)/Math.max(.01,this.courtSpeed)),jog=Math.min(1,Math.max(0,(this.horizontalSpeed-1.45)/.8)),walk=Math.min(1,this.horizontalSpeed/1.55)*(1-jog);return {leftFoot:p.footL.clone(),rightFoot:p.footR.clone(),leftHand:p.handL.clone(),rightHand:p.handR.clone(),leftFootPlanted:this.leftFootLock!==null,rightFootPlanted:this.rightFootLock!==null,racketGrip:p.racketGrip.clone(),racketCenter:p.racketCenter.clone(),contactTarget:this.contactTarget?.clone()??null,contactError:err,state:this.state,transition:clamp(this.transitionAge/this.transitionDuration,0,1),locomotion:this.locomotion,courtPhase:this.courtPhase,development:this.development,racketVibration:this.racketVibration,strokePlant:this.strokeSupport(),motionBlend:{idle:1-this.locomotion,walk,jog,lateral,forward,backward}};}
 
   private changeState(next:AnimState,resetTime:boolean){
     if(next===this.state){if(resetTime){this.animTime=0;this.contactHoldRemaining=0;}return;}
-    this.contactHoldRemaining=0;
+    this.contactHoldRemaining=0;this.strokeAnchor=null;
     if((next==='walk'||next==='jog')&&this.state!=='walk'&&this.state!=='jog'){this.walkCycle.reset();this.walkCycle.update(this.position,this.yaw,0,1.02*locomotionStyleFor(this.spec.id).stride);}
     this.exitWalkPose=((this.state==='walk'||this.state==='jog')&&!MOVING.has(next)||this.state==='sit')?this.pose():null;
     if(!MOVING.has(next))this.walkCycle.reset();
@@ -456,6 +464,10 @@ export class Character {
       if(this.leftFootLock){result.footL=this.leftFootLock.clone();result.kneeL=Vec3.lerp(result.hipL,result.footL,.54).add(this.localVector(-.015,.04,.10));}
       if(this.rightFootLock){result.footR=this.rightFootLock.clone();result.kneeR=Vec3.lerp(result.hipR,result.footR,.54).add(this.localVector(.015,.04,.10));}
     }
+    // Load onto the outside support foot, then release into recovery. A running
+    // stroke releases the pivot as the root travels; no shoe is dragged as planted.
+    const support=this.strokeSupport();
+    if(support&&support.weight>0){const key=`foot${support.foot}` as const;result[key]=Vec3.lerp(result[key],support.anchor,support.weight);}
     // The reference stance is a real pose: analysis, skin and replay all see
     // these landmarks. Tennis, props, reaches and gestures leave it immediately.
     if(this.canFoldReferenceIdle()){
