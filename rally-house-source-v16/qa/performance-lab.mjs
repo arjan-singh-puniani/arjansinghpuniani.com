@@ -46,7 +46,7 @@ await p.locator('.lab-transport select').selectOption('0.25');
 await p.selectOption('#labSource','gait');assert.equal(await p.evaluate(()=>window.__rh.game.performanceLab.timeline.speed),.25);
 await p.locator('.lab-transport input').focus();await p.keyboard.press('ArrowRight');
 assert.equal(await p.evaluate(()=>window.__rh.game.performanceLab.timeline.playing),false);
-const freeze=await p.evaluate(()=>{const g=window.__rh.game,root={...g.player.position},minute=g.clock.minutes;for(let i=0;i<1000;i++)g.updateFixed(1/60);return {root,after:{...g.player.position},minute,afterMinute:g.clock.minutes};});assert.deepEqual(freeze.root,freeze.after);assert.equal(freeze.minute,freeze.afterMinute);
+const freeze=await p.evaluate(()=>{const g=window.__rh.game,root={...g.player.position},minute=g.clock.minutes;for(let i=0;i<1000;i++)g.updateFixed(1/60);return {root,after:{...g.player.position},minute,afterMinute:g.clock.minutes};});assert.deepEqual(freeze.root,freeze.after);assert(freeze.afterMinute>freeze.minute);
 // Bounded lifecycle soak: changing source/view/focus, seeking and exact camera return.
 const soak=await p.evaluate(()=>{
  const g=window.__rh.game,l=g.performanceLab;l.close();const camera=g.camera.captureState(),minute=g.clock.minutes,player={...g.player.position},resources=g.activities.active.map(a=>a.resource);

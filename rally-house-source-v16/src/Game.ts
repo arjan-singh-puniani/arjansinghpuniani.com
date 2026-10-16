@@ -25,7 +25,6 @@ import {ChampionshipController} from './tennis/ChampionshipController.js';
 import {championshipOpponentFor} from './tennis/ChampionshipOpponents.js';
 import {CHAMPIONSHIP_CONTACT_FEEL} from './tennis/ChampionshipTuning.js';
 import {ChampionshipCameraRig} from './tennis/ChampionshipCameraRig.js';
-import {ChampionshipArena} from './tennis/ChampionshipArena.js';
 import {InteractiveMatchSystem,type InteractiveShotQuality} from './tennis/InteractiveMatchSystem.js';
 import {MatchInput} from './tennis/MatchInput.js';
 import {ChampionshipHUD} from './ui/ChampionshipHUD.js';
@@ -65,7 +64,6 @@ export class Game {
   private matchInput = new MatchInput();
   private championshipCamera!: ChampionshipCameraRig;
   private championshipHud!: ChampionshipHUD;
-  private championshipArena:ChampionshipArena|null=null;
   private interactiveMatch: InteractiveMatchSystem | null = null;
   private championshipActivityId: string | null = null;
   private championshipOpponentId: string | null = null;
@@ -334,10 +332,7 @@ export class Game {
     if(!profile){this.ui.toast('They are not available for Championship play.');return;}
     if(this.championship.active){this.ui.toast('Finish the current Championship match first.');return;}
 
-    // The optional morning demonstration yields to an explicit player challenge.
-    // Committed lessons and social matches keep their reservations.
-    const demonstration=this.activities.active.find(a=>a.kind==='observe');
-    if(demonstration)this.cancelActivity(demonstration);
+    // A challenge reserves the existing court; it cannot interrupt someone else's activity.
     const activity=this.startActivity(
       'championship',
       ['player',opponent.id],
@@ -361,7 +356,6 @@ export class Game {
     this.clock.paused=false;
     this.clock.speed=1;
     this.championshipActivityId=activity.id;
-    this.championshipArena??=new ChampionshipArena();this.championshipArena.begin();
     this.championshipRound=1;
     this.championshipCompletedRound=0;
     this.championshipOpponentId=opponent.id;
@@ -409,7 +403,6 @@ export class Game {
         onPoint:(winner,reason,rallyLength)=>{
           this.matchInput.setEnabled(false);
           this.championship.resolvePoint({winner,reason,rallyLength});
-          this.championshipArena?.react(winner);
           if(this.championship.phase==='matchResult')this.audio.success();
         },
       },
@@ -637,6 +630,7 @@ export class Game {
   }
 
   private updateClubTouch(a:Activity,dt:number){
+    if(this.phoneCapture?.active&&a.participants.includes('player'))return;
     const run=this.touchRuns.get(a.id),target=this.routes.get(a.id)?.[0];
     if(!run||!target){this.cancelActivity(a);return;}
     if(a.phase==='traveling'){
@@ -901,9 +895,9 @@ export class Game {
     if(a.kind==='championship')this.cleanupChampionship();
     const touchRun=this.touchRuns?.get(a.id);if(touchRun)this.world.authored.cancel(touchRun.objectId);this.touchRuns?.delete(a.id);
     this.lifeRuns.delete(a.id);if(this.speechOwner===a.id){this.speechOwner=null;this.ui.hideSpeech();this.activeSpeechId=null;}
-    if(a.resource==='court'){this.rally.stop();this.socialRally.stop();this.byId('mika')!.practiceCue='';this.evidence.practicing=false;}
+    if(a.resource==='court'&&a.kind!=='championship'){this.rally.stop();this.socialRally.stop();this.byId('mika')!.practiceCue='';this.evidence.practicing=false;}
     for(const id of a.participants){const c=this.actor(id);c.currentScheduleIndex=-1;c.clearCourtMove();c.clearShotIntent();c.path=[];c.setLook(undefined);c.setConversationPartner(undefined);c.setAnimation('idle');c.seatDepth=0;c.seatHeight=.54;c.socialGesture='none';c.socialProp=null;c.setInteractionTarget(undefined);c.racketStowed=c.spec.avatar==='taylor';c.acting.setRole('exit');}
-    this.routes.delete(a.id);this.lessonActive=false;
+    this.routes.delete(a.id);if(a.kind!=='championship')this.lessonActive=false;
   }
   private cancelActivity(a:Activity,retry=false){if(a.kind==='lesson'){this.traceCoaching('cancelled',{id:a.id,retry,phase:a.phase,seconds:a.phaseTime,positions:a.participants.map(id=>({id,position:this.actor(id).position,path:this.actor(id).path, index:this.actor(id).pathIndex}))});if(retry)this.queuedLesson=this.lessonKeys?.get(a.id)??this.queuedLesson;this.lessonKeys?.delete(a.id);}this.telemetry.cancellations++;const run=this.lifeRuns.get(a.id);if(run)this.everyday.failed(run.scene);this.activities.cancel(a,'Interrupted safely; no completion rewards.');this.releaseActivity(a);}
   private startMatch(){
@@ -1084,8 +1078,9 @@ export class Game {
     if(this.world.weather==='rain'&&!this.activities.busy('nia')){this.history.nextObject=Math.min(this.history.nextObject,this.absoluteMinute);}
   }
   private updateFixed(dt:number){
-    if(this.phoneCapture?.active){this.phoneCapture.update(dt);return;}
-    if(this.performanceLab?.active)return;
+    // Capture owns only its participant. The rest of the same club keeps ticking.
+    const phoneOwnsPlayer=this.phoneCapture?.active;
+    if(phoneOwnsPlayer)this.phoneCapture.update(dt);
     this.clock.update(dt);const step=this.clock.paused?0:dt*this.clock.speed;if(!step)return;
     if(this.clock.day!==this.lastDay){this.lastDay=this.clock.day;this.daily.ensureDay(this.clock.day);for(const c of this.characters)c.currentScheduleIndex=-1;}
     if(this.world.updateObjects(step,this.absoluteMinute,this.settings.reducedMotion))this.audio.bounce();
@@ -1123,7 +1118,9 @@ export class Game {
       }
       c.update(step);if(c.consumeStepEvent())this.audio.shoe(c.state==='shuffle');
     }
-    this.player.update(step);this.updatePlayerWatching();this.updateSpectatorAttention();
+    if(!phoneOwnsPlayer)this.player.update(step);
+    if(!phoneOwnsPlayer&&!this.performanceLab?.active)this.updatePlayerWatching();
+    this.updateSpectatorAttention();
     for(const a of [...this.activities.active]){
       const people=a.participants.map(id=>this.actor(id)),targets=this.routes.get(a.id)!;
       if(a.kind==='touch'){this.updateClubTouch(a,step);continue;}
@@ -1216,28 +1213,19 @@ export class Game {
       });
     }
     this.spatial.update(this.renderDt,this.performanceLab.active||this.championship.active||this.phoneCapture?.active||!!document.querySelector('#context.open,#book.open,#buildPanel.open'),this.settings.reducedMotion,this.worldNotices);
-    // Ceiling fixtures use the same camera cutaway as the lab, so they do not
-    // cover the far player or gallery when the view descends behind baseline.
-    const architecture=this.performanceLab.active||this.sportFocus>.02?this.world.meshes.filter(m=>m.id!=='court-pendant'):this.world.meshes;
-    const meshes:RenderItem[]=[...architecture,...(this.world.courtDetails??[]),...this.spatial.meshes(),...this.world.placementMeshes(),...this.world.dynamicMeshes(this.settings.reducedMotion?0:now/1000,this.clock.minutes,this.camera.position,this.renderDt,this.sportFocus,now/1000)];
-    if(!this.performanceLab.active){
-      meshes.push(...(this.championshipArena?.meshes(this.clock.paused?0:this.renderDt,this.sportFocus,this.settings.reducedMotion)??[]));
-      if(this.sportFocus>.005)meshes.push({kind:'box',position:new Vec3(1,.076,0),scale:new Vec3(8.42,.002,11.92),color:'#427b92',material:'court',alpha:Math.min(1,this.sportFocus*1.01),noShadow:true,id:'court'});
-      for(const c of this.characters){
-      const body=c.meshes(false);
-      // A walking club member may pass in front of the sports camera. Keep their
-      // activity intact while softly cutting them away from the player's silhouette.
-      if(c.id!==this.championshipOpponentId&&c.position.z>5.8&&Math.abs(c.position.x-this.player.position.x)<1.25)
-        for(const part of body)part.alpha=(part.alpha??1)*(1-this.sportFocus*.78);
-      meshes.push(...body);
-    }meshes.push(...this.player.meshes(false),...this.rally.meshes(),...this.socialRally.meshes(),...(this.interactiveMatch?.meshes(this.settings.reducedMotion)??[]));
-    }else meshes.push(...this.performanceLab.meshes(this.settings.reducedMotion));
+    // One world composition for club, tennis and analysis. Replay changes only
+    // the existing player's visual pose; every other entity and object remains.
+    const labFrame=this.performanceLab.active?this.performanceLab.timeline?.frame:null;
+    const meshes:RenderItem[]=[...this.world.presentationMeshes(this.camera.position,this.camera.target,this.renderDt),...this.world.courtDetails,...this.spatial.meshes(),...this.world.placementMeshes(),...this.world.dynamicMeshes(this.settings.reducedMotion?0:now/1000,this.clock.minutes,this.camera.position,this.renderDt,0,now/1000)];
+    for(const c of this.characters)meshes.push(...c.meshes(false));
+    meshes.push(...(labFrame?.body??this.player.meshes(false)),...this.rally.meshes(),...this.socialRally.meshes(),...(this.interactiveMatch?.meshes(this.settings.reducedMotion)??[]));
+    if(this.performanceLab.active)meshes.push(...this.performanceLab.meshes(this.settings.reducedMotion).slice(labFrame?.body.length??0));
     meshes.push(...(this.phoneCapture?.meshes()??[]));
 
     if(this.buildType&&this.hoverGround){const x=Math.round(this.hoverGround.x*2)/2,z=Math.round(this.hoverGround.z*2)/2;meshes.push(...this.previewMeshes(this.buildType,x,z,this.placementClear(this.buildType,x,z,this.buildRotation)))}
     if(this.history.breakthrough||this.history.firstMikaWin)meshes.push({kind:'roundBox',position:new Vec3(4.25,2.12,-9.1),scale:new Vec3(.7,.12,.45),color:'#c58a5b',material:'wood'},{kind:'sphere',position:new Vec3(4.25,2.3,-9.1),scale:new Vec3(.24,.24,.24),color:'#e6c65f',material:'fabric'});
     const contactView=this.championshipCamera.renderImpulse(this.settings.reducedMotion);
-    this.renderItems=meshes.length;this.renderer.render(meshes,this.camera.viewProjection(contactView),this.atmosphere.update(this.world.lighting(this.clock.minutes,this.sportFocus),this.renderDt),this.camera.position);this.phoneCapture?.afterRender();
+    this.renderItems=meshes.length;this.renderer.render(meshes,this.camera.viewProjection(contactView),this.atmosphere.update(this.world.lighting(this.clock.minutes),this.renderDt),this.camera.position);this.phoneCapture?.afterRender();
     if(this.activeSpeechId&&performance.now()<this.speechUntil){const c=this.byId(this.activeSpeechId);if(c){const p=this.camera.project(new Vec3(c.position.x,2.55,c.position.z),undefined,contactView);this.ui.positionSpeech(p.x,p.y)}}else this.activeSpeechId=null;
   }
 

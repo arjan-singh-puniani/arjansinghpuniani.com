@@ -1,0 +1,185 @@
+{
+  "encoding": "Lossless WebP; actual browser-rendered production scene, unchanged RGBA pixels",
+  "images": [
+    {
+      "source": "chromium/A-club.png",
+      "file": "chromium/A-club.webp",
+      "sourceSHA256": "9cc90566d2724d4c13dc9876b0d7e0018f34ef6bbe0c81080199f6fb32f7f88c",
+      "sha256": "4a70f4f78840abc04fc6b8332aa1ea6d511d4b0cb31baa1313eede350fa4fa40",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "chromium/B-transition.png",
+      "file": "chromium/B-transition.webp",
+      "sourceSHA256": "4fb250f421edcb47eddc515d511fe0deb7fcc83e05c235b00349411a8de10054",
+      "sha256": "4a5a73e7846717a6b658cea0b8257f34a3285ed519df151daa0d5a894b956020",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "chromium/C-gameplay.png",
+      "file": "chromium/C-gameplay.webp",
+      "sourceSHA256": "7dbe94dcb8dfef4c70a2a35007fd739d4307afea2d1ccd94946258f0284007da",
+      "sha256": "067b70b3279b4c00b68767f5d4e8a38ce0391a4f3f281e4885e7b6e30b24bd81",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "chromium/D-returned.png",
+      "file": "chromium/D-returned.webp",
+      "sourceSHA256": "9b85e67989c0a56ec06fd0fff6c77510cb22f4f57158d6328f83186f276e6693",
+      "sha256": "9c58e9e50fe350bf30a74c92250af60e62059d7abbae137d4c65dc56b348680a",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "chromium/E-lab.png",
+      "file": "chromium/E-lab.webp",
+      "sourceSHA256": "d0c9b482a3fbfeac9059d9fb791a2ace161dc2664ee04c1ee11c0c4953fbcd68",
+      "sha256": "084e9230d38d79649173e657c0e89e61c140981142f3c43099abd428f39c0228",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "firefox/A-club.png",
+      "file": "firefox/A-club.webp",
+      "sourceSHA256": "595387d7ff056adf1a27c20631a1a101882eb8a89a5155784ec105833faac5f8",
+      "sha256": "2498f70abcdbd9034f5b35419aa944c23072f508ef74b622eeacfb96fb134c22",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "firefox/B-transition.png",
+      "file": "firefox/B-transition.webp",
+      "sourceSHA256": "92dfa9e3b6974621f71be7f0966b380afa1fe7588fb701e75a3df51c9bd2357d",
+      "sha256": "a3eec845111fed08bf330beaaf23c1671faa5d234532cb192cd91c17b9243353",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "firefox/C-gameplay.png",
+      "file": "firefox/C-gameplay.webp",
+      "sourceSHA256": "ffc16772abd75b7e4f5d98d2aa98a6e6573e1e85d17ab30a39398e5e4592df52",
+      "sha256": "dd93c4e7ad15e6df9f04688230690c4e329ff1e5860f45ad821ee6c00df46eb5",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "firefox/D-returned.png",
+      "file": "firefox/D-returned.webp",
+      "sourceSHA256": "c275e52b9ab41da2abed0a8b252a921a5939e12c0f81b582c937d83191461f00",
+      "sha256": "03193e3e758150798748f49ccfb0ab0123e33eb46f724dc57baefc71a7c65af4",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "firefox/E-lab.png",
+      "file": "firefox/E-lab.webp",
+      "sourceSHA256": "9910ceb9873b83d2b6dba33865a6a9350334008b7569d9cccd12ebd175a71f13",
+      "sha256": "ce26a91d4fb7241344bf6d2aea070c7ed5b9b4f4ac8e200dac7d356384a7d2c2",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "firefox-first-attempt/failure.png",
+      "file": "firefox-first-attempt/failure.webp",
+      "sourceSHA256": "6f2a4d8a1cf6630abc93b41ed224527ce421b1b84d1e5fb0f89e21c08dda9044",
+      "sha256": "64fc54fa364748ae084b630af545d3c0fedd89b73ae07af8c34cc715fd626350",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "phone-arjan/mount.png",
+      "file": "phone-arjan/mount.webp",
+      "sourceSHA256": "e05a555ee323cd51f87d5c62b72c0514b4e20157f31dba339c40f86c923bbd34",
+      "sha256": "2ac8233c7af6abba1e6981eac1fc95a4312dd46e564e675547853422f5871324",
+      "width": 390,
+      "height": 844,
+      "identicalRGBA": true
+    },
+    {
+      "source": "phone-arjan/record.png",
+      "file": "phone-arjan/record.webp",
+      "sourceSHA256": "3dbc08268ec8f1cb048877b75d11997361c5eaf9d3cc235e9535a7a459b91541",
+      "sha256": "8294ac11998de5645bb1c448606cb5de9e640998846b165b3b040d3ba600beae",
+      "width": 390,
+      "height": 844,
+      "identicalRGBA": true
+    },
+    {
+      "source": "phone-arjan/review-body.png",
+      "file": "phone-arjan/review-body.webp",
+      "sourceSHA256": "e493ca71a3a4d736ab9e8143c0e0ca281b8e064d7648c0f29d07dfa6087f487a",
+      "sha256": "cdb413e2f36c265002dc4947d0ba12bcaca84b65947d6d26ffaf453306d7416e",
+      "width": 390,
+      "height": 844,
+      "identicalRGBA": true
+    },
+    {
+      "source": "phone-arjan/review.png",
+      "file": "phone-arjan/review.webp",
+      "sourceSHA256": "03bee05fe8ca0b52c886b5a3a5a71cf1158ad4775281aeb0f2485145e62a00a5",
+      "sha256": "44c28873adb92c07e92e8240be4c25fd6e86538b37efd1ad4290cf9d851a4b06",
+      "width": 390,
+      "height": 844,
+      "identicalRGBA": true
+    },
+    {
+      "source": "webkit/A-club.png",
+      "file": "webkit/A-club.webp",
+      "sourceSHA256": "f5c190a9985b96a89c44335e19c835ae40791b5c057e653f6183117d95c42a7f",
+      "sha256": "6aadbb1917ec10ee86977cb085eb119b6b542b982966b7546fe5dfc29e0635d9",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "webkit/B-transition.png",
+      "file": "webkit/B-transition.webp",
+      "sourceSHA256": "7b40967f824b0fb26f502ccf3749fe84682dca388cb0d5507889765ae9e71d83",
+      "sha256": "e386ba2cceaa75d052d06e0965b46a18d21593957c308f141a1dc9ba8ac4128b",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "webkit/C-gameplay.png",
+      "file": "webkit/C-gameplay.webp",
+      "sourceSHA256": "5b10d7ce42a7e6ca16f643b7c7b610d0c0c4fb16983e7e3e872e4ce1b768d453",
+      "sha256": "ccbc36bdce0d64dee01257a745339af617d48f582917d1c1653983ab387ee73a",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "webkit/D-returned.png",
+      "file": "webkit/D-returned.webp",
+      "sourceSHA256": "a3a2ae3dca506e87c7f5efc15306e29324ac0cf3bc2bdcd2e1f69194c5564e38",
+      "sha256": "95e36e5d82841e238b423ef831bde9f5fe60d5121b319853576bc8d3bbd5e74c",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "webkit/E-lab.png",
+      "file": "webkit/E-lab.webp",
+      "sourceSHA256": "2516b01a78e3f4b854f1c2be83f94ea6c896cabde008a4eb46bf26b924fa63cf",
+      "sha256": "d73a41daaf9635a361d673e7d83d62b8171203597fa4900e6d6349bb2e07ee5d",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    }
+  ]
+}

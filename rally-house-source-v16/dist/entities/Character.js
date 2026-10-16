@@ -108,6 +108,14 @@ export class Character {
     stepEvent = false;
     lastStanceKey = '';
     clubIdleRelax = 0;
+    strokeAnchor = null;
+    strokeSupport() {
+        if (!this.strokeAnchor || !isShot(this.state))
+            return null;
+        const t = this.animTime / this.shotContactTime(), travel = Vec3.sub(this.position, this.strokeAnchor.root).len();
+        const weight = smoothstep(.12, .70, t) * (1 - smoothstep(1.30, 1.90, t)) * (1 - smoothstep(.04, .14, travel));
+        return { foot: this.strokeAnchor.foot, weight, anchor: this.strokeAnchor.point.clone() };
+    }
     canFoldReferenceIdle() { return this.spec.appearance !== 'human' && this.racketStowed && this.canRelaxClubIdle() && !this.acting.micro; }
     canRelaxClubIdle() { return (this.spec.avatar === 'taylor' || this.spec.appearance === 'human') && this.state === 'idle' && !this.majorActivity && !this.matchCompetitor && !this.spectating && !this.propKind && !this.interactionTarget && this.interactionWeight < .001 && this.socialGesture === 'none' && this.acting.role === 'none'; }
     interactionTarget;
@@ -295,8 +303,8 @@ export class Character {
         this.clearCourtMove(); }
     setAnimation(state) { this.changeState(state, false); }
     setIncomingContact(point) { this.incomingContact = point.clone(); }
-    triggerShot(state, outgoingTarget) { this.outgoingTarget = outgoingTarget.clone(); this.contactTarget = this.solveContactTarget(state, this.incomingContact); this.incomingContact = null; this.courtPhase = 'stroke'; this.courtPhaseAge = 0; this.setEmotion('focused', this.shotDuration(state)); this.trigger(state); }
-    clearShotIntent() { this.contactHoldRemaining = 0; this.contactTarget = null; this.outgoingTarget = null; this.incomingContact = null; this.courtPhase = 'recover'; this.courtPhaseAge = 0; }
+    triggerShot(state, outgoingTarget) { this.outgoingTarget = outgoingTarget.clone(); this.contactTarget = this.solveContactTarget(state, this.incomingContact); this.incomingContact = null; this.courtPhase = 'stroke'; this.courtPhaseAge = 0; this.setEmotion('focused', this.shotDuration(state)); this.trigger(state); const foot = state === 'swingForehand' ? 'R' : 'L', stance = this.poseFor(state, this.shotContactTime(state) * .72), point = stance[`foot${foot}`].clone(); point.y = .11; this.strokeAnchor = { foot, point, root: this.position.clone() }; }
+    clearShotIntent() { this.strokeAnchor = null; this.contactHoldRemaining = 0; this.contactTarget = null; this.outgoingTarget = null; this.incomingContact = null; this.courtPhase = 'recover'; this.courtPhaseAge = 0; }
     shotContactTime(state = this.state) { const style = this.strokeStyle(); const base = state === 'serve' ? .48 : state === 'volley' ? .21 : state === 'swingBackhand' ? .35 : .33; const dev = this.spec.id === 'mika' ? (this.development - 50) * .0007 : 0; const tempo = this.matchCompetitor ? CHAMPIONSHIP_TUNING.arcadeContactTempo : 1; return Math.max(.11, (base * style.timing + dev + this.preparationBonus + (this.practiceCue === 'preparation' ? .065 : 0)) * tempo); }
     shotDuration(state = this.state) { const style = this.strokeStyle(); const base = state === 'serve' ? .96 : state === 'volley' ? .50 : state === 'swingBackhand' ? .78 : .76; return base * style.tempo * (this.matchCompetitor ? CHAMPIONSHIP_TUNING.arcadeStrokeTempo : 1); }
     serveTossPoint() { const p = this.pose(); return p.handL.clone(); }
@@ -464,7 +472,7 @@ export class Character {
     }
     racketContactPoint() { const pose = this.pose(); return pose.racketCenter.clone(); }
     racketContactFrame() { const pose = this.pose(); return { center: pose.racketCenter.clone(), rotation: pose.racketRot.clone(), horizontal: rotateEulerVector(new Vec3(1, 0, 0), pose.racketRot).normalize(), vertical: rotateEulerVector(new Vec3(0, 1, 0), pose.racketRot).normalize(), normal: rotateEulerVector(new Vec3(0, 0, 1), pose.racketRot).normalize() }; }
-    debugKinematics() { const p = this.pose(); const err = this.contactTarget ? Vec3.sub(p.racketCenter, this.contactTarget).len() : 0; const lateral = Math.min(1, Math.abs(this.localVelocity.x) / Math.max(.01, this.courtSpeed)), forward = Math.min(1, Math.max(0, this.localVelocity.z) / Math.max(.01, this.courtSpeed)), backward = Math.min(1, Math.max(0, -this.localVelocity.z) / Math.max(.01, this.courtSpeed)), jog = Math.min(1, Math.max(0, (this.horizontalSpeed - 1.45) / .8)), walk = Math.min(1, this.horizontalSpeed / 1.55) * (1 - jog); return { leftFoot: p.footL.clone(), rightFoot: p.footR.clone(), leftHand: p.handL.clone(), rightHand: p.handR.clone(), leftFootPlanted: this.leftFootLock !== null, rightFootPlanted: this.rightFootLock !== null, racketGrip: p.racketGrip.clone(), racketCenter: p.racketCenter.clone(), contactTarget: this.contactTarget?.clone() ?? null, contactError: err, state: this.state, transition: clamp(this.transitionAge / this.transitionDuration, 0, 1), locomotion: this.locomotion, courtPhase: this.courtPhase, development: this.development, racketVibration: this.racketVibration, motionBlend: { idle: 1 - this.locomotion, walk, jog, lateral, forward, backward } }; }
+    debugKinematics() { const p = this.pose(); const err = this.contactTarget ? Vec3.sub(p.racketCenter, this.contactTarget).len() : 0; const lateral = Math.min(1, Math.abs(this.localVelocity.x) / Math.max(.01, this.courtSpeed)), forward = Math.min(1, Math.max(0, this.localVelocity.z) / Math.max(.01, this.courtSpeed)), backward = Math.min(1, Math.max(0, -this.localVelocity.z) / Math.max(.01, this.courtSpeed)), jog = Math.min(1, Math.max(0, (this.horizontalSpeed - 1.45) / .8)), walk = Math.min(1, this.horizontalSpeed / 1.55) * (1 - jog); return { leftFoot: p.footL.clone(), rightFoot: p.footR.clone(), leftHand: p.handL.clone(), rightHand: p.handR.clone(), leftFootPlanted: this.leftFootLock !== null, rightFootPlanted: this.rightFootLock !== null, racketGrip: p.racketGrip.clone(), racketCenter: p.racketCenter.clone(), contactTarget: this.contactTarget?.clone() ?? null, contactError: err, state: this.state, transition: clamp(this.transitionAge / this.transitionDuration, 0, 1), locomotion: this.locomotion, courtPhase: this.courtPhase, development: this.development, racketVibration: this.racketVibration, strokePlant: this.strokeSupport(), motionBlend: { idle: 1 - this.locomotion, walk, jog, lateral, forward, backward } }; }
     changeState(next, resetTime) {
         if (next === this.state) {
             if (resetTime) {
@@ -474,6 +482,7 @@ export class Character {
             return;
         }
         this.contactHoldRemaining = 0;
+        this.strokeAnchor = null;
         if ((next === 'walk' || next === 'jog') && this.state !== 'walk' && this.state !== 'jog') {
             this.walkCycle.reset();
             this.walkCycle.update(this.position, this.yaw, 0, 1.02 * locomotionStyleFor(this.spec.id).stride);
@@ -934,6 +943,13 @@ export class Character {
                 result.footR = this.rightFootLock.clone();
                 result.kneeR = Vec3.lerp(result.hipR, result.footR, .54).add(this.localVector(.015, .04, .10));
             }
+        }
+        // Load onto the outside support foot, then release into recovery. A running
+        // stroke releases the pivot as the root travels; no shoe is dragged as planted.
+        const support = this.strokeSupport();
+        if (support && support.weight > 0) {
+            const key = `foot${support.foot}`;
+            result[key] = Vec3.lerp(result[key], support.anchor, support.weight);
         }
         // The reference stance is a real pose: analysis, skin and replay all see
         // these landmarks. Tennis, props, reaches and gestures leave it immediately.

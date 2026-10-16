@@ -63,7 +63,7 @@ for(const side of ['player','opponent'])for(const quality of ['perfect','clean',
 const world=new World(),day=world.lighting(720),night=world.lighting(1250),sport=world.lighting(1250,1);
 assert(night.sunColor[0]<day.sunColor[0]*.2,'Sun energy falls after dark');
 assert(night.pointLights[2].intensity>day.pointLights[2].intensity*2,'Evening warms practicals');
-assert(sport.ambient>night.ambient);assert(sport.pointLights[2].intensity<night.pointLights[2].intensity,'Club warmth suppressed for match');
+assert.deepEqual(sport,night,'Presentation mode cannot change time/weather lighting');
 world.triggerInteraction('bell',.1,new Vec3());world.dynamicMeshes(0,1250,undefined,1/60,0,performance.now()/1000+1);assert.equal(world.interactionFx.size,0,'Reduced-motion effects expire');
 const a=actor('leo',0,0),b=actor('nia',1,0),c=actor('coach',2,0),times=new Map();a.setAnimation('idle');b.setAnimation('watch');c.setAnimation('watch');
 assert.deepEqual(interactionWitnesses([a,b,c],new Vec3(),id=>id==='coach',times,0),[a,b]);
