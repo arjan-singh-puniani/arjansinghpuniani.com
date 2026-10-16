@@ -18,10 +18,10 @@ try{
  for(const [width,height] of [[1440,900],[390,844]]){
   await page.setViewportSize({width,height});
   const pose=await page.evaluate(async()=>{
-   const {rigFromPose,skinMatrices,CHARACTER_SKIN}=await import('/dist/animation/CharacterSkin.js');
+   const {rigFromPose,skinMatrices,CHARACTER_SKIN,ATHLETE_WARDROBE}=await import('/dist/animation/CharacterSkin.js');
    const g=window.__rh.game,c=g.player;g.clock.paused=true;
    for(let i=0;i<180;i++)c.update(1/60);c.yaw=0;c.gazeYaw=0;
-   const p=c.analysisPose(),m=c.meshes().find(m=>m.skin===CHARACTER_SKIN.taylorHands),expected=skinMatrices(rigFromPose(p,c.position,c.yaw));
+   const p=c.analysisPose(),m=c.meshes().find(m=>m.skin===CHARACTER_SKIN.taylorHands||m.skin===ATHLETE_WARDROBE.freeHands),expected=skinMatrices(rigFromPose(p,c.position,c.yaw));
    g.camera.autoFrame=false;g.camera.target.set(c.position.x,1.25,c.position.z);g.camera.distance=6.9;g.camera.azimuth=0;g.camera.elevation=.045;g.camera.pin();g.camera.update(0);
    return {avatar:c.spec.avatar,stowed:c.racketStowed,relaxed:p.handL.x<c.position.x&&p.handR.x>c.position.x&&p.handL.y<p.elbowL.y&&p.handR.y<p.elbowR.y,sharedRig:[...m.boneMatrices].every((v,i)=>v===expected[i]),humanFace:c.meshes().some(m=>m.skin?.id==='taylor-human-sculpted-face-v1'),felineParts:c.meshes().filter(m=>m.skin?.id.includes('nemes')||m.skin?.id.includes('tail-gold')||m.skin?.id.includes('inward-reference-ears')).length,overflow:document.documentElement.scrollWidth>innerWidth};
   });

@@ -5,7 +5,7 @@ export const SHADOW_CENTRE = new Vec3(-.4, 1.5, -1.0);
 export const SHADOW_RADIUS = 17.0;
 export const SHADOW_RESOLUTION = 2048;
 export const LAMP_SHADOW_RESOLUTION = 1024;
-const MATERIAL_ID = { matte: 0, wood: 1, fabric: 2, ceramic: 3, metal: 4, glass: 5, court: 6, skin: 7, hair: 8, leaf: 9, stone: 10, toon: 11 };
+const MATERIAL_ID = { matte: 0, wood: 1, fabric: 2, ceramic: 3, metal: 4, glass: 5, court: 6, skin: 7, hair: 8, leaf: 9, stone: 10, toon: 11, humanSkin: 12, groomedHair: 13, lip: 14, iris: 15 };
 /** Shared lighting maths. One source of truth for both the rigid and skinned fragment shaders. */
 const LIGHT_UNIFORMS = `
 uniform int u_material;uniform vec3 u_color;uniform vec3 u_sun;uniform vec3 u_viewPos;uniform float u_ambient;uniform float u_alpha;uniform float u_unlit;uniform float u_emission;uniform float u_warmth;uniform float u_roughness;uniform float u_specular;uniform float u_softness;
@@ -76,6 +76,13 @@ vec3 surfaceColor(vec3 p){
     variation=filteredWave(p.x*195.0+sin(p.z*137.0))*.022;
   }else if(u_material==8){
     variation=filteredWave(p.y*95.0+p.x*11.0)*.065;
+  }else if(u_material==12){
+    variation=filteredWave(p.x*790.0+sin(p.y*513.0))*filteredWave(p.z*601.0+p.y*733.0)*.012;
+  }else if(u_material==13){
+    float flow=p.x*840.0+p.z*300.0+sin(p.y*25.0)*12.0;
+    variation=filteredWave(flow)*.09+filteredWave(flow*.47)*.035;
+  }else if(u_material==14){
+    variation=filteredWave(p.x*1700.0+sin(p.y*400.0))*.025;
   }else if(u_material==9){
     variation=sin(p.x*43.0+p.z*31.0)*.10;
   }else if(u_material==10){
@@ -88,7 +95,20 @@ vec3 surfaceColor(vec3 p){
   }else if(u_material==0){
     variation=filteredWave(p.x*77.0+sin(p.y*61.0+p.z*43.0))*.018;
   }
-  return pow(max(u_color,vec3(0.0)),vec3(2.2))*(1.0+variation);
+  vec3 pigment=pow(max(u_color,vec3(0.0)),vec3(2.2))*(1.0+variation);
+  if(u_material==12){
+    // Face-local warm cheek/nose undertones; body bind coordinates are outside
+    // this region. The pigment stays attached to the sculpt through motion.
+    vec2 cheek=vec2((abs(p.x)-.073)/.031,(p.y+.032)/.029);
+    float warmth=exp(-dot(cheek,cheek))*smoothstep(.045,.085,p.z);
+    pigment*=mix(vec3(1.0),vec3(1.08,.86,.83),warmth*.38);
+  }else if(u_material==15){
+    vec2 eye=vec2((abs(p.x)-.048)/.0092,(p.y-.018)/.0092);
+    float radius=clamp(length(eye),0.0,1.0),angle=dot(eye,eye)>.000001?atan(eye.y,eye.x):0.0;
+    float fibres=filteredWave(angle*27.0+radius*9.0)*.08;
+    pigment*=mix(vec3(1.28,1.05,.73),vec3(.36,.40,.43),smoothstep(.55,1.0,radius))*(1.0+fibres);
+  }
+  return pigment;
 }
 vec3 shade(vec3 N,vec3 world){
   vec3 base=surfaceColor(v_surface);
@@ -110,6 +130,7 @@ vec3 shade(vec3 N,vec3 world){
   vec3 ambient=u_ambient*mix(u_bounceColor,u_skyColor,hemi);
   // Direct sun, occluded by the shadow map.
   vec3 direct=u_sunColor*wrap*0.62*shadow;
+  if(u_material==12){ambient*=.88;direct*=1.18;}
   // Very soft sky-side rim so silhouettes separate from the background.
   float rim=pow(1.0-max(dot(N,V),0.0),3.2)*0.055;
   // Contact darkening near the floor keeps small props anchored.
@@ -118,6 +139,13 @@ vec3 shade(vec3 N,vec3 world){
   vec3 H=normalize(L+V);
   float glossExp=mix(72.0,9.0,clamp(u_roughness,0.0,1.0));
   float spec=pow(max(dot(N,H),0.0),glossExp)*u_specular*(0.18+ndl*0.82)*shadow;
+  if(u_material==12){
+    // A broad secondary lobe avoids a waxy, single white highlight.
+    spec+=pow(max(dot(N,H),0.0),8.0)*.018*shadow;
+  }else if(u_material==13){
+    // A bounded grazing sheen gives curved locks a satin highlight.
+    spec+=pow(1.0-abs(dot(N,V)),2.5)*pow(max(dot(N,H),0.0),5.0)*.10*shadow;
+  }
   float velvet=pow(1.0-max(dot(N,V),0.0),2.0)*u_softness*0.055;
   vec3 local=vec3(0.0);
   vec3 localSpec=vec3(0.0);
@@ -142,6 +170,12 @@ vec3 shade(vec3 N,vec3 world){
   }
   vec3 warmTint=mix(vec3(1.0),vec3(1.06,0.985,0.905),clamp(u_warmth,0.0,1.0));
   vec3 c=base*warmTint*((ambient+direct)*ground)+base*local+localSpec+u_sunColor*rim+u_sunColor*spec+base*velvet;
+  if(u_material==12){
+    // Soft wrap is an artistic thin-surface approximation, not a skin volume
+    // simulation. It is deliberately small and follows the actual lights.
+    float back=pow(max(dot(-L,V),0.0),3.0)*(1.0-ndl)*shadow;
+    c+=base*vec3(1.0,.43,.28)*back*.055;
+  }
   c=mix(c,base,u_unlit)+base*u_emission;
   // Linear-light shading and a filmic highlight roll-off preserve wood/skin colour.
   c=max(c,vec3(0.0))*.78;
@@ -419,6 +453,10 @@ export class Renderer {
             case 'court': return { roughness: .84, specular: .026, softness: .035 };
             case 'skin': return { roughness: .68, specular: .040, softness: .30 };
             case 'hair': return { roughness: .72, specular: .028, softness: .14 };
+            case 'humanSkin': return { roughness: .57, specular: .075, softness: .32 };
+            case 'groomedHair': return { roughness: .36, specular: .13, softness: .10 };
+            case 'lip': return { roughness: .28, specular: .19, softness: .16 };
+            case 'iris': return { roughness: .18, specular: .18, softness: .02 };
             case 'leaf': return { roughness: .67, specular: .052, softness: .18 };
             default: return { roughness: .82, specular: .028, softness: .04 };
         }

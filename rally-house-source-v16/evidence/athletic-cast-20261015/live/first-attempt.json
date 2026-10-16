@@ -1,0 +1,42 @@
+{
+  "errors": [],
+  "http": [],
+  "actors": [
+    {
+      "id": "coach",
+      "name": "Coach Contessa",
+      "point": {
+        "x": 719.5491788572193,
+        "y": 213.52837602259405
+      },
+      "picked": "coach"
+    },
+    {
+      "id": "mika",
+      "name": "Lucresia",
+      "point": {
+        "x": 720.449668299058,
+        "y": 219.2535993592008
+      },
+      "picked": "mika"
+    },
+    {
+      "id": "leo",
+      "name": "Leo",
+      "point": {
+        "x": 717.6087137245528,
+        "y": 209.80837528349747
+      },
+      "picked": "leo"
+    },
+    {
+      "id": "nia",
+      "name": "Barbara",
+      "point": {
+        "x": 719.5490530170574,
+        "y": 208.9501460259245
+      },
+      "picked": "nia"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "root": "/tmp/taylor-presence-before-package/Rally-House-v16-Playtest",
+  "errors": [],
+  "step": "startup",
+  "failure": "page.waitForFunction: Timeout 60000ms exceeded."
+}

@@ -1,0 +1,53 @@
+{
+  "label": "after",
+  "baseline": null,
+  "capture": "Actual production Character.meshes and Renderer on an isolated diagnostic stage",
+  "errors": [],
+  "actors": [
+    {
+      "id": "coach",
+      "name": "Coach Contessa",
+      "height": 2.2534551241100385,
+      "shoulderSpan": 0.5084892244979426,
+      "gl": 0,
+      "drawCalls": 42,
+      "triangles": 42524
+    },
+    {
+      "id": "mika",
+      "name": "Lucresia",
+      "height": 2.2342891573969874,
+      "shoulderSpan": 0.48541516780490684,
+      "gl": 0,
+      "drawCalls": 44,
+      "triangles": 44648
+    },
+    {
+      "id": "nia",
+      "name": "Barbara",
+      "height": 2.2246717237370253,
+      "shoulderSpan": 0.496942172101684,
+      "gl": 0,
+      "drawCalls": 43,
+      "triangles": 44156
+    },
+    {
+      "id": "leo",
+      "name": "Leo",
+      "height": 2.225132799777539,
+      "shoulderSpan": 0.5560245684792743,
+      "gl": 0,
+      "drawCalls": 35,
+      "triangles": 34236
+    },
+    {
+      "id": "arjan",
+      "name": "Arjan",
+      "height": 2.2525327176001393,
+      "shoulderSpan": 0.5560163850163032,
+      "gl": 0,
+      "drawCalls": 37,
+      "triangles": 37356
+    }
+  ]
+}

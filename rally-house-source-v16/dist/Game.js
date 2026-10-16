@@ -548,7 +548,7 @@ export class Game {
             accept(rayBox(ray.origin, ray.dir, { centre: new Vec3(p.x, .65, p.z), size: new Vec3(size.w, 1.3, size.d) }), { placement: p });
         }
         for (const c of this.characters)
-            accept(rayBox(ray.origin, ray.dir, { centre: new Vec3(c.position.x, .95, c.position.z), size: new Vec3(.72, 1.85, .72) }), { character: c });
+            accept(rayBox(ray.origin, ray.dir, c.selectionBounds()), { character: c });
         // Tiny tabletop props get a restrained, depth-checked screen tolerance, useful for touch.
         for (const o of this.world.objects.filter(o => o.selection && Math.max(o.selection.size.x, o.selection.size.y) < .7)) {
             const p = this.camera.project(o.selection.centre), depth = Vec3.sub(o.selection.centre, ray.origin).len();
@@ -1289,7 +1289,7 @@ export class Game {
     }
     openAvatarPicker() {
         this.ui.showContext('YOUR CHARACTER', 'Who’s arriving at Rally House?', 'Choose your look. You can switch anytime in Settings.', [], [
-            { title: 'Taylor', subtitle: 'Gold and indigo feline · folded-arm stance · flowing gold tunic', run: () => this.choosePlayerAvatar('taylor') },
+            { title: 'Taylor', subtitle: 'Dark ponytail · blue tennis dress · composed all-court style', run: () => this.choosePlayerAvatar('taylor') },
             { title: 'Arjan', subtitle: 'Swept dark hair · strong brows · charcoal tenniswear', run: () => this.choosePlayerAvatar('arjan') }
         ]);
     }

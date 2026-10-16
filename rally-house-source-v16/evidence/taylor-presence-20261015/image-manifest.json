@@ -1,0 +1,114 @@
+[
+  {
+    "source": "body/after-front.png",
+    "file": "body/after-front.webp",
+    "sourceSHA256": "e145ef8a62672ec9125c2e8c0f11f1f715e18cc6817321def826d503c5672082",
+    "sha256": "4bd57036c41d2c39c10d5d69dcb7270464f532da6c2cde56224fdd18c6436fd8",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "body/after-three-quarter.png",
+    "file": "body/after-three-quarter.webp",
+    "sourceSHA256": "16b50d75f18aa19c7acaf1a94117691512f7eeecaba9a46ddbd85514fac12b34",
+    "sha256": "03160b0e520321e092a52cbf2f587155988269ec2cf59f0caee5df09461cc4b5",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "body/before-front.png",
+    "file": "body/before-front.webp",
+    "sourceSHA256": "adc72b00410bb48ef5b21c827fa4b774e5311e2f10ff2e4a3a77e07993c08a9c",
+    "sha256": "573db113989e3ebbec0a681892fae9065246248c1e7bb86f82747d380d0fd14a",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "body/before-three-quarter.png",
+    "file": "body/before-three-quarter.webp",
+    "sourceSHA256": "e2f79bdd0c42e9ecd21aa3984294e0f969c5180564ea7566a028195c7194035c",
+    "sha256": "b11268e99ce5c9bd84196180acab5266eec882748cddbaeb68441294bf61e58c",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "chromium/1440-club.png",
+    "file": "chromium/1440-club.webp",
+    "sourceSHA256": "bcdc5454976127e6b361000857bdd547cdfcf7365bce28ed1a0307ce3b9b2a2b",
+    "sha256": "96a93938adfbf3d9c9a5c6cad913aa9cdffc8e4f9537f180755a146c10a97d5e",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "chromium/390-club.png",
+    "file": "chromium/390-club.webp",
+    "sourceSHA256": "4517b3da4b85f58f3324833798510491f03bd99cfc478a4259205bc5b7ce6af8",
+    "sha256": "c5e553111f7e16c5c4dbaf2bf92ab38a096d04cff19f19363523b0bf6485b1ed",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "chromium/championship.png",
+    "file": "chromium/championship.webp",
+    "sourceSHA256": "dbc278b545837ab5e44d1a3861bdba2a656ea252380177881af3dee08052d88e",
+    "sha256": "1a23669321d7311883e51fa4448312567f49f7e3a94b0ac4656919179fc2806a",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "face/after-front.png",
+    "file": "face/after-front.webp",
+    "sourceSHA256": "704ad6c0a6ea1e89b6b77851eb1308449cd9ce1852f222ec5dd82d813de22405",
+    "sha256": "c1098304f1a6a6d7b9bf4c245b6a0896a49b8ce9729fa618e29503bd3e869bcf",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "face/after-three-quarter.png",
+    "file": "face/after-three-quarter.webp",
+    "sourceSHA256": "336d2636db39cad7fb01c0d8efc7053ae683b1c0bfd28e068ffdc83e06ff63d5",
+    "sha256": "963fed1afc55abf3cfe9078661cbe5d1306a163da4976679c08fcfa1e120b66d",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "face/before-front.png",
+    "file": "face/before-front.webp",
+    "sourceSHA256": "7e8defa88e9ad9537b8ece61aec5d11a0e9ac45ebb948834d8338dc3ae22d559",
+    "sha256": "c12610ef5038f0cdb0dba43ed09fd2f2618e259bbb430524c3fd39bab3e16700",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "face/before-three-quarter.png",
+    "file": "face/before-three-quarter.webp",
+    "sourceSHA256": "b145599bf757a4452b64354ab5c56a0ae62c227a9644407ca37175aaf434a260",
+    "sha256": "cf122b16826ec6dd053fad794bf45e2e5645e782eb0b33146beda410b1388121",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "firefox/championship.png",
+    "file": "firefox/championship.webp",
+    "sourceSHA256": "ddbb365580851f662a6d0e0f4c086dd32a281d2f7df45a34af8e602c0e0d2cc5",
+    "sha256": "9dc2f61e7297c576216a5b77b9862be4d195f9a77520c80a17d723e32377a448",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "lighting-cloud.png",
+    "file": "lighting-cloud.webp",
+    "sourceSHA256": "ef4ef1744b1f1910b5cf95aa13ffbd0b2d34ef33d35543e61da96f69bd1e583c",
+    "sha256": "4d7817dca09e4fdf0a1cc72b684aab11d9a0d09e9d6e3ef289ecc7566e59bdda",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "lighting-day.png",
+    "file": "lighting-day.webp",
+    "sourceSHA256": "9ad504081b60457bb5cda1d44cf87de92f407b9298402d4ff63a13289f5c698f",
+    "sha256": "8b367cb8eddef3948f6ab94ff8c97536fb4a0bae474857ee42734ca64ea14c78",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "lighting-evening.png",
+    "file": "lighting-evening.webp",
+    "sourceSHA256": "c3220268f71b3c1d9ea46808fa710701b1ec70abb4a0924eca1555fcbdf6f2ed",
+    "sha256": "d0635a7f939ce7e3823507e59665784c6d325612afff2faff0b23e66475bd501",
+    "conversion": "lossless WebP; no resize or other edits"
+  },
+  {
+    "source": "webkit/championship.png",
+    "file": "webkit/championship.webp",
+    "sourceSHA256": "b94179e895e5efd6c69db25e2c5b8a31aeee1250be69489b69b7b2e1de2e5a5e",
+    "sha256": "de7862a70f28c1c65a916c4769ff1b20c157f7c69a2a607423f607e26a564816",
+    "conversion": "lossless WebP; no resize or other edits"
+  }
+]

@@ -1,0 +1,53 @@
+{
+  "label": "before",
+  "baseline": "/tmp/rally-cast-baseline-20261015/dist",
+  "capture": "Actual production Character.meshes and Renderer on an isolated diagnostic stage",
+  "errors": [],
+  "actors": [
+    {
+      "id": "coach",
+      "name": "Coach Contessa",
+      "height": 1.8296254834339671,
+      "shoulderSpan": 0.721999627722028,
+      "gl": 0,
+      "drawCalls": 53,
+      "triangles": 28776
+    },
+    {
+      "id": "mika",
+      "name": "Lucresia",
+      "height": 1.8144545549145576,
+      "shoulderSpan": 0.7219986521275075,
+      "gl": 0,
+      "drawCalls": 55,
+      "triangles": 29896
+    },
+    {
+      "id": "nia",
+      "name": "Barbara",
+      "height": 1.8059078194712503,
+      "shoulderSpan": 0.7219995980480522,
+      "gl": 0,
+      "drawCalls": 53,
+      "triangles": 28776
+    },
+    {
+      "id": "leo",
+      "name": "Leo",
+      "height": 1.8062950186729558,
+      "shoulderSpan": 0.7719996674883692,
+      "gl": 0,
+      "drawCalls": 51,
+      "triangles": 28392
+    },
+    {
+      "id": "arjan",
+      "name": "Arjan",
+      "height": 1.8289417910868477,
+      "shoulderSpan": 0.7719999958574777,
+      "gl": 0,
+      "drawCalls": 52,
+      "triangles": 28952
+    }
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "encoding": "Lossless WebP, unchanged RGBA pixels from actual production-renderer browser captures",
+  "images": [
+    {
+      "source": "after-arjan.png",
+      "file": "after-arjan.webp",
+      "sourceSHA256": "56ac610c8032eda9b1f42dead13c5be94ffc19b1d015dfa32c9b4c70c02a693c",
+      "sha256": "12d387f0639a022825dd364ba88b4a61f0cbbb2fae48ee12e96e07a1c60e6e30",
+      "width": 864,
+      "height": 1080,
+      "identicalRGBA": true
+    },
+    {
+      "source": "after-coach.png",
+      "file": "after-coach.webp",
+      "sourceSHA256": "9ced55419d954907159c4ff46eeaffc1472162a68a8fc0d13fedf41fd1570578",
+      "sha256": "2368a5a75f84103b31f1bbc9657fc7921a853319186e2609dcd7c30e75eecdd9",
+      "width": 864,
+      "height": 1080,
+      "identicalRGBA": true
+    },
+    {
+      "source": "after-leo.png",
+      "file": "after-leo.webp",
+      "sourceSHA256": "9673b39a5b92301525dc6ad8ecae603b0c17fd97da5254e68f7630d07204cc64",
+      "sha256": "c27560c5381a28d241390e879aeb26e09186ad0f45fdba668f56de6699fbaa74",
+      "width": 864,
+      "height": 1080,
+      "identicalRGBA": true
+    },
+    {
+      "source": "after-mika.png",
+      "file": "after-mika.webp",
+      "sourceSHA256": "56f7f807867ebfaf0e768c0a2dbb2653ff74f6189c8e822452ebea0aa901308e",
+      "sha256": "4088d047560f7ab3e5db0fa60b1df1c79806dacaafbace0a79d440cda3c87302",
+      "width": 864,
+      "height": 1080,
+      "identicalRGBA": true
+    },
+    {
+      "source": "after-nia.png",
+      "file": "after-nia.webp",
+      "sourceSHA256": "627f9e80b8cfab4c4376b96db66af03e62aa1dba86d5583b2106c1bf18d83fe7",
+      "sha256": "d3c41e2cccae46416a6525259e5d11a4ce7a409e22305c7fd9385c8dcd9b1640",
+      "width": 864,
+      "height": 1080,
+      "identicalRGBA": true
+    },
+    {
+      "source": "before-arjan.png",
+      "file": "before-arjan.webp",
+      "sourceSHA256": "3b3df3b296b7dd1eb285f3dfe700c2994b9935becc27df0b9242dff5c2c33f05",
+      "sha256": "8a1f753667c00239038f8b542bca4ea387966d74a66540a6b86e4cf845ae916a",
+      "width": 864,
+      "height": 1080,
+      "identicalRGBA": true
+    },
+    {
+      "source": "before-coach.png",
+      "file": "before-coach.webp",
+      "sourceSHA256": "1f22a1355a0a8075553edb9b8508bbd21940b408b7f0c95788b3df32312ef980",
+      "sha256": "cd4fcfa5c8c7329479f79e436fda6862329c02b7557e617e5dc9308e5815d74d",
+      "width": 864,
+      "height": 1080,
+      "identicalRGBA": true
+    },
+    {
+      "source": "before-leo.png",
+      "file": "before-leo.webp",
+      "sourceSHA256": "f4569d0a87752a1d76b052b08e48d3a5b1e97328321ef45d251a74aff67ca5a7",
+      "sha256": "f5cce8ea2eaff3157c11d4fe5db057c4f4a123b04fdf1b1ad7657b64480f5e8d",
+      "width": 864,
+      "height": 1080,
+      "identicalRGBA": true
+    },
+    {
+      "source": "before-mika.png",
+      "file": "before-mika.webp",
+      "sourceSHA256": "40af2e7d5621fbc10cb597fc6504242a8ae4094b98b70f881a8000c946b0eaa6",
+      "sha256": "f59f95031220011ec8452a8f18a021100db461552efaaaf7b22069bbf553f29b",
+      "width": 864,
+      "height": 1080,
+      "identicalRGBA": true
+    },
+    {
+      "source": "before-nia.png",
+      "file": "before-nia.webp",
+      "sourceSHA256": "088ca4efed8a7f407fcd7e70364d7c4591d665d16b9b859f323b1ffb685dd1af",
+      "sha256": "b72a05a232f1a87a64aad5024b764af0fba0b281c5985fbbe0ea0484fa902737",
+      "width": 864,
+      "height": 1080,
+      "identicalRGBA": true
+    },
+    {
+      "source": "chromium/1440-club.png",
+      "file": "chromium/1440-club.webp",
+      "sourceSHA256": "7f1656e9bb6498f9d61e502f442bae39149188bcfdb301a97350821a475d64b4",
+      "sha256": "c78954bccfaf05451f25e9c7cea1401f9d9c01141b65dcdb0f7356c3558bbf98",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "chromium/390-club.png",
+      "file": "chromium/390-club.webp",
+      "sourceSHA256": "3a3dc57bfff46ef2c9d7fd6063bf29f7d560ee7574d6fa961d69813fb75801ee",
+      "sha256": "cfdfb791665d48e7c1facf4f66215e7d4625a0df5905c706689814e4499c42a3",
+      "width": 390,
+      "height": 844,
+      "identicalRGBA": true
+    },
+    {
+      "source": "chromium/championship.png",
+      "file": "chromium/championship.webp",
+      "sourceSHA256": "63bcc9405308faca2e7502e377e439532e1bcdfe2906eb9db2ae7989445235e0",
+      "sha256": "5fe24801c8cf16ad52edac1941494bda8046e16f986c85cb4bc46624d1819088",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "firefox/1440-club.png",
+      "file": "firefox/1440-club.webp",
+      "sourceSHA256": "22eef029196c9ba5404b1f6e9b7ff4ca69d6fd7c6f55f925081f38f08c297c6c",
+      "sha256": "4115f4bc4108a6182610a1c56ecc25e9a8427a726bf237704524f499bd5316f2",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "firefox/390-club.png",
+      "file": "firefox/390-club.webp",
+      "sourceSHA256": "1a99b18a802f33545b9474b7d7da91d16e401e014c7bc37b1a1c3b3f9084a1eb",
+      "sha256": "45dfe60e3b1454c0ae0016a35b584ca03566df1748b0f0b391d52a786b51e54f",
+      "width": 390,
+      "height": 844,
+      "identicalRGBA": true
+    },
+    {
+      "source": "firefox/championship.png",
+      "file": "firefox/championship.webp",
+      "sourceSHA256": "ad07a77a9d5c37a413fe1245f9f4cace57b2f3358ba592ee4060135bbc79d348",
+      "sha256": "72eac4ff21e3e89f685fcd7b12dc961481bf2de4b35a51c906a7e86a8a71c33e",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "live/championship.png",
+      "file": "live/championship.webp",
+      "sourceSHA256": "1f5f10fe8a030b3a52bf2eb2416277427026afce09407ea13be734a58145daf1",
+      "sha256": "2d13519135ff169284392a8e669a627f11159be36039e54873d904c6c59501a2",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "live/selected-coach.png",
+      "file": "live/selected-coach.webp",
+      "sourceSHA256": "4dccbaddd9e991282ecef4a5e292bcd1f933213064292d7bc0bd388cc3b5eacf",
+      "sha256": "b4976099c906eacfb32e864de054cea861b2e52c2e60b7d99adfa2268cff05eb",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "live/selected-leo.png",
+      "file": "live/selected-leo.webp",
+      "sourceSHA256": "cfe6e00715ec682dd6b81f29dfb3b055746524c99b43d6bd3224f2740bd94e90",
+      "sha256": "c8de3f9340c21c4e58cba4a1168600d9183a1a43fe335bb1d6b60ff45f09cc96",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "live/selected-mika.png",
+      "file": "live/selected-mika.webp",
+      "sourceSHA256": "9852303b8ba032da3797f041cb2b7b7bc152512bdb4565e30328d7f172a9b211",
+      "sha256": "1abb4d761ff9099b268d98a61b3777c35060cd7a516ede0dce1037b6161a3123",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "live/selected-nia.png",
+      "file": "live/selected-nia.webp",
+      "sourceSHA256": "7cb5706d5cb5f3d550b0e82537d86e7c95cba0e62dd0542950e692f4a69ffcbb",
+      "sha256": "6291fc9b0efe3db268189d1ee852e3039ef07519ea1a73253836c4533a1f9823",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "phone-arjan/mount.png",
+      "file": "phone-arjan/mount.webp",
+      "sourceSHA256": "797d8b5d0872527bb0b77bff7f9cc372202e693793a11ecf6d9b986e8dffe867",
+      "sha256": "208f9aff2b288086af8e9be9630091653a9908e2911d417fb14ca93c948ca0a9",
+      "width": 390,
+      "height": 844,
+      "identicalRGBA": true
+    },
+    {
+      "source": "phone-arjan/record.png",
+      "file": "phone-arjan/record.webp",
+      "sourceSHA256": "9741fd898efe03ab2023980604d3bd4f979427882845e774ebc02cf5e14b43b4",
+      "sha256": "9a9b2d034d884d79cd3323f23277d6aec0beb53290279a1cc836cbb0324f556d",
+      "width": 390,
+      "height": 844,
+      "identicalRGBA": true
+    },
+    {
+      "source": "phone-arjan/review-body.png",
+      "file": "phone-arjan/review-body.webp",
+      "sourceSHA256": "731d739580037644fa43a9e8c64a51ea99302d8e8eb065c9034560a36293cfa8",
+      "sha256": "140925dc6da9659814be3800b143d242ad797e30e334babf47dde6569e0aa605",
+      "width": 390,
+      "height": 844,
+      "identicalRGBA": true
+    },
+    {
+      "source": "phone-arjan/review.png",
+      "file": "phone-arjan/review.webp",
+      "sourceSHA256": "f558c8cdd9ce90be52b7c83c635058c8248c5c183988e48d94b3e000f1151999",
+      "sha256": "ca1c87aa78cbcd32ab121293d825ac5997af8427bab9d6d4f59915470e68d8a2",
+      "width": 390,
+      "height": 844,
+      "identicalRGBA": true
+    },
+    {
+      "source": "webkit/1440-club.png",
+      "file": "webkit/1440-club.webp",
+      "sourceSHA256": "744a3e2f51a2958626e9c7c0a1e40b9d788140d828860ebc1428860109ebb44b",
+      "sha256": "1c9b9f6cdf9e03cafd6d034c5d9e54fb520c3287d075657070166a6a990e0e82",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    },
+    {
+      "source": "webkit/390-club.png",
+      "file": "webkit/390-club.webp",
+      "sourceSHA256": "1af744692e4156772561850900ccfd24c1d7567a13d74d6d0226303e0a278b95",
+      "sha256": "8ec508fb590815eecfccd532150aa646f4d587eb86d232816a309847a86b076c",
+      "width": 390,
+      "height": 844,
+      "identicalRGBA": true
+    },
+    {
+      "source": "webkit/championship.png",
+      "file": "webkit/championship.webp",
+      "sourceSHA256": "1cace9c66ac4dfe8e79c0aa8d649c1b32402fb1623e862d150b802fa0a23489f",
+      "sha256": "7da81cee4f39ab25afee1fb4a53786f543e5e7c02c339185c4c79f8f2f894f56",
+      "width": 1440,
+      "height": 900,
+      "identicalRGBA": true
+    }
+  ]
+}
