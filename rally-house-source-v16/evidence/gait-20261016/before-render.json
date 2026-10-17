@@ -1,0 +1,17 @@
+{
+  "label": "before",
+  "baseline": "/tmp/rally-gait-baseline-20261016/dist",
+  "errors": [],
+  "http": [],
+  "final": {
+    "position": {
+      "x": -2.5,
+      "y": 0,
+      "z": -2.5
+    },
+    "state": "idle",
+    "gl": 0,
+    "members": 4
+  },
+  "passed": true
+}

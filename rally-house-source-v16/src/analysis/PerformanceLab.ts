@@ -58,7 +58,7 @@ export class PerformanceLab {
     brand.textContent='RALLY HOUSE / PERFORMANCE LAB';
     const sub=document.createElement('small');sub.textContent='Three apps by Arjan Singh Puniani';identity.append(brand,sub);
     close.textContent='Return to club ↗';close.dataset.labAction='close';close.onclick=()=>this.close();header.append(identity,close);
-    this.panel.className='lab-panel';this.panel.setAttribute('aria-labelledby','labTitle');this.heading.id='labTitle';this.heading.textContent='See the movement.';
+    this.panel.className='lab-panel';this.panel.setAttribute('aria-labelledby','labTitle');this.heading.id='labTitle';this.heading.textContent='Analyze your swing.';
     this.provenance.className='lab-provenance';
     const modes=document.createElement('div');modes.className='lab-modes';modes.setAttribute('role','group');modes.setAttribute('aria-label','Analysis view');
     for(const [id,title] of [['court','VectorCourt'],['body','AnatomyMotion'],['combined','Combined']] as [LabMode,string][]){

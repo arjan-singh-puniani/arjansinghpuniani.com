@@ -126,6 +126,11 @@ export function adultTaylorPose(source, root, yaw, constraints) {
     }
     const forward = new Vec3(Math.sin(yaw), 0, Math.cos(yaw)), torsoForward = new Vec3(Math.sin(p.torsoYaw), 0, Math.cos(p.torsoYaw)), torsoRight = new Vec3(Math.cos(p.torsoYaw), 0, -Math.sin(p.torsoYaw));
     for (const side of ['L', 'R']) {
+        const walk = constraints.human ? constraints.walk : undefined;
+        if (walk) {
+            const sign = side === 'L' ? -1 : 1, swing = Math.cos(walk.phase) * walk.swing, goal = p[`shoulder${side}`].clone().add(torsoRight.clone().scale(sign * .015)).add(new Vec3(0, -.79 + Math.abs(swing) * .035, 0)).add(torsoForward.clone().scale(sign * swing));
+            p[`hand${side}`] = Vec3.lerp(p[`hand${side}`], goal, walk.weight);
+        }
         const shoulder = p[`shoulder${side}`], hand = p[`hand${side}`], world = side === 'L' ? constraints.leftWorld : constraints.rightWorld;
         if (world < .999) {
             const d = Vec3.sub(hand, shoulder), distance = d.len(), reach = TAYLOR_BODY.upperArm + TAYLOR_BODY.forearm - .003;
@@ -139,7 +144,7 @@ export function adultTaylorPose(source, root, yaw, constraints) {
         // The old compact/feline elbow target can pass through the shoulder/wrist
         // axis after retargeting. A body-relative human pole keeps elbows down and
         // outside the ribcage, with posterior loading rather than a reversed fold.
-        const pole = constraints.human ? shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.24 : .24)).add(new Vec3(0, -.28, 0)).add(torsoForward.clone().scale(-.16)) : arm(source[`elbow${side}`]).add(forward.clone().scale(.04));
+        const pole = walk ? shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.035 : .035)).add(new Vec3(0, -.18, 0)).add(torsoForward.clone().scale(-.30)) : constraints.human ? shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.24 : .24)).add(new Vec3(0, -.28, 0)).add(torsoForward.clone().scale(-.16)) : arm(source[`elbow${side}`]).add(forward.clone().scale(.04));
         p[`elbow${side}`] = joint(shoulder, p[`hand${side}`], TAYLOR_BODY.upperArm, TAYLOR_BODY.forearm, pole, forward);
         const hip = p[`hip${side}`], foot = p[`foot${side}`], kneePole = Vec3.lerp(hip, foot, .5).add(forward.clone().scale(.5));
         p[`knee${side}`] = joint(hip, foot, TAYLOR_BODY.thigh, TAYLOR_BODY.shin, kneePole, forward);

@@ -1,0 +1,18 @@
+{
+  "width": 390,
+  "errors": [],
+  "http": [],
+  "court": {
+    "kind": "forehand",
+    "mode": "court",
+    "sameWorld": true
+  },
+  "body": {
+    "mode": "body",
+    "focus": "elbow",
+    "readout": "69°",
+    "overflow": false
+  },
+  "axe": [],
+  "passed": true
+}

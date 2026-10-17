@@ -2,7 +2,7 @@ import {Vec3,clamp} from '../rendering/Math3D.js';
 import type {CharacterPose} from '../entities/Character.js';
 
 export const TAYLOR_BODY={pelvisHeight:1.245,torsoScale:1.20,headScale:.62,upperArm:.425,forearm:.415,thigh:.56,shin:.55} as const;
-interface Constraints {sitting:boolean;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;shoulderScale?:number;restWeight?:number;posture?:{weight:number;right:Vec3;left?:Vec3};}
+interface Constraints {sitting:boolean;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;shoulderScale?:number;restWeight?:number;walk?:{phase:number;weight:number;swing:number};posture?:{weight:number;right:Vec3;left?:Vec3};}
 const smooth=(t:number)=>{const u=clamp(t,0,1);return u*u*(3-2*u);};
 function joint(a:Vec3,b:Vec3,first:number,second:number,pole:Vec3,fallback:Vec3){
  const delta=Vec3.sub(b,a),d=Math.max(.0001,delta.len()),axis=delta.scale(1/d),stretch=Math.max(1,d/(first+second-.001));
@@ -72,6 +72,8 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
  }
  const forward=new Vec3(Math.sin(yaw),0,Math.cos(yaw)),torsoForward=new Vec3(Math.sin(p.torsoYaw),0,Math.cos(p.torsoYaw)),torsoRight=new Vec3(Math.cos(p.torsoYaw),0,-Math.sin(p.torsoYaw));
  for(const side of ['L','R'] as const){
+  const walk=constraints.human?constraints.walk:undefined;
+  if(walk){const sign=side==='L'?-1:1,swing=Math.cos(walk.phase)*walk.swing,goal=p[`shoulder${side}`].clone().add(torsoRight.clone().scale(sign*.015)).add(new Vec3(0,-.79+Math.abs(swing)*.035,0)).add(torsoForward.clone().scale(sign*swing));p[`hand${side}`]=Vec3.lerp(p[`hand${side}`],goal,walk.weight);}
   const shoulder=p[`shoulder${side}`],hand=p[`hand${side}`],world=side==='L'?constraints.leftWorld:constraints.rightWorld;
   if(world<.999){const d=Vec3.sub(hand,shoulder),distance=d.len(),reach=TAYLOR_BODY.upperArm+TAYLOR_BODY.forearm-.003;
    if(distance>reach)p[`hand${side}`]=shoulder.clone().add(d.normalize().scale(reach));
@@ -82,7 +84,7 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
   // The old compact/feline elbow target can pass through the shoulder/wrist
   // axis after retargeting. A body-relative human pole keeps elbows down and
   // outside the ribcage, with posterior loading rather than a reversed fold.
-  const pole=constraints.human?shoulder.clone().add(torsoRight.clone().scale(side==='L'?-.24:.24)).add(new Vec3(0,-.28,0)).add(torsoForward.clone().scale(-.16)):arm(source[`elbow${side}`]).add(forward.clone().scale(.04));
+  const pole=walk?shoulder.clone().add(torsoRight.clone().scale(side==='L'?-.035:.035)).add(new Vec3(0,-.18,0)).add(torsoForward.clone().scale(-.30)):constraints.human?shoulder.clone().add(torsoRight.clone().scale(side==='L'?-.24:.24)).add(new Vec3(0,-.28,0)).add(torsoForward.clone().scale(-.16)):arm(source[`elbow${side}`]).add(forward.clone().scale(.04));
   p[`elbow${side}`]=joint(shoulder,p[`hand${side}`],TAYLOR_BODY.upperArm,TAYLOR_BODY.forearm,pole,forward);
   const hip=p[`hip${side}`],foot=p[`foot${side}`],kneePole=Vec3.lerp(hip,foot,.5).add(forward.clone().scale(.5));p[`knee${side}`]=joint(hip,foot,TAYLOR_BODY.thigh,TAYLOR_BODY.shin,kneePole,forward);
  }

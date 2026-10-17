@@ -77,6 +77,8 @@ export class Character {
     transitionDuration = .20;
     walkCycle = new WalkCycle();
     exitWalkPose = null;
+    walkingStride() { return (this.spec.appearance === 'human' ? 1.38 : 1.02) * locomotionStyleFor(this.spec.id).stride; }
+    walkingShape() { return this.spec.appearance === 'human' ? { halfWidth: .135, lift: .045, stance: .60 } : undefined; }
     targetYaw = 0;
     locomotion = 0;
     horizontalSpeed = 0;
@@ -452,8 +454,8 @@ export class Character {
         const targetLoc = MOVING.has(this.state) ? .98 : 0;
         this.locomotion = expDamp(this.locomotion, targetLoc, 10, dt);
         if (this.state === 'walk' || this.state === 'jog') {
-            const stride = 1.02 * locomotionStyle.stride;
-            this.stepEvent = this.walkCycle.update(this.position, this.yaw, moved, stride) || this.stepEvent;
+            const stride = this.walkingStride();
+            this.stepEvent = this.walkCycle.update(this.position, this.yaw, moved, stride, this.walkingShape()) || this.stepEvent;
             this.gaitPhase = this.walkCycle.phase * Math.PI * 2;
         }
         else if (this.locomotion > .02) {
@@ -485,9 +487,14 @@ export class Character {
         this.strokeAnchor = null;
         if ((next === 'walk' || next === 'jog') && this.state !== 'walk' && this.state !== 'jog') {
             this.walkCycle.reset();
-            this.walkCycle.update(this.position, this.yaw, 0, 1.02 * locomotionStyleFor(this.spec.id).stride);
+            this.walkCycle.update(this.position, this.yaw, 0, this.walkingStride(), this.walkingShape());
         }
-        this.exitWalkPose = ((this.state === 'walk' || this.state === 'jog') && !MOVING.has(next) || this.state === 'sit') ? this.pose() : null;
+        if ((this.state === 'walk' || this.state === 'jog') && !MOVING.has(next) || this.state === 'sit') {
+            this.pose();
+            this.exitWalkPose = this.lastPose;
+        }
+        else
+            this.exitWalkPose = null;
         if (!MOVING.has(next))
             this.walkCycle.reset();
         this.previousState = this.state;
@@ -642,7 +649,7 @@ export class Character {
         const shuffle = state === 'shuffle';
         const gait = moving ? Math.cos(this.gaitPhase) : 0;
         const gaitStyle = locomotionStyleFor(this.spec.id);
-        const stepLift = moving ? Math.pow(Math.abs(Math.sin(this.gaitPhase)), 1.7) * gaitStyle.bounce : 0;
+        const stepLift = moving ? Math.pow(Math.abs(Math.sin(this.gaitPhase)), 1.7) * gaitStyle.bounce * (this.spec.appearance === 'human' ? .25 : 1) : 0;
         const gaitCounter = moving ? Math.sin(this.gaitPhase) * gaitStyle.torsoCounter : 0;
         const splitHop = this.courtPhase === 'split' ? Math.sin(Math.min(1, this.courtPhaseAge / .10) * Math.PI) * .055 : 0;
         if (!shot && !moving && this.socialGesture === 'think') {
@@ -658,7 +665,7 @@ export class Character {
         if (moving) {
             coil = gait * gaitStyle.torsoCounter * .45;
             hipCoil = -gait * gaitStyle.hipSwing * .45;
-            baseY = .008 + Math.sin(this.gaitPhase * 2) * .012;
+            baseY = this.spec.appearance === 'human' ? -.025 + Math.cos(this.gaitPhase * 2) * .003 : .008 + Math.sin(this.gaitPhase * 2) * .012;
             lean = 0;
             knee = 0;
         }
@@ -670,7 +677,7 @@ export class Character {
         const sy = Math.sin(headYaw), cy = Math.cos(headYaw), right = new Vec3(cy, 0, -sy), forward = new Vec3(sy, 0, cy);
         const contactLocal = this.contactTarget ? this.localFromWorld(this.contactTarget) : new Vec3(state === 'swingBackhand' ? -.52 : state === 'serve' ? .14 : .56, state === 'serve' ? 2.36 : 1.02, .5);
         const outside = clamp(contactLocal.x, -.85, .85);
-        const pelvisShiftX = shot ? outside * .05 * bell(sp - contact, .24) : 0;
+        const pelvisShiftX = shot ? outside * .05 * bell(sp - contact, .24) : moving && this.spec.appearance === 'human' ? -Math.sin(this.gaitPhase) * .018 : 0;
         const pelvisShiftZ = (shot ? .08 * weightShift : 0) + clip.pelvisZ;
         const pelvisCenter = this.worldLocal(pelvisShiftX, .79 + baseY - knee + splitHop, pelvisShiftZ, hipYaw);
         const torsoCenter = this.worldLocal(pelvisShiftX * .45, 1.14 + baseY + breathe - knee + splitHop, .025 + pelvisShiftZ * .6, torsoYaw);
@@ -862,6 +869,11 @@ export class Character {
         racketRot.x += vib * .35;
         const hipHalf = this.spec.presentation === 'feminine' ? .175 : .165;
         const hipL = this.worldLocal(-hipHalf + pelvisShiftX, .76 + baseY - knee, pelvisShiftZ, hipYaw), hipR = this.worldLocal(hipHalf + pelvisShiftX, .76 + baseY - knee, pelvisShiftZ, hipYaw);
+        if (moving && this.spec.appearance === 'human') {
+            const roll = Math.sin(this.gaitPhase) * .006;
+            hipL.y += roll;
+            hipR.y -= roll;
+        }
         const walkReach = (state === 'jog' ? .40 : .34) * gaitStyle.stride;
         let footL = this.worldLocal(-.17, .11 + baseY, .05 + gait * walkReach), footR = this.worldLocal(.17, .11 + baseY, .05 - gait * walkReach);
         if (moving) {
@@ -991,7 +1003,7 @@ export class Character {
                 result.face = { ...result.face, smile: Math.max(this.spec.avatar === 'taylor' ? .55 : this.spec.presentation === 'masculine' ? .18 : .32, result.face.smile), squint: Math.max(.08, result.face.squint) };
             }
             const design = CAST_DESIGN[this.spec.avatar ?? this.spec.id] ?? CAST_DESIGN.taylor;
-            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.canRelaxClubIdle() ? this.clubIdleRelax : 0, posture });
+            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.canRelaxClubIdle() ? this.clubIdleRelax : 0, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
         }
         return result;
     }
