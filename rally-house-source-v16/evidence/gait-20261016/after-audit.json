@@ -1,0 +1,74 @@
+[
+  {
+    "id": "coach",
+    "name": "Coach Contessa",
+    "cadence": 140,
+    "headVerticalRange": 0.06782469384603029,
+    "pelvisVerticalRange": 0.03948146915129458,
+    "meanElbowOutward": 0.023027732382367924,
+    "meanElbowFlexion": 38.99468088328942,
+    "peakFootLift": 0.044999962121332046,
+    "maxSlide": 0,
+    "plantedPairs": 209
+  },
+  {
+    "id": "mika",
+    "name": "Lucresia",
+    "cadence": 140,
+    "headVerticalRange": 0.06973941084546098,
+    "pelvisVerticalRange": 0.04395588305037279,
+    "meanElbowOutward": 0.02330045356054122,
+    "meanElbowFlexion": 37.14096658583104,
+    "peakFootLift": 0.044999948209479154,
+    "maxSlide": 0,
+    "plantedPairs": 210
+  },
+  {
+    "id": "leo",
+    "name": "Leo",
+    "cadence": 120,
+    "headVerticalRange": 0.0883279085132136,
+    "pelvisVerticalRange": 0.05665190449602475,
+    "meanElbowOutward": 0.023297884192044746,
+    "meanElbowFlexion": 36.87328896963412,
+    "peakFootLift": 0.044999959220179506,
+    "maxSlide": 0,
+    "plantedPairs": 208
+  },
+  {
+    "id": "nia",
+    "name": "Barbara",
+    "cadence": 140,
+    "headVerticalRange": 0.05971275332206538,
+    "pelvisVerticalRange": 0.03469855306786784,
+    "meanElbowOutward": 0.02313119811994918,
+    "meanElbowFlexion": 38.44873032303563,
+    "peakFootLift": 0.044974021829853425,
+    "maxSlide": 0,
+    "plantedPairs": 208
+  },
+  {
+    "id": "taylor",
+    "name": "Taylor",
+    "cadence": 140,
+    "headVerticalRange": 0.08083568183157519,
+    "pelvisVerticalRange": 0.050042470964902996,
+    "meanElbowOutward": 0.023165525896158383,
+    "meanElbowFlexion": 38.00436462094077,
+    "peakFootLift": 0.0449849400033699,
+    "maxSlide": 0,
+    "plantedPairs": 206
+  },
+  {
+    "id": "arjan",
+    "name": "Arjan",
+    "cadence": 140,
+    "headVerticalRange": 0.08071191375467501,
+    "pelvisVerticalRange": 0.0499187028880026,
+    "meanElbowOutward": 0.023165525896158383,
+    "meanElbowFlexion": 38.00436462094075,
+    "peakFootLift": 0.0449849400033699,
+    "maxSlide": 0,
+    "plantedPairs": 206
+  }
+]

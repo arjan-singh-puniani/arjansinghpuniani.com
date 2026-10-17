@@ -1,0 +1,28 @@
+{
+  "root": "/tmp/rally-gait-package-20261016/Rally-House-v16-Playtest",
+  "metal": true,
+  "errors": [],
+  "step": "complete",
+  "initial": {
+    "context": "\n    ×\n    YOUR CHARACTER\n    Who’s arriving at Rally House?\n    Choose your look. You can switch anytime in Settings.\n    \n    TaylorDark ponytail · blue tennis dress · composed all-court styleArjanSwept dark hair · strong brows · charcoal tenniswear\n  ",
+    "opacity": "0.852731",
+    "button": {
+      "x": 1096.9896240234375,
+      "y": 648.42333984375,
+      "width": 151.5523681640625,
+      "height": 114.03814697265625,
+      "top": 648.42333984375,
+      "right": 1248.5419921875,
+      "bottom": 762.4614868164062,
+      "left": 1096.9896240234375
+    },
+    "hit": "<div class=\"loading\" id=\"loading\"><span class=\"loadingMark\">R</span><strong>Rally House</strong><span>opening the club…</span></div>",
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "scale": 1
+  },
+  "selected": {
+    "avatar": "arjan",
+    "errors": 0
+  },
+  "passed": true
+}

@@ -1,0 +1,211 @@
+[
+  {
+    "source": "before-standing.png",
+    "webp": "before-standing.webp",
+    "dimensions": [
+      1080,
+      900
+    ],
+    "sourceSHA256": "c2de68626361d1dd699d559c918f86d0579fa66ee2a6af7c5b413ccb247ab6ae",
+    "webpSHA256": "9c7b5360f4496658e021abefac240f3191e98d13444629df3ac8ce8b60195055",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "before-walking.png",
+    "webp": "before-walking.webp",
+    "dimensions": [
+      1080,
+      900
+    ],
+    "sourceSHA256": "ad68e7369a4e5e347b66a3fd198541d50ae99efe5646c47e69191ab0c16db8bb",
+    "webpSHA256": "02b941a2765d3b7160361101dc23de11932e02b5c6718c76601b7b4837af8c22",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "before-stopped.png",
+    "webp": "before-stopped.webp",
+    "dimensions": [
+      1080,
+      900
+    ],
+    "sourceSHA256": "9a34cb6188ef9bc5dee5ca1dac0566a5af6565225c9f0587f93aab70a1db7c30",
+    "webpSHA256": "db1f6f4a64c3f97fc2ea048471d85a631e83501850458a159c247c998ea372f7",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "after-standing.png",
+    "webp": "after-standing.webp",
+    "dimensions": [
+      1080,
+      900
+    ],
+    "sourceSHA256": "82278537c2266b59fe6a603964deec1a127a2f190948e909c040592d2ff7fffa",
+    "webpSHA256": "c6c4181584981cb7d93c445941b51f2e6e7b56d443bd4a69d5f05acee80e93f1",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "after-walking.png",
+    "webp": "after-walking.webp",
+    "dimensions": [
+      1080,
+      900
+    ],
+    "sourceSHA256": "71b973abf07a2d8292ed93ebe8fbd5d9a20f60409ca4f7f4c2d4f0490efe4475",
+    "webpSHA256": "a912c109d3e00a08290fc736665fc065c5356546bbead224da4da409118ec83d",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "after-stopped.png",
+    "webp": "after-stopped.webp",
+    "dimensions": [
+      1080,
+      900
+    ],
+    "sourceSHA256": "d099b262a037271619a43473e06650ed8202e7242a3686d8a6e495a04c6515d0",
+    "webpSHA256": "af2025059178cc753a0f29cc6c7390c837474ff1af022b5ea997afee37c712f7",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "chromium/C-gameplay.png",
+    "webp": "chromium/C-gameplay.webp",
+    "dimensions": [
+      1440,
+      900
+    ],
+    "sourceSHA256": "70d9e83cf3a82252a723cd6434845840cd7a1430fbca01543fbae287127bda99",
+    "webpSHA256": "e2b4fbe234df208e5133e046f08cbc3f06372db3956fb489955a58f8dbdc3db6",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "firefox/C-gameplay.png",
+    "webp": "firefox/C-gameplay.webp",
+    "dimensions": [
+      1440,
+      900
+    ],
+    "sourceSHA256": "878efd2f8cf471c5e69afa5f61915bfb8cb0c4d0cf3c812378fc8ab3b9fe5748",
+    "webpSHA256": "3c68b79d099754fa5d9ade7934a7b89ddacd9ec1b1a8c6d1c05a2b662f55cd8e",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "webkit/C-gameplay.png",
+    "webp": "webkit/C-gameplay.webp",
+    "dimensions": [
+      1440,
+      900
+    ],
+    "sourceSHA256": "57eb5e3e8935b8dc3e1d56e07e4d753d3084de2c7451b2cddca27003e06f086a",
+    "webpSHA256": "fed3dc7b4974bd30b446e78d3ebd1140fb5df1a1f554aecc3fc8632f2e7641ea",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "phone-arjan/mount.png",
+    "webp": "phone-arjan/mount.webp",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sourceSHA256": "84f43351facdad2f53e3db24a8a5f340101369940621dedddbb3e91f66d085c7",
+    "webpSHA256": "db727644eeae1971713c565a58435ea0737fe9522569123e71d50b69b68fe9e8",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "phone-arjan/record.png",
+    "webp": "phone-arjan/record.webp",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sourceSHA256": "15d4cc574850114e172f4080d425d88f4129f576f64c670801d6a9d28b97bdbb",
+    "webpSHA256": "e02aef9a0810e6d84660bdfc87e4182c3f53c9da47c39c291303656a380c9b60",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "phone-arjan/review.png",
+    "webp": "phone-arjan/review.webp",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sourceSHA256": "c463ddf139fbb98e4b21df86b1106a1b7d554923b0aec2e01b4321cc60aa3cc8",
+    "webpSHA256": "436268d5ce4497b53cbe0146f22af8adf589ac4867a8ce565b31f074a2c453f6",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "phone-arjan/review-body.png",
+    "webp": "phone-arjan/review-body.webp",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sourceSHA256": "87be751afe38e8540e976520d91515acde62ef634a79cf56d791e3b4976a9b93",
+    "webpSHA256": "9ee7e6740f3b6df43f8cc5ad62307592eee7b15dcfea00f192feb9697ac4b81b",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "vectorcourt/1440-body.png",
+    "webp": "vectorcourt/1440-body.webp",
+    "dimensions": [
+      1440,
+      900
+    ],
+    "sourceSHA256": "caed7a7e7438ef461d9532aae6e571fdfa521ddfcf1901b80143e76185a998b9",
+    "webpSHA256": "677efe3ccd1729731bbfc890cb26b71eff0c1fc93fdf00514102508ab7ddd613",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "vectorcourt/1440-court.png",
+    "webp": "vectorcourt/1440-court.webp",
+    "dimensions": [
+      1440,
+      900
+    ],
+    "sourceSHA256": "dc764b658d3f5acb07bb6d2f8fe29bf0511daed1b085ebc94fc57702f7e05bb4",
+    "webpSHA256": "839670feec8f763e6414774eec1c3eecc39a4dc5f6eb9274520b918dfc39eb40",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "vectorcourt/1440-toolbar.png",
+    "webp": "vectorcourt/1440-toolbar.webp",
+    "dimensions": [
+      1440,
+      900
+    ],
+    "sourceSHA256": "62d0cc08bc8cedb723a575b5d092632532e27450049d14e9f293a8059236a999",
+    "webpSHA256": "687df76affe0039f1f676c5ec856715674dd242fff151178701b75631cb0a862",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "vectorcourt/390-body.png",
+    "webp": "vectorcourt/390-body.webp",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sourceSHA256": "ad45fa141ce40e604a5a533670100fc794cb25e2bfd5bfa0c60e30c03397319c",
+    "webpSHA256": "b3aab46206bf60845f2bddfb5b360c8c369b954a57339aa812e3c3e77208aa19",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "vectorcourt/390-court.png",
+    "webp": "vectorcourt/390-court.webp",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sourceSHA256": "2fd1ae96eae2e719bd60da809e62aa8179c45d43366c295fb579f31e3b07fbe4",
+    "webpSHA256": "7baf7cac5fbf8edef9dbb7ecad7ee9654e110b2245da9a86ad300c1ab8bb26ea",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "vectorcourt/390-toolbar.png",
+    "webp": "vectorcourt/390-toolbar.webp",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sourceSHA256": "daaf433bf238dd555c2d1d1c76874cc8707bc5c8afdfb3d5b846f9a218d8df64",
+    "webpSHA256": "767bff8e88a73258bbc7584b187e60c60ecb377f0d9a7bb20f21d0c0a741abc9",
+    "decodedPixelsEqual": true
+  }
+]

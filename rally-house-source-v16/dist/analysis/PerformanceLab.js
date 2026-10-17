@@ -77,7 +77,7 @@ export class PerformanceLab {
         this.panel.className = 'lab-panel';
         this.panel.setAttribute('aria-labelledby', 'labTitle');
         this.heading.id = 'labTitle';
-        this.heading.textContent = 'See the movement.';
+        this.heading.textContent = 'Analyze your swing.';
         this.provenance.className = 'lab-provenance';
         const modes = document.createElement('div');
         modes.className = 'lab-modes';
