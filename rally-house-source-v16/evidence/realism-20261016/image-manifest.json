@@ -1,0 +1,387 @@
+[
+  {
+    "source": "before-taylor-body.png",
+    "webp": "before-taylor-body.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "4675c9cedec36f86f4cc181b37696a8542bba7bea6de64c80e0efb9d7723e01e",
+    "webpSHA256": "7025d8858b345af1347c37bce66cf73e02960fa959e35e64c3ca39a22ddd8245",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "before-arjan-body.png",
+    "webp": "before-arjan-body.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "c7d5cdfa8616dd10ed407626e496b642d5e277f76283932e3d13ab432cef8277",
+    "webpSHA256": "6912fcde1fa7d85f40e6b643db5b0ab743343d3745d6b71790854ec962c9d588",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "before-coach-body.png",
+    "webp": "before-coach-body.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "8a1cd1f04b25a1e3bc8204a05985967434619378ebb4c13fedd5f35884833c07",
+    "webpSHA256": "c2d9a70b016bd5af17c64077b21c283cdba2bff93d05bf749da01712464c3588",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "before-mika-body.png",
+    "webp": "before-mika-body.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "08cae4f1a22c5a7c043446fe96ae239c429a74b6cb208aaa92958cc94e46f1dd",
+    "webpSHA256": "c8cd1f7b4310d3e5ce8621820fd60e12a1a0bb4d545115f2ac3e07b1748d3d00",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "before-nia-body.png",
+    "webp": "before-nia-body.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "a022d8426f03428124ad19cda763f183f09c1ccafa27b9de1f5e78c509bd8148",
+    "webpSHA256": "f098d004dcb10ba02937fd4c86e7bce57b22f36935ecbc6645ffa9f1f162b06a",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "before-leo-body.png",
+    "webp": "before-leo-body.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "566e300b499f3a44f5295aaff500e83ab16aa35410055dcaa37d26f5ae04b8fd",
+    "webpSHA256": "fff3ea7953cec6a44a87aaf8f2ad75b499b481bc40ddf806c6c5396e729c9af3",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "before-taylor-portrait.png",
+    "webp": "before-taylor-portrait.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "e51da8c4771df717c3e7ced2a609cf12ccfe7bb1da80ef1bd7c1404b4017cb4b",
+    "webpSHA256": "7903f2892c0aa2ba920d5828e6cbf7bc5b346650a8881d0d3bd982ea0d331435",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "before-arjan-portrait.png",
+    "webp": "before-arjan-portrait.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "0e78463df029689f849a51fbfe195a689a549bb88abb7dbd656ea6bce0aa55e1",
+    "webpSHA256": "93dd3d1634d43c12dee615e774af570e05e63d2985594e62ea4b0f2c12f33bcf",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "before-club.png",
+    "webp": "before-club.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "3b8585c12d2be5ec3cdad7e95728e329cb0ecdc377f16b89468a7a2ffcc458c9",
+    "webpSHA256": "a3032828fb87cedf44b0ae72b18ea3f355b21b9ab31b3ce7212fd7fefac92b6e",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "after-taylor-body.png",
+    "webp": "after-taylor-body.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "1d942f9c905e500e41203f16bb5e4ae22d933f6bdf84e4f90cf7342bebd5cabb",
+    "webpSHA256": "78c7d02bbc2b78abbddb63f829edf912042c0408b3c407d55fc3a102538548a7",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "after-arjan-body.png",
+    "webp": "after-arjan-body.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "bafbcc896ac5687bf3cd88953d0f3815ec9ed7c78d8860fa2c702830103fe427",
+    "webpSHA256": "2ef20e14242ade71574483160a5dfc26d203a9470bb13dd028fadf571185c40a",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "after-coach-body.png",
+    "webp": "after-coach-body.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "73ec7b4ffce44a78c26071cea5e7956343b2331b0d3187fa045cb43778410fe5",
+    "webpSHA256": "ee77771e5338bae72bae00850c94684ef91694b2499642fb80a0d7f7f6a3b1f2",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "after-mika-body.png",
+    "webp": "after-mika-body.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "08e5fdf93b767b54ef6933c6cb46e3e29904a5ea26ccd12dda35974ff0c48986",
+    "webpSHA256": "c0ce49ce2f44516c1b629bea5ae103b7dfd8ae03440420fb6897029f7c95a096",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "after-nia-body.png",
+    "webp": "after-nia-body.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "2e74fd794b6078e6f2806b11fa22ac22d2888bb4e6d9d2d00978121d20986e45",
+    "webpSHA256": "c3717db798d756767278a08efd25fae16f39da17b428a11acabf11a77e0bdf62",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "after-leo-body.png",
+    "webp": "after-leo-body.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "5595feac8fb5207ab990c0a2bd05365bb91b104de239fb82f42d27b05f68ccd3",
+    "webpSHA256": "a865836502ad7121700b0a7a0f70afca3c147ced196107e8ff125821a511f347",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "after-taylor-portrait.png",
+    "webp": "after-taylor-portrait.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "62c3bebc773cfd26c29a8c5afe67210c1fd9e92eb2741fb4da5b20009eef04d5",
+    "webpSHA256": "5f589eb4aa83e8018e682b2f1216e430f8f3d931b7211579421e5e24b7b3c1c2",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "after-arjan-portrait.png",
+    "webp": "after-arjan-portrait.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "0040952773b9d3b9ed6646e9fb5fdbcce5b964847ce29f2bf681da05408ae718",
+    "webpSHA256": "2cbe62747eec9bf86f3bcd91dfb922404b57b55fb0455cdf5c28749b66c486cf",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "after-club.png",
+    "webp": "after-club.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "834ad71deb8f1a3ec78d02b856f9a3a3d3ed057fb33c3327f74f065aed94ba48",
+    "webpSHA256": "1b86e6976c77587ea142ee5a9eb91815909384f35b44936e6cafcd5bf49ef3ca",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "after-coach-portrait.png",
+    "webp": "after-coach-portrait.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "99aea4ed6720d5f9440ca773c4c5fe5206f3dd7260714b502c3725a66108e9ad",
+    "webpSHA256": "42c19671ac0ced6c76f7900f8471eec906eb3dd9b3dcd34b882b6bc01c6fddf7",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "after-mika-portrait.png",
+    "webp": "after-mika-portrait.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "98ad057ddbf31f30c16e238ed51bd8e065175195d105d2d7ff7ad6810beedcac",
+    "webpSHA256": "af953acb8fa5a3d5f3e192ff6bd84020aa4b17c219be3c1e06954df637d7443a",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "after-nia-portrait.png",
+    "webp": "after-nia-portrait.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "4ed0ec65959e6c536589ccefe684070ae4ccc2d391975becf81bbb13275ca24e",
+    "webpSHA256": "cabba3714c75192975077b2644fc231f2c327c5c2b116cce3b38ef583ea015f4",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "after-leo-portrait.png",
+    "webp": "after-leo-portrait.webp",
+    "dimensions": [
+      1080,
+      1000
+    ],
+    "sourceSHA256": "9a0337e6078c8581ab09c2cae08f17cc3edc55225c42a5ba0a8edb990a2f9417",
+    "webpSHA256": "41a8deb6370ad1a6b6264912ea183cb88ab469e4d14aa050a0dc20ac8f2ec865",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "lighting-day.png",
+    "webp": "lighting-day.webp",
+    "dimensions": [
+      864,
+      1080
+    ],
+    "sourceSHA256": "fedda3ea2a172bf36e378b6993ee997da0774e480fca6a5f3c48fff104232790",
+    "webpSHA256": "a9ce3f0b385ef056a4571cd708650a0ef5d2579809e406484f604a69baea7650",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "lighting-cloud.png",
+    "webp": "lighting-cloud.webp",
+    "dimensions": [
+      864,
+      1080
+    ],
+    "sourceSHA256": "aa152a83414e03bb3704ad8ed606057cfaca5792ff02f4f524b99924b2aeaea9",
+    "webpSHA256": "f07e176da667197729076a3658e2bed205de9055a3ed0fb4a0f4224a8ec7f5f3",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "lighting-evening.png",
+    "webp": "lighting-evening.webp",
+    "dimensions": [
+      864,
+      1080
+    ],
+    "sourceSHA256": "d524ea044e57e4cdf22e7a4e78172b0bca4e54544263353b82dd7491fb072182",
+    "webpSHA256": "643435f4fddbb0bc6a91980ee322b000c2dc82ae6fe5251ec174415d691cd72b",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "chromium/C-gameplay.png",
+    "webp": "chromium/C-gameplay.webp",
+    "dimensions": [
+      1440,
+      900
+    ],
+    "sourceSHA256": "73f082fe182fb213f63187950b528be7b195fb48e7496df7d7efe34f8cfc9cbb",
+    "webpSHA256": "ebe54049330d3534d6138a0b176e3e57ce0caa09400859b7af7bfa92144d3a6f",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "firefox/C-gameplay.png",
+    "webp": "firefox/C-gameplay.webp",
+    "dimensions": [
+      1440,
+      900
+    ],
+    "sourceSHA256": "93a9c66fb822061ab428dc2e6b9fe37348ab481a52978fb39b27d19ab6b348b9",
+    "webpSHA256": "a58c205c56152553746ab1ee1d7958290838f4cd0eba8ebc6891d6c5a92dc436",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "webkit/C-gameplay.png",
+    "webp": "webkit/C-gameplay.webp",
+    "dimensions": [
+      1440,
+      900
+    ],
+    "sourceSHA256": "dc05bdc06ae8cf4698c793471862b9a72ca73b4702caa87612158f6674d39f7b",
+    "webpSHA256": "bd89a6ae98a1cdb27fd211e4b01b77cf73bb6bd23abec7b9a13f72c2ac75aa7e",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "portrait-match/C-gameplay.png",
+    "webp": "portrait-match/C-gameplay.webp",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sourceSHA256": "e27d28d9333fec29c5c417af0a1dea422ba631b0a49e10e3e22113ba197c85e9",
+    "webpSHA256": "0acb7d011a7f9d9729928848f1f36cd45333d3511a5b10097e0d1b771433f610",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "phone-arjan/mount.png",
+    "webp": "phone-arjan/mount.webp",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sourceSHA256": "c50a20ed6c38a306578f07486889cd557019af481868c333dfe04eff37e52742",
+    "webpSHA256": "b63915bbc2e0d0a12ecaf719454f328694f91e32a2a08837de7cb97a3302bfa5",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "phone-arjan/record.png",
+    "webp": "phone-arjan/record.webp",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sourceSHA256": "35e1c241936f50b20988644f5bb0d7c888f233987edaf6301d61e7083029a634",
+    "webpSHA256": "805b0aa9d8aa098ea591f95d834bf070c1752ceb23a5ec24df0191e5370fdc53",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "phone-arjan/review.png",
+    "webp": "phone-arjan/review.webp",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sourceSHA256": "d7bc223b1b425795434f0c8bed1858b2bb4dfd658e461df4541b8d75e6418cd2",
+    "webpSHA256": "3dbd58f178b2ec52d49f02116150999d1544f61cb6f52513f6a99fe9c539a254",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "phone-arjan/review-body.png",
+    "webp": "phone-arjan/review-body.webp",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sourceSHA256": "6e366049a3946a1e96eeac1ad35bae2845649ac83ce03c2feca06dae231d7947",
+    "webpSHA256": "dbb502352d9fe35a56982380748370ca870c305ae09e3fb736371a1bea440b3f",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "moving-replay/taylor-continuous.png",
+    "webp": "moving-replay/taylor-continuous.webp",
+    "dimensions": [
+      1440,
+      900
+    ],
+    "sourceSHA256": "8862aab48bdcf3216997b53f7db0a6086f3a320ff8e2428e706abf17c1da0b97",
+    "webpSHA256": "d158cd13ef197e0bba68722ac6695de000dbde121634ffb87e2cf70f021a9503",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "moving-replay/fractional-joint-pick.png",
+    "webp": "moving-replay/fractional-joint-pick.webp",
+    "dimensions": [
+      1440,
+      900
+    ],
+    "sourceSHA256": "8ac41a05a1b0ba14af1dd7690593a093a92e4982c6124c6d92e991b452100092",
+    "webpSHA256": "bca9c827c5042df6c078996e551d1ce98793fa092a1cd32329c09bbd1dce00c7",
+    "decodedPixelsEqual": true
+  }
+]

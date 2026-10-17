@@ -1,3 +1,4 @@
+import {COURT,COURT_POST_MIN_X,COURT_POST_MAX_X} from '../tennis/CourtGeometry.js';
 import {Vec3, smoothstep} from '../rendering/Math3D.js';
 import type {Lighting,Mesh,MaterialKind} from '../rendering/Renderer.js';
 import {palette} from '../content/content.js';
@@ -42,7 +43,7 @@ export class World {
   private wallHeights={west:4.55,east:.48};private interactionFx=new Map<InteractionFxKind,InteractionFxPulse>();
   constructor(){const obstacles:Rect[]=[
     // Ordinary circulation goes around the posts, including travel to the far baseline.
-    {x:1,z:0,w:8.82,d:.16},{x:-9,z:4.8,w:3.5,d:1.2},{x:-9,z:-5.8,w:4.4,d:1.35},{x:8.6,z:5.6,w:3.8,d:1.8},{x:9.2,z:-4.6,w:3.8,d:1.7},{x:-7.5,z:.2,w:1.7,d:1.4},{x:10.2,z:3.9,w:1.7,d:1.3},{x:6.7,z:-6.3,w:1.7,d:1.0},{x:-8.05,z:1.6,w:1.0,d:2.7},{x:-11.2,z:-2.2,w:1.1,d:1.1},{x:-11.5,z:-.95,w:1.0,d:1.1},{x:-10.35,z:6.35,w:1.9,d:1.25},{x:-10.35,z:8.05,w:1.9,d:1.25},{x:-9.0,z:7.2,w:1.0,d:1.0},{x:11.35,z:.3,w:1.2,d:3.5},{x:10.42,z:.05,w:1.0,d:3.2},{x:-2.6,z:8.35,w:3.2,d:1.2},{x:1.0,z:8.35,w:3.2,d:1.2},{x:4.6,z:8.35,w:3.2,d:1.2},{x:-4.8,z:7.9,w:.9,d:.9},{x:5.6,z:7.9,w:.9,d:.9},{x:-1.4,z:-8.3,w:2.5,d:1.0}];this.nav=new Navigation(obstacles);this.build();
+    {x:COURT.centerX,z:0,w:COURT_POST_MAX_X-COURT_POST_MIN_X+.12,d:.16},{x:-9,z:4.8,w:3.5,d:1.2},{x:-9,z:-5.8,w:4.4,d:1.35},{x:8.6,z:5.6,w:3.8,d:1.8},{x:9.2,z:-4.6,w:3.8,d:1.7},{x:-7.5,z:.2,w:1.7,d:1.4},{x:10.2,z:3.9,w:1.7,d:1.3},{x:6.7,z:-6.3,w:1.7,d:1.0},{x:-8.05,z:1.6,w:1.0,d:2.7},{x:-11.2,z:-2.2,w:1.1,d:1.1},{x:-11.5,z:-.95,w:1.0,d:1.1},{x:-10.35,z:6.35,w:1.9,d:1.25},{x:-10.35,z:8.05,w:1.9,d:1.25},{x:-9.0,z:7.2,w:1.0,d:1.0},{x:11.35,z:.3,w:1.2,d:3.5},{x:10.42,z:.05,w:1.0,d:3.2},{x:-2.6,z:8.35,w:3.2,d:1.2},{x:1.0,z:8.35,w:3.2,d:1.2},{x:4.6,z:8.35,w:3.2,d:1.2},{x:-4.8,z:7.9,w:.9,d:.9},{x:5.6,z:7.9,w:.9,d:.9},{x:-1.4,z:-8.3,w:2.5,d:1.0}];this.nav=new Navigation(obstacles);this.build();
     // Surface contacts are distinct from floor centres used by navigation/selection.
     const contacts:Record<string,Vec3>={
       reception:new Vec3(-8.35,1.30,5.22),cafe:new Vec3(-8.08,1.47,-5.57),
@@ -83,15 +84,16 @@ export class World {
     this.rb(0,.22,-9.45,25.2,.24,.20,'#7fa28a');
     // Side walls are camera-aware cutaways and are emitted dynamically.
     // Floor zones. Court remains crisp; social areas get tiny tile seams.
-    this.add('box',1,.035,0,9.3,.07,12.8,palette.court,0,1,false,undefined,'court');this.add('box',-8.8,.02,0,6.3,.05,18.5,'#f8ead6',0,1,false,undefined,'stone');this.add('box',8.9,.02,0,6.0,.05,18.5,'#f5e6d2',0,1,false,undefined,'stone');
+    this.add('box',COURT.centerX,.035,0,COURT.doublesHalfWidth*2+.8,.07,COURT.halfLength*2+.55,palette.court,0,1,false,undefined,'court');this.add('box',-8.8,.02,0,6.3,.05,18.5,'#f8ead6',0,1,false,undefined,'stone');this.add('box',8.9,.02,0,6.0,.05,18.5,'#f5e6d2',0,1,false,undefined,'stone');
     for(let z=-8;z<=8;z+=2)this.add('box',-8.8,.051,z,6.0,.012,.025,'#dfc8ae',0,.30,true);
     for(let x=-11;x<=-6;x+=1.5)this.add('box',x,.052,0,.022,.012,18.1,'#e4ceb7',0,.22,true);
     // Court lines.
     const line=(x:number,z:number,w:number,d:number)=>this.add('box',x,.085,z,w,.026,d,palette.line);
-    line(1,0,8.5,.07);line(-3.25,0,.07,12);line(5.25,0,.07,12);line(1,-6,8.5,.07);line(1,6,8.5,.07);line(1,-3.7,8.5,.06);line(1,3.7,8.5,.06);line(1,0,.055,7.4);
+    for(const sign of [-1,1]){line(COURT.centerX+sign*COURT.doublesHalfWidth,0,.045,COURT.halfLength*2);line(COURT.centerX+sign*COURT.singlesHalfWidth,0,.045,COURT.halfLength*2);line(COURT.centerX,sign*COURT.halfLength,COURT.doublesHalfWidth*2,.055);line(COURT.centerX,sign*COURT.serviceDistance,COURT.singlesHalfWidth*2,.045);}
+    line(COURT.centerX,0,.045,COURT.serviceDistance*2);
     // Fine net, bound tape and anchored tension hardware are cached in four
     // material batches; their top follows the actual ball collision plane.
-    line(1,-5.88,.065,.18);line(1,5.88,.065,.18);
+    line(COURT.centerX,-COURT.halfLength+.10,.045,.20);line(COURT.centerX,COURT.halfLength-.10,.045,.20);
 
     // Statement window: layered panes, trim, soft curtains and a rounded top hint.
     this.rb(-1.3,2.42,-9.50,5.1,2.55,.06,'#a9d8d7',0,.78,true,undefined,'glass');this.add('sphere',-1.3,3.38,-9.47,5.0,1.75,.09,'#c0e0dc',0,.58,true,undefined,'glass');

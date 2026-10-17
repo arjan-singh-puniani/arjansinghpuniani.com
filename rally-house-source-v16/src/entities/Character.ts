@@ -1,3 +1,4 @@
+import {RACKET,RACKET_FRAME,RACKET_BONES} from '../animation/RacketGeometry.js';
 import {CHAMPIONSHIP_TUNING} from '../tennis/ChampionshipTuning.js';
 import {ActingState,type ReactionName} from '../animation/ActingState.js';
 import {WalkCycle} from '../animation/WalkCycle.js';
@@ -428,12 +429,12 @@ export class Character {
     }
     // Racket constraint: the hand owns the grip. At contact, solve the hand backwards from the requested sweet spot.
     const racketForward=Vec3.sub(this.outgoingTarget??this.worldLocal(0,1,2),this.position);racketForward.y=0;if(racketForward.len()<.001)racketForward.set(Math.sin(this.yaw),0,Math.cos(this.yaw));racketForward.normalize();
-    const racketRight=new Vec3(racketForward.z,0,-racketForward.x);let headOffset=Vec3.add(new Vec3(0,.34,0),racketForward.clone().scale(.18));
-    if(state==='serve')headOffset=Vec3.add(new Vec3(0,.42,0),racketForward.clone().scale(.10));
-    if(state==='volley')headOffset=Vec3.add(new Vec3(0,.31,0),racketForward.clone().scale(.21));
+    const racketRight=new Vec3(racketForward.z,0,-racketForward.x);let headOffset=Vec3.add(new Vec3(0,.425,0),racketForward.clone().scale(.225));
+    if(state==='serve')headOffset=Vec3.add(new Vec3(0,.525,0),racketForward.clone().scale(.125));
+    if(state==='volley')headOffset=Vec3.add(new Vec3(0,.3875,0),racketForward.clone().scale(.2625));
     if(shot&&this.contactTarget){const w=bell(sp-contact,.11);const desiredHand=Vec3.sub(this.contactTarget,headOffset);handR=blendVec(handR,desiredHand,w);if(state==='swingBackhand'){const secondGrip=Vec3.add(handR,racketForward.clone().scale(-.08)).add(new Vec3(0,.04,0));handL=blendVec(handL,secondGrip,clamp(w*.90+.18,0,1));}}
-    const racketGrip=handR.clone();const racketHandleTop=Vec3.add(racketGrip,racketForward.clone().scale(.18)).add(new Vec3(0,.12,0));const racketCenter=Vec3.add(racketGrip,headOffset);
-    let racketRot=new Vec3(.02,Math.atan2(racketForward.x,racketForward.z),0);if(state==='swingForehand')racketRot=new Vec3(.10,torsoYaw,-.32+sp*.68);else if(state==='swingBackhand')racketRot=new Vec3(-.09,torsoYaw,.34-sp*.58);else if(state==='serve')racketRot=new Vec3(.46-sp*.58,torsoYaw,.36-sp*.72);else if(state==='volley')racketRot=new Vec3(.04,torsoYaw,-.12);const vib=this.racketVibration*Math.sin(this.animTime*62)*.045;racketRot.z+=vib;racketRot.x+=vib*.35;
+    const racketGrip=handR.clone();const racketCenter=Vec3.add(racketGrip,headOffset);
+    let racketRot=new Vec3(.02,Math.atan2(racketForward.x,racketForward.z),0);if(state==='swingForehand')racketRot=new Vec3(.10,torsoYaw,-.32+sp*.68);else if(state==='swingBackhand')racketRot=new Vec3(-.09,torsoYaw,.34-sp*.58);else if(state==='serve')racketRot=new Vec3(.46-sp*.58,torsoYaw,.36-sp*.72);else if(state==='volley')racketRot=new Vec3(.04,torsoYaw,-.12);const vib=this.racketVibration*Math.sin(this.animTime*62)*.045;racketRot.z+=vib;racketRot.x+=vib*.35;const racketHandleTop=Vec3.add(racketCenter,rotateEulerVector(new Vec3(0,RACKET.handleTopY,0),racketRot));
 
     const hipHalf=this.spec.presentation==='feminine'?.175:.165;const hipL=this.worldLocal(-hipHalf+pelvisShiftX,.76+baseY-knee,pelvisShiftZ,hipYaw),hipR=this.worldLocal(hipHalf+pelvisShiftX,.76+baseY-knee,pelvisShiftZ,hipYaw);
     if(moving&&this.spec.appearance==='human'){const roll=Math.sin(this.gaitPhase)*.006;hipL.y+=roll;hipR.y-=roll;}
@@ -526,14 +527,14 @@ export class Character {
     const relax=0;
     const bones=skinMatrices(rigFromPose(pose,p,this.yaw,relax));const skinRoot={position:new Vec3(p.x,0,p.z),rotation:new Vec3(0,this.yaw,0),boneMatrices:bones,poseRig:true};
     const torsoSkin=athlete?(feline?CHARACTER_SKIN.taylorDress:taylor?HUMAN_TENNIS_SKIN.dress:feminine?ATHLETE_WARDROBE.bodice:ATHLETE_WARDROBE.top):this.spec.presentation==='feminine'?CHARACTER_SKIN.feminineTop:CHARACTER_SKIN.top;
-    const skinMaterial=human?'humanSkin':'skin';
-    m.push({...skinRoot,skin:torsoSkin,color:this.spec.shirt,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:athlete?(human&&!feminine?ATHLETE_WARDROBE.legs:CHARACTER_SKIN.taylorLegs):CHARACTER_SKIN.pants,color:this.spec.skin,material:skinMaterial} as SkinnedMesh,{...skinRoot,skin:athlete?(feminine?CHARACTER_SKIN.taylorArms:ATHLETE_WARDROBE.arms):CHARACTER_SKIN.arms,color:this.spec.skin,material:skinMaterial} as SkinnedMesh);
+    const skinMaterial=human?'humanSkin':'skin',garmentMaterial=human?'performanceKnit':'fabric';
+    m.push({...skinRoot,skin:torsoSkin,color:this.spec.shirt,material:garmentMaterial} as SkinnedMesh,{...skinRoot,skin:athlete?(human&&!feminine?ATHLETE_WARDROBE.legs:CHARACTER_SKIN.taylorLegs):CHARACTER_SKIN.pants,color:this.spec.skin,material:skinMaterial} as SkinnedMesh,{...skinRoot,skin:athlete?(feminine?CHARACTER_SKIN.taylorArms:ATHLETE_WARDROBE.arms):CHARACTER_SKIN.arms,color:this.spec.skin,material:skinMaterial} as SkinnedMesh);
     if(feline)m.push({...skinRoot,skin:CHARACTER_SKIN.taylorNeckline,color:TAYLOR_PALETTE.indigo,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorDressEdging,color:'#f6dc7d',material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorTunicMark,color:'#b69a2a',material:'toon',unlit:true} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorBoots,color:TAYLOR_PALETTE.indigo,material:'fabric'} as SkinnedMesh,{...skinRoot,skin:CHARACTER_SKIN.taylorGloves,color:TAYLOR_PALETTE.indigo,material:'fabric'} as SkinnedMesh);
     else if(human){
       if(feminine){
-        if(!taylor)m.push({...skinRoot,skin:ATHLETE_WARDROBE.skirt,color:design.bottom,material:'fabric'} as SkinnedMesh);
-        m.push({...skinRoot,skin:HUMAN_TENNIS_SKIN.yoke,color:this.spec.skin,material:'humanSkin'} as SkinnedMesh,{...skinRoot,skin:HUMAN_TENNIS_SKIN.trim,color:this.spec.accent??'#cedb68',material:'fabric'} as SkinnedMesh,{...skinRoot,skin:HUMAN_TENNIS_SKIN.seams,color:mixHex(this.spec.shirt,'#b7cced',.30),material:'fabric'} as SkinnedMesh);
-      }else m.push({...skinRoot,skin:ATHLETE_WARDROBE.shorts,color:design.bottom,material:'fabric'} as SkinnedMesh);
+        if(!taylor)m.push({...skinRoot,skin:ATHLETE_WARDROBE.skirt,color:design.bottom,material:garmentMaterial} as SkinnedMesh);
+        m.push({...skinRoot,skin:HUMAN_TENNIS_SKIN.yoke,color:this.spec.skin,material:'humanSkin'} as SkinnedMesh,{...skinRoot,skin:HUMAN_TENNIS_SKIN.trim,color:this.spec.accent??'#cedb68',material:'fabric'} as SkinnedMesh,{...skinRoot,skin:HUMAN_TENNIS_SKIN.seams,color:mixHex(this.spec.shirt,'#b7cced',.15),material:'fabric'} as SkinnedMesh);
+      }else m.push({...skinRoot,skin:ATHLETE_WARDROBE.shorts,color:design.bottom,material:garmentMaterial} as SkinnedMesh);
       m.push({...skinRoot,skin:feminine?CHARACTER_SKIN.taylorBoots:ATHLETE_WARDROBE.calves,color:this.spec.skin,material:'humanSkin'} as SkinnedMesh,{...skinRoot,skin:feminine?CHARACTER_SKIN.taylorSocks:ATHLETE_WARDROBE.socks,color:'#f3f1e8',material:'fabric'} as SkinnedMesh,{...skinRoot,skin:feminine?CHARACTER_SKIN.taylorWristband:ATHLETE_WARDROBE.wristband,color:this.spec.accent??'#cedb68',material:'fabric'} as SkinnedMesh);
     }else {
       m.push({kind:'sphere',position:torsoCenter.clone().add(new Vec3(0,.025,0)),rotation:new Vec3(0,torsoYaw,0),scale:new Vec3(this.spec.presentation==='feminine'?.53:.57,.68,.40),color:this.spec.shirt,material:'fabric'});
@@ -545,7 +546,7 @@ export class Character {
     const leftShoePitch=pose.walking&&!this.leftFootLock?clamp(-pose.gait*.18,-.18,.18):0,rightShoePitch=pose.walking&&!this.rightFootLock?clamp(pose.gait*.18,-.18,.18):0;
     const leftShoeYaw=pose.walking?this.walkCycle.yaws[0]:this.yaw,rightShoeYaw=pose.walking?this.walkCycle.yaws[1]:this.yaw;
     const shoeColor=feline?this.spec.skin:this.spec.shoe??'#fff8ee',soleColor=mixHex(shoeColor,'#ffffff',.62);
-    if(athlete){for(const [foot,pitch,yaw] of [[footL,leftShoePitch,leftShoeYaw],[footR,rightShoePitch,rightShoeYaw]] as const)m.push(...taylorFootMeshes(foot,pitch,yaw,feline?undefined:this.spec.shoe,feline?undefined:'#b5bcb6'));}
+    if(athlete){for(const [foot,pitch,yaw] of [[footL,leftShoePitch,leftShoeYaw],[footR,rightShoePitch,rightShoeYaw]] as const)m.push(...taylorFootMeshes(foot,pitch,yaw,feline?undefined:this.spec.shoe,feline?undefined:'#b5bcb6',human));}
     else {
     m.push({kind:'roundBox',position:footL,rotation:new Vec3(leftShoePitch,leftShoeYaw,0),scale:new Vec3(.29,.135,.43),color:shoeColor,material:'fabric'},{kind:'roundBox',position:footR,rotation:new Vec3(rightShoePitch,rightShoeYaw,0),scale:new Vec3(.29,.135,.43),color:shoeColor,material:'fabric'});
     m.push({kind:'roundBox',position:new Vec3(footL.x,footL.y-.055,footL.z),rotation:new Vec3(leftShoePitch,leftShoeYaw,0),scale:new Vec3(.30,.055,.445),color:soleColor,material:'fabric'},{kind:'roundBox',position:new Vec3(footR.x,footR.y-.055,footR.z),rotation:new Vec3(rightShoePitch,rightShoeYaw,0),scale:new Vec3(.30,.055,.445),color:soleColor,material:'fabric'});
@@ -639,36 +640,36 @@ export class Character {
       if(this.spec.avatar==='taylor')m.push({kind:'sphere',position:charm,scale:new Vec3(.10,.12,.035),color:'#50b8b4',material:'ceramic'});
     }
     if((this.matchCompetitor||this.spec.id!=='nia')&&(pose.shot||this.state==='ready'||this.state==='shuffle'||this.socialGesture==='inspect'&&!this.racketStowed)&&!this.racketStowed&&this.state!=='drink'&&!this.propKind){
-      m.push(this.limb(racketGrip,racketHandleTop,.048,'#705747'));
+      m.push(this.limb(racketGrip,racketHandleTop,.035,'#4b514e'));
       // One readable frame, then an actual string bed. The old second torus read as a hollow ring.
-      m.push({kind:'torus',position:racketCenter,rotation:racketRot,scale:new Vec3(.88,1.10,.62),color:this.spec.accent??'#e0c474',material:'metal'});
-      m.push({kind:'sphere',position:racketCenter,rotation:racketRot,scale:new Vec3(.61,.79,.034),color:'#edf4e7',alpha:.20,unlit:true,noShadow:true});
+      m.push({skin:RACKET_FRAME,boneMatrices:RACKET_BONES,position:racketCenter,rotation:racketRot,color:this.spec.accent??'#e0c474',material:'metal'});
+      for(const side of [-1,1])m.push({...this.limb(racketHandleTop,Vec3.add(racketCenter,rotateEulerVector(new Vec3(side*.115,-.175,0),racketRot)),.017,this.spec.accent??'#e0c474'),material:'metal'});
       // Fixed ends and a yielding middle make impact read as a string bed,
       // rather than a solid paddle. Only a confirmed contact loads the strings.
       const depth=this.racketStringOffset();
       const stringColor=this.racketImpactAge<.10?'#fffbd6':'#d8e9dc';
       const worldPoint=(x:number,y:number,z:number)=>Vec3.add(racketCenter,rotateEulerVector(new Vec3(x,y,z),racketRot));
       const stringHalf=(a:Vec3,b:Vec3)=>{
-        const segment=this.limb(a,b,.014,stringColor);
+        const segment=this.limb(a,b,.0045,stringColor);
         segment.id='racket-string';
         segment.unlit=true;
         segment.noShadow=true;
         m.push(segment);
       };
-      for(const x of [-.24,-.16,-.08,0,.08,.16,.24]){
-        const halfHeight=.44*Math.sqrt(1-(x/.32)**2);
-        const middle=worldPoint(x,0,depth*(1-(x/.32)**2));
+      for(const x of [-.12,-.08,-.04,0,.04,.08,.12]){
+        const halfHeight=RACKET.stringHalfHeight*Math.sqrt(1-(x/RACKET.stringHalfWidth)**2);
+        const middle=worldPoint(x,0,depth*(1-(x/RACKET.stringHalfWidth)**2));
         stringHalf(worldPoint(x,-halfHeight,0),middle);
         stringHalf(middle,worldPoint(x,halfHeight,0));
       }
-      for(const y of [-.36,-.24,-.12,0,.12,.24,.36]){
-        const halfWidth=.32*Math.sqrt(1-(y/.46)**2);
-        const middle=worldPoint(0,y,depth*(1-(y/.46)**2));
+      for(const y of [-.18,-.12,-.06,0,.06,.12,.18]){
+        const halfWidth=RACKET.stringHalfWidth*Math.sqrt(1-(y/RACKET.stringHalfHeight)**2);
+        const middle=worldPoint(0,y,depth*(1-(y/RACKET.stringHalfHeight)**2));
         stringHalf(worldPoint(-halfWidth,y,0),middle);
         stringHalf(middle,worldPoint(halfWidth,y,0));
       }
       // A tiny butt cap makes the hand-to-racket constraint visually obvious at close zoom.
-      m.push({kind:'cylinder',position:racketGrip,rotation:new Vec3(Math.PI/2,this.yaw,0),scale:new Vec3(.075,.10,.075),color:'#44372f',material:'fabric'});
+      m.push({kind:'cylinder',position:racketGrip,rotation:new Vec3(Math.PI/2,this.yaw,0),scale:new Vec3(.045,.065,.045),color:'#44372f',material:'fabric'});
     }
     const propHandR=this.propKind&&this.propWanted&&this.propAge<.4&&this.propAnchor?this.propAnchor:handR,propHandL=this.propKind&&this.propWanted&&this.propAge<.4&&this.propAnchor?this.propAnchor:handL;
     if(this.propKind==='wateringCan'){const pour=smoothstep(.8,1.5,this.propAge),can=Vec3.add(propHandR,this.localVector(0,.055,-.13));m.push({kind:'cylinder',position:can,rotation:new Vec3(.28*pour,this.yaw,0),scale:new Vec3(.24,.25,.24),color:'#769c92',material:'metal'},{kind:'cone',position:Vec3.add(can,this.localVector(0,.02,.17)),rotation:new Vec3(.95+.25*pour,this.yaw,0),scale:new Vec3(.08,.27,.08),color:'#769c92',material:'metal'});}

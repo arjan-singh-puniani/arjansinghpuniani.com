@@ -22,29 +22,33 @@ function radius(y:number):[number,number]{
 }
 const gaussian=(x:number,y:number,cx:number,cy:number,rx:number,ry:number)=>Math.exp(-(((x-cx)/rx)**2)-((y-cy)/ry)**2);
 function relief(x:number,y:number){
- return .011*gaussian(x,y,0,.004,.012,.058)+.024*gaussian(x,y,0,-.034,.016,.016)
- +.006*gaussian(x,y,-.073,-.028,.025,.028)+.006*gaussian(x,y,.073,-.028,.025,.028)
+ return .012*gaussian(x,y,0,.005,.012,.055)+.020*gaussian(x,y,0,-.033,.017,.017)
+ +.009*gaussian(x,y,-.070,-.026,.027,.025)+.009*gaussian(x,y,.070,-.026,.027,.025)
  -.006*gaussian(x,y,-.048,.018,.030,.015)-.006*gaussian(x,y,.048,.018,.030,.015)
- +.004*gaussian(x,y,0,-.095,.034,.022);
+ +.004*gaussian(x,y,-.047,.049,.032,.013)+.004*gaussian(x,y,.047,.049,.032,.013)
+ -.003*gaussian(x,y,0,-.061,.008,.011)+.004*gaussian(x,y,0,-.086,.034,.022)
+ +.006*gaussian(x,y,0,-.131,.030,.018)-.002*gaussian(x,y,0,-.111,.024,.008);
 }
 export function humanFaceDepth(x:number,y:number){const [rx,rz]=radius(y);return rz*Math.sqrt(Math.max(0,1-(x/Math.max(.00001,rx))**2))+relief(x,y);}
-const face=surface('taylor-human-sculpted-face-v1',tri=>{
- const at=(r:number,i:number):Point=>{const y=-.177+r/48*.352,[rx,rz]=radius(y),angle=i/64*Math.PI*2,x=Math.sin(angle)*rx,c=Math.cos(angle);return r===0||r===48?[0,y,0]:[x,y,c*rz+(c>0?relief(x,y)*Math.pow(c,6):0)];};
+function faceSurface(masculine=false){return surface(masculine?'athlete-human-masculine-jaw-v1':'taylor-human-sculpted-face-v2',tri=>{
+ const at=(r:number,i:number):Point=>{const y=-.177+r/48*.352,[rx,rz]=radius(y),angle=i/64*Math.PI*2,x=Math.sin(angle)*rx*(masculine?1+.12*(1-smoothstep(-.17,-.04,y)):1),c=Math.cos(angle);return r===0||r===48?[0,y,0]:[x,y,c*rz+(c>0?relief(x,y)*Math.pow(c,6):0)];};
  for(let r=0;r<48;r++)for(let i=0;i<64;i++){const a=at(r,i),b=at(r,i+1),c=at(r+1,i+1),d=at(r+1,i);tri(a,b,c);tri(a,c,d);}
-});
+});}
+const face=faceSurface(),masculineFace=faceSurface(true);
+export const HUMAN_FACE_VARIANTS={masculineFace};
 
-const eyeY=.018,eyeX=.048,eyeWidth=.028,eyeHeight=.0095;
+const eyeY=.018,eyeX=.048,eyeWidth=.026,eyeHeight=.0080;
 const aperture=(u:number)=>Math.pow(Math.max(0,1-u*u),.72);
 const eyePoint=(x:number,y:number,offset:number):Point=>[x,y,humanFaceDepth(x,y)+offset];
 function eyePatch(id:string,shape:(u:number,v:number,side:number)=>[number,number],offset:number){return surface(id,tri=>{
- for(const side of [-1,1])for(let r=0;r<6;r++)for(let i=0;i<40;i++){
-  const at=(row:number,col:number):Point=>{const angle=col/40*Math.PI*2,[x,y]=shape(Math.cos(angle)*row/6,Math.sin(angle)*row/6,side);return eyePoint(x,y,offset);};
+ for(const side of [-1,1])for(let r=0;r<5;r++)for(let i=0;i<32;i++){
+  const at=(row:number,col:number):Point=>{const angle=col/32*Math.PI*2,[x,y]=shape(Math.cos(angle)*row/5,Math.sin(angle)*row/5,side);return eyePoint(x,y,offset+.0012*(1-(row/5)**2));};
   const a=at(r,i),b=at(r+1,i),c=at(r+1,i+1),d=at(r,i+1);tri(a,b,c);tri(a,c,d);
  }
 },false);}
-const eyeWhite=eyePatch('taylor-human-almond-sclera-v1',(u,v,side)=>[side*eyeX+u*eyeWidth,eyeY+v*eyeHeight*aperture(u)+u*side*.002],.0035);
-const iris=eyePatch('taylor-human-iris-v2',(u,v,side)=>[side*eyeX+u*.0092,eyeY+v*.0092],.0052);
-const pupil=eyePatch('taylor-human-pupil-v2',(u,v,side)=>[side*eyeX+u*.0042,eyeY+v*.0070],.0062);
+const eyeWhite=eyePatch('taylor-human-convex-sclera-v2',(u,v,side)=>[side*eyeX+u*eyeWidth,eyeY+v*eyeHeight*aperture(u)+u*side*.002],.0040);
+const iris=eyePatch('taylor-human-iris-v3',(u,v,side)=>[side*eyeX+u*.0073,eyeY+v*.0073],.0060);
+const pupil=eyePatch('taylor-human-round-pupil-v3',(u,v,side)=>[side*eyeX+u*.0034,eyeY+v*.0034],.0075);
 
 function ribbon(id:string,path:(t:number)=>[number,number],width:number|((t:number)=>number),offset:number){return surface(id,tri=>{
  for(let i=0;i<36;i++){
@@ -52,8 +56,9 @@ function ribbon(id:string,path:(t:number)=>[number,number],width:number|((t:numb
   const a=at(i,-1),b=at(i+1,-1),c=at(i+1,1),d=at(i,1);tri(a,b,c);tri(a,c,d);
  }
 },false);}
-const lids=[-1,1].map(side=>ribbon(`taylor-human-lid-${side}-v1`,t=>{const u=t*2-1;return [side*eyeX+u*eyeWidth,eyeY+eyeHeight*aperture(u)+u*side*.002];},.0012,.0047));
-const lowerLids=[-1,1].map(side=>ribbon(`taylor-human-lower-lid-${side}-v1`,t=>{const u=t*2-1;return [side*eyeX+u*eyeWidth,eyeY-eyeHeight*aperture(u)+u*side*.002];},.00065,.0048));
+const lids=[-1,1].map(side=>ribbon(`taylor-human-lid-${side}-v1`,t=>{const u=t*2-1;return [side*eyeX+u*eyeWidth,eyeY+eyeHeight*aperture(u)+u*side*.002];},.0009,.0052));
+const lowerLids=[-1,1].map(side=>ribbon(`taylor-human-lower-lid-${side}-v1`,t=>{const u=t*2-1;return [side*eyeX+u*eyeWidth,eyeY-eyeHeight*aperture(u)+u*side*.002];},.00075,.0052));
+const lidFolds=[-1,1].map(side=>ribbon(`taylor-human-orbital-fold-${side}-v1`,t=>{const u=t*2-1;return [side*eyeX+u*eyeWidth,eyeY+.0045+eyeHeight*aperture(u)+u*side*.002];},t=>.0006*Math.sin(t*Math.PI),.0020));
 const brows=[-1,1].map(side=>ribbon(`taylor-human-brow-${side}-v2`,t=>[side*(.020+t*.064),.045+.009*Math.sin(t*Math.PI)-t*.002],t=>.0023*(.35+.65*Math.sin(t*Math.PI)),.0035));
 function lips(id:string,smile:number,upper:boolean){return surface(id,tri=>{
  const at=(i:number,j:number):Point=>{const u=-1+i/40*2,t=j/5,x=u*.030,envelope=Math.pow(Math.max(0,1-u*u),.65),seam=-.088+smile*u*u*.007,height=upper?(.005+ .003*Math.exp(-(((Math.abs(u)-.3)/.2)**2))):.009,y=seam+(upper?1:-1)*height*envelope*t,z=humanFaceDepth(x,y)+.003+.005*envelope*Math.sin(Math.PI*t);return [x,y,z];};
@@ -73,13 +78,13 @@ const mouthGap=surface('taylor-human-mouth-opening-v1',tri=>{
  for(let r=0;r<4;r++)for(let i=0;i<32;i++){const a=point(r,i),b=point(r+1,i),c=point(r+1,i+1),d=point(r,i+1);tri(a,b,c);tri(a,c,d);}
 },false);
 
-const cap=surface('taylor-human-swept-hair-cap-v1',tri=>{
- const at=(r:number,i:number):Point=>{const angle=i/64*Math.PI*2,front=(1+Math.cos(angle))*.5,edge=-.046+.129*Math.pow(front,3)+.006*Math.sin(angle*2),y=edge+(.202-edge)*r/24,phi=clamp((y+.009)/.211,0,1),wave=r===24?0:Math.sqrt(Math.max(0,1-phi*phi)),x=Math.sin(angle)*.122*wave,z=Math.cos(angle)*.110*wave-.011;return [x,y,z];};
- for(let r=0;r<24;r++)for(let i=0;i<64;i++){const a=at(r,i),b=at(r,i+1),c=at(r+1,i+1),d=at(r+1,i);tri(a,b,c);tri(a,c,d);}
+const cap=surface('taylor-human-groomed-hair-cap-v2',tri=>{
+ const at=(r:number,i:number):Point=>{const angle=i/64*Math.PI*2,front=(1+Math.cos(angle))*.5,edge=-.046+.129*Math.pow(front,3)+.006*Math.sin(angle*2),y=edge+(.202-edge)*r/20,phi=clamp((y+.009)/.211,0,1),wave=r===20?0:Math.sqrt(Math.max(0,1-phi*phi)),ridge=.00065*Math.sin(angle*16+r/20*5)*wave,x=Math.sin(angle)*(.122*wave+ridge),z=Math.cos(angle)*(.110*wave+ridge)-.011;return [x,y,z];};
+ for(let r=0;r<20;r++)for(let i=0;i<64;i++){const a=at(r,i),b=at(r,i+1),c=at(r+1,i+1),d=at(r+1,i);tri(a,b,c);tri(a,c,d);}
 });
 function lock(id:string,points:Point[],radii:number[],rows=40,segments=20){return surface(id,tri=>{
  const sample=(t:number)=>{const u=t*(points.length-1),i=Math.min(points.length-2,Math.floor(u)),v=u-i,a=points[Math.max(0,i-1)],b=points[i],c=points[i+1],d=points[Math.min(points.length-1,i+2)],p=new Vec3(...[0,1,2].map(k=>.5*((2*b[k])+(-a[k]+c[k])*v+(2*a[k]-5*b[k]+4*c[k]-d[k])*v*v+(-a[k]+3*b[k]-3*c[k]+d[k])*v*v*v)) as Point);return {p,r:radii[i]+(radii[i+1]-radii[i])*v};};
- const at=(r:number,i:number):Point=>{const t=r/rows,{p,c,radius}=(()=>{const s=sample(t);return {p:s.p,c:Vec3.sub(sample(Math.min(1,t+.002)).p,sample(Math.max(0,t-.002)).p).normalize(),radius:s.r};})(),z=new Vec3(0,0,1);z.sub(c.clone().scale(Vec3.dot(z,c))).normalize();const x=Vec3.cross(c,z).normalize(),a=i/segments*Math.PI*2,v=p.add(x.scale(Math.cos(a)*radius)).add(z.scale(Math.sin(a)*radius*.72));return [v.x,v.y,v.z];};
+ const at=(r:number,i:number):Point=>{const t=r/rows,{p,c,radius}=(()=>{const s=sample(t);return {p:s.p,c:Vec3.sub(sample(Math.min(1,t+.002)).p,sample(Math.max(0,t-.002)).p).normalize(),radius:s.r};})(),z=new Vec3(0,0,1);z.sub(c.clone().scale(Vec3.dot(z,c))).normalize();const x=Vec3.cross(c,z).normalize(),a=i/segments*Math.PI*2,groove=1+.042*Math.sin(a*8+t*6)*Math.sin(Math.PI*t),v=p.add(x.scale(Math.cos(a)*radius*groove)).add(z.scale(Math.sin(a)*radius*.72*groove));return [v.x,v.y,v.z];};
  for(let r=0;r<rows;r++)for(let i=0;i<segments;i++){const a=at(r,i),b=at(r,i+1),c=at(r+1,i+1),d=at(r+1,i);tri(a,c,b);tri(a,d,c);}
 },true);}
 const ponytail=lock('taylor-human-athletic-ponytail-v2',[[0,.133,-.085],[.018,.091,-.159],[.038,-.015,-.183],[.018,-.134,-.157],[.046,-.267,-.131],[.075,-.349,-.113]],[.030,.039,.036,.030,.021,0]);
@@ -95,28 +100,30 @@ const bob=surface('athlete-sculpted-bob-v1',tri=>{
 export const CAST_HAIR_GEOMETRY={bob};
 export interface HumanHeadOptions {width?:number;height?:number;hair?:string;eye?:string;lip?:string;hairStyle?:'bun'|'ponytail'|'bob'|'crop'|'swept';masculine?:boolean;}
 
-export const HUMAN_TAYLOR_GEOMETRY={face,eyeWhite,iris,pupil,upperLip,lowerLip,smileUpper,smileLower,seam,smileSeam,nostrils,mouthGap,cap,ponytail,sweep,fineSweep,...Object.fromEntries(looseLocks.map((g,i)=>[`looseLock${i}`,g])),...Object.fromEntries(lids.map((g,i)=>[`lid${i}`,g])),...Object.fromEntries(lowerLids.map((g,i)=>[`lowerLid${i}`,g])),...Object.fromEntries(brows.map((g,i)=>[`brow${i}`,g]))};
+export const HUMAN_TAYLOR_GEOMETRY={face,eyeWhite,iris,pupil,upperLip,lowerLip,smileUpper,smileLower,seam,smileSeam,nostrils,mouthGap,cap,ponytail,sweep,fineSweep,...Object.fromEntries(looseLocks.map((g,i)=>[`looseLock${i}`,g])),...Object.fromEntries(lids.map((g,i)=>[`lid${i}`,g])),...Object.fromEntries(lowerLids.map((g,i)=>[`lowerLid${i}`,g])),...Object.fromEntries(brows.map((g,i)=>[`brow${i}`,g])),...Object.fromEntries(lidFolds.map((g,i)=>[`lidFold${i}`,g]))};
 
 export function humanTaylorHead(head:Vec3,yaw:number,tilt:number,expression:{smile:number;mouthOpen:number;squint:number;browRaise:number},time:number,skin:string,options:HumanHeadOptions={}):RenderItem[]{
  const out:RenderItem[]=[],right=new Vec3(Math.cos(yaw),0,-Math.sin(yaw)),forward=new Vec3(Math.sin(yaw),0,Math.cos(yaw));
  const width=options.width??1,height=options.height??1,hair=options.hair??'#251e1d',style=options.hairStyle??'ponytail';
  const point=(px:number,py:number,z:number)=>{const x=px*width,y=py*height;return head.clone().add(right.clone().scale(x*Math.cos(tilt)-y*Math.sin(tilt))).add(new Vec3(0,x*Math.sin(tilt)+y*Math.cos(tilt),0)).add(forward.clone().scale(z));};
  const part=(geometry:SkinGeometry,color:string,material:SkinnedMesh['material']='humanSkin',y=0,sy=1,unlit=false)=>out.push({skin:geometry,boneMatrices:bones,position:point(0,y,0),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(width,sy*height,1),color,material,unlit});
- part(face,skin);part(cap,hair,'groomedHair');
+ part(options.masculine?masculineFace:face,skin);part(cap,hair,'groomedHair');
  if(style==='ponytail')part(ponytail,hair,'groomedHair');
  if(style==='bob')part(bob,hair,'groomedHair');
  if(style!=='crop')for(const g of [sweep,fineSweep,...(style==='ponytail'||style==='bob'?looseLocks:[])])part(g,options.hair??'#382820','groomedHair');
  if(style==='bun')out.push({kind:'sphere',position:point(.010,.163,-.119),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(.104*width,.096*height,.102),color:hair,material:'groomedHair'});
  const phase=(time+.47)%3.75,blink=phase<.10?1-smoothstep(0,.10,phase):0,open=clamp(1-blink-expression.squint*.35,.06,1),offset=eyeY*(1-open);
- part(eyeWhite,'#eee9e0','ceramic',offset,open);part(iris,options.eye??'#876641','iris',offset,open);part(pupil,'#231d1c','hair',offset,open,true);
+ part(eyeWhite,'#d8d2c8','ceramic',offset,open);part(iris,options.eye??'#876641','iris',offset,open);part(pupil,'#231d1c','hair',offset,open,true);
  for(const g of lids)part(g,'#34221f','hair',offset,open);
- for(const g of lowerLids)part(g,'#946454','humanSkin',offset,open);
+ for(const g of lowerLids)part(g,skin,'humanSkin',offset,open);
+ for(const g of lidFolds)part(g,skin,'humanSkin');
  part(nostrils,'#8a5141','humanSkin');
- for(const g of brows)part(g,options.hair??'#332420','hair',expression.browRaise*.003-(options.masculine?.018:0),options.masculine?1.4:1);
+ for(const g of brows)part(g,options.hair??'#332420','groomedHair',expression.browRaise*.003-(options.masculine?.009:0),options.masculine?1.15:1);
  const smiling=expression.smile>.3,mouth=clamp(expression.mouthOpen,0,1),gapScale=Math.max(.03,mouth);
- part(mouthGap,'#5a3835','skin',-.088*(1-gapScale),gapScale);part(smiling?smileUpper:upperLip,options.lip??'#a95b62','lip',mouth*.002);part(smiling?smileLower:lowerLip,options.lip??'#be7379','lip',-mouth*.010);part(smiling?smileSeam:seam,'#704943','skin',-mouth*.004);
+ const lipHeight=options.masculine?.72:1,lipOffset=-.088*(1-lipHeight);
+ part(mouthGap,'#5a3835','skin',-.088*(1-gapScale),gapScale);part(smiling?smileUpper:upperLip,options.lip??'#a95b62','lip',lipOffset+mouth*.002,lipHeight);part(smiling?smileLower:lowerLip,options.lip??'#be7379','lip',lipOffset-mouth*.010,lipHeight);part(smiling?smileSeam:seam,'#704943','skin',lipOffset-mouth*.004,lipHeight);
  for(const side of [-1,1]){
-  const x=side*eyeX-.001,y=eyeY+.002;out.push({kind:'sphere',position:point(x,eyeY+(y-eyeY)*open,humanFaceDepth(x,y)+.008),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(.003,.003*open,.0015),color:'#fff5dc',unlit:true,noShadow:true});
+  const x=side*eyeX-.001,y=eyeY+.002;out.push({kind:'sphere',position:point(x,eyeY+(y-eyeY)*open,humanFaceDepth(x,y)+.0095),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(.0018,.0018*open,.0010),color:'#fff5dc',unlit:true,noShadow:true});
   out.push({kind:'sphere',position:point(side*.110,-.026,-.007),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(.027,.058,.037),color:skin,material:'humanSkin'});
  }
  if(style==='ponytail'||style==='bun')out.push({kind:'torus',position:point(.003,style==='bun'?.163:.123,style==='bun'?-.119:-.105),rotation:new Vec3(Math.PI/2,yaw,tilt),scale:new Vec3(.066,.057,.012),color:'#cedb68',material:'fabric'});

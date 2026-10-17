@@ -7,20 +7,22 @@ const engine=process.env.QA_ENGINE??'chromium',out=process.env.QA_OUT??`evidence
 fs.mkdirSync(out,{recursive:true});
 const wk=path.join(homedir(),'Library/Caches/ms-playwright/webkit-2359/pw_run.sh');
 const browser=await {chromium,firefox,webkit}[engine].launch(engine==='chromium'?{...browserOptions,args:['--use-angle=metal']}:{headless:true,...engine==='webkit'&&fs.existsSync(wk)?{executablePath:wk}:{}});
-const page=await browser.newPage({viewport:{width:1440,height:900}}),report={engine,errors:[],http:[],stages:[],cycles:[]};
+const width=Number(process.env.QA_WIDTH??1440),height=width===390?844:900;
+const page=await browser.newPage({viewport:{width,height}}),report={engine,errors:[],http:[],stages:[],cycles:[]};
 page.on('pageerror',e=>report.errors.push(e.message));page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});page.on('response',r=>{if(r.status()>=400)report.http.push([r.status(),r.url()]);});
 const audit=async label=>{
  const data=await page.evaluate(label=>{
   const g=window.__rh.game,q=window.qaContinuity,items=q.items??[],near=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z)<1e-5;
   return {label,world:g.world===q.world,objects:g.world.objects.length===q.objects.length&&g.world.objects.every((o,i)=>o===q.objects[i]),cast:g.characters.length===q.cast.length&&g.characters.every((c,i)=>c===q.cast[i])&&g.player===q.player,
    transforms:JSON.stringify(g.world.meshes)===q.transforms,placements:JSON.stringify(g.world.placements)===q.placements,net:g.world.courtDetails===q.net&&q.net.every(m=>items.includes(m)),
-   staticVisible:g.world.meshes.every(m=>items.some(n=>n.position===m.position&&n.scale===m.scale)),npcBodies:g.characters.filter(c=>items.some(m=>m.skin?.id==='taylor-human-sculpted-face-v1'&&near(m.position,c.analysisPose().head))).length,
+   staticVisible:g.world.meshes.every(m=>items.some(n=>n.position===m.position&&n.scale===m.scale)),npcBodies:g.characters.filter(c=>items.some(m=>['taylor-human-sculpted-face-v2','athlete-human-masculine-jaw-v1'].includes(m.skin?.id)&&near(m.position,c.analysisPose().head))).length,
    artificialCrowd:items.filter(m=>m.id==='spectatorRow'||m.skin?.id.includes('championship-gallery')).length,courtLayers:items.filter(m=>m.id==='court').length,expectedCourtLayers:g.world.meshes.filter(m=>m.id==='court').length+q.net.filter(m=>m.id==='court').length,
    minute:g.clock.minutes,weather:g.world.weather,lighting:JSON.stringify(g.world.lighting(g.clock.minutes,1))===JSON.stringify(g.world.lighting(g.clock.minutes,0)),
    labState:JSON.stringify(g.world.identity.state('performanceLab'))===q.labState,activity:q.activity?{same:g.activities.active.includes(q.activity)||g.activities.history.some(a=>a.id===q.activity.id),phase:q.activity.phase,elapsed:q.activity.elapsed}:null,
-   phase:g.championship.phase,lab:g.performanceLab.active,gl:g.renderer.gl.getError()};
+   phase:g.championship.phase,lab:g.performanceLab.active,framing:label.startsWith('C ')?{foot:g.camera.project(g.player.analysisPose().footL),head:g.camera.project(g.player.analysisPose().head),width:innerWidth,height:innerHeight}:null,gl:g.renderer.gl.getError()};
  },label);
  for(const key of ['world','objects','cast','transforms','placements','net','staticVisible','lighting','labState'])assert(data[key],`${label}: ${key}`);
+ if(data.framing){const {foot,head,width,height}=data.framing;assert(foot.x>12&&foot.x<width-12&&foot.y<height-45&&head.y>45,'Full player body stays within match viewport');}
  assert.equal(data.npcBodies,4,`${label}: all real club members rendered`);assert.equal(data.artificialCrowd,0);assert.equal(data.courtLayers,data.expectedCourtLayers);assert.equal(data.gl,0);report.stages.push(data);return data;
 };
 try{

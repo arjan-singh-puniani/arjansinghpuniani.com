@@ -1,3 +1,4 @@
+import {COURT} from '../tennis/CourtGeometry.js';
 import {Vec3,clamp} from '../rendering/Math3D.js';
 import type {Mesh,RenderItem} from '../rendering/Renderer.js';
 import type {CameraController} from '../rendering/CameraController.js';
@@ -227,7 +228,7 @@ export class PerformanceLab {
         const history:RenderItem[]=[];
         // Sampling history only. Gaussian kernels, fixed world registration, no airborne projection.
         let peak=0;const cells:{x:number;z:number;v:number}[]=[];
-        for(let x=-3;x<=5;x+=.8)for(let z=-6;z<=6;z+=.8){let v=0;for(let i=0;i<frames.length;i+=4){const p=frames[i].root;v+=Math.exp(-((x-p.x)**2+(z-p.z)**2)/.85);}peak=Math.max(peak,v);cells.push({x,z,v});}
+        for(let x=COURT.centerX-COURT.doublesHalfWidth;x<=COURT.centerX+COURT.doublesHalfWidth;x+=.8)for(let z=-COURT.halfLength;z<=COURT.halfLength;z+=.8){let v=0;for(let i=0;i<frames.length;i+=4){const p=frames[i].root;v+=Math.exp(-((x-p.x)**2+(z-p.z)**2)/.85);}peak=Math.max(peak,v);cells.push({x,z,v});}
         for(const c of cells)if(c.v>peak*.08&&peak>0)history.push({kind:'roundBox',position:new Vec3(c.x,COURT_OVERLAY.coverage,c.z),scale:new Vec3(.79,.01,.79),color:c.v>peak*.65?'#dfbd78':'#67b9aa',alpha:.09+.19*c.v/peak,unlit:true,noShadow:true});
         for(let i=4;i<frames.length;i+=4)if(frames[i].time-frames[i-4].time<=.15)history.push(rod(new Vec3(frames[i-4].root.x,COURT_OVERLAY.path,frames[i-4].root.z),new Vec3(frames[i].root.x,COURT_OVERLAY.path,frames[i].root.z),'#b1ded0',.028,.62));
         if(t.clip.kind==='gait')for(let i=1;i<frames.length;i++)for(let foot=0;foot<2;foot++){

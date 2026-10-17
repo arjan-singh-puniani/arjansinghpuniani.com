@@ -1,3 +1,4 @@
+import { COURT } from '../tennis/CourtGeometry.js';
 import { Vec3, clamp } from '../rendering/Math3D.js';
 import { demonstration } from './LabDemonstrations.js';
 import { ReplayTimeline, FOCUS_KEYS, JOINT_KEYS, LIMBS, METRIC_NAMES, jointTriplet, value, summary } from './MotionCapture.js';
@@ -469,8 +470,8 @@ export class PerformanceLab {
                 // Sampling history only. Gaussian kernels, fixed world registration, no airborne projection.
                 let peak = 0;
                 const cells = [];
-                for (let x = -3; x <= 5; x += .8)
-                    for (let z = -6; z <= 6; z += .8) {
+                for (let x = COURT.centerX - COURT.doublesHalfWidth; x <= COURT.centerX + COURT.doublesHalfWidth; x += .8)
+                    for (let z = -COURT.halfLength; z <= COURT.halfLength; z += .8) {
                         let v = 0;
                         for (let i = 0; i < frames.length; i += 4) {
                             const p = frames[i].root;

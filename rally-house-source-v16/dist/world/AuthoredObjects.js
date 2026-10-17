@@ -1,3 +1,4 @@
+import { COURT } from '../tennis/CourtGeometry.js';
 import { Vec3 } from '../rendering/Math3D.js';
 import { ReversibleAssembly } from '../animation/ReversibleAssembly.js';
 import { BallPhysics } from '../tennis/BallPhysics.js';
@@ -25,7 +26,7 @@ export function authorObjectTargets(objects) {
     objects.find(o => o.id === 'bonsai').viewSpot = new Vec3(9.0, 0, 3.0);
     objects.find(o => o.id === 'bonsai').careSpot = new Vec3(10.2, 0, 3.0);
     set('proshop', [9.2, 1.05, -3.4], [2.3, 1.95, 1.3]);
-    set('court', [1, .08, 0], [8.5, .12, 12]);
+    set('court', [COURT.centerX, .08, 0], [COURT.doublesHalfWidth * 2, .12, COURT.halfLength * 2]);
     set('clubBoard', [2.8, 2.58, -9.27], [4.15, 1.18, .32], 'board', [2.8, 2.05, -9.16]);
     objects.find(o => o.id === 'clubBoard').careSpot = new Vec3(2.8, 0, -8.7);
     set('warmup', [-9.3, .15, 1.6], [3.1, .3, 3.9], 'warmup', [-9.3, 1.2, 1.6]);

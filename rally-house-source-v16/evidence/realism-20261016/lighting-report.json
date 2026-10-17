@@ -1,0 +1,99 @@
+{
+  "errors": [],
+  "legacy": [
+    {
+      "minutes": 780,
+      "meanByteDifference": 0,
+      "maxByteDifference": 0,
+      "beforeSHA256": "5cc01ff511e9847438bbe583b3ffadbc10ffc05b3ec6bd9f5bd0e59668cef50f",
+      "afterSHA256": "5cc01ff511e9847438bbe583b3ffadbc10ffc05b3ec6bd9f5bd0e59668cef50f"
+    },
+    {
+      "minutes": 1260,
+      "meanByteDifference": 0,
+      "maxByteDifference": 0,
+      "beforeSHA256": "e15d9e6630e4c0c82201fb8ea687c72ca0c129f366a5847941fb709072f08f7a",
+      "afterSHA256": "e15d9e6630e4c0c82201fb8ea687c72ca0c129f366a5847941fb709072f08f7a"
+    }
+  ],
+  "lighting": [
+    {
+      "name": "day",
+      "minutes": 780,
+      "weather": "clear",
+      "rgba": [
+        178,
+        127,
+        91,
+        255
+      ],
+      "gl": 0,
+      "materials": [
+        null,
+        "performanceKnit",
+        "humanSkin",
+        "fabric",
+        "groomedHair",
+        "ceramic",
+        "iris",
+        "hair",
+        "skin",
+        "lip"
+      ],
+      "drawCalls": 48,
+      "triangles": 42532
+    },
+    {
+      "name": "cloud",
+      "minutes": 780,
+      "weather": "cloudy",
+      "rgba": [
+        176,
+        125,
+        89,
+        255
+      ],
+      "gl": 0,
+      "materials": [
+        null,
+        "performanceKnit",
+        "humanSkin",
+        "fabric",
+        "groomedHair",
+        "ceramic",
+        "iris",
+        "hair",
+        "skin",
+        "lip"
+      ],
+      "drawCalls": 48,
+      "triangles": 42532
+    },
+    {
+      "name": "evening",
+      "minutes": 1260,
+      "weather": "clear",
+      "rgba": [
+        174,
+        119,
+        78,
+        255
+      ],
+      "gl": 0,
+      "materials": [
+        null,
+        "performanceKnit",
+        "humanSkin",
+        "fabric",
+        "groomedHair",
+        "ceramic",
+        "iris",
+        "hair",
+        "skin",
+        "lip"
+      ],
+      "drawCalls": 48,
+      "triangles": 42532
+    }
+  ]
+}

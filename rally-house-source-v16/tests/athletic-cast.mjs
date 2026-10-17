@@ -5,7 +5,7 @@ import {Character,locomotionStyleFor} from '../dist/entities/Character.js';
 import {Navigation} from '../dist/world/Navigation.js';
 import {Vec3} from '../dist/rendering/Math3D.js';
 import {ATHLETE_WARDROBE,skinMatrices,rigFromPose} from '../dist/animation/CharacterSkin.js';
-import {HUMAN_TAYLOR_GEOMETRY,CAST_HAIR_GEOMETRY} from '../dist/animation/TaylorHuman.js';
+import {HUMAN_TAYLOR_GEOMETRY,HUMAN_FACE_VARIANTS,CAST_HAIR_GEOMETRY} from '../dist/animation/TaylorHuman.js';
 import {TAYLOR_BODY} from '../dist/animation/TaylorBody.js';
 import {rayBox} from '../dist/world/ObjectIdentity.js';
 
@@ -15,11 +15,11 @@ for(const [name,g] of [...Object.entries(ATHLETE_WARDROBE),...Object.entries(CAS
  for(let i=0;i<g.positions.length;i+=9){const a=new Vec3(...g.positions.slice(i,i+3)),b=new Vec3(...g.positions.slice(i+3,i+6)),c=new Vec3(...g.positions.slice(i+6,i+9));assert(Vec3.cross(Vec3.sub(b,a),Vec3.sub(c,a)).len()>1e-8,`${name}: no collapsed faces`);}
 }
 const specs=[...memberData,playerSpec('arjan'),playerSpec('taylor')],signatures=new Set();
-const headGeometries=new Set([...Object.values(HUMAN_TAYLOR_GEOMETRY),...Object.values(CAST_HAIR_GEOMETRY)]);
+const headGeometries=new Set([...Object.values(HUMAN_TAYLOR_GEOMETRY),...Object.values(CAST_HAIR_GEOMETRY),...Object.values(HUMAN_FACE_VARIANTS)]);
 let poses=0,maxStretch=1,maxContactError=0;
 for(const spec of specs){
  assert.equal(spec.appearance,'human');const actor=()=>new Character({...spec},new Vec3(),new Navigation([]),{}),c=actor();c.racketStowed=true;for(let i=0;i<180;i++)c.update(1/60);
- const rest=c.analysisPose(),parts=c.meshes(),face=parts.find(m=>m.skin===HUMAN_TAYLOR_GEOMETRY.face);assert(face);assert.deepEqual(face.position,rest.head);
+ const rest=c.analysisPose(),parts=c.meshes(),face=parts.find(m=>m.skin===(spec.presentation==='masculine'?HUMAN_FACE_VARIANTS.masculineFace:HUMAN_TAYLOR_GEOMETRY.face));assert(face);assert.deepEqual(face.position,rest.head);
  const origin=rest.head.clone().add(new Vec3(0,0,4)),direction=new Vec3(0,0,-1);
  assert.equal(rayBox(origin,direction,{centre:new Vec3(0,.95,0),size:new Vec3(.72,1.85,.72)}),null,'Original fixed box misses the taller visible head');
  assert.notEqual(rayBox(origin,direction,c.selectionBounds()),null,'Actual head can be selected with its pose-derived bounds');

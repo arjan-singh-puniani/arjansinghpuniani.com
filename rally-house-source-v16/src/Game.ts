@@ -1,3 +1,4 @@
+import {COURT} from './tennis/CourtGeometry.js';
 import {PhoneCapture} from './analysis/PhoneCapture.js';
 import {deriveActing} from './animation/ActingState.js';
 import {DialogueComposer} from './simulation/DialogueComposer.js';
@@ -337,7 +338,7 @@ export class Game {
       'championship',
       ['player',opponent.id],
       'court',
-      [destinations.courtSouth,destinations.courtNorth],
+      [new Vec3(COURT.centerX,0,COURT.baselineDepth),new Vec3(COURT.centerX,0,-COURT.baselineDepth)],
       `Championship vs ${opponent.spec.name}`,
     );
 

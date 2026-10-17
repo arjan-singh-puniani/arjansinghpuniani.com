@@ -1,3 +1,4 @@
+import { COURT } from './tennis/CourtGeometry.js';
 import { PhoneCapture } from './analysis/PhoneCapture.js';
 import { deriveActing } from './animation/ActingState.js';
 import { DialogueComposer } from './simulation/DialogueComposer.js';
@@ -593,7 +594,7 @@ export class Game {
             return;
         }
         // A challenge reserves the existing court; it cannot interrupt someone else's activity.
-        const activity = this.startActivity('championship', ['player', opponent.id], 'court', [destinations.courtSouth, destinations.courtNorth], `Championship vs ${opponent.spec.name}`);
+        const activity = this.startActivity('championship', ['player', opponent.id], 'court', [new Vec3(COURT.centerX, 0, COURT.baselineDepth), new Vec3(COURT.centerX, 0, -COURT.baselineDepth)], `Championship vs ${opponent.spec.name}`);
         if (!activity) {
             this.ui.toast('The court or this opponent is busy just now. Try again after the current activity.');
             return;
