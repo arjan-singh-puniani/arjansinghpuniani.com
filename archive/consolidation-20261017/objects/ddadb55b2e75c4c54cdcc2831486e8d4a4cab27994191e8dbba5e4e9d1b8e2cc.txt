@@ -1,0 +1,35 @@
+# Validation record
+
+Prepared against GitHub `main` commit `a9f0b9167527ffc221e17285d65c3787509f2b2e` on 2026-09-27.
+
+## Completed here
+
+- Reviewed the prior desktop and mobile renders before this copy pass.
+- Kept the mobile-height fix from the prior package.
+- Removed remaining manifesto, pitch-deck, and overly abstract phrasing from Homepage, Notes, About, Work, Contact, navigation, footer, and profile copy.
+- Removed the inherited abstract About headline.
+- Renamed `Field Notes` to `Notes` in navigation and page framing.
+- Searched the replacement source for common portfolio/AI clichés and the phrases intentionally removed.
+- Replacement TypeScript/TSX files pass syntax transpilation checks.
+- `home.module.css` parses successfully with PostCSS.
+- `apply_portfolio_upgrade.py` compiles with Python.
+- Installer accepts audited GitHub main plus the earlier chat-generated upgrade variants, including the preceding plain-language package.
+- Unknown local changes still cause the installer to stop before writes.
+- Routing/indexing-control files, public runtime assets, and project engines remain untouched.
+
+## Still required before deployment
+
+Run inside the real repository:
+
+```bash
+npm run lint
+npm run typecheck
+npm run test
+npm run build
+```
+
+Then inspect `/`, `/work`, `/notes`, `/about`, and `/contact` at representative mobile and desktop widths.
+
+## Deployment rule
+
+Do not deploy if any of the four repository validation commands fail.

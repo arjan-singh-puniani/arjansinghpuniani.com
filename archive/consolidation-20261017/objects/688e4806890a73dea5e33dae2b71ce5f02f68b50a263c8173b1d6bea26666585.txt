@@ -1,0 +1,418 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+from pathlib import Path
+import shutil, sys, re
+from datetime import datetime
+
+def die(msg: str) -> None:
+    raise RuntimeError(msg)
+
+def find_repo(start: Path) -> Path:
+    for root in [start] + list(start.parents):
+        src = root / "rally-house-source-v16" / "src"
+        if (src / "Game.ts").exists() and (src / "entities" / "Character.ts").exists():
+            return root
+    raise RuntimeError("Run this from inside the Rally House repository/worktree.")
+
+ROOT = find_repo(Path.cwd().resolve())
+SRC = ROOT / "rally-house-source-v16" / "src"
+FILES = {
+    "avatars": SRC / "content" / "PlayerAvatars.ts",
+    "content": SRC / "content" / "content.ts",
+    "character": SRC / "entities" / "Character.ts",
+    "game": SRC / "Game.ts",
+    "everyday": SRC / "simulation" / "EverydayLife.ts",
+    "mind": SRC / "simulation" / "CharacterMind.ts",
+    "ambient": SRC / "simulation" / "AmbientSocialPlanner.ts",
+}
+PACKAGE = ROOT / "rally-house-source-v16" / "package.json"
+TEST = ROOT / "rally-house-source-v16" / "tests" / "cozy-life.mjs"
+
+for name,p in FILES.items():
+    if not p.exists():
+        die(f"Missing expected current source file: {p}")
+
+# Current-v17.3 safety anchors.
+game = FILES["game"].read_text()
+character = FILES["character"].read_text()
+if "private playerWatchingRally=false;" not in game:
+    die("Expected the embodied-spectator version of Rally House (v17.3+) before this patch.")
+if "const stringColor='#c8e1d4';" not in character:
+    die("Expected the readable racket-contact version of Character.ts before this patch.")
+if "racketContactFrame()" not in character:
+    die("Expected current racket-contact helpers before this patch.")
+if "steph" in (FILES["content"].read_text() + FILES["mind"].read_text()):
+    print("Rally House v17.4 Cozy Life appears to be already installed.")
+    sys.exit(0)
+
+stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+backup = ROOT / (".rally-house-v17-4-cozy-life-backup-" + stamp)
+
+def backup_file(p: Path):
+    dst = backup / p.relative_to(ROOT)
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(p, dst)
+
+for p in [*FILES.values(), PACKAGE]:
+    backup_file(p)
+if TEST.exists():
+    backup_file(TEST)
+
+def replace_once(text: str, old: str, new: str, label: str) -> str:
+    n = text.count(old)
+    if n != 1:
+        die(f"{label}: expected exactly one match, found {n}")
+    return text.replace(old, new, 1)
+
+def regex_once(text: str, pattern: str, repl: str, label: str) -> str:
+    out,n = re.subn(pattern,repl,text,count=1,flags=re.S)
+    if n != 1:
+        die(f"{label}: expected exactly one structural match, found {n}")
+    return out
+
+try:
+    # --------------------------------------------------------------
+    # Taylor: human visual direction, no feline text.
+    # --------------------------------------------------------------
+    p = FILES["avatars"]
+    t = p.read_text()
+    old = " taylor:{id:'player',name:'Taylor',role:'Club founder',avatar:'taylor',shirt:'#f4eddb',skin:'#d9ab8c',hair:'#172238',accent:'#dfbb50',eye:'#533e2d',hairStyle:'long',presentation:'feminine',outfit:'skort',shoe:'#263650',playStyle:'curious all-court',goal:'Make a club worth coming back to',quirk:'A little feline flair'},"
+    new = " taylor:{id:'player',name:'Taylor',role:'Club founder',avatar:'taylor',shirt:'#eee7df',skin:'#ddb394',hair:'#17171d',accent:'#c9aa6a',eye:'#342722',hairStyle:'long',presentation:'feminine',outfit:'skort',shoe:'#f5f1e9',playStyle:'curious all-court',goal:'Make a club worth coming back to',quirk:'Always notices who needs a quiet minute'},"
+    t = replace_once(t, old, new, "Human Taylor avatar")
+    p.write_text(t)
+
+    # --------------------------------------------------------------
+    # Character renderer / motion:
+    # - readable raise/sip/lower cycle
+    # - bounded steam
+    # - no Taylor cat ears
+    # - Steph visual identity
+    # --------------------------------------------------------------
+    p = FILES["character"]
+    t = p.read_text()
+
+    t = replace_once(
+        t,
+        "  if(id==='leo')return {cadence:4.12,bounce:.024,armSwing:.250,hipSwing:.064,torsoCounter:.074,stride:1.04,headStabilize:.64,turnSharpness:8.4};",
+        "  if(id==='leo')return {cadence:4.12,bounce:.024,armSwing:.250,hipSwing:.064,torsoCounter:.074,stride:1.04,headStabilize:.64,turnSharpness:8.4};\n  if(id==='steph')return {cadence:4.72,bounce:.029,armSwing:.255,hipSwing:.066,torsoCounter:.074,stride:.98,headStabilize:.61,turnSharpness:8.9};",
+        "Steph locomotion style"
+    )
+
+    t = replace_once(
+        t,
+        "const arrivalSpots:Record<string,Vec3>={coach:new Vec3(-6.5,0,6.2),mika:new Vec3(-6.5,0,8.7),leo:new Vec3(-8,0,8.7),nia:new Vec3(-8,0,6.2)};",
+        "const arrivalSpots:Record<string,Vec3>={coach:new Vec3(-6.5,0,6.2),mika:new Vec3(-6.5,0,8.7),leo:new Vec3(-8,0,8.7),nia:new Vec3(-8,0,6.2),steph:new Vec3(-10.2,0,7.5)};",
+        "Steph arrival spot"
+    )
+
+    old_drink = "    if(state==='drink'){handR=this.worldLocal(.20,1.56+baseY,.33);handL=this.worldLocal(-.38,1.06+baseY,.04);}"
+    new_drink = """    if(state==='drink'){
+      const sip=(time%3.4)/3.4,raise=smoothstep(.18,.40,sip)*(1-smoothstep(.68,.88,sip)),hold=smoothstep(.40,.48,sip)*(1-smoothstep(.60,.68,sip));
+      handR=this.worldLocal(.24,1.16+baseY+raise*.43,.25+raise*.11);
+      handL=this.worldLocal(-.36,1.07+baseY,.04);
+      lean-=hold*.018;coil+=Math.sin(sip*Math.PI)*.012;
+    }"""
+    t = replace_once(t, old_drink, new_drink, "Readable sip pose")
+
+    # Steph face shape and eye spacing.
+    t = replace_once(
+        t,
+        "const faceShape=this.spec.id==='mika'?new Vec3(.565,.600,.530):this.spec.id==='coach'?new Vec3(.545,.590,.520):this.spec.id==='nia'?new Vec3(.570,.585,.535):new Vec3(.550,.595,.525);",
+        "const faceShape=this.spec.id==='steph'?new Vec3(.558,.594,.522):this.spec.avatar==='taylor'?new Vec3(.562,.596,.525):this.spec.id==='mika'?new Vec3(.565,.600,.530):this.spec.id==='coach'?new Vec3(.545,.590,.520):this.spec.id==='nia'?new Vec3(.570,.585,.535):new Vec3(.550,.595,.525);",
+        "Taylor and Steph face shapes"
+    )
+    t = replace_once(
+        t,
+        "const eyeSpacing=this.spec.id==='mika'?.112:this.spec.id==='nia'?.106:this.spec.id==='coach'?.102:.108;",
+        "const eyeSpacing=this.spec.id==='steph'?.114:this.spec.avatar==='taylor'?.110:this.spec.id==='mika'?.112:this.spec.id==='nia'?.106:this.spec.id==='coach'?.102:.108;",
+        "Taylor and Steph eye spacing"
+    )
+
+    # Remove the old cat-ear treatment from all long-haired humans.
+    cat_block = """      // Navy-and-gold cat-ear headband; the face remains human.
+      for(const side of [-1,1]){const ear=Vec3.add(head,right.clone().scale(side*.22)).add(new Vec3(0,.43,0));m.push({kind:'cone',position:ear,rotation:new Vec3(0,headYaw,side*-.18),scale:new Vec3(.22,.34,.15),color:'#172a49',material:'fabric'},{kind:'cone',position:Vec3.add(ear,forward.clone().scale(.055)),rotation:new Vec3(0,headYaw,side*-.18),scale:new Vec3(.115,.20,.04),color:'#dfbb50',material:'metal'});}
+"""
+    t = replace_once(t, cat_block, "", "Remove Taylor cat ears")
+
+    # Steph gets polished wavy hair and a small gold pendant without textures.
+    steph_accessory_anchor = """    if(this.spec.avatar){
+      const charm=this.worldLocal(0,1.28+baseY+pose.breathe-pose.knee,.235,torsoYaw);
+      m.push({kind:'torus',position:Vec3.add(charm,new Vec3(0,.07,0)),rotation:new Vec3(.3,torsoYaw,0),scale:new Vec3(.28,.20,.025),color:this.spec.avatar==='taylor'?'#dbb447':'#c6c6bd',material:'metal'});
+      if(this.spec.avatar==='taylor')m.push({kind:'sphere',position:charm,scale:new Vec3(.10,.12,.035),color:'#50b8b4',material:'ceramic'});
+    }"""
+    steph_accessory_new = steph_accessory_anchor + """
+    if(this.spec.id==='steph'){
+      const pendant=this.worldLocal(0,1.27+baseY+pose.breathe-pose.knee,.238,torsoYaw);
+      m.push({kind:'torus',position:Vec3.add(pendant,new Vec3(0,.075,0)),rotation:new Vec3(.3,torsoYaw,0),scale:new Vec3(.24,.18,.020),color:'#d8b46a',material:'metal'},
+             {kind:'sphere',position:pendant,scale:new Vec3(.065,.075,.024),color:'#8f3f55',material:'ceramic'});
+    }"""
+    t = replace_once(t, steph_accessory_anchor, steph_accessory_new, "Steph pendant")
+
+    old_cup = """    if(this.state==='drink'||this.propKind==='cup'){const cup=Vec3.add(propHandR,new Vec3(0,.05,0));m.push({kind:'cylinder',position:cup,scale:new Vec3(.16,.28,.16),color:'#f0e8d8',material:'ceramic'});for(let i=0;i<2;i++){const ph=(this.animTime*.55+i*.43)%1;m.push({kind:'sphere',position:new Vec3(cup.x+Math.sin(this.animTime*2+i)*.025,cup.y+.19+ph*.24,cup.z),scale:new Vec3(.035,.07,.035),color:'#f6f1e8',alpha:.18*(1-ph),unlit:true});}}"""
+    new_cup = """    if(this.state==='drink'||this.propKind==='cup'){
+      const cup=Vec3.add(propHandR,new Vec3(0,.05,0));
+      m.push({kind:'cylinder',position:cup,scale:new Vec3(.16,.28,.16),color:'#f0e8d8',material:'ceramic'},
+             {kind:'torus',position:Vec3.add(cup,this.localVector(.16,.01,0)),rotation:new Vec3(Math.PI/2,this.yaw,0),scale:new Vec3(.12,.15,.055),color:'#f0e8d8',material:'ceramic'},
+             {kind:'sphere',position:new Vec3(cup.x,cup.y+.145,cup.z),scale:new Vec3(.125,.025,.125),color:'#7d624b',material:'ceramic',alpha:.88});
+      for(let i=0;i<3;i++){const ph=(this.animTime*.42+i*.31)%1,drift=Math.sin(this.animTime*1.6+i*1.9)*(.025+.018*ph);m.push({kind:'sphere',position:new Vec3(cup.x+drift,cup.y+.20+ph*.34,cup.z+Math.cos(this.animTime*1.2+i)*.012),scale:new Vec3(.045+.018*ph,.080+.035*ph,.045+.018*ph),color:'#fffaf1',alpha:.25*(1-ph),unlit:true,noShadow:true});}
+    }"""
+    t = replace_once(t, old_cup, new_cup, "Readable bounded cup steam")
+
+    p.write_text(t)
+
+    # --------------------------------------------------------------
+    # Content: Steph's spec, schedule, dialogue.
+    # --------------------------------------------------------------
+    p = FILES["content"]
+    t = p.read_text()
+    member_anchor = "  {id:'nia',name:'Barbara',role:'Club host',shirt:'#d77f76',skin:'#a96d55',hair:'#2f2726',accent:'#ffd9d3',eye:'#4a5f50',hairStyle:'bob' as const,presentation:'feminine' as const,outfit:'host' as const,shoe:'#fff2e7',playStyle:'social doubles',goal:'Keep the morning calm without making it quiet',quirk:'Remembers everyone’s usual drink',likes:['people-watching','organization','oat matcha']}\n];"
+    member_new = "  {id:'nia',name:'Barbara',role:'Club host',shirt:'#d77f76',skin:'#a96d55',hair:'#2f2726',accent:'#ffd9d3',eye:'#4a5f50',hairStyle:'bob' as const,presentation:'feminine' as const,outfit:'host' as const,shoe:'#fff2e7',playStyle:'social doubles',goal:'Keep the morning calm without making it quiet',quirk:'Remembers everyone’s usual drink',likes:['people-watching','organization','oat matcha']},\n  {id:'steph',name:'Steph',role:'Member',shirt:'#23232b',skin:'#d7a07f',hair:'#21181b',accent:'#d8b46a',eye:'#4a3029',hairStyle:'waves' as const,presentation:'feminine' as const,outfit:'skirt' as const,shoe:'#fff6ec',playStyle:'aggressive all-court',goal:'Bring bright energy without rushing the room',quirk:'Turns good rallies into instant conversation',likes:['fast exchanges','espresso','clever banter']}\n];"
+    t = replace_once(t, member_anchor, member_new, "Steph member data")
+
+    schedules_anchor = """  nia:[
+    {start:0,destination:'reception',activity:'Checking members in',animation:'talk'},
+    {start:535,destination:'cafe',activity:'Preparing the usual orders',animation:'drink'},
+    {start:590,destination:'reception',activity:'Reviewing the next booking',animation:'talk'},
+    {start:650,destination:'lounge',activity:'Straightening the lounge',animation:'idle'},
+    {start:715,destination:'cafeTable',activity:'Taking five with the regulars',animation:'sit'},
+    {start:762,destination:'lobbySeat',activity:'Greeting the afternoon arrivals',animation:'talk'},
+    {start:830,destination:'cafe',activity:'The afternoon rush, such as it is',animation:'drink'},
+    {start:900,destination:'reception',activity:"Booking tomorrow's courts",animation:'talk'},
+    {start:965,destination:'lobbySeat',activity:'Sitting down for once',animation:'sit'},
+    {start:1040,destination:'cafe',activity:'Evening orders',animation:'drink'},
+    {start:1125,destination:'spectatorBench',activity:'Watching the evening hit',animation:'sit'},
+    {start:1205,destination:'lounge',activity:'Tidying before close',animation:'idle'},
+    {start:1275,destination:'reception',activity:'Locking up',animation:'talk'}
+  ]
+};"""
+    schedules_new = """  nia:[
+    {start:0,destination:'reception',activity:'Checking members in',animation:'talk'},
+    {start:535,destination:'cafe',activity:'Preparing the usual orders',animation:'drink'},
+    {start:590,destination:'reception',activity:'Reviewing the next booking',animation:'talk'},
+    {start:650,destination:'lounge',activity:'Straightening the lounge',animation:'idle'},
+    {start:715,destination:'cafeTable',activity:'Taking five with the regulars',animation:'sit'},
+    {start:762,destination:'lobbySeat',activity:'Greeting the afternoon arrivals',animation:'talk'},
+    {start:830,destination:'cafe',activity:'The afternoon rush, such as it is',animation:'drink'},
+    {start:900,destination:'reception',activity:"Booking tomorrow's courts",animation:'talk'},
+    {start:965,destination:'lobbySeat',activity:'Sitting down for once',animation:'sit'},
+    {start:1040,destination:'cafe',activity:'Evening orders',animation:'drink'},
+    {start:1125,destination:'spectatorBench',activity:'Watching the evening hit',animation:'sit'},
+    {start:1205,destination:'lounge',activity:'Tidying before close',animation:'idle'},
+    {start:1275,destination:'reception',activity:'Locking up',animation:'talk'}
+  ],
+  steph:[
+    {start:0,destination:'entrance',activity:'On the way in',animation:'idle'},
+    {start:520,destination:'cafe',activity:'Starting fast with something warm',animation:'drink'},
+    {start:560,destination:'reception',activity:'Catching up on what she missed',animation:'talk'},
+    {start:610,destination:'warmup',activity:'Quick feet before a hit',animation:'stretch'},
+    {start:680,destination:'spectatorBench',activity:'Cheering the clever points',animation:'watch'},
+    {start:750,destination:'clubBoard',activity:'Reading the board like there will be a quiz',animation:'watch'},
+    {start:820,destination:'lounge',activity:'Turning five minutes into a conversation',animation:'sit'},
+    {start:900,destination:'training',activity:'A sharp little footwork block',animation:'stretch'},
+    {start:990,destination:'cafeTable',activity:'Espresso and club gossip',animation:'drink'},
+    {start:1080,destination:'spectatorBench',activity:'Watching the evening rally',animation:'watch'},
+    {start:1170,destination:'lounge',activity:'Lingering with whoever is still here',animation:'talk'},
+    {start:1250,destination:'entrance',activity:'Heading out with one last wave',animation:'idle'}
+  ]
+};"""
+    t = replace_once(t, schedules_anchor, schedules_new, "Steph schedule")
+
+    dialogue_anchor = "  nia:['“A club feels alive when people have a reason to linger.”','“Contessa pretends not to care about matcha. I know the order.”','“I left the 11:30 court open. It felt like someone would want it.”']\n};"
+    dialogue_new = "  nia:['“A club feels alive when people have a reason to linger.”','“Contessa pretends not to care about matcha. I know the order.”','“I left the 11:30 court open. It felt like someone would want it.”'],\n  steph:['“Okay, that rally was annoyingly good. Do it again.”','“I came for one quick hit. That was several conversations ago.”','“You can be competitive and still have excellent manners. Usually.”']\n};"
+    t = replace_once(t, dialogue_anchor, dialogue_new, "Steph dialogue")
+    p.write_text(t)
+
+    # --------------------------------------------------------------
+    # EverydayLife: MemberId, validation, one authored Steph scene.
+    # --------------------------------------------------------------
+    p = FILES["everyday"]
+    t = p.read_text()
+    t = replace_once(t, "export type MemberId='coach'|'mika'|'leo'|'nia';", "export type MemberId='coach'|'mika'|'leo'|'nia'|'steph';", "MemberId Steph")
+    scene_anchor = "      {id:'cups',title:'Barbara sets an extra cup',people:['nia'],place:'cafe',beats:[{seconds:4,poses:{nia:'watch'},gestures:{nia:'offer'},prop:'cup'},beat(4,'nia','An extra cup. Someone will say they don’t want one.','think'),beat(4,'nia','They always change their mind.','nod')],memory:'Barbara set out an extra cup before anyone asked.'},"
+    scene_new = scene_anchor + "\n      {id:'steph-spark',title:'Steph arrives at full conversational speed',people:['steph','nia'],place:'cafe',beats:[{seconds:4,poses:{steph:'drink',nia:'watch'},prop:'cup'},beat(4,'steph','Tell me the best point I missed. Actually, give me the top three.','point'),beat(4,'nia','You have been here for forty seconds.','think'),beat(4,'steph','Exactly. I am behind.','laugh')],memory:'Steph arrived, found a warm cup, and immediately asked for the best rally she had missed.',minInterval:420},"
+    t = replace_once(t, scene_anchor, scene_new, "Steph authored micro-scene")
+    t = replace_once(t, "['coach','mika','leo','nia'].includes(p)", "['coach','mika','leo','nia','steph'].includes(p)", "Everyday save member validation")
+    p.write_text(t)
+
+    # --------------------------------------------------------------
+    # CharacterMind: fixed-cast expansion + backwards-compatible load.
+    # --------------------------------------------------------------
+    p = FILES["mind"]
+    t = p.read_text()
+    t = replace_once(t, "export const MEMBERS:MemberId[]=['coach','mika','leo','nia'];", "export const MEMBERS:MemberId[]=['coach','mika','leo','nia','steph'];", "Mind MEMBERS")
+    t = replace_once(
+        t,
+        " nia:{energy:.72,confidence:.78,social:.82,practice:.22,comfort:.82,tone:.75}\n};",
+        " nia:{energy:.72,confidence:.78,social:.82,practice:.22,comfort:.82,tone:.75},\n steph:{energy:.88,confidence:.82,social:.90,practice:.68,comfort:.72,tone:.86}\n};",
+        "Steph base mind state"
+    )
+    t = replace_once(
+        t,
+        "const TRAITS:Record<MemberId,Partial<Record<Motive,number>>>={coach:{reflect:.34,advice:.28,rest:.18,witness:.26},mika:{practice:.36,advice:.30,celebrate:.17},leo:{gear:.38,challenge:.28,practice:.21},nia:{care:.52,company:.32,witness:.30,rest:.10}};",
+        "const TRAITS:Record<MemberId,Partial<Record<Motive,number>>>={coach:{reflect:.34,advice:.28,rest:.18,witness:.26},mika:{practice:.36,advice:.30,celebrate:.17},leo:{gear:.38,challenge:.28,practice:.21},nia:{care:.52,company:.32,witness:.30,rest:.10},steph:{company:.44,challenge:.22,celebrate:.28,witness:.24,practice:.16}};",
+        "Steph mind traits"
+    )
+    t = replace_once(t, "rain:'rest'};", "rain:'rest','steph-spark':'company'};", "Steph motive")
+    t = replace_once(
+        t,
+        "{id:'nia-can',owner:'nia',kind:'wateringCan',uses:0,lastPlace:'carried'}];",
+        "{id:'nia-can',owner:'nia',kind:'wateringCan',uses:0,lastPlace:'carried'},{id:'steph-cup',owner:'steph',kind:'cup',uses:0,lastPlace:'carried'}];",
+        "Steph possession"
+    )
+
+    load_anchor = " load(s?:MindSave){if(!s)return;const fail=()=>{throw Error('Character-life save is invalid. Storage has been left untouched.');};"
+    load_new = """ load(s?:MindSave){if(!s)return;
+  // Backwards-compatible cast expansion: old four-member saves gain Steph defaults.
+  s=structuredClone(s);
+  if(!s.states?.steph)s.states.steph=structuredClone(BASE.steph);
+  if(Array.isArray(s.possessions)&&!s.possessions.some(p=>p?.owner==='steph'))s.possessions.push({id:'steph-cup',owner:'steph',kind:'cup',uses:0,lastPlace:'carried'});
+  const fail=()=>{throw Error('Character-life save is invalid. Storage has been left untouched.');};"""
+    t = replace_once(t, load_anchor, load_new, "Mind old-save migration")
+    p.write_text(t)
+
+    # --------------------------------------------------------------
+    # Ambient social: Steph is social, but capped below Barbara so she
+    # does not hijack every generated scene.
+    # --------------------------------------------------------------
+    p = FILES["ambient"]
+    t = p.read_text()
+    t = replace_once(
+        t,
+        "const roleBias=host==='nia'?1.3:host==='mika'?0.7:host==='leo'?0.45:0.35;",
+        "const roleBias=host==='nia'?1.3:host==='steph'?0.92:host==='mika'?0.7:host==='leo'?0.45:0.35;",
+        "Steph ambient social bias"
+    )
+    p.write_text(t)
+
+    # --------------------------------------------------------------
+    # Game: instantiate Steph as a real NPC and preserve all dynamic
+    # loops already built around this.characters.
+    # --------------------------------------------------------------
+    p = FILES["game"]
+    t = p.read_text()
+    constructor_anchor = """    const leo=new Character(get('leo'),destinations.proshop,this.world.nav,destinations);
+    const nia=new Character(get('nia'),destinations.cafe,this.world.nav,destinations);
+    this.characters=[coach,mika,leo,nia];"""
+    constructor_new = """    const leo=new Character(get('leo'),destinations.proshop,this.world.nav,destinations);
+    const nia=new Character(get('nia'),destinations.cafe,this.world.nav,destinations);
+    const steph=new Character(get('steph'),destinations.entrance,this.world.nav,destinations);
+    this.characters=[coach,mika,leo,nia,steph];"""
+    t = replace_once(t, constructor_anchor, constructor_new, "Steph game instantiation")
+    p.write_text(t)
+
+    # --------------------------------------------------------------
+    # Add a targeted regression suite and wire it into npm test.
+    # --------------------------------------------------------------
+    TEST.write_text("""import assert from 'node:assert/strict';
+import {Character} from '../dist/entities/Character.js';
+import {Navigation} from '../dist/world/Navigation.js';
+import {Vec3} from '../dist/rendering/Math3D.js';
+import {memberData,schedules} from '../dist/content/content.js';
+import {playerSpec} from '../dist/content/PlayerAvatars.js';
+import {CharacterMind,MEMBERS} from '../dist/simulation/CharacterMind.js';
+
+let passed=0;
+const test=(name,fn)=>{try{fn();console.log(`✓ ${name}`);passed++;}catch(e){console.error(`✗ ${name}`);throw e;}};
+
+test('Taylor is a human long-haired avatar without feline identity text',()=>{
+  const t=playerSpec('taylor');
+  assert.equal(t.name,'Taylor');
+  assert.equal(t.hairStyle,'long');
+  assert.ok(!/feline|cat ear/i.test(`${t.quirk??''} ${t.goal??''}`));
+});
+
+test('Steph exists exactly once and has a full schedule',()=>{
+  assert.equal(memberData.filter(m=>m.id==='steph').length,1);
+  assert.ok(MEMBERS.includes('steph'));
+  assert.ok(Array.isArray(schedules.steph)&&schedules.steph.length>=10);
+});
+
+test('Old four-member mind saves acquire a safe Steph state',()=>{
+  const original=new CharacterMind();
+  const old=original.serialize();
+  delete old.states.steph;
+  old.possessions=old.possessions.filter(p=>p.owner!=='steph');
+  const restored=new CharacterMind();
+  restored.load(old);
+  assert.ok(restored.states.steph);
+  assert.ok(Object.values(restored.states.steph).every(Number.isFinite));
+  assert.ok(restored.possessions.some(p=>p.owner==='steph'&&p.kind==='cup'));
+});
+
+test('Drink animation raises a real cup and emits bounded steam',()=>{
+  const nav=new Navigation();
+  const c=new Character(playerSpec('taylor'),new Vec3(),nav,{});
+  c.trigger('drink');
+  let minY=Infinity,maxY=-Infinity,maxSteam=0;
+  for(let i=0;i<420;i++){
+    c.update(1/120);
+    const items=c.meshes(false);
+    const cups=items.filter(x=>x.kind==='cylinder'&&x.material==='ceramic');
+    const steam=items.filter(x=>x.kind==='sphere'&&x.color==='#fffaf1'&&x.unlit);
+    if(cups[0]){minY=Math.min(minY,cups[0].position.y);maxY=Math.max(maxY,cups[0].position.y);}
+    maxSteam=Math.max(maxSteam,steam.length);
+  }
+  assert.ok(Number.isFinite(minY)&&Number.isFinite(maxY));
+  assert.ok(maxY-minY>.24,`cup travel ${maxY-minY}`);
+  assert.ok(maxSteam>0&&maxSteam<=3,`steam count ${maxSteam}`);
+});
+
+test('Steph render geometry remains finite',()=>{
+  const nav=new Navigation();
+  const spec=memberData.find(m=>m.id==='steph');
+  const c=new Character(spec,new Vec3(),nav,{});
+  const items=c.meshes(false);
+  assert.ok(items.length>20);
+  for(const item of items){
+    assert.ok([item.position.x,item.position.y,item.position.z,item.scale.x,item.scale.y,item.scale.z].every(Number.isFinite));
+  }
+});
+
+console.log(`${passed} cozy-life checks passed.`);
+""")
+
+    package_text = PACKAGE.read_text()
+    package_text = replace_once(
+        package_text,
+        "node tests/story-presence.mjs\"",
+        "node tests/story-presence.mjs && node tests/cozy-life.mjs\"",
+        "Wire cozy-life tests"
+    )
+    PACKAGE.write_text(package_text)
+
+    print("")
+    print("Rally House v17.4 Cozy Life installed.")
+    print("Backup:", backup)
+    print("")
+    print("Implemented:")
+    print("  - human Taylor visual direction; old cat ears removed")
+    print("  - real fifth NPC: Steph (no surname stored anywhere)")
+    print("  - Steph schedule, dialogue, mind state, social bias and authored cafe scene")
+    print("  - backwards-compatible old-save defaults for Steph's mind state")
+    print("  - readable raise -> sip -> lower cup motion")
+    print("  - ceramic cup handle/liquid surface and exactly three bounded steam wisps")
+    print("  - Steph-specific locomotion, face proportions and gold/jewel accessory")
+    print("  - targeted cozy-life regression tests")
+    print("")
+    print("Next:")
+    print("  cd rally-house-source-v16")
+    print("  npm test")
+    print("  npm run build")
+    print("  npm run serve")
+    print("")
+    print("Open: http://localhost:8080/?debug=1&v=174")
+
+except Exception as exc:
+    # Restore all pre-patch files exactly.
+    for p in [*FILES.values(), PACKAGE]:
+        saved = backup / p.relative_to(ROOT)
+        if saved.exists():
+            shutil.copy2(saved, p)
+    saved_test = backup / TEST.relative_to(ROOT)
+    if saved_test.exists():
+        shutil.copy2(saved_test, TEST)
+    elif TEST.exists():
+        TEST.unlink()
+    print("\\nPATCH FAILED. Restored the exact pre-patch source files.", file=sys.stderr)
+    print(str(exc), file=sys.stderr)
+    sys.exit(1)

@@ -1,0 +1,56 @@
+{
+  "source": [
+    "src/Game.ts",
+    "src/entities/Character.ts",
+    "src/tennis/ChampionshipTuning.ts",
+    "src/tennis/InteractiveMatchSystem.ts",
+    "src/core/AudioManager.ts",
+    "src/ui/ChampionshipHUD.ts",
+    "package.json",
+    "tests/studio-polish.mjs",
+    "tests/arcade-feel.mjs",
+    "qa/arcade-feel.mjs",
+    "ARCADE-FEEL.md",
+    "dist/Game.js",
+    "dist/entities/Character.js",
+    "dist/tennis/ChampionshipTuning.js",
+    "dist/tennis/InteractiveMatchSystem.js",
+    "dist/core/AudioManager.js",
+    "dist/ui/ChampionshipHUD.js"
+  ],
+  "served": [
+    "dist/Game.js",
+    "dist/entities/Character.js",
+    "dist/tennis/ChampionshipTuning.js",
+    "dist/tennis/InteractiveMatchSystem.js",
+    "dist/core/AudioManager.js",
+    "dist/ui/ChampionshipHUD.js"
+  ],
+  "sourceBefore": {
+    "src/Game.ts": "a5e96227f25b63eb444a0930e8accbc4b28e07bda96d82872846d2dfaa95d601",
+    "src/entities/Character.ts": "36a0686ffe2ba3e99baec43647087aa3e3279d2c96471ec0a0b81b2293f5fa75",
+    "src/tennis/ChampionshipTuning.ts": "e79ef831bc8a7b39ad6f2033e213e88d0e44ddc5b916f771374e3760b9ccb422",
+    "src/tennis/InteractiveMatchSystem.ts": "6135375e0f3f6787a8322802618e14c861ac3cd2f0f6c78527e194f85da91e0d",
+    "src/core/AudioManager.ts": "1223b66461a71cc4679a9a15b0beab7ddb70177770ce0d9aa200ea8a0f1e3244",
+    "src/ui/ChampionshipHUD.ts": "fd831073f9da4e055a4d969f851376e76a3c8d50a7aa0c40a59b35e38cc2239c",
+    "package.json": "c0d38badb2de962c260d699c41b02074f94f637477d34238b13c3e9f1cd85367",
+    "tests/studio-polish.mjs": "bcc9e24f8a2d3c150031d8ce94d93254c6fae405f56bec86954008611468f4cc",
+    "tests/arcade-feel.mjs": null,
+    "qa/arcade-feel.mjs": null,
+    "ARCADE-FEEL.md": null,
+    "dist/Game.js": "e61f7511a043c449377fa700663086c9a12762bc625fd5275226e922a0f852a4",
+    "dist/entities/Character.js": "c7447d3ca00b32414a777d1184fa4930e62cdd69b5cc0ad8b08630a3716d47a1",
+    "dist/tennis/ChampionshipTuning.js": "d03552e69f4a9c3710a144e6477582d757109229f916ca7e737e481c5f476020",
+    "dist/tennis/InteractiveMatchSystem.js": "6443507a580832054059045b45fa68c4aad6342fec6d38bda368a03f918eb13a",
+    "dist/core/AudioManager.js": "af80e6fde90b64e5be6eb98914494b201c2d93568f1ab0d21709d87e5273b863",
+    "dist/ui/ChampionshipHUD.js": "9a9bb670d95cc113b3d5ad00a2615334a4bdf024b63e0c1ef74d01c907f4f206"
+  },
+  "servedBefore": {
+    "dist/Game.js": "e61f7511a043c449377fa700663086c9a12762bc625fd5275226e922a0f852a4",
+    "dist/entities/Character.js": "c7447d3ca00b32414a777d1184fa4930e62cdd69b5cc0ad8b08630a3716d47a1",
+    "dist/tennis/ChampionshipTuning.js": "d03552e69f4a9c3710a144e6477582d757109229f916ca7e737e481c5f476020",
+    "dist/tennis/InteractiveMatchSystem.js": "6443507a580832054059045b45fa68c4aad6342fec6d38bda368a03f918eb13a",
+    "dist/core/AudioManager.js": "af80e6fde90b64e5be6eb98914494b201c2d93568f1ab0d21709d87e5273b863",
+    "dist/ui/ChampionshipHUD.js": "9a9bb670d95cc113b3d5ad00a2615334a4bdf024b63e0c1ef74d01c907f4f206"
+  }
+}

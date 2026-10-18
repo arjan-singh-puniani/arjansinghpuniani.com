@@ -1,0 +1,46 @@
+# Rally House v17.3 — Embodied Spectator
+
+This fixes the disembodied "Watch a rally" experience.
+
+Instead of only moving the camera, the player's avatar now walks to a sideline spot, faces the court, tracks the live ball, and reacts subtly to longer rallies. The camera remains under the player's control.
+
+Apply from the repository/worktree root:
+
+```bash
+python3 /path/to/apply_rally_house_v17_3_embodied_spectator.py
+```
+
+Validate:
+
+```bash
+cd rally-house-source-v16
+npm test
+npm run build
+npm run serve
+```
+
+Open:
+
+```text
+http://localhost:8080/?debug=1&v=173
+```
+
+Manual QA:
+- Place your avatar away from the court.
+- Click court -> Watch a rally.
+- Avatar should physically walk to the sideline.
+- Camera should not snap away.
+- Once there, avatar should face the court and follow the ball with gaze.
+- Long rallies should produce restrained reactions.
+- When the rally ends, avatar remains at the sideline.
+- Click another floor location to leave spectator mode immediately.
+- Watch practice during an active lesson should behave the same way.
+
+Deploy after playtest:
+
+```bash
+cd ..
+rsync -a --delete rally-house-source-v16/dist/ arjan-portfolio/public/rally-house/dist/
+cp rally-house-source-v16/index.html arjan-portfolio/public/rally-house/index.html
+cp rally-house-source-v16/style.css arjan-portfolio/public/rally-house/style.css
+```

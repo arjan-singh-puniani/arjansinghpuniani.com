@@ -1,0 +1,22 @@
+# HoloAnatomy tasks
+
+## DONE
+- [x] Production WebGL renderer and pull-apart dissection table.
+- [x] Official BodyParts3D archive integrated locally.
+- [x] Head + Neck Neuro exhibit expanded with all additional verified nerve-labelled BodyParts3D meshes.
+- [x] Rotator Cuff + Shoulder exhibit added.
+- [x] Heart + Coronary Circulation exhibit added.
+- [x] Lazy module loading and module-specific normalization/camera framing.
+- [x] 261 unique verified BodyParts3D meshes vendored.
+- [x] Tests, syntax validation, build, and representative HTTP asset smoke tests pass.
+
+## NEXT
+- [ ] Visual QA of Shoulder and Heart on the user's Mac.
+- [ ] Tune each module's camera defaults/material ghost states from screenshots.
+- [ ] Add complete cranial nerves I–XII and spinal nerve roots from a second medically verified, redistribution-compatible source.
+- [ ] Add brachial plexus once a verified source is integrated.
+- [ ] Add anatomical search and guided dissection sequences.
+
+## BLOCKED / DATA GAP
+- [ ] BodyParts3D Release 4.0 does not provide a complete CN I–XII or spinal-nerve mesh set. Do not fabricate missing neuroanatomy.
+- [ ] Looking Glass physical validation requires hardware.

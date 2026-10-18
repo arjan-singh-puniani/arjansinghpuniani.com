@@ -1,0 +1,60 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {
+  SHOULDER_ALL_IDS,
+  ROTATOR_CUFF_IDS,
+  SHOULDER_VIEWS,
+  SHOULDER_PEEL_STAGES,
+  SHOULDER_COMPARE_PAIRS,
+  buildStructureOverrides,
+  chooseDifferentId,
+  scoreRebuildDistance
+} from '../public/holoanatomy/src/shoulder/model.js';
+
+test('shoulder model keeps all four cuff structures', () => {
+  assert.equal(ROTATOR_CUFF_IDS.length, 4);
+  assert.equal(new Set(ROTATOR_CUFF_IDS).size, 4);
+  for (const id of ROTATOR_CUFF_IDS) assert.ok(SHOULDER_ALL_IDS.includes(id));
+});
+
+test('every shoulder view only references known shoulder ids', () => {
+  for (const preset of Object.values(SHOULDER_VIEWS)) {
+    for (const id of [...preset.visible, ...preset.ghost, ...preset.hidden, ...preset.focus]) {
+      assert.ok(SHOULDER_ALL_IDS.includes(id), `${preset.label} references unknown id ${id}`);
+    }
+  }
+});
+
+test('peel stages preserve disjoint presentation states', () => {
+  for (const stage of SHOULDER_PEEL_STAGES) {
+    const sets = [new Set(stage.visible), new Set(stage.ghost), new Set(stage.hidden)];
+    for (let i=0;i<sets.length;i++) for (let j=i+1;j<sets.length;j++) {
+      for (const id of sets[i]) assert.ok(!sets[j].has(id), `${stage.id} duplicates ${id}`);
+    }
+  }
+});
+
+test('spatial compare pairs use two distinct verified shoulder ids', () => {
+  for (const pair of SHOULDER_COMPARE_PAIRS) {
+    assert.notEqual(pair.a, pair.b);
+    assert.ok(SHOULDER_ALL_IDS.includes(pair.a));
+    assert.ok(SHOULDER_ALL_IDS.includes(pair.b));
+  }
+});
+
+test('structure override builder has deterministic precedence', () => {
+  const ids=['a','b','c'];
+  assert.deepEqual(buildStructureOverrides(ids,['a'],['b'],['c']), {a:'visible',b:'ghost',c:'hidden'});
+});
+
+test('rebuild scoring uses the registered-position translation threshold', () => {
+  assert.equal(scoreRebuildDistance(0.1).grade, 'correct');
+  assert.equal(scoreRebuildDistance(0.18).complete, true);
+  assert.equal(scoreRebuildDistance(0.25).grade, 'close');
+  assert.equal(scoreRebuildDistance(0.5).grade, 'retry');
+});
+
+test('quiz target avoids immediate repetition when alternatives exist', () => {
+  const ids=['a','b','c'];
+  assert.notEqual(chooseDifferentId(ids,'a',()=>0),'a');
+});

@@ -1,0 +1,44 @@
+# HoloAnatomy Shoulder v0.5 — release candidate notes
+
+## Implemented software features
+
+- shoulder-specific intelligent Views panel
+- Overview, Posterior cuff, Superior cuff, Anterior cuff, Rotator cuff, Biceps course, Vascular, and Insertion context views
+- progressive Peel mode using only available deltoid/cuff/bone/vessel source structures
+- per-structure visibility overrides without changing global module architecture
+- two-structure spatial comparison with dual outlines
+- pinned shoulder labels with leader lines and basic collision-aware column layout
+- Locate practice mode
+- Rebuild practice mode using registered source-position translation distance
+- shoulder-specific material/rendering refinement
+- production-path regression guards in the installer
+- automated pure-model tests
+
+## Explicitly deferred because the source does not support them
+
+- true tendon-specific rendering
+- true insertion footprint polygons
+- labrum
+- capsule
+- bursa
+- shoulder ligaments
+- axillary nerve
+- suprascapular nerve
+- brachial plexus shoulder components
+- pathology simulation
+
+## Validation required after applying to the real repository
+
+Run:
+
+```bash
+node --test arjan-portfolio/tests/holoanatomy-shoulder-v05.node.test.mjs
+cd arjan-portfolio
+npm test
+npm run typecheck
+npm run build
+```
+
+Then visually inspect the Shoulder exhibit at desktop and mobile sizes before deployment.
+
+The patch installer itself runs JavaScript syntax checks and the shoulder pure-model tests. It can also run the portfolio test/typecheck/build suite with `--validate`.

@@ -1,0 +1,184 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import argparse
+import hashlib
+import shutil
+import subprocess
+
+TARGETS = [
+    "arjan-portfolio/src/app/page.tsx",
+    "arjan-portfolio/src/app/home.module.css",
+    "arjan-portfolio/src/content/profile.ts",
+    "arjan-portfolio/src/app/about/page.tsx",
+    "arjan-portfolio/src/app/about/about.module.css",
+    "arjan-portfolio/src/app/notes/page.tsx",
+    "arjan-portfolio/src/app/contact/page.tsx",
+    "arjan-portfolio/public/images/hero/arjan-portrait-2026.jpg",
+    "arjan-portfolio/public/images/about/arjan-camera-2026.jpg",
+    "arjan-portfolio/public/images/about/arjan-dog-2026.jpg",
+]
+
+EXPECTED_BRANCH = "portfolio-human-copy-20260930"
+
+
+def sha256(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def branch(repo: Path) -> str:
+    try:
+        return subprocess.check_output(
+            ["git", "branch", "--show-current"], cwd=repo, text=True
+        ).strip()
+    except Exception:
+        return ""
+
+
+def payload_root() -> Path:
+    return Path(__file__).resolve().parent
+
+
+def replacement(rel: str) -> Path:
+    return payload_root() / "replacements" / rel
+
+
+def all_replacements_present() -> None:
+    missing = [rel for rel in TARGETS if not replacement(rel).exists()]
+    if missing:
+        raise SystemExit("STOP: patch payload is incomplete:\n  " + "\n  ".join(missing))
+
+
+def already_applied(repo: Path) -> bool:
+    for rel in TARGETS:
+        dst = repo / rel
+        src = replacement(rel)
+        if not dst.exists() or sha256(dst) != sha256(src):
+            return False
+    return True
+
+
+def text(path: Path) -> str:
+    return path.read_text(errors="ignore")
+
+
+def check_known_state(repo: Path) -> None:
+    home = repo / "arjan-portfolio/src/app/page.tsx"
+    css = repo / "arjan-portfolio/src/app/home.module.css"
+    about = repo / "arjan-portfolio/src/app/about/page.tsx"
+    notes = repo / "arjan-portfolio/src/app/notes/page.tsx"
+    contact = repo / "arjan-portfolio/src/app/contact/page.tsx"
+    profile = repo / "arjan-portfolio/src/content/profile.ts"
+
+    for p in [home, css, about, notes, contact, profile]:
+        if not p.exists():
+            raise SystemExit(f"STOP: expected file is missing: {p.relative_to(repo)}")
+
+    h = text(home)
+    visual_anchors = ["ASP / 001", "v2-orbit", "v2-ticker", "v2-signal"]
+    if not all(anchor in h for anchor in visual_anchors):
+        raise SystemExit("STOP: homepage visual system no longer matches the audited state.")
+
+    known_home = any(anchor in h for anchor in [
+        "I build research tools for",
+        "BCI experiments,",
+        "Pitt RNEL, 2022–2024",
+    ])
+    if not known_home:
+        raise SystemExit("STOP: homepage copy is from an unknown state; refusing to overwrite it.")
+
+    c = text(css)
+    if "heroScope" not in c or "Mobile hero tightening" not in c:
+        raise SystemExit("STOP: homepage CSS does not match the audited human-copy state.")
+
+    a = text(about)
+    if "Arjan Singh Puniani" not in a or "Physics World" not in a:
+        raise SystemExit("STOP: About page no longer matches the expected site structure.")
+
+    n = text(notes)
+    if "interface-is-part-of-measurement" not in n or "HoloAnatomy" not in n:
+        raise SystemExit("STOP: Notes page no longer matches the expected site structure.")
+
+    co = text(contact)
+    if "ContactForm" not in co or "contact-grid" not in co:
+        raise SystemExit("STOP: Contact page no longer matches the expected site structure.")
+
+    pr = text(profile)
+    if "Arjan Singh Puniani" not in pr or "University of Pittsburgh" not in pr:
+        raise SystemExit("STOP: profile content no longer matches the expected site structure.")
+
+
+def check(repo: Path) -> None:
+    all_replacements_present()
+    if not (repo / "arjan-portfolio").is_dir():
+        raise SystemExit(f"STOP: arjan-portfolio not found under {repo}")
+
+    current = branch(repo)
+    if current and current != EXPECTED_BRANCH:
+        raise SystemExit(f"STOP: expected branch {EXPECTED_BRANCH}, found {current}")
+
+    if already_applied(repo):
+        print("Already applied: locked clean/delight patch matches every target file.")
+        return
+
+    check_known_state(repo)
+    print(f"Ready: {repo}")
+    print(f"Branch: {current or '(not detected)'}")
+    print("Visual system preserved: ASP / 001, orbit, ticker, signal line, grids, and project presentation.")
+    print("Copy direction: factual, short, project-led; no giant manifesto headline.")
+    print("Photography: real black-shirt hero portrait + camera and dog photos on About. No generated portraits.")
+    print("No commit or push will be performed by this installer.")
+
+
+def apply(repo: Path) -> None:
+    check(repo)
+    if already_applied(repo):
+        return
+
+    backup = repo / "arjan-portfolio/.portfolio-pre-locked-delight-20260930"
+    for rel in TARGETS:
+        dst = repo / rel
+        src = replacement(rel)
+        if dst.exists():
+            try:
+                inside = Path(rel).relative_to("arjan-portfolio")
+                b = backup / inside
+            except ValueError:
+                b = backup / Path(rel).name
+            b.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(dst, b)
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src, dst)
+
+    print("Locked clean/delight patch applied.")
+    print(f"Backup: {backup.relative_to(repo)}")
+    print("Next validation:")
+    print("  cd arjan-portfolio")
+    print("  npm run lint")
+    print("  npm run typecheck")
+    print("  npm run test")
+    print("  npm run build")
+    print("  npm run dev")
+    print("Then inspect /, /about, /notes, /contact, and /playground/holoanatomy on desktop and mobile.")
+    print("Do not commit until the visual review passes.")
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--repo", default=".")
+    mode = ap.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--check", action="store_true")
+    mode.add_argument("--apply", action="store_true")
+    args = ap.parse_args()
+    repo = Path(args.repo).expanduser().resolve()
+    if args.check:
+        check(repo)
+    else:
+        apply(repo)
+
+
+if __name__ == "__main__":
+    main()

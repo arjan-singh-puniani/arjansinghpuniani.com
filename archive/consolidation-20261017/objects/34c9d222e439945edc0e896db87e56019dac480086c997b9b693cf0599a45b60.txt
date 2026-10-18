@@ -1,0 +1,7 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { chooseQuality } from '../src/engine/quality.js';
+
+test('mobile starts at low quality',()=>assert.equal(chooseQuality({mobile:true}),'low'));
+test('capable desktop starts high',()=>assert.equal(chooseQuality({mobile:false,width:1920,dpr:1,hardwareConcurrency:12,deviceMemory:16}),'high'));
+test('high DPR moderate machine starts medium',()=>assert.equal(chooseQuality({mobile:false,width:1440,dpr:3,hardwareConcurrency:8,deviceMemory:8}),'medium'));

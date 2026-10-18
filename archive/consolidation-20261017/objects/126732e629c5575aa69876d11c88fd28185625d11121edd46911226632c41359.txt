@@ -1,0 +1,8 @@
+{
+  "errors": [],
+  "touch": "PASS",
+  "osReducedMotion": "PASS",
+  "eventFocus": "PASS",
+  "offscreenReturnAndResize": "PASS",
+  "markerCleanup": "PASS"
+}

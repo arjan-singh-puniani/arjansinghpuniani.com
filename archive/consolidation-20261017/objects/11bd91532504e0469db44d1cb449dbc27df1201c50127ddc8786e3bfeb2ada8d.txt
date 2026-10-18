@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { ANATOMY_MANIFEST } from '../src/anatomy/manifest.js';
+const root=path.resolve('public/anatomy');
+const rows=[];
+for(const part of ANATOMY_MANIFEST){
+  const file=path.join(root,part.file); let vertices=0,faces=0,uvs=0,normals=0,bytes=0;
+  if(fs.existsSync(file)){
+    bytes=fs.statSync(file).size;
+    const text=fs.readFileSync(file,'utf8');
+    for(const line of text.split(/\r?\n/)){if(line.startsWith('v '))vertices++;else if(line.startsWith('f '))faces++;else if(line.startsWith('vt '))uvs++;else if(line.startsWith('vn '))normals++;}
+  }
+  rows.push({...part,vertices,faces,uvs,normals,bytes});
+}
+const summary={generatedAt:new Date().toISOString(),structures:rows.length,totalBytes:rows.reduce((a,b)=>a+b.bytes,0),missing:rows.filter(x=>!x.bytes).map(x=>x.id),uvMapped:rows.filter(x=>x.uvs>0).length,rows};
+fs.mkdirSync('docs',{recursive:true});fs.writeFileSync('docs/anatomy-audit.json',JSON.stringify(summary,null,2));
+console.log(`Audited ${rows.length} structures; ${summary.missing.length} missing; ${summary.uvMapped} with UVs.`);

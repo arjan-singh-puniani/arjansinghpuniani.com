@@ -1,0 +1,36 @@
+# Clean home + playground + visual refresh rollup patch
+
+This rollup patch does all of the following:
+- keeps the home page clean and static
+- removes the scrolling/highlights treatment from the home experience
+- keeps SeizeFreeze featured on the home page
+- simplifies the playground cards and swaps in the cleaner thumbnails
+- adds the Orch OR / active inference selected-project card
+- replaces the QAI and ReasonOS home graphics with stronger preview images
+
+## Apply
+1. Unzip this patch.
+2. Open Terminal in the directory that contains `arjan-portfolio`.
+3. Run:
+
+```bash
+python3 portfolio_rollup_patch/apply_rollup_patch.py
+```
+
+4. Then run your usual dev workflow, for example:
+
+```bash
+cd arjan-portfolio
+npm install
+npm run dev
+```
+
+## Files changed
+- `src/app/page.tsx`
+- `src/app/home.module.css`
+- `src/app/playground/page.tsx`
+- `src/app/playground/playground.module.css`
+- `src/components/SeizeFreezeHomeFeature.tsx`
+- `src/components/SeizeFreezeHomeFeature.module.css`
+- `public/images/playground/*`
+- `public/images/home/*`

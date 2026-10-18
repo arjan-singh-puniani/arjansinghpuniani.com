@@ -1,0 +1,212 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+from pathlib import Path
+import shutil
+import sys
+from datetime import datetime
+
+def die(msg: str) -> None:
+    raise RuntimeError(msg)
+
+def find_repo(start: Path) -> Path:
+    for root in [start] + list(start.parents):
+        if (
+            (root / "rally-house-source-v16" / "src" / "entities" / "Character.ts").exists()
+            and (root / "rally-house-source-v16" / "src" / "tennis" / "RallySystem.ts").exists()
+        ):
+            return root
+    raise RuntimeError("Run this from inside the Rally House repository/worktree.")
+
+ROOT = find_repo(Path.cwd().resolve())
+SRC = ROOT / "rally-house-source-v16"
+CHARACTER = SRC / "src/entities/Character.ts"
+RALLY = SRC / "src/tennis/RallySystem.ts"
+
+character = CHARACTER.read_text()
+rally = RALLY.read_text()
+
+# Require the v17.1 toy-contact state rather than guessing against an older tree.
+required = [
+    ("Character.racketContactFrame", "racketContactFrame()" in character),
+    ("Rally impactStarted", "impactStarted" in rally),
+    ("Rally latchRemaining", "latchRemaining" in rally),
+    ("Rally impactBurst", "impactBurst" in rally),
+]
+missing = [name for name, ok in required if not ok]
+if missing:
+    die("Expected v17.1 Toy Contact first. Missing: " + ", ".join(missing))
+
+# Idempotent success if the readable-contact values are already there.
+if (
+    "const stringColor='#c8e1d4';" in character
+    and "p.latchRemaining=.055" in rally
+    and "this.impactBurst-dt*4.8" in rally
+    and "size=.050+.115*life" in rally
+):
+    print("Rally House v17.2 Readable Contact is already installed.")
+    sys.exit(0)
+
+stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+backup = ROOT / (".rally-house-v17-2-readable-contact-backup-" + stamp)
+for p in (CHARACTER, RALLY):
+    dst = backup / p.relative_to(ROOT)
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(p, dst)
+
+def replace_once(text: str, old: str, new: str, label: str) -> str:
+    count = text.count(old)
+    if count != 1:
+        die(f"{label}: expected exactly one v17.1 match, found {count}")
+    return text.replace(old, new, 1)
+
+try:
+    c = CHARACTER.read_text()
+
+    c = replace_once(
+        c,
+        "m.push({kind:'sphere',position:racketCenter,rotation:racketRot,scale:new Vec3(.58,.76,.028),color:'#f5efdf',alpha:.10,unlit:true,noShadow:true});",
+        "m.push({kind:'sphere',position:racketCenter,rotation:racketRot,scale:new Vec3(.61,.79,.034),color:'#edf4e7',alpha:.20,unlit:true,noShadow:true});",
+        "Readable string-bed fill",
+    )
+    c = replace_once(
+        c,
+        "const stringColor='#f3ecdb';",
+        "const stringColor='#c8e1d4';",
+        "Higher-contrast string color",
+    )
+    c = replace_once(
+        c,
+        "for(const x of [-.34,-.17,0,.17,.34]){",
+        "for(const x of [-.36,-.24,-.12,0,.12,.24,.36]){",
+        "Seven vertical strings",
+    )
+    c = replace_once(
+        c,
+        "m.push({kind:'roundBox',position:q,rotation:racketRot,scale:new Vec3(.014,.70,.018),color:stringColor,alpha:.64,unlit:true,noShadow:true});",
+        "m.push({kind:'roundBox',position:q,rotation:racketRot,scale:new Vec3(.022,.71,.022),color:stringColor,alpha:.92,unlit:true,noShadow:true});",
+        "Thicker vertical strings",
+    )
+    c = replace_once(
+        c,
+        "for(const y of [-.42,-.21,0,.21,.42]){",
+        "for(const y of [-.48,-.32,-.16,0,.16,.32,.48]){",
+        "Seven horizontal strings",
+    )
+    c = replace_once(
+        c,
+        "m.push({kind:'roundBox',position:q,rotation:racketRot,scale:new Vec3(.54,.014,.018),color:stringColor,alpha:.60,unlit:true,noShadow:true});",
+        "m.push({kind:'roundBox',position:q,rotation:racketRot,scale:new Vec3(.55,.022,.022),color:stringColor,alpha:.88,unlit:true,noShadow:true});",
+        "Thicker horizontal strings",
+    )
+    CHARACTER.write_text(c)
+
+    r = RALLY.read_text()
+
+    r = replace_once(
+        r,
+        "this.impactBurst=Math.max(0,this.impactBurst-dt*7.5);",
+        "this.impactBurst=Math.max(0,this.impactBurst-dt*4.8);",
+        "Longer readable impact burst",
+    )
+    r = replace_once(
+        r,
+        "p.impactStarted=true;p.latchRemaining=.036;",
+        "p.impactStarted=true;p.latchRemaining=.055;",
+        "Readable contact latch",
+    )
+    r = replace_once(
+        r,
+        "scale:new Vec3(.195,.205,.095)",
+        "scale:new Vec3(.220,.230,.070)",
+        "Stronger contact squash",
+    )
+    r = replace_once(
+        r,
+        "const q=this.lastContact,t=1-this.impactBurst,ring=.25+t*.22,frame=this.lastContactFrame;",
+        "const q=this.lastContact,t=1-this.impactBurst,ring=.30+t*.31,frame=this.lastContactFrame;",
+        "Larger impact ring",
+    )
+    r = replace_once(
+        r,
+        "scale:new Vec3(ring*1.05,ring*1.18,.13),color:'#f3dfad',alpha:.34*this.impactBurst",
+        "scale:new Vec3(ring*1.05,ring*1.18,.15),color:'#fff0c8',alpha:.62*this.impactBurst",
+        "Brighter cream impact ring",
+    )
+    r = replace_once(
+        r,
+        "scale:new Vec3(ring*.72,ring*.82,.09),color:'#bce453',alpha:.24*this.impactBurst",
+        "scale:new Vec3(ring*.72,ring*.82,.10),color:'#bce453',alpha:.44*this.impactBurst",
+        "Brighter green echo ring",
+    )
+    r = replace_once(
+        r,
+        "const spread=.25+t*.22,axes=[frame.horizontal.clone(),frame.horizontal.clone().scale(-1),frame.vertical.clone(),frame.vertical.clone().scale(-1)];",
+        "const spread=.30+t*.32,axes=[frame.horizontal.clone(),frame.horizontal.clone().scale(-1),frame.vertical.clone(),frame.vertical.clone().scale(-1)];",
+        "Wider contact pop",
+    )
+    r = replace_once(
+        r,
+        "const pos=q.clone().add(axes[i].scale(spread*(i<2?1:.88))),size=.045+.018*this.impactBurst;",
+        "const pos=q.clone().add(axes[i].scale(spread*(i<2?1:.88))),size=.065+.026*this.impactBurst;",
+        "Larger contact dots",
+    )
+    r = replace_once(
+        r,
+        "color:i%2?'#c9e85d':'#f5e7bd',alpha:.42*this.impactBurst",
+        "color:i%2?'#c9e85d':'#fff0c8',alpha:.68*this.impactBurst",
+        "Brighter contact dots",
+    )
+
+    # Add a brief center flash. This is still a tiny local effect, not a speech bubble.
+    burst_anchor = """      // Cream pop first, tennis-green echo second. Both lie in the actual string-bed plane.
+      m.push({kind:'torus',position:q.clone(),rotation:frame.rotation.clone(),scale:new Vec3(ring*1.05,ring*1.18,.15),color:'#fff0c8',alpha:.62*this.impactBurst,unlit:true,noShadow:true},
+             {kind:'torus',position:q.clone(),rotation:frame.rotation.clone(),scale:new Vec3(ring*.72,ring*.82,.10),color:'#bce453',alpha:.44*this.impactBurst,unlit:true,noShadow:true});"""
+    burst_new = burst_anchor + """
+      m.push({kind:'sphere',position:q.clone(),scale:new Vec3(.16+.05*this.impactBurst,.16+.05*this.impactBurst,.16+.05*this.impactBurst),color:'#fff7dc',alpha:.52*this.impactBurst,unlit:true,noShadow:true});"""
+    r = replace_once(r, burst_anchor, burst_new, "Center impact flash")
+
+    # Make the existing green speed trail readable at normal gameplay zoom without becoming a neon ribbon.
+    r = replace_once(
+        r,
+        "const glow=clamp((this.trailSpeed-4.2)/8.5,0,1);",
+        "const glow=clamp((this.trailSpeed-3.8)/7.5,0,1);",
+        "Earlier trail visibility",
+    )
+    r = replace_once(
+        r,
+        "const q=this.trail[i],life=1-i/Math.max(1,this.trail.length),size=.035+.065*life,alpha=(.015+.17*life)*glow;",
+        "const q=this.trail[i],life=1-i/Math.max(1,this.trail.length),size=.050+.115*life,alpha=(.045+.30*life)*(.45+.55*glow);",
+        "Readable restrained trail",
+    )
+
+    RALLY.write_text(r)
+
+    print("")
+    print("Rally House v17.2 Readable Contact installed.")
+    print("Backup:", backup)
+    print("")
+    print("Changed:")
+    print("  - 7x7 higher-contrast visible strings")
+    print("  - brighter translucent string bed")
+    print("  - 55 ms ball/string impact latch")
+    print("  - stronger ball compression at impact")
+    print("  - ~200 ms cream + tennis-green impact burst")
+    print("  - small center flash at the exact contact point")
+    print("  - brighter but still bounded green speed trail")
+    print("")
+    print("Next:")
+    print("  cd rally-house-source-v16")
+    print("  npm test")
+    print("  npm run build")
+    print("  npm run serve")
+    print("")
+    print("Then hard-refresh the browser with Cmd+Shift+R, or use a private window.")
+
+except Exception as exc:
+    for p in (CHARACTER, RALLY):
+        saved = backup / p.relative_to(ROOT)
+        if saved.exists():
+            shutil.copy2(saved, p)
+    print("\nPATCH FAILED. Restored the exact pre-patch source files.", file=sys.stderr)
+    print(str(exc), file=sys.stderr)
+    sys.exit(1)

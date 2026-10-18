@@ -1,0 +1,12 @@
+# Rally House RC3.4 — Cozy Atmosphere
+
+This pass deepens club-mode atmosphere without changing Championship rules.
+
+- Cooler, quieter ambient field with always-present warm practical-light pockets.
+- Warm local specular response so wood, ceramic, glass and metal read as different materials.
+- Subtle floor pools, fixture halos and string-light breathing rather than global bloom.
+- Low procedural room-tone bed begins only after the browser has already unlocked audio through a player gesture.
+- Tactile object interactions can prompt one or two nearby free club members to briefly glance/react, then automatically return their gaze.
+- A CSS atmosphere layer adds a restrained vignette and warm light falloff in club mode and drops to 20% strength during Championship so ball/court readability stays intact.
+
+The goal is a lived-in miniature sanctuary, not a copy of any reference artwork.

@@ -1,0 +1,15 @@
+/* Rally House v18.3 — the miniature is the hero. */
+.visual-production-intro-ui{position:fixed;inset:0;z-index:24;pointer-events:none;display:flex;align-items:flex-end;padding:max(34px,env(safe-area-inset-top)) max(40px,env(safe-area-inset-right)) max(42px,calc(env(safe-area-inset-bottom) + 28px)) max(40px,env(safe-area-inset-left));background:linear-gradient(90deg,rgba(31,48,40,.20) 0,rgba(31,48,40,.07) 28%,transparent 54%),linear-gradient(0deg,rgba(34,45,38,.16) 0,transparent 34%)}
+.visual-production-intro-ui[hidden]{display:none!important}
+.visual-production-copy{position:relative;width:min(650px,calc(100vw - 80px));pointer-events:auto;color:#fffdf7;text-shadow:0 2px 18px rgba(26,39,33,.28)}
+.visual-production-kicker{display:flex;align-items:center;gap:9px;margin-bottom:10px;font-size:10px;font-weight:850;letter-spacing:.19em;text-transform:uppercase;color:rgba(255,253,247,.84)}
+.visual-production-kicker::before{content:"";width:28px;height:1px;background:rgba(255,253,247,.72)}
+.visual-production-copy h1{margin:0;font-size:clamp(54px,7.7vw,112px);line-height:.82;letter-spacing:-.074em;font-weight:860}
+.visual-production-copy p{max-width:480px;margin:16px 0 20px;font-size:clamp(13px,1.35vw,17px);line-height:1.45;color:rgba(255,253,247,.86)}
+.visual-production-enter{min-height:50px;padding:0 19px;border-radius:999px;border:1px solid rgba(255,255,255,.38);background:rgba(255,253,247,.94);color:#294f43;font-weight:850;font-size:13px;letter-spacing:.015em;box-shadow:0 12px 34px rgba(27,43,35,.18);cursor:pointer;transition:transform .18s ease,background .18s ease,box-shadow .18s ease}
+.visual-production-enter:hover{transform:translateY(-2px);background:#fffdf7;box-shadow:0 16px 38px rgba(27,43,35,.24)}.visual-production-enter:focus-visible{outline:3px solid #e7bd72;outline-offset:4px}
+body:has(.visual-production-intro-ui:not([hidden])) .topbar,body:has(.visual-production-intro-ui:not([hidden])) .objective,body:has(.visual-production-intro-ui:not([hidden])) .scenePeek,body:has(.visual-production-intro-ui:not([hidden])) .hud,body:has(.visual-production-intro-ui:not([hidden])) .hint,body:has(.visual-production-intro-ui:not([hidden])) .moment,body:has(.visual-production-intro-ui:not([hidden])) .speech,body:has(.visual-production-intro-ui:not([hidden])) .spatial-layer{opacity:0!important;pointer-events:none!important}
+body:has(.visual-production-intro-ui:not([hidden])) #app::after{opacity:.34}
+.visual-production-entering .visual-production-intro-ui{opacity:0;transform:translateY(6px);transition:opacity .46s ease,transform .46s ease}
+@media(max-width:720px){.visual-production-intro-ui{padding:18px 18px max(26px,calc(env(safe-area-inset-bottom) + 16px));background:linear-gradient(0deg,rgba(30,46,38,.34),rgba(30,46,38,.04) 58%,transparent)}.visual-production-copy{width:100%}.visual-production-copy h1{font-size:clamp(50px,17vw,76px)}.visual-production-copy p{max-width:340px;margin:12px 0 17px;font-size:13px}.visual-production-enter{min-height:48px}}
+@media(prefers-reduced-motion:reduce){.visual-production-enter,.visual-production-intro-ui{transition:none!important}}

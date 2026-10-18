@@ -1,0 +1,27 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {World} from '../dist/world/World.js';
+import {Character} from '../dist/entities/Character.js';
+import {Navigation} from '../dist/world/Navigation.js';
+import {Vec3} from '../dist/rendering/Math3D.js';
+
+const world=new World();
+const midday=world.lighting(12*60);
+const late=world.lighting(19*60);
+assert.ok((midday.pointLights?.slice(2).some(l=>l.intensity>.20)),'practical lights should retain a visible daytime floor');
+assert.ok((late.pointLights?.slice(2).reduce((n,l)=>n+l.intensity,0)??0)>(midday.pointLights?.slice(2).reduce((n,l)=>n+l.intensity,0)??0),'practical warmth should strengthen after daylight');
+assert.ok(midday.ambient<.9,'ambient field should leave contrast for local warm light');
+
+const nav=new Navigation([]);
+const c=new Character({id:'test',name:'Test',role:'guest',shirt:'#fff',skin:'#d8a47d',hair:'#222',playStyle:'guest',goal:'',},new Vec3(0,0,0),nav,{});
+c.glanceAt(new Vec3(2,1,0),.2);
+assert.ok(c.targetLook,'transient object glance should begin immediately');
+c.update(.25);
+assert.equal(c.targetLook,undefined,'transient object glance should release automatically');
+
+const css=fs.readFileSync(new URL('../style.css',import.meta.url),'utf8');
+assert.match(css,/cozy atmosphere/i);
+assert.match(css,/body\.championship-active #app::after/);
+const renderer=fs.readFileSync(new URL('../src/rendering/Renderer.ts',import.meta.url),'utf8');
+assert.match(renderer,/localSpec/);
+console.log('Cozy lighting, material, atmosphere and transient social-reaction guardrails passed.');

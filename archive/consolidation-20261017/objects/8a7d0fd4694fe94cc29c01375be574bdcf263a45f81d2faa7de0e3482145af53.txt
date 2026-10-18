@@ -1,0 +1,57 @@
+import {Vec3,clamp} from '../rendering/Math3D.js';
+import type {Mesh} from '../rendering/Renderer.js';
+import type {Character} from '../entities/Character.js';
+import {BallPhysics} from './BallPhysics.js';
+
+export interface ChampionshipCallbacks {
+  onHit?:(power:number,quality:'clean'|'frame'|'net')=>void;
+  onBounce?:()=>void; onNet?:()=>void;
+  onPoint?:(winner:'player'|'opponent',score:{player:number;opponent:number})=>void;
+}
+type Stroke='serve'|'swingForehand'|'swingBackhand';
+type Pending={who:'player'|'opponent';actor:Character;state:Stroke;target:Vec3;flight:number;contactAt:number;released:boolean;power:number;quality:'clean'|'frame'|'net'};
+
+export class ChampionshipRally {
+  ball=new BallPhysics(); enabled=false; score={player:0,opponent:0}; rallyCount=0; bestRally=0;
+  winner:null|'player'|'opponent'=null; canSwing=false;
+  private pending:Pending|null=null; private trail:Vec3[]=[]; private impact=0; private impactAt:Vec3|null=null;
+  private opponentDelay=0; private resetDelay=0; private serveReady=true; private lastHitter:'player'|'opponent'='player';
+  constructor(private player:Character,private opponent:Character,private cb:ChampionshipCallbacks={}){}
+  start(){this.enabled=true;this.winner=null;this.score={player:0,opponent:0};this.rallyCount=0;this.bestRally=0;this.resetPoint();}
+  stop(){this.enabled=false;this.ball.active=false;this.pending=null;this.trail=[];this.canSwing=false;this.player.clearCourtMove();this.opponent.clearCourtMove();}
+  userSwing(aim=0,power=.65){
+    if(!this.enabled||this.pending)return false; power=clamp(power,.25,1); aim=clamp(aim,-1,1);
+    if(this.serveReady){this.beginShot('player','serve',aim,power,1);this.serveReady=false;return true;}
+    if(!this.canSwing||!this.ball.active)return false;
+    const d=Math.hypot(this.ball.position.x-this.player.position.x,this.ball.position.z-this.player.position.z);
+    const timing=clamp(1-Math.abs(d-.72)/1.45,0,1); const state:Stroke=this.ball.position.x<this.player.position.x?'swingBackhand':'swingForehand';
+    this.ball.active=false;this.canSwing=false;this.beginShot('player',state,aim,power,timing);return true;
+  }
+  update(dt:number){
+    if(!this.enabled)return; this.impact=Math.max(0,this.impact-dt*4.4);
+    if(this.resetDelay>0){this.resetDelay-=dt;if(this.resetDelay<=0&&!this.winner)this.resetPoint();return;}
+    if(this.pending){const p=this.pending;if(!p.released&&p.actor.animTime>=p.contactAt){const frame=p.actor.racketContactFrame();p.released=true;this.impact=1;this.impactAt=frame.center.clone();this.lastHitter=p.who;p.actor.notifyRacketImpact(p.quality);this.cb.onHit?.(p.power,p.quality);if(p.quality==='net'){this.cb.onNet?.();this.point(p.who==='player'?'opponent':'player');return;}this.ball.launch(frame.center,p.target,p.flight);this.trail=[];}if(p.released&&p.actor.animTime>=p.actor.shotDuration(p.state)){p.actor.setAnimation('ready');p.actor.clearShotIntent();this.pending=null;}}
+    if(this.opponentDelay>0){this.opponentDelay-=dt;if(this.opponentDelay<=0&&!this.pending)this.opponentSwing();return;}
+    if(!this.ball.active)return;
+    const ev=this.ball.update(dt); if(this.ball.active){this.trail.unshift(this.ball.position.clone());if(this.trail.length>22)this.trail.pop();}
+    if(ev.bounced)this.cb.onBounce?.(); if(ev.net){this.cb.onNet?.();this.point(this.lastHitter==='player'?'opponent':'player');return;}
+    if(this.lastHitter==='player'){
+      const d=Math.hypot(this.ball.position.x-this.opponent.position.x,this.ball.position.z-this.opponent.position.z);
+      if(this.ball.bounces>=1&&d<1.55&&this.ball.position.y<1.55){this.ball.active=false;this.opponentDelay=.20;this.opponent.setIncomingContact(this.ball.position);return;}
+      if(!this.ball.active){this.point('player');return;}
+    }else{
+      const d=Math.hypot(this.ball.position.x-this.player.position.x,this.ball.position.z-this.player.position.z);
+      this.canSwing=this.ball.bounces>=1&&d<2.15&&this.ball.position.y<1.72; if(!this.ball.active){this.canSwing=false;this.point('opponent');return;}
+    }
+  }
+  private beginShot(who:'player'|'opponent',state:Stroke,aim:number,power:number,timing:number){
+    const actor=who==='player'?this.player:this.opponent,other=who==='player'?this.opponent:this.player; let x=1+aim*2.55; const z=who==='player'?-5.05:5.05;
+    const quality:'clean'|'frame'|'net'=timing>.42?'clean':timing>.20?'frame':'net'; if(quality==='frame')x+=aim>=0?.65:-.65; x=clamp(x,-2.7,4.7);
+    const target=new Vec3(x,.11,quality==='net'?(who==='player'?-1.1:1.1):z),flight=quality==='net'?.38:clamp(.90-power*.26,.58,.86);
+    actor.face(target);actor.setLook(other.position);actor.triggerShot(state,target);this.pending={who,actor,state,target,flight,contactAt:actor.shotContactTime(state),released:false,power,quality};
+  }
+  private opponentSwing(){const aim=Math.sin((this.rallyCount+this.score.player*3+this.score.opponent*5)*1.71)*.82,power=.55+.12*((this.rallyCount%3)/2);this.rallyCount++;this.bestRally=Math.max(this.bestRally,this.rallyCount);this.beginShot('opponent',this.rallyCount%2?'swingForehand':'swingBackhand',aim,power,.9);}
+  private point(winner:'player'|'opponent'){if(this.resetDelay>0)return;this.score[winner]++;this.cb.onPoint?.(winner,{...this.score});this.ball.active=false;this.pending=null;this.canSwing=false;this.trail=[];this.rallyCount=0;if(this.score[winner]>=7){this.winner=winner;this.enabled=false;return;}this.resetDelay=.72;}
+  private resetPoint(){this.ball.active=false;this.pending=null;this.canSwing=false;this.trail=[];this.serveReady=true;this.lastHitter='player';this.player.position.set(1,0,5.15);this.opponent.position.set(1,0,-5.15);this.player.face(this.opponent.position);this.opponent.face(this.player.position);this.player.setAnimation('ready');this.opponent.setAnimation('ready');}
+  meshes():Mesh[]{const m:Mesh[]=[];for(let i=this.trail.length-1;i>=0;i--){const q=this.trail[i],life=1-i/Math.max(1,this.trail.length),s=.05+.10*life;m.push({kind:'sphere',position:q.clone(),scale:new Vec3(s,s,s),color:'#b7e34a',alpha:.05+.30*life,unlit:true,noShadow:true});}if(this.ball.active)m.push({kind:'sphere',position:this.ball.position.clone(),scale:new Vec3(.17,.17,.17),color:'#d5e85a',unlit:true},{kind:'sphere',position:new Vec3(this.ball.position.x,.025,this.ball.position.z),scale:new Vec3(.24,.024,.15),color:'#435448',alpha:.16,unlit:true,noShadow:true});if(this.impact>0&&this.impactAt){const r=.28+(1-this.impact)*.44;m.push({kind:'torus',position:this.impactAt.clone(),rotation:new Vec3(Math.PI/2,0,0),scale:new Vec3(r,r,.11),color:'#fff0c8',alpha:.72*this.impact,unlit:true,noShadow:true},{kind:'sphere',position:this.impactAt.clone(),scale:new Vec3(.18,.18,.18),color:'#d8f05e',alpha:.58*this.impact,unlit:true,noShadow:true});}return m;}
+}

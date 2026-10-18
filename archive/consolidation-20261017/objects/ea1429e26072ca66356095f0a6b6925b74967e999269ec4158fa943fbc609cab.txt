@@ -1,0 +1,185 @@
+#!/usr/bin/env python3
+"""Rally House Playable RC3.4 cozy-atmosphere release gate.
+
+Changes from RC1:
+- Uses an ephemeral localhost port by default instead of assuming 8076 is free.
+- Verifies an actual HTTP response from Rally House before launching Playwright.
+- Detects early server exit explicitly.
+- Preserves the local server log for diagnosis instead of discarding stdout/stderr.
+- Never stages the portfolio build unless both deterministic tests and browser QA pass.
+"""
+from __future__ import annotations
+
+import argparse
+import os
+import shutil
+import socket
+import subprocess
+import sys
+import time
+import urllib.error
+import urllib.request
+from datetime import datetime
+from pathlib import Path
+
+
+def run(cmd, cwd, env=None):
+    print('+', ' '.join(map(str, cmd)), flush=True)
+    subprocess.run(list(map(str, cmd)), cwd=cwd, env=env, check=True)
+
+
+def choose_port(requested: int) -> int:
+    """Return requested port, or ask the OS for a currently free local port."""
+    if requested:
+        return requested
+
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.bind(('127.0.0.1', 0))
+        return int(sock.getsockname()[1])
+
+
+def server_log_tail(path: Path, lines: int = 40) -> str:
+    if not path.exists():
+        return '(server log was not created)'
+
+    text = path.read_text(errors='replace').splitlines()
+    return '\n'.join(text[-lines:]) or '(server log is empty)'
+
+
+def wait_for_http(url: str, server: subprocess.Popen, log_path: Path, seconds: float = 15.0) -> None:
+    """Wait until the *spawned* server returns Rally House HTML.
+
+    A bare TCP probe is insufficient here. Another process may already own a port,
+    or the server may accept a connection and exit before Playwright navigates.
+    We therefore verify the child process is still alive and require a real HTTP
+    200 response containing the Rally House canvas.
+    """
+    deadline = time.time() + seconds
+    last_error = 'no response yet'
+
+    while time.time() < deadline:
+        if server.poll() is not None:
+            raise RuntimeError(
+                f'Local Rally House server exited early with code {server.returncode}.\n'
+                f'--- server log ---\n{server_log_tail(log_path)}'
+            )
+
+        try:
+            with urllib.request.urlopen(url, timeout=0.7) as response:
+                body = response.read(256_000).decode('utf-8', errors='replace')
+                if response.status == 200 and 'id="game"' in body and 'Rally House' in body:
+                    return
+                last_error = f'HTTP {response.status}, but response was not Rally House HTML'
+        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, OSError) as exc:
+            last_error = repr(exc)
+
+        time.sleep(0.12)
+
+    raise RuntimeError(
+        f'Rally House did not become HTTP-ready at {url} within {seconds:.0f}s.\n'
+        f'Last probe: {last_error}\n'
+        f'--- server log ---\n{server_log_tail(log_path)}'
+    )
+
+
+def stop_server(server: subprocess.Popen) -> None:
+    if server.poll() is not None:
+        return
+
+    server.terminate()
+    try:
+        server.wait(timeout=3)
+    except subprocess.TimeoutExpired:
+        server.kill()
+        server.wait(timeout=3)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('repo', nargs='?', default='.')
+    parser.add_argument(
+        '--port',
+        type=int,
+        default=0,
+        help='Local QA port. Default 0 asks the OS for a free ephemeral port.',
+    )
+    args = parser.parse_args()
+
+    repo = Path(args.repo).resolve()
+    source = repo / 'rally-house-source-v16'
+    public = repo / 'arjan-portfolio' / 'public' / 'rally-house'
+
+    if not source.exists() or not public.exists():
+        raise SystemExit(
+            'Expected rally-house-source-v16 and arjan-portfolio/public/rally-house'
+        )
+
+    # Repair a restored source tree that has no local dev dependencies.
+    # This is the exact state produced by source recovery on a machine where
+    # node_modules is intentionally not tracked. npm ci is deterministic because
+    # package-lock.json remains authoritative.
+    if not (source / 'node_modules' / '.bin' / 'tsc').exists():
+        print('+ local TypeScript toolchain missing; running npm ci', flush=True)
+        run(['npm', 'ci'], source)
+
+    # Gate 1: the repository's complete current deterministic suite.
+    # This includes Championship lifecycle, interactive contact, presentation,
+    # and the pre-existing Rally House regression tests.
+    run(['npm', 'test'], source)
+
+    port = choose_port(args.port)
+    base_url = f'http://127.0.0.1:{port}/?debug'
+    log_path = source / 'qa' / 'championship-server.log'
+
+    print(f'+ starting Rally House HTTP server on 127.0.0.1:{port}', flush=True)
+    print(f'+ server log: {log_path}', flush=True)
+
+    with log_path.open('w') as log_file:
+        server = subprocess.Popen(
+            [
+                sys.executable,
+                '-m',
+                'http.server',
+                str(port),
+                '--bind',
+                '127.0.0.1',
+            ],
+            cwd=source,
+            stdout=log_file,
+            stderr=subprocess.STDOUT,
+            text=True,
+        )
+
+        try:
+            wait_for_http(base_url, server, log_path)
+            print(f'+ HTTP readiness PASS: {base_url}', flush=True)
+
+            env = os.environ.copy()
+            env['RH_URL'] = base_url
+
+            # Gate 2: actual Chromium gameplay smoke across desktop/tablet/mobile.
+            run(['node', 'qa/championship-smoke.mjs'], source, env)
+            run(['node', 'qa/cozy-smoke.mjs'], source, env)
+        finally:
+            stop_server(server)
+
+    # Only a fully tested build reaches the portfolio mirror.
+    stamp = datetime.now().strftime('%Y%m%d-%H%M%S')
+    backup = repo / f'portfolio-rally-house-backup-{stamp}'
+    shutil.copytree(public, backup)
+
+    shutil.rmtree(public / 'dist', ignore_errors=True)
+    shutil.copytree(source / 'dist', public / 'dist')
+
+    for name in ['index.html', 'style.css', 'championship.css']:
+        shutil.copy2(source / name, public / name)
+
+    print('AUTOMATED RC3.4 COZY/PLAYABILITY GATES PASSED')
+    print('Portfolio static build staged:', public)
+    print('Previous public build backed up:', backup)
+    print('Browser server log:', log_path)
+    print('Still required: physical-device touch/audio and human approval of cozy lighting, room tone, object reactions, Championship transition, and contact feel.')
+
+
+if __name__ == '__main__':
+    main()

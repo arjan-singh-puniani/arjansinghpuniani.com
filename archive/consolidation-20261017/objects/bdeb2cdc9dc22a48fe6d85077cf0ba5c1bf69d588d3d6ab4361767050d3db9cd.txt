@@ -1,0 +1,61 @@
+# HoloAnatomy 0.3 — Multi-exhibit anatomy platform
+
+## Shipped exhibits
+
+### Head + Neck Neuro
+- Existing skull, cervical spine, brain, carotid/vertebral arteries, jugular veins and neck musculature.
+- Expanded with every additional BodyParts3D Release 4.0 mesh whose verified source name contains `nerve`, plus the bilateral ciliary ganglia.
+- This adds optic nerves, trochlear nerves, oculomotor branches, ophthalmic branches and detailed orbital nerve structures.
+
+**Coverage limitation:** the supplied BodyParts3D archive does not contain a complete mesh set for cranial nerves I–XII or spinal nerve roots. HoloAnatomy 0.3 does not fabricate them. A second verified anatomical source is required for full cranial/spinal neuroanatomy.
+
+### Rotator Cuff + Shoulder
+Right-sided focused exhibit containing:
+- scapula
+- clavicle
+- humerus
+- supraspinatus
+- infraspinatus
+- subscapularis
+- teres minor
+- three deltoid portions
+- long head of biceps brachii
+- subclavian/axillary and scapular regional vasculature
+
+### Heart + Coronary Circulation
+Focused cardiac exhibit containing:
+- atrial and ventricular walls/cavities available in BodyParts3D
+- mitral, tricuspid, pulmonary and aortic valve structures available in the archive
+- papillary muscles
+- left and right coronary arterial trees
+- cardiac venous system and coronary sinus
+- ascending aorta, aortic arch and descending thoracic aorta
+- pulmonary trunk and pulmonary arteries
+- pulmonary veins
+- superior and inferior vena cava
+- brachiocephalic vessels and proximal subclavian artery context
+
+## Module behavior
+
+Exhibits are lazy-loaded. Opening HoloAnatomy loads only the active module. Switching exhibits loads that module once and keeps it cached for later switching. Normalization and camera framing are recalculated per exhibit, so the shoulder and heart fill the viewport instead of sharing a whole-body coordinate scale.
+
+All existing dissection-table interactions remain available:
+- pull apart
+- stage on table
+- labeled leader lines
+- exact return/reassembly
+- layer ghost/hide
+- isolate
+- section plane
+- spread
+- focus
+- parallax
+
+## Source bundle metrics
+
+- Unique BodyParts3D meshes vendored: **261**
+- Raw vendored OBJ bytes: **40,413,488**
+- Vertices: **347,659**
+- Triangles: **596,178**
+
+The ZIP release is smaller than the raw OBJ total because OBJ is highly compressible text.

@@ -1,0 +1,410 @@
+import { bboxCenter } from '../engine/math.js';
+import {
+  SHOULDER_ALL_IDS,
+  SHOULDER_COMPARE_PAIRS,
+  SHOULDER_LOCATE_IDS,
+  SHOULDER_PEEL_STAGES,
+  SHOULDER_REBUILD_IDS,
+  SHOULDER_VIEWS,
+  buildStructureOverrides,
+  chooseDifferentId,
+  scoreRebuildDistance
+} from './model.js';
+
+const SHOULDER_MODULE = 'shoulder';
+const $ = id => document.getElementById(id);
+const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+const easeInOut = t => t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
+
+export function setupShoulderExperience({ state, renderer, controls, manifestById, canvas }) {
+  const ui = createShoulderUI();
+  const pins = new Set();
+  let pinFrame = 0;
+  let cameraTween = 0;
+  let currentView = 'overview';
+  let currentPeel = 'full';
+  let practiceMode = null;
+  let practiceTarget = null;
+  let previousPracticeId = null;
+  let practiceCorrect = 0;
+  let practiceAttempted = 0;
+  let previousDissect = state.dissect;
+  let previousTable = state.table;
+
+  canvas.addEventListener('pointerdown', () => { cameraTween++; }, { passive:true });
+  window.addEventListener('holoanatomy:structure-selected', onStructureSelected);
+  window.addEventListener('holoanatomy:structure-drop', onStructureDrop);
+  pinFrame = requestAnimationFrame(updatePinnedLabels);
+
+  function isShoulder() { return state.module === SHOULDER_MODULE; }
+  function shoulderMeshes() { return renderer.activeMeshes().filter(mesh => mesh.part.module === SHOULDER_MODULE); }
+  function meshById(id) { return shoulderMeshes().find(mesh => mesh.part.id === id) || null; }
+  function availableIds(ids) { return ids.filter(id => meshById(id)); }
+
+  function createShoulderUI() {
+    const toolbar = $('toolbar');
+    const anchor = $('section-button');
+    const buttons = {};
+    for (const [id,label] of [['shoulder-views-button','Views'],['shoulder-peel-button','Peel'],['shoulder-relate-button','Relate'],['shoulder-practice-button','Practice']]) {
+      const button = document.createElement('button');
+      button.id = id; button.type = 'button'; button.textContent = label; button.className = 'shoulder-only shoulder-tool shoulder-toolbar-control';
+      button.hidden = true; button.setAttribute('aria-expanded','false');
+      toolbar.insertBefore(button, anchor);
+      buttons[id] = button;
+    }
+
+    const views = panel('shoulder-views-panel','Shoulder views','Source-supported views with no invented anatomy.');
+    const viewsGrid = document.createElement('div'); viewsGrid.className = 'shoulder-grid';
+    for (const [id,preset] of Object.entries(SHOULDER_VIEWS)) {
+      const b = panelButton(preset.label,preset.short);
+      b.dataset.view = id;
+      b.addEventListener('click',()=>{ applyView(id); closePanels(); });
+      viewsGrid.append(b);
+    }
+    const manual = panelButton('Manual layers','Release the preset and return control to the regular Layers panel.');
+    manual.addEventListener('click',()=>{ clearShoulderPresentation(); currentView='manual'; updateActiveButtons(); closePanels(); });
+    viewsGrid.append(manual); views.append(viewsGrid);
+
+    const peel = panel('shoulder-peel-panel','Peel','Progressive source-supported dissection. Missing tissues are never synthesized.');
+    const peelGrid = document.createElement('div'); peelGrid.className='shoulder-stack';
+    for (const stage of SHOULDER_PEEL_STAGES) {
+      const b = panelButton(stage.label,stage.description); b.dataset.peel=stage.id;
+      b.addEventListener('click',()=>{ applyPeel(stage.id); });
+      peelGrid.append(b);
+    }
+    peel.append(peelGrid);
+
+    const relate = panel('shoulder-relate-panel','Spatial compare','Highlight two verified source structures in their registered coordinates.');
+    const relationNotice = document.createElement('p');
+    relationNotice.className='shoulder-note';
+    relationNotice.textContent='This mode compares geometry only. It does not infer clinical relationships from proximity.';
+    relate.append(relationNotice);
+    const relateGrid=document.createElement('div'); relateGrid.className='shoulder-stack';
+    for (const pair of SHOULDER_COMPARE_PAIRS) {
+      const a=manifestById.get(pair.a), b=manifestById.get(pair.b);
+      if (!a || !b) continue;
+      const button=panelButton(pair.label,`${a.fma} ↔ ${b.fma}`);
+      button.addEventListener('click',()=>{ applyRelationship(pair); closePanels(); });
+      relateGrid.append(button);
+    }
+    const clearRelation=panelButton('Clear comparison','Return to the current shoulder view.');
+    clearRelation.addEventListener('click',()=>{ renderer.emphasisIds=[]; applyView(currentView==='manual'?'overview':currentView); closePanels(); });
+    relateGrid.append(clearRelation); relate.append(relateGrid);
+
+    const practice=panel('shoulder-practice-panel','Shoulder practice','Learn the geometry by locating and rebuilding verified structures.');
+    practice.classList.add('shoulder-practice');
+    const practiceModes=document.createElement('div'); practiceModes.className='shoulder-practice-modes';
+    const locate=document.createElement('button'); locate.type='button'; locate.textContent='Locate'; locate.addEventListener('click',()=>startPractice('locate'));
+    const rebuild=document.createElement('button'); rebuild.type='button'; rebuild.textContent='Rebuild'; rebuild.addEventListener('click',()=>startPractice('rebuild'));
+    practiceModes.append(locate,rebuild);
+    const score=document.createElement('span'); score.id='shoulder-practice-score'; score.className='shoulder-practice-score'; score.textContent='0 / 0';
+    const prompt=document.createElement('h3'); prompt.id='shoulder-practice-prompt'; prompt.textContent='Choose a practice mode.';
+    const feedback=document.createElement('p'); feedback.id='shoulder-practice-feedback'; feedback.className='shoulder-practice-feedback';
+    const practiceActions=document.createElement('div'); practiceActions.className='shoulder-practice-actions';
+    const next=document.createElement('button'); next.id='shoulder-practice-next'; next.type='button'; next.textContent='Next'; next.disabled=true; next.addEventListener('click',nextPracticeQuestion);
+    const end=document.createElement('button'); end.type='button'; end.textContent='End'; end.addEventListener('click',endPractice);
+    practiceActions.append(next,end);
+    practice.append(practiceModes,score,prompt,feedback,practiceActions);
+
+    const pinLayer=document.createElement('div'); pinLayer.id='shoulder-pinned-labels'; pinLayer.className='shoulder-pinned-labels shoulder-only'; pinLayer.hidden=true;
+    const pinSvg=document.createElementNS('http://www.w3.org/2000/svg','svg'); pinSvg.id='shoulder-pin-leaders'; pinSvg.classList.add('shoulder-pin-leaders','shoulder-only'); pinSvg.hidden=true; pinSvg.setAttribute('aria-hidden','true');
+    $('app').append(pinSvg,pinLayer);
+
+    const selectionActions=$('selection-card')?.querySelector('.selection-actions:last-child');
+    let pinButton=null;
+    if (selectionActions) {
+      pinButton=document.createElement('button'); pinButton.id='shoulder-pin'; pinButton.type='button'; pinButton.textContent='Pin'; pinButton.className='shoulder-only'; pinButton.hidden=true;
+      pinButton.addEventListener('click',()=>{
+        if (!isShoulder() || !state.selectedId) return;
+        if (pins.has(state.selectedId)) pins.delete(state.selectedId); else pins.add(state.selectedId);
+        renderPinnedLabels(); updatePinButton();
+      });
+      selectionActions.append(pinButton);
+    }
+
+    for (const [buttonId,panelEl] of [[buttons['shoulder-views-button'],views],[buttons['shoulder-peel-button'],peel],[buttons['shoulder-relate-button'],relate],[buttons['shoulder-practice-button'],practice]]) {
+      buttonId.addEventListener('click',()=>{
+        const show=panelEl.hidden;
+        closePanels(); controls.closePopovers();
+        panelEl.hidden=!show; buttonId.setAttribute('aria-expanded',String(show));
+      });
+    }
+
+    function panel(id,title,subtitle) {
+      const node=document.createElement('section'); node.id=id; node.className='popover chrome shoulder-panel shoulder-only'; node.hidden=true;
+      node.innerHTML=`<div class="popover-head"><strong>${title}</strong><span>${subtitle}</span></div>`;
+      $('app').append(node); return node;
+    }
+    function panelButton(title,description) {
+      const button=document.createElement('button'); button.type='button'; button.className='shoulder-card';
+      button.innerHTML=`<strong>${title}</strong><span>${description}</span>`; return button;
+    }
+
+    return { buttons, panels:[views,peel,relate,practice], views, peel, relate, practice, score, prompt, feedback, next, pinLayer, pinSvg, pinButton };
+  }
+
+  function closePanels() {
+    for (const panel of ui.panels) panel.hidden=true;
+    for (const button of Object.values(ui.buttons)) button.setAttribute('aria-expanded','false');
+  }
+
+  function showShoulderUI(show) {
+    for (const button of Object.values(ui.buttons)) button.hidden=!show;
+    if (ui.pinButton) ui.pinButton.hidden=!show;
+    ui.pinLayer.hidden=!show;
+    ui.pinSvg.hidden=!show;
+    if (!show) closePanels();
+  }
+
+  function clearShoulderPresentation() {
+    state.structureOverrides = {};
+    renderer.emphasisIds = [];
+    state.isolatedId = null;
+    controls.renderLayers();
+  }
+
+  function applyView(id, { animate = true } = {}) {
+    if (!isShoulder()) return;
+    const preset=SHOULDER_VIEWS[id];
+    if (!preset) return;
+    currentView=id; state.shoulderView=id; state.shoulderPeel='full'; currentPeel='full';
+    state.structureOverrides=buildStructureOverrides(SHOULDER_ALL_IDS,preset.visible,preset.ghost,preset.hidden);
+    renderer.emphasisIds=[];
+    state.isolatedId=null;
+    if (animate) animateCamera(preset.camera,preset.focus);
+    controls.renderLayers(); controls.refreshSelection();
+    setGestureHint(`${preset.label} · ${preset.short}`);
+    updateActiveButtons();
+  }
+
+  function applyPeel(id) {
+    if (!isShoulder()) return;
+    const stage=SHOULDER_PEEL_STAGES.find(item=>item.id===id);
+    if (!stage) return;
+    currentPeel=id; state.shoulderPeel=id; state.structureOverrides=buildStructureOverrides(SHOULDER_ALL_IDS,stage.visible,stage.ghost,stage.hidden);
+    renderer.emphasisIds=[]; state.isolatedId=null;
+    setGestureHint(`Peel · ${stage.label} · ${stage.description}`);
+    controls.renderLayers(); controls.refreshSelection(); updateActiveButtons();
+  }
+
+  function applyRelationship(pair) {
+    if (!isShoulder()) return;
+    const all=availableIds(SHOULDER_ALL_IDS);
+    const strong=availableIds([pair.a,pair.b]);
+    state.structureOverrides=buildStructureOverrides(all,strong,all.filter(id=>!strong.includes(id)),[]);
+    renderer.emphasisIds=strong;
+    state.isolatedId=null;
+    animateCamera({ yaw:renderer.camera.yaw, pitch:renderer.camera.pitch, distance:2.35 },strong);
+    const a=manifestById.get(pair.a), b=manifestById.get(pair.b);
+    setGestureHint(`Spatial compare · ${a?.name || pair.a} ↔ ${b?.name || pair.b} · registered source geometry`);
+  }
+
+  function animateCamera(pose, focusIds=[]) {
+    const ids=availableIds(focusIds);
+    const target=averageWorldCenter(ids) || [...renderer.camera.target];
+    const start={ yaw:renderer.camera.yaw, pitch:renderer.camera.pitch, distance:renderer.camera.distance, target:[...renderer.camera.target] };
+    const end={ yaw:pose.yaw ?? start.yaw, pitch:pose.pitch ?? start.pitch, distance:pose.distance ?? start.distance, target };
+    const token=++cameraTween;
+    if (state.reducedMotion) { setCamera(end); return; }
+    const startTime=performance.now(), duration=560;
+    let dyaw=((end.yaw-start.yaw+Math.PI)%(Math.PI*2))-Math.PI;
+    if (dyaw < -Math.PI) dyaw += Math.PI*2;
+    const tick=now=>{
+      if (token!==cameraTween) return;
+      const t=clamp((now-startTime)/duration,0,1), e=easeInOut(t);
+      renderer.camera.yaw=start.yaw+dyaw*e;
+      renderer.camera.pitch=start.pitch+(end.pitch-start.pitch)*e;
+      renderer.camera.distance=start.distance+(end.distance-start.distance)*e;
+      renderer.camera.target=start.target.map((v,i)=>v+(end.target[i]-v)*e);
+      if (t<1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  function setCamera(pose) {
+    renderer.camera.yaw=pose.yaw; renderer.camera.pitch=pose.pitch; renderer.camera.distance=pose.distance; renderer.camera.target=[...pose.target];
+  }
+
+  function averageWorldCenter(ids) {
+    const meshes=ids.map(meshById).filter(Boolean);
+    if (!meshes.length) return null;
+    const sum=[0,0,0];
+    for (const mesh of meshes) {
+      const c=bboxCenter(mesh.geometry.bounds).map((v,i)=>(v-renderer.dataCenter[i])*renderer.dataScale + mesh.renderOffset[i]);
+      for (let i=0;i<3;i++) sum[i]+=c[i];
+    }
+    return sum.map(v=>v/meshes.length);
+  }
+
+  function setGestureHint(text) { const node=$('gesture-hint'); if (node) node.textContent=text; }
+
+  function updateActiveButtons() {
+    for (const button of ui.views.querySelectorAll('[data-view]')) button.classList.toggle('active',button.dataset.view===currentView);
+    for (const button of ui.peel.querySelectorAll('[data-peel]')) button.classList.toggle('active',button.dataset.peel===currentPeel);
+  }
+
+  function onModuleChanged(moduleId) {
+    const active=moduleId===SHOULDER_MODULE;
+    showShoulderUI(active);
+    endPractice({ restore:true });
+    pins.clear(); renderPinnedLabels();
+    if (active) {
+      currentView='overview'; currentPeel='full';
+      requestAnimationFrame(()=>applyView('overview'));
+    } else {
+      state.structureOverrides={}; renderer.emphasisIds=[];
+    }
+  }
+
+  function startPractice(mode) {
+    if (!isShoulder()) return;
+    if (state.quizMode) $('quiz-button')?.click();
+    endPractice({ restore:false });
+    practiceMode=mode; practiceCorrect=0; practiceAttempted=0; previousPracticeId=null;
+    previousDissect=state.dissect; previousTable=state.table;
+    ui.next.disabled=true; ui.feedback.textContent=''; ui.feedback.className='shoulder-practice-feedback'; updatePracticeScore();
+    ui.practice.hidden=false; ui.buttons['shoulder-practice-button'].setAttribute('aria-expanded','true');
+    nextPracticeQuestion();
+  }
+
+  function nextPracticeQuestion() {
+    if (!practiceMode || !isShoulder()) return;
+    ui.next.disabled=true; ui.feedback.textContent=''; ui.feedback.className='shoulder-practice-feedback'; renderer.emphasisIds=[];
+    const source=availableIds(practiceMode==='locate'?SHOULDER_LOCATE_IDS:SHOULDER_REBUILD_IDS);
+    practiceTarget=chooseDifferentId(source,previousPracticeId); previousPracticeId=practiceTarget;
+    if (!practiceTarget) { ui.prompt.textContent='No eligible shoulder structures are loaded.'; return; }
+    const part=manifestById.get(practiceTarget);
+    if (practiceMode==='locate') {
+      setInteractionMode({ dissect:false, table:state.table });
+      applyView('overview',{animate:false}); renderer.emphasisIds=[];
+      ui.prompt.textContent=`Locate: ${part.name}`;
+      setGestureHint('Locate practice · select the named structure without a highlight.');
+    } else {
+      setInteractionMode({ dissect:true, table:true });
+      applyView('overview',{animate:false});
+      state.structureOverrides[practiceTarget]='visible';
+      const mesh=meshById(practiceTarget); if (mesh) { renderer.returnMesh(mesh); renderer.stageMesh(mesh); }
+      controls.refreshStageLabels(true); controls.refreshSelection();
+      ui.prompt.textContent=`Rebuild: return ${part.name} to anatomical position`;
+      setGestureHint('Rebuild practice · drag the staged structure back toward its original registered position.');
+    }
+  }
+
+  function setInteractionMode({ dissect, table }) {
+    state.dissect=dissect; state.table=table;
+    $('dissect-button')?.setAttribute('aria-pressed',String(dissect));
+    $('table-button')?.setAttribute('aria-pressed',String(table));
+    $('app')?.classList.toggle('dissect-mode',dissect);
+  }
+
+  function onStructureSelected(event) {
+    if (!practiceMode || practiceMode!=='locate' || !isShoulder() || !practiceTarget) return;
+    const id=event.detail?.id;
+    if (!id) return;
+    practiceAttempted++;
+    const correct=id===practiceTarget;
+    if (correct) practiceCorrect++;
+    renderer.emphasisIds=correct?[practiceTarget]:[id,practiceTarget];
+    const answer=manifestById.get(practiceTarget);
+    ui.feedback.className=`shoulder-practice-feedback ${correct?'good':'bad'}`;
+    ui.feedback.textContent=correct?`Correct · ${answer.name} · ${answer.fma}`:`Not quite. The target was ${answer.name} · ${answer.fma}.`;
+    ui.next.disabled=false; updatePracticeScore();
+  }
+
+  function onStructureDrop(event) {
+    if (!practiceMode || practiceMode!=='rebuild' || !isShoulder() || !practiceTarget) return;
+    if (event.detail?.id!==practiceTarget) return;
+    const result=scoreRebuildDistance(event.detail.distance);
+    if (result.complete) { practiceAttempted++; practiceCorrect++; ui.next.disabled=false; }
+    else if (result.grade==='close') { practiceAttempted++; }
+    ui.feedback.className=`shoulder-practice-feedback ${result.grade==='correct'?'good':result.grade==='close'?'close':'bad'}`;
+    ui.feedback.textContent=result.grade==='correct'
+      ? 'Correct. The structure is back at its registered source position.'
+      : result.grade==='close'
+        ? 'Close. Bring it nearer to its original position before releasing.'
+        : 'Try again. Use the surrounding bones and cuff as spatial landmarks.';
+    updatePracticeScore();
+  }
+
+  function updatePracticeScore() { ui.score.textContent=`${practiceCorrect} / ${practiceAttempted}`; }
+
+  function endPractice({ restore=true } = {}) {
+    if (!practiceMode && restore) return;
+    practiceMode=null; practiceTarget=null; renderer.emphasisIds=[];
+    ui.next.disabled=true; ui.feedback.textContent=''; ui.prompt.textContent='Choose a practice mode.';
+    if (restore) {
+      setInteractionMode({ dissect:previousDissect, table:previousTable });
+      if (isShoulder()) applyView(currentView==='manual'?'overview':currentView,{animate:false});
+    }
+  }
+
+  function renderPinnedLabels() {
+    ui.pinLayer.innerHTML=''; ui.pinSvg.innerHTML='';
+    for (const id of pins) {
+      const part=manifestById.get(id); if (!part) continue;
+      const label=document.createElement('button'); label.type='button'; label.className='shoulder-pin-label'; label.dataset.id=id;
+      label.innerHTML=`<span>${part.layer}</span><strong>${part.name}</strong><small>${part.fma}</small>`;
+      label.addEventListener('click',()=>{ pins.delete(id); renderPinnedLabels(); updatePinButton(); });
+      ui.pinLayer.append(label);
+      const line=document.createElementNS('http://www.w3.org/2000/svg','line'); line.dataset.id=id; line.classList.add('shoulder-pin-leader'); ui.pinSvg.append(line);
+    }
+    updatePinButton();
+  }
+
+  function updatePinButton() {
+    if (!ui.pinButton) return;
+    ui.pinButton.textContent=state.selectedId&&pins.has(state.selectedId)?'Unpin':'Pin';
+  }
+
+  function updatePinnedLabels() {
+    if (isShoulder() && pins.size) layoutPinnedLabels();
+    updatePinButton();
+    pinFrame=requestAnimationFrame(updatePinnedLabels);
+  }
+
+  function layoutPinnedLabels() {
+    const appRect=$('app').getBoundingClientRect();
+    ui.pinSvg.setAttribute('viewBox',`0 0 ${appRect.width} ${appRect.height}`);
+    const entries=[];
+    for (const id of pins) {
+      const mesh=meshById(id), label=ui.pinLayer.querySelector(`[data-id="${id}"]`), line=ui.pinSvg.querySelector(`[data-id="${id}"]`);
+      const pos=mesh?renderer.projectMeshCenter(mesh):null;
+      if (!mesh||!label||!line||!pos?.visible) { if(label) label.hidden=true; if(line) line.setAttribute('visibility','hidden'); continue; }
+      label.hidden=false; line.setAttribute('visibility','visible'); entries.push({id,label,line,pos});
+    }
+    const left=entries.filter(e=>e.pos.x-appRect.left<appRect.width/2).sort((a,b)=>a.pos.y-b.pos.y);
+    const right=entries.filter(e=>e.pos.x-appRect.left>=appRect.width/2).sort((a,b)=>a.pos.y-b.pos.y);
+    placeColumn(left,'left'); placeColumn(right,'right');
+
+    function placeColumn(items,side) {
+      let previousBottom=104;
+      for (const entry of items) {
+        const r=entry.label.getBoundingClientRect();
+        const x=side==='left'?14:appRect.width-r.width-14;
+        const desired=entry.pos.y-appRect.top-r.height/2;
+        const y=clamp(Math.max(desired,previousBottom+8),104,appRect.height-r.height-88);
+        previousBottom=y+r.height;
+        entry.label.style.left=`${x}px`; entry.label.style.top=`${y}px`;
+        const px=entry.pos.x-appRect.left, py=entry.pos.y-appRect.top;
+        const ax=side==='left'?x+r.width:x, ay=y+r.height/2;
+        entry.line.setAttribute('x1',String(px)); entry.line.setAttribute('y1',String(py)); entry.line.setAttribute('x2',String(ax)); entry.line.setAttribute('y2',String(ay));
+      }
+    }
+  }
+
+  updateActiveButtons();
+  showShoulderUI(isShoulder());
+
+  return {
+    onModuleChanged,
+    applyView,
+    applyPeel,
+    closePanels,
+    endPractice,
+    dispose() {
+      cancelAnimationFrame(pinFrame); cameraTween++;
+      window.removeEventListener('holoanatomy:structure-selected',onStructureSelected);
+      window.removeEventListener('holoanatomy:structure-drop',onStructureDrop);
+    }
+  };
+}

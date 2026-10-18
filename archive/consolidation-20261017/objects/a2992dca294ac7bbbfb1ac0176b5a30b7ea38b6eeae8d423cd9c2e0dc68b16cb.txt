@@ -1,0 +1,23 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { parseOBJ } from '../src/engine/obj.js';
+
+test('OBJ parser triangulates a quad and computes normals', () => {
+  const obj=`
+v 0 0 0
+v 1 0 0
+v 1 1 0
+v 0 1 0
+f 1 2 3 4
+`;
+  const g=parseOBJ(obj);
+  assert.equal(g.triangles,2);
+  assert.equal(g.indices.length,6);
+  assert.deepEqual(g.bounds.min,[0,0,0]);
+  assert.deepEqual(g.bounds.max,[1,1,0]);
+});
+
+test('OBJ parser supports negative indices', () => {
+  const g=parseOBJ('v 0 0 0\nv 1 0 0\nv 0 1 0\nf -3 -2 -1\n');
+  assert.equal(g.triangles,1);
+});

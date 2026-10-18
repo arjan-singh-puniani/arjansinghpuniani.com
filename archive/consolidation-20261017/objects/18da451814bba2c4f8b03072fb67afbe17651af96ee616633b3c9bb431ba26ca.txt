@@ -1,0 +1,29 @@
+# Portfolio WebGL hero upgrade
+
+Target base: `arjan-singh-puniani/arjansinghpuniani.com` current `main` as inspected 2026-10-05.
+
+This upgrade intentionally avoids Three.js and GSAP. It uses native WebGL for a decorative optical field over the existing hero portrait, preserving the current semantic content and keeping the effect isolated to the homepage.
+
+## Design decisions
+
+- WebGL is enhancement-only. If initialization fails, the existing portrait remains intact.
+- No new runtime dependency.
+- DPR capped at 1.5.
+- Rendering pauses when the canvas is offscreen or the tab is hidden.
+- `prefers-reduced-motion` disables time-driven motion.
+- The canvas is `aria-hidden`; all meaning remains in semantic HTML.
+- Existing evidence-first copy and project hierarchy remain unchanged.
+
+## Apply
+
+From repository root:
+
+```bash
+git apply portfolio-webgl-upgrade.patch
+cd arjan-portfolio
+npm ci
+npm run verify
+npm run dev
+```
+
+Then inspect `/` at desktop, tablet, and mobile widths.

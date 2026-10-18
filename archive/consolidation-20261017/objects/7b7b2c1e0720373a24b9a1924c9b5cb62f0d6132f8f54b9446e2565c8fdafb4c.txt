@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="${1:-$PWD}"
+RH="$ROOT/arjan-portfolio/public/rally-house"
+for f in "$RH/index.html" "$RH/dist/main.js" "$RH/dist/world/World.js"; do
+  [[ -f "$f" ]] || { echo "Missing expected production file: $f" >&2; exit 2; }
+done
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cp "$SCRIPT_DIR/visual-production.js" "$RH/visual-production.js"
+cp "$SCRIPT_DIR/visual-production.css" "$RH/visual-production.css"
+
+python3 - "$RH" "$SCRIPT_DIR" <<'PY'
+from pathlib import Path
+import sys
+rh=Path(sys.argv[1]); kit=Path(sys.argv[2])
+
+def once(path, old, new, label):
+    s=path.read_text()
+    n=s.count(old)
+    if n!=1: raise SystemExit(f"{label}: expected one integration point, found {n}; refusing to guess.")
+    path.write_text(s.replace(old,new,1))
+
+world=rh/"dist/world/World.js"
+s=world.read_text()
+if "buildVisualProduction()" not in s:
+    method=(kit/"world-method.txt").read_text()
+    once(world,
+         "        this.buildFloorProgram();\n    }\n    buildFloorProgram() {",
+         "        this.buildVisualProduction();\n        this.buildFloorProgram();\n    }\n"+method+"    buildFloorProgram() {",
+         "World visual-production hook")
+
+main=rh/"dist/main.js"
+s=main.read_text()
+if "installVisualProduction" not in s:
+    once(main,
+         "    const game = new Game(canvas);\n    await game.init();",
+         "    const game = new Game(canvas);\n    await game.init();\n    import('../visual-production.js').then(m => m.installVisualProduction(game)).catch(err => console.warn('Rally House visual production unavailable:', err));",
+         "Visual-production bootstrap hook")
+
+index=rh/"index.html"
+s=index.read_text()
+if "visual-production.css" not in s:
+    once(index,'<link rel="stylesheet" href="./spatial.css" />','<link rel="stylesheet" href="./spatial.css" />\n<link rel="stylesheet" href="./visual-production.css" />',"Visual CSS hook")
+s=index.read_text()
+if 'id="visualProductionIntro"' not in s:
+    intro=(kit/"intro.html").read_text().rstrip()
+    once(index,'<div id="app">','<div id="app">\n'+intro,"Intro markup hook")
+
+test=Path(sys.argv[1]).parents[1]/"tests/rally-house-visual-production.test.ts"
+if not test.exists():
+    test.write_text((kit/"rally-house-visual-production.test.ts").read_text())
+
+print("Rally House v18.3 installed.")
+PY
+echo "Review: git status --short && git diff -- arjan-portfolio/public/rally-house arjan-portfolio/tests/rally-house-visual-production.test.ts"

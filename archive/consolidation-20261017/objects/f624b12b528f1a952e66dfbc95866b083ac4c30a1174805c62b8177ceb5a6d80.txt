@@ -1,0 +1,75 @@
+# HoloAnatomy Shoulder v0.5 — dataset research
+
+## 1. BodyParts3D / DBCLS — current production source
+
+Official current license page: https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html
+
+The DBCLS license page, updated 2025-02-27, states that BodyParts3D is licensed under **Creative Commons Attribution 4.0 International (CC BY 4.0)** and permits access, redistribution, and derivative works with attribution.
+
+Required attribution from the current official page:
+
+> BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International
+
+### Important provenance note
+
+Many legacy OBJ files still carry an older header that names **CC Attribution-Share Alike 2.1 Japan**. HoloAnatomy should preserve original source files and their embedded headers while treating the current DBCLS license page as the authoritative current database-license statement. Do not strip either notice from provenance records.
+
+### Shoulder assessment
+
+Strengths:
+- legally redistributable under the current official license with attribution
+- anatomically registered structures
+- useful bony and muscle geometry
+- excellent compatibility with the existing runtime
+
+Limitations:
+- current production subset lacks separate cuff tendons, labrum, capsule, bursa, key ligaments, and shoulder nerves
+- several clinically important landmarks are contained within larger bone meshes rather than represented separately
+- cuff muscle polygon density is modest
+
+Decision for v0.5: **retain and improve presentation; no replacement required for this software pass.**
+
+## 2. Z-Anatomy — candidate for a later higher-fidelity source pass
+
+Repository: https://github.com/Z-Anatomy/Models-of-human-anatomy
+
+The project states that its shared code/content is under **CC BY-SA 4.0** and requires attribution and ShareAlike for derivative anatomy assets.
+
+### Licensing risk
+
+The same project documents included/reference components with separate licenses, including some **non-commercial (NC)** components. Therefore the entire atlas must **not** be imported wholesale into a commercial-capable HoloAnatomy build without asset-level provenance review.
+
+A shoulder-specific extraction may be viable if every included mesh is traced to a commercially usable source and the applicable ShareAlike obligations are accepted. That review has not yet been completed.
+
+Decision for v0.5: **research candidate only; no Z-Anatomy geometry imported.**
+
+## 3. Open Anatomy Project — candidate framework/source family
+
+Project: https://www.openanatomy.org/
+
+Open Anatomy / Slicer-associated software licensing is permissive, but individual atlas and third-party data rights can differ. Software licensing must not be treated as blanket permission for every anatomical asset.
+
+Decision for v0.5: **no asset imported without atlas-specific license and redistribution verification.**
+
+## Recommended next data milestone
+
+Before adding new anatomy:
+
+1. define the exact missing structures required for the rotator-cuff vertical slice;
+2. audit candidate source files at the individual-asset level;
+3. confirm commercial use, redistribution, derivatives, and attribution requirements;
+4. only then convert and optimize the selected meshes;
+5. keep source licenses and derivative provenance machine-readable.
+
+Priority missing structures:
+
+1. separate cuff tendons
+2. glenoid labrum
+3. capsule
+4. subacromial-subdeltoid bursa
+5. axillary nerve
+6. suprascapular nerve
+7. circumflex humeral arteries
+8. clinically useful separate landmarks or validated landmark annotations
+
+No paid asset or dataset is required for this v0.5 software upgrade.

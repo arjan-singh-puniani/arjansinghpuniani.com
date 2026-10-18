@@ -1,0 +1,8 @@
+  <section id="visualProductionIntro" class="visual-production-intro-ui" aria-label="Enter Rally House">
+    <div class="visual-production-copy">
+      <span class="visual-production-kicker">A living tennis academy</span>
+      <h1>Rally House</h1>
+      <p>A miniature tennis club where rallies, coaching, and ordinary club life keep moving.</p>
+      <button id="visualProductionEnter" class="visual-production-enter" type="button">Enter the club ↗</button>
+    </div>
+  </section>

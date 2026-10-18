@@ -1,0 +1,52 @@
+export function installVisualProduction(game){
+  if(!game?.camera||!game?.world)return;
+  tuneLighting(game);
+  installIntro(game);
+}
+function tuneLighting(game){
+  if(game.world.__visualProductionLighting)return;
+  const original=game.world.lighting.bind(game.world);
+  game.world.lighting=(minutes,focus=0)=>{
+    const l=original(minutes,focus),h=minutes/60,day=h>=7&&h<=18.8;
+    if(day&&game.world.weather==="clear"){
+      l.ambient*=1.045;
+      l.shadowStrength*=.88;
+      l.background[0]=Math.min(1,l.background[0]*1.045+.018);
+      l.background[1]=Math.min(1,l.background[1]*1.050+.022);
+      l.background[2]=Math.min(1,l.background[2]*1.060+.030);
+      l.skyColor=l.skyColor.map((v,i)=>Math.min(1,v*[1.018,1.026,1.042][i]));
+      l.bounceColor=l.bounceColor.map((v,i)=>Math.min(1,v*[1.030,1.018,1.008][i]));
+    }
+    return l;
+  };
+  game.world.__visualProductionLighting=true;
+}
+function composeOpening(game){
+  const c=game.camera;
+  c.autoFrame=false;
+  c.desiredTarget.set(.42,.48,.18);c.target.set(.42,.48,.18);
+  c.desiredAzimuth=c.azimuth=.735;
+  c.desiredElevation=c.elevation=.615;
+  const ratio=c.aspect>=1.05?.885:.77;
+  c.desiredDistance=c.distance=Math.min(c.maxDistance,Math.max(c.minDistance,c.fitDistance*ratio));
+  c.update(0);
+}
+function installIntro(game){
+  const intro=document.getElementById("visualProductionIntro");
+  const enter=document.getElementById("visualProductionEnter");
+  if(!intro||!enter)return;
+  composeOpening(game);
+  let entered=false;
+  const finish=()=>{
+    if(entered)return;entered=true;
+    document.body.classList.add("visual-production-entering");
+    game.audio?.click?.();
+    setTimeout(()=>{
+      intro.hidden=true;
+      document.body.classList.remove("visual-production-entering");
+      game.camera.autoFrame=true;game.camera.frameAcademy();
+    },game.settings?.reducedMotion?20:620);
+  };
+  enter.addEventListener("click",finish,{once:true});
+  intro.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();finish()}});
+}

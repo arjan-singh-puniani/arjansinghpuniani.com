@@ -1,0 +1,80 @@
+# Rally House v17.1 — Toy Contact
+
+This is a **surgical follow-up** to the Rally House v17 tactile-build patch.
+
+It targets the exact problem visible in the close-up playtest: the ball is readable, but the racket still reads like a ring and the hit does not have a convincing impact frame.
+
+## What changes
+
+### Racket
+- Removes the second torus that visually read as another hollow ring.
+- Keeps one stronger racket frame.
+- Adds a faint translucent string-bed surface.
+- Adds five vertical and five horizontal procedural strings.
+- Strings rotate with the real racket frame.
+
+### Contact
+- Uses the live `racketContactFrame()` rather than a vague time fallback.
+- The staged ball converges onto the live string-bed center.
+- Adds a **36 ms impact latch**, about two frames at 60 fps.
+- During the latch the ball is flattened along the racket-normal axis.
+- The ball launches only after the latch.
+
+### Contact feedback
+- Sound triggers at the same authoritative contact event.
+- A small cream ring and tennis-green echo ring appear in the real racket plane.
+- Four tiny pop dots expand away from the string bed.
+- The burst decays in roughly 130 ms.
+- The old impact ring no longer reappears at the racket when the ball later bounces.
+
+### Swing
+- Forehand and backhand follow-through are modestly amplified.
+- Contact timing, contact target solving, and shot IK are not rewritten.
+
+## Apply
+
+Run from the same clean hardening worktree where you applied v17:
+
+```bash
+cd "$HOME/Desktop/arjansinghpuniani-hardening"
+python3 /path/to/apply_rally_house_v17_1_toy_contact.py
+```
+
+The installer refuses to run unless it detects the v17 tactile-build source state.
+
+It creates a timestamped backup automatically and restores the source if patching fails.
+
+## Validate
+
+```bash
+cd rally-house-source-v16
+npm test
+npm run build
+npm run serve
+```
+
+Then open:
+
+```text
+http://localhost:8080/?debug=1
+```
+
+## Manual QA
+
+Watch at least one serve, forehand, backhand, and volley.
+
+Look for this sequence:
+
+1. Ball visibly reaches the string bed.
+2. Ball compresses on the strings for a tiny instant.
+3. Cream/green pop occurs exactly there.
+4. `THWACK` occurs at that same instant.
+5. Ball leaves after the latch.
+6. Green speed trail begins after launch.
+7. No second contact flash appears when the ball bounces.
+
+Also inspect the racket while idle/ready. It should read as **frame + strings**, not two nested rings.
+
+## Deployment
+
+Do not copy this into `arjan-portfolio/public/rally-house` until the source build and visual QA look right.

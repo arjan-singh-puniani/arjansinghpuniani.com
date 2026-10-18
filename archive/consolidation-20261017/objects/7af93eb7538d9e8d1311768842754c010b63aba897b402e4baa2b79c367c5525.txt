@@ -1,0 +1,63 @@
+/* Homepage optical field: decorative GPU layer, never required for content. */
+.v2-visual {
+  isolation: isolate;
+}
+
+.portfolio-hero-field {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  mix-blend-mode: screen;
+  opacity: .82;
+}
+
+.v2-visual > img {
+  z-index: 0;
+  transition: transform 700ms cubic-bezier(.2,.75,.25,1), filter 700ms ease;
+}
+
+.v2-visual:hover > img {
+  transform: scale(1.012);
+  filter: grayscale(.12) saturate(.62) contrast(1.07) sepia(.05);
+}
+
+.v2-photo-index,
+.v2-photo-caption,
+.v2-signal {
+  z-index: 3;
+}
+
+.v2-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border: 1px solid rgba(242,239,232,.18);
+  box-shadow: inset 0 0 0 1px rgba(48,48,51,.18);
+}
+
+.v2-visual::after {
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-hero-field {
+    opacity: .38;
+  }
+  .v2-visual > img,
+  .v2-visual:hover > img {
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .portfolio-hero-field {
+    pointer-events: none;
+    opacity: .58;
+  }
+}

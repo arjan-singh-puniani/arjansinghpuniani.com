@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+import argparse, shutil, sys
+from pathlib import Path
+ROOT = Path.cwd(); REPO = ROOT / "arjan-portfolio"
+PATCH_ROOT = Path(__file__).resolve().parent
+REPLACEMENTS = PATCH_ROOT / "replacements" / "arjan-portfolio"
+BACKUP = ROOT / ".portfolio-visual-refresh-backup-20260930"
+EXPECTED = {
+    Path("src/app/page.tsx"): ["qaiFeatureVisual", "reasonos-home-visual", "Conscious active inference", "Vector EKG + ReasonOS"],
+    Path("src/app/home.module.css"): [".qaiFeatureVisual", ".heroScope"],
+}
+def verify():
+    problems=[]
+    if not REPO.exists(): return ["Expected ./arjan-portfolio in the current directory."]
+    for rel,markers in EXPECTED.items():
+        p=REPO/rel
+        if not p.exists(): problems.append(f"Missing {rel}"); continue
+        t=p.read_text(encoding="utf-8")
+        for m in markers:
+            if m not in t: problems.append(f"Unexpected baseline in {rel}: missing {m!r}")
+    return problems
+def apply_patch():
+    BACKUP.mkdir(exist_ok=True)
+    for src in REPLACEMENTS.rglob("*"):
+        if src.is_dir(): continue
+        rel=src.relative_to(REPLACEMENTS); dest=REPO/rel; dest.parent.mkdir(parents=True,exist_ok=True)
+        if dest.exists():
+            b=BACKUP/rel; b.parent.mkdir(parents=True,exist_ok=True); shutil.copy2(dest,b)
+        shutil.copy2(src,dest); print(f"patched {rel}")
+def main():
+    ap=argparse.ArgumentParser(); g=ap.add_mutually_exclusive_group(required=True); g.add_argument("--check",action="store_true"); g.add_argument("--apply",action="store_true"); a=ap.parse_args()
+    probs=verify()
+    if probs:
+        print("STOP: current homepage does not match the expected static-clean baseline.", file=sys.stderr)
+        for p in probs: print(f"- {p}", file=sys.stderr)
+        return 1
+    print("Baseline verified: static-clean homepage with QAI and ReasonOS placeholder visuals.")
+    print("This patch replaces those two visuals with the microtubule and ReasonOS manifesto previews.")
+    if a.check:
+        print("Ready to apply."); return 0
+    apply_patch(); print("\nVisual refresh applied."); print(f"Backup: {BACKUP}"); return 0
+if __name__ == "__main__": raise SystemExit(main())

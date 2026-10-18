@@ -1,0 +1,25 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { createInitialState, cycleLayerState, selectStructure, toggleIsolation, setSectionAxis, setSectionPosition, structureVisibility } from '../src/state/store.js';
+
+test('layer state cycles visible to ghost to hidden',()=>{
+  const s=createInitialState();
+  s.layers.skeleton='visible';
+  assert.equal(cycleLayerState(s,'skeleton'),'ghost');
+  assert.equal(cycleLayerState(s,'skeleton'),'hidden');
+  assert.equal(cycleLayerState(s,'skeleton'),'visible');
+});
+
+test('isolation ghosts context rather than deleting it',()=>{
+  const s=createInitialState();
+  selectStructure(s,'FJ3200'); toggleIsolation(s);
+  assert.deepEqual(structureVisibility(s,{id:'FJ3200',layer:'skeleton'}),{visible:true,ghost:false});
+  assert.deepEqual(structureVisibility(s,{id:'FJ3309',layer:'skeleton'}),{visible:true,ghost:true});
+});
+
+test('section state validates axes and clamps position',()=>{
+  const s=createInitialState();
+  setSectionAxis(s,'z'); setSectionPosition(s,9);
+  assert.equal(s.section.axis,'z'); assert.equal(s.section.position,1.1);
+  assert.throws(()=>setSectionAxis(s,'q'));
+});

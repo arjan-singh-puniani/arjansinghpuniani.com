@@ -1,0 +1,20 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { preferredStageSide, stageSlot } from '../src/interaction/stageLayout.js';
+
+test('stage layout assigns clinically useful systems to stable sides', () => {
+  assert.equal(preferredStageSide('skeleton'), 'left');
+  assert.equal(preferredStageSide('arteries'), 'left');
+  assert.equal(preferredStageSide('brain'), 'right');
+  assert.equal(preferredStageSide('nerves'), 'right');
+});
+
+test('stage slots are separated and mirrored by side', () => {
+  const left0 = stageSlot(0, 'left');
+  const left1 = stageSlot(1, 'left');
+  const right0 = stageSlot(0, 'right');
+  assert.ok(left0[0] < 0);
+  assert.ok(right0[0] > 0);
+  assert.equal(Math.abs(left0[0]), Math.abs(right0[0]));
+  assert.notEqual(left0[1], left1[1]);
+});

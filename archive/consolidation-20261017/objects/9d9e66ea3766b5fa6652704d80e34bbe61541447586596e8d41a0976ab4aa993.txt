@@ -1,0 +1,221 @@
+.heroScope {
+  min-height: auto !important;
+}
+
+.heroScope :global(.v2-hero-grid) {
+  min-height: 660px;
+}
+
+.heroScope :global(.v2-hero-copy) {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.heroTitle {
+  max-width: 780px;
+  margin: 42px 0 24px !important;
+  font-size: clamp(64px, 7.2vw, 108px) !important;
+  line-height: .86 !important;
+}
+
+.heroFocus {
+  max-width: 700px;
+  margin: 0;
+  color: #5b6064;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+.heroScope :global(.v2-actions) {
+  margin-top: 34px;
+}
+
+.qaiFeatureVisual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+  padding: clamp(28px, 4.5vw, 64px);
+  background:
+    radial-gradient(circle at 18% 18%, rgba(92, 126, 255, 0.13), transparent 34%),
+    linear-gradient(145deg, #eef2f7 0%, #f8f6ef 100%);
+  color: #10131a;
+  overflow: hidden;
+}
+
+.qaiFeatureVisual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(15, 20, 30, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 20, 30, 0.055) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,.82), transparent 92%);
+}
+
+.qaiEyebrow {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .16em;
+  font-weight: 700;
+}
+
+.qaiPath {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+}
+
+.qaiPath > div {
+  min-height: 138px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px;
+  border: 1px solid rgba(16, 19, 26, 0.28);
+  background: rgba(255,255,255,.48);
+  backdrop-filter: blur(6px);
+}
+
+.qaiPath span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #4f66a7;
+}
+
+.qaiPath strong { font-size: clamp(15px, 1.55vw, 20px); line-height: 1.08; }
+.qaiPath small { font-size: 12px; color: rgba(16, 19, 26, .62); }
+.qaiPath b { font-size: 22px; font-weight: 400; color: #6d778e; }
+
+.qaiMechanisms {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.qaiMechanisms span {
+  padding: 8px 10px;
+  border: 1px solid rgba(16, 19, 26, .22);
+  background: rgba(255,255,255,.56);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .09em;
+}
+
+.qaiCaveat {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .05em;
+  color: rgba(16, 19, 26, .62);
+}
+
+.contact {
+  padding: 92px 0;
+  background: #f2efe8;
+  color: #303033;
+  border-top: 1px solid var(--line);
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr);
+  gap: 72px;
+  align-items: end;
+}
+
+.contact h2 {
+  margin: 26px 0 0;
+  font-size: clamp(48px, 7vw, 88px);
+}
+
+.contactActions {
+  display: grid;
+  border-top: 1px solid currentColor;
+}
+
+.contactActions a {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid currentColor;
+  color: inherit;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+@media (max-width: 800px) {
+  .heroScope :global(.v2-hero-grid) {
+    min-height: auto;
+  }
+
+  .heroScope :global(.v2-hero-copy) {
+    padding-top: 42px;
+    padding-bottom: 34px;
+  }
+
+  .heroTitle {
+    margin: 32px 0 20px !important;
+    font-size: clamp(50px, 14vw, 68px) !important;
+  }
+
+  .heroFocus {
+    font-size: 10px;
+  }
+
+  .heroScope :global(.v2-actions) {
+    margin-top: 24px;
+  }
+
+  .heroScope :global(.v2-visual) {
+    min-height: 390px;
+  }
+
+  .qaiFeatureVisual {
+    min-height: 390px;
+    gap: 18px;
+    padding: 24px;
+  }
+
+  .qaiPath {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .qaiPath > div {
+    min-height: auto;
+    gap: 8px;
+  }
+
+  .qaiPath b {
+    transform: rotate(90deg);
+    justify-self: center;
+    line-height: 1;
+  }
+
+  .contactGrid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .contact {
+    padding: 72px 0;
+  }
+}

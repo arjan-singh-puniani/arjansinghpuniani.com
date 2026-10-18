@@ -1,0 +1,75 @@
+# HoloAnatomy Shoulder v0.5 — anatomy audit
+
+Status: software upgrade implemented against the existing production BodyParts3D shoulder subset. No new anatomy was fabricated.
+
+## Current source-supported shoulder structures
+
+| Mesh | Structure | Layer | Approx. triangles | Bounding size (source units, mm) | Presentation note |
+|---|---|---:|---:|---|---|
+| FJ3384 | Right scapula | skeleton | 26,172 | 109.4 × 107.9 × 165.9 | High-detail anchor mesh; acromion/coracoid/glenoid are part of this combined mesh, not separate selectable structures. |
+| FJ3362 | Right clavicle | skeleton | 1,146 | 135.6 × 92.5 × 46.8 | Useful bony context. |
+| FJ3368 | Right humerus | skeleton | 3,784 | 100.8 × 49.2 × 307.3 | Useful proximal humeral context; greater/lesser tuberosities are not separate meshes. |
+| FJ1506 | Right supraspinatus | muscles | 878 | 124.6 × 78.9 × 35.0 | Low-to-moderate polygon count; no separate supraspinatus tendon mesh. |
+| FJ1500 | Right infraspinatus muscle | muscles | 866 | 128.8 × 80.8 × 124.4 | Low-to-moderate polygon count; no separate tendon mesh. |
+| FJ1504 | Right subscapularis | muscles | 2,092 | 102.9 × 97.2 × 129.6 | Best-resolved cuff muscle in current subset; no separate tendon mesh. |
+| FJ1508 | Right teres minor | muscles | 506 | 85.1 × 67.9 × 96.4 | Coarsest cuff muscle in current subset. |
+| FJ1467 | Acromial part of right deltoid | muscles | 1,300 | 80.6 × 62.5 × 144.1 | Superficial context; useful for peel/ghost interaction. |
+| FJ1468 | Clavicular part of right deltoid | muscles | 2,206 | 115.1 × 46.2 × 151.5 | Superficial context. |
+| FJ1513 | Spinal part of right deltoid | muscles | 1,900 | 136.3 × 76.5 × 152.1 | Superficial context. |
+| FJ1478 | Long head of right biceps brachii | muscles | 1,426 | 94.6 × 41.5 × 345.3 | Source provides the long-head muscle geometry, not a separately segmented biceps tendon. |
+| FJ3579 | Right subclavian artery | arteries | 452 | 72.4 × 17.9 × 22.1 | Regional vascular context. |
+| FJ2268 | Right axillary artery | arteries | 1,826 | 74.5 × 26.4 × 81.7 | Good regional vascular anchor. |
+| FJ2303 | Right suprascapular artery | arteries | 1,912 | 97.1 × 65.5 × 63.3 | Useful scapular vascular context. |
+| FJ2298 | Right subscapular artery | arteries | 786 | 13.0 × 8.6 × 15.5 | Small structure; selection can be difficult. |
+| FJ2273 | Right circumflex scapular artery | arteries | 778 | 10.1 × 35.6 × 13.4 | Small structure; selection can be difficult. |
+| FJ2269 | Right axillary vein | veins | 2,146 | 82.2 × 23.8 × 102.3 | Good regional vascular anchor. |
+| FJ2302 | Right suprascapular vein | veins | 1,986 | 76.1 × 62.2 × 60.8 | Useful scapular vascular context. |
+| FJ2299 | Right subscapular vein | veins | 526 | 3.5 × 6.2 × 20.1 | Very small; selection can be difficult. |
+| FJ2274 | Right circumflex scapular vein | veins | 960 | 24.0 × 50.9 × 12.6 | Small regional vein. |
+
+Current shoulder total: approximately **53,648 triangles across 20 source meshes**.
+
+## Exact gaps in the current shoulder subset
+
+The production manifest does **not** currently contain separate meshes for:
+
+- supraspinatus tendon
+- infraspinatus tendon
+- teres minor tendon
+- subscapularis tendon
+- long-head biceps tendon
+- glenoid labrum
+- glenohumeral joint capsule
+- subacromial-subdeltoid bursa
+- coracoacromial ligament
+- coracohumeral ligament
+- glenohumeral ligaments
+- axillary nerve
+- suprascapular nerve
+- musculocutaneous nerve
+- brachial plexus shoulder components
+- anterior/posterior circumflex humeral arteries as separately named production meshes
+- acromion as a separate selectable mesh
+- coracoid process as a separate selectable mesh
+- glenoid as a separate selectable mesh
+- greater tuberosity as a separate selectable mesh
+- lesser tuberosity as a separate selectable mesh
+- bicipital groove as a separate selectable mesh
+
+These are therefore **not synthesized in v0.5**.
+
+## What v0.5 improves without inventing anatomy
+
+- All four cuff muscles are forced into a strong visible state in shoulder presets instead of inheriting the generic muscle ghost state.
+- Deltoid components can be progressively ghosted or removed using source geometry.
+- Source-supported anterior/posterior/superior/cuff/biceps/vascular views control camera and per-structure presentation.
+- “Insertion context” shows cuff muscles with the humerus but explicitly does not draw fabricated footprint polygons.
+- Spatial comparison mode emphasizes two verified source structures without inferring a clinical relationship from proximity.
+- Locate and rebuild practice use exact source structure identity and registered source position.
+- Rebuild scoring uses translation distance to the registered source position. Individual structure rotation is not yet part of direct manipulation, so rotational accuracy is not claimed.
+- Shoulder labels can be pinned to moving 3D structures.
+- Material rendering is deepened with restrained surface variation and a softer fill term. The variation is a visualization treatment and does not represent histologic fibers.
+
+## Fidelity conclusion
+
+The current data can support a much better educational shoulder experience, but it cannot become a genuinely high-fidelity cuff/tendon/labrum/capsule exhibit without an additional verified dataset or a more granular BodyParts3D subset. The software upgrade is worthwhile now; anatomical-source expansion remains the limiting factor for the next fidelity jump.

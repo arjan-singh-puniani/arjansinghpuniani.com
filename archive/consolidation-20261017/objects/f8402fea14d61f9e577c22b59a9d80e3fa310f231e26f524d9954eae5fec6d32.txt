@@ -1,0 +1,316 @@
+import { ANATOMY_MANIFEST, BODY_PARTS_LICENSE, LAYERS, MODULES, MODULE_MANIFESTS, validateManifest } from './anatomy/manifest.js';
+import { loadManifest } from './engine/loader.js';
+import { HoloRenderer } from './engine/renderer.js';
+import { AdaptiveQuality, chooseQuality } from './engine/quality.js';
+import { createInitialState, selectStructure, setQuality } from './state/store.js';
+import { setupControls } from './ui/controls.js';
+import { setupShoulderStudio } from './shoulderStudio.js';
+
+const canvas = document.getElementById('anatomy-canvas');
+const fallback = document.getElementById('fallback');
+const loading = document.getElementById('loading');
+const loadBar = document.getElementById('load-bar');
+const loadSummary = document.getElementById('load-summary');
+const loadStatus = document.getElementById('load-status');
+const assetWarning = document.getElementById('asset-warning');
+const debug = document.getElementById('debug');
+const fallbackTitle = document.getElementById('fallback-title');
+const fallbackMessage = document.getElementById('fallback-message');
+const moduleSelect = document.getElementById('module-select');
+const moduleTitle = document.getElementById('module-title');
+const moduleSubtitle = document.getElementById('module-subtitle');
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mobile = matchMedia('(pointer: coarse)').matches || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+const detectedQuality = chooseQuality({
+  width: innerWidth,
+  dpr: devicePixelRatio || 1,
+  hardwareConcurrency: navigator.hardwareConcurrency || 4,
+  deviceMemory: navigator.deviceMemory || 4,
+  mobile
+});
+const state = createInitialState({ reducedMotion, quality: 'auto' });
+const manifestById = new Map(ANATOMY_MANIFEST.map(p => [p.id,p]));
+const errors = validateManifest();
+if (errors.length) throw new Error(`Invalid anatomy manifest:\n${errors.join('\n')}`);
+
+let renderer;
+try {
+  renderer = new HoloRenderer(canvas, state, { quality: detectedQuality });
+} catch (error) {
+  console.error(error);
+  canvas.hidden = true;
+  fallbackTitle.textContent = 'Interactive 3D is unavailable.';
+  fallbackMessage.textContent = 'Your browser or graphics hardware could not start the WebGL 2 renderer. Try a current Chrome, Safari, Firefox, or Edge build with WebGL 2 enabled.';
+  fallback.hidden = false;
+  loading.hidden = true;
+  throw error;
+}
+
+const adaptive = new AdaptiveQuality(detectedQuality);
+window.addEventListener('holoanatomy:contextlost', () => {
+  fallbackTitle.textContent = 'Graphics context was lost.';
+  fallbackMessage.textContent = 'The browser released the WebGL context, usually because of GPU or memory pressure. Reload the page to restore the anatomy viewer.';
+  fallback.hidden = false;
+});
+
+const controls = setupControls({ state, renderer, manifestById });
+const shoulderStudio = setupShoulderStudio({ state, renderer, controls });
+setupQualityControl();
+setupInteraction();
+setupDebug();
+setupModulePicker();
+
+const loadedModules = new Set();
+const loadingPromises = new Map();
+const controller = new AbortController();
+window.addEventListener('beforeunload', () => controller.abort(), { once:true });
+
+await switchModule(state.module, { initial:true });
+
+function setupModulePicker() {
+  moduleSelect.innerHTML = '';
+  for (const [id, cfg] of Object.entries(MODULES)) {
+    const option = document.createElement('option');
+    option.value = id; option.textContent = cfg.label;
+    moduleSelect.append(option);
+  }
+  moduleSelect.value = state.module;
+  moduleSelect.addEventListener('change', async () => {
+    const requested = moduleSelect.value;
+    moduleSelect.disabled = true;
+    try { await switchModule(requested); }
+    finally { moduleSelect.disabled = false; }
+  });
+}
+
+async function switchModule(moduleId, { initial = false } = {}) {
+  const cfg = MODULES[moduleId];
+  if (!cfg) throw new Error(`Unknown anatomy module: ${moduleId}`);
+  state.selectedId = null; state.isolatedId = null; state.explode = false;
+  renderer.reassembleAll();
+  state.module = moduleId;
+  renderer.setModule(moduleId);
+  moduleSelect.value = moduleId;
+  moduleTitle.textContent = cfg.label;
+  moduleSubtitle.textContent = cfg.subtitle;
+  document.title = `HoloAnatomy — ${cfg.label}`;
+  controls.refreshSelection(); controls.refreshStageLabels(true);
+  shoulderStudio.onModuleChanged(moduleId);
+  await loadModule(moduleId);
+  renderer.setModule(moduleId);
+  if (!initial) controls.renderLayers();
+}
+
+async function loadModule(moduleId) {
+  if (loadedModules.has(moduleId)) return;
+  if (loadingPromises.has(moduleId)) return loadingPromises.get(moduleId);
+  const manifest = MODULE_MANIFESTS[moduleId];
+  const promise = (async () => {
+    loading.classList.remove('done'); loading.hidden = false;
+    loadBar.style.width = '0%'; loadSummary.textContent = `0 / ${manifest.length}`;
+    loadStatus.textContent = `Loading ${MODULES[moduleId].label}…`;
+    const { loaded, failures } = await loadManifest(manifest, {
+      concurrency: mobile ? 4 : 8, signal: controller.signal,
+      onPart(result) { renderer.addMesh(result.part, result.geometry); },
+      onProgress({ completed, total, part, failed }) {
+        loadSummary.textContent = `${completed} / ${total}`;
+        loadBar.style.width = `${(completed/total)*100}%`;
+        loadStatus.textContent = failed ? `${part.name} checked · ${failed} unavailable` : `${part.name} ready`;
+      }
+    });
+    if (!loaded.length) {
+      assetWarning.hidden = false;
+      loadStatus.textContent = 'No anatomical geometry could be loaded.';
+      fallbackTitle.textContent = 'Anatomy assets are unavailable.';
+      fallbackMessage.textContent = 'The renderer started correctly, but no verified BodyParts3D mesh could be loaded.';
+      fallback.hidden = false;
+    } else {
+      loadedModules.add(moduleId);
+      loadStatus.textContent = failures.length ? `${loaded.length} structures ready · ${failures.length} unavailable` : `${loaded.length} verified structures ready`;
+      if (failures.length) assetWarning.hidden = false;
+      window.setTimeout(() => loading.classList.add('done'), failures.length ? 2000 : 500);
+    }
+  })();
+  loadingPromises.set(moduleId, promise);
+  try { await promise; } finally { loadingPromises.delete(moduleId); }
+}
+
+requestAnimationFrame(frame);
+
+let previousFrame = performance.now();
+function frame(now) {
+  renderer.render(now);
+  const frameMs = now - previousFrame;
+  previousFrame = now;
+  if (state.quality === 'auto' && renderer.meshes.length) {
+    const next = adaptive.sample(frameMs);
+    if (next) renderer.setQuality(next);
+  }
+  controls.updateStageLabelPositions();
+  if (!debug.hidden) updateDebug();
+  requestAnimationFrame(frame);
+}
+
+function setupQualityControl() {
+  const list = document.getElementById('layer-list');
+  const row = document.createElement('label');
+  row.className = 'quality-row';
+  row.innerHTML = `<span>Render quality</span><select aria-label="Render quality"><option value="auto">Auto</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select>`;
+  list.parentElement.append(row);
+  const select = row.querySelector('select');
+  select.value = state.quality;
+  select.addEventListener('change', () => {
+    setQuality(state, select.value);
+    const next = state.quality === 'auto' ? detectedQuality : state.quality;
+    adaptive.level = next;
+    renderer.setQuality(next);
+  });
+}
+
+function setupInteraction() {
+  const pointers = new Map();
+  let gestureMoved = false;
+  let pinchDistance = 0;
+  let downAt = null;
+  let dissectMesh = null;
+  let dissectMoved = false;
+
+  const normalizedPointer = e => {
+    const r = canvas.getBoundingClientRect();
+    return [(e.clientX-r.left)/r.width*2-1, -((e.clientY-r.top)/r.height*2-1)];
+  };
+
+  canvas.addEventListener('pointerdown', e => {
+    canvas.setPointerCapture?.(e.pointerId);
+    pointers.set(e.pointerId, { x:e.clientX, y:e.clientY });
+    gestureMoved = false;
+    downAt = { x:e.clientX, y:e.clientY, time:performance.now() };
+    dissectMesh = null;
+    dissectMoved = false;
+
+    if (state.dissect && pointers.size === 1) {
+      const mesh = renderer.pick(e.clientX,e.clientY);
+      if (mesh) {
+        dissectMesh = mesh;
+        selectStructure(state, mesh.part.id);
+        controls.refreshSelection();
+        canvas.classList.add('pulling');
+      }
+    }
+
+    if (pointers.size === 2) {
+      dissectMesh = null;
+      canvas.classList.remove('pulling');
+      const pts=[...pointers.values()];
+      pinchDistance=Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y);
+    }
+  });
+
+  canvas.addEventListener('pointermove', e => {
+    const n = normalizedPointer(e);
+    renderer.camera.parallax = [n[0], n[1]];
+    if (!pointers.has(e.pointerId)) return;
+    const previous = pointers.get(e.pointerId);
+    pointers.set(e.pointerId, {x:e.clientX,y:e.clientY});
+    if (pointers.size === 1) {
+      const dx=e.clientX-previous.x, dy=e.clientY-previous.y;
+      if (Math.abs(dx)+Math.abs(dy)>1) gestureMoved=true;
+      if (dissectMesh) {
+        if (Math.abs(dx)+Math.abs(dy)>1) dissectMoved=true;
+        renderer.pullMesh(dissectMesh, dx, dy);
+        controls.refreshStageLabels(true);
+        controls.refreshSelection();
+      } else {
+        renderer.camera.orbit(-dx*0.0065,-dy*0.0065);
+      }
+    } else if (pointers.size === 2) {
+      const pts=[...pointers.values()];
+      const d=Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y);
+      if (pinchDistance>0) renderer.camera.zoom(Math.log(pinchDistance/d));
+      pinchDistance=d; gestureMoved=true;
+    }
+  });
+
+  const endPointer = e => {
+    const wasTap = downAt && !gestureMoved && Math.hypot(e.clientX-downAt.x,e.clientY-downAt.y)<7 && performance.now()-downAt.time<650;
+    pointers.delete(e.pointerId);
+    if (pointers.size < 2) pinchDistance=0;
+    if (wasTap && !dissectMesh) chooseAt(e.clientX,e.clientY,false);
+    else if (wasTap && dissectMesh) {
+      selectStructure(state, dissectMesh.part.id);
+      controls.refreshSelection();
+    } else if (dissectMesh && dissectMoved) {
+      if (renderer.pullDistance(dissectMesh) < 0.18) renderer.returnMesh(dissectMesh);
+      else if (state.table) renderer.stageMesh(dissectMesh);
+      controls.refreshStageLabels(true);
+      controls.refreshSelection();
+    }
+    dissectMesh = null; dissectMoved=false;
+    canvas.classList.remove('pulling');
+    if (!pointers.size) downAt=null;
+  };
+  canvas.addEventListener('pointerup', endPointer);
+  canvas.addEventListener('pointercancel', e => {
+    pointers.delete(e.pointerId);
+    if (dissectMesh && dissectMoved && state.table && renderer.pullDistance(dissectMesh)>=0.18) renderer.stageMesh(dissectMesh);
+    dissectMesh=null; dissectMoved=false; controls.refreshStageLabels(true); canvas.classList.remove('pulling');
+  });
+  canvas.addEventListener('wheel', e => { e.preventDefault(); renderer.camera.zoom(e.deltaY*0.00125); }, { passive:false });
+  canvas.addEventListener('dblclick', e => { e.preventDefault(); chooseAt(e.clientX,e.clientY,true); });
+  canvas.addEventListener('contextmenu', e => e.preventDefault());
+
+  async function chooseAt(x,y,focus) {
+    const mesh=renderer.pick(x,y);
+    selectStructure(state,mesh?.part.id || null);
+    if (!mesh) state.isolatedId=null;
+    controls.refreshSelection();
+    if (mesh && focus) renderer.focusMesh(mesh);
+  }
+
+  window.addEventListener('keydown', e => {
+    const tag=document.activeElement?.tagName;
+    if (tag==='INPUT'||tag==='SELECT'||tag==='TEXTAREA') return;
+    if (e.key==='ArrowLeft') renderer.camera.orbit(0.055,0);
+    else if (e.key==='ArrowRight') renderer.camera.orbit(-0.055,0);
+    else if (e.key==='ArrowUp') renderer.camera.orbit(0,-0.055);
+    else if (e.key==='ArrowDown') renderer.camera.orbit(0,0.055);
+    else if (e.key==='+'||e.key==='=') renderer.camera.zoom(-0.09);
+    else if (e.key==='-') renderer.camera.zoom(0.09);
+    else if (e.key.toLowerCase()==='r') { renderer.camera.reset(); renderer.reassembleAll(); state.explode=false; controls.refreshStageLabels(true); controls.refreshSelection(); }
+    else if (e.key.toLowerCase()==='t') { document.getElementById('table-button').click(); }
+    else if (e.key.toLowerCase()==='d') {
+      state.dissect=!state.dissect;
+      document.getElementById('dissect-button').setAttribute('aria-pressed',String(state.dissect));
+      document.getElementById('app').classList.toggle('dissect-mode',state.dissect);
+      document.getElementById('gesture-hint').textContent = state.dissect ? (state.table ? 'Dissect + Table · pull a structure and release to stage it · drag it back to reassemble' : 'Free dissection · drag a structure anywhere · drag empty space to rotate') : 'Explore mode · drag to rotate · tap a structure';
+    }
+    else if (e.key==='Escape') { controls.closePopovers(); state.selectedId=null; state.isolatedId=null; controls.refreshSelection(); }
+    else return;
+    e.preventDefault();
+  });
+}
+
+function setupDebug() {
+  const params = new URLSearchParams(location.search);
+  debug.hidden = params.get('debug') !== '1';
+}
+
+function updateDebug() {
+  const s=renderer.stats;
+  debug.textContent = [
+    `HOLOANATOMY DEBUG`,
+    `fps          ${s.fps.toFixed(1)}`,
+    `frame        ${s.frameMs.toFixed(2)} ms`,
+    `draw calls   ${s.drawCalls}`,
+    `triangles    ${Math.round(s.triangles).toLocaleString()}`,
+    `geometries   ${s.geometries}`,
+    `dpr          ${(canvas.width/canvas.clientWidth).toFixed(2)}`,
+    `quality      ${state.quality === 'auto' ? `${renderer.quality} (auto)` : renderer.quality}`,
+    `module       ${MODULES[state.module]?.shortLabel || state.module}`,
+    `loaded       ${renderer.activeMeshes().length}/${MODULE_MANIFESTS[state.module].length}`,
+    `cached       ${loadedModules.size}/${Object.keys(MODULES).length} modules`,
+    `staged       ${renderer.stagedMeshes().length}`,
+    `table        ${state.table ? 'on' : 'off'}`,
+    `license      ${BODY_PARTS_LICENSE.short}`
+  ].join('\n');
+}

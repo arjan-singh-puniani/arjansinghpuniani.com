@@ -1,0 +1,32 @@
+# Pull-apart dissection exhibit
+
+HoloAnatomy treats direct disassembly as a first-class interaction rather than relying on a coarse explode animation.
+
+## Interaction model
+
+- **Dissect mode is on by default.** Drag directly on a visible anatomical structure.
+- **Table mode is on by default.** When a pulled structure is released, it snaps to an organized camera-relative dissection slot around the specimen.
+- The staged structure keeps its original geometry and orientation. Only its translation changes.
+- Each staged structure receives a persistent label with its verified BodyParts3D name and anatomical system.
+- A leader line connects the label to the staged mesh.
+- Clicking a staged label selects the structure.
+- The return control beside a staged label restores that mesh to its exact anatomical registration.
+- A staged mesh can also be grabbed directly. Drag it toward the body; if released near its anatomical origin, it reassembles. Otherwise Table mode stages it again.
+- **Table** can be turned off for free-form manual dissection. Existing staged structures remain where they are when Table mode is disabled.
+- **Reassemble all** restores every manually displaced structure and resets the view.
+- **Spread** remains available as a separate system-level separation tool. Staged structures are excluded from system spreading so the table stays organized.
+
+## Responsive staging
+
+Dissection slots are expressed as fractions of the active camera frustum rather than fixed world-space offsets. This keeps removed structures visible on both wide desktop displays and portrait mobile screens.
+
+## Keyboard
+
+- `D` toggles Dissect mode.
+- `T` toggles Table mode.
+- `R` reassembles all structures and resets the camera.
+- Arrow keys orbit; `+` / `-` zoom.
+
+## Scientific integrity
+
+Pulling or staging changes presentation only. Source geometry is not deformed, relabeled, scaled, or anatomically edited. Returning a structure places it back at its exact source coordinate registration.

@@ -1,0 +1,57 @@
+# Performance
+
+## Current engineering controls
+
+- Indexed WebGL buffers per anatomical mesh
+- No runtime framework or rendering-library overhead
+- Concurrent but bounded asset loading
+- Static GPU buffers
+- One material draw per structure
+- GPU picking only on user selection, not every frame
+- Adaptive render pixel ratio
+- High / Medium / Low manual override
+- Postprocessing deliberately absent in V1
+- `?debug=1` reports FPS, frame time, draw calls, triangles, geometry count, DPR, and quality
+
+## Quality tiers
+
+| Tier | Maximum DPR | Rim treatment | Intended target |
+|---|---:|---:|---|
+| High | 1.8 | full | capable desktop GPU |
+| Medium | 1.35 | 90% | ordinary laptop / high-DPR desktop |
+| Low | 1.0 | 72% | phones / constrained devices |
+
+Automatic quality can step down after sustained slow frame times.
+
+## Vendored anatomy bundle
+
+Using the uploaded official `isa_BP3D_4.0_obj_99.zip` archive, HoloAnatomy now vendors 64 BodyParts3D head-and-neck OBJ meshes into `public/anatomy/`.
+
+| Metric | Value |
+|---|---:|
+| Vendored meshes | 64 |
+| Total anatomy bytes | 22,420,850 bytes |
+| Total vertices | 190,066 |
+| Total faces / triangles | 329,404 |
+| Largest single mesh | FJ1830 (1,598,659 bytes) |
+| Second largest mesh | FJ1781 (1,579,646 bytes) |
+
+This bundle is now present in the release artifact, so the app no longer depends on the GitHub mirror at runtime.
+
+## Measurements still required
+
+The current execution sandbox still cannot launch a representative GPU browser session for trustworthy visual and frame-time QA. Therefore the following are **still not claimed yet**:
+
+- sustained FPS on the complete specimen
+- iPhone Safari frame time at 430×932 or device-native viewport
+- first meaningful anatomy render timing on broadband and warm-cache reload
+- final judged visual quality against the target reference
+- clipped-surface quality on the actual loaded meshes
+
+After opening the app locally, record at minimum:
+
+- total parsed triangle count shown by `?debug=1`
+- draw calls in default / ghost / isolate modes
+- 60-second median frame time at 1920×1080
+- iPhone Safari frame time at 430×932
+- first meaningful anatomy render on broadband and warm-cache reload

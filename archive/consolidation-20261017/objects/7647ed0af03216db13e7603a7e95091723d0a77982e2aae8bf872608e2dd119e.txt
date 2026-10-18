@@ -1,0 +1,13 @@
+# RC3.4 validation
+
+Validated in the available environment:
+
+- TypeScript strict build: PASS
+- New cozy atmosphere deterministic guardrails: PASS
+- Core simulation, causal, everyday-life, walking, character-life, life integration/variety, presence: PASS through the available source suite
+- Story presence, navigation safety, Everyday Ownership: PASS
+- Championship controller, interactive contact/cleanup, presentation/camera, showcase, playability, spectator presence, tactile-density: PASS
+- Asset-intake test: environment-blocked here because the recovery artifact intentionally does not include `tools/inspect-character.mjs`; the real repository restored from Git contains that tracked tool and the local release runner executes the complete `npm test`.
+- Browser cozy smoke script: syntax validated here; actual Playwright run is delegated to the user's local release gate, alongside the existing four-viewport Championship smoke matrix.
+
+Human approval is still required for atmosphere and taste. Automated checks cannot establish whether the room actually feels cozy.

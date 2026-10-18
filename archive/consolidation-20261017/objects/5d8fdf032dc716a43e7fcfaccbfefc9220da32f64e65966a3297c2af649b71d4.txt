@@ -1,0 +1,29 @@
+# Engineering decisions
+
+## 2026-09-16 — WebGL 2 without framework dependencies
+
+The specification preferred React/Three.js when appropriate, but the build environment cannot install packages from the public network. HoloAnatomy therefore uses a small purpose-built WebGL 2 renderer with zero runtime dependencies. This keeps the artifact shippable and testable now, while preserving a scene/data separation that can later feed Three.js/WebXR if needed.
+
+## 2026-09-16 — BodyParts3D as the V1 anatomical source
+
+BodyParts3D provides real polygon anatomy with stable FJ mesh IDs and FMA/ISA labels. The official license page was updated 2025-02-27 and states CC BY 4.0 International. The production vendoring script downloads directly from the official LSDB archive.
+
+A pinned GitHub mirror is used only as a development transport fallback if local meshes are absent. Some mirrored OBJ headers still contain the older CC BY-SA 2.1 Japan notice. We preserve provenance and use the official current license/attribution for the database; self-contained releases should vendor from the official archive.
+
+## 2026-09-16 — No fabricated anatomical placeholder in the product
+
+Automated tests use tiny synthetic OBJ geometry strictly as parser fixtures. The production scene renders only manifest entries backed by BodyParts3D mesh IDs. If those assets are unavailable, the product shows a setup warning rather than presenting generated geometry as anatomy.
+
+## 2026-09-16 — Depth first, effects second
+
+V1 uses geometry, occlusion, perspective, material response, transparency, clipping, and motion parallax. No scanlines, glitch effects, large neon outlines, or chromatic aberration are used.
+
+## 2026-09-16 — Section view ships before capping
+
+The section tool performs true shader clipping. Closed-mesh cap generation is deliberately deferred until real-model visual QA determines whether exposed hollow boundaries are unacceptable. The UI does not imply CT/MRI data or diagnostic section reconstruction.
+
+## 2026-09-17 — Dissection table instead of free-floating clutter
+
+User testing-by-inspection showed that a conventional viewer still hides deeper anatomy behind the skull. Direct disassembly is therefore the primary interaction. In Table mode, released structures are staged into camera-frustum-relative slots around the specimen. This preserves spatial context while preventing removed structures from accumulating as arbitrary free-floating clutter.
+
+Staged structures keep their source orientation and geometry. The system only applies reversible translations. Labels use verified manifest names, and each staged item can be returned to its exact source registration. Table mode can be disabled for unconstrained free dissection.

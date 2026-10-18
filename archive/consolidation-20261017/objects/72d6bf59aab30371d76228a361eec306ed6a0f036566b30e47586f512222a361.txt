@@ -1,0 +1,28 @@
+# v18.3 Production Review
+
+Base: GitHub `main` at `db9bb1e3d650f6094e40140b358424b841f10450`.
+
+## Design decisions
+- The 3D world, not a glass UI card, owns the first frame.
+- Camera is lower/closer than v18.2 to increase foreground/background separation.
+- Added geometry is concentrated at the terrace, blocked equipment islands, and outside navigation bounds.
+- Detail density comes from repeated large forms, not dozens of micro-props.
+- Existing simulation remains responsible for life; the presentation layer does not fake or mutate match/activity state.
+
+## Added static geometry budget
+Approximate additional visible objects: 44.
+Approximate new shadow casters: 18.
+Structural pergola pieces use 12-triangle boxes instead of ~192-triangle rounded boxes.
+All added foliage skips both shadow passes.
+Flat arrival treatment and soft goods also skip shadows.
+
+## Rejected approaches
+- Global `window` exposure of the Game instance.
+- New props placed in walkable navigation space.
+- Large frosted-glass entrance card covering the miniature.
+- Starting a fake rally or changing saved game state merely for the intro.
+- Three.js/GSAP or any new runtime dependency.
+- Extra post-processing passes.
+
+## Remaining gate
+Rendered visual QA on the user's actual browser/GPU remains mandatory before merge.

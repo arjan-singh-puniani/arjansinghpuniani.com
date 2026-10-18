@@ -1,0 +1,62 @@
+{
+  "CHAMPIONSHIP.md": [
+    "a7ae19e1359085e2bd144cff0de335e7209677654d46f6f9d0dc31c8ff41a31a",
+    "1b907ea44ebb9f3bd266ba85eb504f340c7a7df74e50e47ef6b816c2c9a59555"
+  ],
+  "COZY-ATMOSPHERE-RC3.4.md": [],
+  "championship.css": [
+    "a8d00b444925da06d64476e9156b06b363b1ec53338849f63a6f4e164f536bae",
+    "f72c00614e37dc7ff5a231c04113e12f84c65fad33dfaadf25c47f16e6a6eeaf"
+  ],
+  "package-lock.json": [
+    "feb5661004a0e281266f58326be1e8746657ed383a60adc8e2716bf5dbb00442"
+  ],
+  "package.json": [
+    "1dac0f2cfa1b7194e8ec5ff961f4a60030f9153b4a939292b084de03abccbd91"
+  ],
+  "style.css": [
+    "286e49e3cde729cd74e55d91112fcc799bce564b0b286d583d0eef8604c65262"
+  ],
+  "src/Game.ts": [
+    "82216d9a93f12c9fcb51ed5d0d74ab51e6d2257c37a9c814171d35cc209413e1",
+    "01a6c72c73a9007256809e0ebfcb3f1bfefe872af4bdcc862481c3fb6ff67bc0"
+  ],
+  "src/core/AudioManager.ts": [
+    "3bb320ab14866dd54a7ebeaff3b1c58925a1e871853c0c0b89cb69d705ae9c50"
+  ],
+  "src/entities/Character.ts": [
+    "1b98823deccaa25e0586ae88114f5726206872c5585cdede35f27fb615cb5ad6"
+  ],
+  "src/rendering/Renderer.ts": [
+    "d60d0a15fae6fd873f8a8a16291b2832d16878b49e62127d611b0b703b368f1f"
+  ],
+  "src/world/World.ts": [
+    "b1ce67021a869a328ae2fb373cd80160c44868f57201507768ba33300ada0569"
+  ],
+  "src/tennis/ChampionshipCameraRig.ts": [
+    "cbe16fc49c9edc503960d0e941e089d484bacb46a1d5944f794256d8b4a30671",
+    "a4e7c47e84c68b4751b89ccfabcb67cc77682ab0de3289a832bf2e1ee1f11697"
+  ],
+  "src/tennis/ChampionshipController.ts": [
+    "290545c3a1680a3b296110f5f14294258d804caed007a2db424272e3bf37a4dd",
+    "2ecb00c590c62a751255d07daccb95c732b9c20504264de3ea60c847a0f24ebd"
+  ],
+  "src/tennis/ChampionshipTuning.ts": [
+    "0d674318b1e7ac31556314067cd8794620dd4f7990ac03f0d819b44d49c4bd9c",
+    "94d4573abd1a999702ee8a04e2a84a68cb9dbc0aed15482c1ec286d846823020"
+  ],
+  "src/ui/ChampionshipHUD.ts": [
+    "c048c2089de88af391c8d67728558832304c59a3c493691522f19b56f519a637",
+    "ee11f35ae7a6cb0841d867891dc16cfb7dae2ce777440ebf9b2e3c9093fdd2f6"
+  ],
+  "tests/championship-controller.mjs": [
+    "bb7c291732a50db08090f505cfcf46bb83b7e6ef59ed12dbedd6fe30cc26fd0a",
+    "59d6f03248fce4899dd1ad74424568f27246e42c184eac27f49d27a6d2c6b015"
+  ],
+  "tests/championship-presentation.mjs": [
+    "096f92cd59953ed68797cfe89900f6daf0cf2c5e4c69c4962e144a53295d1b07",
+    "fc12386c550f990e6aec4d68845c71188ba9d14c50358df922e3f5409ebe2444"
+  ],
+  "tests/cozy-atmosphere.mjs": [],
+  "qa/cozy-smoke.mjs": []
+}

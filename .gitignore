@@ -3,3 +3,9 @@
 /takeover-evidence/
 /Rally-House-v16-Playtest.zip
 /rally-house-source-v16/qa/studio/failure-*.png
+
+# Deliberate local recovery vault: original containers, personal media and
+# unresolved cloud conflicts. Versioned unique source lives under /archive.
+/.local-preservation/
+.DS_Store
+/replisome-source/node_modules

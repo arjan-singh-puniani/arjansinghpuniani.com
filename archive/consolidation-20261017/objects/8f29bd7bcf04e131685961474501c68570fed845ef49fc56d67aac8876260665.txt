@@ -1,0 +1,14 @@
+{
+  "name": "rally-house-3d",
+  "version": "0.19.3-cozy.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node tests/run.mjs && node tests/causality.mjs && node tests/everyday.mjs && node tests/walking.mjs && node tests/character-life.mjs && node tests/life-integration.mjs && node tests/life-variety.mjs && node tests/presence.mjs && node tests/presence-integration.mjs && node tests/asset-intake.mjs && node tests/story-presence.mjs && node tests/navigation-safety.mjs && node tests/everyday-ownership.mjs && node tests/championship-controller.mjs && node tests/championship-interactive.mjs && node tests/championship-presentation.mjs && node tests/championship-showcase.mjs && node tests/championship-playability.mjs && node tests/spectator-presence.mjs && node tests/championship-tactility.mjs && node tests/cozy-atmosphere.mjs",
+    "serve": "python3 -m http.server 8080"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

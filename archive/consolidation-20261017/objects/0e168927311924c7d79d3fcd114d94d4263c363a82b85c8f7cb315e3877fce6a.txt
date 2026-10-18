@@ -1,0 +1,81 @@
+# HoloAnatomy
+
+Production-minded interactive 3D head-and-neck anatomy viewer. It uses verified BodyParts3D geometry and a dependency-free WebGL 2 renderer so the core product can ship without a framework runtime.
+
+## What works now
+
+- Real BodyParts3D head/neck mesh manifest with verified FMA labels
+- Desktop and touch orbit/zoom
+- GPU structure picking
+- Selection, isolate, ghost, hide/show layers
+- Direct per-structure pull-apart dissection
+- Camera-relative dissection table with snap staging, labels, leader lines, and exact reassembly
+- Exploded system view
+- Sagittal/coronal/axial shader clipping
+- Pointer motion parallax
+- Focus and fullscreen modes
+- Adaptive rendering quality plus manual High/Medium/Low override
+- Reduced-motion behavior
+- WebGL failure fallback
+- `?debug=1` telemetry
+- Zero runtime package dependencies
+- Automated manifest/state/OBJ/quality/stage-layout tests
+
+## Run
+
+```bash
+npm test
+npm run check
+npm run dev
+```
+
+Open `http://127.0.0.1:4173`.
+
+The viewer first looks for local anatomy in `public/anatomy`. During development, missing files fall back to a pinned read-only GitHub mirror of the same BodyParts3D Release 4.0 OBJ files.
+
+## Make the release self-contained
+
+Download from the official BodyParts3D archive and extract only the meshes used by HoloAnatomy:
+
+```bash
+python3 scripts/vendor_bodyparts3d.py
+npm run build
+npm run serve:dist
+```
+
+The vendoring step downloads the official 136 MB archive once, then keeps only the selected head/neck OBJ files.
+
+## Production build
+
+```bash
+npm run build
+```
+
+Static output is written to `dist/`. Deploy that directory to any static host.
+
+## Scientific provenance
+
+The application does not procedurally invent anatomy. Mesh IDs and labels come from BodyParts3D / ISA Release 4.0. See `docs/anatomy-provenance.md`.
+
+Required attribution:
+
+> BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International
+
+## Scope
+
+This is interactive perspective 3D on a conventional 2D display, enhanced by motion parallax. It is not a free-space volumetric hologram. The renderer architecture can later be adapted to a Looking Glass light-field pipeline. See `docs/light-field.md`.
+
+
+## 0.3 exhibits
+
+Use the **Exhibit** selector under the HoloAnatomy title to switch between:
+
+- **Head + Neck Neuro** — 98 structures, including expanded verified orbital/optic nerve anatomy.
+- **Rotator Cuff + Shoulder** — 20 focused right-shoulder structures with all four rotator-cuff muscles and regional vessels.
+- **Heart + Coronary Circulation** — 143 structures spanning chambers/walls/valves, coronary arterial and venous trees, and great vessels.
+
+Modules lazy-load on first use and remain cached for the session. Pull-apart, Table, Section, Spread, Focus, Layers, and Parallax remain available in every exhibit.
+
+### Neuro coverage note
+
+The supplied BodyParts3D Release 4.0 archive does **not** contain a complete cranial-nerve I–XII or spinal-nerve-root mesh set. Version 0.3 includes every additional verified nerve-labelled mesh in this archive but does not invent missing anatomy. Full cranial/spinal nerve coverage requires a second verified source.

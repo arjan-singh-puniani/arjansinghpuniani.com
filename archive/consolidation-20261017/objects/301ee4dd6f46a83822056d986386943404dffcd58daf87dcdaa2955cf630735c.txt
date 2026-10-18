@@ -1,0 +1,1354 @@
+{
+  "report": {
+    "seconds": 3600.0000000000005,
+    "uniqueScenes": 20,
+    "uniquePairs": 6,
+    "uniqueLocations": 11,
+    "idlePercent": 11.402777777777779,
+    "quietPercent": 57.097222222222236,
+    "mostRepeatedBehavior": [
+      "object",
+      20
+    ],
+    "mostRepeatedPair": [
+      "coach|nia",
+      14
+    ],
+    "flags": [],
+    "initiators": {
+      "coach": 15,
+      "nia": 40,
+      "mika": 19,
+      "leo": 14
+    },
+    "scenes": {
+      "observe": 1,
+      "object": 20,
+      "practice": 6,
+      "reflect": 3,
+      "match": 3,
+      "care": 3,
+      "after-result": 5,
+      "rest": 7,
+      "gear-advice": 1,
+      "counting": 5,
+      "shared-break": 14,
+      "usual": 4,
+      "cups": 2,
+      "notes": 2,
+      "cold-tea": 2,
+      "watch-court": 2,
+      "seek-advice": 3,
+      "gear": 2,
+      "closing": 2,
+      "bonsai": 1
+    },
+    "pairs": {
+      "coach|mika": 7,
+      "leo|nia": 9,
+      "coach|nia": 14,
+      "leo|mika": 6,
+      "mika|nia": 11,
+      "coach|leo": 4
+    },
+    "places": {
+      "court": 4,
+      "furniture-1": 37,
+      "furniture-3": 9,
+      "cafeTable": 8,
+      "furniture-2": 3,
+      "warmup": 9,
+      "courtBench": 3,
+      "stringing": 3,
+      "cafe": 8,
+      "training": 3,
+      "bonsai": 1
+    },
+    "interruptions": 6,
+    "cancellations": 1,
+    "meaningful": 88,
+    "memoryCount": 46,
+    "favoriteUses": 22,
+    "rituals": 23,
+    "log": [
+      {
+        "at": 26.000000000000025,
+        "day": 1,
+        "minute": 586.75,
+        "who": [
+          "coach",
+          "mika"
+        ],
+        "what": "Morning practice",
+        "why": "Opening club routine",
+        "changed": "Contessa and Lucresia finished a practice rally of 14 contacts.",
+        "next": "Return to the day"
+      },
+      {
+        "at": 29.000000000000025,
+        "day": 1,
+        "minute": 589.75,
+        "who": [
+          "nia",
+          "leo"
+        ],
+        "what": "Barbara and Leo found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Barbara and Leo took a break by your bench.",
+        "next": "Return to the day"
+      },
+      {
+        "at": 63.00000000000003,
+        "day": 1,
+        "minute": 623.75,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia gives herself a slower count",
+        "why": "practice drive, personality, ritual, energy",
+        "changed": "Lucresia spent a few quiet minutes rehearsing recovery footwork.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 108.00000000000003,
+        "day": 1,
+        "minute": 668,
+        "who": [
+          "coach"
+        ],
+        "what": "Contessa leaves a little space on the page",
+        "why": "personality, energy, opportunity, ritual",
+        "changed": "Contessa kept her notes short and left room to look up.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 145.00000000000003,
+        "day": 1,
+        "minute": 705.25,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Barbara and Coach Contessa found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Barbara and Coach Contessa took a break by your bench.",
+        "next": "Return to the day"
+      },
+      {
+        "at": 164.00000000000003,
+        "day": 1,
+        "minute": 724.75,
+        "who": [
+          "leo",
+          "mika"
+        ],
+        "what": "First shared court",
+        "why": "Court opportunity and challenge readiness",
+        "changed": "Lucresia 2 · Leo 2. They finish level. Longest rally: 25.",
+        "next": "Lucresia wants another chance with Leo tomorrow."
+      },
+      {
+        "at": 186.00000000000003,
+        "day": 1,
+        "minute": 746.75,
+        "who": [
+          "nia"
+        ],
+        "what": "Barbara checks the quiet corner",
+        "why": "personality, care object, opportunity, ritual",
+        "changed": "Barbara tended your planted corner and took a moment to look at it.",
+        "next": "At home here"
+      },
+      {
+        "at": 220.00000000000003,
+        "day": 1,
+        "minute": 780.25,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia returns to the small things",
+        "why": "memory, practice drive, personality, schedule",
+        "changed": "Lucresia quietly worked on recovery after the completed game.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 264.00000000000006,
+        "day": 1,
+        "minute": 824,
+        "who": [
+          "leo",
+          "mika"
+        ],
+        "what": "Leo and Lucresia found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Leo and Lucresia took a break by your bench.",
+        "next": "Lucresia wants another chance with Leo tomorrow."
+      },
+      {
+        "at": 275.00000000000006,
+        "day": 1,
+        "minute": 835.5,
+        "who": [
+          "nia"
+        ],
+        "what": "Barbara takes a real minute",
+        "why": "intention, opportunity, ritual, energy",
+        "changed": "Barbara took an unhurried break.",
+        "next": "At home here"
+      },
+      {
+        "at": 317.00000000000006,
+        "day": 1,
+        "minute": 877.75,
+        "who": [
+          "leo"
+        ],
+        "what": "Leo returns to the small things",
+        "why": "memory, practice drive, opportunity, personality",
+        "changed": "Leo quietly worked on recovery after the completed game.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 339.00000000000006,
+        "day": 1,
+        "minute": 899.75,
+        "who": [
+          "mika",
+          "nia"
+        ],
+        "what": "Lucresia and Barbara found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Lucresia and Barbara took a break by your basket.",
+        "next": "Lucresia wants another chance with Leo tomorrow."
+      },
+      {
+        "at": 364.00000000000006,
+        "day": 1,
+        "minute": 924.75,
+        "who": [
+          "coach",
+          "leo"
+        ],
+        "what": "Advice Leo almost takes",
+        "why": "personality, opportunity, shared time, confidence",
+        "changed": "Leo asked Contessa about strings. She prescribed footwork, then allowed a future gear conversation.",
+        "next": "At home here"
+      },
+      {
+        "at": 414.00000000000006,
+        "day": 1,
+        "minute": 974,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia starts the count again",
+        "why": "practice drive, personality, opportunity, energy",
+        "changed": "Lucresia quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 438.00000000000006,
+        "day": 1,
+        "minute": 998.25,
+        "who": [
+          "mika",
+          "coach"
+        ],
+        "what": "Lucresia and Coach Contessa found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Lucresia and Coach Contessa took a break by your basket. Lucresia has started treating this as a favorite spot.",
+        "next": "Lucresia wants another chance with Leo tomorrow."
+      },
+      {
+        "at": 468.00000000000006,
+        "day": 1,
+        "minute": 1028.75,
+        "who": [
+          "nia",
+          "leo"
+        ],
+        "what": "Barbara makes time for Leo",
+        "why": "personality, opportunity, shared time, social appetite",
+        "changed": "Barbara invited Leo to a shared break.",
+        "next": "At home here"
+      },
+      {
+        "at": 509.00000000000006,
+        "day": 1,
+        "minute": 1069.25,
+        "who": [
+          "leo"
+        ],
+        "what": "Leo works on the unglamorous part",
+        "why": "practice drive, energy, opportunity, personality",
+        "changed": "Leo spent a few quiet minutes rehearsing recovery footwork.",
+        "next": "At home here"
+      },
+      {
+        "at": 550.0000000000001,
+        "day": 1,
+        "minute": 1110,
+        "who": [
+          "nia",
+          "mika"
+        ],
+        "what": "Barbara learns Lucresia’s usual",
+        "why": "personality, schedule, opportunity, shared time",
+        "changed": "Barbara learned that Lucresia likes extra foam. Lucresia stopped apologizing for asking.",
+        "next": "At home here"
+      },
+      {
+        "at": 578.0000000000001,
+        "day": 1,
+        "minute": 1138.25,
+        "who": [
+          "nia"
+        ],
+        "what": "Barbara sets an extra cup",
+        "why": "personality, schedule, opportunity, authored performance",
+        "changed": "Barbara set out an extra cup before anyone asked.",
+        "next": "At home here"
+      },
+      {
+        "at": 586.0000000000001,
+        "day": 1,
+        "minute": 1146.5,
+        "who": [
+          "coach",
+          "leo"
+        ],
+        "what": "Coach Contessa and Leo found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Coach Contessa and Leo took a break by your bench. Leo has started treating this as a favorite spot.",
+        "next": "Return to the day"
+      },
+      {
+        "at": 612.0000000000001,
+        "day": 1,
+        "minute": 1172.25,
+        "who": [
+          "coach"
+        ],
+        "what": "Contessa forgets her tea",
+        "why": "personality, schedule, opportunity, authored performance",
+        "changed": "Contessa got caught up in her notes and left her tea untouched.",
+        "next": "At home here"
+      },
+      {
+        "at": 671.0000000000001,
+        "day": 1,
+        "minute": 1231.75,
+        "who": [
+          "leo"
+        ],
+        "what": "Leo takes a real minute",
+        "why": "favorite place, opportunity, ritual, weather",
+        "changed": "Leo took an unhurried break at a familiar bench.",
+        "next": "At home here"
+      },
+      {
+        "at": 695.0000000000001,
+        "day": 1,
+        "minute": 1255.25,
+        "who": [
+          "mika",
+          "leo"
+        ],
+        "what": "Lucresia and Leo found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Lucresia and Leo took a break by your basket.",
+        "next": "Lucresia wants another chance with Leo tomorrow."
+      },
+      {
+        "at": 736.0000000000001,
+        "day": 1,
+        "minute": 1296.5,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Barbara rescues Contessa’s tea",
+        "why": "personality, opportunity, shared time, authored performance",
+        "changed": "Barbara brought Contessa back to her forgotten tea. Contessa finally put the notes down.",
+        "next": "At home here"
+      },
+      {
+        "at": 778.0000000000001,
+        "day": 1,
+        "minute": 1338.75,
+        "who": [
+          "nia",
+          "leo"
+        ],
+        "what": "Barbara makes time for Leo",
+        "why": "personality, opportunity, shared time, weather",
+        "changed": "Barbara invited Leo to a shared break at their familiar bench.",
+        "next": "At home here"
+      },
+      {
+        "at": 861.0000000000001,
+        "day": 1,
+        "minute": 1421.25,
+        "who": [
+          "nia",
+          "mika"
+        ],
+        "what": "Barbara makes time for Lucresia",
+        "why": "personality, favorite place, opportunity, shared time",
+        "changed": "Barbara invited Lucresia to a shared break at their familiar bench.",
+        "next": "At home here"
+      },
+      {
+        "at": 937.0000000000001,
+        "day": 2,
+        "minute": 57.5,
+        "who": [
+          "nia"
+        ],
+        "what": "Barbara checks the quiet corner",
+        "why": "personality, care object, ritual, opportunity",
+        "changed": "Barbara tended your planted corner and took a moment to look at it.",
+        "next": "At home here"
+      },
+      {
+        "at": 1005.0000000000001,
+        "day": 2,
+        "minute": 125.5,
+        "who": [
+          "coach"
+        ],
+        "what": "Contessa leaves a little space on the page",
+        "why": "personality, opportunity, ritual, weather",
+        "changed": "Contessa kept her notes short and left room to look up.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 1084.0000000000002,
+        "day": 2,
+        "minute": 204,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Barbara makes time for Contessa",
+        "why": "personality, favorite place, opportunity, shared time",
+        "changed": "Barbara invited Contessa to a shared break at their familiar bench.",
+        "next": "At home here"
+      },
+      {
+        "at": 1160.0000000000002,
+        "day": 2,
+        "minute": 280.75,
+        "who": [
+          "coach"
+        ],
+        "what": "Contessa takes a real minute",
+        "why": "favorite place, opportunity, ritual, personality",
+        "changed": "Contessa took an unhurried break at a familiar bench.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 1243.0000000000002,
+        "day": 2,
+        "minute": 363.25,
+        "who": [
+          "nia",
+          "mika"
+        ],
+        "what": "Barbara makes time for Lucresia",
+        "why": "personality, favorite place, opportunity, shared time",
+        "changed": "Barbara invited Lucresia to a shared break at their familiar bench.",
+        "next": "At home here"
+      },
+      {
+        "at": 1316.0000000000002,
+        "day": 2,
+        "minute": 436,
+        "who": [
+          "nia"
+        ],
+        "what": "Barbara takes a real minute",
+        "why": "favorite place, ritual, opportunity, social appetite",
+        "changed": "Barbara took an unhurried break at a familiar bench.",
+        "next": "At home here"
+      },
+      {
+        "at": 1390.0000000000002,
+        "day": 2,
+        "minute": 510.5,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Barbara makes time for Contessa",
+        "why": "personality, favorite place, opportunity, shared time",
+        "changed": "Barbara invited Contessa to a shared break at their familiar bench.",
+        "next": "At home here"
+      },
+      {
+        "at": 1428.0000000000002,
+        "day": 2,
+        "minute": 548.5,
+        "who": [
+          "nia",
+          "leo"
+        ],
+        "what": "Barbara and Leo found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Barbara and Leo took a break by your bench.",
+        "next": "Return to the day"
+      },
+      {
+        "at": 1513.0000000000002,
+        "day": 2,
+        "minute": 633.75,
+        "who": [
+          "nia"
+        ],
+        "what": "Barbara watches without interrupting",
+        "why": "live court, personality, ritual, opportunity",
+        "changed": "Barbara made time to watch the game.",
+        "next": "At home here"
+      },
+      {
+        "at": 1514.0000000000002,
+        "day": 2,
+        "minute": 634.25,
+        "who": [
+          "leo",
+          "mika"
+        ],
+        "what": "Another friendly challenge",
+        "why": "Court opportunity and challenge readiness",
+        "changed": "Lucresia 0 · Leo 3. Leo takes their practice game. Longest rally: 25.",
+        "next": "Lucresia wants another chance with Leo tomorrow."
+      },
+      {
+        "at": 1549.0000000000002,
+        "day": 2,
+        "minute": 669,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia returns to the small things",
+        "why": "memory, practice drive, personality, opportunity",
+        "changed": "Lucresia quietly worked on recovery after the completed game.",
+        "next": "Settling into the day"
+      },
+      {
+        "at": 1553.0000000000002,
+        "day": 2,
+        "minute": 673,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Barbara and Coach Contessa found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Barbara and Coach Contessa took a break by your bench.",
+        "next": "Barbara is keeping a place for a post-court break."
+      },
+      {
+        "at": 1604.0000000000002,
+        "day": 2,
+        "minute": 724.75,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia gives herself a slower count",
+        "why": "practice drive, personality, favorite place, opportunity",
+        "changed": "Lucresia spent a few quiet minutes rehearsing recovery footwork.",
+        "next": "At home here"
+      },
+      {
+        "at": 1635.0000000000002,
+        "day": 2,
+        "minute": 755,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia starts the count again",
+        "why": "personality, practice drive, schedule, opportunity",
+        "changed": "Lucresia quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+        "next": "At home here"
+      },
+      {
+        "at": 1675.0000000000002,
+        "day": 2,
+        "minute": 794.75,
+        "who": [
+          "nia",
+          "leo"
+        ],
+        "what": "Barbara and Leo found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Barbara and Leo took a break by your bench.",
+        "next": "Barbara is keeping a place for a post-court break."
+      },
+      {
+        "at": 1676.0000000000002,
+        "day": 2,
+        "minute": 795.75,
+        "who": [
+          "mika",
+          "coach"
+        ],
+        "what": "Lucresia asks for one small thing",
+        "why": "confidence, personality, opportunity, shared time",
+        "changed": "Lucresia asked Contessa for a smaller starting point, then rehearsed it.",
+        "next": "At home here"
+      },
+      {
+        "at": 1724.0000000000002,
+        "day": 2,
+        "minute": 844,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia takes a real minute",
+        "why": "favorite place, energy, opportunity, ritual",
+        "changed": "Lucresia took an unhurried break at a familiar bench.",
+        "next": "At home here"
+      },
+      {
+        "at": 1759.0000000000002,
+        "day": 2,
+        "minute": 879.5,
+        "who": [
+          "nia",
+          "mika"
+        ],
+        "what": "Barbara and Lucresia found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Barbara and Lucresia took a break by your bench.",
+        "next": "Lucresia wants another chance with Leo tomorrow."
+      },
+      {
+        "at": 1763.0000000000002,
+        "day": 2,
+        "minute": 883.5,
+        "who": [
+          "leo"
+        ],
+        "what": "Leo works on the unglamorous part",
+        "why": "practice drive, energy, ritual, opportunity",
+        "changed": "Leo spent a few quiet minutes rehearsing recovery footwork.",
+        "next": "At home here"
+      },
+      {
+        "at": 1797.0000000000002,
+        "day": 2,
+        "minute": 917.5,
+        "who": [
+          "nia",
+          "mika"
+        ],
+        "what": "Barbara remembers",
+        "why": "personality, relationship, schedule, opportunity",
+        "changed": "Barbara remembered Lucresia’s extra foam without being asked.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 1855.0000000000002,
+        "day": 2,
+        "minute": 975.25,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Barbara makes time for Contessa",
+        "why": "personality, favorite place, relationship, opportunity",
+        "changed": "Barbara invited Contessa to a shared break at their familiar bench.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 1888.0000000000002,
+        "day": 2,
+        "minute": 1008.5,
+        "who": [
+          "coach",
+          "mika"
+        ],
+        "what": "Coach Contessa and Lucresia found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Coach Contessa and Lucresia took a break by your bench.",
+        "next": "Lucresia wants another chance with Leo tomorrow."
+      },
+      {
+        "at": 1892.0000000000002,
+        "day": 2,
+        "minute": 1012,
+        "who": [
+          "leo"
+        ],
+        "what": "Leo checks what he already knows",
+        "why": "personality, ritual, opportunity, practice drive",
+        "changed": "Leo checked his strings and kept the racket he already knew.",
+        "next": "At home here"
+      },
+      {
+        "at": 1931.0000000000002,
+        "day": 2,
+        "minute": 1051.75,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia starts the count again",
+        "why": "personality, energy, practice drive, opportunity",
+        "changed": "Lucresia quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+        "next": "At home here"
+      },
+      {
+        "at": 1972.0000000000002,
+        "day": 2,
+        "minute": 1092.25,
+        "who": [
+          "leo"
+        ],
+        "what": "Leo lets the result sink in",
+        "why": "memory, favorite place, opportunity",
+        "changed": "Leo paused to enjoy the completed game.",
+        "next": "At home here"
+      },
+      {
+        "at": 1996.0000000000002,
+        "day": 2,
+        "minute": 1116.25,
+        "who": [
+          "coach",
+          "leo"
+        ],
+        "what": "Coach Contessa and Leo found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Coach Contessa and Leo took a break by your bench.",
+        "next": "Return to the day"
+      },
+      {
+        "at": 1999.0000000000002,
+        "day": 2,
+        "minute": 1119,
+        "who": [
+          "nia"
+        ],
+        "what": "Barbara sets an extra cup",
+        "why": "personality, schedule, opportunity, authored performance",
+        "changed": "Barbara set out an extra cup before anyone asked.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 2052.0000000000005,
+        "day": 2,
+        "minute": 1172,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "The last cup takes two people",
+        "why": "personality, relationship, opportunity, shared time",
+        "changed": "Contessa volunteered to help Barbara with the last cup. Her first contribution was drinking it.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 2100.0000000000005,
+        "day": 2,
+        "minute": 1220.5,
+        "who": [
+          "nia",
+          "leo"
+        ],
+        "what": "Barbara makes time for Leo",
+        "why": "personality, favorite place, relationship, opportunity",
+        "changed": "Barbara invited Leo to a shared break at their familiar bench.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 2121.0000000000005,
+        "day": 2,
+        "minute": 1241.5,
+        "who": [
+          "mika",
+          "leo"
+        ],
+        "what": "Lucresia and Leo found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Lucresia and Leo took a break by your bench.",
+        "next": "Lucresia wants another chance with Leo tomorrow."
+      },
+      {
+        "at": 2137.0000000000005,
+        "day": 2,
+        "minute": 1257.25,
+        "who": [
+          "coach"
+        ],
+        "what": "Contessa forgets her tea",
+        "why": "personality, opportunity, authored performance, time of day",
+        "changed": "Contessa got caught up in her notes and left her tea untouched.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 2263.0000000000005,
+        "day": 2,
+        "minute": 1383.75,
+        "who": [
+          "nia",
+          "mika"
+        ],
+        "what": "Barbara makes time for Lucresia",
+        "why": "personality, relationship, favorite place, opportunity",
+        "changed": "Barbara invited Lucresia to a shared break at their familiar bench.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 2333.0000000000005,
+        "day": 3,
+        "minute": 13.5,
+        "who": [
+          "leo"
+        ],
+        "what": "Leo takes a real minute",
+        "why": "favorite place, ritual, opportunity, time of day",
+        "changed": "Leo took an unhurried break at a familiar bench.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 2415.0000000000005,
+        "day": 3,
+        "minute": 95,
+        "who": [
+          "nia"
+        ],
+        "what": "Barbara checks the quiet corner",
+        "why": "personality, care object, opportunity, ritual",
+        "changed": "Barbara tended your planted corner and took a moment to look at it.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 2488.0000000000005,
+        "day": 3,
+        "minute": 168,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Barbara makes time for Contessa",
+        "why": "relationship, personality, favorite place, opportunity",
+        "changed": "Barbara invited Contessa to a shared break at their familiar bench.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 2558.0000000000005,
+        "day": 3,
+        "minute": 238.5,
+        "who": [
+          "coach"
+        ],
+        "what": "Contessa leaves a little space on the page",
+        "why": "personality, ritual, opportunity, weather",
+        "changed": "Contessa kept her notes short and left room to look up.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 2641.0000000000005,
+        "day": 3,
+        "minute": 321.75,
+        "who": [
+          "nia",
+          "mika"
+        ],
+        "what": "Barbara makes time for Lucresia",
+        "why": "relationship, personality, favorite place, opportunity",
+        "changed": "Barbara invited Lucresia to a shared break at their familiar bench.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 2713.0000000000005,
+        "day": 3,
+        "minute": 393.5,
+        "who": [
+          "coach"
+        ],
+        "what": "Contessa takes a real minute",
+        "why": "favorite place, ritual, opportunity, personality",
+        "changed": "Contessa took an unhurried break at a familiar bench.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 2794.0000000000005,
+        "day": 3,
+        "minute": 474.5,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Barbara makes time for Contessa",
+        "why": "relationship, personality, favorite place, opportunity",
+        "changed": "Barbara invited Contessa to a shared break at their familiar bench.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 2856.0000000000005,
+        "day": 3,
+        "minute": 536.75,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Barbara and Coach Contessa found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Barbara and Coach Contessa took a break by your bench.",
+        "next": "Return to the day"
+      },
+      {
+        "at": 2865.0000000000005,
+        "day": 3,
+        "minute": 545,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia gives herself a slower count",
+        "why": "personality, practice drive, energy, favorite place",
+        "changed": "Lucresia spent a few quiet minutes rehearsing recovery footwork.",
+        "next": "At home here"
+      },
+      {
+        "at": 2955.0000000000005,
+        "day": 3,
+        "minute": 635.5,
+        "who": [
+          "coach"
+        ],
+        "what": "Contessa watches without interrupting",
+        "why": "live court, personality, ritual, opportunity",
+        "changed": "Contessa made time to watch the game.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 2956.0000000000005,
+        "day": 3,
+        "minute": 636,
+        "who": [
+          "leo",
+          "mika"
+        ],
+        "what": "Another friendly challenge",
+        "why": "Court opportunity and challenge readiness",
+        "changed": "Lucresia 0 · Leo 2. Leo takes their practice game. Longest rally: 52.",
+        "next": "Lucresia wants another chance with Leo tomorrow."
+      },
+      {
+        "at": 2993.0000000000005,
+        "day": 3,
+        "minute": 673.5,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Barbara and Coach Contessa found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Barbara and Coach Contessa took a break by your bench.",
+        "next": "Barbara is keeping a place for a post-court break."
+      },
+      {
+        "at": 3004.0000000000005,
+        "day": 3,
+        "minute": 684.5,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia returns to the small things",
+        "why": "memory, personality, practice drive, opportunity",
+        "changed": "Lucresia quietly worked on recovery after the completed game.",
+        "next": "At home here"
+      },
+      {
+        "at": 3052.0000000000005,
+        "day": 3,
+        "minute": 731.75,
+        "who": [
+          "leo"
+        ],
+        "what": "Leo works on the unglamorous part",
+        "why": "practice drive, favorite place, opportunity, personality",
+        "changed": "Leo spent a few quiet minutes rehearsing recovery footwork.",
+        "next": "At home here"
+      },
+      {
+        "at": 3093.0000000000005,
+        "day": 3,
+        "minute": 773.5,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Barbara rescues Contessa’s tea",
+        "why": "personality, relationship, schedule, opportunity",
+        "changed": "Barbara brought Contessa back to her forgotten tea. Contessa finally put the notes down.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 3125.0000000000005,
+        "day": 3,
+        "minute": 805.25,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia starts the count again",
+        "why": "personality, schedule, opportunity, practice drive",
+        "changed": "Lucresia quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+        "next": "At home here"
+      },
+      {
+        "at": 3131.0000000000005,
+        "day": 3,
+        "minute": 811.5,
+        "who": [
+          "nia",
+          "leo"
+        ],
+        "what": "Barbara and Leo found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Barbara and Leo took a break by your bench.",
+        "next": "Barbara is keeping a place for a post-court break."
+      },
+      {
+        "at": 3169.0000000000005,
+        "day": 3,
+        "minute": 849,
+        "who": [
+          "mika",
+          "coach"
+        ],
+        "what": "Lucresia asks for one small thing",
+        "why": "confidence, personality, opportunity, shared time",
+        "changed": "Lucresia asked Contessa for a smaller starting point, then rehearsed it.",
+        "next": "At home here"
+      },
+      {
+        "at": 3215.0000000000005,
+        "day": 3,
+        "minute": 895,
+        "who": [
+          "nia",
+          "mika"
+        ],
+        "what": "Barbara remembers",
+        "why": "relationship, personality, schedule, opportunity",
+        "changed": "Barbara remembered Lucresia’s extra foam without being asked.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 3240.0000000000005,
+        "day": 3,
+        "minute": 920,
+        "who": [
+          "nia",
+          "mika"
+        ],
+        "what": "Barbara and Lucresia found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Barbara and Lucresia took a break by your bench.",
+        "next": "Lucresia wants another chance with Leo tomorrow."
+      },
+      {
+        "at": 3267.0000000000005,
+        "day": 3,
+        "minute": 947.25,
+        "who": [
+          "leo"
+        ],
+        "what": "Leo checks what he already knows",
+        "why": "personality, practice drive, opportunity, ritual",
+        "changed": "Leo checked his strings and kept the racket he already knew.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 3313.0000000000005,
+        "day": 3,
+        "minute": 993.5,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Barbara makes time for Contessa",
+        "why": "relationship, personality, favorite place, opportunity",
+        "changed": "Barbara invited Contessa to a shared break at their familiar bench.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 3344.0000000000005,
+        "day": 3,
+        "minute": 1024.5,
+        "who": [
+          "coach",
+          "mika"
+        ],
+        "what": "Coach Contessa and Lucresia found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Coach Contessa and Lucresia took a break by your bench.",
+        "next": "Lucresia wants another chance with Leo tomorrow."
+      },
+      {
+        "at": 3379.0000000000005,
+        "day": 3,
+        "minute": 1059.5,
+        "who": [
+          "leo",
+          "nia"
+        ],
+        "what": "Leo asks the wrong expert",
+        "why": "relationship, opportunity, shared time, authored performance",
+        "changed": "Leo tried to recruit the bonsai as a supporter. Barbara declined to speak for it.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 3414.0000000000005,
+        "day": 3,
+        "minute": 1094.75,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia starts the count again",
+        "why": "personality, energy, opportunity, authored performance",
+        "changed": "Lucresia quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+        "next": "At home here"
+      },
+      {
+        "at": 3452.0000000000005,
+        "day": 3,
+        "minute": 1132.5,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "The last cup takes two people",
+        "why": "relationship, personality, schedule, opportunity",
+        "changed": "Contessa volunteered to help Barbara with the last cup. Her first contribution was drinking it.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 3490.0000000000005,
+        "day": 3,
+        "minute": 1170.25,
+        "who": [
+          "coach",
+          "leo"
+        ],
+        "what": "Coach Contessa and Leo found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Coach Contessa and Leo took a break by your bench.",
+        "next": "Return to the day"
+      },
+      {
+        "at": 3500.0000000000005,
+        "day": 3,
+        "minute": 1180.5,
+        "who": [
+          "nia",
+          "mika"
+        ],
+        "what": "Barbara remembers",
+        "why": "relationship, personality, opportunity, shared time",
+        "changed": "Barbara remembered Lucresia’s extra foam without being asked.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 3552.0000000000005,
+        "day": 3,
+        "minute": 1232.75,
+        "who": [
+          "nia",
+          "leo"
+        ],
+        "what": "Barbara makes time for Leo",
+        "why": "relationship, personality, favorite place, opportunity",
+        "changed": "Barbara invited Leo to a shared break at their familiar bench.",
+        "next": "Keen to try again"
+      },
+      {
+        "at": 3595.0000000000005,
+        "day": 3,
+        "minute": 1275.75,
+        "who": [
+          "mika",
+          "coach"
+        ],
+        "what": "Lucresia asks for one small thing",
+        "why": "confidence, personality, opportunity, relationship",
+        "changed": "Lucresia asked Contessa for a smaller starting point, then rehearsed it.",
+        "next": "At home here"
+      }
+    ]
+  },
+  "states": {
+    "coach": {
+      "energy": 0.9928500000000011,
+      "confidence": 0.8864297735140785,
+      "social": 0.002500000000000003,
+      "practice": 0.8717499999999998,
+      "comfort": 0.998866215099609,
+      "tone": 0.9984127011394529
+    },
+    "mika": {
+      "energy": 0.9939500000000019,
+      "confidence": 0.6406143691037318,
+      "social": 0.002500000000000003,
+      "practice": 0.0017500000000000024,
+      "comfort": 0.9980952413673434,
+      "tone": 0.9379402176969867
+    },
+    "leo": {
+      "energy": 0.9983500000000017,
+      "confidence": 0.8761452111876171,
+      "social": 0.024000000000000025,
+      "practice": 0.9408499999998927,
+      "comfort": 0.9310339444494692,
+      "tone": 0.9863366412824516
+    },
+    "nia": {
+      "energy": 0.9835000000000014,
+      "confidence": 0.78,
+      "social": 0.024000000000000025,
+      "practice": 1,
+      "comfort": 0.9923143607213791,
+      "tone": 0.9893255010019152
+    }
+  },
+  "objects": {
+    "objects": {
+      "furniture-1": {
+        "placedDay": 1,
+        "visits": {
+          "nia": 24,
+          "leo": 15,
+          "coach": 17,
+          "mika": 11
+        },
+        "memories": [
+          "Day 3 · nia and leo spent time here.",
+          "Day 3 · coach and leo spent time here.",
+          "Day 3 · coach and mika spent time here.",
+          "Day 3 · nia and coach spent time here.",
+          "Day 3 · nia and mika spent time here.",
+          "Day 3 · nia and leo spent time here."
+        ],
+        "favoriteOf": [
+          "leo",
+          "nia",
+          "coach",
+          "mika"
+        ],
+        "comfort": {
+          "nia": 20,
+          "leo": 15,
+          "coach": 17,
+          "mika": 11
+        },
+        "usageCount": 67,
+        "importantEvents": [
+          "Day 1 · leo made this a favorite.",
+          "Day 1 · nia made this a favorite.",
+          "Day 2 · coach made this a favorite.",
+          "Day 2 · mika made this a favorite."
+        ]
+      },
+      "furniture-2": {
+        "placedDay": 1,
+        "visits": {
+          "nia": 3
+        },
+        "memories": [
+          "Day 3 · nia spent time here.",
+          "Day 2 · nia spent time here.",
+          "Day 1 · nia spent time here."
+        ],
+        "favoriteOf": [
+          "nia"
+        ],
+        "comfort": {
+          "nia": 3
+        },
+        "usageCount": 3,
+        "importantEvents": [
+          "Day 3 · nia made this a favorite."
+        ]
+      },
+      "furniture-3": {
+        "placedDay": 1,
+        "visits": {
+          "mika": 6,
+          "nia": 1,
+          "coach": 1,
+          "leo": 4
+        },
+        "memories": [
+          "Day 3 · leo spent time here.",
+          "Day 3 · mika spent time here.",
+          "Day 2 · leo spent time here.",
+          "Day 2 · mika spent time here.",
+          "Day 1 · mika and leo spent time here.",
+          "Day 1 · leo spent time here."
+        ],
+        "favoriteOf": [
+          "mika",
+          "leo"
+        ],
+        "comfort": {
+          "mika": 6,
+          "nia": 1,
+          "coach": 1,
+          "leo": 4
+        },
+        "usageCount": 12,
+        "importantEvents": [
+          "Day 1 · mika made this a favorite.",
+          "Day 2 · leo made this a favorite."
+        ]
+      }
+    },
+    "sequence": 3
+  },
+  "events": [
+    {
+      "id": "activity-69",
+      "kind": "match",
+      "subject": "leo",
+      "detail": "Lucresia 0 · Leo 2. Leo takes their practice game. Longest rally: 52.",
+      "winner": "leo",
+      "importance": 0.8,
+      "day": 3,
+      "place": "court",
+      "at": 2956.0000000000005,
+      "witnesses": [],
+      "pending": [
+        "leo"
+      ]
+    },
+    {
+      "id": "activity-35",
+      "kind": "match",
+      "subject": "leo",
+      "detail": "Lucresia 0 · Leo 3. Leo takes their practice game. Longest rally: 25.",
+      "winner": "leo",
+      "importance": 0.8,
+      "day": 2,
+      "place": "court",
+      "at": 1514.0000000000002,
+      "witnesses": [],
+      "pending": []
+    },
+    {
+      "id": "activity-4",
+      "kind": "match",
+      "subject": "mika",
+      "detail": "Lucresia 2 · Leo 2. They finish level. Longest rally: 25.",
+      "winner": "draw",
+      "importance": 0.8,
+      "day": 1,
+      "place": "court",
+      "at": 164.00000000000003,
+      "witnesses": [],
+      "pending": []
+    }
+  ]
+}

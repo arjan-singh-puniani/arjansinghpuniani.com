@@ -1,0 +1,64 @@
+# Anatomical provenance
+
+## Primary source
+
+**Dataset:** BodyParts3D / ISA, Release 4.0  
+**Organization:** Database Center for Life Science (DBCLS), Japan  
+**Official dataset:** https://dbarchive.biosciencedbc.jp/en/bodyparts3d/  
+**Official download:** https://dbarchive.biosciencedbc.jp/en/bodyparts3d/download.html  
+**Official license:** https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html
+
+The official license page states, as of its 2025-02-27 update, that the database is licensed under **Creative Commons Attribution 4.0 International** and requires this attribution:
+
+> BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International
+
+The current release download page provides `isa_BP3D_4.0_obj_99.zip`, the 99%-polygon-reduction ISA mesh archive.
+
+## Label verification
+
+HoloAnatomy does not infer structure labels from geometry. Every production manifest entry pairs:
+
+- an FMA concept identifier and official English name from `isa_parts_list_e.txt`, and
+- one or more FJ polygon mesh identifiers from `isa_element_parts.txt`.
+
+Those official mapping tables are available at:
+
+- https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/isa_parts_list_e.txt
+- https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/isa_element_parts.txt
+
+Examples used by V1 include:
+
+- FMA52748 Mandible → FJ3289
+- FMA12519 Atlas → FJ3176
+- FMA12520 Axis → FJ3177
+- FMA3941 Right common carotid artery → FJ3564
+- FMA4058 Left common carotid artery → FJ3483
+- FMA3949 Right internal carotid artery → FJ1682
+- FMA4062 Left internal carotid artery → FJ1682M
+- FMA67944 Cerebellum → FJ1781 and FJ1830
+- FMA62004 Medulla oblongata → FJ1769 and FJ1831
+- FMA62007 Thalamus → FJ1782 and FJ1827
+- FMA13408 Right sternocleidomastoid → FJ1595
+- FMA13409 Left sternocleidomastoid → FJ1573
+
+The complete executable mapping lives in `src/anatomy/manifest.js`.
+
+## Production asset acquisition
+
+Run:
+
+```bash
+python3 scripts/vendor_bodyparts3d.py
+```
+
+The script downloads the archive directly from DBCLS and extracts only the exact FJ meshes in the manifest into `public/anatomy/`.
+
+## Development transport fallback
+
+If local assets are absent, the loader can request exact Release 4.0 OBJ files from a commit-pinned public GitHub mirror. The mirror is a transport convenience, not the asserted scientific source. Self-contained production deployments should vendor from DBCLS.
+
+Some older Release 4.0 OBJ copies contain a historical CC BY-SA 2.1 Japan header. The current DBCLS license page now states CC BY 4.0 International. HoloAnatomy preserves attribution either way and does not strip source comments from vendored OBJ files.
+
+## Scientific-integrity rule
+
+No generated mesh is presented as human anatomy. No pathological findings, measurements, physiological claims, or unlabeled AI anatomy are added. The visible structure name is the verified source term, with only ordinary display additions such as vertebral level abbreviations in parentheses.

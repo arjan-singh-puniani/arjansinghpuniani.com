@@ -1,9 +1,10 @@
 import { chromium, expect } from "@playwright/test";
-import { writeFile } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 const base =
   process.env.SHOULDER_URL || "http://127.0.0.1:4190/holoanatomy/shoulder/";
-const out = "Documentation/shoulder-qa";
-const browser = await chromium.launch({ channel: "chrome", headless: true });
+const out = process.env.QA_OUT || "Documentation/shoulder-qa";
+await mkdir(out, { recursive: true });
+const browser = await chromium.launch({ headless: true, ...(process.env.QA_METAL === "1" ? { args: ["--use-angle=metal"] } : {}), ...(process.env.CHROMIUM_EXECUTABLE ? { executablePath: process.env.CHROMIUM_EXECUTABLE } : {}) });
 const failures = [],
   errors = [],
   results = {};
@@ -18,10 +19,12 @@ async function load(page, url = base) {
     timeout: 30000,
   });
   await page.waitForTimeout(600);
+  results.loaded = { url: page.url(), title: await page.title(), viewControls: await page.locator("#view-select").count() };
 }
 async function capture(page, name) {
   await page.waitForTimeout(600);
-  await page.screenshot({ path: `${out}/${name}.png` });
+  if (process.env.QA_SCREENSHOTS !== "0")
+    await page.screenshot({ path: `${out}/${name}.png` });
 }
 async function pointFor(page, id) {
   return page.evaluate((id) => {

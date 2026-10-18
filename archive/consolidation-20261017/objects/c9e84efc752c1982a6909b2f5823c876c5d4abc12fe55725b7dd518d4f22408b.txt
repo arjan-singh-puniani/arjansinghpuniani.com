@@ -1,0 +1,16 @@
+export const profile = {
+  name: "Arjan Singh Puniani",
+  descriptor: "Neural engineer pursuing medicine.",
+  headline: "I build research tools and neurotechnology while pursuing medicine.",
+  intro: "Arjan builds research tools, early neurotechnology concepts, and educational software across neural engineering, clinical research, and motorsport safety.",
+  location: "California, United States",
+  email: "arjan.singh.puniani.main@gmail.com",
+  domain: "https://arjansinghpuniani.com",
+  linkedin: "",
+  biography: [
+    "At the University of Pittsburgh’s Rehab Neural Engineering Labs, I helped turn repetitive psychophysical calibration into an interactive game without changing what the task needed to measure. A participant living with quadriplegia told me he wanted to play video games again. That stayed with me. It made usability feel as real as technical performance.",
+    "Working in emergency departments showed me a different problem: decisions often have to be made before every uncertainty is resolved. That is one reason I am pursuing medicine in addition to engineering.",
+    "The same concerns show up in my projects. ReasonOS keeps measurements and revisions visible. SeizeFreeze explores focal cortical cooling. My motorsport work focuses on crash documentation, neurological observations, and medical handoff.",
+    "I earned a Master of Science in Bioengineering from the University of Pittsburgh after studying chemical engineering at the University of California, Berkeley. I now build neural-engineering tools, research software, and early medical-technology concepts while preparing for medical training."
+  ]
+} as const;

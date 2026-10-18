@@ -1,0 +1,48 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { describe, expect, it } from "vitest";
+const read=(p:string)=>readFileSync(join(process.cwd(),p),"utf8");
+
+describe("Rally House visual production",()=>{
+  it("keeps the live game instance out of global mutable state",()=>{
+    const main=read("public/rally-house/dist/main.js");
+    const visual=read("public/rally-house/visual-production.js");
+    expect(main).not.toContain("__rallyHouseGame");
+    expect(visual).not.toContain("__rallyHouseGame");
+    expect(main).toContain("import('../visual-production.js')");
+    expect(main).toContain(".catch(err => console.warn");
+  });
+  it("keeps the presentation layer isolated from gameplay systems",()=>{
+    const visual=read("public/rally-house/visual-production.js");
+    for(const forbidden of ["saveSystem","interactiveMatch","championship","activities","relationships","placements.push"])
+      expect(visual).not.toContain(forbidden);
+  });
+  it("ships an accessible progressive entrance",()=>{
+    const html=read("public/rally-house/index.html");
+    expect(html).toContain('id="visualProductionIntro"');
+    expect(html).toContain('id="visualProductionEnter"');
+    expect(html).toContain('type="button"');
+  });
+  it("builds visual production before static mesh caching",()=>{
+    const world=read("public/rally-house/dist/world/World.js");
+    const game=read("public/rally-house/dist/Game.js");
+    expect(world).toContain("this.buildVisualProduction();");
+    expect(game.indexOf("this.world = new World()")).toBeLessThan(game.indexOf("this.renderer.cacheStatic(this.world.meshes)"));
+  });
+  it("keeps added presentation geometry inside a strict complexity budget",()=>{
+    const world=read("public/rally-house/dist/world/World.js");
+    const start=world.indexOf("buildVisualProduction()");
+    const end=world.indexOf("buildFloorProgram()",start+24);
+    const block=world.slice(start,end);
+    expect(block).toContain("const box=");
+    expect((block.match(/add\\('sphere'/g)||[]).length).toBeLessThanOrEqual(8);
+    expect((block.match(/rb\\(/g)||[]).length).toBeLessThanOrEqual(20);
+    expect(block).toContain("'leaf',true");
+  });
+  it("does not let visual production mutate saved or competitive state",()=>{
+    const visual=read("public/rally-house/visual-production.js");
+    for(const forbidden of ["save(","saveSystem","placements","relations","championship","interactiveMatch","activities","coins","stars","mikaProgress"])
+      expect(visual).not.toContain(forbidden);
+  });
+
+});

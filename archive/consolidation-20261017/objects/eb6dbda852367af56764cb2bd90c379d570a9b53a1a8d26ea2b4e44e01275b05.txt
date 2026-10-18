@@ -1,0 +1,85 @@
+# Implementation report — Final human-copy pass
+
+## What changed
+
+Replacement files:
+
+- `src/app/page.tsx`
+- `src/app/home.module.css`
+- `src/app/notes/page.tsx`
+- `src/app/about/page.tsx`
+- `src/app/contact/page.tsx`
+- `src/app/work/page.tsx`
+- `src/components/Header.tsx`
+- `src/components/MobileNav.tsx`
+- `src/components/Footer.tsx`
+- `src/content/profile.ts`
+
+Targeted patch:
+
+- `src/content/projects.ts` — simplifies the Vector EKG + ReasonOS short description.
+
+## Voice changes
+
+The site now favors concrete statements over positioning language.
+
+Examples:
+
+- **Before:** “I build research tools, experimental interfaces, and neurotechnology prototypes.”  
+  **After:** “I build research tools for neural engineering and neurotechnology.”
+
+- **Before:** “Keep the measurements, assumptions, and limitations visible.”  
+  **After:** “Show your work.”
+
+- **Before:** “The interface is part of the measurement.”  
+  **After:** “The interface can change the measurement.”
+
+- **Before:** “A handoff is a data structure.”  
+  **After:** “Good handoffs separate facts from interpretation.”
+
+- **Before:** “Help research move into a product or workflow.”  
+  **After:** “Work between research and product.”
+
+## Homepage
+
+The visitor sees, in order:
+
+1. what Arjan builds;
+2. concrete evidence from Pitt, BCI work, peer-reviewed writing, and UCSF;
+3. a simple technical principle;
+4. flagship work;
+5. where he is useful on a team;
+6. short project notes;
+7. current projects;
+8. Playground;
+9. contact.
+
+The hierarchy from the previous Gutruf pass is preserved. Only the voice is simplified.
+
+## About
+
+The old inherited headline was removed. The page now says:
+
+**“I build research tools and neurotechnology while pursuing medicine.”**
+
+The biography is first-person and shorter. Tennis, motorsport, and interactive models are described as actual interests that led to projects, not as a personal-brand philosophy.
+
+## Notes
+
+The navigation label is now simply **Notes**. The page focuses on four concrete lessons from real projects and uses **Takeaway** instead of branded terminology.
+
+## Contact
+
+The page uses normal language, retains interest in neural engineering, neurotechnology, wearable/biointegrated sensing, and research software, and states relocation openness directly.
+
+## SEO / indexing safety
+
+No changes were made to robots, sitemap generation, redirects, canonical architecture, indexing exclusions, analytics, or public runtime paths.
+
+## Proprietary safety
+
+No reproducible implementation details are added for VectorCourt, Health Bar, SeizeFreeze, or other private systems.
+
+## Remaining gate
+
+Run the full repository validation suite and inspect the real deployment at mobile and desktop widths before merging or deploying.

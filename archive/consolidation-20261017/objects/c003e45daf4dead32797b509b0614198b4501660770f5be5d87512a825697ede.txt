@@ -1,0 +1,44 @@
+# Rally House v17.4.1 SceneGrammar Hotfix
+
+This fixes the TypeScript build failure after v17.4 added `steph` to `MemberId`.
+
+The compiler errors were caused by four exhaustive `Record<MemberId,string>` maps in
+`src/simulation/SceneGrammar.ts` that still contained only the original four NPCs.
+
+The hotfix:
+
+- adds `steph: 'Steph'` to the name map,
+- adds Steph-specific rest dialogue,
+- adds Steph-specific invitation dialogue,
+- adds Steph-specific reply dialogue,
+- lets Steph participate in the existing quiet court-watching micro-scene,
+- backs up `SceneGrammar.ts` before editing,
+- restores it automatically if patching fails.
+
+## Run
+
+If `npm run serve` is currently running, press **Control-C** first.
+
+From the worktree root:
+
+```bash
+cd "$HOME/Desktop/arjansinghpuniani-hardening"
+
+python3 /path/to/apply_rally_house_v17_4_1_scenegrammar_hotfix.py
+
+cd rally-house-source-v16
+npm test
+```
+
+Only if the test suite passes:
+
+```bash
+npm run build
+npm run serve
+```
+
+Open:
+
+```text
+http://localhost:8080/?debug=1&v=1741
+```

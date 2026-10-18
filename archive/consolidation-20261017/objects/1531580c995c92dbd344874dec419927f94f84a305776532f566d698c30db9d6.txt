@@ -1,0 +1,66 @@
+import assert from 'node:assert/strict';
+import {Character} from '../dist/entities/Character.js';
+import {Navigation} from '../dist/world/Navigation.js';
+import {Vec3} from '../dist/rendering/Math3D.js';
+import {memberData,schedules} from '../dist/content/content.js';
+import {playerSpec} from '../dist/content/PlayerAvatars.js';
+import {CharacterMind,MEMBERS} from '../dist/simulation/CharacterMind.js';
+
+let passed=0;
+const test=(name,fn)=>{try{fn();console.log(`✓ ${name}`);passed++;}catch(e){console.error(`✗ ${name}`);throw e;}};
+
+test('Taylor is a human long-haired avatar without feline identity text',()=>{
+  const t=playerSpec('taylor');
+  assert.equal(t.name,'Taylor');
+  assert.equal(t.hairStyle,'long');
+  assert.ok(!/feline|cat ear/i.test(`${t.quirk??''} ${t.goal??''}`));
+});
+
+test('Steph exists exactly once and has a full schedule',()=>{
+  assert.equal(memberData.filter(m=>m.id==='steph').length,1);
+  assert.ok(MEMBERS.includes('steph'));
+  assert.ok(Array.isArray(schedules.steph)&&schedules.steph.length>=10);
+});
+
+test('Old four-member mind saves acquire a safe Steph state',()=>{
+  const original=new CharacterMind();
+  const old=original.serialize();
+  delete old.states.steph;
+  old.possessions=old.possessions.filter(p=>p.owner!=='steph');
+  const restored=new CharacterMind();
+  restored.load(old);
+  assert.ok(restored.states.steph);
+  assert.ok(Object.values(restored.states.steph).every(Number.isFinite));
+  assert.ok(restored.possessions.some(p=>p.owner==='steph'&&p.kind==='cup'));
+});
+
+test('Drink animation raises a real cup and emits bounded steam',()=>{
+  const nav=new Navigation();
+  const c=new Character(playerSpec('taylor'),new Vec3(),nav,{});
+  c.trigger('drink');
+  let minY=Infinity,maxY=-Infinity,maxSteam=0;
+  for(let i=0;i<420;i++){
+    c.update(1/120);
+    const items=c.meshes(false);
+    const cups=items.filter(x=>x.kind==='cylinder'&&x.material==='ceramic');
+    const steam=items.filter(x=>x.kind==='sphere'&&x.color==='#fffaf1'&&x.unlit);
+    if(cups[0]){minY=Math.min(minY,cups[0].position.y);maxY=Math.max(maxY,cups[0].position.y);}
+    maxSteam=Math.max(maxSteam,steam.length);
+  }
+  assert.ok(Number.isFinite(minY)&&Number.isFinite(maxY));
+  assert.ok(maxY-minY>.24,`cup travel ${maxY-minY}`);
+  assert.ok(maxSteam>0&&maxSteam<=3,`steam count ${maxSteam}`);
+});
+
+test('Steph render geometry remains finite',()=>{
+  const nav=new Navigation();
+  const spec=memberData.find(m=>m.id==='steph');
+  const c=new Character(spec,new Vec3(),nav,{});
+  const items=c.meshes(false);
+  assert.ok(items.length>20);
+  for(const item of items){
+    assert.ok([item.position.x,item.position.y,item.position.z,item.scale.x,item.scale.y,item.scale.z].every(Number.isFinite));
+  }
+});
+
+console.log(`${passed} cozy-life checks passed.`);
