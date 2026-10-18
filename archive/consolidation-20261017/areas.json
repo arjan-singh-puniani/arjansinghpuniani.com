@@ -2049,5 +2049,56 @@
       "D": 1
     },
     "uniqueObjects": 1
+  },
+  {
+    "root": "shoulder-2",
+    "area": "arjan-portfolio/public/holoanatomy",
+    "files": 7,
+    "bytes": 69031,
+    "classes": {
+      "D": 7
+    },
+    "uniqueObjects": 7
+  },
+  {
+    "root": "shoulder-2",
+    "area": "arjan-portfolio/src/app",
+    "files": 6,
+    "bytes": 40905,
+    "classes": {
+      "D": 6
+    },
+    "uniqueObjects": 5
+  },
+  {
+    "root": "shoulder-2",
+    "area": "arjan-portfolio/src/components",
+    "files": 3,
+    "bytes": 2978,
+    "classes": {
+      "A": 2,
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "shoulder-2",
+    "area": "arjan-portfolio/src/content",
+    "files": 2,
+    "bytes": 18985,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "shoulder-2",
+    "area": "arjan-portfolio/tsconfig.tsbuildinfo",
+    "files": 1,
+    "bytes": 199679,
+    "classes": {
+      "E": 1
+    },
+    "uniqueObjects": 0
   }
 ]

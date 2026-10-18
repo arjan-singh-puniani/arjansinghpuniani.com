@@ -1,0 +1,19 @@
+ M arjan-portfolio/public/holoanatomy/index.html
+ M arjan-portfolio/public/holoanatomy/src/app.js
+ M arjan-portfolio/public/holoanatomy/src/engine/renderer.js
+ D arjan-portfolio/public/holoanatomy/src/learning/quiz.js
+ M arjan-portfolio/public/holoanatomy/src/state/store.js
+ M arjan-portfolio/public/holoanatomy/src/ui/controls.js
+ M arjan-portfolio/public/holoanatomy/styles.css
+ M arjan-portfolio/src/app/about/page.tsx
+ M arjan-portfolio/src/app/contact/page.tsx
+ M arjan-portfolio/src/app/notes/page.tsx
+ M arjan-portfolio/src/app/page.tsx
+ M arjan-portfolio/src/app/work/page.tsx
+ M arjan-portfolio/src/components/Footer.tsx
+ M arjan-portfolio/src/components/Header.tsx
+ M arjan-portfolio/src/components/MobileNav.tsx
+ M arjan-portfolio/src/content/profile.ts
+ M arjan-portfolio/src/content/projects.ts
+?? arjan-portfolio/public/holoanatomy/src/shoulderStudio.js
+?? arjan-portfolio/src/app/home.module.css

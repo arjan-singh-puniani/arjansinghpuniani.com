@@ -36371,5 +36371,189 @@
     "gitBlob": "c514c07634348c7aba2f6ed7116107323a441a74",
     "classification": "E",
     "reason": "Compiled/generated output; original retained in local vault"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/tsconfig.tsbuildinfo",
+    "bytes": 199679,
+    "sha256": "3b2e95044045ec55dc9925b8689797f0fb59c7c4cd4b18f2d10830c04e71091d",
+    "gitBlob": "b0b160349c9da4d2c3e2a887fa40255a0c0b70f2",
+    "classification": "E",
+    "reason": "Compiled/generated output; original retained in local vault"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/public/holoanatomy/index.html",
+    "bytes": 5740,
+    "sha256": "b9e8f3fb61eeb5132d8eb629c39805a64871b29f0ed4d53bc71cb9de715afbd4",
+    "gitBlob": "dfb531ffb142107282c1fac4f595bf1e7bd4439e",
+    "classification": "D",
+    "reason": "Unique historical source/document; content-addressed recovery copy",
+    "archive": "objects/b9e8f3fb61eeb5132d8eb629c39805a64871b29f0ed4d53bc71cb9de715afbd4.txt"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/public/holoanatomy/styles.css",
+    "bytes": 12596,
+    "sha256": "391f498b322e7587bd162a68f149cd7bd8b340e9d2807e9ffdf48dda6f0e5bc5",
+    "gitBlob": "7f2d9be67d44372e22c2a64c65cf0ff274342459",
+    "classification": "D",
+    "reason": "Unique historical source/document; content-addressed recovery copy",
+    "archive": "objects/391f498b322e7587bd162a68f149cd7bd8b340e9d2807e9ffdf48dda6f0e5bc5.txt"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/public/holoanatomy/src/shoulderStudio.js",
+    "bytes": 2580,
+    "sha256": "658ef854a96344861eb6e944f77d4d812796ee28e0f41967c6d567513a562fd4",
+    "gitBlob": "b4aebd6647b548537bdac02080346f454a7ed604",
+    "classification": "D",
+    "reason": "Unique historical source/document; content-addressed recovery copy",
+    "archive": "objects/658ef854a96344861eb6e944f77d4d812796ee28e0f41967c6d567513a562fd4.txt"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/public/holoanatomy/src/app.js",
+    "bytes": 14008,
+    "sha256": "f8402fea14d61f9e577c22b59a9d80e3fa310f231e26f524d9954eae5fec6d32",
+    "gitBlob": "bb66b8dc87cd0b2336464fdf51b7557b61bc1b13",
+    "classification": "D",
+    "reason": "Unique historical source/document; content-addressed recovery copy",
+    "archive": "objects/f8402fea14d61f9e577c22b59a9d80e3fa310f231e26f524d9954eae5fec6d32.txt"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/public/holoanatomy/src/ui/controls.js",
+    "bytes": 9980,
+    "sha256": "73041a66e3639b938d26c0d6d7206f7b71a7683fbfb2611d1cd41a62b2961588",
+    "gitBlob": "09ec11fbc9e515471f8f54b29cfd8d5fbeb2f9fa",
+    "classification": "D",
+    "reason": "Unique historical source/document; content-addressed recovery copy",
+    "archive": "objects/73041a66e3639b938d26c0d6d7206f7b71a7683fbfb2611d1cd41a62b2961588.txt"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/public/holoanatomy/src/state/store.js",
+    "bytes": 2300,
+    "sha256": "d7abd3bd8ec82d8645d2dbd3e1ee346d35ddd88b2867d08aaab73c41d146b963",
+    "gitBlob": "af3cbc673249343573a4b4868a08bab9113ee020",
+    "classification": "D",
+    "reason": "Unique historical source/document; content-addressed recovery copy",
+    "archive": "objects/d7abd3bd8ec82d8645d2dbd3e1ee346d35ddd88b2867d08aaab73c41d146b963.txt"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/public/holoanatomy/src/engine/renderer.js",
+    "bytes": 21827,
+    "sha256": "369821ffd7e59fe3b243bd8b9e1e17d66d3bebc6fffc90af740d8991f6074a89",
+    "gitBlob": "a07abb2f7af7faf6500dfef1deb02fe577ee187a",
+    "classification": "D",
+    "reason": "Unique historical source/document; content-addressed recovery copy",
+    "archive": "objects/369821ffd7e59fe3b243bd8b9e1e17d66d3bebc6fffc90af740d8991f6074a89.txt"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/src/app/page.tsx",
+    "bytes": 15630,
+    "sha256": "273745ee99e5a5c307bf05122d185e7b7390286be87434bd285633631802fe3c",
+    "gitBlob": "342f770b551f3eb17ae174f6f58a4543d7418aff",
+    "classification": "D",
+    "reason": "Unique historical source/document; content-addressed recovery copy",
+    "archive": "objects/273745ee99e5a5c307bf05122d185e7b7390286be87434bd285633631802fe3c.txt"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/src/app/home.module.css",
+    "bytes": 7068,
+    "sha256": "ee2138cf6af90a39090e6dd4aad214bf110373123e2ebfb444cd58455925ff77",
+    "gitBlob": "5c3aa7d09937db6122907225570bcda542319db0",
+    "classification": "D",
+    "reason": "Unique historical source/document; content-addressed recovery copy",
+    "archive": "objects/ee2138cf6af90a39090e6dd4aad214bf110373123e2ebfb444cd58455925ff77.txt"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/src/app/contact/page.tsx",
+    "bytes": 2249,
+    "sha256": "2e7b694164bd2effd895d8daad597ef33dbaca02eefda46d6ee5a84507510e90",
+    "gitBlob": "d2daf4e41bc0bcaf9e27c72f0f3d54cf82009cfc",
+    "classification": "D",
+    "reason": "Unique historical source/document; content-addressed recovery copy",
+    "archive": "objects/2e7b694164bd2effd895d8daad597ef33dbaca02eefda46d6ee5a84507510e90.txt"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/src/app/about/page.tsx",
+    "bytes": 8025,
+    "sha256": "9b5bd1d13f9616a55744c7544a7ea3bf5b862cbe5d3758bd71f99d8da77d7a39",
+    "gitBlob": "09bddc27d3bf5034313c323ec8cad7a84c3728ef",
+    "classification": "D",
+    "reason": "Unique historical source/document; content-addressed recovery copy",
+    "archive": "objects/9b5bd1d13f9616a55744c7544a7ea3bf5b862cbe5d3758bd71f99d8da77d7a39.txt"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/src/app/notes/page.tsx",
+    "bytes": 6285,
+    "sha256": "09ffc15dfa493b1897167f5f636b0dd4179d6d7920989b12da2ad6c172b40882",
+    "gitBlob": "044f398218dcd1375920aeca7c90a0e413cea592",
+    "classification": "D",
+    "reason": "Unique historical source/document; content-addressed recovery copy",
+    "archive": "objects/09ffc15dfa493b1897167f5f636b0dd4179d6d7920989b12da2ad6c172b40882.txt"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/src/app/work/page.tsx",
+    "bytes": 1648,
+    "sha256": "f66c5e8a522f03f2a1bfb194bb28a54993ac37a29700775ca69086d9c205b28a",
+    "gitBlob": "ff9c0e71197adb2736d7c7603cd575eb8854a262",
+    "classification": "D",
+    "reason": "Exact blob preserved in Git history"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/src/content/projects.ts",
+    "bytes": 17332,
+    "sha256": "d131048e06b1e67f90e021372d9b65598169e4ff3e27d4380c065aa1bcd176fd",
+    "gitBlob": "0cd73febf2e8b7df4dbe6b8a73938bb8eef12ea4",
+    "classification": "D",
+    "reason": "Exact blob preserved in Git history"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/src/content/profile.ts",
+    "bytes": 1653,
+    "sha256": "c9e84efc752c1982a6909b2f5823c876c5d4abc12fe55725b7dd518d4f22408b",
+    "gitBlob": "79882066d3bf154723a6b9ad500f2d1cdd33ae46",
+    "classification": "D",
+    "reason": "Unique historical source/document; content-addressed recovery copy",
+    "archive": "objects/c9e84efc752c1982a6909b2f5823c876c5d4abc12fe55725b7dd518d4f22408b.txt"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/src/components/MobileNav.tsx",
+    "bytes": 1634,
+    "sha256": "97e3f4194f488fe44b1729726f765e6e55cbf95c7bd3dc3963fb6c84bbf0140c",
+    "gitBlob": "4793c7a7d003349dda91c7b57d75abd3643ee9a2",
+    "classification": "A",
+    "reason": "Exact blob already reachable from canonical main"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/src/components/Footer.tsx",
+    "bytes": 595,
+    "sha256": "19f70cf9a947786d25b4c95020fdb3a7ad72ead11d3af10d6041fa22c42241bc",
+    "gitBlob": "d143fa4e8bf34987bab024c7f176d1fa5ae59a9e",
+    "classification": "D",
+    "reason": "Exact blob preserved in Git history"
+  },
+  {
+    "root": "shoulder-2",
+    "path": "arjan-portfolio/src/components/Header.tsx",
+    "bytes": 749,
+    "sha256": "db5ec80f8fd11bfdd90db247471384274ac43f0d6fb045c65788be0cf0abcff8",
+    "gitBlob": "378833aafbf2d9fb71df9b0ea81794275069819c",
+    "classification": "A",
+    "reason": "Exact blob already reachable from canonical main"
   }
 ]
