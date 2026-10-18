@@ -1,0 +1,55 @@
+[
+  {
+    "touch": true,
+    "movement": 1.7212342634705058,
+    "contacts": [
+      {
+        "side": "player",
+        "quality": "clean",
+        "frame": 14445,
+        "gap": 0
+      },
+      {
+        "side": "opponent",
+        "quality": "defensive",
+        "frame": 15727.300000011921,
+        "gap": 0
+      },
+      {
+        "side": "player",
+        "quality": "defensive",
+        "frame": 17114.30000001192,
+        "gap": 0
+      },
+      {
+        "side": "opponent",
+        "quality": "defensive",
+        "frame": 18642.5,
+        "gap": 0
+      },
+      {
+        "side": "player",
+        "quality": "defensive",
+        "frame": 20041,
+        "gap": 0
+      },
+      {
+        "side": "opponent",
+        "quality": "defensive",
+        "frame": 21557.19999998808,
+        "gap": 0
+      },
+      {
+        "side": "player",
+        "quality": "defensive",
+        "frame": 22940.30000001192,
+        "gap": 0
+      }
+    ],
+    "restored": {
+      "speed": 1,
+      "competitor": false
+    },
+    "errors": []
+  }
+]

@@ -1,0 +1,22 @@
+# Accessibility
+
+The 3D canvas is not treated as a complete accessible interface.
+
+Implemented:
+
+- semantic HTML buttons for every primary viewer mode
+- keyboard-focus indicators
+- layer controls that expose text state
+- structure selection text card
+- keyboard orbit with arrow keys
+- `+` / `-` zoom and `R` reset
+- Escape closes transient UI/selection
+- reduced-motion preference disables intro animation and defaults parallax off
+- high-contrast textual fallback when WebGL 2 cannot initialize
+- attribution and product identity remain DOM text, not canvas pixels
+
+Remaining work after real-device QA:
+
+- verify VoiceOver/TalkBack order on the mobile bottom toolbar
+- decide whether a searchable textual structure list is needed for non-pointer exploration
+- audit color contrast with automated and manual tools

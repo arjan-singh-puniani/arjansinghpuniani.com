@@ -1,0 +1,114 @@
+import assert from 'node:assert/strict';
+import { Vec3 } from '../dist/rendering/Math3D.js';
+import { MatchInput } from '../dist/tennis/MatchInput.js';
+import { ChampionshipCameraRig } from '../dist/tennis/ChampionshipCameraRig.js';
+import { CHAMPIONSHIP_TUNING } from '../dist/tennis/ChampionshipTuning.js';
+
+{
+  const input = new MatchInput();
+  input.setEnabled(true);
+  input.setTouchMovement(2, -2);
+  const touch = input.movement();
+  assert.ok(Math.abs(Math.hypot(touch.x, touch.z) - 1) < 1e-9, 'touch movement is normalized');
+
+  let prevented = false;
+  const down = { key: 'd', repeat: false, preventDefault: () => { prevented = true; } };
+  assert.equal(input.handleKeyDown(down), true);
+  assert.equal(prevented, true);
+  assert.ok(input.movement().x > 0, 'keyboard and touch intents combine without exceeding unit length');
+
+  // Gameplay movement ramps rather than snapping from zero to full speed.
+  input.setTouchMovement(0, 0);
+  input.update(1 / 60);
+  const firstSmooth = input.smoothMovement().x;
+  assert.ok(firstSmooth > 0 && firstSmooth < 1, 'keyboard movement eases into full speed');
+  for (let i = 0; i < 18; i += 1) input.update(1 / 60);
+  assert.ok(input.smoothMovement().x > 0.9, 'held movement reaches full intent quickly');
+
+  const up = { key: 'd', preventDefault: () => {} };
+  input.handleKeyUp(up);
+  const beforeRelease = input.smoothMovement().x;
+  input.update(1 / 60);
+  assert.ok(input.smoothMovement().x > 0 && input.smoothMovement().x < beforeRelease, 'release decelerates instead of snapping');
+  for (let i = 0; i < 36; i += 1) input.update(1 / 60);
+  assert.ok(Math.abs(input.smoothMovement().x) < 0.02, 'released movement settles cleanly to zero');
+
+  input.queueSwing();
+  assert.equal(input.hasBufferedSwing(), true);
+  input.update(0.05);
+  assert.equal(input.hasBufferedSwing(), true, 'slightly early swing stays buffered');
+  input.update(CHAMPIONSHIP_TUNING.swingBufferSeconds + 0.05);
+  assert.equal(input.hasBufferedSwing(), false, 'stale swing buffer expires');
+}
+
+{
+  // CameraController is deliberately represented by the public fields the rig
+  // uses. This guards exact club-view restoration without requiring WebGL/DOM.
+  const camera = {
+    target: new Vec3(2, 1, 3),
+    desiredTarget: new Vec3(4, 1, 5),
+    distance: 31,
+    desiredDistance: 33,
+    azimuth: 0.41,
+    desiredAzimuth: 0.44,
+    elevation: 0.57,
+    desiredElevation: 0.59,
+    fov: 0.48,
+    autoFrame: false,
+    updateCalls: 0,
+    update() { this.updateCalls += 1; },
+  };
+
+  const original = {
+    target: camera.target.clone(),
+    desiredTarget: camera.desiredTarget.clone(),
+    distance: camera.distance,
+    desiredDistance: camera.desiredDistance,
+    azimuth: camera.azimuth,
+    desiredAzimuth: camera.desiredAzimuth,
+    elevation: camera.elevation,
+    desiredElevation: camera.desiredElevation,
+    fov: camera.fov,
+    autoFrame: camera.autoFrame,
+  };
+
+  const rig = new ChampionshipCameraRig(camera);
+  rig.begin();
+
+  // Challenge presentation stays recognizably dollhouse-like while making the
+  // court the visual subject.
+  rig.update('challengeEstablishing', new Vec3(1, 0, 5), new Vec3(1, 0, -5), null, 16 / 9);
+  assert.ok(camera.desiredDistance > 20, 'challenge establishing view keeps a wide dollhouse composition');
+  assert.ok(camera.desiredAzimuth > 0.5, 'challenge establishing view remains visibly isometric');
+
+  // The intro must actually orbit and descend toward the baseline rather than
+  // cutting immediately to the gameplay camera.
+  rig.update('matchIntro', new Vec3(1, 0, 5), new Vec3(1, 0, -5), null, 16 / 9, 1 / 60);
+  const earlyIntroAzimuth = camera.desiredAzimuth;
+  for (let i = 0; i < 120; i += 1) {
+    rig.update('matchIntro', new Vec3(1, 0, 5), new Vec3(1, 0, -5), null, 16 / 9, 1 / 60);
+  }
+  assert.ok(Math.abs(camera.desiredAzimuth) < Math.abs(earlyIntroAzimuth), 'intro visibly orbits toward the player baseline');
+  assert.ok(camera.desiredDistance < 16, 'intro settles into the tighter sports camera');
+  assert.ok(camera.desiredElevation < 0.45, 'intro descends from dollhouse elevation');
+
+  rig.update('behindPlayer', new Vec3(1, 0, 5), new Vec3(1, 0, -5), null, 16 / 9);
+  assert.notEqual(camera.desiredDistance, original.desiredDistance, 'match camera changes framing');
+  assert.ok(camera.desiredDistance >= 14, 'gameplay camera stays wide enough to read the whole rally');
+
+  const normalMatchDistance = camera.desiredDistance;
+  rig.pulseImpact(1);
+  rig.update('behindPlayer', new Vec3(1, 0, 5), new Vec3(1, 0, -5), null, 16 / 9, 1 / 60);
+  assert.ok(camera.desiredDistance < normalMatchDistance, 'authoritative contact adds a tiny camera impulse');
+
+  rig.restoreClubView(true);
+  assert.equal(camera.desiredDistance, original.desiredDistance);
+  assert.equal(camera.desiredAzimuth, original.desiredAzimuth);
+  assert.equal(camera.desiredElevation, original.desiredElevation);
+  assert.equal(camera.fov, original.fov);
+  assert.equal(camera.autoFrame, original.autoFrame);
+  assert.deepEqual(camera.target, original.target);
+  assert.ok(camera.updateCalls >= 1, 'reduced-motion restore snaps the camera immediately');
+}
+
+console.log('Championship input buffering and camera restoration checks passed.');

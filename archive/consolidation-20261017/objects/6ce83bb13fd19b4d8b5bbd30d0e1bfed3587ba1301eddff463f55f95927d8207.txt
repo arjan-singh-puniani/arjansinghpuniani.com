@@ -1,0 +1,167 @@
+# branch.oid 02f1cd4a257b8571dfd71f0c9bae8c63511ed72d
+# branch.head portfolio-human-copy-20260930
+# branch.upstream origin/portfolio-human-copy-20260930
+# branch.ab +0 -8
+1 .M N... 100644 100644 100644 7ebfc0107ff16ccd5697ffdbc5fe66e79ef51290 7ebfc0107ff16ccd5697ffdbc5fe66e79ef51290 arjan-portfolio/public/holoanatomy/index.html
+1 .M N... 100644 100644 100644 2a32d15f19d48c081d32734c69b9593c2cf0e444 2a32d15f19d48c081d32734c69b9593c2cf0e444 arjan-portfolio/public/holoanatomy/src/app.js
+1 .M N... 100644 100644 100644 0230cdaec5eaf2a27df557b31e832563e57acf7c 0230cdaec5eaf2a27df557b31e832563e57acf7c arjan-portfolio/public/holoanatomy/src/engine/renderer.js
+1 .D N... 100644 100644 000000 ca72702b71d1390a99ecd5efe21e9cc5169d267b ca72702b71d1390a99ecd5efe21e9cc5169d267b arjan-portfolio/public/holoanatomy/src/learning/quiz.js
+1 .M N... 100644 100644 100644 314556da44638468ac6da3e692c0b9e30d0164f0 314556da44638468ac6da3e692c0b9e30d0164f0 arjan-portfolio/public/holoanatomy/src/state/store.js
+1 .M N... 100644 100644 100644 cb567ffc141c7e3b97f514c8031108295ac98bd5 cb567ffc141c7e3b97f514c8031108295ac98bd5 arjan-portfolio/public/holoanatomy/src/ui/controls.js
+1 .M N... 100644 100644 100644 81ac291b5ea5401555902fe0e3d991fa14cb865f 81ac291b5ea5401555902fe0e3d991fa14cb865f arjan-portfolio/public/holoanatomy/styles.css
+1 .M N... 100644 100644 100644 722bdfa50f06840dd38dbb666a28ff4532f3aa63 722bdfa50f06840dd38dbb666a28ff4532f3aa63 arjan-portfolio/public/rally-house/dist/Game.js
+1 .M N... 100644 100644 100644 233cf7b4f09892da64c3840f043307207eb694a5 233cf7b4f09892da64c3840f043307207eb694a5 arjan-portfolio/public/rally-house/dist/animation/CharacterSkin.js
+1 .M N... 100644 100644 100644 107d956dc251608df917c9af1f59b19a88ade36f 107d956dc251608df917c9af1f59b19a88ade36f arjan-portfolio/public/rally-house/dist/content/content.js
+1 .M N... 100644 100644 100644 e112d58f08bdc9d24e778c4c0c4015fef08b29a5 e112d58f08bdc9d24e778c4c0c4015fef08b29a5 arjan-portfolio/public/rally-house/dist/core/AudioManager.js
+1 .M N... 100644 100644 100644 d7b2ff075eab98e0e0433ab900d981046b9dfeac d7b2ff075eab98e0e0433ab900d981046b9dfeac arjan-portfolio/public/rally-house/dist/entities/Character.js
+1 .M N... 100644 100644 100644 d8100a6f97b7ff60308bf4a12e2b6ec61bd65ee7 d8100a6f97b7ff60308bf4a12e2b6ec61bd65ee7 arjan-portfolio/public/rally-house/dist/rendering/CameraController.js
+1 .M N... 100644 100644 100644 733afda0e055142ed4400a21bf95cfc1f247e794 733afda0e055142ed4400a21bf95cfc1f247e794 arjan-portfolio/public/rally-house/dist/rendering/Renderer.js
+1 .M N... 100644 100644 100644 080e042ba883ca6f1f3157f2d79ce6076980c947 080e042ba883ca6f1f3157f2d79ce6076980c947 arjan-portfolio/public/rally-house/dist/tennis/BallPhysics.js
+1 .M N... 100644 100644 100644 99857a419eff8eedd9ef2f09648fa15fd6adf4e4 99857a419eff8eedd9ef2f09648fa15fd6adf4e4 arjan-portfolio/public/rally-house/dist/tennis/RallySystem.js
+1 .M N... 100644 100644 100644 b71b6cc1ad48c97428714ba2fc266f79da4025fa b71b6cc1ad48c97428714ba2fc266f79da4025fa arjan-portfolio/public/rally-house/dist/ui/HUD.js
+1 .M N... 100644 100644 100644 873a8e8c24afaf1bd29c1adbdf9df8b7ea592f54 873a8e8c24afaf1bd29c1adbdf9df8b7ea592f54 arjan-portfolio/public/rally-house/dist/world/World.js
+1 .M N... 100644 100644 100644 718805184cba0e3da0b194846ebf89190fb6e83a 718805184cba0e3da0b194846ebf89190fb6e83a arjan-portfolio/public/rally-house/index.html
+1 .M N... 100644 100644 100644 a963f8d396b9f21528aa4347c9c9b0b660419ccc a963f8d396b9f21528aa4347c9c9b0b660419ccc arjan-portfolio/public/rally-house/style.css
+1 .M N... 100644 100644 100644 4131945aac65152ffff494285b1aa89c4d9cd9e6 4131945aac65152ffff494285b1aa89c4d9cd9e6 rally-house-source-v16/README.md
+1 .M N... 100644 100644 100644 722bdfa50f06840dd38dbb666a28ff4532f3aa63 722bdfa50f06840dd38dbb666a28ff4532f3aa63 rally-house-source-v16/dist/Game.js
+1 .M N... 100644 100644 100644 233cf7b4f09892da64c3840f043307207eb694a5 233cf7b4f09892da64c3840f043307207eb694a5 rally-house-source-v16/dist/animation/CharacterSkin.js
+1 .M N... 100644 100644 100644 107d956dc251608df917c9af1f59b19a88ade36f 107d956dc251608df917c9af1f59b19a88ade36f rally-house-source-v16/dist/content/content.js
+1 .M N... 100644 100644 100644 e112d58f08bdc9d24e778c4c0c4015fef08b29a5 e112d58f08bdc9d24e778c4c0c4015fef08b29a5 rally-house-source-v16/dist/core/AudioManager.js
+1 .M N... 100644 100644 100644 d7b2ff075eab98e0e0433ab900d981046b9dfeac d7b2ff075eab98e0e0433ab900d981046b9dfeac rally-house-source-v16/dist/entities/Character.js
+1 .M N... 100644 100644 100644 d8100a6f97b7ff60308bf4a12e2b6ec61bd65ee7 d8100a6f97b7ff60308bf4a12e2b6ec61bd65ee7 rally-house-source-v16/dist/rendering/CameraController.js
+1 .M N... 100644 100644 100644 733afda0e055142ed4400a21bf95cfc1f247e794 733afda0e055142ed4400a21bf95cfc1f247e794 rally-house-source-v16/dist/rendering/Renderer.js
+1 .M N... 100644 100644 100644 080e042ba883ca6f1f3157f2d79ce6076980c947 080e042ba883ca6f1f3157f2d79ce6076980c947 rally-house-source-v16/dist/tennis/BallPhysics.js
+1 .M N... 100644 100644 100644 99857a419eff8eedd9ef2f09648fa15fd6adf4e4 99857a419eff8eedd9ef2f09648fa15fd6adf4e4 rally-house-source-v16/dist/tennis/RallySystem.js
+1 .M N... 100644 100644 100644 b71b6cc1ad48c97428714ba2fc266f79da4025fa b71b6cc1ad48c97428714ba2fc266f79da4025fa rally-house-source-v16/dist/ui/HUD.js
+1 .M N... 100644 100644 100644 873a8e8c24afaf1bd29c1adbdf9df8b7ea592f54 873a8e8c24afaf1bd29c1adbdf9df8b7ea592f54 rally-house-source-v16/dist/world/World.js
+1 .M N... 100644 100644 100644 718805184cba0e3da0b194846ebf89190fb6e83a 718805184cba0e3da0b194846ebf89190fb6e83a rally-house-source-v16/index.html
+1 .M N... 100644 100644 100644 09ff86cde506a645d791734557ea804c32313d89 09ff86cde506a645d791734557ea804c32313d89 rally-house-source-v16/package-lock.json
+1 .M N... 100644 100644 100644 305110cfa713b43f73ae828875460a9fd716d58f 305110cfa713b43f73ae828875460a9fd716d58f rally-house-source-v16/package.json
+1 .M N... 100644 100644 100644 62ed5fa077fc921bc0f08f43a028f2e7a9c954f7 62ed5fa077fc921bc0f08f43a028f2e7a9c954f7 rally-house-source-v16/qa/v15-long-variety.json
+1 .M N... 100644 100644 100644 a929b5395c6fac522a66addfa2a979f6e96aadbe a929b5395c6fac522a66addfa2a979f6e96aadbe rally-house-source-v16/qa/v15-simulation.json
+1 .M N... 100644 100644 100644 bf296405db43d0eae1a6a47e3230e5347c9aeef7 bf296405db43d0eae1a6a47e3230e5347c9aeef7 rally-house-source-v16/qa/v16-coaching-recovery.json
+1 .M N... 100644 100644 100644 3a8063c9428e5b54c0d099476649ca26819d3ae6 3a8063c9428e5b54c0d099476649ca26819d3ae6 rally-house-source-v16/qa/v16-story-causality.json
+1 .M N... 100644 100644 100644 48a9ccbf716e0ac3392d819b1db883f4d3545d18 48a9ccbf716e0ac3392d819b1db883f4d3545d18 rally-house-source-v16/src/Game.ts
+1 .M N... 100644 100644 100644 f0e754311fac35eabd52b61127220a8ed4964d33 f0e754311fac35eabd52b61127220a8ed4964d33 rally-house-source-v16/src/animation/CharacterSkin.ts
+1 .M N... 100644 100644 100644 00943178e856195df8831bc0b8f9dc65ff32cd93 00943178e856195df8831bc0b8f9dc65ff32cd93 rally-house-source-v16/src/content/content.ts
+1 .M N... 100644 100644 100644 d19f8364bd54f1ce75f94ded32406ddefd1de5d4 d19f8364bd54f1ce75f94ded32406ddefd1de5d4 rally-house-source-v16/src/core/AudioManager.ts
+1 .M N... 100644 100644 100644 db60f4f8e3e7a30210ada5dd64bc269b3edde637 db60f4f8e3e7a30210ada5dd64bc269b3edde637 rally-house-source-v16/src/entities/Character.ts
+1 .M N... 100644 100644 100644 ad68ead5e50158c98764fba8802ff2706a8a44e7 ad68ead5e50158c98764fba8802ff2706a8a44e7 rally-house-source-v16/src/rendering/CameraController.ts
+1 .M N... 100644 100644 100644 ead61168bac8dde6cfeedd3962d516131ea766f8 ead61168bac8dde6cfeedd3962d516131ea766f8 rally-house-source-v16/src/rendering/Renderer.ts
+1 .M N... 100644 100644 100644 88563af888fa06c427929ac527f942c43a81fa04 88563af888fa06c427929ac527f942c43a81fa04 rally-house-source-v16/src/tennis/BallPhysics.ts
+1 .M N... 100644 100644 100644 63b85ca068c75ca8228dd04c2f107a82de3cd9a4 63b85ca068c75ca8228dd04c2f107a82de3cd9a4 rally-house-source-v16/src/tennis/RallySystem.ts
+1 .M N... 100644 100644 100644 39cb0a65a3e279544047060471c3a6e8bebb8ec0 39cb0a65a3e279544047060471c3a6e8bebb8ec0 rally-house-source-v16/src/ui/HUD.ts
+1 .M N... 100644 100644 100644 cb71dd276d2655144be692a5538fc36a81038ff2 cb71dd276d2655144be692a5538fc36a81038ff2 rally-house-source-v16/src/world/World.ts
+1 .M N... 100644 100644 100644 a963f8d396b9f21528aa4347c9c9b0b660419ccc a963f8d396b9f21528aa4347c9c9b0b660419ccc rally-house-source-v16/style.css
+1 .M N... 100644 100644 100644 628bc0058e10e2890b2f07616b79d76aca00ef22 628bc0058e10e2890b2f07616b79d76aca00ef22 rally-house-source-v16/tests/run.mjs
+? .DS_Store
+? .portfolio-visual-refresh-backup-20260930/
+? HoloAnatomy_1.0_Candidate.zip
+? HoloAnatomy_1.0_Candidate/
+? Rally-House-Playable-RC3.4-cozy-atmosphere.zip
+? Rally-House-Playable-RC3.4-cozy-atmosphere/
+? Rally-House-v18.3-Visual-Production.zip
+? arjan-portfolio/.portfolio-final-copy-backup-20260927/
+? arjan-portfolio/.portfolio-pre-locked-delight-20260930/
+? arjan-portfolio/.portfolio-pre-static-cleanup-20260930/
+? arjan-portfolio/public/holoanatomy-backup-20260930/
+? arjan-portfolio/public/holoanatomy/anatomy/FJ1376 3.obj
+? arjan-portfolio/public/holoanatomy/anatomy/FJ2734 3.obj
+? arjan-portfolio/public/holoanatomy/src/shoulderStudio.js
+? arjan-portfolio/public/rally-house/championship.css
+? arjan-portfolio/public/rally-house/dist/rendering/ClubAtmosphere.js
+? arjan-portfolio/public/rally-house/dist/simulation/ClubInteractions.js
+? arjan-portfolio/public/rally-house/dist/tennis/BallTrail.js
+? arjan-portfolio/public/rally-house/dist/tennis/ChampionshipCameraRig.js
+? arjan-portfolio/public/rally-house/dist/tennis/ChampionshipController.js
+? arjan-portfolio/public/rally-house/dist/tennis/ChampionshipOpponents.js
+? arjan-portfolio/public/rally-house/dist/tennis/ChampionshipTuning.js
+? arjan-portfolio/public/rally-house/dist/tennis/InteractiveMatchSystem.js
+? arjan-portfolio/public/rally-house/dist/tennis/MatchInput.js
+? arjan-portfolio/public/rally-house/dist/ui/ChampionshipHUD.js
+? arjan-portfolio/public/rally-house/dist/ui/ClubContextPresenter.js
+? arjan-portfolio/public/rally-house/dist/ui/SpatialInteractionSystem.js
+? arjan-portfolio/public/rally-house/dist/ui/WorldAnchor.js
+? arjan-portfolio/public/rally-house/spatial.css
+? arjan-portfolio/tests/vector-tennis-controls.browser.mjs
+? arjansinghpuniani-final-human-copy-upgrade-20260927 (1).zip
+? arjansinghpuniani-locked-clean-delight-patch-20260930.zip
+? arjansinghpuniani-qai-reasonos-visual-refresh-20260930.zip
+? arjansinghpuniani-rollup-home-playground-qai-reasonos-20260930.zip
+? arjansinghpuniani-static-clean-home-playground-20260930.zip
+? holo-v05-kit/
+? holoanatomy-shoulder-v0.5-patch-kit 2.zip
+? holoanatomy-shoulder-v0.5-patch-kit.zip
+? holoanatomy-shoulder-v0.5.1-patch-kit.zip
+? portfolio-webgl-upgrade.zip
+? portfolio_locked_delight_patch/
+? portfolio_static_patch/
+? portfolio_upgrade/
+? portfolio_visual_refresh_patch/
+? rally-house-source-v16/ARCADE-FEEL-SYNC.json
+? rally-house-source-v16/ARCADE-FEEL.md
+? rally-house-source-v16/CHAMPIONSHIP.md
+? rally-house-source-v16/CHARACTER-POLISH.md
+? rally-house-source-v16/IMPLEMENTATION-REPORT.md
+? rally-house-source-v16/PLAYTEST-CHECKLIST.md
+? rally-house-source-v16/STUDIO-DELIVERY.json
+? rally-house-source-v16/VALIDATION.md
+? rally-house-source-v16/WORLD-AS-INTERFACE-IMPLEMENTATION.md
+? rally-house-source-v16/WORLD-AS-INTERFACE-SYNC.json
+? rally-house-source-v16/WORLD-AS-INTERFACE-VALIDATION.md
+? rally-house-source-v16/championship.css
+? rally-house-source-v16/dist/rendering/ClubAtmosphere.js
+? rally-house-source-v16/dist/simulation/ClubInteractions.js
+? rally-house-source-v16/dist/tennis/BallTrail.js
+? rally-house-source-v16/dist/tennis/ChampionshipCameraRig.js
+? rally-house-source-v16/dist/tennis/ChampionshipController.js
+? rally-house-source-v16/dist/tennis/ChampionshipOpponents.js
+? rally-house-source-v16/dist/tennis/ChampionshipTuning.js
+? rally-house-source-v16/dist/tennis/InteractiveMatchSystem.js
+? rally-house-source-v16/dist/tennis/MatchInput.js
+? rally-house-source-v16/dist/ui/ChampionshipHUD.js
+? rally-house-source-v16/dist/ui/ClubContextPresenter.js
+? rally-house-source-v16/dist/ui/SpatialInteractionSystem.js
+? rally-house-source-v16/dist/ui/WorldAnchor.js
+? rally-house-source-v16/preview-cozy.webp
+? rally-house-source-v16/qa/arcade-feel.mjs
+? rally-house-source-v16/qa/arcade-feel/
+? rally-house-source-v16/qa/ball-feel.mjs
+? rally-house-source-v16/qa/championship-smoke.mjs
+? rally-house-source-v16/qa/character-polish.mjs
+? rally-house-source-v16/qa/character-polish/
+? rally-house-source-v16/qa/club-contact.mjs
+? rally-house-source-v16/qa/contact-trace.mjs
+? rally-house-source-v16/qa/serve.mjs
+? rally-house-source-v16/qa/studio-browsers-chromium.png
+? rally-house-source-v16/qa/studio-browsers-firefox.png
+? rally-house-source-v16/qa/studio-browsers-webkit.png
+? rally-house-source-v16/qa/studio-browsers.json
+? rally-house-source-v16/qa/studio-matrix.mjs
+? rally-house-source-v16/qa/studio-objects.mjs
+? rally-house-source-v16/qa/studio-performance.mjs
+? rally-house-source-v16/qa/studio/
+? rally-house-source-v16/qa/world-before.mjs
+? rally-house-source-v16/qa/world-final-check.mjs
+? rally-house-source-v16/qa/world-interface.mjs
+? rally-house-source-v16/qa/world-interface/
+? rally-house-source-v16/qa/world-performance.mjs
+? rally-house-source-v16/spatial.css
+? rally-house-source-v16/src/rendering/ClubAtmosphere.ts
+? rally-house-source-v16/src/simulation/ClubInteractions.ts
+? rally-house-source-v16/src/tennis/BallTrail.ts
+? rally-house-source-v16/src/tennis/ChampionshipCameraRig.ts
+? rally-house-source-v16/src/tennis/ChampionshipController.ts
+? rally-house-source-v16/src/tennis/ChampionshipOpponents.ts
+? rally-house-source-v16/src/tennis/ChampionshipTuning.ts
+? rally-house-source-v16/src/tennis/InteractiveMatchSystem.ts
+? rally-house-source-v16/src/tennis/MatchInput.ts
+? rally-house-source-v16/src/ui/ChampionshipHUD.ts
+? rally-house-source-v16/src/ui/ClubContextPresenter.ts
+? rally-house-source-v16/src/ui/SpatialInteractionSystem.ts
+? rally-house-source-v16/src/ui/WorldAnchor.ts
+? rally-house-source-v16/tests/arcade-feel.mjs
+? rally-house-source-v16/tests/championship-controller.mjs
+? rally-house-source-v16/tests/contact-interception.mjs
+? rally-house-source-v16/tests/studio-polish.mjs
+? rally-house-source-v16/tests/world-interface.mjs

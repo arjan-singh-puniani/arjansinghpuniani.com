@@ -1,0 +1,4 @@
+Rally House scope only. Original dirty files preserved in place. 886 archived files verified against inventory SHA-256.
+Archive SHA-256: a134d6e9b6bcc8d8a628295a7cbbf5b55f7d2490c10a79be240b2bdff98f2e47
+Canonical rollback: rally-object-canonical-20261010.tar (main 846d1c7).
+No unrelated portfolio project archived or modified.

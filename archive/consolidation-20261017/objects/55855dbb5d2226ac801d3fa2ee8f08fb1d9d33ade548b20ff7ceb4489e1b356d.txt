@@ -1,0 +1,63 @@
+# Locked clean/delight portfolio patch — 2026-09-30
+
+This patch implements the agreed direction for Arjan Singh Puniani's portfolio.
+
+## Locked visual decisions
+
+Preserve the existing visual identity that is already working:
+
+- `ASP / 001`
+- orbit marker
+- ticker
+- ECG/signal-line decoration
+- editorial grid and typography
+- existing project presentation
+
+The patch does **not** flatten the site into a generic minimalist template.
+
+## Copy decisions
+
+The homepage no longer leads with a manifesto-style slogan. The hero leads with the name **Arjan Singh Puniani**, dates/institutions, and a short factual description of RNEL and UCSF experience.
+
+Project and note language is rewritten toward literal descriptions rather than aphorisms or personal-brand copy.
+
+## Photography decisions
+
+Only real photographs supplied by Arjan are included:
+
+- Homepage hero: recent black short-sleeve portrait
+- About: camera portrait
+- About: dog-on-grass photograph
+
+No AI-generated portrait is included.
+
+## Safety
+
+The installer:
+
+- expects branch `portfolio-human-copy-20260930`
+- recognizes the audited homepage visual system before overwriting
+- backs up every replaced local file
+- does not commit or push
+- can be run with `--check` before `--apply`
+
+## Usage
+
+From the repository root:
+
+```bash
+python3 portfolio_locked_delight_patch/apply_locked_delight.py --repo . --check
+python3 portfolio_locked_delight_patch/apply_locked_delight.py --repo . --apply
+```
+
+Then validate from `arjan-portfolio`:
+
+```bash
+npm run lint
+npm run typecheck
+npm run test
+npm run build
+npm run dev
+```
+
+Visually inspect `/`, `/about`, `/notes`, `/contact`, and `/playground/holoanatomy` on desktop and mobile before committing.

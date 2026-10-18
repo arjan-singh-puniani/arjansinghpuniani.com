@@ -1,0 +1,65 @@
+# Rally House v17.4 — Cozy Life + Human Taylor + Steph
+
+This patch targets the current v17.3+ architecture.
+
+## What it implements
+
+- Human Taylor visual direction; removes the old cat-ear geometry.
+- Adds **Steph** as a real fifth NPC. The source stores only `Steph` / `steph`, never a surname.
+- Gives Steph a full day schedule, dialogue, mind state, social weighting, cup possession, and one authored café scene.
+- Makes old four-member CharacterMind saves backwards-compatible by inserting safe Steph defaults at load time.
+- Turns `drink` into a readable raise → sip → lower cycle.
+- Keeps the cup attached to the real hand.
+- Adds a cup handle, visible liquid surface, and exactly three lightweight procedural steam wisps.
+- Adds a focused `cozy-life.mjs` regression suite.
+
+## Apply
+
+Put this kit in your hardening/worktree folder or call the Python installer by full path.
+
+```bash
+cd "$HOME/Desktop/arjansinghpuniani-hardening"
+python3 /path/to/apply_rally_house_v17_4_cozy_life.py
+```
+
+## Validate
+
+```bash
+cd rally-house-source-v16
+npm test
+npm run build
+npm run serve
+```
+
+Open:
+
+```text
+http://localhost:8080/?debug=1&v=174
+```
+
+## Manual QA
+
+1. Pick **Taylor**. Confirm she is fully human with long dark hair and no cat ears.
+2. Find a scheduled drink moment (Contessa, Lucresia, Barbara, Leo, or Steph).
+3. Confirm cup starts low, rises to the mouth, holds briefly, and lowers again.
+4. Confirm steam originates from the cup and never exceeds a few wisps.
+5. Let the day run and find **Steph**:
+   - she should move through her schedule,
+   - appear in the Club Book,
+   - participate in ordinary crowd/navigation behavior,
+   - be eligible for ambient social planning,
+   - occasionally appear in her authored café scene.
+6. Confirm existing rally spectating, racket contact and build mode still work.
+7. Test the portfolio iframe after syncing `dist`.
+
+## Portfolio runtime sync after local QA
+
+From the worktree root:
+
+```bash
+rsync -a --delete rally-house-source-v16/dist/ arjan-portfolio/public/rally-house/dist/
+cp rally-house-source-v16/index.html arjan-portfolio/public/rally-house/index.html
+cp rally-house-source-v16/style.css arjan-portfolio/public/rally-house/style.css
+```
+
+Then run your normal portfolio typecheck/tests/build before committing.

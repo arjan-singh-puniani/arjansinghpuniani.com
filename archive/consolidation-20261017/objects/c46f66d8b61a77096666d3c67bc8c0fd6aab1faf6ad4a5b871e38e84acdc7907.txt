@@ -1,0 +1,14 @@
+# QAI + ReasonOS visual refresh
+
+Small delta patch for the already-applied static-clean homepage.
+
+- Replaces the QAI placeholder diagram with the microtubule / Orch OR preview.
+- Replaces the ReasonOS placeholder diagram with the manifesto-style ReasonOS preview.
+- Does not alter Playground, About, Notes, Contact, or project routes.
+
+Run from the directory containing `./arjan-portfolio`:
+
+```bash
+python3 portfolio_visual_refresh_patch/apply_visual_refresh_patch.py --check
+python3 portfolio_visual_refresh_patch/apply_visual_refresh_patch.py --apply
+```

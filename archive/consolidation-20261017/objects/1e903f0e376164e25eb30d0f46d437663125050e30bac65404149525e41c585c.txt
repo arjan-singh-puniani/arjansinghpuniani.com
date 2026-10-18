@@ -1,0 +1,5 @@
+# Static clean homepage + playground patch
+
+This patch intentionally removes homepage ticker/highlight-summary sections and simplifies Playground into static, concise cards.
+
+It does not commit or push.

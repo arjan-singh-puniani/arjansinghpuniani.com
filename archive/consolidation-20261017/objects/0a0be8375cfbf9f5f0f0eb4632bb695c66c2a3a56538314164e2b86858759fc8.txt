@@ -1,0 +1,788 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+from pathlib import Path
+import re
+import shutil
+import sys
+from datetime import datetime
+
+def die(msg: str) -> None:
+    raise SystemExit(f"\nERROR: {msg}\n")
+
+def find_repo(start: Path) -> Path:
+    candidates = [start, *start.parents]
+    for root in candidates:
+        if (root / "rally-house-source-v16" / "package.json").exists() and (root / "arjan-portfolio" / "package.json").exists():
+            return root
+    die("Run this script from somewhere inside the arjansinghpuniani.com repository.")
+
+ROOT = find_repo(Path.cwd().resolve())
+SRC = ROOT / "rally-house-source-v16"
+BACKUP = ROOT / ".rally-house-v17-backup"
+
+targets = [
+    SRC / "src/Game.ts",
+    SRC / "src/world/World.ts",
+    SRC / "src/ui/HUD.ts",
+    SRC / "src/simulation/ObjectAffordances.ts",
+    SRC / "src/tennis/RallySystem.ts",
+    SRC / "src/core/AudioManager.ts",
+    SRC / "src/persistence/migrations.ts",
+    SRC / "index.html",
+    SRC / "style.css",
+]
+
+if BACKUP.exists():
+    die(f"{BACKUP} already exists. Remove it only if you intentionally want to re-apply this patch.")
+
+for p in targets:
+    if not p.exists():
+        die(f"Missing expected file: {p.relative_to(ROOT)}")
+
+# Guard against applying to an unknown baseline.
+game_baseline = (SRC / "src/Game.ts").read_text()
+world_baseline = (SRC / "src/world/World.ts").read_text()
+if "const COSTS:Record<Placement['type'],number>={plant:30,bench:45,lamp:35,basket:25};" not in game_baseline:
+    die("Game.ts no longer matches the inspected v16 baseline (COSTS marker missing).")
+if "export interface Placement {id?:string;type:'plant'|'bench'|'lamp'|'basket';x:number;z:number}" not in world_baseline:
+    die("World.ts no longer matches the inspected v16 baseline (Placement marker missing).")
+
+BACKUP.mkdir(parents=True)
+for p in targets:
+    dst = BACKUP / p.relative_to(ROOT)
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(p, dst)
+
+def write(path: Path, text: str) -> None:
+    path.write_text(text)
+
+def replace_once(text: str, old: str, new: str, label: str) -> str:
+    count = text.count(old)
+    if count != 1:
+        die(f"{label}: expected exactly one match, found {count}. Your local source may have diverged.")
+    return text.replace(old, new, 1)
+
+def regex_once(text: str, pattern: str, repl: str, label: str) -> str:
+    new, count = re.subn(pattern, repl, text, count=1, flags=re.S)
+    if count != 1:
+        die(f"{label}: expected exactly one regex match, found {count}. Your local source may have diverged.")
+    return new
+
+# ---------------------------------------------------------------------------
+# 1) Data-driven decor catalog
+# ---------------------------------------------------------------------------
+catalog = r"""export type DecorCategory='tennis'|'clubhouse'|'greenery'|'ambience';
+export type DecorCulture='training'|'social'|'care'|'calm';
+export type DecorType=
+  'racketRack'|'ballHopper'|'basket'|'coneSet'|'tennisBag'|'scoreboard'|
+  'bench'|'cafeTable'|'stool'|'sideTable'|'trophy'|'towelRack'|
+  'plant'|'planter'|'lamp'|'lantern';
+
+export interface DecorDefinition {
+  id:DecorType;
+  label:string;
+  icon:string;
+  category:DecorCategory;
+  cost:number;
+  footprintX:number;
+  footprintZ:number;
+  blocksNavigation:boolean;
+  rotationStep:number;
+  culture:DecorCulture;
+}
+
+const d=(n:number)=>n*Math.PI/180;
+
+export const DECOR_CATALOG:DecorDefinition[]=[
+  {id:'racketRack',label:'Racket rack',icon:'🎾',category:'tennis',cost:50,footprintX:1.55,footprintZ:.58,blocksNavigation:true,rotationStep:d(22.5),culture:'training'},
+  {id:'ballHopper',label:'Ball hopper',icon:'🟢',category:'tennis',cost:38,footprintX:.86,footprintZ:.72,blocksNavigation:true,rotationStep:d(22.5),culture:'training'},
+  {id:'basket',label:'Ball basket',icon:'🎾',category:'tennis',cost:25,footprintX:.78,footprintZ:.78,blocksNavigation:false,rotationStep:d(22.5),culture:'training'},
+  {id:'coneSet',label:'Coaching cones',icon:'🔶',category:'tennis',cost:18,footprintX:1.28,footprintZ:.68,blocksNavigation:false,rotationStep:d(22.5),culture:'training'},
+  {id:'tennisBag',label:'Tennis bag',icon:'🎒',category:'tennis',cost:28,footprintX:1.18,footprintZ:.52,blocksNavigation:false,rotationStep:d(22.5),culture:'training'},
+  {id:'scoreboard',label:'Scoreboard',icon:'🔢',category:'tennis',cost:44,footprintX:1.42,footprintZ:.46,blocksNavigation:true,rotationStep:d(22.5),culture:'training'},
+
+  {id:'bench',label:'Court bench',icon:'🪑',category:'clubhouse',cost:45,footprintX:1.90,footprintZ:.90,blocksNavigation:true,rotationStep:d(22.5),culture:'social'},
+  {id:'cafeTable',label:'Café table',icon:'☕',category:'clubhouse',cost:40,footprintX:1.05,footprintZ:1.05,blocksNavigation:true,rotationStep:d(22.5),culture:'social'},
+  {id:'stool',label:'Club stool',icon:'🪑',category:'clubhouse',cost:20,footprintX:.62,footprintZ:.62,blocksNavigation:true,rotationStep:d(22.5),culture:'social'},
+  {id:'sideTable',label:'Side table',icon:'▣',category:'clubhouse',cost:30,footprintX:.86,footprintZ:.72,blocksNavigation:true,rotationStep:d(22.5),culture:'social'},
+  {id:'trophy',label:'Club trophy',icon:'🏆',category:'clubhouse',cost:35,footprintX:.54,footprintZ:.54,blocksNavigation:false,rotationStep:d(22.5),culture:'calm'},
+  {id:'towelRack',label:'Towel rack',icon:'🧺',category:'clubhouse',cost:32,footprintX:1.18,footprintZ:.48,blocksNavigation:true,rotationStep:d(22.5),culture:'care'},
+
+  {id:'plant',label:'Floor plant',icon:'🪴',category:'greenery',cost:30,footprintX:.82,footprintZ:.82,blocksNavigation:false,rotationStep:d(22.5),culture:'care'},
+  {id:'planter',label:'Planter box',icon:'🌿',category:'greenery',cost:24,footprintX:1.35,footprintZ:.58,blocksNavigation:false,rotationStep:d(22.5),culture:'care'},
+
+  {id:'lamp',label:'Floor lamp',icon:'💡',category:'ambience',cost:35,footprintX:.42,footprintZ:.42,blocksNavigation:false,rotationStep:d(22.5),culture:'calm'},
+  {id:'lantern',label:'Club lantern',icon:'🏮',category:'ambience',cost:18,footprintX:.46,footprintZ:.46,blocksNavigation:false,rotationStep:d(22.5),culture:'calm'},
+];
+
+export const DECOR_BY_ID=Object.fromEntries(DECOR_CATALOG.map(v=>[v.id,v])) as Record<DecorType,DecorDefinition>;
+
+export function rotatedFootprint(type:DecorType,rotation=0){
+  const d=DECOR_BY_ID[type],c=Math.abs(Math.cos(rotation)),s=Math.abs(Math.sin(rotation));
+  return {w:d.footprintX*c+d.footprintZ*s,d:d.footprintX*s+d.footprintZ*c};
+}
+"""
+catalog_path = SRC / "src/content/DecorCatalog.ts"
+catalog_path.parent.mkdir(parents=True, exist_ok=True)
+write(catalog_path, catalog)
+
+# Save schema v8: new decor types + optional rotation must survive reload.
+migration_path = SRC / "src/persistence/migrations.ts"
+migration = migration_path.read_text()
+migration = replace_once(
+    migration,
+    "export const CURRENT_SAVE_VERSION=7;",
+    "export const CURRENT_SAVE_VERSION=8;",
+    "Save version"
+)
+migration = replace_once(
+    migration,
+    "import type {Relationship} from '../simulation/RelationshipSystem.js';",
+    "import type {Relationship} from '../simulation/RelationshipSystem.js';\nimport {DECOR_BY_ID} from '../content/DecorCatalog.js';",
+    "Migration decor import"
+)
+migration = replace_once(
+    migration,
+    "const ids=new Set<string>();for(const p of state.placements??[]){if(!p||!['bench','plant','lamp','basket'].includes(p.type)||![p.x,p.z].every(Number.isFinite)||Math.abs(p.x)>12.5||Math.abs(p.z)>9.5)invalid();if(p.id){if(typeof p.id!=='string'||ids.has(p.id))invalid();ids.add(p.id);}}",
+    "const ids=new Set<string>();for(const p of state.placements??[]){if(!p||!(p.type in DECOR_BY_ID)||![p.x,p.z].every(Number.isFinite)||Math.abs(p.x)>12.5||Math.abs(p.z)>9.5||(p.rotation!==undefined&&(!Number.isFinite(p.rotation)||Math.abs(p.rotation)>Math.PI*8)))invalid();if(p.id){if(typeof p.id!=='string'||ids.has(p.id))invalid();ids.add(p.id);}}",
+    "Migration placement validation"
+)
+write(migration_path, migration)
+
+# ---------------------------------------------------------------------------
+# 2) World: placement model + procedural visuals + rotated footprint checks
+# ---------------------------------------------------------------------------
+world_path = SRC / "src/world/World.ts"
+world = world_path.read_text()
+world = replace_once(
+    world,
+    "import {Navigation,type Rect} from './Navigation.js';",
+    "import {Navigation,type Rect} from './Navigation.js';\nimport {rotatedFootprint,type DecorType} from '../content/DecorCatalog.js';",
+    "World import"
+)
+world = replace_once(
+    world,
+    "export interface Placement {id?:string;type:'plant'|'bench'|'lamp'|'basket';x:number;z:number}",
+    "export interface Placement {id?:string;type:DecorType;x:number;z:number;rotation?:number}",
+    "World Placement interface"
+)
+
+world_methods = r"""  private decorMeshes(p:Placement,override?:string,alphaScale=1):Mesh[]{
+    const out:Mesh[]=[],rot=p.rotation??0,c=Math.cos(rot),s=Math.sin(rot);
+    const pos=(dx:number,y:number,dz:number)=>new Vec3(p.x+dx*c+dz*s,y,p.z-dx*s+dz*c);
+    const add=(kind:Mesh['kind'],dx:number,y:number,dz:number,sx:number,sy:number,sz:number,color:string,ry=0,unlit=false,material?:MaterialKind,alpha=1)=>{
+      out.push({kind,position:pos(dx,y,dz),rotation:new Vec3(0,rot+ry,0),scale:new Vec3(sx,sy,sz),color:override??color,alpha:alpha*alphaScale,unlit,material,noShadow:alphaScale<.99});
+    };
+    const fp=rotatedFootprint(p.type,rot);
+    out.push({kind:'sphere',position:new Vec3(p.x,.025,p.z),scale:new Vec3(fp.w*.47,.03,fp.d*.47),color:override??'#4a584e',alpha:.10*alphaScale,unlit:true,noShadow:true});
+
+    if(p.type==='plant'){
+      add('cone',0,.30,0,.50,.60,.50,palette.terracotta);
+      add('sphere',0,1.00,0,.82,.55,.68,palette.sage,0,false,'leaf');
+    }else if(p.type==='planter'){
+      add('roundBox',0,.27,0,1.28,.46,.52,'#b87958',0,false,'ceramic');
+      for(const x of [-.42,0,.42]){add('sphere',x,.72,0,.46,.45,.42,x===0?palette.sageLight:palette.sage,0,false,'leaf');}
+    }else if(p.type==='bench'){
+      add('roundBox',0,.40,0,1.72,.28,.67,palette.wood,0,false,'wood');
+      add('roundBox',0,.77,.25,1.72,.66,.18,palette.woodDark,0,false,'wood');
+      add('cylinder',-.68,.20,0,.10,.40,.10,'#6f6254');
+      add('cylinder',.68,.20,0,.10,.40,.10,'#6f6254');
+    }else if(p.type==='lamp'){
+      add('cylinder',0,1.00,0,.06,2.00,.06,'#5e6b61',0,false,'metal');
+      add('cone',0,2.05,0,.66,.56,.66,palette.gold,0,true);
+    }else if(p.type==='lantern'){
+      add('cylinder',0,.12,0,.34,.12,.34,'#675f54',0,false,'metal');
+      add('roundBox',0,.46,0,.40,.58,.40,'#e9ce8f',0,true,'glass',.80);
+      add('torus',0,.86,0,.34,.34,.15,'#675f54',0,false,'metal');
+    }else if(p.type==='basket'){
+      add('cylinder',0,.32,0,.64,.55,.64,'#88745d',0,false,'fabric');
+      const balls=[[-.18,.66,-.15],[.16,.67,-.13],[-.04,.72,.10],[.20,.78,.12],[-.22,.79,.14],[.02,.87,-.02]];
+      for(const [x,y,z] of balls)add('sphere',x,y,z,.16,.16,.16,'#d6c35f',0,true);
+    }else if(p.type==='ballHopper'){
+      for(const x of [-.30,.30])for(const z of [-.22,.22])add('cylinder',x,.38,z,.035,.76,.035,'#59655d',0,false,'metal');
+      add('roundBox',0,.79,0,.72,.38,.58,'#8c806d',0,false,'metal');
+      for(let i=0;i<8;i++){const x=((i%4)-1.5)*.15,z=(Math.floor(i/4)-.5)*.18;add('sphere',x,1.03+(i%2)*.04,z,.13,.13,.13,'#d3cb52',0,true);}
+      add('cylinder',.32,1.28,0,.035,.66,.035,'#59655d',0,false,'metal');
+    }else if(p.type==='coneSet'){
+      const cones=[[-.45,-.16],[-.15,.16],[.15,-.16],[.45,.16]];
+      for(let i=0;i<cones.length;i++)add('cone',cones[i][0],.16,cones[i][1],.25,.33,.25,i%2?palette.gold:palette.peach);
+    }else if(p.type==='tennisBag'){
+      add('roundBox',0,.34,0,1.06,.58,.46,'#48695f',0,false,'fabric');
+      add('roundBox',-.23,.65,0,.48,.24,.40,'#5e8175',-.08,false,'fabric');
+      add('torus',.28,.69,0,.26,.26,.12,'#344c45',0,false,'fabric');
+    }else if(p.type==='racketRack'){
+      add('roundBox',0,.10,0,1.48,.16,.50,palette.woodDark,0,false,'wood');
+      add('roundBox',0,.72,0,1.35,.10,.16,palette.wood,0,false,'wood');
+      for(const [i,x] of [-.48,0,.48].entries()){
+        const color=[palette.sage,palette.gold,palette.peach][i];
+        add('cylinder',x,.70,0,.055,.72,.055,color,0,false,'metal');
+        add('torus',x,1.34,0,.38,.48,.19,color,0,false,'metal');
+      }
+    }else if(p.type==='scoreboard'){
+      add('cylinder',-.52,.64,0,.055,1.28,.055,'#5f695f',0,false,'metal');
+      add('cylinder',.52,.64,0,.055,1.28,.055,'#5f695f',0,false,'metal');
+      add('roundBox',0,1.28,0,1.34,.72,.16,'#385b50',0,false,'wood');
+      for(const x of [-.36,0,.36])add('roundBox',x,1.30,-.10,.22,.30,.035,x===0?'#e9d480':'#f0eadc',0,true);
+    }else if(p.type==='cafeTable'){
+      add('cylinder',0,.42,0,.16,.80,.16,'#735f50',0,false,'metal');
+      add('cylinder',0,.86,0,.94,.12,.94,'#c99d72',0,false,'wood');
+      add('cylinder',0,.08,0,.62,.08,.62,'#735f50',0,false,'metal');
+    }else if(p.type==='stool'){
+      add('cylinder',0,.46,0,.11,.84,.11,'#6b5c50',0,false,'metal');
+      add('cylinder',0,.87,0,.56,.18,.56,'#b98262',0,false,'fabric');
+      add('cylinder',0,.08,0,.42,.08,.42,'#6b5c50',0,false,'metal');
+    }else if(p.type==='sideTable'){
+      add('roundBox',0,.62,0,.82,.14,.68,'#bc8e69',0,false,'wood');
+      for(const x of [-.31,.31])for(const z of [-.24,.24])add('cylinder',x,.30,z,.055,.58,.055,'#755c49',0,false,'wood');
+    }else if(p.type==='trophy'){
+      add('roundBox',0,.13,0,.44,.20,.38,palette.woodDark,0,false,'wood');
+      add('cylinder',0,.42,0,.08,.42,.08,'#b59142',0,false,'metal');
+      add('sphere',0,.72,0,.34,.26,.34,'#e2c45b',0,false,'metal');
+      add('torus',-.27,.72,0,.20,.25,.10,'#e2c45b',0,false,'metal');
+      add('torus',.27,.72,0,.20,.25,.10,'#e2c45b',0,false,'metal');
+    }else if(p.type==='towelRack'){
+      add('cylinder',-.46,.55,0,.055,1.10,.055,'#65736b',0,false,'metal');
+      add('cylinder',.46,.55,0,.055,1.10,.055,'#65736b',0,false,'metal');
+      add('roundBox',0,1.03,0,1.00,.055,.055,'#65736b',0,false,'metal');
+      add('roundBox',-.23,.70,.05,.36,.62,.10,palette.paper,0,false,'fabric');
+      add('roundBox',.23,.68,.05,.36,.58,.10,palette.peach,0,false,'fabric');
+    }
+    return out;
+  }
+
+  placementMeshes():Mesh[]{const out:Mesh[]=[];for(const p of this.placements)out.push(...this.decorMeshes(p));return out;}
+  previewPlacement(type:Placement['type'],x:number,z:number,rotation:number,valid:boolean):Mesh[]{return this.decorMeshes({type,x,z,rotation},valid?'#87a87e':'#c6796c',.48);}
+  canPlace(x:number,z:number,type:Placement['type']='plant',rotation=0,ignoreId?:string){
+    if(!Number.isFinite(x)||!Number.isFinite(z))return false;
+    const f=rotatedFootprint(type,rotation);
+    if(x-f.w/2<-12||x+f.w/2>12||z-f.d/2<-9||z+f.d/2>9)return false;
+    if(x+f.w/2>-3.8&&x-f.w/2<5.8&&z+f.d/2>-6.6&&z-f.d/2<6.6)return false;
+    return !this.placements.some(p=>{
+      if(p.id&&p.id===ignoreId)return false;
+      const g=rotatedFootprint(p.type,p.rotation??0);
+      return Math.abs(p.x-x)<(f.w+g.w)/2+.14&&Math.abs(p.z-z)<(f.d+g.d)/2+.14;
+    });
+  }
+"""
+world = regex_once(
+    world,
+    r"  placementMeshes\(\):Mesh\[\]\{.*?\n  canPlace\(x:number,z:number\)\{.*?\n\}\n\nfunction mixColor",
+    world_methods + "\n}\n\nfunction mixColor",
+    "World placement methods"
+)
+write(world_path, world)
+
+# ---------------------------------------------------------------------------
+# 3) HUD: dynamic categorized catalog + touch rotation controls
+# ---------------------------------------------------------------------------
+hud_path = SRC / "src/ui/HUD.ts"
+hud = r"""import type {Weather} from '../world/World.js';
+import type {DailyGoal} from '../simulation/DailyGoalsSystem.js';
+import {DECOR_CATALOG,type DecorCategory} from '../content/DecorCatalog.js';
+
+export interface UIStats {coins:number;stars:number;heart:number;clock:string;weather:Weather;day:number}
+export interface ActionDef {title:string;subtitle:string;run:()=>void}
+export interface MemberBook {mood?:string;intention?:string;favorite?:string;personalMemory?:string;possessions?:string[];name:string;role:string;tier:string;familiarity:number;warmth:number;trust:number;goal:string;quirk:string;memories:string[]}
+export interface BookData {culture?:string;philosophy?:string;
+  mikaProgress:number;equipment:{frame:string;tension:number;string:string};coins:number;day:number;time:string;weather:string;
+  heart:number;coachLevel:string;coachXP:number;bestRally:number;placements:number;goals:DailyGoal[];moments:string[];members:MemberBook[];
+}
+const byId=<T extends HTMLElement>(id:string)=>document.getElementById(id) as T;
+export class HUD {
+  onBuildClose=()=>{};onPlay=()=>{};onSpeed=()=>{};onBook=()=>{};onCoach=()=>{};onBuild=()=>{};onWeather=()=>{};onCamera=()=>{};onSave=()=>{};onBuildSelect=(type:string)=>{};onBuildRotate=(direction:number)=>{};
+  private context=byId<HTMLElement>('context');private book=byId<HTMLElement>('book');private build=byId<HTMLElement>('buildPanel');private toastTimer=0;private momentTimer=0;private speechTimer=0;private bookData:BookData|null=null;private activeTab='today';private activeBuildCategory:DecorCategory='tennis';
+  private opener:HTMLElement|null=null;
+  private focusPanel(panel:HTMLElement){if(!panel.contains(document.activeElement))this.opener=document.activeElement as HTMLElement;requestAnimationFrame(()=>{if(panel.classList.contains('open'))panel.querySelector<HTMLButtonElement>('button')?.focus();});}
+  constructor(){
+    byId<HTMLButtonElement>('playBtn').onclick=()=>this.onPlay();byId<HTMLButtonElement>('speedBtn').onclick=()=>this.onSpeed();byId<HTMLButtonElement>('bookBtn').onclick=()=>this.onBook();byId<HTMLButtonElement>('coachBtn').onclick=()=>this.onCoach();byId<HTMLButtonElement>('buildBtn').onclick=()=>this.onBuild();byId<HTMLButtonElement>('weatherBtn').onclick=()=>this.onWeather();byId<HTMLButtonElement>('cameraBtn').onclick=()=>this.onCamera();byId<HTMLButtonElement>('saveBtn').onclick=()=>this.onSave();
+    byId<HTMLButtonElement>('closeContext').onclick=()=>this.closeContext();byId<HTMLButtonElement>('closeBook').onclick=()=>this.closeBook();byId<HTMLButtonElement>('brandBtn').onclick=()=>this.onBook();
+
+    const catalog=byId<HTMLElement>('buildCatalog');
+    for(const d of DECOR_CATALOG){
+      const b=document.createElement('button');b.dataset.build=d.id;b.dataset.category=d.category;b.setAttribute('aria-label',`${d.label}, ${d.cost} club funds`);
+      const icon=document.createElement('span');icon.className='buildIcon';icon.textContent=d.icon;
+      const label=document.createElement('span');label.textContent=d.label;
+      const price=document.createElement('small');price.textContent=`${d.cost} funds`;
+      b.append(icon,label,price);
+      b.onclick=()=>{this.build.querySelectorAll<HTMLButtonElement>('button[data-build]').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');byId<HTMLElement>('buildControls').hidden=false;this.onBuildSelect(d.id);};
+      catalog.appendChild(b);
+    }
+    this.build.querySelectorAll<HTMLButtonElement>('button[data-build-category]').forEach(b=>b.onclick=()=>this.setBuildCategory(b.dataset.buildCategory as DecorCategory));
+    byId<HTMLButtonElement>('rotateLeft').onclick=()=>this.onBuildRotate(-1);
+    byId<HTMLButtonElement>('rotateRight').onclick=()=>this.onBuildRotate(1);
+    this.setBuildCategory('tennis');
+
+    byId('bookTabs').addEventListener('click',e=>{const b=(e.target as HTMLElement).closest<HTMLButtonElement>('button[data-tab]');if(!b)return;this.activeTab=b.dataset.tab!;byId('bookTabs').querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));this.renderBook();});
+  }
+  private setBuildCategory(category:DecorCategory){
+    this.activeBuildCategory=category;
+    this.build.querySelectorAll<HTMLButtonElement>('button[data-build-category]').forEach(b=>b.classList.toggle('active',b.dataset.buildCategory===category));
+    this.build.querySelectorAll<HTMLButtonElement>('button[data-build]').forEach(b=>b.hidden=b.dataset.category!==category);
+  }
+  hideLoading(){setTimeout(()=>byId('loading').classList.add('hide'),180)}
+  hideHint(){byId('hint').classList.add('hide')}
+  update(stats:UIStats,paused:boolean,speed:number){byId('coins').textContent=String(Math.floor(stats.coins));byId('stars').textContent=String(stats.stars);byId('heart').textContent=String(stats.heart);byId('clock').textContent=stats.clock;byId('weatherChip').firstChild!.textContent=stats.weather==='rain'?'☂ ':stats.weather==='cloudy'?'☁ ':'☀ ';byId<HTMLButtonElement>('weatherBtn').textContent=stats.weather==='rain'?'☂':stats.weather==='cloudy'?'☁':'☀';byId<HTMLButtonElement>('playBtn').textContent=paused?'▶':'Ⅱ';byId('playBtn').setAttribute('aria-label',paused?'Resume':'Pause');byId<HTMLButtonElement>('playBtn').classList.toggle('primary',!paused);byId<HTMLButtonElement>('speedBtn').textContent=`${speed}×`;}
+  setObjective(title:string,text:string){byId('objectiveTitle').textContent=title;byId('objectiveText').textContent=text;}
+  showContext(eyebrow:string,title:string,text:string,meta:string[],actions:ActionDef[]){byId('contextEyebrow').textContent=eyebrow.toUpperCase();byId('contextTitle').textContent=title;byId('contextText').textContent=text;const mb=byId('contextMeta');mb.innerHTML='';for(const x of meta){const s=document.createElement('span');s.textContent=x;mb.appendChild(s)}const box=byId('contextActions');box.innerHTML='';for(const a of actions){const b=document.createElement('button');const strong=document.createElement('strong');strong.textContent=a.title;const span=document.createElement('span');span.textContent=a.subtitle;b.append(strong,span);b.onclick=()=>a.run();box.appendChild(b)}this.toggleBuild(false);this.context.scrollTop=0;this.book.classList.remove('open');this.context.classList.add('open');this.focusPanel(this.context);}
+  closeContext(){const had=this.context.contains(document.activeElement);this.context.classList.remove('open');if(had)this.opener?.focus();}
+  showBook(data:BookData){this.toggleBuild(false);this.bookData=data;this.context.classList.remove('open');this.book.classList.add('open');this.renderBook();this.focusPanel(this.book);}
+  private renderBook(){if(!this.bookData)return;const d=this.bookData,c=byId('bookContent');if(this.activeTab==='today'){const goals=d.goals.map(g=>`<div class="goal ${g.done?'done':''}"><i>${g.done?'✓':'○'}</i><span>${this.escape(g.label)}</span><small>+${g.reward}</small></div>`).join('');c.innerHTML=`<div class="card heroCard"><div class="row"><strong>Day ${d.day}</strong><span>${d.time} · ${d.weather}</span></div><small>There is no streak to protect. The club will be here when you come back.</small></div><div class="card"><strong>People today</strong>${d.members.map(m=>`<p><b>${this.escape(m.name)}</b><br>${this.escape(m.intention??m.goal)}</p>`).join('')}</div><div class="card"><strong>Gentle intentions</strong><div class="goalList">${goals}</div></div><div class="card"><div class="row"><strong>Club heart</strong><span>♥ ${d.heart}</span></div><small>Built from people, progress, and the details you chose to add.</small></div>`;}
+    else if(this.activeTab==='people'){c.innerHTML=d.members.map(m=>`<div class="card personCard"><div class="row"><strong>${this.escape(m.name)}</strong><span>${this.escape(m.mood??m.tier)}</span></div><small>${this.escape(m.role)} · ${this.escape(m.quirk)}</small><p>${this.escape(m.intention??m.goal)}</p>${m.favorite?`<small>Favorite place · ${this.escape(m.favorite)}</small>`:''}${m.personalMemory?`<em>${this.escape(m.personalMemory)}</em>`:m.memories[0]?`<em>${this.escape(m.memories[0])}</em>`:''}${m.possessions?.length?`<small>${m.possessions.map(p=>this.escape(p)).join(' · ')}</small>`:''}</div>`).join('');}
+    else if(this.activeTab==='coaching'){c.innerHTML=`<div class="card"><strong>Your coaching approach</strong><small>${this.escape(d.philosophy??'Your approach will emerge through practice.')}</small></div><div class="card"><div class="row"><strong>Lucresia · forehand timing</strong><span>${d.mikaProgress}%</span></div><div class="meter"><i style="width:${Math.min(100,d.mikaProgress)}%"></i></div><small>Choose drills because they fit the problem, not because they pay more.</small></div><div class="card"><div class="row"><strong>${this.escape(d.coachLevel)}</strong><span>${d.coachXP} XP</span></div><small>Every completed lesson contributes 18 club funds. Results affect learning, not the fee.</small></div><div class="card"><div class="row"><strong>Best observed rally</strong><span>${d.bestRally} balls</span></div><small>Rallies are a little different every time. No score multiplier attached.</small></div>`;}
+    else if(this.activeTab==='moments'){c.innerHTML=d.moments.length?d.moments.map(x=>`<div class="memory"><i>✦</i><span>${this.escape(x)}</span></div>`).join(''):`<div class="card"><strong>No scrapbook entries yet</strong><small>Watch the club for a while. People will make their own little stories.</small></div>`;}
+    else c.innerHTML=`<div class="card"><strong>The club is becoming…</strong><small>${this.escape(d.culture??'Still finding its rhythm.')}</small></div><div class="card"><strong>Current racket</strong><small>${this.escape(d.equipment.frame)} · ${this.escape(d.equipment.string)} · ${d.equipment.tension} lb</small></div><div class="card"><strong>Academy snapshot</strong><small>${d.coins} club funds · ${d.placements} placed details · indoor court · matcha nook · pro shop · lounge · bonsai corner</small></div><div class="card"><strong>Design principle</strong><small>Most management is optional. The physical club is the interface and the people remain the point.</small></div>`;}
+  private escape(v:string){return v.replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]!));}
+  closeBook(){const had=this.book.contains(document.activeElement);this.book.classList.remove('open');if(had)this.opener?.focus();}
+  toggleBuild(open?:boolean){const next=open??!this.build.classList.contains('open');if(next){this.closeContext();this.closeBook();this.setBuildCategory(this.activeBuildCategory)}else{this.clearBuildSelection();this.onBuildClose()}this.build.classList.toggle('open',next);byId('buildBtn').classList.toggle('active',next);}
+  clearBuildSelection(){this.build.querySelectorAll<HTMLButtonElement>('button[data-build]').forEach(x=>x.classList.remove('selected'));byId<HTMLElement>('buildControls').hidden=true;}
+  toast(msg:string){const t=byId('toast');t.textContent=msg;t.classList.add('show');clearTimeout(this.toastTimer);this.toastTimer=window.setTimeout(()=>t.classList.remove('show'),2300)}
+  showMoment(title:string,text:string){byId('momentTitle').textContent=title;byId('momentText').textContent=text;const el=byId('moment');el.classList.add('show');clearTimeout(this.momentTimer);this.momentTimer=window.setTimeout(()=>el.classList.remove('show'),5200);}
+  showSpeech(name:string,text:string,duration=3600){byId('speechName').textContent=name;byId('speechText').textContent=text;const el=byId('speech');el.classList.add('show');clearTimeout(this.speechTimer);if(duration>0)this.speechTimer=window.setTimeout(()=>el.classList.remove('show'),duration);}
+  hideSpeech(){clearTimeout(this.speechTimer);byId('speech').classList.remove('show')}
+  positionSpeech(x:number,y:number){const el=byId('speech');const half=el.getBoundingClientRect().width/2;el.style.left=`${Math.max(half+12,Math.min(innerWidth-half-12,x))}px`;el.style.top=`${Math.max(145,Math.min(innerHeight-100,y))}px`;}
+}
+"""
+write(hud_path, hud)
+
+# ---------------------------------------------------------------------------
+# 4) Object affordances: teach new props what they mean socially
+# ---------------------------------------------------------------------------
+aff_path = SRC / "src/simulation/ObjectAffordances.ts"
+aff = r"""import type {Placement} from '../world/World.js';
+const training=new Set(['basket','ballHopper','coneSet','racketRack','scoreboard','tennisBag']);
+const social=new Set(['bench','cafeTable','stool','sideTable']);
+const care=new Set(['plant','planter','towelRack']);
+export interface ObjectHistory {placedDay:number;visits:Record<string,number>;memories:string[];favoriteOf:string[];comfort?:Record<string,number>;usageCount?:number;revision?:number;importantEvents?:string[]}
+export interface AffordanceSave {objects:Record<string,ObjectHistory>;sequence:number}
+export class ObjectAffordances {
+  objects:Record<string,ObjectHistory>={};sequence=0;
+  sync(placements:Placement[],day:number){
+    const used=new Set<string>();for(const p of placements){if(!p.id||used.has(p.id))p.id=`furniture-${++this.sequence}`;used.add(p.id);this.objects[p.id]??={placedDay:day,visits:{},memories:[],favoriteOf:[]};}
+    for(const id of Object.keys(this.objects))if(!used.has(id))delete this.objects[id];
+  }
+  affordances(p:Placement){return social.has(p.type)?['sit','spectate','talk']:care.has(p.type)?['admire','tend']:training.has(p.type)?['stretch','practice']:p.type==='trophy'?['admire','remember']:['quiet-break'];}
+  choose(placements:Placement[],person:string){
+    return [...placements].sort((a,b)=>this.score(b,person)-this.score(a,person))[0];
+  }
+  score(p:Placement,id:string){const visits=this.objects[p.id??'']?.visits[id]??0;return Math.min(6,visits)*2+(social.has(p.type)?(id==='nia'?8:5):care.has(p.type)?(id==='nia'||id==='leo'?6:2):training.has(p.type)?(id==='mika'?7:2):3);}
+  visit(id:string,people:string[],day:number,quality=1){const h=this.objects[id];if(!h)return;h.comfort??={};h.usageCount=(h.usageCount??0)+people.length;for(const person of people){h.visits[person]=Math.min(999,(h.visits[person]??0)+1);h.comfort[person]=Math.min(20,(h.comfort[person]??0)+Math.max(0,Math.min(1,quality)));if(h.visits[person]>=3&&h.comfort[person]>=2.5&&!h.favoriteOf.includes(person)){h.favoriteOf.push(person);h.importantEvents??=[];h.importantEvents.push(`Day ${day} · ${person} made this a favorite.`);}}h.memories.unshift(`Day ${day} · ${people.join(' and ')} spent time here.`);h.memories=h.memories.slice(0,6);}
+  moved(id:string){const h=this.objects[id];if(!h)return 0;return h.revision=(h.revision??0)+1;}
+  serialize():AffordanceSave{return JSON.parse(JSON.stringify({objects:this.objects,sequence:this.sequence}));}
+  load(s?:AffordanceSave){if(!s)return;if(!s.objects||typeof s.objects!=='object'||Array.isArray(s.objects)||!Number.isSafeInteger(s.sequence)||s.sequence<0)throw Error('Object history is invalid.');
+    const counts=(v:unknown)=>!!v&&typeof v==='object'&&!Array.isArray(v)&&Object.entries(v).every(([k,n])=>['coach','mika','leo','nia','player'].includes(k)&&typeof n==='number'&&Number.isFinite(n)&&n>=0);
+    const strings=(v:unknown)=>Array.isArray(v)&&v.every(x=>typeof x==='string');
+    for(const h of Object.values(s.objects)){if(!h||!Number.isFinite(h.placedDay)||!counts(h.visits)||!strings(h.memories)||!Array.isArray(h.favoriteOf)||!h.favoriteOf.every(v=>['coach','mika','leo','nia','player'].includes(v))||(h.comfort!==undefined&&!counts(h.comfort))||(h.usageCount!==undefined&&(!Number.isSafeInteger(h.usageCount)||h.usageCount<0))||(h.revision!==undefined&&(!Number.isSafeInteger(h.revision)||h.revision<0))||(h.importantEvents!==undefined&&!strings(h.importantEvents)))throw Error('Object history is invalid.');}
+    this.objects=structuredClone(s.objects);this.sequence=s.sequence;for(const h of Object.values(this.objects)){h.comfort??={...h.visits};h.usageCount??=Object.values(h.visits).reduce((a,b)=>a+b,0);h.importantEvents??=[];h.revision??=0;}
+  }
+}
+"""
+write(aff_path, aff)
+
+# ---------------------------------------------------------------------------
+# 5) Tennis: one contact event, live racket alignment, speed trail
+# ---------------------------------------------------------------------------
+rally_path = SRC / "src/tennis/RallySystem.ts"
+rally = r"""import {Vec3,clamp,smoothstep} from '../rendering/Math3D.js';
+import type {Mesh} from '../rendering/Renderer.js';
+import type {Character} from '../entities/Character.js';
+import {BallPhysics} from './BallPhysics.js';
+
+type Stroke='swingForehand'|'swingBackhand'|'serve'|'volley';
+export type ShotQuality='clean'|'frame'|'net';
+type ShotOutcome='clean'|'frame'|'net'|'long';
+interface PendingShot {
+  hitter:Character;receiver:Character;state:Stroke;target:Vec3;flight:number;contactAt:number;duration:number;released:boolean;outcome:ShotOutcome;
+  evidence:import('../simulation/CoachingEvidence.js').ShotEvidence;incomingStart:Vec3|null;contactTarget:Vec3|null;tossStart:Vec3;
+}
+export interface RallyCallbacks {onShot?:(e:import('../simulation/CoachingEvidence.js').ShotEvidence)=>void;onPoint?:(winner:string,loser:string,kind:string)=>void;onHit?:((quality:ShotQuality)=>void);onBounce?:()=>void;onNet?:()=>void;onRally?:((count:number)=>void);onMiss?:((who:string,kind:ShotOutcome)=>void);}
+
+const fract=(v:number)=>v-Math.floor(v);
+const hash=(n:number)=>fract(Math.sin(n*12.9898+78.233)*43758.5453);
+
+export class RallySystem {
+  ball=new BallPhysics();enabled=true;rallyCount=0;bestRally=0;sessionHits=0;score:Record<string,number>={};errors:Record<string,number>={};cue='';private flightHitter:Character|null=null;
+  private hitter=0;private shotTimer=.4;private shotCount=0;private trail:Vec3[]=[];private trailSpeed=0;private impactPulse=0;private pending:PendingShot|null=null;private lastContact:Vec3|null=null;private waitingForReceiver=false;private callbacks:RallyCallbacks;
+  private capturedIncoming:Vec3|null=null;private netRipple=0;private lastOutcome:ShotOutcome='clean';
+  constructor(private north:Character,private south:Character,callbacks:RallyCallbacks={}){this.callbacks=callbacks;this.north.face(this.south.position);this.south.face(this.north.position);}
+  start(){this.sessionHits=0;this.score={[this.north.id]:0,[this.south.id]:0};this.errors={[this.north.id]:0,[this.south.id]:0};this.bestRally=0;this.enabled=true;this.rallyCount=0;this.ball.active=false;this.shotTimer=.16;this.waitingForReceiver=false;this.pending=null;this.trail=[];this.trailSpeed=0;this.hitter=0;this.capturedIncoming=null;this.north.setAnimation('ready');this.south.setAnimation('ready');}
+  stop(){this.enabled=false;this.ball.active=false;this.trail=[];this.trailSpeed=0;this.pending=null;this.waitingForReceiver=false;this.capturedIncoming=null;this.north.clearCourtMove();this.south.clearCourtMove();this.north.setLook(undefined);this.south.setLook(undefined);}
+
+  private stagedBall(p:PendingShot){
+    const t=clamp(p.hitter.animTime/Math.max(.001,p.contactAt),0,1),live=p.hitter.racketContactPoint(),planned=p.contactTarget??live;
+    const contact=Vec3.lerp(planned,live,smoothstep(.70,1,t));
+    if(p.state==='serve'){
+      const rise=smoothstep(0,.72,t),settle=smoothstep(.72,1,t),q=Vec3.lerp(p.tossStart,contact,rise);
+      q.y+=Math.sin(Math.PI*t)*(.58-.18*settle);return q;
+    }
+    if(p.incomingStart){const q=Vec3.lerp(p.incomingStart,contact,smoothstep(0,1,t));q.y+=Math.sin(Math.PI*t)*.06;return q;}
+    return contact.clone();
+  }
+
+  update(dt:number){
+    if(!this.enabled)return;this.impactPulse=Math.max(0,this.impactPulse-dt*3.2);this.netRipple=Math.max(0,this.netRipple-dt*3.8);
+    if(this.pending){
+      const p=this.pending;
+      if(!p.released){
+        const staged=this.stagedBall(p),racket=p.hitter.racketContactPoint(),gap=Vec3.sub(staged,racket).len();
+        const contactWindow=p.hitter.animTime>=p.contactAt-.055,grace=p.hitter.animTime>=p.contactAt+.045;
+        if(contactWindow&&(gap<=.19||grace)){
+          p.released=true;this.flightHitter=p.hitter;this.sessionHits++;this.callbacks.onShot?.(p.evidence);
+          const start=racket.clone();this.lastContact=start.clone();
+          p.hitter.notifyRacketImpact(p.outcome==='frame'?'frame':p.outcome==='net'?'net':'clean');
+          this.ball.launch(start,p.target,p.flight);this.trail=[];this.trailSpeed=this.ball.velocity.len();this.impactPulse=1;this.lastOutcome=p.outcome;
+          this.callbacks.onHit?.(p.outcome==='frame'?'frame':p.outcome==='net'?'net':'clean');
+          if(p.outcome==='clean'||p.outcome==='frame'){this.rallyCount++;this.bestRally=Math.max(this.bestRally,this.rallyCount);this.callbacks.onRally?.(this.rallyCount);}this.waitingForReceiver=false;
+        }
+      }
+      if(p.hitter.animTime>=p.duration){
+        if(p.hitter.state===p.state){p.hitter.setAnimation('ready');p.hitter.clearShotIntent();const recovery=new Vec3(1,0,p.hitter.position.z<0?-5:5);p.hitter.moveOnCourt(recovery,p.receiver.position,false);}
+        if(p.released)this.pending=null;
+      }
+    }
+
+    if(this.ball.active){
+      this.north.setLook(this.ball.position);this.south.setLook(this.ball.position);
+      const ev=this.ball.update(dt),speed=this.ball.velocity.len();this.trailSpeed=speed;
+      if(speed>4.2){this.trail.unshift(this.ball.position.clone());if(this.trail.length>18)this.trail.pop();}
+      else if(this.trail.length)this.trail.pop();
+      if(ev.bounced){this.callbacks.onBounce?.();this.impactPulse=.48;if(this.ball.bounces===1)this.waitingForReceiver=true;}
+      if(ev.net){this.callbacks.onNet?.();this.netRipple=1;this.finishError('net');return;}
+      if(this.waitingForReceiver){
+        const receiver=this.hitter===0?this.south:this.north;const d=Math.hypot(this.ball.position.x-receiver.position.x,this.ball.position.z-receiver.position.z);
+        const approaching=this.ball.bounces>=1&&this.ball.position.y<1.48&&this.ball.velocity.y<2.2;
+        if(approaching&&d<1.50){
+          this.capturedIncoming=this.ball.position.clone();receiver.setIncomingContact(this.ball.position);this.ball.active=false;this.waitingForReceiver=false;this.hitter=1-this.hitter;this.shotTimer=.03;receiver.face(this.hitter===0?this.south.position:this.north.position);
+        }
+      }
+      if(!this.ball.active&&this.waitingForReceiver){this.waitingForReceiver=false;this.finishError(this.lastOutcome==='long'?'long':'frame');}
+      else if(!this.ball.active&&!this.waitingForReceiver&&this.lastOutcome==='long')this.finishError('long');
+      return;
+    }
+
+    if(this.pending)return;
+    this.shotTimer-=dt;if(this.shotTimer<=0)this.prepareHit();
+  }
+
+  private finishError(kind:ShotOutcome){
+    const striker=this.flightHitter??(this.hitter===0?this.north:this.south);const receiver=striker===this.north?this.south:this.north;const lastHitter=kind==='net'||kind==='long'?striker:receiver;lastHitter.setEmotion(kind==='net'?'frustrated':'disappointed',.8);lastHitter.trigger('reactMiss');
+    const other=lastHitter===this.north?this.south:this.north;this.score[other.id]=(this.score[other.id]??0)+1;this.errors[lastHitter.id]=(this.errors[lastHitter.id]??0)+1;this.callbacks.onPoint?.(other.id,lastHitter.id,kind);other.setEmotion('attentive',.55);this.callbacks.onMiss?.(lastHitter.id,kind);this.rallyCount=0;this.waitingForReceiver=false;this.pending=null;this.ball.active=false;this.trail=[];this.trailSpeed=0;this.capturedIncoming=null;this.shotTimer=.72;
+  }
+
+  private outcomeFor(hitter:Character,state:Stroke):ShotOutcome{
+    if(state==='serve'&&this.shotCount===0)return 'clean';
+    const skill=clamp(hitter.tennisSkill()-Math.min(.08,this.sessionHits*.0008),.35,.98),r=hash(this.shotCount*3.71+hitter.id.length*5.13);
+    const errorChance=.025+(1-skill)*.21;if(r>errorChance)return 'clean';
+    const kind=hash(this.shotCount*8.11+hitter.id.charCodeAt(0));return kind<.42?'frame':kind<.72?'net':'long';
+  }
+
+  private prepareHit(){
+    const hitter=this.hitter===0?this.north:this.south,receiver=this.hitter===0?this.south:this.north;const side=this.hitter===0?-1:1;
+    const pattern=[-.92,.62,-.34,1.00,.18,-.72,.48,.86,-.12];let targetX=clamp(1+pattern[this.shotCount%pattern.length],-2.75,4.75);const receiverZ=receiver.position.z;
+    let targetDepth=receiverZ+side*(.18+((this.shotCount%3)-1)*.18);let flight=.79+(this.shotCount%4)*.04;
+    let state:Stroke=this.shotCount===0?'serve':this.shotCount%7===5?'volley':this.shotCount%2?'swingForehand':'swingBackhand';if(state!=='serve'&&hitter.practiceCue==='preparation')state='swingForehand';if(receiver.practiceCue==='rhythm')flight+=.12;const outcome=this.outcomeFor(hitter,state);
+    if(outcome==='frame'){targetX=clamp(targetX+(hash(this.shotCount+4)>.5?.85:-.85),-3.35,5.35);flight*=1.03;}
+    if(outcome==='net'){targetDepth=side<0?1.6:-1.6;flight=.39;}
+    if(outcome==='long'){targetDepth=receiverZ-side*2.75;flight=.84;}
+    const target=new Vec3(targetX,.11,targetDepth);
+    const receiveX=clamp(targetX+(receiver.practiceCue==='spacing'?.40:(this.shotCount%2?.22:-.18)),-2.65,4.65),receiveZ=receiver.position.z<0?-5:5;
+    receiver.moveOnCourt(new Vec3(receiveX,0,receiveZ),hitter.position);receiver.setLook(hitter.position);receiver.setEmotion('focused',.8);hitter.face(target);hitter.setLook(receiver.position);hitter.triggerShot(state,target);
+    const kin=hitter.debugKinematics(),contactAt=hitter.shotContactTime(state),duration=hitter.shotDuration(state);const evidence={who:hitter.id,stroke:state,preparation:clamp((contactAt-.24)/.15,0,1),spacing:this.capturedIncoming&&kin.contactTarget?clamp(1-Vec3.sub(this.capturedIncoming,kin.contactTarget).len()/1.5,0,1):.75,recovery:clamp(1-Math.abs(hitter.position.x-1)/2.8,0,1),clean:outcome==='clean'};this.pending={evidence,hitter,receiver,state,target,flight,contactAt,duration,released:false,outcome,incomingStart:this.capturedIncoming?.clone()??null,contactTarget:kin.contactTarget?.clone()??null,tossStart:hitter.serveTossPoint()};this.capturedIncoming=null;this.shotCount++;
+  }
+
+  meshes():Mesh[]{
+    const m:Mesh[]=[];
+    if(this.pending&&!this.pending.released){
+      const p=this.pending,q=this.stagedBall(p);
+      m.push({kind:'sphere',position:q,scale:new Vec3(.16,.16,.16),color:'#cbdc55',unlit:true});
+    }
+    if(this.ball.active){
+      const glow=clamp((this.trailSpeed-4.2)/8.5,0,1);
+      for(let i=this.trail.length-1;i>=0;i--){
+        const q=this.trail[i],life=1-i/Math.max(1,this.trail.length),size=.035+.065*life,alpha=(.015+.17*life)*glow;
+        m.push({kind:'sphere',position:q.clone(),scale:new Vec3(size,size,size),color:'#b7e34a',alpha,unlit:true,noShadow:true});
+      }
+      const squash=this.ball.position.y<.14?.82:1;m.push({kind:'sphere',position:this.ball.position.clone(),scale:new Vec3(.16/squash,.16*squash,.16/squash),color:'#cbdc55',unlit:true},{kind:'sphere',position:new Vec3(this.ball.position.x,.025,this.ball.position.z),scale:new Vec3(.23,.024,.14),color:'#435448',alpha:.14,unlit:true,noShadow:true});
+    }
+    if(this.impactPulse>0&&this.lastContact){
+      const q=this.lastContact,scale=.30+(1-this.impactPulse)*.25;
+      m.push({kind:'torus',position:q.clone(),rotation:new Vec3(Math.PI/2,0,0),scale:new Vec3(scale,scale,.21),color:'#bfe552',alpha:Math.min(.30,this.impactPulse*.36),unlit:true,noShadow:true},
+             {kind:'sphere',position:q.clone(),scale:new Vec3(.12+.10*this.impactPulse,.12+.10*this.impactPulse,.12+.10*this.impactPulse),color:'#e8f29a',alpha:.16*this.impactPulse,unlit:true,noShadow:true});
+    }
+    if(this.netRipple>0){for(let i=0;i<5;i++){const x=-2.2+i*1.55,phase=(1-this.netRipple)*5+i*.6;m.push({kind:'roundBox',position:new Vec3(x,.55,Math.sin(phase)*.045*this.netRipple),scale:new Vec3(.025,.68,.025),color:'#ede6d7',alpha:.32*this.netRipple,unlit:true});}}
+    return m;
+  }
+}
+"""
+write(rally_path, rally)
+
+# ---------------------------------------------------------------------------
+# 6) Audio: crisper synthesized racket impact, still no external asset
+# ---------------------------------------------------------------------------
+audio_path = SRC / "src/core/AudioManager.ts"
+audio = r"""export class AudioManager {
+  private ctx?:AudioContext;enabled=true;volume=.65;private noise?:AudioBuffer;
+  private ensure(){if(!this.ctx)this.ctx=new AudioContext();if(this.ctx.state==='suspended')void this.ctx.resume();return this.ctx;}
+  private getNoise(){const c=this.ensure();if(this.noise)return this.noise;const b=c.createBuffer(1,Math.floor(c.sampleRate*.11),c.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);this.noise=b;return b;}
+  tone(freq=440,duration=.08,gain=.018,type:OscillatorType='sine',detune=0){if(!this.enabled||this.volume<=0)return;try{const c=this.ensure(),o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(freq,c.currentTime);o.detune.value=detune;g.gain.setValueAtTime(Math.max(.0001,gain*this.volume),c.currentTime);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+duration);o.connect(g).connect(c.destination);o.start();o.stop(c.currentTime+duration+.02);}catch{}}
+  private noiseBurst(freq=900,duration=.045,gain=.018,q=.9){if(!this.enabled||this.volume<=0)return;try{const c=this.ensure(),src=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();src.buffer=this.getNoise();f.type='bandpass';f.frequency.value=freq;f.Q.value=q;g.gain.setValueAtTime(Math.max(.0001,gain*this.volume),c.currentTime);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+duration);src.connect(f).connect(g).connect(c.destination);src.start();src.stop(c.currentTime+duration+.01);}catch{}}
+  click(){this.tone(520,.055,.010)}
+  paper(){this.noiseBurst(1250,.055,.005,1.6);this.tone(610,.035,.004,'sine')}
+  bounce(){this.tone(116+Math.random()*8,.034,.010,'triangle');this.noiseBurst(520+Math.random()*80,.030,.007)}
+  hit(quality:'clean'|'frame'|'net'='clean'){
+    const drift=(Math.random()-.5)*34;
+    if(quality==='frame'){this.tone(218+Math.random()*10,.036,.012,'triangle',220+drift);this.noiseBurst(1680+Math.random()*160,.026,.013,1.55);return;}
+    if(quality==='net'){this.net();return;}
+    this.tone(178+Math.random()*10,.043,.019,'triangle',drift);
+    this.tone(515+Math.random()*35,.024,.009,'sine',drift*.5);
+    this.noiseBurst(1760+Math.random()*240,.026,.016,1.65);
+    this.noiseBurst(760+Math.random()*90,.048,.0065,.82);
+  }
+  net(){this.noiseBurst(390,.078,.011,.7);this.tone(92,.07,.007,'triangle')}
+  shoe(squeak=false){if(squeak){this.noiseBurst(1750,.045,.0045,2.4);this.tone(720,.025,.0028,'sine');}else this.noiseBurst(260,.025,.0027,.7)}
+  cup(){this.tone(1060,.035,.0045,'sine');this.tone(790,.028,.0028,'sine')}
+  door(){this.noiseBurst(310,.09,.004,.55);this.tone(138,.07,.0025,'triangle')}
+  stringing(){this.tone(940,.045,.004,'triangle');setTimeout(()=>this.tone(1160,.035,.003,'triangle'),45)}
+  watering(){this.noiseBurst(750,.10,.003,.5);}
+  chuckle(){this.tone(230,.055,.002,'triangle');setTimeout(()=>this.tone(270,.07,.0015,'triangle'),90);}
+  success(){this.tone(660,.08,.013);setTimeout(()=>this.tone(880,.10,.011),70)}
+}
+"""
+write(audio_path, audio)
+
+# ---------------------------------------------------------------------------
+# 7) Build UI markup
+# ---------------------------------------------------------------------------
+index_path = SRC / "index.html"
+index = index_path.read_text()
+index = replace_once(index, '<span>◌ <b id="coins">240</b></span>', '<span title="Club funds">◌ <b id="coins">100</b></span>', "Index starting funds")
+old_build = """  <aside class="build glass" id="buildPanel" aria-label="Build mode">
+    <p class="eyebrow">DECORATE</p>
+    <strong>Make it yours</strong>
+    <div class="catalog">
+      <button data-build="plant">🪴<span>Plant</span><small>30</small></button>
+      <button data-build="bench">🪑<span>Bench</span><small>45</small></button>
+      <button data-build="lamp">💡<span>Lamp</span><small>35</small></button>
+      <button data-build="basket">🎾<span>Basket</span><small>25</small></button>
+    </div>
+    <small id="buildHint">Choose an item, then tap a free patch of floor.</small>
+  </aside>"""
+new_build = """  <aside class="build glass" id="buildPanel" aria-label="Build mode">
+    <p class="eyebrow">DECORATE</p>
+    <strong>Make it yours</strong>
+    <nav class="buildTabs" aria-label="Decoration categories">
+      <button class="active" data-build-category="tennis">🎾 Tennis</button>
+      <button data-build-category="clubhouse">☕ Club</button>
+      <button data-build-category="greenery">🌿 Green</button>
+      <button data-build-category="ambience">💡 Glow</button>
+    </nav>
+    <div class="catalog" id="buildCatalog"></div>
+    <div class="buildControls" id="buildControls" hidden>
+      <button id="rotateLeft" aria-label="Rotate selected decoration left">↺ Rotate</button>
+      <button id="rotateRight" aria-label="Rotate selected decoration right">Rotate ↻</button>
+    </div>
+    <small id="buildHint">Choose an item, move it over free floor, then tap to place. Q / E rotates on desktop.</small>
+  </aside>"""
+index = replace_once(index, old_build, new_build, "Index build panel")
+write(index_path, index)
+
+# ---------------------------------------------------------------------------
+# 8) Build UI styling
+# ---------------------------------------------------------------------------
+style_path = SRC / "style.css"
+style = style_path.read_text()
+style += r"""
+
+/* v17 tactile decorating: categorized catalog + rotation controls */
+.build{width:min(360px,calc(100% - 28px))}
+.buildTabs{display:flex;gap:5px;margin:9px 0 7px;overflow-x:auto;padding-bottom:2px}
+.buildTabs button{flex:0 0 auto;min-height:32px;padding:6px 9px;border-radius:10px;background:#eee9dd;font-size:9px;font-weight:760;cursor:pointer}
+.buildTabs button.active{background:#dfead9;color:#3f6250;box-shadow:inset 0 0 0 1px rgba(80,112,87,.12)}
+.catalog{grid-template-columns:repeat(2,minmax(0,1fr));max-height:min(330px,42dvh);overflow-y:auto;overscroll-behavior:contain;padding:1px 3px 3px 1px}
+.catalog button{min-height:66px;position:relative}
+.catalog button[hidden]{display:none}
+.catalog .buildIcon{font-size:16px;margin-bottom:3px}
+.catalog button span:not(.buildIcon){font-size:10px;font-weight:760}
+.catalog button small{font-size:8.5px}
+.buildControls{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:9px 0 8px}
+.buildControls[hidden]{display:none}
+.buildControls button{min-height:38px;border-radius:12px;background:#e4eee0;color:#3f6250;font-size:10px;font-weight:800;cursor:pointer}
+.buildControls button:hover{transform:translateY(-1px);background:#d9e8d5}
+@media(max-width:720px){
+  .build{width:min(292px,calc(100% - 28px));max-height:68dvh}
+  .catalog{max-height:34dvh}
+  .buildControls button{min-height:44px}
+}
+"""
+write(style_path, style)
+
+# ---------------------------------------------------------------------------
+# 9) Game orchestration: economy, rotation, collision, previews
+# ---------------------------------------------------------------------------
+game_path = SRC / "src/Game.ts"
+game = game_path.read_text()
+
+game = replace_once(
+    game,
+    "import {HUD,type MemberBook} from './ui/HUD.js';",
+    "import {HUD,type MemberBook} from './ui/HUD.js';\nimport {DECOR_BY_ID,rotatedFootprint} from './content/DecorCatalog.js';",
+    "Game decor import"
+)
+game = replace_once(
+    game,
+    "const COSTS:Record<Placement['type'],number>={plant:30,bench:45,lamp:35,basket:25};",
+    "const LESSON_FEE=18;",
+    "Game economy constant"
+)
+game = replace_once(game, "coins=240;stars=3;", "coins=100;stars=3;", "Game starting funds")
+game = replace_once(
+    game,
+    "private saveSystem=new SaveSystem<GameSave>();private selectedId:string|null=null;private buildType:Placement['type']|null=null;private hoverGround:Vec3|null=null;",
+    "private saveSystem=new SaveSystem<GameSave>();private selectedId:string|null=null;private buildType:Placement['type']|null=null;private buildRotation=0;private hoverGround:Vec3|null=null;",
+    "Game build rotation field"
+)
+game = replace_once(
+    game,
+    "this.ui.onBuildClose=()=>{this.buildType=null;this.movingPlacement=null;};",
+    "this.ui.onBuildClose=()=>{this.buildType=null;this.buildRotation=0;this.movingPlacement=null;};",
+    "Game build close"
+)
+game = replace_once(
+    game,
+    "this.ui.onBuildSelect=(type)=>{this.buildType=type as Placement['type'];this.ui.toast(`${type[0].toUpperCase()+type.slice(1)} selected · tap a free floor tile`);this.audio.click()};",
+    "this.ui.onBuildSelect=(type)=>{this.buildType=type as Placement['type'];this.buildRotation=0;const d=DECOR_BY_ID[this.buildType];this.ui.toast(`${d.label} selected · Q / E rotates`);this.audio.click()};this.ui.onBuildRotate=(direction)=>{this.rotateBuild(direction);this.audio.click()};",
+    "Game build select"
+)
+
+old_key = "document.addEventListener('keydown',e=>{if(e.target instanceof HTMLInputElement)return;if(e.key==='Escape'){const hadPanel=!!document.querySelector('#context.open,#book.open');this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);this.buildType=null;this.movingPlacement=null;if(!hadPanel)this.canvas.focus();}if(e.target!==this.canvas)return;const c=this.characters[Number(e.key)-1];if(c)this.openCharacter(c);if(e.key.toLowerCase()==='c')this.openCoaching();if(e.key.toLowerCase()==='b')this.ui.toggleBuild();if(e.key.startsWith('Arrow')){e.preventDefault();this.camera.pan(e.key==='ArrowLeft'?-25:e.key==='ArrowRight'?25:0,e.key==='ArrowUp'?-25:e.key==='ArrowDown'?25:0);}});"
+new_key = """document.addEventListener('keydown',e=>{
+      if(e.target instanceof HTMLInputElement||e.target instanceof HTMLTextAreaElement)return;
+      const key=e.key.toLowerCase();
+      if(e.key==='Escape'){const hadPanel=!!document.querySelector('#context.open,#book.open');this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);this.buildType=null;this.buildRotation=0;this.movingPlacement=null;if(!hadPanel)this.canvas.focus();return;}
+      if(this.buildType&&(key==='q'||key==='e')){e.preventDefault();this.rotateBuild(key==='q'?-1:1,e.shiftKey);return;}
+      if(e.target!==this.canvas)return;
+      const c=this.characters[Number(e.key)-1];if(c)this.openCharacter(c);if(key==='c')this.openCoaching();if(key==='b')this.ui.toggleBuild();if(e.key.startsWith('Arrow')){e.preventDefault();this.camera.pan(e.key==='ArrowLeft'?-25:e.key==='ArrowRight'?25:0,e.key==='ArrowUp'?-25:e.key==='ArrowDown'?25:0);}
+    });"""
+game = replace_once(game, old_key, new_key, "Game key controls")
+
+# Easier selection for larger procedural props.
+old_pick = "const placed=this.world.placements.find(p=>{const q=this.camera.project(new Vec3(p.x,.6,p.z));return Math.hypot(q.x-x,q.y-y)<28;});if(placed){this.openFurniture(placed);return;}"
+new_pick = "const placed=this.world.placements.find(p=>{const q=this.camera.project(new Vec3(p.x,.6,p.z)),d=DECOR_BY_ID[p.type],threshold=Math.min(62,24+Math.max(d.footprintX,d.footprintZ)*12);return Math.hypot(q.x-x,q.y-y)<threshold;});if(placed){this.openFurniture(placed);return;}"
+game = replace_once(game, old_pick, new_pick, "Game placed-object picking")
+
+open_furniture_repl = r"""  private openFurniture(p:Placement){
+    const h=this.affordances.objects[p.id!],def=DECOR_BY_ID[p.type],favorites=h?.favoriteOf.map(id=>this.actor(id).spec.name).join(', ');
+    this.ui.showContext('YOUR ACADEMY',def.label,favorites?`A favorite place for ${favorites}.`:h?.memories[0]??'A new place for a club ritual.',this.affordances.affordances(p),[
+      {title:'Move',subtitle:'Keep this object’s history',run:()=>{if(this.activities.reserved(p.id!)){this.ui.toast('Let their break finish first.');return;}this.movingPlacement=p.id!;this.ui.closeContext();this.ui.toast('Tap a free floor tile. Escape cancels.');}},
+      {title:'Rotate left',subtitle:'Turn 22.5° without moving it',run:()=>this.rotateFurniture(p,-1)},
+      {title:'Rotate right',subtitle:'Turn 22.5° without moving it',run:()=>this.rotateFurniture(p,1)},
+      {title:'Return to catalog',subtitle:'Full refund; clears this place’s history',run:()=>{if(this.activities.reserved(p.id!)){this.ui.toast('Someone is using this place.');return;}this.world.placements=this.world.placements.filter(v=>v!==p);for(const e of this.mind.events)if(e.kind==='move'&&e.place===p.id)e.pending=[];this.coins+=def.cost;this.affordances.sync(this.world.placements,this.clock.day);this.rebuildFurnitureObstacles();this.ui.closeContext();void this.save();}}
+    ]);
+  }
+  private rotateBuild(direction:number,fine=false){if(!this.buildType)return;const step=fine?Math.PI/24:DECOR_BY_ID[this.buildType].rotationStep,tau=Math.PI*2;this.buildRotation=(this.buildRotation+direction*step+tau)%tau;}
+  private rotateFurniture(p:Placement,direction:number){
+    if(this.activities.reserved(p.id!)){this.ui.toast('Let their break finish first.');return;}
+    const step=DECOR_BY_ID[p.type].rotationStep,tau=Math.PI*2,next=((p.rotation??0)+direction*step+tau)%tau;
+    if(!this.placementClear(p.type,p.x,p.z,next,p.id)){this.ui.toast('That rotation would crowd another object.');return;}
+    p.rotation=next;this.rebuildFurnitureObstacles();this.audio.click();void this.save();this.openFurniture(p);
+  }
+  private furnitureObstacles"""
+game = regex_once(
+    game,
+    r"  private openFurniture\(p:Placement\)\{.*?\n  \}\n  private furnitureObstacles",
+    open_furniture_repl,
+    "Game furniture context"
+)
+
+old_rebuild = "private rebuildFurnitureObstacles(){this.world.nav.obstacles=this.world.nav.obstacles.filter(o=>!this.furnitureObstacles.includes(o));this.furnitureObstacles=this.world.placements.filter(p=>p.type==='bench').map(p=>({x:p.x,z:p.z,w:1.8,d:.9}));this.world.nav.obstacles.push(...this.furnitureObstacles);"
+new_rebuild = "private rebuildFurnitureObstacles(){this.world.nav.obstacles=this.world.nav.obstacles.filter(o=>!this.furnitureObstacles.includes(o));this.furnitureObstacles=this.world.placements.filter(p=>DECOR_BY_ID[p.type].blocksNavigation).map(p=>{const f=rotatedFootprint(p.type,p.rotation??0);return {x:p.x,z:p.z,w:f.w,d:f.d};});this.world.nav.obstacles.push(...this.furnitureObstacles);"
+game = replace_once(game, old_rebuild, new_rebuild, "Game navigation obstacles")
+
+move_repl = r"""  private moveFurniture(id:string,x:number,z:number){
+    const p=this.world.placements.find(p=>p.id===id);if(!p)return;
+    const xx=Math.round(x*2)/2,zz=Math.round(z*2)/2,rotation=p.rotation??0;
+    if(this.activities.reserved(id)||!this.placementClear(p.type,xx,zz,rotation,id)||this.placementNearPerson(p.type,xx,zz,rotation)){this.ui.toast('Choose a free patch of floor away from people.');return;}
+    p.x=xx;p.z=zz;const revision=this.affordances.moved(id);
+    for(const person of this.affordances.objects[id]?.favoriteOf??[]){if(!MEMBERS.includes(person as MemberId))continue;this.mind.recordEvent({id:`move:${id}:${revision}:${person}`,kind:'move',subject:person as MemberId,day:this.clock.day,place:id,detail:`The familiar ${DECOR_BY_ID[p.type].label.toLowerCase()} moved to another part of the club.`,importance:.5},Object.fromEntries(this.characters.map(c=>[c.id,c.position])),new Set(),()=>false);}
+    this.rebuildFurnitureObstacles();this.movingPlacement=null;this.ui.toast('Moved, with its history intact.');void this.save();
+  }
+  private playerAvatar"""
+game = regex_once(
+    game,
+    r"  private moveFurniture\(id:string,x:number,z:number\)\{.*?\n  \}\n  private playerAvatar",
+    move_repl,
+    "Game move furniture"
+)
+
+placement_repl = r"""  private staticPlacementBlocked(x:number,z:number){
+    if(x<this.world.nav.minX||x>this.world.nav.maxX||z<this.world.nav.minZ||z>this.world.nav.maxZ)return true;
+    return this.world.nav.obstacles.some(o=>!this.furnitureObstacles.includes(o)&&x>o.x-o.w/2-.22&&x<o.x+o.w/2+.22&&z>o.z-o.d/2-.22&&z<o.z+o.d/2+.22);
+  }
+  private placementNearPerson(type:Placement['type'],x:number,z:number,rotation=0){
+    const f=rotatedFootprint(type,rotation);return [...this.characters,this.player].some(c=>Math.abs(c.position.x-x)<f.w/2+.42&&Math.abs(c.position.z-z)<f.d/2+.42);
+  }
+  private placementClear(type:Placement['type'],x:number,z:number,rotation=0,ignoreId?:string){
+    if(!this.world.canPlace(x,z,type,rotation,ignoreId))return false;
+    const f=rotatedFootprint(type,rotation);
+    for(const dx of [-f.w/2,0,f.w/2])for(const dz of [-f.d/2,0,f.d/2]){const xx=x+dx,zz=z+dz;if(this.staticPlacementBlocked(xx,zz)||(xx>-3.8&&xx<5.8&&zz>-6.6&&zz<6.6))return false;}
+    return true;
+  }
+  private place(type:Placement['type'],x:number,z:number){
+    const def=DECOR_BY_ID[type];if(!def)return;x=Math.round(x*2)/2;z=Math.round(z*2)/2;const cost=def.cost;
+    if(this.coins<cost){this.ui.toast('Not enough club funds yet. Coach a lesson to earn more.');return}
+    if(!this.placementClear(type,x,z,this.buildRotation)||this.placementNearPerson(type,x,z,this.buildRotation)){this.ui.toast('That spot is a little crowded.');return}
+    this.coins-=cost;this.world.placements.push({type,x,z,rotation:this.buildRotation});this.affordances.sync(this.world.placements,this.clock.day);this.history.nextObject=this.absoluteMinute;this.mind.reinforceCulture(def.culture,.025);this.rebuildFurnitureObstacles();this.buildType=null;this.buildRotation=0;this.ui.clearBuildSelection();this.recordGoal('decorate');this.life.addMemory(this.clock.day,`You added a ${def.label.toLowerCase()} to the academy.`);this.ui.toast('Placed. The club feels a little more yours.');this.audio.success();void this.save()
+  }
+
+  private recordGoal"""
+game = regex_once(
+    game,
+    r"  private placementClear\(type:Placement\['type'\],x:number,z:number\)\{.*?\n  private recordGoal",
+    placement_repl,
+    "Game placement system"
+)
+
+# Coaching is the main economy: flat fee for a completed lesson, independent of outcome.
+game = replace_once(
+    game,
+    "this.coachXP+=result.gain?4:1;this.coins+=result.gain?8:0;",
+    "this.coachXP+=result.gain?4:1;this.coins+=LESSON_FEE;",
+    "Game lesson fee"
+)
+game = replace_once(
+    game,
+    "this.ui.showMoment(result.gain?'A cue worth keeping':'A useful diagnosis',text);",
+    "this.ui.showMoment(result.gain?'A cue worth keeping':'A useful diagnosis',`${text} +${LESSON_FEE} club funds for the completed lesson.`);",
+    "Game lesson completion message"
+)
+
+# Rename visible currency copy without renaming the persisted field.
+game = game.replace("20 coins", "20 club funds").replace("12 coins", "12 club funds")
+game = game.replace("Not enough coins yet.", "Not enough club funds yet.")
+game = game.replace("`The day’s three gentle intentions came together. +${reward} coins.`", "`The day’s three gentle intentions came together. +${reward} club funds.`")
+game = game.replace("`+${reward} coins. No streak. No timer. The rest of the day is yours.`", "`+${reward} club funds. No streak. No timer. The rest of the day is yours.`")
+
+old_render_preview = "if(this.buildType&&this.hoverGround){const x=Math.round(this.hoverGround.x*2)/2,z=Math.round(this.hoverGround.z*2)/2;meshes.push(...this.previewMeshes(this.buildType,x,z,this.placementClear(this.buildType,x,z)))}"
+new_render_preview = "if(this.buildType&&this.hoverGround){const x=Math.round(this.hoverGround.x*2)/2,z=Math.round(this.hoverGround.z*2)/2;meshes.push(...this.previewMeshes(this.buildType,x,z,this.placementClear(this.buildType,x,z,this.buildRotation)))}"
+game = replace_once(game, old_render_preview, new_render_preview, "Game placement preview call")
+
+old_preview = "private previewMeshes(type:Placement['type'],x:number,z:number,valid:boolean):Mesh[]{const c=valid?'#9ab58e':'#c87e70';if(type==='plant')return[{kind:'cone',position:new Vec3(x,.3,z),scale:new Vec3(.5,.6,.5),color:c,alpha:.48,unlit:true},{kind:'sphere',position:new Vec3(x,1,z),scale:new Vec3(.8,.55,.65),color:c,alpha:.4,unlit:true}];if(type==='bench')return[{kind:'roundBox',position:new Vec3(x,.42,z),scale:new Vec3(1.7,.28,.7),color:c,alpha:.45,unlit:true}];if(type==='lamp')return[{kind:'cylinder',position:new Vec3(x,1,z),scale:new Vec3(.08,2,.08),color:c,alpha:.5,unlit:true},{kind:'cone',position:new Vec3(x,2.05,z),scale:new Vec3(.65,.55,.65),color:c,alpha:.42,unlit:true}];return[{kind:'cylinder',position:new Vec3(x,.35,z),scale:new Vec3(.65,.58,.65),color:c,alpha:.45,unlit:true}]}"
+new_preview = "private previewMeshes(type:Placement['type'],x:number,z:number,valid:boolean):Mesh[]{return this.world.previewPlacement(type,x,z,this.buildRotation,valid)}"
+game = replace_once(game, old_preview, new_preview, "Game preview meshes")
+
+# New training props should behave like training props during little object scenes.
+game = game.replace(
+    "else c.setAnimation(a.kind==='object'?(object?.type==='basket'?'stretch':'watch'):i?'drink':'talk');",
+    "else c.setAnimation(a.kind==='object'?(['basket','ballHopper','coneSet','racketRack'].includes(object?.type??'')?'stretch':'watch'):i?'drink':'talk');"
+)
+
+write(game_path, game)
+
+print("\nApplied Rally House v17 source patch.")
+print(f"Repository: {ROOT}")
+print(f"Backup:     {BACKUP}")
+print("\nNext:")
+print("  cd rally-house-source-v16")
+print("  npm test")
+print("  npm run build")
+print("  npm run serve")
+print("\nThen open http://localhost:8080/?debug=1 and QA before copying dist into the portfolio.")

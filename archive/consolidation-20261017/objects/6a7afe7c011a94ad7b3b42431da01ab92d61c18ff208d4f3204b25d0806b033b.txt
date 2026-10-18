@@ -1,0 +1,236 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+import argparse
+import datetime as dt
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+MARKER = 'HOLOANATOMY SHOULDER v0.5'
+
+
+def fail(msg: str) -> None:
+    raise SystemExit(f'ERROR: {msg}')
+
+
+def replace_once(path: Path, old: str, new: str, label: str) -> None:
+    text = path.read_text()
+    if new in text:
+        print(f'  = {label}: already applied')
+        return
+    if old not in text:
+        fail(f'{label}: expected source pattern not found in {path}')
+    path.write_text(text.replace(old, new, 1))
+    print(f'  + {label}')
+
+
+def append_once(path: Path, marker: str, block: str, label: str) -> None:
+    text = path.read_text()
+    if marker in text:
+        print(f'  = {label}: already applied')
+        return
+    path.write_text(text.rstrip() + '\n\n' + block.strip() + '\n')
+    print(f'  + {label}')
+
+
+def run(cmd, cwd: Path) -> None:
+    print('  $', ' '.join(cmd))
+    subprocess.run(cmd, cwd=cwd, check=True)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description='Apply HoloAnatomy Shoulder v0.5 safely to the portfolio repository.')
+    parser.add_argument('repo', nargs='?', default='.', help='Path to arjansinghpuniani.com repository root')
+    parser.add_argument('--validate', action='store_true', help='Run portfolio npm test/typecheck/build after patching')
+    args = parser.parse_args()
+
+    repo = Path(args.repo).expanduser().resolve()
+    app = repo / 'arjan-portfolio'
+    holo = app / 'public' / 'holoanatomy'
+    if not (repo / '.git').exists(): fail(f'{repo} is not a Git repository root')
+    for required in [holo/'src/app.js', holo/'src/engine/renderer.js', holo/'src/state/store.js', holo/'src/anatomy/manifest.js', holo/'styles.css', holo/'index.html']:
+        if not required.exists(): fail(f'missing required current HoloAnatomy file: {required}')
+
+    # Production-path guard before touching anything.
+    index_text = (holo/'index.html').read_text()
+    manifest_text = (holo/'src/anatomy/manifest.js').read_text()
+    if '/holoanatomy/styles.css' not in index_text or '/holoanatomy/src/app.js' not in index_text:
+        fail('current runtime does not contain the known production path fix; refusing to patch')
+    if 'localUrl: `/holoanatomy/anatomy/${file}.obj`' not in manifest_text:
+        fail('current manifest does not contain production-relative anatomy URLs; refusing to patch')
+
+    timestamp = dt.datetime.now().strftime('%Y%m%d-%H%M%S')
+    backup = repo / f'.holoanatomy-shoulder-v05-backup-{timestamp}'
+    backup.mkdir(parents=True)
+    modified = [
+        holo/'src/app.js', holo/'src/engine/renderer.js', holo/'src/state/store.js',
+        holo/'src/anatomy/manifest.js', holo/'styles.css'
+    ]
+    for path in modified:
+        rel = path.relative_to(repo)
+        dest = backup / rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(path, dest)
+    print(f'Backup: {backup}')
+
+    payload = Path(__file__).resolve().parent / 'payload'
+    if not payload.exists(): fail('payload folder missing from patch kit')
+
+    # New shoulder modules and documentation/tests.
+    for src in payload.rglob('*'):
+        if not src.is_file(): continue
+        rel = src.relative_to(payload)
+        dest = repo / rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src, dest)
+        print(f'  + file {rel}')
+
+    store = holo/'src/state/store.js'
+    replace_once(
+        store,
+        "    quizMode: false,\n    explode: false,",
+        "    quizMode: false,\n    structureOverrides: {},\n    shoulderView: 'overview',\n    shoulderPeel: 'full',\n    explode: false,",
+        'shoulder presentation state'
+    )
+    replace_once(
+        store,
+        "export function structureVisibility(state, part) {\n  const layerState = state.layers[part.layer] || 'visible';\n  if (layerState === 'hidden') return { visible:false, ghost:false };\n  if (state.isolatedId && state.isolatedId !== part.id) return { visible:true, ghost:true };\n  return { visible:true, ghost:layerState === 'ghost' };\n}",
+        "export function structureVisibility(state, part) {\n  const override = state.structureOverrides?.[part.id];\n  const layerState = override || state.layers[part.layer] || 'visible';\n  if (layerState === 'hidden') return { visible:false, ghost:false };\n  if (state.isolatedId && state.isolatedId !== part.id) return { visible:true, ghost:true };\n  return { visible:true, ghost:layerState === 'ghost' };\n}",
+        'per-structure presentation overrides'
+    )
+
+    manifest = holo/'src/anatomy/manifest.js'
+    old_materials = """export const MATERIALS = {\n  bone:   { color: '#d8cab0', roughness: 0.70, specular: 18, rim: 0.15 },\n  brain:  { color: '#ad7774', roughness: 0.82, specular: 12, rim: 0.12 },\n  artery: { color: '#8e302d', roughness: 0.48, specular: 34, rim: 0.18 },\n  vein:   { color: '#443d5d', roughness: 0.55, specular: 28, rim: 0.15 },\n  nerve:  { color: '#cdbf88', roughness: 0.65, specular: 20, rim: 0.18 },\n  muscle: { color: '#713632', roughness: 0.78, specular: 16, rim: 0.10 },\n  myocardium: { color: '#8f4742', roughness: 0.72, specular: 20, rim: 0.12 },\n  chamber: { color: '#7b4045', roughness: 0.68, specular: 16, rim: 0.10 },\n  valve: { color: '#c7a99a', roughness: 0.62, specular: 22, rim: 0.15 }\n};"""
+    new_materials = """export const MATERIALS = {\n  // Surface variation is a restrained visualization treatment only; it does not encode tissue fibers.\n  bone:   { color: '#d9cbb1', roughness: 0.78, specular: 16, rim: 0.11, surface: 0.035 },\n  brain:  { color: '#a86f6d', roughness: 0.86, specular: 10, rim: 0.10, surface: 0.018 },\n  artery: { color: '#8f332f', roughness: 0.55, specular: 28, rim: 0.14, surface: 0.020 },\n  vein:   { color: '#44435c', roughness: 0.62, specular: 22, rim: 0.12, surface: 0.016 },\n  nerve:  { color: '#c9bb83', roughness: 0.72, specular: 16, rim: 0.14, surface: 0.012 },\n  muscle: { color: '#6b2b2b', roughness: 0.86, specular: 11, rim: 0.07, surface: 0.060 },\n  myocardium: { color: '#87423f', roughness: 0.80, specular: 15, rim: 0.09, surface: 0.045 },\n  chamber: { color: '#743b42', roughness: 0.74, specular: 14, rim: 0.08, surface: 0.018 },\n  valve: { color: '#c5a898', roughness: 0.70, specular: 18, rim: 0.12, surface: 0.015 }\n};"""
+    replace_once(manifest, old_materials, new_materials, 'richer restrained tissue palette')
+
+    renderer = holo/'src/engine/renderer.js'
+    replace_once(renderer, 'uniform float uRimStrength;\nuniform float uSelected;', 'uniform float uRimStrength;\nuniform float uSurfaceVariation;\nuniform float uSelected;', 'surface-variation shader uniform')
+    replace_once(
+        renderer,
+        "  float fresnel = pow(1.0 - max(dot(n, v), 0.0), 2.7);\n  vec3 base = uColor * (0.20 + 0.61 * wrap + 0.15 * diffuse);",
+        "  float fresnel = pow(1.0 - max(dot(n, v), 0.0), 2.7);\n  float fill = max(dot(n, normalize(vec3(0.63,0.18,0.75))), 0.0);\n  float hemi = 0.5 + 0.5 * n.y;\n  float micro = 0.5 + 0.5 * sin(dot(vWorldPosition, vec3(47.0,61.0,83.0)) + dot(n, vec3(3.1,5.3,7.7)));\n  vec3 base = uColor * (0.16 + 0.57 * wrap + 0.12 * diffuse + 0.08 * fill + 0.05 * hemi);\n  base *= 1.0 + (micro - 0.5) * uSurfaceVariation;",
+        'soft fill and restrained tissue microvariation'
+    )
+    replace_once(
+        renderer,
+        "['uViewProjection','uDataCenter','uDataScale','uOffset','uColor','uCameraPosition','uLightDirection','uAlpha','uSpecularPower','uRimStrength','uSelected','uIntro','uClipEnabled','uClipPlane']",
+        "['uViewProjection','uDataCenter','uDataScale','uOffset','uColor','uCameraPosition','uLightDirection','uAlpha','uSpecularPower','uRimStrength','uSurfaceVariation','uSelected','uIntro','uClipEnabled','uClipPlane']",
+        'renderer uniform binding'
+    )
+    replace_once(renderer, '    this.quizTargetId = null;\n    this.meshes = [];', '    this.quizTargetId = null;\n    this.emphasisIds = [];\n    this.meshes = [];', 'multi-structure emphasis state')
+    replace_once(
+        renderer,
+        "      gl.uniform1f(u.uRimStrength, material.rim * (QUALITY_SETTINGS[this.quality]?.rimScale || 1));\n      gl.uniform1f(u.uSelected, this.state.selectedId === mesh.part.id ? 1 : 0);",
+        "      gl.uniform1f(u.uRimStrength, material.rim * (QUALITY_SETTINGS[this.quality]?.rimScale || 1));\n      gl.uniform1f(u.uSurfaceVariation, material.surface || 0);\n      gl.uniform1f(u.uSelected, this.state.selectedId === mesh.part.id ? 1 : 0);",
+        'material surface variation value'
+    )
+    replace_once(
+        renderer,
+        "    if (this.quizTargetId) outlineIds.push({ id:this.quizTargetId, color:[0.48,0.98,1.0,0.98], width:0.015 });\n    const seen = new Set();",
+        "    if (this.quizTargetId) outlineIds.push({ id:this.quizTargetId, color:[0.48,0.98,1.0,0.98], width:0.015 });\n    for (const [index,id] of (this.emphasisIds || []).entries()) {\n      outlineIds.push({ id, color:index % 2 ? [0.96,0.74,0.42,0.98] : [0.48,0.94,1.0,0.98], width:0.013 });\n    }\n    const seen = new Set();",
+        'relationship emphasis outlines'
+    )
+
+    appjs = holo/'src/app.js'
+    replace_once(
+        appjs,
+        "import { buildQuizChoices, chooseQuizTarget, uniqueNamePool } from './learning/quiz.js';",
+        "import { buildQuizChoices, chooseQuizTarget, uniqueNamePool } from './learning/quiz.js';\nimport { setupShoulderExperience } from './shoulder/experience.js';",
+        'shoulder controller import'
+    )
+    replace_once(
+        appjs,
+        "const controls = setupControls({ state, renderer, manifestById });\nsetupQualityControl();",
+        "const controls = setupControls({ state, renderer, manifestById });\nconst shoulderExperience = setupShoulderExperience({ state, renderer, controls, manifestById, canvas });\nsetupQualityControl();",
+        'shoulder controller initialization'
+    )
+    replace_once(
+        appjs,
+        "  state.selectedId = null; state.isolatedId = null; state.explode = false;\n  renderer.hoveredId = null; renderer.quizTargetId = null; hideHoverLabel();",
+        "  state.selectedId = null; state.isolatedId = null; state.explode = false; state.structureOverrides = {};\n  renderer.hoveredId = null; renderer.quizTargetId = null; renderer.emphasisIds = []; hideHoverLabel();",
+        'clear shoulder presentation on exhibit switch'
+    )
+    replace_once(
+        appjs,
+        "  if (state.quizMode) quizController?.resetForModule();\n}",
+        "  if (state.quizMode) quizController?.resetForModule();\n  shoulderExperience.onModuleChanged(moduleId);\n}",
+        'notify shoulder controller on exhibit switch'
+    )
+    replace_once(
+        appjs,
+        "    } else if (dissectMesh && dissectMoved) {\n      if (renderer.pullDistance(dissectMesh) < 0.18) renderer.returnMesh(dissectMesh);\n      else if (state.table) renderer.stageMesh(dissectMesh);\n      controls.refreshStageLabels(true);\n      controls.refreshSelection();\n    }",
+        "    } else if (dissectMesh && dissectMoved) {\n      const dropDistance = renderer.pullDistance(dissectMesh);\n      const returned = dropDistance < 0.18;\n      if (returned) renderer.returnMesh(dissectMesh);\n      else if (state.table) renderer.stageMesh(dissectMesh);\n      window.dispatchEvent(new CustomEvent('holoanatomy:structure-drop', { detail:{ id:dissectMesh.part.id, distance:dropDistance, returned, staged:!returned && state.table } }));\n      controls.refreshStageLabels(true);\n      controls.refreshSelection();\n    }",
+        'rebuild-practice drop event'
+    )
+    replace_once(
+        appjs,
+        "    if (mesh && focus) renderer.focusMesh(mesh);\n  }",
+        "    if (mesh && focus) renderer.focusMesh(mesh);\n    window.dispatchEvent(new CustomEvent('holoanatomy:structure-selected', { detail:{ id:mesh?.part.id || null, focus } }));\n  }",
+        'locate-practice selection event'
+    )
+
+    css = holo/'styles.css'
+    shoulder_css = r'''/* HOLOANATOMY SHOULDER v0.5 */
+.shoulder-tool { color:#f1e4c5 !important; }
+.shoulder-tool[aria-expanded="true"] { background:rgba(214,198,162,.13) !important; border-color:rgba(214,198,162,.25) !important; }
+.shoulder-panel { width:min(580px,calc(100% - 30px)); }
+.shoulder-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.shoulder-stack { display:grid; gap:7px; }
+.shoulder-card { width:100%; display:grid; gap:4px; text-align:left; border:1px solid rgba(255,255,255,.10) !important; border-radius:13px !important; background:rgba(255,255,255,.035) !important; padding:11px 12px !important; }
+.shoulder-card:hover, .shoulder-card.active { background:rgba(214,198,162,.09) !important; border-color:rgba(214,198,162,.30) !important; }
+.shoulder-card strong { font-size:11px; font-weight:610; }
+.shoulder-card span { color:var(--muted); font-size:9px; line-height:1.4; }
+.shoulder-note { margin:0 0 10px; padding:9px 10px; border-left:2px solid rgba(214,198,162,.5); background:rgba(214,198,162,.045); color:var(--soft); font-size:9px; line-height:1.45; }
+.shoulder-practice-modes { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+.shoulder-practice-score { display:block; margin-top:10px; color:var(--accent); font-size:9px; letter-spacing:.1em; text-transform:uppercase; }
+.shoulder-practice h3 { margin:8px 0 4px; font-size:15px; line-height:1.25; }
+.shoulder-practice-feedback { min-height:30px; margin:8px 0; color:var(--soft); font-size:10px; line-height:1.45; }
+.shoulder-practice-feedback.good { color:#aeeac9; }
+.shoulder-practice-feedback.close { color:#f0d39b; }
+.shoulder-practice-feedback.bad { color:#f2b3aa; }
+.shoulder-practice-actions { display:flex; justify-content:flex-end; gap:7px; }
+.shoulder-practice-actions button:disabled { opacity:.35; cursor:default; }
+.shoulder-pinned-labels { position:absolute; inset:0; z-index:7; pointer-events:none; }
+.shoulder-pin-leaders { position:absolute; inset:0; width:100%; height:100%; z-index:6; pointer-events:none; }
+.shoulder-pin-leader { stroke:rgba(143,239,255,.42); stroke-width:1; vector-effect:non-scaling-stroke; }
+.shoulder-pin-label { position:absolute; width:176px; display:grid; gap:2px; text-align:left; pointer-events:auto; padding:8px 10px; border:1px solid rgba(143,239,255,.23); border-left:2px solid rgba(143,239,255,.74); border-radius:10px; background:rgba(7,11,15,.86); color:#f2f5f5; backdrop-filter:blur(16px); }
+.shoulder-pin-label span { color:#8fefff; font-size:7px; letter-spacing:.12em; text-transform:uppercase; }
+.shoulder-pin-label strong { font-size:10px; line-height:1.25; }
+.shoulder-pin-label small { color:var(--muted); font-size:7px; }
+@media (max-width:720px) {
+  .shoulder-grid { grid-template-columns:1fr; }
+  .shoulder-panel { max-height:58vh; }
+  .shoulder-pin-label { width:132px; }
+}
+'''
+    append_once(css, 'HOLOANATOMY SHOULDER v0.5', shoulder_css, 'shoulder v0.5 interface styles')
+
+    # Safety checks and static verification.
+    index_text = (holo/'index.html').read_text()
+    manifest_text = manifest.read_text()
+    if 'href="/styles.css"' in index_text or 'src="/src/app.js"' in index_text:
+        fail('production path regression detected in index.html')
+    if 'localUrl: `/anatomy/${file}.obj`' in manifest_text:
+        fail('production path regression detected in manifest.js')
+
+    js_files = [
+        holo/'src/app.js', holo/'src/engine/renderer.js', holo/'src/state/store.js', holo/'src/anatomy/manifest.js',
+        holo/'src/shoulder/model.js', holo/'src/shoulder/experience.js'
+    ]
+    for path in js_files:
+        run(['node','--check',str(path)], repo)
+    run(['node','--test',str(app/'tests/holoanatomy-shoulder-v05.node.test.mjs')], repo)
+
+    if args.validate:
+        run(['npm','test'], app)
+        run(['npm','run','typecheck'], app)
+        run(['npm','run','build'], app)
+
+    print('\nPASS: HoloAnatomy Shoulder v0.5 software upgrade applied.')
+    print('No new anatomy was fabricated or imported.')
+    print('Exact next step: inspect /playground/holoanatomy on the shoulder exhibit, then run full portfolio QA before deployment.')
+
+if __name__ == '__main__':
+    main()

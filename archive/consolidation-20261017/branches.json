@@ -1,0 +1,142 @@
+[
+  {
+    "ref": "backup-local-main-20260930",
+    "sha": "9a6b39020e5bcd1838ff701dd9459c7083eca43f",
+    "ancestorOfBaselineMain": false
+  },
+  {
+    "ref": "codex/rally-house-studio-polish-20260930",
+    "sha": "63df1bcad3fff942b71f8e8ca2ac057c48ff6bff",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "consolidation/asset-mine-20261017",
+    "sha": "4ada219a06682b76c7a230686bb40714a9fb9d3b",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "holoanatomy-deploy-20260917",
+    "sha": "31495850f14eedcd5eae4f178fb5887a7f6287d2",
+    "ancestorOfBaselineMain": false
+  },
+  {
+    "ref": "holoanatomy-final-deploy",
+    "sha": "441202d195cda34446929b230076c7701436a846",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "holoanatomy-prod-hotfix-20260917",
+    "sha": "a9f0b9167527ffc221e17285d65c3787509f2b2e",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "holoanatomy-shoulder-2-20260930",
+    "sha": "7d0f1359554dec8ef94fb85b8768d1b6975a0b36",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "holoanatomy-shoulder-v05",
+    "sha": "9a6b39020e5bcd1838ff701dd9459c7083eca43f",
+    "ancestorOfBaselineMain": false
+  },
+  {
+    "ref": "holoanatomy-shoulder-v05-clean-20260918",
+    "sha": "a9f0b9167527ffc221e17285d65c3787509f2b2e",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "holoanatomy-shoulder-v051-clean-20260918",
+    "sha": "a9f0b9167527ffc221e17285d65c3787509f2b2e",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "main",
+    "sha": "9a6b39020e5bcd1838ff701dd9459c7083eca43f",
+    "ancestorOfBaselineMain": false
+  },
+  {
+    "ref": "portfolio-human-copy-20260929",
+    "sha": "9a6b39020e5bcd1838ff701dd9459c7083eca43f",
+    "ancestorOfBaselineMain": false
+  },
+  {
+    "ref": "portfolio-human-copy-20260930",
+    "sha": "02f1cd4a257b8571dfd71f0c9bae8c63511ed72d",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "portfolio-webgl-upgrade-20261005",
+    "sha": "db9bb1e3d650f6094e40140b358424b841f10450",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "rally-house-polish-audit-20261004",
+    "sha": "1c95f7c78c24fc6c84e882fb999337f16e57b4f7",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "rally-house-production-hardening-20260915",
+    "sha": "d4b250fad2a2f8acd4b2dfc7522cdb99942b61b3",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "rally-house-v17-3-embodied-spectator-20260916",
+    "sha": "408378251ce3a7083c77bc6d84f4d6ac9be8edf3",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "rally-house-v17-contact-polish-20260915",
+    "sha": "d71ccf001ae570f32dcf2c835a52534919128972",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "resolve-portfolio-copy",
+    "sha": "4156cf49ac52952deb8a789832d3e037c4c6f580",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "origin",
+    "sha": "4ada219a06682b76c7a230686bb40714a9fb9d3b",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "origin/feat/replisome-motion-lab",
+    "sha": "97b7c268f08dd55d00ae4ba6c5c1553c6be1039a",
+    "ancestorOfBaselineMain": false
+  },
+  {
+    "ref": "origin/feat/replisome-playground",
+    "sha": "9ed2db5437bf0069226a8914b3b5550b35b4e0c0",
+    "ancestorOfBaselineMain": false
+  },
+  {
+    "ref": "origin/feat/replisome-visual-reasoning",
+    "sha": "ef14f70c1b92b1268e44c108fdfe04894c183239",
+    "ancestorOfBaselineMain": false
+  },
+  {
+    "ref": "origin/holoanatomy-deploy-20260917",
+    "sha": "31495850f14eedcd5eae4f178fb5887a7f6287d2",
+    "ancestorOfBaselineMain": false
+  },
+  {
+    "ref": "origin/main",
+    "sha": "4ada219a06682b76c7a230686bb40714a9fb9d3b",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "origin/rally-house-impact-20261009",
+    "sha": "53a793be8e7f27289a3fc5a67552590b6a47fa4c",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "origin/rally-house-production-hardening-20260915",
+    "sha": "d4b250fad2a2f8acd4b2dfc7522cdb99942b61b3",
+    "ancestorOfBaselineMain": true
+  },
+  {
+    "ref": "origin/rally-house-realism-proportions-20261017",
+    "sha": "8073949cd093dac7ead489a084167ffaea3f1666",
+    "ancestorOfBaselineMain": false
+  }
+]

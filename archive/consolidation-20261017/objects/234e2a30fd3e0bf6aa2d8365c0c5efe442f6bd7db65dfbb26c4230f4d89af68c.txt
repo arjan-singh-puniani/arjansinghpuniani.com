@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import { MODULE_MANIFESTS } from '../src/anatomy/manifest.js';
+const shoulder=MODULE_MANIFESTS.shoulder;const byId=new Map(shoulder.map(x=>[x.id,x]));
+test('SITS muscles are classified as muscles',()=>{for(const id of ['FJ1506','FJ1500','FJ1504','FJ1508'])assert.equal(byId.get(id)?.layer,'muscles',id)});
+test('shoulder arteries are classified as arteries',()=>{for(const id of ['FJ3579','FJ2268','FJ2303','FJ2298','FJ2273'])assert.equal(byId.get(id)?.layer,'arteries',id)});
+test('shoulder veins are classified as veins',()=>{for(const id of ['FJ2269','FJ2302','FJ2299','FJ2274'])assert.equal(byId.get(id)?.layer,'veins',id)});

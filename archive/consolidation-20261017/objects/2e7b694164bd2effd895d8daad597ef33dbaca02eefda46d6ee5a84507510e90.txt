@@ -1,0 +1,34 @@
+import type { Metadata } from "next";
+import { ContactForm } from "@/components/ContactForm";
+import { profile } from "@/content/profile";
+import { links } from "@/content/links";
+import { siteUrl } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Contact Arjan Singh Puniani about roles or collaborations in neural engineering, neurotechnology, research software, clinical research, or wearable sensing.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    type: "website",
+    url: `${siteUrl}/contact`,
+    title: "Contact Arjan Singh Puniani",
+    description:
+      "Contact Arjan Singh Puniani about neural engineering, neurotechnology, research software, clinical research, or wearable sensing.",
+    images: [{ url: "/og.png", alt: "Arjan Singh Puniani" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Arjan Singh Puniani",
+    description:
+      "Neural engineering, neurotechnology, research software, clinical research, and wearable sensing.",
+    images: ["/og.png"],
+  },
+};
+
+export default function Contact() {
+  return <>
+    <header className="page-hero"><div className="shell"><p className="eyebrow">Contact</p><h1>Get in touch.</h1><p>If you&apos;re working on something where my background could help, I&apos;d like to hear about it.</p></div></header>
+    <section className="section"><div className="shell contact-grid"><aside className="contact-fit"><p className="eyebrow">Good fit</p><h2>Research and engineering around neurotechnology and sensing.</h2><ul className="contact-fit-list"><li>Neural engineering and BCI experiments</li><li>Research software and scientific visualization</li><li>Neurotechnology and human factors</li><li>Wearable or biointegrated sensing</li></ul><p>I&apos;m especially interested in roles that connect research, engineering, and product work. I&apos;m open to relocating.</p><div className="contact-direct-links"><a className="text-link" href={`mailto:${profile.email}`}>Email directly ↗</a><a className="text-link" href={links.resume} download>Download CV ↗</a><a className="text-link" href={links.github} target="_blank" rel="noreferrer">GitHub ↗</a></div></aside><ContactForm/></div></section>
+  </>;
+}

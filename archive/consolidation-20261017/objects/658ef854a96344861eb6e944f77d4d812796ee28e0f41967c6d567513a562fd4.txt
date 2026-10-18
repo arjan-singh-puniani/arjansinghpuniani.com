@@ -1,0 +1,24 @@
+const VIEWS = Object.freeze({
+  cuff: {label:'Rotator cuff', visible:['FJ3384','FJ3362','FJ3368','FJ1506','FJ1500','FJ1504','FJ1508'], ghost:['FJ1467','FJ1468','FJ1513','FJ1478'], yaw:.72,pitch:.08,distance:2.48},
+  superior: {label:'Supraspinatus outlet', visible:['FJ3384','FJ3362','FJ3368','FJ1506'], ghost:['FJ1500','FJ1504','FJ1508'], yaw:-.28,pitch:.55,distance:2.45},
+  anterior: {label:'Anterior cuff', visible:['FJ3384','FJ3368','FJ1504','FJ1478'], ghost:['FJ1506','FJ3362'], yaw:-2.3,pitch:.05,distance:2.52},
+  vessels: {label:'Regional circulation', visible:['FJ3384','FJ3368','FJ3579','FJ2268','FJ2303','FJ2298','FJ2273','FJ2269','FJ2302','FJ2299','FJ2274'], ghost:['FJ1506','FJ1500','FJ1504','FJ1508'], yaw:-1.3,pitch:.02,distance:2.7}
+});
+
+export function setupShoulderStudio({state,renderer,controls}) {
+  const app=document.getElementById('app'), toolbar=document.getElementById('toolbar');
+  const button=document.createElement('button'); button.type='button'; button.id='shoulder-studio-button'; button.textContent='Cuff Studio'; button.hidden=state.module!=='shoulder';
+  toolbar.insertBefore(button,document.getElementById('section-button'));
+  const panel=document.createElement('section'); panel.className='popover chrome shoulder-studio-panel'; panel.hidden=true;
+  panel.innerHTML='<div class="popover-head"><strong>Rotator Cuff Studio</strong><span>Curated verified anatomy</span></div><div class="shoulder-studio-grid"></div><p class="shoulder-integrity">No tendon, labrum, bursa, capsule, ligament, or nerve is fabricated. Views use the verified meshes currently shipped with HoloAnatomy.</p>';
+  app.append(panel); const grid=panel.querySelector('.shoulder-studio-grid');
+  for(const view of Object.values(VIEWS)) { const b=document.createElement('button'); b.type='button'; b.innerHTML=`<strong>${view.label}</strong>`; b.onclick=()=>apply(view); grid.append(b); }
+  button.onclick=()=>{panel.hidden=!panel.hidden};
+  function apply(view){
+    const vis=new Set(view.visible), ghost=new Set(view.ghost); state.structureOverrides={};
+    for(const m of renderer.activeMeshes()) state.structureOverrides[m.part.id]=vis.has(m.part.id)?'visible':ghost.has(m.part.id)?'ghost':'hidden';
+    state.selectedId=null; state.isolatedId=null; renderer.camera.yaw=view.yaw; renderer.camera.pitch=view.pitch; renderer.camera.distance=view.distance; renderer.camera.target=[0,0,0];
+    controls.refreshSelection(); controls.renderLayers(); panel.hidden=true;
+  }
+  return {onModuleChanged(id){button.hidden=id!=='shoulder';if(id!=='shoulder')panel.hidden=true}};
+}

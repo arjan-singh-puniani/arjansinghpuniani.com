@@ -1,0 +1,18 @@
+{
+  "before": {
+    "medianFrameMs": 16.69999998807907,
+    "p95FrameMs": 17.5,
+    "medianSpatialMs": 0,
+    "p95SpatialMs": 0,
+    "drawCalls": 784,
+    "renderItems": 784
+  },
+  "after": {
+    "medianFrameMs": 16.599999994039536,
+    "p95FrameMs": 17.900000005960464,
+    "medianSpatialMs": 0.09999999403953552,
+    "p95SpatialMs": 0.19999998807907104,
+    "drawCalls": 785,
+    "renderItems": 785
+  }
+}

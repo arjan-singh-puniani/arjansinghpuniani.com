@@ -1,0 +1,13 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.evaluate: Error: Court entry failed 27 {"phase":"inactive","actors":[{"id":"coach","position":{"x":-0.6643132647398378,"y":0,"z":-6.303501288875382},"path":[{"x":-0.6643132647398378,"y":0,"z":-6.303501288875382}],"index":1,"major":false},{"id":"mika","position":{"x":1,"y":0,"z":-6.65},"path":[],"index":2,"major":false},{"id":"leo","position":{"x":9.998268714218222,"y":0,"z":-8.166230719068983},"path":[{"x":9.998243033653935,"y":0,"z":-8.146446609406727},{"x":10,"y":0,"z":-9.5},{"x":12.5,"y":0,"z":-9.5},{"x":11.5,"y":0,"z":-3.5},{"x":9.5,"y":0,"z":-2},{"x":8.1,"y":0,"z":2}],"index":1,"major":false},{"id":"nia","position":{"x":11.638318107870823,"y":0,"z":-8.212550573190995},"path":[],"index":1,"major":false}],"activities":[],"routes":[]}
+    at eval (eval at evaluate (:311:30), <anonymous>:8:46)
+    at UtilityScript.evaluate (<anonymous>:313:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at /private/tmp/repository-consolidation-20261017/rally-house-source-v16/qa/session-lifecycle.mjs:34:27 {
+  log: []
+}
+
+Node.js v22.23.2

@@ -1,0 +1,47 @@
+# Looking Glass light-field readiness
+
+Status researched: **2026-09-16**. No hardware has been purchased.
+
+## Current official path
+
+Looking Glass publishes a **WebXR Library (Beta)** for holographic web experiences. Its current software page lists Looking Glass Bridge plus Three.js v141+, Babylon.js v5+, or PlayCanvas as supported requirements/integrations:
+
+https://lookingglassfactory.com/software/webxr-library
+
+Looking Glass Bridge is the runtime service that communicates with light-field devices. The public page currently lists Bridge **2.6.3** and states macOS 12+ or Windows 10+ requirements, with a Linux installer also provided:
+
+https://lookingglassfactory.com/software/looking-glass-bridge
+
+The current WebXR product page states Chrome and Firefox support on Windows, macOS, and Linux and requires Looking Glass Bridge:
+
+https://lookingglassfactory.com/webxr
+
+## Quilt concept
+
+Looking Glass describes a quilt as a tiled set of conventional 2D views used in its light-field pipeline. Its current tutorial lists real-time quilt settings including:
+
+- Portrait: 8 × 6 views, 3360 × 3360 quilt
+- 16-inch: 5 × 9 views, 4096 × 4096 quilt
+- 32-inch: 5 × 9 views, 8192 × 8192 quilt
+
+Source: https://lookingglassfactory.com/tutorial/what-is-a-quilt
+
+## HoloAnatomy integration plan
+
+Do not fork the anatomy scene. Add a display adapter that reuses:
+
+- manifest
+- parsed geometry
+- material profiles
+- active layer state
+- section plane
+- explosion state
+
+Then either:
+
+1. migrate/bridge the scene into the current supported WebXR/Three.js route, or
+2. implement a dedicated multi-view/quilt renderer against the official SDK if direct WebGL integration is better documented at implementation time.
+
+## Gate before buying hardware
+
+Do not buy a display merely because multiview output can be generated. First finish desktop/mobile visual QA, then build a software multiview proof, verify current device/SDK compatibility, and only then choose hardware.

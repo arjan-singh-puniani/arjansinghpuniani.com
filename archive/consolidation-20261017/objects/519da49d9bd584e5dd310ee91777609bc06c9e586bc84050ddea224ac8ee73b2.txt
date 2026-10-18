@@ -1,0 +1,24 @@
+# Rally House RC3.4 — Cozy Atmosphere
+
+This cumulative hotfix accepts either the recovered RC3.2 source tree or RC3.3 cinematic Championship lineage and upgrades it to RC3.4.
+
+## What it changes
+
+- Cooler, quieter room-wide ambient light so warm fixtures become distinct destinations.
+- Practical lights remain subtly alive even during daytime and become substantially warmer after sunset/rain.
+- Local practical-light specular response for wood, ceramic, metal and glass.
+- Subtle club-only vignette / warm falloff layer; Championship suppresses it to 20% to preserve ball and court readability.
+- Quiet procedural room tone that starts only after a user gesture has already unlocked browser audio.
+- Tactile object interactions can cause one or two nearby free characters to glance/react, with automatic gaze release.
+- RC3.3 cinematic Championship transition is included cumulatively, so installing RC3.4 on RC3.2 also brings the cinematic camera work forward.
+
+## Install
+
+```bash
+cd "$HOME/Desktop/arjansinghpuniani.com"
+unzip -q Rally-House-Playable-RC3.4-cozy-atmosphere.zip
+python3 Rally-House-Playable-RC3.4-cozy-atmosphere/apply_hotfix.py "$PWD"
+python3 Rally-House-Playable-RC3.4-cozy-atmosphere/release_candidate.py "$PWD"
+```
+
+The installer is hash-gated and makes a rollback backup before writing. The release gate runs `npm ci` automatically if the recovered source is missing local TypeScript dependencies.

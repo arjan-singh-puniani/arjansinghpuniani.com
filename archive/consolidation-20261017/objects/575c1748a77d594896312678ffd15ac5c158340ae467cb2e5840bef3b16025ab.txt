@@ -1,0 +1,122 @@
+# Rally House v17 tactile-build patch
+
+This patch was built against the current `main` source in:
+
+- `rally-house-source-v16/`
+- deployed copy: `arjan-portfolio/public/rally-house/`
+
+It does **not** overwrite the deployed copy automatically.
+
+## What it changes
+
+- 16 data-driven decoration items in four categories.
+- Procedural geometry only. No new external asset pack or dependency.
+- Q / E rotation before placement. Shift+Q/E gives finer rotation.
+- Touch-friendly rotate-left / rotate-right buttons.
+- Rotation persists because it is stored directly on each `Placement`.
+- Save schema advances from v7 to v8 so new decor types and rotation validate after reload; existing v7 saves migrate forward.
+- Existing placed objects can be rotated, moved, or refunded.
+- Rotated placement footprints and navigation obstacles.
+- Coaching becomes the primary economy:
+  - new clubs start with 100 club funds;
+  - every completed lesson pays a flat +18 club funds;
+  - lesson quality still affects learning/XP, **not** the fee;
+  - daily intentions remain small secondary bonuses.
+- Tennis ball is guided to the **live racket contact point** near the contact window.
+- One authoritative contact event triggers:
+  - outgoing ball launch,
+  - racket impact animation,
+  - crisp synthesized tennis hit,
+  - green impact pulse,
+  - green speed trail.
+- Trail is velocity-gated and capped at 18 samples.
+- No new library.
+
+## Apply
+
+From the root of your local `arjansinghpuniani.com` repo:
+
+```bash
+python3 /path/to/apply_rally_house_v17.py
+```
+
+The script detects the repo root and creates:
+
+```text
+.rally-house-v17-backup/
+```
+
+It aborts if the inspected v16 baseline markers do not match.
+
+## Build and test
+
+```bash
+cd rally-house-source-v16
+npm test
+npm run build
+npm run serve
+```
+
+Open:
+
+```text
+http://localhost:8080/?debug=1
+```
+
+Check:
+
+1. Build opens with Tennis / Club / Green / Glow tabs.
+2. Select a prop.
+3. Move the pointer over floor.
+4. Press Q / E and confirm the preview rotates.
+5. Place it.
+6. Click it, rotate it after placement, reload, confirm orientation persists.
+7. Confirm invalid/crowded placements are rejected.
+8. Start coaching and complete one practice block. Confirm +18 club funds.
+9. Watch rally contact closely. The ball should visually meet the racket before launch.
+10. Confirm the hit sound and green contact pulse happen at that same instant.
+11. Confirm fast balls show a short green comet trail and slow/reset balls do not leave debris.
+12. Test narrow desktop and a phone-size viewport.
+
+## Copy the verified build into the Next.js portfolio
+
+Only after the source build is good:
+
+```bash
+cd ..
+cp rally-house-source-v16/index.html arjan-portfolio/public/rally-house/index.html
+cp rally-house-source-v16/style.css arjan-portfolio/public/rally-house/style.css
+rm -rf arjan-portfolio/public/rally-house/dist
+cp -R rally-house-source-v16/dist arjan-portfolio/public/rally-house/dist
+
+cd arjan-portfolio
+npm run typecheck
+npm run build
+```
+
+Then inspect:
+
+```bash
+git diff -- rally-house-source-v16 arjan-portfolio/public/rally-house
+```
+
+## Roll back
+
+Before committing:
+
+```bash
+cp -R .rally-house-v17-backup/rally-house-source-v16/. rally-house-source-v16/
+rm -rf rally-house-source-v16/src/content/DecorCatalog.ts
+```
+
+Or use Git if the work is on its own branch.
+
+## Economy rationale
+
+Yes: the money loop should come primarily from **teaching**.
+
+The useful loop is:
+
+`coach a lesson → earn club funds → make the academy more personal → coach again`
+
+A flat lesson fee is important. Paying more only when a cue "works" would train the player to choose a drill for currency rather than because it fits Lucresia's problem. Learning quality should affect progress and coach XP; the fee should reward showing up and teaching.

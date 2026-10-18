@@ -1,0 +1,35 @@
+{
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 800,
+      "status": "PASS"
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "status": "PASS"
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "pointerAndLiveAvailability": "PASS",
+  "embodiedBell": "PASS",
+  "additionalProps": [
+    "journal",
+    "proshop",
+    "cafe",
+    "bonsai"
+  ],
+  "championship": "PASS",
+  "reload": "PASS"
+}

@@ -1,0 +1,40 @@
+# Rally House v17.5 — Human Space + Championship View
+
+Implements relationship-aware proxemics, more natural idle silhouettes, and a contained arcade tennis mode.
+
+## Human space
+- New/familiar characters stand farther apart.
+- Warmth/familiarity/trust gradually reduce that distance without collapsing it.
+- Conversations use slight stagger/angle instead of rigid shoulder-to-shoulder anchors.
+- Player greetings, tea breaks, and EverydayLife scenes use the same spacing rules.
+
+## Championship View
+- Court context action: **Championship View**.
+- First to 7 points.
+- Behind-baseline camera.
+- WASD/arrows to move.
+- Hold Space to charge, release to swing.
+- Hold left/right while releasing to aim.
+- Touch controls on mobile.
+- Racket-contact launch, bright trail/impact burst, layered impact sound.
+- Background life simulation freezes while the arcade match is active, so CPU/frame budget goes to tennis.
+- Exit returns to the living club.
+
+## Apply
+Stop any running server with Control-C, then:
+
+```bash
+cd "$HOME/Desktop/arjansinghpuniani-hardening"
+python3 /path/to/apply_rally_house_v17_5.py
+cd rally-house-source-v16
+npm test
+```
+
+Only after tests pass:
+
+```bash
+npm run build
+npm run serve
+```
+
+Open `http://localhost:8080/?debug=1&v=175`.

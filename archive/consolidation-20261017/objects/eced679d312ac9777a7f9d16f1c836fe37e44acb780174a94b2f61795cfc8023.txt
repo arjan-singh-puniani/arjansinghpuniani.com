@@ -1,0 +1,32 @@
+
+    buildVisualProduction() {
+        // v18.3 art direction: raised props either occupy an already-blocked footprint
+        // or sit outside Navigation's x bounds. This prevents walk-through geometry.
+        const rb=(x,y,z,sx,sy,sz,c,rot=0,a=1,mat,noShadow=false)=>{this.rb(x,y,z,sx,sy,sz,c,rot,a,false,undefined,mat);if(noShadow)this.meshes[this.meshes.length-1].noShadow=true};
+        const add=(k,x,y,z,sx,sy,sz,c,rot=0,a=1,unlit=false,mat,noShadow=false)=>{this.add(k,x,y,z,sx,sy,sz,c,rot,a,unlit,undefined,mat);if(noShadow)this.meshes[this.meshes.length-1].noShadow=true};
+        const box=(x,y,z,sx,sy,sz,c,rot=0,a=1,mat,noShadow=false)=>add('box',x,y,z,sx,sy,sz,c,rot,a,false,mat,noShadow);
+
+        // Terrace roof rhythm. Supports align with existing spectator-row obstacles.
+        for(const x of [-2.6,1.0,4.6]){box(x,3.34,8.35,.09,3.05,.09,'#6d806f',0,1,'wood');box(x,4.82,8.05,.09,.09,.72,'#788b79',0,1,'wood')}
+        for(const z of [8.05,8.35,8.65])box(1.0,4.84,z,8.7,.07,.07,'#879787',0,1,'wood');
+        rb(1.0,.064,8.35,8.75,.045,1.05,'#d9c8ae',0,.50,'fabric',true);
+
+        // Seating sits on the three existing blocked terrace islands.
+        for(const x of [-2.6,1.0,4.6]){rb(x,.42,8.35,2.35,.24,.58,'#b98762',0,1,'wood');rb(x,.76,8.55,2.35,.58,.17,'#936c52',0,1,'wood')}
+
+        // Equipment details remain inside existing blocked court-side footprints.
+        for(const [x,z] of [[-1.4,-8.3],[6.7,-6.3]]){rb(x,.42,z,.82,.72,.58,'#67796d',0,1,'metal');for(const dx of [-.20,.20])add('sphere',x+dx,.78,z,.16,.16,.16,'#d7c95b',0,1,true,undefined,true);rb(x+.62,.13,z+.02,.48,.22,.78,'#657e8c',.12,1,'fabric',true)}
+
+        // Planting frames the plinth from outside the navigation bounds.
+        const shrubs=[[-12.68,-8.0,.70],[-12.68,-2.8,.70],[-12.68,3.6,.68],[12.68,-7.8,.70],[12.68,-1.5,.70],[12.68,6.3,.68]];
+        for(const [x,z,s] of shrubs)add('sphere',x,.70*s,z,1.02*s,.72*s,.90*s,'#789a76',0,1,false,'leaf',true);
+        for(const [x,z,s] of [[-12.72,-7.1,1.08],[-12.72,7.8,1.0],[12.72,-7.7,1.02],[12.72,7.9,1.06]]){add('cylinder',x,1.12*s,z,.22*s,2.24*s,.22*s,'#725846',0,1,false,'wood',true);add('sphere',x-.12*Math.sign(x)*s,2.48*s,z,1.62*s,.86*s,1.46*s,'#769875',0,1,false,'leaf',true)}
+
+        // Flat arrival graphics add structure without changing movement.
+        rb(0,.056,9.05,8.8,.035,.72,'#e8d8c1',0,.72,'matte',true);
+        // Sign sits inside an existing entrance/cubby obstacle.
+        rb(-10.35,1.12,8.05,1.55,1.58,.12,'#f3eadb',0,1,'wood');rb(-10.35,1.12,7.97,1.24,1.10,.06,'#456b59',0,1,'matte',true);
+
+        // Soft-goods accents sit on existing reception, cafe and lounge islands.
+        for(const [x,z,c] of [[-9.7,4.75,'#6f8794'],[-8.9,-5.75,'#d49a7c'],[8.5,5.65,'#758f78']])rb(x,1.25,z,.46,.16,.62,c,.12,1,'fabric',true);
+    }

@@ -1,0 +1,64 @@
+# HoloAnatomy execution report — 2026-09-17
+
+This is a materially stronger checkpoint than the prior foundation build because the real official anatomy archive has now been integrated.
+
+## Implemented
+
+- Standalone static product architecture with no npm dependencies.
+- 64-entry verified BodyParts3D head/neck manifest spanning skeleton, brain, arteries, veins, nerves, and muscle.
+- Official BodyParts3D Release 4.0 archive integrated locally from `isa_BP3D_4.0_obj_99.zip`.
+- 64 vendored OBJ meshes copied into `public/anatomy/` with required attribution.
+- OBJ parsing and indexed GPU geometry.
+- Perspective WebGL 2 renderer with medical material profiles and restrained Fresnel depth cues.
+- Mouse/touch orbit, wheel/pinch zoom, reset, fullscreen, keyboard controls.
+- Pointer-driven camera parallax.
+- GPU color picking, selection card, isolate and contextual ghosting.
+- Visible/Ghost/Hidden layer state.
+- Animated exploded-system view.
+- Sagittal/coronal/axial true shader clipping with movable plane.
+- Focus presentation mode.
+- High/Medium/Low rendering quality and automatic adaptive downshift.
+- Reduced-motion preference handling.
+- WebGL-init, context-loss, and missing-asset fallback states.
+- `?debug=1` development telemetry.
+- Asset vendoring tool now supports either direct DBCLS download or a user-supplied local archive path.
+- Static build/server/check scripts.
+- Architecture, provenance, budget, accessibility, performance, and light-field documentation.
+
+## Verified in this environment
+
+- Official 136 MB ZIP archive present and readable.
+- All 64 required FJ OBJ meshes found in the official archive.
+- Vendored local anatomy bundle created successfully.
+- 10 automated tests pass.
+- JavaScript syntax check passes for 16 modules.
+- Manifest validation passes for 64 unique verified mesh entries.
+- Static production build succeeds with vendored anatomy present.
+
+## Measured local asset bundle
+
+- Vendored anatomy meshes: 64
+- Total anatomy bytes: 22,420,850
+- Total vertices: 190,066
+- Total faces / triangles: 329,404
+
+## Still not verified here
+
+The remaining limitation is GPU/browser visual QA, not anatomy availability. This sandbox cannot produce a trustworthy WebGL visual certification run. Therefore this checkpoint still does **not** claim:
+
+- final judged visual quality against the target reference
+- sustained real-model FPS
+- mobile Safari behavior
+- clipping-surface quality on the actual meshes
+- Looking Glass hardware output
+
+## Exact next action on a normal Mac
+
+```bash
+cd holoanatomy
+npm test
+npm run check
+npm run dev
+```
+
+Then open `http://127.0.0.1:4173/?debug=1` and inspect the fully local head/neck composite.

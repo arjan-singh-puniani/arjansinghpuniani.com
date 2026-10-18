@@ -1,0 +1,115 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import hashlib
+import shutil
+from pathlib import Path
+
+PATCH_DIR = Path(__file__).resolve().parent
+PAYLOAD = PATCH_DIR / "payload" / "arjan-portfolio"
+BACKUP_NAME = ".portfolio-pre-static-cleanup-20260930"
+EXPECTED_BRANCH = "portfolio-human-copy-20260930"
+
+FILES = [
+    "src/app/page.tsx",
+    "src/app/home.module.css",
+    "src/components/SeizeFreezeHomeFeature.tsx",
+    "src/components/SeizeFreezeHomeFeature.module.css",
+    "src/app/playground/page.tsx",
+    "src/app/playground/playground.module.css",
+    "public/images/playground/anatomy-learner.webp",
+    "public/images/playground/endless-rally.webp",
+    "public/images/playground/pit-stop-simulator.webp",
+    "public/images/playground/cardio-visualizer.webp",
+]
+
+def branch_from_head(repo: Path) -> str:
+    head = (repo / ".git" / "HEAD").read_text().strip()
+    prefix = "ref: refs/heads/"
+    return head[len(prefix):] if head.startswith(prefix) else "(detached)"
+
+def sha(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+def validate(repo: Path) -> Path:
+    app = repo / "arjan-portfolio"
+    if not (repo / ".git" / "HEAD").exists():
+        raise SystemExit("STOP: repo root not found (.git/HEAD missing).")
+    branch = branch_from_head(repo)
+    print(f"Branch: {branch}")
+    if branch != EXPECTED_BRANCH:
+        raise SystemExit(f"STOP: expected branch {EXPECTED_BRANCH!r}, found {branch!r}.")
+    required = [
+        app / "src/app/page.tsx",
+        app / "src/app/playground/page.tsx",
+        app / "src/components/SeizeFreezeHomeFeature.tsx",
+    ]
+    for p in required:
+        if not p.exists():
+            raise SystemExit(f"STOP: missing expected file: {p}")
+    home = (app / "src/app/page.tsx").read_text()
+    play = (app / "src/app/playground/page.tsx").read_text()
+    if "Arjan Singh Puniani" not in home or "Selected projects" not in home:
+        raise SystemExit("STOP: homepage is not a recognized portfolio state.")
+    if "HoloAnatomy" not in play or "Pit Stop" not in play:
+        raise SystemExit("STOP: playground is not a recognized portfolio state.")
+    return app
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--repo", default=".")
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--check", action="store_true")
+    mode.add_argument("--apply", action="store_true")
+    args = parser.parse_args()
+
+    repo = Path(args.repo).resolve()
+    app = validate(repo)
+
+    if args.check:
+        print("Ready to apply static-clean portfolio pass.")
+        print("Homepage: removes ticker, metric strip, background/highlight sections, and RNEL/UCSF summary paragraph.")
+        print("Homepage: keeps ASP / 001, orbit, ECG line, SeizeFreeze, Conscious Active Inference, ReasonOS, and BCI case-study cards.")
+        print("SeizeFreeze: static image card; no sticky/scroll-driven image behavior.")
+        print("Playground: five simple outlined cards with concise copy and new thumbnails.")
+        print("No commit or push will be performed.")
+        return
+
+    backup = app / BACKUP_NAME
+    if backup.exists():
+        shutil.rmtree(backup)
+
+    for rel in FILES:
+        src = PAYLOAD / rel
+        dst = app / rel
+        if not src.exists():
+            raise SystemExit(f"STOP: patch payload missing {rel}")
+        if dst.exists():
+            b = backup / rel
+            b.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(dst, b)
+
+    for rel in FILES:
+        src = PAYLOAD / rel
+        dst = app / rel
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src, dst)
+
+    for rel in FILES:
+        if sha(PAYLOAD / rel) != sha(app / rel):
+            raise SystemExit(f"STOP: post-copy verification failed for {rel}")
+
+    print("Static-clean homepage + playground patch applied.")
+    print(f"Backup: arjan-portfolio/{BACKUP_NAME}")
+    print("Next:")
+    print("  cd arjan-portfolio")
+    print("  npm run lint")
+    print("  npm run typecheck")
+    print("  npm run test")
+    print("  npm run build")
+    print("  npm run dev")
+    print("Inspect / and /playground on desktop and mobile before committing.")
+
+if __name__ == "__main__":
+    main()

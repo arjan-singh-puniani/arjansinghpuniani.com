@@ -1,0 +1,2053 @@
+[
+  {
+    "root": "copy-resolution",
+    "area": "arjan-portfolio/tsconfig.tsbuildinfo",
+    "files": 1,
+    "bytes": 170535,
+    "classes": {
+      "E": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": ".DS_Store",
+    "files": 1,
+    "bytes": 12292,
+    "classes": {
+      "G": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": ".portfolio-visual-refresh-backup-20260930",
+    "files": 2,
+    "bytes": 11308,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "desktop",
+    "area": "HoloAnatomy_1.0_Candidate",
+    "files": 579,
+    "bytes": 81304016,
+    "classes": {
+      "D": 36,
+      "H": 2,
+      "E": 7,
+      "A": 534
+    },
+    "uniqueObjects": 34
+  },
+  {
+    "root": "desktop",
+    "area": "HoloAnatomy_1.0_Candidate.zip",
+    "files": 1,
+    "bytes": 24755399,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "HoloAnatomy_1.0_Candidate.zip!",
+    "files": 579,
+    "bytes": 81304016,
+    "classes": {
+      "D": 36,
+      "H": 2,
+      "E": 7,
+      "A": 534
+    },
+    "uniqueObjects": 34
+  },
+  {
+    "root": "desktop",
+    "area": "Rally-House-Playable-RC3.4-cozy-atmosphere",
+    "files": 28,
+    "bytes": 348172,
+    "classes": {
+      "D": 25,
+      "A": 1,
+      "H": 2
+    },
+    "uniqueObjects": 25
+  },
+  {
+    "root": "desktop",
+    "area": "Rally-House-Playable-RC3.4-cozy-atmosphere.zip",
+    "files": 1,
+    "bytes": 124196,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "Rally-House-Playable-RC3.4-cozy-atmosphere.zip!",
+    "files": 28,
+    "bytes": 348172,
+    "classes": {
+      "D": 25,
+      "A": 1,
+      "H": 2
+    },
+    "uniqueObjects": 25
+  },
+  {
+    "root": "desktop",
+    "area": "Rally-House-v18.3-Visual-Production.zip",
+    "files": 1,
+    "bytes": 8408,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "Rally-House-v18.3-Visual-Production.zip!",
+    "files": 8,
+    "bytes": 16531,
+    "classes": {
+      "D": 8
+    },
+    "uniqueObjects": 8
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio",
+    "files": 161,
+    "bytes": 26324492,
+    "classes": {
+      "H": 161
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/.DS_Store",
+    "files": 1,
+    "bytes": 14340,
+    "classes": {
+      "G": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/.portfolio-final-copy-backup-20260927/src",
+    "files": 10,
+    "bytes": 42218,
+    "classes": {
+      "D": 10
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/.portfolio-pre-locked-delight-20260930/src",
+    "files": 7,
+    "bytes": 42949,
+    "classes": {
+      "D": 7
+    },
+    "uniqueObjects": 6
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/.portfolio-pre-static-cleanup-20260930/src",
+    "files": 6,
+    "bytes": 37721,
+    "classes": {
+      "D": 6
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/ASSET_DECISIONS 2.md",
+    "files": 1,
+    "bytes": 918,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/CONTENT_AUDIT 2.md",
+    "files": 1,
+    "bytes": 18540,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/Documentation/.DS_Store",
+    "files": 1,
+    "bytes": 6148,
+    "classes": {
+      "G": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/FINAL_VALIDATION 2.md",
+    "files": 1,
+    "bytes": 12120,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/README 2.md",
+    "files": 1,
+    "bytes": 2433,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/SITE_AUDIT 2.md",
+    "files": 1,
+    "bytes": 10790,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/eslint.config 2.mjs",
+    "files": 1,
+    "bytes": 461,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/next-env.d 2.ts",
+    "files": 1,
+    "bytes": 262,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/next.config 2.ts",
+    "files": 1,
+    "bytes": 890,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/package 2.json",
+    "files": 1,
+    "bytes": 884,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/package-lock 2.json",
+    "files": 1,
+    "bytes": 217480,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/postcss.config 2.mjs",
+    "files": 1,
+    "bytes": 90,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/public/.DS_Store",
+    "files": 1,
+    "bytes": 10244,
+    "classes": {
+      "G": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/public/holoanatomy",
+    "files": 124,
+    "bytes": 15992682,
+    "classes": {
+      "D": 7,
+      "A": 117
+    },
+    "uniqueObjects": 7
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/public/holoanatomy-backup-20260930",
+    "files": 277,
+    "bytes": 40723991,
+    "classes": {
+      "A": 277
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/public/images",
+    "files": 1,
+    "bytes": 8196,
+    "classes": {
+      "G": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/public/rally-house",
+    "files": 28,
+    "bytes": 480275,
+    "classes": {
+      "D": 23,
+      "A": 5
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/src/.DS_Store",
+    "files": 1,
+    "bytes": 8196,
+    "classes": {
+      "G": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/tailwind.config 2.ts",
+    "files": 1,
+    "bytes": 238,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/tests/components.test 2.tsx",
+    "files": 1,
+    "bytes": 747,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/tests/content.test 2.ts",
+    "files": 1,
+    "bytes": 1377,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/tests/endless-rally.test 2.ts",
+    "files": 1,
+    "bytes": 13764,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/tests/reasonos-kernel.test 2.ts",
+    "files": 1,
+    "bytes": 2994,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/tests/setup 2.ts",
+    "files": 1,
+    "bytes": 43,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/tests/vector-tennis-controls.browser.mjs",
+    "files": 1,
+    "bytes": 2964,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/tsconfig 2.json",
+    "files": 1,
+    "bytes": 567,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/tsconfig.tsbuildinfo",
+    "files": 1,
+    "bytes": 154188,
+    "classes": {
+      "E": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/vitest.config 2.ts",
+    "files": 1,
+    "bytes": 275,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjansinghpuniani-final-human-copy-upgrade-20260927 (1).zip",
+    "files": 1,
+    "bytes": 29992,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjansinghpuniani-final-human-copy-upgrade-20260927 (1).zip!",
+    "files": 16,
+    "bytes": 65453,
+    "classes": {
+      "D": 14,
+      "A": 2
+    },
+    "uniqueObjects": 12
+  },
+  {
+    "root": "desktop",
+    "area": "arjansinghpuniani-locked-clean-delight-patch-20260930.zip",
+    "files": 1,
+    "bytes": 1094312,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjansinghpuniani-locked-clean-delight-patch-20260930.zip!",
+    "files": 13,
+    "bytes": 1126173,
+    "classes": {
+      "D": 9,
+      "A": 4
+    },
+    "uniqueObjects": 5
+  },
+  {
+    "root": "desktop",
+    "area": "arjansinghpuniani-qai-reasonos-visual-refresh-20260930.zip",
+    "files": 1,
+    "bytes": 3163609,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjansinghpuniani-qai-reasonos-visual-refresh-20260930.zip!",
+    "files": 6,
+    "bytes": 3195928,
+    "classes": {
+      "D": 4,
+      "A": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "desktop",
+    "area": "arjansinghpuniani-rollup-home-playground-qai-reasonos-20260930.zip",
+    "files": 1,
+    "bytes": 3663409,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjansinghpuniani-rollup-home-playground-qai-reasonos-20260930.zip!",
+    "files": 14,
+    "bytes": 3697330,
+    "classes": {
+      "D": 7,
+      "A": 7
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "desktop",
+    "area": "arjansinghpuniani-static-clean-home-playground-20260930.zip",
+    "files": 1,
+    "bytes": 508236,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjansinghpuniani-static-clean-home-playground-20260930.zip!",
+    "files": 12,
+    "bytes": 517753,
+    "classes": {
+      "D": 7,
+      "A": 5
+    },
+    "uniqueObjects": 4
+  },
+  {
+    "root": "desktop",
+    "area": "holo-v05-kit",
+    "files": 14,
+    "bytes": 104973,
+    "classes": {
+      "D": 13,
+      "H": 1
+    },
+    "uniqueObjects": 12
+  },
+  {
+    "root": "desktop",
+    "area": "holoanatomy-shoulder-v0.5-patch-kit 2.zip",
+    "files": 1,
+    "bytes": 33974,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "holoanatomy-shoulder-v0.5-patch-kit 2.zip!",
+    "files": 11,
+    "bytes": 84102,
+    "classes": {
+      "D": 10,
+      "H": 1
+    },
+    "uniqueObjects": 10
+  },
+  {
+    "root": "desktop",
+    "area": "holoanatomy-shoulder-v0.5-patch-kit.zip",
+    "files": 1,
+    "bytes": 33974,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "holoanatomy-shoulder-v0.5-patch-kit.zip!",
+    "files": 11,
+    "bytes": 84102,
+    "classes": {
+      "D": 10,
+      "H": 1
+    },
+    "uniqueObjects": 10
+  },
+  {
+    "root": "desktop",
+    "area": "holoanatomy-shoulder-v0.5.1-patch-kit.zip",
+    "files": 1,
+    "bytes": 34098,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "holoanatomy-shoulder-v0.5.1-patch-kit.zip!",
+    "files": 11,
+    "bytes": 84319,
+    "classes": {
+      "D": 10,
+      "H": 1
+    },
+    "uniqueObjects": 10
+  },
+  {
+    "root": "desktop",
+    "area": "portfolio-webgl-upgrade.zip",
+    "files": 1,
+    "bytes": 7629,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "portfolio-webgl-upgrade.zip!",
+    "files": 5,
+    "bytes": 17868,
+    "classes": {
+      "D": 5
+    },
+    "uniqueObjects": 5
+  },
+  {
+    "root": "desktop",
+    "area": "portfolio_locked_delight_patch",
+    "files": 13,
+    "bytes": 1126173,
+    "classes": {
+      "D": 9,
+      "A": 4
+    },
+    "uniqueObjects": 5
+  },
+  {
+    "root": "desktop",
+    "area": "portfolio_static_patch",
+    "files": 12,
+    "bytes": 517753,
+    "classes": {
+      "D": 7,
+      "A": 5
+    },
+    "uniqueObjects": 4
+  },
+  {
+    "root": "desktop",
+    "area": "portfolio_upgrade",
+    "files": 16,
+    "bytes": 65453,
+    "classes": {
+      "D": 14,
+      "A": 2
+    },
+    "uniqueObjects": 12
+  },
+  {
+    "root": "desktop",
+    "area": "portfolio_visual_refresh_patch",
+    "files": 6,
+    "bytes": 3195928,
+    "classes": {
+      "D": 4,
+      "A": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/ARCADE-FEEL-SYNC.json",
+    "files": 1,
+    "bytes": 2951,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/ARCADE-FEEL.md",
+    "files": 1,
+    "bytes": 3173,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/CHAMPIONSHIP.md",
+    "files": 1,
+    "bytes": 1675,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/CHARACTER-POLISH.md",
+    "files": 1,
+    "bytes": 754,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/IMPLEMENTATION-REPORT.md",
+    "files": 1,
+    "bytes": 8468,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/PLAYTEST-CHECKLIST.md",
+    "files": 1,
+    "bytes": 4848,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/README.md",
+    "files": 1,
+    "bytes": 4508,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/STUDIO-DELIVERY.json",
+    "files": 1,
+    "bytes": 20262,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/VALIDATION.md",
+    "files": 1,
+    "bytes": 6852,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/WORLD-AS-INTERFACE-IMPLEMENTATION.md",
+    "files": 1,
+    "bytes": 6614,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/WORLD-AS-INTERFACE-SYNC.json",
+    "files": 1,
+    "bytes": 3026,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/WORLD-AS-INTERFACE-VALIDATION.md",
+    "files": 1,
+    "bytes": 5443,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/championship.css",
+    "files": 1,
+    "bytes": 8086,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/dist/Game.js",
+    "files": 1,
+    "bytes": 124619,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/dist/animation",
+    "files": 1,
+    "bytes": 7175,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/dist/content",
+    "files": 1,
+    "bytes": 10473,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/dist/core",
+    "files": 1,
+    "bytes": 13099,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/dist/entities",
+    "files": 1,
+    "bytes": 78658,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/dist/rendering",
+    "files": 3,
+    "bytes": 39229,
+    "classes": {
+      "D": 2,
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/dist/simulation",
+    "files": 1,
+    "bytes": 3110,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/dist/tennis",
+    "files": 9,
+    "bytes": 76696,
+    "classes": {
+      "A": 4,
+      "D": 5
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/dist/ui",
+    "files": 5,
+    "bytes": 38626,
+    "classes": {
+      "D": 5
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/dist/world",
+    "files": 1,
+    "bytes": 56198,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/index.html",
+    "files": 1,
+    "bytes": 5012,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/package-lock.json",
+    "files": 1,
+    "bytes": 727,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/package.json",
+    "files": 1,
+    "bytes": 828,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/preview-cozy.webp",
+    "files": 1,
+    "bytes": 136614,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/arcade-feel",
+    "files": 5,
+    "bytes": 777146,
+    "classes": {
+      "H": 2,
+      "D": 3
+    },
+    "uniqueObjects": 3
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/arcade-feel.mjs",
+    "files": 1,
+    "bytes": 4243,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/ball-feel.mjs",
+    "files": 1,
+    "bytes": 2735,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/championship-smoke.mjs",
+    "files": 1,
+    "bytes": 4188,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/character-polish",
+    "files": 10,
+    "bytes": 4274424,
+    "classes": {
+      "H": 8,
+      "D": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/character-polish.mjs",
+    "files": 1,
+    "bytes": 1760,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/club-contact.mjs",
+    "files": 1,
+    "bytes": 2052,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/contact-trace.mjs",
+    "files": 1,
+    "bytes": 1669,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/serve.mjs",
+    "files": 1,
+    "bytes": 884,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/studio",
+    "files": 22,
+    "bytes": 7752385,
+    "classes": {
+      "A": 22
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/studio-browsers-chromium.png",
+    "files": 1,
+    "bytes": 268899,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/studio-browsers-firefox.png",
+    "files": 1,
+    "bytes": 232526,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/studio-browsers-webkit.png",
+    "files": 1,
+    "bytes": 438994,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/studio-browsers.json",
+    "files": 1,
+    "bytes": 2805,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/studio-matrix.mjs",
+    "files": 1,
+    "bytes": 5066,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/studio-objects.mjs",
+    "files": 1,
+    "bytes": 2398,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/studio-performance.mjs",
+    "files": 1,
+    "bytes": 1772,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/v15-long-variety.json",
+    "files": 1,
+    "bytes": 41414,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/v15-simulation.json",
+    "files": 1,
+    "bytes": 29091,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/v16-coaching-recovery.json",
+    "files": 1,
+    "bytes": 1961,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/v16-story-causality.json",
+    "files": 1,
+    "bytes": 730,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/world-before.mjs",
+    "files": 1,
+    "bytes": 797,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/world-final-check.mjs",
+    "files": 1,
+    "bytes": 2870,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/world-interface",
+    "files": 24,
+    "bytes": 21113274,
+    "classes": {
+      "H": 18,
+      "D": 6
+    },
+    "uniqueObjects": 6
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/world-interface.mjs",
+    "files": 1,
+    "bytes": 10280,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/qa/world-performance.mjs",
+    "files": 1,
+    "bytes": 1703,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/spatial.css",
+    "files": 1,
+    "bytes": 4270,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/src/Game.ts",
+    "files": 1,
+    "bytes": 103102,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/src/animation",
+    "files": 1,
+    "bytes": 7073,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/src/content",
+    "files": 1,
+    "bytes": 9492,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/src/core",
+    "files": 1,
+    "bytes": 10839,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/src/entities",
+    "files": 1,
+    "bytes": 66390,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/src/rendering",
+    "files": 3,
+    "bytes": 37138,
+    "classes": {
+      "D": 2,
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/src/simulation",
+    "files": 1,
+    "bytes": 3210,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/src/tennis",
+    "files": 9,
+    "bytes": 73243,
+    "classes": {
+      "D": 5,
+      "A": 4
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/src/ui",
+    "files": 5,
+    "bytes": 42243,
+    "classes": {
+      "D": 5
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/src/world",
+    "files": 1,
+    "bytes": 46337,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/style.css",
+    "files": 1,
+    "bytes": 15024,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/tests/arcade-feel.mjs",
+    "files": 1,
+    "bytes": 3296,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/tests/championship-controller.mjs",
+    "files": 1,
+    "bytes": 2598,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/tests/contact-interception.mjs",
+    "files": 1,
+    "bytes": 3355,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/tests/run.mjs",
+    "files": 1,
+    "bytes": 21045,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/tests/studio-polish.mjs",
+    "files": 1,
+    "bytes": 11364,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "rally-house-source-v16/tests/world-interface.mjs",
+    "files": 1,
+    "bytes": 2967,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": ".DS_Store",
+    "files": 1,
+    "bytes": 18436,
+    "classes": {
+      "G": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": ".rally-house-v17-1-toy-contact-backup-20260915-172218",
+    "files": 3,
+    "bytes": 77658,
+    "classes": {
+      "D": 3
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "hardening",
+    "area": ".rally-house-v17-2-readable-contact-backup-20260915-174933",
+    "files": 2,
+    "bytes": 75763,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "hardening",
+    "area": ".rally-house-v17-3-embodied-spectator-backup-20260916-113350",
+    "files": 1,
+    "bytes": 80819,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": ".rally-house-v17-4-1-scenegrammar-backup-20260916-131403",
+    "files": 1,
+    "bytes": 11403,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": ".rally-house-v17-4-cozy-life-backup-20260916-130857",
+    "files": 8,
+    "bytes": 190548,
+    "classes": {
+      "D": 5,
+      "A": 3
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": ".rally-house-v17-5-backup-20260916-173108",
+    "files": 6,
+    "bytes": 169814,
+    "classes": {
+      "D": 5,
+      "A": 1
+    },
+    "uniqueObjects": 3
+  },
+  {
+    "root": "hardening",
+    "area": ".rally-house-v17-5-backup-20260916-173114",
+    "files": 8,
+    "bytes": 187935,
+    "classes": {
+      "D": 8
+    },
+    "uniqueObjects": 8
+  },
+  {
+    "root": "hardening",
+    "area": ".rally-house-v17-5-backup-20260916-173122",
+    "files": 8,
+    "bytes": 187935,
+    "classes": {
+      "D": 8
+    },
+    "uniqueObjects": 8
+  },
+  {
+    "root": "hardening",
+    "area": ".rally-house-v17-backup",
+    "files": 9,
+    "bytes": 164736,
+    "classes": {
+      "D": 9
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "Photos ",
+    "files": 130,
+    "bytes": 261010179,
+    "classes": {
+      "C": 130
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "Photos .zip",
+    "files": 1,
+    "bytes": 258763591,
+    "classes": {
+      "C": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17-Patch-Kit",
+    "files": 2,
+    "bytes": 68579,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17-Patch-Kit.zip",
+    "files": 1,
+    "bytes": 21145,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17-Patch-Kit.zip!",
+    "files": 2,
+    "bytes": 68579,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.1-Toy-Contact-Patch-Kit",
+    "files": 2,
+    "bytes": 20324,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.1-Toy-Contact-Patch-Kit.zip",
+    "files": 1,
+    "bytes": 6450,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.1-Toy-Contact-Patch-Kit.zip!",
+    "files": 2,
+    "bytes": 20324,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.2-Readable-Contact-Patch-Kit",
+    "files": 2,
+    "bytes": 10664,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.2-Readable-Contact-Patch-Kit.zip",
+    "files": 1,
+    "bytes": 3955,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.2-Readable-Contact-Patch-Kit.zip!",
+    "files": 2,
+    "bytes": 10664,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.3-Embodied-Spectator-Patch-Kit",
+    "files": 2,
+    "bytes": 11387,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.3-Embodied-Spectator-Patch-Kit.zip",
+    "files": 1,
+    "bytes": 4195,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.3-Embodied-Spectator-Patch-Kit.zip!",
+    "files": 2,
+    "bytes": 11387,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.4-Cozy-Life-Patch-Kit",
+    "files": 2,
+    "bytes": 28670,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.4-Cozy-Life-Patch-Kit.zip",
+    "files": 1,
+    "bytes": 9255,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.4-Cozy-Life-Patch-Kit.zip!",
+    "files": 2,
+    "bytes": 28670,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.4.1-SceneGrammar-Hotfix",
+    "files": 2,
+    "bytes": 5912,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.4.1-SceneGrammar-Hotfix.zip",
+    "files": 1,
+    "bytes": 2554,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.4.1-SceneGrammar-Hotfix.zip!",
+    "files": 2,
+    "bytes": 5912,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.5-Human-Space-Championship",
+    "files": 4,
+    "bytes": 52747,
+    "classes": {
+      "D": 3,
+      "H": 1
+    },
+    "uniqueObjects": 3
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.5-Human-Space-Championship.zip",
+    "files": 1,
+    "bytes": 20869,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "Rally-House-v17.5-Human-Space-Championship.zip!",
+    "files": 4,
+    "bytes": 52747,
+    "classes": {
+      "D": 3,
+      "H": 1
+    },
+    "uniqueObjects": 3
+  },
+  {
+    "root": "hardening",
+    "area": "arjan-portfolio/.DS_Store",
+    "files": 1,
+    "bytes": 6148,
+    "classes": {
+      "G": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "arjan-portfolio/tsconfig.tsbuildinfo",
+    "files": 1,
+    "bytes": 150557,
+    "classes": {
+      "E": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "arjansinghpuniani-locked-clean-delight-patch-20260930.zip",
+    "files": 1,
+    "bytes": 1094312,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "arjansinghpuniani-locked-clean-delight-patch-20260930.zip!",
+    "files": 13,
+    "bytes": 1126173,
+    "classes": {
+      "D": 9,
+      "A": 4
+    },
+    "uniqueObjects": 5
+  },
+  {
+    "root": "hardening",
+    "area": "portfolio-webgl-upgrade.zip",
+    "files": 1,
+    "bytes": 7629,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "portfolio-webgl-upgrade.zip!",
+    "files": 5,
+    "bytes": 17868,
+    "classes": {
+      "D": 5
+    },
+    "uniqueObjects": 5
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-forensic-archive-20261010",
+    "files": 1401,
+    "bytes": 140445640,
+    "classes": {
+      "A": 961,
+      "D": 384,
+      "H": 43,
+      "G": 1,
+      "E": 12
+    },
+    "uniqueObjects": 91
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/.DS_Store",
+    "files": 1,
+    "bytes": 8196,
+    "classes": {
+      "G": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/dist/Game.js",
+    "files": 1,
+    "bytes": 109813,
+    "classes": {
+      "E": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/dist/animation",
+    "files": 2,
+    "bytes": 8622,
+    "classes": {
+      "E": 2
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/dist/content",
+    "files": 2,
+    "bytes": 13326,
+    "classes": {
+      "E": 2
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/dist/core",
+    "files": 1,
+    "bytes": 4353,
+    "classes": {
+      "E": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/dist/entities",
+    "files": 1,
+    "bytes": 75606,
+    "classes": {
+      "E": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/dist/simulation",
+    "files": 4,
+    "bytes": 48761,
+    "classes": {
+      "E": 4
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/dist/tennis",
+    "files": 1,
+    "bytes": 8002,
+    "classes": {
+      "E": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/package.json",
+    "files": 1,
+    "bytes": 679,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/qa/v15-long-variety.json",
+    "files": 1,
+    "bytes": 40237,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/qa/v15-simulation.json",
+    "files": 1,
+    "bytes": 26465,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/qa/v16-coaching-recovery.json",
+    "files": 1,
+    "bytes": 1961,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/qa/v16-story-causality.json",
+    "files": 1,
+    "bytes": 715,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/src/Game.ts",
+    "files": 1,
+    "bytes": 90289,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/src/animation",
+    "files": 2,
+    "bytes": 8638,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/src/content",
+    "files": 2,
+    "bytes": 12253,
+    "classes": {
+      "D": 2
+    },
+    "uniqueObjects": 2
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/src/core",
+    "files": 1,
+    "bytes": 3547,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/src/entities",
+    "files": 1,
+    "bytes": 63827,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/src/simulation",
+    "files": 4,
+    "bytes": 46222,
+    "classes": {
+      "D": 4
+    },
+    "uniqueObjects": 4
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/src/tennis",
+    "files": 1,
+    "bytes": 6769,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/style.css",
+    "files": 1,
+    "bytes": 16497,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/tests/cozy-life.mjs",
+    "files": 1,
+    "bytes": 2779,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  },
+  {
+    "root": "hardening",
+    "area": "rally-house-source-v16/tests/human-space-championship.mjs",
+    "files": 1,
+    "bytes": 2008,
+    "classes": {
+      "D": 1
+    },
+    "uniqueObjects": 1
+  }
+]

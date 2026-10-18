@@ -1,0 +1,92 @@
+#!/usr/bin/env python3
+"""Vendor only the verified BodyParts3D meshes used by HoloAnatomy.
+
+Downloads the official BodyParts3D Release 4.0 99%-reduced ISA OBJ archive,
+then extracts only FJ mesh IDs referenced by src/anatomy/manifest.js.
+No third-party mirror is used for the production asset bundle.
+"""
+from __future__ import annotations
+import os
+import re
+import shutil
+import sys
+import tempfile
+import urllib.request
+import zipfile
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+MANIFEST = ROOT / "src" / "anatomy" / "manifest.js"
+OUT = ROOT / "public" / "anatomy"
+URL = "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/isa_BP3D_4.0_obj_99.zip"
+ATTRIBUTION = "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International"
+
+
+def mesh_ids() -> list[str]:
+    text = MANIFEST.read_text(encoding="utf-8")
+    ids = sorted(set(re.findall(r"part\('(FJ[0-9]+M?)'", text)))
+    if not ids:
+        raise RuntimeError("No BodyParts3D mesh IDs found in manifest")
+    return ids
+
+
+def main() -> int:
+    ids = mesh_ids()
+    OUT.mkdir(parents=True, exist_ok=True)
+    requested = Path(sys.argv[1]).expanduser() if len(sys.argv) > 1 else None
+    env_archive = Path(os.environ["HOLOANATOMY_ARCHIVE"]).expanduser() if os.environ.get("HOLOANATOMY_ARCHIVE") else None
+    archive_source = requested or env_archive
+    print(f"HoloAnatomy: vendoring {len(ids)} verified BodyParts3D meshes")
+    print(f"Official source: {URL}")
+    with tempfile.TemporaryDirectory(prefix="holoanatomy-") as tmp:
+        if archive_source is not None:
+            archive = archive_source
+            if not archive.exists():
+                raise FileNotFoundError(f"Archive not found: {archive}")
+            print(f"Using local archive: {archive}")
+        else:
+            archive = Path(tmp) / "bodyparts3d.zip"
+            request = urllib.request.Request(URL, headers={"User-Agent": "HoloAnatomy/0.1 (+educational medical visualization)"})
+            with urllib.request.urlopen(request, timeout=120) as response, archive.open("wb") as fh:
+                total = response.headers.get("Content-Length")
+                copied = 0
+                while True:
+                    chunk = response.read(1024 * 1024)
+                    if not chunk:
+                        break
+                    fh.write(chunk)
+                    copied += len(chunk)
+                    if total:
+                        print(f"\rDownloaded {copied/1024/1024:.1f} / {int(total)/1024/1024:.1f} MiB", end="", flush=True)
+                print()
+
+        wanted = {f"{mesh}.obj": mesh for mesh in ids}
+        extracted: set[str] = set()
+        with zipfile.ZipFile(archive) as zf:
+            by_basename = {Path(name).name: name for name in zf.namelist() if name.lower().endswith(".obj")}
+            for basename, mesh in wanted.items():
+                member = by_basename.get(basename)
+                if not member:
+                    print(f"MISSING in official archive: {basename}", file=sys.stderr)
+                    continue
+                target = OUT / basename
+                with zf.open(member) as src, target.open("wb") as dst:
+                    shutil.copyfileobj(src, dst)
+                extracted.add(mesh)
+
+    missing = sorted(set(ids) - extracted)
+    (OUT / "ATTRIBUTION.txt").write_text(
+        f"{ATTRIBUTION}\n\nOfficial source: https://dbarchive.biosciencedbc.jp/en/bodyparts3d/\n"
+        "License: https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html\n",
+        encoding="utf-8",
+    )
+    if missing:
+        print("Missing mesh IDs: " + ", ".join(missing), file=sys.stderr)
+        return 2
+    print(f"Vendored {len(extracted)} meshes into {OUT}")
+    print(ATTRIBUTION)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

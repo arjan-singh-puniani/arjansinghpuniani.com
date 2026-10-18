@@ -1,0 +1,247 @@
+export const SHOULDER_IDS = Object.freeze({
+  scapula: 'FJ3384',
+  clavicle: 'FJ3362',
+  humerus: 'FJ3368',
+  supraspinatus: 'FJ1506',
+  infraspinatus: 'FJ1500',
+  subscapularis: 'FJ1504',
+  teresMinor: 'FJ1508',
+  deltoidAcromial: 'FJ1467',
+  deltoidClavicular: 'FJ1468',
+  deltoidSpinal: 'FJ1513',
+  bicepsLongHead: 'FJ1478',
+  subclavianArtery: 'FJ3579',
+  axillaryArtery: 'FJ2268',
+  suprascapularArtery: 'FJ2303',
+  subscapularArtery: 'FJ2298',
+  circumflexScapularArtery: 'FJ2273',
+  axillaryVein: 'FJ2269',
+  suprascapularVein: 'FJ2302',
+  subscapularVein: 'FJ2299',
+  circumflexScapularVein: 'FJ2274'
+});
+
+export const SHOULDER_BONES = Object.freeze([
+  SHOULDER_IDS.scapula,
+  SHOULDER_IDS.clavicle,
+  SHOULDER_IDS.humerus
+]);
+
+export const ROTATOR_CUFF_IDS = Object.freeze([
+  SHOULDER_IDS.supraspinatus,
+  SHOULDER_IDS.infraspinatus,
+  SHOULDER_IDS.teresMinor,
+  SHOULDER_IDS.subscapularis
+]);
+
+export const DELTOID_IDS = Object.freeze([
+  SHOULDER_IDS.deltoidAcromial,
+  SHOULDER_IDS.deltoidClavicular,
+  SHOULDER_IDS.deltoidSpinal
+]);
+
+export const SHOULDER_VESSEL_IDS = Object.freeze([
+  SHOULDER_IDS.subclavianArtery,
+  SHOULDER_IDS.axillaryArtery,
+  SHOULDER_IDS.suprascapularArtery,
+  SHOULDER_IDS.subscapularArtery,
+  SHOULDER_IDS.circumflexScapularArtery,
+  SHOULDER_IDS.axillaryVein,
+  SHOULDER_IDS.suprascapularVein,
+  SHOULDER_IDS.subscapularVein,
+  SHOULDER_IDS.circumflexScapularVein
+]);
+
+export const SHOULDER_MUSCLE_IDS = Object.freeze([
+  ...ROTATOR_CUFF_IDS,
+  ...DELTOID_IDS,
+  SHOULDER_IDS.bicepsLongHead
+]);
+
+export const SHOULDER_ALL_IDS = Object.freeze([
+  ...SHOULDER_BONES,
+  ...SHOULDER_MUSCLE_IDS,
+  ...SHOULDER_VESSEL_IDS
+]);
+
+export const SHOULDER_VIEWS = Object.freeze({
+  overview: {
+    label: 'Overview',
+    short: 'Cuff visible, deltoid ghosted, vessels retained as context.',
+    visible: [...SHOULDER_BONES, ...ROTATOR_CUFF_IDS, SHOULDER_IDS.bicepsLongHead],
+    ghost: [...DELTOID_IDS, ...SHOULDER_VESSEL_IDS],
+    hidden: [],
+    camera: { yaw: -0.42, pitch: 0.10, distance: 3.05 },
+    focus: [...SHOULDER_BONES, ...ROTATOR_CUFF_IDS]
+  },
+  posterior: {
+    label: 'Posterior cuff',
+    short: 'Infraspinatus and teres minor with scapular and humeral context.',
+    visible: [SHOULDER_IDS.scapula, SHOULDER_IDS.humerus, SHOULDER_IDS.infraspinatus, SHOULDER_IDS.teresMinor],
+    ghost: [SHOULDER_IDS.clavicle, SHOULDER_IDS.supraspinatus, SHOULDER_IDS.subscapularis, SHOULDER_IDS.bicepsLongHead],
+    hidden: [...DELTOID_IDS, ...SHOULDER_VESSEL_IDS],
+    camera: { yaw: 0.72, pitch: 0.10, distance: 2.72 },
+    focus: [SHOULDER_IDS.scapula, SHOULDER_IDS.humerus, SHOULDER_IDS.infraspinatus, SHOULDER_IDS.teresMinor]
+  },
+  superior: {
+    label: 'Superior cuff',
+    short: 'Supraspinatus with bony context. The acromion is part of the scapula mesh and is not separately selectable.',
+    visible: [SHOULDER_IDS.scapula, SHOULDER_IDS.clavicle, SHOULDER_IDS.humerus, SHOULDER_IDS.supraspinatus],
+    ghost: [SHOULDER_IDS.infraspinatus, SHOULDER_IDS.subscapularis, SHOULDER_IDS.teresMinor, SHOULDER_IDS.bicepsLongHead],
+    hidden: [...DELTOID_IDS, ...SHOULDER_VESSEL_IDS],
+    camera: { yaw: -0.30, pitch: 0.62, distance: 2.72 },
+    focus: [SHOULDER_IDS.scapula, SHOULDER_IDS.humerus, SHOULDER_IDS.supraspinatus]
+  },
+  anterior: {
+    label: 'Anterior cuff',
+    short: 'Subscapularis and long head of biceps with proximal humeral context.',
+    visible: [SHOULDER_IDS.scapula, SHOULDER_IDS.clavicle, SHOULDER_IDS.humerus, SHOULDER_IDS.subscapularis, SHOULDER_IDS.bicepsLongHead],
+    ghost: [SHOULDER_IDS.supraspinatus],
+    hidden: [SHOULDER_IDS.infraspinatus, SHOULDER_IDS.teresMinor, ...DELTOID_IDS, ...SHOULDER_VESSEL_IDS],
+    camera: { yaw: -2.35, pitch: 0.08, distance: 2.78 },
+    focus: [SHOULDER_IDS.scapula, SHOULDER_IDS.humerus, SHOULDER_IDS.subscapularis, SHOULDER_IDS.bicepsLongHead]
+  },
+  cuff: {
+    label: 'Rotator cuff',
+    short: 'All four cuff muscles emphasized together; superficial deltoid and vessels removed.',
+    visible: [...ROTATOR_CUFF_IDS],
+    ghost: [...SHOULDER_BONES, SHOULDER_IDS.bicepsLongHead],
+    hidden: [...DELTOID_IDS, ...SHOULDER_VESSEL_IDS],
+    camera: { yaw: -0.18, pitch: 0.08, distance: 2.55 },
+    focus: [...ROTATOR_CUFF_IDS, SHOULDER_IDS.humerus]
+  },
+  biceps: {
+    label: 'Biceps course',
+    short: 'Long head of biceps emphasized in source geometry. The dataset does not provide a separately segmented biceps tendon.',
+    visible: [SHOULDER_IDS.bicepsLongHead],
+    ghost: [...SHOULDER_BONES, ...ROTATOR_CUFF_IDS],
+    hidden: [...DELTOID_IDS, ...SHOULDER_VESSEL_IDS],
+    camera: { yaw: -2.10, pitch: 0.03, distance: 2.85 },
+    focus: [SHOULDER_IDS.bicepsLongHead, SHOULDER_IDS.humerus]
+  },
+  vascular: {
+    label: 'Vascular',
+    short: 'Axillary, suprascapular, subscapular and circumflex scapular vessels in skeletal context.',
+    visible: [...SHOULDER_VESSEL_IDS],
+    ghost: [...SHOULDER_BONES, ...ROTATOR_CUFF_IDS, SHOULDER_IDS.bicepsLongHead],
+    hidden: [...DELTOID_IDS],
+    camera: { yaw: -1.48, pitch: 0.05, distance: 3.00 },
+    focus: [...SHOULDER_VESSEL_IDS, SHOULDER_IDS.scapula, SHOULDER_IDS.humerus]
+  },
+  insertionContext: {
+    label: 'Insertion context',
+    short: 'Cuff and humerus shown together. No fabricated footprint polygons are added because this source does not contain separate footprint meshes.',
+    visible: [SHOULDER_IDS.humerus, ...ROTATOR_CUFF_IDS],
+    ghost: [SHOULDER_IDS.scapula, SHOULDER_IDS.clavicle, SHOULDER_IDS.bicepsLongHead],
+    hidden: [...DELTOID_IDS, ...SHOULDER_VESSEL_IDS],
+    camera: { yaw: -1.02, pitch: 0.12, distance: 2.42 },
+    focus: [SHOULDER_IDS.humerus, ...ROTATOR_CUFF_IDS]
+  }
+});
+
+export const SHOULDER_PEEL_STAGES = Object.freeze([
+  {
+    id: 'full',
+    label: 'Full context',
+    description: 'Cuff is visible; deltoid and vessels remain as ghosted spatial context.',
+    visible: [...SHOULDER_BONES, ...ROTATOR_CUFF_IDS, SHOULDER_IDS.bicepsLongHead],
+    ghost: [...DELTOID_IDS, ...SHOULDER_VESSEL_IDS],
+    hidden: []
+  },
+  {
+    id: 'deltoid-ghost',
+    label: 'Deltoid ghost',
+    description: 'Keep the deltoid as a translucent shell while exposing the cuff.',
+    visible: [...SHOULDER_BONES, ...ROTATOR_CUFF_IDS, SHOULDER_IDS.bicepsLongHead],
+    ghost: [...DELTOID_IDS, ...SHOULDER_VESSEL_IDS],
+    hidden: []
+  },
+  {
+    id: 'deltoid-off',
+    label: 'Deltoid removed',
+    description: 'Remove the three source deltoid components and preserve deep cuff context.',
+    visible: [...SHOULDER_BONES, ...ROTATOR_CUFF_IDS, SHOULDER_IDS.bicepsLongHead],
+    ghost: [...SHOULDER_VESSEL_IDS],
+    hidden: [...DELTOID_IDS]
+  },
+  {
+    id: 'cuff-focus',
+    label: 'Cuff focus',
+    description: 'Cuff stays strong, bones become ghosted, and superficial/vascular clutter is removed.',
+    visible: [...ROTATOR_CUFF_IDS],
+    ghost: [...SHOULDER_BONES, SHOULDER_IDS.bicepsLongHead],
+    hidden: [...DELTOID_IDS, ...SHOULDER_VESSEL_IDS]
+  },
+  {
+    id: 'bone',
+    label: 'Bone',
+    description: 'Source bones only. No capsule, labrum, bursa, or ligament geometry is fabricated.',
+    visible: [...SHOULDER_BONES],
+    ghost: [],
+    hidden: [...SHOULDER_MUSCLE_IDS, ...SHOULDER_VESSEL_IDS]
+  }
+]);
+
+export const SHOULDER_COMPARE_PAIRS = Object.freeze([
+  { id: 'supra-humerus', label: 'Supraspinatus + humerus', a: SHOULDER_IDS.supraspinatus, b: SHOULDER_IDS.humerus },
+  { id: 'infra-scapula', label: 'Infraspinatus + scapula', a: SHOULDER_IDS.infraspinatus, b: SHOULDER_IDS.scapula },
+  { id: 'subscap-humerus', label: 'Subscapularis + humerus', a: SHOULDER_IDS.subscapularis, b: SHOULDER_IDS.humerus },
+  { id: 'teres-scapula', label: 'Teres minor + scapula', a: SHOULDER_IDS.teresMinor, b: SHOULDER_IDS.scapula },
+  { id: 'biceps-humerus', label: 'Long head biceps + humerus', a: SHOULDER_IDS.bicepsLongHead, b: SHOULDER_IDS.humerus },
+  { id: 'axillary-vessels', label: 'Axillary artery + vein', a: SHOULDER_IDS.axillaryArtery, b: SHOULDER_IDS.axillaryVein }
+]);
+
+export const SHOULDER_LOCATE_IDS = Object.freeze([
+  SHOULDER_IDS.supraspinatus,
+  SHOULDER_IDS.infraspinatus,
+  SHOULDER_IDS.teresMinor,
+  SHOULDER_IDS.subscapularis,
+  SHOULDER_IDS.scapula,
+  SHOULDER_IDS.humerus,
+  SHOULDER_IDS.clavicle,
+  SHOULDER_IDS.bicepsLongHead,
+  SHOULDER_IDS.axillaryArtery,
+  SHOULDER_IDS.axillaryVein
+]);
+
+export const SHOULDER_REBUILD_IDS = Object.freeze([
+  SHOULDER_IDS.supraspinatus,
+  SHOULDER_IDS.infraspinatus,
+  SHOULDER_IDS.teresMinor,
+  SHOULDER_IDS.subscapularis,
+  SHOULDER_IDS.bicepsLongHead,
+  ...DELTOID_IDS
+]);
+
+export const SHOULDER_DATA_GAPS = Object.freeze([
+  'No separately segmented rotator-cuff tendon meshes are present in the current BodyParts3D shoulder manifest.',
+  'No separately segmented glenoid labrum is present in the current shoulder manifest.',
+  'No shoulder joint capsule or subacromial-subdeltoid bursa is present in the current shoulder manifest.',
+  'No coracoacromial, coracohumeral, or glenohumeral ligament meshes are present in the current shoulder manifest.',
+  'No axillary nerve, suprascapular nerve, or brachial-plexus shoulder component is present in the current shoulder manifest.',
+  'Acromion, coracoid, glenoid, greater tuberosity, lesser tuberosity, and bicipital groove are not separately selectable source meshes in the current exhibit.'
+]);
+
+export function buildStructureOverrides(allIds, visible = [], ghost = [], hidden = []) {
+  const overrides = Object.fromEntries(allIds.map(id => [id, 'ghost']));
+  for (const id of visible) if (allIds.includes(id)) overrides[id] = 'visible';
+  for (const id of ghost) if (allIds.includes(id)) overrides[id] = 'ghost';
+  for (const id of hidden) if (allIds.includes(id)) overrides[id] = 'hidden';
+  return overrides;
+}
+
+export function scoreRebuildDistance(distance) {
+  const d = Math.max(0, Number(distance) || 0);
+  if (d <= 0.18) return { grade: 'correct', label: 'Correct', complete: true };
+  if (d <= 0.32) return { grade: 'close', label: 'Close', complete: false };
+  return { grade: 'retry', label: 'Try again', complete: false };
+}
+
+export function chooseDifferentId(ids, previousId = null, rng = Math.random) {
+  const pool = ids.filter(Boolean);
+  if (!pool.length) return null;
+  const alternatives = pool.filter(id => id !== previousId);
+  const source = alternatives.length ? alternatives : pool;
+  const value = Math.max(0, Math.min(0.999999, Number(rng()) || 0));
+  return source[Math.floor(value * source.length)] || null;
+}

@@ -1,0 +1,27 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { ANATOMY_MANIFEST, BODY_PARTS_LICENSE, MODULES, MODULE_MANIFESTS, validateManifest } from '../src/anatomy/manifest.js';
+
+test('production anatomy manifest is internally valid',()=>{
+  assert.deepEqual(validateManifest(),[]);
+  assert.ok(ANATOMY_MANIFEST.length>=250);
+  assert.ok(ANATOMY_MANIFEST.every(x=>/^FJ\d+M?$/.test(x.id)));
+  assert.ok(ANATOMY_MANIFEST.every(x=>/^FMA\d+$/.test(x.fma)));
+});
+
+test('manifest includes core head and neck systems',()=>{
+  const layers=new Set(ANATOMY_MANIFEST.map(x=>x.layer));
+  for(const layer of ['skeleton','brain','arteries','veins','nerves','muscles']) assert.ok(layers.has(layer));
+  assert.equal(BODY_PARTS_LICENSE.short,'CC BY 4.0');
+});
+
+
+test('manifest exposes three production anatomy exhibits',()=>{
+  assert.deepEqual(Object.keys(MODULES),['head-neck','shoulder','heart']);
+  assert.ok(MODULE_MANIFESTS['head-neck'].length>=90);
+  assert.ok(MODULE_MANIFESTS.shoulder.some(x=>x.name.includes('supraspinatus')));
+  assert.ok(MODULE_MANIFESTS.shoulder.some(x=>x.name.includes('subscapularis')));
+  assert.ok(MODULE_MANIFESTS.heart.some(x=>x.name==='Trunk of left coronary artery'));
+  assert.ok(MODULE_MANIFESTS.heart.some(x=>x.name==='Ascending aorta'));
+  assert.ok(MODULE_MANIFESTS.heart.some(x=>x.name==='Pulmonary trunk'));
+});

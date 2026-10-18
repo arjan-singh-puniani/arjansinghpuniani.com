@@ -1,0 +1,17 @@
+# Prototype budget
+
+Hard ceiling: **$1,000 USD**
+
+| Item | Status | Cost | Reason | Free alternative | Approved? |
+|---|---|---:|---|---|---|
+| HoloAnatomy software stack | Implemented | $0 | Browser renderer and tooling | N/A | Yes |
+| BodyParts3D anatomy | Selected | $0 | Verified mesh anatomy under current CC BY 4.0 terms | N/A | Yes |
+| Blender | Not required for current V1 | $0 | Future mesh optimization if needed | Current OBJ pipeline | N/A |
+| Static hosting | Not purchased | $0 | Can deploy later | GitHub Pages / existing host | No purchase |
+| Looking Glass hardware | Deferred | $0 | Physical light-field validation later | Standard/parallax browser mode | No |
+| Paid anatomical assets | Not required | $0 | No need yet | BodyParts3D | No |
+
+**Running total spent: $0**  
+**Remaining prototype budget: $1,000**
+
+No purchase is required for the current browser prototype.

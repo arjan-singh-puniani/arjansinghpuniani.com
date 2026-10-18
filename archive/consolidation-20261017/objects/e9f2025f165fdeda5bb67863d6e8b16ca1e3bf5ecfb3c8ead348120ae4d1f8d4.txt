@@ -1,0 +1,1838 @@
+{
+  "totals": {
+    "uniqueMeshes": 261,
+    "bytes": 40413488,
+    "vertices": 347659,
+    "faces": 596178,
+    "triangles": 596178
+  },
+  "files": [
+    {
+      "id": "FJ1283",
+      "bytes": 18117,
+      "vertices": 169,
+      "faces": 290,
+      "triangles": 290
+    },
+    {
+      "id": "FJ1288",
+      "bytes": 10334,
+      "vertices": 94,
+      "faces": 180,
+      "triangles": 180
+    },
+    {
+      "id": "FJ1290",
+      "bytes": 73828,
+      "vertices": 631,
+      "faces": 1258,
+      "triangles": 1258
+    },
+    {
+      "id": "FJ1293",
+      "bytes": 125313,
+      "vertices": 1286,
+      "faces": 1654,
+      "triangles": 1654
+    },
+    {
+      "id": "FJ1296",
+      "bytes": 14975,
+      "vertices": 138,
+      "faces": 250,
+      "triangles": 250
+    },
+    {
+      "id": "FJ1300",
+      "bytes": 116796,
+      "vertices": 1014,
+      "faces": 1944,
+      "triangles": 1944
+    },
+    {
+      "id": "FJ1310",
+      "bytes": 53889,
+      "vertices": 503,
+      "faces": 834,
+      "triangles": 834
+    },
+    {
+      "id": "FJ1311",
+      "bytes": 16034,
+      "vertices": 164,
+      "faces": 230,
+      "triangles": 230
+    },
+    {
+      "id": "FJ1312",
+      "bytes": 104567,
+      "vertices": 890,
+      "faces": 1776,
+      "triangles": 1776
+    },
+    {
+      "id": "FJ1313",
+      "bytes": 115439,
+      "vertices": 1027,
+      "faces": 1860,
+      "triangles": 1860
+    },
+    {
+      "id": "FJ1315",
+      "bytes": 15033,
+      "vertices": 151,
+      "faces": 222,
+      "triangles": 222
+    },
+    {
+      "id": "FJ1318",
+      "bytes": 20141,
+      "vertices": 202,
+      "faces": 294,
+      "triangles": 294
+    },
+    {
+      "id": "FJ1319",
+      "bytes": 44470,
+      "vertices": 461,
+      "faces": 602,
+      "triangles": 602
+    },
+    {
+      "id": "FJ1321",
+      "bytes": 59316,
+      "vertices": 611,
+      "faces": 810,
+      "triangles": 810
+    },
+    {
+      "id": "FJ1325",
+      "bytes": 158055,
+      "vertices": 1321,
+      "faces": 2598,
+      "triangles": 2598
+    },
+    {
+      "id": "FJ1326",
+      "bytes": 143634,
+      "vertices": 1222,
+      "faces": 2358,
+      "triangles": 2358
+    },
+    {
+      "id": "FJ1330",
+      "bytes": 167022,
+      "vertices": 1399,
+      "faces": 2720,
+      "triangles": 2720
+    },
+    {
+      "id": "FJ1333",
+      "bytes": 15735,
+      "vertices": 154,
+      "faces": 236,
+      "triangles": 236
+    },
+    {
+      "id": "FJ1339",
+      "bytes": 14148,
+      "vertices": 125,
+      "faces": 246,
+      "triangles": 246
+    },
+    {
+      "id": "FJ1341",
+      "bytes": 74457,
+      "vertices": 631,
+      "faces": 1258,
+      "triangles": 1258
+    },
+    {
+      "id": "FJ1344",
+      "bytes": 117443,
+      "vertices": 1182,
+      "faces": 1570,
+      "triangles": 1570
+    },
+    {
+      "id": "FJ1347",
+      "bytes": 16892,
+      "vertices": 166,
+      "faces": 250,
+      "triangles": 250
+    },
+    {
+      "id": "FJ1351",
+      "bytes": 119848,
+      "vertices": 1039,
+      "faces": 1958,
+      "triangles": 1958
+    },
+    {
+      "id": "FJ1361",
+      "bytes": 53214,
+      "vertices": 507,
+      "faces": 786,
+      "triangles": 786
+    },
+    {
+      "id": "FJ1362",
+      "bytes": 17565,
+      "vertices": 181,
+      "faces": 240,
+      "triangles": 240
+    },
+    {
+      "id": "FJ1363",
+      "bytes": 105301,
+      "vertices": 890,
+      "faces": 1776,
+      "triangles": 1776
+    },
+    {
+      "id": "FJ1364",
+      "bytes": 117132,
+      "vertices": 1041,
+      "faces": 1858,
+      "triangles": 1858
+    },
+    {
+      "id": "FJ1366",
+      "bytes": 13962,
+      "vertices": 142,
+      "faces": 200,
+      "triangles": 200
+    },
+    {
+      "id": "FJ1369",
+      "bytes": 21999,
+      "vertices": 211,
+      "faces": 332,
+      "triangles": 332
+    },
+    {
+      "id": "FJ1370",
+      "bytes": 46865,
+      "vertices": 476,
+      "faces": 638,
+      "triangles": 638
+    },
+    {
+      "id": "FJ1372",
+      "bytes": 60266,
+      "vertices": 593,
+      "faces": 848,
+      "triangles": 848
+    },
+    {
+      "id": "FJ1376",
+      "bytes": 159992,
+      "vertices": 1332,
+      "faces": 2598,
+      "triangles": 2598
+    },
+    {
+      "id": "FJ1377",
+      "bytes": 144957,
+      "vertices": 1225,
+      "faces": 2358,
+      "triangles": 2358
+    },
+    {
+      "id": "FJ1381",
+      "bytes": 169927,
+      "vertices": 1405,
+      "faces": 2758,
+      "triangles": 2758
+    },
+    {
+      "id": "FJ1467",
+      "bytes": 92591,
+      "vertices": 916,
+      "faces": 1300,
+      "triangles": 1300
+    },
+    {
+      "id": "FJ1468",
+      "bytes": 223657,
+      "vertices": 2592,
+      "faces": 2206,
+      "triangles": 2206
+    },
+    {
+      "id": "FJ1478",
+      "bytes": 105386,
+      "vertices": 1053,
+      "faces": 1426,
+      "triangles": 1426
+    },
+    {
+      "id": "FJ1500",
+      "bytes": 69844,
+      "vertices": 743,
+      "faces": 866,
+      "triangles": 866
+    },
+    {
+      "id": "FJ1504",
+      "bytes": 231733,
+      "vertices": 2775,
+      "faces": 2092,
+      "triangles": 2092
+    },
+    {
+      "id": "FJ1506",
+      "bytes": 76172,
+      "vertices": 843,
+      "faces": 878,
+      "triangles": 878
+    },
+    {
+      "id": "FJ1508",
+      "bytes": 38012,
+      "vertices": 392,
+      "faces": 506,
+      "triangles": 506
+    },
+    {
+      "id": "FJ1513",
+      "bytes": 157136,
+      "vertices": 1665,
+      "faces": 1900,
+      "triangles": 1900
+    },
+    {
+      "id": "FJ1573",
+      "bytes": 718388,
+      "vertices": 6210,
+      "faces": 10224,
+      "triangles": 10224
+    },
+    {
+      "id": "FJ1595",
+      "bytes": 755824,
+      "vertices": 6642,
+      "faces": 10344,
+      "triangles": 10344
+    },
+    {
+      "id": "FJ1682",
+      "bytes": 75967,
+      "vertices": 650,
+      "faces": 1272,
+      "triangles": 1272
+    },
+    {
+      "id": "FJ1682M",
+      "bytes": 75305,
+      "vertices": 650,
+      "faces": 1272,
+      "triangles": 1272
+    },
+    {
+      "id": "FJ1725",
+      "bytes": 52434,
+      "vertices": 489,
+      "faces": 800,
+      "triangles": 800
+    },
+    {
+      "id": "FJ1725M",
+      "bytes": 52013,
+      "vertices": 489,
+      "faces": 800,
+      "triangles": 800
+    },
+    {
+      "id": "FJ1732",
+      "bytes": 236788,
+      "vertices": 2048,
+      "faces": 3588,
+      "triangles": 3588
+    },
+    {
+      "id": "FJ1733",
+      "bytes": 239530,
+      "vertices": 2084,
+      "faces": 3554,
+      "triangles": 3554
+    },
+    {
+      "id": "FJ1744",
+      "bytes": 218647,
+      "vertices": 1927,
+      "faces": 3290,
+      "triangles": 3290
+    },
+    {
+      "id": "FJ1745",
+      "bytes": 220234,
+      "vertices": 1928,
+      "faces": 3292,
+      "triangles": 3292
+    },
+    {
+      "id": "FJ1746",
+      "bytes": 177780,
+      "vertices": 1573,
+      "faces": 2732,
+      "triangles": 2732
+    },
+    {
+      "id": "FJ1747",
+      "bytes": 182921,
+      "vertices": 1610,
+      "faces": 2768,
+      "triangles": 2768
+    },
+    {
+      "id": "FJ1769",
+      "bytes": 392219,
+      "vertices": 3196,
+      "faces": 6036,
+      "triangles": 6036
+    },
+    {
+      "id": "FJ1772",
+      "bytes": 146521,
+      "vertices": 1251,
+      "faces": 2376,
+      "triangles": 2376
+    },
+    {
+      "id": "FJ1773",
+      "bytes": 141140,
+      "vertices": 1194,
+      "faces": 2336,
+      "triangles": 2336
+    },
+    {
+      "id": "FJ1775",
+      "bytes": 697135,
+      "vertices": 5764,
+      "faces": 10304,
+      "triangles": 10304
+    },
+    {
+      "id": "FJ1781",
+      "bytes": 1579646,
+      "vertices": 12098,
+      "faces": 23818,
+      "triangles": 23818
+    },
+    {
+      "id": "FJ1782",
+      "bytes": 100051,
+      "vertices": 853,
+      "faces": 1702,
+      "triangles": 1702
+    },
+    {
+      "id": "FJ1787",
+      "bytes": 226086,
+      "vertices": 1973,
+      "faces": 3416,
+      "triangles": 3416
+    },
+    {
+      "id": "FJ1788",
+      "bytes": 224095,
+      "vertices": 1960,
+      "faces": 3326,
+      "triangles": 3326
+    },
+    {
+      "id": "FJ1789",
+      "bytes": 174631,
+      "vertices": 1528,
+      "faces": 2710,
+      "triangles": 2710
+    },
+    {
+      "id": "FJ1790",
+      "bytes": 179357,
+      "vertices": 1563,
+      "faces": 2754,
+      "triangles": 2754
+    },
+    {
+      "id": "FJ1791",
+      "bytes": 293610,
+      "vertices": 2538,
+      "faces": 4390,
+      "triangles": 4390
+    },
+    {
+      "id": "FJ1792",
+      "bytes": 307991,
+      "vertices": 2625,
+      "faces": 4564,
+      "triangles": 4564
+    },
+    {
+      "id": "FJ1797",
+      "bytes": 236182,
+      "vertices": 2033,
+      "faces": 3604,
+      "triangles": 3604
+    },
+    {
+      "id": "FJ1798",
+      "bytes": 238993,
+      "vertices": 2045,
+      "faces": 3604,
+      "triangles": 3604
+    },
+    {
+      "id": "FJ1800",
+      "bytes": 270175,
+      "vertices": 2336,
+      "faces": 4042,
+      "triangles": 4042
+    },
+    {
+      "id": "FJ1801",
+      "bytes": 274741,
+      "vertices": 2382,
+      "faces": 4042,
+      "triangles": 4042
+    },
+    {
+      "id": "FJ1819",
+      "bytes": 146608,
+      "vertices": 1242,
+      "faces": 2378,
+      "triangles": 2378
+    },
+    {
+      "id": "FJ1820",
+      "bytes": 142055,
+      "vertices": 1195,
+      "faces": 2332,
+      "triangles": 2332
+    },
+    {
+      "id": "FJ1822",
+      "bytes": 727798,
+      "vertices": 6179,
+      "faces": 10346,
+      "triangles": 10346
+    },
+    {
+      "id": "FJ1827",
+      "bytes": 44651,
+      "vertices": 381,
+      "faces": 758,
+      "triangles": 758
+    },
+    {
+      "id": "FJ1830",
+      "bytes": 1598659,
+      "vertices": 12226,
+      "faces": 23882,
+      "triangles": 23882
+    },
+    {
+      "id": "FJ1831",
+      "bytes": 401304,
+      "vertices": 3281,
+      "faces": 6060,
+      "triangles": 6060
+    },
+    {
+      "id": "FJ1833",
+      "bytes": 432276,
+      "vertices": 3625,
+      "faces": 6452,
+      "triangles": 6452
+    },
+    {
+      "id": "FJ1834",
+      "bytes": 437650,
+      "vertices": 3671,
+      "faces": 6450,
+      "triangles": 6450
+    },
+    {
+      "id": "FJ1835",
+      "bytes": 366912,
+      "vertices": 3181,
+      "faces": 5364,
+      "triangles": 5364
+    },
+    {
+      "id": "FJ1836",
+      "bytes": 383555,
+      "vertices": 3241,
+      "faces": 5640,
+      "triangles": 5640
+    },
+    {
+      "id": "FJ1841",
+      "bytes": 149885,
+      "vertices": 1323,
+      "faces": 2344,
+      "triangles": 2344
+    },
+    {
+      "id": "FJ1842",
+      "bytes": 152420,
+      "vertices": 1368,
+      "faces": 2314,
+      "triangles": 2314
+    },
+    {
+      "id": "FJ1931",
+      "bytes": 142151,
+      "vertices": 1229,
+      "faces": 2290,
+      "triangles": 2290
+    },
+    {
+      "id": "FJ2268",
+      "bytes": 108257,
+      "vertices": 915,
+      "faces": 1826,
+      "triangles": 1826
+    },
+    {
+      "id": "FJ2269",
+      "bytes": 130875,
+      "vertices": 1112,
+      "faces": 2146,
+      "triangles": 2146
+    },
+    {
+      "id": "FJ2273",
+      "bytes": 46379,
+      "vertices": 399,
+      "faces": 778,
+      "triangles": 778
+    },
+    {
+      "id": "FJ2274",
+      "bytes": 58129,
+      "vertices": 505,
+      "faces": 960,
+      "triangles": 960
+    },
+    {
+      "id": "FJ2298",
+      "bytes": 48481,
+      "vertices": 431,
+      "faces": 786,
+      "triangles": 786
+    },
+    {
+      "id": "FJ2299",
+      "bytes": 30853,
+      "vertices": 265,
+      "faces": 526,
+      "triangles": 526
+    },
+    {
+      "id": "FJ2302",
+      "bytes": 118362,
+      "vertices": 1003,
+      "faces": 1986,
+      "triangles": 1986
+    },
+    {
+      "id": "FJ2303",
+      "bytes": 117581,
+      "vertices": 1027,
+      "faces": 1912,
+      "triangles": 1912
+    },
+    {
+      "id": "FJ2417",
+      "bytes": 78664,
+      "vertices": 708,
+      "faces": 1272,
+      "triangles": 1272
+    },
+    {
+      "id": "FJ2418",
+      "bytes": 54778,
+      "vertices": 532,
+      "faces": 816,
+      "triangles": 816
+    },
+    {
+      "id": "FJ2419",
+      "bytes": 59575,
+      "vertices": 580,
+      "faces": 882,
+      "triangles": 882
+    },
+    {
+      "id": "FJ2420",
+      "bytes": 495300,
+      "vertices": 4052,
+      "faces": 7558,
+      "triangles": 7558
+    },
+    {
+      "id": "FJ2421",
+      "bytes": 532771,
+      "vertices": 4282,
+      "faces": 8160,
+      "triangles": 8160
+    },
+    {
+      "id": "FJ2422",
+      "bytes": 102171,
+      "vertices": 879,
+      "faces": 1722,
+      "triangles": 1722
+    },
+    {
+      "id": "FJ2423",
+      "bytes": 113621,
+      "vertices": 973,
+      "faces": 1918,
+      "triangles": 1918
+    },
+    {
+      "id": "FJ2424",
+      "bytes": 139097,
+      "vertices": 1193,
+      "faces": 2244,
+      "triangles": 2244
+    },
+    {
+      "id": "FJ2425",
+      "bytes": 65824,
+      "vertices": 587,
+      "faces": 1064,
+      "triangles": 1064
+    },
+    {
+      "id": "FJ2426",
+      "bytes": 57407,
+      "vertices": 526,
+      "faces": 914,
+      "triangles": 914
+    },
+    {
+      "id": "FJ2427",
+      "bytes": 62530,
+      "vertices": 573,
+      "faces": 996,
+      "triangles": 996
+    },
+    {
+      "id": "FJ2428",
+      "bytes": 2660930,
+      "vertices": 21053,
+      "faces": 37442,
+      "triangles": 37442
+    },
+    {
+      "id": "FJ2429",
+      "bytes": 51282,
+      "vertices": 487,
+      "faces": 780,
+      "triangles": 780
+    },
+    {
+      "id": "FJ2430",
+      "bytes": 48375,
+      "vertices": 484,
+      "faces": 692,
+      "triangles": 692
+    },
+    {
+      "id": "FJ2431",
+      "bytes": 21434,
+      "vertices": 215,
+      "faces": 316,
+      "triangles": 316
+    },
+    {
+      "id": "FJ2432",
+      "bytes": 274620,
+      "vertices": 2560,
+      "faces": 3820,
+      "triangles": 3820
+    },
+    {
+      "id": "FJ2433",
+      "bytes": 325359,
+      "vertices": 2729,
+      "faces": 4926,
+      "triangles": 4926
+    },
+    {
+      "id": "FJ2434",
+      "bytes": 85105,
+      "vertices": 769,
+      "faces": 1370,
+      "triangles": 1370
+    },
+    {
+      "id": "FJ2435",
+      "bytes": 56513,
+      "vertices": 508,
+      "faces": 920,
+      "triangles": 920
+    },
+    {
+      "id": "FJ2436",
+      "bytes": 302591,
+      "vertices": 2591,
+      "faces": 4526,
+      "triangles": 4526
+    },
+    {
+      "id": "FJ2437",
+      "bytes": 56351,
+      "vertices": 539,
+      "faces": 844,
+      "triangles": 844
+    },
+    {
+      "id": "FJ2438",
+      "bytes": 510077,
+      "vertices": 4284,
+      "faces": 7544,
+      "triangles": 7544
+    },
+    {
+      "id": "FJ2439",
+      "bytes": 1211683,
+      "vertices": 9887,
+      "faces": 17784,
+      "triangles": 17784
+    },
+    {
+      "id": "FJ2631",
+      "bytes": 187038,
+      "vertices": 1549,
+      "faces": 3032,
+      "triangles": 3032
+    },
+    {
+      "id": "FJ2632",
+      "bytes": 8543,
+      "vertices": 91,
+      "faces": 108,
+      "triangles": 108
+    },
+    {
+      "id": "FJ2633",
+      "bytes": 32810,
+      "vertices": 318,
+      "faces": 492,
+      "triangles": 492
+    },
+    {
+      "id": "FJ2634",
+      "bytes": 14842,
+      "vertices": 158,
+      "faces": 196,
+      "triangles": 196
+    },
+    {
+      "id": "FJ2635",
+      "bytes": 51353,
+      "vertices": 495,
+      "faces": 766,
+      "triangles": 766
+    },
+    {
+      "id": "FJ2636",
+      "bytes": 28744,
+      "vertices": 282,
+      "faces": 420,
+      "triangles": 420
+    },
+    {
+      "id": "FJ2637",
+      "bytes": 13104,
+      "vertices": 144,
+      "faces": 160,
+      "triangles": 160
+    },
+    {
+      "id": "FJ2638",
+      "bytes": 22808,
+      "vertices": 246,
+      "faces": 290,
+      "triangles": 290
+    },
+    {
+      "id": "FJ2639",
+      "bytes": 11513,
+      "vertices": 122,
+      "faces": 150,
+      "triangles": 150
+    },
+    {
+      "id": "FJ2640",
+      "bytes": 20309,
+      "vertices": 218,
+      "faces": 260,
+      "triangles": 260
+    },
+    {
+      "id": "FJ2641",
+      "bytes": 31770,
+      "vertices": 322,
+      "faces": 442,
+      "triangles": 442
+    },
+    {
+      "id": "FJ2642",
+      "bytes": 58861,
+      "vertices": 525,
+      "faces": 964,
+      "triangles": 964
+    },
+    {
+      "id": "FJ2643",
+      "bytes": 29632,
+      "vertices": 269,
+      "faces": 478,
+      "triangles": 478
+    },
+    {
+      "id": "FJ2644",
+      "bytes": 20055,
+      "vertices": 193,
+      "faces": 306,
+      "triangles": 306
+    },
+    {
+      "id": "FJ2645",
+      "bytes": 22289,
+      "vertices": 224,
+      "faces": 318,
+      "triangles": 318
+    },
+    {
+      "id": "FJ2646",
+      "bytes": 30477,
+      "vertices": 287,
+      "faces": 470,
+      "triangles": 470
+    },
+    {
+      "id": "FJ2647",
+      "bytes": 21395,
+      "vertices": 216,
+      "faces": 306,
+      "triangles": 306
+    },
+    {
+      "id": "FJ2648",
+      "bytes": 20026,
+      "vertices": 203,
+      "faces": 286,
+      "triangles": 286
+    },
+    {
+      "id": "FJ2649",
+      "bytes": 81031,
+      "vertices": 692,
+      "faces": 1380,
+      "triangles": 1380
+    },
+    {
+      "id": "FJ2650",
+      "bytes": 29816,
+      "vertices": 316,
+      "faces": 396,
+      "triangles": 396
+    },
+    {
+      "id": "FJ2651",
+      "bytes": 37854,
+      "vertices": 395,
+      "faces": 510,
+      "triangles": 510
+    },
+    {
+      "id": "FJ2652",
+      "bytes": 22767,
+      "vertices": 240,
+      "faces": 308,
+      "triangles": 308
+    },
+    {
+      "id": "FJ2653",
+      "bytes": 20958,
+      "vertices": 232,
+      "faces": 252,
+      "triangles": 252
+    },
+    {
+      "id": "FJ2654",
+      "bytes": 13776,
+      "vertices": 150,
+      "faces": 172,
+      "triangles": 172
+    },
+    {
+      "id": "FJ2655",
+      "bytes": 37441,
+      "vertices": 331,
+      "faces": 624,
+      "triangles": 624
+    },
+    {
+      "id": "FJ2656",
+      "bytes": 49555,
+      "vertices": 434,
+      "faces": 826,
+      "triangles": 826
+    },
+    {
+      "id": "FJ2657",
+      "bytes": 23487,
+      "vertices": 237,
+      "faces": 336,
+      "triangles": 336
+    },
+    {
+      "id": "FJ2658",
+      "bytes": 27702,
+      "vertices": 268,
+      "faces": 416,
+      "triangles": 416
+    },
+    {
+      "id": "FJ2659",
+      "bytes": 39435,
+      "vertices": 399,
+      "faces": 556,
+      "triangles": 556
+    },
+    {
+      "id": "FJ2660",
+      "bytes": 17269,
+      "vertices": 182,
+      "faces": 232,
+      "triangles": 232
+    },
+    {
+      "id": "FJ2661",
+      "bytes": 27932,
+      "vertices": 266,
+      "faces": 430,
+      "triangles": 430
+    },
+    {
+      "id": "FJ2662",
+      "bytes": 13865,
+      "vertices": 126,
+      "faces": 238,
+      "triangles": 238
+    },
+    {
+      "id": "FJ2663",
+      "bytes": 18152,
+      "vertices": 183,
+      "faces": 266,
+      "triangles": 266
+    },
+    {
+      "id": "FJ2664",
+      "bytes": 13768,
+      "vertices": 137,
+      "faces": 210,
+      "triangles": 210
+    },
+    {
+      "id": "FJ2665",
+      "bytes": 42950,
+      "vertices": 426,
+      "faces": 624,
+      "triangles": 624
+    },
+    {
+      "id": "FJ2667",
+      "bytes": 25908,
+      "vertices": 267,
+      "faces": 360,
+      "triangles": 360
+    },
+    {
+      "id": "FJ2668",
+      "bytes": 16400,
+      "vertices": 176,
+      "faces": 216,
+      "triangles": 216
+    },
+    {
+      "id": "FJ2670",
+      "bytes": 28943,
+      "vertices": 280,
+      "faces": 442,
+      "triangles": 442
+    },
+    {
+      "id": "FJ2671",
+      "bytes": 32032,
+      "vertices": 313,
+      "faces": 478,
+      "triangles": 478
+    },
+    {
+      "id": "FJ2672",
+      "bytes": 47950,
+      "vertices": 447,
+      "faces": 742,
+      "triangles": 742
+    },
+    {
+      "id": "FJ2673",
+      "bytes": 23827,
+      "vertices": 243,
+      "faces": 338,
+      "triangles": 338
+    },
+    {
+      "id": "FJ2674",
+      "bytes": 18806,
+      "vertices": 186,
+      "faces": 284,
+      "triangles": 284
+    },
+    {
+      "id": "FJ2675",
+      "bytes": 14381,
+      "vertices": 148,
+      "faces": 200,
+      "triangles": 200
+    },
+    {
+      "id": "FJ2676",
+      "bytes": 22233,
+      "vertices": 233,
+      "faces": 304,
+      "triangles": 304
+    },
+    {
+      "id": "FJ2677",
+      "bytes": 18719,
+      "vertices": 198,
+      "faces": 252,
+      "triangles": 252
+    },
+    {
+      "id": "FJ2678",
+      "bytes": 48606,
+      "vertices": 450,
+      "faces": 770,
+      "triangles": 770
+    },
+    {
+      "id": "FJ2679",
+      "bytes": 17887,
+      "vertices": 184,
+      "faces": 252,
+      "triangles": 252
+    },
+    {
+      "id": "FJ2680",
+      "bytes": 30280,
+      "vertices": 331,
+      "faces": 376,
+      "triangles": 376
+    },
+    {
+      "id": "FJ2681",
+      "bytes": 18149,
+      "vertices": 210,
+      "faces": 204,
+      "triangles": 204
+    },
+    {
+      "id": "FJ2682",
+      "bytes": 31726,
+      "vertices": 365,
+      "faces": 360,
+      "triangles": 360
+    },
+    {
+      "id": "FJ2683",
+      "bytes": 15254,
+      "vertices": 178,
+      "faces": 168,
+      "triangles": 168
+    },
+    {
+      "id": "FJ2684",
+      "bytes": 18740,
+      "vertices": 192,
+      "faces": 264,
+      "triangles": 264
+    },
+    {
+      "id": "FJ2685",
+      "bytes": 16675,
+      "vertices": 171,
+      "faces": 236,
+      "triangles": 236
+    },
+    {
+      "id": "FJ2686",
+      "bytes": 20789,
+      "vertices": 220,
+      "faces": 280,
+      "triangles": 280
+    },
+    {
+      "id": "FJ2687",
+      "bytes": 46727,
+      "vertices": 493,
+      "faces": 618,
+      "triangles": 618
+    },
+    {
+      "id": "FJ2688",
+      "bytes": 27249,
+      "vertices": 313,
+      "faces": 306,
+      "triangles": 306
+    },
+    {
+      "id": "FJ2689",
+      "bytes": 17693,
+      "vertices": 172,
+      "faces": 274,
+      "triangles": 274
+    },
+    {
+      "id": "FJ2690",
+      "bytes": 23876,
+      "vertices": 232,
+      "faces": 364,
+      "triangles": 364
+    },
+    {
+      "id": "FJ2691",
+      "bytes": 11750,
+      "vertices": 125,
+      "faces": 156,
+      "triangles": 156
+    },
+    {
+      "id": "FJ2692",
+      "bytes": 62836,
+      "vertices": 608,
+      "faces": 930,
+      "triangles": 930
+    },
+    {
+      "id": "FJ2693",
+      "bytes": 50460,
+      "vertices": 480,
+      "faces": 766,
+      "triangles": 766
+    },
+    {
+      "id": "FJ2694",
+      "bytes": 30018,
+      "vertices": 305,
+      "faces": 424,
+      "triangles": 424
+    },
+    {
+      "id": "FJ2695",
+      "bytes": 15952,
+      "vertices": 163,
+      "faces": 236,
+      "triangles": 236
+    },
+    {
+      "id": "FJ2696",
+      "bytes": 26375,
+      "vertices": 286,
+      "faces": 336,
+      "triangles": 336
+    },
+    {
+      "id": "FJ2697",
+      "bytes": 17355,
+      "vertices": 188,
+      "faces": 220,
+      "triangles": 220
+    },
+    {
+      "id": "FJ2698",
+      "bytes": 17208,
+      "vertices": 195,
+      "faces": 200,
+      "triangles": 200
+    },
+    {
+      "id": "FJ2699",
+      "bytes": 11081,
+      "vertices": 126,
+      "faces": 126,
+      "triangles": 126
+    },
+    {
+      "id": "FJ2700",
+      "bytes": 19411,
+      "vertices": 197,
+      "faces": 280,
+      "triangles": 280
+    },
+    {
+      "id": "FJ2701",
+      "bytes": 53322,
+      "vertices": 497,
+      "faces": 834,
+      "triangles": 834
+    },
+    {
+      "id": "FJ2702",
+      "bytes": 20720,
+      "vertices": 229,
+      "faces": 254,
+      "triangles": 254
+    },
+    {
+      "id": "FJ2703",
+      "bytes": 60019,
+      "vertices": 547,
+      "faces": 960,
+      "triangles": 960
+    },
+    {
+      "id": "FJ2704",
+      "bytes": 19375,
+      "vertices": 195,
+      "faces": 280,
+      "triangles": 280
+    },
+    {
+      "id": "FJ2705",
+      "bytes": 17523,
+      "vertices": 185,
+      "faces": 238,
+      "triangles": 238
+    },
+    {
+      "id": "FJ2706",
+      "bytes": 30064,
+      "vertices": 340,
+      "faces": 356,
+      "triangles": 356
+    },
+    {
+      "id": "FJ2707",
+      "bytes": 36729,
+      "vertices": 377,
+      "faces": 508,
+      "triangles": 508
+    },
+    {
+      "id": "FJ2708",
+      "bytes": 35570,
+      "vertices": 387,
+      "faces": 446,
+      "triangles": 446
+    },
+    {
+      "id": "FJ2709",
+      "bytes": 34165,
+      "vertices": 352,
+      "faces": 468,
+      "triangles": 468
+    },
+    {
+      "id": "FJ2710",
+      "bytes": 16579,
+      "vertices": 175,
+      "faces": 224,
+      "triangles": 224
+    },
+    {
+      "id": "FJ2711",
+      "bytes": 15394,
+      "vertices": 172,
+      "faces": 184,
+      "triangles": 184
+    },
+    {
+      "id": "FJ2712",
+      "bytes": 10607,
+      "vertices": 119,
+      "faces": 126,
+      "triangles": 126
+    },
+    {
+      "id": "FJ2713",
+      "bytes": 27313,
+      "vertices": 310,
+      "faces": 310,
+      "triangles": 310
+    },
+    {
+      "id": "FJ2714",
+      "bytes": 51286,
+      "vertices": 482,
+      "faces": 794,
+      "triangles": 794
+    },
+    {
+      "id": "FJ2715",
+      "bytes": 17086,
+      "vertices": 185,
+      "faces": 218,
+      "triangles": 218
+    },
+    {
+      "id": "FJ2716",
+      "bytes": 17573,
+      "vertices": 188,
+      "faces": 232,
+      "triangles": 232
+    },
+    {
+      "id": "FJ2717",
+      "bytes": 24857,
+      "vertices": 259,
+      "faces": 340,
+      "triangles": 340
+    },
+    {
+      "id": "FJ2718",
+      "bytes": 13359,
+      "vertices": 139,
+      "faces": 186,
+      "triangles": 186
+    },
+    {
+      "id": "FJ2719",
+      "bytes": 28572,
+      "vertices": 299,
+      "faces": 380,
+      "triangles": 380
+    },
+    {
+      "id": "FJ2720",
+      "bytes": 22827,
+      "vertices": 233,
+      "faces": 320,
+      "triangles": 320
+    },
+    {
+      "id": "FJ2721",
+      "bytes": 18826,
+      "vertices": 198,
+      "faces": 256,
+      "triangles": 256
+    },
+    {
+      "id": "FJ2722",
+      "bytes": 23583,
+      "vertices": 244,
+      "faces": 320,
+      "triangles": 320
+    },
+    {
+      "id": "FJ2723",
+      "bytes": 281611,
+      "vertices": 2255,
+      "faces": 4502,
+      "triangles": 4502
+    },
+    {
+      "id": "FJ2724",
+      "bytes": 33909,
+      "vertices": 294,
+      "faces": 570,
+      "triangles": 570
+    },
+    {
+      "id": "FJ2725",
+      "bytes": 29808,
+      "vertices": 288,
+      "faces": 452,
+      "triangles": 452
+    },
+    {
+      "id": "FJ2727",
+      "bytes": 65355,
+      "vertices": 627,
+      "faces": 970,
+      "triangles": 970
+    },
+    {
+      "id": "FJ2728",
+      "bytes": 19145,
+      "vertices": 190,
+      "faces": 282,
+      "triangles": 282
+    },
+    {
+      "id": "FJ2729",
+      "bytes": 15250,
+      "vertices": 156,
+      "faces": 222,
+      "triangles": 222
+    },
+    {
+      "id": "FJ2730",
+      "bytes": 18960,
+      "vertices": 192,
+      "faces": 278,
+      "triangles": 278
+    },
+    {
+      "id": "FJ2731",
+      "bytes": 52845,
+      "vertices": 454,
+      "faces": 892,
+      "triangles": 892
+    },
+    {
+      "id": "FJ2732",
+      "bytes": 38986,
+      "vertices": 425,
+      "faces": 478,
+      "triangles": 478
+    },
+    {
+      "id": "FJ2733",
+      "bytes": 26427,
+      "vertices": 286,
+      "faces": 332,
+      "triangles": 332
+    },
+    {
+      "id": "FJ2734",
+      "bytes": 24541,
+      "vertices": 254,
+      "faces": 334,
+      "triangles": 334
+    },
+    {
+      "id": "FJ2735",
+      "bytes": 26268,
+      "vertices": 285,
+      "faces": 328,
+      "triangles": 328
+    },
+    {
+      "id": "FJ2736",
+      "bytes": 25961,
+      "vertices": 286,
+      "faces": 324,
+      "triangles": 324
+    },
+    {
+      "id": "FJ2737",
+      "bytes": 12641,
+      "vertices": 121,
+      "faces": 204,
+      "triangles": 204
+    },
+    {
+      "id": "FJ2924",
+      "bytes": 342258,
+      "vertices": 2727,
+      "faces": 5450,
+      "triangles": 5450
+    },
+    {
+      "id": "FJ2925",
+      "bytes": 23979,
+      "vertices": 209,
+      "faces": 414,
+      "triangles": 414
+    },
+    {
+      "id": "FJ2944",
+      "bytes": 17821,
+      "vertices": 157,
+      "faces": 310,
+      "triangles": 310
+    },
+    {
+      "id": "FJ2966",
+      "bytes": 89640,
+      "vertices": 871,
+      "faces": 1302,
+      "triangles": 1302
+    },
+    {
+      "id": "FJ3019",
+      "bytes": 39748,
+      "vertices": 341,
+      "faces": 678,
+      "triangles": 678
+    },
+    {
+      "id": "FJ3020",
+      "bytes": 19237,
+      "vertices": 171,
+      "faces": 324,
+      "triangles": 324
+    },
+    {
+      "id": "FJ3040",
+      "bytes": 12047,
+      "vertices": 113,
+      "faces": 196,
+      "triangles": 196
+    },
+    {
+      "id": "FJ3161",
+      "bytes": 139572,
+      "vertices": 1323,
+      "faces": 2030,
+      "triangles": 2030
+    },
+    {
+      "id": "FJ3164",
+      "bytes": 161492,
+      "vertices": 1469,
+      "faces": 2410,
+      "triangles": 2410
+    },
+    {
+      "id": "FJ3167",
+      "bytes": 158857,
+      "vertices": 1539,
+      "faces": 2196,
+      "triangles": 2196
+    },
+    {
+      "id": "FJ3170",
+      "bytes": 162032,
+      "vertices": 1498,
+      "faces": 2374,
+      "triangles": 2374
+    },
+    {
+      "id": "FJ3172",
+      "bytes": 133359,
+      "vertices": 1324,
+      "faces": 1820,
+      "triangles": 1820
+    },
+    {
+      "id": "FJ3176",
+      "bytes": 148677,
+      "vertices": 1433,
+      "faces": 2094,
+      "triangles": 2094
+    },
+    {
+      "id": "FJ3177",
+      "bytes": 161899,
+      "vertices": 1540,
+      "faces": 2288,
+      "triangles": 2288
+    },
+    {
+      "id": "FJ3199",
+      "bytes": 1542628,
+      "vertices": 12484,
+      "faces": 22276,
+      "triangles": 22276
+    },
+    {
+      "id": "FJ3200",
+      "bytes": 1005988,
+      "vertices": 8472,
+      "faces": 14510,
+      "triangles": 14510
+    },
+    {
+      "id": "FJ3269",
+      "bytes": 384814,
+      "vertices": 3577,
+      "faces": 5198,
+      "triangles": 5198
+    },
+    {
+      "id": "FJ3274",
+      "bytes": 956856,
+      "vertices": 8367,
+      "faces": 13210,
+      "triangles": 13210
+    },
+    {
+      "id": "FJ3281",
+      "bytes": 341129,
+      "vertices": 3013,
+      "faces": 4936,
+      "triangles": 4936
+    },
+    {
+      "id": "FJ3287",
+      "bytes": 96708,
+      "vertices": 929,
+      "faces": 1434,
+      "triangles": 1434
+    },
+    {
+      "id": "FJ3289",
+      "bytes": 355295,
+      "vertices": 2845,
+      "faces": 5576,
+      "triangles": 5576
+    },
+    {
+      "id": "FJ3309",
+      "bytes": 843673,
+      "vertices": 6995,
+      "faces": 12450,
+      "triangles": 12450
+    },
+    {
+      "id": "FJ3362",
+      "bytes": 68321,
+      "vertices": 583,
+      "faces": 1146,
+      "triangles": 1146
+    },
+    {
+      "id": "FJ3368",
+      "bytes": 256564,
+      "vertices": 2233,
+      "faces": 3784,
+      "triangles": 3784
+    },
+    {
+      "id": "FJ3375",
+      "bytes": 388578,
+      "vertices": 3513,
+      "faces": 5324,
+      "triangles": 5324
+    },
+    {
+      "id": "FJ3380",
+      "bytes": 928866,
+      "vertices": 8028,
+      "faces": 13002,
+      "triangles": 13002
+    },
+    {
+      "id": "FJ3384",
+      "bytes": 1743768,
+      "vertices": 13118,
+      "faces": 26172,
+      "triangles": 26172
+    },
+    {
+      "id": "FJ3386",
+      "bytes": 349968,
+      "vertices": 3102,
+      "faces": 4928,
+      "triangles": 4928
+    },
+    {
+      "id": "FJ3392",
+      "bytes": 101099,
+      "vertices": 934,
+      "faces": 1556,
+      "triangles": 1556
+    },
+    {
+      "id": "FJ3394",
+      "bytes": 573595,
+      "vertices": 4957,
+      "faces": 8154,
+      "triangles": 8154
+    },
+    {
+      "id": "FJ3411",
+      "bytes": 41743,
+      "vertices": 381,
+      "faces": 670,
+      "triangles": 670
+    },
+    {
+      "id": "FJ3413",
+      "bytes": 24686,
+      "vertices": 229,
+      "faces": 396,
+      "triangles": 396
+    },
+    {
+      "id": "FJ3417",
+      "bytes": 16719,
+      "vertices": 160,
+      "faces": 262,
+      "triangles": 262
+    },
+    {
+      "id": "FJ3441",
+      "bytes": 89003,
+      "vertices": 793,
+      "faces": 1410,
+      "triangles": 1410
+    },
+    {
+      "id": "FJ3479",
+      "bytes": 39960,
+      "vertices": 362,
+      "faces": 646,
+      "triangles": 646
+    },
+    {
+      "id": "FJ3482",
+      "bytes": 43991,
+      "vertices": 377,
+      "faces": 748,
+      "triangles": 748
+    },
+    {
+      "id": "FJ3483",
+      "bytes": 12124,
+      "vertices": 126,
+      "faces": 170,
+      "triangles": 170
+    },
+    {
+      "id": "FJ3485",
+      "bytes": 17029,
+      "vertices": 158,
+      "faces": 280,
+      "triangles": 280
+    },
+    {
+      "id": "FJ3564",
+      "bytes": 52438,
+      "vertices": 448,
+      "faces": 884,
+      "triangles": 884
+    },
+    {
+      "id": "FJ3579",
+      "bytes": 27662,
+      "vertices": 247,
+      "faces": 452,
+      "triangles": 452
+    },
+    {
+      "id": "FJ3583",
+      "bytes": 32020,
+      "vertices": 275,
+      "faces": 546,
+      "triangles": 546
+    },
+    {
+      "id": "FJ3585",
+      "bytes": 15258,
+      "vertices": 153,
+      "faces": 226,
+      "triangles": 226
+    },
+    {
+      "id": "FJ3645",
+      "bytes": 36208,
+      "vertices": 318,
+      "faces": 598,
+      "triangles": 598
+    }
+  ]
+}

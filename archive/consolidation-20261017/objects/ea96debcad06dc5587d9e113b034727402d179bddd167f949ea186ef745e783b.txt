@@ -1,0 +1,15 @@
+b725b6024c5acc228e44ed6957853e99d2d6b3a738fc353642fd02840e52bf27  ./BASELINE.txt
+eb6dbda852367af56764cb2bd90c379d570a9b53a1a8d26ea2b4e44e01275b05  ./IMPLEMENTATION_REPORT.md
+ae6b31b34d71a4b7716549e990826b9d0b053c881aaad1d16c73a64e911dd426  ./README.md
+ddadb55b2e75c4c54cdcc2831486e8d4a4cab27994191e8dbba5e4e9d1b8e2cc  ./VALIDATION.md
+b60612cc1527adda8c14c90aa831a05f310eb522ef787ff32cb57c9f1126577c  ./apply_portfolio_upgrade.py
+9b5bd1d13f9616a55744c7544a7ea3bf5b862cbe5d3758bd71f99d8da77d7a39  ./replacements/arjan-portfolio/src/app/about/page.tsx
+2e7b694164bd2effd895d8daad597ef33dbaca02eefda46d6ee5a84507510e90  ./replacements/arjan-portfolio/src/app/contact/page.tsx
+7d9dbacd06989fb035e0861988d0a94742b00bdbcae7109efc8100aa3c42c8db  ./replacements/arjan-portfolio/src/app/home.module.css
+09ffc15dfa493b1897167f5f636b0dd4179d6d7920989b12da2ad6c172b40882  ./replacements/arjan-portfolio/src/app/notes/page.tsx
+80f601d1c31d5fec1feacf2b9d2638aa47b4dd9c122ebfcca19ccca981d3e387  ./replacements/arjan-portfolio/src/app/page.tsx
+f66c5e8a522f03f2a1bfb194bb28a54993ac37a29700775ca69086d9c205b28a  ./replacements/arjan-portfolio/src/app/work/page.tsx
+19f70cf9a947786d25b4c95020fdb3a7ad72ead11d3af10d6041fa22c42241bc  ./replacements/arjan-portfolio/src/components/Footer.tsx
+db5ec80f8fd11bfdd90db247471384274ac43f0d6fb045c65788be0cf0abcff8  ./replacements/arjan-portfolio/src/components/Header.tsx
+97e3f4194f488fe44b1729726f765e6e55cbf95c7bd3dc3963fb6c84bbf0140c  ./replacements/arjan-portfolio/src/components/MobileNav.tsx
+c9e84efc752c1982a6909b2f5823c876c5d4abc12fe55725b7dd518d4f22408b  ./replacements/arjan-portfolio/src/content/profile.ts

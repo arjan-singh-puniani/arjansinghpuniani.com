@@ -1,0 +1,42 @@
+# Rally House v18.3 Visual Production
+
+v18.3 supersedes v18 and v18.1.
+
+## Adversarial fixes
+- No live `Game` object is exposed on `window`.
+- The visual module is dynamically imported *after* normal game initialization and failure is caught, so presentation failure cannot prevent Rally House from booting.
+- Raised decorative geometry is restricted to existing blocked footprints or outside navigation bounds. Flat decals remain non-blocking.
+- Decorative foliage/soft goods disable unnecessary shadow casting to reduce the added shadow-pass cost.
+- Adds a Vitest regression suite for encapsulation, bootstrap isolation, accessible entrance, and static-cache ordering.
+
+## Visual scope
+- Authored establishing camera.
+- Softer clear-day lighting calibration.
+- Terrace/pergola silhouette.
+- Spectator seating.
+- Court-side equipment density.
+- Perimeter planting and framing trees.
+- Arrival/wayfinding treatment.
+- Restrained progressive entrance.
+
+## Apply
+```bash
+unzip -q Rally-House-v18.3-Visual-Production.zip -d /tmp/rh-v18-2
+/tmp/rh-v18-2/rally-house-v18-2-production/install.sh "$PWD"
+cd arjan-portfolio
+npm ci
+npm run verify
+npm run dev
+```
+
+Do not commit until visual QA passes at full desktop, half-width, and phone width, plus Club Book, Build, Coaching, Championship Mode, reduced motion, reload, and existing-save checks.
+
+
+## v18.3 review changes
+- Removed the large glass intro card so the world remains visually dominant.
+- Replaced decorative rounded structural beams with low-poly box geometry.
+- All newly added foliage skips shadow passes.
+- Recalibrated the opening camera lower and closer for stronger depth.
+- Added explicit complexity and state-isolation regression assertions.
+
+See `PRODUCTION-REVIEW.md` for the adversarial design/performance review.

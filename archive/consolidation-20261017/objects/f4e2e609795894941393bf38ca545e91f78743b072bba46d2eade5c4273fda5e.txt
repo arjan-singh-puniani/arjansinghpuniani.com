@@ -1,0 +1,38 @@
+# HoloAnatomy Shoulder v0.5 — provenance
+
+## Production anatomy source
+
+- Dataset: BodyParts3D / ISA Release 4.0
+- Organization: Database Center for Life Science (DBCLS)
+- Source: https://dbarchive.biosciencedbc.jp/en/bodyparts3d/
+- Current official license page: https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html
+- Current official database license: CC BY 4.0
+- Current official attribution: “BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International”
+
+## v0.5 transformation policy
+
+No anatomical vertices are altered by the v0.5 software patch.
+
+The patch changes only:
+- visibility/ghost state
+- structure emphasis outlines
+- camera presentation
+- temporary dissection translation
+- material rendering
+- UI labels and learning interactions
+
+The original registered mesh position remains the rebuild-practice ground truth.
+
+## New geometry
+
+None.
+
+No tendon, labrum, capsule, bursa, ligament, nerve, vessel, pathology, footprint, or landmark geometry is generated or inferred.
+
+## Presentation effects
+
+The material shader adds a low-amplitude, non-directional surface-variation term and soft fill lighting. This is explicitly a **visualization effect**, not encoded histology or fiber direction.
+
+## Known historical header discrepancy
+
+Legacy BodyParts3D OBJ headers in the repository mention CC BY-SA 2.1 Japan. The current official DBCLS license page states CC BY 4.0 as of 2025-02-27. Preserve the embedded source headers and the current official license citation in provenance documentation.

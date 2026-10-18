@@ -1,0 +1,55 @@
+# Rally House v17.2 — Readable Contact
+
+This is a **visual readability pass** on top of v17.1 Toy Contact.
+
+The v17.1 mechanics were present and the tests passed, but at the normal Rally House camera distance the strings and contact feedback were too subtle to register. v17.2 makes the same contact language readable without turning it into a giant comic effect.
+
+## Changes
+
+- Racket string bed: 7 × 7 strings, thicker and higher contrast.
+- String-bed fill: brighter and more visible.
+- Impact latch: 36 ms → 55 ms.
+- Ball compression: more obvious for the tiny contact window.
+- Impact burst: roughly 130 ms → roughly 200 ms.
+- Burst rings: larger/brighter cream + tennis-green.
+- Adds a small center flash exactly at the string bed.
+- Green trail: larger and more opaque at gameplay scale, but still short and bounded.
+
+## Apply
+
+From the hardening worktree root:
+
+```bash
+cd "$HOME/Desktop/arjansinghpuniani-hardening"
+python3 /path/to/apply_rally_house_v17_2_readable_contact.py
+```
+
+## Validate
+
+```bash
+cd "$HOME/Desktop/arjansinghpuniani-hardening/rally-house-source-v16"
+npm test
+npm run build
+npm run serve
+```
+
+Then hard-refresh with **Cmd+Shift+R** or use a private/incognito window.
+
+Open:
+
+```text
+http://localhost:8080/?debug=1&v=172
+```
+
+The query string is only a convenient top-level cache buster; the hard refresh/private window is what ensures module requests are revalidated.
+
+## What you should be able to see now
+
+At normal gameplay zoom:
+1. The racket should visibly contain a string grid.
+2. On a real rally contact, the ball should visibly compress at the string center.
+3. A cream/green pop should be unmistakable but short.
+4. The ball should leave after the tiny latch.
+5. A green speed trail should be clearly visible immediately after launch.
+
+The contact effect only occurs during an actual tennis hit. It will not fire during idle or “Shadow preparation” animation.

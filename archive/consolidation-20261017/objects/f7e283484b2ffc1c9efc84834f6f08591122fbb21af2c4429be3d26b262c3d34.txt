@@ -1,0 +1,55 @@
+# Architecture
+
+## Data flow
+
+```text
+BodyParts3D FJ OBJ meshes
+        ↓
+verified manifest (FMA name + system + license)
+        ↓
+OBJ parser / indexed geometry
+        ↓
+WebGL 2 scene buffers
+        ↓
+medical material profiles
+        ↓
+layer / selection / clipping / explode state
+        ↓
+standard perspective renderer
+        ↓
+motion-parallax camera enhancement
+```
+
+The manifest and interaction state do not depend on GPU object internals. A future light-field adapter can reuse the same geometry/state and render multiple camera views without forking the anatomy model.
+
+## Rendering
+
+The renderer uses:
+
+- perspective projection
+- depth testing and occlusion
+- indexed triangle meshes
+- directional wrapped diffuse lighting
+- restrained Blinn-style specular response
+- Fresnel rim response by material
+- selected-structure edge emphasis
+- alpha ghost layers
+- GPU color-ID picking
+- shader clipping planes
+- device-quality pixel-ratio control
+
+The renderer intentionally omits scanlines, glitch effects, strong bloom, and chromatic aberration.
+
+## Coordinate normalization
+
+BodyParts3D source vertices remain unmodified in memory. After meshes load, a global source-space bounding box is computed. The shader centers and uniformly scales all structures into a common normalized scene, preserving their relative source coordinates.
+
+## Interaction
+
+Pointer Events provide the common mouse/touch path. One pointer orbits; two pointers pinch-zoom. The wheel zooms on desktop. Selection is resolved by an offscreen color-picking framebuffer, so complex meshes do not need CPU triangle intersection.
+
+## Display modes
+
+**Standard:** conventional perspective rendering.  
+**Parallax:** adds a small camera translation based on pointer position, exposing real occlusion changes rather than simply rotating the specimen.  
+**Light field:** architectural target, documented in `light-field.md`, not enabled until hardware validation.

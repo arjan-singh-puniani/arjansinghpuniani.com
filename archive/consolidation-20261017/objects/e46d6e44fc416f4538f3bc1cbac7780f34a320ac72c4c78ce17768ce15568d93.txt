@@ -1,0 +1,48 @@
+# HoloAnatomy 1.0 — Source Audit
+
+Audited **261** manifest structures against the actual vendored OBJ files.
+
+- Missing geometry: **0**
+- Meshes with UV coordinates: **0**
+- Shoulder structures: **20**
+
+## Shoulder geometry
+
+| Structure | Layer | Vertices | Faces | UVs |
+|---|---|---:|---:|---:|
+| Right scapula | skeleton | 13,118 | 26,172 | 0 |
+| Right clavicle | skeleton | 583 | 1,146 | 0 |
+| Right humerus | skeleton | 2,233 | 3,784 | 0 |
+| Right supraspinatus | muscles | 843 | 878 | 0 |
+| Right infraspinatus muscle | muscles | 743 | 866 | 0 |
+| Right subscapularis | muscles | 2,775 | 2,092 | 0 |
+| Right teres minor | muscles | 392 | 506 | 0 |
+| Acromial part of right deltoid | muscles | 916 | 1,300 | 0 |
+| Clavicular part of right deltoid | muscles | 2,592 | 2,206 | 0 |
+| Spinal part of right deltoid | muscles | 1,665 | 1,900 | 0 |
+| Long head of right biceps brachii | muscles | 1,053 | 1,426 | 0 |
+| Right subclavian artery | arteries | 247 | 452 | 0 |
+| Right axillary artery | arteries | 915 | 1,826 | 0 |
+| Right suprascapular artery | arteries | 1,027 | 1,912 | 0 |
+| Right subscapular artery | arteries | 431 | 786 | 0 |
+| Right circumflex scapular artery | arteries | 399 | 778 | 0 |
+| Right axillary vein | veins | 1,112 | 2,146 | 0 |
+| Right suprascapular vein | veins | 1,003 | 1,986 | 0 |
+| Right subscapular vein | veins | 265 | 526 | 0 |
+| Right circumflex scapular vein | veins | 505 | 960 | 0 |
+
+## Corrections made
+
+- Right subscapularis: `skeleton` → `muscles`.
+- Right suprascapular, subscapular, and circumflex scapular arteries: `skeleton` → `arteries`.
+- Right suprascapular, subscapular, and circumflex scapular veins: `skeleton` → `veins`.
+
+These corrections affect rendering materials, layer controls, isolation behavior, and educational presentation.
+
+## Fidelity limit
+
+The current 261 production OBJ meshes contain **no UV coordinates**. The cuff muscles therefore cannot support source-authored albedo, normal, roughness, or anatomically directional fiber textures without replacing/upgrading the assets. HoloAnatomy 1.0 keeps this limitation explicit rather than synthesizing false anatomy.
+
+## New shoulder presentation
+
+The candidate adds a source-faithful Rotator Cuff Studio with four curated views: Rotator cuff, Supraspinatus outlet, Anterior cuff, and Regional circulation. These views alter visibility/ghosting/camera composition only; they do not create missing structures.

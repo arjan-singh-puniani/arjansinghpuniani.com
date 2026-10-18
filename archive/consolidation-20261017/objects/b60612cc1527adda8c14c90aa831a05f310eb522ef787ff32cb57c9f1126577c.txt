@@ -1,0 +1,264 @@
+#!/usr/bin/env python3
+"""Apply the 2026-09-27 final human-copy portfolio upgrade safely.
+
+This installer accepts any of these known-safe baselines:
+1. the audited GitHub main baseline,
+2. the preceding utility-layer upgrade, or
+3. the first Gutruf-test upgrade, or
+4. the preceding plain-language upgrade generated in this chat.
+
+Any other local modification causes a refusal before writes occur. A dedicated
+backup is created before replacement so the change can be reverted mechanically.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import shutil
+import sys
+from pathlib import Path
+
+ORIGINAL = {
+    "src/app/page.tsx": "e762591e2f8d14e21fba05499ea465654e9b01e6",
+    "src/app/notes/page.tsx": "796b5a4a64b02582a5542b98e75f83cf1a3f9879",
+    "src/app/about/page.tsx": "840c8b646b4afa29979e9a0c6b0b7865f82f0807",
+    "src/app/contact/page.tsx": "3f654d164e1f2b296709e9fe64ad2948b9b26767",
+    "src/app/work/page.tsx": "b15fa340332cf21c211255a3c00f3a5a574da800",
+    "src/components/Header.tsx": "d3cd4f9a718f236cb351b821c376db5ddc9be8ee",
+    "src/components/MobileNav.tsx": "8bf617ef08923cfdd8d44c26016c1e57042a30c4",
+    "src/components/Footer.tsx": "8e8037734b1e41f070b72e9053089263cd844616",
+    "src/content/projects.ts": "78316a53d1e619502676215f2eb7a6493412ea06",
+    "src/content/profile.ts": "c8c6d3d57b09e342c646a4f607d26ec42842f19e",
+}
+
+# Git blob SHAs of files created by the first utility-layer package in this chat.
+PREVIOUS = {
+    "src/app/page.tsx": "adf0189cd4fc74a3c1c958fe018f159331f4aa88",
+    "src/app/notes/page.tsx": "4959878c6af5a056761d4885cb2eac65129fbf97",
+    "src/app/about/page.tsx": "6dfc3e5c8a894ade3d234443a5c4164ce3353a02",
+    "src/app/contact/page.tsx": "4d67ed142d5568fb4cffd9303fab613a6f7e8197",
+    "src/components/Header.tsx": "b75662e3a7da6eee9c961b0a6ff6a921d9dd6eb8",
+    "src/components/MobileNav.tsx": "248059e3589283728d2dce8882588c237055ca1a",
+    "src/components/Footer.tsx": "619062a2676ebbb35b802c0d19488af9b102f684",
+}
+PREVIOUS_HOME_CSS = "a37974ab8db63018d6b89388cd9febf5e58c84e7"
+
+# Git blob SHAs of files created by the first Gutruf-test package in this chat.
+GUTRUF_V1 = {
+    "src/app/page.tsx": "430b383198e1423d79c339c88cc991313abd41a8",
+    "src/app/notes/page.tsx": "ba59a65cdd76b579e23e96e3b35dd72c48ee0128",
+    "src/app/about/page.tsx": "6dfc3e5c8a894ade3d234443a5c4164ce3353a02",
+    "src/app/contact/page.tsx": "7bdcee9f5ac8c386a3132d10449dc357587ffe96",
+    "src/app/work/page.tsx": "8934a891c9a829769988b53967fcba4994199326",
+    "src/components/Header.tsx": "57f941e53a8f7f6459c43ab91d265f3beadb187c",
+    "src/components/MobileNav.tsx": "491f43a6292c4f155f40bc10e019423120f074d1",
+    "src/components/Footer.tsx": "619062a2676ebbb35b802c0d19488af9b102f684",
+}
+GUTRUF_V1_HOME_CSS = "9a42eeca263dbf4f0388ddd48de04894349cfb88"
+
+# Git blob SHAs of files created by the preceding plain-language package.
+PLAIN_V1 = {
+    "src/app/page.tsx": "489edc51cdb6cd7bf6994fc46ab18354f692d64a",
+    "src/app/notes/page.tsx": "5c829c0b003446197b9e48be33c8c983881deeee",
+    "src/app/about/page.tsx": "00b3db1963ce5cecae80ca7e42e61985143ceb67",
+    "src/app/contact/page.tsx": "003d82d4610456068cb5653be4b43de433cd6590",
+    "src/app/work/page.tsx": "bfb846926b05b5edc0ac1046471ac0d3a2f20d12",
+    "src/components/Header.tsx": "57f941e53a8f7f6459c43ab91d265f3beadb187c",
+    "src/components/MobileNav.tsx": "491f43a6292c4f155f40bc10e019423120f074d1",
+    "src/components/Footer.tsx": "619062a2676ebbb35b802c0d19488af9b102f684",
+}
+PLAIN_V1_HOME_CSS = "5cf64555a2de08212b800296b41c971d3a428dc5"
+
+PROJECT_OLD = 'slug: "vector-ekg-reasonos", title: "Vector EKG and ReasonOS", shortDescription: "An educational prototype that preserves ECG observations, calculations, competing pathways, contradictions, provenance, and revisions.",'
+PROJECT_GUTRUF = 'slug: "vector-ekg-reasonos", title: "Vector EKG and ReasonOS", shortDescription: "An interactive ECG reasoning prototype that preserves observations, calculations, competing pathways, contradictions, provenance, and revisions.",'
+PROJECT_NEW = 'slug: "vector-ekg-reasonos", title: "Vector EKG and ReasonOS", shortDescription: "An interactive ECG case that keeps measurements, calculations, alternate explanations, and revisions visible.",'
+
+BACKUP_NAME = ".portfolio-final-copy-backup-20260927"
+
+
+def git_blob_sha(data: bytes) -> str:
+    header = f"blob {len(data)}\0".encode()
+    return hashlib.sha1(header + data).hexdigest()
+
+
+def locate_app_root(candidate: Path) -> Path:
+    candidate = candidate.resolve()
+    if (candidate / "src/app/page.tsx").exists() and (candidate / "package.json").exists():
+        return candidate
+    if (candidate / "arjan-portfolio/src/app/page.tsx").exists():
+        return candidate / "arjan-portfolio"
+    raise SystemExit(
+        "Could not locate arjan-portfolio. Run this from the repository root, "
+        "the arjan-portfolio directory, or pass --repo /path/to/repository."
+    )
+
+
+def validate_projects(path: Path) -> str | None:
+    data = path.read_bytes()
+    actual = git_blob_sha(data)
+    if actual == ORIGINAL["src/content/projects.ts"]:
+        return None
+
+    text = data.decode("utf-8")
+    for variant in (PROJECT_GUTRUF, PROJECT_NEW):
+        if text.count(variant) == 1 and text.count(PROJECT_OLD) == 0:
+            normalized = text.replace(variant, PROJECT_OLD)
+            if git_blob_sha(normalized.encode("utf-8")) == ORIGINAL["src/content/projects.ts"]:
+                return None
+
+    return (
+        "changed baseline: src/content/projects.ts\n"
+        f"  expected audited main or prior package variant\n  actual   {actual}"
+    )
+
+
+def validate_baseline(app_root: Path) -> list[str]:
+    errors: list[str] = []
+    for rel, expected in ORIGINAL.items():
+        path = app_root / rel
+        if not path.exists():
+            errors.append(f"missing: {rel}")
+            continue
+        if rel == "src/content/projects.ts":
+            err = validate_projects(path)
+            if err:
+                errors.append(err)
+            continue
+        actual = git_blob_sha(path.read_bytes())
+        accepted = {expected}
+        if rel in PREVIOUS:
+            accepted.add(PREVIOUS[rel])
+        if rel in GUTRUF_V1:
+            accepted.add(GUTRUF_V1[rel])
+        if rel in PLAIN_V1:
+            accepted.add(PLAIN_V1[rel])
+        if actual not in accepted:
+            errors.append(
+                f"changed baseline: {rel}\n"
+                f"  expected audited main or prior package variant\n  actual   {actual}"
+            )
+
+    new_css = app_root / "src/app/home.module.css"
+    if new_css.exists() and git_blob_sha(new_css.read_bytes()) not in {PREVIOUS_HOME_CSS, GUTRUF_V1_HOME_CSS, PLAIN_V1_HOME_CSS}:
+        errors.append("src/app/home.module.css exists with content not created by a supported prior package")
+    return errors
+
+
+def copy_replacements(app_root: Path, backup_root: Path) -> None:
+    package_root = Path(__file__).resolve().parent / "replacements/arjan-portfolio"
+    for source in sorted(package_root.rglob("*")):
+        if not source.is_file():
+            continue
+        rel = source.relative_to(package_root)
+        target = app_root / rel
+        if target.exists():
+            backup = backup_root / rel
+            backup.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(target, backup)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, target)
+
+
+def patch_project_description(app_root: Path, backup_root: Path) -> None:
+    path = app_root / "src/content/projects.ts"
+    backup = backup_root / "src/content/projects.ts"
+    backup.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(path, backup)
+    text = path.read_text(encoding="utf-8")
+    old_count = text.count(PROJECT_OLD)
+    gutruf_count = text.count(PROJECT_GUTRUF)
+    new_count = text.count(PROJECT_NEW)
+    if old_count == 1 and gutruf_count == 0 and new_count == 0:
+        text = text.replace(PROJECT_OLD, PROJECT_NEW)
+        path.write_text(text, encoding="utf-8")
+        return
+    if old_count == 0 and gutruf_count == 1 and new_count == 0:
+        text = text.replace(PROJECT_GUTRUF, PROJECT_NEW)
+        path.write_text(text, encoding="utf-8")
+        return
+    if old_count == 0 and gutruf_count == 0 and new_count == 1:
+        return
+    raise RuntimeError(
+        f"Unexpected ReasonOS description state: old={old_count}, prior={gutruf_count}, new={new_count}."
+    )
+
+
+def restore(app_root: Path) -> None:
+    backup_root = app_root / BACKUP_NAME
+    if not backup_root.exists():
+        raise SystemExit("Backup folder does not exist; nothing to restore.")
+    for source in sorted(backup_root.rglob("*")):
+        if source.is_file():
+            rel = source.relative_to(backup_root)
+            target = app_root / rel
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, target)
+    css_backup = backup_root / "src/app/home.module.css"
+    new_css = app_root / "src/app/home.module.css"
+    if not css_backup.exists() and new_css.exists():
+        new_css.unlink()
+    print(f"Restored files from {BACKUP_NAME}")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--repo", default=".", help="repository root or arjan-portfolio directory")
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--check", action="store_true", help="verify a supported baseline without writing")
+    mode.add_argument("--apply", action="store_true", help="apply the upgrade after baseline verification")
+    mode.add_argument("--restore", action="store_true", help="restore the pre-upgrade backup")
+    args = parser.parse_args()
+
+    app_root = locate_app_root(Path(args.repo))
+    if args.restore:
+        restore(app_root)
+        return 0
+
+    errors = validate_baseline(app_root)
+    if errors:
+        print("Baseline verification failed. No files were modified.", file=sys.stderr)
+        for error in errors:
+            print(f"- {error}", file=sys.stderr)
+        return 2
+
+    print(f"Baseline verified: {app_root}")
+    print("Accepted audited GitHub main or a supported prior chat-generated upgrade.")
+    if args.check:
+        return 0
+
+    backup_root = app_root / BACKUP_NAME
+    if backup_root.exists():
+        raise SystemExit(
+            f"Backup already exists at {backup_root}. Restore/remove it before applying again."
+        )
+    backup_root.mkdir(parents=True)
+
+    try:
+        copy_replacements(app_root, backup_root)
+        patch_project_description(app_root, backup_root)
+    except Exception:
+        for source in sorted(backup_root.rglob("*")):
+            if source.is_file():
+                rel = source.relative_to(backup_root)
+                target = app_root / rel
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(source, target)
+        css_backup = backup_root / "src/app/home.module.css"
+        new_css = app_root / "src/app/home.module.css"
+        if not css_backup.exists() and new_css.exists():
+            new_css.unlink()
+        raise
+
+    print("Final human-copy portfolio upgrade applied.")
+    print(f"Backup: {BACKUP_NAME}")
+    print("Required validation before deployment:")
+    print("  npm run lint")
+    print("  npm run typecheck")
+    print("  npm run test")
+    print("  npm run build")
+    print("Then inspect /, /work, /notes, /about, and /contact on mobile and desktop.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,21 @@
+{
+  "CHAMPIONSHIP.md": "1b907ea44ebb9f3bd266ba85eb504f340c7a7df74e50e47ef6b816c2c9a59555",
+  "COZY-ATMOSPHERE-RC3.4.md": "c914c758096c2844a246cd055b94172452fe9e508033efcb688d36e4106c5b15",
+  "championship.css": "f72c00614e37dc7ff5a231c04113e12f84c65fad33dfaadf25c47f16e6a6eeaf",
+  "package-lock.json": "6d131552219814227a62bb2b5c41a9666c1fd70d8a304899b808250f982ed0d4",
+  "package.json": "8f29bd7bcf04e131685961474501c68570fed845ef49fc56d67aac8876260665",
+  "style.css": "d1c45916b8e1daa838ea189442826ca60c570ffcc41948057ffe0311ae70bb18",
+  "src/Game.ts": "6071e94081ad594a717600ae1ff92b5c7d9148a2ae98fda619acb179e102136c",
+  "src/core/AudioManager.ts": "849ac47bf3569631eb21cc3a6dfc26c7eddffed3fa76f11987b90c3e9eb7330a",
+  "src/entities/Character.ts": "a6681d5f6b90cc7a627e23e00875a47aff6eebd6ac9a109a09ffa89dbca36eca",
+  "src/rendering/Renderer.ts": "da86be0775da13969270bfda68d99d4abc64cba982c7ec6e82896cfc512dbacc",
+  "src/world/World.ts": "97907b6667b7295bcb6063bfc82ef1053016f47f334fcdcf580cfb4cc001c44f",
+  "src/tennis/ChampionshipCameraRig.ts": "a4e7c47e84c68b4751b89ccfabcb67cc77682ab0de3289a832bf2e1ee1f11697",
+  "src/tennis/ChampionshipController.ts": "2ecb00c590c62a751255d07daccb95c732b9c20504264de3ea60c847a0f24ebd",
+  "src/tennis/ChampionshipTuning.ts": "94d4573abd1a999702ee8a04e2a84a68cb9dbc0aed15482c1ec286d846823020",
+  "src/ui/ChampionshipHUD.ts": "ee11f35ae7a6cb0841d867891dc16cfb7dae2ce777440ebf9b2e3c9093fdd2f6",
+  "tests/championship-controller.mjs": "59d6f03248fce4899dd1ad74424568f27246e42c184eac27f49d27a6d2c6b015",
+  "tests/championship-presentation.mjs": "fc12386c550f990e6aec4d68845c71188ba9d14c50358df922e3f5409ebe2444",
+  "tests/cozy-atmosphere.mjs": "8e5563df9990249dbbf34a4cc64be020a951b44b90a47ce1cc0d338eeb71afd1",
+  "qa/cozy-smoke.mjs": "15a7bebd9d2b731062415accd932b2a885f9595bd7dcde654fbb3699eceac4c2"
+}

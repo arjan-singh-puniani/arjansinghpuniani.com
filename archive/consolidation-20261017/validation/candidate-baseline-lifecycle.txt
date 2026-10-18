@@ -1,0 +1,1 @@
+32 lifecycle cycles PASS {"cycles":32,"physicsAndCleanupPassed":true,"domRange":[268,268],"firstDom":268,"lastDom":268,"transientAudioNodesAfterSettle":0,"firstHeap":42100000,"lastHeap":42100000}

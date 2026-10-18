@@ -1,0 +1,66 @@
+# Rally House Championship Mode
+
+Championship Mode adds direct arcade tennis without replacing Rally House's autonomous club simulation.
+
+## Ownership
+
+- `ActivitySystem` remains the authority for court and participant reservations.
+- `ChampionshipController` owns match lifecycle and scoring.
+- `InteractiveMatchSystem` owns the live point, player/AI contact decisions and match-only ball presentation.
+- `MatchInput` converts keyboard/touch events into player intent.
+- `ChampionshipCameraRig` translates match presentation state into targets for the existing spring camera.
+- `ChampionshipHUD` presents score, match state, rematch/exit actions and coarse-pointer touch controls.
+- `BallPhysics` remains the authoritative flight integrator.
+- `Character` remains the authoritative body/racket pose and string-bed geometry.
+
+The existing autonomous `RallySystem` is intentionally left intact.
+
+## Desktop controls
+
+- WASD or arrow keys: move on the near half of the court.
+- Space: swing / serve.
+- Escape: return safely to the club.
+
+## Touch controls
+
+Coarse-pointer devices receive a left movement pad and a large right-side `SWING` button. The controls use safe-area insets and stay near the screen edges so the ball path remains visible.
+
+## Match format
+
+Championship matches use a compact tiebreak-style format: first to 7 points, win by 2.
+
+## Contact model
+
+Input decides *when the player tries to swing*. It does not directly launch the ball. The incoming ball is staged only during the last part of the swing and outgoing flight begins after the ball converges on the live racket string-bed frame. This preserves the existing Rally House principle that visual contact and ball release agree.
+
+Timing is categorized as Perfect, Clean, Defensive, or Frame using centralized values in `ChampionshipTuning.ts`. Important game-feel values belong there so playtest tuning remains reviewable.
+
+## Opponent model
+
+All opponents share one decision system. Character identity is expressed through data parameters: reaction, movement speed, anticipation, contact forgiveness, aim, power, risk tolerance, and recovery. Movement speed temporarily adjusts the existing Character court locomotion on top of coaching-derived bonuses, and recovery controls how completely an opponent regains center after contact. All temporary movement tuning is restored when Championship play stops. This keeps difficulty understandable and avoids per-character AI forks.
+
+## Regression boundary
+
+Championship uses the same `court` resource as lessons and autonomous matches. An unavailable court or busy opponent therefore fails through the existing reservation path instead of creating overlapping activities.
+
+## Verification still required on the integrated repository
+
+Run the complete existing suite and browser QA after applying the patch. In particular verify repeated match → rematch → return-to-club cycles, mobile portrait/landscape controls, save/reload, autonomous rallies, coaching, building, and console cleanliness.
+
+
+## Showcase release standard
+
+Championship Mode is presented as a finished interactive game-systems showcase, not as a public-facing vertical slice. The release target is intentionally compact: a living club transitions into tactile arcade tennis, then returns cleanly to the same persistent world. Automated gates cover lifecycle, scoring, physical contact, camera restoration, input buffering, navigation safety, persistence, and multi-viewport browser smoke tests. Human approval is still required for physical-device touch/audio and subjective game feel.
+
+Opponent identity is data-driven rather than represented only by a difficulty scalar. Profiles now vary reaction, movement, anticipation, contact forgiveness, aim, power, risk, recovery, court depth, angle preference, and serve cadence.
+
+## Signature camera transformation
+
+Championship is intentionally not presented as a separate loading-screen minigame.
+The player accepts a challenge in the ordinary dollhouse, watches both characters
+physically claim the court, and then sees the existing camera recompose the same
+space into a sports-game view. The camera first establishes the court from the
+miniature isometric angle, then visibly orbits and descends behind the player's
+baseline before input is enabled. The resulting gameplay framing is wider and
+higher than the early Championship prototypes so the ball, opponent, sidelines,
+and court depth remain readable throughout a rally.

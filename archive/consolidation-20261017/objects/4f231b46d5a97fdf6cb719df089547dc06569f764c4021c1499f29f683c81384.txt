@@ -1,0 +1,300 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+from pathlib import Path
+import re
+import shutil
+import sys
+from datetime import datetime
+
+def die(msg):
+    raise RuntimeError(msg)
+
+def find_repo(start):
+    for root in [start] + list(start.parents):
+        if (root / "rally-house-source-v16" / "src" / "entities" / "Character.ts").exists() and (root / "rally-house-source-v16" / "src" / "tennis" / "RallySystem.ts").exists():
+            return root
+    raise RuntimeError("Run this from inside the Rally House repository/worktree.")
+
+ROOT = find_repo(Path.cwd().resolve())
+SRC = ROOT / "rally-house-source-v16"
+
+character_path = SRC / "src/entities/Character.ts"
+rally_path = SRC / "src/tennis/RallySystem.ts"
+everyday_test_path = SRC / "tests/everyday.mjs"
+
+# This patch intentionally targets the v17 tactile-build patch state.
+character = character_path.read_text()
+rally = rally_path.read_text()
+if "private stagedBall(p:PendingShot)" not in rally:
+    die("Expected the v17 tactile-build RallySystem. Apply Rally-House-v17-Patch-Kit first.")
+if "previewPlacement(type:Placement['type']" not in (SRC / "src/world/World.ts").read_text():
+    die("Expected the v17 tactile-build decor system. Apply Rally-House-v17-Patch-Kit first.")
+if "racketContactFrame()" in character:
+    die("Toy-contact patch already appears to be installed.")
+
+stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+backup = ROOT / (".rally-house-v17-1-toy-contact-backup-" + stamp)
+backup.mkdir(parents=True, exist_ok=False)
+
+targets = [character_path, rally_path]
+if everyday_test_path.exists():
+    targets.append(everyday_test_path)
+for p in targets:
+    dst = backup / p.relative_to(ROOT)
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(p, dst)
+
+def replace_once(text, old, new, label):
+    count = text.count(old)
+    if count != 1:
+        die("%s: expected one exact match, found %d" % (label, count))
+    return text.replace(old, new, 1)
+
+def regex_once(text, pattern, repl, label):
+    out, count = re.subn(pattern, repl, text, count=1, flags=re.S)
+    if count != 1:
+        die("%s: expected one structural match, found %d" % (label, count))
+    return out
+
+try:
+    # ------------------------------------------------------------------
+    # Character.ts: explicit string bed + stronger follow-through
+    # ------------------------------------------------------------------
+    character = character_path.read_text()
+
+    helper_anchor = """function mixHex(a:string,b:string,t:number){const parse=(h:string)=>{const s=h.replace('#','');return [parseInt(s.slice(0,2),16),parseInt(s.slice(2,4),16),parseInt(s.slice(4,6),16)]};const aa=parse(a),bb=parse(b),c=aa.map((v,i)=>Math.round(v+(bb[i]-v)*t));return '#'+c.map(v=>v.toString(16).padStart(2,'0')).join('');}"""
+    helper_new = helper_anchor + r"""
+
+/** Rotate a local racket-plane vector by the same Y * X * Z order used by Math3D.compose. */
+function rotateEulerVector(v:Vec3,r:Vec3){
+  const cz=Math.cos(r.z),sz=Math.sin(r.z),cx=Math.cos(r.x),sx=Math.sin(r.x),cy=Math.cos(r.y),sy=Math.sin(r.y);
+  const zx=v.x*cz-v.y*sz,zy=v.x*sz+v.y*cz,zz=v.z;
+  const xx=zx,xy=zy*cx-zz*sx,xz=zy*sx+zz*cx;
+  return new Vec3(xx*cy+xz*sy,xy,-xx*sy+xz*cy);
+}"""
+    character = replace_once(character, helper_anchor, helper_new, "Character racket-plane helper")
+
+    contact_anchor = "  racketContactPoint(){const pose=this.pose();return pose.racketCenter.clone();}"
+    contact_new = contact_anchor + r"""
+  racketContactFrame(){const pose=this.pose();return {center:pose.racketCenter.clone(),rotation:pose.racketRot.clone(),horizontal:rotateEulerVector(new Vec3(1,0,0),pose.racketRot).normalize(),vertical:rotateEulerVector(new Vec3(0,1,0),pose.racketRot).normalize(),normal:rotateEulerVector(new Vec3(0,0,1),pose.racketRot).normalize()};}"""
+    character = replace_once(character, contact_anchor, contact_new, "Character contact frame")
+
+    # Slightly clearer post-contact body turn. Contact timing and IK remain untouched.
+    character = replace_once(
+        character,
+        "coil+=(-.62*(1-smoothstep(0,.82,pre))+.66*style.follow*smoothstep(0,1,post))*style.coil;",
+        "coil+=(-.62*(1-smoothstep(0,.82,pre))+.78*style.follow*smoothstep(0,1,post))*style.coil;",
+        "Forehand follow-through"
+    )
+    character = replace_once(
+        character,
+        "coil+=(.58*(1-smoothstep(0,.82,pre))-.56*style.follow*smoothstep(0,1,post))*style.coil;",
+        "coil+=(.58*(1-smoothstep(0,.82,pre))-.68*style.follow*smoothstep(0,1,post))*style.coil;",
+        "Backhand follow-through"
+    )
+    character = replace_once(
+        character,
+        "const a=-1.45+smoothstep(0,.70,sp/contact)*1.98+smoothstep(contact,1,sp)*1.10;",
+        "const a=-1.45+smoothstep(0,.70,sp/contact)*1.98+smoothstep(contact,1,sp)*1.24;",
+        "Forehand racket arc"
+    )
+    character = replace_once(
+        character,
+        "const a=1.30-smoothstep(0,.70,sp/contact)*1.72-smoothstep(contact,1,sp)*.86;",
+        "const a=1.30-smoothstep(0,.70,sp/contact)*1.72-smoothstep(contact,1,sp)*.98;",
+        "Backhand racket arc"
+    )
+
+    old_racket = r"""    if(this.spec.id!=='nia'&&(pose.shot||this.state==='ready'||this.state==='shuffle'||this.socialGesture==='inspect'&&!this.racketStowed)&&!this.racketStowed&&this.state!=='drink'&&!this.propKind){
+      m.push(this.limb(racketGrip,racketHandleTop,.045,'#705747'));
+      m.push({kind:'torus',position:racketCenter,rotation:racketRot,scale:new Vec3(.86,1.08,.58),color:this.spec.accent??'#e0c474',material:'metal'});
+      m.push({kind:'torus',position:racketCenter,rotation:racketRot,scale:new Vec3(.62,.79,.42),color:'#ece6d7',material:'metal',alpha:.52,unlit:true});
+      // A tiny butt cap makes the hand-to-racket constraint visually obvious at close zoom.
+      m.push({kind:'cylinder',position:racketGrip,rotation:new Vec3(Math.PI/2,this.yaw,0),scale:new Vec3(.075,.10,.075),color:'#44372f',material:'fabric'});
+    }"""
+    new_racket = r"""    if(this.spec.id!=='nia'&&(pose.shot||this.state==='ready'||this.state==='shuffle'||this.socialGesture==='inspect'&&!this.racketStowed)&&!this.racketStowed&&this.state!=='drink'&&!this.propKind){
+      m.push(this.limb(racketGrip,racketHandleTop,.048,'#705747'));
+      // One readable frame, then an actual string bed. The old second torus read as a hollow ring.
+      m.push({kind:'torus',position:racketCenter,rotation:racketRot,scale:new Vec3(.88,1.10,.62),color:this.spec.accent??'#e0c474',material:'metal'});
+      m.push({kind:'sphere',position:racketCenter,rotation:racketRot,scale:new Vec3(.58,.76,.028),color:'#f5efdf',alpha:.10,unlit:true,noShadow:true});
+      const stringColor='#f3ecdb';
+      for(const x of [-.34,-.17,0,.17,.34]){
+        const q=Vec3.add(racketCenter,rotateEulerVector(new Vec3(x,0,0),racketRot));
+        m.push({kind:'roundBox',position:q,rotation:racketRot,scale:new Vec3(.014,.70,.018),color:stringColor,alpha:.64,unlit:true,noShadow:true});
+      }
+      for(const y of [-.42,-.21,0,.21,.42]){
+        const q=Vec3.add(racketCenter,rotateEulerVector(new Vec3(0,y,0),racketRot));
+        m.push({kind:'roundBox',position:q,rotation:racketRot,scale:new Vec3(.54,.014,.018),color:stringColor,alpha:.60,unlit:true,noShadow:true});
+      }
+      // A tiny butt cap makes the hand-to-racket constraint visually obvious at close zoom.
+      m.push({kind:'cylinder',position:racketGrip,rotation:new Vec3(Math.PI/2,this.yaw,0),scale:new Vec3(.075,.10,.075),color:'#44372f',material:'fabric'});
+    }"""
+    character = replace_once(character, old_racket, new_racket, "Racket mesh/string bed")
+    character_path.write_text(character)
+
+    # ------------------------------------------------------------------
+    # RallySystem.ts: 2-frame impact latch + exact frame + toy burst
+    # ------------------------------------------------------------------
+    rally = rally_path.read_text()
+
+    rally = replace_once(
+        rally,
+        "  hitter:Character;receiver:Character;state:Stroke;target:Vec3;flight:number;contactAt:number;duration:number;released:boolean;outcome:ShotOutcome;",
+        "  hitter:Character;receiver:Character;state:Stroke;target:Vec3;flight:number;contactAt:number;duration:number;released:boolean;impactStarted:boolean;latchRemaining:number;outcome:ShotOutcome;",
+        "PendingShot impact state"
+    )
+
+    rally = replace_once(
+        rally,
+        "private trail:Vec3[]=[];private trailSpeed=0;private impactPulse=0;private pending:PendingShot|null=null;private lastContact:Vec3|null=null;",
+        "private trail:Vec3[]=[];private trailSpeed=0;private impactBurst=0;private pending:PendingShot|null=null;private lastContact:Vec3|null=null;private lastContactFrame:{rotation:Vec3;horizontal:Vec3;vertical:Vec3}|null=null;",
+        "Rally impact fields"
+    )
+
+    rally = replace_once(
+        rally,
+        "this.pending=null;this.trail=[];this.trailSpeed=0;this.hitter=0;",
+        "this.pending=null;this.trail=[];this.trailSpeed=0;this.impactBurst=0;this.lastContact=null;this.lastContactFrame=null;this.hitter=0;",
+        "Rally start reset"
+    )
+    rally = replace_once(
+        rally,
+        "this.enabled=false;this.ball.active=false;this.trail=[];this.trailSpeed=0;this.pending=null;",
+        "this.enabled=false;this.ball.active=false;this.trail=[];this.trailSpeed=0;this.impactBurst=0;this.lastContact=null;this.lastContactFrame=null;this.pending=null;",
+        "Rally stop reset"
+    )
+
+    old_update_head = "if(!this.enabled)return;this.impactPulse=Math.max(0,this.impactPulse-dt*3.2);this.netRipple=Math.max(0,this.netRipple-dt*3.8);"
+    new_update_head = "if(!this.enabled)return;this.impactBurst=Math.max(0,this.impactBurst-dt*7.5);this.netRipple=Math.max(0,this.netRipple-dt*3.8);"
+    rally = replace_once(rally, old_update_head, new_update_head, "Rally impact decay")
+
+    old_contact_block = r"""      if(!p.released){
+        const staged=this.stagedBall(p),racket=p.hitter.racketContactPoint(),gap=Vec3.sub(staged,racket).len();
+        const contactWindow=p.hitter.animTime>=p.contactAt-.055,grace=p.hitter.animTime>=p.contactAt+.045;
+        if(contactWindow&&(gap<=.19||grace)){
+          p.released=true;this.flightHitter=p.hitter;this.sessionHits++;this.callbacks.onShot?.(p.evidence);
+          const start=racket.clone();this.lastContact=start.clone();
+          p.hitter.notifyRacketImpact(p.outcome==='frame'?'frame':p.outcome==='net'?'net':'clean');
+          this.ball.launch(start,p.target,p.flight);this.trail=[];this.trailSpeed=this.ball.velocity.len();this.impactPulse=1;this.lastOutcome=p.outcome;
+          this.callbacks.onHit?.(p.outcome==='frame'?'frame':p.outcome==='net'?'net':'clean');
+          if(p.outcome==='clean'||p.outcome==='frame'){this.rallyCount++;this.bestRally=Math.max(this.bestRally,this.rallyCount);this.callbacks.onRally?.(this.rallyCount);}this.waitingForReceiver=false;
+        }
+      }"""
+    new_contact_block = r"""      if(!p.released){
+        if(!p.impactStarted){
+          const staged=this.stagedBall(p),frame=p.hitter.racketContactFrame(),gap=Vec3.sub(staged,frame.center).len();
+          // stagedBall converges onto the live string-bed center. No time-only "near enough" release.
+          const contactWindow=p.hitter.animTime>=p.contactAt-.025;
+          if(contactWindow&&gap<=.12){
+            p.impactStarted=true;p.latchRemaining=.036;this.flightHitter=p.hitter;this.sessionHits++;this.callbacks.onShot?.(p.evidence);
+            this.lastContact=frame.center.clone();this.lastContactFrame={rotation:frame.rotation.clone(),horizontal:frame.horizontal.clone(),vertical:frame.vertical.clone()};
+            p.hitter.notifyRacketImpact(p.outcome==='frame'?'frame':p.outcome==='net'?'net':'clean');
+            this.impactBurst=1;this.lastOutcome=p.outcome;this.waitingForReceiver=false;
+            // Sound and visual burst begin on the same authoritative contact event.
+            this.callbacks.onHit?.(p.outcome==='frame'?'frame':p.outcome==='net'?'net':'clean');
+          }
+        }else{
+          p.latchRemaining-=dt;
+          if(p.latchRemaining<=0){
+            const frame=p.hitter.racketContactFrame();p.released=true;
+            this.ball.launch(frame.center,p.target,p.flight);this.trail=[];this.trailSpeed=this.ball.velocity.len();
+            if(p.outcome==='clean'||p.outcome==='frame'){this.rallyCount++;this.bestRally=Math.max(this.bestRally,this.rallyCount);this.callbacks.onRally?.(this.rallyCount);}
+          }
+        }
+      }"""
+    rally = replace_once(rally, old_contact_block, new_contact_block, "Authoritative contact + latch")
+
+    rally = replace_once(
+        rally,
+        "if(ev.bounced){this.callbacks.onBounce?.();this.impactPulse=.48;if(this.ball.bounces===1)this.waitingForReceiver=true;}",
+        "if(ev.bounced){this.callbacks.onBounce?.();if(this.ball.bounces===1)this.waitingForReceiver=true;}",
+        "Remove ghost contact pulse on bounce"
+    )
+
+    rally = replace_once(
+        rally,
+        "released:false,outcome,incomingStart:",
+        "released:false,impactStarted:false,latchRemaining:0,outcome,incomingStart:",
+        "PendingShot initialization"
+    )
+
+    old_pending_mesh = r"""    if(this.pending&&!this.pending.released){
+      const p=this.pending,q=this.stagedBall(p);
+      m.push({kind:'sphere',position:q,scale:new Vec3(.16,.16,.16),color:'#cbdc55',unlit:true});
+    }"""
+    new_pending_mesh = r"""    if(this.pending&&!this.pending.released){
+      const p=this.pending;
+      if(p.impactStarted){
+        const frame=p.hitter.racketContactFrame();
+        // Flatten along the racket-normal axis for a tiny toy-like string compression.
+        m.push({kind:'sphere',position:frame.center.clone(),rotation:frame.rotation.clone(),scale:new Vec3(.195,.205,.095),color:'#d5df58',unlit:true,noShadow:true});
+      }else{
+        const q=this.stagedBall(p);
+        m.push({kind:'sphere',position:q,scale:new Vec3(.16,.16,.16),color:'#cbdc55',unlit:true});
+      }
+    }"""
+    rally = replace_once(rally, old_pending_mesh, new_pending_mesh, "Latched ball squash")
+
+    old_burst = r"""    if(this.impactPulse>0&&this.lastContact){
+      const q=this.lastContact,scale=.30+(1-this.impactPulse)*.25;
+      m.push({kind:'torus',position:q.clone(),rotation:new Vec3(Math.PI/2,0,0),scale:new Vec3(scale,scale,.21),color:'#bfe552',alpha:Math.min(.30,this.impactPulse*.36),unlit:true,noShadow:true},
+             {kind:'sphere',position:q.clone(),scale:new Vec3(.12+.10*this.impactPulse,.12+.10*this.impactPulse,.12+.10*this.impactPulse),color:'#e8f29a',alpha:.16*this.impactPulse,unlit:true,noShadow:true});
+    }"""
+    new_burst = r"""    if(this.impactBurst>0&&this.lastContact&&this.lastContactFrame){
+      const q=this.lastContact,t=1-this.impactBurst,ring=.25+t*.22,frame=this.lastContactFrame;
+      // Cream pop first, tennis-green echo second. Both lie in the actual string-bed plane.
+      m.push({kind:'torus',position:q.clone(),rotation:frame.rotation.clone(),scale:new Vec3(ring*1.05,ring*1.18,.13),color:'#f3dfad',alpha:.34*this.impactBurst,unlit:true,noShadow:true},
+             {kind:'torus',position:q.clone(),rotation:frame.rotation.clone(),scale:new Vec3(ring*.72,ring*.82,.09),color:'#bce453',alpha:.24*this.impactBurst,unlit:true,noShadow:true});
+      const spread=.25+t*.22,axes=[frame.horizontal.clone(),frame.horizontal.clone().scale(-1),frame.vertical.clone(),frame.vertical.clone().scale(-1)];
+      for(let i=0;i<axes.length;i++){
+        const pos=q.clone().add(axes[i].scale(spread*(i<2?1:.88))),size=.045+.018*this.impactBurst;
+        m.push({kind:'sphere',position:pos,scale:new Vec3(size,size,size),color:i%2?'#c9e85d':'#f5e7bd',alpha:.42*this.impactBurst,unlit:true,noShadow:true});
+      }
+    }"""
+    rally = replace_once(rally, old_burst, new_burst, "Toy contact burst")
+
+    rally_path.write_text(rally)
+
+    # ------------------------------------------------------------------
+    # Test housekeeping from v17 schema bump: keep the existing test honest.
+    # ------------------------------------------------------------------
+    if everyday_test_path.exists():
+        everyday = everyday_test_path.read_text()
+        if "newly written envelopes use schema 7" in everyday:
+            everyday = everyday.replace(
+                "test('v13 saves migrate unchanged and newly written envelopes use schema 7',()=>{assert.equal(CURRENT_SAVE_VERSION,7);",
+                "test('v13 saves migrate unchanged and newly written envelopes use schema 8',()=>{assert.equal(CURRENT_SAVE_VERSION,8);",
+                1
+            )
+            everyday = everyday.replace("assert.equal(new SaveSystem().version,7)", "assert.equal(new SaveSystem().version,8)", 1)
+            everyday_test_path.write_text(everyday)
+
+    print("")
+    print("Rally House v17.1 toy-contact patch installed.")
+    print("Backup:", backup)
+    print("")
+    print("Changed:")
+    print("  - visible procedural racket string bed")
+    print("  - stronger forehand/backhand follow-through")
+    print("  - 36 ms impact latch")
+    print("  - string-plane ball squash")
+    print("  - cream + tennis-green contact pop")
+    print("  - sound fires at authoritative contact")
+    print("  - outgoing ball launches after the latch")
+    print("  - removed old contact ring re-flashing on bounce")
+    print("")
+    print("Next:")
+    print("  cd rally-house-source-v16")
+    print("  npm test")
+    print("  npm run build")
+    print("  npm run serve")
+    print("  open http://localhost:8080/?debug=1")
+
+except Exception as exc:
+    for p in targets:
+        saved = backup / p.relative_to(ROOT)
+        if saved.exists():
+            shutil.copy2(saved, p)
+    print("\nPATCH FAILED. Restored the exact pre-patch source files.", file=sys.stderr)
+    print(str(exc), file=sys.stderr)
+    sys.exit(1)

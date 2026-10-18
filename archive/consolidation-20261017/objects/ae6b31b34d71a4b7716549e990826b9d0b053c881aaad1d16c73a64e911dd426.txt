@@ -1,0 +1,59 @@
+# arjansinghpuniani.com — Final Human-Copy Upgrade
+
+Prepared: 2026-09-27  
+Baseline: GitHub `main` commit `a9f0b9167527ffc221e17285d65c3787509f2b2e`
+
+This package keeps the collaborator/Gutruf information architecture and removes the remaining copy that sounded like a manifesto, pitch deck, or generated portfolio language.
+
+The standard is simple: the site should sound like Arjan explaining his work to a technically serious person across a table.
+
+## What changes
+
+- Hero becomes: **“I build research tools for neural engineering and neurotechnology.”**
+- Supporting copy names BCI experiments, research software, clinical studies, and early device concepts.
+- Keeps the evidence rail directly under the hero.
+- Replaces the abstract thesis with **“Show your work.”**
+- Rewrites ReasonOS and BCI summaries in plain language.
+- Rewrites collaboration cards around concrete work rather than positioning language.
+- Renames **Field Notes** to **Notes**.
+- Rewrites the Notes page around what worked, what was hard, and what Arjan wants to remember.
+- Rewrites About project-origin copy and the inherited profile headline/biography.
+- Simplifies Contact while keeping wearable sensing and relocation interest explicit.
+- Tightens the ReasonOS project-index description.
+
+## What does not change
+
+The package does not edit robots, sitemap generation, redirects, canonical infrastructure, analytics, interactive project engines, or public runtime assets.
+
+## Safe installation
+
+The installer accepts the audited GitHub baseline and the earlier chat-generated upgrade variants. Unknown local changes cause it to stop before writing.
+
+From the repository root:
+
+```bash
+python3 portfolio_upgrade/apply_portfolio_upgrade.py --repo . --check
+python3 portfolio_upgrade/apply_portfolio_upgrade.py --repo . --apply
+```
+
+Then:
+
+```bash
+cd arjan-portfolio
+npm run lint
+npm run typecheck
+npm run test
+npm run build
+```
+
+Do not deploy unless all four pass.
+
+Then inspect `/`, `/work`, `/notes`, `/about`, and `/contact` at mobile and desktop widths.
+
+## Restore
+
+```bash
+python3 portfolio_upgrade/apply_portfolio_upgrade.py --repo . --restore
+```
+
+The backup folder is `.portfolio-final-copy-backup-20260927`.

@@ -1,0 +1,208 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import styles from "./PortfolioHeroField.module.css";
+
+const vertexShader = `
+attribute vec2 a_position;
+varying vec2 v_uv;
+void main() {
+  v_uv = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+
+const fragmentShader = `
+precision highp float;
+varying vec2 v_uv;
+uniform vec2 u_resolution;
+uniform vec2 u_pointer;
+uniform float u_time;
+uniform float u_scroll;
+uniform float u_motion;
+
+float hash(vec2 p) {
+  p = fract(p * vec2(123.34, 456.21));
+  p += dot(p, p + 45.32);
+  return fract(p.x * p.y);
+}
+
+float noise(vec2 p) {
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  f = f * f * (3.0 - 2.0 * f);
+  return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x),
+             mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y);
+}
+
+float fbm(vec2 p) {
+  float value = 0.0;
+  float amplitude = 0.5;
+  for (int i = 0; i < 4; i++) {
+    value += amplitude * noise(p);
+    p = p * 2.03 + 11.7;
+    amplitude *= 0.5;
+  }
+  return value;
+}
+
+void main() {
+  vec2 uv = v_uv;
+  vec2 aspect = vec2(u_resolution.x / max(u_resolution.y, 1.0), 1.0);
+  vec2 p = (uv - 0.5) * aspect;
+  vec2 pointer = (u_pointer - 0.5) * aspect;
+
+  float t = u_time * 0.055 * u_motion;
+  float scrollShift = u_scroll * 0.00022;
+  float fieldA = fbm(p * 2.15 + vec2(t, -t * 0.6 + scrollShift));
+  float fieldB = fbm(p * 3.1 + vec2(-t * 0.55, t * 0.8));
+  float viscous = smoothstep(0.28, 0.82, fieldA * 0.7 + fieldB * 0.3);
+
+  float pointerGlow = exp(-5.8 * length(p - pointer));
+  float sweep = smoothstep(0.0, 0.75, 1.0 - abs(p.x + p.y * 0.35 - sin(t * 1.7) * 0.55));
+  float edge = smoothstep(0.85, 0.15, length((uv - 0.5) * vec2(0.92, 1.0)));
+
+  vec3 ink = vec3(0.188, 0.188, 0.200);
+  vec3 peri = vec3(0.392, 0.482, 0.769);
+  vec3 ice = vec3(0.863, 0.886, 0.953);
+
+  vec3 color = mix(ink, peri, viscous * 0.62);
+  color = mix(color, ice, (pointerGlow * 0.35 + sweep * 0.08) * u_motion);
+  color *= 0.35 + edge * 0.85;
+
+  float alpha = 0.12 + viscous * 0.18 + pointerGlow * 0.12 * u_motion;
+  gl_FragColor = vec4(color, alpha);
+}`;
+
+function compile(gl: WebGLRenderingContext, type: number, source: string) {
+  const shader = gl.createShader(type);
+  if (!shader) return null;
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    gl.deleteShader(shader);
+    return null;
+  }
+  return shader;
+}
+
+export function PortfolioHeroField() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const gl = canvas.getContext("webgl", {
+      alpha: true,
+      antialias: false,
+      depth: false,
+      powerPreference: "low-power",
+    });
+    if (!gl) return;
+
+    const vertex = compile(gl, gl.VERTEX_SHADER, vertexShader);
+    const fragment = compile(gl, gl.FRAGMENT_SHADER, fragmentShader);
+    if (!vertex || !fragment) return;
+
+    const program = gl.createProgram();
+    if (!program) return;
+    gl.attachShader(program, vertex);
+    gl.attachShader(program, fragment);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return;
+
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]),
+      gl.STATIC_DRAW,
+    );
+
+    const position = gl.getAttribLocation(program, "a_position");
+    const resolution = gl.getUniformLocation(program, "u_resolution");
+    const pointer = gl.getUniformLocation(program, "u_pointer");
+    const time = gl.getUniformLocation(program, "u_time");
+    const scroll = gl.getUniformLocation(program, "u_scroll");
+    const motion = gl.getUniformLocation(program, "u_motion");
+
+    gl.useProgram(program);
+    gl.enableVertexAttribArray(position);
+    gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+    let frame = 0;
+    let visible = true;
+    let pointerX = 0.62;
+    let pointerY = 0.38;
+    const start = performance.now();
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const width = Math.max(1, Math.floor(rect.width * dpr));
+      const height = Math.max(1, Math.floor(rect.height * dpr));
+      if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = height;
+        gl.viewport(0, 0, width, height);
+      }
+    };
+
+    const onPointer = (event: PointerEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      pointerX = (event.clientX - rect.left) / Math.max(rect.width, 1);
+      pointerY = 1 - (event.clientY - rect.top) / Math.max(rect.height, 1);
+    };
+
+    const onVisibility = () => {
+      visible = document.visibilityState === "visible";
+    };
+
+    const render = (now: number) => {
+      resize();
+      if (visible) {
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.uniform2f(resolution, canvas.width, canvas.height);
+        gl.uniform2f(pointer, pointerX, pointerY);
+        gl.uniform1f(time, (now - start) / 1000);
+        gl.uniform1f(scroll, window.scrollY);
+        gl.uniform1f(motion, reducedMotion.matches ? 0 : 1);
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+      }
+      frame = window.requestAnimationFrame(render);
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting && document.visibilityState === "visible";
+    }, { threshold: 0.02 });
+
+    observer.observe(canvas);
+    canvas.addEventListener("pointermove", onPointer, { passive: true });
+    document.addEventListener("visibilitychange", onVisibility);
+    frame = window.requestAnimationFrame(render);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      observer.disconnect();
+      canvas.removeEventListener("pointermove", onPointer);
+      document.removeEventListener("visibilitychange", onVisibility);
+      gl.deleteBuffer(buffer);
+      gl.deleteProgram(program);
+      gl.deleteShader(vertex);
+      gl.deleteShader(fragment);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className={styles.field}
+      aria-hidden="true"
+      tabIndex={-1}
+    />
+  );
+}

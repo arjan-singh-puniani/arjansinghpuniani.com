@@ -1,0 +1,84 @@
+# HoloAnatomy Shoulder v0.5 patch kit
+
+This kit upgrades the **current deployed portfolio HoloAnatomy runtime** without touching production directly.
+
+It does **not** add fabricated anatomy. It improves the current BodyParts3D shoulder exhibit with:
+
+- stronger rotator-cuff-first rendering
+- shoulder-specific views
+- progressive peel states
+- spatial compare mode
+- pinned labels
+- Locate practice
+- Rebuild practice
+- material/shader refinement
+- explicit data-gap and licensing documentation
+- production-path regression guards
+- automated shoulder model tests
+
+## Apply on your Mac
+
+From the repository root:
+
+```bash
+cd ~/Desktop/arjansinghpuniani.com
+
+git status
+git switch -c holoanatomy-shoulder-v05
+```
+
+Unzip this patch kit somewhere convenient, then run:
+
+```bash
+python3 /path/to/holo-v05-kit/apply_holoanatomy_shoulder_v05.py \
+  ~/Desktop/arjansinghpuniani.com \
+  --validate
+```
+
+The installer:
+
+1. verifies the current production-path fix is present;
+2. creates a timestamped backup;
+3. patches only HoloAnatomy shoulder/runtime files plus new docs/tests;
+4. runs `node --check` on modified JavaScript;
+5. runs the shoulder v0.5 Node tests;
+6. with `--validate`, runs portfolio `npm test`, `npm run typecheck`, and `npm run build`.
+
+## After it passes
+
+Run the portfolio locally:
+
+```bash
+cd ~/Desktop/arjansinghpuniani.com/arjan-portfolio
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:3000/playground/holoanatomy
+```
+
+Switch to **Rotator Cuff + Shoulder** and test:
+
+- Views → Overview
+- Views → Posterior cuff
+- Views → Superior cuff
+- Views → Anterior cuff
+- Views → Rotator cuff
+- Views → Biceps course
+- Views → Vascular
+- Views → Insertion context
+- Peel → all stages
+- Relate → several pairs
+- Practice → Locate
+- Practice → Rebuild
+- select a structure → Pin
+- Dissect + Table still work
+- Head + Neck and Heart still work
+
+## Important limitation
+
+This is a **software/intelligence + rendering upgrade** using the existing 20-structure shoulder source set. The current source does not contain separate cuff tendons, labrum, capsule, bursa, shoulder ligaments, axillary nerve, or suprascapular nerve. The patch does not invent them.
+
+Read the included audit and dataset research before expanding the anatomy source.

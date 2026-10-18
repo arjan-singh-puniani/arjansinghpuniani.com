@@ -1,0 +1,64 @@
+# branch.oid 408378251ce3a7083c77bc6d84f4d6ac9be8edf3
+# branch.head rally-house-v17-3-embodied-spectator-20260916
+# branch.upstream origin/rally-house-v17-3-embodied-spectator-20260916
+1 .M N... 100644 100644 100644 722bdfa50f06840dd38dbb666a28ff4532f3aa63 722bdfa50f06840dd38dbb666a28ff4532f3aa63 rally-house-source-v16/dist/Game.js
+1 .M N... 100644 100644 100644 bed7871b2a9300b35a0feabf7bdaefb59f7f3852 bed7871b2a9300b35a0feabf7bdaefb59f7f3852 rally-house-source-v16/dist/animation/ActingState.js
+1 .M N... 100644 100644 100644 9a144f76abd5476ba580df53971ef5f2af0040fa 9a144f76abd5476ba580df53971ef5f2af0040fa rally-house-source-v16/dist/content/PlayerAvatars.js
+1 .M N... 100644 100644 100644 107d956dc251608df917c9af1f59b19a88ade36f 107d956dc251608df917c9af1f59b19a88ade36f rally-house-source-v16/dist/content/content.js
+1 .M N... 100644 100644 100644 e112d58f08bdc9d24e778c4c0c4015fef08b29a5 e112d58f08bdc9d24e778c4c0c4015fef08b29a5 rally-house-source-v16/dist/core/AudioManager.js
+1 .M N... 100644 100644 100644 d7b2ff075eab98e0e0433ab900d981046b9dfeac d7b2ff075eab98e0e0433ab900d981046b9dfeac rally-house-source-v16/dist/entities/Character.js
+1 .M N... 100644 100644 100644 fa3c017636157053a1be669a20ab0098711d92cc fa3c017636157053a1be669a20ab0098711d92cc rally-house-source-v16/dist/simulation/AmbientSocialPlanner.js
+1 .M N... 100644 100644 100644 a7e382ac0a67ca52a72bc0f1099c0d80cc113a5c a7e382ac0a67ca52a72bc0f1099c0d80cc113a5c rally-house-source-v16/dist/simulation/CharacterMind.js
+1 .M N... 100644 100644 100644 2581b3078e08aa24341a146fc034d413540af033 2581b3078e08aa24341a146fc034d413540af033 rally-house-source-v16/dist/simulation/EverydayLife.js
+1 .M N... 100644 100644 100644 157517c00544bc8949377fbbe64bfd3b7cb8faf1 157517c00544bc8949377fbbe64bfd3b7cb8faf1 rally-house-source-v16/dist/simulation/SceneGrammar.js
+1 .M N... 100644 100644 100644 305110cfa713b43f73ae828875460a9fd716d58f 305110cfa713b43f73ae828875460a9fd716d58f rally-house-source-v16/package.json
+1 .M N... 100644 100644 100644 62ed5fa077fc921bc0f08f43a028f2e7a9c954f7 62ed5fa077fc921bc0f08f43a028f2e7a9c954f7 rally-house-source-v16/qa/v15-long-variety.json
+1 .M N... 100644 100644 100644 a929b5395c6fac522a66addfa2a979f6e96aadbe a929b5395c6fac522a66addfa2a979f6e96aadbe rally-house-source-v16/qa/v15-simulation.json
+1 .M N... 100644 100644 100644 bf296405db43d0eae1a6a47e3230e5347c9aeef7 bf296405db43d0eae1a6a47e3230e5347c9aeef7 rally-house-source-v16/qa/v16-coaching-recovery.json
+1 .M N... 100644 100644 100644 3a8063c9428e5b54c0d099476649ca26819d3ae6 3a8063c9428e5b54c0d099476649ca26819d3ae6 rally-house-source-v16/qa/v16-story-causality.json
+1 .M N... 100644 100644 100644 48a9ccbf716e0ac3392d819b1db883f4d3545d18 48a9ccbf716e0ac3392d819b1db883f4d3545d18 rally-house-source-v16/src/Game.ts
+1 .M N... 100644 100644 100644 037d46fa8dfb1c2acd6545e2b75c268397829922 037d46fa8dfb1c2acd6545e2b75c268397829922 rally-house-source-v16/src/animation/ActingState.ts
+1 .M N... 100644 100644 100644 42169373d4e6a1db27103007d13d52c480a74a92 42169373d4e6a1db27103007d13d52c480a74a92 rally-house-source-v16/src/content/PlayerAvatars.ts
+1 .M N... 100644 100644 100644 00943178e856195df8831bc0b8f9dc65ff32cd93 00943178e856195df8831bc0b8f9dc65ff32cd93 rally-house-source-v16/src/content/content.ts
+1 .M N... 100644 100644 100644 d19f8364bd54f1ce75f94ded32406ddefd1de5d4 d19f8364bd54f1ce75f94ded32406ddefd1de5d4 rally-house-source-v16/src/core/AudioManager.ts
+1 .M N... 100644 100644 100644 db60f4f8e3e7a30210ada5dd64bc269b3edde637 db60f4f8e3e7a30210ada5dd64bc269b3edde637 rally-house-source-v16/src/entities/Character.ts
+1 .M N... 100644 100644 100644 6254a3abdf761c0850b5add882b915d379561c6a 6254a3abdf761c0850b5add882b915d379561c6a rally-house-source-v16/src/simulation/AmbientSocialPlanner.ts
+1 .M N... 100644 100644 100644 38e8e9951d678eaa03b9cad75568d9b6d69541cc 38e8e9951d678eaa03b9cad75568d9b6d69541cc rally-house-source-v16/src/simulation/CharacterMind.ts
+1 .M N... 100644 100644 100644 3f29554c6f7bd83be97c2c57064f7d07c5b9007c 3f29554c6f7bd83be97c2c57064f7d07c5b9007c rally-house-source-v16/src/simulation/EverydayLife.ts
+1 .M N... 100644 100644 100644 a138f9e488d1704766c2fa3f85aa95c0cfc1ffcc a138f9e488d1704766c2fa3f85aa95c0cfc1ffcc rally-house-source-v16/src/simulation/SceneGrammar.ts
+1 .M N... 100644 100644 100644 a963f8d396b9f21528aa4347c9c9b0b660419ccc a963f8d396b9f21528aa4347c9c9b0b660419ccc rally-house-source-v16/style.css
+? .DS_Store
+? .rally-house-v17-1-toy-contact-backup-20260915-172218/
+? .rally-house-v17-2-readable-contact-backup-20260915-174933/
+? .rally-house-v17-3-embodied-spectator-backup-20260916-113350/
+? .rally-house-v17-4-1-scenegrammar-backup-20260916-131403/
+? .rally-house-v17-4-cozy-life-backup-20260916-130857/
+? .rally-house-v17-5-backup-20260916-173108/
+? .rally-house-v17-5-backup-20260916-173114/
+? .rally-house-v17-5-backup-20260916-173122/
+? .rally-house-v17-backup/
+? Photos .zip
+? Photos /
+? Rally-House-v17-Patch-Kit.zip
+? Rally-House-v17-Patch-Kit/
+? Rally-House-v17.1-Toy-Contact-Patch-Kit.zip
+? Rally-House-v17.1-Toy-Contact-Patch-Kit/
+? Rally-House-v17.2-Readable-Contact-Patch-Kit.zip
+? Rally-House-v17.2-Readable-Contact-Patch-Kit/
+? Rally-House-v17.3-Embodied-Spectator-Patch-Kit.zip
+? Rally-House-v17.3-Embodied-Spectator-Patch-Kit/
+? Rally-House-v17.4-Cozy-Life-Patch-Kit.zip
+? Rally-House-v17.4-Cozy-Life-Patch-Kit/
+? Rally-House-v17.4.1-SceneGrammar-Hotfix.zip
+? Rally-House-v17.4.1-SceneGrammar-Hotfix/
+? Rally-House-v17.5-Human-Space-Championship.zip
+? Rally-House-v17.5-Human-Space-Championship/
+? arjansinghpuniani-locked-clean-delight-patch-20260930.zip
+? portfolio-webgl-upgrade.zip
+? rally-house-source-v16/.DS_Store
+? rally-house-source-v16/dist/animation/ActingState.ts 2.js
+? rally-house-source-v16/dist/tennis/ChampionshipRally.js
+? rally-house-source-v16/src/animation/ActingState.ts 2.ts
+? rally-house-source-v16/src/tennis/ChampionshipRally.ts
+? rally-house-source-v16/tests/cozy-life.mjs
+? rally-house-source-v16/tests/human-space-championship.mjs

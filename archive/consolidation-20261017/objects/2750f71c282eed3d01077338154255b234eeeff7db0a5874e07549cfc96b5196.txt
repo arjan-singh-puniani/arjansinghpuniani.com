@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+from pathlib import Path
+from datetime import datetime
+import shutil
+import sys
+
+def find_repo(start):
+    candidates = [start] + list(start.parents)
+    for root in candidates:
+        p = root / "rally-house-source-v16" / "src" / "simulation" / "SceneGrammar.ts"
+        if p.exists():
+            return root
+    raise RuntimeError("Run this from inside the Rally House worktree (the folder containing rally-house-source-v16).")
+
+def replace_once(text, old, new, label):
+    count = text.count(old)
+    if count == 0 and new in text:
+        print("✓ " + label + ": already present")
+        return text
+    if count != 1:
+        raise RuntimeError("%s: expected exactly one current-source match, found %d" % (label, count))
+    print("✓ " + label)
+    return text.replace(old, new, 1)
+
+root = find_repo(Path.cwd().resolve())
+path = root / "rally-house-source-v16" / "src" / "simulation" / "SceneGrammar.ts"
+
+text = path.read_text()
+
+# Refuse to patch the wrong baseline.
+if "export type MemberId='coach'|'mika'|'leo'|'nia'|'steph';" not in (
+    root / "rally-house-source-v16" / "src" / "simulation" / "EverydayLife.ts"
+).read_text():
+    raise RuntimeError("Steph is not yet present in MemberId. Apply the v17.4 Cozy Life patch first.")
+
+backup_dir = root / (".rally-house-v17-4-1-scenegrammar-backup-" + datetime.now().strftime("%Y%m%d-%H%M%S"))
+backup_path = backup_dir / "rally-house-source-v16" / "src" / "simulation" / "SceneGrammar.ts"
+backup_path.parent.mkdir(parents=True, exist_ok=True)
+shutil.copy2(path, backup_path)
+
+try:
+    text = replace_once(
+        text,
+        "const N:Record<MemberId,string>={coach:'Contessa',mika:'Lucresia',leo:'Leo',nia:'Barbara'};",
+        "const N:Record<MemberId,string>={coach:'Contessa',mika:'Lucresia',leo:'Leo',nia:'Barbara',steph:'Steph'};",
+        "SceneGrammar member-name map"
+    )
+
+    text = replace_once(
+        text,
+        "const restText:Record<MemberId,string>={coach:'The note can wait for the tea this time.',mika:'Just a minute. Then I’ll know what I want to try.',leo:'This is recovery. I am being very disciplined.',nia:'The club can manage while I finish this.'};",
+        "const restText:Record<MemberId,string>={coach:'The note can wait for the tea this time.',mika:'Just a minute. Then I’ll know what I want to try.',leo:'This is recovery. I am being very disciplined.',nia:'The club can manage while I finish this.',steph:'One quiet minute. I can manage that. Probably.'};",
+        "SceneGrammar rest dialogue"
+    )
+
+    text = replace_once(
+        text,
+        "const invitation:Record<MemberId,string>={coach:'A short break? I could use another pair of eyes on the day.',mika:'Do you have a minute? I’m trying not to spend all of mine practicing.',leo:'I was about to take a very tactical break.',nia:'There’s room for one more. No need to make an occasion of it.'};",
+        "const invitation:Record<MemberId,string>={coach:'A short break? I could use another pair of eyes on the day.',mika:'Do you have a minute? I’m trying not to spend all of mine practicing.',leo:'I was about to take a very tactical break.',nia:'There’s room for one more. No need to make an occasion of it.',steph:'I was about to come say hi anyway. Take a minute with me?'};",
+        "SceneGrammar invitation dialogue"
+    )
+
+    text = replace_once(
+        text,
+        "const reply:Record<MemberId,string>={coach:'A minute without a correction. That sounds useful.',mika:'Yes. I can leave one thing unfinished.',leo:'I can spare a minute. Several, if they’re good.',nia:'I was hoping someone would ask me for once.'};",
+        "const reply:Record<MemberId,string>={coach:'A minute without a correction. That sounds useful.',mika:'Yes. I can leave one thing unfinished.',leo:'I can spare a minute. Several, if they’re good.',nia:'I was hoping someone would ask me for once.',steph:'Absolutely. I was pretending I had somewhere urgent to be.'};",
+        "SceneGrammar reply dialogue"
+    )
+
+    # Steph should also be allowed to author a quiet court-watching micro-scene.
+    text = replace_once(
+        text,
+        "if(c.courtActive&&(id==='coach'||id==='nia'))",
+        "if(c.courtActive&&(id==='coach'||id==='nia'||id==='steph'))",
+        "Steph court-watching eligibility"
+    )
+
+    path.write_text(text)
+
+    print("")
+    print("Rally House v17.4.1 SceneGrammar hotfix installed.")
+    print("Backup:", backup_dir)
+    print("")
+    print("Next:")
+    print("  cd rally-house-source-v16")
+    print("  npm test")
+    print("  npm run build")
+    print("  npm run serve")
+    print("")
+    print("Then open: http://localhost:8080/?debug=1&v=1741")
+
+except Exception as exc:
+    shutil.copy2(backup_path, path)
+    print("")
+    print("HOTFIX FAILED. SceneGrammar.ts restored from backup.", file=sys.stderr)
+    print(str(exc), file=sys.stderr)
+    sys.exit(1)

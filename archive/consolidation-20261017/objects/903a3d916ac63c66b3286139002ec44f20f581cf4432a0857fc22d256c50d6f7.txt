@@ -1,0 +1,41 @@
+# HoloAnatomy Shoulder v0.5 continuation
+
+## DONE
+
+- audited current 20-structure shoulder manifest
+- measured current mesh triangle counts and bounds
+- documented missing tendon/joint/nerve structures
+- researched BodyParts3D current official licensing
+- flagged Z-Anatomy asset-level licensing risk for commercial-capable redistribution
+- implemented intelligent shoulder views
+- implemented source-supported peel states
+- implemented spatial compare mode
+- implemented locate practice
+- implemented rebuild practice using registered source position
+- implemented pinned labels
+- implemented restrained material/shader upgrade
+- added production-path guards
+- added automated model tests
+
+## IN PROGRESS
+
+- human visual QA on the actual deployed shoulder geometry
+
+## NEXT
+
+- apply the patch on a clean branch
+- run full portfolio tests/typecheck/build
+- inspect all eight shoulder views
+- inspect mobile portrait and landscape
+- tune camera yaw/pitch values if a view is not framed ideally
+- capture before/after screenshots
+
+## BLOCKED
+
+- true tendon, labrum, capsule, bursa, ligament, and nerve fidelity requires additional verified source anatomy
+
+## DEFERRED
+
+- glTF/Meshopt/KTX2 conversion until a higher-fidelity asset set justifies a pipeline migration
+- pathology models
+- rotational rebuild scoring until per-structure rotation manipulation is implemented
