@@ -4,8 +4,9 @@ import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 // Run from rally-house-source-v16 so this harness works before/after QA curation.
-const {chromium,browserOptions}=await import(pathToFileURL(path.resolve('qa/runtime.mjs')).href);
-const browser=await chromium.launch({...browserOptions,args:['--use-angle=metal']});
+const {chromium,firefox,webkit,browserOptions}=await import(pathToFileURL(path.resolve('qa/runtime.mjs')).href);
+const engine=process.env.QA_ENGINE??'chromium';
+const browser=await {chromium,firefox,webkit}[engine].launch({...engine==='chromium'?{...browserOptions,args:['--use-angle=metal']}:{headless:true},...process.env.QA_BROWSER_EXECUTABLE?{executablePath:process.env.QA_BROWSER_EXECUTABLE}:{}});
 const report={cycles:[],errors:[]};
 try{
  const context=await browser.newContext({viewport:{width:1280,height:800}});
@@ -81,7 +82,8 @@ try{
  await context.close();
 }finally{
  report.limits=['Manual fixed ticks accelerate approach/exit; paused freeze, Resume click and short flight use live RAF. Autonomous scheduling is held during this lifecycle isolation test.','Total DOM can vary transiently by one node; bounded range and final return are checked.','AudioNode instrumentation starts after initial ambience and tracks later outgoing connections, not browser-internal allocation.','Heap is coarse, without forced garbage collection or long-duration leak proof.'];
- fs.mkdirSync('../takeover-evidence/session-20261009',{recursive:true});
- fs.writeFileSync('../takeover-evidence/session-20261009/optimizer-lifecycle.json',JSON.stringify(report,null,2));
+ const out=process.env.QA_OUT??'../takeover-evidence/session-20261009';
+ fs.mkdirSync(out,{recursive:true});
+ fs.writeFileSync(path.join(out,'optimizer-lifecycle.json'),JSON.stringify(report,null,2));
  await browser.close();
 }
