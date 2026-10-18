@@ -3,22 +3,22 @@
     "seconds": 3600.0000000000005,
     "uniqueScenes": 18,
     "uniquePairs": 6,
-    "uniqueLocations": 9,
-    "idlePercent": 10.847222222222221,
-    "quietPercent": 56.38194444444444,
+    "uniqueLocations": 10,
+    "idlePercent": 10.79861111111111,
+    "quietPercent": 56.03472222222222,
     "mostRepeatedBehavior": [
       "object",
       20
     ],
     "mostRepeatedPair": [
-      "mika|nia",
-      14
+      "coach|nia",
+      13
     ],
     "flags": [],
     "initiators": {
       "coach": 13,
-      "nia": 40,
-      "mika": 18,
+      "nia": 39,
+      "mika": 19,
       "leo": 18
     },
     "scenes": {
@@ -27,7 +27,7 @@
       "practice": 6,
       "reflect": 3,
       "match": 3,
-      "care": 3,
+      "care": 4,
       "after-result": 6,
       "rest": 8,
       "usual": 3,
@@ -35,30 +35,31 @@
       "counting": 6,
       "gear": 2,
       "closing": 3,
-      "shared-break": 14,
+      "shared-break": 13,
       "cups": 3,
-      "watch-court": 1,
+      "seek-advice": 1,
       "notes": 2,
       "cold-tea": 2
     },
     "pairs": {
-      "coach|mika": 4,
+      "coach|mika": 5,
       "leo|nia": 4,
       "coach|nia": 13,
       "leo|mika": 8,
-      "mika|nia": 14,
+      "mika|nia": 13,
       "coach|leo": 6
     },
     "places": {
       "court": 4,
-      "furniture-1": 37,
+      "furniture-1": 36,
       "furniture-3": 8,
       "cafeTable": 9,
-      "furniture-2": 3,
+      "furniture-2": 4,
       "warmup": 9,
-      "courtBench": 3,
+      "courtBench": 2,
       "cafe": 11,
-      "stringing": 5
+      "stringing": 5,
+      "training": 1
     },
     "interruptions": 3,
     "cancellations": 0,
@@ -221,7 +222,7 @@
       {
         "at": 413.00000000000006,
         "day": 1,
-        "minute": 973.5,
+        "minute": 973.75,
         "who": [
           "coach",
           "leo"
@@ -319,9 +320,9 @@
         "next": "At home here"
       },
       {
-        "at": 674.0000000000001,
+        "at": 677.0000000000001,
         "day": 1,
-        "minute": 1234.25,
+        "minute": 1237.25,
         "who": [
           "leo"
         ],
@@ -331,9 +332,9 @@
         "next": "At home here"
       },
       {
-        "at": 711.0000000000001,
+        "at": 713.0000000000001,
         "day": 1,
-        "minute": 1271.75,
+        "minute": 1273.75,
         "who": [
           "mika"
         ],
@@ -343,9 +344,9 @@
         "next": "At home here"
       },
       {
-        "at": 763.0000000000001,
+        "at": 764.0000000000001,
         "day": 1,
-        "minute": 1323.5,
+        "minute": 1324,
         "who": [
           "nia",
           "mika"
@@ -356,9 +357,9 @@
         "next": "At home here"
       },
       {
-        "at": 829.0000000000001,
+        "at": 836.0000000000001,
         "day": 1,
-        "minute": 1389.25,
+        "minute": 1396,
         "who": [
           "leo",
           "mika"
@@ -369,9 +370,9 @@
         "next": "At home here"
       },
       {
-        "at": 909.0000000000001,
+        "at": 911.0000000000001,
         "day": 2,
-        "minute": 29.25,
+        "minute": 31,
         "who": [
           "coach"
         ],
@@ -381,9 +382,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 1000.0000000000001,
+        "at": 1002.0000000000001,
         "day": 2,
-        "minute": 120.25,
+        "minute": 122.5,
         "who": [
           "nia"
         ],
@@ -393,9 +394,9 @@
         "next": "At home here"
       },
       {
-        "at": 1056.0000000000002,
+        "at": 1058.0000000000002,
         "day": 2,
-        "minute": 176,
+        "minute": 178,
         "who": [
           "coach"
         ],
@@ -405,9 +406,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 1138.0000000000002,
+        "at": 1140.0000000000002,
         "day": 2,
-        "minute": 258.25,
+        "minute": 260.25,
         "who": [
           "nia",
           "mika"
@@ -418,9 +419,9 @@
         "next": "At home here"
       },
       {
-        "at": 1231.0000000000002,
+        "at": 1233.0000000000002,
         "day": 2,
-        "minute": 351.75,
+        "minute": 353.75,
         "who": [
           "leo"
         ],
@@ -430,9 +431,9 @@
         "next": "At home here"
       },
       {
-        "at": 1287.0000000000002,
+        "at": 1289.0000000000002,
         "day": 2,
-        "minute": 407,
+        "minute": 409,
         "who": [
           "nia",
           "coach"
@@ -443,9 +444,9 @@
         "next": "At home here"
       },
       {
-        "at": 1383.0000000000002,
+        "at": 1385.0000000000002,
         "day": 2,
-        "minute": 503,
+        "minute": 505.25,
         "who": [
           "leo",
           "mika"
@@ -456,9 +457,9 @@
         "next": "At home here"
       },
       {
-        "at": 1415.0000000000002,
+        "at": 1413.0000000000002,
         "day": 2,
-        "minute": 535,
+        "minute": 533,
         "who": [
           "leo",
           "mika"
@@ -469,33 +470,33 @@
         "next": "Leo wants another try tomorrow."
       },
       {
-        "at": 1433.0000000000002,
+        "at": 1440.0000000000002,
         "day": 2,
-        "minute": 553.75,
+        "minute": 560,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia gives herself a slower count",
+        "why": "practice drive, personality, energy, favorite place",
+        "changed": "Lucresia spent a few quiet minutes rehearsing recovery footwork.",
+        "next": "At home here"
+      },
+      {
+        "at": 1468.0000000000002,
+        "day": 2,
+        "minute": 588.75,
         "who": [
           "nia"
         ],
         "what": "Barbara sets an extra cup",
-        "why": "personality, opportunity, authored performance, time of day",
+        "why": "personality, schedule, opportunity, authored performance",
         "changed": "Barbara set out an extra cup before anyone asked.",
         "next": "At home here"
       },
       {
-        "at": 1490.0000000000002,
+        "at": 1519.0000000000002,
         "day": 2,
-        "minute": 610.5,
-        "who": [
-          "nia"
-        ],
-        "what": "Barbara watches without interrupting",
-        "why": "live court, personality, ritual, opportunity",
-        "changed": "Barbara made time to watch the game.",
-        "next": "At home here"
-      },
-      {
-        "at": 1491.0000000000002,
-        "day": 2,
-        "minute": 611,
+        "minute": 639.25,
         "who": [
           "leo",
           "mika"
@@ -506,9 +507,22 @@
         "next": "Lucresia wants another chance with Leo tomorrow."
       },
       {
-        "at": 1528.0000000000002,
+        "at": 1523.0000000000002,
         "day": 2,
-        "minute": 648,
+        "minute": 643,
+        "who": [
+          "nia",
+          "coach"
+        ],
+        "what": "Barbara and Coach Contessa found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Barbara and Coach Contessa took a break by your bench. Barbara has started treating this as a favorite spot.",
+        "next": "Barbara is keeping a place for a post-court break."
+      },
+      {
+        "at": 1550.0000000000002,
+        "day": 2,
+        "minute": 670.5,
         "who": [
           "mika"
         ],
@@ -518,71 +532,46 @@
         "next": "At home here"
       },
       {
-        "at": 1533.0000000000002,
+        "at": 1609.0000000000002,
         "day": 2,
-        "minute": 653.5,
-        "who": [
-          "nia",
-          "leo"
-        ],
-        "what": "Barbara and Leo found a quiet spot",
-        "why": "Relationship and place preference",
-        "changed": "Barbara and Leo took a break by your bench. Barbara has started treating this as a favorite spot.",
-        "next": "Barbara is keeping a place for a post-court break."
-      },
-      {
-        "at": 1579.0000000000002,
-        "day": 2,
-        "minute": 699.75,
-        "who": [
-          "mika"
-        ],
-        "what": "Lucresia gives herself a slower count",
-        "why": "practice drive, personality, favorite place, opportunity",
-        "changed": "Lucresia spent a few quiet minutes rehearsing recovery footwork.",
-        "next": "At home here"
-      },
-      {
-        "at": 1627.0000000000002,
-        "day": 2,
-        "minute": 747.5,
-        "who": [
-          "nia",
-          "coach"
-        ],
-        "what": "Barbara and Coach Contessa found a quiet spot",
-        "why": "Relationship and place preference",
-        "changed": "Barbara and Coach Contessa took a break by your bench. Coach Contessa has started treating this as a favorite spot.",
-        "next": "Barbara is keeping a place for a post-court break."
-      },
-      {
-        "at": 1628.0000000000002,
-        "day": 2,
-        "minute": 748,
-        "who": [
-          "mika"
-        ],
-        "what": "Lucresia starts the count again",
-        "why": "personality, practice drive, opportunity, authored performance",
-        "changed": "Lucresia quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
-        "next": "At home here"
-      },
-      {
-        "at": 1669.0000000000002,
-        "day": 2,
-        "minute": 789,
+        "minute": 729.25,
         "who": [
           "nia"
         ],
         "what": "Barbara takes a real minute",
         "why": "intention, favorite place, ritual, opportunity",
         "changed": "Barbara took an unhurried break at a familiar bench.",
-        "next": "Keen to try again"
+        "next": "At home here"
       },
       {
-        "at": 1723.0000000000002,
+        "at": 1645.0000000000002,
         "day": 2,
-        "minute": 843,
+        "minute": 765.75,
+        "who": [
+          "mika"
+        ],
+        "what": "Lucresia starts the count again",
+        "why": "personality, practice drive, schedule, opportunity",
+        "changed": "Lucresia quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+        "next": "At home here"
+      },
+      {
+        "at": 1651.0000000000002,
+        "day": 2,
+        "minute": 771,
+        "who": [
+          "nia",
+          "leo"
+        ],
+        "what": "Barbara and Leo found a quiet spot",
+        "why": "Relationship and place preference",
+        "changed": "Barbara and Leo took a break by your bench.",
+        "next": "Barbara is keeping a place for a post-court break."
+      },
+      {
+        "at": 1686.0000000000002,
+        "day": 2,
+        "minute": 806,
         "who": [
           "leo"
         ],
@@ -592,9 +581,22 @@
         "next": "At home here"
       },
       {
-        "at": 1753.0000000000002,
+        "at": 1729.0000000000002,
         "day": 2,
-        "minute": 873.5,
+        "minute": 849.25,
+        "who": [
+          "mika",
+          "coach"
+        ],
+        "what": "Lucresia asks for one small thing",
+        "why": "confidence, personality, opportunity, shared time",
+        "changed": "Lucresia asked Contessa for a smaller starting point, then rehearsed it.",
+        "next": "At home here"
+      },
+      {
+        "at": 1751.0000000000002,
+        "day": 2,
+        "minute": 871,
         "who": [
           "nia",
           "mika"
@@ -605,22 +607,22 @@
         "next": "Lucresia wants another chance with Leo tomorrow."
       },
       {
-        "at": 1787.0000000000002,
+        "at": 1777.0000000000002,
         "day": 2,
-        "minute": 907.5,
+        "minute": 897.5,
         "who": [
           "coach",
           "leo"
         ],
         "what": "Advice Leo almost takes",
-        "why": "personality, opportunity, shared time, proximity",
+        "why": "personality, opportunity, shared time, authored performance",
         "changed": "Leo asked Contessa about strings. She prescribed footwork, then allowed a future gear conversation.",
-        "next": "Keen to try again"
+        "next": "At home here"
       },
       {
-        "at": 1828.0000000000002,
+        "at": 1819.0000000000002,
         "day": 2,
-        "minute": 948.75,
+        "minute": 939,
         "who": [
           "leo"
         ],
@@ -630,9 +632,9 @@
         "next": "At home here"
       },
       {
-        "at": 1851.0000000000002,
+        "at": 1847.0000000000002,
         "day": 2,
-        "minute": 971.25,
+        "minute": 967,
         "who": [
           "nia",
           "coach"
@@ -643,9 +645,9 @@
         "next": "Return to the day"
       },
       {
-        "at": 1869.0000000000002,
+        "at": 1859.0000000000002,
         "day": 2,
-        "minute": 989.25,
+        "minute": 979.75,
         "who": [
           "leo"
         ],
@@ -655,21 +657,21 @@
         "next": "At home here"
       },
       {
-        "at": 1907.0000000000002,
+        "at": 1899.0000000000002,
         "day": 2,
-        "minute": 1027.5,
+        "minute": 1019.5,
         "who": [
           "mika"
         ],
         "what": "Lucresia starts the count again",
-        "why": "personality, energy, practice drive, opportunity",
+        "why": "personality, energy, opportunity, practice drive",
         "changed": "Lucresia quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
         "next": "At home here"
       },
       {
-        "at": 1954.0000000000002,
+        "at": 1946.0000000000002,
         "day": 2,
-        "minute": 1074.25,
+        "minute": 1066.25,
         "who": [
           "nia",
           "mika"
@@ -680,9 +682,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 1979.0000000000002,
+        "at": 1972.0000000000002,
         "day": 2,
-        "minute": 1099.25,
+        "minute": 1092.75,
         "who": [
           "mika",
           "coach"
@@ -693,9 +695,9 @@
         "next": "Lucresia wants another chance with Leo tomorrow."
       },
       {
-        "at": 1983.0000000000002,
+        "at": 1974.0000000000002,
         "day": 2,
-        "minute": 1103,
+        "minute": 1094.75,
         "who": [
           "nia"
         ],
@@ -705,9 +707,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 2023.0000000000002,
+        "at": 2015.0000000000002,
         "day": 2,
-        "minute": 1143.25,
+        "minute": 1135.25,
         "who": [
           "nia",
           "coach"
@@ -718,9 +720,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 2054.0000000000005,
+        "at": 2046.0000000000002,
         "day": 2,
-        "minute": 1174,
+        "minute": 1166,
         "who": [
           "coach"
         ],
@@ -730,9 +732,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 2103.0000000000005,
+        "at": 2097.0000000000005,
         "day": 2,
-        "minute": 1223,
+        "minute": 1217.5,
         "who": [
           "nia",
           "coach"
@@ -743,9 +745,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 2128.0000000000005,
+        "at": 2133.0000000000005,
         "day": 2,
-        "minute": 1248.5,
+        "minute": 1253.25,
         "who": [
           "leo",
           "coach"
@@ -756,9 +758,9 @@
         "next": "Return to the day"
       },
       {
-        "at": 2151.0000000000005,
+        "at": 2146.0000000000005,
         "day": 2,
-        "minute": 1271.5,
+        "minute": 1266.25,
         "who": [
           "nia",
           "mika"
@@ -769,9 +771,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 2192.0000000000005,
+        "at": 2195.0000000000005,
         "day": 2,
-        "minute": 1312.5,
+        "minute": 1315.75,
         "who": [
           "nia",
           "leo"
@@ -782,9 +784,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 2271.0000000000005,
+        "at": 2267.0000000000005,
         "day": 2,
-        "minute": 1391,
+        "minute": 1387,
         "who": [
           "mika"
         ],
@@ -794,9 +796,9 @@
         "next": "At home here"
       },
       {
-        "at": 2348.0000000000005,
+        "at": 2344.0000000000005,
         "day": 3,
-        "minute": 28.75,
+        "minute": 24.75,
         "who": [
           "nia",
           "coach"
@@ -807,9 +809,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 2436.0000000000005,
+        "at": 2432.0000000000005,
         "day": 3,
-        "minute": 116.5,
+        "minute": 112.25,
         "who": [
           "nia"
         ],
@@ -819,9 +821,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 2496.0000000000005,
+        "at": 2492.0000000000005,
         "day": 3,
-        "minute": 176,
+        "minute": 172,
         "who": [
           "coach"
         ],
@@ -831,9 +833,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 2589.0000000000005,
+        "at": 2585.0000000000005,
         "day": 3,
-        "minute": 269.5,
+        "minute": 265.5,
         "who": [
           "nia",
           "mika"
@@ -844,9 +846,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 2651.0000000000005,
+        "at": 2647.0000000000005,
         "day": 3,
-        "minute": 331,
+        "minute": 327,
         "who": [
           "coach"
         ],
@@ -856,9 +858,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 2732.0000000000005,
+        "at": 2728.0000000000005,
         "day": 3,
-        "minute": 412,
+        "minute": 408,
         "who": [
           "nia",
           "coach"
@@ -869,9 +871,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 2814.0000000000005,
+        "at": 2810.0000000000005,
         "day": 3,
-        "minute": 494.75,
+        "minute": 490.5,
         "who": [
           "nia",
           "mika"
@@ -884,7 +886,7 @@
       {
         "at": 2872.0000000000005,
         "day": 3,
-        "minute": 552,
+        "minute": 552.25,
         "who": [
           "mika",
           "leo"
@@ -895,9 +897,9 @@
         "next": "Lucresia wants another chance with Leo tomorrow."
       },
       {
-        "at": 2875.0000000000005,
+        "at": 2874.0000000000005,
         "day": 3,
-        "minute": 555.25,
+        "minute": 554.25,
         "who": [
           "coach"
         ],
@@ -909,7 +911,7 @@
       {
         "at": 2931.0000000000005,
         "day": 3,
-        "minute": 611,
+        "minute": 611.5,
         "who": [
           "nia",
           "coach"
@@ -922,7 +924,7 @@
       {
         "at": 2951.0000000000005,
         "day": 3,
-        "minute": 631.25,
+        "minute": 631.5,
         "who": [
           "nia",
           "coach"
@@ -935,7 +937,7 @@
       {
         "at": 2960.0000000000005,
         "day": 3,
-        "minute": 640,
+        "minute": 640.25,
         "who": [
           "leo",
           "mika"
@@ -948,7 +950,7 @@
       {
         "at": 2976.0000000000005,
         "day": 3,
-        "minute": 656.5,
+        "minute": 656.25,
         "who": [
           "nia"
         ],
@@ -970,33 +972,33 @@
         "next": "At home here"
       },
       {
-        "at": 3076.0000000000005,
+        "at": 3079.0000000000005,
         "day": 3,
-        "minute": 756.25,
+        "minute": 759,
         "who": [
           "mika"
         ],
         "what": "Lucresia gives herself a slower count",
-        "why": "personality, practice drive, favorite place, opportunity",
+        "why": "personality, favorite place, practice drive, opportunity",
         "changed": "Lucresia spent a few quiet minutes rehearsing recovery footwork.",
         "next": "At home here"
       },
       {
-        "at": 3107.0000000000005,
+        "at": 3109.0000000000005,
         "day": 3,
-        "minute": 787.25,
+        "minute": 789.25,
         "who": [
           "mika"
         ],
         "what": "Lucresia starts the count again",
-        "why": "personality, schedule, opportunity, practice drive",
+        "why": "personality, schedule, opportunity, energy",
         "changed": "Lucresia quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
         "next": "At home here"
       },
       {
-        "at": 3115.0000000000005,
+        "at": 3117.0000000000005,
         "day": 3,
-        "minute": 795.5,
+        "minute": 797.5,
         "who": [
           "nia",
           "leo"
@@ -1007,9 +1009,9 @@
         "next": "Leo wants another try tomorrow."
       },
       {
-        "at": 3160.0000000000005,
+        "at": 3162.0000000000005,
         "day": 3,
-        "minute": 840.75,
+        "minute": 842.75,
         "who": [
           "nia",
           "mika"
@@ -1020,9 +1022,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 3201.0000000000005,
+        "at": 3203.0000000000005,
         "day": 3,
-        "minute": 881.25,
+        "minute": 883.5,
         "who": [
           "nia",
           "mika"
@@ -1033,9 +1035,9 @@
         "next": "Return to the day"
       },
       {
-        "at": 3213.0000000000005,
+        "at": 3215.0000000000005,
         "day": 3,
-        "minute": 893,
+        "minute": 895,
         "who": [
           "coach",
           "leo"
@@ -1046,9 +1048,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 3251.0000000000005,
+        "at": 3255.0000000000005,
         "day": 3,
-        "minute": 931.5,
+        "minute": 935.5,
         "who": [
           "mika"
         ],
@@ -1058,9 +1060,9 @@
         "next": "At home here"
       },
       {
-        "at": 3298.0000000000005,
+        "at": 3301.0000000000005,
         "day": 3,
-        "minute": 978.5,
+        "minute": 981.75,
         "who": [
           "nia",
           "coach"
@@ -1071,9 +1073,9 @@
         "next": "Keen to try again"
       },
       {
-        "at": 3332.0000000000005,
+        "at": 3335.0000000000005,
         "day": 3,
-        "minute": 1011.75,
+        "minute": 1015.25,
         "who": [
           "nia",
           "mika"
@@ -1084,9 +1086,9 @@
         "next": "Return to the day"
       },
       {
-        "at": 3356.0000000000005,
+        "at": 3360.0000000000005,
         "day": 3,
-        "minute": 1036,
+        "minute": 1040,
         "who": [
           "leo"
         ],
@@ -1096,21 +1098,22 @@
         "next": "At home here"
       },
       {
-        "at": 3395.0000000000005,
+        "at": 3406.0000000000005,
         "day": 3,
-        "minute": 1075.75,
+        "minute": 1086.5,
         "who": [
+          "nia",
           "mika"
         ],
-        "what": "Lucresia starts the count again",
-        "why": "personality, energy, opportunity, practice drive",
-        "changed": "Lucresia quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
-        "next": "At home here"
+        "what": "Barbara remembers",
+        "why": "relationship, personality, schedule, opportunity",
+        "changed": "Barbara remembered Lucresia’s extra foam without being asked.",
+        "next": "Keen to try again"
       },
       {
-        "at": 3419.0000000000005,
+        "at": 3431.0000000000005,
         "day": 3,
-        "minute": 1099,
+        "minute": 1111,
         "who": [
           "mika",
           "coach"
@@ -1121,9 +1124,9 @@
         "next": "Return to the day"
       },
       {
-        "at": 3422.0000000000005,
+        "at": 3436.0000000000005,
         "day": 3,
-        "minute": 1102.75,
+        "minute": 1116,
         "who": [
           "nia"
         ],
@@ -1133,35 +1136,34 @@
         "next": "Keen to try again"
       },
       {
-        "at": 3464.0000000000005,
+        "at": 3482.0000000000005,
         "day": 3,
-        "minute": 1144.75,
+        "minute": 1162.25,
         "who": [
           "nia",
           "coach"
         ],
         "what": "The last cup takes two people",
-        "why": "personality, relationship, schedule, opportunity",
+        "why": "personality, relationship, opportunity, shared time",
         "changed": "Contessa volunteered to help Barbara with the last cup. Her first contribution was drinking it.",
         "next": "Keen to try again"
       },
       {
-        "at": 3517.0000000000005,
+        "at": 3515.0000000000005,
         "day": 3,
-        "minute": 1197.75,
+        "minute": 1195.25,
         "who": [
-          "nia",
           "mika"
         ],
-        "what": "Barbara makes time for Lucresia",
-        "why": "relationship, personality, favorite place, opportunity",
-        "changed": "Barbara invited Lucresia to a shared break at their familiar bench.",
-        "next": "Keen to try again"
+        "what": "Lucresia starts the count again",
+        "why": "personality, energy, opportunity, authored performance",
+        "changed": "Lucresia quietly rehearsed her footwork, then gave herself permission to count the imperfect rep.",
+        "next": "At home here"
       },
       {
-        "at": 3547.0000000000005,
+        "at": 3555.0000000000005,
         "day": 3,
-        "minute": 1227.25,
+        "minute": 1235,
         "who": [
           "coach",
           "leo"
@@ -1172,52 +1174,51 @@
         "next": "Leo wants another try tomorrow."
       },
       {
-        "at": 3559.0000000000005,
+        "at": 3569.0000000000005,
         "day": 3,
-        "minute": 1239.5,
+        "minute": 1249,
         "who": [
-          "nia",
-          "mika"
+          "nia"
         ],
-        "what": "Barbara remembers",
-        "why": "relationship, personality, opportunity, shared time",
-        "changed": "Barbara remembered Lucresia’s extra foam without being asked.",
+        "what": "Barbara checks the quiet corner",
+        "why": "personality, favorite place, care object, opportunity",
+        "changed": "Barbara tended your planted corner and took a moment to look at it.",
         "next": "Keen to try again"
       }
     ]
   },
   "states": {
     "coach": {
-      "energy": 0.9928500000000018,
-      "confidence": 0.853284331458683,
-      "social": 0,
+      "energy": 0.9868000000000002,
+      "confidence": 0.8596563072582778,
+      "social": 0.022500000000000023,
       "practice": 1,
-      "comfort": 0.9882401264446573,
-      "tone": 0.9835361770225209
+      "comfort": 0.9899790977769463,
+      "tone": 0.9859707368877253
     },
     "mika": {
-      "energy": 1,
-      "confidence": 0.7039889771157031,
-      "social": 0.02050000000000002,
-      "practice": 0.14989999999997994,
-      "comfort": 0.9846336071767374,
-      "tone": 0.9871946726472817
+      "energy": 0.9972500000000006,
+      "confidence": 0.7128574387960117,
+      "social": 0.03700000000000005,
+      "practice": 0.040049999999977215,
+      "comfort": 0.9687676965015183,
+      "tone": 0.9739730804179323
     },
     "leo": {
-      "energy": 0.9771500000000166,
-      "confidence": 0.8190436799252717,
-      "social": 0.14400000000000063,
-      "practice": 0.628849999999899,
-      "comfort": 0.9037500361286459,
-      "tone": 0.8453873072643603
+      "energy": 0.9837500000000171,
+      "confidence": 0.8194122361599538,
+      "social": 0.14250000000000063,
+      "practice": 0.6396999999998975,
+      "comfort": 0.9043719833490047,
+      "tone": 0.8452868006655204
     },
     "nia": {
-      "energy": 0.9862500000000012,
+      "energy": 0.9653500000000019,
       "confidence": 0.78,
-      "social": 0,
+      "social": 0.011500000000000017,
       "practice": 1,
-      "comfort": 0.9934144030757447,
-      "tone": 0.9908533376052006
+      "comfort": 0.9949980852978281,
+      "tone": 0.9930528962469831
     }
   },
   "objects": {
@@ -1225,18 +1226,18 @@
       "furniture-1": {
         "placedDay": 1,
         "visits": {
-          "nia": 21,
+          "nia": 20,
           "leo": 15,
           "coach": 13,
-          "mika": 17
+          "mika": 16
         },
         "memories": [
           "Day 3 · coach and leo spent time here.",
-          "Day 3 · nia and mika spent time here.",
           "Day 3 · mika and coach spent time here.",
           "Day 3 · nia and mika spent time here.",
           "Day 3 · nia and coach spent time here.",
-          "Day 3 · mika spent time here."
+          "Day 3 · mika spent time here.",
+          "Day 3 · nia and mika spent time here."
         ],
         "favoriteOf": [
           "leo",
@@ -1248,9 +1249,9 @@
           "nia": 20,
           "leo": 15,
           "coach": 13,
-          "mika": 17
+          "mika": 16
         },
-        "usageCount": 66,
+        "usageCount": 64,
         "importantEvents": [
           "Day 1 · leo made this a favorite.",
           "Day 2 · mika made this a favorite.",
@@ -1261,9 +1262,10 @@
       "furniture-2": {
         "placedDay": 1,
         "visits": {
-          "nia": 3
+          "nia": 4
         },
         "memories": [
+          "Day 3 · nia spent time here.",
           "Day 3 · nia spent time here.",
           "Day 2 · nia spent time here.",
           "Day 1 · nia spent time here."
@@ -1272,9 +1274,9 @@
           "nia"
         ],
         "comfort": {
-          "nia": 3
+          "nia": 4
         },
-        "usageCount": 3,
+        "usageCount": 4,
         "importantEvents": [
           "Day 3 · nia made this a favorite."
         ]
@@ -1337,7 +1339,7 @@
       "importance": 0.8,
       "day": 2,
       "place": "court",
-      "at": 1491.0000000000002,
+      "at": 1519.0000000000002,
       "witnesses": [],
       "pending": []
     },

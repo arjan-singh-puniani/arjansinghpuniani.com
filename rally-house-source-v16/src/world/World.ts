@@ -61,7 +61,7 @@ export class World {
     this.nav.obstacles.push({x:9.2,z:-7.35,w:4.5,d:1.05});
     // Large floor pots and the court bench occupy circulation, independently of selection proxies.
     for(const o of this.objects.filter(o=>o.kind==='plant'))this.nav.obstacles.push({x:o.position.x,z:o.position.z,w:.75,d:.75});
-    this.nav.obstacles.push({x:6.5,z:4.8,w:2.22,d:.8},{x:6.54,z:2.85,w:1.62,d:.48},{x:6.0,z:1.95,w:.70,d:.70},{x:1.32,z:7.55,w:.86,d:.86});
+    this.nav.obstacles.push({x:6.5,z:4.8,w:2.22,d:.8},{x:6.54,z:2.85,w:1.62,d:.48},{x:6.0,z:1.95,w:.70,d:.70},{x:-1.25,z:8.0,w:.86,d:.86});
   }
   interactionPoint(id:string,origin:Vec3,kind:InteractionFxKind){
     const contact=this.objects.find(o=>o.id===id)?.interactionPoint;
@@ -268,10 +268,10 @@ export class World {
     this.rb(-3.9,.60,8.22,3.00,.14,.62,pe,0,1,false,undefined,'fabric');
     for(const ex of [-5.42,-2.38])this.rb(ex,.20,8.22,.16,.42,.72,palette.woodDark,0,1,false,undefined,'wood');
 
-    this.add('cylinder',1.32,.34,7.55,.20,.64,.20,'#6d7a70',0,1,false,undefined,'metal');
-    this.add('cylinder',1.32,.68,7.55,.86,.09,.86,palette.wood,0,1,false,undefined,'wood');
-    this.add('cylinder',1.20,.80,7.50,.21,.20,.21,pk,0,1,false,undefined,'ceramic');
-    this.rb(1.48,.76,7.62,.34,.06,.26,palette.paper,.3,1,false,undefined,'matte');
+    this.add('cylinder',-1.25,.34,8.0,.20,.64,.20,'#6d7a70',0,1,false,undefined,'metal');
+    this.add('cylinder',-1.25,.68,8.0,.86,.09,.86,palette.wood,0,1,false,undefined,'wood');
+    this.add('cylinder',-1.37,.80,7.95,.21,.20,.21,pk,0,1,false,undefined,'ceramic');
+    this.rb(-1.09,.76,8.07,.34,.06,.26,palette.paper,.3,1,false,undefined,'matte');
 
     this.rb(4.55,.34,8.00,2.35,.58,.86,palette.wood,0,1,false,undefined,'wood');
     this.rb(4.55,.76,8.00,2.10,.12,.62,mi,0,1,false,undefined,'fabric');

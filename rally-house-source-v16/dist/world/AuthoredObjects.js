@@ -56,7 +56,7 @@ export function authorObjectTargets(objects) {
     add('courtBasket', 'Practice ball basket', 'supply', [6.0, .6, 1.95], [.75, 1.0, .75], 'Eight visible balls stacked beside the rack. A supply for the next practice.', [6.0, .8, 1.95]);
     add('westHopper', 'West spectator hopper', 'supply', [-4.8, .55, 7.9], [.78, 1.1, .78], 'Six visible balls, close to the long spectator bench.', [-4.8, .7, 7.9]);
     add('eastHopper', 'East spectator hopper', 'supply', [5.6, .55, 7.9], [.78, 1.1, .78], 'Six visible balls beside the mint perch.', [5.6, .7, 7.9]);
-    add('spectatorTea', 'Spectator tea table', 'cafe', [1.32, .62, 7.55], [.9, 1.0, .9], 'A pink cup and a folded note between the baseline seats.', [1.20, .8, 7.50]);
+    add('spectatorTea', 'Spectator tea table', 'cafe', [-1.25, .62, 8.0], [.9, 1.0, .9], 'A pink cup and a folded note between the baseline seats.', [-1.37, .8, 7.95]);
     add('entranceTea', 'Entrance tea table', 'cafe', [-9, .62, 7.2], [.85, 1.0, .85], 'A mint cup between the two entrance chairs.', [-9.05, .83, 7.15]);
     const plants = [['windowPlant', 'Window fern', -11.1, -7.2, 1.1], ['gearPlant', 'Gear-room fern', 11.2, -1.5, .9], ['loungePlant', 'Reading-corner fern', 7, 7.3, 1], ['windowSprig', 'Small window fern', -5.75, -7.5, .72], ['entryPlant', 'Entrance fern', -6.3, 8.5, .92], ['perchPlant', 'Spectator fern', 9, 8.4, .86]];
     for (const [id, label, x, z, s] of plants)

@@ -432,9 +432,20 @@ export class Character {
     const racketRight=new Vec3(racketForward.z,0,-racketForward.x);let headOffset=Vec3.add(new Vec3(0,.425,0),racketForward.clone().scale(.225));
     if(state==='serve')headOffset=Vec3.add(new Vec3(0,.525,0),racketForward.clone().scale(.125));
     if(state==='volley')headOffset=Vec3.add(new Vec3(0,.3875,0),racketForward.clone().scale(.2625));
+    const humanGroundstroke=this.spec.appearance==='human'&&(state==='swingForehand'||state==='swingBackhand');
+    let groundRise=0,groundSide=0;
+    if(humanGroundstroke){
+      // At a low ball the racket head drops beside the wrist. Keeping it
+      // upright forced the grip toward the ankle and collapsed the body.
+      groundRise=clamp(((this.contactTarget?.y??this.position.y+1.02)-this.position.y-1.02)*.5,-.20,.20);
+      groundSide=Math.sqrt(.48**2-.14**2-groundRise**2)*(state==='swingForehand'?1:-1);
+      headOffset=racketRight.clone().scale(groundSide).add(racketForward.clone().scale(.14)).add(new Vec3(0,groundRise,0));
+    }
     if(shot&&this.contactTarget){const w=bell(sp-contact,.11);const desiredHand=Vec3.sub(this.contactTarget,headOffset);handR=blendVec(handR,desiredHand,w);if(state==='swingBackhand'){const secondGrip=Vec3.add(handR,racketForward.clone().scale(-.08)).add(new Vec3(0,.04,0));handL=blendVec(handL,secondGrip,clamp(w*.90+.18,0,1));}}
     const racketGrip=handR.clone();const racketCenter=Vec3.add(racketGrip,headOffset);
-    let racketRot=new Vec3(.02,Math.atan2(racketForward.x,racketForward.z),0);if(state==='swingForehand')racketRot=new Vec3(.10,torsoYaw,-.32+sp*.68);else if(state==='swingBackhand')racketRot=new Vec3(-.09,torsoYaw,.34-sp*.58);else if(state==='serve')racketRot=new Vec3(.46-sp*.58,torsoYaw,.36-sp*.72);else if(state==='volley')racketRot=new Vec3(.04,torsoYaw,-.12);const vib=this.racketVibration*Math.sin(this.animTime*62)*.045;racketRot.z+=vib;racketRot.x+=vib*.35;const racketHandleTop=Vec3.add(racketCenter,rotateEulerVector(new Vec3(0,RACKET.handleTopY,0),racketRot));
+    let racketRot=new Vec3(.02,Math.atan2(racketForward.x,racketForward.z),0);if(state==='swingForehand')racketRot=new Vec3(.10,torsoYaw,-.32+sp*.68);else if(state==='swingBackhand')racketRot=new Vec3(-.09,torsoYaw,.34-sp*.58);else if(state==='serve')racketRot=new Vec3(.46-sp*.58,torsoYaw,.36-sp*.72);else if(state==='volley')racketRot=new Vec3(.04,torsoYaw,-.12);
+    if(humanGroundstroke)racketRot=new Vec3(Math.atan2(.14,groundRise),Math.atan2(racketForward.x,racketForward.z),Math.atan2(-groundSide,Math.hypot(groundRise,.14)));
+    const vib=this.racketVibration*Math.sin(this.animTime*62)*.045;racketRot.z+=vib;racketRot.x+=vib*.35;const racketHandleTop=Vec3.add(racketCenter,rotateEulerVector(new Vec3(0,RACKET.handleTopY,0),racketRot));
 
     const hipHalf=this.spec.presentation==='feminine'?.175:.165;const hipL=this.worldLocal(-hipHalf+pelvisShiftX,.76+baseY-knee,pelvisShiftZ,hipYaw),hipR=this.worldLocal(hipHalf+pelvisShiftX,.76+baseY-knee,pelvisShiftZ,hipYaw);
     if(moving&&this.spec.appearance==='human'){const roll=Math.sin(this.gaitPhase)*.006;hipL.y+=roll;hipR.y-=roll;}

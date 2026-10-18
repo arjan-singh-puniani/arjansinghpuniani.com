@@ -210,7 +210,7 @@ Real Game director variety, tennis, lesson commitment, interrupted intention and
 Queued player lesson can start after autonomous closing hours.
 After-hours quiet life continues without unsolicited court bookings.
 Ten varied input timings preserve completed after-hours queued lessons.
-LONG VARIETY {"day":3,"scenes":18,"pairs":{"coach|mika":4,"leo|nia":4,"coach|nia":13,"leo|mika":8,"mika|nia":14,"coach|leo":6},"places":9,"initiators":{"coach":13,"nia":40,"mika":18,"leo":18},"flags":[],"cancellations":0,"favorites":[["leo","mika","nia","coach"],["nia"],["mika","leo"]]}
+LONG VARIETY {"day":3,"scenes":18,"pairs":{"coach|mika":5,"leo|nia":4,"coach|nia":13,"leo|mika":8,"mika|nia":13,"coach|leo":6},"places":10,"initiators":{"coach":13,"nia":39,"mika":19,"leo":18},"flags":[],"cancellations":0,"favorites":[["leo","mika","nia","coach"],["nia"],["mika","leo"]]}
 One simulated hour across days preserves variety, all initiators and built favorites.
 ✓ Confidence changes bounded posture, gaze and gesture values
 ✓ Energy changes intensity without changing the foot solver
@@ -276,7 +276,7 @@ Human arm anatomy PASS: same-side relaxed wrists, descending arm chains, bounded
 World continuity PASS: permanent court/net, unchanged identities/transforms and lighting, reversible camera-only fixture fade, and registered stroke support feet.
 {"garmentTriangles":6752,"necklineChecks":34560,"maxNecklineGap":0.020587251137738502}
 Human tailoring PASS: actual emitted surfaces, normals, weights and moving shoulder/neckline registration.
-{"actors":6,"poses":6480,"maxStretch":1.0000000000000018,"maxContactError":1.1102230246251565e-16,"identities":6}
+{"actors":6,"poses":6480,"maxStretch":1.0000000000000018,"maxContactError":1.1102230246251565e-16,"minStrokePelvis":0.86,"identities":6}
 Athletic cast PASS: adult proportions, distinct identities, bounded geometry, shared skin rig, anatomical motion and exact tennis contact.
 {"actors":6,"rates":[30,60,120],"plantedPairs":5881,"maxSlide":0,"maxElbowOut":0.0304876237888302,"maxStopHandStep":0.12120829040604103,"cadence":[120,150]}
 Confident gait PASS: grounded support, lower foot clearance, travel-driven cadence, relaxed arms and continuous adult starts/stops.

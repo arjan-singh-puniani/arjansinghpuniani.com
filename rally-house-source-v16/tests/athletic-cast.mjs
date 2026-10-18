@@ -16,7 +16,7 @@ for(const [name,g] of [...Object.entries(ATHLETE_WARDROBE),...Object.entries(CAS
 }
 const specs=[...memberData,playerSpec('arjan'),playerSpec('taylor')],signatures=new Set();
 const headGeometries=new Set([...Object.values(HUMAN_TAYLOR_GEOMETRY),...Object.values(CAST_HAIR_GEOMETRY),...Object.values(HUMAN_FACE_VARIANTS)]);
-let poses=0,maxStretch=1,maxContactError=0;
+let poses=0,maxStretch=1,maxContactError=0,minStrokePelvis=Infinity;
 for(const spec of specs){
  assert.equal(spec.appearance,'human');const actor=()=>new Character({...spec},new Vec3(),new Navigation([]),{}),c=actor();c.racketStowed=true;for(let i=0;i<180;i++)c.update(1/60);
  const rest=c.analysisPose(),parts=c.meshes(),face=parts.find(m=>m.skin===(spec.presentation==='masculine'?HUMAN_FACE_VARIANTS.masculineFace:HUMAN_TAYLOR_GEOMETRY.face));assert(face);assert.deepEqual(face.position,rest.head);
@@ -45,8 +45,18 @@ for(const spec of specs){
   const p=c.analysisPose(),error=Vec3.sub(p.racketCenter,c.debugKinematics().contactTarget).len();maxContactError=Math.max(maxContactError,error);assert(error<1e-6,'Adult retargeting preserves actual racket contact');
   assert(!c.meshes().some(m=>m.skin===ATHLETE_WARDROBE.freeHands),'Contact actions use the racket grip, not the relaxed fingers');
  }
+ for(const stroke of ['swingForehand','swingBackhand'])for(const height of [.4,.7,1.02]){
+  const c=actor();c.setAnimation('ready');c.update(.3);c.setIncomingContact(new Vec3(.76,height,.9));c.triggerShot(stroke,new Vec3(0,.09,-5));
+  for(let i=0;i<60;i++)c.update(c.shotContactTime(stroke)/60);
+  const p=c.analysisPose();minStrokePelvis=Math.min(minStrokePelvis,p.pelvisCenter.y);
+  assert(p.pelvisCenter.y>.80,`${spec.name}/${stroke}/${height}: low-ball loading keeps the pelvis above a seated squat`);
+  assert(Vec3.sub(p.racketCenter,c.debugKinematics().contactTarget).len()<1e-6,'Low-ball posture preserves actual racket contact');
+  for(const side of ['L','R'])assert(p[`knee${side}`].y>.25,'A loaded tennis knee stays clear of the floor');
+  for(const side of ['L','R'])for(const [a,b,length] of [[`shoulder${side}`,`elbow${side}`,TAYLOR_BODY.upperArm],[`elbow${side}`,`hand${side}`,TAYLOR_BODY.forearm],[`hip${side}`,`knee${side}`,TAYLOR_BODY.thigh],[`knee${side}`,`foot${side}`,TAYLOR_BODY.shin]])assert(Math.abs(Vec3.sub(p[a],p[b]).len()/length-1)<.04,'Low-ball loading preserves anatomical segment lengths');
+  assert(Vec3.dot(Vec3.sub(p.racketCenter,p.racketGrip).normalize(),c.racketContactFrame().vertical)>.995,'Groundstroke frame and handle point along the actual grip-to-head axis');
+ }
 }
 assert.equal(signatures.size,specs.length,'Every named adult has a distinct rendered identity');
 assert(new Set(memberData.map(s=>JSON.stringify(locomotionStyleFor(s.id)))).size===memberData.length,'Individual footwork styles remain distinct');
-console.log(JSON.stringify({actors:specs.length,poses,maxStretch,maxContactError,identities:signatures.size}));
+console.log(JSON.stringify({actors:specs.length,poses,maxStretch,maxContactError,minStrokePelvis,identities:signatures.size}));
 console.log('Athletic cast PASS: adult proportions, distinct identities, bounded geometry, shared skin rig, anatomical motion and exact tennis contact.');

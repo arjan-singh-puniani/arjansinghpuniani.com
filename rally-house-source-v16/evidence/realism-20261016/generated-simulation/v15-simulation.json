@@ -4,7 +4,7 @@
     "uniqueScenes": 13,
     "uniquePairs": 5,
     "uniqueLocations": 8,
-    "idlePercent": 1.9166666666666676,
+    "idlePercent": 2.000000000000001,
     "quietPercent": 56.20833333333333,
     "mostRepeatedBehavior": [
       "practice",
@@ -199,9 +199,9 @@
         "next": "Settling into the day"
       },
       {
-        "at": 411.00000000000006,
+        "at": 412.00000000000006,
         "day": 1,
-        "minute": 971.25,
+        "minute": 972.5,
         "who": [
           "mika"
         ],
@@ -211,9 +211,9 @@
         "next": "Settling into the day"
       },
       {
-        "at": 451.00000000000006,
+        "at": 453.00000000000006,
         "day": 1,
-        "minute": 1011.5,
+        "minute": 1013.5,
         "who": [
           "mika"
         ],
@@ -223,9 +223,9 @@
         "next": "Settling into the day"
       },
       {
-        "at": 499.00000000000006,
+        "at": 501.00000000000006,
         "day": 1,
-        "minute": 1059.5,
+        "minute": 1061.5,
         "who": [
           "coach",
           "leo"
@@ -236,9 +236,9 @@
         "next": "At home here"
       },
       {
-        "at": 539.0000000000001,
+        "at": 541.0000000000001,
         "day": 1,
-        "minute": 1099.75,
+        "minute": 1101.75,
         "who": [
           "nia",
           "mika"
@@ -249,9 +249,9 @@
         "next": "At home here"
       },
       {
-        "at": 575.0000000000001,
+        "at": 577.0000000000001,
         "day": 1,
-        "minute": 1135.25,
+        "minute": 1137.25,
         "who": [
           "nia",
           "coach"
@@ -314,7 +314,7 @@
       ],
       "resource": "place-warmup",
       "phase": "completed",
-      "elapsed": 28.149999999999682,
+      "elapsed": 28.166666666666348,
       "phaseTime": 0,
       "detail": "Lucresia starts the count again",
       "result": "Lucresia quietly rehearsed her footwork, then gave herself permission to count the imperfect rep."
@@ -327,7 +327,7 @@
       ],
       "resource": "place-warmup",
       "phase": "completed",
-      "elapsed": 30.116666666666237,
+      "elapsed": 31.483333333332826,
       "phaseTime": 0,
       "detail": "Lucresia gives herself a slower count",
       "result": "Lucresia spent a few quiet minutes rehearsing recovery footwork."
@@ -487,35 +487,35 @@
     "states": {
       "coach": {
         "energy": 1,
-        "confidence": 0.8519294850672707,
-        "social": 0.012500000000000013,
+        "confidence": 0.8519875914844923,
+        "social": 0.011500000000000012,
         "practice": 0.6999999999999769,
-        "comfort": 0.9081916625417442,
-        "tone": 0.7884177047240266
+        "comfort": 0.908329227566465,
+        "tone": 0.7885380741206565
       },
       "mika": {
-        "energy": 0.9454500000000119,
-        "confidence": 0.7101935332641484,
+        "energy": 0.938850000000012,
+        "confidence": 0.7102759659549059,
         "social": 0.24250000000001798,
-        "practice": 0.40649999999999525,
-        "comfort": 0.7745664003776265,
-        "tone": 0.901714309952527
+        "practice": 0.4049499999999952,
+        "comfort": 0.7747294757559152,
+        "tone": 0.90185700090853
       },
       "leo": {
-        "energy": 0.9045500000000082,
-        "confidence": 0.7813286352383618,
-        "social": 0.4900000000000235,
-        "practice": 0.44564999999999994,
-        "comfort": 0.7934636731859137,
-        "tone": 0.686338143821741
+        "energy": 0.9029000000000081,
+        "confidence": 0.7813867416555834,
+        "social": 0.4900000000000236,
+        "practice": 0.4456499999999998,
+        "comfort": 0.7935300805198812,
+        "tone": 0.686396250238963
       },
       "nia": {
         "energy": 1,
         "confidence": 0.78,
         "social": 0.10500000000001347,
         "practice": 0.4300000000000078,
-        "comfort": 0.9852421676215911,
-        "tone": 0.8945868966688928
+        "comfort": 0.9853821919011947,
+        "tone": 0.8947094179135456
       }
     },
     "events": [
@@ -869,35 +869,35 @@
         "pair": "coach|nia",
         "place": "cafe",
         "motif": "closing",
-        "at": 575.0000000000001
+        "at": 577.0000000000001
       },
       {
         "scene": "usual",
         "pair": "mika|nia",
         "place": "cafe",
         "motif": "usual",
-        "at": 539.0000000000001
+        "at": 541.0000000000001
       },
       {
         "scene": "gear-advice",
         "pair": "coach|leo",
         "place": "stringing",
         "motif": "gear-advice",
-        "at": 499.00000000000006
+        "at": 501.00000000000006
       },
       {
         "scene": "counting",
         "pair": "mika",
         "place": "warmup",
         "motif": "counting",
-        "at": 451.00000000000006
+        "at": 453.00000000000006
       },
       {
         "scene": "practice",
         "pair": "mika",
         "place": "warmup",
         "motif": "recovery-rehearsal",
-        "at": 411.00000000000006
+        "at": 412.00000000000006
       },
       {
         "scene": "rest",
@@ -970,11 +970,11 @@
       "rehearse-mika": 1
     },
     "culture": {
-      "training": 0.28944015999091866,
-      "social": 0.27481438014140247,
+      "training": 0.28948115991655476,
+      "social": 0.27483165125492764,
       "calm": 0.22342775484754998,
       "competition": 0.21921679561625038,
-      "care": 0.2089963329016736
+      "care": 0.20901386503465344
     },
     "philosophy": {},
     "possessions": [

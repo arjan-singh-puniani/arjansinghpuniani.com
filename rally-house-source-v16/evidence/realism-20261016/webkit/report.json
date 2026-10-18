@@ -43,14 +43,14 @@
       "artificialCrowd": 0,
       "courtLayers": 4,
       "expectedCourtLayers": 4,
-      "minute": 790.25,
+      "minute": 794.5,
       "weather": "clear",
       "lighting": true,
       "labState": true,
       "activity": {
         "same": true,
-        "phase": "traveling",
-        "elapsed": 10.366666666666761
+        "phase": "active",
+        "elapsed": 14.383333333333628
       },
       "phase": "intro",
       "lab": false,
@@ -70,26 +70,26 @@
       "artificialCrowd": 0,
       "courtLayers": 4,
       "expectedCourtLayers": 4,
-      "minute": 792.75,
+      "minute": 798.25,
       "weather": "clear",
       "lighting": true,
       "labState": true,
       "activity": {
         "same": true,
-        "phase": "starting",
-        "elapsed": 12.866666666666886
+        "phase": "active",
+        "elapsed": 18.133333333333585
       },
       "phase": "serving",
       "lab": false,
       "framing": {
         "foot": {
-          "x": 754.7741583028109,
-          "y": 745.7964434923467,
+          "x": 753.299894148274,
+          "y": 744.8868273554193,
           "visible": true
         },
         "head": {
-          "x": 725.797401571387,
-          "y": 612.6216979503695,
+          "x": 724.8442435389211,
+          "y": 611.1859973378167,
           "visible": true
         },
         "width": 1440,
@@ -110,14 +110,14 @@
       "artificialCrowd": 0,
       "courtLayers": 4,
       "expectedCourtLayers": 4,
-      "minute": 794.25,
+      "minute": 801.5,
       "weather": "clear",
       "lighting": true,
       "labState": true,
       "activity": {
         "same": true,
         "phase": "active",
-        "elapsed": 14.316666666666958
+        "elapsed": 21.400000000000066
       },
       "phase": "inactive",
       "lab": false,
@@ -137,26 +137,26 @@
       "artificialCrowd": 0,
       "courtLayers": 4,
       "expectedCourtLayers": 4,
-      "minute": 797,
+      "minute": 804.25,
       "weather": "clear",
       "lighting": true,
       "labState": true,
       "activity": {
         "same": true,
-        "phase": "active",
-        "elapsed": 17.116666666666976
+        "phase": "resolving",
+        "elapsed": 24.23333333333324
       },
       "phase": "serving",
       "lab": false,
       "framing": {
         "foot": {
-          "x": 754.3468264201683,
-          "y": 744.8035670483663,
+          "x": 753.9320678723573,
+          "y": 744.8485075123231,
           "visible": true
         },
         "head": {
-          "x": 726.0413007414475,
-          "y": 612.6040982092669,
+          "x": 725.5302888990173,
+          "y": 612.603633131071,
           "visible": true
         },
         "width": 1440,
@@ -177,14 +177,14 @@
       "artificialCrowd": 0,
       "courtLayers": 4,
       "expectedCourtLayers": 4,
-      "minute": 804.5,
+      "minute": 812,
       "weather": "clear",
       "lighting": true,
       "labState": true,
       "activity": {
         "same": true,
-        "phase": "resolving",
-        "elapsed": 24.46666666666656
+        "phase": "completed",
+        "elapsed": 25.716666666666487
       },
       "phase": "inactive",
       "lab": false,
@@ -204,14 +204,14 @@
       "artificialCrowd": 0,
       "courtLayers": 4,
       "expectedCourtLayers": 4,
-      "minute": 805.25,
+      "minute": 812.75,
       "weather": "clear",
       "lighting": true,
       "labState": true,
       "activity": {
         "same": true,
-        "phase": "resolving",
-        "elapsed": 25.333333333333176
+        "phase": "completed",
+        "elapsed": 25.716666666666487
       },
       "phase": "inactive",
       "lab": false,
@@ -231,14 +231,14 @@
       "artificialCrowd": 0,
       "courtLayers": 4,
       "expectedCourtLayers": 4,
-      "minute": 807.5,
+      "minute": 814.5,
       "weather": "clear",
       "lighting": true,
       "labState": true,
       "activity": {
         "same": true,
         "phase": "completed",
-        "elapsed": 26.066666666666467
+        "elapsed": 25.716666666666487
       },
       "phase": "inactive",
       "lab": true,
@@ -258,14 +258,14 @@
       "artificialCrowd": 0,
       "courtLayers": 4,
       "expectedCourtLayers": 4,
-      "minute": 808.5,
+      "minute": 816.25,
       "weather": "clear",
       "lighting": true,
       "labState": true,
       "activity": {
         "same": true,
         "phase": "completed",
-        "elapsed": 26.066666666666467
+        "elapsed": 25.716666666666487
       },
       "phase": "inactive",
       "lab": false,

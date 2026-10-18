@@ -212,7 +212,7 @@ export class PerformanceLab {
                 this.key(e); });
         document.getElementById('app').append(this.layer);
     }
-    open(spec, recording, phone = null) {
+    open(spec, recording, phone = null, preferred) {
         if (this.active)
             return;
         this.restoreFocus = document.activeElement instanceof HTMLElement && document.activeElement !== document.body ? document.activeElement : this.canvas;
@@ -233,7 +233,21 @@ export class PerformanceLab {
         document.body.classList.add('lab-active');
         for (const el of document.querySelectorAll('.topbar,.hud,.objective,#scenePeek'))
             el.inert = true;
-        this.load(this.clips.has('phone') ? 'phone' : this.clips.has('championship') ? 'championship' : 'forehand');
+        this.load(preferred && this.clips.has(preferred) ? preferred : this.clips.has('phone') ? 'phone' : this.clips.has('championship') ? 'championship' : 'forehand');
+        if (preferred === 'championship' && this.timeline) {
+            const contact = [...this.timeline.clip.frames].reverse().find(f => f.contact);
+            if (contact) {
+                this.timeline.seek(contact.time);
+                this.timeline.playing = false;
+                this.timeline.speed = .25;
+                this.timeline.mode = 'body';
+                this.transport.querySelector('select').value = String(.25);
+                this.invalidate();
+                this.frameCamera();
+                this.syncControls();
+                this.refresh();
+            }
+        }
         this.layer.querySelector('header button').focus({ preventScroll: true });
     }
     close() {
@@ -294,7 +308,7 @@ export class PerformanceLab {
             a.href = this.phone.url;
             a.download = `Rally-House-phone-capture.${this.phone.mime.includes('mp4') ? 'mp4' : 'webm'}`;
         }
-        this.provenance.textContent = clip.source === 'phone-recording' ? `IN-GAME PHONE CAPTURE · ${this.phone?.url ? 'video + shared motion' : 'motion replay; video encoder unavailable'}` : clip.source === 'game-recording' ? 'GAME RECORDING · your last 360 samples' : 'AUTHORED DEMO · simulated movement';
+        this.provenance.textContent = clip.source === 'phone-recording' ? `IN-GAME PHONE CAPTURE · ${this.phone?.url ? 'video + shared motion' : 'motion replay; video encoder unavailable'}` : clip.source === 'game-recording' ? 'YOUR RECENT PLAY · recorded in this club' : 'AUTHORED DEMO · simulated movement';
         const s = summary(clip);
         this.stats.textContent = `${format(s.distance, 1)} club units travelled · ${s.contacts} player racket contacts${s.cadence === null ? '' : ` · ${format(s.cadence)} steps/min · ${format(s.stride, 2)} u stride · stance L ${format(s.stance[0])}% / R ${format(s.stance[1])}% · footsteps: L mint / R gold`}`;
         this.invalidate();
@@ -379,6 +393,8 @@ export class PerformanceLab {
         this.camera.desiredAzimuth = t.mode === 'court' ? .36 : t.clip.kind === 'phone' ? 1.85 : 2.55;
         this.camera.desiredElevation = t.mode === 'court' ? .72 : .36;
         this.camera.desiredDistance = t.mode === 'court' ? (portrait ? 48 : 35) : t.clip.kind === 'phone' ? (t.mode === 'body' ? (portrait ? (tall ? 11 : 12) : 8) : (portrait ? (tall ? 13 : 14) : 10)) : t.mode === 'body' ? (portrait ? (tall ? 10 : 14) : 9) : (portrait ? (tall ? 14 : 18) : 13);
+        if (t.mode === 'body' && t.clip.kind === 'championship')
+            this.camera.desiredDistance = 12;
         this.lastAspect = this.camera.aspect;
         this.trackCamera(f);
     }
@@ -387,8 +403,9 @@ export class PerformanceLab {
             return;
         const portrait = this.camera.aspect < .9, wide = this.canvas.clientWidth > 850;
         const court = this.timeline.mode === 'court';
+        const review = this.timeline.mode === 'body' && this.timeline.clip.kind === 'championship';
         const shift = wide && !court ? 1.25 : 0;
-        this.camera.desiredTarget.set(court ? 1 : f.root.x + Math.cos(this.camera.desiredAzimuth) * shift, court ? 0 : f.root.y + (portrait ? -.05 : 1.15) + (this.cameraBodyLift ?? 0) * (portrait ? .5 : .7), court ? 0 : f.root.z - Math.sin(this.camera.desiredAzimuth) * shift);
+        this.camera.desiredTarget.set(court ? 1 : f.root.x + Math.cos(this.camera.desiredAzimuth) * shift, court ? 0 : f.root.y + (portrait ? -.05 : 1.15) + (this.cameraBodyLift ?? 0) * (portrait ? .5 : .7) - (review ? (portrait ? .3 : .7) : 0), court ? 0 : f.root.z - Math.sin(this.camera.desiredAzimuth) * shift);
     }
     update(dt, reducedMotion) {
         if (!this.active || !this.timeline)

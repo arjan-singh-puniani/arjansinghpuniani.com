@@ -844,6 +844,15 @@ export class Character {
             headOffset = Vec3.add(new Vec3(0, .525, 0), racketForward.clone().scale(.125));
         if (state === 'volley')
             headOffset = Vec3.add(new Vec3(0, .3875, 0), racketForward.clone().scale(.2625));
+        const humanGroundstroke = this.spec.appearance === 'human' && (state === 'swingForehand' || state === 'swingBackhand');
+        let groundRise = 0, groundSide = 0;
+        if (humanGroundstroke) {
+            // At a low ball the racket head drops beside the wrist. Keeping it
+            // upright forced the grip toward the ankle and collapsed the body.
+            groundRise = clamp(((this.contactTarget?.y ?? this.position.y + 1.02) - this.position.y - 1.02) * .5, -.20, .20);
+            groundSide = Math.sqrt(.48 ** 2 - .14 ** 2 - groundRise ** 2) * (state === 'swingForehand' ? 1 : -1);
+            headOffset = racketRight.clone().scale(groundSide).add(racketForward.clone().scale(.14)).add(new Vec3(0, groundRise, 0));
+        }
         if (shot && this.contactTarget) {
             const w = bell(sp - contact, .11);
             const desiredHand = Vec3.sub(this.contactTarget, headOffset);
@@ -864,6 +873,8 @@ export class Character {
             racketRot = new Vec3(.46 - sp * .58, torsoYaw, .36 - sp * .72);
         else if (state === 'volley')
             racketRot = new Vec3(.04, torsoYaw, -.12);
+        if (humanGroundstroke)
+            racketRot = new Vec3(Math.atan2(.14, groundRise), Math.atan2(racketForward.x, racketForward.z), Math.atan2(-groundSide, Math.hypot(groundRise, .14)));
         const vib = this.racketVibration * Math.sin(this.animTime * 62) * .045;
         racketRot.z += vib;
         racketRot.x += vib * .35;
