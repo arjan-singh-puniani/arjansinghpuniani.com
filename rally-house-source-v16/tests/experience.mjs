@@ -1,3 +1,4 @@
+import {COURT_POST_MIN_X,COURT_POST_MAX_X} from '../dist/tennis/CourtGeometry.js';
 import assert from 'node:assert/strict';
 import {World} from '../dist/world/World.js';
 import {Navigation} from '../dist/world/Navigation.js';
@@ -20,7 +21,7 @@ for(const x of [-2,1,4])for(const z of [-5,-2,2,5])for(const endX of [-2,1,4])fo
   assert(path.length);let previous=start;
   for(const point of path){
     assert(world.nav.clearSegment(previous,point));
-    for(let t=0;t<=1;t+=.005){const p=Vec3.lerp(previous,point,t);assert(!(p.x>-3.63&&p.x<5.63&&Math.abs(p.z)<.28),'Route enters expanded net');}
+    for(let t=0;t<=1;t+=.005){const p=Vec3.lerp(previous,point,t);assert(!(p.x>COURT_POST_MIN_X-.26&&p.x<COURT_POST_MAX_X+.26&&Math.abs(p.z)<.28),'Route enters expanded net');}
     previous=point;
   }
   routes++;
@@ -30,7 +31,7 @@ for(const hz of [30,60,120]){
   c.goTo(new Vec3(1,0,-5),'idle');
   for(let i=0;i<hz*24;i++){
     c.update(1/hz);
-    assert(!(c.position.x>-3.63&&c.position.x<5.63&&Math.abs(c.position.z)<.28));
+    assert(!(c.position.x>COURT_POST_MIN_X-.26&&c.position.x<COURT_POST_MAX_X+.26&&Math.abs(c.position.z)<.28));
   }
   assert(Vec3.sub(c.position,new Vec3(1,0,-5)).len()<.01);
 }

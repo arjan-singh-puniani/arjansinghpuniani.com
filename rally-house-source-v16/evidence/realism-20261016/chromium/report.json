@@ -1,0 +1,313 @@
+{
+  "engine": "chromium",
+  "errors": [],
+  "http": [],
+  "stages": [
+    {
+      "label": "A club",
+      "world": true,
+      "objects": true,
+      "cast": true,
+      "transforms": true,
+      "placements": true,
+      "net": true,
+      "staticVisible": true,
+      "npcBodies": 4,
+      "artificialCrowd": 0,
+      "courtLayers": 4,
+      "expectedCourtLayers": 4,
+      "minute": 780,
+      "weather": "clear",
+      "lighting": true,
+      "labState": true,
+      "activity": {
+        "same": true,
+        "phase": "traveling",
+        "elapsed": 0
+      },
+      "phase": "inactive",
+      "lab": false,
+      "framing": null,
+      "gl": 0
+    },
+    {
+      "label": "B establish/orbit",
+      "world": true,
+      "objects": true,
+      "cast": true,
+      "transforms": true,
+      "placements": true,
+      "net": true,
+      "staticVisible": true,
+      "npcBodies": 4,
+      "artificialCrowd": 0,
+      "courtLayers": 4,
+      "expectedCourtLayers": 4,
+      "minute": 790.5,
+      "weather": "clear",
+      "lighting": true,
+      "labState": true,
+      "activity": {
+        "same": true,
+        "phase": "traveling",
+        "elapsed": 10.400000000000096
+      },
+      "phase": "intro",
+      "lab": false,
+      "framing": null,
+      "gl": 0
+    },
+    {
+      "label": "C gameplay 0",
+      "world": true,
+      "objects": true,
+      "cast": true,
+      "transforms": true,
+      "placements": true,
+      "net": true,
+      "staticVisible": true,
+      "npcBodies": 4,
+      "artificialCrowd": 0,
+      "courtLayers": 4,
+      "expectedCourtLayers": 4,
+      "minute": 794.25,
+      "weather": "clear",
+      "lighting": true,
+      "labState": true,
+      "activity": {
+        "same": true,
+        "phase": "active",
+        "elapsed": 14.150000000000283
+      },
+      "phase": "serving",
+      "lab": false,
+      "framing": {
+        "foot": {
+          "x": 755.9416448624489,
+          "y": 745.2271009008623,
+          "visible": true
+        },
+        "head": {
+          "x": 726.5578173646561,
+          "y": 614.182190878682,
+          "visible": true
+        },
+        "width": 1440,
+        "height": 900
+      },
+      "gl": 0
+    },
+    {
+      "label": "D returned 0",
+      "world": true,
+      "objects": true,
+      "cast": true,
+      "transforms": true,
+      "placements": true,
+      "net": true,
+      "staticVisible": true,
+      "npcBodies": 4,
+      "artificialCrowd": 0,
+      "courtLayers": 4,
+      "expectedCourtLayers": 4,
+      "minute": 797.75,
+      "weather": "clear",
+      "lighting": true,
+      "labState": true,
+      "activity": {
+        "same": true,
+        "phase": "active",
+        "elapsed": 17.850000000000268
+      },
+      "phase": "inactive",
+      "lab": false,
+      "framing": null,
+      "gl": 0
+    },
+    {
+      "label": "C gameplay 1",
+      "world": true,
+      "objects": true,
+      "cast": true,
+      "transforms": true,
+      "placements": true,
+      "net": true,
+      "staticVisible": true,
+      "npcBodies": 4,
+      "artificialCrowd": 0,
+      "courtLayers": 4,
+      "expectedCourtLayers": 4,
+      "minute": 801,
+      "weather": "clear",
+      "lighting": true,
+      "labState": true,
+      "activity": {
+        "same": true,
+        "phase": "active",
+        "elapsed": 21.050000000000086
+      },
+      "phase": "serving",
+      "lab": false,
+      "framing": {
+        "foot": {
+          "x": 755.6864403315208,
+          "y": 745.1730059850571,
+          "visible": true
+        },
+        "head": {
+          "x": 726.452929362065,
+          "y": 613.0352680233858,
+          "visible": true
+        },
+        "width": 1440,
+        "height": 900
+      },
+      "gl": 0
+    },
+    {
+      "label": "D returned 1",
+      "world": true,
+      "objects": true,
+      "cast": true,
+      "transforms": true,
+      "placements": true,
+      "net": true,
+      "staticVisible": true,
+      "npcBodies": 4,
+      "artificialCrowd": 0,
+      "courtLayers": 4,
+      "expectedCourtLayers": 4,
+      "minute": 810.5,
+      "weather": "clear",
+      "lighting": true,
+      "labState": true,
+      "activity": {
+        "same": true,
+        "phase": "completed",
+        "elapsed": 26.0499999999998
+      },
+      "phase": "inactive",
+      "lab": false,
+      "framing": null,
+      "gl": 0
+    },
+    {
+      "label": "D returned 2",
+      "world": true,
+      "objects": true,
+      "cast": true,
+      "transforms": true,
+      "placements": true,
+      "net": true,
+      "staticVisible": true,
+      "npcBodies": 4,
+      "artificialCrowd": 0,
+      "courtLayers": 4,
+      "expectedCourtLayers": 4,
+      "minute": 812,
+      "weather": "clear",
+      "lighting": true,
+      "labState": true,
+      "activity": {
+        "same": true,
+        "phase": "completed",
+        "elapsed": 26.0499999999998
+      },
+      "phase": "inactive",
+      "lab": false,
+      "framing": null,
+      "gl": 0
+    },
+    {
+      "label": "E lab in live club",
+      "world": true,
+      "objects": true,
+      "cast": true,
+      "transforms": true,
+      "placements": true,
+      "net": true,
+      "staticVisible": true,
+      "npcBodies": 4,
+      "artificialCrowd": 0,
+      "courtLayers": 4,
+      "expectedCourtLayers": 4,
+      "minute": 813.5,
+      "weather": "clear",
+      "lighting": true,
+      "labState": true,
+      "activity": {
+        "same": true,
+        "phase": "completed",
+        "elapsed": 26.0499999999998
+      },
+      "phase": "inactive",
+      "lab": true,
+      "framing": null,
+      "gl": 0
+    },
+    {
+      "label": "F lab returned",
+      "world": true,
+      "objects": true,
+      "cast": true,
+      "transforms": true,
+      "placements": true,
+      "net": true,
+      "staticVisible": true,
+      "npcBodies": 4,
+      "artificialCrowd": 0,
+      "courtLayers": 4,
+      "expectedCourtLayers": 4,
+      "minute": 815.75,
+      "weather": "clear",
+      "lighting": true,
+      "labState": true,
+      "activity": {
+        "same": true,
+        "phase": "completed",
+        "elapsed": 26.0499999999998
+      },
+      "phase": "inactive",
+      "lab": false,
+      "framing": null,
+      "gl": 0
+    }
+  ],
+  "cycles": [
+    {
+      "camera": true,
+      "court": false,
+      "input": false,
+      "match": false,
+      "player": false,
+      "opponent": false
+    },
+    {
+      "camera": true,
+      "court": false,
+      "input": false,
+      "match": false,
+      "player": false,
+      "opponent": false
+    },
+    {
+      "camera": true,
+      "court": false,
+      "input": false,
+      "match": false,
+      "player": false,
+      "opponent": false
+    }
+  ],
+  "busy": {
+    "preserved": true
+  },
+  "lab": {
+    "minuteAdvanced": true,
+    "actorsAdvanced": true,
+    "source": "authored-demo",
+    "recordedBody": 81,
+    "cameraRestored": true
+  },
+  "passed": true
+}

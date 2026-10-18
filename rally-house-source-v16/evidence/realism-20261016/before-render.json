@@ -1,0 +1,64 @@
+{
+  "label": "before",
+  "baseline": "/tmp/rally-realism-baseline-20261016/dist",
+  "capture": "Actual cast and production world renderer with controlled inspection cameras",
+  "errors": [],
+  "http": [],
+  "actors": [
+    {
+      "id": "taylor",
+      "headHeight": 2.251622606273937,
+      "gl": 0,
+      "draws": 819,
+      "triangles": 373568,
+      "sameWorld": true,
+      "members": 4
+    },
+    {
+      "id": "arjan",
+      "headHeight": 2.236131471273929,
+      "gl": 0,
+      "draws": 813,
+      "triangles": 367300,
+      "sameWorld": true,
+      "members": 4
+    },
+    {
+      "id": "coach",
+      "headHeight": 2.2703586577308514,
+      "gl": 0,
+      "draws": 813,
+      "triangles": 367300,
+      "sameWorld": true,
+      "members": 4
+    },
+    {
+      "id": "mika",
+      "headHeight": 2.2340028164249106,
+      "gl": 0,
+      "draws": 813,
+      "triangles": 367300,
+      "sameWorld": true,
+      "members": 4
+    },
+    {
+      "id": "nia",
+      "headHeight": 2.23904724892879,
+      "gl": 0,
+      "draws": 813,
+      "triangles": 367300,
+      "sameWorld": true,
+      "members": 4
+    },
+    {
+      "id": "leo",
+      "headHeight": 2.2384091112484827,
+      "gl": 0,
+      "draws": 813,
+      "triangles": 367300,
+      "sameWorld": true,
+      "members": 4
+    }
+  ],
+  "passed": true
+}

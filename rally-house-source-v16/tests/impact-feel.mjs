@@ -1,3 +1,4 @@
+import {COURT} from '../dist/tennis/CourtGeometry.js';
 import assert from 'node:assert/strict';
 import {Character} from '../dist/entities/Character.js';
 import {Navigation} from '../dist/world/Navigation.js';
@@ -41,7 +42,7 @@ for(const [width,height] of [[1920,1080],[1728,1117],[1440,900],[1280,800],[1024
  for(let i=0;i<240;i++){rig.update('behindPlayer',new Vec3(1,0,5),new Vec3(1,0,-5),null,width/height,1/60);camera.update(1/60);}
  const stable=camera.captureState();rig.pulseImpact(1.35,1);const impulse=rig.renderImpulse();assert(impulse);
  const matrix=camera.viewProjection(impulse);assert.deepEqual(camera.captureState(),stable,'Pulse does not perturb orbit springs');
- for(const [x,z] of [[-3.25,-6],[5.25,-6],[-3.25,6],[5.25,6]]){
+ for(const [x,z] of [[-1,-1],[-1,1],[1,-1],[1,1]].map(([x,z])=>[COURT.centerX+x*COURT.doublesHalfWidth,z*COURT.halfLength])){
   const point=transformPoint(matrix,new Vec3(x,.1,z));assert(Math.abs(point.x)<1&&Math.abs(point.y)<1,`${width}x${height}: court remains in frame at peak impact`);
  }
  rig.renderImpulse(true);assert.equal(rig.renderImpulse(),undefined,'Reduced motion cannot leave a stale kick');

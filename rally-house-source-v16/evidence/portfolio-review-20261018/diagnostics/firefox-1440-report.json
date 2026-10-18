@@ -1,0 +1,8 @@
+{
+  "engine": "firefox",
+  "width": 1440,
+  "errors": [],
+  "http": [],
+  "input": "Actual UI challenge, keyboard movement/serve/returns and review button; controlled initial club availability",
+  "failure": "page.waitForFunction: Timeout 30000ms exceeded."
+}

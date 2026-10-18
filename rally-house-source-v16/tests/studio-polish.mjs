@@ -1,3 +1,4 @@
+import {COURT_MAX_X} from '../dist/tennis/CourtGeometry.js';
 import assert from 'node:assert/strict';
 import {Character} from '../dist/entities/Character.js';
 import {Navigation} from '../dist/world/Navigation.js';
@@ -31,7 +32,7 @@ for(const reduced of [false,true]){
 for(const hz of [30,60,120]){
  const {p,input,m,tick}=match();input.setTouchMovement(1,0);const steps=[];
  for(let i=0;i<hz*.8;i++){const before=p.position.x;tick(1/hz);steps.push({distance:p.position.x-before,x:p.position.x});}
- assert(steps.slice(Math.ceil(hz*.25)).every(v=>v.distance>0||v.x>=5.1-.055),'Held movement has no stop/start gaps');
+ assert(steps.slice(Math.ceil(hz*.25)).every(v=>v.distance>0||v.x>=COURT_MAX_X-.15-.055),'Held movement has no stop/start gaps');
  input.setTouchMovement(-1,0);for(let i=0;i<hz*.25;i++)tick(1/hz);assert(m.movementX<-.85,'Fast reversal');
  input.setTouchMovement(0,0);for(let i=0;i<hz;i++)tick(1/hz);const x=p.position.x;for(let i=0;i<hz/2;i++)tick(1/hz);assert(Math.abs(p.position.x-x)<.01,'Release must stop drift');
  m.stop();assert.equal(p.getCourtSpeedScale(),1);
@@ -42,7 +43,7 @@ for(const id of Object.keys(CHAMPIONSHIP_OPPONENTS)){
   tick();if(m.ball.active&&!released){released=true;assert(Vec3.sub(m.ball.position,p.racketContactFrame().center).len()<.4,'Launch comes from string bed');}
  }
  assert(released&&hits.length>=1,`${id}: animated serve releases`);
- assert(o.meshes().some(v=>v.kind==='torus'&&v.material==='metal'),'Every competitor has a racket');
+ assert(o.meshes().some(v=>v.skin?.id==='adult-tennis-racket-slim-frame-v1'&&v.material==='metal'),'Every competitor has a racket');
  m.stop();assert.equal(p.matchCompetitor,false);assert.equal(o.matchCompetitor,false);assert.equal(o.getCourtSpeedScale(),1);
 }
 // A broken contact geometry cannot emit a fake strike or launch.

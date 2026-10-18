@@ -1,0 +1,18 @@
+[
+  {
+    "file": "dist/entities/Character.js",
+    "liveBytesMatch": true
+  },
+  {
+    "file": "dist/animation/TaylorBody.js",
+    "liveBytesMatch": true
+  },
+  {
+    "file": "dist/ui/ChampionshipHUD.js",
+    "liveBytesMatch": true
+  },
+  {
+    "file": "dist/analysis/PerformanceLab.js",
+    "liveBytesMatch": true
+  }
+]

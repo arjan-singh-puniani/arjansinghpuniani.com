@@ -1,3 +1,4 @@
+import {COURT,COURT_MIN_X,COURT_MAX_X} from './CourtGeometry.js';
 import { Vec3, clamp, smoothstep } from '../rendering/Math3D.js';
 import type { Mesh } from '../rendering/Renderer.js';
 import type { Character } from '../entities/Character.js';
@@ -53,13 +54,13 @@ export interface InteractiveMatchCallbacks {
   onPoint?: (winner: Side, reason: InteractivePointReason, rallyLength: number) => void;
 }
 
-const COURT_CENTER_X = 1;
-const PLAYER_BASELINE_Z = 5;
-const OPPONENT_BASELINE_Z = -5;
-const SINGLES_MIN_X = -3.25;
-const SINGLES_MAX_X = 5.25;
-const PLAYABLE_MIN_Z = -6;
-const PLAYABLE_MAX_Z = 6;
+const COURT_CENTER_X = COURT.centerX;
+const PLAYER_BASELINE_Z = COURT.baselineDepth;
+const OPPONENT_BASELINE_Z = -COURT.baselineDepth;
+const SINGLES_MIN_X = COURT_MIN_X;
+const SINGLES_MAX_X = COURT_MAX_X;
+const PLAYABLE_MIN_Z = -COURT.halfLength;
+const PLAYABLE_MAX_Z = COURT.halfLength;
 
 function fract(value: number) {
   return value - Math.floor(value);
@@ -259,10 +260,10 @@ export class InteractiveMatchSystem {
     // Fast steering stays live through the stroke, but a forward chase may not
     // carry the body through its own planted string-bed contact.
     const contactZ=striking?this.pending?.contactTarget?.z:undefined;
-    const frontLimit=contactZ===undefined?.9:Math.min(5.65,Math.max(.9,contactZ+.48));
+    const frontLimit=contactZ===undefined?.9:Math.min(COURT.baselineDepth,Math.max(.9,contactZ+.48));
     this.player.steerOnCourt(new Vec3(
       clamp(this.player.position.x+this.movementX/strength*.8,SINGLES_MIN_X+.15,SINGLES_MAX_X-.15),0,
-      clamp(this.player.position.z+this.movementZ/strength*.8,frontLimit,5.65)),this.opponent.position);
+      clamp(this.player.position.z+this.movementZ/strength*.8,frontLimit,COURT.baselineDepth)),this.opponent.position);
   }
 
   /** Meet the ball ahead of the body, not at the baseline under our feet. */
@@ -652,16 +653,16 @@ export class InteractiveMatchSystem {
     // old first return effectively impossible, because the ball bounced at the feet.
     let x=clamp(receiver.position.x+variation,SINGLES_MIN_X+.75,SINGLES_MAX_X-.75);
     let depth=quality==='perfect'?3.25:quality==='clean'?2.95:2.25;
-    if(assisted){x=clamp(receiver.position.x+.20+variation,-2.3,4.3);depth=clamp(receiver.position.z-2.3,1.5,3.1);}
+    if(assisted){x=clamp(receiver.position.x+.20+variation,SINGLES_MIN_X+.4,SINGLES_MAX_X-.4);depth=clamp(receiver.position.z-2.3,1.5,3.1);}
     if(side==='player'){
       // Steering also places the next shot. Releasing the stick gives a forgiving
       // neutral return; holding left/right rewards chasing with a chosen angle.
       const aim=this.input.movement().x;
-      if(Math.abs(aim)>.18)x=clamp(COURT_CENTER_X+aim*3.15+variation*.2,SINGLES_MIN_X+.6,SINGLES_MAX_X-.6);
+      if(Math.abs(aim)>.18)x=clamp(COURT_CENTER_X+aim*(COURT.singlesHalfWidth-.6)+variation*.2,SINGLES_MIN_X+.6,SINGLES_MAX_X-.6);
     }
     if(quality==='frame'){
       x+=(hash(seed+18.4)-.5)*2.1;
-      depth=hash(seed+9)>.85?6.45:2.15;
+      depth=hash(seed+9)>.85?COURT.halfLength+.45:2.15;
     }
     return new Vec3(x,this.ball.radius,direction*depth);
   }
