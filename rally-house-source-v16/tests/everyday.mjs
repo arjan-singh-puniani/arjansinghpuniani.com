@@ -3,6 +3,7 @@ import {EverydayLife} from '../dist/simulation/EverydayLife.js';
 import {World} from '../dist/world/World.js';
 import {destinations} from '../dist/content/content.js';
 import {Vec3} from '../dist/rendering/Math3D.js';
+import {COURT} from '../dist/tennis/CourtGeometry.js';
 import {HUD} from '../dist/ui/HUD.js';
 import {SaveSystem} from '../dist/persistence/SaveSystem.js';
 import {CURRENT_SAVE_VERSION,migrateGameSave} from '../dist/persistence/migrations.js';
@@ -26,7 +27,7 @@ test('An everyday caption has no wall-clock expiry while the simulation is pause
 });
 test('Cafe-to-bonsai circulation does not cut through the playing area',()=>{
  const w=new World(),start=destinations.cafe,path=w.nav.clubPath(start,destinations.bonsai);assert(path.length);let previous=start;
- for(const p of path){for(let t=0;t<=1;t+=.025){const v=Vec3.lerp(previous,p,t);assert(!(v.x>-3.7&&v.x<5.7&&v.z>-6.5&&v.z<6.5),'Crossed playing area');}previous=p;}
+ for(const p of path){for(let t=0;t<=1;t+=.025){const v=Vec3.lerp(previous,p,t);assert(!(Math.abs(v.x-COURT.centerX)<COURT.doublesHalfWidth+.4&&Math.abs(v.z)<COURT.baselineDepth),'Crossed playing area');}previous=p;}
  assert(w.nav.clubPath(destinations.courtSouth,destinations.cafe).length,'Player cannot leave court');
 });
 console.log(`${n} everyday-life checks passed.`);

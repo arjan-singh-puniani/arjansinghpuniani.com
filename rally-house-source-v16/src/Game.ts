@@ -1178,7 +1178,7 @@ export class Game {
           }
         }
         // Nonparticipants watch from the side instead of occupying a reserved court.
-        if(this.activities.reserved('court')&&Math.abs(c.position.x-1)<4.5&&Math.abs(c.position.z)<6.3){const exit=courtSpectatorSpots[c.id],target=c.path[c.path.length-1];if(!target||Vec3.sub(exit,target).len()>.1)c.goTo(exit,'watch');c.activity='Watching from the side';const court=this.activities.active.find(a=>a.resource==='court');if(court)this.waitingForPlace.set(c.id,court.id);}
+        if(this.activities.reserved('court')&&this.world.nav.onCourt(c.position)){const exit=courtSpectatorSpots[c.id],target=c.path[c.path.length-1];if(!target||Vec3.sub(exit,target).len()>.1)c.goTo(exit,'watch');c.activity='Watching from the side';const court=this.activities.active.find(a=>a.resource==='court');if(court)this.waitingForPlace.set(c.id,court.id);}
       }
       c.update(step);if(c.consumeStepEvent())this.audio.shoe(c.state==='shuffle');
     }

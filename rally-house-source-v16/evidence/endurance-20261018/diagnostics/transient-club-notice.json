@@ -1,0 +1,15 @@
+{
+  "observedTotalDom": [
+    279,
+    280
+  ],
+  "extraElement": "BUTTON.world-notice",
+  "source": "SpatialInteractionSystem updates up to two notice markers and removes markers absent from the next visible set",
+  "reason": "The 64-session run completed; the old endpoint equality compared different transient notice states",
+  "assertionsRetained": [
+    "Total DOM range at most one",
+    "Exact per-cycle DOM return after excluding only bounded .world-notice elements",
+    "All Lab replay options count toward exact lifetime assertion",
+    "All physics, ownership, audio, console and HTTP assertions"
+  ]
+}

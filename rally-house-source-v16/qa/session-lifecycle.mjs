@@ -6,12 +6,17 @@ import assert from 'node:assert/strict';
 // Run from rally-house-source-v16 so this harness works before/after QA curation.
 const {chromium,firefox,webkit,browserOptions}=await import(pathToFileURL(path.resolve('qa/runtime.mjs')).href);
 const engine=process.env.QA_ENGINE??'chromium';
+const cycles=Number(process.env.QA_CYCLES??32);
+assert(Number.isInteger(cycles)&&cycles>=32,'Endurance requires at least 32 cycles');
+const out=process.env.QA_OUT??'../takeover-evidence/session-20261009';
 const browser=await {chromium,firefox,webkit}[engine].launch({...engine==='chromium'?{...browserOptions,args:['--use-angle=metal']}:{headless:true},...process.env.QA_BROWSER_EXECUTABLE?{executablePath:process.env.QA_BROWSER_EXECUTABLE}:{}});
-const report={cycles:[],errors:[]};
+const report={engine,cycles:[],reviews:[],errors:[],http:[]};
 try{
  const context=await browser.newContext({viewport:{width:1280,height:800}});
  const page=await context.newPage();
  page.on('pageerror',e=>report.errors.push(e.message));
+ page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});
+ page.on('response',r=>{if(r.status()>=400)report.http.push([r.status(),r.url()]);});
  await page.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`);
  await page.waitForFunction(()=>window.__rh?.ready);
  await enterClub(page,'Arjan');
@@ -32,15 +37,19 @@ try{
    return disconnect.apply(this,args);
   };
  });
- for(let i=0;i<32;i++){
+ for(let i=0;i<cycles;i++){
   const before=await page.evaluate(i=>{
    const g=window.__rh.game;
    for(const a of [...g.activities.active])g.cancelActivity(a);
    g.clock.paused=true;g.clock.speed=2;g.settings.reducedMotion=i%2===0;
    const camera=JSON.stringify(g.camera.captureState());
    g.startChampionship(g.actor(['leo','coach','mika','nia'][i%4]));
-   for(let n=0;n<6000&&g.championship.phase!=='serving';n++)g.updateFixed(1/60);
-   if(g.championship.phase!=='serving')throw Error('Court entry failed '+i+' '+JSON.stringify({phase:g.championship.phase,actors:g.characters.map(c=>({id:c.id,position:c.position,path:c.path,index:c.pathIndex,major:c.majorActivity})),activities:g.activities.active,routes:[...g.routes]}));
+   const trace=[];
+   for(let n=0;n<6000&&g.championship.phase!=='serving';n++){
+    if(n%600===0)trace.push({seconds:n/60,phase:g.championship.phase,actors:[g.player,...g.characters].map(c=>({id:c.id,position:c.position.clone(),path:c.path.map(p=>p.clone()),index:c.pathIndex})),activities:JSON.parse(JSON.stringify(g.activities.active)),routes:[...g.routes]});
+    g.updateFixed(1/60);
+   }
+   if(g.championship.phase!=='serving')throw Error('Court entry failed '+i+' '+JSON.stringify({phase:g.championship.phase,trace}));
    g.interactiveMatch.prepareShot('player','serve','perfect');
    for(let n=0;n<200&&!g.interactiveMatch.pending?.impactStarted;n++)g.updateFixed(1/120);
    if(!g.interactiveMatch.pending?.impactStarted)throw Error('Contact entry failed '+i);
@@ -55,37 +64,60 @@ try{
   assert.equal(frozen,before.physics);
   await page.getByRole('button',{name:'Resume match',exact:true}).click();
   await page.waitForTimeout(150);
-  await page.evaluate(()=>{
-   const g=window.__rh.game;
-   g.setChampionshipPaused(true);g.requestChampionshipExit();
-   for(let n=0;n<180&&g.championship.active;n++)g.updateFixed(1/60);
-  });
+  if(process.env.QA_REVIEW==='1'&&i%8===7){
+   await page.evaluate(()=>{const g=window.__rh.game;g.setChampionshipPaused(true);window.enduranceClip=g.motionRecorder.clip;});
+   // Wait for the pause presentation to replace the quick-review control;
+   // resolving a transient visible button before that RAF can retain a stale target.
+   await page.locator('.championshipHud[data-paused="true"]').waitFor();
+   await page.locator('.championshipPausePanel').getByRole('button',{name:'Analyze last swing',exact:true}).click();
+   await page.waitForFunction(()=>window.__rh.game.performanceLab.active);
+   const review=await page.evaluate(()=>{
+    const g=window.__rh.game,t=g.performanceLab.timeline;
+    return{sameRecording:t.clip===window.enduranceClip,contact:!!t.frame.contact,playing:t.playing,speed:t.speed,court:g.activities.reserved('court'),input:g.matchInput.enabled,match:!!g.interactiveMatch,gl:g.renderer.gl.getError()};
+   });
+   assert(review.sameRecording&&review.contact);assert.equal(review.speed,.25);
+   for(const key of ['playing','court','input','match'])assert.equal(review[key],false,key);
+   assert.equal(review.gl,0);
+   await page.locator('[data-lab-action=close]').click();
+   report.reviews.push({cycle:i+1,...review});
+  }else{
+   await page.evaluate(()=>{
+    const g=window.__rh.game;
+    g.setChampionshipPaused(true);g.requestChampionshipExit();
+    for(let n=0;n<180&&g.championship.active;n++)g.updateFixed(1/60);
+   });
+  }
   await page.waitForTimeout(300);
   // Native audio completion events may trail the visual RAF, especially after
   // accelerated simulation. Still require every transient node to disconnect.
   await page.waitForFunction(()=>window.optimizerAudio.nodes.size===0,null,{timeout:2000});
-  const row=await page.evaluate(()=>{
+  const row=await page.evaluate(diagnostic=>{
    const g=window.__rh.game,a=window.optimizerAudio;
-   return{dom:document.querySelectorAll('*').length,paused:g.clock.paused,speed:g.clock.speed,reserved:g.activities.reserved('court'),owner:g.championshipHud.pointerId,input:g.matchInput.enabled,match:g.interactiveMatch,camera:JSON.stringify(g.camera.captureState()),connectedNodes:a.nodes.size,connects:a.connected,disconnects:a.disconnected,buffers:g.audio.tennisMaterialBuffers.size,competitor:g.player.matchCompetitor,impulse:!!g.championshipCamera.renderImpulse(),heap:performance.memory?.usedJSHeapSize};
-  });
+   return{dom:document.querySelectorAll('*').length,worldNotices:document.querySelectorAll('.world-notice').length,...diagnostic?{domNodes:[...document.querySelectorAll('*')].map(e=>`${e.parentElement?.tagName}.${e.parentElement?.className}>${e.tagName}#${e.id}.${e.className}`)}:{},paused:g.clock.paused,speed:g.clock.speed,reserved:g.activities.reserved('court'),owner:g.championshipHud.pointerId,input:g.matchInput.enabled,match:g.interactiveMatch,camera:JSON.stringify(g.camera.captureState()),connectedNodes:a.nodes.size,connects:a.connected,disconnects:a.disconnected,buffers:g.audio.tennisMaterialBuffers.size,competitor:g.player.matchCompetitor,impulse:!!g.championshipCamera.renderImpulse(),heap:performance.memory?.usedJSHeapSize};
+  },process.env.QA_DIAG_DOM==='1');
   assert.equal(row.camera,before.camera);delete row.camera;
   assert.equal(row.paused,true);assert.equal(row.speed,2);assert.equal(row.reserved,false);
   assert.equal(row.owner,null);assert.equal(row.input,false);assert.equal(row.match,null);
   assert.equal(row.competitor,false);assert.equal(row.impulse,false);assert.equal(row.connectedNodes,0);
+  assert(row.worldNotices<=2,'Spatial presentation allows at most two transient club notices');
   report.cycles.push({cycle:i+1,...row});
  }
  const counts=report.cycles.map(c=>c.dom);
  // A transient club UI node can vary the total count. Test bounded lifetime,
  // not an invariant that the ordinary club UI does not promise.
  assert(Math.max(...counts)-Math.min(...counts)<=1);
- assert.equal(counts.at(-1),counts[0]);
+ // Native arrival leaves a live club notice that can expire between samples.
+ // The diagnostic DOM diff identifies exactly .world-notice; retain an exact
+ // per-cycle lifetime check for every other node, including all replay options.
+ const ownedCounts=report.cycles.map(c=>c.dom-c.worldNotices);
+ assert.equal(Math.max(...ownedCounts),Math.min(...ownedCounts),'Session-owned DOM must return exactly after every cycle');
  assert.deepEqual(report.errors,[]);
- report.summary={cycles:report.cycles.length,physicsAndCleanupPassed:true,domRange:[Math.min(...counts),Math.max(...counts)],firstDom:counts[0],lastDom:counts.at(-1),transientAudioNodesAfterSettle:Math.max(...report.cycles.map(c=>c.connectedNodes)),firstHeap:report.cycles[0].heap,lastHeap:report.cycles.at(-1).heap};
- console.log('32 lifecycle cycles PASS',JSON.stringify(report.summary));
+ assert.deepEqual(report.http,[]);
+ report.summary={cycles:report.cycles.length,reviewRoundTrips:report.reviews.length,physicsAndCleanupPassed:true,domRange:[Math.min(...counts),Math.max(...counts)],ownedDomRange:[Math.min(...ownedCounts),Math.max(...ownedCounts)],firstDom:counts[0],lastDom:counts.at(-1),transientAudioNodesAfterSettle:Math.max(...report.cycles.map(c=>c.connectedNodes)),firstHeap:report.cycles[0].heap,lastHeap:report.cycles.at(-1).heap};
+ console.log(`${cycles} lifecycle cycles PASS`,JSON.stringify(report.summary));
  await context.close();
-}finally{
- report.limits=['Manual fixed ticks accelerate approach/exit; paused freeze, Resume click and short flight use live RAF. Autonomous scheduling is held during this lifecycle isolation test.','Total DOM can vary transiently by one node; bounded range and final return are checked.','AudioNode instrumentation starts after initial ambience and tracks later outgoing connections, not browser-internal allocation.','Heap is coarse, without forced garbage collection or long-duration leak proof.'];
- const out=process.env.QA_OUT??'../takeover-evidence/session-20261009';
+}catch(error){report.failure=error.message;throw error;}finally{
+ report.limits=['Manual fixed ticks accelerate approach/exit; paused freeze, Resume click and short flight use live RAF. Autonomous scheduling is held during this lifecycle isolation test.','Total DOM is bounded to a one-node range; identified .world-notice nodes are separately bounded, and all other DOM must return exactly after every cycle.','AudioNode instrumentation starts after initial ambience and tracks later outgoing connections, not browser-internal allocation.','Heap is coarse, without forced garbage collection or long-duration leak proof.'];
  fs.mkdirSync(out,{recursive:true});
  fs.writeFileSync(path.join(out,'optimizer-lifecycle.json'),JSON.stringify(report,null,2));
  await browser.close();

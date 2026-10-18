@@ -1,0 +1,75 @@
+{
+  "engine": "chromium",
+  "width": 1440,
+  "errors": [],
+  "http": [],
+  "returns": [
+    true,
+    false
+  ],
+  "input": "Actual UI challenge, keyboard movement/serve/attempted returns and review button; controlled initial club availability",
+  "contact": {
+    "count": 2,
+    "time": 4.183333333333324,
+    "frames": 348
+  },
+  "review": {
+    "sameWorld": true,
+    "samePlayer": true,
+    "sameCast": true,
+    "sameObjects": true,
+    "sameMeshes": true,
+    "sameRecording": true,
+    "source": "game-recording",
+    "contact": true,
+    "time": 4.183333333333324,
+    "playing": false,
+    "speed": 0.25,
+    "input": false,
+    "match": false,
+    "reserved": false,
+    "competitors": false,
+    "gl": 0
+  },
+  "framing": {
+    "head": {
+      "x": 551.0545744594981,
+      "y": 309.7942060404177,
+      "visible": true
+    },
+    "racketTop": {
+      "x": 713.4418878686035,
+      "y": 427.94030306081663,
+      "visible": true
+    },
+    "feet": [
+      {
+        "x": 505.5562548463459,
+        "y": 591.829552996901,
+        "visible": true
+      },
+      {
+        "x": 561.6385496511008,
+        "y": 549.5235291479836,
+        "visible": true
+      }
+    ],
+    "panel": {
+      "x": 1096,
+      "y": 104,
+      "width": 320,
+      "height": 684,
+      "top": 104,
+      "right": 1416,
+      "bottom": 788,
+      "left": 1096
+    }
+  },
+  "returned": {
+    "lab": false,
+    "match": false,
+    "world": true,
+    "court": false
+  },
+  "passed": true
+}

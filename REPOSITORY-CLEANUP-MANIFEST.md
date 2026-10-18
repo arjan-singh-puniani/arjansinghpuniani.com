@@ -13,6 +13,7 @@
 - Unique historical source, tests, patch scripts, notes and design proposals into the content-addressed provenance archive. This is preservation, not a claim that obsolete experiments are production-ready.
 - Reproducible consolidation audit, detailed inventory, recovery instructions and exact validation results.
 - Configurable QA base URL so browser checks can target an isolated, fresh server without using an unrelated running process.
+- October 18 follow-up: realism revision `6e3fb6de`, corrected baseline circulation/nonparticipant clearing, and Lab option cleanup after the full game and 64-cycle/eight-review gate passed. See [qualification evidence](rally-house-source-v16/evidence/endurance-20261018/README.md).
 
 ## ARCHIVE
 
@@ -21,7 +22,7 @@
 - `archive/consolidation-20261017/objects/`: deduplicated unique text recovery objects; excluded from production source discovery.
 - Primary checkout `.local-preservation/20261017/`: original local containers, binary material, personal media and uncertain cloud files. This directory is deliberately local and ignored, with an explicit recovery index; it is not a second application tree.
 - Historical branch tips retain their existing refs or an explicitly named recovery ref. Inactive worktrees are not silently erased.
-- `rally-house-realism-proportions-20261017` remains on its remote branch: it failed the 32-cycle endurance gate that canonical main passed. Its valuable surface and court work is preserved pending correction, not merged merely because it is newer.
+- `rally-house-realism-proportions-20261017` remains preserved on its remote branch. Its original rejected trial is historical evidence; the October 18 integration above resolves its endurance blocker before canonical adoption.
 
 ## DELETE
 

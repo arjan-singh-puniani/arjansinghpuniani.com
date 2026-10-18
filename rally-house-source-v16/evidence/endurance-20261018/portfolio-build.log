@@ -1,0 +1,57 @@
+
+> arjan-singh-puniani-portfolio@1.0.0 build
+> next build
+
+   ▲ Next.js 15.5.24
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 19.3s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/32) ...
+   Generating static pages (8/32)
+   Generating static pages (16/32)
+   Generating static pages (24/32)
+ ✓ Generating static pages (32/32)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                  Size  First Load JS
+┌ ○ /                                       428 B         112 kB
+├ ○ /_not-found                             146 B         103 kB
+├ ○ /about                                  369 B         112 kB
+├ ƒ /api/contact                            146 B         103 kB
+├ ○ /contact                                984 B         104 kB
+├ ○ /cv                                     173 B         106 kB
+├ ○ /icon.svg                                 0 B            0 B
+├ ○ /manifest.webmanifest                   146 B         103 kB
+├ ○ /notes                                  173 B         106 kB
+├ ○ /playground                             358 B         112 kB
+├ ○ /playground/hemodynamic-observatory     519 B         107 kB
+├ ○ /playground/holoanatomy                 309 B         106 kB
+├ ○ /playground/pit-stop                    310 B         106 kB
+├ ○ /playground/rally-house               5.11 kB         116 kB
+├ ○ /playground/replisome                 2.11 kB         113 kB
+├ ○ /playground/vector-tennis             23.6 kB         130 kB
+├ ○ /privacy                                146 B         103 kB
+├ ○ /research                               399 B         106 kB
+├ ○ /robots.txt                             146 B         103 kB
+├ ○ /sitemap.xml                            146 B         103 kB
+├ ○ /work                                 7.23 kB         113 kB
+├ ● /work/[slug]                           3.6 kB         115 kB
+├   ├ /work/seizefreeze
+├   ├ /work/bci-calibration
+├   ├ /work/rigetti-quantum-operations
+├   └ [+3 more paths]
+├ ○ /work/belmont-motorsport-systems        173 B         106 kB
+├ ○ /work/motorsport-neurotrauma-toolkit    173 B         106 kB
+└ ○ /work/vector-ekg-reasonos             4.54 kB         116 kB
++ First Load JS shared by all              103 kB
+  ├ chunks/255-c5a697ddbf82d774.js        46.4 kB
+  ├ chunks/4bd1b696-c023c6e3521b1417.js   54.2 kB
+  └ other shared chunks (total)           1.99 kB
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand

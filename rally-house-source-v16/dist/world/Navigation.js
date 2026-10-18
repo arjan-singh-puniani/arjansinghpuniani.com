@@ -1,4 +1,9 @@
 import { Vec3 } from '../rendering/Math3D.js';
+import { COURT } from '../tennis/CourtGeometry.js';
+const clearance = .22;
+// Include both service baselines and the net-post run-off in the same
+// boundary used for circulation and for clearing nonparticipants.
+const courtHalfWidth = COURT.doublesHalfWidth + 1, courtHalfDepth = COURT.baselineDepth + .25;
 export class Navigation {
     cell = .5;
     minX = -12.5;
@@ -8,7 +13,7 @@ export class Navigation {
     obstacles = [];
     constructor(obstacles = []) { this.obstacles = obstacles; }
     isBlocked(x, z) { if (x < this.minX || x > this.maxX || z < this.minZ || z > this.maxZ)
-        return true; return this.obstacles.some(o => x > o.x - o.w / 2 - .22 && x < o.x + o.w / 2 + .22 && z > o.z - o.d / 2 - .22 && z < o.z + o.d / 2 + .22); }
+        return true; return this.obstacles.some(o => x > o.x - o.w / 2 - clearance && x < o.x + o.w / 2 + clearance && z > o.z - o.d / 2 - clearance && z < o.z + o.d / 2 + clearance); }
     snap(v, min) { return Math.round((v - min) / this.cell); }
     world(ix, iz) { return new Vec3(this.minX + ix * this.cell, 0, this.minZ + iz * this.cell); }
     path(start, end) {
@@ -72,14 +77,15 @@ export class Navigation {
         return [];
     }
     /** Social circulation stays outside the playing area. Players leaving court first use a short exit route. */
+    onCourt(p) { return Math.abs(p.x - COURT.centerX) < courtHalfWidth && Math.abs(p.z) < courtHalfDepth; }
     clubPath(start, end) {
-        const inside = (p) => p.x > -3.8 && p.x < 5.8 && p.z > -6.6 && p.z < 6.6;
-        if (inside(end))
+        if (this.onCourt(end))
             return this.path(start, end);
-        const outside = new Navigation([...this.obstacles, { x: 1, z: 0, w: 9, d: 12.6 }]);
-        if (!inside(start))
+        // isBlocked expands obstacles by clearance; use exactly onCourt's bounds.
+        const outside = new Navigation([...this.obstacles, { x: COURT.centerX, z: 0, w: 2 * (courtHalfWidth - clearance), d: 2 * (courtHalfDepth - clearance) }]);
+        if (!this.onCourt(start))
             return outside.path(start, end);
-        const exits = [new Vec3(-4, 0, start.z), new Vec3(6, 0, start.z), new Vec3(start.x, 0, -7), new Vec3(start.x, 0, 7)];
+        const exits = [new Vec3(COURT.centerX - courtHalfWidth - .25, 0, start.z), new Vec3(COURT.centerX + courtHalfWidth + .25, 0, start.z), new Vec3(start.x, 0, -courtHalfDepth - .25), new Vec3(start.x, 0, courtHalfDepth + .25)];
         const routes = exits.map(exit => { const first = this.path(start, exit), last = outside.path(exit, end); return first.length && last.length ? [...first, ...last] : []; }).filter(r => r.length);
         const length = (r) => r.reduce((n, p, i) => n + Vec3.sub(p, i ? r[i - 1] : start).len(), 0);
         return routes.sort((a, b) => length(a) - length(b))[0] ?? [];
@@ -89,7 +95,7 @@ export class Navigation {
             return false;
         for (const o of this.obstacles) {
             let enter = 0, leave = 1;
-            for (const [origin, delta, min, max] of [[a.x, b.x - a.x, o.x - o.w / 2 - .22, o.x + o.w / 2 + .22], [a.z, b.z - a.z, o.z - o.d / 2 - .22, o.z + o.d / 2 + .22]]) {
+            for (const [origin, delta, min, max] of [[a.x, b.x - a.x, o.x - o.w / 2 - clearance, o.x + o.w / 2 + clearance], [a.z, b.z - a.z, o.z - o.d / 2 - clearance, o.z + o.d / 2 + clearance]]) {
                 if (Math.abs(delta) < 1e-9) {
                     if (origin <= min || origin >= max) {
                         enter = 2;

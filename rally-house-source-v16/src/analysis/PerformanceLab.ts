@@ -124,7 +124,7 @@ export class PerformanceLab {
     if(this.prior)this.camera.restoreState(this.prior);
     if(this.camera.aspect!==this.priorAspect){const aspect=this.camera.aspect;this.camera.aspect=0;this.camera.setAspect(aspect);this.camera.update(0);}
     this.video.pause();this.video.removeAttribute('src');this.video.load();this.videoBox.hidden=true;this.phone=null;
-    this.prior=null;this.timeline=null;this.cached=[];this.clips.clear();this.plotClip=null;this.courtClip=null;this.courtHistory=[];
+    this.prior=null;this.timeline=null;this.cached=[];this.clips.clear();this.source.replaceChildren();this.plotClip=null;this.courtClip=null;this.courtHistory=[];
     for(const el of document.querySelectorAll<HTMLElement>('.topbar,.hud,.objective,#scenePeek'))el.inert=false;
     const target=this.restoreFocus?.isConnected&&!this.restoreFocus.closest('[hidden]')?this.restoreFocus:this.canvas;
     target.focus({preventScroll:true});this.restoreFocus=null;this.onReturn();

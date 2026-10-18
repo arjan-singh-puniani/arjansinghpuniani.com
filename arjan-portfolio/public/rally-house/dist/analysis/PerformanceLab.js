@@ -273,6 +273,7 @@ export class PerformanceLab {
         this.timeline = null;
         this.cached = [];
         this.clips.clear();
+        this.source.replaceChildren();
         this.plotClip = null;
         this.courtClip = null;
         this.courtHistory = [];

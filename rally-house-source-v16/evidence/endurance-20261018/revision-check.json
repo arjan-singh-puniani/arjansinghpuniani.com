@@ -1,0 +1,42 @@
+{
+  "checkedTextFiles": 1790,
+  "skippedBinaryFiles": 937,
+  "skippedOver2MB": 11,
+  "credentialPatternFindings": [],
+  "changedFiles": 45,
+  "largestChangedFiles": [
+    {
+      "path": "arjan-portfolio/public/rally-house/dist/Game.js",
+      "bytes": 146178
+    },
+    {
+      "path": "rally-house-source-v16/dist/Game.js",
+      "bytes": 146178
+    },
+    {
+      "path": "rally-house-source-v16/src/Game.ts",
+      "bytes": 121438
+    },
+    {
+      "path": "arjan-portfolio/public/rally-house/dist/analysis/PerformanceLab.js",
+      "bytes": 32106
+    },
+    {
+      "path": "rally-house-source-v16/dist/analysis/PerformanceLab.js",
+      "bytes": 32106
+    },
+    {
+      "path": "rally-house-source-v16/src/analysis/PerformanceLab.ts",
+      "bytes": 26660
+    },
+    {
+      "path": "rally-house-source-v16/evidence/endurance-20261018/endurance.json",
+      "bytes": 26651
+    },
+    {
+      "path": "rally-house-source-v16/evidence/endurance-20261018/candidate-endurance.json",
+      "bytes": 24976
+    }
+  ],
+  "newFilesOver5MB": []
+}
