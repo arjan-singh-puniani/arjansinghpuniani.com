@@ -1,3 +1,4 @@
+import {COURT} from './CourtGeometry.js';
 import type { CameraController } from '../rendering/CameraController.js';
 import { Vec3, clamp } from '../rendering/Math3D.js';
 import type { ChampionshipCameraMode } from './ChampionshipController.js';
@@ -254,8 +255,8 @@ export class ChampionshipCameraRig {
       (ball?.x ?? courtCenter.x) * ballInfluence;
 
     return {
-      target: new Vec3(focusX, 0.74, -0.46),
-      distance: 20.4 + portrait * (CHAMPIONSHIP_TUNING.portraitCameraDistance - 20.4),
+      target: new Vec3(focusX, 0.74, .05),
+      distance: 20.4+(COURT.baselineDepth-5)*1.3 + portrait * (CHAMPIONSHIP_TUNING.portraitCameraDistance - 20.4),
       azimuth: 0,
       elevation: 0.49 + portrait * (CHAMPIONSHIP_TUNING.portraitCameraElevation - 0.49),
       fov: (35.5 + portrait * (CHAMPIONSHIP_TUNING.portraitCameraFovDegrees - 35.5)) * Math.PI / 180,

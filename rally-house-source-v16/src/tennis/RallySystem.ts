@@ -1,3 +1,4 @@
+import {COURT,COURT_MIN_X,COURT_MAX_X} from './CourtGeometry.js';
 import {Vec3,clamp,smoothstep} from '../rendering/Math3D.js';
 import type {Mesh} from '../rendering/Renderer.js';
 import type {Character} from '../entities/Character.js';
@@ -104,15 +105,15 @@ export class RallySystem {
 
   private prepareHit(){
     const hitter=this.hitter===0?this.north:this.south,receiver=this.hitter===0?this.south:this.north;const side=this.hitter===0?-1:1;
-    const pattern=[-.92,.62,-.34,1.00,.18,-.72,.48,.86,-.12];let targetX=clamp(1+pattern[this.shotCount%pattern.length],-2.75,4.75);const receiverZ=receiver.position.z;
+    const pattern=[-.92,.62,-.34,1.00,.18,-.72,.48,.86,-.12];let targetX=clamp(1+pattern[this.shotCount%pattern.length],COURT_MIN_X+.3,COURT_MAX_X-.3);const receiverZ=receiver.position.z;
     let targetDepth=receiverZ+side*(1.85+((this.shotCount%3)-1)*.18);let flight=.79+(this.shotCount%4)*.04;
     const incomingSide=this.capturedIncoming?(this.capturedIncoming.x-hitter.position.x)*-Math.sign(hitter.position.z):1;
     let state:Stroke=this.shotCount===0?'serve':this.shotCount%7===5?'volley':incomingSide<0?'swingBackhand':'swingForehand';if(state!=='serve'&&hitter.practiceCue==='preparation')state='swingForehand';if(receiver.practiceCue==='rhythm')flight+=.12;const outcome=this.outcomeFor(hitter,state);
-    if(outcome==='frame'){targetX=clamp(targetX+(hash(this.shotCount+4)>.5?.85:-.85),-3.35,5.35);flight*=1.03;}
+    if(outcome==='frame'){targetX=clamp(targetX+(hash(this.shotCount+4)>.5?.85:-.85),COURT_MIN_X-.2,COURT_MAX_X+.2);flight*=1.03;}
     if(outcome==='net'){targetDepth=side<0?1.6:-1.6;flight=.39;}
     if(outcome==='long'){targetDepth=receiverZ-side*2.75;flight=.84;}
     const target=new Vec3(targetX,.11,targetDepth);
-    const receiveX=clamp(targetX+(receiver.practiceCue==='spacing'?.40:(this.shotCount%2?.22:-.18)),-2.65,4.65),receiveZ=receiver.position.z<0?-5:5;
+    const receiveX=clamp(targetX+(receiver.practiceCue==='spacing'?.40:(this.shotCount%2?.22:-.18)),COURT_MIN_X+.3,COURT_MAX_X-.3),receiveZ=receiver.position.z<0?-5:5;
     receiver.moveOnCourt(new Vec3(receiveX,0,receiveZ),hitter.position);receiver.setLook(hitter.position);receiver.setEmotion('focused',.8);hitter.face(target);hitter.setLook(receiver.position);hitter.triggerShot(state,target);
     const kin=hitter.debugKinematics(),contactAt=hitter.shotContactTime(state),duration=hitter.shotDuration(state);const evidence={who:hitter.id,stroke:state,preparation:clamp((contactAt-.24)/.15,0,1),spacing:this.capturedIncoming&&kin.contactTarget?clamp(1-Vec3.sub(this.capturedIncoming,kin.contactTarget).len()/1.5,0,1):.75,recovery:clamp(1-Math.abs(hitter.position.x-1)/2.8,0,1),clean:outcome==='clean'};this.pending={evidence,hitter,receiver,state,target,flight,contactAt,duration,released:false,impactStarted:false,latchRemaining:0,outcome,incomingStart:this.capturedIncoming?.clone()??null,contactTarget:kin.contactTarget?.clone()??null,tossStart:hitter.serveTossPoint()};this.capturedIncoming=null;this.shotCount++;
   }

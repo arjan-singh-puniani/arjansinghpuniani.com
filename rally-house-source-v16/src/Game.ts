@@ -1,3 +1,4 @@
+import {COURT} from './tennis/CourtGeometry.js';
 import {PhoneCapture} from './analysis/PhoneCapture.js';
 import {deriveActing} from './animation/ActingState.js';
 import {DialogueComposer} from './simulation/DialogueComposer.js';
@@ -72,6 +73,7 @@ export class Game {
   private championshipRound = 1;
   private championshipCompletedRound = 0;
   private championshipAudibleVolume = .65;
+  private reviewAfterChampionship = false;
   private spatial!:SpatialInteractionSystem;
   private performanceLab!:PerformanceLab;private phoneCapture!:PhoneCapture;
   private motionRecorder=new MotionRecorder();
@@ -110,6 +112,10 @@ export class Game {
     this.championshipHud = new ChampionshipHUD(this.matchInput, {
       onRematch: () => this.rematchChampionship(),
       onReturnToClub: () => this.requestChampionshipExit(),
+      onAnalyze: () => {
+        if(!this.motionRecorder.clip.frames.some(f=>f.contact))return;
+        this.reviewAfterChampionship=true;this.requestChampionshipExit();
+      },
       onTogglePause: () => this.setChampionshipPaused(!this.clock.paused),
       onToggleSound: () => {
         if(this.audio.volume>0){
@@ -337,7 +343,7 @@ export class Game {
       'championship',
       ['player',opponent.id],
       'court',
-      [destinations.courtSouth,destinations.courtNorth],
+      [new Vec3(COURT.centerX,0,COURT.baselineDepth),new Vec3(COURT.centerX,0,-COURT.baselineDepth)],
       `Championship vs ${opponent.spec.name}`,
     );
 
@@ -463,6 +469,12 @@ export class Game {
     document.body.classList.remove('championship-active');
     for(const el of document.querySelectorAll<HTMLElement>('.topbar,.hud,.objective,#scenePeek'))el.inert=false;
     this.canvas.focus();
+    if(this.reviewAfterChampionship){
+      this.reviewAfterChampionship=false;
+      // Finish releasing the match reservation and participant roles before
+      // the existing Lab takes ownership of presentation and input.
+      queueMicrotask(()=>this.openPerformanceLab(true));
+    }
   }
 
   private updateChampionshipActivity(a:Activity,dt:number){
@@ -687,11 +699,11 @@ export class Game {
     }
   }
 
-  private openPerformanceLab(){
+  private openPerformanceLab(reviewMatch=false){
     if(!this.performanceLab||this.championship?.active||this.performanceLab.active)return;
     this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);this.buildType=null;this.movingPlacement=null;
     this.spatial.dismiss();this.matchInput.reset();this.pointers.clear();this.pointerStart=null;this.lastPointer=null;
-    this.audio.click();this.performanceLab.open(this.player.spec,this.motionRecorder?.clip??null,this.phoneCapture?.last??null);
+    this.audio.click();this.performanceLab.open(this.player.spec,this.motionRecorder?.clip??null,this.phoneCapture?.last??null,reviewMatch?'championship':undefined);
   }
 
   private playObjectSound(effect:string,contact?:Vec3){
@@ -1188,7 +1200,7 @@ export class Game {
     document.body.classList.toggle('championship-transitioning',this.championship.phase==='intro');
     if(this.championship.active&&this.championshipOpponentId){
       const opponent=this.byId(this.championshipOpponentId);
-      if(opponent)this.championshipHud.render(this.championship.snapshot(),this.player.spec.name,opponent.spec.name,this.interactiveMatch?.playerCue(),this.settings.reducedMotion,this.clock.paused,!this.audio.enabled||this.audio.volume===0);
+      if(opponent)this.championshipHud.render(this.championship.snapshot(),this.player.spec.name,opponent.spec.name,this.interactiveMatch?.playerCue(),this.settings.reducedMotion,this.clock.paused,!this.audio.enabled||this.audio.volume===0,this.motionRecorder.clip.frames.some(f=>f.contact));
     }else{
       this.championshipHud.hide();
     }

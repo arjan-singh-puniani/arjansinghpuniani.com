@@ -1,3 +1,4 @@
+import { COURT, COURT_POST_MIN_X, COURT_POST_MAX_X } from '../tennis/CourtGeometry.js';
 import { Vec3, smoothstep } from '../rendering/Math3D.js';
 import { palette } from '../content/content.js';
 import { Navigation } from './Navigation.js';
@@ -48,7 +49,7 @@ export class World {
     constructor() {
         const obstacles = [
             // Ordinary circulation goes around the posts, including travel to the far baseline.
-            { x: 1, z: 0, w: 8.82, d: .16 }, { x: -9, z: 4.8, w: 3.5, d: 1.2 }, { x: -9, z: -5.8, w: 4.4, d: 1.35 }, { x: 8.6, z: 5.6, w: 3.8, d: 1.8 }, { x: 9.2, z: -4.6, w: 3.8, d: 1.7 }, { x: -7.5, z: .2, w: 1.7, d: 1.4 }, { x: 10.2, z: 3.9, w: 1.7, d: 1.3 }, { x: 6.7, z: -6.3, w: 1.7, d: 1.0 }, { x: -8.05, z: 1.6, w: 1.0, d: 2.7 }, { x: -11.2, z: -2.2, w: 1.1, d: 1.1 }, { x: -11.5, z: -.95, w: 1.0, d: 1.1 }, { x: -10.35, z: 6.35, w: 1.9, d: 1.25 }, { x: -10.35, z: 8.05, w: 1.9, d: 1.25 }, { x: -9.0, z: 7.2, w: 1.0, d: 1.0 }, { x: 11.35, z: .3, w: 1.2, d: 3.5 }, { x: 10.42, z: .05, w: 1.0, d: 3.2 }, { x: -2.6, z: 8.35, w: 3.2, d: 1.2 }, { x: 1.0, z: 8.35, w: 3.2, d: 1.2 }, { x: 4.6, z: 8.35, w: 3.2, d: 1.2 }, { x: -4.8, z: 7.9, w: .9, d: .9 }, { x: 5.6, z: 7.9, w: .9, d: .9 }, { x: -1.4, z: -8.3, w: 2.5, d: 1.0 }
+            { x: COURT.centerX, z: 0, w: COURT_POST_MAX_X - COURT_POST_MIN_X + .12, d: .16 }, { x: -9, z: 4.8, w: 3.5, d: 1.2 }, { x: -9, z: -5.8, w: 4.4, d: 1.35 }, { x: 8.6, z: 5.6, w: 3.8, d: 1.8 }, { x: 9.2, z: -4.6, w: 3.8, d: 1.7 }, { x: -7.5, z: .2, w: 1.7, d: 1.4 }, { x: 10.2, z: 3.9, w: 1.7, d: 1.3 }, { x: 6.7, z: -6.3, w: 1.7, d: 1.0 }, { x: -8.05, z: 1.6, w: 1.0, d: 2.7 }, { x: -11.2, z: -2.2, w: 1.1, d: 1.1 }, { x: -11.5, z: -.95, w: 1.0, d: 1.1 }, { x: -10.35, z: 6.35, w: 1.9, d: 1.25 }, { x: -10.35, z: 8.05, w: 1.9, d: 1.25 }, { x: -9.0, z: 7.2, w: 1.0, d: 1.0 }, { x: 11.35, z: .3, w: 1.2, d: 3.5 }, { x: 10.42, z: .05, w: 1.0, d: 3.2 }, { x: -2.6, z: 8.35, w: 3.2, d: 1.2 }, { x: 1.0, z: 8.35, w: 3.2, d: 1.2 }, { x: 4.6, z: 8.35, w: 3.2, d: 1.2 }, { x: -4.8, z: 7.9, w: .9, d: .9 }, { x: 5.6, z: 7.9, w: .9, d: .9 }, { x: -1.4, z: -8.3, w: 2.5, d: 1.0 }
         ];
         this.nav = new Navigation(obstacles);
         this.build();
@@ -73,7 +74,7 @@ export class World {
         // Large floor pots and the court bench occupy circulation, independently of selection proxies.
         for (const o of this.objects.filter(o => o.kind === 'plant'))
             this.nav.obstacles.push({ x: o.position.x, z: o.position.z, w: .75, d: .75 });
-        this.nav.obstacles.push({ x: 6.5, z: 4.8, w: 2.22, d: .8 }, { x: 6.54, z: 2.85, w: 1.62, d: .48 }, { x: 6.0, z: 1.95, w: .70, d: .70 }, { x: 1.32, z: 7.55, w: .86, d: .86 });
+        this.nav.obstacles.push({ x: 6.5, z: 4.8, w: 2.22, d: .8 }, { x: 6.54, z: 2.85, w: 1.62, d: .48 }, { x: 6.0, z: 1.95, w: .70, d: .70 }, { x: -1.25, z: 8.0, w: .86, d: .86 });
     }
     interactionPoint(id, origin, kind) {
         const contact = this.objects.find(o => o.id === id)?.interactionPoint;
@@ -99,7 +100,7 @@ export class World {
         this.rb(0, .22, -9.45, 25.2, .24, .20, '#7fa28a');
         // Side walls are camera-aware cutaways and are emitted dynamically.
         // Floor zones. Court remains crisp; social areas get tiny tile seams.
-        this.add('box', 1, .035, 0, 9.3, .07, 12.8, palette.court, 0, 1, false, undefined, 'court');
+        this.add('box', COURT.centerX, .035, 0, COURT.doublesHalfWidth * 2 + .8, .07, COURT.halfLength * 2 + .55, palette.court, 0, 1, false, undefined, 'court');
         this.add('box', -8.8, .02, 0, 6.3, .05, 18.5, '#f8ead6', 0, 1, false, undefined, 'stone');
         this.add('box', 8.9, .02, 0, 6.0, .05, 18.5, '#f5e6d2', 0, 1, false, undefined, 'stone');
         for (let z = -8; z <= 8; z += 2)
@@ -108,18 +109,17 @@ export class World {
             this.add('box', x, .052, 0, .022, .012, 18.1, '#e4ceb7', 0, .22, true);
         // Court lines.
         const line = (x, z, w, d) => this.add('box', x, .085, z, w, .026, d, palette.line);
-        line(1, 0, 8.5, .07);
-        line(-3.25, 0, .07, 12);
-        line(5.25, 0, .07, 12);
-        line(1, -6, 8.5, .07);
-        line(1, 6, 8.5, .07);
-        line(1, -3.7, 8.5, .06);
-        line(1, 3.7, 8.5, .06);
-        line(1, 0, .055, 7.4);
+        for (const sign of [-1, 1]) {
+            line(COURT.centerX + sign * COURT.doublesHalfWidth, 0, .045, COURT.halfLength * 2);
+            line(COURT.centerX + sign * COURT.singlesHalfWidth, 0, .045, COURT.halfLength * 2);
+            line(COURT.centerX, sign * COURT.halfLength, COURT.doublesHalfWidth * 2, .055);
+            line(COURT.centerX, sign * COURT.serviceDistance, COURT.singlesHalfWidth * 2, .045);
+        }
+        line(COURT.centerX, 0, .045, COURT.serviceDistance * 2);
         // Fine net, bound tape and anchored tension hardware are cached in four
         // material batches; their top follows the actual ball collision plane.
-        line(1, -5.88, .065, .18);
-        line(1, 5.88, .065, .18);
+        line(COURT.centerX, -COURT.halfLength + .10, .045, .20);
+        line(COURT.centerX, COURT.halfLength - .10, .045, .20);
         // Statement window: layered panes, trim, soft curtains and a rounded top hint.
         this.rb(-1.3, 2.42, -9.50, 5.1, 2.55, .06, '#a9d8d7', 0, .78, true, undefined, 'glass');
         this.add('sphere', -1.3, 3.38, -9.47, 5.0, 1.75, .09, '#c0e0dc', 0, .58, true, undefined, 'glass');
@@ -388,10 +388,10 @@ export class World {
         this.rb(-3.9, .60, 8.22, 3.00, .14, .62, pe, 0, 1, false, undefined, 'fabric');
         for (const ex of [-5.42, -2.38])
             this.rb(ex, .20, 8.22, .16, .42, .72, palette.woodDark, 0, 1, false, undefined, 'wood');
-        this.add('cylinder', 1.32, .34, 7.55, .20, .64, .20, '#6d7a70', 0, 1, false, undefined, 'metal');
-        this.add('cylinder', 1.32, .68, 7.55, .86, .09, .86, palette.wood, 0, 1, false, undefined, 'wood');
-        this.add('cylinder', 1.20, .80, 7.50, .21, .20, .21, pk, 0, 1, false, undefined, 'ceramic');
-        this.rb(1.48, .76, 7.62, .34, .06, .26, palette.paper, .3, 1, false, undefined, 'matte');
+        this.add('cylinder', -1.25, .34, 8.0, .20, .64, .20, '#6d7a70', 0, 1, false, undefined, 'metal');
+        this.add('cylinder', -1.25, .68, 8.0, .86, .09, .86, palette.wood, 0, 1, false, undefined, 'wood');
+        this.add('cylinder', -1.37, .80, 7.95, .21, .20, .21, pk, 0, 1, false, undefined, 'ceramic');
+        this.rb(-1.09, .76, 8.07, .34, .06, .26, palette.paper, .3, 1, false, undefined, 'matte');
         this.rb(4.55, .34, 8.00, 2.35, .58, .86, palette.wood, 0, 1, false, undefined, 'wood');
         this.rb(4.55, .76, 8.00, 2.10, .12, .62, mi, 0, 1, false, undefined, 'fabric');
         this.rb(4.05, .98, 8.00, .16, .64, .72, palette.woodDark, 0, 1, false, undefined, 'wood');

@@ -1,3 +1,4 @@
+import { COURT_MIN_X, COURT_MAX_X } from './CourtGeometry.js';
 import { Vec3, clamp, smoothstep } from '../rendering/Math3D.js';
 import { BallPhysics } from './BallPhysics.js';
 const fract = (v) => v - Math.floor(v);
@@ -194,7 +195,7 @@ export class RallySystem {
         const hitter = this.hitter === 0 ? this.north : this.south, receiver = this.hitter === 0 ? this.south : this.north;
         const side = this.hitter === 0 ? -1 : 1;
         const pattern = [-.92, .62, -.34, 1.00, .18, -.72, .48, .86, -.12];
-        let targetX = clamp(1 + pattern[this.shotCount % pattern.length], -2.75, 4.75);
+        let targetX = clamp(1 + pattern[this.shotCount % pattern.length], COURT_MIN_X + .3, COURT_MAX_X - .3);
         const receiverZ = receiver.position.z;
         let targetDepth = receiverZ + side * (1.85 + ((this.shotCount % 3) - 1) * .18);
         let flight = .79 + (this.shotCount % 4) * .04;
@@ -206,7 +207,7 @@ export class RallySystem {
             flight += .12;
         const outcome = this.outcomeFor(hitter, state);
         if (outcome === 'frame') {
-            targetX = clamp(targetX + (hash(this.shotCount + 4) > .5 ? .85 : -.85), -3.35, 5.35);
+            targetX = clamp(targetX + (hash(this.shotCount + 4) > .5 ? .85 : -.85), COURT_MIN_X - .2, COURT_MAX_X + .2);
             flight *= 1.03;
         }
         if (outcome === 'net') {
@@ -218,7 +219,7 @@ export class RallySystem {
             flight = .84;
         }
         const target = new Vec3(targetX, .11, targetDepth);
-        const receiveX = clamp(targetX + (receiver.practiceCue === 'spacing' ? .40 : (this.shotCount % 2 ? .22 : -.18)), -2.65, 4.65), receiveZ = receiver.position.z < 0 ? -5 : 5;
+        const receiveX = clamp(targetX + (receiver.practiceCue === 'spacing' ? .40 : (this.shotCount % 2 ? .22 : -.18)), COURT_MIN_X + .3, COURT_MAX_X - .3), receiveZ = receiver.position.z < 0 ? -5 : 5;
         receiver.moveOnCourt(new Vec3(receiveX, 0, receiveZ), hitter.position);
         receiver.setLook(hitter.position);
         receiver.setEmotion('focused', .8);

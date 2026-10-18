@@ -1,3 +1,4 @@
+import {COURT,COURT_MIN_X,COURT_MAX_X} from '../dist/tennis/CourtGeometry.js';
 import assert from 'node:assert/strict';
 import {Character} from '../dist/entities/Character.js';
 import {Navigation} from '../dist/world/Navigation.js';
@@ -30,7 +31,7 @@ for(const hz of [30,60,120])for(const timing of [-.04,.08,.3,.68,.92]){
  assert.equal(hits.length,1,`${hz} Hz, ${timing}s: early/late intention produces a contact`);assert.equal(hits[0].side,'player');assert.notEqual(hits[0].quality,'frame');assert(hits[0].gap<.12,'Contact remains at the real string bed');
 }
 {
- const {match,input}=setup();input.setTouchMovement(-1,0);const left=match.targetFor('player','clean');input.setTouchMovement(1,0);const right=match.targetFor('player','clean');assert(right.x-left.x>5,'Movement direction aims the return');
+ const {match,input}=setup();input.setTouchMovement(-1,0);const left=match.targetFor('player','clean');input.setTouchMovement(1,0);const right=match.targetFor('player','clean');assert(right.x-left.x>COURT.singlesHalfWidth*2*.65,'Movement direction aims across the playable court');assert(left.x>=COURT_MIN_X&&right.x<=COURT_MAX_X,'Aimed returns respect actual singles sidelines');
 }
 {
  const club=actor('player',5),{p,match}=setup();assert(p.shotDuration('swingForehand')<club.shotDuration('swingForehand')*.75);match.stop();assert.equal(p.shotDuration('swingForehand'),club.shotDuration('swingForehand'),'Club animation remains unchanged');

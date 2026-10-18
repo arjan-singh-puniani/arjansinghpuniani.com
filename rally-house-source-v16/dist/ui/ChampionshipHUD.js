@@ -22,6 +22,7 @@ export class ChampionshipHUD {
     resumeButton;
     soundButton;
     motionButton;
+    reviewButtons = [];
     paused = false;
     exitButton;
     pointerId = null;
@@ -90,6 +91,18 @@ export class ChampionshipHUD {
         this.motionButton.onclick = () => this.actions.onToggleMotion();
         this.pausePanel.append(pauseTitle, pauseCopy, pauseActions, this.soundButton, this.motionButton);
         this.results.append(this.resultTitle, this.resultSummary, this.rematchButton, this.returnButton);
+        for (const parent of [this.root, this.pausePanel, this.results]) {
+            const review = document.createElement('button');
+            review.className = 'championshipReview';
+            if (parent === this.root)
+                review.classList.add('championshipQuickReview');
+            review.textContent = 'Analyze last swing';
+            review.hidden = true;
+            review.title = 'Leave the match and inspect your most recent racket contact';
+            review.onclick = () => this.actions.onAnalyze();
+            parent.append(review);
+            this.reviewButtons.push(review);
+        }
         this.touchPad = document.createElement('div');
         this.touchPad.className = 'championshipTouchPad';
         this.touchPad.setAttribute('aria-label', 'Move player');
@@ -129,7 +142,7 @@ export class ChampionshipHUD {
         }
         this.input.setTouchMovement(0, 0);
     }
-    render(snapshot, playerName, opponentName, cue = 'none', reducedMotion = false, paused = false, muted = false) {
+    render(snapshot, playerName, opponentName, cue = 'none', reducedMotion = false, paused = false, muted = false, canReview = false) {
         if (snapshot.phase === 'inactive') {
             // The challenge walk belongs to the dollhouse. Keep the sports HUD out
             // of the way until the camera actually begins its transformation.
@@ -145,6 +158,8 @@ export class ChampionshipHUD {
         this.root.dataset.paused = String(paused);
         this.pauseButton.hidden = paused || snapshot.phase === 'exiting' || snapshot.phase === 'matchResult';
         this.pausePanel.hidden = !paused;
+        for (const button of this.reviewButtons)
+            button.hidden = !canReview || (button.classList.contains('championshipQuickReview') && (paused || !['pointResult', 'serving', 'rally', 'matchResult'].includes(snapshot.phase)));
         this.soundButton.textContent = muted ? 'Sound: off' : 'Sound: on';
         this.soundButton.setAttribute('aria-pressed', String(!muted));
         this.motionButton.setAttribute('aria-pressed', String(reducedMotion));

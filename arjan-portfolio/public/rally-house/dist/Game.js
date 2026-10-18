@@ -1,3 +1,4 @@
+import { COURT } from './tennis/CourtGeometry.js';
 import { PhoneCapture } from './analysis/PhoneCapture.js';
 import { deriveActing } from './animation/ActingState.js';
 import { DialogueComposer } from './simulation/DialogueComposer.js';
@@ -80,6 +81,7 @@ export class Game {
     championshipRound = 1;
     championshipCompletedRound = 0;
     championshipAudibleVolume = .65;
+    reviewAfterChampionship = false;
     spatial;
     performanceLab;
     phoneCapture;
@@ -176,6 +178,12 @@ export class Game {
         this.championshipHud = new ChampionshipHUD(this.matchInput, {
             onRematch: () => this.rematchChampionship(),
             onReturnToClub: () => this.requestChampionshipExit(),
+            onAnalyze: () => {
+                if (!this.motionRecorder.clip.frames.some(f => f.contact))
+                    return;
+                this.reviewAfterChampionship = true;
+                this.requestChampionshipExit();
+            },
             onTogglePause: () => this.setChampionshipPaused(!this.clock.paused),
             onToggleSound: () => {
                 if (this.audio.volume > 0) {
@@ -593,7 +601,7 @@ export class Game {
             return;
         }
         // A challenge reserves the existing court; it cannot interrupt someone else's activity.
-        const activity = this.startActivity('championship', ['player', opponent.id], 'court', [destinations.courtSouth, destinations.courtNorth], `Championship vs ${opponent.spec.name}`);
+        const activity = this.startActivity('championship', ['player', opponent.id], 'court', [new Vec3(COURT.centerX, 0, COURT.baselineDepth), new Vec3(COURT.centerX, 0, -COURT.baselineDepth)], `Championship vs ${opponent.spec.name}`);
         if (!activity) {
             this.ui.toast('The court or this opponent is busy just now. Try again after the current activity.');
             return;
@@ -722,6 +730,12 @@ export class Game {
         for (const el of document.querySelectorAll('.topbar,.hud,.objective,#scenePeek'))
             el.inert = false;
         this.canvas.focus();
+        if (this.reviewAfterChampionship) {
+            this.reviewAfterChampionship = false;
+            // Finish releasing the match reservation and participant roles before
+            // the existing Lab takes ownership of presentation and input.
+            queueMicrotask(() => this.openPerformanceLab(true));
+        }
     }
     updateChampionshipActivity(a, dt) {
         if (this.championship.phase === 'exiting') {
@@ -987,7 +1001,7 @@ export class Game {
                 this.openPerformanceLab();
         }
     }
-    openPerformanceLab() {
+    openPerformanceLab(reviewMatch = false) {
         if (!this.performanceLab || this.championship?.active || this.performanceLab.active)
             return;
         this.ui.closeContext();
@@ -1001,7 +1015,7 @@ export class Game {
         this.pointerStart = null;
         this.lastPointer = null;
         this.audio.click();
-        this.performanceLab.open(this.player.spec, this.motionRecorder?.clip ?? null, this.phoneCapture?.last ?? null);
+        this.performanceLab.open(this.player.spec, this.motionRecorder?.clip ?? null, this.phoneCapture?.last ?? null, reviewMatch ? 'championship' : undefined);
     }
     playObjectSound(effect, contact) {
         if (['clock', 'stringing', 'bell'].includes(effect) && contact && this.canvas) {
@@ -2135,7 +2149,7 @@ export class Game {
         if (this.championship.active && this.championshipOpponentId) {
             const opponent = this.byId(this.championshipOpponentId);
             if (opponent)
-                this.championshipHud.render(this.championship.snapshot(), this.player.spec.name, opponent.spec.name, this.interactiveMatch?.playerCue(), this.settings.reducedMotion, this.clock.paused, !this.audio.enabled || this.audio.volume === 0);
+                this.championshipHud.render(this.championship.snapshot(), this.player.spec.name, opponent.spec.name, this.interactiveMatch?.playerCue(), this.settings.reducedMotion, this.clock.paused, !this.audio.enabled || this.audio.volume === 0, this.motionRecorder.clip.frames.some(f => f.contact));
         }
         else {
             this.championshipHud.hide();

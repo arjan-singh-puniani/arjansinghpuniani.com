@@ -1,0 +1,68 @@
+[
+  {
+    "source": "chromium-1440/after-rally.png",
+    "webp": "chromium-1440/after-rally.webp",
+    "dimensions": [
+      1440,
+      900
+    ],
+    "sourceSHA256": "8e66030f5adf23cb00b5ad945a43bdb9964846a218c1d8ffea06cc18b8429a60",
+    "webpSHA256": "5369947839842a868ac8207c403c37d680701cf0a202081b2abb446155a3b92b",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "chromium-1440/contact-review.png",
+    "webp": "chromium-1440/contact-review.webp",
+    "dimensions": [
+      1440,
+      900
+    ],
+    "sourceSHA256": "70f8889f67e0e7ef82c87ae39f2351543ecb88cc2b338ac1f4fac55b0a637a68",
+    "webpSHA256": "dec5b0fa038564997666b538de933d9bd2e9b30f28ffbe1c757c740716ced4ee",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "chromium-1440/vector-court.png",
+    "webp": "chromium-1440/vector-court.webp",
+    "dimensions": [
+      1440,
+      900
+    ],
+    "sourceSHA256": "765e4dd8349d6444238f5dd138bbe3748be9af42a19d5fd44a33dec009778f21",
+    "webpSHA256": "a43821866a5814f0a76d9f186a9bc418a66cf5463c730a8cac9f38e5af647f62",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "chromium-390/after-rally.png",
+    "webp": "chromium-390/after-rally.webp",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sourceSHA256": "3ae19afe9621d056cdb436829fbe3b38e4c9a0856da20a6fbf228289a0a95f07",
+    "webpSHA256": "cd1620c84405931f9db9ce8168a9c7f64b6bf61eff8ad5f4e56da2566efc1ce8",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "chromium-390/contact-review.png",
+    "webp": "chromium-390/contact-review.webp",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sourceSHA256": "b824a8110db64c44dbf07ae4362cb2c0d9737ec3e4c847825ff5c33c5ad18e72",
+    "webpSHA256": "539c42a97c039a90b5d18d49081f0f007ad1dbdd80db5d2cd8f8bca14639feb8",
+    "decodedPixelsEqual": true
+  },
+  {
+    "source": "chromium-390/vector-court.png",
+    "webp": "chromium-390/vector-court.webp",
+    "dimensions": [
+      390,
+      844
+    ],
+    "sourceSHA256": "271275975b1e278fa8ee18d2377ce7e0bd5cdf7a5e58aa408681ddc458f3743b",
+    "webpSHA256": "e15da45ecb29d94ee6a89026fc529f6ed2fe126593f2388377d506541fc0c78f",
+    "decodedPixelsEqual": true
+  }
+]

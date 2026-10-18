@@ -21,9 +21,30 @@ function footwear(sole:boolean){return geometry(`taylor-contoured-${sole?'sole':
  for(let row=0;row<24;row++)for(let i=0;i<24;i++){const a=point(row/24,i/24*Math.PI*2),b=point(row/24,(i+1)/24*Math.PI*2),c=point((row+1)/24,(i+1)/24*Math.PI*2),d=point((row+1)/24,i/24*Math.PI*2);tri(a,b,c);tri(a,c,d);}
 },true);}
 export const TAYLOR_FOOTWEAR={upper:footwear(false),sole:footwear(true)};
-export function taylorFootMeshes(foot:Vec3,pitch:number,yaw:number,upper=TAYLOR_PALETTE.indigo,sole='#e4c67a'):RenderItem[]{return [
- {skin:TAYLOR_FOOTWEAR.upper,boneMatrices:rigidBones,position:foot.clone(),rotation:new Vec3(pitch,yaw,0),color:upper,material:'fabric'},
+const trainerSurface=(t:number,x:number,lift=0):Point=>{
+ const wave=Math.max(0,Math.sin(Math.PI*t)),width=.098*Math.pow(wave,.52)*(.9+.1*t),height=Math.pow(wave,.5)*(.047+.036*Math.exp(-(((t-.30)/.23)**2)));
+ return [x,-.095+height*(1+Math.sqrt(Math.max(0,1-(x/width)**2)))+lift,-.18+.39*t];
+};
+const laces=geometry('athlete-court-trainer-laces-v1',tri=>{
+ for(let row=0;row<6;row++){
+  const t=.33+row*.055,width=.036-row*.0018;
+  for(let col=0;col<12;col++){
+   const at=(j:number,side:number):Point=>trainerSurface(t+(j/12-.5)*.018+side*.0035,(-1+j/6)*width,.002);
+   const a=at(col,-1),b=at(col+1,-1),c=at(col+1,1),d=at(col,1);tri(a,c,b);tri(a,d,c);
+  }
+ }
+},true);
+const heelPanel=geometry('athlete-court-trainer-heel-panel-v1',tri=>{
+ for(const sign of [-1,1])for(let i=0;i<12;i++){
+  const at=(j:number,side:number):Point=>{const t=.12+j/12*.16,width=.098*Math.pow(Math.sin(Math.PI*t),.52)*(.9+.1*t);return trainerSurface(t,sign*(.70+side*.04)*width,.002);};
+  const a=at(i,-1),b=at(i+1,-1),c=at(i+1,1),d=at(i,1);if(sign>0){tri(a,b,c);tri(a,c,d);}else{tri(a,c,b);tri(a,d,c);}
+ }
+},true);
+export const ATHLETE_TRAINER_DETAIL={laces,heelPanel};
+export function taylorFootMeshes(foot:Vec3,pitch:number,yaw:number,upper=TAYLOR_PALETTE.indigo,sole='#e4c67a',detailed=false):RenderItem[]{return [
+ {skin:TAYLOR_FOOTWEAR.upper,boneMatrices:rigidBones,position:foot.clone(),rotation:new Vec3(pitch,yaw,0),color:upper,material:detailed?'performanceKnit':'fabric'},
  {skin:TAYLOR_FOOTWEAR.sole,boneMatrices:rigidBones,position:foot.clone(),rotation:new Vec3(pitch,yaw,0),color:sole,material:'fabric'},
+ ...detailed?[{skin:laces,boneMatrices:rigidBones,position:foot.clone(),rotation:new Vec3(pitch,yaw,0),color:'#ecebe4',material:'fabric'},{skin:heelPanel,boneMatrices:rigidBones,position:foot.clone(),rotation:new Vec3(pitch,yaw,0),color:'#84949a',material:'fabric'}] as RenderItem[]:[],
 ];}
 // Monotone cubic radius interpolation avoids pinched chins and bulges between
 // authored cross sections. The same profile projects the face graphics onto

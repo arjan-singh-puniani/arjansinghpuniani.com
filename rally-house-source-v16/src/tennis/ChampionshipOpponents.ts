@@ -1,3 +1,4 @@
+import {COURT} from './CourtGeometry.js';
 import type { ChampionshipOpponentProfile } from './ChampionshipController.js';
 
 /**
@@ -9,7 +10,7 @@ import type { ChampionshipOpponentProfile } from './ChampionshipController.js';
 export const CHAMPIONSHIP_OPPONENTS: Record<string, ChampionshipOpponentProfile> = {
   coach: {
     id: 'coach',
-    courtDepth:5.1, angleBias:0.8, serveCadence:0.3,
+    courtDepth:COURT.baselineDepth, angleBias:0.8, serveCadence:0.3,
     name: 'Coach Contessa',
     reaction: 0.13,
     movementSpeed: 1.08,
@@ -23,7 +24,7 @@ export const CHAMPIONSHIP_OPPONENTS: Record<string, ChampionshipOpponentProfile>
 
   mika: {
     id: 'mika',
-    courtDepth:4.85, angleBias:0.55, serveCadence:0.5,
+    courtDepth:COURT.baselineDepth, angleBias:0.55, serveCadence:0.5,
     name: 'Lucresia',
     reaction: 0.2,
     movementSpeed: 1.0,
@@ -37,7 +38,7 @@ export const CHAMPIONSHIP_OPPONENTS: Record<string, ChampionshipOpponentProfile>
 
   leo: {
     id: 'leo',
-    courtDepth:5, angleBias:0.65, serveCadence:0.4,
+    courtDepth:COURT.baselineDepth, angleBias:0.65, serveCadence:0.4,
     name: 'Leo',
     reaction: 0.17,
     movementSpeed: 1.05,
@@ -51,7 +52,7 @@ export const CHAMPIONSHIP_OPPONENTS: Record<string, ChampionshipOpponentProfile>
 
   nia: {
     id: 'nia',
-    courtDepth:4.7, angleBias:0.25, serveCadence:0.65,
+    courtDepth:COURT.baselineDepth, angleBias:0.25, serveCadence:0.65,
     name: 'Barbara',
     reaction: 0.28,
     movementSpeed: 0.91,

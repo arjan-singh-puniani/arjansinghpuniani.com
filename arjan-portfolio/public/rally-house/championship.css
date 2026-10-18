@@ -270,6 +270,9 @@ body.championship-transitioning .championshipSwing {
 .championshipPausePanel p{margin:0 0 4px;font-size:13px;line-height:1.45}
 .championshipPausePanel button{min-height:44px;padding:9px 12px;border-radius:12px;background:#f2ebdc;color:#294f43;font:inherit;font-size:13px;cursor:pointer}
 .championshipPausePanel button[aria-pressed="true"]{background:#416d59;color:#fffdf7}
+.championshipReview[hidden]{display:none}
+.championshipQuickReview{position:absolute;left:16px;top:108px;pointer-events:auto;border:1px solid #d6ddcc;border-radius:12px;background:#f8f5e9;color:#254a3b;padding:10px 13px;font:inherit;font-size:12px;font-weight:750;cursor:pointer}
+.championshipQuickReview:hover,.championshipQuickReview:focus-visible{background:#e2ebda;outline:2px solid #416d59;outline-offset:2px}
 .championshipPauseActions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .championshipPauseActions button:first-child{background:#416d59;color:#fffdf7;font-weight:750}
 .championshipExit[hidden]{display:none}
