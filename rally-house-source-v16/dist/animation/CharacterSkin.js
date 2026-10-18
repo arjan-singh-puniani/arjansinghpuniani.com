@@ -225,7 +225,10 @@ const humanProfile = [[.575, .310, .219], [.66, .302, .213], [.78, .284, .206], 
 const humanNeckY = (angle) => 1.415 - .108 * Math.pow(Math.max(0, Math.sin(angle)), 2) - .028 * Math.pow(Math.max(0, -Math.sin(angle)), 2);
 function humanContour(y, angle, offset = 0) {
     const [x, z] = radiusAt(humanProfile, y), pleat = .016 * (1 - eased((y - .575) / .31)) * Math.cos(angle * 12);
-    return new Vec3(Math.cos(angle) * (x + pleat + offset), y, .015 * clampUnit((y - .79) / .55) + Math.sin(angle) * (z + pleat * .65 + offset));
+    const px = Math.cos(angle) * (x + pleat + offset), front = Math.max(0, Math.sin(angle));
+    const clavicle = .004 * Math.exp(-(((y - (1.390 - .18 * Math.abs(px))) / .010) ** 2)) * Math.exp(-(((Math.abs(px) - .090) / .085) ** 2));
+    const hollow = .0025 * Math.exp(-((px / .026) ** 2) - (((y - 1.411) / .017) ** 2));
+    return new Vec3(px, y, .015 * clampUnit((y - .79) / .55) + Math.sin(angle) * (z + pleat * .65 + offset) + (clavicle - hollow) * front ** 6 + .0022 * Math.exp(-(((y - 1.03) / .05) ** 2)) * Math.sin(angle * 8 + y * 106) * front ** 2);
 }
 function humanNormal(y, angle) {
     const lo = Math.max(.575, y - .001), hi = Math.min(1.445, y + .001);
@@ -339,7 +342,7 @@ const taylorBoots = build(), taylorGloves = build(), taylorLegs = build(), taylo
 for (const side of ['L', 'R']) {
     const shin = bind[`shin${side}`], foot = bind[`foot${side}`], elbow = bind[`foreArm${side}`], hand = bind[`hand${side}`];
     sculptSegment(taylorLegs, bind[`thigh${side}`], shin, adultRadii([[0, .124, .112], [.22, .135, .118], [.65, .105, .092], [1, .082, .072]], .92), BONE[`thigh${side}`], BONE[`shin${side}`], 16, 24, true);
-    sculptSegment(taylorBoots, shin, foot, adultRadii([[0, .083, .074], [.28, .098, .082], [.5, .083, .070], [.78, .063, .054], [1, .052, .047]], .86), BONE[`shin${side}`], BONE[`shin${side}`], 16);
+    sculptSegment(taylorBoots, shin, foot, [[0, .082 * .92, .072 * .92], [.28, .098 * .86, .082 * .86], [.5, .083 * .86, .070 * .86], [.78, .063 * .86, .054 * .86], [1, .052 * .86, .047 * .86]], BONE[`shin${side}`], BONE[`shin${side}`], 16);
     sculptSegment(taylorGloves, Vec3.lerp(elbow, hand, .32), hand, adultRadii([[0, .077, .066], [.4, .069, .060], [1, .052, .047]], .84), BONE[`foreArm${side}`], BONE[`hand${side}`], 8, 24, true, [.32, 1]);
     // Human ankle socks follow the actual calf radius and shin bone. The wrist
     // band retains the underlying forearm's global weight field at its edges.
@@ -355,4 +358,4 @@ for (const side of ['L', 'R']) {
     const thumbA = point(sign * .042, .006, .027), thumbB = point(sign * .065, .043, .040);
     handVolume(taylorHands, Vec3.lerp(thumbA, thumbB, .5), basis(Vec3.sub(thumbB, thumbA)), new Vec3(.019, Vec3.sub(thumbB, thumbA).len() * .5 + .014, .019), bone, 6, 12);
 }
-export const CHARACTER_SKIN = { taylorSocks: finish("taylor-human-ankle-socks-v1", taylorSocks), taylorWristband: finish("taylor-human-wristband-v1", taylorWristband), taylorTunicMark: finish('taylor-embroidered-crescent-v1', taylorTunicMark), taylorHands: finish('taylor-rounded-reference-hands-v2', taylorHands), taylorNeckline: finish('taylor-athletic-trim-v4', taylorNeckline), taylorDressEdging: finish('taylor-gold-dress-edging-v5', taylorDressEdging), taylorArms: finish('taylor-adult-arms-v5', taylorArms), taylorLegs: finish('taylor-adult-thighs-v4', taylorLegs), taylorDress: finish('taylor-adult-tennis-dress-v9', taylorDress), taylorBoots: finish('taylor-adult-calves-v4', taylorBoots), taylorGloves: finish('taylor-adult-registered-gloves-v4', taylorGloves), top: finish('char-top-v1', top), feminineTop: finish('char-top-feminine-v1', feminineTop), pants: finish('char-pants-v1', pants), arms: finish('char-arms-v1', arms), shorts: finish('char-shorts-v1', shorts), skirt: finish('char-skirt-v1', skirt) };
+export const CHARACTER_SKIN = { taylorSocks: finish("taylor-human-ankle-socks-v1", taylorSocks), taylorWristband: finish("taylor-human-wristband-v1", taylorWristband), taylorTunicMark: finish('taylor-embroidered-crescent-v1', taylorTunicMark), taylorHands: finish('taylor-rounded-reference-hands-v2', taylorHands), taylorNeckline: finish('taylor-athletic-trim-v4', taylorNeckline), taylorDressEdging: finish('taylor-gold-dress-edging-v5', taylorDressEdging), taylorArms: finish('taylor-adult-arms-v5', taylorArms), taylorLegs: finish('taylor-adult-thighs-v4', taylorLegs), taylorDress: finish('taylor-adult-tennis-dress-v9', taylorDress), taylorBoots: finish('taylor-adult-continuous-calves-v5', taylorBoots), taylorGloves: finish('taylor-adult-registered-gloves-v4', taylorGloves), top: finish('char-top-v1', top), feminineTop: finish('char-top-feminine-v1', feminineTop), pants: finish('char-pants-v1', pants), arms: finish('char-arms-v1', arms), shorts: finish('char-shorts-v1', shorts), skirt: finish('char-skirt-v1', skirt) };

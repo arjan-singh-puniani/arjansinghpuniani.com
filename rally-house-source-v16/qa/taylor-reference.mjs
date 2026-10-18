@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -14,7 +15,7 @@ page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});
 page.on('response',r=>{if(r.status()>=400)report.requests.push([r.status(),r.url()]);});
 try{
  await page.goto('http://127.0.0.1:8078/?debug',{waitUntil:'networkidle'});await page.waitForFunction(()=>window.__rh?.ready);
- await page.getByText('Taylor',{exact:true}).click();
+ await enterClub(page,'Taylor');
  for(const [width,height] of [[1440,900],[390,844]]){
   await page.setViewportSize({width,height});
   const pose=await page.evaluate(async()=>{

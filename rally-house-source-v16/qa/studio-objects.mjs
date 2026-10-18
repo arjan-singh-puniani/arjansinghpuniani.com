@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {chromium,browserOptions} from './runtime.mjs';
@@ -5,7 +6,7 @@ const b=await chromium.launch({...browserOptions,args:['--use-angle=metal']});
 try{
  const p=await b.newPage({viewport:{width:1280,height:800}}),errors=[];
  p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
- await p.goto('http://127.0.0.1:8078/?debug');await p.waitForFunction(()=>window.__rh?.ready);await p.getByText('Arjan',{exact:true}).click();
+ await p.goto('http://127.0.0.1:8078/?debug');await p.waitForFunction(()=>window.__rh?.ready);await enterClub(p,'Arjan');
  await p.evaluate(()=>{const g=window.__rh.game;g.settings.visuals='detail';g.clock.minutes=1190;g.openObject(g.world.objects.find(o=>o.id==='reception'));});
  await p.getByText('Ring the desk bell',{exact:true}).click();
  await p.waitForFunction(()=>window.__rh.game.activities.active.some(a=>a.kind==='touch'&&a.phase==='active'),null,{timeout:35000});

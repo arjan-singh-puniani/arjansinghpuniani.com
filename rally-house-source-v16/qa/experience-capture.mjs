@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -10,7 +11,7 @@ const report={errors:[],cameras:[],captures:[]};
 async function ready(page){
   page.on('pageerror',e=>report.errors.push(e.message));
   await page.goto(process.env.QA_BASE_URL??'http://127.0.0.1:8078/?debug');
-  await page.waitForFunction(()=>window.__rh?.ready);await page.getByText('Arjan',{exact:true}).click();
+  await page.waitForFunction(()=>window.__rh?.ready);await enterClub(page,'Arjan');
   await page.evaluate(()=>{const g=window.__rh.game;g.autosave=-10000;g.clock.minutes=1040;g.clock.paused=true;g.settings.visuals='detail';g.camera.frameAcademy();});
   await page.waitForTimeout(1400);
 }

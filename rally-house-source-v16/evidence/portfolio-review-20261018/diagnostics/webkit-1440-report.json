@@ -1,0 +1,8 @@
+{
+  "engine": "webkit",
+  "width": 1440,
+  "errors": [],
+  "http": [],
+  "input": "Actual UI challenge, keyboard movement/serve/returns and review button; controlled initial club availability",
+  "failure": "page.goto: Protocol error (Playwright.navigate): Cannot find web frame for the frame id\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:8078/?debug\", waiting until \"networkidle\"\u001b[22m\n"
+}

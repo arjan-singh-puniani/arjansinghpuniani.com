@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {chromium,browserOptions} from './runtime.mjs';
@@ -9,7 +10,7 @@ try {
   page.on('pageerror',e=>report.errors.push(e.message));
   await page.goto('http://127.0.0.1:8078/?debug');
   await page.waitForFunction(()=>window.__rh?.ready);
-  await page.getByText('Arjan',{exact:true}).click();
+  await enterClub(page,'Arjan');
   report.saved=await page.evaluate(async()=>{
     const g=window.__rh.game;
     g.autosave=-10000;g.clock.paused=true;g.settings.reducedMotion=true;

@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import {homedir} from 'node:os';
 import {chromium,firefox,webkit,browserOptions} from './runtime.mjs';
 const engine=process.env.QA_ENGINE??'chromium',avatar=process.env.QA_AVATAR??'Taylor',width=Number(process.env.QA_WIDTH??1440),height=width===390?844:900,out=process.env.QA_OUT??`evidence/phone-anchor-20261011/${engine}-${avatar.toLowerCase()}-${width}`;
@@ -5,13 +6,13 @@ fs.mkdirSync(out,{recursive:true});const webkitPath=process.env.WEBKIT_EXECUTABL
 const browser=await ({chromium,firefox,webkit}[engine]).launch(engine==='chromium'?{...browserOptions,args:['--use-angle=metal']}:{headless:true,...engine==='webkit'&&fs.existsSync(webkitPath)?{executablePath:webkitPath}:{}}),context=await browser.newContext({viewport:{width,height}}),page=await context.newPage(),report={engine,avatar,width,errors:[],requests:[]};
 page.on('pageerror',e=>report.errors.push(e.message));page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});page.on('response',r=>{if(r.status()>=400)report.requests.push([r.status(),r.url()]);});
 try{
- await page.goto('http://127.0.0.1:8078/?debug',{waitUntil:'networkidle'});await page.waitForFunction(()=>window.__rh?.ready);await page.getByText(avatar,{exact:true}).click();
+ await page.goto('http://127.0.0.1:8078/?debug',{waitUntil:'networkidle'});await page.waitForFunction(()=>window.__rh?.ready);await enterClub(page,avatar);
  await page.locator('#labBtn').click();await page.waitForTimeout(250);const find=page.getByRole('button',{name:'Find Performance Lab ↗',exact:true});if(await find.isVisible())await find.click();
  await page.locator('[data-action=capture]').click();
  // Accelerate only navigation. Recording and its video use the real RAF loop.
  await page.evaluate(()=>{const g=window.__rh.game;g.clock.paused=false;for(let i=0;i<6000&&!g.phoneCapture.active;i++)g.updateFixed(1/60);if(!g.phoneCapture.active)throw Error('Mount interaction never begins');});
- await page.waitForFunction(()=>{const g=window.__rh.game;return g.phoneCapture.phase==='mounting'&&g.player.interactionWeight>.55;});
- const hand=await page.evaluate(()=>{const g=window.__rh.game,p=g.player.analysisPose().handR,m=g.phoneCapture.meshes()[0];window.qaPhoneWorld={world:g.world,cast:[...g.characters],minute:g.clock.minutes,mind:g.mind.time};return {phone:g.phoneCapture.report(),handError:Math.hypot(p.x-m.position.x,p.y-m.position.y,p.z-m.position.z)};});report.hand=hand;assert.equal(hand.phone.phase,'mounting');assert(hand.handError<1e-6);
+ const mounting=await page.waitForFunction(()=>{const g=window.__rh.game;if(g.phoneCapture.phase!=='mounting'||g.player.interactionWeight<=.55)return false;const p=g.player.analysisPose().handR,m=g.phoneCapture.meshes()[0];window.qaPhoneWorld={world:g.world,cast:[...g.characters],minute:g.clock.minutes,mind:g.mind.time};return {phone:g.phoneCapture.report(),handError:Math.hypot(p.x-m.position.x,p.y-m.position.y,p.z-m.position.z)};});
+ const hand=await mounting.jsonValue();report.hand=hand;assert.equal(hand.phone.phase,'mounting');assert(hand.handError<1e-6);
  await page.screenshot({path:`${out}/mount.png`});
  await page.waitForFunction(()=>window.__rh.phone().phase==='recording',{timeout:30000});await page.waitForTimeout(600);await page.screenshot({path:`${out}/record.png`});
  await page.waitForFunction(()=>window.__rh.lab().active&&window.__rh.lab().kind==='phone',{timeout:20000});

@@ -5,7 +5,7 @@ export const SHADOW_CENTRE = new Vec3(-.4, 1.5, -1.0);
 export const SHADOW_RADIUS = 17.0;
 export const SHADOW_RESOLUTION = 2048;
 export const LAMP_SHADOW_RESOLUTION = 1024;
-const MATERIAL_ID = { matte: 0, wood: 1, fabric: 2, ceramic: 3, metal: 4, glass: 5, court: 6, skin: 7, hair: 8, leaf: 9, stone: 10, toon: 11, humanSkin: 12, groomedHair: 13, lip: 14, iris: 15 };
+const MATERIAL_ID = { matte: 0, wood: 1, fabric: 2, ceramic: 3, metal: 4, glass: 5, court: 6, skin: 7, hair: 8, leaf: 9, stone: 10, toon: 11, humanSkin: 12, groomedHair: 13, lip: 14, iris: 15, performanceKnit: 16 };
 /** Shared lighting maths. One source of truth for both the rigid and skinned fragment shaders. */
 const LIGHT_UNIFORMS = `
 uniform int u_material;uniform vec3 u_color;uniform vec3 u_sun;uniform vec3 u_viewPos;uniform float u_ambient;uniform float u_alpha;uniform float u_unlit;uniform float u_emission;uniform float u_warmth;uniform float u_roughness;uniform float u_specular;uniform float u_softness;
@@ -77,12 +77,14 @@ vec3 surfaceColor(vec3 p){
   }else if(u_material==8){
     variation=filteredWave(p.y*95.0+p.x*11.0)*.065;
   }else if(u_material==12){
-    variation=filteredWave(p.x*790.0+sin(p.y*513.0))*filteredWave(p.z*601.0+p.y*733.0)*.012;
+    variation=filteredWave(dot(p,vec3(821.0,619.0,743.0))+2.7*sin(dot(p,vec3(379.0,521.0,433.0))))*.006;
   }else if(u_material==13){
     float flow=p.x*840.0+p.z*300.0+sin(p.y*25.0)*12.0;
     variation=filteredWave(flow)*.09+filteredWave(flow*.47)*.035;
   }else if(u_material==14){
     variation=filteredWave(p.x*1700.0+sin(p.y*400.0))*.025;
+  }else if(u_material==16){
+    variation=filteredWave(p.y*620.0)*filteredWave(p.x*480.0+p.z*140.0)*.035;
   }else if(u_material==9){
     variation=sin(p.x*43.0+p.z*31.0)*.10;
   }else if(u_material==10){
@@ -103,14 +105,30 @@ vec3 surfaceColor(vec3 p){
     float warmth=exp(-dot(cheek,cheek))*smoothstep(.045,.085,p.z);
     pigment*=mix(vec3(1.0),vec3(1.08,.86,.83),warmth*.38);
   }else if(u_material==15){
-    vec2 eye=vec2((abs(p.x)-.048)/.0092,(p.y-.018)/.0092);
+    vec2 eye=vec2((abs(p.x)-.048)/.0073,(p.y-.018)/.0073);
     float radius=clamp(length(eye),0.0,1.0),angle=dot(eye,eye)>.000001?atan(eye.y,eye.x):0.0;
     float fibres=filteredWave(angle*27.0+radius*9.0)*.08;
     pigment*=mix(vec3(1.28,1.05,.73),vec3(.36,.40,.43),smoothstep(.55,1.0,radius))*(1.0+fibres);
   }
   return pigment;
 }
+// Surface gradients use rest coordinates for stable detail and world-space
+// derivatives for the correct normal under nonuniform skin deformation.
+vec3 characterSurfaceNormal(vec3 N,vec3 world){
+  float h=0.0;vec3 p=v_surface;
+  if(u_material==12){
+    h=.000018*filteredWave(dot(p,vec3(1243.0,1399.0,1583.0))+3.0*sin(dot(p,vec3(733.0,617.0,911.0))));
+  }else if(u_material==13){
+    h=.00007*filteredWave(p.x*840.0+p.z*300.0+sin(p.y*25.0)*12.0);
+  }else if(u_material==16){
+    h=.000065*filteredWave(p.y*620.0)*filteredWave(p.x*480.0+p.z*140.0);
+  }else return N;
+  vec3 dx=dFdx(world),dy=dFdy(world),r1=cross(dy,N),r2=cross(N,dx);
+  float det=dot(dx,r1);if(abs(det)<.0000000001)return N;
+  return normalize(abs(det)*N-sign(det)*(dFdx(h)*r1+dFdy(h)*r2));
+}
 vec3 shade(vec3 N,vec3 world){
+  N=characterSurfaceNormal(N,world);
   vec3 base=surfaceColor(v_surface);
   vec3 L=normalize(-u_sun);vec3 V=normalize(u_viewPos-world);
   float ndl=max(dot(N,L),0.0);
@@ -453,10 +471,11 @@ export class Renderer {
             case 'court': return { roughness: .84, specular: .026, softness: .035 };
             case 'skin': return { roughness: .68, specular: .040, softness: .30 };
             case 'hair': return { roughness: .72, specular: .028, softness: .14 };
-            case 'humanSkin': return { roughness: .57, specular: .075, softness: .32 };
+            case 'humanSkin': return { roughness: .53, specular: .082, softness: .27 };
             case 'groomedHair': return { roughness: .36, specular: .13, softness: .10 };
             case 'lip': return { roughness: .28, specular: .19, softness: .16 };
             case 'iris': return { roughness: .18, specular: .18, softness: .02 };
+            case 'performanceKnit': return { roughness: .78, specular: .052, softness: .20 };
             case 'leaf': return { roughness: .67, specular: .052, softness: .18 };
             default: return { roughness: .82, specular: .028, softness: .04 };
         }

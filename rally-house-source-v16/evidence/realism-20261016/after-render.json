@@ -1,0 +1,64 @@
+{
+  "label": "after",
+  "baseline": null,
+  "capture": "Actual cast and production world renderer with controlled inspection cameras",
+  "errors": [],
+  "http": [],
+  "actors": [
+    {
+      "id": "taylor",
+      "headHeight": 2.2342904566014394,
+      "gl": 0,
+      "draws": 850,
+      "triangles": 369080,
+      "sameWorld": true,
+      "members": 4
+    },
+    {
+      "id": "arjan",
+      "headHeight": 2.2443774052706296,
+      "gl": 0,
+      "draws": 844,
+      "triangles": 362812,
+      "sameWorld": true,
+      "members": 4
+    },
+    {
+      "id": "coach",
+      "headHeight": 2.270343589293687,
+      "gl": 0,
+      "draws": 844,
+      "triangles": 362812,
+      "sameWorld": true,
+      "members": 4
+    },
+    {
+      "id": "mika",
+      "headHeight": 2.2339827295163333,
+      "gl": 0,
+      "draws": 844,
+      "triangles": 362812,
+      "sameWorld": true,
+      "members": 4
+    },
+    {
+      "id": "nia",
+      "headHeight": 2.238995103571715,
+      "gl": 0,
+      "draws": 844,
+      "triangles": 362812,
+      "sameWorld": true,
+      "members": 4
+    },
+    {
+      "id": "leo",
+      "headHeight": 2.238437410008236,
+      "gl": 0,
+      "draws": 844,
+      "triangles": 362812,
+      "sameWorld": true,
+      "members": 4
+    }
+  ],
+  "passed": true
+}

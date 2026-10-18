@@ -1,10 +1,12 @@
+import {enterClub} from './enter-club.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 // Run from rally-house-source-v16 so this harness works before/after QA curation.
-const {chromium,browserOptions}=await import(pathToFileURL(path.resolve('qa/runtime.mjs')).href);
-const browser=await chromium.launch({...browserOptions,args:['--use-angle=metal']});
+const {chromium,firefox,webkit,browserOptions}=await import(pathToFileURL(path.resolve('qa/runtime.mjs')).href);
+const engine=process.env.QA_ENGINE??'chromium';
+const browser=await {chromium,firefox,webkit}[engine].launch({...engine==='chromium'?{...browserOptions,args:['--use-angle=metal']}:{headless:true},...process.env.QA_BROWSER_EXECUTABLE?{executablePath:process.env.QA_BROWSER_EXECUTABLE}:{}});
 const report={cycles:[],errors:[]};
 try{
  const context=await browser.newContext({viewport:{width:1280,height:800}});
@@ -12,7 +14,7 @@ try{
  page.on('pageerror',e=>report.errors.push(e.message));
  await page.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`);
  await page.waitForFunction(()=>window.__rh?.ready);
- await page.getByText('Arjan',{exact:true}).click();
+ await enterClub(page,'Arjan');
  await page.waitForTimeout(800);
   await page.evaluate(()=>{
    const g=window.__rh.game;
@@ -59,6 +61,9 @@ try{
    for(let n=0;n<180&&g.championship.active;n++)g.updateFixed(1/60);
   });
   await page.waitForTimeout(300);
+  // Native audio completion events may trail the visual RAF, especially after
+  // accelerated simulation. Still require every transient node to disconnect.
+  await page.waitForFunction(()=>window.optimizerAudio.nodes.size===0,null,{timeout:2000});
   const row=await page.evaluate(()=>{
    const g=window.__rh.game,a=window.optimizerAudio;
    return{dom:document.querySelectorAll('*').length,paused:g.clock.paused,speed:g.clock.speed,reserved:g.activities.reserved('court'),owner:g.championshipHud.pointerId,input:g.matchInput.enabled,match:g.interactiveMatch,camera:JSON.stringify(g.camera.captureState()),connectedNodes:a.nodes.size,connects:a.connected,disconnects:a.disconnected,buffers:g.audio.tennisMaterialBuffers.size,competitor:g.player.matchCompetitor,impulse:!!g.championshipCamera.renderImpulse(),heap:performance.memory?.usedJSHeapSize};
@@ -80,7 +85,8 @@ try{
  await context.close();
 }finally{
  report.limits=['Manual fixed ticks accelerate approach/exit; paused freeze, Resume click and short flight use live RAF. Autonomous scheduling is held during this lifecycle isolation test.','Total DOM can vary transiently by one node; bounded range and final return are checked.','AudioNode instrumentation starts after initial ambience and tracks later outgoing connections, not browser-internal allocation.','Heap is coarse, without forced garbage collection or long-duration leak proof.'];
- fs.mkdirSync('../takeover-evidence/session-20261009',{recursive:true});
- fs.writeFileSync('../takeover-evidence/session-20261009/optimizer-lifecycle.json',JSON.stringify(report,null,2));
+ const out=process.env.QA_OUT??'../takeover-evidence/session-20261009';
+ fs.mkdirSync(out,{recursive:true});
+ fs.writeFileSync(path.join(out,'optimizer-lifecycle.json'),JSON.stringify(report,null,2));
  await browser.close();
 }

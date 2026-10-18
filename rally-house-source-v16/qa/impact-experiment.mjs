@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -36,7 +37,7 @@ const browser=await chromium.launch({...browserOptions,args:['--use-angle=metal'
 try{
  for(const viewport of [{width:1280,height:800},{width:390,height:844}]){
   const page=await browser.newPage({viewport,hasTouch:viewport.width<500});page.on('pageerror',e=>report.errors.push(e.message));
-  await page.goto('http://127.0.0.1:8078/?debug');await page.waitForFunction(()=>window.__rh?.ready);await page.getByText('Arjan',{exact:true}).click();
+  await page.goto('http://127.0.0.1:8078/?debug');await page.waitForFunction(()=>window.__rh?.ready);await enterClub(page,'Arjan');
   await page.evaluate(()=>{const g=window.__rh.game;g.clock.paused=true;g.settings.reducedMotion=true;g.autosave=-10000;for(const a of [...g.activities.active])g.cancelActivity(a);g.startChampionship(g.actor('leo'));for(let i=0;i<6000&&g.championship.phase!=='serving';i++)g.updateFixed(1/60);g.settings.reducedMotion=false;g.updateFixed=()=>{};});
   await page.waitForTimeout(1500);
   for(const profile of profiles){

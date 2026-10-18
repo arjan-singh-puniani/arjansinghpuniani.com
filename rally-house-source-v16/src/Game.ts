@@ -1,3 +1,4 @@
+import {COURT} from './tennis/CourtGeometry.js';
 import {PhoneCapture} from './analysis/PhoneCapture.js';
 import {deriveActing} from './animation/ActingState.js';
 import {DialogueComposer} from './simulation/DialogueComposer.js';
@@ -23,7 +24,7 @@ import {EmergentSocialSystem,type EmergentSocialEvent} from './simulation/Emerge
 import {RallySystem} from './tennis/RallySystem.js';
 import {ChampionshipController} from './tennis/ChampionshipController.js';
 import {championshipOpponentFor} from './tennis/ChampionshipOpponents.js';
-import {CHAMPIONSHIP_CONTACT_FEEL} from './tennis/ChampionshipTuning.js';
+import {CHAMPIONSHIP_CONTACT_FEEL,CHAMPIONSHIP_TUNING} from './tennis/ChampionshipTuning.js';
 import {ChampionshipCameraRig} from './tennis/ChampionshipCameraRig.js';
 import {InteractiveMatchSystem,type InteractiveShotQuality} from './tennis/InteractiveMatchSystem.js';
 import {MatchInput} from './tennis/MatchInput.js';
@@ -61,6 +62,7 @@ export class Game {
   // Championship Mode is intentionally composed from small owners rather than
   // adding another cluster of booleans to Game.ts.
   private championship = new ChampionshipController();
+  private championshipApproachSpeeds=new Map<Character,number>();
   private matchInput = new MatchInput();
   private championshipCamera!: ChampionshipCameraRig;
   private championshipHud!: ChampionshipHUD;
@@ -72,6 +74,7 @@ export class Game {
   private championshipRound = 1;
   private championshipCompletedRound = 0;
   private championshipAudibleVolume = .65;
+  private reviewAfterChampionship = false;
   private spatial!:SpatialInteractionSystem;
   private performanceLab!:PerformanceLab;private phoneCapture!:PhoneCapture;
   private motionRecorder=new MotionRecorder();
@@ -110,6 +113,10 @@ export class Game {
     this.championshipHud = new ChampionshipHUD(this.matchInput, {
       onRematch: () => this.rematchChampionship(),
       onReturnToClub: () => this.requestChampionshipExit(),
+      onAnalyze: () => {
+        if(!this.motionRecorder.clip.frames.some(f=>f.contact))return;
+        this.reviewAfterChampionship=true;this.requestChampionshipExit();
+      },
       onTogglePause: () => this.setChampionshipPaused(!this.clock.paused),
       onToggleSound: () => {
         if(this.audio.volume>0){
@@ -132,7 +139,10 @@ export class Game {
     this.performanceLab.onReturn=()=>{this.pointers.clear();this.pointerStart=null;this.lastPointer=null;this.pinchDistance=0;this.dragged=false;this.spatial.setHover(null);this.canvas.style.cursor='';};
     window.addEventListener('pagehide',e=>{if(e.persisted)this.performanceLab.close();else this.performanceLab.dispose();});
 
-    this.ui.onContextClose=()=>this.spatial.dismiss(true);
+    this.ui.onContextClose=()=>{
+      this.spatial.dismiss(true);
+      if(this.arrivalPaused&&!this.playerAvatar){this.arrivalPaused=false;this.clock.paused=false;}
+    };
     this.ui.onPanelOpen=()=>this.spatial.dismiss();
     window.addEventListener('pagehide',e=>{if(e.persisted)this.spatial.dismiss(true);else this.spatial.dispose();});
     this.lastDay=this.clock.day;this.bindUI();this.bindInput();
@@ -140,6 +150,8 @@ export class Game {
 
   async init(){
     try{await this.restore();}catch(err){throw new SavedClubLoadError(err);}
+    // Leave the first court available while a new visitor chooses their character.
+    if(!this.playerAvatar){this.arrivalPaused=true;this.clock.paused=true;}
     this.daily.ensureDay(this.clock.day);this.lastDay=this.clock.day;for(const c of this.characters)this.schedule.update(c,this.clock.minutes);this.updateObjective();this.ui.hideLoading();this.exposeDebugHooks();this.loop(performance.now());if(!this.playerAvatar)this.openAvatarPicker();
   }
 
@@ -178,6 +190,7 @@ export class Game {
   }
 
   private bindUI(){
+    document.getElementById('tennisBtn')!.onclick=()=>this.playTennis();
     this.ui.onBuildClose=()=>{this.buildType=null;this.buildRotation=0;this.movingPlacement=null;};
     document.getElementById('scenePeek')!.onclick=()=>{
       const run=this.lifeRuns.values().next().value;
@@ -337,7 +350,7 @@ export class Game {
       'championship',
       ['player',opponent.id],
       'court',
-      [destinations.courtSouth,destinations.courtNorth],
+      [new Vec3(COURT.centerX,0,COURT.baselineDepth),new Vec3(COURT.centerX,0,-COURT.baselineDepth)],
       `Championship vs ${opponent.spec.name}`,
     );
 
@@ -353,6 +366,8 @@ export class Game {
 
     this.championshipPriorSpeed=this.clock.speed;
     this.championshipPriorPaused=this.clock.paused;
+    this.championshipApproachSpeeds=new Map([this.player,opponent].map(c=>[c,c.speed]));
+    for(const c of this.championshipApproachSpeeds.keys())c.speed*=CHAMPIONSHIP_TUNING.approachSpeedScale;
     this.clock.paused=false;
     this.clock.speed=1;
     this.championshipActivityId=activity.id;
@@ -377,6 +392,18 @@ export class Game {
     this.canvas.focus();
     this.ui.closeContext();
     this.ui.toast(`${opponent.spec.name} accepts. Championship court.`);
+  }
+
+  private playTennis(){
+    if(!this.playerAvatar){this.openAvatarPicker();return;}
+    if(this.championship.active||this.performanceLab?.active||this.phoneCapture?.active)return;
+    const opponent=['leo','mika','coach','nia'].map(id=>this.byId(id)).find(c=>c&&championshipOpponentFor(c.id)&&!this.activities.busy(c.id));
+    if(!opponent||this.activities.reserved('court')){
+      this.ui.toast('A rally is already on. The court will be yours when they finish.');
+      this.camera.nudgeFocus(1,0,.6);
+      return;
+    }
+    this.startChampionship(opponent);
   }
 
   private createInteractiveMatch(
@@ -449,7 +476,13 @@ export class Game {
     if(!paused)this.canvas.focus({preventScroll:true});
   }
 
+  private restoreChampionshipApproach(){
+    this.championshipApproachSpeeds?.forEach((speed,c)=>{c.speed=speed;});
+    this.championshipApproachSpeeds?.clear();
+  }
+
   private cleanupChampionship(){
+    this.restoreChampionshipApproach();
     this.matchInput.setEnabled(false);
     this.interactiveMatch?.stop();
     this.interactiveMatch=null;
@@ -463,6 +496,12 @@ export class Game {
     document.body.classList.remove('championship-active');
     for(const el of document.querySelectorAll<HTMLElement>('.topbar,.hud,.objective,#scenePeek'))el.inert=false;
     this.canvas.focus();
+    if(this.reviewAfterChampionship){
+      this.reviewAfterChampionship=false;
+      // Finish releasing the match reservation and participant roles before
+      // the existing Lab takes ownership of presentation and input.
+      queueMicrotask(()=>this.openPerformanceLab(true));
+    }
   }
 
   private updateChampionshipActivity(a:Activity,dt:number){
@@ -489,6 +528,7 @@ export class Game {
       );
 
       if(arrived){
+        this.restoreChampionshipApproach();
         this.activities.transition(a,'starting');
         people.forEach(character=>{
           character.socialGesture='none';character.racketStowed=false;character.matchCompetitor=true;
@@ -687,11 +727,11 @@ export class Game {
     }
   }
 
-  private openPerformanceLab(){
+  private openPerformanceLab(reviewMatch=false){
     if(!this.performanceLab||this.championship?.active||this.performanceLab.active)return;
     this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);this.buildType=null;this.movingPlacement=null;
     this.spatial.dismiss();this.matchInput.reset();this.pointers.clear();this.pointerStart=null;this.lastPointer=null;
-    this.audio.click();this.performanceLab.open(this.player.spec,this.motionRecorder?.clip??null,this.phoneCapture?.last??null);
+    this.audio.click();this.performanceLab.open(this.player.spec,this.motionRecorder?.clip??null,this.phoneCapture?.last??null,reviewMatch?'championship':undefined);
   }
 
   private playObjectSound(effect:string,contact?:Vec3){
@@ -828,16 +868,40 @@ export class Game {
     this.rebuildFurnitureObstacles();this.movingPlacement=null;this.ui.toast('Moved, with its history intact.');void this.save();
   }
   private playerAvatar:PlayerAvatar|null=null;
+  private arrivalPaused=false;
   private choosePlayerAvatar(id:PlayerAvatar){
     this.playerAvatar=id;this.player.spec=playerSpec(id);if(id==='taylor'&&!this.player.matchCompetitor)this.player.racketStowed=true;this.ui.closeContext();
-    this.camera.focus(this.player.position.x,this.player.position.z,22);
+    if(this.arrivalPaused){this.arrivalPaused=false;this.clock.paused=false;this.camera.frameAcademy();}
+    else this.camera.focus(this.player.position.x,this.player.position.z,22);
     this.ui.toast(`${this.player.spec.name} · Welcome to your club.`);void this.save();
   }
   private openAvatarPicker(){
-    this.ui.showContext('YOUR CHARACTER','Who’s arriving at Rally House?','Choose your look. You can switch anytime in Settings.',[],[
-      {title:'Taylor',subtitle:'Dark ponytail · blue tennis dress · composed all-court style',run:()=>this.choosePlayerAvatar('taylor')},
-      {title:'Arjan',subtitle:'Swept dark hair · strong brows · charcoal tenniswear',run:()=>this.choosePlayerAvatar('arjan')}
+    const arriving=!this.playerAvatar;
+    if(!arriving){
+      this.ui.showContext('YOUR CHARACTER','Who’s arriving at Rally House?','Choose your look. You can switch anytime in Settings.',[],[
+        {title:'Taylor',subtitle:'Dark ponytail · blue tennis dress',run:()=>this.choosePlayerAvatar('taylor')},
+        {title:'Arjan',subtitle:'Swept hair · charcoal tenniswear',run:()=>this.choosePlayerAvatar('arjan')}
+      ]);
+      return;
+    }
+    let choice:PlayerAvatar='arjan';
+    const select=(id:PlayerAvatar)=>{
+      choice=id;
+      document.querySelectorAll<HTMLButtonElement>('.arrival-avatar').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.avatar===id)));
+    };
+    this.ui.showContext('WELCOME TO YOUR CLUB','A little club.\nOne more rally.','Take the court, then stay for the people. Choose who you’ll be today.',[],[
+      {title:'Taylor',subtitle:'Blue dress · ponytail',run:()=>select('taylor')},
+      {title:'Arjan',subtitle:'Charcoal tenniswear',run:()=>select('arjan')},
+      {title:'Play tennis',subtitle:'Step onto the court',run:()=>{this.choosePlayerAvatar(choice);this.playTennis();}},
+      {title:'Explore the club',subtitle:'Take your time',run:()=>this.choosePlayerAvatar(choice)}
     ]);
+    const card=document.getElementById('context')!;card.classList.add('arrival-card');
+    const buttons=card.querySelectorAll<HTMLButtonElement>('#contextActions button');
+    ['taylor','arjan'].forEach((id,index)=>{buttons[index].classList.add('arrival-avatar');buttons[index].dataset.avatar=id;});
+    buttons[2].classList.add('arrival-play');buttons[3].classList.add('arrival-explore');
+    buttons[3].dataset.arrivalAction='explore';
+    select(choice);
+    requestAnimationFrame(()=>buttons[2].focus({preventScroll:true}));
   }
   private openSettings(){
     this.ui.showContext('COMFORT','Make yourself comfortable','Your character, camera motion and sound are yours to adjust.',[],[
@@ -1188,7 +1252,7 @@ export class Game {
     document.body.classList.toggle('championship-transitioning',this.championship.phase==='intro');
     if(this.championship.active&&this.championshipOpponentId){
       const opponent=this.byId(this.championshipOpponentId);
-      if(opponent)this.championshipHud.render(this.championship.snapshot(),this.player.spec.name,opponent.spec.name,this.interactiveMatch?.playerCue(),this.settings.reducedMotion,this.clock.paused,!this.audio.enabled||this.audio.volume===0);
+      if(opponent)this.championshipHud.render(this.championship.snapshot(),this.player.spec.name,opponent.spec.name,this.interactiveMatch?.playerCue(),this.settings.reducedMotion,this.clock.paused,!this.audio.enabled||this.audio.volume===0,this.motionRecorder.clip.frames.some(f=>f.contact));
     }else{
       this.championshipHud.hide();
     }

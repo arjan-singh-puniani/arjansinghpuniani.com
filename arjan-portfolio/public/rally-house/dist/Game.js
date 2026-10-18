@@ -1,3 +1,4 @@
+import { COURT } from './tennis/CourtGeometry.js';
 import { PhoneCapture } from './analysis/PhoneCapture.js';
 import { deriveActing } from './animation/ActingState.js';
 import { DialogueComposer } from './simulation/DialogueComposer.js';
@@ -23,7 +24,7 @@ import { EmergentSocialSystem } from './simulation/EmergentSocialSystem.js';
 import { RallySystem } from './tennis/RallySystem.js';
 import { ChampionshipController } from './tennis/ChampionshipController.js';
 import { championshipOpponentFor } from './tennis/ChampionshipOpponents.js';
-import { CHAMPIONSHIP_CONTACT_FEEL } from './tennis/ChampionshipTuning.js';
+import { CHAMPIONSHIP_CONTACT_FEEL, CHAMPIONSHIP_TUNING } from './tennis/ChampionshipTuning.js';
 import { ChampionshipCameraRig } from './tennis/ChampionshipCameraRig.js';
 import { InteractiveMatchSystem } from './tennis/InteractiveMatchSystem.js';
 import { MatchInput } from './tennis/MatchInput.js';
@@ -69,6 +70,7 @@ export class Game {
     // Championship Mode is intentionally composed from small owners rather than
     // adding another cluster of booleans to Game.ts.
     championship = new ChampionshipController();
+    championshipApproachSpeeds = new Map();
     matchInput = new MatchInput();
     championshipCamera;
     championshipHud;
@@ -80,6 +82,7 @@ export class Game {
     championshipRound = 1;
     championshipCompletedRound = 0;
     championshipAudibleVolume = .65;
+    reviewAfterChampionship = false;
     spatial;
     performanceLab;
     phoneCapture;
@@ -176,6 +179,12 @@ export class Game {
         this.championshipHud = new ChampionshipHUD(this.matchInput, {
             onRematch: () => this.rematchChampionship(),
             onReturnToClub: () => this.requestChampionshipExit(),
+            onAnalyze: () => {
+                if (!this.motionRecorder.clip.frames.some(f => f.contact))
+                    return;
+                this.reviewAfterChampionship = true;
+                this.requestChampionshipExit();
+            },
             onTogglePause: () => this.setChampionshipPaused(!this.clock.paused),
             onToggleSound: () => {
                 if (this.audio.volume > 0) {
@@ -205,7 +214,13 @@ export class Game {
             this.performanceLab.close();
         else
             this.performanceLab.dispose(); });
-        this.ui.onContextClose = () => this.spatial.dismiss(true);
+        this.ui.onContextClose = () => {
+            this.spatial.dismiss(true);
+            if (this.arrivalPaused && !this.playerAvatar) {
+                this.arrivalPaused = false;
+                this.clock.paused = false;
+            }
+        };
         this.ui.onPanelOpen = () => this.spatial.dismiss();
         window.addEventListener('pagehide', e => { if (e.persisted)
             this.spatial.dismiss(true);
@@ -221,6 +236,11 @@ export class Game {
         }
         catch (err) {
             throw new SavedClubLoadError(err);
+        }
+        // Leave the first court available while a new visitor chooses their character.
+        if (!this.playerAvatar) {
+            this.arrivalPaused = true;
+            this.clock.paused = true;
         }
         this.daily.ensureDay(this.clock.day);
         this.lastDay = this.clock.day;
@@ -273,6 +293,7 @@ export class Game {
         };
     }
     bindUI() {
+        document.getElementById('tennisBtn').onclick = () => this.playTennis();
         this.ui.onBuildClose = () => { this.buildType = null; this.buildRotation = 0; this.movingPlacement = null; };
         document.getElementById('scenePeek').onclick = () => {
             const run = this.lifeRuns.values().next().value;
@@ -593,7 +614,7 @@ export class Game {
             return;
         }
         // A challenge reserves the existing court; it cannot interrupt someone else's activity.
-        const activity = this.startActivity('championship', ['player', opponent.id], 'court', [destinations.courtSouth, destinations.courtNorth], `Championship vs ${opponent.spec.name}`);
+        const activity = this.startActivity('championship', ['player', opponent.id], 'court', [new Vec3(COURT.centerX, 0, COURT.baselineDepth), new Vec3(COURT.centerX, 0, -COURT.baselineDepth)], `Championship vs ${opponent.spec.name}`);
         if (!activity) {
             this.ui.toast('The court or this opponent is busy just now. Try again after the current activity.');
             return;
@@ -604,6 +625,9 @@ export class Game {
         }
         this.championshipPriorSpeed = this.clock.speed;
         this.championshipPriorPaused = this.clock.paused;
+        this.championshipApproachSpeeds = new Map([this.player, opponent].map(c => [c, c.speed]));
+        for (const c of this.championshipApproachSpeeds.keys())
+            c.speed *= CHAMPIONSHIP_TUNING.approachSpeedScale;
         this.clock.paused = false;
         this.clock.speed = 1;
         this.championshipActivityId = activity.id;
@@ -635,6 +659,21 @@ export class Game {
         this.canvas.focus();
         this.ui.closeContext();
         this.ui.toast(`${opponent.spec.name} accepts. Championship court.`);
+    }
+    playTennis() {
+        if (!this.playerAvatar) {
+            this.openAvatarPicker();
+            return;
+        }
+        if (this.championship.active || this.performanceLab?.active || this.phoneCapture?.active)
+            return;
+        const opponent = ['leo', 'mika', 'coach', 'nia'].map(id => this.byId(id)).find(c => c && championshipOpponentFor(c.id) && !this.activities.busy(c.id));
+        if (!opponent || this.activities.reserved('court')) {
+            this.ui.toast('A rally is already on. The court will be yours when they finish.');
+            this.camera.nudgeFocus(1, 0, .6);
+            return;
+        }
+        this.startChampionship(opponent);
     }
     createInteractiveMatch(opponent, profile) {
         return new InteractiveMatchSystem(this.player, opponent, profile, this.matchInput, {
@@ -707,7 +746,12 @@ export class Game {
         if (!paused)
             this.canvas.focus({ preventScroll: true });
     }
+    restoreChampionshipApproach() {
+        this.championshipApproachSpeeds?.forEach((speed, c) => { c.speed = speed; });
+        this.championshipApproachSpeeds?.clear();
+    }
     cleanupChampionship() {
+        this.restoreChampionshipApproach();
         this.matchInput.setEnabled(false);
         this.interactiveMatch?.stop();
         this.interactiveMatch = null;
@@ -722,6 +766,12 @@ export class Game {
         for (const el of document.querySelectorAll('.topbar,.hud,.objective,#scenePeek'))
             el.inert = false;
         this.canvas.focus();
+        if (this.reviewAfterChampionship) {
+            this.reviewAfterChampionship = false;
+            // Finish releasing the match reservation and participant roles before
+            // the existing Lab takes ownership of presentation and input.
+            queueMicrotask(() => this.openPerformanceLab(true));
+        }
     }
     updateChampionshipActivity(a, dt) {
         if (this.championship.phase === 'exiting') {
@@ -747,6 +797,7 @@ export class Game {
             const arrived = people.every((character, index) => Vec3.sub(character.position, targets[index]).len() < .55 &&
                 character.pathIndex >= character.path.length);
             if (arrived) {
+                this.restoreChampionshipApproach();
                 this.activities.transition(a, 'starting');
                 people.forEach(character => {
                     character.socialGesture = 'none';
@@ -987,7 +1038,7 @@ export class Game {
                 this.openPerformanceLab();
         }
     }
-    openPerformanceLab() {
+    openPerformanceLab(reviewMatch = false) {
         if (!this.performanceLab || this.championship?.active || this.performanceLab.active)
             return;
         this.ui.closeContext();
@@ -1001,7 +1052,7 @@ export class Game {
         this.pointerStart = null;
         this.lastPointer = null;
         this.audio.click();
-        this.performanceLab.open(this.player.spec, this.motionRecorder?.clip ?? null, this.phoneCapture?.last ?? null);
+        this.performanceLab.open(this.player.spec, this.motionRecorder?.clip ?? null, this.phoneCapture?.last ?? null, reviewMatch ? 'championship' : undefined);
     }
     playObjectSound(effect, contact) {
         if (['clock', 'stringing', 'bell'].includes(effect) && contact && this.canvas) {
@@ -1270,21 +1321,52 @@ export class Game {
         void this.save();
     }
     playerAvatar = null;
+    arrivalPaused = false;
     choosePlayerAvatar(id) {
         this.playerAvatar = id;
         this.player.spec = playerSpec(id);
         if (id === 'taylor' && !this.player.matchCompetitor)
             this.player.racketStowed = true;
         this.ui.closeContext();
-        this.camera.focus(this.player.position.x, this.player.position.z, 22);
+        if (this.arrivalPaused) {
+            this.arrivalPaused = false;
+            this.clock.paused = false;
+            this.camera.frameAcademy();
+        }
+        else
+            this.camera.focus(this.player.position.x, this.player.position.z, 22);
         this.ui.toast(`${this.player.spec.name} · Welcome to your club.`);
         void this.save();
     }
     openAvatarPicker() {
-        this.ui.showContext('YOUR CHARACTER', 'Who’s arriving at Rally House?', 'Choose your look. You can switch anytime in Settings.', [], [
-            { title: 'Taylor', subtitle: 'Dark ponytail · blue tennis dress · composed all-court style', run: () => this.choosePlayerAvatar('taylor') },
-            { title: 'Arjan', subtitle: 'Swept dark hair · strong brows · charcoal tenniswear', run: () => this.choosePlayerAvatar('arjan') }
+        const arriving = !this.playerAvatar;
+        if (!arriving) {
+            this.ui.showContext('YOUR CHARACTER', 'Who’s arriving at Rally House?', 'Choose your look. You can switch anytime in Settings.', [], [
+                { title: 'Taylor', subtitle: 'Dark ponytail · blue tennis dress', run: () => this.choosePlayerAvatar('taylor') },
+                { title: 'Arjan', subtitle: 'Swept hair · charcoal tenniswear', run: () => this.choosePlayerAvatar('arjan') }
+            ]);
+            return;
+        }
+        let choice = 'arjan';
+        const select = (id) => {
+            choice = id;
+            document.querySelectorAll('.arrival-avatar').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.avatar === id)));
+        };
+        this.ui.showContext('WELCOME TO YOUR CLUB', 'A little club.\nOne more rally.', 'Take the court, then stay for the people. Choose who you’ll be today.', [], [
+            { title: 'Taylor', subtitle: 'Blue dress · ponytail', run: () => select('taylor') },
+            { title: 'Arjan', subtitle: 'Charcoal tenniswear', run: () => select('arjan') },
+            { title: 'Play tennis', subtitle: 'Step onto the court', run: () => { this.choosePlayerAvatar(choice); this.playTennis(); } },
+            { title: 'Explore the club', subtitle: 'Take your time', run: () => this.choosePlayerAvatar(choice) }
         ]);
+        const card = document.getElementById('context');
+        card.classList.add('arrival-card');
+        const buttons = card.querySelectorAll('#contextActions button');
+        ['taylor', 'arjan'].forEach((id, index) => { buttons[index].classList.add('arrival-avatar'); buttons[index].dataset.avatar = id; });
+        buttons[2].classList.add('arrival-play');
+        buttons[3].classList.add('arrival-explore');
+        buttons[3].dataset.arrivalAction = 'explore';
+        select(choice);
+        requestAnimationFrame(() => buttons[2].focus({ preventScroll: true }));
     }
     openSettings() {
         this.ui.showContext('COMFORT', 'Make yourself comfortable', 'Your character, camera motion and sound are yours to adjust.', [], [
@@ -2135,7 +2217,7 @@ export class Game {
         if (this.championship.active && this.championshipOpponentId) {
             const opponent = this.byId(this.championshipOpponentId);
             if (opponent)
-                this.championshipHud.render(this.championship.snapshot(), this.player.spec.name, opponent.spec.name, this.interactiveMatch?.playerCue(), this.settings.reducedMotion, this.clock.paused, !this.audio.enabled || this.audio.volume === 0);
+                this.championshipHud.render(this.championship.snapshot(), this.player.spec.name, opponent.spec.name, this.interactiveMatch?.playerCue(), this.settings.reducedMotion, this.clock.paused, !this.audio.enabled || this.audio.volume === 0, this.motionRecorder.clip.frames.some(f => f.contact));
         }
         else {
             this.championshipHud.hide();

@@ -1,3 +1,4 @@
+import {COURT} from '../tennis/CourtGeometry.js';
 import {Vec3} from '../rendering/Math3D.js';
 import type {Mesh} from '../rendering/Renderer.js';
 import type {InteractiveObject} from './World.js';
@@ -21,7 +22,7 @@ export function authorObjectTargets(objects:InteractiveObject[]){
   set('bonsai',[10.54,2.10,3.9],[1.5,1.4,.9],'bonsai',[10.2,1.36,3.9]);
   objects.find(o=>o.id==='bonsai')!.viewSpot=new Vec3(9.0,0,3.0);
   objects.find(o=>o.id==='bonsai')!.careSpot=new Vec3(10.2,0,3.0);
-  set('proshop',[9.2,1.05,-3.4],[2.3,1.95,1.3]);set('court',[1,.08,0],[8.5,.12,12]);
+  set('proshop',[9.2,1.05,-3.4],[2.3,1.95,1.3]);set('court',[COURT.centerX,.08,0],[COURT.doublesHalfWidth*2,.12,COURT.halfLength*2]);
   set('clubBoard',[2.8,2.58,-9.27],[4.15,1.18,.32],'board',[2.8,2.05,-9.16]);
   objects.find(o=>o.id==='clubBoard')!.careSpot=new Vec3(2.8,0,-8.7);
   set('warmup',[-9.3,.15,1.6],[3.1,.3,3.9],'warmup',[-9.3,1.2,1.6]);
@@ -49,7 +50,7 @@ export function authorObjectTargets(objects:InteractiveObject[]){
   add('courtBasket','Practice ball basket','supply',[6.0,.6,1.95],[.75,1.0,.75],'Eight visible balls stacked beside the rack. A supply for the next practice.',[6.0,.8,1.95]);
   add('westHopper','West spectator hopper','supply',[-4.8,.55,7.9],[.78,1.1,.78],'Six visible balls, close to the long spectator bench.',[-4.8,.7,7.9]);
   add('eastHopper','East spectator hopper','supply',[5.6,.55,7.9],[.78,1.1,.78],'Six visible balls beside the mint perch.',[5.6,.7,7.9]);
-  add('spectatorTea','Spectator tea table','cafe',[1.32,.62,7.55],[.9,1.0,.9],'A pink cup and a folded note between the baseline seats.',[1.20,.8,7.50]);
+  add('spectatorTea','Spectator tea table','cafe',[-1.25,.62,8.0],[.9,1.0,.9],'A pink cup and a folded note between the baseline seats.',[-1.37,.8,7.95]);
   add('entranceTea','Entrance tea table','cafe',[-9,.62,7.2],[.85,1.0,.85],'A mint cup between the two entrance chairs.',[-9.05,.83,7.15]);
   const plants:[string,string,number,number,number][]=[['windowPlant','Window fern',-11.1,-7.2,1.1],['gearPlant','Gear-room fern',11.2,-1.5,.9],['loungePlant','Reading-corner fern',7,7.3,1],['windowSprig','Small window fern',-5.75,-7.5,.72],['entryPlant','Entrance fern',-6.3,8.5,.92],['perchPlant','Spectator fern',9,8.4,.86]];
   for(const [id,label,x,z,s] of plants)add(id,label,'plant',[x,.95*s,z],[1.25*s,1.65*s,.9*s],'A small green companion with its own watering history.',[x,.82*s,z]);

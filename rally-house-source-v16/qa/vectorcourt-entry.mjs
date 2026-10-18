@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {chromium,browserOptions} from './runtime.mjs';
@@ -7,7 +8,7 @@ try{for(const width of [1440,390]){
  const context=await browser.newContext({viewport:{width,height:width===390?844:900}}),page=await context.newPage(),report={width,errors:[],http:[]};
  page.on('pageerror',e=>report.errors.push(e.message));page.on('response',r=>{if(r.status()>=400)report.http.push([r.status(),r.url()]);});
  try{
-  await page.goto('http://127.0.0.1:8078/?debug',{waitUntil:'networkidle'});await page.waitForFunction(()=>window.__rh?.ready);await page.getByText('Taylor',{exact:true}).click();await page.locator('#loading').waitFor({state:'hidden'});
+  await page.goto('http://127.0.0.1:8078/?debug',{waitUntil:'networkidle'});await page.waitForFunction(()=>window.__rh?.ready);await enterClub(page,'Taylor');await page.locator('#loading').waitFor({state:'hidden'});
   await page.evaluate(()=>{const g=window.__rh.game;window.entryWorld={world:g.world,cast:[...g.characters]};});
   const entry=page.getByRole('button',{name:'Analyze swing with VectorCourt',exact:true});assert.equal(await entry.locator('span').textContent(),'VectorCourt');assert(await entry.locator('span').isVisible());
   await page.waitForTimeout(700);await page.screenshot({path:`${out}/${width}-toolbar.png`});await entry.click();await page.waitForTimeout(1200);

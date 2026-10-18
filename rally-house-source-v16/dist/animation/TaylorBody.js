@@ -1,5 +1,5 @@
 import { Vec3, clamp } from '../rendering/Math3D.js';
-export const TAYLOR_BODY = { pelvisHeight: 1.245, torsoScale: 1.20, headScale: .62, upperArm: .425, forearm: .415, thigh: .56, shin: .55 };
+export const TAYLOR_BODY = { pelvisHeight: 1.245, strokePelvisFloor: .86, torsoScale: 1.20, headScale: .62, upperArm: .425, forearm: .415, thigh: .56, shin: .55 };
 const smooth = (t) => { const u = clamp(t, 0, 1); return u * u * (3 - 2 * u); };
 function joint(a, b, first, second, pole, fallback) {
     const delta = Vec3.sub(b, a), d = Math.max(.0001, delta.len()), axis = delta.scale(1 / d), stretch = Math.max(1, d / (first + second - .001));
@@ -72,8 +72,13 @@ export function adultTaylorPose(source, root, yaw, constraints) {
     p.handL = Vec3.lerp(arm(source.handL), source.handL, constraints.leftWorld);
     p.handR = Vec3.lerp(arm(source.handR), source.handR, constraints.rightWorld);
     const bodyKeys = ['pelvisCenter', 'torsoCenter', 'shoulderL', 'shoulderR', 'head', 'hipL', 'hipR'];
-    const lower = (dy) => { for (const key of bodyKeys)
-        p[key].y -= dy; };
+    // Loading and exact hand contact share one vertical budget. Applying each
+    // solve's full drop independently could seat a standing player on the floor.
+    const lower = (dy) => {
+        const available = constraints.human && constraints.posture && !constraints.sitting ? Math.max(0, p.pelvisCenter.y - root.y - TAYLOR_BODY.strokePelvisFloor) : Infinity;
+        for (const key of bodyKeys)
+            p[key].y -= Math.min(dy, available);
+    };
     // A long step lowers the pelvis to respect leg length while a planted foot
     // remains a world-space anchor. Sitting uses the actual seat height.
     if (!constraints.sitting) {

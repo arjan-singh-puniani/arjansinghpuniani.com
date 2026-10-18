@@ -1,3 +1,4 @@
+import { COURT } from './CourtGeometry.js';
 import { Vec3 } from '../rendering/Math3D.js';
 export class BallPhysics {
     position = new Vec3();
@@ -8,7 +9,7 @@ export class BallPhysics {
     restitution = .56;
     bounces = 0;
     lastZ = 0;
-    bounds = { halfWidth: 5.2, halfDepth: 7 };
+    bounds = { halfWidth: 5.2, halfDepth: COURT.halfLength + 1.5 };
     netEnabled = true;
     launch(start, target, flightTime = .82) { this.position = start.clone(); this.lastZ = start.z; this.velocity = new Vec3((target.x - start.x) / flightTime, (target.y - start.y - .5 * this.gravity * flightTime * flightTime) / flightTime, (target.z - start.z) / flightTime); this.active = true; this.bounces = 0; }
     /** Forecast the first landing using the same semi-implicit fixed step as update. */
@@ -33,7 +34,7 @@ export class BallPhysics {
         this.position.add(this.velocity.clone().scale(dt));
         let bounced = false, net = false;
         if (this.netEnabled && ((this.lastZ < 0 && this.position.z >= 0) || (this.lastZ > 0 && this.position.z <= 0))) {
-            if (this.position.y < .94) {
+            if (this.position.y < COURT.netTop) {
                 this.position.y = Math.max(this.radius, this.position.y);
                 this.velocity.set(0, 0, 0);
                 this.active = false;
