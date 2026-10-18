@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import {homedir} from 'node:os';
 import {chromium,firefox,webkit,browserOptions} from './runtime.mjs';
 const engine=process.env.QA_ENGINE??'chromium',avatar=process.env.QA_AVATAR??'Taylor',width=Number(process.env.QA_WIDTH??1440),height=width===390?844:900,out=process.env.QA_OUT??`evidence/phone-anchor-20261011/${engine}-${avatar.toLowerCase()}-${width}`;
@@ -5,7 +6,7 @@ fs.mkdirSync(out,{recursive:true});const webkitPath=process.env.WEBKIT_EXECUTABL
 const browser=await ({chromium,firefox,webkit}[engine]).launch(engine==='chromium'?{...browserOptions,args:['--use-angle=metal']}:{headless:true,...engine==='webkit'&&fs.existsSync(webkitPath)?{executablePath:webkitPath}:{}}),context=await browser.newContext({viewport:{width,height}}),page=await context.newPage(),report={engine,avatar,width,errors:[],requests:[]};
 page.on('pageerror',e=>report.errors.push(e.message));page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});page.on('response',r=>{if(r.status()>=400)report.requests.push([r.status(),r.url()]);});
 try{
- await page.goto('http://127.0.0.1:8078/?debug',{waitUntil:'networkidle'});await page.waitForFunction(()=>window.__rh?.ready);await page.getByText(avatar,{exact:true}).click();
+ await page.goto('http://127.0.0.1:8078/?debug',{waitUntil:'networkidle'});await page.waitForFunction(()=>window.__rh?.ready);await enterClub(page,avatar);
  await page.locator('#labBtn').click();await page.waitForTimeout(250);const find=page.getByRole('button',{name:'Find Performance Lab ↗',exact:true});if(await find.isVisible())await find.click();
  await page.locator('[data-action=capture]').click();
  // Accelerate only navigation. Recording and its video use the real RAF loop.

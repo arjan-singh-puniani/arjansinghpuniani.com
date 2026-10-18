@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -10,7 +11,7 @@ const mark=text=>events.push({seconds:(Date.now()-start)/1000,text});
 page.on('pageerror',e=>errors.push(e.message));
 try {
   await page.goto(process.env.QA_BASE_URL??'http://127.0.0.1:8078/?debug');
-  await page.waitForFunction(()=>window.__rh?.ready);await page.getByText('Arjan',{exact:true}).click();
+  await page.waitForFunction(()=>window.__rh?.ready);await enterClub(page,'Arjan');
   await page.evaluate(()=>{const g=window.__rh.game;g.clock.minutes=1040;g.clock.paused=true;g.autosave=-10000;g.camera.frameAcademy();});
   mark('A living miniature tennis club. People share the space around the court.');await page.waitForTimeout(1800);
   await page.evaluate(()=>window.__rh.game.openCharacter(window.__rh.game.actor('leo')));await page.waitForTimeout(1400);

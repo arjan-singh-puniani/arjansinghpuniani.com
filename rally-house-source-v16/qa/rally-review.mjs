@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -13,7 +14,7 @@ const report={engine,width,errors:[],http:[],returns:[],input:'Actual UI challen
 page.on('pageerror',e=>report.errors.push(e.message));page.on('response',r=>{if(r.status()>=400)report.http.push([r.status(),r.url()]);});
 try{
  await page.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`,{waitUntil:'networkidle'});await page.waitForFunction(()=>window.__rh?.ready);
- await page.getByText('Taylor',{exact:true}).click();await page.locator('#loading').waitFor({state:'hidden'});
+ await enterClub(page,'Taylor');await page.locator('#loading').waitFor({state:'hidden'});
  await page.evaluate(()=>{const g=window.__rh.game;for(const a of [...g.activities.active])g.cancelActivity(a);g.observationStarted=true;g.history.nextSocial=g.history.nextObject=g.everyday.next=1e12;g.clock.paused=true;g.clock.minutes=780;g.settings.visuals='detail';g.camera.frameAcademy();for(let i=0;i<240;i++)g.camera.update(1/60);g.camera.pin();window.reviewWorld={world:g.world,player:g.player,cast:[...g.characters],objects:[...g.world.objects],meshes:JSON.stringify(g.world.meshes)};g.openCharacter(g.actor('leo'));});
  await page.getByText('Challenge to Match',{exact:true}).click();
  await page.waitForFunction(()=>window.__rh.championship().phase==='serving',null,{timeout:60000});

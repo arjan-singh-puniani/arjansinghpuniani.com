@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {chromium,browserOptions} from './runtime.mjs';
@@ -49,7 +50,7 @@ try{
   assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth),0);
   const {default:AxeBuilder}=await import('../../arjan-portfolio/node_modules/@axe-core/playwright/dist/index.js');const axe=await new AxeBuilder({page:p}).analyze();assert.deepEqual(axe.violations,[]);
   await p.screenshot({path:`${out}/portfolio-${width}x${height}.png`});
-  await p.evaluate(()=>localStorage.clear());await p.getByRole('button',{name:'Play Rally House ↗'}).click();const frame=p.frameLocator('iframe');await frame.getByText('Arjan',{exact:true}).click();
+  await p.evaluate(()=>localStorage.clear());await p.getByRole('button',{name:'Play Rally House ↗'}).click();const frame=p.frameLocator('iframe');await enterClub(frame,'Arjan');
   assert.equal(await frame.locator('body').evaluate(()=>typeof window.__rh),'undefined');
   await frame.locator('#labBtn').click();await p.waitForTimeout(300);const find=frame.getByRole('button',{name:"Find Performance Lab ↗",exact:true});if(await find.isVisible())await find.click();await p.waitForTimeout(1200);await p.screenshot({path:`${out}/station-entry-${width}x${height}.png`});await frame.locator('[data-action=analyze]').click();await frame.locator('.performance-lab').waitFor({state:'visible',timeout:60000});
   for(const mode of ['body','court','combined']){await frame.locator(`[data-mode=${mode}]`).click();await frame.locator('#labSource').selectOption(mode==='court'?'gait':'forehand');await frame.locator('.lab-transport input').fill('500');}

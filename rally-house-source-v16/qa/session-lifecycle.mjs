@@ -1,14 +1,16 @@
+import {enterClub} from './enter-club.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 // Run from rally-house-source-v16 so this harness works before/after QA curation.
-const {chromium,browserOptions}=await import(pathToFileURL(path.resolve('qa/runtime.mjs')).href);
+const {chromium,firefox,webkit,browserOptions}=await import(pathToFileURL(path.resolve('qa/runtime.mjs')).href);
+const engine=process.env.QA_ENGINE??'chromium';
 const cycles=Number(process.env.QA_CYCLES??32);
 assert(Number.isInteger(cycles)&&cycles>=32,'Endurance requires at least 32 cycles');
 const out=process.env.QA_OUT??'../takeover-evidence/session-20261009';
-const browser=await chromium.launch({...browserOptions,args:['--use-angle=metal']});
-const report={cycles:[],reviews:[],errors:[],http:[]};
+const browser=await {chromium,firefox,webkit}[engine].launch({...engine==='chromium'?{...browserOptions,args:['--use-angle=metal']}:{headless:true},...process.env.QA_BROWSER_EXECUTABLE?{executablePath:process.env.QA_BROWSER_EXECUTABLE}:{}});
+const report={engine,cycles:[],reviews:[],errors:[],http:[]};
 try{
  const context=await browser.newContext({viewport:{width:1280,height:800}});
  const page=await context.newPage();
@@ -17,7 +19,7 @@ try{
  page.on('response',r=>{if(r.status()>=400)report.http.push([r.status(),r.url()]);});
  await page.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`);
  await page.waitForFunction(()=>window.__rh?.ready);
- await page.getByText('Arjan',{exact:true}).click();
+ await enterClub(page,'Arjan');
  await page.waitForTimeout(800);
   await page.evaluate(()=>{
    const g=window.__rh.game;
@@ -83,6 +85,9 @@ try{
    });
   }
   await page.waitForTimeout(300);
+  // Native audio completion events may trail the visual RAF, especially after
+  // accelerated simulation. Still require every transient node to disconnect.
+  await page.waitForFunction(()=>window.optimizerAudio.nodes.size===0,null,{timeout:2000});
   const row=await page.evaluate(()=>{
    const g=window.__rh.game,a=window.optimizerAudio;
    return{dom:document.querySelectorAll('*').length,paused:g.clock.paused,speed:g.clock.speed,reserved:g.activities.reserved('court'),owner:g.championshipHud.pointerId,input:g.matchInput.enabled,match:g.interactiveMatch,camera:JSON.stringify(g.camera.captureState()),connectedNodes:a.nodes.size,connects:a.connected,disconnects:a.disconnected,buffers:g.audio.tennisMaterialBuffers.size,competitor:g.player.matchCompetitor,impulse:!!g.championshipCamera.renderImpulse(),heap:performance.memory?.usedJSHeapSize};

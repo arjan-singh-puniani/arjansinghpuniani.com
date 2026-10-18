@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { chromium, browserOptions } from './runtime.mjs';
@@ -34,7 +35,7 @@ try {
     page.on('pageerror', e => report.errors.push(e.message));
     await page.goto(`${base}/?debug`);
     await page.waitForFunction(() => window.__rh?.ready);
-    await page.getByText('Arjan', { exact: true }).click();
+    await enterClub(page,'Arjan');
     await page.screenshot({ path: `${output}/club-${width}x${height}.png` });
     await enter(page);
 

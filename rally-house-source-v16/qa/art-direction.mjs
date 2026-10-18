@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -9,7 +10,7 @@ const report={label,errors:[],shots:[]};
 try{
  for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
  const page=await browser.newPage({viewport});page.on('pageerror',e=>report.errors.push(e.message));
- await page.goto('http://127.0.0.1:8078/?debug');await page.waitForFunction(()=>window.__rh?.ready);await page.getByText('Arjan',{exact:true}).click();
+ await page.goto('http://127.0.0.1:8078/?debug');await page.waitForFunction(()=>window.__rh?.ready);await enterClub(page,'Arjan');
  await page.evaluate(()=>{const g=window.__rh.game;g.autosave=-10000;g.clock.minutes=1040;g.clock.paused=true;g.settings.visuals='detail';g.world.weather='clear';g.activeSpeechId=null;g.speechUntil=0;g.ui.hideSpeech();g.camera.frameAcademy();});
  await page.waitForTimeout(1600);await page.screenshot({path:path.join(out,`${viewport.width}-club.png`)});
  if(viewport.width===1440){

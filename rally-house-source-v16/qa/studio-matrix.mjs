@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {chromium,browserOptions} from './runtime.mjs';
@@ -10,7 +11,7 @@ for(const [name,width,height,touch] of [['desktop',1280,800,false],['tablet',102
  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
  try{
  await page.goto(url);await page.waitForFunction(()=>window.__rh?.ready);
- await page.getByText('Arjan',{exact:true}).click();
+ await enterClub(page,'Arjan');
  await page.evaluate(()=>{const g=window.__rh.game;g.settings.visuals='detail';g.autosave=-10000;g.clock.minutes=1190;g.clock.paused=true;g.camera.frameAcademy();});
  await page.waitForTimeout(1000);await page.screenshot({path:`qa/studio/club-${name}.png`});
  // A visible UI action starts the reservation and natural travel. No teleporting actors.

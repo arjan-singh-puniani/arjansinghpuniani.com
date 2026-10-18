@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {chromium,browserOptions} from './runtime.mjs';
@@ -9,7 +10,7 @@ async function ready(page){
  page.on('pageerror',e=>report.errors.push(e.message));
  page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text())});
  await page.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`);await page.waitForFunction(()=>window.__rh?.ready);
- if(await page.getByText('Arjan',{exact:true}).isVisible())await page.getByText('Arjan',{exact:true}).click();
+ if(await page.getByText('Arjan',{exact:true}).isVisible())await enterClub(page,'Arjan');
  await page.evaluate(()=>{const g=window.__rh.game;g.clock.paused=true;g.camera.frameAcademy();g.settings.visuals='detail';});
  await page.waitForTimeout(800);
 }

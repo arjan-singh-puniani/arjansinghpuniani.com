@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -9,7 +10,7 @@ const browser=await chromium.launch({...browserOptions,args:['--use-angle=metal'
 try{
  const context=await browser.newContext({viewport:{width:1280,height:800},recordVideo:{dir:output,size:{width:1280,height:800}}});
  const page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));page.on('response',r=>{if(r.status()>=400)report.requests.push([r.status(),r.url()]);});
- await page.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`);await page.waitForFunction(()=>window.__rh?.ready);await page.getByText('Arjan',{exact:true}).click();
+ await page.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`);await page.waitForFunction(()=>window.__rh?.ready);await enterClub(page,'Arjan');
  await page.waitForTimeout(700);await page.screenshot({path:path.join(output,'club.png')});
  await page.evaluate(()=>{const g=window.__rh.game;g.autosave=-10000;g.clock.paused=true;for(const a of [...g.activities.active])g.cancelActivity(a);g.schedule.update=()=>{};g.everyday.next=g.history.nextSocial=g.history.nextObject=1e12;for(const c of g.characters){c.path=[];c.yieldUntil=1e12;c.setAnimation('idle');}});
  async function select(id){
@@ -57,7 +58,7 @@ try{
   await page.screenshot({path:path.join(output,`clock-card-${width}x${height}.png`)});report.viewports.push({width,height,box});
   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();report.accessibility.push({width,height,violations:axe.violations});assert.deepEqual(axe.violations,[],`Axe ${width}x${height}`);
  }
- const mobile=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});const touchPage=await mobile.newPage();await touchPage.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`);await touchPage.waitForFunction(()=>window.__rh?.ready);await touchPage.getByText('Arjan',{exact:true}).tap();await touchPage.waitForTimeout(700);
+ const mobile=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});const touchPage=await mobile.newPage();await touchPage.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`);await touchPage.waitForFunction(()=>window.__rh?.ready);await enterClub(touchPage,'Arjan');await touchPage.waitForTimeout(700);
  await touchPage.evaluate(()=>{const g=window.__rh.game;g.clock.paused=true;const o=g.world.objects.find(o=>o.id==='clubClock');g.camera.focus(o.selection.centre.x,o.selection.centre.z,14);for(let i=0;i<180;i++)g.camera.update(1/60);g.camera.pin();});
  const touchPoint=await touchPage.evaluate(()=>{const g=window.__rh.game,p=g.camera.project(g.world.objects.find(o=>o.id==='clubClock').selection.centre);for(let radius=0;radius<=60;radius+=6)for(let angle=0;angle<Math.PI*2;angle+=Math.PI/8){const x=p.x+Math.cos(angle)*radius,y=p.y+Math.sin(angle)*radius;if(document.elementFromPoint(x,y)===g.canvas&&g.pickObject(x,y)?.id==='clubClock')return {x,y};}return null;});assert(touchPoint,'Exposed native touch hit clubClock');await touchPage.touchscreen.tap(touchPoint.x,touchPoint.y);assert.equal(await touchPage.evaluate(()=>window.__rh.game.spatial.selectedId),'clubClock');
  await touchPage.locator('#spatialCard button[data-action="inspect"]').tap();assert.equal(await touchPage.evaluate(()=>window.__rh.game.activities.active.filter(a=>a.kind==='touch').length),1);report.touch.push({viewport:'390x844',id:'clubClock',nativeTap:true,activityCount:1});await mobile.close();

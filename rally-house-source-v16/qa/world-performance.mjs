@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 fs.mkdirSync('qa/world-interface',{recursive:true});
 import fs from 'node:fs';
 import {chromium,browserOptions} from './runtime.mjs';
@@ -6,7 +7,7 @@ try{
  if(!process.env.QA_BEFORE_URL||!process.env.QA_AFTER_URL||process.env.QA_BEFORE_URL===process.env.QA_AFTER_URL)throw Error('Set distinct QA_BEFORE_URL and QA_AFTER_URL for a valid comparison.');
  for(const [name,url] of [['before',process.env.QA_BEFORE_URL],['after',process.env.QA_AFTER_URL]]){
   const context=await b.newContext({viewport:{width:1280,height:800}}),p=await context.newPage();
-  await p.goto(`${url}/?debug`);await p.waitForFunction(()=>window.__rh?.ready);await p.getByText('Arjan',{exact:true}).click();
+  await p.goto(`${url}/?debug`);await p.waitForFunction(()=>window.__rh?.ready);await enterClub(p,'Arjan');
   await p.evaluate(()=>{const g=window.__rh.game;g.clock.paused=true;g.settings.visuals='detail';g.camera.frameAcademy();});await p.waitForTimeout(1200);
   report[name]=await p.evaluate(async()=>{
    const samples=[],ui=[],g=window.__rh.game;

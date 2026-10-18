@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {chromium,browserOptions} from './runtime.mjs';
@@ -31,7 +32,7 @@ try {
   await page.locator('video').screenshot({path:'../takeover-evidence/after/video-contact.png'});
   await page.getByRole('button',{name:'Play Rally House ↗'}).focus();
   await page.keyboard.press('Enter');await page.locator('iframe').waitFor();
-  await page.frameLocator('iframe').getByText('Arjan',{exact:true}).click();
+  await enterClub(page.frameLocator('iframe'),'Arjan');
   report.keyboardLoadsGame=true;
   await page.evaluate(()=>{document.querySelector('[class*="frameShell"]').requestFullscreen=()=>Promise.reject(Error('Controlled QA rejection'));});
   await page.getByRole('button',{name:'Enter fullscreen ↗'}).click();
@@ -41,7 +42,7 @@ try {
   for(let i=0;i<5;i++){
     await page.goto('http://127.0.0.1:8082/?debug');
     await page.waitForFunction(()=>window.__rh?.ready,null,{timeout:20000});
-    await page.getByText('Arjan',{exact:true}).click();report.packageReloads++;
+    await enterClub(page,'Arjan');report.packageReloads++;
   }
   assert.deepEqual(report.errors,[]);assert.deepEqual(report.failedRequests,[]);
   console.log('Final footage, captions, keyboard entry, fullscreen fallback, and five standalone reloads PASS');

@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';
 import { chromium, browserOptions } from './runtime.mjs';
 
@@ -7,7 +8,7 @@ async function ensureAvatar(page) {
   const picker = page.locator('#context.open');
   if (await picker.count()) {
     const arjan = page.getByText('Arjan', { exact: true });
-    if (await arjan.count()) await arjan.click();
+    if (await arjan.count()) await enterClub(page,'Arjan');
   }
 }
 

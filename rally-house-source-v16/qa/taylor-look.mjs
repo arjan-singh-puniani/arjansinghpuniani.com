@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -10,7 +11,7 @@ const report={errors:[],shots:[]};
 try{
  for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
   const page=await browser.newPage({viewport});page.on('pageerror',e=>report.errors.push(e.message));
-  await page.goto('http://127.0.0.1:8078/?debug');await page.waitForFunction(()=>window.__rh?.ready);await page.getByText('Taylor',{exact:true}).click();
+  await page.goto('http://127.0.0.1:8078/?debug');await page.waitForFunction(()=>window.__rh?.ready);await enterClub(page,'Taylor');
   await page.evaluate(()=>{const g=window.__rh.game;g.autosave=-10000;g.clock.minutes=720;g.clock.paused=true;g.settings.visuals='detail';g.world.weather='clear';g.ui.hideSpeech();g.activeSpeechId=null;g.speechUntil=0;const a=g.player;window.qaOriginalPlayer=a.position.clone();a.path=[];a.setAnimation('idle');a.setLook(undefined);a.position.set(-3,0,3);a.yaw=a.targetYaw=0;a.update(.5);g.camera.autoFrame=false;g.camera.locked=true;g.camera.target.set(-3,1.25,3);g.camera.desiredTarget=g.camera.target.clone();g.camera.distance=g.camera.desiredDistance=8;g.camera.azimuth=g.camera.desiredAzimuth=0;g.camera.elevation=g.camera.desiredElevation=.06;g.camera.update(0);});
   const inspectionStyles=await page.addStyleTag({content:'.toast,.world-notice{visibility:hidden!important}'});
   for(const [name,angle] of [['front',0],['three-quarter',.65],['back',Math.PI]]){

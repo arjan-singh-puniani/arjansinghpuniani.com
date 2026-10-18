@@ -24,7 +24,7 @@ import { EmergentSocialSystem } from './simulation/EmergentSocialSystem.js';
 import { RallySystem } from './tennis/RallySystem.js';
 import { ChampionshipController } from './tennis/ChampionshipController.js';
 import { championshipOpponentFor } from './tennis/ChampionshipOpponents.js';
-import { CHAMPIONSHIP_CONTACT_FEEL } from './tennis/ChampionshipTuning.js';
+import { CHAMPIONSHIP_CONTACT_FEEL, CHAMPIONSHIP_TUNING } from './tennis/ChampionshipTuning.js';
 import { ChampionshipCameraRig } from './tennis/ChampionshipCameraRig.js';
 import { InteractiveMatchSystem } from './tennis/InteractiveMatchSystem.js';
 import { MatchInput } from './tennis/MatchInput.js';
@@ -70,6 +70,7 @@ export class Game {
     // Championship Mode is intentionally composed from small owners rather than
     // adding another cluster of booleans to Game.ts.
     championship = new ChampionshipController();
+    championshipApproachSpeeds = new Map();
     matchInput = new MatchInput();
     championshipCamera;
     championshipHud;
@@ -213,7 +214,13 @@ export class Game {
             this.performanceLab.close();
         else
             this.performanceLab.dispose(); });
-        this.ui.onContextClose = () => this.spatial.dismiss(true);
+        this.ui.onContextClose = () => {
+            this.spatial.dismiss(true);
+            if (this.arrivalPaused && !this.playerAvatar) {
+                this.arrivalPaused = false;
+                this.clock.paused = false;
+            }
+        };
         this.ui.onPanelOpen = () => this.spatial.dismiss();
         window.addEventListener('pagehide', e => { if (e.persisted)
             this.spatial.dismiss(true);
@@ -229,6 +236,11 @@ export class Game {
         }
         catch (err) {
             throw new SavedClubLoadError(err);
+        }
+        // Leave the first court available while a new visitor chooses their character.
+        if (!this.playerAvatar) {
+            this.arrivalPaused = true;
+            this.clock.paused = true;
         }
         this.daily.ensureDay(this.clock.day);
         this.lastDay = this.clock.day;
@@ -281,6 +293,7 @@ export class Game {
         };
     }
     bindUI() {
+        document.getElementById('tennisBtn').onclick = () => this.playTennis();
         this.ui.onBuildClose = () => { this.buildType = null; this.buildRotation = 0; this.movingPlacement = null; };
         document.getElementById('scenePeek').onclick = () => {
             const run = this.lifeRuns.values().next().value;
@@ -612,6 +625,9 @@ export class Game {
         }
         this.championshipPriorSpeed = this.clock.speed;
         this.championshipPriorPaused = this.clock.paused;
+        this.championshipApproachSpeeds = new Map([this.player, opponent].map(c => [c, c.speed]));
+        for (const c of this.championshipApproachSpeeds.keys())
+            c.speed *= CHAMPIONSHIP_TUNING.approachSpeedScale;
         this.clock.paused = false;
         this.clock.speed = 1;
         this.championshipActivityId = activity.id;
@@ -643,6 +659,21 @@ export class Game {
         this.canvas.focus();
         this.ui.closeContext();
         this.ui.toast(`${opponent.spec.name} accepts. Championship court.`);
+    }
+    playTennis() {
+        if (!this.playerAvatar) {
+            this.openAvatarPicker();
+            return;
+        }
+        if (this.championship.active || this.performanceLab?.active || this.phoneCapture?.active)
+            return;
+        const opponent = ['leo', 'mika', 'coach', 'nia'].map(id => this.byId(id)).find(c => c && championshipOpponentFor(c.id) && !this.activities.busy(c.id));
+        if (!opponent || this.activities.reserved('court')) {
+            this.ui.toast('A rally is already on. The court will be yours when they finish.');
+            this.camera.nudgeFocus(1, 0, .6);
+            return;
+        }
+        this.startChampionship(opponent);
     }
     createInteractiveMatch(opponent, profile) {
         return new InteractiveMatchSystem(this.player, opponent, profile, this.matchInput, {
@@ -715,7 +746,12 @@ export class Game {
         if (!paused)
             this.canvas.focus({ preventScroll: true });
     }
+    restoreChampionshipApproach() {
+        this.championshipApproachSpeeds?.forEach((speed, c) => { c.speed = speed; });
+        this.championshipApproachSpeeds?.clear();
+    }
     cleanupChampionship() {
+        this.restoreChampionshipApproach();
         this.matchInput.setEnabled(false);
         this.interactiveMatch?.stop();
         this.interactiveMatch = null;
@@ -761,6 +797,7 @@ export class Game {
             const arrived = people.every((character, index) => Vec3.sub(character.position, targets[index]).len() < .55 &&
                 character.pathIndex >= character.path.length);
             if (arrived) {
+                this.restoreChampionshipApproach();
                 this.activities.transition(a, 'starting');
                 people.forEach(character => {
                     character.socialGesture = 'none';
@@ -1284,21 +1321,52 @@ export class Game {
         void this.save();
     }
     playerAvatar = null;
+    arrivalPaused = false;
     choosePlayerAvatar(id) {
         this.playerAvatar = id;
         this.player.spec = playerSpec(id);
         if (id === 'taylor' && !this.player.matchCompetitor)
             this.player.racketStowed = true;
         this.ui.closeContext();
-        this.camera.focus(this.player.position.x, this.player.position.z, 22);
+        if (this.arrivalPaused) {
+            this.arrivalPaused = false;
+            this.clock.paused = false;
+            this.camera.frameAcademy();
+        }
+        else
+            this.camera.focus(this.player.position.x, this.player.position.z, 22);
         this.ui.toast(`${this.player.spec.name} · Welcome to your club.`);
         void this.save();
     }
     openAvatarPicker() {
-        this.ui.showContext('YOUR CHARACTER', 'Who’s arriving at Rally House?', 'Choose your look. You can switch anytime in Settings.', [], [
-            { title: 'Taylor', subtitle: 'Dark ponytail · blue tennis dress · composed all-court style', run: () => this.choosePlayerAvatar('taylor') },
-            { title: 'Arjan', subtitle: 'Swept dark hair · strong brows · charcoal tenniswear', run: () => this.choosePlayerAvatar('arjan') }
+        const arriving = !this.playerAvatar;
+        if (!arriving) {
+            this.ui.showContext('YOUR CHARACTER', 'Who’s arriving at Rally House?', 'Choose your look. You can switch anytime in Settings.', [], [
+                { title: 'Taylor', subtitle: 'Dark ponytail · blue tennis dress', run: () => this.choosePlayerAvatar('taylor') },
+                { title: 'Arjan', subtitle: 'Swept hair · charcoal tenniswear', run: () => this.choosePlayerAvatar('arjan') }
+            ]);
+            return;
+        }
+        let choice = 'arjan';
+        const select = (id) => {
+            choice = id;
+            document.querySelectorAll('.arrival-avatar').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.avatar === id)));
+        };
+        this.ui.showContext('WELCOME TO YOUR CLUB', 'A little club.\nOne more rally.', 'Take the court, then stay for the people. Choose who you’ll be today.', [], [
+            { title: 'Taylor', subtitle: 'Blue dress · ponytail', run: () => select('taylor') },
+            { title: 'Arjan', subtitle: 'Charcoal tenniswear', run: () => select('arjan') },
+            { title: 'Play tennis', subtitle: 'Step onto the court', run: () => { this.choosePlayerAvatar(choice); this.playTennis(); } },
+            { title: 'Explore the club', subtitle: 'Take your time', run: () => this.choosePlayerAvatar(choice) }
         ]);
+        const card = document.getElementById('context');
+        card.classList.add('arrival-card');
+        const buttons = card.querySelectorAll('#contextActions button');
+        ['taylor', 'arjan'].forEach((id, index) => { buttons[index].classList.add('arrival-avatar'); buttons[index].dataset.avatar = id; });
+        buttons[2].classList.add('arrival-play');
+        buttons[3].classList.add('arrival-explore');
+        buttons[3].dataset.arrivalAction = 'explore';
+        select(choice);
+        requestAnimationFrame(() => buttons[2].focus({ preventScroll: true }));
     }
     openSettings() {
         this.ui.showContext('COMFORT', 'Make yourself comfortable', 'Your character, camera motion and sound are yours to adjust.', [], [

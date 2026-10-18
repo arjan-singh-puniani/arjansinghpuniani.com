@@ -72,7 +72,7 @@ export class HUD {
     hideHint() { byId('hint').classList.add('hide'); }
     update(stats, paused, speed) { byId('coins').textContent = String(Math.floor(stats.coins)); byId('stars').textContent = String(stats.stars); byId('heart').textContent = String(stats.heart); byId('clock').textContent = stats.clock; byId('weatherChip').firstChild.textContent = stats.weather === 'rain' ? '☂ ' : stats.weather === 'cloudy' ? '☁ ' : '☀ '; byId('weatherBtn').textContent = stats.weather === 'rain' ? '☂' : stats.weather === 'cloudy' ? '☁' : '☀'; byId('playBtn').textContent = paused ? '▶' : 'Ⅱ'; byId('playBtn').setAttribute('aria-label', paused ? 'Resume' : 'Pause'); byId('playBtn').classList.toggle('primary', !paused); byId('speedBtn').textContent = `${speed}×`; }
     setObjective(title, text) { byId('objectiveTitle').textContent = title; byId('objectiveText').textContent = text; }
-    showContext(eyebrow, title, text, meta, actions) { this.onPanelOpen(); byId('contextEyebrow').textContent = eyebrow.toUpperCase(); byId('contextTitle').textContent = title; byId('contextText').textContent = text; const mb = byId('contextMeta'); mb.innerHTML = ''; for (const x of meta) {
+    showContext(eyebrow, title, text, meta, actions) { this.context.classList.remove('arrival-card'); this.onPanelOpen(); byId('contextEyebrow').textContent = eyebrow.toUpperCase(); byId('contextTitle').textContent = title; byId('contextText').textContent = text; const mb = byId('contextMeta'); mb.innerHTML = ''; for (const x of meta) {
         const s = document.createElement('span');
         s.textContent = x;
         mb.appendChild(s);
@@ -86,7 +86,7 @@ export class HUD {
         b.onclick = () => a.run();
         box.appendChild(b);
     } this.toggleBuild(false); this.context.scrollTop = 0; this.book.classList.remove('open'); this.context.classList.add('open'); this.focusPanel(this.context); }
-    closeContext() { this.onContextClose(); const had = this.context.contains(document.activeElement); this.context.classList.remove('open'); if (had)
+    closeContext() { this.onContextClose(); const had = this.context.contains(document.activeElement); this.context.classList.remove('open', 'arrival-card'); if (had)
         this.opener?.focus(); }
     showBook(data) { this.onPanelOpen(); this.toggleBuild(false); this.bookData = data; this.context.classList.remove('open'); this.book.classList.add('open'); this.renderBook(); this.focusPanel(this.book); }
     renderBook() {

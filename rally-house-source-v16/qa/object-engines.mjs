@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {homedir} from 'node:os';
@@ -14,7 +15,7 @@ for(const [name,engine,executable] of [
   browser=await engine.launch({headless:true,executablePath:path.join(homedir(),'Library/Caches/ms-playwright',executable)});
   for(const [width,height] of [[1280,800],[390,844],[844,390]]){
    const context=await browser.newContext({viewport:{width,height},reducedMotion:'reduce'}),page=await context.newPage();page.on('pageerror',e=>row.errors.push(e.message));page.on('response',r=>{if(r.status()>=400)row.requests.push([r.status(),r.url()]);});
-   await page.goto('http://127.0.0.1:8078/?debug');await page.waitForFunction(()=>window.__rh?.ready,{},{timeout:15000});await page.getByText('Arjan',{exact:true}).click();
+   await page.goto('http://127.0.0.1:8078/?debug');await page.waitForFunction(()=>window.__rh?.ready,{},{timeout:15000});await enterClub(page,'Arjan');
    await page.evaluate(()=>{const g=window.__rh.game;g.clock.paused=true;g.openBook();});await page.locator('button[data-tab="details"]').click();await page.getByRole('button',{name:'Club clock A brass-hearted',exact:false}).click();
    // Selection and camera travel are rendered on RAF; await that before deciding whether Find is needed.
    await page.waitForTimeout(350);const find=page.getByRole('button',{name:/Find Club clock/});if(await find.isVisible())await find.click();

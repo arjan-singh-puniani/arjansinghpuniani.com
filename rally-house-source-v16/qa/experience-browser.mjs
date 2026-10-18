@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -23,12 +24,12 @@ try {
       await page.screenshot({path:path.join(output,'portfolio-hero-B.png'),fullPage:true});
     }
     await page.getByRole('button',{name:'Play Rally House ↗'}).click();
-    await page.locator('iframe').waitFor();await page.frameLocator('iframe').getByText('Arjan',{exact:true}).click();
+    await page.locator('iframe').waitFor();await enterClub(page.frameLocator('iframe'),'Arjan');
     await page.screenshot({path:path.join(output,`portfolio-playing-${width}.png`)});
     report.viewports.push({width,height,overflow:false,axeViolations:axe.violations.length,iframeOnIntent:true});await context.close();
   }
   const page=await browser.newPage({viewport:{width:1280,height:800}});page.on('pageerror',e=>report.errors.push(e.message));
-  await page.goto('http://127.0.0.1:8078/?debug');await page.waitForFunction(()=>window.__rh?.ready);await page.getByText('Arjan',{exact:true}).click();
+  await page.goto('http://127.0.0.1:8078/?debug');await page.waitForFunction(()=>window.__rh?.ready);await enterClub(page,'Arjan');
   await page.evaluate(()=>{const g=window.__rh.game;g.autosave=-10000;g.clock.paused=true;g.settings.reducedMotion=true;g.camera.frameAcademy();});
   // Runtime soak: actual navigation and state updates, controller-injected scores.
   // Fixed steps accelerate waiting; this is lifecycle QA, not recorded human play.
