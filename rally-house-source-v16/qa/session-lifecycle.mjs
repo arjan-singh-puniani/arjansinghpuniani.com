@@ -61,6 +61,9 @@ try{
    for(let n=0;n<180&&g.championship.active;n++)g.updateFixed(1/60);
   });
   await page.waitForTimeout(300);
+  // Native audio completion events may trail the visual RAF, especially after
+  // accelerated simulation. Still require every transient node to disconnect.
+  await page.waitForFunction(()=>window.optimizerAudio.nodes.size===0,null,{timeout:2000});
   const row=await page.evaluate(()=>{
    const g=window.__rh.game,a=window.optimizerAudio;
    return{dom:document.querySelectorAll('*').length,paused:g.clock.paused,speed:g.clock.speed,reserved:g.activities.reserved('court'),owner:g.championshipHud.pointerId,input:g.matchInput.enabled,match:g.interactiveMatch,camera:JSON.stringify(g.camera.captureState()),connectedNodes:a.nodes.size,connects:a.connected,disconnects:a.disconnected,buffers:g.audio.tennisMaterialBuffers.size,competitor:g.player.matchCompetitor,impulse:!!g.championshipCamera.renderImpulse(),heap:performance.memory?.usedJSHeapSize};
