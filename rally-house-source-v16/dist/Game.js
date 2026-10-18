@@ -1980,7 +1980,7 @@ export class Game {
                     }
                 }
                 // Nonparticipants watch from the side instead of occupying a reserved court.
-                if (this.activities.reserved('court') && Math.abs(c.position.x - 1) < 4.5 && Math.abs(c.position.z) < 6.3) {
+                if (this.activities.reserved('court') && this.world.nav.onCourt(c.position)) {
                     const exit = courtSpectatorSpots[c.id], target = c.path[c.path.length - 1];
                     if (!target || Vec3.sub(exit, target).len() > .1)
                         c.goTo(exit, 'watch');
