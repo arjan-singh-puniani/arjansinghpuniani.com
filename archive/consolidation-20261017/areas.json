@@ -32,10 +32,10 @@
   {
     "root": "desktop",
     "area": "arjan-portfolio",
-    "files": 161,
-    "bytes": 26324492,
+    "files": 111,
+    "bytes": 19874328,
     "classes": {
-      "H": 161
+      "H": 111
     },
     "uniqueObjects": 0
   },
@@ -192,11 +192,11 @@
   {
     "root": "desktop",
     "area": "arjan-portfolio/public/holoanatomy",
-    "files": 124,
-    "bytes": 15992682,
+    "files": 170,
+    "bytes": 20732619,
     "classes": {
       "D": 7,
-      "A": 117
+      "A": 163
     },
     "uniqueObjects": 7
   },
@@ -217,6 +217,16 @@
     "bytes": 8196,
     "classes": {
       "G": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/public/og 2.png",
+    "files": 1,
+    "bytes": 1683337,
+    "classes": {
+      "A": 1
     },
     "uniqueObjects": 0
   },
@@ -258,6 +268,16 @@
     "bytes": 8196,
     "classes": {
       "G": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/src/app",
+    "files": 2,
+    "bytes": 23266,
+    "classes": {
+      "D": 2
     },
     "uniqueObjects": 0
   },
@@ -326,6 +346,16 @@
     "area": "arjan-portfolio/tests/vector-tennis-controls.browser.mjs",
     "files": 1,
     "bytes": 2964,
+    "classes": {
+      "A": 1
+    },
+    "uniqueObjects": 0
+  },
+  {
+    "root": "desktop",
+    "area": "arjan-portfolio/tests/vector-tennis.test 2.ts",
+    "files": 1,
+    "bytes": 3624,
     "classes": {
       "A": 1
     },
@@ -1548,6 +1578,16 @@
       "A": 4
     },
     "uniqueObjects": 5
+  },
+  {
+    "root": "hardening",
+    "area": "Personal photography (private filenames excluded)",
+    "files": 131,
+    "bytes": 519773770,
+    "classes": {
+      "C": 131
+    },
+    "uniqueObjects": 0
   },
   {
     "root": "hardening",

@@ -1,0 +1,17 @@
+
+> replisome@1.0.0 test
+> vitest run
+
+
+ RUN  v5.0.3 /private/tmp/repository-consolidation-20261017/replisome-source
+
+
+ Test Files  4 passed (4)
+      Tests  33 passed (33)
+   Start at  20:59:16
+   Duration  32.08s (transform 65%, import 19%, tests 11%, worker 4%)
+
+  Transform  transforming modules took 17.73s · 65% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+

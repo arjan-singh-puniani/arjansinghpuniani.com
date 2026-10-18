@@ -7787,11 +7787,10 @@
     "root": "desktop",
     "path": "arjan-portfolio/tests/vector-tennis.test 2.ts",
     "bytes": 3624,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/tests/vector",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "b77ff7068619b4830c6a8dccecb2ea6a125714a12ba65fc2d21a04dba07fd8e6",
+    "gitBlob": "d41b83485dd17dcac4369fec40cef19c2115cd54"
   },
   {
     "root": "desktop",
@@ -7914,11 +7913,10 @@
     "root": "desktop",
     "path": "arjan-portfolio/public/og 2.png",
     "bytes": 1683337,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/og 2.",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "7f9e312137bdafc2a232538ffbe103615ff569b0627a8ff0ce11aa42fbc34f6c",
+    "gitBlob": "883d71150e45cfd699d9586b4b9e3251ea3dfe9a"
   },
   {
     "root": "desktop",
@@ -10698,11 +10696,10 @@
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/index 2.html",
     "bytes": 7452,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "a31d2775758c828fa707fb41e301c1b4258d151b75e34e849e299cd5f4bc97f8",
+    "gitBlob": "7ebfc0107ff16ccd5697ffdbc5fe66e79ef51290"
   },
   {
     "root": "desktop",
@@ -10717,11 +10714,10 @@
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2631 2.obj",
     "bytes": 187038,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "ca7d8c0c82982ef1c838cd2224650c810adc3e52aaf6b345f0cdb77d7b068c5e",
+    "gitBlob": "98ec28a9ee29f86398122d0c0120266427e7b60b"
   },
   {
     "root": "desktop",
@@ -11663,91 +11659,82 @@
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2431 2.obj",
     "bytes": 21434,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "40ae6e23decbb5fe2ea3800d44d517302f219078266abd8dcbc7d86ebc246799",
+    "gitBlob": "a3c3d2ead7c3aab5e8600df7df208df1e59fad32"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2695 2.obj",
     "bytes": 15952,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "8a50ff9ad16191e3fd6cadb480943d212796d9cba391659c186be731b8f68d6a",
+    "gitBlob": "5bc4f158fc2381e7399eff60fe354a6713c9037a"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2668 2.obj",
     "bytes": 16400,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "512479cec370a4390d5f2f0555fbdfc7ba3c2e8fb7b78b242cb4382ede30287f",
+    "gitBlob": "958b6a0a701ec146057fe113f98bd72312e96520"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ3380 2.obj",
     "bytes": 928866,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "b6874589f3ddcbeae7153c2d499c23d0083eb18e95d139759529c901384758c8",
+    "gitBlob": "eff949cab926dc3328a3750654a2d1c03dbd5e34"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2714 2.obj",
     "bytes": 51286,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "d7d9ed93cb831b5beb98cdbbb814d2628e38efcc524028a4a291ee6144ea5c03",
+    "gitBlob": "1c38f885341edf02c8ec850bf6c193405f8ae8b6"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ3161 2.obj",
     "bytes": 139572,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "8f0de55a4feef85c256501a8afff7bb5aa3f77f4681af4c91801da87b54db103",
+    "gitBlob": "47c363821cbeba8da6ca8b24a10a01f3c00d6b72"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2671 2.obj",
     "bytes": 32032,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "9ca85be93a017bc2a8aa7d565b3ec320620e4b22e78936b0d6f52b7cf3015be5",
+    "gitBlob": "25cbeb581fcb12e95825792ed949f7de5a8b6a25"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ1725M 2.obj",
     "bytes": 52013,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "10d2734ce5ee1a9eadde241f542a87573682f3a4617f3df896bcd9513a1bb2f0",
+    "gitBlob": "4daca85b26f41a7f11b6079697f8d173ffe268c5"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2634 2.obj",
     "bytes": 14842,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "575eec8663acbae025b51ad8fa42dc6229f35d6f5d25673912c76cb59f117aec",
+    "gitBlob": "debc08e45464a7f260c265f31a871ce3a2d11105"
   },
   {
     "root": "desktop",
@@ -12033,11 +12020,10 @@
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ1381 2.obj",
     "bytes": 169927,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "6c1ec7f14af8bc9883e9f37363e299cbab82f4ecdeb68b1898670004ddf36632",
+    "gitBlob": "824bc998edc4c3341ba4665d629113454d53ce8a"
   },
   {
     "root": "desktop",
@@ -12141,11 +12127,10 @@
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2718 2.obj",
     "bytes": 13359,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "f08dbbc4cb90043b874b8483b378c0da44a573a6dccbb17530f8f07e8c32ba0c",
+    "gitBlob": "0d09195847e719bf29f831b84a77bab4c09736b8"
   },
   {
     "root": "desktop",
@@ -12281,31 +12266,28 @@
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ1326 2.obj",
     "bytes": 143634,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "f8a3b51c6408d43a35ccf8a773e4bdd5b5872d562402a9834c34c5dc0b3d9c25",
+    "gitBlob": "e89bc1f0aed73a12518661b40bb0dd79e751770d"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ1363 2.obj",
     "bytes": 105301,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "05f71831dc54303ffc740a4e38f35475f60c72e4e7348b797acfeac4a1d6d29d",
+    "gitBlob": "3796cf0500cbac8f44abeede0674deed8e53959a"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2705 2.obj",
     "bytes": 17523,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "bf1b51ca4df26fd8dfd263474e97cb97947e3c1df4c949a0cb36f114880e3f87",
+    "gitBlob": "a34fcbfd4cc401336579e4bce0bec23e85f5d20d"
   },
   {
     "root": "desktop",
@@ -12931,41 +12913,37 @@
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2722 2.obj",
     "bytes": 23583,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "ba9b6f6885b2fa65dd32aa1799dd1d3c77f2a95baac9dcab816704ad74fcd0d3",
+    "gitBlob": "bfc4691508c04841651d5e60b1f64339cf20872e"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2423 2.obj",
     "bytes": 113621,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "f0d7cbf9e10c0fcefe96741700605e7080d4a627fe214b4c8d5647d970e085f7",
+    "gitBlob": "ee409496cef66a0aa76e72ed0a020d8c56c8e359"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ1344 2.obj",
     "bytes": 117443,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "6d0ba18dfb57f207fcfe8f7d9532070c2856ef10c8ccff8d46384719f872e4b6",
+    "gitBlob": "8e86566a052df2536550881384803b4942c9cca9"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2647 2.obj",
     "bytes": 21395,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "18044f3caa4b23c89e8ce42555df29326c1ff1bdbf4b52559473dfb8368b040a",
+    "gitBlob": "a59abec0eb1ff8cd3bf43a8961062265f79730ab"
   },
   {
     "root": "desktop",
@@ -13061,171 +13039,154 @@
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ1773 2.obj",
     "bytes": 141140,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "c6b08e9c445dcf174e31bb91f3034dcdec7317782dcbdf0aa3c9cc2fa92d50a1",
+    "gitBlob": "6a4a573c4336bc0b4ae7d42d64578926ee9fc2e0"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2438 2.obj",
     "bytes": 510077,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "ad28c5925374c6648bafb77ac9a89163316c101559cb730906208c96266ae078",
+    "gitBlob": "437d1fba41e9003ab76bd77ad818da053292d857"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ1820 2.obj",
     "bytes": 142055,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "53b9d1b4f549c2e3926e110dac77a665b1627517f5c9309a9c3b1f1dfaf1b176",
+    "gitBlob": "88cea46cfc370c0a859d0cc9eb14ad90cddbd4b1"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ1362 2.obj",
     "bytes": 17565,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "e9055e3812268376fcb1d0dc51e212e3c1b5b506947abde5d9d2a1de61516970",
+    "gitBlob": "f80ec64352a889adcccec7872824799f5af02b23"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2661 2.obj",
     "bytes": 27932,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "cc0ff36616a12899ba8bed678ab70e6df1e54d1cf6fa04bf3ac61622abf6f1cd",
+    "gitBlob": "843eb33ba04abffb4142776a08e005745cb71880"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ1797 2.obj",
     "bytes": 236182,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "e05f6ec80fa902f5334cc5e8c029359674d39c39a90f86476a6d1d190ca1f30a",
+    "gitBlob": "e831fc84bad8042928b9a7440dd40fe4b3846852"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ1841 2.obj",
     "bytes": 149885,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "895a1e9e5eaed7443d9fe9544fefede9db219aaf38d30a4674cde778e1bdfb8e",
+    "gitBlob": "186424c20ac0357ff4853d6e918c8c5b033fb81e"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2269 2.obj",
     "bytes": 130875,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "24438422321aa6665de6394aa39e79fdeabdf2bc56427a3419da4dc630546464",
+    "gitBlob": "2991358ee509489fb8f8f8c81e2c126dadd6d46a"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ3269 2.obj",
     "bytes": 384814,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "ba97a37d471d6db65bca375a6413fd09e69e102017fb8a104d07255212d1b576",
+    "gitBlob": "482c40e61d6b72e1701583fbc61f6f54ac741569"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ3645 2.obj",
     "bytes": 36208,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "5cc007c2ea51255df641225630e83ddbf3e5c4545dffe4814b098c9199ceb26c",
+    "gitBlob": "fc07e700eb6c480636d3484a583a6115798b16f2"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2645 2.obj",
     "bytes": 22289,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "d6dcbc3294545f857df903393a6db47b268e3a97e8a0c87a0ab5bef056469eee",
+    "gitBlob": "e68888cda484b340f57d85a704c9c86df1f23b74"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2678 2.obj",
     "bytes": 48606,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "20a71237bc8a3b211c244e0695c1a6242abb3f684275c0b01061439c92b72ef7",
+    "gitBlob": "9dc80024b811f4df90cf315e83f621ce7e10a6f3"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2685 2.obj",
     "bytes": 16675,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "578c2f788d36149f535210004762558a7e533cc42c121d26a8f418cb04142263",
+    "gitBlob": "409172f6f8d0a14dcaf0368402e4f75631cc6747"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ3579 2.obj",
     "bytes": 27662,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "1fb9231343dce90a8d62061c63e0102eb72d117f131eda7876abfeb0060b6ad3",
+    "gitBlob": "4a86a67e4cf6e4f4b39b53b198d2a1d101af5bfb"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2421 2.obj",
     "bytes": 532771,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "7303c55e6d9c2e294759f7f7e01d23fc120eba74bce9ade0a01cc4bdb2bd4200",
+    "gitBlob": "29c50ddcebcc5ababc6b95bf64a54914c61ac142"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/anatomy/FJ2720 2.obj",
     "bytes": 22827,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "425ff09df45ea552c0d9a6d3cb57ec55a16ca5ca37e0736bf6ba5dea6cdf03a9",
+    "gitBlob": "769f16c8b3941d23ecba6688758febc7bd5cdf05"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/src/app 2.js",
     "bytes": 23965,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "8a777285329611864ebf5754a23846b238977fe9eca6fda51c259bb91eb04233",
+    "gitBlob": "2a32d15f19d48c081d32734c69b9593c2cf0e444"
   },
   {
     "root": "desktop",
@@ -13261,31 +13222,28 @@
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/src/ui/controls 2.js",
     "bytes": 10196,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "03d6e3c9b4ae1a3942b71d163e44d2a1aa7994d5760be6d00eb071fb39cb98a4",
+    "gitBlob": "cb567ffc141c7e3b97f514c8031108295ac98bd5"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/src/anatomy/manifest 2.js",
     "bytes": 29328,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "f7ac6deb0e44694216465b2bf4427f1819504f6a6b51dabf7bd4fec50ebb08c7",
+    "gitBlob": "ba7309034ec4d2e66b340477175f4d0068a92eb1"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/src/state/store 2.js",
     "bytes": 2036,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "0cf637fc75e8500458d129c7932d93e1d5d3b48a24e3e9106e65f1a794f48b6c",
+    "gitBlob": "314556da44638468ac6da3e692c0b9e30d0164f0"
   },
   {
     "root": "desktop",
@@ -13301,11 +13259,10 @@
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/src/engine/obj 2.js",
     "bytes": 2956,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "57640dbfac4d2c0cccf85d5417f211d846010a6ead3a7340bee3e33661d9eba7",
+    "gitBlob": "ffb0c7bfcb3c4983a1c6a20d26070d4afaecf804"
   },
   {
     "root": "desktop",
@@ -13321,51 +13278,46 @@
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/src/engine/renderer 2.js",
     "bytes": 24810,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "64a32c492a8c08e00de2d71f4f829f4f6ecc57ae1015ee3d9cb0ba969a2cdcaf",
+    "gitBlob": "0230cdaec5eaf2a27df557b31e832563e57acf7c"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/src/engine/quality 2.js",
     "bytes": 1321,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "ba181017887408ea5122721b05825e86eaa2b8c5426f33f6f9796ad854a472e2",
+    "gitBlob": "d78180de14c354bb28809f0058d69671aa61a3ea"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/src/engine/math 2.js",
     "bytes": 2734,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "0a4985b7bcc6f99fc7b0e451a3b9fd6f3e072abfadb8e5e9b92fad6aa00a27c3",
+    "gitBlob": "38b0e0bb3ffbe246aff0b473d2e715be7499f405"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/src/engine/loader 2.js",
     "bytes": 1575,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "8f1b2e17886931e119a20f5f267aa2cee641e85459af46ed5c6b634ba4e2efe8",
+    "gitBlob": "0c81393290b29aff291ad1c0fb1da79cf6ca2f75"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/public/holoanatomy/src/interaction/stageLayout 2.js",
     "bytes": 780,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/public/holoa",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "A",
+    "reason": "Preserved cloud original became readable; exact blob already exists on canonical main",
+    "sha256": "2dfdbb4a55f69a5adfdf3da80f92bc098ab501d3b689ae84c8a81da301bd03a3",
+    "gitBlob": "51ba2a7f0d8e5910488918e208a41971046e9d35"
   },
   {
     "root": "desktop",
@@ -13436,21 +13388,19 @@
     "root": "desktop",
     "path": "arjan-portfolio/src/app/reasonos 2.css",
     "bytes": 14054,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/src/app/reas",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "D",
+    "reason": "Preserved cloud original became readable; exact blob exists in remote Git history",
+    "sha256": "ce62e1e08c9c4952de7aecc77cc1593352565cadf2ce8107f751b9b8cf7e48e0",
+    "gitBlob": "45c47cc83b39612f0eb7c5a8dfe80de502c22768"
   },
   {
     "root": "desktop",
     "path": "arjan-portfolio/src/app/work/vector-ekg-reasonos/page 2.tsx",
     "bytes": 9212,
-    "classification": "H",
-    "reason": "Command '['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', '-c', 'import pathlib,sys;sys.stdout.buffer.write(pathlib.Path(sys.argv[1]).read_bytes())', '/Users/arjan/Desktop/arjansinghpuniani.com/arjan-portfolio/src/app/work",
-    "sha256": null,
-    "gitBlob": null,
-    "unreadable": true
+    "classification": "D",
+    "reason": "Preserved cloud original became readable; exact blob exists in remote Git history",
+    "sha256": "e1bc1051846ba138b805db487131ba9e2dced742654e4d45ba6d55e161235dad",
+    "gitBlob": "95a3f3181c17b4d8b6874e082504a2ab68f1c9e5"
   },
   {
     "root": "desktop",

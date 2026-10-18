@@ -1,0 +1,3659 @@
+{
+  "originalFiles": 1744,
+  "relocated": 1735,
+  "deleted": [
+    {
+      "root": "desktop",
+      "path": ".DS_Store",
+      "reason": "Finder metadata; no runtime/source value"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.DS_Store",
+      "reason": "Finder metadata; no runtime/source value"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/Documentation/.DS_Store",
+      "reason": "Finder metadata; no runtime/source value"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/public/.DS_Store",
+      "reason": "Finder metadata; no runtime/source value"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/public/images/.DS_Store",
+      "reason": "Finder metadata; no runtime/source value"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/src/.DS_Store",
+      "reason": "Finder metadata; no runtime/source value"
+    },
+    {
+      "root": "hardening",
+      "path": ".DS_Store",
+      "reason": "Finder metadata; no runtime/source value"
+    },
+    {
+      "root": "hardening",
+      "path": "arjan-portfolio/.DS_Store",
+      "reason": "Finder metadata; no runtime/source value"
+    },
+    {
+      "root": "hardening",
+      "path": "rally-house-source-v16/.DS_Store",
+      "reason": "Finder metadata; no runtime/source value"
+    }
+  ],
+  "roots": {
+    "desktop": 1478,
+    "hardening": 246,
+    "copy-resolution": 1,
+    "shoulder-2": 19
+  },
+  "personalMediaFilesPreserved": 131,
+  "unreadableCloudOriginals": 111,
+  "localVault": ".local-preservation/20261017",
+  "destinationRule": "originals/<root>/<original relative path>",
+  "cloudReadRetry": {
+    "cloudFilesResolved": 50,
+    "newRecoveryObjects": 0,
+    "remainingUnreadable": 111,
+    "classes": {
+      "D": 975,
+      "E": 67,
+      "A": 2591,
+      "G": 10,
+      "H": 111
+    }
+  },
+  "emptyDirectoriesRemoved": [
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914200623/arjan-portfolio/public/rally-house/dist/core 2"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914200623/arjan-portfolio/public/rally-house/dist"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914200623/arjan-portfolio/public/rally-house/dist 3"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914200623/arjan-portfolio/public/rally-house/dist 2"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914200623/arjan-portfolio/public/rally-house"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914200623/arjan-portfolio/public"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914200623/arjan-portfolio"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914200623"
+    },
+    {
+      "root": "desktop",
+      "path": "holo-v05-kit/__pycache__ 2"
+    },
+    {
+      "root": "desktop",
+      "path": "holo-v05-kit/payload/arjan-portfolio/Documentation"
+    },
+    {
+      "root": "desktop",
+      "path": "holo-v05-kit/payload/arjan-portfolio/tests"
+    },
+    {
+      "root": "desktop",
+      "path": "holo-v05-kit/payload/arjan-portfolio/public/holoanatomy/src/shoulder"
+    },
+    {
+      "root": "desktop",
+      "path": "holo-v05-kit/payload/arjan-portfolio/public/holoanatomy/src"
+    },
+    {
+      "root": "desktop",
+      "path": "holo-v05-kit/payload/arjan-portfolio/public/holoanatomy"
+    },
+    {
+      "root": "desktop",
+      "path": "holo-v05-kit/payload/arjan-portfolio/public"
+    },
+    {
+      "root": "desktop",
+      "path": "holo-v05-kit/payload/arjan-portfolio/node-tests"
+    },
+    {
+      "root": "desktop",
+      "path": "holo-v05-kit/payload/arjan-portfolio"
+    },
+    {
+      "root": "desktop",
+      "path": "holo-v05-kit/payload"
+    },
+    {
+      "root": "desktop",
+      "path": "holo-v05-kit/__pycache__"
+    },
+    {
+      "root": "desktop",
+      "path": "holo-v05-kit/payload 2"
+    },
+    {
+      "root": "desktop",
+      "path": "holo-v05-kit"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v17-slice-backup-20260914212144/arjan-portfolio/public/rally-house/dist 3"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v17-slice-backup-20260914212144/arjan-portfolio/public/rally-house/dist 2"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v17-slice-backup-20260914212144/arjan-portfolio/public/rally-house"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v17-slice-backup-20260914212144/arjan-portfolio/public"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v17-slice-backup-20260914212144/arjan-portfolio"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v17-slice-backup-20260914212144"
+    },
+    {
+      "root": "desktop",
+      "path": ".portfolio-visual-refresh-backup-20260930/src/app"
+    },
+    {
+      "root": "desktop",
+      "path": ".portfolio-visual-refresh-backup-20260930/src"
+    },
+    {
+      "root": "desktop",
+      "path": ".portfolio-visual-refresh-backup-20260930"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_static_patch/payload/arjan-portfolio/public/images/playground"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_static_patch/payload/arjan-portfolio/public/images"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_static_patch/payload/arjan-portfolio/public"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_static_patch/payload/arjan-portfolio/src/app/playground"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_static_patch/payload/arjan-portfolio/src/app"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_static_patch/payload/arjan-portfolio/src/components"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_static_patch/payload/arjan-portfolio/src"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_static_patch/payload/arjan-portfolio"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_static_patch/payload"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_static_patch"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_locked_delight_patch/replacements/arjan-portfolio/public/images/about"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_locked_delight_patch/replacements/arjan-portfolio/public/images/hero"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_locked_delight_patch/replacements/arjan-portfolio/public/images"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_locked_delight_patch/replacements/arjan-portfolio/public"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_locked_delight_patch/replacements/arjan-portfolio/src/app/contact"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_locked_delight_patch/replacements/arjan-portfolio/src/app/about"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_locked_delight_patch/replacements/arjan-portfolio/src/app/notes"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_locked_delight_patch/replacements/arjan-portfolio/src/app"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_locked_delight_patch/replacements/arjan-portfolio/src/content"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_locked_delight_patch/replacements/arjan-portfolio/src"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_locked_delight_patch/replacements/arjan-portfolio"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_locked_delight_patch/replacements"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_locked_delight_patch"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_visual_refresh_patch/replacements/arjan-portfolio/public/images/home"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_visual_refresh_patch/replacements/arjan-portfolio/public/images"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_visual_refresh_patch/replacements/arjan-portfolio/public"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_visual_refresh_patch/replacements/arjan-portfolio/src/app"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_visual_refresh_patch/replacements/arjan-portfolio/src"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_visual_refresh_patch/replacements/arjan-portfolio"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_visual_refresh_patch/replacements"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_visual_refresh_patch"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260917-155719/dist/world 2"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260917-155719/dist/persistence 2"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260917-155719/dist/entities 2"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260917-155719/dist/rendering 2"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260917-155719/dist/tennis 2"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260917-155719/dist/ui 2"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260917-155719/dist/core 2"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260917-155719/dist/animation 2"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260917-155719/dist/simulation 2"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260917-155719/dist/content 2"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260917-155719/dist"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260917-155719/dist 4"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260917-155719/dist 3"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260917-155719/dist 2"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260917-155719"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Recovery-RC3.2/overlay/qa/baseline-poses"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Recovery-RC3.2/overlay/qa/v16-poses"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Recovery-RC3.2/overlay/qa/v16-final-soak"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Recovery-RC3.2/overlay/qa/v16-release-poses"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Recovery-RC3.2/overlay/qa/v16-release-soak"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Recovery-RC3.2/overlay/qa/v16-mixed"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Recovery-RC3.2/overlay/qa/v16-soak"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Recovery-RC3.2/overlay/qa/baseline-reference/v16-baseline-watch"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Recovery-RC3.2/overlay/qa/baseline-reference/v16-baseline-mixed"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Recovery-RC3.2/overlay/qa/baseline-reference"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Recovery-RC3.2/overlay/qa"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Recovery-RC3.2/overlay"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Recovery-RC3.2"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/tests"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/qa"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/src/ui"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/src/core"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/src/world"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/src/tennis"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/src/rendering"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/src/entities"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16/src"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload/rally-house-source-v16"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/payload"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Playable-RC3.4-cozy-atmosphere/__pycache__"
+    },
+    {
+      "root": "desktop",
+      "path": "Rally-House-Playable-RC3.4-cozy-atmosphere"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-cozy-card-backup-20260914215352/arjan-portfolio/public/rally-house"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-cozy-card-backup-20260914215352/arjan-portfolio/public"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-cozy-card-backup-20260914215352/arjan-portfolio"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-cozy-card-backup-20260914215352"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_upgrade/replacements/arjan-portfolio/src/app/contact"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_upgrade/replacements/arjan-portfolio/src/app/about"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_upgrade/replacements/arjan-portfolio/src/app/notes"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_upgrade/replacements/arjan-portfolio/src/app/work"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_upgrade/replacements/arjan-portfolio/src/app"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_upgrade/replacements/arjan-portfolio/src/content"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_upgrade/replacements/arjan-portfolio/src/components"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_upgrade/replacements/arjan-portfolio/src"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_upgrade/replacements/arjan-portfolio"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_upgrade/replacements"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio_upgrade"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914173041/arjan-portfolio/public/rally-house/dist 3"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914173041/arjan-portfolio/public/rally-house/dist 2"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914173041/arjan-portfolio/public/rally-house"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914173041/arjan-portfolio/public"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914173041/arjan-portfolio"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914173041"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/dist/anatomy"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/dist/fallbacks"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/dist/src/ui"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/dist/src/anatomy"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/dist/src/state"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/dist/src/engine"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/dist/src/interaction"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/dist/src"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/dist"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/tests"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/docs"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/public/anatomy"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/public/fallbacks"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/public"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/scripts"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/src/ui"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/src/anatomy"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/src/state"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/src/engine"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/src/interaction"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate/src"
+    },
+    {
+      "root": "desktop",
+      "path": "HoloAnatomy_1.0_Candidate"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v17-slice-backup-20260914212513/arjan-portfolio/public/rally-house/dist 4"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v17-slice-backup-20260914212513/arjan-portfolio/public/rally-house/dist 3"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v17-slice-backup-20260914212513/arjan-portfolio/public/rally-house/dist 2"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v17-slice-backup-20260914212513/arjan-portfolio/public/rally-house"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v17-slice-backup-20260914212513/arjan-portfolio/public"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v17-slice-backup-20260914212513/arjan-portfolio"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v17-slice-backup-20260914212513"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914154824/arjan-portfolio/public/rally-house/dist 2"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914154824/arjan-portfolio/public/rally-house"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914154824/arjan-portfolio/public"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914154824/arjan-portfolio"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914154824"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-endless-rally-v3/node_modules 3"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-endless-rally-v3/src/app/reasonos/lab"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-endless-rally-v3/src/app/reasonos"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-endless-rally-v3/src/app"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-endless-rally-v3/src"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-endless-rally-v3"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules 3"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@nolyfill 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/strip-bom 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/which-typed-array 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/levn 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/set-function-name 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/chalk 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/jsdom 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-bigint 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/unrs-resolver 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-generator-function 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/isarray 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/object-hash 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@typescript-eslint 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/vite 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/eslint-plugin-react-hooks 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/eslint-import-resolver-typescript 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/run-parallel 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/define-data-property 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/resolve-from 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/typed-array-byte-offset 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/indent-string 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/cssstyle 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/any-promise 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/tinyrainbow 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/postcss-selector-parser 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/jsx-ast-utils 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/data-view-byte-length 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/array-buffer-byte-length 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/yocto-queue 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-weakset 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/own-keys 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/object 2.groupby"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/lodash 2.merge"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/es-object-atoms 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/fast-deep-equal 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/symbol-tree 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/napi-postinstall 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/es-iterator-helpers 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/postcss-nested 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/sharp 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/tr46 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/node-exports-info 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/js-yaml 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/zod 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/pify 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/readdirp 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/get-symbol-description 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/array.prototype 2.findlastindex"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/jiti 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/keyv 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-data-view 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/unbox-primitive 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-typed-array 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@babel 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/data-view-buffer 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/has-tostringtag 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@humanfs 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/update-browserslist-db 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/dlv 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/postcss-value-parser 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/postcss 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/hasown 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/es-module-lexer 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/resolve 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@asamuzakjp 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/aria-query 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@eslint-community 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/mz 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@humanwhocodes 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/es-define-property 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-string 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/reusify 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/uri-js 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/lilconfig 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/iterator 2.prototype"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/internal-slot 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/es-set-tostringtag 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-core-module 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-glob 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@alloc 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/next 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/get-proto 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-weakref 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/nanoid 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/has-property-descriptors 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/eslint-plugin-jsx-a11y 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/eslint-plugin-import 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-document 2.all"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/dom-accessibility-api 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/micromatch 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/std-env 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/normalize-range 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/esutils 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/arraybuffer.prototype 2.slice"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/fastq 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-async-function 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/tsconfig-paths 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/side-channel 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-regex 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@standard-schema 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/set-function-length 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/deep-is 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-finalizationregistry 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/es-shim-unscopables 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/array.prototype 2.flat"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/stable-hash 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-array-buffer 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/semver 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/pretty-format 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/loose-envify 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/which 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/object-inspect 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/optionator 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/whatwg-url 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/function-bind 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/fast-glob 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/react-dom 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/for-each 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/json5 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/http-proxy-agent 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/side-channel-list 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/which-collection 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@rollup"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@tybys"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/which-builtin-type 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/pathe 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/which-boxed-primitive 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/object 2.assign"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/picomatch 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/whatwg-encoding 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-negative-zero 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/normalize-path 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/js-tokens 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/gopd 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/language-subtag-registry 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/minimist 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/react-is 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/xmlchars 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/balanced-match 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-bun-module 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/ts-interface-checker 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/define-properties 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/call-bind-apply-helpers 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/json-schema-traverse 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/lz-string 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/esbuild 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/emoji-regex 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/cross-spawn 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/eslint-import-resolver-node 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/parse5 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/generator-function 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/set-proto 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/shebang-command 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/tldts 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/pirates 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/whatwg-mimetype 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-map 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/regexp.prototype 2.flags"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-date-object 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/string.prototype 2.matchall"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/esquery 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/entities 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/eslint-visitor-keys 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/fraction 2.js"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@jridgewell 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@adobe 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/ast-types-flow 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/caniuse-lite 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/autoprefixer 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/expect-type 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/lines-and-columns 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/array.prototype 2.tosorted"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/possible-typed-array-names 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/baseline-browser-mapping 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/espree 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/p-limit 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/stop-iteration-iterator 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/w3c-xmlserializer 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@napi-rs"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/globals 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/array-includes 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/to-regex-range 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/magic-string 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/nwsapi 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@swc 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/typed-array-length 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/safe-array-concat 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/braces 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/agent-base 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/reflect 2.getprototypeof"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/language-tags 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@vitest 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/webidl-conversions 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/acorn 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/styled-jsx 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/why-is-node-running 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/eslint-scope 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/redent 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/has-symbols 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/typed-array-buffer 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/isexe 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/ws 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/object 2.values"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/shebang-regex 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/safe-push-apply 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/chokidar 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/json-buffer 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-callable 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/detect-libc 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@nodelib 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@img 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@emnapi 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/axobject-query 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/concat-map 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/es-abstract 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-shared-array-buffer 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/brace-expansion 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/has-bigints 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/html-encoding-sniffer 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/ts-api-utils 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/globalthis 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/flat-cache 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/vitest 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/scheduler 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-set 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/es-to-primitive 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/node-releases 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-potential-custom-element-name 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/sucrase 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/call-bound 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/supports-preserve-symlinks-flag 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/tough-cookie 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/axe-core 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/tslib 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/unrs-resolver/node_modules/@emnapi"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/unrs-resolver/node_modules"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/unrs-resolver"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/object 2.entries"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/fast-json-stable-stringify 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/tinyexec 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/estree-walker 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/get-tsconfig 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/function.prototype 2.name"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/prop-types 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/stackback 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/get-intrinsic 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/strip-json-comments 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/glob-parent 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/object 2.fromentries"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/rollup 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/safe-regex-test 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/prelude-ls 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/call-bind 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/commander 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/eslint-plugin-react 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/typescript 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/json-stable-stringify-without-jsonify 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/type-check 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/strip-indent 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/string.prototype 2.trimstart"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/eslint-module-utils 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/.bin 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@next 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/array.prototype 2.findlast"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@rtsao 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/eslint 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/side-channel-map 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/escalade 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-weakmap 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/available-typed-arrays 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@testing-library 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/source-map-js 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/rrweb-cssom 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/iconv-lite 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/tailwindcss 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/xml-name-validator 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/ajv 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/doctrine 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/lru-cache 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-boolean-object 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/imurmurhash 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/array.prototype 2.flatmap"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/debug 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/damerau-levenshtein 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/functions-have-names 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/object-keys 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/flatted 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/cssesc 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/postcss-import 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@csstools 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/min-indent 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-number-object 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/https-proxy-agent 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/string.prototype 2.repeat"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@types 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/side-channel-weakmap 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/math-intrinsics 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/es-abstract-get 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/has-proto 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/react 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/string.prototype 2.includes"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/dunder-proto 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/data-urls 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/sharp/node_modules/@img"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/sharp/node_modules"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/sharp"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/ignore 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/tinybench 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/postcss-load-config 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/picocolors 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/typed-array-byte-length 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/string.prototype 2.trimend"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/tinyglobby 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/string.prototype 2.trim"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/dequal 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/data-view-byte-offset 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/es-errors 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/is-symbol 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@rushstack 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/resolve-pkg-maps 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/async-function 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/argparse 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/tldts-core 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@eslint 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules/@esbuild"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/node_modules"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/.next/cache/swc/plugins/macos_aarch64_18.0.0"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/.next/cache/swc/plugins"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/.next/cache/swc"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/.next/cache"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/.next/static 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/.next/cache 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/.next"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/src/app/reasonos/lab"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/src/app/reasonos"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/src/app"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2/src"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio v2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-winner-resolution-fix/src/app/reasonos/lab"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-winner-resolution-fix/src/app/reasonos"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-winner-resolution-fix/src/app"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-winner-resolution-fix/src"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-winner-resolution-fix"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/vite 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/next/node_modules/@next/.swc-win32-arm64-msvc-0k9SaDxB"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/next/node_modules/@next/.swc-linux-arm64-musl-1pEd9Rkc"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/next/node_modules/@next/.swc-linux-x64-musl-Qrzj5gb6"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/next/node_modules/@next/.swc-linux-arm64-gnu-gtCPohrE"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/next/node_modules/@next/.swc-win32-x64-msvc-eXnepmdo"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/next/node_modules/@next/.swc-darwin-x64-HUgIHZWe"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/next/node_modules/@next"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/next/node_modules"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/next/next-swc-fallback/@next/swc-darwin-arm64"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/next/next-swc-fallback/@next"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/next/next-swc-fallback"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/next"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@emnapi/.wasi-threads-hPEnUBCO"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@emnapi/.core-zmGtdzwM"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@emnapi"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/js-yaml 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/browserslist 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/semver 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/json5 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@rollup/.rollup-linux-x64-gnu-h3KmFndW"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@rollup"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@tybys/.wasm-util-JpJLB61T"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@tybys"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-win32-ia32-msvc"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-linux-x64-musl"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-linux-loong64-musl"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-freebsd-arm64"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-android-arm-eabi"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-linux-riscv64-gnu"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-darwin-x64"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-linux-loong64-gnu"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-linux-arm-gnueabihf"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-freebsd-x64"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-win32-arm64-msvc"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-linux-arm64-musl"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-linux-arm-musleabihf"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-win32-x64-msvc"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-linux-riscv64-musl"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-openbsd-x64"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-android-arm64"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-openharmony-arm64"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-linux-s390x-gnu"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-linux-ppc64-musl"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-win32-x64-gnu"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-linux-ppc64-gnu"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup/rollup-linux-arm64-gnu"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules/@rollup"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T/node_modules"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/.rollup 2-GHJYdI8T"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@napi-rs/.wasm-runtime-Jwz4Qm83"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@napi-rs"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/acorn 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@img/.sharp-linux-x64-SjF8yF9D"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@img/.sharp-libvips-linux-x64-OzsUVZxI"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@img"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@emnapi/.runtime-Su9Oz973"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@emnapi"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-linux-arm-gnueabihf-pPn0B73H"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-android-arm-eabi-cWHm0dQX"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-linux-loong64-musl-7aLTR8zX"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-linux-riscv64-gnu-zU7L2rrV"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-linux-riscv64-musl-8tUBpFMQ"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-linux-x64-musl-sBJVVwlA"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-android-arm64-FGs8MRuh"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-linux-ppc64-gnu-lbOKFj5k"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-linux-loong64-gnu-P5lMUx6h"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-freebsd-x64-eHZT9t48"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-win32-arm64-msvc-1oYGci0F"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-wasm32-wasi-ohSaI9OA"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-openharmony-arm64-CJ849JB4"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-darwin-arm64-Oia5QLq5"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-linux-arm64-gnu-SnDOii7i"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-linux-s390x-gnu-xc3TiFOa"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-linux-arm64-musl-IPUJq3xZ"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-win32-ia32-msvc-bNfR9IXo"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-linux-arm-musleabihf-6ehk5hTI"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-win32-x64-msvc-jScY5lXj"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs/.resolver-binding-darwin-x64-NOKDaX49"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules/@unrs"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver/node_modules"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/unrs-resolver"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/rollup 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@next/.swc-linux-x64-gnu-lnVTNSnz"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@next"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/typescript 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.win32-x64-vct0l5uA"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.linux-arm-knGeM6jH"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.openharmony-arm64-rj28wnrQ"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.netbsd-arm64-yIyheOtc"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.sunos-x64-TchoGkPZ"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.netbsd-x64-Pmr8KgJO"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.linux-ia32-1fqHjUu5"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.darwin-x64-WipKc4r9"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.win32-ia32-LB2HQ1JG"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.win32-arm64-aSyPGHFi"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.android-arm64-MSZTr7u3"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.freebsd-x64-Wy3lnVsC"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.aix-ppc64-Usb7zBHP"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.linux-mips64el-ShaTGddA"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.linux-s390x-U8krGJpo"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.openbsd-arm64-ldy06f4K"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.freebsd-arm64-0aVekZTs"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.android-x64-DhlO4JPv"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.android-arm-VW9T0foU"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.linux-arm64-QhK5HCyd"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.openbsd-x64-HlB5N9KB"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.linux-loong64-JMajp8dW"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.linux-riscv64-pHCeyxdq"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild/.linux-ppc64-VzV6Ipud"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules/@esbuild"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild/node_modules"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/esbuild"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/tailwindcss 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@unrs/.resolver-binding-linux-x64-gnu-FIxHg73v"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@unrs"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-darwin-arm64-GNhEv3sI"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-linux-arm64-QwO8GjC9"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-win32-ia32-xpiFzOaM"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-linux-arm-QqLLcFRE"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-linuxmusl-x64-MfJaA30M"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-libvips-linux-riscv64-5BqeinHG"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-win32-arm64-PNgvhJ6Z"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-linux-s390x-nndrSFNU"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-libvips-linux-s390x-TBFR1dHa"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-libvips-linuxmusl-x64-ki6qBrLN"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-libvips-linux-arm64-s7jszT9j"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-libvips-linux-arm-A8GfzmuG"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-darwin-x64-IDOYfwLS"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-libvips-linux-ppc64-fqX1R4zs"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-linux-riscv64-bZ3jYi0m"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-linuxmusl-arm64-3BzQyT7v"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-libvips-linuxmusl-arm64-UVX2KUIS"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-win32-x64-pwMUgF3d"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-libvips-darwin-x64-ii674IPU"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-wasm32-zthubZTJ"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-libvips-darwin-arm64-0QDUxic7"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img/.sharp-linux-ppc64-ySeHXDtg"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules/@img"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp/node_modules"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/sharp"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@esbuild/.linux-x64-wuoiG4iM"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules/@esbuild"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/node_modules"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/.next/types/app 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/.next/types"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/.next/cache/swc/plugins/macos_aarch64_18.0.0"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/.next/cache/swc/plugins"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/.next/cache/swc"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/.next/cache"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/.next/server/app 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/.next/server/chunks 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/.next/server/pages 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/.next/server"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/.next/static/css 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/.next/static/chunks 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/.next/static"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/.next"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-v4-seo-physicsworld-tests-fixed/src/app/reasonos/lab"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-v4-seo-physicsworld-tests-fixed/src/app/reasonos"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-v4-seo-physicsworld-tests-fixed/src/app"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-v4-seo-physicsworld-tests-fixed/src"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-v4-seo-physicsworld-tests-fixed"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/public/icons"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/public"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo/node_modules 3"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo/node_modules/@rollup"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo/node_modules/@tybys"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo/node_modules/@napi-rs"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo/node_modules/unrs-resolver/node_modules/@emnapi"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo/node_modules/unrs-resolver/node_modules"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo/node_modules/unrs-resolver"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo/node_modules/sharp/node_modules/@img"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo/node_modules/sharp/node_modules"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo/node_modules/sharp"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo/node_modules/@esbuild"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo/node_modules"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo/src/app/reasonos/lab"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo/src/app/reasonos"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo/src/app"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo/src"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-backup-before-seo"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-resumed-vector-tennis/node_modules 3"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-resumed-vector-tennis/src/app/reasonos/lab"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-resumed-vector-tennis/src/app/reasonos"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-resumed-vector-tennis/src/app"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-resumed-vector-tennis/src"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-resumed-vector-tennis"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-v4-seo-physicsworld-50of50-fix/src/app/reasonos/lab"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-v4-seo-physicsworld-50of50-fix/src/app/reasonos"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-v4-seo-physicsworld-50of50-fix/src/app"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-v4-seo-physicsworld-50of50-fix/src"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-v4-seo-physicsworld-50of50-fix"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-v4-seo-physicsworld/src/app/reasonos/lab"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-v4-seo-physicsworld/src/app/reasonos"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-v4-seo-physicsworld/src/app"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-v4-seo-physicsworld/src"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/arjan-portfolio-v4-seo-physicsworld"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/rally-house-source-v16/node_modules 2/typescript/lib"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/rally-house-source-v16/node_modules 2/typescript"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/rally-house-source-v16/node_modules 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup/rally-house-source-v16"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/arjan-portfolio-backup"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-131236/dist/world 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-131236/dist/persistence 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-131236/dist/entities 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-131236/dist/rendering 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-131236/dist/tennis 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-131236/dist/ui 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-131236/dist/core 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-131236/dist/simulation 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-131236/dist/content 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-131236/dist"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-131236/dist 4"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-131236/dist 3"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-131236/dist 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-131236"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-141852/dist/world 3"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-141852/dist/persistence 3"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-141852/dist/simulation 3"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-141852/dist/content 3"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-141852/dist"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-141852/dist 4"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-141852/dist 3"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-141852/dist 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-141852"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Playable-RC3/standalone/qa/baseline-poses"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Playable-RC3/standalone/qa/v16-poses"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Playable-RC3/standalone/qa/v16-final-soak"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Playable-RC3/standalone/qa/v16-release-poses"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Playable-RC3/standalone/qa/v16-release-soak"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Playable-RC3/standalone/qa/v16-mixed"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Playable-RC3/standalone/qa/v16-soak"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Playable-RC3/standalone/qa/baseline-reference/v16-baseline-watch"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Playable-RC3/standalone/qa/baseline-reference/v16-baseline-mixed"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Playable-RC3/standalone/qa/baseline-reference"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Playable-RC3/standalone/qa"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Playable-RC3/standalone"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Playable-RC3"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Championship-Current-RC1/payload/rally-house-source-v16/qa/baseline-poses"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Championship-Current-RC1/payload/rally-house-source-v16/qa/v16-poses"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Championship-Current-RC1/payload/rally-house-source-v16/qa/v16-final-soak"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Championship-Current-RC1/payload/rally-house-source-v16/qa/v16-release-poses"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Championship-Current-RC1/payload/rally-house-source-v16/qa/v16-release-soak"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Championship-Current-RC1/payload/rally-house-source-v16/qa/v16-mixed"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Championship-Current-RC1/payload/rally-house-source-v16/qa/v16-soak"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Championship-Current-RC1/payload/rally-house-source-v16/qa/baseline-reference/v16-baseline-watch"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Championship-Current-RC1/payload/rally-house-source-v16/qa/baseline-reference/v16-baseline-mixed"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Championship-Current-RC1/payload/rally-house-source-v16/qa/baseline-reference"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Championship-Current-RC1/payload/rally-house-source-v16/qa"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Championship-Current-RC1/payload/rally-house-source-v16"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Championship-Current-RC1/payload"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Championship-Current-RC1"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Showcase-RC2/standalone/qa/baseline-poses"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Showcase-RC2/standalone/qa/v16-poses"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Showcase-RC2/standalone/qa/v16-final-soak"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Showcase-RC2/standalone/qa/v16-release-poses"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Showcase-RC2/standalone/qa/v16-release-soak"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Showcase-RC2/standalone/qa/v16-mixed"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Showcase-RC2/standalone/qa/v16-soak"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Showcase-RC2/standalone/qa/baseline-reference/v16-baseline-watch"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Showcase-RC2/standalone/qa/baseline-reference/v16-baseline-mixed"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Showcase-RC2/standalone/qa/baseline-reference"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Showcase-RC2/standalone/qa"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Showcase-RC2/standalone"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/Rally-House-Showcase-RC2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-103148/dist/persistence 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-103148/dist/tennis 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-103148/dist/content 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-103148/dist"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-103148/dist 4"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-103148/dist 3"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-103148/dist 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/portfolio-rally-house-backup-20260917-103148"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/rally-house-source-v16/node_modules 2/typescript/lib"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/rally-house-source-v16/node_modules 2/typescript"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/rally-house-source-v16/node_modules 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv/rally-house-source-v16"
+    },
+    {
+      "root": "desktop",
+      "path": "arXiv"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260918-003503/dist/simulation 3"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260918-003503/dist"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260918-003503/dist 4"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260918-003503/dist 3"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260918-003503/dist 2"
+    },
+    {
+      "root": "desktop",
+      "path": "portfolio-rally-house-backup-20260918-003503"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914192615/arjan-portfolio/public/rally-house/dist 3"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914192615/arjan-portfolio/public/rally-house/dist 2"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914192615/arjan-portfolio/public/rally-house"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914192615/arjan-portfolio/public"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914192615/arjan-portfolio"
+    },
+    {
+      "root": "desktop",
+      "path": ".rally-house-v16-1-3-backup-20260914192615"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-final-copy-backup-20260927/src/app/contact"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-final-copy-backup-20260927/src/app/about"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-final-copy-backup-20260927/src/app/notes"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-final-copy-backup-20260927/src/app/work"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-final-copy-backup-20260927/src/app"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-final-copy-backup-20260927/src/content"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-final-copy-backup-20260927/src/components"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-final-copy-backup-20260927/src"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-final-copy-backup-20260927"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-pre-locked-delight-20260930/src/app/contact"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-pre-locked-delight-20260930/src/app/about"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-pre-locked-delight-20260930/src/app/notes"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-pre-locked-delight-20260930/src/app"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-pre-locked-delight-20260930/src/content"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-pre-locked-delight-20260930/src"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-pre-locked-delight-20260930"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-pre-static-cleanup-20260930/src/app/playground"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-pre-static-cleanup-20260930/src/app"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-pre-static-cleanup-20260930/src/components"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-pre-static-cleanup-20260930/src"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/.portfolio-pre-static-cleanup-20260930"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/public/holoanatomy-backup-20260930/anatomy"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/public/holoanatomy-backup-20260930/src 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/public/holoanatomy-backup-20260930/fallbacks"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/public/holoanatomy-backup-20260930/anatomy 2"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/public/holoanatomy-backup-20260930/src/ui"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/public/holoanatomy-backup-20260930/src/anatomy"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/public/holoanatomy-backup-20260930/src/learning"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/public/holoanatomy-backup-20260930/src/state"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/public/holoanatomy-backup-20260930/src/engine"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/public/holoanatomy-backup-20260930/src/interaction"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/public/holoanatomy-backup-20260930/src"
+    },
+    {
+      "root": "desktop",
+      "path": "arjan-portfolio/public/holoanatomy-backup-20260930"
+    },
+    {
+      "root": "hardening",
+      "path": "rally-house-forensic-archive-20261010"
+    },
+    {
+      "root": "hardening",
+      "path": "Rally-House-v17.2-Readable-Contact-Patch-Kit"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-1-toy-contact-backup-20260915-172218/rally-house-source-v16/tests"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-1-toy-contact-backup-20260915-172218/rally-house-source-v16/src/tennis"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-1-toy-contact-backup-20260915-172218/rally-house-source-v16/src/entities"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-1-toy-contact-backup-20260915-172218/rally-house-source-v16/src"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-1-toy-contact-backup-20260915-172218/rally-house-source-v16"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-1-toy-contact-backup-20260915-172218"
+    },
+    {
+      "root": "hardening",
+      "path": "Rally-House-v17.1-Toy-Contact-Patch-Kit"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-4-1-scenegrammar-backup-20260916-131403/rally-house-source-v16/src/simulation"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-4-1-scenegrammar-backup-20260916-131403/rally-house-source-v16/src"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-4-1-scenegrammar-backup-20260916-131403/rally-house-source-v16"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-4-1-scenegrammar-backup-20260916-131403"
+    },
+    {
+      "root": "hardening",
+      "path": "Rally-House-v17.4.1-SceneGrammar-Hotfix"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-3-embodied-spectator-backup-20260916-113350/rally-house-source-v16/src"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-3-embodied-spectator-backup-20260916-113350/rally-house-source-v16"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-3-embodied-spectator-backup-20260916-113350"
+    },
+    {
+      "root": "hardening",
+      "path": "Rally-House-v17-Patch-Kit"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-4-cozy-life-backup-20260916-130857/rally-house-source-v16/src/simulation"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-4-cozy-life-backup-20260916-130857/rally-house-source-v16/src/content"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-4-cozy-life-backup-20260916-130857/rally-house-source-v16/src/entities"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-4-cozy-life-backup-20260916-130857/rally-house-source-v16/src"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-4-cozy-life-backup-20260916-130857/rally-house-source-v16"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-4-cozy-life-backup-20260916-130857"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173122/rally-house-source-v16/tests"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173122/rally-house-source-v16/src/core"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173122/rally-house-source-v16/src/animation"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173122/rally-house-source-v16/src/tennis"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173122/rally-house-source-v16/src/entities"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173122/rally-house-source-v16/src"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173122/rally-house-source-v16"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173122"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173114/rally-house-source-v16/tests"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173114/rally-house-source-v16/src/core"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173114/rally-house-source-v16/src/animation"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173114/rally-house-source-v16/src/tennis"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173114/rally-house-source-v16/src/entities"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173114/rally-house-source-v16/src"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173114/rally-house-source-v16"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173114"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-backup/rally-house-source-v16/src/ui"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-backup/rally-house-source-v16/src/core"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-backup/rally-house-source-v16/src/simulation"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-backup/rally-house-source-v16/src/world"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-backup/rally-house-source-v16/src/persistence"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-backup/rally-house-source-v16/src/tennis"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-backup/rally-house-source-v16/src"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-backup/rally-house-source-v16"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-backup"
+    },
+    {
+      "root": "hardening",
+      "path": "Rally-House-v17.4-Cozy-Life-Patch-Kit"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173108/rally-house-source-v16/src/core"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173108/rally-house-source-v16/src/animation"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173108/rally-house-source-v16/src/entities"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173108/rally-house-source-v16/src"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173108/rally-house-source-v16"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-5-backup-20260916-173108"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-2-readable-contact-backup-20260915-174933/rally-house-source-v16/src/tennis"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-2-readable-contact-backup-20260915-174933/rally-house-source-v16/src/entities"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-2-readable-contact-backup-20260915-174933/rally-house-source-v16/src"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-2-readable-contact-backup-20260915-174933/rally-house-source-v16"
+    },
+    {
+      "root": "hardening",
+      "path": ".rally-house-v17-2-readable-contact-backup-20260915-174933"
+    },
+    {
+      "root": "hardening",
+      "path": "Rally-House-v17.5-Human-Space-Championship/__pycache__"
+    },
+    {
+      "root": "hardening",
+      "path": "Rally-House-v17.5-Human-Space-Championship"
+    },
+    {
+      "root": "hardening",
+      "path": "Rally-House-v17.3-Embodied-Spectator-Patch-Kit"
+    },
+    {
+      "root": "hardening",
+      "path": "Photos "
+    }
+  ]
+}
