@@ -24,7 +24,7 @@ const audit=async label=>{
  assert.equal(data.npcBodies,4,`${label}: all real club members rendered`);assert.equal(data.artificialCrowd,0);assert.equal(data.courtLayers,data.expectedCourtLayers);assert.equal(data.gl,0);report.stages.push(data);return data;
 };
 try{
- await page.goto('http://127.0.0.1:8078/?debug',{waitUntil:'networkidle'});await page.waitForFunction(()=>window.__rh?.ready);await page.getByText('Taylor',{exact:true}).click();
+ await page.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`,{waitUntil:'networkidle'});await page.waitForFunction(()=>window.__rh?.ready);await page.getByText('Taylor',{exact:true}).click();
  // Establish a known club before A. No fixture preparation occurs between A-D.
  await page.evaluate(()=>{
   const g=window.__rh.game;for(const a of [...g.activities.active])g.cancelActivity(a);g.observationStarted=true;g.history.nextSocial=g.history.nextObject=1e12;g.everyday.next=1e12;g.clock.minutes=780;g.clock.paused=true;g.clock.speed=1;g.settings.visuals='detail';
