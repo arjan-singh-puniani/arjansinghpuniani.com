@@ -34,6 +34,7 @@ const nextConfig: NextConfig = {
         destination: "https://arjansinghpuniani.com/:path*",
         permanent: true,
       },
+      { source: "/rally-house", destination: "/rally-house/index.html", permanent: true },
       { source: "/reasonos", destination: "/work/vector-ekg-reasonos", permanent: true },
       {
         source: "/reasonos/architecture",
