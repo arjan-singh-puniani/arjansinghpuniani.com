@@ -77,3 +77,36 @@ button:focus-visible,#game:focus-visible{outline:3px solid #b87535;outline-offse
 /* Keep the analysis app discoverable when other toolbar labels collapse. */
 .hud #labBtn{flex-shrink:0}
 .hud #labBtn span{display:inline}
+
+/* The first invitation makes the playable court legible without covering the club. */
+.objective{width:min(470px,calc(100% - 32px));gap:12px}
+.objective>div{min-width:0;flex:1}
+.objective .taskIcon{display:none}
+.objective small{line-height:1.4;white-space:normal}
+.tennis-invitation{flex:none;pointer-events:auto;min-height:44px;padding:10px 15px;border-radius:12px;background:#295a43;color:#fff9e8;font-size:13px;font-weight:750;cursor:pointer;box-shadow:0 4px 12px #224a3020;transition:background .15s,transform .15s}
+.tennis-invitation span{margin-left:8px;color:#d8e8a5}
+.tennis-invitation:hover{background:#204b37;transform:translateY(-1px)}
+.context.arrival-card{right:28px;bottom:96px;width:min(370px,calc(100% - 40px));padding:26px;border-radius:24px;background:linear-gradient(145deg,#fffdf6f5,#f4edddf5);box-shadow:0 20px 65px #35473224}
+.arrival-card .eyebrow{font-size:10px;letter-spacing:.15em;color:#657a5b;margin:0 0 16px}
+.arrival-card h2{font-family:Georgia,'Times New Roman',serif;font-size:43px;font-weight:400;line-height:1.04;letter-spacing:-.055em;white-space:pre-line;padding:0;margin:0 0 16px;color:#244c39}
+.arrival-card>p:not(.eyebrow){font-size:14px;line-height:1.65;max-width:29ch;margin-bottom:20px}
+.arrival-card .meta{display:none}
+.arrival-card .actions{grid-template-columns:1fr 1fr;gap:9px}
+.arrival-card .actions button{padding:14px 12px;background:#e5eadb;min-height:76px;border:1px solid #cfdbc6;border-radius:12px}
+.arrival-card .actions button:hover{background:#d7e3ca;transform:translateY(-2px)}
+.arrival-card .actions strong{font-size:16px;color:#244c39}
+.arrival-card .actions span{font-size:11px;margin-top:7px;color:#526650}
+.arrival-card .arrival-avatar[aria-pressed="true"]{border-color:#426b46;background:#d7e3ca;box-shadow:inset 0 0 0 1px #426b46}
+.arrival-card .arrival-avatar[aria-pressed="true"] strong::after{content:' ✓';font-size:12px;color:#426b46}
+.arrival-card .actions .arrival-play{grid-column:1/-1;background:#295a43;border-color:#295a43;text-align:center;min-height:56px}
+.arrival-card .actions .arrival-play:hover{background:#204b37}
+.arrival-card .actions .arrival-play strong{color:#fff9e8;font-size:15px}
+.arrival-card .actions .arrival-play span{display:none}
+.arrival-card .actions .arrival-explore{grid-column:1/-1;background:transparent;border:0;min-height:40px;text-align:center;padding:8px}
+.arrival-card .actions .arrival-explore strong{font-size:12px;font-weight:500;color:#526650}
+.arrival-card .actions .arrival-explore span{display:none}
+body:has(.arrival-card.open) .objective{visibility:hidden}
+body:has(.arrival-card.open) .hud,body:has(.arrival-card.open) .stats,body:has(.arrival-card.open) #scenePeek,body:has(.arrival-card.open) .hint{visibility:hidden}
+.arrival-card .close{background:transparent;color:#64765e;right:6px;top:6px}
+@media(max-width:720px){.objective{width:calc(100% - 28px)}.tennis-invitation{font-size:12px;padding:10px 12px}.context.arrival-card{left:16px;right:16px;bottom:82px;width:auto;max-height:calc(100dvh - 165px);padding:22px}.arrival-card h2{font-size:36px}.arrival-card .eyebrow{margin-bottom:12px}.arrival-card>p:not(.eyebrow){max-width:none;margin-bottom:16px}.arrival-card .actions button{min-height:66px;padding:11px 12px}.arrival-card .actions span{margin-top:4px}}
+@media(max-height:480px){.context.arrival-card{right:16px;left:auto;bottom:78px;max-width:340px;padding:16px}.arrival-card h2{font-size:30px;margin-bottom:10px}.arrival-card .eyebrow{margin-bottom:8px}.arrival-card>p:not(.eyebrow){font-size:12px;line-height:1.4;margin-bottom:12px}.arrival-card .actions button{min-height:50px;padding:9px}.arrival-card .actions span{display:none}}

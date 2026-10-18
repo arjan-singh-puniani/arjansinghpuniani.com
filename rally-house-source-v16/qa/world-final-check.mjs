@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 fs.mkdirSync('qa/world-interface',{recursive:true});
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -5,7 +6,7 @@ import {chromium,browserOptions} from './runtime.mjs';
 const b=await chromium.launch({...browserOptions,args:['--use-angle=metal']});const report={errors:[]};
 try{
  const c=await b.newContext({viewport:{width:390,height:844},hasTouch:true,reducedMotion:'reduce'}),p=await c.newPage();p.setDefaultTimeout(15000);p.on('pageerror',e=>report.errors.push(e.message));
- await p.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`);await p.waitForFunction(()=>window.__rh?.ready);await p.getByText('Arjan',{exact:true}).click();
+ await p.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`);await p.waitForFunction(()=>window.__rh?.ready);await enterClub(p,'Arjan');
  await p.evaluate(()=>{const g=window.__rh.game;g.clock.paused=true;g.camera.frameAcademy();});await p.waitForTimeout(150);
  const point=await p.evaluate(()=>{const g=window.__rh.game,c=g.characters.find(c=>c.id==='coach');return g.camera.project({x:c.position.x,y:1.25,z:c.position.z});});
  await p.touchscreen.tap(point.x,point.y);await p.waitForTimeout(100);assert.equal(await p.locator('#spatialTitle').textContent(),'Coach Contessa');

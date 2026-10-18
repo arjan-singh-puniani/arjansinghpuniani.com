@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {chromium,browserOptions} from './runtime.mjs';
@@ -5,7 +6,7 @@ const b=await chromium.launch({...browserOptions,args:['--use-angle=metal']});co
 try{
  for(const touch of [false,true]){
   const context=await b.newContext({viewport:touch?{width:844,height:390}:{width:1280,height:800},hasTouch:touch}),page=await context.newPage(),errors=[];page.setDefaultTimeout(20000);page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
-  await page.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`);await page.waitForFunction(()=>window.__rh?.ready);await page.getByText('Arjan',{exact:true}).click();
+  await page.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`);await page.waitForFunction(()=>window.__rh?.ready);await enterClub(page,'Arjan');
   await page.evaluate(()=>{const g=window.__rh.game;g.clock.paused=true;g.camera.frameAcademy();g.settings.reducedMotion=true;for(const a of [...g.activities.active])g.cancelActivity(a);g.openCharacter(g.characters.find(c=>c.id==='leo'));});
   await page.waitForTimeout(200);await page.evaluate(()=>window.__rh.game.settings.reducedMotion=false);await page.getByText('Challenge to Match',{exact:true}).click();await page.waitForFunction(()=>window.__rh.game.championship.phase==='serving',null,{timeout:60000});
   await page.evaluate(()=>{

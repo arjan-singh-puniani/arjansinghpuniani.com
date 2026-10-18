@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';
 import {chromium,browserOptions} from './runtime.mjs';
 const out=process.env.QA_OUT??'evidence/realism-20261016',label=process.env.QA_LABEL??'after',baseline=process.env.QA_BASELINE_RUNTIME;fs.mkdirSync(out,{recursive:true});
@@ -5,7 +6,7 @@ const browser=await chromium.launch({...browserOptions,args:['--use-angle=metal'
 page.on('pageerror',e=>report.errors.push(e.message));page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});page.on('response',r=>{if(r.status()>=400)report.http.push([r.status(),r.url()]);});
 if(baseline)await page.route('**/dist/**',async route=>{const rel=new URL(route.request().url()).pathname.split('/dist/')[1],f=path.join(baseline,rel);assert(fs.existsSync(f));await route.fulfill({body:fs.readFileSync(f),contentType:'text/javascript'});});
 try{
- await page.goto('http://127.0.0.1:8078/?debug',{waitUntil:'networkidle'});await page.waitForFunction(()=>window.__rh?.ready);await page.getByText('Taylor',{exact:true}).click();await page.locator('#loading').waitFor({state:'hidden'});
+ await page.goto('http://127.0.0.1:8078/?debug',{waitUntil:'networkidle'});await page.waitForFunction(()=>window.__rh?.ready);await enterClub(page,'Taylor');await page.locator('#loading').waitFor({state:'hidden'});
  await page.evaluate(()=>{const g=window.__rh.game;g.clock.paused=true;g.clock.minutes=780;g.world.weather='clear';g.settings.visuals='detail';for(const a of [...g.activities.active])g.cancelActivity(a);g.ui.hideSpeech();const style=document.createElement('style');style.textContent='#app>*:not(canvas){display:none!important}';document.head.append(style);window.inspectionWorld=g.world;});
  for(const id of ['taylor','arjan','coach','mika','nia','leo']){
   const data=await page.evaluate(id=>{

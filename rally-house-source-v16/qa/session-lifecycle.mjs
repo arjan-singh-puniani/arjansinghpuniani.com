@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
@@ -12,7 +13,7 @@ try{
  page.on('pageerror',e=>report.errors.push(e.message));
  await page.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`);
  await page.waitForFunction(()=>window.__rh?.ready);
- await page.getByText('Arjan',{exact:true}).click();
+ await enterClub(page,'Arjan');
  await page.waitForTimeout(800);
   await page.evaluate(()=>{
    const g=window.__rh.game;

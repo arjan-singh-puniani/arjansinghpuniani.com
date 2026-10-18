@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {chromium,browserOptions} from './runtime.mjs';
@@ -10,7 +11,7 @@ page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
 try{
   await page.goto(process.env.RH_URL??'http://127.0.0.1:8078/?debug');
   await page.waitForFunction(()=>window.__rh?.ready);
-  await page.getByText('Arjan',{exact:true}).click();
+  await enterClub(page,'Arjan');
   await page.evaluate(()=>{
     const g=window.__rh.game;
     g.clock.minutes=1040;g.clock.paused=true;

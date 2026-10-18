@@ -1,3 +1,4 @@
+import {enterClub} from './enter-club.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -6,7 +7,7 @@ const out=path.resolve('../takeover-evidence/after');
 const browser=await chromium.launch({...browserOptions,args:['--use-angle=metal']});
 try {
  const page=await browser.newPage({viewport:{width:1440,height:1000}});
- await page.goto('http://127.0.0.1:8078/?debug');await page.waitForFunction(()=>window.__rh?.ready);await page.getByText('Arjan',{exact:true}).click();
+ await page.goto('http://127.0.0.1:8078/?debug');await page.waitForFunction(()=>window.__rh?.ready);await enterClub(page,'Arjan');
  await page.evaluate(()=>{const g=window.__rh.game;g.autosave=-10000;g.clock.minutes=1040;g.clock.paused=false;for(const a of [...g.activities.active])g.cancelActivity(a);g.openObject(g.world.objects.find(o=>o.id==='reception'));});
  await page.getByText('Ring the desk bell',{exact:true}).click();
  await page.waitForFunction(()=>window.__rh.game.activities.active.some(a=>a.kind==='touch'&&a.phase==='active'),null,{timeout:35000});
@@ -22,7 +23,7 @@ try {
  const matrix=[];
  for(const [width,height] of [[1920,1080],[1728,1117],[1440,900],[1280,800],[1024,768],[844,390],[430,932],[390,844],[720,900]]){
   const p=await browser.newPage({viewport:{width,height},hasTouch:width<1100}),errors=[];p.on('pageerror',e=>errors.push(e.message));
-  await p.goto('http://127.0.0.1:8078/?debug');await p.waitForFunction(()=>window.__rh?.ready);await p.getByText('Arjan',{exact:true}).click();
+  await p.goto('http://127.0.0.1:8078/?debug');await p.waitForFunction(()=>window.__rh?.ready);await enterClub(p,'Arjan');
   await p.evaluate(()=>{const g=window.__rh.game;g.autosave=-10000;g.clock.paused=true;g.startChampionship(g.actor('leo'));for(let i=0;i<6000&&g.championship.phase!=='serving';i++)g.updateFixed(1/60);});
   await p.waitForFunction(()=>window.__rh.championship().phase==='serving');await p.waitForTimeout(500);
   const data=await p.evaluate(()=>{const g=window.__rh.game,V=g.player.position.constructor;return {corners:[[-3.25,-6],[5.25,-6],[-3.25,6],[5.25,6]].map(([x,z])=>g.camera.project(new V(x,.1,z))),overflow:document.documentElement.scrollWidth>innerWidth};});
