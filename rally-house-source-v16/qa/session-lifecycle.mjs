@@ -4,12 +4,17 @@ import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 // Run from rally-house-source-v16 so this harness works before/after QA curation.
 const {chromium,browserOptions}=await import(pathToFileURL(path.resolve('qa/runtime.mjs')).href);
+const cycles=Number(process.env.QA_CYCLES??32);
+assert(Number.isInteger(cycles)&&cycles>=32,'Endurance requires at least 32 cycles');
+const out=process.env.QA_OUT??'../takeover-evidence/session-20261009';
 const browser=await chromium.launch({...browserOptions,args:['--use-angle=metal']});
-const report={cycles:[],errors:[]};
+const report={cycles:[],reviews:[],errors:[],http:[]};
 try{
  const context=await browser.newContext({viewport:{width:1280,height:800}});
  const page=await context.newPage();
  page.on('pageerror',e=>report.errors.push(e.message));
+ page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});
+ page.on('response',r=>{if(r.status()>=400)report.http.push([r.status(),r.url()]);});
  await page.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`);
  await page.waitForFunction(()=>window.__rh?.ready);
  await page.getByText('Arjan',{exact:true}).click();
@@ -30,15 +35,19 @@ try{
    return disconnect.apply(this,args);
   };
  });
- for(let i=0;i<32;i++){
+ for(let i=0;i<cycles;i++){
   const before=await page.evaluate(i=>{
    const g=window.__rh.game;
    for(const a of [...g.activities.active])g.cancelActivity(a);
    g.clock.paused=true;g.clock.speed=2;g.settings.reducedMotion=i%2===0;
    const camera=JSON.stringify(g.camera.captureState());
    g.startChampionship(g.actor(['leo','coach','mika','nia'][i%4]));
-   for(let n=0;n<6000&&g.championship.phase!=='serving';n++)g.updateFixed(1/60);
-   if(g.championship.phase!=='serving')throw Error('Court entry failed '+i+' '+JSON.stringify({phase:g.championship.phase,actors:g.characters.map(c=>({id:c.id,position:c.position,path:c.path,index:c.pathIndex,major:c.majorActivity})),activities:g.activities.active,routes:[...g.routes]}));
+   const trace=[];
+   for(let n=0;n<6000&&g.championship.phase!=='serving';n++){
+    if(n%600===0)trace.push({seconds:n/60,phase:g.championship.phase,actors:[g.player,...g.characters].map(c=>({id:c.id,position:c.position.clone(),path:c.path.map(p=>p.clone()),index:c.pathIndex})),activities:JSON.parse(JSON.stringify(g.activities.active)),routes:[...g.routes]});
+    g.updateFixed(1/60);
+   }
+   if(g.championship.phase!=='serving')throw Error('Court entry failed '+i+' '+JSON.stringify({phase:g.championship.phase,trace}));
    g.interactiveMatch.prepareShot('player','serve','perfect');
    for(let n=0;n<200&&!g.interactiveMatch.pending?.impactStarted;n++)g.updateFixed(1/120);
    if(!g.interactiveMatch.pending?.impactStarted)throw Error('Contact entry failed '+i);
@@ -53,11 +62,26 @@ try{
   assert.equal(frozen,before.physics);
   await page.getByRole('button',{name:'Resume match',exact:true}).click();
   await page.waitForTimeout(150);
-  await page.evaluate(()=>{
-   const g=window.__rh.game;
-   g.setChampionshipPaused(true);g.requestChampionshipExit();
-   for(let n=0;n<180&&g.championship.active;n++)g.updateFixed(1/60);
-  });
+  if(process.env.QA_REVIEW==='1'&&i%8===7){
+   await page.evaluate(()=>{const g=window.__rh.game;g.setChampionshipPaused(true);window.enduranceClip=g.motionRecorder.clip;});
+   await page.locator('.championshipReview:visible').click();
+   await page.waitForFunction(()=>window.__rh.game.performanceLab.active);
+   const review=await page.evaluate(()=>{
+    const g=window.__rh.game,t=g.performanceLab.timeline;
+    return{sameRecording:t.clip===window.enduranceClip,contact:!!t.frame.contact,playing:t.playing,speed:t.speed,court:g.activities.reserved('court'),input:g.matchInput.enabled,match:!!g.interactiveMatch,gl:g.renderer.gl.getError()};
+   });
+   assert(review.sameRecording&&review.contact);assert.equal(review.speed,.25);
+   for(const key of ['playing','court','input','match'])assert.equal(review[key],false,key);
+   assert.equal(review.gl,0);
+   await page.locator('[data-lab-action=close]').click();
+   report.reviews.push({cycle:i+1,...review});
+  }else{
+   await page.evaluate(()=>{
+    const g=window.__rh.game;
+    g.setChampionshipPaused(true);g.requestChampionshipExit();
+    for(let n=0;n<180&&g.championship.active;n++)g.updateFixed(1/60);
+   });
+  }
   await page.waitForTimeout(300);
   const row=await page.evaluate(()=>{
    const g=window.__rh.game,a=window.optimizerAudio;
@@ -75,12 +99,13 @@ try{
  assert(Math.max(...counts)-Math.min(...counts)<=1);
  assert.equal(counts.at(-1),counts[0]);
  assert.deepEqual(report.errors,[]);
- report.summary={cycles:report.cycles.length,physicsAndCleanupPassed:true,domRange:[Math.min(...counts),Math.max(...counts)],firstDom:counts[0],lastDom:counts.at(-1),transientAudioNodesAfterSettle:Math.max(...report.cycles.map(c=>c.connectedNodes)),firstHeap:report.cycles[0].heap,lastHeap:report.cycles.at(-1).heap};
- console.log('32 lifecycle cycles PASS',JSON.stringify(report.summary));
+ assert.deepEqual(report.http,[]);
+ report.summary={cycles:report.cycles.length,reviewRoundTrips:report.reviews.length,physicsAndCleanupPassed:true,domRange:[Math.min(...counts),Math.max(...counts)],firstDom:counts[0],lastDom:counts.at(-1),transientAudioNodesAfterSettle:Math.max(...report.cycles.map(c=>c.connectedNodes)),firstHeap:report.cycles[0].heap,lastHeap:report.cycles.at(-1).heap};
+ console.log(`${cycles} lifecycle cycles PASS`,JSON.stringify(report.summary));
  await context.close();
-}finally{
+}catch(error){report.failure=error.message;throw error;}finally{
  report.limits=['Manual fixed ticks accelerate approach/exit; paused freeze, Resume click and short flight use live RAF. Autonomous scheduling is held during this lifecycle isolation test.','Total DOM can vary transiently by one node; bounded range and final return are checked.','AudioNode instrumentation starts after initial ambience and tracks later outgoing connections, not browser-internal allocation.','Heap is coarse, without forced garbage collection or long-duration leak proof.'];
- fs.mkdirSync('../takeover-evidence/session-20261009',{recursive:true});
- fs.writeFileSync('../takeover-evidence/session-20261009/optimizer-lifecycle.json',JSON.stringify(report,null,2));
+ fs.mkdirSync(out,{recursive:true});
+ fs.writeFileSync(path.join(out,'optimizer-lifecycle.json'),JSON.stringify(report,null,2));
  await browser.close();
 }
