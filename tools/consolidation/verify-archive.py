@@ -18,7 +18,7 @@ for row in rows:
         data = objects.setdefault(path, path.read_bytes())
         assert len(data) == row['bytes'], row['path']
         assert hashlib.sha256(data).hexdigest() == row['sha256'], row['path']
-    elif row.get('gitBlob') and row['classification'] in ('A', 'D') and not row['reason'].startswith('Original archive'):
+    elif row.get('gitBlob') and row['classification'] in ('A', 'D') and not row['reason'].startswith('Original archive') and row.get('preservation') != 'local-vault':
         blobs.add(row['gitBlob'])
 result = subprocess.run(['git', 'cat-file', '--batch-check'], cwd=root,
     input='\n'.join(sorted(blobs))+'\n', text=True, capture_output=True, check=True)

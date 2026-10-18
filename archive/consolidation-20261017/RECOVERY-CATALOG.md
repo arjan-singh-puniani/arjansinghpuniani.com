@@ -1,6 +1,6 @@
 # Recovery catalog
 
-Unique historical objects are listed by their first recorded provenance. Additional copies and container members are in inventory.json. These files are preserved experiments and historical variants, not alternative production entry points.
+Unique historical objects are listed by their first recorded provenance. Additional copies and container members are in inventory.json. These are preserved experiments and historical variants, not alternative production entry points.
 
 | Original provenance | Recovery object |
 | --- | --- |
@@ -33,6 +33,7 @@ Unique historical objects are listed by their first recorded provenance. Additio
 | desktop/arjansinghpuniani-static-clean-home-playground-20260930.zip!/portfolio_static_patch/payload/arjan-portfolio/src/app/home.module.css | [9d9e66ea3766](objects/9d9e66ea3766b5fa6652704d80e34bbe61541447586596e8d41a0976ab4aa993.txt) |
 | desktop/arjansinghpuniani-static-clean-home-playground-20260930.zip!/portfolio_static_patch/payload/arjan-portfolio/src/app/page.tsx | [b4ada96b904a](objects/b4ada96b904a380bf582c5551ffc6f1f52db9c6dab137786030a4c91da39288a.txt) |
 | desktop/arjansinghpuniani-static-clean-home-playground-20260930.zip!/portfolio_static_patch/README.md | [1e903f0e3761](objects/1e903f0e376164e25eb30d0f46d437663125050e30bac65404149525e41c585c.txt) |
+| desktop/HoloAnatomy_1.0_Candidate.zip!/HoloAnatomy_1.0_Candidate/.gitignore | [cb93f1c4e948](objects/cb93f1c4e948c8327527bbe72c25ae4bbb58096f47ba0c36853294c442abaa72.txt) |
 | desktop/HoloAnatomy_1.0_Candidate.zip!/HoloAnatomy_1.0_Candidate/DECISIONS.md | [5d8fdf032dc7](objects/5d8fdf032dc716a43e7fcfaccbfefc9220da32f64e65966a3297c2af649b71d4.txt) |
 | desktop/HoloAnatomy_1.0_Candidate.zip!/HoloAnatomy_1.0_Candidate/docs/accessibility.md | [6d0329fd3d4d](objects/6d0329fd3d4d0ee5bff3e3af4fcf952d9d8b4c99a337e71efa9f3f28bec88ba4.txt) |
 | desktop/HoloAnatomy_1.0_Candidate.zip!/HoloAnatomy_1.0_Candidate/docs/anatomy-audit.json | [cc919a0b0c9e](objects/cc919a0b0c9eb31fc91b9b3480f63deadf22ff6d24e1cd793d2f05bf0f6d3054.txt) |
@@ -47,6 +48,7 @@ Unique historical objects are listed by their first recorded provenance. Additio
 | desktop/HoloAnatomy_1.0_Candidate.zip!/HoloAnatomy_1.0_Candidate/docs/pull-apart.md | [d03d9b682d9b](objects/d03d9b682d9b945cc2929e17f0a94a88863d830701603316543e7da6e89353bb.txt) |
 | desktop/HoloAnatomy_1.0_Candidate.zip!/HoloAnatomy_1.0_Candidate/docs/release-0.3.md | [bdeb2cdc9dc2](objects/bdeb2cdc9dc22a48fe6d85077cf0ba5c1bf69d588d3d6ab4361767050d3db9cd.txt) |
 | desktop/HoloAnatomy_1.0_Candidate.zip!/HoloAnatomy_1.0_Candidate/index.html | [e57c9d004e0a](objects/e57c9d004e0ae30ff1b72fc2c77d95bd9d5f8f82448985ec494cb4c3bf5adca2.txt) |
+| desktop/HoloAnatomy_1.0_Candidate.zip!/HoloAnatomy_1.0_Candidate/LICENSE | [44ae0497a130](objects/44ae0497a130f06f95edf4c66f876035099061590fa40819f5f0b65a3df956de.txt) |
 | desktop/HoloAnatomy_1.0_Candidate.zip!/HoloAnatomy_1.0_Candidate/package.json | [224b883bfbc8](objects/224b883bfbc8531e37a12ad3eee8c9cddc0ae6e298d4c546410e29a5ed5e5851.txt) |
 | desktop/HoloAnatomy_1.0_Candidate.zip!/HoloAnatomy_1.0_Candidate/README.md | [0e1689273119](objects/0e168927311924c7d79d3fcd114d94d4263c363a82b85c8f7cb315e3877fce6a.txt) |
 | desktop/HoloAnatomy_1.0_Candidate.zip!/HoloAnatomy_1.0_Candidate/scripts/audit_anatomy.mjs | [11bd91532504](objects/11bd91532504e0469db44d1cb449dbc27df1201c50127ddc8786e3bfeb2ada8d.txt) |

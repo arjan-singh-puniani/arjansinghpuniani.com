@@ -234,9 +234,10 @@
     "bytes": 88,
     "sha256": "cb93f1c4e948c8327527bbe72c25ae4bbb58096f47ba0c36853294c442abaa72",
     "gitBlob": "fd0c1513f1b91f5b62ae1b42d94f21a3d91a0ac9",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "HoloAnatomy_1.0_Candidate.zip"
+    "classification": "D",
+    "reason": "Inspected license or ignore configuration preserved as historical text",
+    "container": "HoloAnatomy_1.0_Candidate.zip",
+    "archive": "objects/cb93f1c4e948c8327527bbe72c25ae4bbb58096f47ba0c36853294c442abaa72.txt"
   },
   {
     "root": "desktop",
@@ -5828,9 +5829,10 @@
     "bytes": 1166,
     "sha256": "44ae0497a130f06f95edf4c66f876035099061590fa40819f5f0b65a3df956de",
     "gitBlob": "951f4915b5fad3c0cea25645aff1a5c1471d7851",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "HoloAnatomy_1.0_Candidate.zip"
+    "classification": "D",
+    "reason": "Inspected license or ignore configuration preserved as historical text",
+    "container": "HoloAnatomy_1.0_Candidate.zip",
+    "archive": "objects/44ae0497a130f06f95edf4c66f876035099061590fa40819f5f0b65a3df956de.txt"
   },
   {
     "root": "desktop",
@@ -5869,8 +5871,8 @@
     "bytes": 18225,
     "sha256": "8aac4c8048f07e0f7ad35fe065ce2bb1f2f4bf7e769d25f23fdbb5419cb14705",
     "gitBlob": "064c981506c10d6668811087b8aab5c7c76ddfa3",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "holoanatomy-shoulder-v0.5.1-patch-kit.zip"
   },
   {
@@ -6211,8 +6213,8 @@
     "bytes": 18225,
     "sha256": "8aac4c8048f07e0f7ad35fe065ce2bb1f2f4bf7e769d25f23fdbb5419cb14705",
     "gitBlob": "064c981506c10d6668811087b8aab5c7c76ddfa3",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "holoanatomy-shoulder-v0.5-patch-kit.zip"
   },
   {
@@ -6699,8 +6701,8 @@
     "bytes": 18225,
     "sha256": "8aac4c8048f07e0f7ad35fe065ce2bb1f2f4bf7e769d25f23fdbb5419cb14705",
     "gitBlob": "064c981506c10d6668811087b8aab5c7c76ddfa3",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "holoanatomy-shoulder-v0.5-patch-kit 2.zip"
   },
   {
@@ -7091,8 +7093,8 @@
     "bytes": 9164,
     "sha256": "1d414f6557ef9a6d903087dc07e507d9bc63f33ba07f3b6b9298003d046bd787",
     "gitBlob": "434b6014ef6a601037055def69d151307d02ee60",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "Rally-House-Playable-RC3.4-cozy-atmosphere.zip"
   },
   {
@@ -7101,8 +7103,8 @@
     "bytes": 4843,
     "sha256": "b24fc289d67b761efe8c0be5c5572092370c03a4dee69606e00025ccfad4b494",
     "gitBlob": "1dea9506673707e603a5bab79778fdaf82ee969f",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "Rally-House-Playable-RC3.4-cozy-atmosphere.zip"
   },
   {
@@ -7519,8 +7521,8 @@
     "bytes": 18225,
     "sha256": "8aac4c8048f07e0f7ad35fe065ce2bb1f2f4bf7e769d25f23fdbb5419cb14705",
     "gitBlob": "064c981506c10d6668811087b8aab5c7c76ddfa3",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately"
   },
   {
     "root": "desktop",
@@ -14025,8 +14027,8 @@
     "bytes": 9164,
     "sha256": "1d414f6557ef9a6d903087dc07e507d9bc63f33ba07f3b6b9298003d046bd787",
     "gitBlob": "434b6014ef6a601037055def69d151307d02ee60",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately"
   },
   {
     "root": "desktop",
@@ -14034,8 +14036,8 @@
     "bytes": 4843,
     "sha256": "b24fc289d67b761efe8c0be5c5572092370c03a4dee69606e00025ccfad4b494",
     "gitBlob": "1dea9506673707e603a5bab79778fdaf82ee969f",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately"
   },
   {
     "root": "desktop",
@@ -14209,8 +14211,9 @@
     "bytes": 1166,
     "sha256": "44ae0497a130f06f95edf4c66f876035099061590fa40819f5f0b65a3df956de",
     "gitBlob": "951f4915b5fad3c0cea25645aff1a5c1471d7851",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Inspected license or ignore configuration preserved as historical text",
+    "archive": "objects/44ae0497a130f06f95edf4c66f876035099061590fa40819f5f0b65a3df956de.txt"
   },
   {
     "root": "desktop",
@@ -14248,8 +14251,9 @@
     "bytes": 88,
     "sha256": "cb93f1c4e948c8327527bbe72c25ae4bbb58096f47ba0c36853294c442abaa72",
     "gitBlob": "fd0c1513f1b91f5b62ae1b42d94f21a3d91a0ac9",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Inspected license or ignore configuration preserved as historical text",
+    "archive": "objects/cb93f1c4e948c8327527bbe72c25ae4bbb58096f47ba0c36853294c442abaa72.txt"
   },
   {
     "root": "desktop",
@@ -20095,8 +20099,9 @@
     "bytes": 505128,
     "sha256": "a44761ca8053dc288144314aae6fc791a124e60cfd245cab2c1f8a704c790db8",
     "gitBlob": "a4cfde12291f6e5bd91284d7fc8e4d6e636fc3f6",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20114,8 +20119,9 @@
     "bytes": 243813,
     "sha256": "937ea7bf745d4ff701f9ee8e44cb9c24c9ca576e0c6cb841abe6aaabaeaba71b",
     "gitBlob": "722306079fd8edef7461e73238e5dd49739b712e",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20341,8 +20347,9 @@
     "bytes": 1845145,
     "sha256": "e58a45167e134d2d80f6a066dfd06d870fb0763efd15a488d8765145d3788f47",
     "gitBlob": "db93b08e82eb56180a5297035d403cb78b07037e",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20350,8 +20357,9 @@
     "bytes": 677598,
     "sha256": "cb34579f514ee3070993c9dc977dca6df5fcdcdcdd1750af2785707cf8861fd7",
     "gitBlob": "ba1b1a8b0854c5c551b8bb6efbedf3db89105efb",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20359,8 +20367,9 @@
     "bytes": 654636,
     "sha256": "cda845f30380a7f2ff006ccd48c8de443e2a97aa0d111dfe079cf643287bb8d9",
     "gitBlob": "6f66cb91143d47a419289d3e077ece18fd36bb16",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20368,8 +20377,9 @@
     "bytes": 1885214,
     "sha256": "7df2c81f999305ba4640ec5db5f2dbdbb174283720d65a8be486fb7cc17a2c45",
     "gitBlob": "d7d24eba7eb36b3de53ba30bdafd448ef3c5e8be",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20377,8 +20387,9 @@
     "bytes": 247783,
     "sha256": "9f143e94d6ef9abe82787147e51c30d47eb3a58d9543917b21b2c36ee3dcc893",
     "gitBlob": "1640caa3ab76326937b9f24a3bef8a2caa97b84a",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20386,8 +20397,9 @@
     "bytes": 1931668,
     "sha256": "26bafb0a27c9680a33781daf64dff874ded1059d92ef833d368f335d2fcb4b2a",
     "gitBlob": "631bfdef1c0f27df2bfbdd78a0839b824db605da",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20395,8 +20407,9 @@
     "bytes": 602935,
     "sha256": "d3eae649f2722fe13795342f2b96d183344e12d72a86f4d947e1afc5e1d757e1",
     "gitBlob": "0be0aacf0b039070d181ac7574e45c445de8986d",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20404,8 +20417,9 @@
     "bytes": 1649369,
     "sha256": "3f7106421a38f1a7cc8e1ad4f9a08d93017a230d7446286757b9d3abe70d5587",
     "gitBlob": "96d095126f9c78ef04efa554b2db23416421ae0f",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20423,8 +20437,9 @@
     "bytes": 655658,
     "sha256": "3133874c38572949f038e1b8e68f4e350f3542a040830bd1795a3ea498a70c59",
     "gitBlob": "7fb0ebc910ed20ef9aad0ec280d2db5af6172b15",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20432,8 +20447,9 @@
     "bytes": 760880,
     "sha256": "d649b260b01937f3fa2cfe94a0dc3ec533fd951b41c7140f9af365c211323e23",
     "gitBlob": "b19d34ae38dd85177ce6c57164cfc0e8c1b506a1",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20451,8 +20467,9 @@
     "bytes": 1771257,
     "sha256": "65d2c3061537c37b39067795f6a6ac8268dd8b7f02d5cc336db801117cb69dec",
     "gitBlob": "482eda94ec0f405260627f2a73fce24b4d24ab8f",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20470,8 +20487,9 @@
     "bytes": 862621,
     "sha256": "73d2bd9d95789ecf73ea4401ae6c60162090ea7aecad7d193fb619ffab1e925f",
     "gitBlob": "d742e294caa185ccde3394d76359d2c33473a50a",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20479,8 +20497,9 @@
     "bytes": 561498,
     "sha256": "375c0b6f953f7217f1cd2b735faa81f51ead71befc2778ffa22c27e0ac7861a8",
     "gitBlob": "8218bbdcca40349c971c7b2c8e5adaacd9f8ed1c",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20488,8 +20507,9 @@
     "bytes": 1994510,
     "sha256": "2e0d7274eafacb2ba13d9d3b50cf42b63c6807a59c2ac975b27b678fd5e2ae48",
     "gitBlob": "8535081e0014e9ae3bfad01a9f3ac8ffd780e02d",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20497,8 +20517,9 @@
     "bytes": 635964,
     "sha256": "faa72eb3477c03e0d60b45b593a7a96ce61ec12a1707fe5a88e702db90e5d751",
     "gitBlob": "e986d40d37de001df5a5c238ddc59f4b05aca190",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20526,8 +20547,9 @@
     "bytes": 693603,
     "sha256": "b4e49fcadd171cabb3cf955c093300f67cac814ed07564fe4d8bfc2fc4c65714",
     "gitBlob": "86fa7df89bba8b86d8a6ba44a25213f9943a517c",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20545,8 +20567,9 @@
     "bytes": 1657004,
     "sha256": "8b2912950e44cf7489923e09ac9087807dc6193b2be2873c3a598351cf90afbb",
     "gitBlob": "447b2e2cddeea7a4d8fd23ffc7fceba5e9b70165",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20554,8 +20577,9 @@
     "bytes": 1999019,
     "sha256": "5bea9586387d5d6c6a6b5d714ec8c1f5b3852132efa8b5cca19839ced81973a7",
     "gitBlob": "0476ed47f07054e221a8b8a73f8302b3b416f92e",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20563,8 +20587,9 @@
     "bytes": 508524,
     "sha256": "dc287d78d40bb7eb492bc085081e20d632dbbdccec6f899756c2b698ef95d305",
     "gitBlob": "78fcc903f310898a2799def36cb73501659ac78a",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20572,8 +20597,9 @@
     "bytes": 602466,
     "sha256": "48bd6ed4d761b518c471f966460608e3f8e5e6436ada966455a6dbf42f2a1814",
     "gitBlob": "d64e6df2131d27505a356b0fd4df92b476c47d84",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20591,8 +20617,9 @@
     "bytes": 243448,
     "sha256": "8b50f7703c76e40c044c26b59f0e5f987c8b6689550e25bd308b422f93922b1e",
     "gitBlob": "517c6e5262d75670df8134b21367efb3087bc79a",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20600,8 +20627,9 @@
     "bytes": 576926,
     "sha256": "45b0d2c3ddaa65433a14850d0e6d63ff24bb80ad85fe3bb3bf5f9a6d7302c9a4",
     "gitBlob": "b2e0744bbfd57d80fba44115cff528e4932dd858",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20619,8 +20647,9 @@
     "bytes": 600345,
     "sha256": "44702e2c3f018963e5142869c595eea66dfaaa8f8dfb92c2ed5545b720b4b7db",
     "gitBlob": "710cbea41d2a14815114df4dff1fd23016c12594",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20628,8 +20657,9 @@
     "bytes": 606021,
     "sha256": "506322ea026ee463898f19aa84b870ca97d613baac40785e2e5387551e5fe1cf",
     "gitBlob": "b025c0d8c429d58d5db485d67991123ffd61c9e3",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20637,8 +20667,9 @@
     "bytes": 527941,
     "sha256": "ef59a254e42e44f5cb002d9b29eb1996565f2bdbff04a9ff22410f5d35e5302e",
     "gitBlob": "63c6f238bb848ff5596805eb9bd2aa674673e833",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -20646,8 +20677,9 @@
     "bytes": 607694,
     "sha256": "cef53d5c1f85a4a899462626ee9ef7b7e6c66e48a7a9c3e68da7d00e52f4bfc4",
     "gitBlob": "ad3d467c873d830875c1753e578a7cd0dd7dc9e1",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "preservation": "local-vault"
   },
   {
     "root": "desktop",
@@ -21255,8 +21287,8 @@
     "bytes": 24164,
     "sha256": "e2ad9d78cb808ab2903d4c32fc6bad2dcf2724f2a9691b1edc19955cb3fa0952",
     "gitBlob": "5438edd7417707b506352cf9690e638164cdbe70",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "Rally-House-v17.5-Human-Space-Championship.zip"
   },
   {
@@ -21996,8 +22028,8 @@
     "bytes": 28924,
     "sha256": "9e504d0ff8d281d8a8cfa95574b795c872d471c2b3056dfef43b9b50fbb8600e",
     "gitBlob": "3ae72bac5c2e3317bfa307d750cf15284b662b17",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
   },
   {
@@ -22006,8 +22038,8 @@
     "bytes": 27200,
     "sha256": "86e188dc6e5376e30a0adb0844f7f0591ab1782fcdd667d8d42f9377762704f1",
     "gitBlob": "f88aa28328b7885f3013d2e5920525c33bb30579",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
   },
   {
@@ -22016,8 +22048,8 @@
     "bytes": 36589,
     "sha256": "223893c2b2bd17768a3f62cdfcaf51bbf18ce43b1b81cfe821b7719784ab7ceb",
     "gitBlob": "91ebcba5ff740ab6c8abc6abd33d46b3415a6491",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
   },
   {
@@ -22026,8 +22058,8 @@
     "bytes": 27200,
     "sha256": "41814a8a29b1adbf96f8d516857fd9e436dc074eb9d096e26d42235fb195afbb",
     "gitBlob": "da4ce1aace507ca8f0e36d6e792249992e03a328",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
   },
   {
@@ -22036,8 +22068,8 @@
     "bytes": 36589,
     "sha256": "031338ae694ed8f1a3e02f224b11636a231d4d9c78b7bbd02ff1bfd6e6793866",
     "gitBlob": "241656115f531f3a1f429712a1b548231deebc1f",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
   },
   {
@@ -22046,8 +22078,8 @@
     "bytes": 28924,
     "sha256": "033ae82b6be3050d1bf4d49e9d6710fb3bc4ce52091f7a924a7b3986d0572368",
     "gitBlob": "a6a73278ea94aafdcb14d5b73737ffbfeb1cf13b",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
   },
   {
@@ -22056,8 +22088,8 @@
     "bytes": 18918,
     "sha256": "a7bc47ef7d343aa9e8728413ff73ec310fe996b2f10f73fe34b300fae6940b99",
     "gitBlob": "a98d3fa967c54682297348047ad3d81565b4ac66",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
   },
   {
@@ -22066,8 +22098,8 @@
     "bytes": 18918,
     "sha256": "7ea5de61f35950653327bd39600228d40bf16262e7946618486aa80203f5b39a",
     "gitBlob": "52c180a311858253fc53de09746283aede0516fa",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
   },
   {
@@ -22441,8 +22473,8 @@
     "bytes": 9164,
     "sha256": "1d414f6557ef9a6d903087dc07e507d9bc63f33ba07f3b6b9298003d046bd787",
     "gitBlob": "434b6014ef6a601037055def69d151307d02ee60",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
   },
   {
@@ -22451,8 +22483,8 @@
     "bytes": 4843,
     "sha256": "b24fc289d67b761efe8c0be5c5572092370c03a4dee69606e00025ccfad4b494",
     "gitBlob": "1dea9506673707e603a5bab79778fdaf82ee969f",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
   },
   {
@@ -25063,9 +25095,10 @@
     "bytes": 505128,
     "sha256": "a44761ca8053dc288144314aae6fc791a124e60cfd245cab2c1f8a704c790db8",
     "gitBlob": "a4cfde12291f6e5bd91284d7fc8e4d6e636fc3f6",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25084,9 +25117,10 @@
     "bytes": 243813,
     "sha256": "937ea7bf745d4ff701f9ee8e44cb9c24c9ca576e0c6cb841abe6aaabaeaba71b",
     "gitBlob": "722306079fd8edef7461e73238e5dd49739b712e",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25366,9 +25400,10 @@
     "bytes": 1845145,
     "sha256": "e58a45167e134d2d80f6a066dfd06d870fb0763efd15a488d8765145d3788f47",
     "gitBlob": "db93b08e82eb56180a5297035d403cb78b07037e",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25376,9 +25411,10 @@
     "bytes": 677598,
     "sha256": "cb34579f514ee3070993c9dc977dca6df5fcdcdcdd1750af2785707cf8861fd7",
     "gitBlob": "ba1b1a8b0854c5c551b8bb6efbedf3db89105efb",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25386,9 +25422,10 @@
     "bytes": 654636,
     "sha256": "cda845f30380a7f2ff006ccd48c8de443e2a97aa0d111dfe079cf643287bb8d9",
     "gitBlob": "6f66cb91143d47a419289d3e077ece18fd36bb16",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25396,9 +25433,10 @@
     "bytes": 1885214,
     "sha256": "7df2c81f999305ba4640ec5db5f2dbdbb174283720d65a8be486fb7cc17a2c45",
     "gitBlob": "d7d24eba7eb36b3de53ba30bdafd448ef3c5e8be",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25406,9 +25444,10 @@
     "bytes": 247783,
     "sha256": "9f143e94d6ef9abe82787147e51c30d47eb3a58d9543917b21b2c36ee3dcc893",
     "gitBlob": "1640caa3ab76326937b9f24a3bef8a2caa97b84a",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25416,9 +25455,10 @@
     "bytes": 1931668,
     "sha256": "26bafb0a27c9680a33781daf64dff874ded1059d92ef833d368f335d2fcb4b2a",
     "gitBlob": "631bfdef1c0f27df2bfbdd78a0839b824db605da",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25426,9 +25466,10 @@
     "bytes": 602935,
     "sha256": "d3eae649f2722fe13795342f2b96d183344e12d72a86f4d947e1afc5e1d757e1",
     "gitBlob": "0be0aacf0b039070d181ac7574e45c445de8986d",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25436,9 +25477,10 @@
     "bytes": 1649369,
     "sha256": "3f7106421a38f1a7cc8e1ad4f9a08d93017a230d7446286757b9d3abe70d5587",
     "gitBlob": "96d095126f9c78ef04efa554b2db23416421ae0f",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25457,9 +25499,10 @@
     "bytes": 655658,
     "sha256": "3133874c38572949f038e1b8e68f4e350f3542a040830bd1795a3ea498a70c59",
     "gitBlob": "7fb0ebc910ed20ef9aad0ec280d2db5af6172b15",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25467,9 +25510,10 @@
     "bytes": 760880,
     "sha256": "d649b260b01937f3fa2cfe94a0dc3ec533fd951b41c7140f9af365c211323e23",
     "gitBlob": "b19d34ae38dd85177ce6c57164cfc0e8c1b506a1",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25488,9 +25532,10 @@
     "bytes": 1771257,
     "sha256": "65d2c3061537c37b39067795f6a6ac8268dd8b7f02d5cc336db801117cb69dec",
     "gitBlob": "482eda94ec0f405260627f2a73fce24b4d24ab8f",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25509,9 +25554,10 @@
     "bytes": 862621,
     "sha256": "73d2bd9d95789ecf73ea4401ae6c60162090ea7aecad7d193fb619ffab1e925f",
     "gitBlob": "d742e294caa185ccde3394d76359d2c33473a50a",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25519,9 +25565,10 @@
     "bytes": 561498,
     "sha256": "375c0b6f953f7217f1cd2b735faa81f51ead71befc2778ffa22c27e0ac7861a8",
     "gitBlob": "8218bbdcca40349c971c7b2c8e5adaacd9f8ed1c",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25529,9 +25576,10 @@
     "bytes": 1994510,
     "sha256": "2e0d7274eafacb2ba13d9d3b50cf42b63c6807a59c2ac975b27b678fd5e2ae48",
     "gitBlob": "8535081e0014e9ae3bfad01a9f3ac8ffd780e02d",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25539,9 +25587,10 @@
     "bytes": 635964,
     "sha256": "faa72eb3477c03e0d60b45b593a7a96ce61ec12a1707fe5a88e702db90e5d751",
     "gitBlob": "e986d40d37de001df5a5c238ddc59f4b05aca190",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25571,9 +25620,10 @@
     "bytes": 693603,
     "sha256": "b4e49fcadd171cabb3cf955c093300f67cac814ed07564fe4d8bfc2fc4c65714",
     "gitBlob": "86fa7df89bba8b86d8a6ba44a25213f9943a517c",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25592,9 +25642,10 @@
     "bytes": 1657004,
     "sha256": "8b2912950e44cf7489923e09ac9087807dc6193b2be2873c3a598351cf90afbb",
     "gitBlob": "447b2e2cddeea7a4d8fd23ffc7fceba5e9b70165",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25602,9 +25653,10 @@
     "bytes": 1999019,
     "sha256": "5bea9586387d5d6c6a6b5d714ec8c1f5b3852132efa8b5cca19839ced81973a7",
     "gitBlob": "0476ed47f07054e221a8b8a73f8302b3b416f92e",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25612,9 +25664,10 @@
     "bytes": 508524,
     "sha256": "dc287d78d40bb7eb492bc085081e20d632dbbdccec6f899756c2b698ef95d305",
     "gitBlob": "78fcc903f310898a2799def36cb73501659ac78a",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25622,9 +25675,10 @@
     "bytes": 602466,
     "sha256": "48bd6ed4d761b518c471f966460608e3f8e5e6436ada966455a6dbf42f2a1814",
     "gitBlob": "d64e6df2131d27505a356b0fd4df92b476c47d84",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25643,9 +25697,10 @@
     "bytes": 243448,
     "sha256": "8b50f7703c76e40c044c26b59f0e5f987c8b6689550e25bd308b422f93922b1e",
     "gitBlob": "517c6e5262d75670df8134b21367efb3087bc79a",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25653,9 +25708,10 @@
     "bytes": 576926,
     "sha256": "45b0d2c3ddaa65433a14850d0e6d63ff24bb80ad85fe3bb3bf5f9a6d7302c9a4",
     "gitBlob": "b2e0744bbfd57d80fba44115cff528e4932dd858",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25674,9 +25730,10 @@
     "bytes": 600345,
     "sha256": "44702e2c3f018963e5142869c595eea66dfaaa8f8dfb92c2ed5545b720b4b7db",
     "gitBlob": "710cbea41d2a14815114df4dff1fd23016c12594",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25684,9 +25741,10 @@
     "bytes": 606021,
     "sha256": "506322ea026ee463898f19aa84b870ca97d613baac40785e2e5387551e5fe1cf",
     "gitBlob": "b025c0d8c429d58d5db485d67991123ffd61c9e3",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25694,9 +25752,10 @@
     "bytes": 527941,
     "sha256": "ef59a254e42e44f5cb002d9b29eb1996565f2bdbff04a9ff22410f5d35e5302e",
     "gitBlob": "63c6f238bb848ff5596805eb9bd2aa674673e833",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -25704,9 +25763,10 @@
     "bytes": 607694,
     "sha256": "cef53d5c1f85a4a899462626ee9ef7b7e6c66e48a7a9c3e68da7d00e52f4bfc4",
     "gitBlob": "ad3d467c873d830875c1753e578a7cd0dd7dc9e1",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
-    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
+    "classification": "D",
+    "reason": "Historical QA screenshot; original bytes retained in local preservation vault or its inventoried container",
+    "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz",
+    "preservation": "local-vault"
   },
   {
     "root": "hardening",
@@ -26855,8 +26915,8 @@
     "bytes": 28924,
     "sha256": "023f12c78e6102f88b5495b6bc89e0f9d3f499acde326c1998d914069e7de792",
     "gitBlob": "bbdf095bae391ac04553e1b63fcd7c4e157040ec",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
   },
   {
@@ -26865,8 +26925,8 @@
     "bytes": 27200,
     "sha256": "953fe07bbd75f58f87b49ccbcb925e7625ae584154ee4e34581522b6cc97f377",
     "gitBlob": "87dc680517ec5d34641068529dbc6d0d7d160893",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
   },
   {
@@ -26875,8 +26935,8 @@
     "bytes": 36589,
     "sha256": "d351b8b300e256a10ec03440351621e0e64257b05be365037c1c4f2efa07b557",
     "gitBlob": "14f5036deed1e2c2244b30f77a5a7032445bdbb4",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
   },
   {
@@ -26885,8 +26945,8 @@
     "bytes": 18918,
     "sha256": "fe4d122bd60eb4d2659ae5ff1cc67e4ee5946acb1262bd2904f69d696d919eda",
     "gitBlob": "0b82e04d031d22ceb5641e36e1c19892a6d5c39d",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
   },
   {
@@ -27590,8 +27650,8 @@
     "bytes": 24164,
     "sha256": "e2ad9d78cb808ab2903d4c32fc6bad2dcf2724f2a9691b1edc19955cb3fa0952",
     "gitBlob": "5438edd7417707b506352cf9690e638164cdbe70",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault",
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately",
     "container": "rally-house-forensic-archive-20261010/rally-only-originals.tar.gz"
   },
   {
@@ -36023,8 +36083,8 @@
     "bytes": 24164,
     "sha256": "e2ad9d78cb808ab2903d4c32fc6bad2dcf2724f2a9691b1edc19955cb3fa0952",
     "gitBlob": "5438edd7417707b506352cf9690e638164cdbe70",
-    "classification": "H",
-    "reason": "Binary or unrecognized artifact; preserve in verified local vault"
+    "classification": "E",
+    "reason": "Reproducible Python bytecode or generated HTML coverage report; source retained separately"
   },
   {
     "root": "hardening",
