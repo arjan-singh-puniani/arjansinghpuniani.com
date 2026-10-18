@@ -1,5 +1,7 @@
 # Consolidation validation — 18 October 2026
 
+October 18 follow-up: the production-preserving statements below describe PR #25. The subsequent realism feature integration and corrected endurance gate are documented in the [realism qualification](rally-house-source-v16/evidence/endurance-20261018/README.md); its 64-cycle run includes eight native review round trips.
+
 ## Canonical decision and review
 
 Baseline production main: `4ada219a06682b76c7a230686bb40714a9fb9d3b`. The consolidation branch preserves its production source and deployed runtime byte-for-byte. Changes outside the recovery archive are repository documentation, explicit recovery-vault ignore rules, an archive verifier and browser QA configuration/selection fixes.

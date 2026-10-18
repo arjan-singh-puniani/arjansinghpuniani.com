@@ -1,5 +1,7 @@
 # Repository consolidation audit — 17 October 2026
 
+October 18 follow-up: the realism candidate was subsequently validated at `6e3fb6de`, with court-entry and Lab lifetime corrections. The historical consolidation decision below is superseded by the [realism endurance qualification](rally-house-source-v16/evidence/endurance-20261018/README.md). The 111 unreadable cloud originals remain preserved.
+
 ## Scope and baseline
 
 The repository is `arjan-singh-puniani/arjansinghpuniani.com`. The supplied `website` directory is a collection of independent projects, not its Git root. Dirty work was found in the primary checkout at `/Users/arjan/Desktop/arjansinghpuniani.com`, the linked `/Users/arjan/Desktop/arjansinghpuniani-hardening` worktree, and `website/shoulder-2`. The inspected `portfolio-copy-resolution` worktree was clean. Independent work under `website`, EEG projects, personal media and research is outside production cleanup.

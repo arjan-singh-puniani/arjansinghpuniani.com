@@ -1,0 +1,42 @@
+{
+  "checkedTextFiles": 1779,
+  "skippedBinaryFiles": 937,
+  "skippedOver2MB": 11,
+  "credentialPatternFindings": [],
+  "changedFiles": 176,
+  "largestChangedFiles": [
+    {
+      "path": "rally-house-source-v16/evidence/realism-20261016/moving-replay/registered-motion.webm",
+      "bytes": 3201279
+    },
+    {
+      "path": "rally-house-source-v16/evidence/realism-20261016/phone-arjan/phone-recording.webm",
+      "bytes": 1033636
+    },
+    {
+      "path": "rally-house-source-v16/evidence/realism-20261016/webkit/C-gameplay.webp",
+      "bytes": 897232
+    },
+    {
+      "path": "rally-house-source-v16/evidence/portfolio-review-20261018/chromium-1440/vector-court.webp",
+      "bytes": 744558
+    },
+    {
+      "path": "rally-house-source-v16/evidence/realism-20261016/firefox/C-gameplay.webp",
+      "bytes": 693350
+    },
+    {
+      "path": "rally-house-source-v16/evidence/portfolio-review-20261018/before-posture-desktop.webp",
+      "bytes": 675290
+    },
+    {
+      "path": "rally-house-source-v16/evidence/portfolio-review-20261018/chromium-1440/after-rally.webp",
+      "bytes": 670800
+    },
+    {
+      "path": "rally-house-source-v16/evidence/portfolio-review-20261018/chromium-1440/contact-review.webp",
+      "bytes": 662918
+    }
+  ],
+  "newFilesOver5MB": []
+}

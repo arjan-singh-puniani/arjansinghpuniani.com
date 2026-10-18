@@ -1,0 +1,144 @@
+{
+  "loaded": {
+    "url": "http://127.0.0.1:18085/holoanatomy/shoulder/?lod=2",
+    "title": "HoloAnatomy — Rotator Cuff Studio",
+    "viewControls": 1
+  },
+  "desktop": {
+    "metrics": {
+      "transport": "glb",
+      "lod": 0,
+      "loadMs": 234.5999999642372,
+      "drawCalls": 7,
+      "triangles": 35444,
+      "vertices": 20687,
+      "textures": 1,
+      "shadowMapTextureBytes": 4194304,
+      "shadowDepthAttachmentEstimatedBytes": 4194304,
+      "sourceTextureBytes": 0,
+      "dpr": 1,
+      "samples": 133,
+      "meanFrameMs": 16.666165413533836,
+      "p95FrameMs": 16.700000000000728
+    },
+    "resources": [
+      {
+        "url": "http://127.0.0.1:18085/holoanatomy/shoulder/studio.css",
+        "bytes": 16185,
+        "duration": 9.800000011920929
+      },
+      {
+        "url": "http://127.0.0.1:18085/holoanatomy/shoulder/app.js",
+        "bytes": 24574,
+        "duration": 10.300000011920929
+      },
+      {
+        "url": "http://127.0.0.1:18085/holoanatomy/shoulder/scene.js",
+        "bytes": 18449,
+        "duration": 8
+      },
+      {
+        "url": "http://127.0.0.1:18085/holoanatomy/shoulder/vendor/three.module.min.js",
+        "bytes": 339208,
+        "duration": 10
+      },
+      {
+        "url": "http://127.0.0.1:18085/holoanatomy/shoulder/interaction.js",
+        "bytes": 4156,
+        "duration": 8.799999952316284
+      },
+      {
+        "url": "http://127.0.0.1:18085/holoanatomy/shoulder/model.js",
+        "bytes": 11313,
+        "duration": 6
+      },
+      {
+        "url": "http://127.0.0.1:18085/holoanatomy/shoulder/vendor/mesh-bvh.js",
+        "bytes": 193003,
+        "duration": 12
+      },
+      {
+        "url": "http://127.0.0.1:18085/holoanatomy/shoulder/vendor/loaders/OBJLoader.js",
+        "bytes": 23222,
+        "duration": 7.800000011920929
+      },
+      {
+        "url": "http://127.0.0.1:18085/holoanatomy/shoulder/vendor/loaders/GLTFLoader.js",
+        "bytes": 115039,
+        "duration": 7.199999988079071
+      },
+      {
+        "url": "http://127.0.0.1:18085/holoanatomy/shoulder/vendor/three.core.min.js",
+        "bytes": 381424,
+        "duration": 12
+      },
+      {
+        "url": "http://127.0.0.1:18085/holoanatomy/shoulder/vendor/utils/BufferGeometryUtils.js",
+        "bytes": 35839,
+        "duration": 2.600000023841858
+      },
+      {
+        "url": "http://127.0.0.1:18085/holoanatomy/shoulder/assets/provenance.json",
+        "bytes": 47240,
+        "duration": 5.5
+      },
+      {
+        "url": "http://127.0.0.1:18085/holoanatomy/shoulder/assets/shoulder-lod0.glb",
+        "bytes": 1130808,
+        "duration": 10.699999988079071
+      }
+    ],
+    "interactive": 488.39999997615814
+  },
+  "mobile": {
+    "transport": "glb",
+    "lod": 0,
+    "loadMs": 36.10000002384186,
+    "drawCalls": 7,
+    "triangles": 35444,
+    "vertices": 20687,
+    "textures": 1,
+    "shadowMapTextureBytes": 4194304,
+    "shadowDepthAttachmentEstimatedBytes": 4194304,
+    "sourceTextureBytes": 0,
+    "dpr": 1.5,
+    "samples": 128,
+    "meanFrameMs": 17.447406249999993,
+    "p95FrameMs": 16.799999999999272
+  },
+  "obj": {
+    "transport": "obj",
+    "lod": 0,
+    "loadMs": 114.69999998807907,
+    "drawCalls": 7,
+    "triangles": 35444,
+    "vertices": 106332,
+    "textures": 1,
+    "shadowMapTextureBytes": 4194304,
+    "shadowDepthAttachmentEstimatedBytes": 4194304,
+    "sourceTextureBytes": 0,
+    "dpr": 1,
+    "samples": 1,
+    "meanFrameMs": 50,
+    "p95FrameMs": 50
+  },
+  "lod2": {
+    "transport": "glb",
+    "lod": 2,
+    "loadMs": 33.69999998807907,
+    "drawCalls": 7,
+    "triangles": 18432,
+    "vertices": 12174,
+    "textures": 1,
+    "shadowMapTextureBytes": 4194304,
+    "shadowDepthAttachmentEstimatedBytes": 4194304,
+    "sourceTextureBytes": 0,
+    "dpr": 1,
+    "samples": 1,
+    "meanFrameMs": 16.799999999999997,
+    "p95FrameMs": 16.799999999999997
+  },
+  "status": "PASS",
+  "errors": [],
+  "failures": []
+}

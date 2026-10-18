@@ -1,5 +1,7 @@
 # Newer branch merge gate
 
+October 18 follow-up: the newer realism revision `6e3fb6de` and its court-entry/Lab cleanup corrections passed the full game suite and a 64-cycle browser gate, including eight native swing-review round trips. The findings below describe the original rejected consolidation trial. See the [subsequent qualification](../../rally-house-source-v16/evidence/endurance-20261018/README.md) for the resolved blocker, reproduction commands and executed results.
+
 Canonical `origin/main` at `4ada219a` completed 32 lifecycle cycles with DOM range 268–268, no tracked transient audio nodes after settling, and a coarse heap report of 42.1 MB at both endpoints. This is bounded automated evidence, not long-duration leak proof.
 
 Candidate `origin/rally-house-realism-proportions-20261017` at `8073949c` passed all 34 game suites and three-cycle continuity in Chromium/WebKit, but failed the identical lifecycle runner at cycle 28 (zero-based 27): the next challenge ended inactive before court entry. The trial merge was aborted. The candidate remains on its remote branch as valuable work pending correction and a clean endurance run. No production source from that trial is included in consolidation.
