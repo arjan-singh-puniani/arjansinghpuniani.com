@@ -2,6 +2,8 @@
 
 The candidate is `6e3fb6debaac1c9062e8f0702cdc7b13d9992927`, integrated with canonical main `79ef482419013307d9d1d3216bc177f8e89c32e9` in an isolated checkout. This retains main's browser-QA fixes and consolidation archive. The original realism branch and all historical recovery references remain preserved.
 
+During validation, main independently adopted realism and a direct first-rally arrival in PR #27, followed by the short-URL redirect in PR #28. This branch then integrated main `f592e69fe7b1ce4a599e82b04381df0715bc9152`, retaining the arrival helper, native-engine lifecycle support and native-audio completion checks. The full 36-suite game gate, standard portfolio verify command, desktop/phone native arrival and 64-cycle/eight-review gate were rerun on that combination. Earlier qualification snapshots are retained as `candidate-game-tests.log` and `candidate-endurance.json`.
+
 ## Reproduced defects and corrections
 
 The unmodified candidate failed repeated Championship entry on cycle 11; a diagnostic rerun failed on cycle 15. The trace shows a previous opponent standing at the exact far-baseline target while the incoming opponent repeatedly replans. The new baseline is ±6.65, beyond the old nonparticipant clearing range of ±6.3 and navigation admission range of ±6.6. Moving the tea table did not resolve this state.
@@ -29,19 +31,22 @@ QA_BASE_URL=http://127.0.0.1:18083 QA_WIDTH=390 QA_OUT=/tmp/realism-phone-review
 
 | Gate | Result |
 | --- | --- |
-| Game build and full suite | 35 suites passed, including 36 consecutive-opponent travel scenarios |
+| Game build and full suite | 36 suites passed, including arrival and 36 consecutive-opponent travel scenarios |
 | Release parity | 76 artifacts match; compiled imports resolve in both trees |
 | Final browser endurance | 64 cycles, all four opponents, alternating reduced motion, eight native Analyze/Lab/Return trips |
-| Ownership and resources | Exact camera/settings return; court/input/match released; DOM 271–271; zero tracked transient audio connections after settling |
-| Coarse heap | 56.8 MB at both endpoints; no forced collection |
+| Ownership and resources | Exact camera/settings return; court/input/match released; stable DOM 279–279, total 279–280 with one identified transient notice; zero tracked transient audio connections after settling |
+| Coarse heap | 33.1 MB at both endpoints; no forced collection |
 | Same-world continuity | Chromium, Firefox and WebKit passed; busy reservation and continuing club preserved |
 | Native swing review | Chromium desktop/390-pixel portrait, Firefox desktop and WebKit desktop passed with actual contacts, playback, framing and return |
 | Objects and accessibility | 13 native physical flows, 12 viewports, Axe, native touch and persisted state passed |
+| Current-main arrival | Native desktop and phone Play tennis reached an actual three-contact rally and returned with the court released |
 | Portfolio | Lint/typecheck passed; 91 tests in nine files passed, including a fresh standard V8 coverage run; production build passed |
 | Other projects | VectorCourt keyboard/buttons/scroll passed; 14 shoulder domain tests and native anatomy browser matrix passed |
 | Recovery archive | 180 recovery objects and 875 historical Git blobs verified; all 111 unreadable originals still present with recorded lengths and unchanged inventories |
 
 The initial busy-host coverage runners stalled; fresh standard coverage passed after they were stopped. Early Firefox and portrait timeout diagnostics are retained in local raw evidence; the final runs above passed in fresh processes. Existing portfolio lint warnings and the portfolio review's artistic limitations are not represented as new fixes.
+
+The integrated lifecycle fixture identified a pause-button locator race and one ordinary expiring `.world-notice`. It now waits for the native pause-panel control and separately bounds those notices while requiring every other DOM node to return exactly after **every** cycle. The four retained Lab options still fail that assertion. Arrival-specific diagnostics and the original failed endpoint comparison remain in local raw evidence.
 
 ## Evidence limits
 

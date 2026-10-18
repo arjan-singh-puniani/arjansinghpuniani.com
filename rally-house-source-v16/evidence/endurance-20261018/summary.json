@@ -1,21 +1,25 @@
 {
   "candidate": "6e3fb6debaac1c9062e8f0702cdc7b13d9992927",
-  "baseMain": "79ef482419013307d9d1d3216bc177f8e89c32e9",
-  "gameSuites": 35,
+  "baseMain": "f592e69fe7b1ce4a599e82b04381df0715bc9152",
+  "gameSuites": 36,
   "consecutiveOpponentCases": 36,
   "endurance": {
     "cycles": 64,
     "reviewRoundTrips": 8,
     "physicsAndCleanupPassed": true,
     "domRange": [
-      271,
-      271
+      279,
+      280
     ],
-    "firstDom": 271,
-    "lastDom": 271,
+    "ownedDomRange": [
+      279,
+      279
+    ],
+    "firstDom": 280,
+    "lastDom": 279,
     "transientAudioNodesAfterSettle": 0,
-    "firstHeap": 56800000,
-    "lastHeap": 56800000
+    "firstHeap": 33100000,
+    "lastHeap": 33100000
   },
   "sameWorldEngines": [
     "chromium",
@@ -43,5 +47,11 @@
     "Automated input and fixed-tick fixtures, not independent human playtesting",
     "Heap is coarse and transient AudioNode instrumentation is partial; no indefinite leak claim",
     "Existing artistic and physical-device release gates remain documented"
-  ]
+  ],
+  "candidateBaseMain": "79ef482419013307d9d1d3216bc177f8e89c32e9",
+  "nativeArrival": [
+    "desktop-real-rally",
+    "phone-real-rally"
+  ],
+  "standardPortfolioVerify": "passed after integration with current main"
 }
