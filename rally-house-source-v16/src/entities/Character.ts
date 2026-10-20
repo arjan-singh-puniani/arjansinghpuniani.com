@@ -102,7 +102,7 @@ export class Character {
     return {foot:this.strokeAnchor.foot,weight,anchor:this.strokeAnchor.point.clone()};
   }
   private canFoldReferenceIdle(){return this.spec.appearance!=='human'&&this.racketStowed&&this.canRelaxClubIdle()&&!this.acting.micro;}
-  private canRelaxClubIdle(){return (this.spec.avatar==='taylor'||this.spec.appearance==='human')&&this.state==='idle'&&!this.majorActivity&&!this.matchCompetitor&&!this.spectating&&!this.propKind&&!this.interactionTarget&&this.interactionWeight<.001&&this.socialGesture==='none'&&this.acting.role==='none';}
+  private canRelaxClubIdle(){return (this.spec.avatar==='taylor'||this.spec.appearance==='human')&&this.state==='idle'&&!this.majorActivity&&!this.matchCompetitor&&!this.spectating&&!this.propKind&&!this.interactionTarget&&this.interactionWeight<.001&&this.socialGesture==='none'&&(this.acting.role==='none'||this.acting.role==='exit');}
   private interactionTarget?:Vec3;
   private interactionWeight=0;
   private interactionRelease?:Vec3;
@@ -468,7 +468,7 @@ export class Character {
 
     const hipHalf=this.spec.presentation==='feminine'?.175:.165;const hipL=this.worldLocal(-hipHalf+pelvisShiftX,.76+baseY-knee,pelvisShiftZ,hipYaw),hipR=this.worldLocal(hipHalf+pelvisShiftX,.76+baseY-knee,pelvisShiftZ,hipYaw);
     if((moving||state==='ready')&&this.spec.appearance==='human'){const roll=moving?Math.sin(this.gaitPhase)*.006:readyWeight*.004;hipL.y+=roll;hipR.y-=roll;}
-    const walkReach=(state==='jog'?.40:.34)*gaitStyle.stride,footY=.11+(this.affection&&!moving?0:baseY);let footL=this.worldLocal(-.17,footY,.05+gait*walkReach),footR=this.worldLocal(.17,footY,.05-gait*walkReach);
+    const walkReach=(state==='jog'?.40:.34)*gaitStyle.stride,footY=.11+(this.affection&&!moving||this.spec.appearance==='human'&&this.canRelaxClubIdle()?0:baseY);let footL=this.worldLocal(-.17,footY,.05+gait*walkReach),footR=this.worldLocal(.17,footY,.05-gait*walkReach);
     if(moving){footL=this.walkCycle.feet[0].clone();footR=this.walkCycle.feet[1].clone();}
     if(state==='ready'||shuffle){const sideMotion=clamp(this.localVelocity.x/Math.max(.01,this.courtSpeed),-1,1),foreMotion=clamp(this.localVelocity.z/Math.max(.01,this.courtSpeed),-1,1),lateral=shuffle?Math.sin(this.gaitPhase)*.055+sideMotion*.045:0,wide=this.courtPhase==='split'?.07:0;footL=this.leftFootLock&&shuffle?this.leftFootLock.clone():this.worldLocal(-.29-wide-lateral,.11+splitHop,.16+foreMotion*.07);footR=this.rightFootLock&&shuffle?this.rightFootLock.clone():this.worldLocal(.29+wide-lateral,.11+splitHop,-.05+foreMotion*.07);}
     if(shot){const stance=Math.min(.16,Math.abs(outside)*.13);if(state==='swingForehand'){footL=this.worldLocal(-.25,.11+baseY,.12+weightShift*.08);footR=this.worldLocal(.34+stance,.11+baseY,-.07+weightShift*.04);}else if(state==='swingBackhand'){footL=this.worldLocal(-.34-stance,.11+baseY,-.04+weightShift*.05);footR=this.worldLocal(.25,.11+baseY,.13+weightShift*.08);}else if(state==='serve'){footL=this.worldLocal(-.20,.11+baseY,.14+weightShift*.08);footR=this.worldLocal(.23,.11+baseY,-.14+weightShift*.12);}else{footL=this.worldLocal(-.26,.11+baseY,.12);footR=this.worldLocal(.27,.11+baseY,-.04);}}
@@ -528,7 +528,7 @@ export class Character {
         result.face={...result.face,smile:Math.max(this.spec.avatar==='taylor'?.55:this.spec.presentation==='masculine'?.18:.32,result.face.smile),squint:Math.max(.08,result.face.squint)};
       }
       const design=CAST_DESIGN[this.spec.avatar??this.spec.id]??CAST_DESIGN.taylor;
-      return adultTaylorPose(result,this.position,this.yaw,{sitting:this.state==='sit',folded:this.canFoldReferenceIdle(),rightWorld:right,leftWorld:left,human:this.spec.appearance==='human',shoulderScale:design.shoulderScale,restWeight:this.canRelaxClubIdle()?this.clubIdleRelax:0,affection:this.affection??undefined,walk:result.walking&&this.spec.appearance==='human'&&!this.propKind&&this.interactionWeight<.001&&this.socialGesture==='none'?{phase:this.gaitPhase,weight:clamp(this.horizontalSpeed/1.2,0,1),stance:this.walkingShape()!.stance,planted:this.state==='jog'?[!!this.leftFootLock,!!this.rightFootLock]:undefined,swing:locomotionStyleFor(this.spec.id).armSwing*.75}:undefined,posture});
+      return adultTaylorPose(result,this.position,this.yaw,{sitting:this.state==='sit',folded:this.canFoldReferenceIdle(),rightWorld:right,leftWorld:left,human:this.spec.appearance==='human',shoulderScale:design.shoulderScale,restWeight:this.clubIdleRelax,affection:this.affection??undefined,walk:result.walking&&this.spec.appearance==='human'&&!this.propKind&&this.interactionWeight<.001&&this.socialGesture==='none'?{phase:this.gaitPhase,weight:clamp(this.horizontalSpeed/1.2,0,1),stance:this.walkingShape()!.stance,planted:this.state==='jog'?[!!this.leftFootLock,!!this.rightFootLock]:undefined,swing:locomotionStyleFor(this.spec.id).armSwing*.75}:undefined,posture});
     }
     return result;
   }

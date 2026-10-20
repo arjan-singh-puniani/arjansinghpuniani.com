@@ -4,7 +4,7 @@ const actor=()=>new Character(playerSpec('taylor'),new Vec3(),new Navigation([])
 let restChecks=0,frames=0,maxElbowTravel=0,maxFlex=0;
 for(const hz of [30,60,120])for(const yaw of [0,.7,Math.PI,4.9]){
  const c=actor();c.racketStowed=true;for(let i=0;i<hz*3;i++)c.update(1/hz);c.yaw=yaw;const p=c.analysisPose(),right=new Vec3(Math.cos(yaw),0,-Math.sin(yaw));
- for(const side of ['L','R']){const sign=side==='L'?-1:1,hand=p[`hand${side}`],elbow=p[`elbow${side}`],shoulder=p[`shoulder${side}`];assert(Vec3.dot(hand,right)*sign>.20,'Resting human hands remain on their own side, outside the torso');assert(hand.y<elbow.y&&elbow.y<shoulder.y,'Hands hang below elbows, below shoulders');assert(elbow.y<p.torsoCenter.y,'Resting elbows remain beside the waist rather than a reversed inherited fold');restChecks++;}
+ for(const side of ['L','R']){const sign=side==='L'?-1:1,hand=p[`hand${side}`],elbow=p[`elbow${side}`],shoulder=p[`shoulder${side}`];assert(Vec3.dot(Vec3.sub(hand,p.pelvisCenter),right)*sign>.20,'Resting human hands remain on their own side, outside the torso');assert(hand.y<elbow.y&&elbow.y<shoulder.y,'Waist-height hands remain below elbows and shoulders');assert(Vec3.dot(Vec3.sub(elbow,hand),right)*sign>.12,'Resting elbows open outside the waist');restChecks++;}
 }
 for(const hz of [30,60,120])for(const state of ['walk','jog','ready','shuffle','serve','swingForehand','swingBackhand','volley','sit','drink']){
  const c=actor();c.yaw=Math.PI;c.targetYaw=Math.PI;if(['serve','swingForehand','swingBackhand','volley'].includes(state))c.triggerShot(state,new Vec3(0,.1,-5));else c.trigger(state);if(state==='walk'||state==='jog')c.goTo(new Vec3(3,0,2));let prior=null;

@@ -87,3 +87,28 @@ assert.equal(signatures.size,specs.length,'Every named adult has a distinct rend
 assert(new Set(memberData.map(s=>JSON.stringify(locomotionStyleFor(s.id)))).size===memberData.length,'Individual footwork styles remain distinct');
 console.log(JSON.stringify({actors:specs.length,poses,maxStretch,maxContactError,minStrokePelvis,identities:signatures.size}));
 console.log('Athletic cast PASS: adult proportions, distinct identities, bounded geometry, shared skin rig, anatomical motion and exact tennis contact.');
+
+for(const spec of specs)for(const hz of [30,60,120])for(const yaw of [0,.7,Math.PI]){
+ const c=new Character({...spec},new Vec3(),new Navigation([]),{});c.yaw=c.targetYaw=yaw;c.acting.setRole('exit');
+ for(let i=0;i<hz*2;i++)c.update(1/hz);
+ const right=new Vec3(Math.cos(yaw),0,-Math.sin(yaw)),first=c.analysisPose(),feet=Vec3.lerp(first.footL,first.footR,.5);
+ assert(Vec3.dot(Vec3.sub(first.pelvisCenter,feet),right)>.04,'Rest visibly loads one leg, including after an interaction');
+ for(let i=0;i<hz;i++){
+  c.update(1/hz);const p=c.analysisPose();
+  for(const side of ['L','R']){
+   const hand=p[`hand${side}`],elbow=p[`elbow${side}`],sign=side==='L'?-1:1,offset=Vec3.sub(hand,p.pelvisCenter);
+   assert(sign*Vec3.dot(offset,right)>.21&&sign*Vec3.dot(offset,right)<.29,'Resting hands stay on their own side of the waist');
+   assert(offset.y>.15&&offset.y<.21,'Hands rest at waist height');
+   assert(sign*Vec3.dot(Vec3.sub(elbow,hand),right)>.12,'Elbows open away from the waist');
+   assert(Vec3.sub(p[`foot${side}`],first[`foot${side}`]).len()<1e-8,'Breathing cannot lift a resting shoe');
+  }
+ }
+ let prior=c.analysisPose();c.goTo(new Vec3(Math.sin(yaw)*4,0,Math.cos(yaw)*4));
+ for(let i=0;i<hz;i++){c.update(1/hz);const p=c.analysisPose();assert(Vec3.sub(p.handL,prior.handL).len()<.20,'Hands leave the waist continuously when walking begins');prior=p;}
+}
+console.log('Rest stance PASS: hands at the waist, open elbows, visible one-leg loading, grounded shoes, return after interactions and continuous walking departure.');
+for(const spec of specs)for(const hz of [30,60,120])for(const stroke of ['serve','swingForehand','swingBackhand']){
+ const c=new Character({...spec},new Vec3(),new Navigation([]),{});for(let i=0;i<hz*2;i++)c.update(1/hz);
+ c.triggerShot(stroke,new Vec3(0,.1,5));const contact=c.shotContactTime(stroke);for(let i=0;i<60;i++)c.update(contact/60);
+ assert(Vec3.sub(c.analysisPose().racketCenter,c.debugKinematics().contactTarget).len()<1e-6,'Leaving hands-on-waist rest preserves exact racket contact');
+}

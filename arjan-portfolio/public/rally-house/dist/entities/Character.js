@@ -122,7 +122,7 @@ export class Character {
         return { foot: this.strokeAnchor.foot, weight, anchor: this.strokeAnchor.point.clone() };
     }
     canFoldReferenceIdle() { return this.spec.appearance !== 'human' && this.racketStowed && this.canRelaxClubIdle() && !this.acting.micro; }
-    canRelaxClubIdle() { return (this.spec.avatar === 'taylor' || this.spec.appearance === 'human') && this.state === 'idle' && !this.majorActivity && !this.matchCompetitor && !this.spectating && !this.propKind && !this.interactionTarget && this.interactionWeight < .001 && this.socialGesture === 'none' && this.acting.role === 'none'; }
+    canRelaxClubIdle() { return (this.spec.avatar === 'taylor' || this.spec.appearance === 'human') && this.state === 'idle' && !this.majorActivity && !this.matchCompetitor && !this.spectating && !this.propKind && !this.interactionTarget && this.interactionWeight < .001 && this.socialGesture === 'none' && (this.acting.role === 'none' || this.acting.role === 'exit'); }
     interactionTarget;
     interactionWeight = 0;
     interactionRelease;
@@ -915,7 +915,7 @@ export class Character {
             hipL.y += roll;
             hipR.y -= roll;
         }
-        const walkReach = (state === 'jog' ? .40 : .34) * gaitStyle.stride, footY = .11 + (this.affection && !moving ? 0 : baseY);
+        const walkReach = (state === 'jog' ? .40 : .34) * gaitStyle.stride, footY = .11 + (this.affection && !moving || this.spec.appearance === 'human' && this.canRelaxClubIdle() ? 0 : baseY);
         let footL = this.worldLocal(-.17, footY, .05 + gait * walkReach), footR = this.worldLocal(.17, footY, .05 - gait * walkReach);
         if (moving) {
             footL = this.walkCycle.feet[0].clone();
@@ -1044,7 +1044,7 @@ export class Character {
                 result.face = { ...result.face, smile: Math.max(this.spec.avatar === 'taylor' ? .55 : this.spec.presentation === 'masculine' ? .18 : .32, result.face.smile), squint: Math.max(.08, result.face.squint) };
             }
             const design = CAST_DESIGN[this.spec.avatar ?? this.spec.id] ?? CAST_DESIGN.taylor;
-            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.canRelaxClubIdle() ? this.clubIdleRelax : 0, affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: this.state === 'jog' ? [!!this.leftFootLock, !!this.rightFootLock] : undefined, swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
+            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.clubIdleRelax, affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: this.state === 'jog' ? [!!this.leftFootLock, !!this.rightFootLock] : undefined, swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
         }
         return result;
     }
