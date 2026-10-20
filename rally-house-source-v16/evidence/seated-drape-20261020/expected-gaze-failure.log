@@ -1,0 +1,9 @@
+{"headTranslation":0.8742384113597185}
+file:///private/tmp/rh-seated-gaze-before.mjs:2
+const actors=[-1,1].map(side=>{const a=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});a.seatDepth=1.35;a.setLook(new Vec3(side*4,1.8,4));a.trigger('sit');for(let i=0;i<240;i++)a.update(1/120);return a;});const gap=Vec3.sub(actors[0].analysisPose().head,actors[1].analysisPose().head).len();console.log(JSON.stringify({headTranslation:gap}));if(gap>=.025)throw Error('Seated head translated away from its neck');
+                                                                                                                                                                                                                                                                                                                                                                                              ^
+
+Error: Seated head translated away from its neck
+    at file:///private/tmp/rh-seated-gaze-before.mjs:2:383
+
+Node.js v22.23.2

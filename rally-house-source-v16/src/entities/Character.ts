@@ -38,7 +38,7 @@ const MOVING=new Set<AnimState>(['walk','jog','shuffle']);
 
 interface FacePose {smile:number;mouthOpen:number;browRaise:number;squint:number;focus:number;}
 export interface CharacterPose extends Partial<AuthoredHandPose> {
-  baseY:number;breathe:number;walking:boolean;gait:number;torsoYaw:number;hipYaw:number;headYaw:number;eyeYaw?:number;right:Vec3;forward:Vec3;
+  baseY:number;breathe:number;walking:boolean;gait:number;torsoYaw:number;hipYaw:number;headYaw:number;eyeYaw?:number;seatedWeight?:number;right:Vec3;forward:Vec3;
   shoulderL:Vec3;shoulderR:Vec3;elbowL:Vec3;elbowR:Vec3;handL:Vec3;handR:Vec3;hipL:Vec3;hipR:Vec3;kneeL:Vec3;kneeR:Vec3;footL:Vec3;footR:Vec3;
   torsoCenter:Vec3;pelvisCenter:Vec3;head:Vec3;racketGrip:Vec3;racketHandleTop:Vec3;racketCenter:Vec3;racketRot:Vec3;
   lean:number;knee:number;shot:boolean;sp:number;face:FacePose;weightShift:number;
@@ -340,7 +340,8 @@ export class Character {
     if(state==='ready'||state==='shuffle'||state==='watch')return emotional.attentive;if(state==='drink')return emotional.pleased;return emotional.neutral;
   }
 
-  private worldLocal(x:number,y:number,z:number,yaw=this.yaw){const s=Math.sin(yaw),c=Math.cos(yaw);const shift=this.state==='sit'?-this.seatDepth*smoothstep(0,.6,this.animTime):0;return new Vec3(this.position.x+c*x+s*(z+shift),y,this.position.z-s*x+c*(z+shift));}
+  // The chair offset is one root translation, independent of head or torso turning.
+  private worldLocal(x:number,y:number,z:number,yaw=this.yaw){const s=Math.sin(yaw),c=Math.cos(yaw);const shift=this.state==='sit'?-this.seatDepth*smoothstep(0,.6,this.animTime):0;return new Vec3(this.position.x+c*x+s*z+Math.sin(this.yaw)*shift,y,this.position.z-s*x+c*z+Math.cos(this.yaw)*shift);}
   private localFromWorld(v:Vec3,yaw=this.yaw){const dx=v.x-this.position.x,dz=v.z-this.position.z,s=Math.sin(yaw),c=Math.cos(yaw);return new Vec3(c*dx-s*dz,v.y,s*dx+c*dz);}
   private limb(a:Vec3,b:Vec3,r:number,color:string):Mesh{const d=Vec3.sub(b,a),len=d.len()||.001;const h=Math.hypot(d.x,d.z);const pitch=Math.atan2(h,d.y);const yaw=Math.atan2(d.x,d.z);return {kind:'cylinder',position:Vec3.lerp(a,b,.5),rotation:new Vec3(pitch,yaw,0),scale:new Vec3(r,len,r),color};}
   private seed(){let n=0;for(const c of this.spec.id)n+=c.charCodeAt(0);return n;}

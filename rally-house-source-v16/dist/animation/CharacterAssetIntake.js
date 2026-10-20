@@ -86,9 +86,10 @@ export function inspectCharacterAsset(input, buffers, provenance) {
     const primitives = [];
     for (const [mi, mesh] of doc.meshes.entries())
         for (const [pi, p] of (mesh.primitives ?? []).entries()) {
+            const drape = doc.materials?.[p.material]?.name === 'skirt' && JSON.stringify(mesh.extras?.targetNames) === JSON.stringify(['seatedDrape', 'reserved1', 'reserved2', 'reserved3', 'reserved4']);
             if (p.mode !== undefined && p.mode !== 4)
                 fail('triangle primitives only');
-            if (p.targets && (!Array.isArray(p.targets) || p.targets.length !== 5 || JSON.stringify(mesh.extras?.targetNames) !== JSON.stringify(['smile', 'mouthOpen', 'blink', 'browRaise', 'grip'])))
+            if (p.targets && (!Array.isArray(p.targets) || p.targets.length !== 5 || !drape && JSON.stringify(mesh.extras?.targetNames) !== JSON.stringify(['smile', 'mouthOpen', 'blink', 'browRaise', 'grip'])))
                 fail('morph targets require a reviewed channel adapter');
             const positions = read(p.attributes?.POSITION, 'VEC3', [5126]), normals = read(p.attributes?.NORMAL, 'VEC3', [5126]), joints = read(p.attributes?.JOINTS_0, 'VEC4', [5121, 5123]), weights = read(p.attributes?.WEIGHTS_0, 'VEC4', [5121, 5123, 5126], true), count = positions.length / 3;
             if (normals.length !== positions.length || joints.length !== count * 4 || weights.length !== count * 4)
@@ -129,7 +130,7 @@ export function inspectCharacterAsset(input, buffers, provenance) {
             if (material.alphaMode === 'MASK' && (!albedo || !Number.isFinite(material.alphaCutoff) || material.alphaCutoff < 0 || material.alphaCutoff > 1))
                 fail('invalid alpha mask');
             const morphs = p.targets?.map((t, target) => { if (Object.keys(t).some(k => k !== 'POSITION' && k !== 'NORMAL'))
-                fail('unsupported expression channel'); const delta = read(t.POSITION, 'VEC3', [5126]); if (delta.length !== positions.length || delta.some((n) => Math.abs(n) > (target === 4 ? .2 : .06)))
+                fail('unsupported expression channel'); const delta = read(t.POSITION, 'VEC3', [5126]); if (delta.length !== positions.length || delta.some((n) => Math.abs(n) > (drape ? (target === 0 ? .25 : 0) : target === 4 ? .2 : .06)))
                 fail('invalid expression displacement'); return delta; });
             const morphNormals = p.targets?.some((t) => t.NORMAL !== undefined) ? p.targets.map((t) => { const delta = t.NORMAL === undefined ? Array(positions.length).fill(0) : read(t.NORMAL, 'VEC3', [5126]); if (delta.length !== positions.length || delta.some((n) => Math.abs(n) > 2.01))
                 fail('invalid expression normals'); return delta; }) : undefined;

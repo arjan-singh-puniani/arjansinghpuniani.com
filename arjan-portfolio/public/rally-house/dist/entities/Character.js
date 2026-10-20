@@ -620,7 +620,8 @@ export class Character {
             return emotional.pleased;
         return emotional.neutral;
     }
-    worldLocal(x, y, z, yaw = this.yaw) { const s = Math.sin(yaw), c = Math.cos(yaw); const shift = this.state === 'sit' ? -this.seatDepth * smoothstep(0, .6, this.animTime) : 0; return new Vec3(this.position.x + c * x + s * (z + shift), y, this.position.z - s * x + c * (z + shift)); }
+    // The chair offset is one root translation, independent of head or torso turning.
+    worldLocal(x, y, z, yaw = this.yaw) { const s = Math.sin(yaw), c = Math.cos(yaw); const shift = this.state === 'sit' ? -this.seatDepth * smoothstep(0, .6, this.animTime) : 0; return new Vec3(this.position.x + c * x + s * z + Math.sin(this.yaw) * shift, y, this.position.z - s * x + c * z + Math.cos(this.yaw) * shift); }
     localFromWorld(v, yaw = this.yaw) { const dx = v.x - this.position.x, dz = v.z - this.position.z, s = Math.sin(yaw), c = Math.cos(yaw); return new Vec3(c * dx - s * dz, v.y, s * dx + c * dz); }
     limb(a, b, r, color) { const d = Vec3.sub(b, a), len = d.len() || .001; const h = Math.hypot(d.x, d.z); const pitch = Math.atan2(h, d.y); const yaw = Math.atan2(d.x, d.z); return { kind: 'cylinder', position: Vec3.lerp(a, b, .5), rotation: new Vec3(pitch, yaw, 0), scale: new Vec3(r, len, r), color }; }
     seed() { let n = 0; for (const c of this.spec.id)

@@ -156,6 +156,10 @@ def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
      if insideB:result.append(current)
     if len(result)>=3:clipped.append((group,result))
   p=np.array(positions);u=np.array(coords);pw=np.array(influences);f=clipped
+ if name=='skirt':
+  # The thigh pivot rolls the front hem up; this corrective restores its seated drape.
+  used=np.unique([v for _,face in f for v,_ in face]);mp=metric(p);lo,hi=mp[used,1].min(),mp[used,1].max();depth=np.clip((hi-mp[:,1])/(hi-lo),0,1);depth=depth*depth*(3-2*depth);front=np.clip((mp[:,2]-.02)/.18,0,1);front=front*front*(3-2*front)
+  morph_data[name]=np.zeros((5,len(p),3));morph_data[name][0,:,1]=-.22/scale*depth*front;morph_data[name][0,:,2]=(.23-mp[:,2])/scale*depth*front
  parts.append((name,p,u,f,pw,texture,material))
 fitted('kit','clothes/female_sportsuit01','female_sportsuit01','kit.webp','performanceKnit',clip=-.55)
 fitted('top','clothes/punkduck_high_neck_crop_top','punkduck_high_neck_crop_top','kit.webp','performanceKnit',clip=2.5)
@@ -236,7 +240,7 @@ for name,p,u,f,w,tex,mat in parts:
    if name in normal_delta_data:region,values=normal_delta_data[name];normals[region]=values[channel]
    normals=normals[source_ids]*np.array([-1,1,1])
    primitive['targets'].append({'POSITION':accessor(delta[source_ids]*np.array([-scale,scale,scale]),'VEC3'),'NORMAL':accessor(normals,'VEC3')})
-  extras={'targetNames':['smile','mouthOpen','blink','browRaise','grip']}
+  extras={'targetNames':['seatedDrape','reserved1','reserved2','reserved3','reserved4'] if name=='skirt' else ['smile','mouthOpen','blink','browRaise','grip']}
  doc['meshes'].append({'name':name,'primitives':[primitive],'extras':extras});doc['nodes'].append({'mesh':len(doc['meshes'])-1,'skin':0});report.append({'name':name,'triangles':len(tri),'vertices':len(pos),'material':mat})
 doc['scenes']=[{'nodes':list(range(len(doc['nodes'])))}];doc['scene']=0;doc['buffers']=[{'byteLength':len(binary)}];binary.extend(bytes((-len(binary))%4));j=json.dumps(doc,separators=(',',':')).encode();j+=b' '*((-len(j))%4);glb=struct.pack('<III',0x46546c67,2,28+len(j)+len(binary))+struct.pack('<II',len(j),0x4e4f534a)+j+struct.pack('<II',len(binary),0x004e4942)+binary;(OUT/'taylor.glb').write_bytes(glb)
 meta={'author':'MakeHuman Community; MargaretToigo; Bobby_03; punkduck; Microsoft Rocketbox; Rally House fit and runtime adaptation','source':'https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482','license':'CC0-1.0 AND CC-BY-4.0 AND MIT','sha256':hashlib.sha256(glb).hexdigest(),'boneMap':{n:n for n in names},'bind':{k:v.tolist() for k,v in bind.items()},'parts':report,'textures':{name:hashlib.sha256((OUT/name).read_bytes()).hexdigest() for name in [*textures,'skirt.webp']},'sourceHashes':{str(p.relative_to(SRC)) if p.is_relative_to(SRC) else str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [SRC/'base.obj',SRC/'default_weights.mhw',SRC/'default.mhskel',*textures.values(),*list((SRC/'rocketbox').iterdir())]}}

@@ -1,0 +1,33 @@
+{
+  "seatHeight": 0.87,
+  "seatDepth": 1.35,
+  "activity": {
+    "id": "activity-1",
+    "kind": "touch",
+    "participants": [
+      "player"
+    ],
+    "resource": "lounge",
+    "phase": "active",
+    "elapsed": 16.28333333333369,
+    "phaseTime": 0.3,
+    "detail": "Sit"
+  },
+  "drape": 0.6419770212463626,
+  "neckHorizontalGap": 0.4511061010063382,
+  "knees": [
+    {
+      "x": 8.528292398419586,
+      "y": 0.6584321077208094,
+      "z": 5.066219406464054
+    },
+    {
+      "x": 8.170931882573695,
+      "y": 0.6584321077208093,
+      "z": 5.06605937948304
+    }
+  ],
+  "seatFront": 5.06,
+  "gl": 0,
+  "errors": []
+}

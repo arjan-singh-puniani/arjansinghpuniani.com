@@ -24,6 +24,7 @@ export function adultTaylorPose(source, root, yaw, constraints) {
         if (v instanceof Vec3)
             p[key] = v.clone();
     const oldShoulder = Vec3.lerp(source.shoulderL, source.shoulderR, .5), seat = constraints.seatWeight ?? (constraints.sitting ? 1 : 0), standingY = TAYLOR_BODY.pelvisHeight + (source.pelvisCenter.y - .79) * 1.5, pelvisY = standingY + (source.pelvisCenter.y - standingY) * seat;
+    p.seatedWeight = seat;
     const horizontal = (v, sx, sz = 1) => { const dx = v.x - root.x, dz = v.z - root.z, s = Math.sin(yaw), c = Math.cos(yaw), x = (c * dx - s * dz) * sx, z = (s * dx + c * dz) * sz; return new Vec3(root.x + c * x + s * z, v.y, root.z - s * x + c * z); };
     const torso = (v) => { const out = horizontal(v, .80); out.y = pelvisY + (v.y - source.pelvisCenter.y) * TAYLOR_BODY.torsoScale; return out; };
     p.pelvisCenter = torso(source.pelvisCenter);

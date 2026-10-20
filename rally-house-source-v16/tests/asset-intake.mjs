@@ -24,3 +24,10 @@ faceDoc.meshes[0].extras={targetNames:['smile','mouthOpen','blink','browRaise','
 const face=inspect(faceDoc,meta,faceArrays.map(a=>a.buffer));assert.equal(face.primitives[0].geometry.morphNormals.length,5);assert(Math.abs(face.primitives[0].geometry.morphNormals[0][1]-.1)<1e-6);
 for(const invalid of [NaN,2.1]){const bad=faceArrays.map(a=>a.buffer.slice(0));new Float32Array(bad[6])[0]=invalid;assert.throws(()=>inspect(faceDoc,meta,bad));}
 console.log('Five authored normal channels accepted; nonfinite and excessive normal offsets rejected.');
+// Garment motion has its own bounded adapter; facial limits remain unchanged.
+const skirtDoc=structuredClone(faceDoc),skirtArrays=faceArrays.map(a=>a.slice());skirtDoc.materials[0].name='skirt';skirtDoc.meshes[0].extras.targetNames=['seatedDrape','reserved1','reserved2','reserved3','reserved4'];
+skirtArrays.push(new Float32Array([0,-.22,-.1,0,-.22,-.1,0,-.22,-.1]));skirtDoc.bufferViews.push({buffer:7,byteLength:skirtArrays[7].byteLength});skirtDoc.accessors.push({bufferView:7,componentType:5126,count:3,type:'VEC3'});skirtDoc.meshes[0].primitives[0].targets[0].POSITION=7;
+assert.equal(inspect(skirtDoc,meta,skirtArrays.map(a=>a.buffer)).primitives[0].geometry.morphs.length,5);
+for(const mutate of [d=>d.materials[0].name='skin',d=>d.meshes[0].primitives[0].targets[1].POSITION=7,d=>d.meshes[0].extras.targetNames[0]='unknown']){const d=structuredClone(skirtDoc);mutate(d);assert.throws(()=>inspect(d,meta,skirtArrays.map(a=>a.buffer)));}
+const excessive=skirtArrays.map(a=>a.buffer.slice(0));new Float32Array(excessive[7])[1]=-.251;assert.throws(()=>inspect(skirtDoc,meta,excessive),/displacement/);
+console.log('Seated garment adapter accepts bounded motion and rejects wrong slots, reserved channels and excessive offsets.');

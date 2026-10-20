@@ -18,6 +18,7 @@ function joint(a:Vec3,b:Vec3,first:number,second:number,pole:Vec3,fallback:Vec3)
 export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constraints:Constraints):CharacterPose{
  const p={...source,face:{...source.face}};for(const [key,v] of Object.entries(source))if(v instanceof Vec3)(p as unknown as Record<string,unknown>)[key]=v.clone();
  const oldShoulder=Vec3.lerp(source.shoulderL,source.shoulderR,.5),seat=constraints.seatWeight??(constraints.sitting?1:0),standingY=TAYLOR_BODY.pelvisHeight+(source.pelvisCenter.y-.79)*1.5,pelvisY=standingY+(source.pelvisCenter.y-standingY)*seat;
+ p.seatedWeight=seat;
  const horizontal=(v:Vec3,sx:number,sz=1)=>{const dx=v.x-root.x,dz=v.z-root.z,s=Math.sin(yaw),c=Math.cos(yaw),x=(c*dx-s*dz)*sx,z=(s*dx+c*dz)*sz;return new Vec3(root.x+c*x+s*z,v.y,root.z-s*x+c*z);};
  const torso=(v:Vec3)=>{const out=horizontal(v,.80);out.y=pelvisY+(v.y-source.pelvisCenter.y)*TAYLOR_BODY.torsoScale;return out;};
  p.pelvisCenter=torso(source.pelvisCenter);p.torsoCenter=torso(source.torsoCenter);p.shoulderL=torso(source.shoulderL);p.shoulderR=torso(source.shoulderR);
