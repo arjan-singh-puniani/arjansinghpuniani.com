@@ -258,6 +258,8 @@ export class Renderer {
   private depthSkinProgram:WebGLProgram;
   private geos=new Map<GeometryKind,Geo>();
   private skinGeos=new Map<string,SkinGeo>();
+  // Shared pose arrays are immutable within a frame; each shader owns its uniforms.
+  private skinBones:Float32Array|null=null;private shadowBones:Float32Array|null=null;
   private shadowFB:WebGLFramebuffer;
   private shadowTex:WebGLTexture;
   private lampFB:WebGLFramebuffer;
@@ -340,7 +342,7 @@ export class Renderer {
 
   render(items:RenderItem[],viewProjection:Mat4,lighting:Lighting,viewPosition:Vec3){
     const gl=this.gl;
-    this.drawCalls=0;this.triangles=0;this.shadowCasters=0;this.instancedDraws=0;
+    this.drawCalls=0;this.triangles=0;this.shadowCasters=0;this.instancedDraws=0;this.skinBones=null;this.shadowBones=null;
     const meshes:Mesh[]=[],skins:SkinnedMesh[]=[],overlays:Mesh[]=[];for(const it of items){if('skin' in it)skins.push(it);else if(it.overlay)overlays.push(it);else meshes.push(it);}
     const lightVP=sunViewProjection(lighting.sunDir,SHADOW_CENTRE,SHADOW_RADIUS,SHADOW_RESOLUTION);
     const strength=this.shadowEnabled?(lighting.shadowStrength??1):0;
@@ -407,7 +409,7 @@ export class Renderer {
       if(!this.casts(s))continue;
       const g=this.skinGeometry(s.skin);
       gl.uniformMatrix4fv(this.dsu['u_model'],false,compose(s.position,s.rotation??new Vec3(),s.scale??new Vec3(1,1,1)));
-      gl.uniformMatrix4fv(this.dsu['u_bones'],false,s.boneMatrices);
+      if(this.shadowBones!==s.boneMatrices){gl.uniformMatrix4fv(this.dsu['u_bones'],false,s.boneMatrices);this.shadowBones=s.boneMatrices;}
       gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.shadowCasters++;
     }
     gl.disable(gl.POLYGON_OFFSET_FILL);gl.polygonOffset(0,0);
@@ -465,7 +467,7 @@ export class Renderer {
   }
 
   private drawMesh(m:Mesh){const gl=this.gl,g=this.geos.get(m.kind)!;gl.uniformMatrix4fv(this.u['u_model'],false,(this.staticData.get(m)?.model??compose(m.position,m.rotation??new Vec3(),m.scale)));const cached=this.staticData.get(m),c=cached?.color??hexToRgb(m.color),mp=cached?.material??this.materialParams(m.material);gl.uniform1i(this.u['u_material'],this.materialId(m.material));gl.uniform3f(this.u['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.u['u_alpha'],m.alpha??1);gl.uniform1f(this.u['u_unlit'],m.unlit?1:0);gl.uniform1f(this.u['u_emission'],m.emission??0);gl.uniform1f(this.u['u_roughness'],mp.roughness);gl.uniform1f(this.u['u_specular'],mp.specular);gl.uniform1f(this.u['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
-  private drawSkin(m:SkinnedMesh){const gl=this.gl,g=this.skinGeometry(m.skin);gl.uniformMatrix4fv(this.su['u_model'],false,compose(m.position,m.rotation??new Vec3(),m.scale??new Vec3(1,1,1)));gl.uniformMatrix4fv(this.su['u_bones'],false,m.boneMatrices);const c=hexToRgb(m.color),mp=this.materialParams(m.material);gl.uniform1i(this.su['u_material'],this.materialId(m.material));gl.uniform3f(this.su['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.su['u_alpha'],m.alpha??1);gl.uniform1f(this.su['u_unlit'],m.unlit?1:0);gl.uniform1f(this.su['u_emission'],0);gl.uniform1f(this.su['u_roughness'],mp.roughness);gl.uniform1f(this.su['u_specular'],mp.specular);gl.uniform1f(this.su['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
+  private drawSkin(m:SkinnedMesh){const gl=this.gl,g=this.skinGeometry(m.skin);gl.uniformMatrix4fv(this.su['u_model'],false,compose(m.position,m.rotation??new Vec3(),m.scale??new Vec3(1,1,1)));if(this.skinBones!==m.boneMatrices){gl.uniformMatrix4fv(this.su['u_bones'],false,m.boneMatrices);this.skinBones=m.boneMatrices;}const c=hexToRgb(m.color),mp=this.materialParams(m.material);gl.uniform1i(this.su['u_material'],this.materialId(m.material));gl.uniform3f(this.su['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.su['u_alpha'],m.alpha??1);gl.uniform1f(this.su['u_unlit'],m.unlit?1:0);gl.uniform1f(this.su['u_emission'],0);gl.uniform1f(this.su['u_roughness'],mp.roughness);gl.uniform1f(this.su['u_specular'],mp.specular);gl.uniform1f(this.su['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
   private skinGeometry(data:SkinGeometry){const hit=this.skinGeos.get(data.id);if(hit)return hit;const gl=this.gl,vao=gl.createVertexArray()!;gl.bindVertexArray(vao);const put=(loc:number,arr:Float32Array,size:number)=>{const b=gl.createBuffer()!;gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,arr,gl.STATIC_DRAW);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,0,0);};put(0,data.positions,3);put(1,data.normals,3);put(2,data.boneIndices,4);put(3,data.boneWeights,4);gl.bindVertexArray(null);const geo={vao,count:data.positions.length/3};this.skinGeos.set(data.id,geo);return geo;}
 
   private rigidVS(depthOnly:boolean){
