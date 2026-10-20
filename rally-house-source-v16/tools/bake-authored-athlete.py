@@ -221,7 +221,7 @@ atlas=Image.new('RGB',(1024,2048),(40,67,172));atlas.paste(Image.open(textures['
 # Match the body’s neutral neck pigment to the authored head without tinting facial detail.
 body_albedo=np.asarray(Image.open(textures['skin.webp']).convert('RGB').resize((2048,1024)),dtype=float)
 body_albedo=Image.fromarray(np.clip(body_albedo*np.array([1.09,1.025,.95]),0,255).astype('uint8'))
-skin_atlas=Image.new('RGB',(2048,2048));skin_atlas.paste(body_albedo,(0,0));skin_atlas.paste(Image.open(SRC/'rocketbox/f001_head_color.tga').convert('RGB').resize((2048,1024)),(0,1024));skin_atlas.save(OUT/'skin.webp','WEBP',quality=92,method=6)
+skin_atlas=Image.new('RGB',(2048,2048));skin_atlas.paste(body_albedo,(0,0));skin_atlas.paste(Image.open(Path(__file__).with_name('athlete-textures')/'head-brunette.png').convert('RGB').resize((2048,1024)),(0,1024));skin_atlas.save(OUT/'skin.webp','WEBP',quality=92,method=6)
 Image.new('RGB',(4,4),(210,231,89)).save(OUT/'skirt.webp','WEBP',lossless=True)
 doc={'asset':{'version':'2.0','generator':'Rally House authored athlete / MakeHuman, punkduck and Microsoft Rocketbox'},'accessors':[],'bufferViews':[],'buffers':[],'meshes':[],'materials':[],'textures':[],'images':[], 'nodes':[]};binary=bytearray()
 def accessor(a,t,component=5126):
@@ -269,5 +269,7 @@ meta={'author':'MakeHuman Community; MargaretToigo; Bobby_03; punkduck; Microsof
 meta['gripSign']=grip_sign;meta['facialTargets']=head['channels'];meta['headSource']={'author':'Microsoft Rocketbox','license':'MIT','revision':'0943055db6ec570bcef9f2c8b41c9e5467c808f9','source':'https://github.com/microsoft/Microsoft-Rocketbox'}
 meta['assetPacks']=['https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html','https://static.makehumancommunity.org/assets/assetpacks/skins01.html','https://static.makehumancommunity.org/assets/assetpacks/skirts01.html','https://static.makehumancommunity.org/assets/assetpacks/shirts03.html']
 for p in [*SRC.glob('*.target'),*[p for folder in ['clothes/female_sportsuit01','clothes/punkduck_high_neck_crop_top','clothes/toigo_skirt_with_lace_ruffle','clothes/shoes05','eyes/high-poly'] for p in (ROOT/folder).iterdir() if p.suffix in ('.obj','.mhclo')]]:meta['sourceHashes'][str(p.relative_to(SRC)) if p.is_relative_to(SRC) else str(p.relative_to(ROOT))]=hashlib.sha256(p.read_bytes()).hexdigest()
+for p in Path(__file__).with_name('athlete-textures').iterdir():meta['sourceHashes']['tools/athlete-textures/'+p.name]=hashlib.sha256(p.read_bytes()).hexdigest()
+meta['headSource']['textureAdaptation']='Brunette UV recolor using built-in imagegen; source image and exact prompt in tools/athlete-textures/'
 meta['authoringScripts']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),Path(__file__).with_name('fit-athlete-kit.py'),Path(__file__).with_name('fit-athlete-head.py')]}
 (OUT/'provenance.json').write_text(json.dumps(meta,indent=2)+'\n');print(json.dumps(report));print('triangles',sum(p['triangles'] for p in report),'glb',len(glb))

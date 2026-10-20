@@ -205,7 +205,7 @@
     }
   ],
   "textures": {
-    "skin.webp": "bb46e41bc7f7b7e8a4245d9815259c077636dde4a995304a3bbbcd9ddbfcfb24",
+    "skin.webp": "b683c839cbacdd494b146696daf63826c2b261a36bdf1bb96800c573f911faac",
     "kit.webp": "fc02aec6b3e2255f40b084c159314dbed24c9fd1c49895878be2d0e7661f476c",
     "shoes.webp": "3af53b14cb45d2e1a5f09cab63d55b534ee8f7e0f2cb54b63c9f9c8e7513d018",
     "hair.webp": "a549fa4b5f121e176e18a2d8fde0f6750b46ca778f93daec700540609ef16df7",
@@ -235,7 +235,9 @@
     "clothes/shoes05/shoes05.mhclo": "75fc467264b085d7a05ce0c9b5628bb364b246392c59524c556fa09f92b6cb16",
     "clothes/shoes05/shoes05.obj": "5726aabac42ff489998d0a769545dea013961bbb71b9c6024d75170181a98818",
     "eyes/high-poly/high-poly.mhclo": "b183cfe37120ab726f9b3f2ea6cd3a64c44ce7b4bd91a77c841cf70c04f83a0d",
-    "eyes/high-poly/high-poly.obj": "da2493215b708a344c33dc72f2a9a5b8fa985dcc5a70ad3b208995cf871da8e1"
+    "eyes/high-poly/high-poly.obj": "da2493215b708a344c33dc72f2a9a5b8fa985dcc5a70ad3b208995cf871da8e1",
+    "tools/athlete-textures/head-brunette.prompt.txt": "2cc90d8cba5478e39e5bb6a270e67e2d85a4ec41395d43d41520308369289c55",
+    "tools/athlete-textures/head-brunette.png": "577fa9e05a0b53e23bb519e2088834f08dc083c795a629ccbe03dbe71f02309e"
   },
   "gripSign": {
     "L": -1,
@@ -263,7 +265,8 @@
     "author": "Microsoft Rocketbox",
     "license": "MIT",
     "revision": "0943055db6ec570bcef9f2c8b41c9e5467c808f9",
-    "source": "https://github.com/microsoft/Microsoft-Rocketbox"
+    "source": "https://github.com/microsoft/Microsoft-Rocketbox",
+    "textureAdaptation": "Brunette UV recolor using built-in imagegen; source image and exact prompt in tools/athlete-textures/"
   },
   "assetPacks": [
     "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
@@ -272,7 +275,7 @@
     "https://static.makehumancommunity.org/assets/assetpacks/shirts03.html"
   ],
   "authoringScripts": {
-    "bake-authored-athlete.py": "88406286ffee2997633a756a0ded812088d594bdfde1ec877fa48dbfdcff1032",
+    "bake-authored-athlete.py": "304d5c63345f08ae9178078f103640f8360be8fe858ee395d4263f6c45a167f3",
     "fit-athlete-kit.py": "e6d0c77cbb064aff6ddd2d9581e083ab9414418228fa81cf0c98bf9409470b2c",
     "fit-athlete-head.py": "2ce21c5fe4b674c68c16acb89745ca4bf69640edf904fcf6f5203e88ee1f464a"
   }
