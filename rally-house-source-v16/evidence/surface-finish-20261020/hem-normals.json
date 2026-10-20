@@ -1,0 +1,38 @@
+[
+  {
+    "label": "before",
+    "edges": [
+      {
+        "slot": "kit",
+        "y": 1.6597603559494019,
+        "maxNormalGap": 0.44297603857049295,
+        "pairs": 126
+      },
+      {
+        "slot": "skirt",
+        "y": 1.1139721870422363,
+        "maxNormalGap": 1.8339958149829436,
+        "pairs": 242
+      }
+    ],
+    "triangles": 25996
+  },
+  {
+    "label": "after",
+    "edges": [
+      {
+        "slot": "kit",
+        "y": 1.6597603559494019,
+        "maxNormalGap": 0,
+        "pairs": 126
+      },
+      {
+        "slot": "skirt",
+        "y": 1.1139721870422363,
+        "maxNormalGap": 0,
+        "pairs": 242
+      }
+    ],
+    "triangles": 25996
+  }
+]

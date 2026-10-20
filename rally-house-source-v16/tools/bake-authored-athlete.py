@@ -145,14 +145,18 @@ def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
  if force is not None:pw[:]=0;pw[:,names.index(force)]=1
  for cut,direction in ([(clip,1)] if clip is not None else [])+([(5.45,-1)] if name=='top' else []):
   # Clip triangles at a physical hem plane, interpolating both UVs and skin weights.
-  positions=list(p);coords=list(u);influences=list(pw);clipped=[]
+  positions=list(p);coords=list(u);influences=list(pw);clipped=[];intersections={}
   for group,face in f:
    for j in range(1,len(face)-1):
     polygon=[face[0],face[j],face[j+1]];result=[]
     for previous,current in zip(polygon[-1:]+polygon[:-1],polygon):
      a,b=positions[previous[0]],positions[current[0]];insideA=direction*(a[1]-cut)>=0;insideB=direction*(b[1]-cut)>=0
      if insideA!=insideB:
-      t=(cut-a[1])/(b[1]-a[1]);vi=len(positions);ui=len(coords);positions.append(a+(b-a)*t);coords.append(coords[previous[1]]+(coords[current[1]]-coords[previous[1]])*t);influences.append(influences[previous[0]]+(influences[current[0]]-influences[previous[0]])*t);result.append((vi,ui))
+      t=(cut-a[1])/(b[1]-a[1]);edge=tuple(sorted((previous[0],current[0])));vi=intersections.get(edge)
+      # Adjacent triangles share a cut vertex so their hem normals remain continuous.
+      if vi is None:
+       vi=len(positions);intersections[edge]=vi;positions.append(a+(b-a)*t);influences.append(influences[previous[0]]+(influences[current[0]]-influences[previous[0]])*t)
+      ui=len(coords);coords.append(coords[previous[1]]+(coords[current[1]]-coords[previous[1]])*t);result.append((vi,ui))
      if insideB:result.append(current)
     if len(result)>=3:clipped.append((group,result))
   p=np.array(positions);u=np.array(coords);pw=np.array(influences);f=clipped
@@ -200,7 +204,10 @@ textures={
 for name,p in textures.items():
  im=Image.open(p);im.thumbnail((2048,2048) if name=='skin.webp' else (1024,1024));im.save(OUT/name,'WEBP',quality=91,method=6)
 atlas=Image.new('RGB',(1024,2048),(40,67,172));atlas.paste(Image.open(textures['kit.webp']).convert('RGB').resize((1024,1024)),(0,0));atlas.save(OUT/'kit.webp','WEBP',quality=91,method=6)
-skin_atlas=Image.new('RGB',(2048,2048));skin_atlas.paste(Image.open(textures['skin.webp']).convert('RGB').resize((2048,1024)),(0,0));skin_atlas.paste(Image.open(SRC/'rocketbox/f001_head_color.tga').convert('RGB').resize((2048,1024)),(0,1024));skin_atlas.save(OUT/'skin.webp','WEBP',quality=92,method=6)
+# Match the body’s neutral neck pigment to the authored head without tinting facial detail.
+body_albedo=np.asarray(Image.open(textures['skin.webp']).convert('RGB').resize((2048,1024)),dtype=float)
+body_albedo=Image.fromarray(np.clip(body_albedo*np.array([1.09,1.025,.95]),0,255).astype('uint8'))
+skin_atlas=Image.new('RGB',(2048,2048));skin_atlas.paste(body_albedo,(0,0));skin_atlas.paste(Image.open(SRC/'rocketbox/f001_head_color.tga').convert('RGB').resize((2048,1024)),(0,1024));skin_atlas.save(OUT/'skin.webp','WEBP',quality=92,method=6)
 Image.new('RGB',(4,4),(210,231,89)).save(OUT/'skirt.webp','WEBP',lossless=True)
 doc={'asset':{'version':'2.0','generator':'Rally House authored athlete / MakeHuman, punkduck and Microsoft Rocketbox'},'accessors':[],'bufferViews':[],'buffers':[],'meshes':[],'materials':[],'textures':[],'images':[], 'nodes':[]};binary=bytearray()
 def accessor(a,t,component=5126):

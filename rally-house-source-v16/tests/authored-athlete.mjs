@@ -14,6 +14,12 @@ for(const [name,sha] of Object.entries(meta.authoringScripts))assert.equal(hash(
 const asset=inspectCharacterAsset(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),[],meta);
 assert.deepEqual(asset.primitives.map(p=>p.materialSlot),['skin','kit','skirt','shoes','eyes','hair']);const body=asset.primitives[0].geometry;for(const bone of [BONE.foreArmTwistL,BONE.foreArmTwistR])assert(body.boneIndices.filter((n,i)=>n===bone&&body.boneWeights[i]>.1).length>100,'authored forearm twist weights must reach the visible skin');assert(asset.primitives.reduce((n,p)=>n+p.geometry.positions.length/9,0)<40000);
 for(const p of asset.primitives){assert(p.geometry.uvs?.every(Number.isFinite));assert(p.albedo);if(['eyes','hair','brows','lashes'].includes(p.materialSlot))assert.equal(p.alphaCutoff,.35);if(['skin','eyes','hair','skirt'].includes(p.materialSlot)){assert.equal(p.geometry.morphs.length,5);assert(p.geometry.morphs.every(d=>d.length===p.geometry.positions.length&&d.every(Number.isFinite)));assert.equal(p.geometry.morphNormals.length,5);assert(p.geometry.morphNormals.every(d=>d.length===p.geometry.positions.length&&d.every(n=>Number.isFinite(n)&&Math.abs(n)<=2.01)));}}
+for(const slot of ['kit','skirt']){
+ const g=asset.primitives.find(p=>p.materialSlot===slot).geometry,vertices=[];for(let i=0;i<g.positions.length/3;i++)if(slot==='skirt'||g.uvs[i*2+1]>.55)vertices.push(i);
+ const hem=Math.min(...vertices.map(i=>g.positions[i*3+1])),seen=new Map();let pairs=0;
+ for(const i of vertices){if(Math.abs(g.positions[i*3+1]-hem)>1e-5)continue;const key=[...g.positions.slice(i*3,i*3+3)].map(n=>n.toFixed(6)).join(','),previous=seen.get(key);if(previous===undefined){seen.set(key,i);continue;}for(const normals of [g.normals,...(g.morphNormals??[])])assert(Math.hypot(...normals.slice(i*3,i*3+3).map((n,j)=>n-normals[previous*3+j]))<1e-5,'trimmed cloth hem must shade continuously, including its corrective');pairs++;}
+ assert(pairs>50,'inspect actual shared hem vertices');
+}
 const rest=Object.fromEntries(Object.entries(meta.bind).map(([key,p])=>[key,new Vec3(...p)]));rest.headUp=new Vec3(0,1,0);
 const bind=skinMatrices(rest,rest);for(let bone=0;bone<Object.keys(BONE).length;bone++)for(let i=0;i<16;i++)assert(Math.abs(bind[bone*16+i]-(i%5===0?1:0))<1e-5,'rest pose changed');
 assert(rest.handL.x<0&&rest.handR.x>0&&rest.thighL.x<0&&rest.thighR.x>0);
