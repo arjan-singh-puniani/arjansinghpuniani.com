@@ -380,15 +380,20 @@ export class Character {
 
     if(state==='swingForehand'){
       const a=-1.45+smoothstep(0,.70,sp/contact)*1.98+smoothstep(contact,1,sp)*1.24;
-      handR=this.worldLocal(.54*Math.cos(a),1.05+baseY-knee,.58*Math.sin(a)+.29,torsoYaw);handL=this.worldLocal(-.14,1.18+baseY-knee,.30,torsoYaw);
+      const pre=clamp(sp/contact,0,1),follow=smoothstep(contact+.02,.94,sp);
+      handR=Vec3.lerp(this.worldLocal(.54*Math.cos(a),1.05+baseY-knee,.58*Math.sin(a)+.29,torsoYaw),this.worldLocal(-.32,1.42+baseY-knee,.34,torsoYaw),follow);
+      handL=this.worldLocal(-.32-.18*Math.sin(pre*Math.PI),1.18+baseY-knee+.10*(1-pre),.42-.28*pre+.10*follow,torsoYaw);
     }
     if(state==='swingBackhand'){
       const a=1.30-smoothstep(0,.70,sp/contact)*1.72-smoothstep(contact,1,sp)*.98;
-      handR=this.worldLocal(.42*Math.cos(a),1.13+baseY-knee,.54*Math.sin(a)+.25,torsoYaw);handL=this.worldLocal(-.02,1.16+baseY-knee,.30,torsoYaw);
+      const follow=smoothstep(contact+.02,.94,sp);
+      handR=Vec3.lerp(this.worldLocal(-.42*Math.cos(a),1.13+baseY-knee,.54*Math.sin(a)+.25,torsoYaw),this.worldLocal(.34,1.40+baseY-knee,.36,torsoYaw),follow);
+      handL=handR.clone().add(this.localVector(-.08,.04,.02));
     }
     if(state==='serve'){
-      const toss=smoothstep(0,.43,sp),reach=smoothstep(.33,.69,sp),finish=smoothstep(.64,1,sp);
-      handL=this.worldLocal(-.26,1.43+baseY+toss*.74,.23-toss*.06);handR=this.worldLocal(.31-finish*.26,1.29+baseY+reach*.96-finish*.48,.02-reach*.18+finish*.38,torsoYaw);
+      const pre=clamp(sp/contact,0,1),post=clamp((sp-contact)/(1-contact),0,1),toss=smoothstep(0,.70,pre)*(1-smoothstep(.78,1.55,sp/contact)),reach=smoothstep(.35,1,pre),finish=smoothstep(0,.80,post);
+      handL=this.worldLocal(-.26-.20*Math.sin(post*Math.PI)+finish*.10,1.25+baseY+toss*.92-finish*.10,.23+finish*.08);
+      handR=this.worldLocal(.31+.28*Math.sin(finish*Math.PI)-smoothstep(.55,1,finish)*.62,1.20+baseY+reach*1.02-finish*1.18,-.12+reach*.14+finish*.46,torsoYaw);
     }
     if(state==='volley'){const punch=smoothstep(0,.64,sp);handR=this.worldLocal(.34,1.18+baseY,.15+punch*.39,torsoYaw);handL=this.worldLocal(-.22,1.20+baseY,.18,torsoYaw);}
     if(state==='celebrate'){handL=this.worldLocal(-.36,1.98+baseY,.04);handR=this.worldLocal(.36,1.98+baseY,.04);}
@@ -436,18 +441,22 @@ export class Character {
     if(state==='serve')headOffset=Vec3.add(new Vec3(0,.525,0),racketForward.clone().scale(.125));
     if(state==='volley')headOffset=Vec3.add(new Vec3(0,.3875,0),racketForward.clone().scale(.2625));
     const humanGroundstroke=this.spec.appearance==='human'&&(state==='swingForehand'||state==='swingBackhand');
-    let groundRise=0,groundSide=0;
+    let groundRise=0,groundSide=0,groundDepth=.14;
     if(humanGroundstroke){
       // At a low ball the racket head drops beside the wrist. Keeping it
       // upright forced the grip toward the ankle and collapsed the body.
       groundRise=clamp(((this.contactTarget?.y??this.position.y+1.02)-this.position.y-1.02)*.5,-.20,.20);
       groundSide=Math.sqrt(.48**2-.14**2-groundRise**2)*(state==='swingForehand'?1:-1);
       headOffset=racketRight.clone().scale(groundSide).add(racketForward.clone().scale(.14)).add(new Vec3(0,groundRise,0));
+      // Release over the opposite shoulder after contact; the contact frame stays exact.
+      const finish=racketRight.clone().scale(state==='swingForehand'?-.38:.38).add(racketForward.clone().scale(-.14)).add(new Vec3(0,.25,0));
+      headOffset=Vec3.lerp(headOffset,finish,smoothstep(contact+.08,.94,sp)).normalize().scale(.48);
+      groundRise=headOffset.y;groundSide=Vec3.dot(headOffset,racketRight);groundDepth=Vec3.dot(headOffset,racketForward);
     }
     if(shot&&this.contactTarget){const w=bell(sp-contact,.11);const desiredHand=Vec3.sub(this.contactTarget,headOffset);handR=blendVec(handR,desiredHand,w);if(state==='swingBackhand'){const secondGrip=Vec3.add(handR,racketForward.clone().scale(-.08)).add(new Vec3(0,.04,0));handL=blendVec(handL,secondGrip,clamp(w*.90+.18,0,1));}}
     const racketGrip=handR.clone();const racketCenter=Vec3.add(racketGrip,headOffset);
     let racketRot=new Vec3(.02,Math.atan2(racketForward.x,racketForward.z),0);if(state==='swingForehand')racketRot=new Vec3(.10,torsoYaw,-.32+sp*.68);else if(state==='swingBackhand')racketRot=new Vec3(-.09,torsoYaw,.34-sp*.58);else if(state==='serve')racketRot=new Vec3(.46-sp*.58,torsoYaw,.36-sp*.72);else if(state==='volley')racketRot=new Vec3(.04,torsoYaw,-.12);
-    if(humanGroundstroke)racketRot=new Vec3(Math.atan2(.14,groundRise),Math.atan2(racketForward.x,racketForward.z),Math.atan2(-groundSide,Math.hypot(groundRise,.14)));
+    if(humanGroundstroke)racketRot=new Vec3(Math.atan2(groundDepth,groundRise),Math.atan2(racketForward.x,racketForward.z),Math.atan2(-groundSide,Math.hypot(groundRise,groundDepth)));
     const vib=this.racketVibration*Math.sin(this.animTime*62)*.045;racketRot.z+=vib;racketRot.x+=vib*.35;const racketHandleTop=Vec3.add(racketCenter,rotateEulerVector(new Vec3(0,RACKET.handleTopY,0),racketRot));
 
     const hipHalf=this.spec.presentation==='feminine'?.175:.165;const hipL=this.worldLocal(-hipHalf+pelvisShiftX,.76+baseY-knee,pelvisShiftZ,hipYaw),hipR=this.worldLocal(hipHalf+pelvisShiftX,.76+baseY-knee,pelvisShiftZ,hipYaw);
