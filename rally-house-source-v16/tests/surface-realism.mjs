@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {Vec3,transformPoint} from '../dist/rendering/Math3D.js';
 import {HUMAN_TAYLOR_GEOMETRY,HUMAN_FACE_VARIANTS} from '../dist/animation/TaylorHuman.js';
-import {CHARACTER_SKIN} from '../dist/animation/CharacterSkin.js';
+import {CHARACTER_SKIN,ATHLETE_WARDROBE} from '../dist/animation/CharacterSkin.js';
 import {ATHLETE_TRAINER_DETAIL,TAYLOR_FOOTWEAR} from '../dist/animation/TaylorAppearance.js';
 import {Character} from '../dist/entities/Character.js';
 import {playerSpec} from '../dist/content/PlayerAvatars.js';
@@ -19,7 +19,7 @@ for(const g of [face,...Object.values(ATHLETE_TRAINER_DETAIL)])for(let i=0;i<g.p
 // Recover the actual two emitted knee boundaries, rather than checking only
 // their joint centers. Center registration alone cannot detect a radial gap.
 function ring(g,side){const center=new Vec3(side*.17,.43,.04),axis=new Vec3(0,-.32,.04).normalize(),vertices=new Map();for(let i=0;i<g.positions.length;i+=3){const p=new Vec3(...g.positions.slice(i,i+3));if(Vec3.sub(p,center).len()<.16&&Math.abs(Vec3.dot(Vec3.sub(p,center),axis))<1e-6)vertices.set(key(g,i),i/3);}assert.equal(vertices.size,24);return [...vertices.values()];}
-const thigh=CHARACTER_SKIN.taylorLegs,calf=CHARACTER_SKIN.taylorBoots,pairs=[];
+const thigh=ATHLETE_WARDROBE.legs,calf=ATHLETE_WARDROBE.calves,pairs=[];
 for(const side of [-1,1]){const a=ring(thigh,side),b=ring(calf,side);for(const i of a){const p=new Vec3(...thigh.positions.slice(i*3,i*3+3)),j=b.reduce((best,j)=>Vec3.sub(p,new Vec3(...calf.positions.slice(j*3,j*3+3))).len()<Vec3.sub(p,new Vec3(...calf.positions.slice(best*3,best*3+3))).len()?j:best);assert(Vec3.sub(p,new Vec3(...calf.positions.slice(j*3,j*3+3))).len()<1e-7);pairs.push([i,j]);}}
 const deform=(g,i,bones)=>{const out=new Vec3(),p=new Vec3(...g.positions.slice(i*3,i*3+3));for(let n=0;n<4;n++){const w=g.boneWeights[i*4+n];if(w){const v=transformPoint(bones.slice(g.boneIndices[i*4+n]*16,g.boneIndices[i*4+n]*16+16),p);out.add(new Vec3(v.x,v.y,v.z).scale(w));}}return out;};
 let kneeChecks=0,maxKneeGap=0;

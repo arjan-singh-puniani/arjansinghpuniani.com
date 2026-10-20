@@ -21,8 +21,15 @@ const defs = [
     { joint: 'upperArmR', child: 'foreArmR' }, { joint: 'foreArmR', child: 'handR' }, { joint: 'handR', child: 'foreArmR' },
     { joint: 'thighL', child: 'shinL' }, { joint: 'shinL', child: 'footL' }, { joint: 'thighR', child: 'shinR' }, { joint: 'shinR', child: 'footR' }
 ];
-function frameFor(p, def) { const a = p[def.joint], b = p[def.child]; let target = b; if (def.joint === 'head' || def.joint === 'handL' || def.joint === 'handR')
-    target = Vec3.add(a, Vec3.sub(a, b)); return rigidFrame(a, target, p.forward); }
+function frameFor(p, def) {
+    const a = p[def.joint], b = p[def.child];
+    let target = b;
+    if (def.joint === 'head' || def.joint === 'handL' || def.joint === 'handR')
+        target = Vec3.add(a, Vec3.sub(a, b));
+    // A forward-pointing thigh must not roll over when its knee passes hip height.
+    const leg = def.joint.startsWith('thigh') || def.joint.startsWith('shin'), forward = leg ? Vec3.cross(new Vec3(-p.forward.z, 0, p.forward.x), Vec3.sub(target, a)) : p.forward;
+    return rigidFrame(a, target, forward.len() > .001 ? forward : p.forward);
+}
 const bindInv = defs.map(d => invertRigid(frameFor(bind, d)));
 export function skinMatrices(p) { const out = new Float32Array(BONE_COUNT * 16); for (let i = 0; i < BONE_COUNT; i++) {
     const d = defs[i], length = Vec3.sub(p[d.child], p[d.joint]).len(), rest = Vec3.sub(bind[d.child], bind[d.joint]).len();
@@ -221,14 +228,15 @@ dressBand(taylorDressEdging, 1.431, 1.440, 2, .007);
 dressBand(taylorDressEdging, .580, .591, 2, .004);
 // The human shoulder yoke and sportswear sample one contour and weight field.
 // The scoop neckline stays sewn to the body in live motion and replay.
-const humanProfile = [[.575, .310, .219], [.66, .302, .213], [.78, .284, .206], [.88, .259, .193], [1.02, .197, .153], [1.10, .202, .163], [1.20, .230, .189], [1.27, .254, .202], [1.34, .262, .180], [1.385, .224, .144], [1.42, .153, .104], [1.445, .104, .092]];
+const humanProfile = [[.575, .360, .175], [.66, .342, .183], [.78, .312, .198], [.88, .259, .193], [1.02, .197, .153], [1.10, .202, .163], [1.20, .230, .189], [1.27, .254, .202], [1.34, .262, .180], [1.385, .224, .144], [1.42, .153, .104], [1.445, .104, .092]];
 const humanNeckY = (angle) => 1.415 - .108 * Math.pow(Math.max(0, Math.sin(angle)), 2) - .028 * Math.pow(Math.max(0, -Math.sin(angle)), 2);
 function humanContour(y, angle, offset = 0) {
     const [x, z] = radiusAt(humanProfile, y), pleat = .016 * (1 - eased((y - .575) / .31)) * Math.cos(angle * 12);
     const px = Math.cos(angle) * (x + pleat + offset), front = Math.max(0, Math.sin(angle));
     const clavicle = .004 * Math.exp(-(((y - (1.390 - .18 * Math.abs(px))) / .010) ** 2)) * Math.exp(-(((Math.abs(px) - .090) / .085) ** 2));
     const hollow = .0025 * Math.exp(-((px / .026) ** 2) - (((y - 1.411) / .017) ** 2));
-    return new Vec3(px, y, .015 * clampUnit((y - .79) / .55) + Math.sin(angle) * (z + pleat * .65 + offset) + (clavicle - hollow) * front ** 6 + .0022 * Math.exp(-(((y - 1.03) / .05) ** 2)) * Math.sin(angle * 8 + y * 106) * front ** 2);
+    const chest = .024 * Math.exp(-(((Math.abs(px) - .105) / .090) ** 2) - (((y - 1.245) / .075) ** 2)) - .006 * Math.exp(-((px / .035) ** 2) - (((y - 1.255) / .070) ** 2));
+    return new Vec3(px, y, .015 * clampUnit((y - .79) / .55) + Math.sin(angle) * (z + pleat * .65 + offset) + (clavicle - hollow + chest) * front ** 6 + .0022 * Math.exp(-(((y - 1.03) / .05) ** 2)) * Math.sin(angle * 8 + y * 106) * front ** 2);
 }
 function humanNormal(y, angle) {
     const lo = Math.max(.575, y - .001), hi = Math.min(1.445, y + .001);
@@ -239,10 +247,12 @@ function humanSurface(out, low, high, rows, offset = 0) {
     for (let r = 0; r <= rows; r++)
         for (let i = 0; i < 64; i++) {
             const angle = i / 64 * Math.PI * 2, y = low(angle) + (high(angle) - low(angle)) * r / rows, p = humanContour(y, angle, offset), n = humanNormal(y, angle), [a, b, t] = dressWeights(y);
+            // The hem follows the thighs; a pelvis-only skirt cuts through a seated leg.
+            const leg = (1 - eased((y - .76) / .14)) * eased((Math.sin(angle) + 1) / 2), right = eased((p.x + .12) / .24);
             rings.p.push(p.x, p.y, p.z);
             rings.n.push(n.x, n.y, n.z);
-            rings.bi.push(a, b, 0, 0);
-            rings.bw.push(1 - t, t, 0, 0);
+            rings.bi.push(a, b, BONE.thighL, BONE.thighR);
+            rings.bw.push((1 - t) * (1 - leg), t * (1 - leg), leg * (1 - right), leg * right);
         }
     appendSurface(out, rings, rows, 64);
 }
@@ -272,7 +282,7 @@ for (const side of [-1, 1]) {
         }
 }
 export const HUMAN_TENNIS_SKIN = { dress: finish('taylor-human-tailored-dress-v2', humanDress), yoke: finish('taylor-human-shoulder-yoke-v2', humanYoke), trim: finish('taylor-human-scoop-piping-v2', humanTrim), seams: finish('taylor-human-princess-seams-v1', humanSeams) };
-const athleteBodice = build(), athleteSkirt = build(), athleteTop = build(), athleteLegs = build(), athleteCalves = build(), athleteArms = build(), athleteBand = build(), athleteSocks = build(), athleteFreeHands = build(), athleteShorts = { p: [...shorts.p], n: [...shorts.n], bi: [...shorts.bi], bw: [...shorts.bw] };
+const athleteBodice = build(), athleteSkirt = build(), athleteTop = build(), athleteLegs = build(), athleteCalves = build(), athleteArms = build(), athleteFeminineArms = build(), athleteBand = build(), athleteSocks = build(), athleteFreeHands = build(), athleteShorts = { p: [...shorts.p], n: [...shorts.n], bi: [...shorts.bi], bw: [...shorts.bw] };
 humanSurface(athleteBodice, () => .895, humanNeckY, 24, .003);
 humanSurface(athleteSkirt, () => .575, () => .905, 16, .003);
 sculptSegment(athleteTop, bind.pelvis, bind.spine, [[0, .265, .181], [.55, .244, .166], [1, .249, .172]], BONE.pelvis, BONE.spine, 12, 24);
@@ -282,9 +292,12 @@ for (const side of ['L', 'R']) {
     const a = bind[`upperArm${side}`], b = Vec3.lerp(a, bind[`foreArm${side}`], .32), bone = BONE[`upperArm${side}`];
     sculptSegment(athleteTop, a, b, [[0, .094, .088], [.45, .103, .094], [1, .098, .088]], bone, bone, 8, 24);
     shoulderCap(athleteTop, a, Vec3.sub(b, a), bone, .094, .088, 24, .040);
-    sculptSegment(athleteArms, a, bind[`foreArm${side}`], [[0, .090, .084], [.28, .101, .089], [.65, .087, .076], [1, .074, .067]], bone, BONE[`foreArm${side}`], 12, 24, true);
-    sculptSegment(athleteArms, bind[`foreArm${side}`], bind[`hand${side}`], [[0, .074, .067], [.30, .083, .070], [.7, .065, .056], [1, .051, .046]], BONE[`foreArm${side}`], BONE[`hand${side}`], 12, 24, true);
-    shoulderCap(athleteArms, a, Vec3.sub(b, a), bone, .090, .084, 24, .04);
+    for (const [out, scale] of [[athleteArms, 1], [athleteFeminineArms, .67]]) {
+        const profile = (r) => r.map(([t, x, z]) => [t, x * scale, z * scale]);
+        sculptSegment(out, a, bind[`foreArm${side}`], profile([[0, .090, .084], [.28, .101, .089], [.65, .087, .076], [1, .074, .067]]), bone, BONE[`foreArm${side}`], 12, 24, true);
+        sculptSegment(out, bind[`foreArm${side}`], bind[`hand${side}`], profile([[0, .074, .067], [.30, .083, .070], [.7, .065, .056], [1, .051, .046]]), BONE[`foreArm${side}`], BONE[`hand${side}`], 12, 24, true);
+        shoulderCap(out, a, Vec3.sub(b, a), bone, .090 * scale, .084 * scale, 24, .04);
+    }
     sculptSegment(athleteLegs, bind[`thigh${side}`], bind[`shin${side}`], [[0, .131, .118], [.22, .142, .125], [.65, .113, .101], [1, .087, .078]], BONE[`thigh${side}`], BONE[`shin${side}`], 16, 24, true);
     sculptSegment(athleteCalves, bind[`shin${side}`], bind[`foot${side}`], [[0, .087, .078], [.28, .103, .088], [.5, .088, .075], [.78, .065, .057], [1, .052, .047]], BONE[`shin${side}`], BONE[`shin${side}`], 16, 24);
     const elbow = bind[`foreArm${side}`], hand = bind[`hand${side}`], shin = bind[`shin${side}`], foot = bind[`foot${side}`], handBone = BONE[`hand${side}`], frame = basis(Vec3.sub(hand, elbow)), sign = side === 'L' ? -1 : 1;
@@ -302,8 +315,38 @@ for (const side of ['L', 'R']) {
     const thumbA = point(sign * .046, .002, .017), thumbB = point(sign * .069, .040, .031);
     handVolume(athleteFreeHands, Vec3.lerp(thumbA, thumbB, .5), basis(Vec3.sub(thumbB, thumbA)), new Vec3(.015, Vec3.sub(thumbB, thumbA).len() * .5 + .007, .015), handBone, 6, 12);
 }
+// Share the bend across both sides of a joint, rather than turning the thigh's
+// last ring entirely onto the shin and folding an open cavity into the knee.
+function balanceJoint(out, parent, joint) {
+    const a = bind[defs[joint].joint], b = bind[defs[joint].child], axis = Vec3.sub(b, a), length = axis.len();
+    axis.scale(1 / length);
+    for (let i = 0; i < out.p.length / 3; i++) {
+        const k = i * 4;
+        if (out.bi[k] === parent && out.bi[k + 1] === joint) {
+            const w = out.bw[k + 1] * .5;
+            out.bw[k] = 1 - w;
+            out.bw[k + 1] = w;
+        }
+        else if (out.bi[k] === joint) {
+            const p = new Vec3(...out.p.slice(i * 3, i * 3 + 3)), t = Vec3.dot(Vec3.sub(p, a), axis) / length;
+            if (t >= -.001 && t < .25) {
+                const w = .5 * (1 - eased(t / .25));
+                out.bi[k] = parent;
+                out.bi[k + 1] = joint;
+                out.bw[k] = w;
+                out.bw[k + 1] = 1 - w;
+            }
+        }
+    }
+}
+for (const side of ['L', 'R']) {
+    balanceJoint(athleteFeminineArms, BONE[`upperArm${side}`], BONE[`foreArm${side}`]);
+    balanceJoint(athleteArms, BONE[`upperArm${side}`], BONE[`foreArm${side}`]);
+    balanceJoint(athleteLegs, BONE[`thigh${side}`], BONE[`shin${side}`]);
+    balanceJoint(athleteCalves, BONE[`thigh${side}`], BONE[`shin${side}`]);
+}
 sculptSegment(athleteShorts, new Vec3(0, .74, 0), new Vec3(0, .825, 0), [[0, .323, .170], [.7, .287, .175], [1, .269, .177]], BONE.pelvis, BONE.pelvis, 8, 32);
-export const ATHLETE_WARDROBE = { bodice: finish('athlete-fitted-bodice-v1', athleteBodice), skirt: finish('athlete-pleated-skirt-v1', athleteSkirt), top: finish('athlete-performance-shirt-v2', athleteTop), legs: finish('athlete-shaped-legs-v1', athleteLegs), calves: finish('athlete-shaped-calves-v1', athleteCalves), arms: finish('athlete-shaped-arms-v1', athleteArms), shorts: finish('athlete-performance-shorts-v1', athleteShorts), wristband: finish('athlete-performance-wristband-v1', athleteBand), socks: finish('athlete-court-socks-v1', athleteSocks), freeHands: finish('athlete-relaxed-hands-v1', athleteFreeHands) };
+export const ATHLETE_WARDROBE = { bodice: finish('athlete-fitted-bodice-v1', athleteBodice), skirt: finish('athlete-pleated-skirt-v1', athleteSkirt), top: finish('athlete-performance-shirt-v2', athleteTop), legs: finish('athlete-shaped-legs-v1', athleteLegs), calves: finish('athlete-shaped-calves-v1', athleteCalves), arms: finish('athlete-shaped-arms-v1', athleteArms), feminineArms: finish('athlete-feminine-arms-v1', athleteFeminineArms), shorts: finish('athlete-performance-shorts-v1', athleteShorts), wristband: finish('athlete-performance-wristband-v1', athleteBand), socks: finish('athlete-court-socks-v1', athleteSocks), freeHands: finish('athlete-relaxed-hands-v1', athleteFreeHands) };
 // A small embroidered crescent recreates the reference's central gold detail.
 // It samples the same surface and weights as the tunic, including in replay.
 const taylorTunicMark = build();

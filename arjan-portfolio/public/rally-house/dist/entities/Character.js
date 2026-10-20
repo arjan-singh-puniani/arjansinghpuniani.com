@@ -1044,7 +1044,7 @@ export class Character {
                 result.face = { ...result.face, smile: Math.max(this.spec.avatar === 'taylor' ? .55 : this.spec.presentation === 'masculine' ? .18 : .32, result.face.smile), squint: Math.max(.08, result.face.squint) };
             }
             const design = CAST_DESIGN[this.spec.avatar ?? this.spec.id] ?? CAST_DESIGN.taylor;
-            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.clubIdleRelax, affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: this.state === 'jog' ? [!!this.leftFootLock, !!this.rightFootLock] : undefined, swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
+            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', seatWeight: this.state === 'sit' ? t : this.previousState === 'sit' ? 1 - t : 0, folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.clubIdleRelax, affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: this.state === 'jog' ? [!!this.leftFootLock, !!this.rightFootLock] : undefined, swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
         }
         return result;
     }
@@ -1077,7 +1077,7 @@ export class Character {
         const skinRoot = { position: new Vec3(p.x, 0, p.z), rotation: new Vec3(0, this.yaw, 0), boneMatrices: bones, poseRig: true };
         const torsoSkin = athlete ? (feline ? CHARACTER_SKIN.taylorDress : taylor ? HUMAN_TENNIS_SKIN.dress : feminine ? ATHLETE_WARDROBE.bodice : ATHLETE_WARDROBE.top) : this.spec.presentation === 'feminine' ? CHARACTER_SKIN.feminineTop : CHARACTER_SKIN.top;
         const skinMaterial = human ? 'humanSkin' : 'skin', garmentMaterial = human ? 'performanceKnit' : 'fabric';
-        m.push({ ...skinRoot, skin: torsoSkin, color: this.spec.shirt, material: garmentMaterial }, { ...skinRoot, skin: athlete ? (human && !feminine ? ATHLETE_WARDROBE.legs : CHARACTER_SKIN.taylorLegs) : CHARACTER_SKIN.pants, color: this.spec.skin, material: skinMaterial }, { ...skinRoot, skin: athlete ? (feminine ? CHARACTER_SKIN.taylorArms : ATHLETE_WARDROBE.arms) : CHARACTER_SKIN.arms, color: this.spec.skin, material: skinMaterial });
+        m.push({ ...skinRoot, skin: torsoSkin, color: this.spec.shirt, material: garmentMaterial }, { ...skinRoot, skin: athlete ? (human ? ATHLETE_WARDROBE.legs : CHARACTER_SKIN.taylorLegs) : CHARACTER_SKIN.pants, color: this.spec.skin, material: skinMaterial }, { ...skinRoot, skin: athlete ? (human ? (feminine ? ATHLETE_WARDROBE.feminineArms : ATHLETE_WARDROBE.arms) : CHARACTER_SKIN.taylorArms) : CHARACTER_SKIN.arms, color: this.spec.skin, material: skinMaterial });
         if (feline)
             m.push({ ...skinRoot, skin: CHARACTER_SKIN.taylorNeckline, color: TAYLOR_PALETTE.indigo, material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorDressEdging, color: '#f6dc7d', material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorTunicMark, color: '#b69a2a', material: 'toon', unlit: true }, { ...skinRoot, skin: CHARACTER_SKIN.taylorBoots, color: TAYLOR_PALETTE.indigo, material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorGloves, color: TAYLOR_PALETTE.indigo, material: 'fabric' });
         else if (human) {
@@ -1088,7 +1088,7 @@ export class Character {
             }
             else
                 m.push({ ...skinRoot, skin: ATHLETE_WARDROBE.shorts, color: design.bottom, material: garmentMaterial });
-            m.push({ ...skinRoot, skin: feminine ? CHARACTER_SKIN.taylorBoots : ATHLETE_WARDROBE.calves, color: this.spec.skin, material: 'humanSkin' }, { ...skinRoot, skin: feminine ? CHARACTER_SKIN.taylorSocks : ATHLETE_WARDROBE.socks, color: '#f3f1e8', material: 'fabric' }, { ...skinRoot, skin: feminine ? CHARACTER_SKIN.taylorWristband : ATHLETE_WARDROBE.wristband, color: this.spec.accent ?? '#cedb68', material: 'fabric' });
+            m.push({ ...skinRoot, skin: ATHLETE_WARDROBE.calves, color: this.spec.skin, material: 'humanSkin' }, { ...skinRoot, skin: ATHLETE_WARDROBE.socks, color: '#f3f1e8', material: 'fabric' }, { ...skinRoot, skin: feminine ? CHARACTER_SKIN.taylorWristband : ATHLETE_WARDROBE.wristband, color: this.spec.accent ?? '#cedb68', material: 'fabric' });
         }
         else {
             m.push({ kind: 'sphere', position: torsoCenter.clone().add(new Vec3(0, .025, 0)), rotation: new Vec3(0, torsoYaw, 0), scale: new Vec3(this.spec.presentation === 'feminine' ? .53 : .57, .68, .40), color: this.spec.shirt, material: 'fabric' });

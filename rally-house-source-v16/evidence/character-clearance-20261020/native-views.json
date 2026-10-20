@@ -1,0 +1,127 @@
+{
+  "errors": [],
+  "views": [
+    {
+      "id": "taylor",
+      "state": "idle",
+      "angle": 0.35,
+      "height": 2.233031286205202,
+      "shoulderSpan": 0.5200409210690807,
+      "gl": 0,
+      "drawCalls": 49,
+      "triangles": 42724
+    },
+    {
+      "id": "mika",
+      "state": "idle",
+      "angle": 0.35,
+      "height": 2.220607843059755,
+      "shoulderSpan": 0.5200344967384001,
+      "gl": 0,
+      "drawCalls": 50,
+      "triangles": 43748
+    },
+    {
+      "id": "nia",
+      "state": "idle",
+      "angle": 0.35,
+      "height": 2.2366749493205575,
+      "shoulderSpan": 0.5200517995091832,
+      "gl": 0,
+      "drawCalls": 49,
+      "triangles": 43256
+    },
+    {
+      "id": "coach",
+      "state": "idle",
+      "angle": 0.35,
+      "height": 2.217872217567277,
+      "shoulderSpan": 0.5200669079719294,
+      "gl": 0,
+      "drawCalls": 48,
+      "triangles": 41624
+    },
+    {
+      "id": "taylor",
+      "state": "idle",
+      "angle": 1.5,
+      "height": 2.233031286205202,
+      "shoulderSpan": 0.5200409210690807,
+      "gl": 0,
+      "drawCalls": 49,
+      "triangles": 42724
+    },
+    {
+      "id": "taylor",
+      "state": "idle",
+      "angle": 0.1,
+      "face": true,
+      "height": 2.233031286205202,
+      "shoulderSpan": 0.5200409210690807,
+      "gl": 0,
+      "drawCalls": 49,
+      "triangles": 42724
+    },
+    {
+      "id": "taylor",
+      "state": "drink",
+      "angle": 0.65,
+      "height": 2.2460101194679023,
+      "shoulderSpan": 0.5198401719075441,
+      "gl": 0,
+      "drawCalls": 52,
+      "triangles": 43284
+    },
+    {
+      "id": "taylor",
+      "state": "sit",
+      "angle": 0.65,
+      "height": 1.7174956784604476,
+      "shoulderSpan": 0.5198386728952497,
+      "gl": 0,
+      "drawCalls": 49,
+      "triangles": 42724
+    },
+    {
+      "id": "taylor",
+      "state": "ready",
+      "angle": 0.35,
+      "height": 2.165199293874651,
+      "shoulderSpan": 0.5212326073667713,
+      "gl": 0,
+      "drawCalls": 49,
+      "triangles": 42084
+    },
+    {
+      "id": "taylor",
+      "state": "swingForehand",
+      "angle": 0.6,
+      "height": 2.194167228843952,
+      "shoulderSpan": 0.5803326592306528,
+      "gl": 0,
+      "drawCalls": 49,
+      "triangles": 42084
+    },
+    {
+      "id": "taylor",
+      "state": "swingBackhand",
+      "angle": 0.6,
+      "height": 2.1930579580729654,
+      "shoulderSpan": 0.5664867283799419,
+      "gl": 0,
+      "drawCalls": 49,
+      "triangles": 42084
+    },
+    {
+      "id": "taylor",
+      "state": "serve",
+      "angle": 0.6,
+      "height": 2.2571200474484927,
+      "shoulderSpan": 0.532165883207432,
+      "gl": 0,
+      "drawCalls": 49,
+      "triangles": 42084
+    }
+  ],
+  "method": "Production Character.meshes and Renderer on the existing isolated diagnostic stage. Fixed camera, lighting and animation times."
+}
