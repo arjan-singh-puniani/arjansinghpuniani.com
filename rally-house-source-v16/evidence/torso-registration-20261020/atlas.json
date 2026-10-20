@@ -1,0 +1,12 @@
+{
+  "before": {
+    "minV": 0.5041000247001648,
+    "maxV": 0.9866499900817871,
+    "texture": "fc02aec6b3e2255f40b084c159314dbed24c9fd1c49895878be2d0e7661f476c"
+  },
+  "after": {
+    "minV": 0.75,
+    "maxV": 0.75,
+    "texture": "fc02aec6b3e2255f40b084c159314dbed24c9fd1c49895878be2d0e7661f476c"
+  }
+}

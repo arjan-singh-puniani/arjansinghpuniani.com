@@ -167,8 +167,9 @@ fitted('skirt','clothes/toigo_skirt_with_lace_ruffle','toigo_skirt_with_lace_ruf
 fitted('shoes','clothes/shoes05','shoes05','shoes.webp','performanceKnit')
 fitted('eyes','eyes/high-poly','high-poly','eyes.webp','iris',force='head')
 # One atlas keeps the fitted top and protected shorts in the existing kit draw.
+# Sample the solid top tile at its centre so mip filtering cannot pull in the shorts.
 ki=next(i for i,p in enumerate(parts) if p[0]=='kit');ti=next(i for i,p in enumerate(parts) if p[0]=='top');kit=parts[ki];top=parts.pop(ti)
-kp,ku,kf,kw=kit[1:5];tp,tu,tf,tw=top[1:5];ku=ku.copy();tu=tu.copy();ku[:,1]=.5+ku[:,1]*.5;tu[:,1]*=.5
+kp,ku,kf,kw=kit[1:5];tp,tu,tf,tw=top[1:5];ku=ku.copy();tu=np.full_like(tu,.5);ku[:,1]=.5+ku[:,1]*.5;tu[:,1]*=.5
 parts[ki]=('kit',np.vstack([kp,tp]),np.vstack([ku,tu]),[*kf,*[(g,[(v+len(kp),u+len(ku)) for v,u in face]) for g,face in tf]],np.vstack([kw,tw]),'kit.webp','performanceKnit')
 # Align the authored head to the original eye landmarks; the live anatomical rig stays unchanged.
 alignment=next(p for p in parts if p[0]=='eyes');parts.remove(alignment);eye_points=metric(alignment[1]);target_eyes=[]

@@ -87,7 +87,7 @@ export function interpolateFrame(a:MotionFrame,b:MotionFrame,time:number):Motion
    let rig=part.rig,palette=part.boneMatrices;
    if(part.poseRig&&part.rig&&other.rig){
     let source=authored.get(part.rig.bind);
-    if(!source){const local=rigFromPose(pose,root,rotation.y);for(const key of ['headUp','headForward','handDirectionL','handDirectionR','handForwardL','handForwardR','foreArmForwardL','foreArmForwardR','footForwardL','footForwardR','footUpL','footUpR'] as const){const x=part.rig.pose[key],y=other.rig.pose[key];if(x&&y)local[key]=Vec3.lerp(x,y,t);}
+    if(!source){const local=rigFromPose(pose,root,rotation.y);for(const key of ['spine','neck','headUp','headForward','handDirectionL','handDirectionR','handForwardL','handForwardR','foreArmForwardL','foreArmForwardR','footForwardL','footForwardR','footUpL','footUpR'] as const){const x=part.rig.pose[key],y=other.rig.pose[key];if(x&&y)local[key]=Vec3.lerp(x,y,t);}
      for(const side of ['L','R'] as const){const x=part.rig.pose,y=other.rig.pose,dx=x[`handDirection${side}`],dy=y[`handDirection${side}`],fx=x[`handForward${side}`],fy=y[`handForward${side}`];if(dx&&dy&&fx&&fy){const origin=new Vec3(),frame=interpolateRigidFrame(rigidFrame(origin,dx,fx),rigidFrame(origin,dy,fy),t);local[`handDirection${side}`]=new Vec3(frame[4],frame[5],frame[6]);local[`handForward${side}`]=new Vec3(frame[8],frame[9],frame[10]);local[`foreArmForward${side}`]=local[`handForward${side}`];}}
      source={bind:part.rig.bind,pose:local,matrices:skinMatrices(local,part.rig.bind)};authored.set(part.rig.bind,source);}
     rig={bind:source.bind,pose:source.pose};palette=source.matrices;

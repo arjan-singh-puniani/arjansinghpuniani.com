@@ -95,7 +95,7 @@ export function interpolateFrame(a, b, time) {
                 let source = authored.get(part.rig.bind);
                 if (!source) {
                     const local = rigFromPose(pose, root, rotation.y);
-                    for (const key of ['headUp', 'headForward', 'handDirectionL', 'handDirectionR', 'handForwardL', 'handForwardR', 'foreArmForwardL', 'foreArmForwardR', 'footForwardL', 'footForwardR', 'footUpL', 'footUpR']) {
+                    for (const key of ['spine', 'neck', 'headUp', 'headForward', 'handDirectionL', 'handDirectionR', 'handForwardL', 'handForwardR', 'foreArmForwardL', 'foreArmForwardR', 'footForwardL', 'footForwardR', 'footUpL', 'footUpR']) {
                         const x = part.rig.pose[key], y = other.rig.pose[key];
                         if (x && y)
                             local[key] = Vec3.lerp(x, y, t);

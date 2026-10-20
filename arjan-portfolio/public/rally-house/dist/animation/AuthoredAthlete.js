@@ -20,6 +20,12 @@ export async function loadAuthoredAthlete() {
             throw Error('Invalid character bind pose');
         bind[key] = new Vec3(...value);
     }
+    const spineRatio = (bind.spine.y - bind.pelvis.y) / (bind.chest.y - bind.pelvis.y), spineDepth = bind.spine.z - (bind.pelvis.z + (bind.chest.z - bind.pelvis.z) * spineRatio);
+    if (!Number.isFinite(spineRatio) || spineRatio <= 0 || spineRatio >= 1 || !Number.isFinite(spineDepth) || Math.abs(spineDepth) > .15)
+        throw Error('Invalid character spine registration');
+    const neckRatio = (bind.neck.y - bind.chest.y) / (bind.head.y - bind.chest.y), neckDepth = bind.neck.z - (bind.chest.z + (bind.head.z - bind.chest.z) * neckRatio);
+    if (!Number.isFinite(neckRatio) || neckRatio <= 0 || neckRatio >= 1 || !Number.isFinite(neckDepth) || Math.abs(neckDepth) > .15)
+        throw Error('Invalid character neck registration');
     const images = new Map();
     await Promise.all([...new Set(result.primitives.map(p => p.albedo).filter((s) => !!s))].map(async (name) => {
         const data = await get(name);
@@ -61,7 +67,7 @@ export async function loadAuthoredAthlete() {
     if (!eyeCenters.every(Number.isFinite))
         throw Error('Invalid character eye geometry');
     bind.headUp = new Vec3(0, 1, 0);
-    athlete = { parts: result.primitives, bind: bind, images, gripSign: meta.gripSign, eyeCenters };
+    athlete = { parts: result.primitives, bind: bind, images, gripSign: meta.gripSign, eyeCenters, neckRatio, neckDepth, spineRatio, spineDepth };
 }
 /** Advance once with the actor; rendering and replay only consume the result. */
 export function advanceAuthoredHands(p, position, yaw, previous, dt) {
@@ -95,6 +101,9 @@ export function authoredAthleteMeshes(p, position, yaw, feet, time) {
     if (!athlete)
         return;
     const rig = rigFromPose(p, position, yaw);
+    // The compact rig's internal ratios distort this authored torso; retain its source landmarks.
+    rig.spine = Vec3.lerp(rig.pelvis, rig.chest, athlete.spineRatio).add(rig.forward.clone().scale(athlete.spineDepth));
+    rig.neck = Vec3.lerp(rig.chest, rig.head, athlete.neckRatio).add(rig.forward.clone().scale(athlete.neckDepth));
     rig.headUp = new Vec3(0, 1, 0);
     rig.headForward = new Vec3(Math.sin(p.headYaw - yaw), 0, Math.cos(p.headYaw - yaw));
     const hands = p.handDirectionL && p.handDirectionR && p.handForwardL && p.handForwardR ? p : advanceAuthoredHands(p, position, yaw, undefined, 0);
