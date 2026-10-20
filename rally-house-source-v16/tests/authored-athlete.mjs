@@ -21,6 +21,16 @@ for(const slot of ['kit','skirt']){
  assert(pairs>50,'inspect actual shared hem vertices');
 }
 const rest=Object.fromEntries(Object.entries(meta.bind).map(([key,p])=>[key,new Vec3(...p)]));rest.headUp=new Vec3(0,1,0);
+// Measure the exported skin, so a later bake cannot silently restore the bulky arms.
+for(const side of ['L','R'])for(const [start,end,bones,limit] of [['upperArm','foreArm',['upperArm'],.063],['foreArm','wrist',['foreArm','foreArmTwist'],.051]]){
+ const a=rest[start+side],axis=Vec3.sub(rest[end+side],a),length=axis.len();axis.scale(1/length);const radii=[];
+ for(let v=0;v<body.positions.length/3;v++){
+  const p=Vec3.sub(new Vec3(...body.positions.slice(v*3,v*3+3)),a),along=Vec3.dot(p,axis)/length;let weight=0;
+  for(let j=0;j<4;j++)if(bones.some(b=>BONE[b+side]===body.boneIndices[v*4+j]))weight+=body.boneWeights[v*4+j];
+  if(weight>.95&&along>.2&&along<.7)radii.push(p.sub(axis.clone().scale(along*length)).len());
+ }
+ radii.sort((a,b)=>a-b);const radius95=radii[Math.floor(radii.length*.95)];assert(radii.length>60&&radius95>.03&&radius95<limit,'exported arm cross-section must retain the slimmer athletic silhouette');console.log(JSON.stringify({arm:start+side,radius95,samples:radii.length}));
+}
 const bind=skinMatrices(rest,rest);for(let bone=0;bone<Object.keys(BONE).length;bone++)for(let i=0;i<16;i++)assert(Math.abs(bind[bone*16+i]-(i%5===0?1:0))<1e-5,'rest pose changed');
 assert(rest.handL.x<0&&rest.handR.x>0&&rest.thighL.x<0&&rest.thighR.x>0);
 // Native QA checks image decoding. This mock exercises the real verified loader and capture/replay path.
@@ -38,7 +48,7 @@ try{
  assert(maxRestTorsoError<1e-5,'matching authored chest/head landmarks must preserve the source torso');console.log(JSON.stringify({maxRestTorsoError,registeredNeck:restTorso.rig.pose.neck}));
 const character=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});for(let i=0;i<240;i++)character.update(1/60);
 const standing=character.analysisPose(),shoulderRatio=Vec3.sub(standing.shoulderL,standing.shoulderR).len()/Vec3.sub(rest.upperArmL,rest.upperArmR).len();
-assert(shoulderRatio>.98&&shoulderRatio<1.02,'the standing hero must retain the authored shoulder span');console.log(JSON.stringify({shoulderRatio}));
+assert(shoulderRatio>.97&&shoulderRatio<.99,'the standing hero must retain the deliberately narrower shoulder span');console.log(JSON.stringify({shoulderRatio}));
 let samples=0,maxGripGap=0,minSole=Infinity,minForearmVolume=Infinity;
 for(const state of ['idle','sit','drink','ready','swingForehand','swingBackhand','serve']){
  character.trigger(state);for(let t=0;t<90;t++){character.update(1/120);if(t%15)continue;

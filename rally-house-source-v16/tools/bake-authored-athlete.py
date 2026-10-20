@@ -50,6 +50,17 @@ def metric(p):return (p-np.array([0,floor,0]))*np.array([-scale,scale,scale])
 height=metric(shape)[:,1];core=np.clip((.41-np.abs(metric(shape)[:,0]))/.09,0,1)
 shape[:,0]*=1+core*(-.075*np.exp(-((height-1.53)/.17)**2)+.035*np.exp(-((height-1.19)/.18)**2))
 def joint(s):return shape[list(groups['joint-'+s])].mean(0)
+# Reduce arm girth around the source axes; keep joint helpers and palms intact.
+arm_delta=np.zeros_like(shape)
+for side,source in [('L','l'),('R','r')]:
+ for start,end,bones,reduction in [('shoulder','elbow',['upperArm'],.18),('elbow','hand',['foreArm','foreArmTwist'],.12)]:
+  a,b=joint(source+'-'+start),joint(source+'-'+end);axis=b-a;along=np.clip((shape-a)@axis/np.dot(axis,axis),0,1)
+  radial=shape-(a+along[:,None]*axis);weight=W[:,[names.index(bone+side) for bone in bones]].sum(1)
+  fade=np.clip((1-along)/.25,0,1) if end=='hand' else np.ones(len(shape));fade=fade*fade*(3-2*fade)
+  arm_delta[:13380]-=radial[:13380]*(reduction*weight[:13380]*fade[:13380])[:,None]
+assert np.isfinite(arm_delta).all() and np.max(np.linalg.norm(arm_delta,axis=1))*scale<.025
+assert np.max(np.linalg.norm(arm_delta[W[:,[names.index('handL'),names.index('handR')]].sum(1)>.999],axis=1))*scale<1e-5
+shape+=arm_delta
 bind={
  'pelvis':joint('pelvis'),'spine':joint('spine-3'),'chest':(joint('l-shoulder')+joint('r-shoulder'))/2,'neck':joint('neck'),'head':np.array([0,6.18,.48]),
 }
