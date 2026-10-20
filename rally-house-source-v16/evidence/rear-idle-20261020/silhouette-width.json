@@ -1,0 +1,20 @@
+{
+  "before": {
+    "minX": 302,
+    "maxX": 550,
+    "width": 249,
+    "wristDeflectionDegrees": [
+      44.649281856843736,
+      35.201048902114884
+    ]
+  },
+  "after": {
+    "minX": 311,
+    "maxX": 542,
+    "width": 232,
+    "wristDeflectionDegrees": [
+      0.10353326372206277,
+      0.07756167196359097
+    ]
+  }
+}

@@ -146,6 +146,7 @@ def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
  pw=np.array(pw)
  if name=='skirt':
   top,bottom=p[:,1].max(),p[:,1].min();p[:,1]=top-(top-p[:,1])*.90;clip=top-(top-bottom)*.52
+  p[:,0]*=.90
   # A skirt spans both legs: smooth hip weights avoid nearest-leg seams and shin folds.
   depth=np.clip((top-p[:,1])/(top-clip),0,1);depth=depth*depth*(3-2*depth)
   front=np.clip((p[:,2]+.55)/1.4,0,1);left=1/(1+np.exp(-p[:,0]*3))

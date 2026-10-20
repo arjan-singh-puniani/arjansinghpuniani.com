@@ -103,7 +103,7 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
   if(walk){const sign=side==='L'?-1:1,swing=Math.cos(walk.phase)*walk.swing,goal=p[`shoulder${side}`].clone().add(torsoRight.clone().scale(sign*.015)).add(new Vec3(0,-(arms.upperArm+arms.forearm-.05)+Math.abs(swing)*.035,0)).add(torsoForward.clone().scale(sign*swing));p[`hand${side}`]=Vec3.lerp(p[`hand${side}`],goal,walk.weight);}
   const world=side==='L'?constraints.leftWorld:constraints.rightWorld;
   if(constraints.human&&seat>0&&!affection){const goal=Vec3.lerp(p[`hip${side}`],p[`knee${side}`],.60).add(new Vec3(0,.23,0));p[`hand${side}`]=Vec3.lerp(p[`hand${side}`],goal,seat*(1-world));}
-  if(constraints.human&&constraints.restWeight){const goal=p.pelvisCenter.clone().add(torsoRight.clone().scale(side==='L'?-.278:.278)).add(torsoForward.clone().scale(.10)).add(new Vec3(0,.18,0));p[`hand${side}`]=Vec3.lerp(p[`hand${side}`],goal,constraints.restWeight*(1-world));}
+  if(constraints.human&&constraints.restWeight){const fitted=!!constraints.armLengths,goal=p.pelvisCenter.clone().add(torsoRight.clone().scale((side==='L'?-1:1)*(fitted?.23:.278))).add(torsoForward.clone().scale(.10)).add(new Vec3(0,fitted?.23:.18,0));p[`hand${side}`]=Vec3.lerp(p[`hand${side}`],goal,constraints.restWeight*(1-world));}
   const shoulder=p[`shoulder${side}`],hand=p[`hand${side}`];
   // Route free crossing hands around the chest while preserving world-owned contact.
   if(constraints.human&&world<.999&&!affection){

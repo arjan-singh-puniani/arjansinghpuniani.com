@@ -87,7 +87,7 @@ export function advanceAuthoredHands(p, position, yaw, previous, dt) {
             frame = interpolateRigidFrame(frame, target, amount / (weight + amount));
             weight += amount;
         } };
-        add(rigidFrame(origin, new Vec3(0, -1, .1), new Vec3(side === 'L' ? 1 : -1, 0, 0)), p.handRestWeight);
+        add(rigidFrame(origin, direction, new Vec3(side === 'L' ? 1 : -1, 0, 0)), p.handRestWeight);
         add(rigidFrame(origin, new Vec3(0, 0, 1), new Vec3(0, 1, 0)), p.handLapWeight);
         if (racketGrip[i] > .0001) {
             // The grip can roll around its shaft to follow the forearm without moving contact.

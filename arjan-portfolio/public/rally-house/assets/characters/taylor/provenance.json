@@ -2,7 +2,7 @@
   "author": "MakeHuman Community; MargaretToigo; Bobby_03; punkduck; Microsoft Rocketbox; Rally House fit and runtime adaptation",
   "source": "https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482",
   "license": "CC0-1.0 AND CC-BY-4.0 AND MIT",
-  "sha256": "e8d87f55b8ad702728cc4e82e3330bbb2902af2d5f470daff569e38b0ac40fb2",
+  "sha256": "b0c5c78457ab2e9ef24417c146800355319cd0cecaf80f5dbb65b8a1889af131",
   "boneMap": {
     "pelvis": "pelvis",
     "spine": "spine",
@@ -275,7 +275,7 @@
     "https://static.makehumancommunity.org/assets/assetpacks/shirts03.html"
   ],
   "authoringScripts": {
-    "bake-authored-athlete.py": "2db3bccaa94cea748d94300517f13a77096ed37732cfffa0cc50c3b0843aec46",
+    "bake-authored-athlete.py": "41e80e99aaab67bd46cb30e4806d289c05d158747d3430e6bb90a25c5ad6528a",
     "fit-athlete-kit.py": "e6d0c77cbb064aff6ddd2d9581e083ab9414418228fa81cf0c98bf9409470b2c",
     "fit-athlete-head.py": "2ce21c5fe4b674c68c16acb89745ca4bf69640edf904fcf6f5203e88ee1f464a"
   }

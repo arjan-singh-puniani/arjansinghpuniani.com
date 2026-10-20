@@ -50,6 +50,8 @@ try{
 const character=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});for(let i=0;i<240;i++)character.update(1/60);
 const standing=character.analysisPose(),shoulderRatio=Vec3.sub(standing.shoulderL,standing.shoulderR).len()/Vec3.sub(rest.upperArmL,rest.upperArmR).len();
 assert(shoulderRatio>.97&&shoulderRatio<.99,'the standing hero must retain the deliberately narrower shoulder span');console.log(JSON.stringify({shoulderRatio}));
+const idleRig=character.meshes().find(m=>m.rig).rig.pose;
+for(const side of ['L','R'])assert(Vec3.dot(Vec3.sub(idleRig['hand'+side],idleRig['foreArm'+side]).normalize(),idleRig['handDirection'+side])>.98,'resting hands must follow the forearms instead of folding down at the wrists');
 let samples=0,maxGripGap=0,minSole=Infinity,minForearmVolume=Infinity;
 for(const state of ['idle','sit','drink','ready','swingForehand','swingBackhand','serve']){
  character.trigger(state);for(let t=0;t<90;t++){character.update(1/120);if(t%15)continue;

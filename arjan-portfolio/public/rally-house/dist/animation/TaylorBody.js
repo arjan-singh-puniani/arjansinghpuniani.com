@@ -185,7 +185,7 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             p[`hand${side}`] = Vec3.lerp(p[`hand${side}`], goal, seat * (1 - world));
         }
         if (constraints.human && constraints.restWeight) {
-            const goal = p.pelvisCenter.clone().add(torsoRight.clone().scale(side === 'L' ? -.278 : .278)).add(torsoForward.clone().scale(.10)).add(new Vec3(0, .18, 0));
+            const fitted = !!constraints.armLengths, goal = p.pelvisCenter.clone().add(torsoRight.clone().scale((side === 'L' ? -1 : 1) * (fitted ? .23 : .278))).add(torsoForward.clone().scale(.10)).add(new Vec3(0, fitted ? .23 : .18, 0));
             p[`hand${side}`] = Vec3.lerp(p[`hand${side}`], goal, constraints.restWeight * (1 - world));
         }
         const shoulder = p[`shoulder${side}`], hand = p[`hand${side}`];

@@ -50,7 +50,7 @@ export function advanceAuthoredHands(p:CharacterPose,position:Vec3,yaw:number,pr
   const direction=Vec3.sub(rig[`hand${side}`],rig[`foreArm${side}`]),pole=Vec3.cross(Vec3.sub(rig[`foreArm${side}`],rig[`upperArm${side}`]),direction).scale(side==='L'?1:-1);
   let frame=rigidFrame(origin,direction,pole.len()>.001?pole:rig.forward),weight=Math.max(0,1-p.handRestWeight-p.handLapWeight-racketGrip[i]);
   const add=(target:ReturnType<typeof rigidFrame>,amount:number)=>{if(amount>0){frame=interpolateRigidFrame(frame,target,amount/(weight+amount));weight+=amount;}};
-  add(rigidFrame(origin,new Vec3(0,-1,.1),new Vec3(side==='L'?1:-1,0,0)),p.handRestWeight);
+  add(rigidFrame(origin,direction,new Vec3(side==='L'?1:-1,0,0)),p.handRestWeight);
   add(rigidFrame(origin,new Vec3(0,0,1),new Vec3(0,1,0)),p.handLapWeight);
   if(racketGrip[i]>.0001){
    // The grip can roll around its shaft to follow the forearm without moving contact.
