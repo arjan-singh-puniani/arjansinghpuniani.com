@@ -63,6 +63,10 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
  for(const actor of [origin,translated]){actor.trigger('ready');for(let i=0;i<180;i++)actor.update(1/120);}
  const localBones=origin.meshes().find(p=>p.rig).boneMatrices,translatedBones=translated.meshes().find(p=>p.rig).boneMatrices;assert(localBones.every((n,i)=>Math.abs(n-translatedBones[i])<1e-5),'authored hand metadata must not overwrite root-local joints');
  const skirt=asset.primitives.find(p=>p.materialSlot==='skirt').geometry;assert(skirt.positions.length>1000&&skirt.boneIndices.every((b,i)=>skirt.boneWeights[i]<.001||[BONE.pelvis,BONE.spine,BONE.chest,BONE.thighL,BONE.thighR].includes(b)),'skirt must span the hips without shin weights');
+ const skirtHem=Math.min(...skirt.positions.filter((_,i)=>i%3===1)),shortsHem=Math.min(...asset.primitives.find(p=>p.materialSlot==='kit').geometry.positions.filter((_,i)=>i%3===1));
+ assert(skirtHem>rest.shinL.y+(rest.thighL.y-rest.shinL.y)*.70,'tennis skirt hem must stay above the lower thigh');assert(shortsHem>skirtHem+.02,'opaque sports shorts must finish inside the skirt');console.log(JSON.stringify({skirtHem,shortsHem}));
+ let upperPanelSamples=0,upperPanelHipWeight=0;for(let v=0;v<skirt.positions.length/3;v++){const[x,y,z]=skirt.positions.slice(v*3,v*3+3);if(Math.abs(x)>.13||y<1.25||y>1.38||z<.12)continue;upperPanelSamples++;for(let j=0;j<4;j++)if(skirt.boneIndices[v*4+j]<=BONE.chest)upperPanelHipWeight+=skirt.boneWeights[v*4+j];}
+ assert(upperPanelSamples>100&&upperPanelHipWeight/upperPanelSamples>.8,'upper skirt must follow the hips so the shorts cannot poke through during a ready stance');
  const blinkActor=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});let previousBlink=0,maxBlink=0,maxBlinkStep=0;
  for(let frame=0;frame<960;frame++){blinkActor.update(1/240);const blink=blinkActor.meshes().find(m=>m.rig).expression[2];maxBlink=Math.max(maxBlink,blink);maxBlinkStep=Math.max(maxBlinkStep,Math.abs(blink-previousBlink));previousBlink=blink;}
  assert(maxBlink>.95&&maxBlinkStep<.15,'blink must close fully without snapping shut');console.log(JSON.stringify({maxBlink,maxBlinkStep}));

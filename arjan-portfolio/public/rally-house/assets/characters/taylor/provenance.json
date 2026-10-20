@@ -2,7 +2,7 @@
   "author": "MakeHuman Community; MargaretToigo; Bobby_03; Mika Suominen; dariush086; Rally House fit and runtime adaptation",
   "source": "https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482",
   "license": "CC0-1.0",
-  "sha256": "cf3bacbfdbd14a18aa01fa7e146e5cdf2acb2211861ea8b7254636887facc9b9",
+  "sha256": "fdba55f61d7a593d70cb1440ba42987c8f79be22a6bc21350d681ad87d31c00c",
   "boneMap": {
     "pelvis": "pelvis",
     "spine": "spine",
@@ -169,20 +169,20 @@
   "parts": [
     {
       "name": "skin",
-      "triangles": 20264,
-      "vertices": 11049,
+      "triangles": 20696,
+      "vertices": 11272,
       "material": "humanSkin"
     },
     {
       "name": "kit",
-      "triangles": 2382,
-      "vertices": 1516,
+      "triangles": 2080,
+      "vertices": 1321,
       "material": "performanceKnit"
     },
     {
       "name": "skirt",
-      "triangles": 5639,
-      "vertices": 3268,
+      "triangles": 4244,
+      "vertices": 2541,
       "material": "performanceKnit"
     },
     {
@@ -309,7 +309,7 @@
     "https://static.makehumancommunity.org/assets/assetpacks/system_hair_materials01.html"
   ],
   "authoringScripts": {
-    "bake-authored-athlete.py": "cf3381458cea1e505c1c9b4aef20d2f42d677ff9f0591d9e9d239c1ed4543337",
+    "bake-authored-athlete.py": "71b41511bfb51a2228eab025074bdb9f4524386a5a58053c830cde3c0e1d3090",
     "fit-athlete-kit.py": "aac9ee99b856a52c1d5e8c158a20847a3ef5fe92e5428f0e67547b176e373df0",
     "fit-athlete-mouth.py": "d0f21b1d9c34e14d1d07de13bb853241030ce6d3050f36266456319f8b8691f8"
   }

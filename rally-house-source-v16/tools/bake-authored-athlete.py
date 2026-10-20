@@ -135,7 +135,7 @@ def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
    if len(a)==1:face_parts[name][:,i]=face_delta[:,int(a[0])]
    else:face_parts[name][:,i]=(face_delta[:,np.array(list(map(int,a[:3])))]*np.array(list(map(float,a[3:6])))[None,:,None]).sum(1)
  if name=='skirt':
-  top,bottom=p[:,1].max(),p[:,1].min();p[:,1]=top-(top-p[:,1])*.90;clip=top-(top-bottom)*.83
+  top,bottom=p[:,1].max(),p[:,1].min();p[:,1]=top-(top-p[:,1])*.90;clip=top-(top-bottom)*.52
   # A skirt spans both legs: smooth hip weights avoid nearest-leg seams and shin folds.
   depth=np.clip((top-p[:,1])/(top-clip),0,1);depth=depth*depth*(3-2*depth)
   front=np.clip((p[:,2]+.55)/1.4,0,1);left=1/(1+np.exp(-p[:,0]*3))
@@ -147,7 +147,7 @@ def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
    subprocess.run(['/Applications/Blender.app/Contents/MacOS/Blender','--background','--factory-startup','--python',str(Path(__file__).with_name('fit-athlete-kit.py')),'--',str(fitting)],check=True,stdout=subprocess.DEVNULL)
    fitted_data=json.loads(fitting.with_suffix('.fitted.json').read_text());p=np.array(fitted_data['positions']);surface_weights=np.array(fitted_data['weights'])
    if name=='skirt':
-    seam=np.clip((.25-depth)/.15,0,1);seam=seam*seam*(3-2*seam);pw=pw*(1-seam[:,None])+surface_weights*seam[:,None]
+    seam=np.clip((.65-depth)/.25,0,1);seam=seam*seam*(3-2*seam);pw=pw*(1-seam[:,None])+surface_weights*seam[:,None]
    else:pw=surface_weights
  if name=='teeth':
   import subprocess
@@ -170,7 +170,7 @@ def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
     if len(result)>=3:clipped.append((group,result))
   p=np.array(positions);u=np.array(coords);pw=np.array(influences);f=clipped
  parts.append((name,p,u,f,pw,texture,material))
-fitted('kit','clothes/female_sportsuit01','female_sportsuit01','kit.webp','performanceKnit',clip=-1.4)
+fitted('kit','clothes/female_sportsuit01','female_sportsuit01','kit.webp','performanceKnit',clip=-.55)
 fitted('skirt','clothes/toigo_skirt_with_lace_ruffle','toigo_skirt_with_lace_ruffle','skirt.webp','performanceKnit')
 fitted('shoes','clothes/shoes05','shoes05','shoes.webp','performanceKnit')
 fitted('hair','hair/ponytail01','ponytail01','hair.webp','groomedHair',force='head')

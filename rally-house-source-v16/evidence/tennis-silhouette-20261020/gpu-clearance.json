@@ -1,0 +1,509 @@
+{
+  "checks": [
+    {
+      "pass": "color",
+      "state": "idle",
+      "age": 0.15,
+      "vertices": 12732,
+      "worstPenetration": 3.779475293841372e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "idle",
+      "age": 0.35,
+      "vertices": 12732,
+      "worstPenetration": 5.100837607852071e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "idle",
+      "age": 0.65,
+      "vertices": 12732,
+      "worstPenetration": 2.8486711739494908e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "idle",
+      "age": 1.5,
+      "vertices": 12732,
+      "worstPenetration": 2.708201571333113e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "ready",
+      "age": 0.15,
+      "vertices": 12732,
+      "worstPenetration": 4.936927650023293e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "ready",
+      "age": 0.35,
+      "vertices": 12732,
+      "worstPenetration": 3.696231365424296e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "ready",
+      "age": 0.65,
+      "vertices": 12732,
+      "worstPenetration": 4.4093560996882886e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "ready",
+      "age": 1.5,
+      "vertices": 12732,
+      "worstPenetration": 7.836924090232067e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "sit",
+      "age": 0.15,
+      "vertices": 12732,
+      "worstPenetration": 5.440648270793602e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "sit",
+      "age": 0.35,
+      "vertices": 12732,
+      "worstPenetration": 6.958678427926301e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "sit",
+      "age": 0.65,
+      "vertices": 12732,
+      "worstPenetration": 0.000005252233935243433,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "sit",
+      "age": 1.5,
+      "vertices": 12732,
+      "worstPenetration": 0.0000053445870157320385,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "swingForehand",
+      "age": 0.15,
+      "vertices": 12732,
+      "worstPenetration": 3.39324807696606e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "swingForehand",
+      "age": 0.35,
+      "vertices": 12732,
+      "worstPenetration": 2.959842615446462e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "swingForehand",
+      "age": 0.65,
+      "vertices": 12732,
+      "worstPenetration": 2.9142680657567865e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "swingForehand",
+      "age": 1.5,
+      "vertices": 12732,
+      "worstPenetration": 3.9415682273613584e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "swingBackhand",
+      "age": 0.15,
+      "vertices": 12732,
+      "worstPenetration": 3.940144599479112e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "swingBackhand",
+      "age": 0.35,
+      "vertices": 12732,
+      "worstPenetration": 5.093167323999559e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "swingBackhand",
+      "age": 0.65,
+      "vertices": 12732,
+      "worstPenetration": 3.394990186200708e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "swingBackhand",
+      "age": 1.5,
+      "vertices": 12732,
+      "worstPenetration": 2.5237201828343103e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "serve",
+      "age": 0.15,
+      "vertices": 12732,
+      "worstPenetration": 3.208137280830137e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "serve",
+      "age": 0.35,
+      "vertices": 12732,
+      "worstPenetration": 3.928184927337597e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "serve",
+      "age": 0.65,
+      "vertices": 12732,
+      "worstPenetration": 5.9411308039880595e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "serve",
+      "age": 1.5,
+      "vertices": 12732,
+      "worstPenetration": 3.693284553185627e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "replay-sit",
+      "age": 0.15,
+      "vertices": 12732,
+      "worstPenetration": 6.17270623781696e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "replay-sit",
+      "age": 0.35,
+      "vertices": 12732,
+      "worstPenetration": 5.941255901142917e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "replay-sit",
+      "age": 0.65,
+      "vertices": 12732,
+      "worstPenetration": 0.000005223805612575294,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "replay-sit",
+      "age": 1.5,
+      "vertices": 12732,
+      "worstPenetration": 0.0000054356012796352715,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "idle",
+      "age": 0.15,
+      "vertices": 12732,
+      "worstPenetration": 3.779475293841372e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "idle",
+      "age": 0.35,
+      "vertices": 12732,
+      "worstPenetration": 5.100837607852071e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "idle",
+      "age": 0.65,
+      "vertices": 12732,
+      "worstPenetration": 2.8486711739494908e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "idle",
+      "age": 1.5,
+      "vertices": 12732,
+      "worstPenetration": 2.708201571333113e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "ready",
+      "age": 0.15,
+      "vertices": 12732,
+      "worstPenetration": 4.936927650023293e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "ready",
+      "age": 0.35,
+      "vertices": 12732,
+      "worstPenetration": 3.696231365424296e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "ready",
+      "age": 0.65,
+      "vertices": 12732,
+      "worstPenetration": 4.4093560996882886e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "ready",
+      "age": 1.5,
+      "vertices": 12732,
+      "worstPenetration": 7.836924090232067e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "sit",
+      "age": 0.15,
+      "vertices": 12732,
+      "worstPenetration": 5.440648270793602e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "sit",
+      "age": 0.35,
+      "vertices": 12732,
+      "worstPenetration": 6.958678427926301e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "sit",
+      "age": 0.65,
+      "vertices": 12732,
+      "worstPenetration": 0.000005252233935243433,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "sit",
+      "age": 1.5,
+      "vertices": 12732,
+      "worstPenetration": 0.0000053445870157320385,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "swingForehand",
+      "age": 0.15,
+      "vertices": 12732,
+      "worstPenetration": 3.39324807696606e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "swingForehand",
+      "age": 0.35,
+      "vertices": 12732,
+      "worstPenetration": 2.959842615446462e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "swingForehand",
+      "age": 0.65,
+      "vertices": 12732,
+      "worstPenetration": 2.9142680657567865e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "swingForehand",
+      "age": 1.5,
+      "vertices": 12732,
+      "worstPenetration": 3.9415682273613584e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "swingBackhand",
+      "age": 0.15,
+      "vertices": 12732,
+      "worstPenetration": 3.940144599479112e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "swingBackhand",
+      "age": 0.35,
+      "vertices": 12732,
+      "worstPenetration": 5.093167323999559e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "swingBackhand",
+      "age": 0.65,
+      "vertices": 12732,
+      "worstPenetration": 3.394990186200708e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "swingBackhand",
+      "age": 1.5,
+      "vertices": 12732,
+      "worstPenetration": 2.5237201828343103e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "serve",
+      "age": 0.15,
+      "vertices": 12732,
+      "worstPenetration": 3.208137280830137e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "serve",
+      "age": 0.35,
+      "vertices": 12732,
+      "worstPenetration": 3.928184927337597e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "serve",
+      "age": 0.65,
+      "vertices": 12732,
+      "worstPenetration": 5.9411308039880595e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "serve",
+      "age": 1.5,
+      "vertices": 12732,
+      "worstPenetration": 3.693284553185627e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "replay-sit",
+      "age": 0.15,
+      "vertices": 12732,
+      "worstPenetration": 6.17270623781696e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "replay-sit",
+      "age": 0.35,
+      "vertices": 12732,
+      "worstPenetration": 5.941255901142917e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "replay-sit",
+      "age": 0.65,
+      "vertices": 12732,
+      "worstPenetration": 0.000005223805612575294,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "replay-sit",
+      "age": 1.5,
+      "vertices": 12732,
+      "worstPenetration": 0.0000054356012796352715,
+      "finite": true,
+      "gl": 0
+    }
+  ],
+  "errors": []
+}
