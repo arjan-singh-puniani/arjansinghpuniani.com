@@ -96,12 +96,8 @@ for side,source in [('L','l'),('R','r')]:
  hand_frame=frames[names.index('hand'+side)];local=np.array([(np.linalg.inv(hand_frame)@np.append(metric(p),1))[1:3] for p in grip_curve]);coeff=np.linalg.lstsq(np.column_stack([local,np.ones(len(local))]),-(local*local).sum(1),rcond=None)[0];center=-coeff[:2]/2;assert np.linalg.norm(center)<.18
  offset=(hand_frame[:3,:3]@np.array([0,*center]))/np.array([-scale,scale,scale]);along=(metric(shape)-bind['wrist'+side])@bind['handDirection'+side];fade=np.clip(along/.045,0,1);fade=fade*fade*(3-2*fade);grip_delta-=W[:,names.index('hand'+side),None]*fade[:,None]*offset
 
-face_targets=[{'mouthSmileLeft':.8,'mouthSmileRight':.8,'cheekSquintLeft':.15,'cheekSquintRight':.15},{'jawOpen':.8},{'eyeBlinkLeft':1,'eyeBlinkRight':1},{'browInnerUp':.35,'browOuterUpLeft':.65,'browOuterUpRight':.65}]
-face_delta=np.zeros((4,len(base),3));face_paths=[]
-for channel,targets in enumerate(face_targets):
- for name,weight in targets.items():
-  path=SRC/'faceunits/targets/faceunits'/(name+'.target');values=np.loadtxt(path);face_delta[channel,values[:,0].astype(int)]+=values[:,1:]*weight;face_paths.append(path)
-parts=[];hidden=set();face_parts={}
+parts=[];hidden=set();morph_data={};normal_data={};normal_delta_data={}
+
 def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
  global hidden
  lines=(ROOT/folder/(stem+'.mhclo')).read_text().splitlines();obj_file=next(l.split()[1] for l in lines if l.startswith('obj_file '));p,u,f,g=obj(ROOT/folder/obj_file);
@@ -131,11 +127,6 @@ def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
   else:
    ix=np.array(list(map(int,a[:3])));bw=np.array(list(map(float,a[3:6])));p[i]=(shape[ix]*bw[:,None]).sum(0)+np.array(list(map(float,a[6:9])))*sc;pw.append((W[ix]*bw[:,None]).sum(0))
  pw=np.array(pw)
- if name in ('brows','lashes','teeth'):
-  face_parts[name]=np.zeros((4,len(p),3))
-  for i,a in enumerate(rows):
-   if len(a)==1:face_parts[name][:,i]=face_delta[:,int(a[0])]
-   else:face_parts[name][:,i]=(face_delta[:,np.array(list(map(int,a[:3])))]*np.array(list(map(float,a[3:6])))[None,:,None]).sum(1)
  if name=='skirt':
   top,bottom=p[:,1].max(),p[:,1].min();p[:,1]=top-(top-p[:,1])*.90;clip=top-(top-bottom)*.52
   # A skirt spans both legs: smooth hip weights avoid nearest-leg seams and shin folds.
@@ -151,12 +142,6 @@ def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
    if name=='skirt':
     seam=np.clip((.65-depth)/.25,0,1);seam=seam*seam*(3-2*seam);pw=pw*(1-seam[:,None])+surface_weights*seam[:,None]
    else:pw=surface_weights
- if name=='teeth':
-  import subprocess
-  with tempfile.TemporaryDirectory(prefix='rally-mouth-') as directory:
-   fitting=Path(directory)/'mouth.json';fitting.write_text(json.dumps({'positions':p.tolist(),'uvs':u.tolist(),'faces':[[list(v) for v in face] for _,face in f],'deltas':face_parts[name].tolist()}))
-   subprocess.run(['/Applications/Blender.app/Contents/MacOS/Blender','--background','--factory-startup','--python',str(Path(__file__).with_name('fit-athlete-mouth.py')),'--',str(fitting)],check=True,stdout=subprocess.DEVNULL)
-   reduced=json.loads(fitting.with_suffix('.fitted.json').read_text());p=np.array(reduced['positions']);u=np.array(reduced['uvs']);f=[('',[tuple(v) for v in face]) for face in reduced['faces']];face_parts[name]=np.array(reduced['deltas']);pw=np.zeros((len(p),len(names)))
  if force is not None:pw[:]=0;pw[:,names.index(force)]=1
  for cut,direction in ([(clip,1)] if clip is not None else [])+([(5.45,-1)] if name=='top' else []):
   # Clip triangles at a physical hem plane, interpolating both UVs and skin weights.
@@ -176,32 +161,43 @@ fitted('kit','clothes/female_sportsuit01','female_sportsuit01','kit.webp','perfo
 fitted('top','clothes/punkduck_high_neck_crop_top','punkduck_high_neck_crop_top','kit.webp','performanceKnit',clip=2.5)
 fitted('skirt','clothes/toigo_skirt_with_lace_ruffle','toigo_skirt_with_lace_ruffle','skirt.webp','performanceKnit')
 fitted('shoes','clothes/shoes05','shoes05','shoes.webp','performanceKnit')
-fitted('hair','hair/ponytail01','ponytail01','hair.webp','groomedHair',force='head')
 fitted('eyes','eyes/high-poly','high-poly','eyes.webp','iris',force='head')
-fitted('lashes','eyelashes/eyelashes01','eyelashes01','lashes.webp','groomedHair',force='head')
-fitted('brows','eyebrows/eyebrow001','eyebrow001','brows.webp','groomedHair',force='head')
-fitted('teeth','teeth/teeth_base','teeth_base','teeth.webp','ceramic',force='head')
 # One atlas keeps the fitted top and protected shorts in the existing kit draw.
 ki=next(i for i,p in enumerate(parts) if p[0]=='kit');ti=next(i for i,p in enumerate(parts) if p[0]=='top');kit=parts[ki];top=parts.pop(ti)
 kp,ku,kf,kw=kit[1:5];tp,tu,tf,tw=top[1:5];ku=ku.copy();tu=tu.copy();ku[:,1]=.5+ku[:,1]*.5;tu[:,1]*=.5
 parts[ki]=('kit',np.vstack([kp,tp]),np.vstack([ku,tu]),[*kf,*[(g,[(v+len(kp),u+len(ku)) for v,u in face]) for g,face in tf]],np.vstack([kw,tw]),'kit.webp','performanceKnit')
-bodyfaces=[(g,f) for g,f in faces if g=='body' and not all(v[0] in hidden for v in f) and np.mean(shape[[v[0] for v in f],1])>-6.5]
-parts.insert(0,('skin',shape,uv,bodyfaces,W,'skin.webp','humanSkin'))
+# Align the authored head to the original eye landmarks; the live anatomical rig stays unchanged.
+alignment=next(p for p in parts if p[0]=='eyes');parts.remove(alignment);eye_points=metric(alignment[1]);target_eyes=[]
+for side in [-1,1]:
+ eye=eye_points[eye_points[:,0]*side>0];target_eyes.append(((eye.min(0)+eye.max(0))/2).tolist())
+import subprocess
+with tempfile.TemporaryDirectory(prefix='rally-head-') as directory:
+ fitting=Path(directory)/'input.json';output=Path(directory)/'head.json';fitting.write_text(json.dumps({'source':str(SRC/'rocketbox'),'eyes':target_eyes}))
+ subprocess.run(['/Applications/Blender.app/Contents/MacOS/Blender','--background','--factory-startup','--python',str(Path(__file__).with_name('fit-athlete-head.py')),'--',str(fitting),str(output)],check=True,stdout=subprocess.DEVNULL)
+ head=json.loads(output.read_text())
+bodyfaces=[(g,f) for g,f in faces if g=='body' and not all(v[0] in hidden for v in f) and np.mean(shape[[v[0] for v in f],1])>-6.5 and np.mean(W[[v[0] for v in f],names.index('head')])<.15]
+body_uv=uv.copy();body_uv[:,1]=.5+body_uv[:,1]*.5
+for part in head['parts']:
+ name='skin' if part['kind']=='face' else part['kind'];hp=np.array(part['p']).reshape(-1,3)*np.array([-1,1,1])/scale+np.array([0,floor,0]);hu=np.array(part['uv']).reshape(-1,2);hu[:,1]=1-hu[:,1]
+ if name!='hair':hu[:,1]*=.5
+ hf=[('',[(i,i),(i+2,i+2),(i+1,i+1)]) for i in range(0,len(hp),3)];hw=np.zeros((len(hp),len(names)));hw[:,names.index('head')]=1
+ delta=np.array(part['morphs']).reshape(5,len(hp),3)*np.array([-1,1,1])/scale;normal=np.array(part['n']).reshape(-1,3)*np.array([-1,1,1]);normal_delta=np.array(part['morphNormals']).reshape(5,len(hp),3)*np.array([-1,1,1])
+ if name=='skin':
+  offset=len(shape);hp=np.vstack([shape,hp]);hu=np.vstack([body_uv,hu]);hf=[*bodyfaces,*[(g,[(v+offset,u+len(body_uv)) for v,u in face]) for g,face in hf]];hw=np.vstack([W,hw]);morph_data[name]=np.zeros((5,len(hp),3));morph_data[name][4,:offset]=grip_delta;morph_data[name][:,offset:]=delta;normal_data[name]=(slice(offset,None),normal);normal_delta_data[name]=(slice(offset,None),normal_delta);parts.insert(0,(name,hp,hu,hf,hw,'skin.webp','humanSkin'))
+ else:
+  morph_data[name]=delta;normal_data[name]=(slice(None),normal);normal_delta_data[name]=(slice(None),normal_delta);parts.append((name,hp,hu,hf,hw,'hair.webp' if name=='hair' else 'skin.webp','groomedHair' if name=='hair' else 'iris'))
 # Keep only the clothed runtime mesh; covered torso/pelvis and helper geometry are absent.
 textures={
  'skin.webp':SRC/'skins/skins/bobby_03_young_female_hairless/Young_Female_Hairless.png',
  'kit.webp':ROOT/'clothes/female_sportsuit01/female_sportsuit01_diffuse.png',
  'shoes.webp':ROOT/'clothes/shoes05/shoes05_diffuse.png',
- 'hair.webp':ROOT/'hair/ponytail01/dariush086_ponytail01_black/ponytail01_black.png',
- 'eyes.webp':ROOT/'eyes/materials/brownlight_eye.png',
- 'teeth.webp':ROOT/'teeth/teeth_base/teeth.png',
- 'lashes.webp':ROOT/'eyelashes/eyelashes01/eyelashes01.png',
- 'brows.webp':ROOT/'eyebrows/eyebrow001/eyebrow001.png'}
+ 'hair.webp':SRC/'rocketbox/f001_opacity_color.tga'}
 for name,p in textures.items():
  im=Image.open(p);im.thumbnail((2048,2048) if name=='skin.webp' else (1024,1024));im.save(OUT/name,'WEBP',quality=91,method=6)
 atlas=Image.new('RGB',(1024,2048),(40,67,172));atlas.paste(Image.open(textures['kit.webp']).convert('RGB').resize((1024,1024)),(0,0));atlas.save(OUT/'kit.webp','WEBP',quality=91,method=6)
+skin_atlas=Image.new('RGB',(2048,2048));skin_atlas.paste(Image.open(textures['skin.webp']).convert('RGB').resize((2048,1024)),(0,0));skin_atlas.paste(Image.open(SRC/'rocketbox/f001_head_color.tga').convert('RGB').resize((2048,1024)),(0,1024));skin_atlas.save(OUT/'skin.webp','WEBP',quality=92,method=6)
 Image.new('RGB',(4,4),(210,231,89)).save(OUT/'skirt.webp','WEBP',lossless=True)
-doc={'asset':{'version':'2.0','generator':'Rally House authored athlete / MakeHuman and punkduck'},'accessors':[],'bufferViews':[],'buffers':[],'meshes':[],'materials':[],'textures':[],'images':[], 'nodes':[]};binary=bytearray()
+doc={'asset':{'version':'2.0','generator':'Rally House authored athlete / MakeHuman, punkduck and Microsoft Rocketbox'},'accessors':[],'bufferViews':[],'buffers':[],'meshes':[],'materials':[],'textures':[],'images':[], 'nodes':[]};binary=bytearray()
 def accessor(a,t,component=5126):
  a=np.array(a,dtype={5126:'<f4',5123:'<u2',5125:'<u4'}[component]);binary.extend(bytes((-len(binary))%4));offset=len(binary);binary.extend(a.tobytes());view=len(doc['bufferViews']);doc['bufferViews'].append({'buffer':0,'byteOffset':offset,'byteLength':a.nbytes});ac={'bufferView':view,'componentType':component,'count':len(a),'type':t}
  if t=='VEC3':ac.update(min=a.min(0).tolist(),max=a.max(0).tolist())
@@ -217,6 +213,7 @@ def smooth_normals(p,faces):
 report=[]
 for name,p,u,f,w,tex,mat in parts:
  normal=smooth_normals(p,f)
+ if name in normal_data:region,values=normal_data[name];normal[region]=values
  mapping={};pos=[];norm=[];uvs=[];bi=[];bw=[];tri=[];source_ids=[]
  for _,face in f:
   indices=[]
@@ -231,19 +228,20 @@ for name,p,u,f,w,tex,mat in parts:
  ti=len(doc['textures']);doc['images'].append({'uri':tex});doc['textures'].append({'source':ti});doc['materials'].append({'name':name,'pbrMetallicRoughness':{'baseColorTexture':{'index':ti},'metallicFactor':0,'roughnessFactor':.75},'doubleSided':name in ('hair','brows','lashes','eyes','skirt'),'alphaMode':'MASK' if name in ('hair','brows','lashes','eyes') else 'OPAQUE','alphaCutoff':.35})
  attrs={'POSITION':accessor(pos,'VEC3'),'NORMAL':accessor(norm,'VEC3'),'TEXCOORD_0':accessor(uvs,'VEC2'),'JOINTS_0':accessor(bi,'VEC4',5123),'WEIGHTS_0':accessor(bw,'VEC4')}
  primitive={'attributes':attrs,'indices':accessor(np.array(tri).flatten(),'SCALAR',5125),'material':ti};extras={}
- if name in ('skin','lashes','brows','teeth'):
-  source_delta=np.zeros((5,len(p),3));source_delta[:4]=face_delta if name=='skin' else face_parts[name]
-  if name=='skin':source_delta[4]=grip_delta
+ if name in morph_data:
+  source_delta=morph_data[name]
   primitive['targets']=[]
-  for delta in source_delta:
-   normals=(smooth_normals(p+delta,f)-normal)[source_ids]*np.array([-1,1,1])
+  for channel,delta in enumerate(source_delta):
+   normals=smooth_normals(p+delta,f)-normal
+   if name in normal_delta_data:region,values=normal_delta_data[name];normals[region]=values[channel]
+   normals=normals[source_ids]*np.array([-1,1,1])
    primitive['targets'].append({'POSITION':accessor(delta[source_ids]*np.array([-scale,scale,scale]),'VEC3'),'NORMAL':accessor(normals,'VEC3')})
   extras={'targetNames':['smile','mouthOpen','blink','browRaise','grip']}
  doc['meshes'].append({'name':name,'primitives':[primitive],'extras':extras});doc['nodes'].append({'mesh':len(doc['meshes'])-1,'skin':0});report.append({'name':name,'triangles':len(tri),'vertices':len(pos),'material':mat})
 doc['scenes']=[{'nodes':list(range(len(doc['nodes'])))}];doc['scene']=0;doc['buffers']=[{'byteLength':len(binary)}];binary.extend(bytes((-len(binary))%4));j=json.dumps(doc,separators=(',',':')).encode();j+=b' '*((-len(j))%4);glb=struct.pack('<III',0x46546c67,2,28+len(j)+len(binary))+struct.pack('<II',len(j),0x4e4f534a)+j+struct.pack('<II',len(binary),0x004e4942)+binary;(OUT/'taylor.glb').write_bytes(glb)
-meta={'author':'MakeHuman Community; MargaretToigo; Bobby_03; Mika Suominen; dariush086; punkduck; Rally House fit and runtime adaptation','source':'https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482','license':'CC0-1.0 AND CC-BY-4.0','sha256':hashlib.sha256(glb).hexdigest(),'boneMap':{n:n for n in names},'bind':{k:v.tolist() for k,v in bind.items()},'parts':report,'textures':{name:hashlib.sha256((OUT/name).read_bytes()).hexdigest() for name in [*textures,'skirt.webp']},'sourceHashes':{str(p.relative_to(SRC)) if p.is_relative_to(SRC) else str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [SRC/'base.obj',SRC/'default_weights.mhw',SRC/'default.mhskel',*textures.values(),*face_paths,SRC/'faceunits/packs/faceunits01.json']}}
-meta['gripSign']=grip_sign;meta['facialTargets']=face_targets
-meta['assetPacks']=['https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html','https://static.makehumancommunity.org/assets/assetpacks/skins01.html','https://static.makehumancommunity.org/assets/assetpacks/skirts01.html','https://static.makehumancommunity.org/assets/assetpacks/shirts03.html','https://static.makehumancommunity.org/assets/assetpacks/faceunits01.html','https://static.makehumancommunity.org/assets/assetpacks/system_hair_materials01.html']
-for p in [*SRC.glob('*.target'),*[p for folder in ['clothes/female_sportsuit01','clothes/punkduck_high_neck_crop_top','clothes/toigo_skirt_with_lace_ruffle','clothes/shoes05','hair/ponytail01','eyes/high-poly','teeth/teeth_base','eyelashes/eyelashes01','eyebrows/eyebrow001'] for p in (ROOT/folder).iterdir() if p.suffix in ('.obj','.mhclo')]]:meta['sourceHashes'][str(p.relative_to(SRC)) if p.is_relative_to(SRC) else str(p.relative_to(ROOT))]=hashlib.sha256(p.read_bytes()).hexdigest()
-meta['authoringScripts']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),Path(__file__).with_name('fit-athlete-kit.py'),Path(__file__).with_name('fit-athlete-mouth.py')]}
+meta={'author':'MakeHuman Community; MargaretToigo; Bobby_03; punkduck; Microsoft Rocketbox; Rally House fit and runtime adaptation','source':'https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482','license':'CC0-1.0 AND CC-BY-4.0 AND MIT','sha256':hashlib.sha256(glb).hexdigest(),'boneMap':{n:n for n in names},'bind':{k:v.tolist() for k,v in bind.items()},'parts':report,'textures':{name:hashlib.sha256((OUT/name).read_bytes()).hexdigest() for name in [*textures,'skirt.webp']},'sourceHashes':{str(p.relative_to(SRC)) if p.is_relative_to(SRC) else str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [SRC/'base.obj',SRC/'default_weights.mhw',SRC/'default.mhskel',*textures.values(),*list((SRC/'rocketbox').iterdir())]}}
+meta['gripSign']=grip_sign;meta['facialTargets']=head['channels'];meta['headSource']={'author':'Microsoft Rocketbox','license':'MIT','revision':'0943055db6ec570bcef9f2c8b41c9e5467c808f9','source':'https://github.com/microsoft/Microsoft-Rocketbox'}
+meta['assetPacks']=['https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html','https://static.makehumancommunity.org/assets/assetpacks/skins01.html','https://static.makehumancommunity.org/assets/assetpacks/skirts01.html','https://static.makehumancommunity.org/assets/assetpacks/shirts03.html']
+for p in [*SRC.glob('*.target'),*[p for folder in ['clothes/female_sportsuit01','clothes/punkduck_high_neck_crop_top','clothes/toigo_skirt_with_lace_ruffle','clothes/shoes05','eyes/high-poly'] for p in (ROOT/folder).iterdir() if p.suffix in ('.obj','.mhclo')]]:meta['sourceHashes'][str(p.relative_to(SRC)) if p.is_relative_to(SRC) else str(p.relative_to(ROOT))]=hashlib.sha256(p.read_bytes()).hexdigest()
+meta['authoringScripts']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),Path(__file__).with_name('fit-athlete-kit.py'),Path(__file__).with_name('fit-athlete-head.py')]}
 (OUT/'provenance.json').write_text(json.dumps(meta,indent=2)+'\n');print(json.dumps(report));print('triangles',sum(p['triangles'] for p in report),'glb',len(glb))

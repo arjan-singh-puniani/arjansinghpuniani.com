@@ -10,9 +10,10 @@ import {playerSpec} from '../dist/content/PlayerAvatars.js';
 import {Navigation} from '../dist/world/Navigation.js';
 const dir=new URL('../assets/characters/taylor/',import.meta.url),meta=JSON.parse(fs.readFileSync(new URL('provenance.json',dir))),bytes=fs.readFileSync(new URL('taylor.glb',dir)),hash=b=>createHash('sha256').update(b).digest('hex');
 assert.equal(hash(bytes),meta.sha256);for(const [name,sha] of Object.entries(meta.textures))assert.equal(hash(fs.readFileSync(new URL(name,dir))),sha);
+for(const [name,sha] of Object.entries(meta.authoringScripts))assert.equal(hash(fs.readFileSync(new URL('../tools/'+name,import.meta.url))),sha,'baked asset must match its authoring scripts');
 const asset=inspectCharacterAsset(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),[],meta);
-assert.equal(asset.primitives.length,9);const body=asset.primitives[0].geometry;for(const bone of [BONE.foreArmTwistL,BONE.foreArmTwistR])assert(body.boneIndices.filter((n,i)=>n===bone&&body.boneWeights[i]>.1).length>100,'authored forearm twist weights must reach the visible skin');assert(asset.primitives.reduce((n,p)=>n+p.geometry.positions.length/9,0)<40000);
-for(const p of asset.primitives){assert(p.geometry.uvs?.every(Number.isFinite));assert(p.albedo);if(['eyes','hair','brows','lashes'].includes(p.materialSlot))assert.equal(p.alphaCutoff,.35);if(['skin','brows','lashes','teeth'].includes(p.materialSlot)){assert.equal(p.geometry.morphs.length,5);assert(p.geometry.morphs.every(d=>d.length===p.geometry.positions.length&&d.every(Number.isFinite)));assert.equal(p.geometry.morphNormals.length,5);assert(p.geometry.morphNormals.every(d=>d.length===p.geometry.positions.length&&d.every(n=>Number.isFinite(n)&&Math.abs(n)<=2.01)));}}
+assert.deepEqual(asset.primitives.map(p=>p.materialSlot),['skin','kit','skirt','shoes','eyes','hair']);const body=asset.primitives[0].geometry;for(const bone of [BONE.foreArmTwistL,BONE.foreArmTwistR])assert(body.boneIndices.filter((n,i)=>n===bone&&body.boneWeights[i]>.1).length>100,'authored forearm twist weights must reach the visible skin');assert(asset.primitives.reduce((n,p)=>n+p.geometry.positions.length/9,0)<40000);
+for(const p of asset.primitives){assert(p.geometry.uvs?.every(Number.isFinite));assert(p.albedo);if(['eyes','hair','brows','lashes'].includes(p.materialSlot))assert.equal(p.alphaCutoff,.35);if(['skin','eyes','hair'].includes(p.materialSlot)){assert.equal(p.geometry.morphs.length,5);assert(p.geometry.morphs.every(d=>d.length===p.geometry.positions.length&&d.every(Number.isFinite)));assert.equal(p.geometry.morphNormals.length,5);assert(p.geometry.morphNormals.every(d=>d.length===p.geometry.positions.length&&d.every(n=>Number.isFinite(n)&&Math.abs(n)<=2.01)));}}
 const rest=Object.fromEntries(Object.entries(meta.bind).map(([key,p])=>[key,new Vec3(...p)]));rest.headUp=new Vec3(0,1,0);
 const bind=skinMatrices(rest,rest);for(let bone=0;bone<Object.keys(BONE).length;bone++)for(let i=0;i<16;i++)assert(Math.abs(bind[bone*16+i]-(i%5===0?1:0))<1e-5,'rest pose changed');
 assert(rest.handL.x<0&&rest.handR.x>0&&rest.thighL.x<0&&rest.thighR.x>0);
@@ -40,7 +41,7 @@ for(const state of ['idle','sit','drink','ready','swingForehand','swingBackhand'
 console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.geometry.positions.length/9,0),samples,maxGripGap,minSole,minForearmVolume}));
  const {captureFrame,interpolateFrame}=await import('../dist/analysis/MotionCapture.js');
  const c=new Character(playerSpec('taylor'),new Vec3(2,0,-1),new Navigation([]),{});c.trigger('swingForehand');c.update(.12);const a=captureFrame(c,0,null);c.update(1/30);const b=captureFrame(c,1/30,null),middle=interpolateFrame(a,b,1/60),parts=middle.body.filter(p=>'skin' in p&&p.poseRig);
- assert.equal(parts.length,9);assert(parts.every(p=>p.rig&&p.boneMatrices===parts[0].boneMatrices));assert.equal(parts.filter(p=>p.skirt).length,1,'replay must retain the garment clearance flag');
+ assert.equal(parts.length,6);assert(parts.every(p=>p.rig&&p.boneMatrices===parts[0].boneMatrices));assert.equal(parts.filter(p=>p.skirt).length,1,'replay must retain the garment clearance flag');
  for(const part of parts){const rig=part.rig.pose;for(const side of ['L','R']){const actual=transformPoint(part.boneMatrices.slice(BONE['hand'+side]*16,BONE['hand'+side]*16+16),part.rig.bind['hand'+side]),expected=rig['hand'+side];assert(Math.hypot(actual.x-expected.x,actual.y-expected.y,actual.z-expected.z)<1e-5,'replay used the wrong body bind');}assert.deepEqual(part.expression,a.body.find(p=>'skin' in p&&p.poseRig).expression.map((v,i)=>(v+b.body.find(p=>'skin' in p&&p.poseRig).expression[i])/2));}
  c.racketStowed=false;c.matchCompetitor=true;c.trigger('ready');for(let i=0;i<90;i++)c.update(1/120);
  const skin=c.meshes().find(p=>'skin' in p&&p.rig),palette=skin.boneMatrices;
@@ -56,9 +57,10 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
   const screen=v=>v.x*Math.cos(azimuth)-v.z*Math.sin(azimuth),point=Vec3.sub(readyPose.head,readyPose.racketCenter).add(new Vec3(x,y,0)),a=screen(horizontal),b=screen(vertical),det=a*vertical.y-b*horizontal.y,u=(screen(point)*vertical.y-b*point.y)/det,v=(a*point.y-screen(point)*horizontal.y)/det,d=u*u+v*v;minFaceClearance=Math.min(minFaceClearance,d);assert(d>1.05,'ready racket obscures the face in a front or three-quarter view');
  }
  console.log(JSON.stringify({minFaceClearance}));
- const teeth=asset.primitives.find(p=>p.materialSlot==='teeth').geometry;let fixedTeeth=0,movingTeeth=0;
- for(let v=0;v<teeth.positions.length/3;v++){const delta=Math.hypot(...teeth.morphs[1].slice(v*3,v*3+3));if(delta<1e-5)fixedTeeth++;if(delta>.002&&teeth.morphs[1][v*3+1]<0)movingTeeth++;}
- assert(fixedTeeth>100&&movingTeeth>100,'upper teeth must stay fixed while the lower jaw opens');
+ let fixedMouth=0,movingMouth=0;
+ for(let v=0;v<body.positions.length/3;v++){const[x,y,z]=body.positions.slice(v*3,v*3+3);if(y<2.02||y>2.15||Math.abs(x)>.065||z<.16)continue;const delta=Math.hypot(...body.morphs[1].slice(v*3,v*3+3));if(delta<1e-4)fixedMouth++;if(delta>.002&&body.morphs[1][v*3+1]<0)movingMouth++;}
+ assert(fixedMouth>20&&movingMouth>20,'authored mouth must retain a fixed upper region and a moving lower jaw');
+ assert(meta.headSource.license==='MIT'&&meta.author.includes('Microsoft Rocketbox'));assert(fs.readFileSync(new URL('../ROCKETBOX-LICENSE.txt',dir),'utf8').includes('Copyright (c) 2020 Microsoft'));
  const origin=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{}),translated=new Character(playerSpec('taylor'),new Vec3(3,0,-2),new Navigation([]),{});
  for(const actor of [origin,translated]){actor.trigger('ready');for(let i=0;i<180;i++)actor.update(1/120);}
  const localBones=origin.meshes().find(p=>p.rig).boneMatrices,translatedBones=translated.meshes().find(p=>p.rig).boneMatrices;assert(localBones.every((n,i)=>Math.abs(n-translatedBones[i])<1e-5),'authored hand metadata must not overwrite root-local joints');

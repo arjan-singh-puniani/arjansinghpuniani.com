@@ -1,0 +1,83 @@
+{
+  "checks": [
+    {
+      "name": "neutral",
+      "vertices": 46470,
+      "finite": true,
+      "maxNormalError": 1.1959301016162271e-7,
+      "changedFaceNormals": 0,
+      "maxFaceTravel": 0,
+      "gl": 0
+    },
+    {
+      "name": "smile",
+      "vertices": 46470,
+      "finite": true,
+      "maxNormalError": 1.1959301016162271e-7,
+      "changedFaceNormals": 1669,
+      "maxFaceTravel": 0.005539353649721214,
+      "gl": 0
+    },
+    {
+      "name": "mouth",
+      "vertices": 46470,
+      "finite": true,
+      "maxNormalError": 1.1959301016162271e-7,
+      "changedFaceNormals": 1910,
+      "maxFaceTravel": 0.02013105125471815,
+      "gl": 0
+    },
+    {
+      "name": "blink",
+      "vertices": 46470,
+      "finite": true,
+      "maxNormalError": 1.1959301016162271e-7,
+      "changedFaceNormals": 512,
+      "maxFaceTravel": 0.014752967921505922,
+      "gl": 0
+    },
+    {
+      "name": "brow",
+      "vertices": 46470,
+      "finite": true,
+      "maxNormalError": 1.1959301016162271e-7,
+      "changedFaceNormals": 816,
+      "maxFaceTravel": 0.00595402717777264,
+      "gl": 0
+    },
+    {
+      "name": "talk",
+      "vertices": 46470,
+      "finite": true,
+      "maxNormalError": 1.1959301016162271e-7,
+      "changedFaceNormals": 3587,
+      "maxFaceTravel": 0.011273510159019047,
+      "gl": 0
+    },
+    {
+      "name": "frown",
+      "vertices": 46470,
+      "finite": true,
+      "maxNormalError": 1.1959301016162271e-7,
+      "changedFaceNormals": 2328,
+      "maxFaceTravel": 0.0027692005608559857,
+      "gl": 0
+    },
+    {
+      "name": "combined",
+      "vertices": 46470,
+      "finite": true,
+      "maxNormalError": 1.1959301016162271e-7,
+      "changedFaceNormals": 3658,
+      "maxFaceTravel": 0.014752984403110552,
+      "gl": 0
+    }
+  ],
+  "maxAttributes": 16,
+  "motion": {
+    "frames": 241,
+    "liveTracks": 0,
+    "gl": 0
+  },
+  "errors": []
+}
