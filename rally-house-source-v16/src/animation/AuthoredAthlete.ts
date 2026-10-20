@@ -25,10 +25,13 @@ export async function loadAuthoredAthlete(){
  bind.headUp=new Vec3(0,1,0);athlete={parts:result.primitives,bind:bind as unknown as RigPoseLocal,images,gripSign:meta.gripSign};
 }
 
-export function authoredAthleteMeshes(p:CharacterPose,position:Vec3,yaw:number,feet:{pitch:number;yaw:number}[],time:number):SkinnedMesh[]|undefined{
+export interface AuthoredHandPose{handDirectionL:Vec3;handDirectionR:Vec3;handForwardL:Vec3;handForwardR:Vec3;}
+
+/** Advance once with the actor; rendering and replay only consume the result. */
+export function advanceAuthoredHands(p:CharacterPose,position:Vec3,yaw:number,previous:AuthoredHandPose|undefined,dt:number):AuthoredHandPose|undefined{
  if(!athlete)return;
- const rig=rigFromPose(p,position,yaw);rig.headUp=new Vec3(0,1,0);rig.headForward=new Vec3(Math.sin(p.headYaw-yaw),0,Math.cos(p.headYaw-yaw));
- const handGrip:[number,number]=[p.handGripL,p.handGripR],racketGrip=[p.handGripL,p.handRacketWeight],origin=new Vec3(),racket=compose(origin,p.racketRot),c=Math.cos(yaw),s=Math.sin(yaw);
+ const rig=rigFromPose(p,position,yaw),result={} as AuthoredHandPose;
+ const racketGrip=[p.handGripL,p.handRacketWeight],origin=new Vec3(),racket=compose(origin,p.racketRot),c=Math.cos(yaw),s=Math.sin(yaw);
  const local=(v:Vec3)=>new Vec3(c*v.x-s*v.z,v.y,s*v.x+c*v.z);
  for(const [i,side] of (['L','R'] as const).entries()){
   const direction=Vec3.sub(rig[`hand${side}`],rig[`foreArm${side}`]),pole=Vec3.cross(Vec3.sub(rig[`foreArm${side}`],rig[`upperArm${side}`]),direction).scale(side==='L'?1:-1);
@@ -37,13 +40,22 @@ export function authoredAthleteMeshes(p:CharacterPose,position:Vec3,yaw:number,f
   add(rigidFrame(origin,new Vec3(0,-1,.1),new Vec3(side==='L'?1:-1,0,0)),p.handRestWeight);
   add(rigidFrame(origin,new Vec3(0,0,1),new Vec3(0,1,0)),p.handLapWeight);
   if(racketGrip[i]>.0001){
-   const axis=local(Vec3.sub(p.racketHandleTop,p.racketGrip)).normalize().scale(athlete.gripSign[side]),width=transformPoint(racket,new Vec3(side==='L'?1:-1,0,0)),fingers=local(new Vec3(width.x,width.y,width.z));fingers.sub(axis.clone().scale(Vec3.dot(fingers,axis))).normalize();
+   const axis=local(Vec3.sub(p.racketHandleTop,p.racketGrip)).normalize().scale(athlete.gripSign[side]),width=transformPoint(racket,new Vec3((side==='L'?1:-1)*Math.cos(.8),0,Math.sin(.8))),fingers=local(new Vec3(width.x,width.y,width.z));fingers.sub(axis.clone().scale(Vec3.dot(fingers,axis))).normalize();
    add(rigidFrame(origin,fingers,Vec3.cross(axis,fingers).normalize()),racketGrip[i]);
   }
-  rig[`handDirection${side}`]=new Vec3(frame[4],frame[5],frame[6]);rig[`handForward${side}`]=new Vec3(frame[8],frame[9],frame[10]);rig[`foreArmForward${side}`]=rig[`handForward${side}`];
+  if(previous)frame=interpolateRigidFrame(rigidFrame(origin,previous[`handDirection${side}`],previous[`handForward${side}`]),frame,1-Math.exp(-12*dt));
+  result[`handDirection${side}`]=new Vec3(frame[4],frame[5],frame[6]);result[`handForward${side}`]=new Vec3(frame[8],frame[9],frame[10]);
  }
+ return result;
+}
+
+export function authoredAthleteMeshes(p:CharacterPose,position:Vec3,yaw:number,feet:{pitch:number;yaw:number}[],time:number):SkinnedMesh[]|undefined{
+ if(!athlete)return;
+ const rig=rigFromPose(p,position,yaw);rig.headUp=new Vec3(0,1,0);rig.headForward=new Vec3(Math.sin(p.headYaw-yaw),0,Math.cos(p.headYaw-yaw));
+ const hands=p.handDirectionL&&p.handDirectionR&&p.handForwardL&&p.handForwardR?p as AuthoredHandPose:advanceAuthoredHands(p,position,yaw,undefined,0)!;for(const side of ['L','R'] as const){rig[`handDirection${side}`]=hands[`handDirection${side}`];rig[`handForward${side}`]=hands[`handForward${side}`];rig[`foreArmForward${side}`]=hands[`handForward${side}`];}
+ const handGrip:[number,number]=[p.handGripL,p.handGripR];
  for(const [i,side] of (['L','R'] as const).entries()){const f=feet[i],angle=f.yaw-yaw;rig[`footForward${side}`]=new Vec3(Math.sin(angle)*Math.cos(f.pitch),-Math.sin(f.pitch),Math.cos(angle)*Math.cos(f.pitch));rig[`footUp${side}`]=new Vec3(Math.sin(angle)*Math.sin(f.pitch),Math.cos(f.pitch),Math.cos(angle)*Math.sin(f.pitch));}
  const bones=skinMatrices(rig,athlete.bind),phase=(time+.47)%3.75,blink=phase<.10?1-phase/.10:0;const expression:[number,number,number,number]=[p.face.smile,p.face.mouthOpen,Math.min(1,blink+p.face.squint*.35),p.face.browRaise];
  const sourceRig={bind:athlete.bind,pose:rig};
- return athlete.parts.map(part=>({poseRig:true,rig:sourceRig,expression,handGrip,skin:part.geometry,boneMatrices:bones,position:new Vec3(position.x,0,position.z),rotation:new Vec3(0,yaw,0),color:'#ffffff',material:part.materialSlot==='skin'?'humanSkin':part.materialSlot==='eyes'?'ceramic':['hair','brows','lashes'].includes(part.materialSlot)?'groomedHair':'performanceKnit',diffuse:part.albedo?athlete!.images.get(part.albedo):undefined,alphaCutoff:part.alphaCutoff,doubleSided:part.doubleSided}));
+ return athlete.parts.map(part=>({poseRig:true,skirt:part.materialSlot==='skirt',rig:sourceRig,expression,handGrip,skin:part.geometry,boneMatrices:bones,position:new Vec3(position.x,0,position.z),rotation:new Vec3(0,yaw,0),color:'#ffffff',material:part.materialSlot==='skin'?'humanSkin':part.materialSlot==='eyes'?'ceramic':['hair','brows','lashes'].includes(part.materialSlot)?'groomedHair':'performanceKnit',diffuse:part.albedo?athlete!.images.get(part.albedo):undefined,alphaCutoff:part.alphaCutoff,doubleSided:part.doubleSided}));
 }

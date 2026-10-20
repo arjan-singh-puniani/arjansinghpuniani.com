@@ -99,7 +99,7 @@ for side,source in [('L','l'),('R','r')]:
 parts=[];hidden=set()
 def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
  global hidden
- p,u,f,g=obj(ROOT/folder/(stem+'.obj'));lines=(ROOT/folder/(stem+'.mhclo')).read_text().splitlines();active=False;rows=[];sc=np.ones(3);deleting=False
+ lines=(ROOT/folder/(stem+'.mhclo')).read_text().splitlines();obj_file=next(l.split()[1] for l in lines if l.startswith('obj_file '));p,u,f,g=obj(ROOT/folder/obj_file);active=False;rows=[];sc=np.ones(3);deleting=False
  for l in lines:
   a=l.split()
   if not a or a[0].startswith('#'):continue
@@ -116,7 +116,7 @@ def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
    while i<len(a):
     start=int(a[i]);end=start
     if i+2<len(a) and a[i+1]=='-':end=int(a[i+2]);i+=2
-    hidden.update(v for v in range(start,end+1) if shape[v,1]>-2.25);i+=1
+    hidden.update(v for v in range(start,end+1) if name!='skirt' and shape[v,1]>(clip+.1 if name=='kit' else -2.25));i+=1
  assert len(rows)==len(p),(name,len(rows),len(p))
  pw=[]
  for i,a in enumerate(rows):
@@ -124,12 +124,21 @@ def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
   else:
    ix=np.array(list(map(int,a[:3])));bw=np.array(list(map(float,a[3:6])));p[i]=(shape[ix]*bw[:,None]).sum(0)+np.array(list(map(float,a[6:9])))*sc;pw.append((W[ix]*bw[:,None]).sum(0))
  pw=np.array(pw)
- if name=='kit':
+ if name=='skirt':
+  top,bottom=p[:,1].max(),p[:,1].min();p[:,1]=top-(top-p[:,1])*.90;clip=top-(top-bottom)*.83
+  # A skirt spans both legs: smooth hip weights avoid nearest-leg seams and shin folds.
+  depth=np.clip((top-p[:,1])/(top-clip),0,1);depth=depth*depth*(3-2*depth)
+  front=np.clip((p[:,2]+.55)/1.4,0,1);left=1/(1+np.exp(-p[:,0]*3))
+  follow=depth*front*.92;pw[:]=0;pw[:,names.index('pelvis')]=1-follow;pw[:,names.index('thighL')]=follow*left;pw[:,names.index('thighR')]=follow*(1-left)
+ if name in ('kit','skirt'):
   import subprocess
   with tempfile.TemporaryDirectory(prefix='rally-athlete-') as directory:
-   fitting=Path(directory)/'kit.json';fitting.write_text(json.dumps({'body':shape[:13380].tolist(),'faces':[[v[0] for v in face] for g,face in faces if g=='body'],'kit':p.tolist(),'weights':W[:13380].tolist()}))
+   fitting=Path(directory)/'kit.json';fitting.write_text(json.dumps({'garment':name,'body':shape[:13380].tolist(),'faces':[[v[0] for v in face] for g,face in faces if g=='body'],'kit':p.tolist(),'weights':W[:13380].tolist()}))
    subprocess.run(['/Applications/Blender.app/Contents/MacOS/Blender','--background','--factory-startup','--python',str(Path(__file__).with_name('fit-athlete-kit.py')),'--',str(fitting)],check=True,stdout=subprocess.DEVNULL)
-   fitted_data=json.loads(fitting.with_suffix('.fitted.json').read_text());p=np.array(fitted_data['positions']);pw=np.array(fitted_data['weights'])
+   fitted_data=json.loads(fitting.with_suffix('.fitted.json').read_text());p=np.array(fitted_data['positions']);surface_weights=np.array(fitted_data['weights'])
+   if name=='skirt':
+    seam=np.clip((.25-depth)/.15,0,1);seam=seam*seam*(3-2*seam);pw=pw*(1-seam[:,None])+surface_weights*seam[:,None]
+   else:pw=surface_weights
  if force is not None:pw[:]=0;pw[:,names.index(force)]=1
  if clip:
   # Clip triangles at a physical hem plane, interpolating both UVs and skin weights.
@@ -145,7 +154,8 @@ def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
     if len(result)>=3:clipped.append((group,result))
   p=np.array(positions);u=np.array(coords);pw=np.array(influences);f=clipped
  parts.append((name,p,u,f,pw,texture,material))
-fitted('kit','clothes/female_sportsuit01','female_sportsuit01','kit.webp','performanceKnit',clip=-2.4)
+fitted('kit','clothes/female_sportsuit01','female_sportsuit01','kit.webp','performanceKnit',clip=-1.4)
+fitted('skirt','clothes/toigo_skirt_with_lace_ruffle','toigo_skirt_with_lace_ruffle','skirt.webp','performanceKnit')
 fitted('shoes','clothes/shoes05','shoes05','shoes.webp','performanceKnit')
 fitted('hair','hair/ponytail01','ponytail01','hair.webp','groomedHair',force='head')
 fitted('eyes','eyes/high-poly','high-poly','eyes.webp','ceramic',force='head')
@@ -164,6 +174,7 @@ textures={
  'brows.webp':ROOT/'eyebrows/eyebrow001/eyebrow001.png'}
 for name,p in textures.items():
  im=Image.open(p);im.thumbnail((2048,2048) if name=='skin.webp' else (1024,1024));im.save(OUT/name,'WEBP',quality=91,method=6)
+Image.new('RGB',(4,4),(210,231,89)).save(OUT/'skirt.webp','WEBP',lossless=True)
 doc={'asset':{'version':'2.0','generator':'Rally House authored athlete / MakeHuman CC0'},'accessors':[],'bufferViews':[],'buffers':[],'meshes':[],'materials':[],'textures':[],'images':[], 'nodes':[]};binary=bytearray()
 def accessor(a,t,component=5126):
  a=np.array(a,dtype={5126:'<f4',5123:'<u2',5125:'<u4'}[component]);binary.extend(bytes((-len(binary))%4));offset=len(binary);binary.extend(a.tobytes());view=len(doc['bufferViews']);doc['bufferViews'].append({'buffer':0,'byteOffset':offset,'byteLength':a.nbytes});ac={'bufferView':view,'componentType':component,'count':len(a),'type':t}
@@ -190,7 +201,7 @@ for name,p,u,f,w,tex,mat in parts:
     bi.append(order);bw.append(weights)
    indices.append(mapping[key])
   for i in range(1,len(indices)-1):tri.append([indices[0],indices[i+1],indices[i]])
- ti=len(doc['textures']);doc['images'].append({'uri':tex});doc['textures'].append({'source':ti});doc['materials'].append({'name':name,'pbrMetallicRoughness':{'baseColorTexture':{'index':ti},'metallicFactor':0,'roughnessFactor':.75},'doubleSided':name in ('hair','brows','lashes','eyes'),'alphaMode':'MASK' if name in ('hair','brows','lashes','eyes') else 'OPAQUE','alphaCutoff':.35})
+ ti=len(doc['textures']);doc['images'].append({'uri':tex});doc['textures'].append({'source':ti});doc['materials'].append({'name':name,'pbrMetallicRoughness':{'baseColorTexture':{'index':ti},'metallicFactor':0,'roughnessFactor':.75},'doubleSided':name in ('hair','brows','lashes','eyes','skirt'),'alphaMode':'MASK' if name in ('hair','brows','lashes','eyes') else 'OPAQUE','alphaCutoff':.35})
  attrs={'POSITION':accessor(pos,'VEC3'),'NORMAL':accessor(norm,'VEC3'),'TEXCOORD_0':accessor(uvs,'VEC2'),'JOINTS_0':accessor(bi,'VEC4',5123),'WEIGHTS_0':accessor(bw,'VEC4')}
  primitive={'attributes':attrs,'indices':accessor(np.array(tri).flatten(),'SCALAR',5125),'material':ti};extras={}
  if name in ('skin','lashes','brows'):
@@ -212,9 +223,9 @@ for name,p,u,f,w,tex,mat in parts:
   if grip_normals is not None:primitive['targets'][4]['NORMAL']=accessor(grip_normals,'VEC3')
  doc['meshes'].append({'name':name,'primitives':[primitive],'extras':extras});doc['nodes'].append({'mesh':len(doc['meshes'])-1,'skin':0});report.append({'name':name,'triangles':len(tri),'vertices':len(pos),'material':mat})
 doc['scenes']=[{'nodes':list(range(len(doc['nodes'])))}];doc['scene']=0;doc['buffers']=[{'byteLength':len(binary)}];binary.extend(bytes((-len(binary))%4));j=json.dumps(doc,separators=(',',':')).encode();j+=b' '*((-len(j))%4);glb=struct.pack('<III',0x46546c67,2,28+len(j)+len(binary))+struct.pack('<II',len(j),0x4e4f534a)+j+struct.pack('<II',len(binary),0x004e4942)+binary;(OUT/'taylor.glb').write_bytes(glb)
-meta={'author':'MakeHuman Community; MargaretToigo; Rally House fit and runtime adaptation','source':'https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482','license':'CC0-1.0','sha256':hashlib.sha256(glb).hexdigest(),'boneMap':{n:n for n in names},'bind':{k:v.tolist() for k,v in bind.items()},'parts':report,'textures':{name:hashlib.sha256((OUT/name).read_bytes()).hexdigest() for name in textures},'sourceHashes':{str(p.relative_to(SRC)) if p.is_relative_to(SRC) else str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [SRC/'base.obj',SRC/'default_weights.mhw',SRC/'default.mhskel',*textures.values()]}}
+meta={'author':'MakeHuman Community; MargaretToigo; Rally House fit and runtime adaptation','source':'https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482','license':'CC0-1.0','sha256':hashlib.sha256(glb).hexdigest(),'boneMap':{n:n for n in names},'bind':{k:v.tolist() for k,v in bind.items()},'parts':report,'textures':{name:hashlib.sha256((OUT/name).read_bytes()).hexdigest() for name in [*textures,'skirt.webp']},'sourceHashes':{str(p.relative_to(SRC)) if p.is_relative_to(SRC) else str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [SRC/'base.obj',SRC/'default_weights.mhw',SRC/'default.mhskel',*textures.values()]}}
 meta['gripSign']=grip_sign
-meta['assetPacks']=['https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html','https://static.makehumancommunity.org/assets/assetpacks/skins01.html']
-for p in [*SRC.glob('*.target'),*[p for folder in ['clothes/female_sportsuit01','clothes/shoes05','hair/ponytail01','eyes/high-poly','eyelashes/eyelashes01','eyebrows/eyebrow001'] for p in (ROOT/folder).iterdir() if p.suffix in ('.obj','.mhclo')]]:meta['sourceHashes'][str(p.relative_to(SRC)) if p.is_relative_to(SRC) else str(p.relative_to(ROOT))]=hashlib.sha256(p.read_bytes()).hexdigest()
+meta['assetPacks']=['https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html','https://static.makehumancommunity.org/assets/assetpacks/skins01.html','https://static.makehumancommunity.org/assets/assetpacks/skirts01.html']
+for p in [*SRC.glob('*.target'),*[p for folder in ['clothes/female_sportsuit01','clothes/toigo_skirt_with_lace_ruffle','clothes/shoes05','hair/ponytail01','eyes/high-poly','eyelashes/eyelashes01','eyebrows/eyebrow001'] for p in (ROOT/folder).iterdir() if p.suffix in ('.obj','.mhclo')]]:meta['sourceHashes'][str(p.relative_to(SRC)) if p.is_relative_to(SRC) else str(p.relative_to(ROOT))]=hashlib.sha256(p.read_bytes()).hexdigest()
 meta['authoringScripts']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),Path(__file__).with_name('fit-athlete-kit.py')]}
 (OUT/'provenance.json').write_text(json.dumps(meta,indent=2)+'\n');print(json.dumps(report));print('triangles',sum(p['triangles'] for p in report),'glb',len(glb))

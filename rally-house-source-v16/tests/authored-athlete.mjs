@@ -2,15 +2,16 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {inspectCharacterAsset} from '../dist/animation/CharacterAssetIntake.js';
+import {RACKET} from '../dist/animation/RacketGeometry.js';
 import {skinMatrices,BONE} from '../dist/animation/CharacterSkin.js';
-import {Vec3,transformPoint} from '../dist/rendering/Math3D.js';
+import {Vec3,transformPoint,compose} from '../dist/rendering/Math3D.js';
 import {Character} from '../dist/entities/Character.js';
 import {playerSpec} from '../dist/content/PlayerAvatars.js';
 import {Navigation} from '../dist/world/Navigation.js';
 const dir=new URL('../assets/characters/taylor/',import.meta.url),meta=JSON.parse(fs.readFileSync(new URL('provenance.json',dir))),bytes=fs.readFileSync(new URL('taylor.glb',dir)),hash=b=>createHash('sha256').update(b).digest('hex');
 assert.equal(hash(bytes),meta.sha256);for(const [name,sha] of Object.entries(meta.textures))assert.equal(hash(fs.readFileSync(new URL(name,dir))),sha);
 const asset=inspectCharacterAsset(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),[],meta);
-assert.equal(asset.primitives.length,7);const body=asset.primitives[0].geometry;for(const bone of [BONE.foreArmTwistL,BONE.foreArmTwistR])assert(body.boneIndices.filter((n,i)=>n===bone&&body.boneWeights[i]>.1).length>100,'authored forearm twist weights must reach the visible skin');assert(asset.primitives.reduce((n,p)=>n+p.geometry.positions.length/9,0)<40000);
+assert.equal(asset.primitives.length,8);const body=asset.primitives[0].geometry;for(const bone of [BONE.foreArmTwistL,BONE.foreArmTwistR])assert(body.boneIndices.filter((n,i)=>n===bone&&body.boneWeights[i]>.1).length>100,'authored forearm twist weights must reach the visible skin');assert(asset.primitives.reduce((n,p)=>n+p.geometry.positions.length/9,0)<40000);
 for(const p of asset.primitives){assert(p.geometry.uvs?.every(Number.isFinite));assert(p.albedo);if(['eyes','hair','brows','lashes'].includes(p.materialSlot))assert.equal(p.alphaCutoff,.35);if(['skin','brows','lashes'].includes(p.materialSlot)){assert.equal(p.geometry.morphs.length,5);assert(p.geometry.morphs.every(d=>d.length===p.geometry.positions.length&&d.every(Number.isFinite)));}}
 const rest=Object.fromEntries(Object.entries(meta.bind).map(([key,p])=>[key,new Vec3(...p)]));rest.headUp=new Vec3(0,1,0);
 const bind=skinMatrices(rest,rest);for(let bone=0;bone<Object.keys(BONE).length;bone++)for(let i=0;i<16;i++)assert(Math.abs(bind[bone*16+i]-(i%5===0?1:0))<1e-5,'rest pose changed');
@@ -39,7 +40,7 @@ for(const state of ['idle','sit','drink','ready','swingForehand','swingBackhand'
 console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.geometry.positions.length/9,0),samples,maxGripGap,minSole,minForearmVolume}));
  const {captureFrame,interpolateFrame}=await import('../dist/analysis/MotionCapture.js');
  const c=new Character(playerSpec('taylor'),new Vec3(2,0,-1),new Navigation([]),{});c.trigger('swingForehand');c.update(.12);const a=captureFrame(c,0,null);c.update(1/30);const b=captureFrame(c,1/30,null),middle=interpolateFrame(a,b,1/60),parts=middle.body.filter(p=>'skin' in p&&p.poseRig);
- assert.equal(parts.length,7);assert(parts.every(p=>p.rig&&p.boneMatrices===parts[0].boneMatrices));
+ assert.equal(parts.length,8);assert(parts.every(p=>p.rig&&p.boneMatrices===parts[0].boneMatrices));assert.equal(parts.filter(p=>p.skirt).length,1,'replay must retain the garment clearance flag');
  for(const part of parts){const rig=part.rig.pose;for(const side of ['L','R']){const actual=transformPoint(part.boneMatrices.slice(BONE['hand'+side]*16,BONE['hand'+side]*16+16),part.rig.bind['hand'+side]),expected=rig['hand'+side];assert(Math.hypot(actual.x-expected.x,actual.y-expected.y,actual.z-expected.z)<1e-5,'replay used the wrong body bind');}assert.deepEqual(part.expression,a.body.find(p=>'skin' in p&&p.poseRig).expression.map((v,i)=>(v+b.body.find(p=>'skin' in p&&p.poseRig).expression[i])/2));}
  c.racketStowed=false;c.matchCompetitor=true;c.trigger('ready');for(let i=0;i<90;i++)c.update(1/120);
  const skin=c.meshes().find(p=>'skin' in p&&p.rig),palette=skin.boneMatrices;
@@ -49,7 +50,16 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
   const radius=closed=>{const point=position.clone();if(closed)point.add(new Vec3(...g.morphs[4].slice(v*3,v*3+3)));const transformed=new Vec3();for(let j=0;j<4;j++){const weight=g.boneWeights[v*4+j];if(!weight)continue;const p=transformPoint(palette.slice(g.boneIndices[v*4+j]*16,g.boneIndices[v*4+j]*16+16),point);transformed.add(new Vec3(p.x*weight,p.y*weight,p.z*weight));}const delta=Vec3.sub(transformed,gripPose.handR);return delta.sub(axis.clone().scale(Vec3.dot(delta,axis))).len();};
   openRadius+=radius(false);closedRadius+=radius(true);count++;
  }
- assert(count>20);openRadius/=count;closedRadius/=count;assert(closedRadius<openRadius*.75&&closedRadius<.065,'fingers must close around the handle');const wristDeflection=Math.acos(Math.max(-1,Math.min(1,Vec3.dot(Vec3.sub(gripPose.handR,gripPose.foreArmR).normalize(),gripPose.handDirectionR))));console.log(JSON.stringify({fingerSamples:count,openRadius,closedRadius,wristDeflection}));
+ assert(count>20);openRadius/=count;closedRadius/=count;assert(closedRadius<openRadius*.75&&closedRadius<.065,'fingers must close around the handle');const wristDeflection=Math.acos(Math.max(-1,Math.min(1,Vec3.dot(Vec3.sub(gripPose.handR,gripPose.foreArmR).normalize(),gripPose.handDirectionR))));assert(wristDeflection<.8,'ready grip must not buckle the wrist');console.log(JSON.stringify({fingerSamples:count,openRadius,closedRadius,wristDeflection}));
+ const readyPose=c.analysisPose(),rotation=compose(new Vec3(),readyPose.racketRot),horizontal=transformPoint(rotation,new Vec3(RACKET.headHalfWidth,0,0)),vertical=transformPoint(rotation,new Vec3(0,RACKET.headHalfHeight,0));let minFaceClearance=Infinity;
+ for(const azimuth of [-.35,0,.35])for(const x of [-.09,0,.09])for(const y of [-.10,0,.10]){
+  const screen=v=>v.x*Math.cos(azimuth)-v.z*Math.sin(azimuth),point=Vec3.sub(readyPose.head,readyPose.racketCenter).add(new Vec3(x,y,0)),a=screen(horizontal),b=screen(vertical),det=a*vertical.y-b*horizontal.y,u=(screen(point)*vertical.y-b*point.y)/det,v=(a*point.y-screen(point)*horizontal.y)/det,d=u*u+v*v;minFaceClearance=Math.min(minFaceClearance,d);assert(d>1.05,'ready racket obscures the face in a front or three-quarter view');
+ }
+ console.log(JSON.stringify({minFaceClearance}));
+ const origin=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{}),translated=new Character(playerSpec('taylor'),new Vec3(3,0,-2),new Navigation([]),{});
+ for(const actor of [origin,translated]){actor.trigger('ready');for(let i=0;i<180;i++)actor.update(1/120);}
+ const localBones=origin.meshes().find(p=>p.rig).boneMatrices,translatedBones=translated.meshes().find(p=>p.rig).boneMatrices;assert(localBones.every((n,i)=>Math.abs(n-translatedBones[i])<1e-5),'authored hand metadata must not overwrite root-local joints');
+ const skirt=asset.primitives.find(p=>p.materialSlot==='skirt').geometry;assert(skirt.positions.length>1000&&skirt.boneIndices.every((b,i)=>skirt.boneWeights[i]<.001||[BONE.pelvis,BONE.spine,BONE.chest,BONE.thighL,BONE.thighR].includes(b)),'skirt must span the hips without shin weights');
  const observedHands=actor=>{const mesh=actor.meshes().find(m=>m.rig),g=mesh.skin,points=[];for(let v=0;v<g.positions.length/3;v+=9){if(![0,1,2,3].some(j=>[BONE.handL,BONE.handR].includes(g.boneIndices[v*4+j])&&g.boneWeights[v*4+j]>.8))continue;const p=new Vec3(...g.positions.slice(v*3,v*3+3));p.add(new Vec3(...g.morphs[4].slice(v*3,v*3+3)).scale(mesh.handGrip[p.x<0?0:1]));const point=new Vec3();for(let j=0;j<4;j++){const weight=g.boneWeights[v*4+j];if(!weight)continue;const q=transformPoint(mesh.boneMatrices.slice(g.boneIndices[v*4+j]*16,g.boneIndices[v*4+j]*16+16),p);point.add(new Vec3(q.x*weight,q.y*weight,q.z*weight));}const side=[0,1,2,3].some(j=>g.boneIndices[v*4+j]===BONE.handL&&g.boneWeights[v*4+j]>.8)?'L':'R';points.push(point.sub(mesh.rig.pose['hand'+side]));}return points;};
  // Remove legitimate hand travel to measure continuity of the retargeted surface.
  let transitionChecks=0,zeroTimeJump=0,maxHandRelativeStep=0;

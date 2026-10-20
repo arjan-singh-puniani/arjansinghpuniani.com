@@ -2,7 +2,7 @@
   "author": "MakeHuman Community; MargaretToigo; Rally House fit and runtime adaptation",
   "source": "https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482",
   "license": "CC0-1.0",
-  "sha256": "becc3c9d5998b3250b2248766338fb7e0d36bc284de22721259e0adb1b6f99ea",
+  "sha256": "51bcf4c054d2efb5a1f29d56e36da0a705cea95a0529553495c10694a85a0020",
   "boneMap": {
     "pelvis": "pelvis",
     "spine": "spine",
@@ -169,14 +169,20 @@
   "parts": [
     {
       "name": "skin",
-      "triangles": 19944,
-      "vertices": 10877,
+      "triangles": 20264,
+      "vertices": 11049,
       "material": "humanSkin"
     },
     {
       "name": "kit",
-      "triangles": 2542,
-      "vertices": 1603,
+      "triangles": 2382,
+      "vertices": 1516,
+      "material": "performanceKnit"
+    },
+    {
+      "name": "skirt",
+      "triangles": 5639,
+      "vertices": 3268,
       "material": "performanceKnit"
     },
     {
@@ -217,7 +223,8 @@
     "hair.webp": "cdc9148c4ef4ec5afc84352ee1d11726f5d7bc2fc9a90e790be5152b7b3d580d",
     "eyes.webp": "6be120d88fc65c41690f913b453c9f778dc53dcb42c2962da6189e097324eb23",
     "lashes.webp": "d6344b102113042b425c6656e9354c756acc93910148836f657ba967992676e9",
-    "brows.webp": "9c659349c86898d9e69d529296493e4a6011ab227a4b5ac2876418d1abc16993"
+    "brows.webp": "9c659349c86898d9e69d529296493e4a6011ab227a4b5ac2876418d1abc16993",
+    "skirt.webp": "3ac69eb7fd0f27c3c78318e71cab59928b76632a4d236f80a6a8af47199fe822"
   },
   "sourceHashes": {
     "base.obj": "8e761e6624b8f54536409135d1636da63b32486a90d4897f84e121d144f6fb4c",
@@ -236,6 +243,8 @@
     "caucasian-female-young.target": "118379f6e8ba9266247fdb8788a20e1df40a239f97ced0b9905bcbcc74f6e820",
     "clothes/female_sportsuit01/female_sportsuit01.mhclo": "6df057d3116db93afbbbb6d692f92cce84aa16db699f47dd14e825d07c6fd42f",
     "clothes/female_sportsuit01/female_sportsuit01.obj": "fd529bb8dd6a994c1e9a3fb2fd8b236f52c0cc7cebb1f6fd9328953d9df6d6ff",
+    "clothes/toigo_skirt_with_lace_ruffle/skirt_full_lace_ruffle.obj": "3c2523c0a7d1a61f4667570598c27922e57f7bc16d2ad95f940fae6808f8cdd7",
+    "clothes/toigo_skirt_with_lace_ruffle/toigo_skirt_with_lace_ruffle.mhclo": "d8650bbb06adb94d5c73453fe4c7079a17161b0fdd442c829a739aa0876610ed",
     "clothes/shoes05/shoes05.mhclo": "75fc467264b085d7a05ce0c9b5628bb364b246392c59524c556fa09f92b6cb16",
     "clothes/shoes05/shoes05.obj": "5726aabac42ff489998d0a769545dea013961bbb71b9c6024d75170181a98818",
     "hair/ponytail01/ponytail01.mhclo": "97fc50b12bcb3b1c7b33edddd8d427a2604ffb06fe79b31132bf47f82d7afbac",
@@ -253,10 +262,11 @@
   },
   "assetPacks": [
     "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
-    "https://static.makehumancommunity.org/assets/assetpacks/skins01.html"
+    "https://static.makehumancommunity.org/assets/assetpacks/skins01.html",
+    "https://static.makehumancommunity.org/assets/assetpacks/skirts01.html"
   ],
   "authoringScripts": {
-    "bake-authored-athlete.py": "a935d220769c926c507ed8080c9b2e51453cad31c50f80c7440d5289e3d418b3",
-    "fit-athlete-kit.py": "5121a4eb3d6976e607d2c6709cc4b4b784e9188195460964c14404dc63ff4511"
+    "bake-authored-athlete.py": "bfcbbd64260801f1f6490a3f3788071c347a522c024c53726f744fda8a01a929",
+    "fit-athlete-kit.py": "aac9ee99b856a52c1d5e8c158a20847a3ef5fe92e5428f0e67547b176e373df0"
   }
 }

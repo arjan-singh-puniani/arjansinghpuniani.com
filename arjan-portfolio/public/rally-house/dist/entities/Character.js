@@ -10,7 +10,7 @@ import { adultTaylorPose, TAYLOR_BODY } from '../animation/TaylorBody.js';
 import { humanTaylorHead } from '../animation/TaylorHuman.js';
 import { CHARACTER_SKIN, HUMAN_TENNIS_SKIN, ATHLETE_WARDROBE, skinMatrices, rigFromPose } from '../animation/CharacterSkin.js';
 import { CAST_DESIGN } from '../content/CastDesign.js';
-import { authoredAthleteMeshes } from '../animation/AuthoredAthlete.js';
+import { authoredAthleteMeshes, advanceAuthoredHands } from '../animation/AuthoredAthlete.js';
 export function locomotionStyleFor(id) {
     if (id === 'coach')
         return { cadence: 4.22, bounce: .018, armSwing: .155, hipSwing: .042, torsoCounter: .048, stride: .94, headStabilize: .72, turnSharpness: 8.0 };
@@ -96,6 +96,7 @@ export class Character {
     contactTarget = null;
     outgoingTarget = null;
     facePose = { smile: .08, mouthOpen: 0, browRaise: .05, squint: 0, focus: .08 };
+    authoredHands;
     handPose = { handRestWeight: 1, handLapWeight: 0, handGripL: 0, handGripR: 0, handRacketWeight: 0 };
     lastPose = null;
     prevPosition;
@@ -488,10 +489,12 @@ export class Character {
             desired.browRaise = clamp(desired.browRaise + this.acting.values.browBias + (reaction?.brow ?? 0) * w, -.25, 1);
         }
         this.facePose = { smile: expDamp(this.facePose.smile, desired.smile, 10, dt), mouthOpen: expDamp(this.facePose.mouthOpen, desired.mouthOpen, 14, dt), browRaise: expDamp(this.facePose.browRaise, desired.browRaise, 10, dt), squint: expDamp(this.facePose.squint, desired.squint, 12, dt), focus: expDamp(this.facePose.focus, desired.focus, 12, dt) };
-        const racket = this.holdsRacket(), hands = { handRestWeight: this.state === 'idle' && !this.propKind && !this.interactionTarget && !this.affection && this.socialGesture === 'none' && this.interactionWeight < .001 ? 1 : 0, handLapWeight: this.state === 'sit' && !this.propKind && !this.affection && !racket ? 1 : 0, handGripL: racket && this.state === 'swingBackhand' ? 1 : 0, handGripR: racket ? 1 : this.state === 'drink' || this.propKind === 'cup' ? .45 : 0, handRacketWeight: racket ? 1 : 0 };
+        const racket = this.holdsRacket(), hands = { handRestWeight: this.state === 'idle' && !this.propKind && !this.interactionTarget && !this.affection && this.socialGesture === 'none' && this.interactionWeight < .001 ? 1 : 0, handLapWeight: this.state === 'sit' && !this.propKind && !this.affection && !racket ? 1 : 0, handGripL: racket ? (this.state === 'swingBackhand' ? 1 : this.state === 'ready' || this.state === 'shuffle' ? .45 : 0) : 0, handGripR: racket ? 1 : this.state === 'drink' || this.propKind === 'cup' ? .45 : 0, handRacketWeight: racket ? 1 : 0 };
         for (const key of Object.keys(hands))
             this.handPose[key] = expDamp(this.handPose[key], hands[key], 12, dt);
         this.clubIdleRelax = expDamp(this.clubIdleRelax, this.canRelaxClubIdle() ? 1 : 0, 7, dt);
+        if (this.spec.avatar === 'taylor' && this.spec.appearance === 'human')
+            this.authoredHands = advanceAuthoredHands(this.pose(), this.position, this.yaw, this.authoredHands, dt);
         this.prevPosition = this.position.clone();
     }
     racketContactPoint() { const pose = this.pose(); return pose.racketCenter.clone(); }
@@ -755,6 +758,11 @@ export class Character {
             handL = this.worldLocal(.10, 1.24 + baseY, .56, torsoYaw);
             handR = this.worldLocal(.17, 1.18 + baseY, .40, torsoYaw);
         }
+        const humanReady = this.spec.appearance === 'human' && (state === 'ready' || shuffle);
+        if (humanReady) {
+            handR = this.worldLocal(.27, 1.18 + baseY, .36, torsoYaw);
+            handL = this.worldLocal(.40, 1.24 + baseY, .375, torsoYaw);
+        }
         if (state === 'coachFeed') {
             handL = this.worldLocal(-.42, 1.05 + baseY, .12);
             handR = this.worldLocal(.55, 1.12 + baseY, .30 + Math.sin(time * 2.4) * .12);
@@ -868,6 +876,8 @@ export class Character {
         racketForward.normalize();
         const racketRight = new Vec3(racketForward.z, 0, -racketForward.x);
         let headOffset = Vec3.add(new Vec3(0, .425, 0), racketForward.clone().scale(.225));
+        if (humanReady)
+            headOffset = rotateEulerVector(new Vec3(0, .48, 0), new Vec3(.12, torsoYaw, -.70));
         if (state === 'serve')
             headOffset = Vec3.add(new Vec3(0, .525, 0), racketForward.clone().scale(.125));
         if (state === 'volley')
@@ -907,6 +917,8 @@ export class Character {
             racketRot = new Vec3(.46 - sp * .58, torsoYaw, .36 - sp * .72);
         else if (state === 'volley')
             racketRot = new Vec3(.04, torsoYaw, -.12);
+        if (humanReady)
+            racketRot = new Vec3(.12, torsoYaw, -.70);
         if (humanGroundstroke)
             racketRot = new Vec3(Math.atan2(groundDepth, groundRise), Math.atan2(racketForward.x, racketForward.z), Math.atan2(-groundSide, Math.hypot(groundRise, groundDepth)));
         const vib = this.racketVibration * Math.sin(this.animTime * 62) * .045;
@@ -974,7 +986,7 @@ export class Character {
         const head = this.worldLocal(pelvisShiftX * .25, 1.80 + baseY + actingLift + breathe - knee + splitHop + clip.headNod - headStabilize + (!shot && !moving && (this.socialGesture === 'nod' || this.socialGesture === 'laugh') ? Math.sin(time * 6) * .022 : 0), .01 + pelvisShiftZ * .45, headYaw);
         const elbowL = Vec3.lerp(shoulderL, handL, .50).add(forward.clone().scale(.055)).add(right.clone().scale(-.035));
         const elbowR = Vec3.lerp(shoulderR, handR, .50).add(forward.clone().scale(.055)).add(right.clone().scale(.035));
-        return { baseY, breathe, walking: moving, gait, torsoYaw, hipYaw, headYaw, right, forward, shoulderL, shoulderR, elbowL, elbowR, handL, handR, hipL, hipR, kneeL, kneeR, footL, footR, torsoCenter, pelvisCenter, head, racketGrip, racketHandleTop, racketCenter, racketRot, lean, knee, shot, sp, face: { ...this.facePose }, weightShift, ...this.handPose };
+        return { baseY, breathe, walking: moving, gait, torsoYaw, hipYaw, headYaw, right, forward, shoulderL, shoulderR, elbowL, elbowR, handL, handR, hipL, hipR, kneeL, kneeR, footL, footR, torsoCenter, pelvisCenter, head, racketGrip, racketHandleTop, racketCenter, racketRot, lean, knee, shot, sp, face: { ...this.facePose }, weightShift, ...this.handPose, ...this.authoredHands };
     }
     localVector(x, y, z) { const s = Math.sin(this.yaw), c = Math.cos(this.yaw); return new Vec3(c * x + s * z, y, -s * x + c * z); }
     blendPose(a, b, t) {
@@ -1049,7 +1061,7 @@ export class Character {
                 result.face = { ...result.face, smile: Math.max(this.spec.avatar === 'taylor' ? .55 : this.spec.presentation === 'masculine' ? .18 : .32, result.face.smile), squint: Math.max(.08, result.face.squint) };
             }
             const design = CAST_DESIGN[this.spec.avatar ?? this.spec.id] ?? CAST_DESIGN.taylor;
-            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', seatWeight: this.state === 'sit' ? t : this.previousState === 'sit' ? 1 - t : 0, folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.clubIdleRelax, affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: this.state === 'jog' ? [!!this.leftFootLock, !!this.rightFootLock] : undefined, swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
+            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', seatWeight: this.state === 'sit' ? t : this.previousState === 'sit' ? 1 - t : 0, folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.clubIdleRelax, readyWeight: this.state === 'ready' || this.state === 'shuffle' ? t : this.previousState === 'ready' || this.previousState === 'shuffle' ? 1 - t : 0, affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: this.state === 'jog' ? [!!this.leftFootLock, !!this.rightFootLock] : undefined, swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
         }
         return result;
     }

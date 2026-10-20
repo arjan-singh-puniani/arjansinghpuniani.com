@@ -18,7 +18,7 @@ try{
    await page.waitForFunction(()=>getComputedStyle(document.getElementById('loading')).opacity==='0');
    await page.screenshot({path:`${out}/after-${profile.name}-arrival.png`});
    report.arrival=await page.evaluate(()=>({paused:window.__rh.game.clock.paused,court:window.__rh.game.activities.reserved('court')}));
-   await page.getByText(profile.avatar,{exact:true}).click();
+   report.avatar=process.env.QA_AVATAR??profile.avatar;await page.getByText(report.avatar,{exact:true}).click();
    report.playButton=await page.getByRole('button',{name:'Play tennis',exact:true}).boundingBox();
    await page.bringToFront();
    const start=Date.now();await page.getByRole('button',{name:'Play tennis',exact:true}).click();

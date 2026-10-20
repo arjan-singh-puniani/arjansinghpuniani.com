@@ -195,7 +195,11 @@ export function adultTaylorPose(source, root, yaw, constraints) {
         // The old compact/feline elbow target can pass through the shoulder/wrist
         // axis after retargeting. A body-relative human pole keeps elbows down and
         // outside the ribcage, with posterior loading rather than a reversed fold.
-        const pole = walk ? shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.035 : .035)).add(new Vec3(0, -.18, 0)).add(torsoForward.clone().scale(-.30)) : constraints.human ? shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.24 : .24)).add(new Vec3(0, -.28, 0)).add(torsoForward.clone().scale(constraints.posture ? -.16 : -.16 + .34 * smooth((Vec3.dot(Vec3.sub(p[`hand${side}`], shoulder), torsoForward) - .04) / .16))) : arm(source[`elbow${side}`]).add(forward.clone().scale(.04));
+        let pole = walk ? shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.035 : .035)).add(new Vec3(0, -.18, 0)).add(torsoForward.clone().scale(-.30)) : constraints.human ? shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.24 : .24)).add(new Vec3(0, -.28, 0)).add(torsoForward.clone().scale(constraints.posture ? -.16 : -.16 + .34 * smooth((Vec3.dot(Vec3.sub(p[`hand${side}`], shoulder), torsoForward) - .04) / .16))) : arm(source[`elbow${side}`]).add(forward.clone().scale(.04));
+        if (constraints.human && constraints.readyWeight) {
+            const readyPole = shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.12 : .12)).add(new Vec3(0, -.55, 0)).add(torsoForward.clone().scale(-.24));
+            pole = Vec3.lerp(pole, readyPole, constraints.readyWeight);
+        }
         p[`elbow${side}`] = joint(shoulder, p[`hand${side}`], TAYLOR_BODY.upperArm, TAYLOR_BODY.forearm, pole, forward);
     }
     p.racketGrip = p.handR.clone();
