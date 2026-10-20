@@ -4,7 +4,7 @@ import {inspectCharacterAsset,type AssetProvenance,type IntakeResult} from './Ch
 import {BONE,rigFromPose,skinMatrices,type RigPoseLocal} from './CharacterSkin.js';
 import type {CharacterPose} from '../entities/Character.js';
 
-let athlete:{parts:IntakeResult['primitives'];bind:RigPoseLocal;images:Map<string,HTMLImageElement>;gripSign:{L:number;R:number};eyeCenters:Float32Array;neckRatio:number;neckDepth:number;spineRatio:number;spineDepth:number}|undefined;
+let athlete:{parts:IntakeResult['primitives'];bind:RigPoseLocal;images:Map<string,HTMLImageElement>;gripSign:{L:number;R:number};eyeCenters:Float32Array;neckRatio:number;neckDepth:number;spineRatio:number;spineDepth:number;armLengths:{upperArm:number;forearm:number}}|undefined;
 const root=new URL('../../assets/characters/taylor/',import.meta.url);
 const digest=async(bytes:ArrayBuffer)=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),n=>n.toString(16).padStart(2,'0')).join('');
 
@@ -20,6 +20,8 @@ export async function loadAuthoredAthlete(){
  if(!Number.isFinite(spineRatio)||spineRatio<=0||spineRatio>=1||!Number.isFinite(spineDepth)||Math.abs(spineDepth)>.15)throw Error('Invalid character spine registration');
  const neckRatio=(bind.neck.y-bind.chest.y)/(bind.head.y-bind.chest.y),neckDepth=bind.neck.z-(bind.chest.z+(bind.head.z-bind.chest.z)*neckRatio);
  if(!Number.isFinite(neckRatio)||neckRatio<=0||neckRatio>=1||!Number.isFinite(neckDepth)||Math.abs(neckDepth)>.15)throw Error('Invalid character neck registration');
+ const armLengths={upperArm:Vec3.sub(bind.upperArmL,bind.foreArmL).len(),forearm:Vec3.sub(bind.foreArmL,bind.handL).len()};
+ if(!Object.values(armLengths).every(n=>Number.isFinite(n)&&n>.2&&n<.6))throw Error('Invalid character arm lengths');
  const images=new Map<string,HTMLImageElement>();
  await Promise.all([...new Set(result.primitives.map(p=>p.albedo).filter((s):s is string=>!!s))].map(async name=>{
   const data=await get(name);if(await digest(data)!==meta.textures[name])throw Error(`Character texture checksum failed: ${name}`);
@@ -31,8 +33,10 @@ export async function loadAuthoredAthlete(){
  const eyes=eyePart.geometry.positions,eyeCenters=new Float32Array(6);
  for(const side of [0,1]){const lo=[Infinity,Infinity,Infinity],hi=[-Infinity,-Infinity,-Infinity];for(let i=0;i<eyes.length;i+=3){if((eyes[i]<0?0:1)!==side)continue;for(let axis=0;axis<3;axis++){lo[axis]=Math.min(lo[axis],eyes[i+axis]);hi[axis]=Math.max(hi[axis],eyes[i+axis]);}}for(let axis=0;axis<3;axis++)eyeCenters[side*3+axis]=(lo[axis]+hi[axis])/2;}
  if(!eyeCenters.every(Number.isFinite))throw Error('Invalid character eye geometry');
- bind.headUp=new Vec3(0,1,0);athlete={parts:result.primitives,bind:bind as unknown as RigPoseLocal,images,gripSign:meta.gripSign,eyeCenters,neckRatio,neckDepth,spineRatio,spineDepth};
+ bind.headUp=new Vec3(0,1,0);athlete={parts:result.primitives,bind:bind as unknown as RigPoseLocal,images,gripSign:meta.gripSign,eyeCenters,neckRatio,neckDepth,spineRatio,spineDepth,armLengths};
 }
+
+export const authoredArmLengths=()=>athlete?.armLengths;
 
 export interface AuthoredHandPose{handDirectionL:Vec3;handDirectionR:Vec3;handForwardL:Vec3;handForwardR:Vec3;}
 

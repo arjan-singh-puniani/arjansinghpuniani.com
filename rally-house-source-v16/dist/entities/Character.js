@@ -10,7 +10,7 @@ import { adultTaylorPose, TAYLOR_BODY } from '../animation/TaylorBody.js';
 import { humanTaylorHead } from '../animation/TaylorHuman.js';
 import { CHARACTER_SKIN, HUMAN_TENNIS_SKIN, ATHLETE_WARDROBE, skinMatrices, rigFromPose } from '../animation/CharacterSkin.js';
 import { CAST_DESIGN } from '../content/CastDesign.js';
-import { authoredAthleteMeshes, advanceAuthoredHands } from '../animation/AuthoredAthlete.js';
+import { authoredAthleteMeshes, authoredArmLengths, advanceAuthoredHands } from '../animation/AuthoredAthlete.js';
 export function locomotionStyleFor(id) {
     if (id === 'coach')
         return { cadence: 4.22, bounce: .018, armSwing: .155, hipSwing: .042, torsoCounter: .048, stride: .94, headStabilize: .72, turnSharpness: 8.0 };
@@ -1065,7 +1065,7 @@ export class Character {
                 result.face = { ...result.face, smile: Math.max(this.spec.avatar === 'taylor' ? .55 : this.spec.presentation === 'masculine' ? .18 : .32, result.face.smile), squint: Math.max(.08, result.face.squint) };
             }
             const design = CAST_DESIGN[this.spec.avatar ?? this.spec.id] ?? CAST_DESIGN.taylor;
-            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', seatWeight: this.state === 'sit' ? t : this.previousState === 'sit' ? 1 - t : 0, folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.clubIdleRelax, readyWeight: this.state === 'ready' || this.state === 'shuffle' ? t : this.previousState === 'ready' || this.previousState === 'shuffle' ? 1 - t : 0, affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: this.state === 'jog' ? [!!this.leftFootLock, !!this.rightFootLock] : undefined, swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
+            return adultTaylorPose(result, this.position, this.yaw, { armLengths: this.spec.avatar === 'taylor' && this.spec.appearance === 'human' ? authoredArmLengths() : undefined, sitting: this.state === 'sit', seatWeight: this.state === 'sit' ? t : this.previousState === 'sit' ? 1 - t : 0, folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.clubIdleRelax, readyWeight: this.state === 'ready' || this.state === 'shuffle' ? t : this.previousState === 'ready' || this.previousState === 'shuffle' ? 1 - t : 0, affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: this.state === 'jog' ? [!!this.leftFootLock, !!this.rightFootLock] : undefined, swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
         }
         return result;
     }

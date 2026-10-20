@@ -26,6 +26,9 @@ export async function loadAuthoredAthlete() {
     const neckRatio = (bind.neck.y - bind.chest.y) / (bind.head.y - bind.chest.y), neckDepth = bind.neck.z - (bind.chest.z + (bind.head.z - bind.chest.z) * neckRatio);
     if (!Number.isFinite(neckRatio) || neckRatio <= 0 || neckRatio >= 1 || !Number.isFinite(neckDepth) || Math.abs(neckDepth) > .15)
         throw Error('Invalid character neck registration');
+    const armLengths = { upperArm: Vec3.sub(bind.upperArmL, bind.foreArmL).len(), forearm: Vec3.sub(bind.foreArmL, bind.handL).len() };
+    if (!Object.values(armLengths).every(n => Number.isFinite(n) && n > .2 && n < .6))
+        throw Error('Invalid character arm lengths');
     const images = new Map();
     await Promise.all([...new Set(result.primitives.map(p => p.albedo).filter((s) => !!s))].map(async (name) => {
         const data = await get(name);
@@ -67,8 +70,9 @@ export async function loadAuthoredAthlete() {
     if (!eyeCenters.every(Number.isFinite))
         throw Error('Invalid character eye geometry');
     bind.headUp = new Vec3(0, 1, 0);
-    athlete = { parts: result.primitives, bind: bind, images, gripSign: meta.gripSign, eyeCenters, neckRatio, neckDepth, spineRatio, spineDepth };
+    athlete = { parts: result.primitives, bind: bind, images, gripSign: meta.gripSign, eyeCenters, neckRatio, neckDepth, spineRatio, spineDepth, armLengths };
 }
+export const authoredArmLengths = () => athlete?.armLengths;
 /** Advance once with the actor; rendering and replay only consume the result. */
 export function advanceAuthoredHands(p, position, yaw, previous, dt) {
     if (!athlete)

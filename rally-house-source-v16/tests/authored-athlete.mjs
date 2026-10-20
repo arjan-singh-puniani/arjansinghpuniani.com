@@ -24,7 +24,7 @@ try{
  globalThis.Image=class{naturalWidth=1024;naturalHeight=1024;async decode(){}};
  const {loadAuthoredAthlete,authoredAthleteMeshes}=await import('../dist/animation/AuthoredAthlete.js');await loadAuthoredAthlete();
  const verifiedFetch=globalThis.fetch;
- for(const invalid of [{neck:[0,meta.bind.head[1]+.1,0]},{neck:[0,meta.bind.neck[1],1]},{spine:[0,meta.bind.chest[1]+.1,0]}]){globalThis.fetch=async url=>new URL(url).pathname.endsWith('/provenance.json')?new Response(JSON.stringify({...meta,bind:{...meta.bind,...invalid}})):verifiedFetch(url);await assert.rejects(()=>loadAuthoredAthlete(),/registration/);}
+ for(const invalid of [{neck:[0,meta.bind.head[1]+.1,0]},{neck:[0,meta.bind.neck[1],1]},{spine:[0,meta.bind.chest[1]+.1,0]},{foreArmL:meta.bind.upperArmL}]){globalThis.fetch=async url=>new URL(url).pathname.endsWith('/provenance.json')?new Response(JSON.stringify({...meta,bind:{...meta.bind,...invalid}})):verifiedFetch(url);await assert.rejects(()=>loadAuthoredAthlete(),/registration|arm lengths/);}
  globalThis.fetch=verifiedFetch;
  const restNeckPose={...new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{}).analysisPose(),pelvisCenter:rest.pelvis.clone(),head:rest.head.clone(),shoulderL:rest.upperArmL.clone(),shoulderR:rest.upperArmR.clone(),headYaw:0,torsoYaw:0,hipYaw:0};
  const restTorso=authoredAthleteMeshes(restNeckPose,new Vec3(),0,[{pitch:0,yaw:0},{pitch:0,yaw:0}],0)[0];let maxRestTorsoError=0;
@@ -35,7 +35,9 @@ const standing=character.analysisPose(),shoulderRatio=Vec3.sub(standing.shoulder
 assert(shoulderRatio>.98&&shoulderRatio<1.02,'the standing hero must retain the authored shoulder span');console.log(JSON.stringify({shoulderRatio}));
 let samples=0,maxGripGap=0,minSole=Infinity,minForearmVolume=Infinity;
 for(const state of ['idle','sit','drink','ready','swingForehand','swingBackhand','serve']){
- character.trigger(state);for(let t=0;t<90;t++){character.update(1/120);if(t%15)continue;const part=character.meshes().find(p=>'skin' in p&&p.rig),rig=part.rig.pose,matrices=part.boneMatrices;assert(matrices.every(Number.isFinite));
+ character.trigger(state);for(let t=0;t<90;t++){character.update(1/120);if(t%15)continue;
+  const observed=character.analysisPose();for(const side of ['L','R'])for(const [a,b,expected] of [[`shoulder${side}`,`elbow${side}`,Vec3.sub(rest[`upperArm${side}`],rest[`foreArm${side}`]).len()],[`elbow${side}`,`hand${side}`,Vec3.sub(rest[`foreArm${side}`],rest[`hand${side}`]).len()]]){const ratio=Vec3.sub(observed[a],observed[b]).len()/expected;assert(ratio>.999&&ratio<1.04,'the authored arm must retain its source length through poses');}
+  const part=character.meshes().find(p=>'skin' in p&&p.rig),rig=part.rig.pose,matrices=part.boneMatrices;assert(matrices.every(Number.isFinite));
   for(const side of ['L','R'])for(let v=0;v<body.positions.length/3;v+=3){
    const joints=[0,1,2,3].map(j=>body.boneIndices[v*4+j]),weights=[0,1,2,3].map(j=>body.boneWeights[v*4+j]);
    if(!joints.some((b,j)=>b===BONE['foreArmTwist'+side]&&weights[j]>.1)||joints.some((b,j)=>weights[j]>.001&&![BONE['foreArm'+side],BONE['foreArmTwist'+side],BONE['hand'+side]].includes(b)))continue;
@@ -48,6 +50,12 @@ for(const state of ['idle','sit','drink','ready','swingForehand','swingBackhand'
   minSole=Math.min(minSole,low);assert(low>-.005,'shoe penetrated the floor');samples++;
  }
 }
+let maxAuthoredContactError=0;
+for(const stroke of ['swingForehand','swingBackhand','volley','serve'])for(const height of [.66,1.02,1.38])for(const x of [-.76,.54,.88]){
+ const actor=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});actor.setAnimation('ready');actor.update(.3);if(stroke!=='serve')actor.setIncomingContact(new Vec3(x,height,.90));actor.triggerShot(stroke,new Vec3(0,.09,-5));
+ const time=actor.shotContactTime(stroke);for(let i=0;i<60;i++)actor.update(time/60);const error=Vec3.sub(actor.analysisPose().racketCenter,actor.debugKinematics().contactTarget).len();maxAuthoredContactError=Math.max(maxAuthoredContactError,error);assert(error<1e-6,'authored arm proportions lost the world-space racket contact');
+}
+console.log(JSON.stringify({maxAuthoredContactError}));
 console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.geometry.positions.length/9,0),samples,maxGripGap,minSole,minForearmVolume}));
  const {captureFrame,interpolateFrame}=await import('../dist/analysis/MotionCapture.js');
  const c=new Character(playerSpec('taylor'),new Vec3(2,0,-1),new Navigation([]),{});c.trigger('swingForehand');c.update(.12);const a=captureFrame(c,0,null);c.update(1/30);const b=captureFrame(c,1/30,null),middle=interpolateFrame(a,b,1/60),parts=middle.body.filter(p=>'skin' in p&&p.poseRig);

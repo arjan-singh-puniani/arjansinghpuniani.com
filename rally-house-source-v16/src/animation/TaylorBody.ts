@@ -2,7 +2,7 @@ import {Vec3,clamp} from '../rendering/Math3D.js';
 import type {CharacterPose} from '../entities/Character.js';
 
 export const TAYLOR_BODY={pelvisHeight:1.245,strokePelvisFloor:.86,torsoScale:1.20,headScale:.62,upperArm:.425,forearm:.415,thigh:.56,shin:.55} as const;
-interface Constraints {sitting:boolean;seatWeight?:number;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;affection?:{kind:'hug'|'kiss';target:Vec3;weight:number;upper:boolean};shoulderScale?:number;restWeight?:number;readyWeight?:number;walk?:{phase:number;weight:number;swing:number;stance:number;planted?:[boolean,boolean]};posture?:{weight:number;right:Vec3;left?:Vec3};}
+interface Constraints {armLengths?:{upperArm:number;forearm:number};sitting:boolean;seatWeight?:number;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;affection?:{kind:'hug'|'kiss';target:Vec3;weight:number;upper:boolean};shoulderScale?:number;restWeight?:number;readyWeight?:number;walk?:{phase:number;weight:number;swing:number;stance:number;planted?:[boolean,boolean]};posture?:{weight:number;right:Vec3;left?:Vec3};}
 const smooth=(t:number)=>{const u=clamp(t,0,1);return u*u*(3-2*u);};
 function joint(a:Vec3,b:Vec3,first:number,second:number,pole:Vec3,fallback:Vec3){
  const delta=Vec3.sub(b,a),d=Math.max(.0001,delta.len()),axis=delta.scale(1/d),stretch=Math.max(1,d/(first+second-.001));
@@ -16,6 +16,7 @@ function joint(a:Vec3,b:Vec3,first:number,second:number,pole:Vec3,fallback:Vec3)
 /** Retarget the authoritative pose, including its world-space constraints.
  * The existing bind mesh is deformed by this same pose in live play and replay. */
 export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constraints:Constraints):CharacterPose{
+ const arms=constraints.armLengths??TAYLOR_BODY;
  const p={...source,face:{...source.face}};for(const [key,v] of Object.entries(source))if(v instanceof Vec3)(p as unknown as Record<string,unknown>)[key]=v.clone();
  const oldShoulder=Vec3.lerp(source.shoulderL,source.shoulderR,.5),seat=constraints.seatWeight??(constraints.sitting?1:0),standingY=TAYLOR_BODY.pelvisHeight+(source.pelvisCenter.y-.79)*1.5,pelvisY=standingY+(source.pelvisCenter.y-standingY)*seat;
  p.seatedWeight=seat;
@@ -65,7 +66,7 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
  if(constraints.human&&constraints.posture&&constraints.posture.weight>0){
   const load=constraints.posture,weight=load.weight,originalL=p.shoulderL.clone(),originalR=p.shoulderR.clone(),offsetL=Vec3.sub(arm(source.handL),originalL),offsetR=Vec3.sub(arm(source.handR),originalR);
   const target=load.left?Vec3.lerp(load.right,load.left,.5):load.right,centre=Vec3.lerp(originalL,originalR,.5),toward=Vec3.sub(target,centre);toward.y=0;const distance=toward.len(),lean=distance>.34?toward.scale(Math.min(.24,distance-.34)/distance):new Vec3();
-  let drop=0;for(const [start,end] of [[originalR,load.right],...(load.left?[[originalL,load.left]]:[])] as [Vec3,Vec3][]){const shifted=start.clone().add(lean),horizontal=Math.hypot(end.x-shifted.x,end.z-shifted.z),vertical=Math.sqrt(Math.max(.04,.837**2-horizontal*horizontal));drop=Math.max(drop,shifted.y-end.y-vertical);}
+  let drop=0;for(const [start,end] of [[originalR,load.right],...(load.left?[[originalL,load.left]]:[])] as [Vec3,Vec3][]){const shifted=start.clone().add(lean),horizontal=Math.hypot(end.x-shifted.x,end.z-shifted.z),vertical=Math.sqrt(Math.max(.04,(arms.upperArm+arms.forearm-.003)**2-horizontal*horizontal));drop=Math.max(drop,shifted.y-end.y-vertical);}
   lower(clamp(drop,0,.65)*weight);
   for(const key of ['shoulderL','shoulderR','head'] as const)p[key].add(lean.clone().scale(weight));p.torsoCenter.add(lean.clone().scale(weight*.6));
   p.handL=Vec3.lerp(p.shoulderL.clone().add(offsetL),source.handL,constraints.leftWorld);p.handR=Vec3.lerp(p.shoulderR.clone().add(offsetR),source.handR,constraints.rightWorld);
@@ -82,7 +83,7 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
  // A constrained low ball or prop is reached with the body, rather than by
  // stretching a forearm through the floor. The hand keeps ownership of contact.
  for(const [side,weight] of [['R',constraints.rightWorld],['L',constraints.leftWorld]] as const){
-  if(weight<.001)continue;const hand=p[`hand${side}`],start=p[`shoulder${side}`],reach=TAYLOR_BODY.upperArm+TAYLOR_BODY.forearm-.003,delta=Vec3.sub(hand,start);
+  if(weight<.001)continue;const hand=p[`hand${side}`],start=p[`shoulder${side}`],reach=arms.upperArm+arms.forearm-.003,delta=Vec3.sub(hand,start);
   if(delta.len()<=reach)continue;
   const horizontalLength=Math.hypot(delta.x,delta.z),vertical=Math.sqrt(Math.max(.04,reach*reach-horizontalLength*horizontalLength));
   const drop=clamp(start.y-hand.y-vertical,0,.76);lower(drop);
@@ -96,7 +97,7 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
   // An airborne leg recovers toward the body; it cannot drag the planted body down.
   if(walk?.planted&&!walk.planted[side==='L'?0:1]){const delta=Vec3.sub(p[`foot${side}`],hip),reach=TAYLOR_BODY.thigh+TAYLOR_BODY.shin-.001;if(delta.len()>reach)p[`foot${side}`]=hip.clone().add(delta.normalize().scale(reach));}
   const foot=p[`foot${side}`],kneePole=Vec3.lerp(hip,foot,.5).add(forward.clone().scale(.5));p[`knee${side}`]=joint(hip,foot,TAYLOR_BODY.thigh,TAYLOR_BODY.shin,kneePole,forward);
-  if(walk){const sign=side==='L'?-1:1,swing=Math.cos(walk.phase)*walk.swing,goal=p[`shoulder${side}`].clone().add(torsoRight.clone().scale(sign*.015)).add(new Vec3(0,-.79+Math.abs(swing)*.035,0)).add(torsoForward.clone().scale(sign*swing));p[`hand${side}`]=Vec3.lerp(p[`hand${side}`],goal,walk.weight);}
+  if(walk){const sign=side==='L'?-1:1,swing=Math.cos(walk.phase)*walk.swing,goal=p[`shoulder${side}`].clone().add(torsoRight.clone().scale(sign*.015)).add(new Vec3(0,-(arms.upperArm+arms.forearm-.05)+Math.abs(swing)*.035,0)).add(torsoForward.clone().scale(sign*swing));p[`hand${side}`]=Vec3.lerp(p[`hand${side}`],goal,walk.weight);}
   const world=side==='L'?constraints.leftWorld:constraints.rightWorld;
   if(constraints.human&&seat>0&&!affection){const goal=Vec3.lerp(p[`hip${side}`],p[`knee${side}`],.60).add(new Vec3(0,.23,0));p[`hand${side}`]=Vec3.lerp(p[`hand${side}`],goal,seat*(1-world));}
   if(constraints.human&&constraints.restWeight){const goal=p.pelvisCenter.clone().add(torsoRight.clone().scale(side==='L'?-.278:.278)).add(torsoForward.clone().scale(.10)).add(new Vec3(0,.18,0));p[`hand${side}`]=Vec3.lerp(p[`hand${side}`],goal,constraints.restWeight*(1-world));}
@@ -105,7 +106,7 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
    const t=clamp((hand.y-p.pelvisCenter.y)/(shoulder.y-p.pelvisCenter.y),0,1),center=Vec3.lerp(p.pelvisCenter,Vec3.lerp(p.shoulderL,p.shoulderR,.5),t),d=Vec3.sub(hand,center),x=Vec3.dot(d,torsoRight),z=Vec3.dot(d,torsoForward),rx=t<.4?.27:.30,rz=.265,inside=x*x/(rx*rx)+z*z/(rz*rz);
    if(hand.y>p.pelvisCenter.y+.08&&hand.y<shoulder.y-.12&&inside<1)hand.add(torsoForward.clone().scale((Math.sqrt(Math.max(0,1-x*x/(rx*rx)))*rz-z)*(1-world)));
   }
-  if(world<.999){const d=Vec3.sub(hand,shoulder),distance=d.len(),reach=TAYLOR_BODY.upperArm+TAYLOR_BODY.forearm-.003;
+  if(world<.999){const d=Vec3.sub(hand,shoulder),distance=d.len(),reach=arms.upperArm+arms.forearm-.003;
    if(distance>reach)p[`hand${side}`]=shoulder.clone().add(d.normalize().scale(reach));
    // The compact serve wind-up can place a hand almost on its shoulder,
    // folding a full-length adult forearm back through the upper arm.
@@ -116,7 +117,7 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
   // outside the ribcage, with posterior loading rather than a reversed fold.
   let pole=walk?shoulder.clone().add(torsoRight.clone().scale(side==='L'?-.035:.035)).add(new Vec3(0,-.18,0)).add(torsoForward.clone().scale(-.30)):constraints.human?shoulder.clone().add(torsoRight.clone().scale(side==='L'?-.24:.24)).add(new Vec3(0,-.28,0)).add(torsoForward.clone().scale(constraints.posture?-.16:-.16+.34*smooth((Vec3.dot(Vec3.sub(p[`hand${side}`],shoulder),torsoForward)-.04)/.16))):arm(source[`elbow${side}`]).add(forward.clone().scale(.04));
   if(constraints.human&&constraints.readyWeight){const readyPole=shoulder.clone().add(torsoRight.clone().scale(side==='L'?-.12:.12)).add(new Vec3(0,-.55,0)).add(torsoForward.clone().scale(-.24));pole=Vec3.lerp(pole,readyPole,constraints.readyWeight);}
-  p[`elbow${side}`]=joint(shoulder,p[`hand${side}`],TAYLOR_BODY.upperArm,TAYLOR_BODY.forearm,pole,forward);
+  p[`elbow${side}`]=joint(shoulder,p[`hand${side}`],arms.upperArm,arms.forearm,pole,forward);
 
  }
  p.racketGrip=p.handR.clone();p.racketCenter=p.handR.clone().add(Vec3.sub(source.racketCenter,source.racketGrip));p.racketHandleTop=p.handR.clone().add(Vec3.sub(source.racketHandleTop,source.racketGrip));
