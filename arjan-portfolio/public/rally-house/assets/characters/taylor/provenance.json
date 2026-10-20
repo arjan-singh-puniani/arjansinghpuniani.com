@@ -1,0 +1,249 @@
+{
+  "author": "MakeHuman Community; MargaretToigo; Rally House fit and runtime adaptation",
+  "source": "https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482",
+  "license": "CC0-1.0",
+  "sha256": "c0052e344e627e35fd03e119a0f1744e9cae2a31c7a4eb1b67287aacb5f8811f",
+  "boneMap": {
+    "pelvis": "pelvis",
+    "spine": "spine",
+    "chest": "chest",
+    "neck": "neck",
+    "head": "head",
+    "upperArmL": "upperArmL",
+    "foreArmL": "foreArmL",
+    "handL": "handL",
+    "upperArmR": "upperArmR",
+    "foreArmR": "foreArmR",
+    "handR": "handR",
+    "thighL": "thighL",
+    "shinL": "shinL",
+    "thighR": "thighR",
+    "shinR": "shinR",
+    "footL": "footL",
+    "footR": "footR"
+  },
+  "bind": {
+    "pelvis": [
+      -0.0,
+      1.239622675,
+      0.03565615
+    ],
+    "spine": [
+      -0.0,
+      1.44439285,
+      -0.0009563250000000007
+    ],
+    "chest": [
+      -1.7263968032921184e-17,
+      1.8983284500000002,
+      0.03148875
+    ],
+    "neck": [
+      -0.0,
+      2.0239413500000003,
+      -0.0022392
+    ],
+    "head": [
+      -0.0,
+      2.23200035,
+      0.07464
+    ],
+    "upperArmL": [
+      -0.2310535625,
+      1.8983284500000002,
+      0.03148875
+    ],
+    "foreArmL": [
+      -0.4677109562499999,
+      1.6404453062500002,
+      0.03763683125
+    ],
+    "handL": [
+      -0.6623250375,
+      1.422238959375,
+      0.28911531875
+    ],
+    "thighL": [
+      -0.141543875,
+      1.223746125,
+      0.026120112499999997
+    ],
+    "shinL": [
+      -0.2006610875,
+      0.6712429625,
+      0.07234637499999999
+    ],
+    "footL": [
+      -0.24455484999999996,
+      0.08067276250000019,
+      0.046253474999999995
+    ],
+    "upperArmR": [
+      0.23105356249999998,
+      1.8983284500000004,
+      0.03148875
+    ],
+    "foreArmR": [
+      0.4677109562499999,
+      1.6404453062500002,
+      0.03763683125
+    ],
+    "handR": [
+      0.6623250375,
+      1.422238959375,
+      0.28911531875
+    ],
+    "thighR": [
+      0.141543875,
+      1.223746125,
+      0.026120112499999997
+    ],
+    "shinR": [
+      0.2006610875,
+      0.6712429625,
+      0.07234637499999999
+    ],
+    "footR": [
+      0.24455485,
+      0.08067276249999991,
+      0.046253474999999995
+    ],
+    "wristL": [
+      -0.6322008,
+      1.45957159375,
+      0.239057925
+    ],
+    "wristR": [
+      0.6322008,
+      1.45957159375,
+      0.239057925
+    ],
+    "forward": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "handDirectionL": [
+      -0.4344920206879774,
+      -0.5384611559777805,
+      0.721994645036617
+    ],
+    "handForwardL": [
+      -0.6963387887733695,
+      0.6596809479285175,
+      0.2827248453704932
+    ],
+    "foreArmForwardL": [
+      -0.6963387887733695,
+      0.6596809479285175,
+      0.2827248453704932
+    ],
+    "handDirectionR": [
+      0.4344920206879774,
+      -0.5384611559777805,
+      0.721994645036617
+    ],
+    "handForwardR": [
+      0.6963387887733695,
+      0.6596809479285175,
+      0.2827248453704932
+    ],
+    "foreArmForwardR": [
+      0.6963387887733695,
+      0.6596809479285175,
+      0.2827248453704932
+    ]
+  },
+  "parts": [
+    {
+      "name": "skin",
+      "triangles": 19944,
+      "vertices": 10877,
+      "material": "humanSkin"
+    },
+    {
+      "name": "kit",
+      "triangles": 2542,
+      "vertices": 1603,
+      "material": "performanceKnit"
+    },
+    {
+      "name": "shoes",
+      "triangles": 3064,
+      "vertices": 1744,
+      "material": "performanceKnit"
+    },
+    {
+      "name": "hair",
+      "triangles": 5352,
+      "vertices": 4049,
+      "material": "groomedHair"
+    },
+    {
+      "name": "eyes",
+      "triangles": 2040,
+      "vertices": 1076,
+      "material": "ceramic"
+    },
+    {
+      "name": "lashes",
+      "triangles": 368,
+      "vertices": 250,
+      "material": "groomedHair"
+    },
+    {
+      "name": "brows",
+      "triangles": 192,
+      "vertices": 126,
+      "material": "groomedHair"
+    }
+  ],
+  "textures": {
+    "skin.webp": "7358b2dbf6ed23b031d7dfb7feabde000d2cbc8150f1eb4366ee111bd89aa906",
+    "kit.webp": "acabfa9265d3eaec3960df4cbf156c896bce6b16e035462d4aa0afe7b4c06624",
+    "shoes.webp": "3af53b14cb45d2e1a5f09cab63d55b534ee8f7e0f2cb54b63c9f9c8e7513d018",
+    "hair.webp": "cdc9148c4ef4ec5afc84352ee1d11726f5d7bc2fc9a90e790be5152b7b3d580d",
+    "eyes.webp": "6be120d88fc65c41690f913b453c9f778dc53dcb42c2962da6189e097324eb23",
+    "lashes.webp": "d6344b102113042b425c6656e9354c756acc93910148836f657ba967992676e9",
+    "brows.webp": "9c659349c86898d9e69d529296493e4a6011ab227a4b5ac2876418d1abc16993"
+  },
+  "sourceHashes": {
+    "base.obj": "8e761e6624b8f54536409135d1636da63b32486a90d4897f84e121d144f6fb4c",
+    "default_weights.mhw": "0f3641d651ae3d00ad6b4ccee43142edb109d3bd909d27d9e4139ef1beed8625",
+    "skins/skins/toigo_light_skin_with_natural_makeup/young_lightskinned_female_diffuse4.png": "53532399f5f74d560680313549cd72fde4fc81cbe747ee9c9ae90a554eda52e1",
+    "clothes/female_sportsuit01/female_sportsuit01_diffuse.png": "00910e3e85b3dcf48d1aa827b4c075cdc77689989423ff4f75bc67f2e86cc588",
+    "clothes/shoes05/shoes05_diffuse.png": "7fe5ea2600f6578cdf017da3392ae13aedabea8e8cc1dd6302a8f57e8fb7e5af",
+    "hair/ponytail01/ponytail01_diffuse.png": "dcb364300cac06ce8bef91b2f7c0970baf310898bbdd06b0c6b884ee9306eb97",
+    "eyes/materials/brown_eye.png": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b",
+    "eyelashes/eyelashes01/eyelashes01.png": "4b69c0fff2648874460e9caf80c31413c444218a5c50afebc425aeaa65484a35",
+    "eyebrows/eyebrow001/eyebrow001.png": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+    "universal-female-young-maxmuscle-averageweight.target": "2e56b09b44a8497b927585447fdaac5ea7293521d1f3a3df1059495873c53f4e",
+    "african-female-young.target": "92d61eeb3c164b421fd5a7c3537ee45e7e1a51de4d49bf312e19c3df2be1d8fc",
+    "asian-female-young.target": "095fe79694fa19e1fe98d93009ec116199bd524e081c640351a10eccf2cca1eb",
+    "caucasian-female-young.target": "118379f6e8ba9266247fdb8788a20e1df40a239f97ced0b9905bcbcc74f6e820",
+    "clothes/female_sportsuit01/female_sportsuit01.mhclo": "6df057d3116db93afbbbb6d692f92cce84aa16db699f47dd14e825d07c6fd42f",
+    "clothes/female_sportsuit01/female_sportsuit01.obj": "fd529bb8dd6a994c1e9a3fb2fd8b236f52c0cc7cebb1f6fd9328953d9df6d6ff",
+    "clothes/shoes05/shoes05.mhclo": "75fc467264b085d7a05ce0c9b5628bb364b246392c59524c556fa09f92b6cb16",
+    "clothes/shoes05/shoes05.obj": "5726aabac42ff489998d0a769545dea013961bbb71b9c6024d75170181a98818",
+    "hair/ponytail01/ponytail01.mhclo": "97fc50b12bcb3b1c7b33edddd8d427a2604ffb06fe79b31132bf47f82d7afbac",
+    "hair/ponytail01/ponytail01.obj": "d9f5fe96fbedbc8006220d87aad0e4a33d15286eb6b21f5929661cdc490ebf5a",
+    "eyes/high-poly/high-poly.mhclo": "b183cfe37120ab726f9b3f2ea6cd3a64c44ce7b4bd91a77c841cf70c04f83a0d",
+    "eyes/high-poly/high-poly.obj": "da2493215b708a344c33dc72f2a9a5b8fa985dcc5a70ad3b208995cf871da8e1",
+    "eyelashes/eyelashes01/eyelashes01.obj": "f78f5b93fea1946fcae103d32c4f082dd9612a1ec2e7e2f90b03ebe59b0baf20",
+    "eyelashes/eyelashes01/eyelashes01.mhclo": "5a86b29c15649273d723084954b7fa7bf199112571d4f58539b46734d397ee6b",
+    "eyebrows/eyebrow001/eyebrow001.obj": "88b13146395133f3901715e11706cdfd293e5d6087ad7c5e01efe1485a26b513",
+    "eyebrows/eyebrow001/eyebrow001.mhclo": "54c8892c2ba577f4152d779ce1f20f7cd323beb8cbd9cb701796165c221b4f5b"
+  },
+  "gripSign": {
+    "L": -1,
+    "R": 1
+  },
+  "assetPacks": [
+    "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
+    "https://static.makehumancommunity.org/assets/assetpacks/skins01.html"
+  ],
+  "authoringScripts": {
+    "bake-authored-athlete.py": "1ffbab43fcef7cfeaa157b499f49b8b69fe4cfa31428286025752c5fee10f39c",
+    "fit-athlete-kit.py": "faa8fa963cb896085078bce00fd966307c562a2a31a9f1d6ed98fcc7c437f818"
+  }
+}

@@ -1,4 +1,4 @@
-import { BONE } from './CharacterSkin.js';
+import { BONE, BONE_COUNT } from './CharacterSkin.js';
 /** Strict, non-networking glTF 2 / GLB intake. Output is never automatically activated on a character. */
 export function inspectCharacterAsset(input, buffers, provenance) {
     const fail = (message) => { throw Error(`Character asset rejected: ${message}`); };
@@ -47,7 +47,7 @@ export function inspectCharacterAsset(input, buffers, provenance) {
     if (doc.animations?.length)
         fail('animation retargeting is a separate review gate');
     const skin = doc.skins[0];
-    if (!Array.isArray(skin.joints) || !skin.joints.length || skin.joints.length > 15 || new Set(skin.joints).size !== skin.joints.length)
+    if (!Array.isArray(skin.joints) || !skin.joints.length || skin.joints.length > BONE_COUNT || new Set(skin.joints).size !== skin.joints.length)
         fail('invalid joint list');
     const mapping = skin.joints.map((index) => { const node = doc.nodes[index], name = node?.name, key = provenance.boneMap[name]; if (!name || !(key in BONE))
         fail(`unmapped joint ${name ?? index}`); return BONE[key]; });
@@ -64,7 +64,7 @@ export function inspectCharacterAsset(input, buffers, provenance) {
         const b = doc.bufferViews?.[a.bufferView], buf = data[b?.buffer];
         if (!b || !buf)
             fail('missing buffer');
-        const components = { SCALAR: 1, VEC3: 3, VEC4: 4, MAT4: 16 }[type], bytes = a.componentType === 5126 || a.componentType === 5125 ? 4 : a.componentType === 5123 ? 2 : 1, packed = components * bytes, stride = b.byteStride ?? packed, offset = (b.byteOffset ?? 0) + (a.byteOffset ?? 0);
+        const components = { SCALAR: 1, VEC2: 2, VEC3: 3, VEC4: 4, MAT4: 16 }[type], bytes = a.componentType === 5126 || a.componentType === 5125 ? 4 : a.componentType === 5123 ? 2 : 1, packed = components * bytes, stride = b.byteStride ?? packed, offset = (b.byteOffset ?? 0) + (a.byteOffset ?? 0);
         if (!Number.isSafeInteger(offset) || !Number.isSafeInteger(b.byteOffset ?? 0) || !Number.isSafeInteger(a.byteOffset ?? 0) || !Number.isSafeInteger(stride) || stride % bytes || stride < packed || stride > 252 || offset < 0 || offset % bytes || !Number.isSafeInteger(b.byteLength) || b.byteLength < 0 || offset + (a.count - 1) * stride + packed > (b.byteOffset ?? 0) + b.byteLength || offset + (a.count - 1) * stride + packed > buf.byteLength)
             fail('accessor outside buffer');
         const v = new DataView(buf), out = [];
@@ -88,7 +88,7 @@ export function inspectCharacterAsset(input, buffers, provenance) {
         for (const [pi, p] of (mesh.primitives ?? []).entries()) {
             if (p.mode !== undefined && p.mode !== 4)
                 fail('triangle primitives only');
-            if (p.targets)
+            if (p.targets && (!Array.isArray(p.targets) || p.targets.length !== 5 || JSON.stringify(mesh.extras?.targetNames) !== JSON.stringify(['smile', 'mouthOpen', 'blink', 'browRaise', 'grip'])))
                 fail('morph targets require a reviewed channel adapter');
             const positions = read(p.attributes?.POSITION, 'VEC3', [5126]), normals = read(p.attributes?.NORMAL, 'VEC3', [5126]), joints = read(p.attributes?.JOINTS_0, 'VEC4', [5121, 5123]), weights = read(p.attributes?.WEIGHTS_0, 'VEC4', [5121, 5123, 5126], true), count = positions.length / 3;
             if (normals.length !== positions.length || joints.length !== count * 4 || weights.length !== count * 4)
@@ -111,15 +111,39 @@ export function inspectCharacterAsset(input, buffers, provenance) {
             const material = doc.materials?.[p.material];
             if (!material?.name)
                 fail('named material slots required');
-            if (material.pbrMetallicRoughness?.baseColorTexture || material.pbrMetallicRoughness?.metallicRoughnessTexture || material.normalTexture || material.occlusionTexture || material.emissiveTexture)
+            if (material.pbrMetallicRoughness?.metallicRoughnessTexture || material.normalTexture || material.occlusionTexture || material.emissiveTexture)
                 fail('textured materials need a renderer adapter');
+            let albedo, uvs;
+            const texture = material.pbrMetallicRoughness?.baseColorTexture;
+            if (texture) {
+                const image = doc.images?.[doc.textures?.[texture.index]?.source];
+                if (texture.texCoord || !image?.uri || !/^[a-z0-9-]+\.webp$/.test(image.uri))
+                    fail('unsupported albedo reference');
+                albedo = image.uri;
+                uvs = read(p.attributes?.TEXCOORD_0, 'VEC2', [5126]);
+                if (uvs.length !== count * 2)
+                    fail('UV counts differ');
+            }
+            if (material.alphaMode && !['OPAQUE', 'MASK'].includes(material.alphaMode))
+                fail('unsupported alpha mode');
+            if (material.alphaMode === 'MASK' && (!albedo || !Number.isFinite(material.alphaCutoff) || material.alphaCutoff < 0 || material.alphaCutoff > 1))
+                fail('invalid alpha mask');
+            const morphs = p.targets?.map((t, target) => { if (Object.keys(t).some(k => k !== 'POSITION' && !(target === 4 && k === 'NORMAL')))
+                fail('unsupported expression channel'); const delta = read(t.POSITION, 'VEC3', [5126]); if (delta.length !== positions.length || delta.some((n) => Math.abs(n) > (target === 4 ? .2 : .06)))
+                fail('invalid expression displacement'); return delta; });
+            let gripNormals;
+            if (p.targets?.[4]?.NORMAL !== undefined) {
+                gripNormals = read(p.targets[4].NORMAL, 'VEC3', [5126]);
+                if (gripNormals.length !== positions.length || gripNormals.some(n => Math.abs(n) > 2.01))
+                    fail('invalid grip normals');
+            }
             const indices = p.indices === undefined ? Array.from({ length: count }, (_, i) => i) : read(p.indices, 'SCALAR', [5121, 5123, 5125]);
             if (indices.length % 3 || indices.some((i) => !Number.isSafeInteger(i) || i < 0 || i >= count))
                 fail('invalid triangle indices');
             const expand = (source, size) => new Float32Array(indices.flatMap((i) => source.slice(i * size, (i + 1) * size)));
-            primitives.push({ geometry: { id: `asset-${provenance.sha256}-${mi}-${pi}`, positions: expand(positions, 3), normals: expand(normals, 3), boneIndices: expand(joints, 4), boneWeights: expand(weights, 4) }, materialSlot: material.name });
+            primitives.push({ geometry: { id: `asset-${provenance.sha256}-${mi}-${pi}`, positions: expand(positions, 3), normals: expand(normals, 3), boneIndices: expand(joints, 4), boneWeights: expand(weights, 4), ...(uvs ? { uvs: expand(uvs, 2) } : {}), ...(morphs ? { morphs: morphs.map((d) => expand(d, 3)) } : {}), ...(gripNormals ? { gripNormals: expand(gripNormals, 3) } : {}) }, materialSlot: material.name, albedo, alphaCutoff: material.alphaMode === 'MASK' ? material.alphaCutoff : undefined, doubleSided: material.doubleSided === true });
         }
     if (!primitives.length || primitives.reduce((n, p) => n + p.geometry.positions.length / 3, 0) > 120000)
         fail('empty or over-budget geometry');
-    return { primitives, inverseBindMatrices: inverse, provenance: structuredClone(provenance), warnings: ['Intake only: compare bind pose, material mapping and motion before activation.', 'SHA-256 provenance must be verified by the file-loading caller.', 'No professional character or animation asset was supplied.'] };
+    return { primitives, inverseBindMatrices: inverse, provenance: structuredClone(provenance), warnings: ['Intake only: compare bind pose, material mapping and motion before activation.', 'SHA-256 provenance must be verified by the file-loading caller.'] };
 }

@@ -11,6 +11,7 @@ import {adultTaylorPose,TAYLOR_BODY} from '../animation/TaylorBody.js';
 import {humanTaylorHead} from '../animation/TaylorHuman.js';
 import {CHARACTER_SKIN,HUMAN_TENNIS_SKIN,ATHLETE_WARDROBE,skinMatrices,rigFromPose} from '../animation/CharacterSkin.js';
 import {CAST_DESIGN} from '../content/CastDesign.js';
+import {authoredAthleteMeshes} from '../animation/AuthoredAthlete.js';
 
 export type AnimState='idle'|'walk'|'jog'|'ready'|'shuffle'|'sit'|'talk'|'drink'|'stretch'|'watch'|'swingForehand'|'swingBackhand'|'serve'|'volley'|'celebrate'|'reactMiss'|'coachFeed'|'coachExplain';
 export type EmotionState='neutral'|'attentive'|'friendly'|'focused'|'amused'|'pleased'|'disappointed'|'tired'|'surprised'|'proud'|'frustrated';
@@ -553,6 +554,12 @@ export class Character {
     const ready=this.state==='ready'||this.state==='shuffle';const seed=this.seed();
     m.push({kind:'sphere',position:new Vec3(p.x,.028,p.z),scale:new Vec3(.78,.045,.50),color:'#4f5d53',alpha:.16,unlit:true});
     if(selected)m.push({kind:'torus',position:new Vec3(p.x,.055,p.z),rotation:new Vec3(Math.PI/2,0,0),scale:new Vec3(1.35,1.35,.55),color:'#e4c967',alpha:.52,unlit:true});
+    const leftShoePitch=pose.walking&&!this.leftFootLock?clamp(-pose.gait*.18,-.18,.18):0,rightShoePitch=pose.walking&&!this.rightFootLock?clamp(pose.gait*.18,-.18,.18):0;
+    const leftShoeYaw=pose.walking?this.walkCycle.yaws[0]:this.yaw,rightShoeYaw=pose.walking?this.walkCycle.yaws[1]:this.yaw;
+    const holdsRacket=(this.matchCompetitor||this.spec.id!=='nia')&&(pose.shot||this.state==='ready'||this.state==='shuffle'||this.socialGesture==='inspect'&&!this.racketStowed)&&!this.racketStowed&&this.state!=='drink'&&!this.propKind;
+    const authored=taylor&&human?authoredAthleteMeshes(pose,p,this.yaw,[{pitch:leftShoePitch,yaw:leftShoeYaw},{pitch:rightShoePitch,yaw:rightShoeYaw}],this.state==='idle'&&!this.propKind&&!this.interactionTarget&&this.interactionWeight<.001?'waist':this.state==='sit'&&!this.propKind?'lap':'natural',this.animTime,[holdsRacket&&this.state==='swingBackhand'?1:0,holdsRacket?1:this.state==='drink'||this.propKind==='cup'?.45:0]):undefined;
+    if(authored)m.push(...authored);
+    else {
     // Idle may use the authored club stance. Props, reaches and every match pose retain the contact rig.
     const relax=0;
     const bones=skinMatrices(rigFromPose(pose,p,this.yaw,relax));const skinRoot={position:new Vec3(p.x,0,p.z),rotation:new Vec3(0,this.yaw,0),boneMatrices:bones,poseRig:true};
@@ -573,8 +580,6 @@ export class Character {
       // pivot; separate inward-shifted spheres left gaps when the arm lifted.
     }
     if(!athlete)for(const elbow of [elbowL,elbowR])m.push({kind:'sphere',position:elbow,scale:new Vec3(.20,.20,.19),color:this.spec.skin,material:'skin'});
-    const leftShoePitch=pose.walking&&!this.leftFootLock?clamp(-pose.gait*.18,-.18,.18):0,rightShoePitch=pose.walking&&!this.rightFootLock?clamp(pose.gait*.18,-.18,.18):0;
-    const leftShoeYaw=pose.walking?this.walkCycle.yaws[0]:this.yaw,rightShoeYaw=pose.walking?this.walkCycle.yaws[1]:this.yaw;
     const shoeColor=feline?this.spec.skin:this.spec.shoe??'#fff8ee',soleColor=mixHex(shoeColor,'#ffffff',.62);
     if(athlete){for(const [foot,pitch,yaw] of [[footL,leftShoePitch,leftShoeYaw],[footR,rightShoePitch,rightShoeYaw]] as const)m.push(...taylorFootMeshes(foot,pitch,yaw,feline?undefined:this.spec.shoe,feline?undefined:'#b5bcb6',human));}
     else {
@@ -669,7 +674,8 @@ export class Character {
       m.push({kind:'torus',position:Vec3.add(charm,new Vec3(0,.07,0)),rotation:new Vec3(.3,torsoYaw,0),scale:new Vec3(.28,.20,.025),color:this.spec.avatar==='taylor'?'#dbb447':'#c6c6bd',material:'metal'});
       if(this.spec.avatar==='taylor')m.push({kind:'sphere',position:charm,scale:new Vec3(.10,.12,.035),color:'#50b8b4',material:'ceramic'});
     }
-    if((this.matchCompetitor||this.spec.id!=='nia')&&(pose.shot||this.state==='ready'||this.state==='shuffle'||this.socialGesture==='inspect'&&!this.racketStowed)&&!this.racketStowed&&this.state!=='drink'&&!this.propKind){
+    }
+    if(holdsRacket){
       m.push(this.limb(racketGrip,racketHandleTop,.035,'#4b514e'));
       // One readable frame, then an actual string bed. The old second torus read as a hollow ring.
       m.push({skin:RACKET_FRAME,boneMatrices:RACKET_BONES,position:racketCenter,rotation:racketRot,color:this.spec.accent??'#e0c474',material:'metal'});

@@ -170,7 +170,7 @@ export function adultTaylorPose(source, root, yaw, constraints) {
         }
         const world = side === 'L' ? constraints.leftWorld : constraints.rightWorld;
         if (constraints.human && seat > 0 && !affection) {
-            const goal = Vec3.lerp(p[`hip${side}`], p[`knee${side}`], .60).add(new Vec3(0, .17, 0));
+            const goal = Vec3.lerp(p[`hip${side}`], p[`knee${side}`], .60).add(new Vec3(0, .23, 0));
             p[`hand${side}`] = Vec3.lerp(p[`hand${side}`], goal, seat * (1 - world));
         }
         if (constraints.human && constraints.restWeight) {

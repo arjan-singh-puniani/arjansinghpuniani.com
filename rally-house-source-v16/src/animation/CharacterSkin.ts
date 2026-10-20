@@ -1,9 +1,9 @@
-import {Mat4, Vec3, identity, scaling, multiply, invertRigid, rigidFrame} from '../rendering/Math3D.js';
+import {Mat4, Vec3, identity, scaling, multiply, invertRigid, rigidFrame,transformPoint} from '../rendering/Math3D.js';
 import type {SkinGeometry} from '../rendering/Renderer.js';
 import type {CharacterPose} from '../entities/Character.js';
 
-export const BONE={pelvis:0,spine:1,chest:2,neck:3,head:4,upperArmL:5,foreArmL:6,handL:7,upperArmR:8,foreArmR:9,handR:10,thighL:11,shinL:12,thighR:13,shinR:14} as const;
-export const BONE_COUNT=15;
+export const BONE={pelvis:0,spine:1,chest:2,neck:3,head:4,upperArmL:5,foreArmL:6,handL:7,upperArmR:8,foreArmR:9,handR:10,thighL:11,shinL:12,thighR:13,shinR:14,footL:15,footR:16} as const;
+export const BONE_COUNT=17;
 export type RigJointName=keyof typeof BONE;
 
 export interface RigPoseLocal {
@@ -11,6 +11,9 @@ export interface RigPoseLocal {
   upperArmL:Vec3;foreArmL:Vec3;handL:Vec3;upperArmR:Vec3;foreArmR:Vec3;handR:Vec3;
   thighL:Vec3;shinL:Vec3;footL:Vec3;thighR:Vec3;shinR:Vec3;footR:Vec3;
   forward:Vec3;
+  headForward?:Vec3;headUp?:Vec3;handDirectionL?:Vec3;handDirectionR?:Vec3;handForwardL?:Vec3;handForwardR?:Vec3;footForwardL?:Vec3;footForwardR?:Vec3;footUpL?:Vec3;footUpR?:Vec3;
+  foreArmForwardL?:Vec3;foreArmForwardR?:Vec3;
+  wristL?:Vec3;wristR?:Vec3;
 }
 
 /** The mesh and continuous replay use the same landmark-to-skin mapping. */
@@ -34,17 +37,28 @@ const defs:BoneDef[]=[
   {joint:'pelvis',child:'spine'},{joint:'spine',child:'chest'},{joint:'chest',child:'neck'},{joint:'neck',child:'head'},{joint:'head',child:'neck'},
   {joint:'upperArmL',child:'foreArmL'},{joint:'foreArmL',child:'handL'},{joint:'handL',child:'foreArmL'},
   {joint:'upperArmR',child:'foreArmR'},{joint:'foreArmR',child:'handR'},{joint:'handR',child:'foreArmR'},
-  {joint:'thighL',child:'shinL'},{joint:'shinL',child:'footL'},{joint:'thighR',child:'shinR'},{joint:'shinR',child:'footR'}
+  {joint:'thighL',child:'shinL'},{joint:'shinL',child:'footL'},{joint:'thighR',child:'shinR'},{joint:'shinR',child:'footR'},
+  {joint:'footL',child:'footL'},{joint:'footR',child:'footR'}
 ];
 
+const endpoint=(p:RigPoseLocal,d:BoneDef)=>d.joint==='foreArmL'&&p.wristL?p.wristL:d.joint==='foreArmR'&&p.wristR?p.wristR:p[d.child];
 function frameFor(p:RigPoseLocal,def:BoneDef){
- const a=p[def.joint] as Vec3,b=p[def.child] as Vec3;let target=b;if(def.joint==='head'||def.joint==='handL'||def.joint==='handR')target=Vec3.add(a,Vec3.sub(a,b));
+ if(def.joint==='handL'||def.joint==='handR'){const side=def.joint==='handL'?'L':'R',direction=p[`handDirection${side}`];if(direction)return rigidFrame(p[def.joint],Vec3.add(p[def.joint],direction),p[`handForward${side}`]??p.forward);}
+ if(def.joint==='head'&&p.headUp)return rigidFrame(p.head,Vec3.add(p.head,p.headUp),p.headForward??p.forward);
+ if(def.joint==='footL'||def.joint==='footR'){const side=def.joint==='footL'?'L':'R',a=p[def.joint];return rigidFrame(a,Vec3.add(a,p[`footUp${side}`]??new Vec3(0,1,0)),p[`footForward${side}`]??p.forward);}
+ const a=p[def.joint] as Vec3,b=endpoint(p,def);let target=b;if(def.joint==='head'||def.joint==='handL'||def.joint==='handR')target=Vec3.add(a,Vec3.sub(a,b));
  // A forward-pointing thigh must not roll over when its knee passes hip height.
  const leg=def.joint.startsWith('thigh')||def.joint.startsWith('shin'),forward=leg?Vec3.cross(new Vec3(-p.forward.z,0,p.forward.x),Vec3.sub(target,a)):p.forward;
- return rigidFrame(a,target,forward.len()>.001?forward:p.forward);
+ return rigidFrame(a,target,def.joint==='foreArmL'&&p.foreArmForwardL?p.foreArmForwardL:def.joint==='foreArmR'&&p.foreArmForwardR?p.foreArmForwardR:def.joint==='head'&&p.headForward?p.headForward:forward.len()>.001?forward:p.forward);
 }
 const bindInv:Mat4[]=defs.map(d=>invertRigid(frameFor(bind,d)));
-export function skinMatrices(p:RigPoseLocal){const out=new Float32Array(BONE_COUNT*16);for(let i=0;i<BONE_COUNT;i++){const d=defs[i],length=Vec3.sub(p[d.child],p[d.joint]).len(),rest=Vec3.sub(bind[d.child],bind[d.joint]).len();const m=multiply(multiply(frameFor(p,d),scaling(new Vec3(1,d.joint==='handL'||d.joint==='handR'?1:length/Math.max(.001,rest),1))),bindInv[i]);out.set(m,i*16);}return out;}
+const authoredBindInv=new WeakMap<RigPoseLocal,Mat4[]>();
+export function skinMatrices(p:RigPoseLocal,restPose=bind){
+ let inverse=bindInv;if(restPose!==bind){inverse=authoredBindInv.get(restPose)??defs.map(d=>invertRigid(frameFor(restPose,d)));authoredBindInv.set(restPose,inverse);}
+ // The game anchors the palm/grip; an anatomical forearm ends at the wrist.
+ if(restPose.wristL&&restPose.wristR){p={...p};for(const side of ['L','R'] as const){const i=BONE[`hand${side}`],hand=multiply(frameFor(p,defs[i]),inverse[i]),wrist=transformPoint(hand,restPose[`wrist${side}`]!);p[`wrist${side}`]=new Vec3(wrist.x,wrist.y,wrist.z);}}
+ const out=new Float32Array(BONE_COUNT*16);for(let i=0;i<BONE_COUNT;i++){const d=defs[i],length=Vec3.sub(endpoint(p,d),p[d.joint]).len(),rest=Vec3.sub(endpoint(restPose,d),restPose[d.joint]).len(),rigid=d.joint.startsWith('hand')||d.joint.startsWith('foot')||restPose!==bind&&d.joint==='head';const m=multiply(multiply(frameFor(p,d),scaling(new Vec3(1,rigid?1:length/Math.max(.001,rest),1))),inverse[i]);out.set(m,i*16);}return out;
+}
 
 interface Build {p:number[];n:number[];bi:number[];bw:number[]}
 const build=():Build=>({p:[],n:[],bi:[],bw:[]});

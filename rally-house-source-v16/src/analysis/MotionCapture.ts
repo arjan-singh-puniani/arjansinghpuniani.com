@@ -1,7 +1,7 @@
 import {Vec3,clamp} from '../rendering/Math3D.js';
 import type {RenderItem} from '../rendering/Renderer.js';
 import type {Character,CharacterPose} from '../entities/Character.js';
-import {rigFromPose,skinMatrices} from '../animation/CharacterSkin.js';
+import {rigFromPose,skinMatrices,type RigPoseLocal} from '../animation/CharacterSkin.js';
 
 export type Joint='knee'|'hip'|'ankle'|'shoulder'|'elbow';
 export type LabMode='combined'|'court'|'body';
@@ -80,11 +80,19 @@ export function interpolateFrame(a:MotionFrame,b:MotionFrame,time:number):Motion
  pose.face={...a.pose.face};
  for(const key of Object.keys(pose.face) as (keyof CharacterPose['face'])[])pose.face[key]=a.pose.face[key]+(b.pose.face[key]-a.pose.face[key])*t;
  let bones:Float32Array|undefined;
+ const authored=new Map<RigPoseLocal,{bind:RigPoseLocal;pose:RigPoseLocal;matrices:Float32Array}>();
  const body=a.body.map((part,i):RenderItem=>{
   const other=b.body[i],position=Vec3.lerp(part.position,other.position,t),rotation=rotationLerp(part.rotation,other.rotation,t);
   if('skin' in part&&'skin' in other){
-   if(part.poseRig)bones??=skinMatrices(rigFromPose(pose,root,rotation.y));
-   return {...part,position,rotation,scale:part.scale&&other.scale?Vec3.lerp(part.scale,other.scale,t):part.scale,boneMatrices:part.poseRig?bones!:part.boneMatrices};
+   let rig=part.rig,palette=part.boneMatrices;
+   if(part.poseRig&&part.rig&&other.rig){
+    let source=authored.get(part.rig.bind);
+    if(!source){const local=rigFromPose(pose,root,rotation.y);for(const key of ['headUp','headForward','handDirectionL','handDirectionR','handForwardL','handForwardR','foreArmForwardL','foreArmForwardR','footForwardL','footForwardR','footUpL','footUpR'] as const){const x=part.rig.pose[key],y=other.rig.pose[key];if(x&&y)local[key]=Vec3.lerp(x,y,t);}source={bind:part.rig.bind,pose:local,matrices:skinMatrices(local,part.rig.bind)};authored.set(part.rig.bind,source);}
+    rig={bind:source.bind,pose:source.pose};palette=source.matrices;
+   }else if(part.poseRig){bones??=skinMatrices(rigFromPose(pose,root,rotation.y));palette=bones;}
+   const expression=part.expression&&other.expression?part.expression.map((n,j)=>n+(other.expression![j]-n)*t) as [number,number,number,number]:part.expression;
+   const handGrip=part.handGrip&&other.handGrip?part.handGrip.map((n,j)=>n+(other.handGrip![j]-n)*t) as [number,number]:part.handGrip;
+   return {...part,position,rotation,rig,expression,handGrip,scale:part.scale&&other.scale?Vec3.lerp(part.scale,other.scale,t):part.scale,boneMatrices:palette};
   }
   if('skin' in part||'skin' in other)throw Error('Replay topology changed');
   return {...part,position,rotation,scale:Vec3.lerp(part.scale,other.scale,t),alpha:(part.alpha??1)+((other.alpha??1)-(part.alpha??1))*t};

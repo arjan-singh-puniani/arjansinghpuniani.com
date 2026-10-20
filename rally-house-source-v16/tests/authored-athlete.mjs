@@ -1,0 +1,48 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {inspectCharacterAsset} from '../dist/animation/CharacterAssetIntake.js';
+import {skinMatrices,BONE} from '../dist/animation/CharacterSkin.js';
+import {Vec3,transformPoint} from '../dist/rendering/Math3D.js';
+import {Character} from '../dist/entities/Character.js';
+import {playerSpec} from '../dist/content/PlayerAvatars.js';
+import {Navigation} from '../dist/world/Navigation.js';
+const dir=new URL('../assets/characters/taylor/',import.meta.url),meta=JSON.parse(fs.readFileSync(new URL('provenance.json',dir))),bytes=fs.readFileSync(new URL('taylor.glb',dir)),hash=b=>createHash('sha256').update(b).digest('hex');
+assert.equal(hash(bytes),meta.sha256);for(const [name,sha] of Object.entries(meta.textures))assert.equal(hash(fs.readFileSync(new URL(name,dir))),sha);
+const asset=inspectCharacterAsset(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),[],meta);
+assert.equal(asset.primitives.length,7);assert(asset.primitives.reduce((n,p)=>n+p.geometry.positions.length/9,0)<40000);
+for(const p of asset.primitives){assert(p.geometry.uvs?.every(Number.isFinite));assert(p.albedo);if(['eyes','hair','brows','lashes'].includes(p.materialSlot))assert.equal(p.alphaCutoff,.35);if(['skin','brows','lashes'].includes(p.materialSlot)){assert.equal(p.geometry.morphs.length,5);assert(p.geometry.morphs.every(d=>d.length===p.geometry.positions.length&&d.every(Number.isFinite)));}}
+const rest=Object.fromEntries(Object.entries(meta.bind).map(([key,p])=>[key,new Vec3(...p)]));rest.headUp=new Vec3(0,1,0);
+const bind=skinMatrices(rest,rest);for(let bone=0;bone<Object.keys(BONE).length;bone++)for(let i=0;i<16;i++)assert(Math.abs(bind[bone*16+i]-(i%5===0?1:0))<1e-5,'rest pose changed');
+assert(rest.handL.x<0&&rest.handR.x>0&&rest.thighL.x<0&&rest.thighR.x>0);
+// Native QA checks image decoding. This mock exercises the real verified loader and capture/replay path.
+const previousFetch=globalThis.fetch,previousImage=globalThis.Image;
+try{
+ globalThis.fetch=async url=>{const path=new URL(url);assert.equal(path.protocol,'file:');assert(path.href.startsWith(dir.href));return new Response(fs.readFileSync(path));};
+ globalThis.Image=class{naturalWidth=1024;naturalHeight=1024;async decode(){}};
+ const {loadAuthoredAthlete}=await import('../dist/animation/AuthoredAthlete.js');await loadAuthoredAthlete();
+const character=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});let samples=0,maxGripGap=0,minSole=Infinity;
+for(const state of ['idle','sit','drink','ready','swingForehand','swingBackhand','serve']){
+ character.trigger(state);for(let t=0;t<90;t++){character.update(1/120);if(t%15)continue;const part=character.meshes().find(p=>'skin' in p&&p.rig),rig=part.rig.pose,matrices=part.boneMatrices;assert(matrices.every(Number.isFinite));
+  for(const side of ['L','R']){const expected=rig['hand'+side],actual=transformPoint(matrices.slice(BONE['hand'+side]*16,BONE['hand'+side]*16+16),rest['hand'+side]);const gap=Math.hypot(actual.x-expected.x,actual.y-expected.y,actual.z-expected.z);maxGripGap=Math.max(maxGripGap,gap);assert(gap<1e-5,'authored palm lost the authoritative grip');}
+  const shoes=asset.primitives.find(p=>p.materialSlot==='shoes').geometry;let low=Infinity;
+  for(let v=0;v<shoes.positions.length/3;v+=3){let y=0;for(let j=0;j<4;j++){const weight=shoes.boneWeights[v*4+j];if(!weight)continue;const bone=shoes.boneIndices[v*4+j],point=transformPoint(matrices.slice(bone*16,bone*16+16),new Vec3(...shoes.positions.slice(v*3,v*3+3)));y+=point.y*weight;}low=Math.min(low,y);}
+  minSole=Math.min(minSole,low);assert(low>-.005,'shoe penetrated the floor');samples++;
+ }
+}
+console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.geometry.positions.length/9,0),samples,maxGripGap,minSole}));
+ const {captureFrame,interpolateFrame}=await import('../dist/analysis/MotionCapture.js');
+ const c=new Character(playerSpec('taylor'),new Vec3(2,0,-1),new Navigation([]),{});c.trigger('swingForehand');c.update(.12);const a=captureFrame(c,0,null);c.update(1/30);const b=captureFrame(c,1/30,null),middle=interpolateFrame(a,b,1/60),parts=middle.body.filter(p=>'skin' in p&&p.poseRig);
+ assert.equal(parts.length,7);assert(parts.every(p=>p.rig&&p.boneMatrices===parts[0].boneMatrices));
+ for(const part of parts){const rig=part.rig.pose;for(const side of ['L','R']){const actual=transformPoint(part.boneMatrices.slice(BONE['hand'+side]*16,BONE['hand'+side]*16+16),part.rig.bind['hand'+side]),expected=rig['hand'+side];assert(Math.hypot(actual.x-expected.x,actual.y-expected.y,actual.z-expected.z)<1e-5,'replay used the wrong body bind');}assert.deepEqual(part.expression,a.body.find(p=>'skin' in p&&p.poseRig).expression.map((v,i)=>(v+b.body.find(p=>'skin' in p&&p.poseRig).expression[i])/2));}
+ c.racketStowed=false;c.matchCompetitor=true;c.trigger('ready');for(let i=0;i<90;i++)c.update(1/120);
+ const skin=c.meshes().find(p=>'skin' in p&&p.rig),palette=skin.boneMatrices;
+ for(const side of ['L','R']){const wrist=rest['wrist'+side],forearm=transformPoint(palette.slice(BONE['foreArm'+side]*16,BONE['foreArm'+side]*16+16),wrist),hand=transformPoint(palette.slice(BONE['hand'+side]*16,BONE['hand'+side]*16+16),wrist);assert(Math.hypot(forearm.x-hand.x,forearm.y-hand.y,forearm.z-hand.z)<1e-5,'the forearm must end at the anatomical wrist');}
+ const gripPose=skin.rig.pose,axis=Vec3.sub(c.analysisPose().racketHandleTop,c.analysisPose().racketGrip).normalize(),g=skin.skin;let count=0,openRadius=0,closedRadius=0;
+ for(let v=0;v<g.positions.length/3;v+=3){if(![0,1,2,3].some(j=>g.boneIndices[v*4+j]===BONE.handR&&g.boneWeights[v*4+j]>.95))continue;const position=new Vec3(...g.positions.slice(v*3,v*3+3));if(Vec3.sub(position,rest.handR).len()<.085)continue;
+  const radius=closed=>{const point=position.clone();if(closed)point.add(new Vec3(...g.morphs[4].slice(v*3,v*3+3)));const transformed=new Vec3();for(let j=0;j<4;j++){const weight=g.boneWeights[v*4+j];if(!weight)continue;const p=transformPoint(palette.slice(g.boneIndices[v*4+j]*16,g.boneIndices[v*4+j]*16+16),point);transformed.add(new Vec3(p.x*weight,p.y*weight,p.z*weight));}const delta=Vec3.sub(transformed,gripPose.handR);return delta.sub(axis.clone().scale(Vec3.dot(delta,axis))).len();};
+  openRadius+=radius(false);closedRadius+=radius(true);count++;
+ }
+ assert(count>20);openRadius/=count;closedRadius/=count;assert(closedRadius<openRadius*.75&&closedRadius<.065,'fingers must close around the handle');const wristDeflection=Math.acos(Math.max(-1,Math.min(1,Vec3.dot(Vec3.sub(gripPose.handR,gripPose.foreArmR).normalize(),gripPose.handDirectionR))));console.log(JSON.stringify({fingerSamples:count,openRadius,closedRadius,wristDeflection}));
+ console.log('Authored athlete loader, actual Character meshes, shared replay palette and facial interpolation PASS.');
+}finally{globalThis.fetch=previousFetch;if(previousImage)globalThis.Image=previousImage;else delete globalThis.Image;}
