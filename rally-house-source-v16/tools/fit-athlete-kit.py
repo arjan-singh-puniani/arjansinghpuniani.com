@@ -4,7 +4,7 @@ from mathutils.bvhtree import BVHTree
 from pathlib import Path
 p=Path(sys.argv[sys.argv.index('--')+1]);data=json.loads(p.read_text());triangles=[(f[0],f[j],f[j+1]) for f in data['faces'] for j in range(1,len(f)-1)];body=[Vector(v) for v in data['body']];tree=BVHTree.FromPolygons(body,triangles);out=[];weights=[]
 for values in data['kit']:
- v=Vector(values);hit,n,_,d=tree.find_nearest(v);blend=.94 if data['garment'] in ('kit','top') else 0
+ v=Vector(values);hit,n,_,d=tree.find_nearest(v);blend=.94 if data['garment']=='kit' else .35 if data['garment']=='top' else 0
  target=hit+n*.055;v=v.lerp(target,blend)
  hit,n,face,d=tree.find_nearest(v);clearance=(v-hit).dot(n)
  if clearance<.05:v+=n*(.05-clearance)
