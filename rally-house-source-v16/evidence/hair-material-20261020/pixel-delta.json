@@ -1,0 +1,35 @@
+[
+  {
+    "angle": -0.6,
+    "changedPixels": 10043,
+    "differenceBounds": [
+      315,
+      317,
+      560,
+      608
+    ],
+    "maxChannelChange": 39
+  },
+  {
+    "angle": 0,
+    "changedPixels": 7048,
+    "differenceBounds": [
+      355,
+      317,
+      542,
+      482
+    ],
+    "maxChannelChange": 38
+  },
+  {
+    "angle": 0.6,
+    "changedPixels": 10359,
+    "differenceBounds": [
+      341,
+      318,
+      582,
+      612
+    ],
+    "maxChannelChange": 36
+  }
+]

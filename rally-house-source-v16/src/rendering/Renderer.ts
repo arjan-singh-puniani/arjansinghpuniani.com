@@ -125,7 +125,8 @@ vec3 surfaceColor(vec3 p){
     variation=filteredWave(p.y*95.0+p.x*11.0)*.065;
   }else if(u_material==12){
     variation=filteredWave(dot(p,vec3(821.0,619.0,743.0))+2.7*sin(dot(p,vec3(379.0,521.0,433.0))))*.006;
-  }else if(u_material==13){
+  }else if(u_material==13&&u_textured<.5){
+    // Authored textures already contain strand direction and contrast.
     float flow=p.x*840.0+p.z*300.0+sin(p.y*25.0)*12.0;
     variation=filteredWave(flow)*.09+filteredWave(flow*.47)*.035;
   }else if(u_material==14){
@@ -166,7 +167,7 @@ vec3 characterSurfaceNormal(vec3 N,vec3 world){
   float h=0.0;vec3 p=v_surface;
   if(u_material==12){
     h=.000018*filteredWave(dot(p,vec3(1243.0,1399.0,1583.0))+3.0*sin(dot(p,vec3(733.0,617.0,911.0))));
-  }else if(u_material==13){
+  }else if(u_material==13&&u_textured<.5){
     h=.00007*filteredWave(p.x*840.0+p.z*300.0+sin(p.y*25.0)*12.0);
   }else if(u_material==16){
     h=.000065*filteredWave(p.y*620.0)*filteredWave(p.x*480.0+p.z*140.0);
@@ -209,8 +210,8 @@ vec3 shade(vec3 N,vec3 world){
     // A broad secondary lobe avoids a waxy, single white highlight.
     spec+=pow(max(dot(N,H),0.0),8.0)*.018*shadow;
   }else if(u_material==13){
-    // A bounded grazing sheen gives curved locks a satin highlight.
-    spec+=pow(1.0-abs(dot(N,V)),2.5)*pow(max(dot(N,H),0.0),5.0)*.10*shadow;
+    // Keep the authored strand highlights readable under the room lights.
+    spec+=pow(1.0-abs(dot(N,V)),2.5)*pow(max(dot(N,H),0.0),5.0)*.035*shadow;
   }
   float velvet=pow(1.0-max(dot(N,V),0.0),2.0)*u_softness*0.055;
   vec3 local=vec3(0.0);
@@ -467,7 +468,7 @@ export class Renderer {
       case 'skin': return {roughness:.68,specular:.040,softness:.30};
       case 'hair': return {roughness:.72,specular:.028,softness:.14};
       case 'humanSkin': return {roughness:.53,specular:.082,softness:.27};
-      case 'groomedHair': return {roughness:.36,specular:.13,softness:.10};
+      case 'groomedHair': return {roughness:.52,specular:.065,softness:.10};
       case 'lip': return {roughness:.28,specular:.19,softness:.16};
       case 'iris': return {roughness:.18,specular:.18,softness:.02};
       case 'performanceKnit': return {roughness:.78,specular:.052,softness:.20};
