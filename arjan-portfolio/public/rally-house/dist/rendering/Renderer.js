@@ -593,7 +593,8 @@ export class Renderer {
     if(u_skirt>.5)for(int pass=0;pass<12;pass++){
       float correction=0.0;
       for(int leg=0;leg<2;leg++){vec4 hip=u_skirtHips[leg],knee=u_skirtKnees[leg];vec3 axis=knee.xyz-hip.xyz;float t=clamp(dot(skinned-hip.xyz,axis)/max(dot(axis,axis),.000001),0.0,1.0);vec3 centre=hip.xyz+axis*t,delta=skinned-centre;float distance=length(delta),radius=mix(hip.w,knee.w,t);correction=max(correction,radius-distance);if(distance<radius)skinned=centre+(distance>.00001?delta/distance:vec3(0,1,0))*radius;}
-      vec3 radii=vec3(.32,.32,.27),delta=(skinned-u_skirtPelvis)/radii;float distance=length(delta);correction=max(correction,(1.0-distance)*.32);if(distance<1.0)skinned=u_skirtPelvis+(distance>.00001?delta/distance:vec3(0,0,1))*radii;
+      vec3 right=normalize((u_skirtHips[1].xyz-u_skirtHips[0].xyz)*vec3(1,0,1)),forward=cross(right,vec3(0,1,0)),offset=skinned-u_skirtPelvis;
+      vec3 local=vec3(dot(offset,right),offset.y,dot(offset,forward)),radii=vec3(.32,.32,local.z<0.0?.235:.27),delta=local/radii;float distance=length(delta);correction=max(correction,(1.0-distance)*.32);if(distance<1.0){local=(distance>.00001?delta/distance:vec3(0,0,1))*radii;skinned=u_skirtPelvis+right*local.x+vec3(0,local.y,0)+forward*local.z;}
       if(correction<.00001)break;
     }
     vec4 wp=u_model*vec4(skinned,1.0);

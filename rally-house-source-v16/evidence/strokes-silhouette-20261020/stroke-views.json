@@ -1,0 +1,194 @@
+[
+  {
+    "label": "before",
+    "state": "swingForehand",
+    "age": 0.5166666666666667,
+    "angle": 0,
+    "face": {
+      "smile": 0.01051847932217081,
+      "mouthOpen": 0.029978336705572404,
+      "browRaise": 0.08055511805594973,
+      "squint": 0.17967418206620403,
+      "focus": 0.8993228563966693
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "swingForehand",
+    "age": 0.5166666666666667,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.01051847932217081,
+      "mouthOpen": 0.029978336705572404,
+      "browRaise": 0.08055511805594973,
+      "squint": 0.17967418206620403,
+      "focus": 0.8993228563966693
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "swingBackhand",
+    "age": 0.16666666666666666,
+    "angle": 0,
+    "face": {
+      "smile": 0.0271696770849228,
+      "mouthOpen": 0.027090840964067848,
+      "browRaise": 0.09838298531320609,
+      "squint": 0.1582723974078123,
+      "focus": 0.8548437775060426
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "swingBackhand",
+    "age": 0.16666666666666666,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.0271696770849228,
+      "mouthOpen": 0.027090840964067848,
+      "browRaise": 0.09838298531320609,
+      "squint": 0.1582723974078123,
+      "focus": 0.8548437775060426
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "serve",
+    "age": 0.6666666666666666,
+    "angle": 0,
+    "face": {
+      "smile": 0.010115688374189621,
+      "mouthOpen": 0.029997347190340206,
+      "browRaise": 0.08012386358072533,
+      "squint": 0.17994614265778086,
+      "focus": 0.8998880689152031
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "serve",
+    "age": 0.6666666666666666,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.010115688374189621,
+      "mouthOpen": 0.029997347190340206,
+      "browRaise": 0.08012386358072533,
+      "squint": 0.17994614265778086,
+      "focus": 0.8998880689152031
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "swingForehand",
+    "age": 0.5166666666666667,
+    "angle": 0,
+    "face": {
+      "smile": 0.01051847932217081,
+      "mouthOpen": 0.029978336705572404,
+      "browRaise": 0.08055511805594973,
+      "squint": 0.17967418206620403,
+      "focus": 0.8993228563966693
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "swingForehand",
+    "age": 0.5166666666666667,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.01051847932217081,
+      "mouthOpen": 0.029978336705572404,
+      "browRaise": 0.08055511805594973,
+      "squint": 0.17967418206620403,
+      "focus": 0.8993228563966693
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "swingBackhand",
+    "age": 0.16666666666666666,
+    "angle": 0,
+    "face": {
+      "smile": 0.0271696770849228,
+      "mouthOpen": 0.027090840964067848,
+      "browRaise": 0.09838298531320609,
+      "squint": 0.1582723974078123,
+      "focus": 0.8548437775060426
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "swingBackhand",
+    "age": 0.16666666666666666,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.0271696770849228,
+      "mouthOpen": 0.027090840964067848,
+      "browRaise": 0.09838298531320609,
+      "squint": 0.1582723974078123,
+      "focus": 0.8548437775060426
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "serve",
+    "age": 0.6666666666666666,
+    "angle": 0,
+    "face": {
+      "smile": 0.010115688374189621,
+      "mouthOpen": 0.029997347190340206,
+      "browRaise": 0.08012386358072533,
+      "squint": 0.17994614265778086,
+      "focus": 0.8998880689152031
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "serve",
+    "age": 0.6666666666666666,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.010115688374189621,
+      "mouthOpen": 0.029997347190340206,
+      "browRaise": 0.08012386358072533,
+      "squint": 0.17994614265778086,
+      "focus": 0.8998880689152031
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  }
+]

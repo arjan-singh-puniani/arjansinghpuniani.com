@@ -88,21 +88,24 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
  }
  assert(count>20);openRadius/=count;closedRadius/=count;assert(closedRadius<openRadius*.75&&closedRadius<.065,'fingers must close around the handle');const wristDeflection=Math.acos(Math.max(-1,Math.min(1,Vec3.dot(Vec3.sub(gripPose.handR,gripPose.foreArmR).normalize(),gripPose.handDirectionR))));assert(wristDeflection<.8,'ready grip must not buckle the wrist');console.log(JSON.stringify({fingerSamples:count,openRadius,closedRadius,wristDeflection}));
  // Check the actual fitted top, rather than assuming valid joints imply no overlap.
- let readyArmChecks=0;
- for(const hz of [30,60,120])for(const state of ['ready','shuffle']){
-  const actor=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});actor.racketStowed=false;actor.matchCompetitor=true;actor.trigger(state);
-  for(let frame=0;frame<hz*1.5;frame++){
-   actor.update(1/hz);if(frame%Math.ceil(hz/10))continue;
+ let readyArmChecks=0,strokeArmChecks=0;
+ for(const hz of [30,60,120])for(const state of ['ready','shuffle','swingForehand','swingBackhand','serve']){
+  const actor=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{}),shot=['swingForehand','swingBackhand','serve'].includes(state);actor.racketStowed=false;actor.matchCompetitor=true;
+  if(shot){actor.setAnimation('ready');for(let i=0;i<hz*.3;i++)actor.update(1/hz);if(state!=='serve')actor.setIncomingContact(new Vec3(state==='swingBackhand'?-.6:.6,1.02,.9));actor.triggerShot(state,new Vec3(0,.09,5));}else actor.trigger(state);
+  const recover=shot?Math.ceil(actor.shotDuration(state)*hz):Infinity,end=shot?recover+Math.ceil(hz*.4):hz*1.5;
+  for(let frame=0;frame<end;frame++){
+   if(frame===recover){actor.clearShotIntent();actor.trigger('ready');}
+   actor.update(1/hz);if(frame%Math.ceil(hz/(shot?20:10)))continue;
    const kit=actor.meshes().find(m=>m.rig&&m.material==='performanceKnit'&&!m.skirt),g=kit.skin,points=[],pose=kit.rig.pose;
    for(let v=0;v<g.positions.length/3;v++){const p=new Vec3(...g.positions.slice(v*3,v*3+3)),out=new Vec3();for(let j=0;j<4;j++){const w=g.boneWeights[v*4+j];if(!w)continue;const q=transformPoint(kit.boneMatrices.slice(g.boneIndices[v*4+j]*16,g.boneIndices[v*4+j]*16+16),p);out.add(new Vec3(q.x,q.y,q.z).scale(w));}points.push(out);}
    for(const side of ['L','R'])for(const [start,end] of [['upperArm','foreArm'],['foreArm','hand']])for(const t of [.4,.6,.8]){
     const point=Vec3.lerp(pose[start+side],pose[end+side],t),hits=[];
     for(let i=0;i<points.length;i+=3){const[a,b,c]=points.slice(i,i+3),det=(b.y-c.y)*(a.x-c.x)+(c.x-b.x)*(a.y-c.y);if(Math.abs(det)<1e-12)continue;const u=((b.y-c.y)*(point.x-c.x)+(c.x-b.x)*(point.y-c.y))/det,v=((c.y-a.y)*(point.x-c.x)+(a.x-c.x)*(point.y-c.y))/det,w=1-u-v;if(u>=0&&v>=0&&w>=0)hits.push(u*a.z+v*b.z+w*c.z);}
-    assert(!(hits.length>1&&point.z>Math.min(...hits)+.015&&point.z<Math.max(...hits)-.015),`${state}/${hz}/${frame}/${side}: ready arm passes through the fitted top`);readyArmChecks++;
+    assert(!(hits.length>1&&point.z>Math.min(...hits)+.015&&point.z<Math.max(...hits)-.015),`${state}/${hz}/${frame}/${side}: arm passes through the fitted top`);if(shot)strokeArmChecks++;else readyArmChecks++;
    }
   }
  }
- console.log(JSON.stringify({readyArmChecks}));
+ console.log(JSON.stringify({readyArmChecks,strokeArmChecks}));
  let palmChecks=0,maxPalmGripShift=0;
  for(const side of ['L','R'])for(let v=0;v<body.positions.length/3;v++){
   const d=Vec3.sub(new Vec3(...body.positions.slice(v*3,v*3+3)),rest['wrist'+side]),along=Vec3.dot(d,rest['handDirection'+side]),radial=d.sub(rest['handDirection'+side].clone().scale(along)).len();
@@ -158,7 +161,7 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
  const observedHands=actor=>{const mesh=actor.meshes().find(m=>m.rig),g=mesh.skin,points=[];for(let v=0;v<g.positions.length/3;v+=9){if(![0,1,2,3].some(j=>[BONE.handL,BONE.handR].includes(g.boneIndices[v*4+j])&&g.boneWeights[v*4+j]>.8))continue;const p=new Vec3(...g.positions.slice(v*3,v*3+3));p.add(new Vec3(...g.morphs[4].slice(v*3,v*3+3)).scale(mesh.handGrip[p.x<0?0:1]));const point=new Vec3();for(let j=0;j<4;j++){const weight=g.boneWeights[v*4+j];if(!weight)continue;const q=transformPoint(mesh.boneMatrices.slice(g.boneIndices[v*4+j]*16,g.boneIndices[v*4+j]*16+16),p);point.add(new Vec3(q.x*weight,q.y*weight,q.z*weight));}const side=[0,1,2,3].some(j=>g.boneIndices[v*4+j]===BONE.handL&&g.boneWeights[v*4+j]>.8)?'L':'R';points.push(point.sub(mesh.rig.pose['hand'+side]));}return points;};
  // Remove legitimate hand travel to measure continuity of the retargeted surface.
  let transitionChecks=0,zeroTimeJump=0,maxHandRelativeStep=0;
- for(const [from,to] of [['idle','sit'],['sit','idle'],['idle','ready'],['ready','idle'],['idle','drink'],['drink','idle'],['ready','swingBackhand']]){
+ for(const [from,to] of [['idle','sit'],['sit','idle'],['idle','ready'],['ready','idle'],['idle','drink'],['drink','idle'],['ready','swingBackhand'],['swingForehand','ready'],['swingBackhand','ready'],['serve','ready']]){
   const actor=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});actor.racketStowed=false;actor.matchCompetitor=true;actor.seatDepth=.8;actor.trigger(from);for(let i=0;i<180;i++)actor.update(1/120);let before=observedHands(actor);actor.trigger(to);let after=observedHands(actor),jump=Math.max(...after.map((p,i)=>Vec3.sub(p,before[i]).len()));zeroTimeJump=Math.max(zeroTimeJump,jump);assert(jump<1e-5,'state change snapped the visible hand without advancing time');
   for(let i=0;i<45;i++){before=after;actor.update(1/120);after=observedHands(actor);const step=Math.max(...after.map((p,j)=>Vec3.sub(p,before[j]).len()));maxHandRelativeStep=Math.max(maxHandRelativeStep,step);assert(step<.06,`hand motion jumped during ${from} → ${to} at frame ${i}: ${step}`);transitionChecks++;}
   assert.deepEqual(observedHands(actor),observedHands(actor),'rendering must not advance hand acting');

@@ -1,0 +1,66 @@
+[
+  {
+    "label": "before",
+    "state": "idle",
+    "age": 4,
+    "angle": 1.5707963267948966,
+    "face": {
+      "smile": 0.55,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0.08,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "idle",
+    "age": 4,
+    "angle": 2.5,
+    "face": {
+      "smile": 0.55,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0.08,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "idle",
+    "age": 4,
+    "angle": 1.5707963267948966,
+    "face": {
+      "smile": 0.55,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0.08,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "idle",
+    "age": 4,
+    "angle": 2.5,
+    "face": {
+      "smile": 0.55,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0.08,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  }
+]
