@@ -2,7 +2,7 @@
   "author": "MakeHuman Community; MargaretToigo; Bobby_03; punkduck; Microsoft Rocketbox; Rally House fit and runtime adaptation",
   "source": "https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482",
   "license": "CC0-1.0 AND CC-BY-4.0 AND MIT",
-  "sha256": "fe952a56d71f64792f12ec64d8c13ebc55c0a4f0567547ccf02b2f124bf01bce",
+  "sha256": "0a9567dd84b91fbddb925f8880f29a4017b9c7e0d66bae3986f350acf66da0c3",
   "boneMap": {
     "pelvis": "pelvis",
     "spine": "spine",
@@ -31,12 +31,12 @@
       0.03565615
     ],
     "spine": [
-      -0.0,
+      1.3487475025719675e-19,
       1.44439285,
       -0.0009563250000000007
     ],
     "chest": [
-      -1.7263968032921184e-17,
+      1.7263968032921184e-17,
       1.8983284500000002,
       0.03148875
     ],
@@ -51,7 +51,7 @@
       0.07464
     ],
     "upperArmL": [
-      -0.2310535625,
+      -0.23089360665247247,
       1.8983284500000002,
       0.03148875
     ],
@@ -66,12 +66,12 @@
       0.28911531875
     ],
     "thighL": [
-      -0.141543875,
+      -0.1459102912643967,
       1.223746125,
       0.026120112499999997
     ],
     "shinL": [
-      -0.2006610875,
+      -0.20066284938929768,
       0.6712429625,
       0.07234637499999999
     ],
@@ -81,7 +81,7 @@
       0.046253474999999995
     ],
     "upperArmR": [
-      0.23105356249999998,
+      0.2308936066524725,
       1.8983284500000004,
       0.03148875
     ],
@@ -96,12 +96,12 @@
       0.28911531875
     ],
     "thighR": [
-      0.141543875,
+      0.1459102912643967,
       1.223746125,
       0.026120112499999997
     ],
     "shinR": [
-      0.2006610875,
+      0.20066284938929768,
       0.6712429625,
       0.07234637499999999
     ],
@@ -272,7 +272,7 @@
     "https://static.makehumancommunity.org/assets/assetpacks/shirts03.html"
   ],
   "authoringScripts": {
-    "bake-authored-athlete.py": "c9d3ea9d73ec6d2a0e73b4200f5fc30770ac07314974119e0899168d0c7787db",
+    "bake-authored-athlete.py": "b53cd6c76f11d5ae08f062cbe59c4bfbd9063c479a37dc358c1b9d6db1cdcd5b",
     "fit-athlete-kit.py": "104c3702a5c5b6190eda0ec6d506441229c39c7a0d5d557caf5bcd50d1e7e9a5",
     "fit-athlete-head.py": "2ce21c5fe4b674c68c16acb89745ca4bf69640edf904fcf6f5203e88ee1f464a"
   }

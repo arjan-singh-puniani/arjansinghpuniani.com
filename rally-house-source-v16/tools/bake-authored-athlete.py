@@ -46,6 +46,9 @@ for bone,entries in json.load(open(SRC/'default_weights.mhw'))['weights'].items(
 sums=W.sum(1);assert np.all(sums[:13380]>.9);W/=np.maximum(sums[:,None],1e-10)
 scale=.1555;floor=float(shape[:13380,1].min())
 def metric(p):return (p-np.array([0,floor,0]))*np.array([-scale,scale,scale])
+# Shape the waist/hip transition before fitting clothes and deriving the bind.
+height=metric(shape)[:,1];core=np.clip((.41-np.abs(metric(shape)[:,0]))/.09,0,1)
+shape[:,0]*=1+core*(-.075*np.exp(-((height-1.53)/.17)**2)+.035*np.exp(-((height-1.19)/.18)**2))
 def joint(s):return shape[list(groups['joint-'+s])].mean(0)
 bind={
  'pelvis':joint('pelvis'),'spine':joint('spine-3'),'chest':(joint('l-shoulder')+joint('r-shoulder'))/2,'neck':joint('neck'),'head':np.array([0,6.18,.48]),
