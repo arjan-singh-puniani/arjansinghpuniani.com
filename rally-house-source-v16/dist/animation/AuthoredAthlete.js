@@ -1,4 +1,4 @@
-import { Vec3, rigidFrame, interpolateRigidFrame, compose, transformPoint } from '../rendering/Math3D.js';
+import { Vec3, rigidFrame, interpolateRigidFrame, compose, transformPoint, smoothstep } from '../rendering/Math3D.js';
 import { inspectCharacterAsset } from './CharacterAssetIntake.js';
 import { BONE, rigFromPose, skinMatrices } from './CharacterSkin.js';
 let athlete;
@@ -89,8 +89,8 @@ export function authoredAthleteMeshes(p, position, yaw, feet, time) {
         rig[`footForward${side}`] = new Vec3(Math.sin(angle) * Math.cos(f.pitch), -Math.sin(f.pitch), Math.cos(angle) * Math.cos(f.pitch));
         rig[`footUp${side}`] = new Vec3(Math.sin(angle) * Math.sin(f.pitch), Math.cos(f.pitch), Math.cos(angle) * Math.sin(f.pitch));
     }
-    const bones = skinMatrices(rig, athlete.bind), phase = (time + .47) % 3.75, blink = phase < .10 ? 1 - phase / .10 : 0;
+    const bones = skinMatrices(rig, athlete.bind), phase = (time + .47) % 3.75, blink = phase < .05 ? smoothstep(0, .05, phase) : 1 - smoothstep(.05, .18, phase);
     const expression = [p.face.smile, p.face.mouthOpen, Math.min(1, blink + p.face.squint * .35), p.face.browRaise];
     const sourceRig = { bind: athlete.bind, pose: rig };
-    return athlete.parts.map(part => ({ poseRig: true, skirt: part.materialSlot === 'skirt', rig: sourceRig, expression, handGrip, skin: part.geometry, boneMatrices: bones, position: new Vec3(position.x, 0, position.z), rotation: new Vec3(0, yaw, 0), color: '#ffffff', material: part.materialSlot === 'skin' ? 'humanSkin' : part.materialSlot === 'eyes' ? 'ceramic' : ['hair', 'brows', 'lashes'].includes(part.materialSlot) ? 'groomedHair' : 'performanceKnit', diffuse: part.albedo ? athlete.images.get(part.albedo) : undefined, alphaCutoff: part.alphaCutoff, doubleSided: part.doubleSided }));
+    return athlete.parts.map(part => ({ poseRig: true, skirt: part.materialSlot === 'skirt', rig: sourceRig, expression, handGrip, skin: part.geometry, boneMatrices: bones, position: new Vec3(position.x, 0, position.z), rotation: new Vec3(0, yaw, 0), color: '#ffffff', material: part.materialSlot === 'skin' ? 'humanSkin' : part.materialSlot === 'eyes' ? 'iris' : part.materialSlot === 'teeth' ? 'ceramic' : ['hair', 'brows', 'lashes'].includes(part.materialSlot) ? 'groomedHair' : 'performanceKnit', diffuse: part.albedo ? athlete.images.get(part.albedo) : undefined, alphaCutoff: part.alphaCutoff, doubleSided: part.doubleSided }));
 }

@@ -28,7 +28,7 @@ export interface Mesh {
   id?:string;
 }
 
-export interface SkinGeometry {id:string;positions:Float32Array;normals:Float32Array;boneIndices:Float32Array;boneWeights:Float32Array;uvs?:Float32Array;morphs?:Float32Array[];gripNormals?:Float32Array}
+export interface SkinGeometry {id:string;positions:Float32Array;normals:Float32Array;boneIndices:Float32Array;boneWeights:Float32Array;uvs?:Float32Array;morphs?:Float32Array[];morphNormals?:Float32Array[]}
 export interface SkinnedMesh {
   /** Character body skin driven by the authoritative anatomical landmarks. */
   poseRig?:boolean;skirt?:boolean;rig?:{bind:RigPoseLocal;pose:RigPoseLocal};diffuse?:HTMLImageElement;alphaCutoff?:number;doubleSided?:boolean;expression?:[number,number,number,number];handGrip?:[number,number];
@@ -151,7 +151,7 @@ vec3 surfaceColor(vec3 p){
     vec2 cheek=vec2((abs(p.x)-.073)/.031,(p.y+.032)/.029);
     float warmth=exp(-dot(cheek,cheek))*smoothstep(.045,.085,p.z);
     pigment*=mix(vec3(1.0),vec3(1.08,.86,.83),warmth*.38);
-  }else if(u_material==15){
+  }else if(u_material==15&&u_textured<.5){
     vec2 eye=vec2((abs(p.x)-.048)/.0073,(p.y-.018)/.0073);
     float radius=clamp(length(eye),0.0,1.0),angle=dot(eye,eye)>.000001?atan(eye.y,eye.x):0.0;
     float fibres=filteredWave(angle*27.0+radius*9.0)*.08;
@@ -241,6 +241,11 @@ vec3 shade(vec3 N,vec3 world){
     // simulation. It is deliberately small and follows the actual lights.
     float back=pow(max(dot(-L,V),0.0),3.0)*(1.0-ndl)*shadow;
     c+=base*vec3(1.0,.43,.28)*back*.055;
+  }
+  if(u_material==15&&u_textured>.5){
+    // shortcut: one sky lobe; use local reflection probes for room-specific eye highlights.
+    vec3 reflection=reflect(-V,N);float window=pow(max(dot(reflection,normalize(vec3(-.45,.65,1.0))),0.0),96.0);
+    c+=u_skyColor*window*u_ambient*.75;
   }
   c=mix(c,base,u_unlit)+base*u_emission;
   // Linear-light shading and a filmic highlight roll-off preserve wood/skin colour.
@@ -484,7 +489,7 @@ export class Renderer {
     const hit=this.albedos.get(image);if(hit)return hit;if(!image.complete||!image.naturalWidth)throw new Error('Character texture is not decoded');
     const gl=this.gl,texture=gl.createTexture()!;gl.bindTexture(gl.TEXTURE_2D,texture);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);gl.generateMipmap(gl.TEXTURE_2D);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR_MIPMAP_LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);this.albedos.set(image,texture);return texture;
   }
-  private skinGeometry(data:SkinGeometry){const hit=this.skinGeos.get(data.id);if(hit)return hit;const gl=this.gl,vao=gl.createVertexArray()!;gl.bindVertexArray(vao);const put=(loc:number,arr:Float32Array,size:number)=>{const b=gl.createBuffer()!;gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,arr,gl.STATIC_DRAW);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,0,0);};put(0,data.positions,3);put(1,data.normals,3);put(2,data.boneIndices,4);put(3,data.boneWeights,4);if(data.uvs){if(data.uvs.length!==data.positions.length/3*2||!data.uvs.every(Number.isFinite))throw new Error('Invalid skinned UV coordinates');put(4,data.uvs,2);}if(data.morphs){if(data.morphs.length!==5)throw Error('Unsupported character expressions');data.morphs.forEach((delta,i)=>{if(delta.length!==data.positions.length||!delta.every(Number.isFinite))throw Error('Invalid character expression');put(5+i,delta,3);});}if(data.gripNormals){if(data.gripNormals.length!==data.positions.length||!data.gripNormals.every(Number.isFinite))throw Error('Invalid grip normals');put(10,data.gripNormals,3);}gl.bindVertexArray(null);const geo={vao,count:data.positions.length/3};this.skinGeos.set(data.id,geo);return geo;}
+  private skinGeometry(data:SkinGeometry){const hit=this.skinGeos.get(data.id);if(hit)return hit;const gl=this.gl,vao=gl.createVertexArray()!;gl.bindVertexArray(vao);const put=(loc:number,arr:Float32Array,size:number)=>{const b=gl.createBuffer()!;gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,arr,gl.STATIC_DRAW);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,0,0);};put(0,data.positions,3);put(1,data.normals,3);put(2,data.boneIndices,4);put(3,data.boneWeights,4);if(data.uvs){if(data.uvs.length!==data.positions.length/3*2||!data.uvs.every(Number.isFinite))throw new Error('Invalid skinned UV coordinates');put(4,data.uvs,2);}if(data.morphs){if(data.morphs.length!==5)throw Error('Unsupported character expressions');data.morphs.forEach((delta,i)=>{if(delta.length!==data.positions.length||!delta.every(Number.isFinite))throw Error('Invalid character expression');put(5+i,delta,3);});}if(data.morphNormals){if(data.morphNormals.length!==5)throw Error('Unsupported normal expressions');data.morphNormals.forEach((delta,i)=>{if(delta.length!==data.positions.length||!delta.every(Number.isFinite))throw Error('Invalid expression normals');put(10+i,delta,3);});}gl.bindVertexArray(null);const geo={vao,count:data.positions.length/3};this.skinGeos.set(data.id,geo);return geo;}
 
   private rigidVS(depthOnly:boolean){
     return `#version 300 es
@@ -497,11 +502,11 @@ export class Renderer {
   }
   private skinVS(depthOnly:boolean){
     return `#version 300 es
-    precision highp float;layout(location=0) in vec3 a_position;layout(location=1) in vec3 a_normal;layout(location=2) in vec4 a_bones;layout(location=3) in vec4 a_weights;layout(location=4) in vec2 a_uv;layout(location=5) in vec3 a_smile;layout(location=6) in vec3 a_mouth;layout(location=7) in vec3 a_blink;layout(location=8) in vec3 a_brow;layout(location=9) in vec3 a_grip;layout(location=10) in vec3 a_gripNormal;
+    precision highp float;layout(location=0) in vec3 a_position;layout(location=1) in vec3 a_normal;layout(location=2) in vec4 a_bones;layout(location=3) in vec4 a_weights;layout(location=4) in vec2 a_uv;layout(location=5) in vec3 a_smile;layout(location=6) in vec3 a_mouth;layout(location=7) in vec3 a_blink;layout(location=8) in vec3 a_brow;layout(location=9) in vec3 a_grip;layout(location=10) in vec3 a_smileNormal;layout(location=11) in vec3 a_mouthNormal;layout(location=12) in vec3 a_blinkNormal;layout(location=13) in vec3 a_browNormal;layout(location=14) in vec3 a_gripNormal;
     uniform mat4 u_model;uniform mat4 ${depthOnly?'u_lightVP':'u_vp'};uniform mat4 u_bones[19];uniform vec4 u_expression;uniform vec2 u_handGrip;uniform float u_skirt;uniform vec4 u_skirtHips[2];uniform vec4 u_skirtKnees[2];
     out vec2 v_uv;${depthOnly?'':'out vec3 v_normal;out vec3 v_world;out vec3 v_surface;'}
     mat4 skin(){ivec4 b=ivec4(a_bones+.5);return u_bones[b.x]*a_weights.x+u_bones[b.y]*a_weights.y+u_bones[b.z]*a_weights.z+u_bones[b.w]*a_weights.w;}
-    void main(){mat4 S=skin();float grip=a_position.x<0.0?u_handGrip.x:u_handGrip.y;vec3 normal=normalize(a_normal+a_gripNormal*grip);vec3 posed=a_position+a_smile*u_expression.x+a_mouth*u_expression.y+a_blink*u_expression.z+a_brow*u_expression.w+a_grip*grip;vec3 skinned=(S*vec4(posed,1.0)).xyz;
+    void main(){mat4 S=skin();float grip=a_position.x<0.0?u_handGrip.x:u_handGrip.y;vec3 normal=normalize(a_normal+a_smileNormal*u_expression.x+a_mouthNormal*u_expression.y+a_blinkNormal*u_expression.z+a_browNormal*u_expression.w+a_gripNormal*grip);vec3 posed=a_position+a_smile*u_expression.x+a_mouth*u_expression.y+a_blink*u_expression.z+a_brow*u_expression.w+a_grip*grip;vec3 skinned=(S*vec4(posed,1.0)).xyz;
     if(u_skirt>.5)for(int pass=0;pass<3;pass++)for(int leg=0;leg<2;leg++){vec4 hip=u_skirtHips[leg],knee=u_skirtKnees[leg];vec3 axis=knee.xyz-hip.xyz;float t=clamp(dot(skinned-hip.xyz,axis)/max(dot(axis,axis),.000001),0.0,1.0);vec3 centre=hip.xyz+axis*t,delta=skinned-centre;float distance=length(delta),radius=mix(hip.w,knee.w,t);if(distance<radius)skinned=centre+(distance>.00001?delta/distance:vec3(0,1,0))*radius;}
     vec4 wp=u_model*vec4(skinned,1.0);
     v_uv=a_uv;${depthOnly?'':'v_world=wp.xyz;v_surface=a_position;mat3 B=mat3(u_model)*mat3(S);vec3 c0=cross(B[1],B[2]),c1=cross(B[2],B[0]),c2=cross(B[0],B[1]);float determinant=dot(B[0],c0);vec3 corrected=mat3(c0,c1,c2)*normal;v_normal=normalize(abs(determinant)<.000001?B*normal:corrected*(determinant<0.0?-1.0:1.0));'}

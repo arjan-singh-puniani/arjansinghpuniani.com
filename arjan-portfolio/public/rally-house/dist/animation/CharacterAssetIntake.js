@@ -128,20 +128,16 @@ export function inspectCharacterAsset(input, buffers, provenance) {
                 fail('unsupported alpha mode');
             if (material.alphaMode === 'MASK' && (!albedo || !Number.isFinite(material.alphaCutoff) || material.alphaCutoff < 0 || material.alphaCutoff > 1))
                 fail('invalid alpha mask');
-            const morphs = p.targets?.map((t, target) => { if (Object.keys(t).some(k => k !== 'POSITION' && !(target === 4 && k === 'NORMAL')))
+            const morphs = p.targets?.map((t, target) => { if (Object.keys(t).some(k => k !== 'POSITION' && k !== 'NORMAL'))
                 fail('unsupported expression channel'); const delta = read(t.POSITION, 'VEC3', [5126]); if (delta.length !== positions.length || delta.some((n) => Math.abs(n) > (target === 4 ? .2 : .06)))
                 fail('invalid expression displacement'); return delta; });
-            let gripNormals;
-            if (p.targets?.[4]?.NORMAL !== undefined) {
-                gripNormals = read(p.targets[4].NORMAL, 'VEC3', [5126]);
-                if (gripNormals.length !== positions.length || gripNormals.some(n => Math.abs(n) > 2.01))
-                    fail('invalid grip normals');
-            }
+            const morphNormals = p.targets?.some((t) => t.NORMAL !== undefined) ? p.targets.map((t) => { const delta = t.NORMAL === undefined ? Array(positions.length).fill(0) : read(t.NORMAL, 'VEC3', [5126]); if (delta.length !== positions.length || delta.some((n) => Math.abs(n) > 2.01))
+                fail('invalid expression normals'); return delta; }) : undefined;
             const indices = p.indices === undefined ? Array.from({ length: count }, (_, i) => i) : read(p.indices, 'SCALAR', [5121, 5123, 5125]);
             if (indices.length % 3 || indices.some((i) => !Number.isSafeInteger(i) || i < 0 || i >= count))
                 fail('invalid triangle indices');
             const expand = (source, size) => new Float32Array(indices.flatMap((i) => source.slice(i * size, (i + 1) * size)));
-            primitives.push({ geometry: { id: `asset-${provenance.sha256}-${mi}-${pi}`, positions: expand(positions, 3), normals: expand(normals, 3), boneIndices: expand(joints, 4), boneWeights: expand(weights, 4), ...(uvs ? { uvs: expand(uvs, 2) } : {}), ...(morphs ? { morphs: morphs.map((d) => expand(d, 3)) } : {}), ...(gripNormals ? { gripNormals: expand(gripNormals, 3) } : {}) }, materialSlot: material.name, albedo, alphaCutoff: material.alphaMode === 'MASK' ? material.alphaCutoff : undefined, doubleSided: material.doubleSided === true });
+            primitives.push({ geometry: { id: `asset-${provenance.sha256}-${mi}-${pi}`, positions: expand(positions, 3), normals: expand(normals, 3), boneIndices: expand(joints, 4), boneWeights: expand(weights, 4), ...(uvs ? { uvs: expand(uvs, 2) } : {}), ...(morphs ? { morphs: morphs.map((d) => expand(d, 3)) } : {}), ...(morphNormals ? { morphNormals: morphNormals.map((d) => expand(d, 3)) } : {}) }, materialSlot: material.name, albedo, alphaCutoff: material.alphaMode === 'MASK' ? material.alphaCutoff : undefined, doubleSided: material.doubleSided === true });
         }
     if (!primitives.length || primitives.reduce((n, p) => n + p.geometry.positions.length / 3, 0) > 120000)
         fail('empty or over-budget geometry');

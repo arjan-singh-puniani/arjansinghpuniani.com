@@ -1,4 +1,4 @@
-import {Vec3,rigidFrame,interpolateRigidFrame,compose,transformPoint} from '../rendering/Math3D.js';
+import {Vec3,rigidFrame,interpolateRigidFrame,compose,transformPoint,smoothstep} from '../rendering/Math3D.js';
 import type {SkinnedMesh} from '../rendering/Renderer.js';
 import {inspectCharacterAsset,type AssetProvenance,type IntakeResult} from './CharacterAssetIntake.js';
 import {BONE,rigFromPose,skinMatrices,type RigPoseLocal} from './CharacterSkin.js';
@@ -55,7 +55,7 @@ export function authoredAthleteMeshes(p:CharacterPose,position:Vec3,yaw:number,f
  const hands=p.handDirectionL&&p.handDirectionR&&p.handForwardL&&p.handForwardR?p as AuthoredHandPose:advanceAuthoredHands(p,position,yaw,undefined,0)!;for(const side of ['L','R'] as const){rig[`handDirection${side}`]=hands[`handDirection${side}`];rig[`handForward${side}`]=hands[`handForward${side}`];rig[`foreArmForward${side}`]=hands[`handForward${side}`];}
  const handGrip:[number,number]=[p.handGripL,p.handGripR];
  for(const [i,side] of (['L','R'] as const).entries()){const f=feet[i],angle=f.yaw-yaw;rig[`footForward${side}`]=new Vec3(Math.sin(angle)*Math.cos(f.pitch),-Math.sin(f.pitch),Math.cos(angle)*Math.cos(f.pitch));rig[`footUp${side}`]=new Vec3(Math.sin(angle)*Math.sin(f.pitch),Math.cos(f.pitch),Math.cos(angle)*Math.sin(f.pitch));}
- const bones=skinMatrices(rig,athlete.bind),phase=(time+.47)%3.75,blink=phase<.10?1-phase/.10:0;const expression:[number,number,number,number]=[p.face.smile,p.face.mouthOpen,Math.min(1,blink+p.face.squint*.35),p.face.browRaise];
+ const bones=skinMatrices(rig,athlete.bind),phase=(time+.47)%3.75,blink=phase<.05?smoothstep(0,.05,phase):1-smoothstep(.05,.18,phase);const expression:[number,number,number,number]=[p.face.smile,p.face.mouthOpen,Math.min(1,blink+p.face.squint*.35),p.face.browRaise];
  const sourceRig={bind:athlete.bind,pose:rig};
- return athlete.parts.map(part=>({poseRig:true,skirt:part.materialSlot==='skirt',rig:sourceRig,expression,handGrip,skin:part.geometry,boneMatrices:bones,position:new Vec3(position.x,0,position.z),rotation:new Vec3(0,yaw,0),color:'#ffffff',material:part.materialSlot==='skin'?'humanSkin':part.materialSlot==='eyes'?'ceramic':['hair','brows','lashes'].includes(part.materialSlot)?'groomedHair':'performanceKnit',diffuse:part.albedo?athlete!.images.get(part.albedo):undefined,alphaCutoff:part.alphaCutoff,doubleSided:part.doubleSided}));
+ return athlete.parts.map(part=>({poseRig:true,skirt:part.materialSlot==='skirt',rig:sourceRig,expression,handGrip,skin:part.geometry,boneMatrices:bones,position:new Vec3(position.x,0,position.z),rotation:new Vec3(0,yaw,0),color:'#ffffff',material:part.materialSlot==='skin'?'humanSkin':part.materialSlot==='eyes'?'iris':part.materialSlot==='teeth'?'ceramic':['hair','brows','lashes'].includes(part.materialSlot)?'groomedHair':'performanceKnit',diffuse:part.albedo?athlete!.images.get(part.albedo):undefined,alphaCutoff:part.alphaCutoff,doubleSided:part.doubleSided}));
 }

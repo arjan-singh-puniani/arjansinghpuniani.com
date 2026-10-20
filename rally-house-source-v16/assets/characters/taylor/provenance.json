@@ -1,8 +1,8 @@
 {
-  "author": "MakeHuman Community; MargaretToigo; Rally House fit and runtime adaptation",
+  "author": "MakeHuman Community; MargaretToigo; Bobby_03; Mika Suominen; dariush086; Rally House fit and runtime adaptation",
   "source": "https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482",
   "license": "CC0-1.0",
-  "sha256": "51bcf4c054d2efb5a1f29d56e36da0a705cea95a0529553495c10694a85a0020",
+  "sha256": "cf3bacbfdbd14a18aa01fa7e146e5cdf2acb2211861ea8b7254636887facc9b9",
   "boneMap": {
     "pelvis": "pelvis",
     "spine": "spine",
@@ -201,7 +201,7 @@
       "name": "eyes",
       "triangles": 2040,
       "vertices": 1076,
-      "material": "ceramic"
+      "material": "iris"
     },
     {
       "name": "lashes",
@@ -214,14 +214,21 @@
       "triangles": 192,
       "vertices": 126,
       "material": "groomedHair"
+    },
+    {
+      "name": "teeth",
+      "triangles": 569,
+      "vertices": 1707,
+      "material": "ceramic"
     }
   ],
   "textures": {
-    "skin.webp": "7358b2dbf6ed23b031d7dfb7feabde000d2cbc8150f1eb4366ee111bd89aa906",
+    "skin.webp": "63097d3cb53497ca5dd016e3bdb767c97682f7f197a51338719c2da2be788556",
     "kit.webp": "acabfa9265d3eaec3960df4cbf156c896bce6b16e035462d4aa0afe7b4c06624",
     "shoes.webp": "3af53b14cb45d2e1a5f09cab63d55b534ee8f7e0f2cb54b63c9f9c8e7513d018",
-    "hair.webp": "cdc9148c4ef4ec5afc84352ee1d11726f5d7bc2fc9a90e790be5152b7b3d580d",
-    "eyes.webp": "6be120d88fc65c41690f913b453c9f778dc53dcb42c2962da6189e097324eb23",
+    "hair.webp": "8a8cb84f04185b668260a8d59ef425cf6832978991acb146efb1329d7c473294",
+    "eyes.webp": "7793c48a8a0a8dba8930cba3e0305781a3856e04a971c650a1330667ee2b0ec3",
+    "teeth.webp": "1bd392c368e6e26887a6a1bfb474c2b3c936a6ec955b61c3d7d3753df65d1c80",
     "lashes.webp": "d6344b102113042b425c6656e9354c756acc93910148836f657ba967992676e9",
     "brows.webp": "9c659349c86898d9e69d529296493e4a6011ab227a4b5ac2876418d1abc16993",
     "skirt.webp": "3ac69eb7fd0f27c3c78318e71cab59928b76632a4d236f80a6a8af47199fe822"
@@ -230,13 +237,25 @@
     "base.obj": "8e761e6624b8f54536409135d1636da63b32486a90d4897f84e121d144f6fb4c",
     "default_weights.mhw": "0f3641d651ae3d00ad6b4ccee43142edb109d3bd909d27d9e4139ef1beed8625",
     "default.mhskel": "99f179bce0aa850b45d4191a1d0d234c5851f881c057439470ded3bddf729a24",
-    "skins/skins/toigo_light_skin_with_natural_makeup/young_lightskinned_female_diffuse4.png": "53532399f5f74d560680313549cd72fde4fc81cbe747ee9c9ae90a554eda52e1",
+    "skins/skins/bobby_03_young_female_hairless/Young_Female_Hairless.png": "9e2fa4ab993dd938ba896bb98848bd65346500c4c0a07d8789d2f1e14bb3dd7f",
     "clothes/female_sportsuit01/female_sportsuit01_diffuse.png": "00910e3e85b3dcf48d1aa827b4c075cdc77689989423ff4f75bc67f2e86cc588",
     "clothes/shoes05/shoes05_diffuse.png": "7fe5ea2600f6578cdf017da3392ae13aedabea8e8cc1dd6302a8f57e8fb7e5af",
-    "hair/ponytail01/ponytail01_diffuse.png": "dcb364300cac06ce8bef91b2f7c0970baf310898bbdd06b0c6b884ee9306eb97",
-    "eyes/materials/brown_eye.png": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b",
+    "hair/ponytail01/dariush086_ponytail01_black/ponytail01_black.png": "fcb4d9182380d724fd8bb452533e35a282cc212355efcaa0eab0d62fe6820db2",
+    "eyes/materials/brownlight_eye.png": "3f43a4de70e446186dac1760cfa01dfe36d530ed7564208455395b0ebcdf788a",
+    "teeth/teeth_base/teeth.png": "d0afb57869c6fbb56b98f5efc4aec629ee7593e70d8dd2bfb9de923acfb65f43",
     "eyelashes/eyelashes01/eyelashes01.png": "4b69c0fff2648874460e9caf80c31413c444218a5c50afebc425aeaa65484a35",
     "eyebrows/eyebrow001/eyebrow001.png": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+    "faceunits/targets/faceunits/mouthSmileLeft.target": "11cabf2fa6f9664c4d0b9f8f0cadaf4b2a1a9625b72c7593262465ce8d4cb9a2",
+    "faceunits/targets/faceunits/mouthSmileRight.target": "70578981892db13c02512455583c2f9743683d5c571c1e2624b09638cf37bedd",
+    "faceunits/targets/faceunits/cheekSquintLeft.target": "2ec68e1aca9ecd24019db58af53d7998f10e4964dda2729fd0f319597f734d75",
+    "faceunits/targets/faceunits/cheekSquintRight.target": "7daf855b7d23d2b95ae4e75ed0994b4951d8d9ec6d82a9a6aec8742df033bdbc",
+    "faceunits/targets/faceunits/jawOpen.target": "2439e703e434f999b58a1d26cffdb6b2fd5f30941b8ff19cac70b75392d4de6f",
+    "faceunits/targets/faceunits/eyeBlinkLeft.target": "53d35e0a8357140d4e37277a674f211bdaf97be011b61cfcdff618f0bfea0ec8",
+    "faceunits/targets/faceunits/eyeBlinkRight.target": "00d159a70fad650b336eb6f739a1a6a47f916da4331ef9848fb0eef989ca5cc5",
+    "faceunits/targets/faceunits/browInnerUp.target": "84c8be8c1cade46a51486786244c1a80dfbf6e1915bf1f5a72b74ef8eb951f6d",
+    "faceunits/targets/faceunits/browOuterUpLeft.target": "9821d5a8279c0ba8751d4595e0333ef5d1a041fad6d85ffffdae7b5044908fa0",
+    "faceunits/targets/faceunits/browOuterUpRight.target": "770fd5cb608adbeb778e17ab39e085f9472191d65056cebe0df5f3e4d6cab364",
+    "faceunits/packs/faceunits01.json": "fd647a088691ddd9193ce9600df3377bb9ccf69c2904f0a7773a3c246d234c18",
     "universal-female-young-maxmuscle-averageweight.target": "2e56b09b44a8497b927585447fdaac5ea7293521d1f3a3df1059495873c53f4e",
     "african-female-young.target": "92d61eeb3c164b421fd5a7c3537ee45e7e1a51de4d49bf312e19c3df2be1d8fc",
     "asian-female-young.target": "095fe79694fa19e1fe98d93009ec116199bd524e081c640351a10eccf2cca1eb",
@@ -251,6 +270,8 @@
     "hair/ponytail01/ponytail01.obj": "d9f5fe96fbedbc8006220d87aad0e4a33d15286eb6b21f5929661cdc490ebf5a",
     "eyes/high-poly/high-poly.mhclo": "b183cfe37120ab726f9b3f2ea6cd3a64c44ce7b4bd91a77c841cf70c04f83a0d",
     "eyes/high-poly/high-poly.obj": "da2493215b708a344c33dc72f2a9a5b8fa985dcc5a70ad3b208995cf871da8e1",
+    "teeth/teeth_base/teeth_base.mhclo": "9edc3deff3bb97a95c791878064dd069a74a38f95ea6d9707a9ba68d888b3b5c",
+    "teeth/teeth_base/teeth_base.obj": "f55198069e55d360c4b4cc7ecb1cc292b2c7665753ab8b65eabf46a8783f2875",
     "eyelashes/eyelashes01/eyelashes01.obj": "f78f5b93fea1946fcae103d32c4f082dd9612a1ec2e7e2f90b03ebe59b0baf20",
     "eyelashes/eyelashes01/eyelashes01.mhclo": "5a86b29c15649273d723084954b7fa7bf199112571d4f58539b46734d397ee6b",
     "eyebrows/eyebrow001/eyebrow001.obj": "88b13146395133f3901715e11706cdfd293e5d6087ad7c5e01efe1485a26b513",
@@ -260,13 +281,36 @@
     "L": -1,
     "R": 1
   },
+  "facialTargets": [
+    {
+      "mouthSmileLeft": 0.8,
+      "mouthSmileRight": 0.8,
+      "cheekSquintLeft": 0.15,
+      "cheekSquintRight": 0.15
+    },
+    {
+      "jawOpen": 0.8
+    },
+    {
+      "eyeBlinkLeft": 1,
+      "eyeBlinkRight": 1
+    },
+    {
+      "browInnerUp": 0.35,
+      "browOuterUpLeft": 0.65,
+      "browOuterUpRight": 0.65
+    }
+  ],
   "assetPacks": [
     "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
     "https://static.makehumancommunity.org/assets/assetpacks/skins01.html",
-    "https://static.makehumancommunity.org/assets/assetpacks/skirts01.html"
+    "https://static.makehumancommunity.org/assets/assetpacks/skirts01.html",
+    "https://static.makehumancommunity.org/assets/assetpacks/faceunits01.html",
+    "https://static.makehumancommunity.org/assets/assetpacks/system_hair_materials01.html"
   ],
   "authoringScripts": {
-    "bake-authored-athlete.py": "bfcbbd64260801f1f6490a3f3788071c347a522c024c53726f744fda8a01a929",
-    "fit-athlete-kit.py": "aac9ee99b856a52c1d5e8c158a20847a3ef5fe92e5428f0e67547b176e373df0"
+    "bake-authored-athlete.py": "cf3381458cea1e505c1c9b4aef20d2f42d677ff9f0591d9e9d239c1ed4543337",
+    "fit-athlete-kit.py": "aac9ee99b856a52c1d5e8c158a20847a3ef5fe92e5428f0e67547b176e373df0",
+    "fit-athlete-mouth.py": "d0f21b1d9c34e14d1d07de13bb853241030ce6d3050f36266456319f8b8691f8"
   }
 }
