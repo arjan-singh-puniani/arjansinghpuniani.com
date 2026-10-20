@@ -25,12 +25,13 @@ for name,weight in [('asian-female-young.target',.6),('caucasian-female-young.ta
 for l in open(SRC/'universal-female-young-maxmuscle-averageweight.target'):
  a=l.split()
  if len(a)==4 and a[0].isdigit():shape[int(a[0])]+=.24*np.array(list(map(float,a[1:])))
-names=['pelvis','spine','chest','neck','head','upperArmL','foreArmL','handL','upperArmR','foreArmR','handR','thighL','shinL','thighR','shinR','footL','footR']
+names=['pelvis','spine','chest','neck','head','upperArmL','foreArmL','handL','upperArmR','foreArmR','handR','thighL','shinL','thighR','shinR','footL','footR','foreArmTwistL','foreArmTwistR']
 W=np.zeros((len(base),len(names)))
 def bonemap(n):
  side='L' if n.endswith('.L') else 'R'
  if n.startswith(('upperarm','shoulder')):return 'upperArm'+side
- if n.startswith(('lowerarm',)):return 'foreArm'+side
+ if n.startswith('lowerarm02'):return 'foreArmTwist'+side
+ if n.startswith('lowerarm01'):return 'foreArm'+side
  if n.startswith(('finger','metacarpal','wrist')):return 'hand'+side
  if n.startswith('upperleg'):return 'thigh'+side
  if n.startswith('lowerleg'):return 'shin'+side
@@ -59,22 +60,25 @@ for side,source in [('L','l'),('R','r')]:
   bind[target+side]=joint(source+'-'+suffix)
 for side,source in [('L','l'),('R','r')]:bind['hand'+side]=(joint(source+'-hand')+joint(source+'-finger-3-1'))/2
 for side,source in [('L','l'),('R','r')]:bind['wrist'+side]=joint(source+'-hand')
+source_rig=json.load(open(SRC/'default.mhskel'))
+for side in ['L','R']:
+ ids=source_rig['joints'][source_rig['bones']['lowerarm02.'+side]['head']];bind['foreArmTwist'+side]=shape[ids].mean(0)
 bind={k:metric(v) for k,v in bind.items()};bind['footL'][1]-=.022;bind['footR'][1]-=.022;bind['forward']=np.array([0.,0.,1.])
 for side,source in [('L','l'),('R','r')]:
  hand=metric(shape[W[:,names.index('hand'+side)]>.8]);center=hand.mean(0);_,axes=np.linalg.eigh((hand-center).T@(hand-center));normal=axes[:,0]
  if normal[2]<0:normal=-normal
  direction=metric(joint(source+'-finger-3-1'))-metric(joint(source+'-hand'));direction/=np.linalg.norm(direction)
  bind['handDirection'+side]=direction;bind['handForward'+side]=normal;bind['foreArmForward'+side]=normal
-children=['spine','chest','neck','head','neck','foreArmL','handL','foreArmL','foreArmR','handR','foreArmR','shinL','footL','shinR','footR',None,None]
+children=['spine','chest','neck','head','neck','foreArmL','foreArmTwistL','foreArmL','foreArmR','foreArmTwistR','foreArmR','shinL','footL','shinR','footR',None,None,'handL','handR']
 def frame(k):
  a=bind[k]
  if k.startswith('foot') or k=='head':y=np.array([0.,1.,0.]);f=bind['forward']
  elif k.startswith('hand'):
   side=k[-1];y=bind['handDirection'+side];f=bind['handForward'+side]
  else:
-  b=bind.get('wrist'+k[-1],bind[children[names.index(k)]]) if k.startswith('foreArm') else bind[children[names.index(k)]];y=b-a
+  b=bind.get('wrist'+k[-1],bind[children[names.index(k)]]) if k.startswith('foreArmTwist') else bind[children[names.index(k)]];y=b-a
   if k in ('head','handL','handR'):y=-y
-  y/=np.linalg.norm(y);f=bind.get('foreArmForward'+k[-1],bind['forward']) if k.startswith('foreArm') else bind['forward']
+  y/=np.linalg.norm(y);f=bind.get('foreArmForward'+k[-1],bind['forward']) if k.startswith('foreArmTwist') else bind['forward']
   if k.startswith(('shin','thigh')):f=np.cross(np.array([-1.,0.,0.]),y)
  z=f-y*np.dot(f,y);z/=np.linalg.norm(z);x=np.cross(y,z);m=np.eye(4);m[:3,:3]=np.stack([x,y,z],1);m[:3,3]=a;return m
 frames=[frame(n) for n in names]
@@ -167,7 +171,7 @@ def accessor(a,t,component=5126):
  doc['accessors'].append(ac);return len(doc['accessors'])-1
 inverse=accessor([np.linalg.inv(m).T.flatten() for m in frames],'MAT4')
 for n,m in zip(names,frames):doc['nodes'].append({'name':n,'matrix':m.T.flatten().tolist()})
-doc['skins']=[{'joints':list(range(17)),'inverseBindMatrices':inverse}]
+doc['skins']=[{'joints':list(range(len(names))),'inverseBindMatrices':inverse}]
 report=[]
 for name,p,u,f,w,tex,mat in parts:
  normal=np.zeros_like(p)
@@ -208,7 +212,7 @@ for name,p,u,f,w,tex,mat in parts:
   if grip_normals is not None:primitive['targets'][4]['NORMAL']=accessor(grip_normals,'VEC3')
  doc['meshes'].append({'name':name,'primitives':[primitive],'extras':extras});doc['nodes'].append({'mesh':len(doc['meshes'])-1,'skin':0});report.append({'name':name,'triangles':len(tri),'vertices':len(pos),'material':mat})
 doc['scenes']=[{'nodes':list(range(len(doc['nodes'])))}];doc['scene']=0;doc['buffers']=[{'byteLength':len(binary)}];binary.extend(bytes((-len(binary))%4));j=json.dumps(doc,separators=(',',':')).encode();j+=b' '*((-len(j))%4);glb=struct.pack('<III',0x46546c67,2,28+len(j)+len(binary))+struct.pack('<II',len(j),0x4e4f534a)+j+struct.pack('<II',len(binary),0x004e4942)+binary;(OUT/'taylor.glb').write_bytes(glb)
-meta={'author':'MakeHuman Community; MargaretToigo; Rally House fit and runtime adaptation','source':'https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482','license':'CC0-1.0','sha256':hashlib.sha256(glb).hexdigest(),'boneMap':{n:n for n in names},'bind':{k:v.tolist() for k,v in bind.items()},'parts':report,'textures':{name:hashlib.sha256((OUT/name).read_bytes()).hexdigest() for name in textures},'sourceHashes':{str(p.relative_to(SRC)) if p.is_relative_to(SRC) else str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [SRC/'base.obj',SRC/'default_weights.mhw',*textures.values()]}}
+meta={'author':'MakeHuman Community; MargaretToigo; Rally House fit and runtime adaptation','source':'https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482','license':'CC0-1.0','sha256':hashlib.sha256(glb).hexdigest(),'boneMap':{n:n for n in names},'bind':{k:v.tolist() for k,v in bind.items()},'parts':report,'textures':{name:hashlib.sha256((OUT/name).read_bytes()).hexdigest() for name in textures},'sourceHashes':{str(p.relative_to(SRC)) if p.is_relative_to(SRC) else str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [SRC/'base.obj',SRC/'default_weights.mhw',SRC/'default.mhskel',*textures.values()]}}
 meta['gripSign']=grip_sign
 meta['assetPacks']=['https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html','https://static.makehumancommunity.org/assets/assetpacks/skins01.html']
 for p in [*SRC.glob('*.target'),*[p for folder in ['clothes/female_sportsuit01','clothes/shoes05','hair/ponytail01','eyes/high-poly','eyelashes/eyelashes01','eyebrows/eyebrow001'] for p in (ROOT/folder).iterdir() if p.suffix in ('.obj','.mhclo')]]:meta['sourceHashes'][str(p.relative_to(SRC)) if p.is_relative_to(SRC) else str(p.relative_to(ROOT))]=hashlib.sha256(p.read_bytes()).hexdigest()

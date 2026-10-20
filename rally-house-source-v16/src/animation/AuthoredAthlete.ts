@@ -1,4 +1,4 @@
-import {Vec3} from '../rendering/Math3D.js';
+import {Vec3,rigidFrame,interpolateRigidFrame,compose,transformPoint} from '../rendering/Math3D.js';
 import type {SkinnedMesh} from '../rendering/Renderer.js';
 import {inspectCharacterAsset,type AssetProvenance,type IntakeResult} from './CharacterAssetIntake.js';
 import {BONE,rigFromPose,skinMatrices,type RigPoseLocal} from './CharacterSkin.js';
@@ -25,17 +25,23 @@ export async function loadAuthoredAthlete(){
  bind.headUp=new Vec3(0,1,0);athlete={parts:result.primitives,bind:bind as unknown as RigPoseLocal,images,gripSign:meta.gripSign};
 }
 
-export function authoredAthleteMeshes(p:CharacterPose,position:Vec3,yaw:number,feet:{pitch:number;yaw:number}[],hands:'waist'|'lap'|'natural',time:number,handGrip:[number,number]):SkinnedMesh[]|undefined{
+export function authoredAthleteMeshes(p:CharacterPose,position:Vec3,yaw:number,feet:{pitch:number;yaw:number}[],time:number):SkinnedMesh[]|undefined{
  if(!athlete)return;
  const rig=rigFromPose(p,position,yaw);rig.headUp=new Vec3(0,1,0);rig.headForward=new Vec3(Math.sin(p.headYaw-yaw),0,Math.cos(p.headYaw-yaw));
- for(const side of ['L','R'] as const){rig[`handDirection${side}`]=Vec3.sub(rig[`hand${side}`],rig[`foreArm${side}`]).normalize();rig[`handForward${side}`]=rig.forward;}
- if(hands==='waist'){rig.handDirectionL=new Vec3(0,-1,.1);rig.handDirectionR=new Vec3(0,-1,.1);rig.handForwardL=new Vec3(1,0,0);rig.handForwardR=new Vec3(-1,0,0);}
- if(hands==='lap'){for(const side of ['L','R'] as const){rig[`handDirection${side}`]=new Vec3(0,0,1);rig[`handForward${side}`]=new Vec3(0,1,0);}}
- for(const [i,side] of (['L','R'] as const).entries())if(handGrip[i]>.99){
-  const delta=Vec3.sub(p.racketHandleTop,p.racketGrip),c=Math.cos(yaw),s=Math.sin(yaw),axis=new Vec3(c*delta.x-s*delta.z,delta.y,s*delta.x+c*delta.z).normalize().scale(athlete.gripSign[side]);
-  let fingers=Vec3.sub(rig[`hand${side}`],rig[`foreArm${side}`]);fingers.sub(axis.clone().scale(Vec3.dot(fingers,axis)));if(fingers.len()<.001)fingers=Vec3.cross(axis,rig.forward);fingers.normalize();rig[`handDirection${side}`]=fingers;rig[`handForward${side}`]=Vec3.cross(axis,fingers).normalize();
+ const handGrip:[number,number]=[p.handGripL,p.handGripR],racketGrip=[p.handGripL,p.handRacketWeight],origin=new Vec3(),racket=compose(origin,p.racketRot),c=Math.cos(yaw),s=Math.sin(yaw);
+ const local=(v:Vec3)=>new Vec3(c*v.x-s*v.z,v.y,s*v.x+c*v.z);
+ for(const [i,side] of (['L','R'] as const).entries()){
+  const direction=Vec3.sub(rig[`hand${side}`],rig[`foreArm${side}`]),pole=Vec3.cross(Vec3.sub(rig[`foreArm${side}`],rig[`upperArm${side}`]),direction).scale(side==='L'?1:-1);
+  let frame=rigidFrame(origin,direction,pole.len()>.001?pole:rig.forward),weight=Math.max(0,1-p.handRestWeight-p.handLapWeight-racketGrip[i]);
+  const add=(target:ReturnType<typeof rigidFrame>,amount:number)=>{if(amount>0){frame=interpolateRigidFrame(frame,target,amount/(weight+amount));weight+=amount;}};
+  add(rigidFrame(origin,new Vec3(0,-1,.1),new Vec3(side==='L'?1:-1,0,0)),p.handRestWeight);
+  add(rigidFrame(origin,new Vec3(0,0,1),new Vec3(0,1,0)),p.handLapWeight);
+  if(racketGrip[i]>.0001){
+   const axis=local(Vec3.sub(p.racketHandleTop,p.racketGrip)).normalize().scale(athlete.gripSign[side]),width=transformPoint(racket,new Vec3(side==='L'?1:-1,0,0)),fingers=local(new Vec3(width.x,width.y,width.z));fingers.sub(axis.clone().scale(Vec3.dot(fingers,axis))).normalize();
+   add(rigidFrame(origin,fingers,Vec3.cross(axis,fingers).normalize()),racketGrip[i]);
+  }
+  rig[`handDirection${side}`]=new Vec3(frame[4],frame[5],frame[6]);rig[`handForward${side}`]=new Vec3(frame[8],frame[9],frame[10]);rig[`foreArmForward${side}`]=rig[`handForward${side}`];
  }
- for(const side of ['L','R'] as const)rig[`foreArmForward${side}`]=rig[`handForward${side}`];
  for(const [i,side] of (['L','R'] as const).entries()){const f=feet[i],angle=f.yaw-yaw;rig[`footForward${side}`]=new Vec3(Math.sin(angle)*Math.cos(f.pitch),-Math.sin(f.pitch),Math.cos(angle)*Math.cos(f.pitch));rig[`footUp${side}`]=new Vec3(Math.sin(angle)*Math.sin(f.pitch),Math.cos(f.pitch),Math.cos(angle)*Math.sin(f.pitch));}
  const bones=skinMatrices(rig,athlete.bind),phase=(time+.47)%3.75,blink=phase<.10?1-phase/.10:0;const expression:[number,number,number,number]=[p.face.smile,p.face.mouthOpen,Math.min(1,blink+p.face.squint*.35),p.face.browRaise];
  const sourceRig={bind:athlete.bind,pose:rig};

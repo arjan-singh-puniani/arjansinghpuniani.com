@@ -1,4 +1,4 @@
-import { Vec3, clamp } from '../rendering/Math3D.js';
+import { Vec3, clamp, rigidFrame, interpolateRigidFrame } from '../rendering/Math3D.js';
 import { rigFromPose, skinMatrices } from '../animation/CharacterSkin.js';
 export const LIMBS = [['shoulderL', 'elbowL'], ['elbowL', 'handL'], ['shoulderR', 'elbowR'], ['elbowR', 'handR'], ['shoulderL', 'shoulderR'], ['shoulderL', 'hipL'], ['shoulderR', 'hipR'], ['hipL', 'hipR'], ['hipL', 'kneeL'], ['kneeL', 'footL'], ['hipR', 'kneeR'], ['kneeR', 'footR']];
 export const JOINT_KEYS = ['shoulderL', 'shoulderR', 'elbowL', 'elbowR', 'handL', 'handR', 'hipL', 'hipR', 'kneeL', 'kneeR', 'footL', 'footR', 'pelvisCenter'];
@@ -99,6 +99,15 @@ export function interpolateFrame(a, b, time) {
                         const x = part.rig.pose[key], y = other.rig.pose[key];
                         if (x && y)
                             local[key] = Vec3.lerp(x, y, t);
+                    }
+                    for (const side of ['L', 'R']) {
+                        const x = part.rig.pose, y = other.rig.pose, dx = x[`handDirection${side}`], dy = y[`handDirection${side}`], fx = x[`handForward${side}`], fy = y[`handForward${side}`];
+                        if (dx && dy && fx && fy) {
+                            const origin = new Vec3(), frame = interpolateRigidFrame(rigidFrame(origin, dx, fx), rigidFrame(origin, dy, fy), t);
+                            local[`handDirection${side}`] = new Vec3(frame[4], frame[5], frame[6]);
+                            local[`handForward${side}`] = new Vec3(frame[8], frame[9], frame[10]);
+                            local[`foreArmForward${side}`] = local[`handForward${side}`];
+                        }
                     }
                     source = { bind: part.rig.bind, pose: local, matrices: skinMatrices(local, part.rig.bind) };
                     authored.set(part.rig.bind, source);

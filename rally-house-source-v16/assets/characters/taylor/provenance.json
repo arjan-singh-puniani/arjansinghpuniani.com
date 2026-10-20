@@ -2,7 +2,7 @@
   "author": "MakeHuman Community; MargaretToigo; Rally House fit and runtime adaptation",
   "source": "https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482",
   "license": "CC0-1.0",
-  "sha256": "c0052e344e627e35fd03e119a0f1744e9cae2a31c7a4eb1b67287aacb5f8811f",
+  "sha256": "becc3c9d5998b3250b2248766338fb7e0d36bc284de22721259e0adb1b6f99ea",
   "boneMap": {
     "pelvis": "pelvis",
     "spine": "spine",
@@ -20,7 +20,9 @@
     "thighR": "thighR",
     "shinR": "shinR",
     "footL": "footL",
-    "footR": "footR"
+    "footR": "footR",
+    "foreArmTwistL": "foreArmTwistL",
+    "foreArmTwistR": "foreArmTwistR"
   },
   "bind": {
     "pelvis": [
@@ -118,6 +120,16 @@
       1.45957159375,
       0.239057925
     ],
+    "foreArmTwistL": [
+      -0.549955878125,
+      1.55000845,
+      0.138347378125
+    ],
+    "foreArmTwistR": [
+      0.549955878125,
+      1.55000845,
+      0.138347378125
+    ],
     "forward": [
       0.0,
       0.0,
@@ -210,6 +222,7 @@
   "sourceHashes": {
     "base.obj": "8e761e6624b8f54536409135d1636da63b32486a90d4897f84e121d144f6fb4c",
     "default_weights.mhw": "0f3641d651ae3d00ad6b4ccee43142edb109d3bd909d27d9e4139ef1beed8625",
+    "default.mhskel": "99f179bce0aa850b45d4191a1d0d234c5851f881c057439470ded3bddf729a24",
     "skins/skins/toigo_light_skin_with_natural_makeup/young_lightskinned_female_diffuse4.png": "53532399f5f74d560680313549cd72fde4fc81cbe747ee9c9ae90a554eda52e1",
     "clothes/female_sportsuit01/female_sportsuit01_diffuse.png": "00910e3e85b3dcf48d1aa827b4c075cdc77689989423ff4f75bc67f2e86cc588",
     "clothes/shoes05/shoes05_diffuse.png": "7fe5ea2600f6578cdf017da3392ae13aedabea8e8cc1dd6302a8f57e8fb7e5af",
@@ -243,7 +256,7 @@
     "https://static.makehumancommunity.org/assets/assetpacks/skins01.html"
   ],
   "authoringScripts": {
-    "bake-authored-athlete.py": "1ffbab43fcef7cfeaa157b499f49b8b69fe4cfa31428286025752c5fee10f39c",
-    "fit-athlete-kit.py": "faa8fa963cb896085078bce00fd966307c562a2a31a9f1d6ed98fcc7c437f818"
+    "bake-authored-athlete.py": "a935d220769c926c507ed8080c9b2e51453cad31c50f80c7440d5289e3d418b3",
+    "fit-athlete-kit.py": "5121a4eb3d6976e607d2c6709cc4b4b784e9188195460964c14404dc63ff4511"
   }
 }
