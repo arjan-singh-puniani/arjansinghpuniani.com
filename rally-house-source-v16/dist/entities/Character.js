@@ -762,10 +762,14 @@ export class Character {
             handL = this.worldLocal(.10, 1.24 + baseY, .56, torsoYaw);
             handR = this.worldLocal(.17, 1.18 + baseY, .40, torsoYaw);
         }
-        const humanReady = this.spec.appearance === 'human' && (state === 'ready' || shuffle);
+        const humanReady = this.spec.appearance === 'human' && (state === 'ready' || shuffle), authoredReady = humanReady && this.spec.avatar === 'taylor' && !!authoredArmLengths();
         if (humanReady) {
             handR = this.worldLocal(.27, 1.18 + baseY, .36, torsoYaw);
             handL = this.worldLocal(.40, 1.24 + baseY, .375, torsoYaw);
+        }
+        if (authoredReady) {
+            handR = this.worldLocal(-.08, 1.18 + baseY, .48, torsoYaw);
+            handL = this.worldLocal(.05, 1.24 + baseY, .50, torsoYaw);
         }
         if (state === 'coachFeed') {
             handL = this.worldLocal(-.42, 1.05 + baseY, .12);
@@ -881,7 +885,7 @@ export class Character {
         const racketRight = new Vec3(racketForward.z, 0, -racketForward.x);
         let headOffset = Vec3.add(new Vec3(0, .425, 0), racketForward.clone().scale(.225));
         if (humanReady)
-            headOffset = rotateEulerVector(new Vec3(0, .48, 0), new Vec3(.12, torsoYaw, -.70));
+            headOffset = rotateEulerVector(new Vec3(0, .48, 0), new Vec3(authoredReady ? .6 : .12, torsoYaw, -.70));
         if (state === 'serve')
             headOffset = Vec3.add(new Vec3(0, .525, 0), racketForward.clone().scale(.125));
         if (state === 'volley')
@@ -922,7 +926,7 @@ export class Character {
         else if (state === 'volley')
             racketRot = new Vec3(.04, torsoYaw, -.12);
         if (humanReady)
-            racketRot = new Vec3(.12, torsoYaw, -.70);
+            racketRot = new Vec3(authoredReady ? .6 : .12, torsoYaw, -.70);
         if (humanGroundstroke)
             racketRot = new Vec3(Math.atan2(groundDepth, groundRise), Math.atan2(racketForward.x, racketForward.z), Math.atan2(-groundSide, Math.hypot(groundRise, groundDepth)));
         const vib = this.racketVibration * Math.sin(this.animTime * 62) * .045;

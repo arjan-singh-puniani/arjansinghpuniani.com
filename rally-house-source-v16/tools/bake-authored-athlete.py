@@ -96,7 +96,7 @@ def frame(k):
   if k.startswith(('shin','thigh')):f=np.cross(np.array([-1.,0.,0.]),y)
  z=f-y*np.dot(f,y);z/=np.linalg.norm(z);x=np.cross(y,z);m=np.eye(4);m[:3,:3]=np.stack([x,y,z],1);m[:3,3]=a;return m
 frames=[frame(n) for n in names]
-# Bake a handle grip from the authored finger weights, leaving the palm anchor fixed.
+# Bake the finger curl; the fitted handle defines the grip frame below.
 grip_delta=np.zeros_like(shape);source_weights=json.load(open(SRC/'default_weights.mhw'))['weights'];grip_sign={}
 for side,source in [('L','l'),('R','r')]:
  normal=bind['handForward'+side]*np.array([-1,1,1]);palm_width=metric(joint(source+'-finger-2-1'))-metric(joint(source+'-finger-5-1'));grip_sign[side]=1 if np.dot(frames[names.index('hand'+side)][:3,0],palm_width)>0 else -1
@@ -108,7 +108,10 @@ for side,source in [('L','l'),('R','r')]:
    for vertex,weight in source_weights[f'finger{finger}-{segment}.{side}']:grip_delta[vertex]+=weight*((parent@np.append(shape[vertex],1))[:3]-shape[vertex])
   if finger==3:closed_joints.append((parent@np.append(tip,1))[:3]);grip_curve=closed_joints
  hand_frame=frames[names.index('hand'+side)];local=np.array([(np.linalg.inv(hand_frame)@np.append(metric(p),1))[1:3] for p in grip_curve]);coeff=np.linalg.lstsq(np.column_stack([local,np.ones(len(local))]),-(local*local).sum(1),rcond=None)[0];center=-coeff[:2]/2;assert np.linalg.norm(center)<.18
- offset=(hand_frame[:3,:3]@np.array([0,*center]))/np.array([-scale,scale,scale]);along=(metric(shape)-bind['wrist'+side])@bind['handDirection'+side];fade=np.clip(along/.045,0,1);fade=fade*fade*(3-2*fade);grip_delta-=W[:,names.index('hand'+side),None]*fade[:,None]*offset
+ bind['hand'+side]+=hand_frame[:3,:3]@np.array([0,*center])
+
+# Anchor the fitted handle instead of translating palm skin across the wrist.
+frames=[frame(n) for n in names]
 
 parts=[];hidden=set();morph_data={};normal_data={};normal_delta_data={}
 

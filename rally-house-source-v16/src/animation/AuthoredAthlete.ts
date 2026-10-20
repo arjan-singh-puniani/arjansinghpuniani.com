@@ -53,7 +53,10 @@ export function advanceAuthoredHands(p:CharacterPose,position:Vec3,yaw:number,pr
   add(rigidFrame(origin,new Vec3(0,-1,.1),new Vec3(side==='L'?1:-1,0,0)),p.handRestWeight);
   add(rigidFrame(origin,new Vec3(0,0,1),new Vec3(0,1,0)),p.handLapWeight);
   if(racketGrip[i]>.0001){
-   const axis=local(Vec3.sub(p.racketHandleTop,p.racketGrip)).normalize().scale(athlete.gripSign[side]),width=transformPoint(racket,new Vec3((side==='L'?1:-1)*Math.cos(.8),0,Math.sin(.8))),fingers=local(new Vec3(width.x,width.y,width.z));fingers.sub(axis.clone().scale(Vec3.dot(fingers,axis))).normalize();
+   // The grip can roll around its shaft to follow the forearm without moving contact.
+   const axis=local(Vec3.sub(p.racketHandleTop,p.racketGrip)).normalize().scale(athlete.gripSign[side]),fingers=direction.clone();fingers.sub(axis.clone().scale(Vec3.dot(fingers,axis)));
+   if(fingers.len()<.1){const width=transformPoint(racket,new Vec3((side==='L'?1:-1)*Math.cos(.8),0,Math.sin(.8)));const fallback=local(new Vec3(width.x,width.y,width.z));fingers.set(fallback.x,fallback.y,fallback.z);fingers.sub(axis.clone().scale(Vec3.dot(fingers,axis)));}
+   fingers.normalize();
    add(rigidFrame(origin,fingers,Vec3.cross(axis,fingers).normalize()),racketGrip[i]);
   }
   if(previous)frame=interpolateRigidFrame(rigidFrame(origin,previous[`handDirection${side}`],previous[`handForward${side}`]),frame,1-Math.exp(-12*dt));

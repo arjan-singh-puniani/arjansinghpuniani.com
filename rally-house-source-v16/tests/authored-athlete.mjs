@@ -39,7 +39,7 @@ const previousFetch=globalThis.fetch,previousImage=globalThis.Image;
 try{
  globalThis.fetch=async url=>{const path=new URL(url);assert.equal(path.protocol,'file:');assert(path.href.startsWith(dir.href));return new Response(fs.readFileSync(path));};
  globalThis.Image=class{naturalWidth=1024;naturalHeight=1024;async decode(){}};
- const {loadAuthoredAthlete,authoredAthleteMeshes}=await import('../dist/animation/AuthoredAthlete.js');await loadAuthoredAthlete();
+ const {loadAuthoredAthlete,authoredAthleteMeshes,advanceAuthoredHands}=await import('../dist/animation/AuthoredAthlete.js');await loadAuthoredAthlete();
  const verifiedFetch=globalThis.fetch;
  for(const invalid of [{neck:[0,meta.bind.head[1]+.1,0]},{neck:[0,meta.bind.neck[1],1]},{spine:[0,meta.bind.chest[1]+.1,0]},{foreArmL:meta.bind.upperArmL}]){globalThis.fetch=async url=>new URL(url).pathname.endsWith('/provenance.json')?new Response(JSON.stringify({...meta,bind:{...meta.bind,...invalid}})):verifiedFetch(url);await assert.rejects(()=>loadAuthoredAthlete(),/registration|arm lengths/);}
  globalThis.fetch=verifiedFetch;
@@ -87,11 +87,36 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
   openRadius+=radius(false);closedRadius+=radius(true);count++;
  }
  assert(count>20);openRadius/=count;closedRadius/=count;assert(closedRadius<openRadius*.75&&closedRadius<.065,'fingers must close around the handle');const wristDeflection=Math.acos(Math.max(-1,Math.min(1,Vec3.dot(Vec3.sub(gripPose.handR,gripPose.foreArmR).normalize(),gripPose.handDirectionR))));assert(wristDeflection<.8,'ready grip must not buckle the wrist');console.log(JSON.stringify({fingerSamples:count,openRadius,closedRadius,wristDeflection}));
+ // Check the actual fitted top, rather than assuming valid joints imply no overlap.
+ let readyArmChecks=0;
+ for(const hz of [30,60,120])for(const state of ['ready','shuffle']){
+  const actor=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});actor.racketStowed=false;actor.matchCompetitor=true;actor.trigger(state);
+  for(let frame=0;frame<hz*1.5;frame++){
+   actor.update(1/hz);if(frame%Math.ceil(hz/10))continue;
+   const kit=actor.meshes().find(m=>m.rig&&m.material==='performanceKnit'&&!m.skirt),g=kit.skin,points=[],pose=kit.rig.pose;
+   for(let v=0;v<g.positions.length/3;v++){const p=new Vec3(...g.positions.slice(v*3,v*3+3)),out=new Vec3();for(let j=0;j<4;j++){const w=g.boneWeights[v*4+j];if(!w)continue;const q=transformPoint(kit.boneMatrices.slice(g.boneIndices[v*4+j]*16,g.boneIndices[v*4+j]*16+16),p);out.add(new Vec3(q.x,q.y,q.z).scale(w));}points.push(out);}
+   for(const side of ['L','R'])for(const [start,end] of [['upperArm','foreArm'],['foreArm','hand']])for(const t of [.4,.6,.8]){
+    const point=Vec3.lerp(pose[start+side],pose[end+side],t),hits=[];
+    for(let i=0;i<points.length;i+=3){const[a,b,c]=points.slice(i,i+3),det=(b.y-c.y)*(a.x-c.x)+(c.x-b.x)*(a.y-c.y);if(Math.abs(det)<1e-12)continue;const u=((b.y-c.y)*(point.x-c.x)+(c.x-b.x)*(point.y-c.y))/det,v=((c.y-a.y)*(point.x-c.x)+(a.x-c.x)*(point.y-c.y))/det,w=1-u-v;if(u>=0&&v>=0&&w>=0)hits.push(u*a.z+v*b.z+w*c.z);}
+    assert(!(hits.length>1&&point.z>Math.min(...hits)+.015&&point.z<Math.max(...hits)-.015),`${state}/${hz}/${frame}/${side}: ready arm passes through the fitted top`);readyArmChecks++;
+   }
+  }
+ }
+ console.log(JSON.stringify({readyArmChecks}));
+ let palmChecks=0,maxPalmGripShift=0;
+ for(const side of ['L','R'])for(let v=0;v<body.positions.length/3;v++){
+  const d=Vec3.sub(new Vec3(...body.positions.slice(v*3,v*3+3)),rest['wrist'+side]),along=Vec3.dot(d,rest['handDirection'+side]),radial=d.sub(rest['handDirection'+side].clone().scale(along)).len();
+  if(along<.01||along>.035||radial>.025)continue;
+  const shift=Math.hypot(...body.morphs[4].slice(v*3,v*3+3));maxPalmGripShift=Math.max(maxPalmGripShift,shift);assert(shift<.005,'closing the fingers must not fold the palm through the wrist');palmChecks++;
+ }
+ assert(palmChecks>20);console.log(JSON.stringify({palmChecks,maxPalmGripShift}));
  const readyPose=c.analysisPose(),rotation=compose(new Vec3(),readyPose.racketRot),horizontal=transformPoint(rotation,new Vec3(RACKET.headHalfWidth,0,0)),vertical=transformPoint(rotation,new Vec3(0,RACKET.headHalfHeight,0));let minFaceClearance=Infinity;
- for(const azimuth of [-.35,0,.35])for(const x of [-.09,0,.09])for(const y of [-.10,0,.10]){
+ for(const azimuth of [-.6,-.35,0,.35,.6])for(const x of [-.09,0,.09])for(const y of [-.10,0,.10]){
   const screen=v=>v.x*Math.cos(azimuth)-v.z*Math.sin(azimuth),point=Vec3.sub(readyPose.head,readyPose.racketCenter).add(new Vec3(x,y,0)),a=screen(horizontal),b=screen(vertical),det=a*vertical.y-b*horizontal.y,u=(screen(point)*vertical.y-b*point.y)/det,v=(a*point.y-screen(point)*horizontal.y)/det,d=u*u+v*v;minFaceClearance=Math.min(minFaceClearance,d);assert(d>1.05,'ready racket obscures the face in a front or three-quarter view');
  }
  console.log(JSON.stringify({minFaceClearance}));
+ const parallel={...readyPose,handRestWeight:0,handLapWeight:0,handRacketWeight:1,handGripR:1,racketHandleTop:readyPose.racketGrip.clone().add(Vec3.sub(readyPose.handR,readyPose.elbowR).normalize().scale(.4))},parallelHands=advanceAuthoredHands(parallel,new Vec3(),0,undefined,1/60);
+ for(const axis of Object.values(parallelHands))assert([axis.x,axis.y,axis.z].every(Number.isFinite)&&Math.abs(axis.len()-1)<1e-6,'a forearm parallel to the handle must retain a valid grip frame');
  let fixedMouth=0,movingMouth=0;
  for(let v=0;v<body.positions.length/3;v++){const[x,y,z]=body.positions.slice(v*3,v*3+3);if(y<2.02||y>2.15||Math.abs(x)>.065||z<.16)continue;const delta=Math.hypot(...body.morphs[1].slice(v*3,v*3+3));if(delta<1e-4)fixedMouth++;if(delta>.002&&body.morphs[1][v*3+1]<0)movingMouth++;}
  assert(fixedMouth>20&&movingMouth>20,'authored mouth must retain a fixed upper region and a moving lower jaw');
