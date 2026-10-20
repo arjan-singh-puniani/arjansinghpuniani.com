@@ -1,8 +1,8 @@
 {
-  "author": "MakeHuman Community; MargaretToigo; Bobby_03; Mika Suominen; dariush086; Rally House fit and runtime adaptation",
+  "author": "MakeHuman Community; MargaretToigo; Bobby_03; Mika Suominen; dariush086; punkduck; Rally House fit and runtime adaptation",
   "source": "https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482",
-  "license": "CC0-1.0",
-  "sha256": "fdba55f61d7a593d70cb1440ba42987c8f79be22a6bc21350d681ad87d31c00c",
+  "license": "CC0-1.0 AND CC-BY-4.0",
+  "sha256": "314d10062daa5e6db0dfb527bdf708bfb0a2f4d665def661de28b8e4e049ed62",
   "boneMap": {
     "pelvis": "pelvis",
     "spine": "spine",
@@ -169,14 +169,14 @@
   "parts": [
     {
       "name": "skin",
-      "triangles": 20696,
-      "vertices": 11272,
+      "triangles": 20688,
+      "vertices": 11284,
       "material": "humanSkin"
     },
     {
       "name": "kit",
-      "triangles": 2080,
-      "vertices": 1321,
+      "triangles": 2278,
+      "vertices": 1661,
       "material": "performanceKnit"
     },
     {
@@ -224,7 +224,7 @@
   ],
   "textures": {
     "skin.webp": "63097d3cb53497ca5dd016e3bdb767c97682f7f197a51338719c2da2be788556",
-    "kit.webp": "acabfa9265d3eaec3960df4cbf156c896bce6b16e035462d4aa0afe7b4c06624",
+    "kit.webp": "fc02aec6b3e2255f40b084c159314dbed24c9fd1c49895878be2d0e7661f476c",
     "shoes.webp": "3af53b14cb45d2e1a5f09cab63d55b534ee8f7e0f2cb54b63c9f9c8e7513d018",
     "hair.webp": "8a8cb84f04185b668260a8d59ef425cf6832978991acb146efb1329d7c473294",
     "eyes.webp": "7793c48a8a0a8dba8930cba3e0305781a3856e04a971c650a1330667ee2b0ec3",
@@ -262,6 +262,8 @@
     "caucasian-female-young.target": "118379f6e8ba9266247fdb8788a20e1df40a239f97ced0b9905bcbcc74f6e820",
     "clothes/female_sportsuit01/female_sportsuit01.mhclo": "6df057d3116db93afbbbb6d692f92cce84aa16db699f47dd14e825d07c6fd42f",
     "clothes/female_sportsuit01/female_sportsuit01.obj": "fd529bb8dd6a994c1e9a3fb2fd8b236f52c0cc7cebb1f6fd9328953d9df6d6ff",
+    "clothes/punkduck_high_neck_crop_top/highneckcroptop.obj": "c67c81a922b30250c02bb404a139174ac39823c7b66d54c2e6ef237b6c8df64d",
+    "clothes/punkduck_high_neck_crop_top/punkduck_high_neck_crop_top.mhclo": "af3029784d154492c931718e93603d5440ebf9eee805d920fb13d7a060da01ef",
     "clothes/toigo_skirt_with_lace_ruffle/skirt_full_lace_ruffle.obj": "3c2523c0a7d1a61f4667570598c27922e57f7bc16d2ad95f940fae6808f8cdd7",
     "clothes/toigo_skirt_with_lace_ruffle/toigo_skirt_with_lace_ruffle.mhclo": "d8650bbb06adb94d5c73453fe4c7079a17161b0fdd442c829a739aa0876610ed",
     "clothes/shoes05/shoes05.mhclo": "75fc467264b085d7a05ce0c9b5628bb364b246392c59524c556fa09f92b6cb16",
@@ -305,12 +307,13 @@
     "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
     "https://static.makehumancommunity.org/assets/assetpacks/skins01.html",
     "https://static.makehumancommunity.org/assets/assetpacks/skirts01.html",
+    "https://static.makehumancommunity.org/assets/assetpacks/shirts03.html",
     "https://static.makehumancommunity.org/assets/assetpacks/faceunits01.html",
     "https://static.makehumancommunity.org/assets/assetpacks/system_hair_materials01.html"
   ],
   "authoringScripts": {
-    "bake-authored-athlete.py": "71b41511bfb51a2228eab025074bdb9f4524386a5a58053c830cde3c0e1d3090",
-    "fit-athlete-kit.py": "aac9ee99b856a52c1d5e8c158a20847a3ef5fe92e5428f0e67547b176e373df0",
+    "bake-authored-athlete.py": "953de28317490f010cac999f1b1dfa9e6cbaf2843e1ef2302cebd2633427b1fc",
+    "fit-athlete-kit.py": "104c3702a5c5b6190eda0ec6d506441229c39c7a0d5d557caf5bcd50d1e7e9a5",
     "fit-athlete-mouth.py": "d0f21b1d9c34e14d1d07de13bb853241030ce6d3050f36266456319f8b8691f8"
   }
 }
