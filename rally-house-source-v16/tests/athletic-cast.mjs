@@ -56,6 +56,21 @@ for(const spec of specs){
   assert(Vec3.dot(Vec3.sub(p.racketCenter,p.racketGrip).normalize(),c.racketContactFrame().vertical)>.995,'Groundstroke frame and handle point along the actual grip-to-head axis');
  }
 }
+// Waiting is an athletic stance: quiet body motion above shoes that stay on court.
+for(const spec of specs)for(const hz of [30,60,120])for(const yaw of [0,.7,Math.PI]){
+ const c=new Character({...spec},new Vec3(),new Navigation([]),{});c.yaw=c.targetYaw=yaw;c.matchCompetitor=true;c.trigger('ready');
+ for(let i=0;i<hz;i++)c.update(1/hz);
+ const first=c.analysisPose(),right=new Vec3(Math.cos(yaw),0,-Math.sin(yaw));let low=Infinity,high=-Infinity;
+ for(let i=0;i<hz*2;i++){
+  c.update(1/hz);const p=c.analysisPose(),weight=Vec3.dot(p.pelvisCenter,right);low=Math.min(low,weight);high=Math.max(high,weight);
+  for(const side of ['L','R']){assert(Vec3.sub(p[`foot${side}`],first[`foot${side}`]).len()<1e-8,'Ready shoes stay planted while the body breathes');assert(Math.abs(p[`foot${side}`].y-.11)<1e-8,'Ready soles remain on the court');}
+  assert(Vec3.dot(Vec3.sub(p.handR,c.position),right)>.05,'Racket wrist stays on its own side, without crossed forearms');
+  assert(p.handL.y>p.handR.y+.08,'Free hand supports the throat above the grip');
+  assert(p.shoulderR.y-p.shoulderL.y>.015,'Racket shoulder breaks the horizontal shoulder bar');
+ }
+ assert(high-low>.025&&high-low<.08,'Ready weight transfer is visible and restrained');
+}
+console.log('Ready stance PASS: grounded shoes, uncrossed grip, free-hand support, shoulder slope and restrained weight transfer across the cast.');
 assert.equal(signatures.size,specs.length,'Every named adult has a distinct rendered identity');
 assert(new Set(memberData.map(s=>JSON.stringify(locomotionStyleFor(s.id)))).size===memberData.length,'Individual footwork styles remain distinct');
 console.log(JSON.stringify({actors:specs.length,poses,maxStretch,maxContactError,minStrokePelvis,identities:signatures.size}));
