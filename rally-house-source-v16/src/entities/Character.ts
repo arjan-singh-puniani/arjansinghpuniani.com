@@ -38,7 +38,7 @@ const MOVING=new Set<AnimState>(['walk','jog','shuffle']);
 
 interface FacePose {smile:number;mouthOpen:number;browRaise:number;squint:number;focus:number;}
 export interface CharacterPose extends Partial<AuthoredHandPose> {
-  baseY:number;breathe:number;walking:boolean;gait:number;torsoYaw:number;hipYaw:number;headYaw:number;right:Vec3;forward:Vec3;
+  baseY:number;breathe:number;walking:boolean;gait:number;torsoYaw:number;hipYaw:number;headYaw:number;eyeYaw?:number;right:Vec3;forward:Vec3;
   shoulderL:Vec3;shoulderR:Vec3;elbowL:Vec3;elbowR:Vec3;handL:Vec3;handR:Vec3;hipL:Vec3;hipR:Vec3;kneeL:Vec3;kneeR:Vec3;footL:Vec3;footR:Vec3;
   torsoCenter:Vec3;pelvisCenter:Vec3;head:Vec3;racketGrip:Vec3;racketHandleTop:Vec3;racketCenter:Vec3;racketRot:Vec3;
   lean:number;knee:number;shot:boolean;sp:number;face:FacePose;weightShift:number;
@@ -71,7 +71,7 @@ function rotateEulerVector(v:Vec3,r:Vec3){
 
 export class Character {
   get id(){return this.spec.id;}
-  acting:ActingState;crowd:Character[]=[];majorActivity=false;yieldUntil=0;private crowdCooldown=0;private gazeYaw=0;private gazeStarted=false;private gazeClock=0;private transientLookRemaining=0;
+  acting:ActingState;crowd:Character[]=[];majorActivity=false;yieldUntil=0;private crowdCooldown=0;private gazeYaw=0;private eyeAim=0;private gazeStarted=false;private gazeClock=0;private transientLookRemaining=0;
   seatHeight=.54;
   react(name:ReactionName,target?:Vec3,duration=18){this.acting.react(name,duration);if(target)this.setLook(target);}
   position:Vec3; yaw=0; state:AnimState='idle'; activity=''; currentScheduleIndex=-1; path:Vec3[]=[]; pathIndex=0; speed=1.55; animTime=0; targetLook?:Vec3;
@@ -238,7 +238,7 @@ export class Character {
     if(this.transientLookRemaining>0){this.transientLookRemaining=Math.max(0,this.transientLookRemaining-dt);if(this.transientLookRemaining===0)this.targetLook=undefined;}
     const look=this.targetLook??this.conversationTarget;let aim=look?Math.atan2(look.x-this.position.x,look.z-this.position.z):this.yaw;
     if(look&&!this.spectating&&this.state!=='watch'&&!this.majorActivity&&this.acting.role!=='none'&&this.gazeClock%(this.acting.values.gazeHold+1)>this.acting.values.gazeHold)aim+=.24;
-    if(!this.gazeStarted){this.gazeYaw=this.yaw;this.gazeStarted=true;}this.gazeYaw=dampAngle(this.gazeYaw,aim,5,dt);
+    if(!this.gazeStarted){this.gazeYaw=this.eyeAim=this.yaw;this.gazeStarted=true;}this.gazeYaw=dampAngle(this.gazeYaw,aim,5,dt);this.eyeAim=dampAngle(this.eyeAim,aim,20,dt);
     const held=Math.min(dt,this.contactHoldRemaining);
     this.contactHoldRemaining=Math.max(0,this.contactHoldRemaining-dt);
     const strokeDt=dt-held;
@@ -365,6 +365,7 @@ export class Character {
     if(!shot&&!moving&&this.socialGesture==='think'){lean+=.055;}
     if(state==='idle'){const phase=time*this.acting.values.idleFidgetRate*(this.spec.id==='mika'?.92:this.spec.id==='nia'?.68:.58)+this.seed()*.037;const amp=this.spec.id==='coach'?.010:this.spec.id==='mika'?.024:this.spec.id==='nia'?.018:.015;hipCoil+=Math.sin(phase)*amp;coil-=Math.sin(phase)*amp*.72;baseY+=Math.sin(phase*1.7)*amp*.13;}
     if(moving){coil=gait*gaitStyle.torsoCounter*.45;hipCoil=-gait*gaitStyle.hipSwing*.45;baseY=this.spec.appearance==='human'?-.025+Math.cos(this.gaitPhase*2)*.003:.008+Math.sin(this.gaitPhase*2)*.012;lean=0;knee=0;}const tracking=state==='watch'||this.spectating||state==='ready'||shuffle;const watchDelta=tracking?clamp(angleDelta(this.yaw,this.gazeYaw),-.78,.78):0;const torsoYaw=this.yaw+coil+watchDelta*.30,hipYaw=this.yaw+hipCoil+watchDelta*.07;
+    // shortcut: horizontal gaze only; add pitch and convergence for close conversation staging.
     const targetHeadYaw=this.gazeYaw;const headLimit=tracking?.70:.42;const headYaw=this.yaw+clamp(angleDelta(this.yaw,targetHeadYaw),-headLimit,headLimit)+clip.headTurn;
     const sy=Math.sin(headYaw),cy=Math.cos(headYaw),right=new Vec3(cy,0,-sy),forward=new Vec3(sy,0,cy);
 
@@ -490,14 +491,14 @@ export class Character {
     if(!shot&&!moving&&this.socialGesture==='think'){torsoCenter.add(this.localVector(0,0,.035));shoulderL.add(this.localVector(0,0,.045));shoulderR.add(this.localVector(0,0,.045));}
     const headStabilize=moving?stepLift*gaitStyle.headStabilize:0;const head=this.worldLocal(pelvisShiftX*.25,1.80+baseY+actingLift+breathe-knee+splitHop+clip.headNod-headStabilize+(!shot&&!moving&&(this.socialGesture==='nod'||this.socialGesture==='laugh')?Math.sin(time*6)*.022:0),.01+pelvisShiftZ*.45,headYaw);
     const elbowL=Vec3.lerp(shoulderL,handL,.50).add(forward.clone().scale(.055)).add(right.clone().scale(-.035));const elbowR=Vec3.lerp(shoulderR,handR,.50).add(forward.clone().scale(.055)).add(right.clone().scale(.035));
-    return {baseY,breathe,walking:moving,gait,torsoYaw,hipYaw,headYaw,right,forward,shoulderL,shoulderR,elbowL,elbowR,handL,handR,hipL,hipR,kneeL,kneeR,footL,footR,torsoCenter,pelvisCenter,head,racketGrip,racketHandleTop,racketCenter,racketRot,lean,knee,shot,sp,face:{...this.facePose},weightShift,...this.handPose,...this.authoredHands};
+    return {baseY,breathe,walking:moving,gait,torsoYaw,hipYaw,headYaw,eyeYaw:clamp(angleDelta(headYaw,this.eyeAim),-.30,.30),right,forward,shoulderL,shoulderR,elbowL,elbowR,handL,handR,hipL,hipR,kneeL,kneeR,footL,footR,torsoCenter,pelvisCenter,head,racketGrip,racketHandleTop,racketCenter,racketRot,lean,knee,shot,sp,face:{...this.facePose},weightShift,...this.handPose,...this.authoredHands};
   }
 
   private localVector(x:number,y:number,z:number){const s=Math.sin(this.yaw),c=Math.cos(this.yaw);return new Vec3(c*x+s*z,y,-s*x+c*z);}
 
   private blendPose(a:Pose,b:Pose,t:number):Pose{
     const av=(k:keyof Pose)=>a[k] as Vec3,bv=(k:keyof Pose)=>b[k] as Vec3;const v=(k:keyof Pose)=>blendVec(av(k),bv(k),t);
-    return {...b,baseY:a.baseY+(b.baseY-a.baseY)*t,breathe:a.breathe+(b.breathe-a.breathe)*t,gait:a.gait+(b.gait-a.gait)*t,torsoYaw:a.torsoYaw+angleDelta(a.torsoYaw,b.torsoYaw)*t,hipYaw:a.hipYaw+angleDelta(a.hipYaw,b.hipYaw)*t,headYaw:a.headYaw+angleDelta(a.headYaw,b.headYaw)*t,right:v('right'),forward:v('forward'),shoulderL:v('shoulderL'),shoulderR:v('shoulderR'),elbowL:v('elbowL'),elbowR:v('elbowR'),handL:v('handL'),handR:v('handR'),hipL:v('hipL'),hipR:v('hipR'),kneeL:v('kneeL'),kneeR:v('kneeR'),footL:v('footL'),footR:v('footR'),torsoCenter:v('torsoCenter'),pelvisCenter:v('pelvisCenter'),head:v('head'),racketGrip:v('racketGrip'),racketHandleTop:v('racketHandleTop'),racketCenter:v('racketCenter'),racketRot:v('racketRot'),lean:a.lean+(b.lean-a.lean)*t,knee:a.knee+(b.knee-a.knee)*t,sp:a.sp+(b.sp-a.sp)*t,face:blendFace(a.face,b.face,t),weightShift:a.weightShift+(b.weightShift-a.weightShift)*t};
+    return {...b,baseY:a.baseY+(b.baseY-a.baseY)*t,breathe:a.breathe+(b.breathe-a.breathe)*t,gait:a.gait+(b.gait-a.gait)*t,torsoYaw:a.torsoYaw+angleDelta(a.torsoYaw,b.torsoYaw)*t,hipYaw:a.hipYaw+angleDelta(a.hipYaw,b.hipYaw)*t,headYaw:a.headYaw+angleDelta(a.headYaw,b.headYaw)*t,eyeYaw:(a.eyeYaw??0)+((b.eyeYaw??0)-(a.eyeYaw??0))*t,right:v('right'),forward:v('forward'),shoulderL:v('shoulderL'),shoulderR:v('shoulderR'),elbowL:v('elbowL'),elbowR:v('elbowR'),handL:v('handL'),handR:v('handR'),hipL:v('hipL'),hipR:v('hipR'),kneeL:v('kneeL'),kneeR:v('kneeR'),footL:v('footL'),footR:v('footR'),torsoCenter:v('torsoCenter'),pelvisCenter:v('pelvisCenter'),head:v('head'),racketGrip:v('racketGrip'),racketHandleTop:v('racketHandleTop'),racketCenter:v('racketCenter'),racketRot:v('racketRot'),lean:a.lean+(b.lean-a.lean)*t,knee:a.knee+(b.knee-a.knee)*t,sp:a.sp+(b.sp-a.sp)*t,face:blendFace(a.face,b.face,t),weightShift:a.weightShift+(b.weightShift-a.weightShift)*t};
   }
 
   private pose(){

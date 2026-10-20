@@ -66,6 +66,15 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
  const blinkActor=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});let previousBlink=0,maxBlink=0,maxBlinkStep=0;
  for(let frame=0;frame<960;frame++){blinkActor.update(1/240);const blink=blinkActor.meshes().find(m=>m.rig).expression[2];maxBlink=Math.max(maxBlink,blink);maxBlinkStep=Math.max(maxBlinkStep,Math.abs(blink-previousBlink));previousBlink=blink;}
  assert(maxBlink>.95&&maxBlinkStep<.15,'blink must close fully without snapping shut');console.log(JSON.stringify({maxBlink,maxBlinkStep}));
+ const gazeActor=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});gazeActor.update(1/60);gazeActor.setLook(new Vec3(3,1.8,4));
+ for(let i=0;i<12;i++)gazeActor.update(1/120);
+ const gazeA=captureFrame(gazeActor,0,null),eyeA=gazeA.body.find(m=>m.eyeCenters);assert(eyeA&&eyeA.eyeYaw>.1&&eyeA.eyeYaw<=.30,'eyes must lead a head turn within anatomical limits');assert.equal(eyeA.eyeCenters.length,6);assert(eyeA.eyeCenters.every(Number.isFinite));
+ const frozen=gazeA.pose.eyeYaw;gazeActor.setLook(new Vec3(-3,1.8,4));for(let i=0;i<12;i++)gazeActor.update(1/120);
+ const gazeB=captureFrame(gazeActor,1,null),eyeB=gazeB.body.find(m=>m.eyeCenters),replayEyes=interpolateFrame(gazeA,gazeB,.5).body.find(m=>m.eyeCenters);
+ assert(eyeB.eyeYaw<-.1);assert.equal(gazeA.pose.eyeYaw,frozen,'recording mutated when the live actor looked away');assert(Math.abs(replayEyes.eyeYaw-(eyeA.eyeYaw+eyeB.eyeYaw)/2)<1e-12,'replay must interpolate captured eye movement');
+ const repeated=gazeActor.meshes().find(m=>m.eyeCenters).eyeYaw;assert.equal(repeated,gazeActor.meshes().find(m=>m.eyeCenters).eyeYaw,'rendering must not advance gaze');
+ for(let i=0;i<360;i++)gazeActor.update(1/120);assert(Math.abs(gazeActor.analysisPose().eyeYaw)<.25,'eyes must settle once the head has caught up');
+ console.log(JSON.stringify({gazeLead:eyeA.eyeYaw,gazeReverse:eyeB.eyeYaw,replayedGaze:replayEyes.eyeYaw}));
  const observedHands=actor=>{const mesh=actor.meshes().find(m=>m.rig),g=mesh.skin,points=[];for(let v=0;v<g.positions.length/3;v+=9){if(![0,1,2,3].some(j=>[BONE.handL,BONE.handR].includes(g.boneIndices[v*4+j])&&g.boneWeights[v*4+j]>.8))continue;const p=new Vec3(...g.positions.slice(v*3,v*3+3));p.add(new Vec3(...g.morphs[4].slice(v*3,v*3+3)).scale(mesh.handGrip[p.x<0?0:1]));const point=new Vec3();for(let j=0;j<4;j++){const weight=g.boneWeights[v*4+j];if(!weight)continue;const q=transformPoint(mesh.boneMatrices.slice(g.boneIndices[v*4+j]*16,g.boneIndices[v*4+j]*16+16),p);point.add(new Vec3(q.x*weight,q.y*weight,q.z*weight));}const side=[0,1,2,3].some(j=>g.boneIndices[v*4+j]===BONE.handL&&g.boneWeights[v*4+j]>.8)?'L':'R';points.push(point.sub(mesh.rig.pose['hand'+side]));}return points;};
  // Remove legitimate hand travel to measure continuity of the retargeted surface.
  let transitionChecks=0,zeroTimeJump=0,maxHandRelativeStep=0;

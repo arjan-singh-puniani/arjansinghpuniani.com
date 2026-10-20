@@ -4,7 +4,7 @@ import {inspectCharacterAsset,type AssetProvenance,type IntakeResult} from './Ch
 import {BONE,rigFromPose,skinMatrices,type RigPoseLocal} from './CharacterSkin.js';
 import type {CharacterPose} from '../entities/Character.js';
 
-let athlete:{parts:IntakeResult['primitives'];bind:RigPoseLocal;images:Map<string,HTMLImageElement>;gripSign:{L:number;R:number}}|undefined;
+let athlete:{parts:IntakeResult['primitives'];bind:RigPoseLocal;images:Map<string,HTMLImageElement>;gripSign:{L:number;R:number};eyeCenters:Float32Array}|undefined;
 const root=new URL('../../assets/characters/taylor/',import.meta.url);
 const digest=async(bytes:ArrayBuffer)=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),n=>n.toString(16).padStart(2,'0')).join('');
 
@@ -22,7 +22,12 @@ export async function loadAuthoredAthlete(){
   const url=URL.createObjectURL(new Blob([data],{type:'image/webp'}));try{const image=new Image();image.src=url;await image.decode();if(image.naturalWidth>2048||image.naturalHeight>2048)throw Error('Character texture exceeds its resolution budget');images.set(name,image);}finally{URL.revokeObjectURL(url);}
  }));
  if(!meta.gripSign||!['L','R'].every(s=>Math.abs(meta.gripSign[s as 'L'|'R'])===1))throw Error('Invalid character grip frame');
- bind.headUp=new Vec3(0,1,0);athlete={parts:result.primitives,bind:bind as unknown as RigPoseLocal,images,gripSign:meta.gripSign};
+ const eyePart=result.primitives.find(p=>p.materialSlot==='eyes');if(!eyePart)throw Error('Missing character eyes');
+ // Rotate each authored eyeball around its own centre before applying the head transform.
+ const eyes=eyePart.geometry.positions,eyeCenters=new Float32Array(6);
+ for(const side of [0,1]){const lo=[Infinity,Infinity,Infinity],hi=[-Infinity,-Infinity,-Infinity];for(let i=0;i<eyes.length;i+=3){if((eyes[i]<0?0:1)!==side)continue;for(let axis=0;axis<3;axis++){lo[axis]=Math.min(lo[axis],eyes[i+axis]);hi[axis]=Math.max(hi[axis],eyes[i+axis]);}}for(let axis=0;axis<3;axis++)eyeCenters[side*3+axis]=(lo[axis]+hi[axis])/2;}
+ if(!eyeCenters.every(Number.isFinite))throw Error('Invalid character eye geometry');
+ bind.headUp=new Vec3(0,1,0);athlete={parts:result.primitives,bind:bind as unknown as RigPoseLocal,images,gripSign:meta.gripSign,eyeCenters};
 }
 
 export interface AuthoredHandPose{handDirectionL:Vec3;handDirectionR:Vec3;handForwardL:Vec3;handForwardR:Vec3;}
@@ -57,5 +62,5 @@ export function authoredAthleteMeshes(p:CharacterPose,position:Vec3,yaw:number,f
  for(const [i,side] of (['L','R'] as const).entries()){const f=feet[i],angle=f.yaw-yaw;rig[`footForward${side}`]=new Vec3(Math.sin(angle)*Math.cos(f.pitch),-Math.sin(f.pitch),Math.cos(angle)*Math.cos(f.pitch));rig[`footUp${side}`]=new Vec3(Math.sin(angle)*Math.sin(f.pitch),Math.cos(f.pitch),Math.cos(angle)*Math.sin(f.pitch));}
  const bones=skinMatrices(rig,athlete.bind),phase=(time+.47)%3.75,blink=phase<.05?smoothstep(0,.05,phase):1-smoothstep(.05,.18,phase);const expression:[number,number,number,number]=[p.face.smile,p.face.mouthOpen,Math.min(1,blink+p.face.squint*.35),p.face.browRaise];
  const sourceRig={bind:athlete.bind,pose:rig};
- return athlete.parts.map(part=>({poseRig:true,skirt:part.materialSlot==='skirt',rig:sourceRig,expression,handGrip,skin:part.geometry,boneMatrices:bones,position:new Vec3(position.x,0,position.z),rotation:new Vec3(0,yaw,0),color:'#ffffff',material:part.materialSlot==='skin'?'humanSkin':part.materialSlot==='eyes'?'iris':part.materialSlot==='teeth'?'ceramic':['hair','brows','lashes'].includes(part.materialSlot)?'groomedHair':'performanceKnit',diffuse:part.albedo?athlete!.images.get(part.albedo):undefined,alphaCutoff:part.alphaCutoff,doubleSided:part.doubleSided}));
+ return athlete.parts.map(part=>({poseRig:true,eyeCenters:part.materialSlot==='eyes'?athlete!.eyeCenters:undefined,eyeYaw:part.materialSlot==='eyes'?p.eyeYaw??0:0,skirt:part.materialSlot==='skirt',rig:sourceRig,expression,handGrip,skin:part.geometry,boneMatrices:bones,position:new Vec3(position.x,0,position.z),rotation:new Vec3(0,yaw,0),color:'#ffffff',material:part.materialSlot==='skin'?'humanSkin':part.materialSlot==='eyes'?'iris':part.materialSlot==='teeth'?'ceramic':['hair','brows','lashes'].includes(part.materialSlot)?'groomedHair':'performanceKnit',diffuse:part.albedo?athlete!.images.get(part.albedo):undefined,alphaCutoff:part.alphaCutoff,doubleSided:part.doubleSided}));
 }

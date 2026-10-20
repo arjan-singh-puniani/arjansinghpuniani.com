@@ -121,7 +121,7 @@ export function interpolateFrame(a, b, time) {
             }
             const expression = part.expression && other.expression ? part.expression.map((n, j) => n + (other.expression[j] - n) * t) : part.expression;
             const handGrip = part.handGrip && other.handGrip ? part.handGrip.map((n, j) => n + (other.handGrip[j] - n) * t) : part.handGrip;
-            return { ...part, position, rotation, rig, expression, handGrip, scale: part.scale && other.scale ? Vec3.lerp(part.scale, other.scale, t) : part.scale, boneMatrices: palette };
+            return { ...part, position, rotation, rig, expression, handGrip, eyeYaw: (part.eyeYaw ?? 0) + ((other.eyeYaw ?? 0) - (part.eyeYaw ?? 0)) * t, scale: part.scale && other.scale ? Vec3.lerp(part.scale, other.scale, t) : part.scale, boneMatrices: palette };
         }
         if ('skin' in part || 'skin' in other)
             throw Error('Replay topology changed');

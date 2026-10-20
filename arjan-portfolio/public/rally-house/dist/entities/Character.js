@@ -50,6 +50,7 @@ export class Character {
     yieldUntil = 0;
     crowdCooldown = 0;
     gazeYaw = 0;
+    eyeAim = 0;
     gazeStarted = false;
     gazeClock = 0;
     transientLookRemaining = 0;
@@ -365,10 +366,11 @@ export class Character {
         if (look && !this.spectating && this.state !== 'watch' && !this.majorActivity && this.acting.role !== 'none' && this.gazeClock % (this.acting.values.gazeHold + 1) > this.acting.values.gazeHold)
             aim += .24;
         if (!this.gazeStarted) {
-            this.gazeYaw = this.yaw;
+            this.gazeYaw = this.eyeAim = this.yaw;
             this.gazeStarted = true;
         }
         this.gazeYaw = dampAngle(this.gazeYaw, aim, 5, dt);
+        this.eyeAim = dampAngle(this.eyeAim, aim, 20, dt);
         const held = Math.min(dt, this.contactHoldRemaining);
         this.contactHoldRemaining = Math.max(0, this.contactHoldRemaining - dt);
         const strokeDt = dt - held;
@@ -697,6 +699,7 @@ export class Character {
         const tracking = state === 'watch' || this.spectating || state === 'ready' || shuffle;
         const watchDelta = tracking ? clamp(angleDelta(this.yaw, this.gazeYaw), -.78, .78) : 0;
         const torsoYaw = this.yaw + coil + watchDelta * .30, hipYaw = this.yaw + hipCoil + watchDelta * .07;
+        // shortcut: horizontal gaze only; add pitch and convergence for close conversation staging.
         const targetHeadYaw = this.gazeYaw;
         const headLimit = tracking ? .70 : .42;
         const headYaw = this.yaw + clamp(angleDelta(this.yaw, targetHeadYaw), -headLimit, headLimit) + clip.headTurn;
@@ -986,13 +989,13 @@ export class Character {
         const head = this.worldLocal(pelvisShiftX * .25, 1.80 + baseY + actingLift + breathe - knee + splitHop + clip.headNod - headStabilize + (!shot && !moving && (this.socialGesture === 'nod' || this.socialGesture === 'laugh') ? Math.sin(time * 6) * .022 : 0), .01 + pelvisShiftZ * .45, headYaw);
         const elbowL = Vec3.lerp(shoulderL, handL, .50).add(forward.clone().scale(.055)).add(right.clone().scale(-.035));
         const elbowR = Vec3.lerp(shoulderR, handR, .50).add(forward.clone().scale(.055)).add(right.clone().scale(.035));
-        return { baseY, breathe, walking: moving, gait, torsoYaw, hipYaw, headYaw, right, forward, shoulderL, shoulderR, elbowL, elbowR, handL, handR, hipL, hipR, kneeL, kneeR, footL, footR, torsoCenter, pelvisCenter, head, racketGrip, racketHandleTop, racketCenter, racketRot, lean, knee, shot, sp, face: { ...this.facePose }, weightShift, ...this.handPose, ...this.authoredHands };
+        return { baseY, breathe, walking: moving, gait, torsoYaw, hipYaw, headYaw, eyeYaw: clamp(angleDelta(headYaw, this.eyeAim), -.30, .30), right, forward, shoulderL, shoulderR, elbowL, elbowR, handL, handR, hipL, hipR, kneeL, kneeR, footL, footR, torsoCenter, pelvisCenter, head, racketGrip, racketHandleTop, racketCenter, racketRot, lean, knee, shot, sp, face: { ...this.facePose }, weightShift, ...this.handPose, ...this.authoredHands };
     }
     localVector(x, y, z) { const s = Math.sin(this.yaw), c = Math.cos(this.yaw); return new Vec3(c * x + s * z, y, -s * x + c * z); }
     blendPose(a, b, t) {
         const av = (k) => a[k], bv = (k) => b[k];
         const v = (k) => blendVec(av(k), bv(k), t);
-        return { ...b, baseY: a.baseY + (b.baseY - a.baseY) * t, breathe: a.breathe + (b.breathe - a.breathe) * t, gait: a.gait + (b.gait - a.gait) * t, torsoYaw: a.torsoYaw + angleDelta(a.torsoYaw, b.torsoYaw) * t, hipYaw: a.hipYaw + angleDelta(a.hipYaw, b.hipYaw) * t, headYaw: a.headYaw + angleDelta(a.headYaw, b.headYaw) * t, right: v('right'), forward: v('forward'), shoulderL: v('shoulderL'), shoulderR: v('shoulderR'), elbowL: v('elbowL'), elbowR: v('elbowR'), handL: v('handL'), handR: v('handR'), hipL: v('hipL'), hipR: v('hipR'), kneeL: v('kneeL'), kneeR: v('kneeR'), footL: v('footL'), footR: v('footR'), torsoCenter: v('torsoCenter'), pelvisCenter: v('pelvisCenter'), head: v('head'), racketGrip: v('racketGrip'), racketHandleTop: v('racketHandleTop'), racketCenter: v('racketCenter'), racketRot: v('racketRot'), lean: a.lean + (b.lean - a.lean) * t, knee: a.knee + (b.knee - a.knee) * t, sp: a.sp + (b.sp - a.sp) * t, face: blendFace(a.face, b.face, t), weightShift: a.weightShift + (b.weightShift - a.weightShift) * t };
+        return { ...b, baseY: a.baseY + (b.baseY - a.baseY) * t, breathe: a.breathe + (b.breathe - a.breathe) * t, gait: a.gait + (b.gait - a.gait) * t, torsoYaw: a.torsoYaw + angleDelta(a.torsoYaw, b.torsoYaw) * t, hipYaw: a.hipYaw + angleDelta(a.hipYaw, b.hipYaw) * t, headYaw: a.headYaw + angleDelta(a.headYaw, b.headYaw) * t, eyeYaw: (a.eyeYaw ?? 0) + ((b.eyeYaw ?? 0) - (a.eyeYaw ?? 0)) * t, right: v('right'), forward: v('forward'), shoulderL: v('shoulderL'), shoulderR: v('shoulderR'), elbowL: v('elbowL'), elbowR: v('elbowR'), handL: v('handL'), handR: v('handR'), hipL: v('hipL'), hipR: v('hipR'), kneeL: v('kneeL'), kneeR: v('kneeR'), footL: v('footL'), footR: v('footR'), torsoCenter: v('torsoCenter'), pelvisCenter: v('pelvisCenter'), head: v('head'), racketGrip: v('racketGrip'), racketHandleTop: v('racketHandleTop'), racketCenter: v('racketCenter'), racketRot: v('racketRot'), lean: a.lean + (b.lean - a.lean) * t, knee: a.knee + (b.knee - a.knee) * t, sp: a.sp + (b.sp - a.sp) * t, face: blendFace(a.face, b.face, t), weightShift: a.weightShift + (b.weightShift - a.weightShift) * t };
     }
     pose() {
         const target = this.poseFor(this.state, this.animTime);

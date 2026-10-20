@@ -1,0 +1,7 @@
+{"assetTriangles":39870,"samples":42,"maxGripGap":1.9894066921722435e-7,"minSole":0.0014172874979896388,"minForearmVolume":0.15029394189163725}
+{"fingerSamples":2378,"openRadius":0.11412941587545211,"closedRadius":0.03560113037542368,"wristDeflection":0.4740845382516379}
+{"minFaceClearance":3.599410672664512}
+{"maxBlink":1,"maxBlinkStep":0.12439814814813799}
+{"gazeLead":0.27393872222439875,"gazeReverse":-0.3,"replayedGaze":-0.01303063888780065}
+{"transitionChecks":315,"zeroTimeJump":0,"maxHandRelativeStep":0.02656843856854058}
+Authored athlete loader, actual Character meshes, shared replay palette and facial interpolation PASS.

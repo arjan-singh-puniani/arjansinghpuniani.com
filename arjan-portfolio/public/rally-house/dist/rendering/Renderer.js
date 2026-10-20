@@ -263,9 +263,9 @@ export class Renderer {
         };
         // u_model/u_vp/u_color must exist; the rest are allowed to be optimised away.
         this.u = grab(this.program, litNames, ['u_model', 'u_vp', 'u_color']);
-        this.su = grab(this.skinProgram, [...litNames, 'u_bones[0]', 'u_expression', 'u_handGrip', 'u_skirt', 'u_skirtHips[0]', 'u_skirtKnees[0]'], ['u_model', 'u_vp', 'u_color', 'u_bones[0]']);
+        this.su = grab(this.skinProgram, [...litNames, 'u_bones[0]', 'u_expression', 'u_handGrip', 'u_eyeYaw', 'u_eyeCenters[0]', 'u_skirt', 'u_skirtHips[0]', 'u_skirtKnees[0]'], ['u_model', 'u_vp', 'u_color', 'u_bones[0]']);
         this.du = grab(this.depthProgram, ['u_model', 'u_lightVP', 'u_albedo', 'u_textured', 'u_alphaCutoff'], ['u_model', 'u_lightVP']);
-        this.dsu = grab(this.depthSkinProgram, ['u_model', 'u_lightVP', 'u_bones[0]', 'u_expression', 'u_handGrip', 'u_skirt', 'u_skirtHips[0]', 'u_skirtKnees[0]', 'u_albedo', 'u_textured', 'u_alphaCutoff'], ['u_model', 'u_lightVP', 'u_bones[0]']);
+        this.dsu = grab(this.depthSkinProgram, ['u_model', 'u_lightVP', 'u_bones[0]', 'u_expression', 'u_handGrip', 'u_eyeYaw', 'u_eyeCenters[0]', 'u_skirt', 'u_skirtHips[0]', 'u_skirtKnees[0]', 'u_albedo', 'u_textured', 'u_alphaCutoff'], ['u_model', 'u_lightVP', 'u_bones[0]']);
         const foliage = foliageGeometry();
         this.geos.set('foliage', this.upload({ p: [...foliage.positions], n: [...foliage.normals] }));
         this.geos.set('box', this.upload(this.boxGeometry()));
@@ -517,6 +517,10 @@ export class Renderer {
                 gl.uniform4fv(u['u_skirtKnees'], new Float32Array([pose.shinL.x, pose.shinL.y, pose.shinL.z, .145, pose.shinR.x, pose.shinR.y, pose.shinR.z, .145]));
             }
         }
+        if (u['u_eyeYaw'])
+            gl.uniform1f(u['u_eyeYaw'], m.eyeCenters ? m.eyeYaw ?? 0 : 0);
+        if (u['u_eyeCenters'] && m.eyeCenters)
+            gl.uniform3fv(u['u_eyeCenters'], m.eyeCenters);
         if (u['u_expression'])
             gl.uniform4fv(u['u_expression'], m.expression ?? [0, 0, 0, 0]);
         if (u['u_handGrip'])
@@ -579,10 +583,10 @@ export class Renderer {
     skinVS(depthOnly) {
         return `#version 300 es
     precision highp float;layout(location=0) in vec3 a_position;layout(location=1) in vec3 a_normal;layout(location=2) in vec4 a_bones;layout(location=3) in vec4 a_weights;layout(location=4) in vec2 a_uv;layout(location=5) in vec3 a_smile;layout(location=6) in vec3 a_mouth;layout(location=7) in vec3 a_blink;layout(location=8) in vec3 a_brow;layout(location=9) in vec3 a_grip;layout(location=10) in vec3 a_smileNormal;layout(location=11) in vec3 a_mouthNormal;layout(location=12) in vec3 a_blinkNormal;layout(location=13) in vec3 a_browNormal;layout(location=14) in vec3 a_gripNormal;
-    uniform mat4 u_model;uniform mat4 ${depthOnly ? 'u_lightVP' : 'u_vp'};uniform mat4 u_bones[19];uniform vec4 u_expression;uniform vec2 u_handGrip;uniform float u_skirt;uniform vec4 u_skirtHips[2];uniform vec4 u_skirtKnees[2];
+    uniform mat4 u_model;uniform mat4 ${depthOnly ? 'u_lightVP' : 'u_vp'};uniform mat4 u_bones[19];uniform vec4 u_expression;uniform vec2 u_handGrip;uniform float u_eyeYaw;uniform vec3 u_eyeCenters[2];uniform float u_skirt;uniform vec4 u_skirtHips[2];uniform vec4 u_skirtKnees[2];
     out vec2 v_uv;${depthOnly ? '' : 'out vec3 v_normal;out vec3 v_world;out vec3 v_surface;'}
     mat4 skin(){ivec4 b=ivec4(a_bones+.5);return u_bones[b.x]*a_weights.x+u_bones[b.y]*a_weights.y+u_bones[b.z]*a_weights.z+u_bones[b.w]*a_weights.w;}
-    void main(){mat4 S=skin();float grip=a_position.x<0.0?u_handGrip.x:u_handGrip.y;vec3 normal=normalize(a_normal+a_smileNormal*u_expression.x+a_mouthNormal*u_expression.y+a_blinkNormal*u_expression.z+a_browNormal*u_expression.w+a_gripNormal*grip);vec3 posed=a_position+a_smile*u_expression.x+a_mouth*u_expression.y+a_blink*u_expression.z+a_brow*u_expression.w+a_grip*grip;vec3 skinned=(S*vec4(posed,1.0)).xyz;
+    void main(){mat4 S=skin();float grip=a_position.x<0.0?u_handGrip.x:u_handGrip.y;vec3 normal=normalize(a_normal+a_smileNormal*u_expression.x+a_mouthNormal*u_expression.y+a_blinkNormal*u_expression.z+a_browNormal*u_expression.w+a_gripNormal*grip);vec3 posed=a_position+a_smile*u_expression.x+a_mouth*u_expression.y+a_blink*u_expression.z+a_brow*u_expression.w+a_grip*grip;if(abs(u_eyeYaw)>.00001){float c=cos(u_eyeYaw),s=sin(u_eyeYaw);mat3 turn=mat3(c,0,-s,0,1,0,s,0,c);vec3 centre=u_eyeCenters[a_position.x<0.0?0:1];posed=centre+turn*(posed-centre);normal=turn*normal;}vec3 skinned=(S*vec4(posed,1.0)).xyz;
     if(u_skirt>.5)for(int pass=0;pass<3;pass++)for(int leg=0;leg<2;leg++){vec4 hip=u_skirtHips[leg],knee=u_skirtKnees[leg];vec3 axis=knee.xyz-hip.xyz;float t=clamp(dot(skinned-hip.xyz,axis)/max(dot(axis,axis),.000001),0.0,1.0);vec3 centre=hip.xyz+axis*t,delta=skinned-centre;float distance=length(delta),radius=mix(hip.w,knee.w,t);if(distance<radius)skinned=centre+(distance>.00001?delta/distance:vec3(0,1,0))*radius;}
     vec4 wp=u_model*vec4(skinned,1.0);
     v_uv=a_uv;${depthOnly ? '' : 'v_world=wp.xyz;v_surface=a_position;mat3 B=mat3(u_model)*mat3(S);vec3 c0=cross(B[1],B[2]),c1=cross(B[2],B[0]),c2=cross(B[0],B[1]);float determinant=dot(B[0],c0);vec3 corrected=mat3(c0,c1,c2)*normal;v_normal=normalize(abs(determinant)<.000001?B*normal:corrected*(determinant<0.0?-1.0:1.0));'}
