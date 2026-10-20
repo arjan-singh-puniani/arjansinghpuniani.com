@@ -70,6 +70,18 @@ for(const spec of specs)for(const hz of [30,60,120])for(const yaw of [0,.7,Math.
  }
  assert(high-low>.025&&high-low<.08,'Ready weight transfer is visible and restrained');
 }
+for(const spec of specs)for(const hz of [30,60,120])for(const netYaw of [0,Math.PI]){
+ const c=new Character({...spec},new Vec3(),new Navigation([]),{});c.yaw=c.targetYaw=netYaw;c.matchCompetitor=true;c.trigger('ready');
+ for(let i=0;i<hz;i++)c.update(1/hz);
+ const first=c.analysisPose(),target=new Vec3(6,1.2,netYaw===0?4:-4);c.setLook(target);
+ for(let i=0;i<hz*2;i++)c.update(1/hz);
+ const p=c.analysisPose();assert.equal(c.yaw,netYaw,'Attention alone cannot steer the feet');
+ for(const side of ['L','R'])assert(Vec3.sub(p[`foot${side}`],first[`foot${side}`]).len()<1e-8,'Looking sideways keeps ready feet planted');
+ assert(Math.abs(p.headYaw-netYaw)>Math.abs(p.torsoYaw-netYaw)+.25,'Head carries more attention than the chest');
+ assert(Math.abs(p.torsoYaw-netYaw)>Math.abs(p.hipYaw-netYaw)+.08,'Chest turns more than weight-bearing pelvis');
+ c.steerOnCourt(new Vec3(.01,0,0),target);for(let i=0;i<hz*2;i++)c.update(1/hz);
+ assert(Math.abs(c.yaw-netYaw)<.25,'Court adjustment keeps feet oriented through the net rather than magnetized to the opponent');
+}
 console.log('Ready stance PASS: grounded shoes, uncrossed grip, free-hand support, shoulder slope and restrained weight transfer across the cast.');
 assert.equal(signatures.size,specs.length,'Every named adult has a distinct rendered identity');
 assert(new Set(memberData.map(s=>JSON.stringify(locomotionStyleFor(s.id)))).size===memberData.length,'Individual footwork styles remain distinct');

@@ -73,12 +73,13 @@ export class Character {
   seatHeight=.54;
   react(name:ReactionName,target?:Vec3,duration=18){this.acting.react(name,duration);if(target)this.setLook(target);}
   position:Vec3; yaw=0; state:AnimState='idle'; activity=''; currentScheduleIndex=-1; path:Vec3[]=[]; pathIndex=0; speed=1.55; animTime=0; targetLook?:Vec3;
+  private courtWasReserved=false;
   private pendingState:AnimState='idle';
   private courtTarget?:Vec3;private courtFacing?:Vec3;private courtSpeed=3.15;private courtSpeedScale=1;matchCompetitor=false;spectating=false;
   private previousState:AnimState='idle';private previousAnimTime=0;private transitionAge=1;private transitionDuration=.20;
   private walkCycle=new WalkCycle();private exitWalkPose:Pose|null=null;
-  private walkingStride(){return (this.spec.appearance==='human'?1.38:1.02)*locomotionStyleFor(this.spec.id).stride;}
-  private walkingShape(){return this.spec.appearance==='human'?{halfWidth:.135,lift:.045,stance:.60}:undefined;}
+  private walkingStride(){return (this.spec.appearance==='human'?1.7+clamp((this.travelSpeed-2.2)/3.3,0,1)*.7:1.02)*locomotionStyleFor(this.spec.id).stride;}
+  private walkingShape(){const jog=clamp((this.travelSpeed-2.2)/3.3,0,1);return this.spec.appearance==='human'?{halfWidth:.135,lift:.045+jog*.155,stance:.60-jog*.20}:undefined;}
   private targetYaw=0;private locomotion=0;private horizontalSpeed=0;private gaitPhase=0;private travelSpeed=0;
   private leftFootLock:Vec3|null=null;private rightFootLock:Vec3|null=null;private prevLeftStance=false;private prevRightStance=false;
   private incomingContact:Vec3|null=null;private contactTarget:Vec3|null=null;private outgoingTarget:Vec3|null=null;
@@ -112,7 +113,7 @@ export class Character {
     this.interactionTarget=target?.clone();
   }
 
-  constructor(public spec:CharacterSpec,start:Vec3,private nav:Navigation,private destinations:Record<string,Vec3>){this.acting=new ActingState(spec.id);this.position=start.clone();this.prevPosition=start.clone();this.targetYaw=this.yaw;}
+  constructor(public spec:CharacterSpec,start:Vec3,private nav:Navigation,private destinations:Record<string,Vec3>){this.speed=spec.appearance==='human'?2.2:1.55;this.acting=new ActingState(spec.id);this.position=start.clone();this.prevPosition=start.clone();this.targetYaw=this.yaw;}
 
   setDestination(id:string,activity:string,animation?:string){const original=this.destinations[id];if(!original)return;const arrivalSpots:Record<string,Vec3>={coach:new Vec3(-6.5,0,6.2),mika:new Vec3(-6.5,0,8.7),leo:new Vec3(-8,0,8.7),nia:new Vec3(-8,0,6.2)};const dest=this.freeDestination(id==='entrance'?(arrivalSpots[this.id]??original):original);this.clearCourtMove();this.activity=activity;this.path=this.nav.clubPath(this.position,dest);this.pathIndex=0;this.pendingState=(animation as AnimState)||'idle';this.changeState(this.path.length?'walk':this.pendingState,false);}
   freeDestination(dest:Vec3){
@@ -218,6 +219,11 @@ export class Character {
   }
 
   update(dt:number){
+    const reserved=this.nav.courtReserved();
+    if(reserved!==this.courtWasReserved){
+      this.courtWasReserved=reserved;const destination=this.path[this.path.length-1];
+      if(destination&&this.pathIndex<this.path.length){this.path=this.nav.clubPath(this.position,destination);this.pathIndex=0;}
+    }
     // Reach promptly; let the hand settle back more gently after completion.
     const reachSharpness=this.interactionTarget?10:4;
     this.interactionWeight=expDamp(this.interactionWeight,this.interactionTarget?1:0,reachSharpness,dt);
@@ -248,13 +254,13 @@ export class Character {
         this.travelSpeed=expDamp(this.travelSpeed,nominal,7,dt);
         const step=this.crowdStep(target,Math.min(dist,this.travelSpeed*dt));
         this.position.x+=delta.x/dist*step;this.position.z+=delta.z/dist*step;moved=step;
-        this.changeState('walk',false);
+        this.changeState(this.spec.appearance==='human'&&this.travelSpeed>2.8?'jog':'walk',false);
         if(step>=dist){this.pathIndex++;if(this.pathIndex>=this.path.length){this.travelSpeed=0;this.trigger(this.pendingState);}}
       }
     }else if(this.courtTarget&&(!isShot(this.state)||this.matchCompetitor)){this.travelSpeed=expDamp(this.travelSpeed,0,8,dt);
       const d=Vec3.sub(this.courtTarget,this.position),dist=Math.hypot(d.x,d.z);
       const stroking=isShot(this.state);
-      if(this.courtFacing&&!stroking){const fd=Vec3.sub(this.courtFacing,this.position);this.targetYaw=Math.atan2(fd.x,fd.z);}
+      if(this.courtFacing&&!stroking){const fd=Vec3.sub(this.courtFacing,this.position);this.targetYaw=Math.atan2(fd.x,fd.z);if(this.matchCompetitor){const netYaw=fd.z<0?Math.PI:0;this.targetYaw=netYaw+angleDelta(netYaw,this.targetYaw)*.22;}}
       if(this.courtMoveDelay>0){this.courtMoveDelay=Math.max(0,this.courtMoveDelay-dt);this.courtPhase='split';}
       else if(dist<.055){this.position.x=this.courtTarget.x;this.position.z=this.courtTarget.z;this.courtTarget=undefined;if(!stroking){this.courtPhase='load';this.courtPhaseAge=0;this.changeState('ready',false);}}
       else{const plant=stroking&&!this.matchCompetitor&&Math.abs(this.animTime-this.shotContactTime())<.07;const strokeScale=plant?0:stroking?(this.matchCompetitor?.92:.6):1;const step=Math.min(dist,(this.courtSpeed+this.recoveryBonus+(this.practiceCue==='recovery'?.6:0))*this.courtSpeedScale*strokeScale*dt);this.position.x+=d.x/dist*step;this.position.z+=d.z/dist*step;moved=step;if(!stroking){this.courtPhase='adjust';this.changeState('shuffle',false);}}
@@ -350,8 +356,8 @@ export class Character {
     const moving=state==='walk'||state==='jog';const shuffle=state==='shuffle';const gait=moving?Math.cos(this.gaitPhase):0;const gaitStyle=locomotionStyleFor(this.spec.id);const stepLift=moving?Math.pow(Math.abs(Math.sin(this.gaitPhase)),1.7)*gaitStyle.bounce*(this.spec.appearance==='human'?.25:1):0;const gaitCounter=moving?Math.sin(this.gaitPhase)*gaitStyle.torsoCounter:0;const splitHop=this.courtPhase==='split'?Math.sin(Math.min(1,this.courtPhaseAge/.10)*Math.PI)*.055:0;
     if(!shot&&!moving&&this.socialGesture==='think'){lean+=.055;}
     if(state==='idle'){const phase=time*this.acting.values.idleFidgetRate*(this.spec.id==='mika'?.92:this.spec.id==='nia'?.68:.58)+this.seed()*.037;const amp=this.spec.id==='coach'?.010:this.spec.id==='mika'?.024:this.spec.id==='nia'?.018:.015;hipCoil+=Math.sin(phase)*amp;coil-=Math.sin(phase)*amp*.72;baseY+=Math.sin(phase*1.7)*amp*.13;}
-    if(moving){coil=gait*gaitStyle.torsoCounter*.45;hipCoil=-gait*gaitStyle.hipSwing*.45;baseY=this.spec.appearance==='human'?-.025+Math.cos(this.gaitPhase*2)*.003:.008+Math.sin(this.gaitPhase*2)*.012;lean=0;knee=0;}const watchDelta=(state==='watch'||this.spectating)?clamp(angleDelta(this.yaw,this.gazeYaw),-.78,.78):0;const torsoYaw=this.yaw+coil+watchDelta*.30,hipYaw=this.yaw+hipCoil+watchDelta*.07;
-    const targetHeadYaw=this.gazeYaw;const headLimit=(state==='watch'||this.spectating)?.70:.42;const headYaw=this.yaw+clamp(angleDelta(this.yaw,targetHeadYaw),-headLimit,headLimit)+clip.headTurn;
+    if(moving){coil=gait*gaitStyle.torsoCounter*.45;hipCoil=-gait*gaitStyle.hipSwing*.45;baseY=this.spec.appearance==='human'?-.025+Math.cos(this.gaitPhase*2)*.003:.008+Math.sin(this.gaitPhase*2)*.012;lean=0;knee=0;}const tracking=state==='watch'||this.spectating||state==='ready'||shuffle;const watchDelta=tracking?clamp(angleDelta(this.yaw,this.gazeYaw),-.78,.78):0;const torsoYaw=this.yaw+coil+watchDelta*.30,hipYaw=this.yaw+hipCoil+watchDelta*.07;
+    const targetHeadYaw=this.gazeYaw;const headLimit=tracking?.70:.42;const headYaw=this.yaw+clamp(angleDelta(this.yaw,targetHeadYaw),-headLimit,headLimit)+clip.headTurn;
     const sy=Math.sin(headYaw),cy=Math.cos(headYaw),right=new Vec3(cy,0,-sy),forward=new Vec3(sy,0,cy);
 
     const contactLocal=this.contactTarget?this.localFromWorld(this.contactTarget):new Vec3(state==='swingBackhand'?-.52:state==='serve'?.14:.56,state==='serve'?2.36:1.02,.5);
@@ -521,7 +527,7 @@ export class Character {
         result.face={...result.face,smile:Math.max(this.spec.avatar==='taylor'?.55:this.spec.presentation==='masculine'?.18:.32,result.face.smile),squint:Math.max(.08,result.face.squint)};
       }
       const design=CAST_DESIGN[this.spec.avatar??this.spec.id]??CAST_DESIGN.taylor;
-      return adultTaylorPose(result,this.position,this.yaw,{sitting:this.state==='sit',folded:this.canFoldReferenceIdle(),rightWorld:right,leftWorld:left,human:this.spec.appearance==='human',shoulderScale:design.shoulderScale,restWeight:this.canRelaxClubIdle()?this.clubIdleRelax:0,walk:result.walking&&this.spec.appearance==='human'&&!this.propKind&&this.interactionWeight<.001&&this.socialGesture==='none'?{phase:this.gaitPhase,weight:clamp(this.horizontalSpeed/1.2,0,1),swing:locomotionStyleFor(this.spec.id).armSwing*.75}:undefined,posture});
+      return adultTaylorPose(result,this.position,this.yaw,{sitting:this.state==='sit',folded:this.canFoldReferenceIdle(),rightWorld:right,leftWorld:left,human:this.spec.appearance==='human',shoulderScale:design.shoulderScale,restWeight:this.canRelaxClubIdle()?this.clubIdleRelax:0,walk:result.walking&&this.spec.appearance==='human'&&!this.propKind&&this.interactionWeight<.001&&this.socialGesture==='none'?{phase:this.gaitPhase,weight:clamp(this.horizontalSpeed/1.2,0,1),stance:this.walkingShape()!.stance,planted:this.state==='jog'?[!!this.leftFootLock,!!this.rightFootLock]:undefined,swing:locomotionStyleFor(this.spec.id).armSwing*.75}:undefined,posture});
     }
     return result;
   }

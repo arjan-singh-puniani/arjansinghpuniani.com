@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
 import {Character} from '../dist/entities/Character.js';import {memberData} from '../dist/content/content.js';import {playerSpec} from '../dist/content/PlayerAvatars.js';
+import {CHAMPIONSHIP_TUNING} from '../dist/tennis/ChampionshipTuning.js';
 import {Vec3} from '../dist/rendering/Math3D.js';import {Navigation} from '../dist/world/Navigation.js';
 let plants=0,maxSlide=0,maxElbowOut=0,maxStopHandStep=0;const cadences=[];
 for(const spec of [...memberData,playerSpec('taylor'),playerSpec('arjan')])for(const hz of [30,60,120]){
- const actor=()=>new Character({...spec},new Vec3(),new Navigation([]),{}),c=actor();c.racketStowed=true;c.goTo(new Vec3(0,0,8));let prev=null,steps=0,samples=0,elbow=0,peakLift=0;
+ const actor=()=>new Character({...spec},new Vec3(),new Navigation([]),{}),c=actor();c.position.z=-8;c.racketStowed=true;c.goTo(new Vec3(0,0,8));let prev=null,steps=0,samples=0,elbow=0,peakLift=0;
  for(let i=0;i<hz*5;i++){
   c.update(1/hz);const p=c.analysisPose(),k=c.debugKinematics(),landed=c.consumeStepEvent();if(i<hz){prev=k;continue;}
   assert.equal(c.state,'walk');if(landed)steps++;samples++;
@@ -17,7 +18,7 @@ for(const spec of [...memberData,playerSpec('taylor'),playerSpec('arjan')])for(c
    if(prev[flag]&&k[flag]){const slide=Vec3.sub(prev[key],k[key]).len();maxSlide=Math.max(maxSlide,slide);assert(slide<1e-6,'A support foot stays fixed in world space');plants++;}
   }prev=k;
  }
- const cadence=steps/4*60;assert(cadence>=100&&cadence<=160,'Calm stride cadence stays tied to actual travel');cadences.push(cadence);
+ const cadence=steps/4*60;assert(cadence>=100&&cadence<=180,'Brisk stride cadence stays tied to actual travel');cadences.push(cadence);
  assert(elbow/(samples*2)<.065,'Walking elbows stay close to the sides');assert(peakLift>.02&&peakLift<=.045001,'Swing foot clears the floor without high stepping');
  // Real arrival blends out of authored source coordinates once, retaining
  // the same adult body and smoothly lowering the arms into idle.
@@ -30,3 +31,14 @@ for(const spec of [...memberData,playerSpec('taylor'),playerSpec('arjan')])for(c
 }
 assert(plants>3000);console.log(JSON.stringify({actors:6,rates:[30,60,120],plantedPairs:plants,maxSlide,maxElbowOut,maxStopHandStep,cadence:[Math.min(...cadences),Math.max(...cadences)]}));
 console.log('Confident gait PASS: grounded support, lower foot clearance, travel-driven cadence, relaxed arms and continuous adult starts/stops.');
+
+for(const spec of [...memberData,playerSpec('taylor'),playerSpec('arjan')])for(const hz of [30,60,120]){
+ const c=new Character({...spec},new Vec3(0,0,-8),new Navigation([]),{});c.speed*=CHAMPIONSHIP_TUNING.approachSpeedScale;c.goTo(new Vec3(0,0,8));let prior=null,sawJog=false,steps=0;
+ for(let i=0;i<hz*3;i++){
+  c.update(1/hz);const p=c.analysisPose(),k=c.debugKinematics();sawJog||=c.state==='jog';if(c.consumeStepEvent()&&i>=hz)steps++;
+  if(prior){assert(Math.abs(p.head.y-prior.pose.head.y)<.1,`${spec.id}/${hz}/${i}/${c.state}: match approach head step ${Math.abs(p.head.y-prior.pose.head.y)}`);for(const side of ['left','right']){const foot=side+'Foot',plant=foot+'Planted';if(k[plant]&&prior.k[plant])assert(Vec3.sub(k[foot],prior.k[foot]).len()<1e-6,'A jogging support shoe remains fixed');}}
+  prior={pose:p,k};
+ }
+ assert(sawJog,'Fast match approach uses the existing jog pose');assert(steps*30<=300,'Faster travel lengthens the jog stride instead of frantic walking steps');
+}
+console.log('Match approach gait PASS: continuous body, planted supports, existing jog pose and bounded cadence.');

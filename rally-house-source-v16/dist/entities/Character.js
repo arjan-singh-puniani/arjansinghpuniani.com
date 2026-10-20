@@ -65,6 +65,7 @@ export class Character {
     speed = 1.55;
     animTime = 0;
     targetLook;
+    courtWasReserved = false;
     pendingState = 'idle';
     courtTarget;
     courtFacing;
@@ -78,8 +79,8 @@ export class Character {
     transitionDuration = .20;
     walkCycle = new WalkCycle();
     exitWalkPose = null;
-    walkingStride() { return (this.spec.appearance === 'human' ? 1.38 : 1.02) * locomotionStyleFor(this.spec.id).stride; }
-    walkingShape() { return this.spec.appearance === 'human' ? { halfWidth: .135, lift: .045, stance: .60 } : undefined; }
+    walkingStride() { return (this.spec.appearance === 'human' ? 1.7 + clamp((this.travelSpeed - 2.2) / 3.3, 0, 1) * .7 : 1.02) * locomotionStyleFor(this.spec.id).stride; }
+    walkingShape() { const jog = clamp((this.travelSpeed - 2.2) / 3.3, 0, 1); return this.spec.appearance === 'human' ? { halfWidth: .135, lift: .045 + jog * .155, stance: .60 - jog * .20 } : undefined; }
     targetYaw = 0;
     locomotion = 0;
     horizontalSpeed = 0;
@@ -136,6 +137,7 @@ export class Character {
         this.spec = spec;
         this.nav = nav;
         this.destinations = destinations;
+        this.speed = spec.appearance === 'human' ? 2.2 : 1.55;
         this.acting = new ActingState(spec.id);
         this.position = start.clone();
         this.prevPosition = start.clone();
@@ -325,6 +327,15 @@ export class Character {
         return { timing: 1, tempo: 1, coil: 1, follow: 1, reach: 1 };
     }
     update(dt) {
+        const reserved = this.nav.courtReserved();
+        if (reserved !== this.courtWasReserved) {
+            this.courtWasReserved = reserved;
+            const destination = this.path[this.path.length - 1];
+            if (destination && this.pathIndex < this.path.length) {
+                this.path = this.nav.clubPath(this.position, destination);
+                this.pathIndex = 0;
+            }
+        }
         // Reach promptly; let the hand settle back more gently after completion.
         const reachSharpness = this.interactionTarget ? 10 : 4;
         this.interactionWeight = expDamp(this.interactionWeight, this.interactionTarget ? 1 : 0, reachSharpness, dt);
@@ -393,7 +404,7 @@ export class Character {
                 this.position.x += delta.x / dist * step;
                 this.position.z += delta.z / dist * step;
                 moved = step;
-                this.changeState('walk', false);
+                this.changeState(this.spec.appearance === 'human' && this.travelSpeed > 2.8 ? 'jog' : 'walk', false);
                 if (step >= dist) {
                     this.pathIndex++;
                     if (this.pathIndex >= this.path.length) {
@@ -410,6 +421,10 @@ export class Character {
             if (this.courtFacing && !stroking) {
                 const fd = Vec3.sub(this.courtFacing, this.position);
                 this.targetYaw = Math.atan2(fd.x, fd.z);
+                if (this.matchCompetitor) {
+                    const netYaw = fd.z < 0 ? Math.PI : 0;
+                    this.targetYaw = netYaw + angleDelta(netYaw, this.targetYaw) * .22;
+                }
             }
             if (this.courtMoveDelay > 0) {
                 this.courtMoveDelay = Math.max(0, this.courtMoveDelay - dt);
@@ -670,10 +685,11 @@ export class Character {
             lean = 0;
             knee = 0;
         }
-        const watchDelta = (state === 'watch' || this.spectating) ? clamp(angleDelta(this.yaw, this.gazeYaw), -.78, .78) : 0;
+        const tracking = state === 'watch' || this.spectating || state === 'ready' || shuffle;
+        const watchDelta = tracking ? clamp(angleDelta(this.yaw, this.gazeYaw), -.78, .78) : 0;
         const torsoYaw = this.yaw + coil + watchDelta * .30, hipYaw = this.yaw + hipCoil + watchDelta * .07;
         const targetHeadYaw = this.gazeYaw;
-        const headLimit = (state === 'watch' || this.spectating) ? .70 : .42;
+        const headLimit = tracking ? .70 : .42;
         const headYaw = this.yaw + clamp(angleDelta(this.yaw, targetHeadYaw), -headLimit, headLimit) + clip.headTurn;
         const sy = Math.sin(headYaw), cy = Math.cos(headYaw), right = new Vec3(cy, 0, -sy), forward = new Vec3(sy, 0, cy);
         const contactLocal = this.contactTarget ? this.localFromWorld(this.contactTarget) : new Vec3(state === 'swingBackhand' ? -.52 : state === 'serve' ? .14 : .56, state === 'serve' ? 2.36 : 1.02, .5);
@@ -1027,7 +1043,7 @@ export class Character {
                 result.face = { ...result.face, smile: Math.max(this.spec.avatar === 'taylor' ? .55 : this.spec.presentation === 'masculine' ? .18 : .32, result.face.smile), squint: Math.max(.08, result.face.squint) };
             }
             const design = CAST_DESIGN[this.spec.avatar ?? this.spec.id] ?? CAST_DESIGN.taylor;
-            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.canRelaxClubIdle() ? this.clubIdleRelax : 0, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
+            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.canRelaxClubIdle() ? this.clubIdleRelax : 0, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: this.state === 'jog' ? [!!this.leftFootLock, !!this.rightFootLock] : undefined, swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
         }
         return result;
     }

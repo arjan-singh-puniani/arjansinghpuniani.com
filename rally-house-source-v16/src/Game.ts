@@ -99,7 +99,7 @@ export class Game {
   private perf=new PerformanceMonitor(new URLSearchParams(location.search).has('debug'));private socialUntil=-1;private socialIds=new Set<string>();private activeSpeechId:string|null=null;private speechUntil=0;private weatherRedirectUntil=-1;private socialRallyWasRunning=false;private socialRallyUntil=-1;
 
   constructor(private canvas:HTMLCanvasElement){
-    this.clock.minutesPerSecond=1;this.renderer=new Renderer(canvas);this.camera=new CameraController(canvas);this.world=new World();this.renderer.cacheStatic(this.world.meshes);
+    this.clock.minutesPerSecond=1;this.renderer=new Renderer(canvas);this.camera=new CameraController(canvas);this.world=new World();this.world.nav.courtReserved=()=>this.activities.reserved('court');this.renderer.cacheStatic(this.world.meshes);
     const get=(id:string)=>memberData.find(x=>x.id===id)!;
     const coach=new Character(get('coach'),destinations.courtNorth,this.world.nav,destinations);
     const mika=new Character(get('mika'),destinations.courtSouth,this.world.nav,destinations);mika.setDevelopment(this.mikaProgress);
