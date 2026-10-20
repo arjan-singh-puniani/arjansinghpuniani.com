@@ -66,6 +66,7 @@ export class Character {
     animTime = 0;
     targetLook;
     courtWasReserved = false;
+    affection = null;
     pendingState = 'idle';
     courtTarget;
     courtFacing;
@@ -164,7 +165,7 @@ export class Character {
         if (!length)
             return step;
         const dx = delta.x / length, dz = delta.z / length;
-        const blockers = this.crowd.filter(c => c !== this && Math.hypot(c.position.x - this.position.x, c.position.z - this.position.z) < 1.5);
+        const blockers = this.crowd.filter(c => c !== this && c.position !== this.affection?.target && Math.hypot(c.position.x - this.position.x, c.position.z - this.position.z) < 1.5);
         const blocked = blockers.some(c => { const before = Math.hypot(c.position.x - this.position.x, c.position.z - this.position.z), after = Math.hypot(c.position.x - this.position.x - dx * step, c.position.z - this.position.z - dz * step); return after < .82 && after < before - 1e-6; });
         if (!blocked)
             return step;
@@ -914,8 +915,8 @@ export class Character {
             hipL.y += roll;
             hipR.y -= roll;
         }
-        const walkReach = (state === 'jog' ? .40 : .34) * gaitStyle.stride;
-        let footL = this.worldLocal(-.17, .11 + baseY, .05 + gait * walkReach), footR = this.worldLocal(.17, .11 + baseY, .05 - gait * walkReach);
+        const walkReach = (state === 'jog' ? .40 : .34) * gaitStyle.stride, footY = .11 + (this.affection && !moving ? 0 : baseY);
+        let footL = this.worldLocal(-.17, footY, .05 + gait * walkReach), footR = this.worldLocal(.17, footY, .05 - gait * walkReach);
         if (moving) {
             footL = this.walkCycle.feet[0].clone();
             footR = this.walkCycle.feet[1].clone();
@@ -1043,7 +1044,7 @@ export class Character {
                 result.face = { ...result.face, smile: Math.max(this.spec.avatar === 'taylor' ? .55 : this.spec.presentation === 'masculine' ? .18 : .32, result.face.smile), squint: Math.max(.08, result.face.squint) };
             }
             const design = CAST_DESIGN[this.spec.avatar ?? this.spec.id] ?? CAST_DESIGN.taylor;
-            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.canRelaxClubIdle() ? this.clubIdleRelax : 0, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: this.state === 'jog' ? [!!this.leftFootLock, !!this.rightFootLock] : undefined, swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
+            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.canRelaxClubIdle() ? this.clubIdleRelax : 0, affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: this.state === 'jog' ? [!!this.leftFootLock, !!this.rightFootLock] : undefined, swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
         }
         return result;
     }

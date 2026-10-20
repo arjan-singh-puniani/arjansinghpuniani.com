@@ -1,7 +1,7 @@
 import type {GameSave} from '../core/types.js';
 import type {Relationship} from '../simulation/RelationshipSystem.js';
 import {DECOR_BY_ID} from '../content/DecorCatalog.js';
-export const CURRENT_SAVE_VERSION=9;
+export const CURRENT_SAVE_VERSION=10;
 const invalid=()=>{throw new Error('Saved club data is invalid. Storage has been left untouched.');};
 function scan(v:unknown,depth=0){
  if(depth>20)invalid();if(typeof v==='number'&&!Number.isFinite(v))invalid();
@@ -11,7 +11,8 @@ function scan(v:unknown,depth=0){
 function normalizeRelationship(v:Partial<Relationship>|undefined):Relationship{
  if(v&&(![v.familiarity??10,v.warmth??12,v.trust??10,v.rivalry??0].every(n=>typeof n==='number'&&Number.isFinite(n)&&n>=0&&n<=100)||!Array.isArray(v.memories??[])||!Array.isArray(v.events??[])))invalid();
  for(const e of v?.events??[])if(!e||typeof e.detail!=='string'||!Array.isArray(e.people)||!Array.isArray(e.tags)||!e.people.every(p=>typeof p==='string')||!e.tags.every(p=>typeof p==='string')||!Number.isFinite(e.day))invalid();
- return {familiarity:v?.familiarity??10,warmth:v?.warmth??12,trust:v?.trust??10,rivalry:v?.rivalry??0,memories:v?.memories??[],events:v?.events??[]};
+ if(v?.courtship!==undefined&&(!v.courtship||typeof v.courtship.flirted!=='boolean'||typeof v.courtship.won!=='boolean'||!Number.isSafeInteger(v.courtship.hugs)||v.courtship.hugs<0||v.courtship.hugs>2))invalid();
+ return {familiarity:v?.familiarity??10,warmth:v?.warmth??12,trust:v?.trust??10,rivalry:v?.rivalry??0,memories:v?.memories??[],events:v?.events??[],...(v?.courtship?{courtship:{...v.courtship}}:{})};
 }
 export function migrateGameSave(version:number,state:GameSave):GameSave{
  if(version>CURRENT_SAVE_VERSION)throw new Error('Save needs a newer version.');

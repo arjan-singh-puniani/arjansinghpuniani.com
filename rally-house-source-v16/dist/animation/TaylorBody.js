@@ -115,6 +115,23 @@ export function adultTaylorPose(source, root, yaw, constraints) {
         p.handL = Vec3.lerp(p.shoulderL.clone().add(offsetL), source.handL, constraints.leftWorld);
         p.handR = Vec3.lerp(p.shoulderR.clone().add(offsetR), source.handR, constraints.rightWorld);
     }
+    const affection = constraints.affection;
+    if (affection && affection.weight > 0) {
+        const w = affection.weight, toward = Vec3.sub(affection.target, root);
+        toward.y = 0;
+        toward.normalize();
+        const right = new Vec3(toward.z, 0, -toward.x), lean = toward.clone().scale((affection.kind === 'kiss' ? .16 : .10) * w);
+        for (const key of ['shoulderL', 'shoulderR', 'head'])
+            p[key].add(lean);
+        p.torsoCenter.add(lean.clone().scale(.5));
+        p.headYaw = yaw + (affection.upper ? .09 : -.09) * w;
+        for (const side of ['L', 'R']) {
+            const goal = affection.target.clone().add(right.clone().scale(side === 'L' ? -.25 : .25)).add(toward.clone().scale(.04));
+            goal.y = shoulder.y - (affection.upper ? .08 : .30);
+            p[`hand${side}`] = Vec3.lerp(p[`hand${side}`], goal, w);
+        }
+        p.face.smile = Math.max(p.face.smile, .45 * w);
+    }
     // A constrained low ball or prop is reached with the body, rather than by
     // stretching a forearm through the floor. The hand keeps ownership of contact.
     for (const [side, weight] of [['R', constraints.rightWorld], ['L', constraints.leftWorld]]) {

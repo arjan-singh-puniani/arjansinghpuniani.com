@@ -77,7 +77,9 @@ export function characterContext(c: Character, s: CharacterContextState): ClubCo
         actions.push({ id: 'challenge', title: 'Challenge to Match', detail: 'First to 7 · win by 2', primary: true });
     else
         facts.push({ label: 'Court availability', text: 'A committed activity is in progress.' });
-    return { eyebrow: c.spec.role, title: c.spec.name, subtitle: c.spec.playStyle, status: `${s.mind.mood(c.id as MemberId)} · Energy ${Math.round(state.energy * 100)}%`, facts: [{ label: s.relations.label(c.id), text: active ? `${active.detail} · ${active.phase === 'traveling' ? 'on the way' : active.phase}` : c.activity || c.spec.goal }, ...facts].slice(0, 3), actions: actions.slice(0, 4) };
+    if(free)actions.push({id:'connect',title:'Rizz & connect',detail:'A little tennis or bonsai flirtation'});
+    if(active?.kind.startsWith('connection-')&&active.participants.includes('player'))actions.push({id:'endConnection',title:'End this moment',detail:'Step back whenever you like'});
+    return { eyebrow: c.spec.role, title: c.spec.name, subtitle: c.spec.playStyle, status: `${s.mind.mood(c.id as MemberId)} · Energy ${Math.round(state.energy * 100)}%`, facts: [{ label: s.relations.label(c.id), text: active ? `${active.detail} · ${active.phase === 'traveling' ? 'on the way' : active.phase}` : c.activity || c.spec.goal }, ...facts].slice(0, 3), actions };
 }
 export function objectContext(o: InteractiveObject, a: ActivitySystem, e: {
     frame: string;

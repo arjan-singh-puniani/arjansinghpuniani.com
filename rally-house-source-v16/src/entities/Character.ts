@@ -74,6 +74,7 @@ export class Character {
   react(name:ReactionName,target?:Vec3,duration=18){this.acting.react(name,duration);if(target)this.setLook(target);}
   position:Vec3; yaw=0; state:AnimState='idle'; activity=''; currentScheduleIndex=-1; path:Vec3[]=[]; pathIndex=0; speed=1.55; animTime=0; targetLook?:Vec3;
   private courtWasReserved=false;
+  affection:{kind:'hug'|'kiss';target:Vec3;weight:number;upper:boolean}|null=null;
   private pendingState:AnimState='idle';
   private courtTarget?:Vec3;private courtFacing?:Vec3;private courtSpeed=3.15;private courtSpeedScale=1;matchCompetitor=false;spectating=false;
   private previousState:AnimState='idle';private previousAnimTime=0;private transitionAge=1;private transitionDuration=.20;
@@ -126,7 +127,7 @@ export class Character {
     if(this.majorActivity||!this.crowd.length)return step;
     const delta=Vec3.sub(target,this.position),length=Math.hypot(delta.x,delta.z);if(!length)return step;
     const dx=delta.x/length,dz=delta.z/length;
-    const blockers=this.crowd.filter(c=>c!==this&&Math.hypot(c.position.x-this.position.x,c.position.z-this.position.z)<1.5);
+    const blockers=this.crowd.filter(c=>c!==this&&c.position!==this.affection?.target&&Math.hypot(c.position.x-this.position.x,c.position.z-this.position.z)<1.5);
     const blocked=blockers.some(c=>{const before=Math.hypot(c.position.x-this.position.x,c.position.z-this.position.z),after=Math.hypot(c.position.x-this.position.x-dx*step,c.position.z-this.position.z-dz*step);return after<.82&&after<before-1e-6;});
     if(!blocked)return step;
     if(this.crowdCooldown<=0){
@@ -467,7 +468,7 @@ export class Character {
 
     const hipHalf=this.spec.presentation==='feminine'?.175:.165;const hipL=this.worldLocal(-hipHalf+pelvisShiftX,.76+baseY-knee,pelvisShiftZ,hipYaw),hipR=this.worldLocal(hipHalf+pelvisShiftX,.76+baseY-knee,pelvisShiftZ,hipYaw);
     if((moving||state==='ready')&&this.spec.appearance==='human'){const roll=moving?Math.sin(this.gaitPhase)*.006:readyWeight*.004;hipL.y+=roll;hipR.y-=roll;}
-    const walkReach=(state==='jog'?.40:.34)*gaitStyle.stride;let footL=this.worldLocal(-.17,.11+baseY,.05+gait*walkReach),footR=this.worldLocal(.17,.11+baseY,.05-gait*walkReach);
+    const walkReach=(state==='jog'?.40:.34)*gaitStyle.stride,footY=.11+(this.affection&&!moving?0:baseY);let footL=this.worldLocal(-.17,footY,.05+gait*walkReach),footR=this.worldLocal(.17,footY,.05-gait*walkReach);
     if(moving){footL=this.walkCycle.feet[0].clone();footR=this.walkCycle.feet[1].clone();}
     if(state==='ready'||shuffle){const sideMotion=clamp(this.localVelocity.x/Math.max(.01,this.courtSpeed),-1,1),foreMotion=clamp(this.localVelocity.z/Math.max(.01,this.courtSpeed),-1,1),lateral=shuffle?Math.sin(this.gaitPhase)*.055+sideMotion*.045:0,wide=this.courtPhase==='split'?.07:0;footL=this.leftFootLock&&shuffle?this.leftFootLock.clone():this.worldLocal(-.29-wide-lateral,.11+splitHop,.16+foreMotion*.07);footR=this.rightFootLock&&shuffle?this.rightFootLock.clone():this.worldLocal(.29+wide-lateral,.11+splitHop,-.05+foreMotion*.07);}
     if(shot){const stance=Math.min(.16,Math.abs(outside)*.13);if(state==='swingForehand'){footL=this.worldLocal(-.25,.11+baseY,.12+weightShift*.08);footR=this.worldLocal(.34+stance,.11+baseY,-.07+weightShift*.04);}else if(state==='swingBackhand'){footL=this.worldLocal(-.34-stance,.11+baseY,-.04+weightShift*.05);footR=this.worldLocal(.25,.11+baseY,.13+weightShift*.08);}else if(state==='serve'){footL=this.worldLocal(-.20,.11+baseY,.14+weightShift*.08);footR=this.worldLocal(.23,.11+baseY,-.14+weightShift*.12);}else{footL=this.worldLocal(-.26,.11+baseY,.12);footR=this.worldLocal(.27,.11+baseY,-.04);}}
@@ -527,7 +528,7 @@ export class Character {
         result.face={...result.face,smile:Math.max(this.spec.avatar==='taylor'?.55:this.spec.presentation==='masculine'?.18:.32,result.face.smile),squint:Math.max(.08,result.face.squint)};
       }
       const design=CAST_DESIGN[this.spec.avatar??this.spec.id]??CAST_DESIGN.taylor;
-      return adultTaylorPose(result,this.position,this.yaw,{sitting:this.state==='sit',folded:this.canFoldReferenceIdle(),rightWorld:right,leftWorld:left,human:this.spec.appearance==='human',shoulderScale:design.shoulderScale,restWeight:this.canRelaxClubIdle()?this.clubIdleRelax:0,walk:result.walking&&this.spec.appearance==='human'&&!this.propKind&&this.interactionWeight<.001&&this.socialGesture==='none'?{phase:this.gaitPhase,weight:clamp(this.horizontalSpeed/1.2,0,1),stance:this.walkingShape()!.stance,planted:this.state==='jog'?[!!this.leftFootLock,!!this.rightFootLock]:undefined,swing:locomotionStyleFor(this.spec.id).armSwing*.75}:undefined,posture});
+      return adultTaylorPose(result,this.position,this.yaw,{sitting:this.state==='sit',folded:this.canFoldReferenceIdle(),rightWorld:right,leftWorld:left,human:this.spec.appearance==='human',shoulderScale:design.shoulderScale,restWeight:this.canRelaxClubIdle()?this.clubIdleRelax:0,affection:this.affection??undefined,walk:result.walking&&this.spec.appearance==='human'&&!this.propKind&&this.interactionWeight<.001&&this.socialGesture==='none'?{phase:this.gaitPhase,weight:clamp(this.horizontalSpeed/1.2,0,1),stance:this.walkingShape()!.stance,planted:this.state==='jog'?[!!this.leftFootLock,!!this.rightFootLock]:undefined,swing:locomotionStyleFor(this.spec.id).armSwing*.75}:undefined,posture});
     }
     return result;
   }
