@@ -30,7 +30,10 @@ try{
  const restTorso=authoredAthleteMeshes(restNeckPose,new Vec3(),0,[{pitch:0,yaw:0},{pitch:0,yaw:0}],0)[0];let maxRestTorsoError=0;
  for(const bone of [BONE.pelvis,BONE.spine,BONE.chest,BONE.neck])for(let i=0;i<16;i++)maxRestTorsoError=Math.max(maxRestTorsoError,Math.abs(restTorso.boneMatrices[bone*16+i]-(i%5===0?1:0)));
  assert(maxRestTorsoError<1e-5,'matching authored chest/head landmarks must preserve the source torso');console.log(JSON.stringify({maxRestTorsoError,registeredNeck:restTorso.rig.pose.neck}));
-const character=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});let samples=0,maxGripGap=0,minSole=Infinity,minForearmVolume=Infinity;
+const character=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});for(let i=0;i<240;i++)character.update(1/60);
+const standing=character.analysisPose(),shoulderRatio=Vec3.sub(standing.shoulderL,standing.shoulderR).len()/Vec3.sub(rest.upperArmL,rest.upperArmR).len();
+assert(shoulderRatio>.98&&shoulderRatio<1.02,'the standing hero must retain the authored shoulder span');console.log(JSON.stringify({shoulderRatio}));
+let samples=0,maxGripGap=0,minSole=Infinity,minForearmVolume=Infinity;
 for(const state of ['idle','sit','drink','ready','swingForehand','swingBackhand','serve']){
  character.trigger(state);for(let t=0;t<90;t++){character.update(1/120);if(t%15)continue;const part=character.meshes().find(p=>'skin' in p&&p.rig),rig=part.rig.pose,matrices=part.boneMatrices;assert(matrices.every(Number.isFinite));
   for(const side of ['L','R'])for(let v=0;v<body.positions.length/3;v+=3){
