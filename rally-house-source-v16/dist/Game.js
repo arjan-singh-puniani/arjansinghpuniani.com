@@ -163,6 +163,7 @@ export class Game {
         this.camera = new CameraController(canvas);
         this.world = new World();
         this.world.nav.courtReserved = () => this.activities.reserved('court');
+        this.world.decorState = id => this.affordances.objects[id];
         this.renderer.cacheStatic(this.world.meshes);
         const get = (id) => memberData.find(x => x.id === id);
         const coach = new Character(get('coach'), destinations.courtNorth, this.world.nav, destinations);
@@ -309,7 +310,7 @@ export class Game {
         document.getElementById('settingsBtn').onclick = () => this.openSettings();
         this.ui.onPlay = () => { this.clock.paused = !this.clock.paused; this.audio.click(); };
         this.ui.onSpeed = () => { this.clock.speed = this.clock.speed === 1 ? 2 : this.clock.speed === 2 ? .5 : 1; this.ui.toast(`Time ${this.clock.speed}×`); this.audio.click(); };
-        this.ui.onBook = () => this.openBook();
+        this.ui.onBook = tab => this.openBook(tab);
         this.ui.onCoach = () => this.openCoaching();
         this.ui.onBuild = () => { this.ui.toggleBuild(); this.audio.click(); };
         this.ui.onBuildSelect = (type) => { this.buildType = type; this.buildRotation = 0; const d = DECOR_BY_ID[this.buildType]; this.ui.toast(`${d.label} selected · Q / E rotates`); this.audio.click(); };
@@ -499,6 +500,8 @@ export class Game {
         return lines[seed];
     }
     socialLine(host, companion, object) {
+        if (object?.type === 'cafeTable')
+            return '“Stay for a cup. The court can wait a minute.”';
         if (object?.type === 'bench')
             return host.id === 'mika' ? '“You can see the whole court from here.”' : host.id === 'leo' ? '“This is a dangerously good place to sit between sets.”' : '“This corner actually feels like part of the club now.”';
         if (object?.type === 'plant')
@@ -566,10 +569,8 @@ export class Game {
         for (const o of this.world.objects)
             if (o.selection)
                 accept(rayBox(ray.origin, ray.dir, o.selection), { object: o });
-        for (const p of this.world.placements) {
-            const size = rotatedFootprint(p.type, p.rotation);
-            accept(rayBox(ray.origin, ray.dir, { centre: new Vec3(p.x, .65, p.z), size: new Vec3(size.w, 1.3, size.d) }), { placement: p });
-        }
+        for (const p of this.world.placements)
+            accept(rayBox(ray.origin, ray.dir, this.world.placementBounds(p)), { placement: p });
         for (const c of this.characters)
             accept(rayBox(ray.origin, ray.dir, c.selectionBounds()), { character: c });
         // Tiny tabletop props get a restrained, depth-checked screen tolerance, useful for touch.
@@ -869,6 +870,7 @@ export class Game {
         if (!opponent || !this.championshipActivityId)
             return;
         this.championshipCompletedRound = this.championshipRound;
+        this.coins += CHAMPIONSHIP_TUNING.completionFunds;
         const score = this.championship.snapshot().score;
         if (score.player > score.opponent)
             this.relations.courtship(opponent.id).won = true;
@@ -1033,7 +1035,9 @@ export class Game {
             this.ui.toast('Let the current moment finish first.');
             return;
         }
-        const object = this.world.objects.find(o => o.id === objectId);
+        const object = this.world.objects.find(o => o.id === objectId), placement = this.world.placements.find(p => p.id === objectId);
+        if (placement && touch.id && !this.affordances.actions(placement, this.absoluteMinute).some(a => a.id === touch.id))
+            return;
         if (object && touch.id && !this.world.identity.actions(object, this.absoluteMinute).some(a => a.id === touch.id))
             return;
         const contact = touch.effect === 'leaves' && object?.selection ? object.selection.centre.clone() : this.world.interactionPoint(objectId, origin, touch.effect);
@@ -1090,7 +1094,9 @@ export class Game {
             this.activities.transition(a, 'starting');
             this.player.face(run.contact);
             this.player.setLook(run.contact);
-            if (['bell', 'paper', 'stringing', 'sketch', 'lamp', 'bonsai'].includes(run.touch.effect))
+            if (this.world.placements.some(p => p.id === run.objectId) && !this.settings.reducedMotion)
+                this.camera.focus(run.origin.x, run.origin.z, Math.max(this.camera.minDistance, 22), .8);
+            if (['bell', 'paper', 'stringing', 'sketch', 'lamp', 'bonsai', 'bounce'].includes(run.touch.effect))
                 this.player.setInteractionTarget(run.contact);
             this.player.racketStowed = true;
             this.player.socialGesture = run.touch.gesture ?? (run.touch.effect === 'stringing' ? 'inspect' : run.touch.effect === 'bell' ? 'point' : run.touch.effect === 'lamp' ? 'point' : 'none');
@@ -1114,7 +1120,7 @@ export class Game {
             this.activities.transition(a, 'active');
             this.world.triggerInteraction(run.touch.effect, run.touch.seconds, run.contact);
             if (run.touch.id)
-                this.world.authored.start(run.objectId, run.touch, this.absoluteMinute);
+                this.world.authored.start(run.objectId, run.touch, this.absoluteMinute, run.contact);
             this.playObjectSound(run.touch.effect, run.contact);
             const now = this.everyday.time;
             for (const c of interactionWitnesses(this.characters, run.origin, id => this.activities.busy(id), this.witnessTimes, now).filter(c => this.world.canSee(c.position, run.origin))) {
@@ -1148,8 +1154,10 @@ export class Game {
                 return;
             }
             this.activities.finish(a, run.touch.title, () => {
-                if (this.affordances.objects[run.objectId])
+                if (this.affordances.objects[run.objectId]) {
                     this.affordances.visit(run.objectId, ['player'], this.clock.day);
+                    this.affordances.apply(run.objectId, run.touch, this.absoluteMinute);
+                }
                 if (run.touch.id)
                     this.world.identity.complete(run.objectId, run.touch.title);
                 this.life.addMemory(this.clock.day, `${run.touch.title} · ${run.label}.`);
@@ -1182,7 +1190,7 @@ export class Game {
             this.audio.objectNote(effect, Math.max(-.8, Math.min(.8, ((p.x - bounds.left) / bounds.width - .5) * 1.6)), contact.x);
             return;
         }
-        if (effect === 'leaves' || effect === 'read')
+        if (effect === 'leaves' || effect === 'read' || effect === 'bounce')
             return;
         if (effect === 'cafe' || effect === 'water')
             this.audio.cup();
@@ -1350,10 +1358,10 @@ export class Game {
         this.ui.toast('Not enough club funds yet.');
         return;
     } this.coins -= cost; this.equipment.string = string; this.world.triggerInteraction('stringing'); this.life.addMemory(this.clock.day, `The pro-shop bench restrung your racket with ${string}.`); this.ui.toast(`Restrung with ${string}.`); this.audio.stringing(); this.audio.success(); this.openEquipment(); void this.save(); }
-    openBook() {
-        const members = this.characters.map(c => { const r = this.relations.get(c.spec.id); const favorite = Object.entries(this.affordances.objects).find(([, h]) => h.favoriteOf.includes(c.id)), memory = this.mind.recall(c.id)[0]; return { mood: this.mind.mood(c.id), intention: c.activity || this.history.intentions.find(i => i.person === c.id)?.text || c.spec.goal, favorite: favorite ? `Your ${this.world.placements.find(p => p.id === favorite[0])?.type ?? 'quiet corner'}` : undefined, personalMemory: memory?.detail, possessions: this.mind.possessions.filter(p => p.owner === c.id).map(p => `${p.kind === 'wateringCan' ? 'Watering can' : p.kind} · ${p.uses ? 'part of a familiar ritual' : 'a familiar belonging'}`), name: c.spec.name, role: c.spec.role, tier: this.relations.label(c.spec.id), familiarity: r.familiarity, warmth: r.warmth, trust: r.trust, goal: c.spec.goal, quirk: c.spec.quirk ?? '', memories: [...r.memories, ...this.characters.filter(o => o.id !== c.id).flatMap(o => this.relations.getBetween(c.id, o.id).memories)].slice(0, 8) }; });
+    openBook(tab) {
+        const members = this.characters.map(c => { const r = this.relations.get(c.spec.id); const favorite = Object.entries(this.affordances.objects).find(([, h]) => h.favoriteOf.includes(c.id)), memory = this.mind.recall(c.id)[0]; return { open: () => this.openCharacter(c), mood: this.mind.mood(c.id), intention: c.activity || this.history.intentions.find(i => i.person === c.id)?.text || c.spec.goal, favorite: favorite ? `Your ${this.world.placements.find(p => p.id === favorite[0])?.type ?? 'quiet corner'}` : undefined, personalMemory: memory?.detail, possessions: this.mind.possessions.filter(p => p.owner === c.id).map(p => `${p.kind === 'wateringCan' ? 'Watering can' : p.kind} · ${p.uses ? 'part of a familiar ritual' : 'a familiar belonging'}`), name: c.spec.name, role: c.spec.role, tier: this.relations.label(c.spec.id), familiarity: r.familiarity, warmth: r.warmth, trust: r.trust, goal: c.spec.goal, quirk: c.spec.quirk ?? '', memories: [...r.memories, ...this.characters.filter(o => o.id !== c.id).flatMap(o => this.relations.getBetween(c.id, o.id).memories)].slice(0, 8) }; });
         this.audio.paper();
-        this.ui.showBook({ details: this.world.objects.filter(o => o.kind !== "court").map(o => ({ title: o.label, subtitle: o.description, run: () => this.openObject(o) })), culture: this.mind.cultureDescription(), philosophy: this.coachingIdentity(), mikaProgress: this.mikaProgress, equipment: this.equipment, coins: Math.floor(this.coins), day: this.clock.day, time: this.clock.formatted(), weather: this.world.weather, heart: this.clubHeart, coachLevel: this.coachLevel, coachXP: this.coachXP, bestRally: this.rally.bestRally, placements: this.world.placements.length, goals: this.daily.goals, moments: [...Array.from(this.lifeRuns.values()).map(r => 'Happening now · ' + r.scene.title), ...this.history.intentions.map(i => i.text), ...this.life.memories], members });
+        this.ui.showBook({ details: this.world.objects.filter(o => o.kind !== "court").map(o => ({ title: o.label, subtitle: o.description, run: () => this.openObject(o) })), culture: this.mind.cultureDescription(), philosophy: this.coachingIdentity(), mikaProgress: this.mikaProgress, equipment: this.equipment, coins: Math.floor(this.coins), day: this.clock.day, time: this.clock.formatted(), weather: this.world.weather, heart: this.clubHeart, coachLevel: this.coachLevel, coachXP: this.coachXP, bestRally: this.rally.bestRally, placements: this.world.placements.length, goals: this.daily.goals, moments: [...Array.from(this.lifeRuns.values()).map(r => 'Happening now · ' + r.scene.title), ...this.history.intentions.map(i => i.text), ...this.life.memories], members }, tab);
         this.audio.click();
     }
     openFurniture(p) {
@@ -1362,21 +1370,42 @@ export class Game {
         this.ui.toggleBuild(false);
         this.camera.nudgeFocus(p.x, p.z, this.canvas.clientWidth < 720 ? 1 : .18);
         this.audio.paper();
-        this.spatial.select({ id: p.id, position: () => this.world.placements.includes(p) ? new Vec3(p.x, 0, p.z) : null,
-            present: () => furnitureContext(p, this.affordances, this.activities, id => id === 'player' ? this.player.spec.name : this.byId(id)?.spec.name ?? id),
+        this.spatial.select({ id: p.id, position: () => this.world.placements.includes(p) ? this.world.placementBounds(p).centre : null,
+            present: () => furnitureContext(p, this.affordances, this.activities, id => id === 'player' ? this.player.spec.name : this.byId(id)?.spec.name ?? id, this.absoluteMinute),
             act: id => {
-                if (id === 'touch')
-                    this.startClubTouch(p.id, DECOR_BY_ID[p.type].label, new Vec3(p.x, 0, p.z), touchForDecor(p.type));
+                if (['touch', 'water', 'light'].includes(id)) {
+                    const action = this.affordances.actions(p, this.absoluteMinute).find(a => a.id === id);
+                    if (action)
+                        this.startClubTouch(p.id, DECOR_BY_ID[p.type].label, new Vec3(p.x, 0, p.z), action);
+                }
+                else if (id === 'invite')
+                    this.inviteToFurniture(p);
+                else if (id === 'equipment')
+                    this.openEquipment();
                 else if (id === 'watch')
-                    this.watchRallyAsPlayer();
+                    this.startClubTouch(p.id, DECOR_BY_ID[p.type].label, new Vec3(p.x, 0, p.z), { ...touchForDecor(p.type), watchCourt: true, seconds: 10 });
                 else if (id === 'arrange')
                     this.arrangeFurniture(p);
             } });
     }
+    inviteToFurniture(p) {
+        const seated = p.type === 'bench', label = DECOR_BY_ID[p.type].label, people = this.characters.filter(c => !this.activities.busy(c.id));
+        this.ui.showContext('Make a place together', label, seated ? 'Leave room for someone beside you.' : 'Two cups taste better with company.', people.length ? [] : ['Everyone is occupied just now. Try after their activity.'], people.map(c => ({
+            title: `${seated ? 'Sit' : 'Share matcha'} with ${c.spec.name}`, subtitle: 'Walk over together; this place keeps the memory.', run: () => {
+                const angle = p.rotation ?? 0, spot = (x, z) => new Vec3(p.x + x * Math.cos(angle) + z * Math.sin(angle), 0, p.z - x * Math.sin(angle) + z * Math.cos(angle));
+                const targets = seated ? [spot(-.48, -1.05), spot(.48, -1.05)] : [spot(-.85, 0), spot(.85, 0)];
+                const a = this.startActivity(seated ? 'greeting' : 'matcha', ['player', c.id], p.id, targets, `${seated ? 'Sitting' : 'Sharing matcha'} with ${c.spec.name}`);
+                if (a)
+                    this.ui.closeContext();
+                else
+                    this.ui.toast('They or this place are busy. Try again in a moment.');
+            }
+        })));
+    }
     arrangeFurniture(p) {
-        const h = this.affordances.objects[p.id], def = DECOR_BY_ID[p.type], favorites = h?.favoriteOf.map(id => this.actor(id).spec.name).join(', ');
+        const touch = this.affordances.actions(p, this.absoluteMinute)[0], h = this.affordances.objects[p.id], def = DECOR_BY_ID[p.type], favorites = h?.favoriteOf.map(id => this.actor(id).spec.name).join(', ');
         this.ui.showContext('YOUR ACADEMY', def.label, favorites ? `A favorite place for ${favorites}.` : h?.memories[0] ?? 'A new place for a club ritual.', this.affordances.affordances(p), [
-            { title: touchForDecor(p.type).title, subtitle: 'Use this little part of your club', run: () => this.startClubTouch(p.id, def.label, new Vec3(p.x, 0, p.z), touchForDecor(p.type)) },
+            { title: touch.title, subtitle: touch.detail, run: () => this.startClubTouch(p.id, def.label, new Vec3(p.x, 0, p.z), touch) },
             { title: 'Move', subtitle: 'Keep this object’s history', run: () => { if (this.activities.reserved(p.id)) {
                     this.ui.toast('Let their break finish first.');
                     return;
@@ -1412,7 +1441,7 @@ export class Game {
     furnitureObstacles = [];
     rebuildFurnitureObstacles() {
         this.world.nav.obstacles = this.world.nav.obstacles.filter(o => !this.furnitureObstacles.includes(o));
-        this.furnitureObstacles = this.world.placements.filter(p => DECOR_BY_ID[p.type].blocksNavigation).map(p => { const f = rotatedFootprint(p.type, p.rotation ?? 0); return { x: p.x, z: p.z, w: f.w, d: f.d }; });
+        this.furnitureObstacles = this.world.placements.filter(p => DECOR_BY_ID[p.type].blocksNavigation).map(p => { const f = DECOR_BY_ID[p.type]; return { x: p.x, z: p.z, w: f.footprintX, d: f.footprintZ, rotation: p.rotation ?? 0 }; });
         this.world.nav.obstacles.push(...this.furnitureObstacles);
         for (const c of [...this.characters, this.player])
             if (c.pathIndex < c.path.length) {
@@ -1537,7 +1566,7 @@ export class Game {
         this.coins -= cost;
         this.world.placements.push({ type, x, z, rotation: this.buildRotation });
         this.affordances.sync(this.world.placements, this.clock.day);
-        this.history.nextObject = this.absoluteMinute;
+        this.history.nextObject = this.absoluteMinute + 10;
         this.mind.reinforceCulture(def.culture, .025);
         this.rebuildFurnitureObstacles();
         this.buildType = null;
@@ -1750,6 +1779,8 @@ export class Game {
                 const c = this.actor(a.participants[1]);
                 text = a.kind === 'matcha' ? `You and ${c.spec.name} shared matcha.` : `You made time to listen to ${c.spec.name}.`;
                 this.interact(c, a.kind === 'matcha' ? 'matcha' : 'listen', text);
+                if (this.affordances.objects[a.resource])
+                    this.affordances.visit(a.resource, a.participants, this.clock.day);
                 this.recordGoal(a.kind === 'matcha' ? 'matcha' : 'greet');
             }
             else {
@@ -2245,13 +2276,19 @@ export class Game {
                 }
                 else {
                     const object = this.world.placements.find(p => p.id === a.resource);
+                    if (object && a.participants.includes('player') && !this.settings.reducedMotion)
+                        this.camera.focus(object.x, object.z, Math.max(this.camera.minDistance, 22), .8);
+                    this.noticeTimer = 0;
                     people.forEach((c, i) => { if (object?.type === 'bench') {
-                        c.face(new Vec3(c.position.x, 0, c.position.z - 3));
+                        c.face(c.position.clone().add(new Vec3(-Math.sin(object.rotation ?? 0), 0, -Math.cos(object.rotation ?? 0))));
                         c.seatDepth = .80;
                         c.setAnimation('sit');
                     }
-                    else
-                        c.setAnimation(a.kind === 'object' ? (['basket', 'ballHopper', 'coneSet', 'racketRack'].includes(object?.type ?? '') ? 'stretch' : 'watch') : i ? 'drink' : 'talk'); });
+                    else {
+                        c.setAnimation(a.kind === 'object' ? (['basket', 'ballHopper', 'coneSet', 'racketRack'].includes(object?.type ?? '') ? 'stretch' : 'watch') : i ? 'drink' : 'talk');
+                        if (a.kind === 'matcha')
+                            c.socialProp = 'cup';
+                    } });
                     this.activeSpeechId = people[0].id;
                     this.speechUntil = performance.now() + 3500;
                     this.ui.showSpeech(people[0].spec.name, this.socialLine(people[0], people[1], object), 3500);
@@ -2378,13 +2415,13 @@ export class Game {
         this.noticeTimer -= this.renderDt;
         if (this.noticeTimer <= 0) {
             this.noticeTimer = .5;
-            this.worldNotices = this.characters.filter(c => this.activities.busy(c.id) && c.id !== this.activeSpeechId).map(c => {
+            this.worldNotices = this.characters.filter(c => this.activities.busy(c.id) && c.id !== this.activeSpeechId && !this.activities.active.some(a => a.participants.includes(c.id) && a.participants.includes(this.activeSpeechId ?? ''))).map(c => {
                 const a = this.activities.active.find(a => a.participants.includes(c.id));
                 const label = a.phase === 'traveling' ? 'On the way' : a.kind === 'lesson' ? 'In a lesson' : a.kind === 'match' || a.kind === 'observe' ? 'On court' : a.kind === 'everyday' ? 'A club moment' : a.detail;
                 return { id: c.id, position: c.position, name: c.spec.name, activity: label, select: () => this.openCharacter(c) };
             });
         }
-        this.spatial.update(this.renderDt, this.performanceLab.active || this.championship.active || this.phoneCapture?.active || !!document.querySelector('#context.open,#book.open,#buildPanel.open'), this.settings.reducedMotion, this.worldNotices);
+        this.spatial.update(this.renderDt, this.performanceLab.active || this.championship.active || this.phoneCapture?.active || !!this.buildType || !!document.querySelector('#context.open,#book.open,#buildPanel.open'), this.settings.reducedMotion, this.worldNotices);
         // One world composition for club, tennis and analysis. Replay changes only
         // the existing player's visual pose; every other entity and object remains.
         const labFrame = this.performanceLab.active ? this.performanceLab.timeline?.frame : null;
@@ -2403,10 +2440,10 @@ export class Game {
             meshes.push({ kind: 'roundBox', position: new Vec3(4.25, 2.12, -9.1), scale: new Vec3(.7, .12, .45), color: '#c58a5b', material: 'wood' }, { kind: 'sphere', position: new Vec3(4.25, 2.3, -9.1), scale: new Vec3(.24, .24, .24), color: '#e6c65f', material: 'fabric' });
         const contactView = this.championshipCamera.renderImpulse(this.settings.reducedMotion);
         this.renderItems = meshes.length;
-        this.renderer.render(meshes, this.camera.viewProjection(contactView), this.atmosphere.update(this.world.lighting(this.clock.minutes), this.renderDt), this.camera.position);
+        this.renderer.render(meshes, this.camera.viewProjection(contactView), this.atmosphere.update(this.world.lighting(this.clock.minutes, 0, this.camera.target), this.renderDt), this.camera.position);
         this.phoneCapture?.afterRender();
         if (this.activeSpeechId && performance.now() < this.speechUntil) {
-            const c = this.byId(this.activeSpeechId);
+            const c = this.activeSpeechId === 'player' ? this.player : this.byId(this.activeSpeechId);
             if (c) {
                 const p = this.camera.project(new Vec3(c.position.x, 2.55, c.position.z), undefined, contactView);
                 this.ui.positionSpeech(p.x, p.y);

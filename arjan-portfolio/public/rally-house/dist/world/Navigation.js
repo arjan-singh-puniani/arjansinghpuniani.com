@@ -14,7 +14,7 @@ export class Navigation {
     courtReserved = () => false;
     constructor(obstacles = []) { this.obstacles = obstacles; }
     isBlocked(x, z) { if (x < this.minX || x > this.maxX || z < this.minZ || z > this.maxZ)
-        return true; return this.obstacles.some(o => x > o.x - o.w / 2 - clearance && x < o.x + o.w / 2 + clearance && z > o.z - o.d / 2 - clearance && z < o.z + o.d / 2 + clearance); }
+        return true; return this.obstacles.some(o => { const c = Math.cos(o.rotation ?? 0), s = Math.sin(o.rotation ?? 0), dx = x - o.x, dz = z - o.z; return Math.abs(c * dx - s * dz) < o.w / 2 + clearance && Math.abs(s * dx + c * dz) < o.d / 2 + clearance; }); }
     snap(v, min) { return Math.round((v - min) / this.cell); }
     world(ix, iz) { return new Vec3(this.minX + ix * this.cell, 0, this.minZ + iz * this.cell); }
     path(start, end) {
@@ -98,7 +98,8 @@ export class Navigation {
             return false;
         for (const o of this.obstacles) {
             let enter = 0, leave = 1;
-            for (const [origin, delta, min, max] of [[a.x, b.x - a.x, o.x - o.w / 2 - clearance, o.x + o.w / 2 + clearance], [a.z, b.z - a.z, o.z - o.d / 2 - clearance, o.z + o.d / 2 + clearance]]) {
+            const c = Math.cos(o.rotation ?? 0), s = Math.sin(o.rotation ?? 0), ax = a.x - o.x, az = a.z - o.z, dx = b.x - a.x, dz = b.z - a.z;
+            for (const [origin, delta, min, max] of [[c * ax - s * az, c * dx - s * dz, -o.w / 2 - clearance, o.w / 2 + clearance], [s * ax + c * az, s * dx + c * dz, -o.d / 2 - clearance, o.d / 2 + clearance]]) {
                 if (Math.abs(delta) < 1e-9) {
                     if (origin <= min || origin >= max) {
                         enter = 2;

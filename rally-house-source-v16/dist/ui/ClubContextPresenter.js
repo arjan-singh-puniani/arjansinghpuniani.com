@@ -77,8 +77,10 @@ export function objectContext(o, a, e, memories, identity, minute = 0) {
         facts.push({ label: 'From the club scrapbook', text: memories[0] });
     return { eyebrow: 'A little club ritual', title: o.label, subtitle: o.description, status: free ? 'Take a moment here' : 'A shared moment is in progress', facts, actions };
 }
-export function furnitureContext(p, f, a, names) {
-    const h = f.objects[p.id], touch = touchForDecor(p.type), free = !a.reserved(p.id), facts = [];
+export function furnitureContext(p, f, a, names, minute = 0) {
+    const h = f.objects[p.id], touches = f.actions(p, minute), free = !a.reserved(p.id), facts = [];
+    if (h?.lastWater !== undefined && minute - h.lastWater < 30)
+        facts.push({ label: 'Freshly watered', text: `Soil is damp · water again in ${Math.ceil(30 - (minute - h.lastWater))} club minutes` });
     if (h?.favoriteOf.length)
         facts.push({ label: 'A familiar place', text: `A favorite of ${h.favoriteOf.map(names).join(', ')}` });
     if (h?.visits.player)
@@ -86,11 +88,16 @@ export function furnitureContext(p, f, a, names) {
     if (h?.revision)
         facts.push({ label: 'Still the same place', text: `Moved ${h.revision} ${h.revision === 1 ? 'time' : 'times'} · history kept` });
     const actions = [];
-    if (free && !a.busy('player'))
-        actions.push({ id: 'touch', title: touch.title, detail: touch.detail, primary: true });
-    if (f.affordances(p).includes('spectate') && !a.busy('player'))
-        actions.push({ id: 'watch', title: 'Watch a rally', detail: 'Walk to the court sideline' });
+    if (free && !a.busy('player')) {
+        actions.push(...touches.map((touch, i) => ({ id: touch.id, title: touch.title, detail: touch.detail, primary: i === 0 })));
+        if (['racketRack', 'tennisBag'].includes(p.type))
+            actions.push({ id: 'equipment', title: 'Choose your racket setup', detail: 'Use the pro shop: frames, strings and tension' });
+        if (['bench', 'cafeTable'].includes(p.type))
+            actions.push({ id: 'invite', title: p.type === 'bench' ? 'Invite someone to sit' : 'Invite someone for matcha', detail: 'Make this a place you share' });
+    }
+    if (free && f.affordances(p).includes('spectate') && !a.busy('player'))
+        actions.push({ id: 'watch', title: 'Watch a rally from here', detail: 'Settle into your seat and follow the real ball' });
     if (free)
         actions.push({ id: 'arrange', title: 'Arrange this detail', detail: 'Move, rotate or return to catalog' });
-    return { eyebrow: 'Your academy', title: DECOR_BY_ID[p.type].label, subtitle: f.affordances(p).join(' · '), status: free ? 'A place for a small ritual' : 'Someone is using this place', facts: facts.slice(0, 2), actions };
+    return { eyebrow: 'Your academy', title: DECOR_BY_ID[p.type].label, subtitle: touches[0].detail, status: free ? 'Make yourself at home' : 'Someone is using this place', facts: facts.slice(0, 2), actions };
 }

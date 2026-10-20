@@ -21,10 +21,9 @@
       <span><strong>Rally House</strong><small>living tennis academy</small></span>
     </button>
     <div class="stats glass" aria-label="Academy status">
-      <span title="Club funds">◌ <b id="coins">100</b></span>
-      <span>♥ <b id="heart">1</b></span>
-      <span>✦ <b id="stars">3</b></span>
-      <span id="weatherChip">☀ <b id="clock">9:20</b></span>
+      <button id="fundsBtn" title="Spend club funds on your club" aria-label="Open build catalog">◌ <b id="coins">100</b><span class="chip-label">Build</span></button>
+      <button id="peopleBtn" title="People and relationships" aria-label="Open people and relationships">♥<span class="chip-label">People</span></button>
+      <button id="weatherChip" title="Change the weather" aria-label="Change the weather">☀ <b id="clock">9:20</b></button>
     </div>
   </header>
 
@@ -65,8 +64,9 @@
   </aside>
 
   <aside class="build glass" id="buildPanel" aria-label="Build mode">
-    <p class="eyebrow">DECORATE</p>
-    <strong>Make it yours</strong>
+    <p class="eyebrow">YOUR CLUB · <b id="buildFunds">100</b> FUNDS</p>
+    <strong>Make a place worth staying</strong>
+    <p class="build-income">Finish a tennis match to earn 30 funds.</p>
     <nav class="buildTabs" aria-label="Decoration categories">
       <button class="active" data-build-category="tennis">🎾 Tennis</button>
       <button data-build-category="clubhouse">☕ Club</button>
@@ -74,11 +74,14 @@
       <button data-build-category="ambience">💡 Glow</button>
     </nav>
     <div class="catalog" id="buildCatalog"></div>
-    <div class="buildControls" id="buildControls" hidden>
-      <button id="rotateLeft" aria-label="Rotate selected decoration left">↺ Rotate</button>
-      <button id="rotateRight" aria-label="Rotate selected decoration right">Rotate ↻</button>
-    </div>
     <small id="buildHint">Choose an item, move it over free floor, then tap to place. Q / E rotates on desktop.</small>
+  </aside>
+
+  <aside class="buildControls glass" id="buildControls" aria-label="Place selected furniture" hidden>
+    <strong id="placementLabel"></strong>
+    <button id="rotateLeft" aria-label="Rotate selected decoration left">↺ Rotate</button>
+    <button id="rotateRight" aria-label="Rotate selected decoration right">Rotate ↻</button>
+    <button id="cancelPlacement">Cancel</button>
   </aside>
 
   <div class="toast" id="toast" role="status"></div>

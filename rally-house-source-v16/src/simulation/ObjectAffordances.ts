@@ -1,11 +1,23 @@
 import type {Placement} from '../world/World.js';
+import {touchForDecor,CLUB_TOUCHES} from './ClubInteractions.js';
+import type {ObjectAction} from '../world/ObjectIdentity.js';
 const training=new Set(['basket','ballHopper','coneSet','racketRack','scoreboard','tennisBag']);
 const social=new Set(['bench','cafeTable','stool','sideTable']);
 const care=new Set(['plant','planter','towelRack']);
-export interface ObjectHistory {placedDay:number;visits:Record<string,number>;memories:string[];favoriteOf:string[];comfort?:Record<string,number>;usageCount?:number;revision?:number;importantEvents?:string[]}
+export interface ObjectHistory {placedDay:number;visits:Record<string,number>;memories:string[];favoriteOf:string[];comfort?:Record<string,number>;usageCount?:number;revision?:number;importantEvents?:string[];lastWater?:number;dimmed?:boolean}
 export interface AffordanceSave {objects:Record<string,ObjectHistory>;sequence:number}
 export class ObjectAffordances {
   objects:Record<string,ObjectHistory>={};sequence=0;
+  actions(p:Placement,minute:number):ObjectAction[]{
+    const h=this.objects[p.id??''];
+    if(p.type==='plant'||p.type==='planter')return [
+      ...(h?.lastWater===undefined||minute-h.lastWater>=30?[{...CLUB_TOUCHES.bonsai,id:'water',title:'Water the plant',detail:'Pour into the soil; the leaves perk up and the soil stays damp.',water:true}]:[]),
+      {...touchForDecor(p.type),id:'touch'},
+    ];
+    if(p.type==='lamp'||p.type==='lantern')return [{...CLUB_TOUCHES.lamp,id:'light',title:h?.dimmed?'Switch the light on':'Switch the light off',detail:'Change the actual pool of light around your furniture.',seconds:1.4,gesture:'point'}];
+    return [{...touchForDecor(p.type),id:'touch'}];
+  }
+  apply(id:string,action:ObjectAction,minute:number){const h=this.objects[id];if(!h)return;if(action.water)h.lastWater=minute;if(action.effect==='lamp')h.dimmed=!h.dimmed;}
   sync(placements:Placement[],day:number){
     const used=new Set<string>();for(const p of placements){if(!p.id||used.has(p.id))p.id=`furniture-${++this.sequence}`;used.add(p.id);this.objects[p.id]??={placedDay:day,visits:{},memories:[],favoriteOf:[]};}
     for(const id of Object.keys(this.objects))if(!used.has(id))delete this.objects[id];
@@ -21,7 +33,7 @@ export class ObjectAffordances {
   load(s?:AffordanceSave){if(!s)return;if(!s.objects||typeof s.objects!=='object'||Array.isArray(s.objects)||!Number.isSafeInteger(s.sequence)||s.sequence<0)throw Error('Object history is invalid.');
     const counts=(v:unknown)=>!!v&&typeof v==='object'&&!Array.isArray(v)&&Object.entries(v).every(([k,n])=>['coach','mika','leo','nia','player'].includes(k)&&typeof n==='number'&&Number.isFinite(n)&&n>=0);
     const strings=(v:unknown)=>Array.isArray(v)&&v.every(x=>typeof x==='string');
-    for(const h of Object.values(s.objects)){if(!h||!Number.isFinite(h.placedDay)||!counts(h.visits)||!strings(h.memories)||!Array.isArray(h.favoriteOf)||!h.favoriteOf.every(v=>['coach','mika','leo','nia','player'].includes(v))||(h.comfort!==undefined&&!counts(h.comfort))||(h.usageCount!==undefined&&(!Number.isSafeInteger(h.usageCount)||h.usageCount<0))||(h.revision!==undefined&&(!Number.isSafeInteger(h.revision)||h.revision<0))||(h.importantEvents!==undefined&&!strings(h.importantEvents)))throw Error('Object history is invalid.');}
+    for(const h of Object.values(s.objects)){if(!h||(h.lastWater!==undefined&&(!Number.isFinite(h.lastWater)||h.lastWater<0))||(h.dimmed!==undefined&&typeof h.dimmed!=='boolean')||!Number.isFinite(h.placedDay)||!counts(h.visits)||!strings(h.memories)||!Array.isArray(h.favoriteOf)||!h.favoriteOf.every(v=>['coach','mika','leo','nia','player'].includes(v))||(h.comfort!==undefined&&!counts(h.comfort))||(h.usageCount!==undefined&&(!Number.isSafeInteger(h.usageCount)||h.usageCount<0))||(h.revision!==undefined&&(!Number.isSafeInteger(h.revision)||h.revision<0))||(h.importantEvents!==undefined&&!strings(h.importantEvents)))throw Error('Object history is invalid.');}
     this.objects=structuredClone(s.objects);this.sequence=s.sequence;for(const h of Object.values(this.objects)){h.comfort??={...h.visits};h.usageCount??=Object.values(h.visits).reduce((a,b)=>a+b,0);h.importantEvents??=[];h.revision??=0;}
   }
 }

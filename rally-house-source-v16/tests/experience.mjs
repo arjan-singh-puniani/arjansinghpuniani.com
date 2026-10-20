@@ -71,11 +71,13 @@ for(let point=0;point<6;point++){c.markServeStarted();c.resolvePoint({winner:'pl
 const a=g.activities.begin('championship',['player','leo'],'court','QA match');
 for(const phase of ['starting','active'])g.activities.transition(a,phase);
 g.routes.set(a.id,[new Vec3(1,0,5),new Vec3(1,0,-5)]);
+const fundsBefore=g.coins;
 g.updateChampionshipActivity(a,1/60);
 assert.equal(c.phase,'matchResult');
 assert(g.relations.courtship('leo').won,'Only a completed Championship win unlocks cozy progression');
 for(let i=0;i<60;i++)g.updateChampionshipActivity(a,1/60);
 assert.equal(g.relations.get('leo').events.filter(e=>e.type==='championship_result').length,1);
+assert.equal(g.coins,fundsBefore+30,'A completed match pays once, including repeated result updates');
 g.rematchChampionship();assert.equal(g.championshipRound,2);
 for(let i=0;i<100;i++)c.update(1/60,true);
 for(let point=0;point<6;point++){c.markServeStarted();c.resolvePoint({winner:'player',reason:'winner',rallyLength:3});for(let frame=0;frame<80;frame++)c.update(1/60,true);}c.resolvePoint({winner:'player',reason:'winner',rallyLength:8});g.rememberChampionshipResult();
