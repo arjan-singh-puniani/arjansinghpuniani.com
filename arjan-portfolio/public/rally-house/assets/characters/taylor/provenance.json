@@ -2,7 +2,7 @@
   "author": "MakeHuman Community; MargaretToigo; Bobby_03; punkduck; Microsoft Rocketbox; Rally House fit and runtime adaptation",
   "source": "https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482",
   "license": "CC0-1.0 AND CC-BY-4.0 AND MIT",
-  "sha256": "6ca15ee7dd4ca3118088e68580270cd61e2a00a872f9e2d09634803f21ea29c3",
+  "sha256": "377e2af18fe127aaf50b459e6588a53c2d1e87503b959c2ed7af9a5d5af4e97d",
   "boneMap": {
     "pelvis": "pelvis",
     "spine": "spine",
@@ -169,14 +169,14 @@
   "parts": [
     {
       "name": "skin",
-      "triangles": 15490,
-      "vertices": 16466,
+      "triangles": 15530,
+      "vertices": 16490,
       "material": "humanSkin"
     },
     {
       "name": "kit",
-      "triangles": 2274,
-      "vertices": 1659,
+      "triangles": 5516,
+      "vertices": 3183,
       "material": "performanceKnit"
     },
     {
@@ -205,8 +205,8 @@
     }
   ],
   "textures": {
-    "skin.webp": "b683c839cbacdd494b146696daf63826c2b261a36bdf1bb96800c573f911faac",
-    "kit.webp": "fc02aec6b3e2255f40b084c159314dbed24c9fd1c49895878be2d0e7661f476c",
+    "skin.webp": "ec769c1543ecb476613019d221950cd0ffb439d5d85679167b6b2b150a9418a4",
+    "kit.webp": "a7d07d4d6c6c8f99259a823ba831a95d547571d706e417bdf80a1965f128a9f5",
     "shoes.webp": "3af53b14cb45d2e1a5f09cab63d55b534ee8f7e0f2cb54b63c9f9c8e7513d018",
     "hair.webp": "a549fa4b5f121e176e18a2d8fde0f6750b46ca778f93daec700540609ef16df7",
     "skirt.webp": "3ac69eb7fd0f27c3c78318e71cab59928b76632a4d236f80a6a8af47199fe822"
@@ -237,6 +237,8 @@
     "eyes/high-poly/high-poly.mhclo": "b183cfe37120ab726f9b3f2ea6cd3a64c44ce7b4bd91a77c841cf70c04f83a0d",
     "eyes/high-poly/high-poly.obj": "da2493215b708a344c33dc72f2a9a5b8fa985dcc5a70ad3b208995cf871da8e1",
     "tools/athlete-textures/head-brunette.prompt.txt": "2cc90d8cba5478e39e5bb6a270e67e2d85a4ec41395d43d41520308369289c55",
+    "tools/athlete-textures/head-refined-v2.png": "80a2cbcb900afd1634e290b80aaca5fe853b6ef3b92710a73b3c8c691e151c54",
+    "tools/athlete-textures/head-refined-v2.prompt.txt": "d28384704cfe0e02fcf3f6d086d2016e290ec1417b4819dfde1b411ca63c47be",
     "tools/athlete-textures/head-brunette.png": "577fa9e05a0b53e23bb519e2088834f08dc083c795a629ccbe03dbe71f02309e",
     "tools/athlete-poses/crouch.json": "4ab566af92d738a97d4ad0ac3e3cb0f74711d300b8201f9b0f4e0b6033c88252"
   },
@@ -267,7 +269,7 @@
     "license": "MIT",
     "revision": "0943055db6ec570bcef9f2c8b41c9e5467c808f9",
     "source": "https://github.com/microsoft/Microsoft-Rocketbox",
-    "textureAdaptation": "Brunette UV recolor using built-in imagegen; source image and exact prompt in tools/athlete-textures/"
+    "textureAdaptation": "Brunette recolor and face albedo refinement using built-in imagegen; source image and exact prompt in tools/athlete-textures/"
   },
   "assetPacks": [
     "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
@@ -276,8 +278,8 @@
     "https://static.makehumancommunity.org/assets/assetpacks/shirts03.html"
   ],
   "authoringScripts": {
-    "bake-authored-athlete.py": "711664f7b6d9f0560f63949e3faa2e99234c87511d93cb15af796e97f6bbcb27",
+    "bake-authored-athlete.py": "853853ecd9e965e84b142abb7fc19e6a7ee5f27f85e252d0afafffb33f86338a",
     "fit-athlete-kit.py": "e6d0c77cbb064aff6ddd2d9581e083ab9414418228fa81cf0c98bf9409470b2c",
-    "fit-athlete-head.py": "2ce21c5fe4b674c68c16acb89745ca4bf69640edf904fcf6f5203e88ee1f464a"
+    "fit-athlete-head.py": "4cc1fcdec5710d4b11e052b39f08bb8443cc715825518a2c785f009864b85c2f"
   }
 }

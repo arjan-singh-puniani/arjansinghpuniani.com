@@ -16,21 +16,21 @@ const asset=inspectCharacterAsset(bytes.buffer.slice(bytes.byteOffset,bytes.byte
 assert.deepEqual(asset.primitives.map(p=>p.materialSlot),['skin','kit','skirt','shoes','eyes','hair']);const body=asset.primitives[0].geometry;for(const bone of [BONE.foreArmTwistL,BONE.foreArmTwistR])assert(body.boneIndices.filter((n,i)=>n===bone&&body.boneWeights[i]>.1).length>100,'authored forearm twist weights must reach the visible skin');assert(asset.primitives.reduce((n,p)=>n+p.geometry.positions.length/9,0)<40000);
 for(const p of asset.primitives){assert(p.geometry.uvs?.every(Number.isFinite));assert(p.albedo);if(['eyes','hair','brows','lashes'].includes(p.materialSlot))assert.equal(p.alphaCutoff,.35);if(['skin','eyes','hair','skirt'].includes(p.materialSlot)){assert.equal(p.geometry.morphs.length,5);assert(p.geometry.morphs.every(d=>d.length===p.geometry.positions.length&&d.every(Number.isFinite)));assert.equal(p.geometry.morphNormals.length,5);assert(p.geometry.morphNormals.every(d=>d.length===p.geometry.positions.length&&d.every(n=>Number.isFinite(n)&&Math.abs(n)<=2.01)));}}
 for(const slot of ['kit','skirt']){
- const g=asset.primitives.find(p=>p.materialSlot===slot).geometry,vertices=[];for(let i=0;i<g.positions.length/3;i++)if(slot==='skirt'||g.uvs[i*2+1]>.55)vertices.push(i);
+ const g=asset.primitives.find(p=>p.materialSlot===slot).geometry,vertices=[];for(let i=0;i<g.positions.length/3;i++)if(slot==='skirt'||(g.uvs[i*2+1]>.55&&[0,1,2,3].reduce((sum,j)=>sum+([BONE.pelvis,BONE.spine,BONE.chest,BONE.neck].includes(g.boneIndices[i*4+j])?g.boneWeights[i*4+j]:0),0)>.95))vertices.push(i);
  const hem=Math.min(...vertices.map(i=>g.positions[i*3+1])),seen=new Map();let pairs=0;
  for(const i of vertices){if(Math.abs(g.positions[i*3+1]-hem)>1e-5)continue;const key=[...g.positions.slice(i*3,i*3+3)].map(n=>n.toFixed(6)).join(','),previous=seen.get(key);if(previous===undefined){seen.set(key,i);continue;}for(const normals of [g.normals,...(g.morphNormals??[])])assert(Math.hypot(...normals.slice(i*3,i*3+3).map((n,j)=>n-normals[previous*3+j]))<1e-5,'trimmed cloth hem must shade continuously, including its corrective');pairs++;}
  assert(pairs>50,'inspect actual shared hem vertices');
 }
 const rest=Object.fromEntries(Object.entries(meta.bind).map(([key,p])=>[key,new Vec3(...p)]));rest.headUp=new Vec3(0,1,0);
 // Measure the exported skin, so a later bake cannot silently restore the bulky arms.
-for(const side of ['L','R'])for(const [start,end,bones,limit] of [['upperArm','foreArm',['upperArm'],.063],['foreArm','wrist',['foreArm','foreArmTwist'],.051]]){
+for(const [surface,armGeometry,padding] of [['skin',body,0],['sleeves',asset.primitives.find(p=>p.materialSlot==='kit').geometry,.005]])for(const side of ['L','R'])for(const [start,end,bones,limit] of [['upperArm','foreArm',['upperArm'],.063],['foreArm','wrist',['foreArm','foreArmTwist'],.051]]){
  const a=rest[start+side],axis=Vec3.sub(rest[end+side],a),length=axis.len();axis.scale(1/length);const radii=[];
- for(let v=0;v<body.positions.length/3;v++){
-  const p=Vec3.sub(new Vec3(...body.positions.slice(v*3,v*3+3)),a),along=Vec3.dot(p,axis)/length;let weight=0;
-  for(let j=0;j<4;j++)if(bones.some(b=>BONE[b+side]===body.boneIndices[v*4+j]))weight+=body.boneWeights[v*4+j];
+ for(let v=0;v<armGeometry.positions.length/3;v++){
+  const p=Vec3.sub(new Vec3(...armGeometry.positions.slice(v*3,v*3+3)),a),along=Vec3.dot(p,axis)/length;let weight=0;
+  for(let j=0;j<4;j++)if(bones.some(b=>BONE[b+side]===armGeometry.boneIndices[v*4+j]))weight+=armGeometry.boneWeights[v*4+j];
   if(weight>.95&&along>.2&&along<.7)radii.push(p.sub(axis.clone().scale(along*length)).len());
  }
- radii.sort((a,b)=>a-b);const radius95=radii[Math.floor(radii.length*.95)];assert(radii.length>60&&radius95>.03&&radius95<limit,'exported arm cross-section must retain the slimmer athletic silhouette');console.log(JSON.stringify({arm:start+side,radius95,samples:radii.length}));
+ radii.sort((a,b)=>a-b);const radius95=radii[Math.floor(radii.length*.95)];assert(radii.length>60&&radius95>.03&&radius95<limit+padding,'exported arm cross-section must retain the slimmer athletic silhouette');console.log(JSON.stringify({surface,arm:start+side,radius95,samples:radii.length}));
 }
 const bind=skinMatrices(rest,rest);for(let bone=0;bone<Object.keys(BONE).length;bone++)for(let i=0;i<16;i++)assert(Math.abs(bind[bone*16+i]-(i%5===0?1:0))<1e-5,'rest pose changed');
 assert(rest.handL.x<0&&rest.handR.x>0&&rest.thighL.x<0&&rest.thighR.x>0);
@@ -89,7 +89,7 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
   openRadius+=radius(false);closedRadius+=radius(true);count++;
  }
  assert(count>20);openRadius/=count;closedRadius/=count;assert(closedRadius<openRadius*.75&&closedRadius<.065,'fingers must close around the handle');const wristDeflection=Math.acos(Math.max(-1,Math.min(1,Vec3.dot(Vec3.sub(gripPose.handR,gripPose.foreArmR).normalize(),gripPose.handDirectionR))));assert(wristDeflection<.8,'ready grip must not buckle the wrist');console.log(JSON.stringify({fingerSamples:count,openRadius,closedRadius,wristDeflection}));
- // Check the actual fitted top, rather than assuming valid joints imply no overlap.
+ // Check the fitted torso; the sleeve strip intentionally encloses each arm.
  let readyArmChecks=0,strokeArmChecks=0;
  for(const hz of [30,60,120])for(const state of ['ready','shuffle','swingForehand','swingBackhand','serve']){
   const actor=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{}),shot=['swingForehand','swingBackhand','serve'].includes(state);actor.racketStowed=false;actor.matchCompetitor=true;
@@ -102,7 +102,7 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
    for(let v=0;v<g.positions.length/3;v++){const p=new Vec3(...g.positions.slice(v*3,v*3+3)),out=new Vec3();for(let j=0;j<4;j++){const w=g.boneWeights[v*4+j];if(!w)continue;const q=transformPoint(kit.boneMatrices.slice(g.boneIndices[v*4+j]*16,g.boneIndices[v*4+j]*16+16),p);out.add(new Vec3(q.x,q.y,q.z).scale(w));}points.push(out);}
    for(const side of ['L','R'])for(const [start,end] of [['upperArm','foreArm'],['foreArm','hand']])for(const t of [.4,.6,.8]){
     const point=Vec3.lerp(pose[start+side],pose[end+side],t),hits=[];
-    for(let i=0;i<points.length;i+=3){const[a,b,c]=points.slice(i,i+3),det=(b.y-c.y)*(a.x-c.x)+(c.x-b.x)*(a.y-c.y);if(Math.abs(det)<1e-12)continue;const u=((b.y-c.y)*(point.x-c.x)+(c.x-b.x)*(point.y-c.y))/det,v=((c.y-a.y)*(point.x-c.x)+(a.x-c.x)*(point.y-c.y))/det,w=1-u-v;if(u>=0&&v>=0&&w>=0)hits.push(u*a.z+v*b.z+w*c.z);}
+    for(let i=0;i<points.length;i+=3){if([i,i+1,i+2].every(v=>g.uvs[v*2]<.05))continue;const[a,b,c]=points.slice(i,i+3),det=(b.y-c.y)*(a.x-c.x)+(c.x-b.x)*(a.y-c.y);if(Math.abs(det)<1e-12)continue;const u=((b.y-c.y)*(point.x-c.x)+(c.x-b.x)*(point.y-c.y))/det,v=((c.y-a.y)*(point.x-c.x)+(a.x-c.x)*(point.y-c.y))/det,w=1-u-v;if(u>=0&&v>=0&&w>=0)hits.push(u*a.z+v*b.z+w*c.z);}
     assert(!(hits.length>1&&point.z>Math.min(...hits)+.015&&point.z<Math.max(...hits)-.015),`${state}/${hz}/${frame}/${side}: arm passes through the fitted top`);if(shot)strokeArmChecks++;else readyArmChecks++;
    }
   }
@@ -149,8 +149,14 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
  const crouched=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});crouched.matchCompetitor=true;crouched.setAnimation('ready');crouched.update(.3);crouched.setIncomingContact(new Vec3(-.6,1.02,.9));crouched.triggerShot('swingBackhand',new Vec3(0,.09,5));for(let i=0;i<10;i++)crouched.update(1/60);
  assert(crouched.meshes().find(m=>m.skirt).expression[1]>.99,'the lowered stroke pelvis must drive the crouch correction');const crouchA=captureFrame(crouched,0,null);crouched.update(1/60);const crouchB=captureFrame(crouched,1/60,null),crouchMiddle=interpolateFrame(crouchA,crouchB,1/120);assert.equal(crouchMiddle.body.find(m=>m.skirt).expression[1],(crouchA.body.find(m=>m.skirt).expression[1]+crouchB.body.find(m=>m.skirt).expression[1])/2,'capture/replay must retain the crouch correction');
  console.log(JSON.stringify({maxDrapeStep,seatedReplay:true,crouchReplay:true}));
- const fittedKit=asset.primitives.find(p=>p.materialSlot==='kit').geometry;let topWidth=0,topVertices=0;for(let i=0;i<fittedKit.positions.length;i+=3)if(fittedKit.positions[i+1]>1.7){assert(fittedKit.uvs[i/3*2+1]>.55&&fittedKit.uvs[i/3*2+1]<.95,'solid top sampled the neighbouring atlas tile');topWidth=Math.max(topWidth,Math.abs(fittedKit.positions[i]));topVertices++;}
- assert(topVertices>1000&&topWidth<Math.abs(rest.upperArmL.x)+.06,'fitted top must follow the torso rather than retaining the jersey sleeves');assert(meta.author.includes('punkduck')&&meta.license.includes('CC-BY-4.0'),'authored top must retain creator and license metadata');
+ const fittedKit=asset.primitives.find(p=>p.materialSlot==='kit').geometry;let torsoWidth=0,topVertices=0,sleeveVertices=0;
+ for(let i=0;i<fittedKit.positions.length/3;i++)if(fittedKit.uvs[i*2+1]>.55){
+  const y=fittedKit.positions[i*3+1],joints=[0,1,2,3].map(j=>fittedKit.boneIndices[i*4+j]);topVertices++;assert(fittedKit.uvs[i*2+1]<1);
+  if(joints.some((b,j)=>[BONE.foreArmL,BONE.foreArmTwistL,BONE.foreArmR,BONE.foreArmTwistR].includes(b)&&fittedKit.boneWeights[i*4+j]>.5))sleeveVertices++;
+  if(y>1.7&&joints.every((b,j)=>fittedKit.boneWeights[i*4+j]<.01||[BONE.pelvis,BONE.spine,BONE.chest,BONE.neck].includes(b)))torsoWidth=Math.max(torsoWidth,Math.abs(fittedKit.positions[i*3]));
+ }
+ assert(topVertices>1000&&torsoWidth<Math.abs(rest.upperArmL.x)+.06,'fitted crop must retain the narrow torso');assert(sleeveVertices>100,'the reference kit must retain weighted long sleeves');
+ assert(meta.author.includes('punkduck')&&meta.license.includes('CC-BY-4.0'),'authored top must retain creator and license metadata');
  const blinkActor=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});let previousBlink=0,maxBlink=0,maxBlinkStep=0;
  for(let frame=0;frame<960;frame++){blinkActor.update(1/240);const blink=blinkActor.meshes().find(m=>m.rig).expression[2];maxBlink=Math.max(maxBlink,blink);maxBlinkStep=Math.max(maxBlinkStep,Math.abs(blink-previousBlink));previousBlink=blink;}
  assert(maxBlink>.95&&maxBlinkStep<.15,'blink must close fully without snapping shut');console.log(JSON.stringify({maxBlink,maxBlinkStep}));

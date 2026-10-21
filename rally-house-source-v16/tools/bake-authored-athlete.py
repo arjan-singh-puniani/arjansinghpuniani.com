@@ -115,6 +115,25 @@ frames=[frame(n) for n in names]
 
 parts=[];hidden=set();morph_data={};normal_data={};normal_delta_data={}
 
+def clip_faces(p,u,f,pw,distances):
+ positions=list(p);coords=list(u);influences=list(pw);values=list(distances);clipped=[];intersections={}
+ for group,face in f:
+  for j in range(1,len(face)-1):
+   polygon=[face[0],face[j],face[j+1]];result=[]
+   for previous,current in zip(polygon[-1:]+polygon[:-1],polygon):
+    a,b=previous[0],current[0];insideA=values[a]>=0;insideB=values[b]>=0
+    if insideA!=insideB:
+     t=values[a]/(values[a]-values[b]);edge=tuple(sorted((a,b)));vi=intersections.get(edge)
+     if vi is None:
+      vi=len(positions);intersections[edge]=vi;positions.append(positions[a]+(positions[b]-positions[a])*t);influences.append(influences[a]+(influences[b]-influences[a])*t);values.append(0)
+     ui=len(coords);coords.append(coords[previous[1]]+(coords[current[1]]-coords[previous[1]])*t);result.append((vi,ui))
+    if insideB:result.append(current)
+   for k in range(1,len(result)-1):
+    tri=[result[0],result[k],result[k+1]];a,b,c=[positions[v] for v,_ in tri]
+    if np.linalg.norm(np.cross(b-a,c-a))>1e-12:clipped.append((group,tri))
+ p=np.array(positions);u=np.array(coords);pw=np.array(influences);f=clipped
+ return p,u,f,pw
+
 def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
  global hidden
  lines=(ROOT/folder/(stem+'.mhclo')).read_text().splitlines();obj_file=next(l.split()[1] for l in lines if l.startswith('obj_file '));p,u,f,g=obj(ROOT/folder/obj_file);
@@ -136,7 +155,7 @@ def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
    while i<len(a):
     start=int(a[i]);end=start
     if i+2<len(a) and a[i+1]=='-':end=int(a[i+2]);i+=2
-    hidden.update(v for v in range(start,end+1) if name!='skirt' and (name!='kit' or shape[v,1]<1.5) and (name!='top' or shape[v,1]<5.40) and shape[v,1]>(clip+.1 if name in ('kit','top') else -2.25));i+=1
+    hidden.update(v for v in range(start,end+1) if name!='skirt' and (name!='kit' or shape[v,1]<1.5) and (name!='top' or shape[v,1]<5.10) and shape[v,1]>(clip+.1 if name in ('kit','top') else -2.25));i+=1
  assert len(rows)==len(p),(name,len(rows),len(p))
  pw=[]
  for i,a in enumerate(rows):
@@ -161,23 +180,8 @@ def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
     seam=np.clip((.65-depth)/.25,0,1);seam=seam*seam*(3-2*seam);pw=pw*(1-seam[:,None])+surface_weights*seam[:,None]
    else:pw=surface_weights
  if force is not None:pw[:]=0;pw[:,names.index(force)]=1
- for cut,direction in ([(clip,1)] if clip is not None else [])+([(5.45,-1)] if name=='top' else []):
-  # Clip triangles at a physical hem plane, interpolating both UVs and skin weights.
-  positions=list(p);coords=list(u);influences=list(pw);clipped=[];intersections={}
-  for group,face in f:
-   for j in range(1,len(face)-1):
-    polygon=[face[0],face[j],face[j+1]];result=[]
-    for previous,current in zip(polygon[-1:]+polygon[:-1],polygon):
-     a,b=positions[previous[0]],positions[current[0]];insideA=direction*(a[1]-cut)>=0;insideB=direction*(b[1]-cut)>=0
-     if insideA!=insideB:
-      t=(cut-a[1])/(b[1]-a[1]);edge=tuple(sorted((previous[0],current[0])));vi=intersections.get(edge)
-      # Adjacent triangles share a cut vertex so their hem normals remain continuous.
-      if vi is None:
-       vi=len(positions);intersections[edge]=vi;positions.append(a+(b-a)*t);influences.append(influences[previous[0]]+(influences[current[0]]-influences[previous[0]])*t)
-      ui=len(coords);coords.append(coords[previous[1]]+(coords[current[1]]-coords[previous[1]])*t);result.append((vi,ui))
-     if insideB:result.append(current)
-    if len(result)>=3:clipped.append((group,result))
-  p=np.array(positions);u=np.array(coords);pw=np.array(influences);f=clipped
+ if clip is not None:p,u,f,pw=clip_faces(p,u,f,pw,p[:,1]-clip)
+ if name=='top':p,u,f,pw=clip_faces(p,u,f,pw,5.15-p[:,1])
  if name=='skirt':
   # The thigh pivot rolls the front hem up; this corrective restores its seated drape.
   used=np.unique([v for _,face in f for v,_ in face]);mp=metric(p);lo,hi=mp[used,1].min(),mp[used,1].max();depth=np.clip((hi-mp[:,1])/(hi-lo),0,1);depth=depth*depth*(3-2*depth);front=np.clip((mp[:,2]-.02)/.18,0,1);front=front*front*(3-2*front)
@@ -196,14 +200,32 @@ def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
  parts.append((name,p,u,f,pw,texture,material))
 fitted('kit','clothes/female_sportsuit01','female_sportsuit01','kit.webp','performanceKnit',clip=-.55)
 fitted('top','clothes/punkduck_high_neck_crop_top','punkduck_high_neck_crop_top','kit.webp','performanceKnit',clip=2.5)
+# Sleeves reuse the fitted adult arm topology and its existing twist weights.
+body_faces=[(g,f) for g,f in faces if g=='body'];normals=np.zeros_like(shape)
+for _,face in body_faces:
+ ids=[v[0] for v in face];normals[ids]+=np.cross(shape[ids[1]]-shape[ids[0]],shape[ids[2]]-shape[ids[0]])
+normals/=np.maximum(np.linalg.norm(normals,axis=1)[:,None],1e-12)
+for side in ['L','R']:
+ arm=W[:,[names.index(n+side) for n in ['upperArm','foreArm','foreArmTwist']]].sum(1)
+ sf=[(g,f) for g,f in body_faces if max(arm[v[0]] for v in f)>.02]
+ sp,su,sf,sw=clip_faces(shape+normals*.025,uv,sf,W,arm-.02)
+ axis=bind['wrist'+side]-bind['foreArm'+side];axis/=np.linalg.norm(axis)
+ sp,su,sf,sw=clip_faces(sp,su,sf,sw,-(metric(sp)-bind['wrist'+side])@axis-.005)
+ assert sf and np.isfinite(sp).all()
+ parts.append(('sleeve'+side,sp,su,sf,sw,'kit.webp','performanceKnit'))
 fitted('skirt','clothes/toigo_skirt_with_lace_ruffle','toigo_skirt_with_lace_ruffle','skirt.webp','performanceKnit')
 fitted('shoes','clothes/shoes05','shoes05','shoes.webp','performanceKnit')
 fitted('eyes','eyes/high-poly','high-poly','eyes.webp','iris',force='head')
-# One atlas keeps the fitted top and protected shorts in the existing kit draw.
-# Sample the solid top tile at its centre so mip filtering cannot pull in the shorts.
-ki=next(i for i,p in enumerate(parts) if p[0]=='kit');ti=next(i for i,p in enumerate(parts) if p[0]=='top');kit=parts[ki];top=parts.pop(ti)
-kp,ku,kf,kw=kit[1:5];tp,tu,tf,tw=top[1:5];ku=ku.copy();tu=np.full_like(tu,.5);ku[:,1]=.5+ku[:,1]*.5;tu[:,1]*=.5
-parts[ki]=('kit',np.vstack([kp,tp]),np.vstack([ku,tu]),[*kf,*[(g,[(v+len(kp),u+len(ku)) for v,u in face]) for g,face in tf]],np.vstack([kw,tw]),'kit.webp','performanceKnit')
+# One draw retains the shorts, fitted crop and sleeves; atlas swatches cannot bleed.
+ki=next(i for i,p in enumerate(parts) if p[0]=='kit');kit=parts[ki];kp,ku,kf,kw=kit[1:5];ku=ku.copy();ku[:,1]=.5+ku[:,1]*.5
+for top in [p for p in parts if p[0] in ('top','sleeveL','sleeveR')]:
+ tp,_,tf,tw=top[1:5]
+ if top[0]=='top':tu=np.column_stack([np.clip(.5+tp[:,0]/4,0,1),.02+.46*(tp[:,1]-2.5)/(5.15-2.5)])
+ else:
+  side=top[0][-1];axis=bind['wrist'+side]-bind['foreArm'+side];axis/=np.linalg.norm(axis);distance=-(metric(tp)-bind['wrist'+side])@axis
+  tu=np.column_stack([np.full(len(tp),.02),.01+.08*np.clip(distance/.07,0,1)])
+ ku=np.vstack([ku,tu]);kf=[*kf,*[(g,[(v+len(kp),v+len(ku)-len(tu)) for v,_ in face]) for g,face in tf]];kp=np.vstack([kp,tp]);kw=np.vstack([kw,tw]);parts.remove(top)
+parts[ki]=('kit',kp,ku,kf,kw,'kit.webp','performanceKnit')
 # Align the authored head to the original eye landmarks; the live anatomical rig stays unchanged.
 alignment=next(p for p in parts if p[0]=='eyes');parts.remove(alignment);eye_points=metric(alignment[1]);target_eyes=[]
 for side in [-1,1]:
@@ -232,11 +254,16 @@ textures={
  'hair.webp':SRC/'rocketbox/f001_opacity_color.tga'}
 for name,p in textures.items():
  im=Image.open(p);im.thumbnail((2048,2048) if name=='skin.webp' else (1024,1024));im.save(OUT/name,'WEBP',quality=91,method=6)
-atlas=Image.new('RGB',(1024,2048),(40,67,172));atlas.paste(Image.open(textures['kit.webp']).convert('RGB').resize((1024,1024)),(0,0));atlas.save(OUT/'kit.webp','WEBP',quality=91,method=6)
+atlas=Image.new('RGB',(1024,2048),(40,67,172));atlas.paste(Image.open(textures['kit.webp']).convert('RGB').resize((1024,1024)),(0,0))
+y,x=np.mgrid[1024:2048,0:1024];height=2.5+((1-y/2048)-.02)/.46*(5.15-2.5);width=np.abs((x/1024-.5)*4)
+cloth=np.full((1024,1024,3),(40,67,172),dtype=np.uint8);cloth[(width>.95)&(height<4.2)]=(18,35,68);cloth[height>4.95]=(210,231,89)
+# Sleeve strip maps physical wrist distance, giving both cuffs a continuous edge.
+cloth[:,0:42]=(40,67,172);cloth[(y>1971)&(x<42)]=(210,231,89)
+atlas.paste(Image.fromarray(cloth),(0,1024));atlas.save(OUT/'kit.webp','WEBP',quality=91,method=6)
 # Match the body’s neutral neck pigment to the authored head without tinting facial detail.
 body_albedo=np.asarray(Image.open(textures['skin.webp']).convert('RGB').resize((2048,1024)),dtype=float)
 body_albedo=Image.fromarray(np.clip(body_albedo*np.array([1.09,1.025,.95]),0,255).astype('uint8'))
-skin_atlas=Image.new('RGB',(2048,2048));skin_atlas.paste(body_albedo,(0,0));skin_atlas.paste(Image.open(Path(__file__).with_name('athlete-textures')/'head-brunette.png').convert('RGB').resize((2048,1024)),(0,1024));skin_atlas.save(OUT/'skin.webp','WEBP',quality=92,method=6)
+skin_atlas=Image.new('RGB',(2048,2048));skin_atlas.paste(body_albedo,(0,0));skin_atlas.paste(Image.open(Path(__file__).with_name('athlete-textures')/'head-refined-v2.png').convert('RGB').resize((2048,1024)),(0,1024));skin_atlas.save(OUT/'skin.webp','WEBP',quality=92,method=6)
 Image.new('RGB',(4,4),(210,231,89)).save(OUT/'skirt.webp','WEBP',lossless=True)
 doc={'asset':{'version':'2.0','generator':'Rally House authored athlete / MakeHuman, punkduck and Microsoft Rocketbox'},'accessors':[],'bufferViews':[],'buffers':[],'meshes':[],'materials':[],'textures':[],'images':[], 'nodes':[]};binary=bytearray()
 def accessor(a,t,component=5126):
@@ -286,6 +313,6 @@ meta['assetPacks']=['https://static.makehumancommunity.org/assets/assetpacks/mak
 for p in [*SRC.glob('*.target'),*[p for folder in ['clothes/female_sportsuit01','clothes/punkduck_high_neck_crop_top','clothes/toigo_skirt_with_lace_ruffle','clothes/shoes05','eyes/high-poly'] for p in (ROOT/folder).iterdir() if p.suffix in ('.obj','.mhclo')]]:meta['sourceHashes'][str(p.relative_to(SRC)) if p.is_relative_to(SRC) else str(p.relative_to(ROOT))]=hashlib.sha256(p.read_bytes()).hexdigest()
 for p in Path(__file__).with_name('athlete-textures').iterdir():meta['sourceHashes']['tools/athlete-textures/'+p.name]=hashlib.sha256(p.read_bytes()).hexdigest()
 for p in Path(__file__).with_name('athlete-poses').glob('*.json'):meta['sourceHashes']['tools/athlete-poses/'+p.name]=hashlib.sha256(p.read_bytes()).hexdigest()
-meta['headSource']['textureAdaptation']='Brunette UV recolor using built-in imagegen; source image and exact prompt in tools/athlete-textures/'
+meta['headSource']['textureAdaptation']='Brunette recolor and face albedo refinement using built-in imagegen; source image and exact prompt in tools/athlete-textures/'
 meta['authoringScripts']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),Path(__file__).with_name('fit-athlete-kit.py'),Path(__file__).with_name('fit-athlete-head.py')]}
 (OUT/'provenance.json').write_text(json.dumps(meta,indent=2)+'\n');print(json.dumps(report));print('triangles',sum(p['triangles'] for p in report),'glb',len(glb))

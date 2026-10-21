@@ -10,6 +10,17 @@ axis=lambda p:Vector((p.x,p.z,-p.y))
 eyes=[axis(arm.matrix_world@arm.data.bones['Bip01 '+side+'Eye'].head_local) for side in ['L','R']];center=(eyes[0]+eyes[1])*.5;target=[Vector(v) for v in data['eyes']];scale=(target[0]-target[1]).length/(eyes[0]-eyes[1]).length;origin=(target[0]+target[1])*.5
 assert .1<scale<10
 point=lambda p:(axis(o.matrix_world@p)-center)*scale+origin
+# Taper the lower face in every authored key; eye registration and mouth closure stay shared.
+face_vertices={v for poly in o.data.polygons if poly.material_index==1 for v in poly.vertices}
+eye_groups={g.index for g in o.vertex_groups if g.name in ('Bip01 LEye','Bip01 REye')}
+face_vertices={v for v in face_vertices if sum(g.weight for g in o.data.vertices[v].groups if g.group in eye_groups)<.8}
+inverse=o.matrix_world.inverted()
+for key in keys:
+ for v in face_vertices:
+  co=key.data[v].co;world=point(co);dy=world.y-origin.y
+  world.x*=1-.10*math.exp(-((dy+.145)/.075)**2)
+  # Apply the same continuous sculpt to oral surfaces and all expressions.
+  source_axis=(world-origin)/scale+center;key.data[v].co=inverse@Vector((source_axis.x,-source_axis.z,source_axis.y))
 normal_matrix=o.matrix_world.to_3x3().inverted().transposed()
 channels=[{'AK_44_MouthSmileLeft':.8,'AK_45_MouthSmileRight':.8},{'AK_25_JawOpen':.8},{'AK_09_EyeBlinkLeft':1,'AK_10_EyeBlinkRight':1},{'AK_03_BrowInnerUp':.35,'AK_04_BrowOuterUpLeft':.65,'AK_05_BrowOuterUpRight':.65}]
 frames=[]
