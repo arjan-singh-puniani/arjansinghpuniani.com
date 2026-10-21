@@ -169,8 +169,6 @@ vec3 characterSurfaceNormal(vec3 N,vec3 world){
     h=.000018*filteredWave(dot(p,vec3(1243.0,1399.0,1583.0))+3.0*sin(dot(p,vec3(733.0,617.0,911.0))));
   }else if(u_material==13&&u_textured<.5){
     h=.00007*filteredWave(p.x*840.0+p.z*300.0+sin(p.y*25.0)*12.0);
-  }else if(u_material==16){
-    h=.000065*filteredWave(p.y*620.0)*filteredWave(p.x*480.0+p.z*140.0);
   }else return N;
   vec3 dx=dFdx(world),dy=dFdy(world),r1=cross(dy,N),r2=cross(N,dx);
   float det=dot(dx,r1);if(abs(det)<.0000000001)return N;
@@ -480,7 +478,7 @@ export class Renderer {
   private drawMesh(m:Mesh){const gl=this.gl,g=this.geos.get(m.kind)!;gl.uniformMatrix4fv(this.u['u_model'],false,(this.staticData.get(m)?.model??compose(m.position,m.rotation??new Vec3(),m.scale)));const cached=this.staticData.get(m),c=cached?.color??hexToRgb(m.color),mp=cached?.material??this.materialParams(m.material);gl.uniform1i(this.u['u_material'],this.materialId(m.material));gl.uniform3f(this.u['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.u['u_alpha'],m.alpha??1);gl.uniform1f(this.u['u_unlit'],m.unlit?1:0);gl.uniform1f(this.u['u_emission'],m.emission??0);gl.uniform1f(this.u['u_roughness'],mp.roughness);gl.uniform1f(this.u['u_specular'],mp.specular);gl.uniform1f(this.u['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
   private drawSkin(m:SkinnedMesh){const gl=this.gl,g=this.skinGeometry(m.skin);gl.uniformMatrix4fv(this.su['u_model'],false,compose(m.position,m.rotation??new Vec3(),m.scale??new Vec3(1,1,1)));if(this.skinBones!==m.boneMatrices){gl.uniformMatrix4fv(this.su['u_bones'],false,m.boneMatrices);this.skinBones=m.boneMatrices;}this.bindSurface(m,this.su);const c=hexToRgb(m.color),mp=this.materialParams(m.material);gl.uniform1i(this.su['u_material'],this.materialId(m.material));gl.uniform3f(this.su['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.su['u_alpha'],m.alpha??1);gl.uniform1f(this.su['u_unlit'],m.unlit?1:0);gl.uniform1f(this.su['u_emission'],0);gl.uniform1f(this.su['u_roughness'],mp.roughness);gl.uniform1f(this.su['u_specular'],mp.specular);gl.uniform1f(this.su['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
   private bindSurface(m:SkinnedMesh,u:Record<string,WebGLUniformLocation>){
-    // shortcut: pelvis/thigh bounds prevent layer clipping; use authored cloth corrections for natural folds.
+    // shortcut: bounds approximate cloth contact; use authored or simulated cloth when folds need independent motion.
     const gl=this.gl;if(u['u_skirt']){const pose=m.skirt?m.rig?.pose:undefined;gl.uniform1f(u['u_skirt'],pose?1:0);if(pose){gl.uniform3f(u['u_skirtPelvis'],pose.pelvis.x,pose.pelvis.y,pose.pelvis.z);gl.uniform4fv(u['u_skirtHips'],new Float32Array([pose.thighL.x,pose.thighL.y,pose.thighL.z,.18,pose.thighR.x,pose.thighR.y,pose.thighR.z,.18]));gl.uniform4fv(u['u_skirtKnees'],new Float32Array([pose.shinL.x,pose.shinL.y,pose.shinL.z,.145,pose.shinR.x,pose.shinR.y,pose.shinR.z,.145]));}}
     if(u['u_eyeYaw'])gl.uniform1f(u['u_eyeYaw'],m.eyeCenters?m.eyeYaw??0:0);if(u['u_eyeCenters']&&m.eyeCenters)gl.uniform3fv(u['u_eyeCenters'],m.eyeCenters);
     if(u['u_expression'])gl.uniform4fv(u['u_expression'],m.expression??[0,0,0,0]);if(u['u_handGrip'])gl.uniform2fv(u['u_handGrip'],m.handGrip??[0,0]);gl.uniform1i(u['u_albedo'],2);gl.uniform1f(u['u_textured'],m.diffuse?1:0);gl.uniform1f(u['u_alphaCutoff'],m.alphaCutoff??0);
@@ -509,6 +507,28 @@ export class Renderer {
     out vec2 v_uv;${depthOnly?'':'out vec3 v_normal;out vec3 v_world;out vec3 v_surface;'}
     mat4 skin(){ivec4 b=ivec4(a_bones+.5);return u_bones[b.x]*a_weights.x+u_bones[b.y]*a_weights.y+u_bones[b.z]*a_weights.z+u_bones[b.w]*a_weights.w;}
     void main(){mat4 S=skin();float grip=a_position.x<0.0?u_handGrip.x:u_handGrip.y;vec3 normal=normalize(a_normal+a_smileNormal*u_expression.x+a_mouthNormal*u_expression.y+a_blinkNormal*u_expression.z+a_browNormal*u_expression.w+a_gripNormal*grip);vec3 posed=a_position+a_smile*u_expression.x+a_mouth*u_expression.y+a_blink*u_expression.z+a_brow*u_expression.w+a_grip*grip;if(abs(u_eyeYaw)>.00001){float c=cos(u_eyeYaw),s=sin(u_eyeYaw);mat3 turn=mat3(c,0,-s,0,1,0,s,0,c);vec3 centre=u_eyeCenters[a_position.x<0.0?0:1];posed=centre+turn*(posed-centre);normal=turn*normal;}vec3 skinned=(S*vec4(posed,1.0)).xyz;
+    // Preserve front-panel depth order before the radial safety correction can fold it.
+    if(u_skirt>.5){
+      vec3 right=normalize((u_skirtHips[1].xyz-u_skirtHips[0].xyz)*vec3(1,0,1)),forward=cross(right,vec3(0,1,0));
+      vec3 direction=normalize(mix(forward,vec3(0,1,0),u_expression.x));
+      float drape=max(u_expression.x,smoothstep(0.0,.3,u_expression.y)),front=smoothstep(-.01,.08,a_position.z)*drape,z=dot(skinned-u_skirtPelvis,direction),height=-1000.0;
+      vec3 origin=skinned-direction*z;
+      // Cover the panel beyond the thigh silhouette so it cannot straddle the field edge.
+      for(int leg=0;leg<2;leg++){
+        vec3 hip=u_skirtHips[leg].xyz,knee=u_skirtKnees[leg].xyz,axis=knee-hip,v=origin-hip;
+        float length2=max(dot(axis,axis),.000001),radius=u_skirtHips[leg].w+.02;
+        for(int cap=0;cap<2;cap++){
+          vec3 offset=origin-(cap==0?hip:knee);float along=dot(offset,direction),disc=radius*radius-dot(offset,offset)+along*along;
+          if(disc>=0.0){float exit=-along+sqrt(disc),t=dot(origin+direction*exit-hip,axis)/length2;if((cap==0&&t<=0.0)||(cap==1&&t>=1.0))height=max(height,exit);}
+        }
+        float va=dot(v,axis)/length2,da=dot(direction,axis)/length2;
+        vec3 vp=v-axis*va,dp=direction-axis*da;float A=dot(dp,dp),B=dot(vp,dp),C=dot(vp,vp)-radius*radius,disc=B*B-A*C;
+        if(A>.00001&&disc>=0.0){float exit=(-B+sqrt(disc))/A,t=va+da*exit;if(t>=0.0&&t<=1.0)height=max(height,exit);}
+      }
+      vec3 offset=origin-u_skirtPelvis,radii=vec3(.29,.32,.27),v=vec3(dot(offset,right),offset.y,dot(offset,forward))/radii,d=vec3(dot(direction,right),direction.y,dot(direction,forward))/radii;
+      float A=dot(d,d),B=dot(v,d),C=dot(v,v)-1.0,disc=B*B-A*C;if(disc>=0.0)height=max(height,(-B+sqrt(disc))/A);
+      if(height>-999.0){float gap=.05,cleared=z>=height?z+gap:height+gap*gap/(gap+height-z);skinned+=direction*((cleared-z)*front);}
+    }
     // Overlapping bounds can push the garment back into a previously cleared bound.
     if(u_skirt>.5)for(int pass=0;pass<20;pass++){
       float correction=0.0;

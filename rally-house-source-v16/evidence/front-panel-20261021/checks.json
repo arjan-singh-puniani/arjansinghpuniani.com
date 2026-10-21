@@ -1,0 +1,183 @@
+{
+  "baselineCommit": "78aba6b5",
+  "renderer": "Native Chromium, ANGLE Metal, production color/shadow shaders",
+  "beforeMaxFrontCrossings": 187,
+  "after": {
+    "Taylor": {
+      "poseChecks": 392,
+      "frontBackhandCases": 12,
+      "maxFrontCrossings": 0,
+      "maxHandClips": 0,
+      "maxClothShortIntersections": 0,
+      "maxThighBoundPenetration": 7.488762218677003e-08,
+      "errors": []
+    },
+    "Contessa": {
+      "poseChecks": 392,
+      "frontBackhandCases": 12,
+      "maxFrontCrossings": 0,
+      "maxHandClips": 0,
+      "maxClothShortIntersections": 0,
+      "maxThighBoundPenetration": 5.1222831004560376e-08,
+      "errors": []
+    },
+    "Lucresia": {
+      "poseChecks": 392,
+      "frontBackhandCases": 12,
+      "maxFrontCrossings": 0,
+      "maxHandClips": 0,
+      "maxClothShortIntersections": 0,
+      "maxThighBoundPenetration": 6.57528921588213e-08,
+      "errors": []
+    },
+    "Barbara": {
+      "poseChecks": 392,
+      "frontBackhandCases": 12,
+      "maxFrontCrossings": 0,
+      "maxHandClips": 0,
+      "maxClothShortIntersections": 0,
+      "maxThighBoundPenetration": 6.195988119794826e-08,
+      "errors": []
+    }
+  },
+  "nonSkirtPrimitives": "All five retain exact positions, normals, weights, UVs, and position/normal morph hashes.",
+  "fullSuite": "npm test passes",
+  "releaseArtifacts": 111,
+  "liveAndReplay": {
+    "errors": [],
+    "live": {
+      "frames": 356,
+      "captured": 356,
+      "maxDrape": 1,
+      "maxStep": 0.3742887580993591,
+      "finalDrape": 0.0006970229152228944,
+      "state": "ready",
+      "liveTracks": 0,
+      "gl": 0
+    },
+    "replay": {
+      "frames": 361,
+      "captured": 358,
+      "maxDrape": 1,
+      "maxStep": 0.3115580507791498,
+      "finalDrape": 0.0005724881819026544,
+      "state": "ready",
+      "liveTracks": 0,
+      "gl": 0
+    }
+  },
+  "nativePoint": {
+    "result": {
+      "phase": "pointResult",
+      "cameraMode": "pointReaction",
+      "opponentId": "leo",
+      "score": {
+        "player": 0,
+        "opponent": 1
+      },
+      "server": "player",
+      "bestRally": 8,
+      "currentRally": 8,
+      "lastPoint": {
+        "winner": "opponent",
+        "reason": "miss",
+        "rallyLength": 8
+      }
+    },
+    "renderSamples": 743,
+    "gl": 0,
+    "errors": [],
+    "http": []
+  },
+  "isolatedABBA": [
+    {
+      "label": "before",
+      "median": 16.69999999999891,
+      "p95": 16.799999999999272,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 346000,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "median": 16.69999999999891,
+      "p95": 16.799999999999272,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 346000,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 346000,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "before",
+      "median": 16.69999999999891,
+      "p95": 16.799999999999272,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 346000,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    }
+  ],
+  "limits": [
+    "Front self-intersection checks sample three early backhand ages at four headings; other pose checks cover body/shorts/idle-hand clearance.",
+    "Collision bounds and pose correctives approximate cloth; independent cloth motion is not simulated.",
+    "Frame timings are session samples; broader performance and studio-caliber visual approval remain unproven."
+  ]
+}

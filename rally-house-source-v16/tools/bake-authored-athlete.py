@@ -175,9 +175,12 @@ def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
   with tempfile.TemporaryDirectory(prefix='rally-athlete-') as directory:
    fitting=Path(directory)/'kit.json';fitting.write_text(json.dumps({'garment':name,'body':shape[:13380].tolist(),'faces':[[v[0] for v in face] for g,face in faces if g=='body'],'kit':p.tolist(),'weights':W[:13380].tolist()}))
    subprocess.run(['/Applications/Blender.app/Contents/MacOS/Blender','--background','--factory-startup','--python',str(Path(__file__).with_name('fit-athlete-kit.py')),'--',str(fitting)],check=True,stdout=subprocess.DEVNULL)
-   fitted_data=json.loads(fitting.with_suffix('.fitted.json').read_text());p=np.array(fitted_data['positions']);surface_weights=np.array(fitted_data['weights'])
+   original=p.copy();fitted_data=json.loads(fitting.with_suffix('.fitted.json').read_text());p=np.array(fitted_data['positions']);surface_weights=np.array(fitted_data['weights'])
    if name=='skirt':
+    # Keep the authored waistband loops; nearest-body projection can invert their narrow strip.
+    waist=np.clip((original[:,1]-original[:,1].max()+.08)/.04,0,1);waist=waist*waist*(3-2*waist);p=p*(1-waist[:,None])+original*waist[:,None]
     seam=np.clip((.65-depth)/.25,0,1);seam=seam*seam*(3-2*seam);pw=pw*(1-seam[:,None])+surface_weights*seam[:,None]
+    pw*=1-waist[:,None];pw[:,names.index('spine')]+=waist
    else:pw=surface_weights
  if force is not None:pw[:]=0;pw[:,names.index(force)]=1
  if clip is not None:p,u,f,pw=clip_faces(p,u,f,pw,p[:,1]-clip)
