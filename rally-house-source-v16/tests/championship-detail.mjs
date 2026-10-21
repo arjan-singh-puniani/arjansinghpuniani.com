@@ -16,6 +16,7 @@ for(let i=0;i<180;i++)world.presentationMeshes(new Vec3(20,22,20),new Vec3(),1/6
 assert(world.presentationMeshes(new Vec3(20,22,20),new Vec3(),0).every((m,i)=>m.id!=='court-pendant'||m.alpha/(world.meshes[i].alpha??1)>.99));
 assert.equal(JSON.stringify(world.meshes),transforms);assert.deepEqual(world.objects,objects);assert.strictEqual(world.courtDetails,net);assert(!world.meshes.some(m=>m.id==='spectatorRow'));
 const tape=net.find(m=>m.skin.id.includes('bound-net-tape'));let top=-Infinity;for(let i=1;i<tape.skin.positions.length;i+=3)top=Math.max(top,tape.skin.positions[i]);assert(Math.abs(top-.94)<1e-6);
+const hardware=net.find(m=>m.skin.id.includes('post-hardware')),court=world.meshes.find(m=>m.material==='court');let hardwareBottom=Infinity;for(let i=1;i<hardware.skin.positions.length;i+=3)hardwareBottom=Math.min(hardwareBottom,hardware.skin.positions[i]);assert(Math.abs(hardwareBottom-(court.position.y+court.scale.y/2))<1e-6,'post bases must rest on the emitted court');
 let planted=0,maxDrift=0;
 for(const spec of [...memberData,playerSpec('taylor'),playerSpec('arjan')])for(const hz of [30,60,120])for(const stroke of ['swingForehand','swingBackhand','serve','volley']){
  const c=new Character(spec,new Vec3(),world.nav,{});c.setAnimation('ready');c.update(.3);c.triggerShot(stroke,new Vec3(0,.1,-5));

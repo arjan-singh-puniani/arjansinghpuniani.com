@@ -100,16 +100,16 @@ export class World {
         this.rb(0, 2.22, -9.75, 26, 4.55, .34, '#dbe7d1');
         this.rb(0, .22, -9.45, 25.2, .24, .20, '#7fa28a');
         // Side walls are camera-aware cutaways and are emitted dynamically.
-        // Floor zones. Court remains crisp; social areas get tiny tile seams.
-        this.add('box', COURT.centerX, .035, 0, COURT.doublesHalfWidth * 2 + .8, .07, COURT.halfLength * 2 + .55, palette.court, 0, 1, false, undefined, 'court');
-        this.add('box', -8.8, .02, 0, 6.3, .05, 18.5, '#f8ead6', 0, 1, false, undefined, 'stone');
-        this.add('box', 8.9, .02, 0, 6.0, .05, 18.5, '#f5e6d2', 0, 1, false, undefined, 'stone');
+        // Floor inlays share the gait ground plane; raised slabs bury the shoes.
+        this.add('box', COURT.centerX, -.0325, 0, COURT.doublesHalfWidth * 2 + .8, .07, COURT.halfLength * 2 + .55, palette.court, 0, 1, false, undefined, 'court');
+        this.add('box', -8.8, -.0225, 0, 6.3, .05, 18.5, '#f8ead6', 0, 1, false, undefined, 'stone');
+        this.add('box', 8.9, -.0225, 0, 6.0, .05, 18.5, '#f5e6d2', 0, 1, false, undefined, 'stone');
         for (let z = -8; z <= 8; z += 2)
-            this.add('box', -8.8, .051, z, 6.0, .012, .025, '#dfc8ae', 0, .30, true);
+            this.add('box', -8.8, .0035, z, 6.0, .001, .025, '#dfc8ae', 0, .30, true);
         for (let x = -11; x <= -6; x += 1.5)
-            this.add('box', x, .052, 0, .022, .012, 18.1, '#e4ceb7', 0, .22, true);
+            this.add('box', x, .0035, 0, .022, .001, 18.1, '#e4ceb7', 0, .22, true);
         // Court lines.
-        const line = (x, z, w, d) => this.add('box', x, .085, z, w, .026, d, palette.line);
+        const line = (x, z, w, d) => this.add('box', x, .005, z, w, .0005, d, palette.line, 0, 1, false, 'court-line');
         for (const sign of [-1, 1]) {
             line(COURT.centerX + sign * COURT.doublesHalfWidth, 0, .045, COURT.halfLength * 2);
             line(COURT.centerX + sign * COURT.singlesHalfWidth, 0, .045, COURT.halfLength * 2);
@@ -148,9 +148,9 @@ export class World {
                 this.rb(x + 1.12, y + .03, -9.12, 2.22, .018, .018, '#6a756c', 0, .42, true);
         }
         // Lounge rug and shadow anchors.
-        this.rb(8.5, .065, 5.65, 4.65, .055, 3.05, '#ead7c2');
+        this.rb(8.5, .003, 5.65, 4.65, .002, 3.05, '#ead7c2');
         for (let i = 0; i < 7; i++)
-            this.rb(6.45 + i * .70, .09, 5.65, .10, .022, 2.72, i % 2 ? '#dfa990' : '#a8c5a4', 0, .30, true);
+            this.rb(6.45 + i * .70, .0045, 5.65, .10, .001, 2.72, i % 2 ? '#dfa990' : '#a8c5a4', 0, .30, true);
         this.shadow(-9, 4.8, 3.1, 1.15);
         this.shadow(-9.1, -5.8, 3.8, 1.2);
         this.shadow(8.5, 5.8, 3.6, 1.45);
@@ -207,7 +207,7 @@ export class World {
         for (let i = 0; i < 4; i++)
             this.add('cone', -6.9 + i * .55, .18, 1.45, .28, .36, .28, i % 2 ? palette.peach : palette.gold);
         for (let i = 0; i < 5; i++) {
-            this.rb(-10.6 + i * .62, .07, .8, .05, .02, 1.1, '#d3bd91', 0, .65, true);
+            this.rb(-10.6 + i * .62, .0045, .8, .05, .001, 1.1, '#d3bd91', 0, .65, true);
         }
         this.objects.push({ id: 'machine', label: 'Ball machine', kind: 'training', position: new Vec3(-7.5, 0, .2), radius: 1.3, description: 'A quiet rhythm machine for finding timing without pressure.' });
         // Water station and towel rail.
@@ -287,11 +287,11 @@ export class World {
         this.addBonsai(7.06, 4.58, .30, 'maple', .70, '#d5a08a'); // lounge table
         this.addBonsai(10.62, -7.04, .27, 'flower', 2.23, '#c8b08d'); // pro-shop shelf
         // Cozy floor islands and small storytelling clusters reduce the unused perimeter floor without touching playable court space.
-        this.rb(-9.05, .066, 2.70, 3.45, .045, 1.65, '#d9c6ad', -.02, .92, false, undefined, 'fabric');
+        this.rb(-9.05, .003, 2.70, 3.45, .002, 1.65, '#d9c6ad', -.02, .92, false, undefined, 'fabric');
         for (let i = 0; i < 5; i++)
-            this.rb(-10.48 + i * .72, .087, 2.70, .32, .016, 1.43, i % 2 ? '#c89279' : '#829a87', 0, .20, true);
-        this.rb(-8.82, .065, -3.35, 3.60, .045, 1.42, '#c7b49d', .015, .78, false, undefined, 'fabric');
-        this.rb(9.35, .066, -1.05, 3.10, .045, 1.25, '#d9c9b4', -.01, .75, false, undefined, 'fabric');
+            this.rb(-10.48 + i * .72, .0045, 2.70, .32, .001, 1.43, i % 2 ? '#c89279' : '#829a87', 0, .20, true);
+        this.rb(-8.82, .003, -3.35, 3.60, .002, 1.42, '#c7b49d', .015, .78, false, undefined, 'fabric');
+        this.rb(9.35, .003, -1.05, 3.10, .002, 1.25, '#d9c9b4', -.01, .75, false, undefined, 'fabric');
         // Reception shoe-and-bag cubbies, a tiny domestic detail borrowed from real clubs.
         this.rb(-11.08, .48, 6.52, 1.32, .96, .72, '#b88966', 0, 1, false, undefined, 'wood');
         for (let y = .28; y < .78; y += .25)
@@ -335,8 +335,8 @@ export class World {
             for (let i = first; i < this.meshes.length; i++)
                 this.meshes[i].id = 'court-pendant';
         }
-        this.add('box', -9.3, .055, 1.6, 3.5, .06, 4.3, '#8fb0b3', 0, 1, false, undefined, 'fabric');
-        this.add('box', -9.3, .075, 1.6, 3.1, .05, 3.9, '#9dbcbd', 0, 1, false, undefined, 'fabric');
+        this.add('box', -9.3, .003, 1.6, 3.5, .002, 4.3, '#8fb0b3', 0, 1, false, undefined, 'fabric');
+        this.add('box', -9.3, .0045, 1.6, 3.1, .001, 3.9, '#9dbcbd', 0, 1, false, undefined, 'fabric');
         for (let i = 0; i < 3; i++)
             this.add('cylinder', -10.55, .19 + i * .001, .15 + i * .62, .34, 1.5, .34, [t, pe, pk][i], Math.PI / 2, 1, false, undefined, 'fabric');
         this.rb(-8.05, .30, 1.6, .62, .52, 2.5, palette.wood, 0, 1, false, undefined, 'wood');
@@ -356,8 +356,8 @@ export class World {
             this.add('cylinder', -10.72, .95, -2.75 + i * .055, .13, .16, .13, '#f3ece0', 0, 1, false, undefined, 'fabric');
         this.rb(-10.75, .30, -3.5, .55, .60, .55, '#7f8c84', 0, 1, false, undefined, 'metal');
         this.objects.push({ id: 'westWater', label: 'Water & towels', kind: 'water', position: new Vec3(-10.2, 0, -2.2), radius: 1.5, description: 'Cold water, folded towels, and a bin that somebody quietly empties every evening.' });
-        this.add('box', -9.6, .055, 7.2, 3.6, .06, 3.3, '#c9907a', 0, 1, false, undefined, 'fabric');
-        this.add('box', -9.6, .075, 7.2, 3.15, .05, 2.9, '#d69c85', 0, 1, false, undefined, 'fabric');
+        this.add('box', -9.6, .003, 7.2, 3.6, .002, 3.3, '#c9907a', 0, 1, false, undefined, 'fabric');
+        this.add('box', -9.6, .0045, 7.2, 3.15, .001, 2.9, '#d69c85', 0, 1, false, undefined, 'fabric');
         for (const [cz, col] of [[6.35, t], [8.05, pe]]) {
             this.rb(-10.35, .42, cz, 1.15, .60, 1.15, col, 0, 1, false, undefined, 'fabric');
             this.rb(-10.88, .80, cz, .20, .86, 1.15, col, 0, 1, false, undefined, 'fabric');

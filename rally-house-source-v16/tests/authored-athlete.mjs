@@ -8,6 +8,8 @@ import {Vec3,transformPoint,compose} from '../dist/rendering/Math3D.js';
 import {Character} from '../dist/entities/Character.js';
 import {playerSpec} from '../dist/content/PlayerAvatars.js';
 import {Navigation} from '../dist/world/Navigation.js';
+import {World} from '../dist/world/World.js';
+import {COURT} from '../dist/tennis/CourtGeometry.js';
 const dir=new URL('../assets/characters/taylor/',import.meta.url),meta=JSON.parse(fs.readFileSync(new URL('provenance.json',dir))),bytes=fs.readFileSync(new URL('taylor.glb',dir)),hash=b=>createHash('sha256').update(b).digest('hex');
 assert.equal(hash(bytes),meta.sha256);for(const [name,sha] of Object.entries(meta.textures))assert.equal(hash(fs.readFileSync(new URL(name,dir))),sha);
 for(const [name,sha] of Object.entries(meta.authoringScripts))assert.equal(hash(fs.readFileSync(new URL('../tools/'+name,import.meta.url))),sha,'baked asset must match its authoring scripts');
@@ -69,6 +71,20 @@ for(const state of ['idle','sit','drink','ready','swingForehand','swingBackhand'
   minSole=Math.min(minSole,low);assert(low>-.005,'shoe penetrated the floor');samples++;
  }
 }
+// Compare the emitted soles with the actual floor layers, including rug patterns and paint.
+const floorWorld=new World(),floorParts=floorWorld.meshes.filter(m=>['box','roundBox'].includes(m.kind)&&m.position.y<.1&&m.position.y+m.scale.y/2<.15);
+function floorAt(x,z){let top=0;for(const m of floorParts){const yaw=m.rotation?.y??0,dx=x-m.position.x,dz=z-m.position.z,lx=dx*Math.cos(yaw)-dz*Math.sin(yaw),lz=dx*Math.sin(yaw)+dz*Math.cos(yaw);if(Math.abs(lx)<=m.scale.x/2&&Math.abs(lz)<=m.scale.z/2)top=Math.max(top,m.position.y+m.scale.y/2);}return top;}
+const floorSpots=[[COURT.centerX,5.5],[COURT.centerX,COURT.serviceDistance],[-8.8,-5],[-8.82,-3.35],[-9.05,2.7],[9.35,-1.05],[8.5,5.65],[-9.36,.8],[-9.6,6.9]];
+const {memberData:floorMembers}=await import('../dist/content/content.js');let soleFloorChecks=0,maxFloorPenetration=0;
+for(const spec of [playerSpec('taylor'),...floorMembers.filter(s=>s.presentation==='feminine')])for(const yaw of [0,Math.PI/2]){
+ const actor=new Character(spec,new Vec3(),new Navigation([]),{});actor.racketStowed=true;actor.yaw=actor.targetYaw=yaw;for(let i=0;i<180;i++)actor.update(1/60);
+ const shoe=actor.meshes().find(m=>m.skin?.id===asset.primitives.find(p=>p.materialSlot==='shoes').geometry.id);assert(shoe,'inspect the real rendered shoes');const g=shoe.skin,model=compose(shoe.position,shoe.rotation,new Vec3(1,1,1));
+ for(let v=0;v<g.positions.length/3;v++){
+  const p=new Vec3(...g.positions.slice(v*3,v*3+3)),deformed=new Vec3();for(let j=0;j<4;j++){const weight=g.boneWeights[v*4+j];if(weight){const bone=g.boneIndices[v*4+j],q=transformPoint(shoe.boneMatrices.slice(bone*16,bone*16+16),p);deformed.add(new Vec3(q.x,q.y,q.z).scale(weight));}}
+  const q=transformPoint(model,deformed);for(const [x,z] of floorSpots){const depth=floorAt(x+q.x,z+q.z)-q.y;maxFloorPenetration=Math.max(maxFloorPenetration,depth);assert(depth<.005,`${spec.id} shoe buried in emitted floor at ${x},${z}: ${depth}`);soleFloorChecks++;}
+ }
+}
+console.log(JSON.stringify({soleFloorChecks,maxFloorPenetration}));
 let maxAuthoredContactError=0;
 for(const stroke of ['swingForehand','swingBackhand','volley','serve'])for(const height of [.66,1.02,1.38])for(const x of [-.76,.54,.88]){
  const actor=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});actor.setAnimation('ready');actor.update(.3);if(stroke!=='serve')actor.setIncomingContact(new Vec3(x,height,.90));actor.triggerShot(stroke,new Vec3(0,.09,-5));

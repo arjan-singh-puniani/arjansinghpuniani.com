@@ -1,0 +1,104 @@
+{
+  "baselineCommit": "de244186fd5290445bc2daabeda8c3468b884563",
+  "capture": "Production renderer; identical controlled Taylor pose/camera on court and cafe rug; baseline routes frozen dist/assets.",
+  "regressionBefore": "New emitted-shoe/floor check fails on baseline World; old slabs and mats bury shoes.",
+  "regressionAfter": {
+    "soleFloorChecks": 661824,
+    "maximumSampledPenetration": 0,
+    "allowedTolerance": 0.005,
+    "poses": "Idle, four authored women, two headings, nine floor spots; every shoe vertex.",
+    "fullSuite": "npm test passes",
+    "plantedStrokeSamples": 1053,
+    "maximumPivotDrift": 0,
+    "netTop": 0.94
+  },
+  "nativeCourt": [
+    {
+      "label": "before",
+      "state": "idle",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 5.5
+      },
+      "gl": 0,
+      "errors": []
+    },
+    {
+      "label": "after",
+      "state": "idle",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 5.5
+      },
+      "gl": 0,
+      "errors": []
+    }
+  ],
+  "nativeSocial": [
+    {
+      "label": "before",
+      "state": "idle",
+      "position": {
+        "x": -8.82,
+        "y": 0,
+        "z": -3.35
+      },
+      "gl": 0,
+      "errors": []
+    },
+    {
+      "label": "after",
+      "state": "idle",
+      "position": {
+        "x": -8.82,
+        "y": 0,
+        "z": -3.35
+      },
+      "gl": 0,
+      "errors": []
+    }
+  ],
+  "lab": {
+    "engine": "chromium",
+    "views": 24,
+    "soak": {
+      "cycles": 100,
+      "maxMeshes": 186,
+      "labLayers": 1,
+      "samples": 0
+    },
+    "errors": [],
+    "requests": []
+  },
+  "point": {
+    "state": {
+      "phase": "pointResult",
+      "cameraMode": "pointReaction",
+      "opponentId": "leo",
+      "score": {
+        "player": 0,
+        "opponent": 1
+      },
+      "server": "player",
+      "bestRally": 8,
+      "currentRally": 8,
+      "lastPoint": {
+        "winner": "opponent",
+        "reason": "miss",
+        "rallyLength": 8
+      }
+    },
+    "renderSamples": 743,
+    "gl": 0,
+    "errors": [],
+    "http": []
+  },
+  "releaseArtifacts": 111,
+  "limits": [
+    "Floor contact regression samples idle footwear; existing gait/stroke tests cover foot anchors.",
+    "Cloth self-folds and cast art consistency remain open.",
+    "This pass does not establish studio caliber or universal performance."
+  ]
+}

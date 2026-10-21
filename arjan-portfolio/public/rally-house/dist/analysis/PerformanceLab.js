@@ -6,9 +6,8 @@ const text = (node, value) => { if (node.textContent !== value)
     node.textContent = value; };
 const svgNS = 'http://www.w3.org/2000/svg';
 const format = (v, digits = 0) => v === null || !Number.isFinite(v) ? '—' : v.toFixed(digits);
-// Court surface is .07; markings start at .072 and end at .098.
 // Coverage sits above the floor and below the markings; paths sit above both.
-export const COURT_OVERLAY = { coverage: .076, path: .115 };
+export const COURT_OVERLAY = { coverage: .0036, coverageThickness: .0002, path: .022 };
 export function rod(a, b, color, width = .018, alpha = 1) {
     const d = Vec3.sub(b, a), len = d.len();
     return { kind: 'roundBox', position: Vec3.lerp(a, b, .5), rotation: new Vec3(Math.acos(clamp(d.y / Math.max(1e-6, len), -1, 1)), Math.atan2(d.x, d.z), 0), scale: new Vec3(width, len, width), color, alpha, unlit: true, noShadow: true };
@@ -500,7 +499,7 @@ export class PerformanceLab {
                     }
                 for (const c of cells)
                     if (c.v > peak * .08 && peak > 0)
-                        history.push({ kind: 'roundBox', position: new Vec3(c.x, COURT_OVERLAY.coverage, c.z), scale: new Vec3(.79, .01, .79), color: c.v > peak * .65 ? '#dfbd78' : '#67b9aa', alpha: .09 + .19 * c.v / peak, unlit: true, noShadow: true });
+                        history.push({ kind: 'roundBox', position: new Vec3(c.x, COURT_OVERLAY.coverage, c.z), scale: new Vec3(.79, COURT_OVERLAY.coverageThickness, .79), color: c.v > peak * .65 ? '#dfbd78' : '#67b9aa', alpha: .09 + .19 * c.v / peak, unlit: true, noShadow: true });
                 for (let i = 4; i < frames.length; i += 4)
                     if (frames[i].time - frames[i - 4].time <= .15)
                         history.push(rod(new Vec3(frames[i - 4].root.x, COURT_OVERLAY.path, frames[i - 4].root.z), new Vec3(frames[i].root.x, COURT_OVERLAY.path, frames[i].root.z), '#b1ded0', .028, .62));

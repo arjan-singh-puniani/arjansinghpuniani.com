@@ -10,9 +10,8 @@ import {ReplayTimeline,FOCUS_KEYS,JOINT_KEYS,LIMBS,METRIC_NAMES,jointTriplet,val
 const text=(node:HTMLElement,value:string)=>{if(node.textContent!==value)node.textContent=value;};
 const svgNS='http://www.w3.org/2000/svg';
 const format=(v:number|null,digits=0)=>v===null||!Number.isFinite(v)?'—':v.toFixed(digits);
-// Court surface is .07; markings start at .072 and end at .098.
 // Coverage sits above the floor and below the markings; paths sit above both.
-export const COURT_OVERLAY={coverage:.076,path:.115} as const;
+export const COURT_OVERLAY={coverage:.0036,coverageThickness:.0002,path:.022} as const;
 export function rod(a:Vec3,b:Vec3,color:string,width=.018,alpha=1):Mesh{
   const d=Vec3.sub(b,a),len=d.len();
   return {kind:'roundBox',position:Vec3.lerp(a,b,.5),rotation:new Vec3(Math.acos(clamp(d.y/Math.max(1e-6,len),-1,1)),Math.atan2(d.x,d.z),0),scale:new Vec3(width,len,width),color,alpha,unlit:true,noShadow:true};
@@ -239,7 +238,7 @@ export class PerformanceLab {
         // Sampling history only. Gaussian kernels, fixed world registration, no airborne projection.
         let peak=0;const cells:{x:number;z:number;v:number}[]=[];
         for(let x=COURT.centerX-COURT.doublesHalfWidth;x<=COURT.centerX+COURT.doublesHalfWidth;x+=.8)for(let z=-COURT.halfLength;z<=COURT.halfLength;z+=.8){let v=0;for(let i=0;i<frames.length;i+=4){const p=frames[i].root;v+=Math.exp(-((x-p.x)**2+(z-p.z)**2)/.85);}peak=Math.max(peak,v);cells.push({x,z,v});}
-        for(const c of cells)if(c.v>peak*.08&&peak>0)history.push({kind:'roundBox',position:new Vec3(c.x,COURT_OVERLAY.coverage,c.z),scale:new Vec3(.79,.01,.79),color:c.v>peak*.65?'#dfbd78':'#67b9aa',alpha:.09+.19*c.v/peak,unlit:true,noShadow:true});
+        for(const c of cells)if(c.v>peak*.08&&peak>0)history.push({kind:'roundBox',position:new Vec3(c.x,COURT_OVERLAY.coverage,c.z),scale:new Vec3(.79,COURT_OVERLAY.coverageThickness,.79),color:c.v>peak*.65?'#dfbd78':'#67b9aa',alpha:.09+.19*c.v/peak,unlit:true,noShadow:true});
         for(let i=4;i<frames.length;i+=4)if(frames[i].time-frames[i-4].time<=.15)history.push(rod(new Vec3(frames[i-4].root.x,COURT_OVERLAY.path,frames[i-4].root.z),new Vec3(frames[i].root.x,COURT_OVERLAY.path,frames[i].root.z),'#b1ded0',.028,.62));
         if(t.clip.kind==='gait')for(let i=1;i<frames.length;i++)for(let foot=0;foot<2;foot++){
           const a=frames[i-1],b=frames[i];if(b.time-a.time>.15||a.planted[foot]||!b.planted[foot])continue;

@@ -29,9 +29,9 @@ for(const hz of [30,60,120])for(const state of ['idle','walk','serve','swingFore
 function shoeTop(x,z){const p=TAYLOR_FOOTWEAR.upper.positions;let y=-Infinity;for(let i=0;i<p.length;i+=9){const ax=p[i],az=p[i+2],bx=p[i+3],bz=p[i+5],cx=p[i+6],cz=p[i+8],det=(bz-cz)*(ax-cx)+(cx-bx)*(az-cz);if(Math.abs(det)<1e-12)continue;const a=((bz-cz)*(x-cx)+(cx-bx)*(z-cz))/det,b=((cz-az)*(x-cx)+(ax-cx)*(z-cz))/det,c=1-a-b;if(a>=-1e-6&&b>=-1e-6&&c>=-1e-6)y=Math.max(y,a*p[i+1]+b*p[i+4]+c*p[i+7]);}return y;}
 let trainerChecks=0;for(const g of Object.values(ATHLETE_TRAINER_DETAIL))for(let i=0;i<g.positions.length;i+=3){const gap=g.positions[i+1]-shoeTop(g.positions[i],g.positions[i+2]);assert(gap>0&&gap<.008,'Emitted trainer detail stays just above its real shoe surface');trainerChecks++;}
 console.log(JSON.stringify({kneeChecks,maxKneeGap,trainerChecks,masculineTriangles:face.positions.length/9}));
-const w=new World(),baseline=w.meshes.filter(m=>Math.abs(m.position.y-.085)<1e-6&&Math.abs(m.scale.z-.055)<1e-6&&m.scale.x>3&&Math.abs(m.position.z)>6),width=baseline[0].scale.x,length=Math.abs(baseline[0].position.z-baseline[1].position.z);
+const w=new World(),baseline=w.meshes.filter(m=>m.id==='court-line'&&Math.abs(m.scale.z-.055)<1e-6&&m.scale.x>3&&Math.abs(m.position.z)>6),width=baseline[0].scale.x,length=Math.abs(baseline[0].position.z-baseline[1].position.z);
 assert.equal(baseline.length,2);assert(Math.abs(length/width-23.77/10.97)<1e-6,'Emitted outer court markings use the regulation aspect ratio');
-const service=w.meshes.filter(m=>Math.abs(m.position.y-.085)<1e-6&&Math.abs(m.scale.z-.045)<1e-6&&m.scale.x>3&&Math.abs(m.position.z)>3);
+const service=w.meshes.filter(m=>m.id==='court-line'&&Math.abs(m.scale.z-.045)<1e-6&&m.scale.x>3&&Math.abs(m.position.z)>3);
 assert.equal(service.length,2);assert(Math.abs(service[0].scale.x/width-8.23/10.97)<1e-6,'Service boxes end at singles sidelines, preserving doubles alleys');
 assert(Math.abs(Math.abs(service[0].position.z)/length-6.40/23.77)<1e-6);
 const rp=RACKET_FRAME.positions,xs=[...rp.filter((_,i)=>i%3===0)],ys=[...rp.filter((_,i)=>i%3===1)],headWidth=Math.max(...xs)-Math.min(...xs),headHeight=Math.max(...ys)-Math.min(...ys);
