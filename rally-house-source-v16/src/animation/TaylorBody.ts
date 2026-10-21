@@ -127,8 +127,8 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
   if(constraints.human){
    const ready=clamp(constraints.readyWeight??0,0,1),mixed=pole.clone().scale(Math.max(0,1-ready-stroke));
    if(ready){const readyPole=shoulder.clone().add(torsoRight.clone().scale(side==='L'?-.24:.24)).add(new Vec3(0,-.55,0)).add(torsoForward.clone().scale(.24));mixed.add(readyPole.scale(ready));}
-   if(stroke){const center=Vec3.lerp(p.shoulderL,p.shoulderR,.5),x=Vec3.dot(Vec3.sub(p[`hand${side}`],center),torsoRight)*(side==='L'?-1:1),across=smooth((.10-x)/.30);
-    const outside=shoulder.clone().add(torsoRight.clone().scale(side==='L'?-.24:.24)).add(new Vec3(0,-.28,0)).add(torsoForward.clone().scale(-.16)),front=shoulder.clone().add(torsoForward.clone().scale(.75));mixed.add(Vec3.lerp(outside,front,across).scale(stroke));}
+   if(stroke){const center=Vec3.lerp(p.shoulderL,p.shoulderR,.5),x=Vec3.dot(Vec3.sub(p[`hand${side}`],center),torsoRight)*(side==='L'?-1:1),across=smooth((.10-x)/.30),low=smooth((shoulder.y-p[`hand${side}`].y-.08)/.16);
+    const outside=shoulder.clone().add(torsoRight.clone().scale(side==='L'?-.24:.24)).add(new Vec3(0,-.28-.27*low,0)).add(torsoForward.clone().scale(-.16)),front=shoulder.clone().add(torsoForward.clone().scale(.75));mixed.add(Vec3.lerp(outside,front,across).scale(stroke));}
    pole=mixed;
   }
   p[`elbow${side}`]=joint(shoulder,p[`hand${side}`],arms.upperArm,arms.forearm,pole,forward);
