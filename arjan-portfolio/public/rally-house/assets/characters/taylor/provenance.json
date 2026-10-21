@@ -2,7 +2,7 @@
   "author": "MakeHuman Community; MargaretToigo; Bobby_03; punkduck; Microsoft Rocketbox; Rally House fit and runtime adaptation",
   "source": "https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482",
   "license": "CC0-1.0 AND CC-BY-4.0 AND MIT",
-  "sha256": "b0c5c78457ab2e9ef24417c146800355319cd0cecaf80f5dbb65b8a1889af131",
+  "sha256": "6ca15ee7dd4ca3118088e68580270cd61e2a00a872f9e2d09634803f21ea29c3",
   "boneMap": {
     "pelvis": "pelvis",
     "spine": "spine",
@@ -237,7 +237,8 @@
     "eyes/high-poly/high-poly.mhclo": "b183cfe37120ab726f9b3f2ea6cd3a64c44ce7b4bd91a77c841cf70c04f83a0d",
     "eyes/high-poly/high-poly.obj": "da2493215b708a344c33dc72f2a9a5b8fa985dcc5a70ad3b208995cf871da8e1",
     "tools/athlete-textures/head-brunette.prompt.txt": "2cc90d8cba5478e39e5bb6a270e67e2d85a4ec41395d43d41520308369289c55",
-    "tools/athlete-textures/head-brunette.png": "577fa9e05a0b53e23bb519e2088834f08dc083c795a629ccbe03dbe71f02309e"
+    "tools/athlete-textures/head-brunette.png": "577fa9e05a0b53e23bb519e2088834f08dc083c795a629ccbe03dbe71f02309e",
+    "tools/athlete-poses/crouch.json": "4ab566af92d738a97d4ad0ac3e3cb0f74711d300b8201f9b0f4e0b6033c88252"
   },
   "gripSign": {
     "L": -1,
@@ -275,7 +276,7 @@
     "https://static.makehumancommunity.org/assets/assetpacks/shirts03.html"
   ],
   "authoringScripts": {
-    "bake-authored-athlete.py": "41e80e99aaab67bd46cb30e4806d289c05d158747d3430e6bb90a25c5ad6528a",
+    "bake-authored-athlete.py": "711664f7b6d9f0560f63949e3faa2e99234c87511d93cb15af796e97f6bbcb27",
     "fit-athlete-kit.py": "e6d0c77cbb064aff6ddd2d9581e083ab9414418228fa81cf0c98bf9409470b2c",
     "fit-athlete-head.py": "2ce21c5fe4b674c68c16acb89745ca4bf69640edf904fcf6f5203e88ee1f464a"
   }

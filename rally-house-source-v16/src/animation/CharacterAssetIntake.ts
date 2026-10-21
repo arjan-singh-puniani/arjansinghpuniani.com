@@ -25,7 +25,8 @@ export function inspectCharacterAsset(input:ArrayBuffer|Record<string,unknown>,b
  const inverse=read(skin.inverseBindMatrices,'MAT4',[5126]);if(inverse.length!==skin.joints.length*16)fail('inverse bind count mismatch');
  const primitives:IntakeResult['primitives']=[];
  for(const [mi,mesh] of doc.meshes.entries())for(const [pi,p] of (mesh.primitives??[]).entries()){
-  const drape=doc.materials?.[p.material]?.name==='skirt'&&JSON.stringify(mesh.extras?.targetNames)===JSON.stringify(['seatedDrape','reserved1','reserved2','reserved3','reserved4']);
+  const drape=doc.materials?.[p.material]?.name==='skirt'&&['reserved1','crouchDrape'].some(second=>JSON.stringify(mesh.extras?.targetNames)===JSON.stringify(['seatedDrape',second,'reserved2','reserved3','reserved4']));
+  const crouch=drape&&mesh.extras.targetNames[1]==='crouchDrape';
   if(p.mode!==undefined&&p.mode!==4)fail('triangle primitives only');if(p.targets&&(!Array.isArray(p.targets)||p.targets.length!==5||!drape&&JSON.stringify(mesh.extras?.targetNames)!==JSON.stringify(['smile','mouthOpen','blink','browRaise','grip'])))fail('morph targets require a reviewed channel adapter');
   const positions=read(p.attributes?.POSITION,'VEC3',[5126]),normals=read(p.attributes?.NORMAL,'VEC3',[5126]),joints=read(p.attributes?.JOINTS_0,'VEC4',[5121,5123]),weights=read(p.attributes?.WEIGHTS_0,'VEC4',[5121,5123,5126],true),count=positions.length/3;
   if(normals.length!==positions.length||joints.length!==count*4||weights.length!==count*4)fail('attribute counts differ');
@@ -36,7 +37,7 @@ export function inspectCharacterAsset(input:ArrayBuffer|Record<string,unknown>,b
   if(texture){const image=doc.images?.[doc.textures?.[texture.index]?.source];if(texture.texCoord||!image?.uri||!/^[a-z0-9-]+\.webp$/.test(image.uri))fail('unsupported albedo reference');albedo=image.uri;uvs=read(p.attributes?.TEXCOORD_0,'VEC2',[5126]);if(uvs.length!==count*2)fail('UV counts differ');}
   if(material.alphaMode&& !['OPAQUE','MASK'].includes(material.alphaMode))fail('unsupported alpha mode');
   if(material.alphaMode==='MASK'&&(!albedo||!Number.isFinite(material.alphaCutoff)||material.alphaCutoff<0||material.alphaCutoff>1))fail('invalid alpha mask');
-  const morphs=p.targets?.map((t:any,target:number)=>{if(Object.keys(t).some(k=>k!=='POSITION'&&k!=='NORMAL'))fail('unsupported expression channel');const delta=read(t.POSITION,'VEC3',[5126]);if(delta.length!==positions.length||delta.some((n:number)=>Math.abs(n)>(drape?(target===0?.25:0):target===4?.2:.06)))fail('invalid expression displacement');return delta;});
+  const morphs=p.targets?.map((t:any,target:number)=>{if(Object.keys(t).some(k=>k!=='POSITION'&&k!=='NORMAL'))fail('unsupported expression channel');const delta=read(t.POSITION,'VEC3',[5126]);if(delta.length!==positions.length||delta.some((n:number)=>Math.abs(n)>(drape?(target===0?.25:target===1&&crouch?.4:0):target===4?.2:.06)))fail('invalid expression displacement');return delta;});
   const morphNormals=p.targets?.some((t:any)=>t.NORMAL!==undefined)?p.targets.map((t:any)=>{const delta=t.NORMAL===undefined?Array(positions.length).fill(0):read(t.NORMAL,'VEC3',[5126]);if(delta.length!==positions.length||delta.some((n:number)=>Math.abs(n)>2.01))fail('invalid expression normals');return delta;}):undefined;
   const indices=p.indices===undefined?Array.from({length:count},(_,i)=>i):read(p.indices,'SCALAR',[5121,5123,5125]);if(indices.length%3||indices.some((i:number)=>!Number.isSafeInteger(i)||i<0||i>=count))fail('invalid triangle indices');
   const expand=(source:number[],size:number)=>new Float32Array(indices.flatMap((i:number)=>source.slice(i*size,(i+1)*size)));

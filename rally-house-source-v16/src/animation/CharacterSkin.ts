@@ -61,7 +61,9 @@ export function skinMatrices(p:RigPoseLocal,restPose=bind){
  if(restPose.wristL&&restPose.wristR){p={...p};for(const side of ['L','R'] as const){const i=BONE[`hand${side}`],hand=multiply(frameFor(p,defs[i]),inverse[i]),wrist=transformPoint(hand,restPose[`wrist${side}`]!);p[`wrist${side}`]=new Vec3(wrist.x,wrist.y,wrist.z);}}
  const out=new Float32Array(BONE_COUNT*16);for(let i=0;i<BONE_COUNT;i++){const d=defs[i],length=Vec3.sub(endpoint(p,d),jointPoint(p,d.joint)).len(),rest=Vec3.sub(endpoint(restPose,d),jointPoint(restPose,d.joint)).len(),rigid=d.joint.startsWith('hand')||d.joint.startsWith('foot')||restPose!==bind&&d.joint==='head';let frame=frameFor(p,d);
   if(d.joint.startsWith('foreArmTwist')&&restPose.wristL){
-   const side=d.joint.endsWith('L')?'L':'R',proximal=BONE[`foreArm${side}`],palm=BONE[`hand${side}`],source=frameFor(restPose,d),predicted=multiply(multiply(frameFor(p,defs[proximal]),inverse[proximal]),source),palmFrame=multiply(multiply(frameFor(p,defs[palm]),inverse[palm]),source),target=rigidFrame(jointPoint(p,d.joint),endpoint(p,d),new Vec3(palmFrame[8],palmFrame[9],palmFrame[10])),half=interpolateRigidFrame(predicted,target,.5);
+   const side=d.joint.endsWith('L')?'L':'R',proximal=BONE[`foreArm${side}`],palm=BONE[`hand${side}`],source=frameFor(restPose,d),predicted=multiply(multiply(frameFor(p,defs[proximal]),inverse[proximal]),source),palmFrame=multiply(multiply(frameFor(p,defs[palm]),inverse[palm]),source);
+   // Palm width defines roll even when a bent wrist aligns its normal with the forearm.
+   const axis=Vec3.sub(endpoint(p,d),jointPoint(p,d.joint)).normalize(),forward=Vec3.cross(new Vec3(palmFrame[0],palmFrame[1],palmFrame[2]),axis),target=rigidFrame(jointPoint(p,d.joint),endpoint(p,d),forward.len()>.1?forward:new Vec3(palmFrame[8],palmFrame[9],palmFrame[10])),half=interpolateRigidFrame(predicted,target,.5);
    // Share palm roll across the forearm rather than concentrating it at one skin seam.
    frame=rigidFrame(jointPoint(p,d.joint),endpoint(p,d),new Vec3(half[8],half[9],half[10]));
   }
