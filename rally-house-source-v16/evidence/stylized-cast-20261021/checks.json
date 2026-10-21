@@ -1,0 +1,338 @@
+{
+  "baseline": "f9f8aaf1",
+  "fullSuite": "npm test PASS",
+  "faces": [
+    {
+      "id": "coach",
+      "cases": 8,
+      "finite": true,
+      "maxNormalError": 1.4428037276026373e-07,
+      "motion": {
+        "frames": 241,
+        "liveTracks": 0,
+        "gl": 0
+      },
+      "errors": []
+    },
+    {
+      "id": "mika",
+      "cases": 8,
+      "finite": true,
+      "maxNormalError": 1.2318157982527111e-07,
+      "motion": {
+        "frames": 240,
+        "liveTracks": 0,
+        "gl": 0
+      },
+      "errors": []
+    },
+    {
+      "id": "nia",
+      "cases": 8,
+      "finite": true,
+      "maxNormalError": 1.3237058626991427e-07,
+      "motion": {
+        "frames": 240,
+        "liveTracks": 0,
+        "gl": 0
+      },
+      "errors": []
+    }
+  ],
+  "garment": [
+    {
+      "id": "coach",
+      "cases": 392,
+      "handClips": 0,
+      "shortsIntersections": 0,
+      "errors": []
+    },
+    {
+      "id": "mika",
+      "cases": 392,
+      "handClips": 0,
+      "shortsIntersections": 0,
+      "errors": []
+    },
+    {
+      "id": "nia",
+      "cases": 392,
+      "handClips": 0,
+      "shortsIntersections": 0,
+      "errors": []
+    }
+  ],
+  "arrival": [
+    {
+      "engine": "chromium",
+      "profile": "desktop",
+      "errors": [],
+      "requests": [],
+      "arrival": {
+        "paused": true,
+        "court": false
+      },
+      "avatar": "Taylor",
+      "playButton": {
+        "x": 909,
+        "y": 572,
+        "width": 316,
+        "height": 56
+      },
+      "accepted": {
+        "phase": "challenge",
+        "paused": false,
+        "active": [
+          {
+            "id": "activity-1",
+            "kind": "championship",
+            "participants": [
+              "player",
+              "leo"
+            ],
+            "resource": "court",
+            "phase": "traveling",
+            "elapsed": 0.016666666666666666,
+            "phaseTime": 0.016666666666666666,
+            "detail": "Championship vs Leo"
+          }
+        ],
+        "player": {
+          "x": -11.897413356857694,
+          "y": 0,
+          "z": 8.10581994707019
+        },
+        "blocked": false,
+        "toast": "Leo accepts. Championship court."
+      },
+      "focusResumes": 0,
+      "secondsToServe": 6.183,
+      "realRally": {
+        "phase": "rally",
+        "rally": 3,
+        "paused": false,
+        "cue": "nice"
+      },
+      "returned": {
+        "court": false,
+        "avatar": "Taylor",
+        "actors": 4,
+        "paused": false
+      }
+    },
+    {
+      "engine": "chromium",
+      "profile": "phone",
+      "errors": [],
+      "requests": [],
+      "arrival": {
+        "paused": true,
+        "court": false
+      },
+      "avatar": "Taylor",
+      "playButton": {
+        "x": 39,
+        "y": 634,
+        "width": 312,
+        "height": 56
+      },
+      "accepted": {
+        "phase": "challenge",
+        "paused": false,
+        "active": [
+          {
+            "id": "activity-1",
+            "kind": "championship",
+            "participants": [
+              "player",
+              "leo"
+            ],
+            "resource": "court",
+            "phase": "traveling",
+            "elapsed": 0.016666666666666666,
+            "phaseTime": 0.016666666666666666,
+            "detail": "Championship vs Leo"
+          }
+        ],
+        "player": {
+          "x": -11.897413356857694,
+          "y": 0,
+          "z": 8.10581994707019
+        },
+        "blocked": false,
+        "toast": "Leo accepts. Championship court."
+      },
+      "focusResumes": 0,
+      "secondsToServe": 6.032,
+      "realRally": {
+        "phase": "rally",
+        "rally": 3,
+        "paused": false,
+        "cue": "nice"
+      },
+      "returned": {
+        "court": false,
+        "avatar": "Taylor",
+        "actors": 4,
+        "paused": false
+      }
+    }
+  ],
+  "phone": {
+    "engine": "chromium",
+    "avatar": "Taylor",
+    "width": 1440,
+    "errors": [],
+    "requests": [],
+    "hand": {
+      "phone": {
+        "active": true,
+        "phase": "mounting",
+        "mounted": false,
+        "avatar": "taylor",
+        "samples": 0,
+        "video": false,
+        "liveTracks": 0,
+        "anchor": {
+          "x": -3.8,
+          "y": 1.42,
+          "z": -8
+        }
+      },
+      "handError": 0
+    },
+    "result": {
+      "worldPreserved": true,
+      "worldAdvanced": true,
+      "phone": {
+        "active": false,
+        "phase": "finishing",
+        "mounted": true,
+        "avatar": "taylor",
+        "samples": 161,
+        "video": true,
+        "liveTracks": 0,
+        "anchor": {
+          "x": -3.8,
+          "y": 1.42,
+          "z": -8
+        }
+      },
+      "source": "phone-recording",
+      "kind": "phone",
+      "samples": 161,
+      "bytes": 1247799,
+      "mime": "video/webm",
+      "duration": 5.374166,
+      "width": 1440,
+      "height": 900,
+      "owner": "Three apps by Arjan Singh Puniani",
+      "uses": 1
+    },
+    "sync": {
+      "video": 0.6662,
+      "time": 0.656939,
+      "frame": 0.656939,
+      "error": 0.009260999999999964,
+      "overflow": false
+    },
+    "seek": {
+      "video": 2.700199,
+      "time": 2.700199,
+      "readout": "79\u00b0",
+      "camera": {
+        "x": 3.008975288067239,
+        "y": 4.254939716848014,
+        "z": -7.758980183981752
+      },
+      "opaqueSurfaces": 39
+    },
+    "axe": []
+  },
+  "performance": [
+    {
+      "label": "before",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "p99": 16.799999999999272,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 875,
+      "triangles": 362910,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 346000,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "p99": 16.799999999999272,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 346000,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "before",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 875,
+      "triangles": 362910,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    }
+  ]
+}

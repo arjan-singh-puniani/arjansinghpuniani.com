@@ -281,7 +281,7 @@ export class Character {
     const racket=this.holdsRacket(),hands={handRestWeight:this.state==='idle'&&!this.propKind&&!this.interactionTarget&&!this.affection&&this.socialGesture==='none'&&this.interactionWeight<.001?1:0,handLapWeight:this.state==='sit'&&!this.propKind&&!this.affection&&!racket?1:0,handGripL:racket?(this.state==='swingBackhand'?1:this.state==='ready'||this.state==='shuffle'?.45:0):0,handGripR:racket?1:this.state==='drink'||this.propKind==='cup'?.45:0,handRacketWeight:racket?1:0};
     for(const key of Object.keys(hands) as (keyof typeof hands)[])this.handPose[key]=expDamp(this.handPose[key],hands[key],12,dt);
     this.clubIdleRelax=expDamp(this.clubIdleRelax,this.canRelaxClubIdle()?1:0,7,dt);
-    if(this.spec.avatar==='taylor'&&this.spec.appearance==='human')this.authoredHands=advanceAuthoredHands(this.pose(),this.position,this.yaw,this.authoredHands,dt);
+    if(this.spec.presentation==='feminine'&&this.spec.appearance==='human')this.authoredHands=advanceAuthoredHands(this.pose(),this.position,this.yaw,this.authoredHands,dt);
     this.prevPosition=this.position.clone();
   }
 
@@ -390,7 +390,7 @@ export class Character {
     if(state==='stretch'){handL=this.worldLocal(-.30,2.05+baseY,.02);handR=this.worldLocal(.30,2.05+baseY,.02);}
     if(state==='watch'){handL=this.worldLocal(.22,1.12+baseY,.25);handR=this.worldLocal(-.22,1.12+baseY,.27);}
     if(state==='ready'||shuffle){handL=this.worldLocal(.10,1.24+baseY,.56,torsoYaw);handR=this.worldLocal(.17,1.18+baseY,.40,torsoYaw);}
-    const humanReady=this.spec.appearance==='human'&&(state==='ready'||shuffle),authoredReady=humanReady&&this.spec.avatar==='taylor'&&!!authoredArmLengths();
+    const humanReady=this.spec.appearance==='human'&&(state==='ready'||shuffle),authoredReady=humanReady&&this.spec.presentation==='feminine'&&!!authoredArmLengths();
     if(humanReady){handR=this.worldLocal(.27,1.18+baseY,.36,torsoYaw);handL=this.worldLocal(.40,1.24+baseY,.375,torsoYaw);}
     if(authoredReady){handR=this.worldLocal(-.08,1.18+baseY,.48,torsoYaw);handL=this.worldLocal(.05,1.24+baseY,.50,torsoYaw);}
 
@@ -542,7 +542,7 @@ export class Character {
         result.face={...result.face,smile:Math.max(this.spec.avatar==='taylor'?.55:this.spec.presentation==='masculine'?.18:.32,result.face.smile),squint:Math.max(.08,result.face.squint)};
       }
       const design=CAST_DESIGN[this.spec.avatar??this.spec.id]??CAST_DESIGN.taylor;
-      return adultTaylorPose(result,this.position,this.yaw,{armLengths:this.spec.avatar==='taylor'&&this.spec.appearance==='human'?authoredArmLengths():undefined,sitting:this.state==='sit',seatWeight:this.state==='sit'?t:this.previousState==='sit'?1-t:0,folded:this.canFoldReferenceIdle(),rightWorld:right,leftWorld:left,human:this.spec.appearance==='human',shoulderScale:design.shoulderScale,restWeight:this.clubIdleRelax,strokeWeight:isShot(this.state)?t:isShot(this.previousState)?1-t:0,readyWeight:this.state==='ready'||this.state==='shuffle'?t:this.previousState==='ready'||this.previousState==='shuffle'?1-t:0,affection:this.affection??undefined,walk:result.walking&&this.spec.appearance==='human'&&!this.propKind&&this.interactionWeight<.001&&this.socialGesture==='none'?{phase:this.gaitPhase,weight:clamp(this.horizontalSpeed/1.2,0,1),stance:this.walkingShape()!.stance,planted:this.state==='jog'?[!!this.leftFootLock,!!this.rightFootLock]:undefined,swing:locomotionStyleFor(this.spec.id).armSwing*.75}:undefined,posture});
+      return adultTaylorPose(result,this.position,this.yaw,{armLengths:this.spec.presentation==='feminine'&&this.spec.appearance==='human'?authoredArmLengths():undefined,sitting:this.state==='sit',seatWeight:this.state==='sit'?t:this.previousState==='sit'?1-t:0,folded:this.canFoldReferenceIdle(),rightWorld:right,leftWorld:left,human:this.spec.appearance==='human',shoulderScale:design.shoulderScale,restWeight:this.clubIdleRelax,strokeWeight:isShot(this.state)?t:isShot(this.previousState)?1-t:0,readyWeight:this.state==='ready'||this.state==='shuffle'?t:this.previousState==='ready'||this.previousState==='shuffle'?1-t:0,affection:this.affection??undefined,walk:result.walking&&this.spec.appearance==='human'&&!this.propKind&&this.interactionWeight<.001&&this.socialGesture==='none'?{phase:this.gaitPhase,weight:clamp(this.horizontalSpeed/1.2,0,1),stance:this.walkingShape()!.stance,planted:this.state==='jog'?[!!this.leftFootLock,!!this.rightFootLock]:undefined,swing:locomotionStyleFor(this.spec.id).armSwing*.75}:undefined,posture});
     }
     return result;
   }
@@ -572,7 +572,7 @@ export class Character {
     const leftShoePitch=pose.walking&&!this.leftFootLock?clamp(-pose.gait*.18,-.18,.18):0,rightShoePitch=pose.walking&&!this.rightFootLock?clamp(pose.gait*.18,-.18,.18):0;
     const leftShoeYaw=pose.walking?this.walkCycle.yaws[0]:this.yaw,rightShoeYaw=pose.walking?this.walkCycle.yaws[1]:this.yaw;
     const holdsRacket=this.holdsRacket();
-    const authored=taylor&&human?authoredAthleteMeshes(pose,p,this.yaw,[{pitch:leftShoePitch,yaw:leftShoeYaw},{pitch:rightShoePitch,yaw:rightShoeYaw}],this.animTime):undefined;
+    const authored=feminine&&human?authoredAthleteMeshes(pose,p,this.yaw,[{pitch:leftShoePitch,yaw:leftShoeYaw},{pitch:rightShoePitch,yaw:rightShoeYaw}],this.animTime,this.spec.avatar??this.spec.id):undefined;
     if(authored)m.push(...authored);
     else {
     // Idle may use the authored club stance. Props, reaches and every match pose retain the contact rig.

@@ -1,6 +1,10 @@
 import { Vec3, rigidFrame, interpolateRigidFrame, compose, transformPoint, smoothstep } from '../rendering/Math3D.js';
 import { inspectCharacterAsset } from './CharacterAssetIntake.js';
 import { BONE, rigFromPose, skinMatrices } from './CharacterSkin.js';
+import { CAST_DESIGN } from '../content/CastDesign.js';
+import { humanHairMeshes } from './TaylorHuman.js';
+const castIds = ['coach', 'mika', 'nia'];
+const castTextures = ['cast-skin.webp', ...castIds.flatMap(id => [`${id}-kit.webp`, `${id}-skirt.webp`])];
 let athlete;
 const root = new URL('../../assets/characters/taylor/', import.meta.url);
 const digest = async (bytes) => Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes)), n => n.toString(16).padStart(2, '0')).join('');
@@ -30,7 +34,7 @@ export async function loadAuthoredAthlete() {
     if (!Object.values(armLengths).every(n => Number.isFinite(n) && n > .2 && n < .6))
         throw Error('Invalid character arm lengths');
     const images = new Map();
-    await Promise.all([...new Set(result.primitives.map(p => p.albedo).filter((s) => !!s))].map(async (name) => {
+    await Promise.all([...new Set([...result.primitives.map(p => p.albedo).filter((s) => !!s), ...castTextures])].map(async (name) => {
         const data = await get(name);
         if (await digest(data) !== meta.textures[name])
             throw Error(`Character texture checksum failed: ${name}`);
@@ -69,8 +73,51 @@ export async function loadAuthoredAthlete() {
     }
     if (!eyeCenters.every(Number.isFinite))
         throw Error('Invalid character eye geometry');
+    const looks = new Map();
+    for (const id of castIds) {
+        const { width = 1, height = 1 } = CAST_DESIGN[id].head, center = bind.head;
+        const parts = result.primitives.filter(p => p.materialSlot !== 'hair').map(part => {
+            if (!['skin', 'eyes'].includes(part.materialSlot))
+                return part;
+            let g = part.geometry;
+            if (part.materialSlot === 'skin') {
+                // shortcut: source tail UV islands; re-author this mask if the verified head mesh changes.
+                const keep = [];
+                for (let v = 0; v < g.positions.length / 3; v += 3) {
+                    if ([v, v + 1, v + 2].every(i => g.uvs[i * 2] > .5 && g.uvs[i * 2 + 1] > .8 && g.positions[i * 3 + 2] < -.075))
+                        continue;
+                    keep.push(v, v + 1, v + 2);
+                }
+                if (g.positions.length / 3 - keep.length !== 960)
+                    throw Error('Cast hair mask no longer matches the authored head');
+                const take = (data, size) => { const out = new Float32Array(keep.length * size); for (let i = 0; i < keep.length; i++)
+                    out.set(data.subarray(keep[i] * size, (keep[i] + 1) * size), i * size); return out; };
+                g = { ...g, positions: take(g.positions, 3), normals: take(g.normals, 3), boneIndices: take(g.boneIndices, 4), boneWeights: take(g.boneWeights, 4), uvs: take(g.uvs, 2), morphs: g.morphs?.map(d => take(d, 3)), morphNormals: g.morphNormals?.map(d => take(d, 3)) };
+            }
+            const positions = g.positions.slice(), normals = g.normals.slice(), morphs = g.morphs?.map(d => d.slice()), morphNormals = g.morphNormals?.map(d => d.slice());
+            for (let v = 0; v < positions.length / 3; v++) {
+                if (![0, 1, 2, 3].some(j => g.boneIndices[v * 4 + j] === BONE.head && g.boneWeights[v * 4 + j] > .99))
+                    continue;
+                const i = v * 3, n = new Vec3(g.normals[i] / width, g.normals[i + 1] / height, g.normals[i + 2]).normalize();
+                positions[i] *= width;
+                positions[i + 1] = center.y + (positions[i + 1] - center.y) * height;
+                normals.set([n.x, n.y, n.z], i);
+                for (let channel = 0; channel < (morphs?.length ?? 0); channel++) {
+                    morphs[channel][i] *= width;
+                    morphs[channel][i + 1] *= height;
+                    if (morphNormals) {
+                        const d = g.morphNormals[channel], target = new Vec3((g.normals[i] + d[i]) / width, (g.normals[i + 1] + d[i + 1]) / height, g.normals[i + 2] + d[i + 2]).normalize();
+                        morphNormals[channel].set([target.x - n.x, target.y - n.y, target.z - n.z], i);
+                    }
+                }
+            }
+            return { ...part, geometry: { ...g, id: g.id + ':' + id, positions, normals, morphs, morphNormals } };
+        });
+        const centers = eyeCenters.map((v, i) => i % 3 === 0 ? v * width : i % 3 === 1 ? center.y + (v - center.y) * height : v);
+        looks.set(id, { parts, eyeCenters: centers, skin: id === 'coach' ? '#fff8ed' : id === 'mika' ? '#f5dfcf' : '#d7b6a2' });
+    }
     bind.headUp = new Vec3(0, 1, 0);
-    athlete = { parts: result.primitives, bind: bind, images, gripSign: meta.gripSign, eyeCenters, neckRatio, neckDepth, spineRatio, spineDepth, armLengths };
+    athlete = { looks, parts: result.primitives, bind: bind, images, gripSign: meta.gripSign, eyeCenters, neckRatio, neckDepth, spineRatio, spineDepth, armLengths };
 }
 export const authoredArmLengths = () => athlete?.armLengths;
 /** Advance once with the actor; rendering and replay only consume the result. */
@@ -109,7 +156,7 @@ export function advanceAuthoredHands(p, position, yaw, previous, dt) {
     }
     return result;
 }
-export function authoredAthleteMeshes(p, position, yaw, feet, time) {
+export function authoredAthleteMeshes(p, position, yaw, feet, time, identity = 'taylor') {
     if (!athlete)
         return;
     const rig = rigFromPose(p, position, yaw);
@@ -138,5 +185,7 @@ export function authoredAthleteMeshes(p, position, yaw, feet, time) {
     const seated = p.seatedWeight ?? 0, crouch = (1 - seated) * smoothstep(.08, .34, athlete.bind.pelvis.y - rig.pelvis.y);
     const drape = [seated * smoothstep(.5, .99, (thighPitch('L') + thighPitch('R')) / 2), crouch, 0, 0];
     const sourceRig = { bind: athlete.bind, pose: rig };
-    return athlete.parts.map(part => ({ poseRig: true, eyeCenters: part.materialSlot === 'eyes' ? athlete.eyeCenters : undefined, eyeYaw: part.materialSlot === 'eyes' ? p.eyeYaw ?? 0 : 0, skirt: part.materialSlot === 'skirt', rig: sourceRig, expression: part.materialSlot === 'skirt' ? drape : expression, handGrip, skin: part.geometry, boneMatrices: bones, position: new Vec3(position.x, 0, position.z), rotation: new Vec3(0, yaw, 0), color: part.materialSlot === 'hair' ? '#65584f' : '#ffffff', material: part.materialSlot === 'skin' ? 'humanSkin' : part.materialSlot === 'eyes' ? 'iris' : part.materialSlot === 'teeth' ? 'ceramic' : ['hair', 'brows', 'lashes'].includes(part.materialSlot) ? 'groomedHair' : 'performanceKnit', diffuse: part.albedo ? athlete.images.get(part.albedo) : undefined, alphaCutoff: part.alphaCutoff, doubleSided: part.doubleSided }));
+    const look = athlete.looks.get(identity), parts = look?.parts ?? athlete.parts;
+    const meshes = parts.map(part => ({ poseRig: true, eyeCenters: part.materialSlot === 'eyes' ? (look?.eyeCenters ?? athlete.eyeCenters) : undefined, eyeYaw: part.materialSlot === 'eyes' ? p.eyeYaw ?? 0 : 0, skirt: part.materialSlot === 'skirt', rig: sourceRig, expression: part.materialSlot === 'skirt' ? drape : expression, handGrip, skin: part.geometry, boneMatrices: bones, position: new Vec3(position.x, 0, position.z), rotation: new Vec3(0, yaw, 0), color: part.materialSlot === 'skin' && look ? look.skin : part.materialSlot === 'hair' ? '#65584f' : '#ffffff', material: part.materialSlot === 'skin' ? 'humanSkin' : part.materialSlot === 'eyes' ? 'iris' : part.materialSlot === 'teeth' ? 'ceramic' : ['hair', 'brows', 'lashes'].includes(part.materialSlot) ? 'groomedHair' : 'performanceKnit', diffuse: part.albedo ? athlete.images.get(look ? (part.materialSlot === 'skin' || part.materialSlot === 'eyes' ? 'cast-skin.webp' : part.materialSlot === 'kit' ? `${identity}-kit.webp` : part.materialSlot === 'skirt' ? `${identity}-skirt.webp` : part.albedo) : part.albedo) : undefined, alphaCutoff: part.alphaCutoff, doubleSided: part.doubleSided }));
+    return look ? [...meshes, ...humanHairMeshes(p.head, p.headYaw, 0, CAST_DESIGN[identity].head)] : meshes;
 }

@@ -205,10 +205,17 @@
     }
   ],
   "textures": {
-    "skin.webp": "ec769c1543ecb476613019d221950cd0ffb439d5d85679167b6b2b150a9418a4",
-    "kit.webp": "a7d07d4d6c6c8f99259a823ba831a95d547571d706e417bdf80a1965f128a9f5",
-    "shoes.webp": "3af53b14cb45d2e1a5f09cab63d55b534ee8f7e0f2cb54b63c9f9c8e7513d018",
+    "cast-skin.webp": "0c11a14f25710b8d215d01bd967386a34c853ba0586f5b1ad03f0aef22314f9f",
+    "coach-kit.webp": "151d3084d6e1dd07a020e33be8c02d15b9c235897088ddcef977f4978c5b8fa9",
+    "coach-skirt.webp": "45ecbb67c6471328682a351e587439c709310b8fcba72e875120424e4cdf6246",
     "hair.webp": "a549fa4b5f121e176e18a2d8fde0f6750b46ca778f93daec700540609ef16df7",
+    "kit.webp": "a7d07d4d6c6c8f99259a823ba831a95d547571d706e417bdf80a1965f128a9f5",
+    "mika-kit.webp": "17b79579712551f46856e77bfe50d9bc9d0420c848a0a5291ac12c58fbc7bea8",
+    "mika-skirt.webp": "67bf2e24d1db65c86be0920aa34f3a7b792ef3928a48e0c777d5a27ce3f0458b",
+    "nia-kit.webp": "d0a1ce30b75254f82ce29580affc82d46ead50d5815d59fbd99c26cbeb62d51e",
+    "nia-skirt.webp": "8e2b936d61510e0a1195e37a580be86bfde058c968a2925a1677e1ae6924be66",
+    "shoes.webp": "3af53b14cb45d2e1a5f09cab63d55b534ee8f7e0f2cb54b63c9f9c8e7513d018",
+    "skin.webp": "ec769c1543ecb476613019d221950cd0ffb439d5d85679167b6b2b150a9418a4",
     "skirt.webp": "3ac69eb7fd0f27c3c78318e71cab59928b76632a4d236f80a6a8af47199fe822"
   },
   "sourceHashes": {
@@ -236,6 +243,8 @@
     "clothes/shoes05/shoes05.obj": "5726aabac42ff489998d0a769545dea013961bbb71b9c6024d75170181a98818",
     "eyes/high-poly/high-poly.mhclo": "b183cfe37120ab726f9b3f2ea6cd3a64c44ce7b4bd91a77c841cf70c04f83a0d",
     "eyes/high-poly/high-poly.obj": "da2493215b708a344c33dc72f2a9a5b8fa985dcc5a70ad3b208995cf871da8e1",
+    "tools/athlete-textures/cast-face-stylized-v1.prompt.txt": "51a75d7a187bf716c25fc30e26970d0f9cde766570a6dccfbd3050beb2d404a5",
+    "tools/athlete-textures/cast-face-stylized-v1.png": "fa375480f476e06e8ff087c3d119182bf291931b78ebfb615e7c83e9f464ed36",
     "tools/athlete-textures/head-brunette.prompt.txt": "2cc90d8cba5478e39e5bb6a270e67e2d85a4ec41395d43d41520308369289c55",
     "tools/athlete-textures/head-refined-v2.png": "80a2cbcb900afd1634e290b80aaca5fe853b6ef3b92710a73b3c8c691e151c54",
     "tools/athlete-textures/head-refined-v2.prompt.txt": "d28384704cfe0e02fcf3f6d086d2016e290ec1417b4819dfde1b411ca63c47be",
@@ -278,7 +287,7 @@
     "https://static.makehumancommunity.org/assets/assetpacks/shirts03.html"
   ],
   "authoringScripts": {
-    "bake-authored-athlete.py": "853853ecd9e965e84b142abb7fc19e6a7ee5f27f85e252d0afafffb33f86338a",
+    "bake-authored-athlete.py": "8b3702e78251df69466411859365fb129ea946d946b09b2836bb32c2f33fea30",
     "fit-athlete-kit.py": "e6d0c77cbb064aff6ddd2d9581e083ab9414418228fa81cf0c98bf9409470b2c",
     "fit-athlete-head.py": "4cc1fcdec5710d4b11e052b39f08bb8443cc715825518a2c785f009864b85c2f"
   }

@@ -158,6 +158,21 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
  }
  assert(topVertices>1000&&torsoWidth<Math.abs(rest.upperArmL.x)+.06,'fitted crop must retain the narrow torso');assert(sleeveVertices>100,'the reference kit must retain weighted long sleeves');
  assert(meta.author.includes('punkduck')&&meta.license.includes('CC-BY-4.0'),'authored top must retain creator and license metadata');
+ const {memberData}=await import('../dist/content/content.js');const castFaces=new Set(),castKits=new Set();
+ for(const spec of memberData.filter(s=>s.presentation==='feminine')){
+  const actor=new Character({...spec},new Vec3(),new Navigation([]),{});actor.racketStowed=true;for(let i=0;i<180;i++)actor.update(1/60);
+  const parts=actor.meshes(),skin=parts.find(m=>m.rig&&m.material==='humanSkin'),eyes=parts.find(m=>m.eyeCenters),kit=parts.find(m=>m.rig&&m.material==='performanceKnit'&&!m.skirt);
+  assert(skin.skin.id.endsWith(':'+spec.id)&&skin.diffuse&&kit.diffuse,'each adult woman must use her authored look');castFaces.add(skin.skin);castKits.add(kit.diffuse);
+  assert.equal(parts.filter(m=>m.rig).length,5,'authored body replaces the assembled fallback parts');
+  assert(!Array.from({length:skin.skin.positions.length/9},(_,t)=>[0,1,2].every(j=>{const v=t*3+j;return skin.skin.uvs[v*2]>.5&&skin.skin.uvs[v*2+1]>.8&&skin.skin.positions[v*3+2]<-.075;})).some(Boolean),'alternate hairstyles must not retain the source ponytail core');
+  for(let v=0;v<skin.skin.normals.length;v+=3*29)for(const delta of skin.skin.morphNormals){const n=skin.skin.normals;assert(Math.abs(Math.hypot(n[v]+delta[v],n[v+1]+delta[v+1],n[v+2]+delta[v+2])-1)<1e-5,'shaped expression normals must remain unit length');}
+  const eg=eyes.skin;for(const side of [0,1])for(let axis=0;axis<3;axis++){const values=[];for(let v=0;v<eg.positions.length/3;v++)if((eg.positions[v*3]<0?0:1)===side)values.push(eg.positions[v*3+axis]);assert(Math.abs(eyes.eyeCenters[side*3+axis]-(Math.min(...values)+Math.max(...values))/2)<1e-6,'shaped eyes must retain their actual rotation centers');}
+  for(let v=0;v<body.positions.length/3;v+=31)if(![0,1,2,3].some(j=>body.boneIndices[v*4+j]===BONE.head&&body.boneWeights[v*4+j]>.99))for(let axis=0;axis<3;axis++)assert.equal(skin.skin.positions[v*3+axis],body.positions[v*3+axis],'face shaping must preserve the fitted body');
+  for(const state of ['sit','idle','ready']){actor.trigger(state);for(let i=0;i<90;i++)actor.update(1/60);assert(actor.meshes().filter(m=>m.rig).every(m=>m.boneMatrices.every(Number.isFinite)));}
+  actor.matchCompetitor=true;actor.racketStowed=false;actor.setAnimation('ready');actor.update(.3);actor.setIncomingContact(new Vec3(-.6,1.02,.9));actor.triggerShot('swingBackhand',new Vec3(0,.09,5));const contactTime=actor.shotContactTime('swingBackhand');for(let i=0;i<60;i++)actor.update(contactTime/60);assert(Vec3.sub(actor.analysisPose().racketCenter,actor.debugKinematics().contactTarget).len()<1e-6,'cast appearance must preserve the world-owned racket contact');
+  const frame=captureFrame(actor,0,null);assert(frame.body.some(m=>m.skin===skin.skin),'capture must retain the selected face geometry');
+ }
+ assert.equal(castFaces.size,3);assert.equal(castKits.size,3);console.log('Three distinct authored adult cast looks retain their body, eye centers, seated pose, contact and capture.');
  const blinkActor=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});let previousBlink=0,maxBlink=0,maxBlinkStep=0;
  for(let frame=0;frame<960;frame++){blinkActor.update(1/240);const blink=blinkActor.meshes().find(m=>m.rig).expression[2];maxBlink=Math.max(maxBlink,blink);maxBlinkStep=Math.max(maxBlinkStep,Math.abs(blink-previousBlink));previousBlink=blink;}
  assert(maxBlink>.95&&maxBlinkStep<.15,'blink must close fully without snapping shut');console.log(JSON.stringify({maxBlink,maxBlinkStep}));
