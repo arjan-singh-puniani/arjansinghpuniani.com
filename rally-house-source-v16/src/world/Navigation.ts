@@ -4,12 +4,12 @@ const clearance=.22;
 // Include both service baselines and the net-post run-off in the same
 // boundary used for circulation and for clearing nonparticipants.
 const courtHalfWidth=COURT.doublesHalfWidth+1,courtHalfDepth=COURT.baselineDepth+.25;
-export interface Rect {x:number;z:number;w:number;d:number}
+export interface Rect {x:number;z:number;w:number;d:number;rotation?:number}
 export class Navigation {
   cell=.5; minX=-12.5; maxX=12.5; minZ=-9.5; maxZ=9.5; obstacles:Rect[]=[];
   courtReserved=()=>false;
   constructor(obstacles:Rect[]=[]){this.obstacles=obstacles}
-  isBlocked(x:number,z:number){if(x<this.minX||x>this.maxX||z<this.minZ||z>this.maxZ)return true;return this.obstacles.some(o=>x>o.x-o.w/2-clearance&&x<o.x+o.w/2+clearance&&z>o.z-o.d/2-clearance&&z<o.z+o.d/2+clearance)}
+  isBlocked(x:number,z:number){if(x<this.minX||x>this.maxX||z<this.minZ||z>this.maxZ)return true;return this.obstacles.some(o=>{const c=Math.cos(o.rotation??0),s=Math.sin(o.rotation??0),dx=x-o.x,dz=z-o.z;return Math.abs(c*dx-s*dz)<o.w/2+clearance&&Math.abs(s*dx+c*dz)<o.d/2+clearance;})}
   private snap(v:number,min:number){return Math.round((v-min)/this.cell)}
   private world(ix:number,iz:number){return new Vec3(this.minX+ix*this.cell,0,this.minZ+iz*this.cell)}
   path(start:Vec3,end:Vec3){
@@ -40,7 +40,8 @@ export class Navigation {
     if(this.isBlocked(a.x,a.z)||this.isBlocked(b.x,b.z))return false;
     for(const o of this.obstacles){
       let enter=0,leave=1;
-      for(const [origin,delta,min,max] of [[a.x,b.x-a.x,o.x-o.w/2-clearance,o.x+o.w/2+clearance],[a.z,b.z-a.z,o.z-o.d/2-clearance,o.z+o.d/2+clearance]]){
+      const c=Math.cos(o.rotation??0),s=Math.sin(o.rotation??0),ax=a.x-o.x,az=a.z-o.z,dx=b.x-a.x,dz=b.z-a.z;
+      for(const [origin,delta,min,max] of [[c*ax-s*az,c*dx-s*dz,-o.w/2-clearance,o.w/2+clearance],[s*ax+c*az,s*dx+c*dz,-o.d/2-clearance,o.d/2+clearance]]){
         if(Math.abs(delta)<1e-9){if(origin<=min||origin>=max){enter=2;break;}}
         else {const x=(min-origin)/delta,y=(max-origin)/delta;enter=Math.max(enter,Math.min(x,y));leave=Math.min(leave,Math.max(x,y));}
       }

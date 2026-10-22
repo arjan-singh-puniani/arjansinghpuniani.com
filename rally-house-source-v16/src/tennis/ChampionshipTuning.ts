@@ -6,6 +6,7 @@
  * deliberate, reviewable, and easy to revert.
  */
 export const CHAMPIONSHIP_TUNING = {
+  completionFunds: 30,
   approachSpeedScale: 2.5,
   introSeconds: .95,
   readySeconds: .28,

@@ -1,3 +1,4 @@
+import { CHAMPIONSHIP_TUNING } from '../tennis/ChampionshipTuning.js';
 /**
  * Presentation-only overlay for Championship Mode.
  * Game state stays in ChampionshipController and InteractiveMatchSystem.
@@ -178,7 +179,7 @@ export class ChampionshipHUD {
         if (showResults) {
             const playerWon = snapshot.score.player > snapshot.score.opponent;
             this.resultTitle.textContent = playerWon ? 'YOU WIN' : `${opponentName.toUpperCase()} WINS`;
-            this.resultSummary.textContent = `${snapshot.score.player} – ${snapshot.score.opponent}  ·  Best rally ${snapshot.bestRally}`;
+            this.resultSummary.textContent = `${snapshot.score.player} – ${snapshot.score.opponent}  ·  Best rally ${snapshot.bestRally}  ·  +${CHAMPIONSHIP_TUNING.completionFunds} club funds`;
         }
         this.touchPad.hidden = paused || !this.gameplayPhase(snapshot.phase);
         this.swingButton.hidden = paused || !this.gameplayPhase(snapshot.phase);

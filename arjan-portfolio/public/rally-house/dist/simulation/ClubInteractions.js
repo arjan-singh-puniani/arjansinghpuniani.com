@@ -34,7 +34,7 @@ export function touchForDecor(type) {
     if (type === 'scoreboard')
         return CLUB_TOUCHES.board;
     if (['basket', 'ballHopper'].includes(type))
-        return { ...CLUB_TOUCHES.training, title: 'Check the ball supply', effect: 'read', prop: 'ball' };
+        return { ...CLUB_TOUCHES.training, title: 'Bounce a tennis ball', detail: 'Take one from the basket and watch its real bounce.', effect: 'bounce', prop: null, gesture: 'offer' };
     if (type === 'coneSet')
         return { ...CLUB_TOUCHES.trophy, title: 'Trace the footwork pattern', effect: 'read', animation: 'stretch' };
     throw new Error(`Missing authored interaction for decor: ${type}`);

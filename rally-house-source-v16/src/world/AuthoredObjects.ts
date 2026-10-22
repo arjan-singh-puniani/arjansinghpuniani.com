@@ -70,7 +70,7 @@ export class AuthoredObjects {
   private leafParts:{mesh:Mesh;original:Vec3;id:string}[]=[];
   private soilParts:{mesh:Mesh;id:string}[]=[];
   private bell:Mesh;
-  private ballAge=4;
+  private ballAge=4;private machineFeed=true;
   readonly demonstrationBall=new BallPhysics();
   constructor(staticMeshes:Mesh[],readonly identity:ObjectIdentity){
     this.clockMeshes=[mesh('torus',5.7,2.75,-9.32,.75,.75,.30,'#8b7761'),mesh('sphere',5.7,2.75,-9.245,.58,.58,.09,'#f5eedf'),
@@ -90,11 +90,12 @@ export class AuthoredObjects {
       }
     }
   }
-  start(id:string,action:ObjectAction,minute:number){
+  start(id:string,action:ObjectAction,minute:number,contact?:Vec3){
     this.active.set(id,{action,age:0});
     this.identity.apply(id,action,minute);
     if(action.assembly)this.clock.start();
-    if(action.effect==='training'){this.ballAge=0;this.demonstrationBall.launch(new Vec3(-7.1,.86,-.12),new Vec3(-6.35,.09,.08),.58);}
+    if(action.effect==='training'){this.machineFeed=true;this.ballAge=0;this.demonstrationBall.launch(new Vec3(-7.1,.86,-.12),new Vec3(-6.35,.09,.08),.58);}
+    if(action.effect==='bounce'&&contact){this.machineFeed=false;this.ballAge=0;this.demonstrationBall.launch(contact,new Vec3(contact.x+.45,.09,contact.z+.2),.55);}
   }
   cancel(id:string){this.active.delete(id);if(id==='clubClock')this.clock.restore();}
   lampLevel(id:string){return this.identity.state(id).dimmed?.4:1;}
@@ -131,7 +132,7 @@ export class AuthoredObjects {
     }
     if(this.ballAge<3){
       const p=this.demonstrationBall.position;m.push(mesh('sphere',p.x,p.y,p.z,.14,.14,.14,'#d9c65f'));
-      const wheel=mesh('roundBox',-7.4,.72,.62,.29,.06,.05,'#596f60');wheel.rotation=new Vec3(0,0,reducedMotion?0:this.ballAge*18);m.push(wheel);
+      if(this.machineFeed){const wheel=mesh('roundBox',-7.4,.72,.62,.29,.06,.05,'#596f60');wheel.rotation=new Vec3(0,0,reducedMotion?0:this.ballAge*18);m.push(wheel);}
     }
     return m;
   }

@@ -80,6 +80,7 @@ export class AuthoredObjects {
     soilParts = [];
     bell;
     ballAge = 4;
+    machineFeed = true;
     demonstrationBall = new BallPhysics();
     constructor(staticMeshes, identity) {
         this.identity = identity;
@@ -114,14 +115,20 @@ export class AuthoredObjects {
             }
         }
     }
-    start(id, action, minute) {
+    start(id, action, minute, contact) {
         this.active.set(id, { action, age: 0 });
         this.identity.apply(id, action, minute);
         if (action.assembly)
             this.clock.start();
         if (action.effect === 'training') {
+            this.machineFeed = true;
             this.ballAge = 0;
             this.demonstrationBall.launch(new Vec3(-7.1, .86, -.12), new Vec3(-6.35, .09, .08), .58);
+        }
+        if (action.effect === 'bounce' && contact) {
+            this.machineFeed = false;
+            this.ballAge = 0;
+            this.demonstrationBall.launch(contact, new Vec3(contact.x + .45, .09, contact.z + .2), .55);
         }
     }
     cancel(id) { this.active.delete(id); if (id === 'clubClock')
@@ -189,9 +196,11 @@ export class AuthoredObjects {
         if (this.ballAge < 3) {
             const p = this.demonstrationBall.position;
             m.push(mesh('sphere', p.x, p.y, p.z, .14, .14, .14, '#d9c65f'));
-            const wheel = mesh('roundBox', -7.4, .72, .62, .29, .06, .05, '#596f60');
-            wheel.rotation = new Vec3(0, 0, reducedMotion ? 0 : this.ballAge * 18);
-            m.push(wheel);
+            if (this.machineFeed) {
+                const wheel = mesh('roundBox', -7.4, .72, .62, .29, .06, .05, '#596f60');
+                wheel.rotation = new Vec3(0, 0, reducedMotion ? 0 : this.ballAge * 18);
+                m.push(wheel);
+            }
         }
         return m;
     }

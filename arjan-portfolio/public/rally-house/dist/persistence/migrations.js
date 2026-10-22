@@ -1,5 +1,5 @@
 import { DECOR_BY_ID } from '../content/DecorCatalog.js';
-export const CURRENT_SAVE_VERSION = 10;
+export const CURRENT_SAVE_VERSION = 11;
 const invalid = () => { throw new Error('Saved club data is invalid. Storage has been left untouched.'); };
 function scan(v, depth = 0) {
     if (depth > 20)
@@ -78,6 +78,10 @@ export function migrateGameSave(version, state) {
                 invalid();
         }
     }
+    if (state.affordances?.objects)
+        for (const h of Object.values(state.affordances.objects))
+            if (h && h.lastWater !== undefined && h.lastWater > state.clock.day * 1440 + state.clock.minutes)
+                invalid();
     const relationships = {};
     for (const [k, v] of Object.entries(state.relationships ?? {}))
         relationships[k] = normalizeRelationship(v);
