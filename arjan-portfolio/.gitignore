@@ -7,3 +7,6 @@ tsconfig.tsbuildinfo
 public/rally-house/dist/**/*.map
 # Ignore iCloud conflict copies (for example `file 2.ts`) without touching them.
 **/* 2.*
+
+# Local browser QA artifacts.
+test-results/

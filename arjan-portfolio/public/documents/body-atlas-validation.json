@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2026-10-19T11:45:25.292Z",
+  "snapshotExportedAt": "2026-10-19T11:12:05.379339+00:00",
+  "recordCounts": {
+    "de_novo": 37,
+    "classification": 10,
+    "510k": 1564,
+    "pma": 836,
+    "trial": 17,
+    "grant": 5,
+    "publication": 21
+  },
+  "curatedEntries": 10,
+  "curatedAssertions": 21,
+  "localizedAssertions": 20,
+  "explicitAbstentions": 1,
+  "sourceContextEntries": 650,
+  "sourceContextAssertions": 721,
+  "automaticallyAcceptedMappings": 0,
+  "independentlyAdjudicatedMappings": 0,
+  "precision": null,
+  "confidenceInterval": null,
+  "reason": "No independent ground truth adjudication. Curator assertions and regression checks are not a precision estimate.",
+  "jobStates": {
+    "complete": 52,
+    "failed": 3
+  },
+  "thalamusTopography": {
+    "families": "3",
+    "regulatory": "3",
+    "grants": "Unmapped"
+  },
+  "localVerification": {
+    "recordedDate": "2026-10-19",
+    "domainAndDataChecksPassed": 29,
+    "ingestionChecksPassed": 24,
+    "browserChecksPassed": 16,
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "scope": "Recorded local checks on the atlas snapshot. Mobile coverage is Chrome touch emulation, not physical iPhone/Safari. No independent scientific accuracy estimate."
+  },
+  "releaseDisposition": "Local research prototype; public interactive deployment not verified."
+}
