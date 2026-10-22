@@ -3,8 +3,13 @@ import type { AtlasRecord, Family } from "./types";
 
 // Display labels summarize existing curated source assertions; they add no graph edges.
 import catalogue from "@/data/catalogue.json";
+import { interventionSummaries } from "./intervention-summaries";
+export { interventionSummaries };
+export const hasExplanation = (f: Family) => f.collection !== "catalogue" || !!interventionSummaries[f.id];
+export const inCollection = (f: Family, collection: string) => collection === "all" || (collection === "explained" ? hasExplanation(f) : collection === "reviewed" ? f.collection !== "catalogue" : f.collection === "catalogue");
+export const productName = (f: Family) => interventionSummaries[f.id]?.product || (f.name.length > 120 ? f.name.slice(0, 117).trimEnd() + "…" : f.name);
 export const interventionNames: Record<string, string> = {
-  ...Object.fromEntries(catalogue.families.map(f=>[f.id,f.name])),
+  ...Object.fromEntries(catalogue.families.map(f=>[f.id,interventionSummaries[f.id]?.title || recordById(f.regulatoryIds[0])?.genericName || productName(f as Family)])),
   tms: "Transcranial magnetic stimulation",
   rns: "Responsive neurostimulation",
   activa: "Deep brain stimulation",
@@ -54,7 +59,7 @@ export function regionRoles(f: Family, region: string): string[] {
 }
 
 export const interventionActions: Record<string, string> = {
-  ...Object.fromEntries(catalogue.families.map(f=>[f.id,f.description])),
+  ...Object.fromEntries(catalogue.families.map(f=>[f.id,interventionSummaries[f.id]?.purpose || "Purpose not established in the indexed evidence. Open the original FDA record; the product name alone is insufficient."])),
   tms: "An external coil uses magnetic pulses to induce electrical currents in cerebral cortex.",
   rns: "Records brain electrical activity and delivers responsive electrical stimulation near epileptic foci.",
   activa: "Implanted electrodes stimulate thalamic VIM for tremor suppression.",

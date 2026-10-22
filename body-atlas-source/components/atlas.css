@@ -2547,3 +2547,8 @@
 @media (max-width:650px) { .constellation-legend { top:10px; } }
 
 .atlas-header .preview-status { display:block; font-size:10px; color:var(--quiet); }
+
+.intervention-relevance {margin:18px 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.intervention-relevance h3 {font-size:13px;margin:0 0 8px}
+.intervention-relevance p {font-size:14px;line-height:1.6;margin:0 0 10px}
+.intervention-relevance small {display:block;margin-top:7px;color:var(--muted);line-height:1.5}

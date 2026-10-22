@@ -1,10 +1,11 @@
 import snapshot from "@/data/atlas.json";
 import { families as curatedFamilies, frontier, mappings as curatedMappings, structures as curatedStructures } from "./curation";
 import catalogue from "@/data/catalogue.json";
+import { interventionSummaries } from "./intervention-summaries";
 import regionDefinitions from "@/data/body-regions.json";
 import type { AtlasRecord, Family, HistoricalEvent, Mapping, Structure } from "./types";
 export const families:Family[]=[...curatedFamilies,...catalogue.families as Family[]];
-export const mappings:Mapping[]=[...curatedMappings,...catalogue.mappings as Mapping[]];
+export const mappings:Mapping[]=[...curatedMappings,...(catalogue.mappings as Mapping[]).filter(m => !interventionSummaries[m.familyId] || interventionSummaries[m.familyId].regions.includes(m.structureId || ""))];
 export const structures:Structure[]=[...curatedStructures,...regionDefinitions.filter(s=>!curatedStructures.some(c=>c.id===s.id))];
 export const catalogueCoverage=catalogue.coverage;
 export const records = snapshot.records as AtlasRecord[];
@@ -134,6 +135,8 @@ export function searchFamilies(
       const text = searchTextCache.get(f.id) || [
         f.name,
         f.description,
+        interventionSummaries[f.id]?.title || "",
+        interventionSummaries[f.id]?.purpose || "",
         ...f.topics,
         ...f.modalities,
         ...familyMappings(f.id).map(
@@ -227,6 +230,7 @@ export function retrieve(query: string) {
       : "Insufficient indexed evidence. No supported answer was found in this bounded collection.",
     families: hits.map((h) => ({
       ...h.family,
+      description: interventionSummaries[h.family.id]?.purpose || (h.family.collection === "catalogue" ? "Purpose not established in indexed evidence. This result is a source-text match only." : h.family.description),
       score: h.score,
       criteria:
         "Count of query terms present in indexed names, topics, modalities, anatomy, or regulatory identity. Unreviewed source context does not establish a physical relationship.",
@@ -249,7 +253,8 @@ export function brief(ids: string[], year = 2026): string {
   for (const f of fs) {
     lines.push(
       `## ${md(f.name)}`,
-      md(f.description),
+      md(interventionSummaries[f.id]?.purpose || (f.collection === "catalogue" ? "Purpose not established in indexed evidence; source text below is not a functional explanation." : f.description)),
+      ...(interventionSummaries[f.id] ? [`Anatomical relevance: ${md(interventionSummaries[f.id].relevance)} [Explanation source](${interventionSummaries[f.id].sourceUrl || recordById(f.regulatoryIds[0])!.url}) (${md(interventionSummaries[f.id].locator)}).`] : []),
       `Regulatory evidence: ${statusOf(f)}.`,
       `Modalities: ${f.modalities.join("; ")}.`,
       "",

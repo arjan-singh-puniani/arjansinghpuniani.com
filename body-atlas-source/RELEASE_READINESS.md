@@ -24,3 +24,7 @@
 | Broader rights/legal and expert scientific review | **Pending.** Bundled HRA asset attribution/CC BY 4.0 preserved; no blanket third-party commercial rights certification. |
 
 The new breadth improves discovery without upgrading unreviewed text into physical-placement truth. The 100–300 independently reviewed product-family goal, full normalized biomedical graph, corpus-wide incremental ingestion, systematic comparative evidence and production operations remain roadmap work.
+
+## Relevance correction — 2026-10-21
+
+The default view is a bounded set of 16 explained entries, not every keyword match. The complete authentic record index remains accessible. Six additional explanations were checked against record-specific FDA sources, but their anatomical context edges remain Provisional; this is not independent anatomical validation. False Murphy-eye/needle-eye/aortic-valve matches are excluded, and all active filters govern regional counts and timeline events. Domain (33), ingestion (25), portfolio (95), TypeScript, static export and production build checks pass. See DEMO_VERIFICATION.md for browser workflow coverage; preview disposition and expert-validation limitations remain unchanged.

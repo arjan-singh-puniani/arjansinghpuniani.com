@@ -6,7 +6,7 @@ import json,re
 from pathlib import Path
 from collections import Counter
 ROOT=Path(__file__).resolve().parent.parent
-VERSION='anatomical-context-v1'
+VERSION='anatomical-context-v2'
 IVD=re.compile(r'\b(in[ -]?vitro|assays?|specimens?|genotyp\w*|reagents?|immunoassay|polymerase|dna|rna|serum|plasma samples?|sequencing|diagnostic kits?|cell analyzer|chemistry analyzer)\b',re.I)
 NEGATED=re.compile(r'(not (?:intended|indicated|recommended)|contraindicated|excluding|except for|non[- ])[^.;:]{0,55}$',re.I)
 
@@ -18,7 +18,8 @@ def incidental(text,match):
     if word in ['hand','hands'] and re.match(r'[ -]?(held|operated|piece)',after,re.I):return True
     if word in ['finger','fingers'] and re.match(r'[ -]?stick',after,re.I):return True
     if word=='pulmonary' and re.match(r'\s+valve',after,re.I):return True
-    if word in ['eye','eyes'] and re.search(r'naked\s*$',before,re.I):return True
+    if word in ['eye','eyes'] and re.search(r'(naked|murphy|needle)\s*$',before,re.I):return True
+    if word=='aortic' and re.match(r'\s+(?:heart\s+)?valve',after,re.I):return True
     return False
 
 def contexts(record,regions):

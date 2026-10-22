@@ -12,6 +12,7 @@
     "patterns": [
       "cardiac",
       "myocardial",
+      "left atrial appendage",
       "heart",
       "electrocardiogra(?:ph|m)",
       "ecg"
@@ -155,10 +156,10 @@
   },
   {
     "id": "BODY:airway",
-    "name": "Upper airway",
+    "name": "Airway",
     "parent": "BODY:human",
     "synonyms": [],
-    "region": "Upper airway",
+    "region": "Airway",
     "laterality": "unspecified",
     "species": "Homo sapiens (NCBITaxon:9606)",
     "source": "https://doi.org/10.48539/HBM646.RKKC.257",

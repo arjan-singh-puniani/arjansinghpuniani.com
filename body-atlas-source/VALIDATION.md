@@ -38,3 +38,12 @@ On-model intervention regression checks tap/click selection, immediate action te
 ## Whole-body regression scope
 
 Current domain checks cover 2,490 original record identities and artifacts, all 721 contextual quote spans, explicit Provisional semantics, absence of invented clinical links/modalities, and licensed organ mesh integrity/source frame. Python adds bounded cross-panel acquisition, quoted OR handling, legacy N-identifier rejection, incidental-word/IVD/negation exclusions and positive anatomical contexts. The 150-row context review queue supplements the original neuro triage queue; both remain unadjudicated. Interface tests cover the dense map, organ load, heart/knee/female-only text discovery, original FDA links, context-aware exports and reviewed-layer filtering. Native region selectors provide keyboard/touch access when visual labels are decluttered.
+
+
+### Relevance correction — 2026-10-21
+
+The default layer now shows 16 explicitly explained interventions (10 existing neurotechnology entries and six record-specific FDA explanations). Device purpose, anatomical relevance and the supporting source are separate. Unexplained applications remain available through explicit source-context layers and Records; a raw product title is never used as a functional explanation. An empty explained region states the coverage gap instead of suggesting unrelated devices.
+
+`anatomical-context-v2` excludes Murphy/needle-eye product features and aortic-valve wording from separate eye/aorta assignments. Regeneration yields 650 applications and 717 exact contextual spans before six editorial region restrictions. These remain Provisional; explanation review does not validate component placement. “Upper airway” was broadened to “Airway” to avoid calling the trachea an upper-airway structure. Timeline events, counts and model annotations now follow the selected evidence layer and filters. Earlier counts and the unadjudicated v1 review queue above describe the previous snapshot, not a precision measurement.
+
+The Shiley explanation was checked against K250173, PDF pages 4, 7 and 8. Other additions use the original FDA approval statements for P130008, P010047, P130013, P140031 and P020023. These are historical indications; later supplements and current labeling have not been exhaustively reviewed. Regression checks cover source identity, region restrictions, missing-purpose abstention, exported explanation citations, and the actual airway/eye desktop/mobile workflow.

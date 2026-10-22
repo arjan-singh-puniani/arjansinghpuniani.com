@@ -41,6 +41,10 @@ import {
 } from "@/lib/atlas";
 import {
   interventionNames,
+  interventionSummaries,
+  hasExplanation,
+  inCollection,
+  productName,
   interventionActions,
   primaryRecords,
   primaryLabel,
@@ -165,7 +169,7 @@ export default function AtlasExperience() {
     [],
   );
   const [showInterventions, setShowInterventions] = useState(true);
-  const [densityMap,setDensityMap]=useState(true),[collection,setCollection]=useState('all'),[resultsLimit,setResultsLimit]=useState(60),[libraryLimit,setLibraryLimit]=useState(100);
+  const [densityMap,setDensityMap]=useState(true),[collection,setCollection]=useState('explained'),[resultsLimit,setResultsLimit]=useState(60),[libraryLimit,setLibraryLimit]=useState(100);
   const [showOrgans,setShowOrgans]=useState(true);
   const [anatomyExpanded, setAnatomyExpanded] = useState(false);
   const resultsRef = useRef<HTMLElement>(null);
@@ -199,52 +203,26 @@ export default function AtlasExperience() {
       () => setSceneStatus("3D unavailable · use the region list"),
       [],
     );
-  const rows = useMemo(
-    () =>
-      searchFamilies("", region, modality, authorization, year).filter(
-        ({ family: f }) =>
-          (collection==='all'||(collection==='reviewed'?f.collection!=='catalogue':f.collection==='catalogue')) && (!query ||
-          [
-            f.name,
-            f.description,
-            ...f.topics,
-            ...f.modalities,
-            ...f.regulatoryIds,
-          ]
-            .join(" ")
-            .toLowerCase()
-            .includes(query.trim().toLowerCase())),
-      ),
-    [query, region, modality, authorization, year, collection],
+  const allAvailable = useMemo(
+    () => searchFamilies(query, "all", modality, authorization, year)
+      .map(r => r.family).filter(f => inCollection(f, collection)),
+    [query, modality, authorization, year, collection],
   );
-  const visible =
-    rows.length ||
-    region !== "UBERON:0001844" ||
-    query ||
-    modality !== "all" ||
-    authorization !== "all" ||
-    year < 1985
-      ? rows.map((r) => r.family)
-      : [familyById("cochlear")!];
+  const visible = useMemo(() => {
+    const hits = allAvailable.filter(f => matchesRegion(f, region));
+    return !hits.length && region === "UBERON:0001844" && collection !== "catalogue" &&
+      !query && modality === "all" && authorization === "all" && year >= 1985
+      ? [familyById("cochlear")!] : hits;
+  }, [allAvailable, region, collection, query, modality, authorization, year]);
   const f = selected ? familyById(selected) : undefined;
-  const primaryRecord=f?recordById(f.regulatoryIds[0]):undefined;
+  const explanation = f ? interventionSummaries[f.id] : undefined;
   useEffect(()=>setResultsLimit(60),[region,query,modality,authorization,year,collection]);
   useEffect(()=>setLibraryLimit(100),[libraryQuery,sourceKind]);
-  const counts=useMemo(()=>{
-   const fs=families.filter(f=>firstEventYear(f)<=year && (collection==='all'||(collection==='reviewed'?f.collection!=='catalogue':f.collection==='catalogue')));
-   return Object.fromEntries(structures.map(s=>[s.id,fs.filter(f=>matchesRegion(f,s.id)).length]));
-  },[year,collection]);
-  const events = useMemo(
-    () =>
-      timeline(
-        families.filter((f) => matchesRegion(f, region)).map((f) => f.id),
-      ).filter((e) => Number(e.date.slice(0, 4)) <= year),
-    [region, year],
-  );
-  const allAvailable = useMemo(
-    () => families.filter((f) => firstEventYear(f) <= year),
-    [year],
-  );
+  const counts = useMemo(() => Object.fromEntries(
+    structures.map(s => [s.id, allAvailable.filter(f => matchesRegion(f,s.id)).length]),
+  ), [allAvailable]);
+  const events = useMemo(() => timeline(visible.map(f => f.id))
+    .filter(e => Number(e.date.slice(0,4)) <= year), [visible,year]);
   const library = useMemo(
     () =>
       records.filter(
@@ -340,10 +318,10 @@ export default function AtlasExperience() {
   const annotations = useMemo(
     () =>
       interventionAnnotations(
-        rows.map((r) => r.family),
+        visible,
         region,
       ),
-    [rows, region],
+    [visible, region],
   );
   const onInnovation = useCallback((id: string) => {
     setSelected(id);
@@ -410,7 +388,7 @@ export default function AtlasExperience() {
               }}
             />
           </label>
-          <label className="collection-filter"><span>Evidence layer</span><select aria-label="Evidence layer" value={collection} onChange={e=>{setCollection(e.target.value);setSelected(null);}}><option value="all">All indexed entries</option><option value="reviewed">Reviewed relationships</option><option value="catalogue">FDA source context</option></select></label>
+          <label className="collection-filter"><span>Evidence layer</span><select aria-label="Evidence layer" value={collection} onChange={e=>{setCollection(e.target.value);setSelected(null);}}><option value="explained">Explained interventions</option><option value="all">All indexed entries</option><option value="reviewed">Reviewed relationships</option><option value="catalogue">FDA source context</option></select></label>
           <div className="index-title">
             <span>Anatomy</span>
             <button
@@ -494,7 +472,7 @@ export default function AtlasExperience() {
             <span className="live-symbol" />
             Whole-body collection
             <small>
-              {families.filter(f=>f.collection!=="catalogue").length} reviewed · {catalogueCoverage.catalogueEntries} FDA-indexed entries
+              {families.filter(hasExplanation).length} explained · {catalogueCoverage.catalogueEntries} FDA-indexed entries
             </small>
             <button
               onClick={() => {
@@ -625,13 +603,13 @@ export default function AtlasExperience() {
                 >
                   <X size={14} />
                 </button>
-                <h2>{f.name}</h2>
+                <h2>{interventionNames[f.id] || f.name}</h2>
                 {f.collection==='catalogue'&&<span className="source-context-label">FDA text context · Provisional</span>}
                 <p>{interventionActions[f.id] || f.description}</p>
                 <div>
                   <External
                     href={
-                      selectedAnnotation?.mapping.sourceUrl ||
+                      interventionSummaries[f.id]?.sourceUrl || selectedAnnotation?.mapping.sourceUrl ||
                       familyMappings(f.id)[0]?.sourceUrl ||
                       primaryRecords(f)[0]?.url
                     }
@@ -841,8 +819,8 @@ export default function AtlasExperience() {
           )}
           {!f ? (
             <>
-              <div className="region-filter-row"><div className="mobile-collection-filter"><select aria-label="Map evidence layer" value={collection} onChange={e=>{setCollection(e.target.value);setSelected(null);}}><option value="all">All {families.length} indexed entries</option><option value="reviewed">10 reviewed entries</option><option value="catalogue">{catalogueCoverage.catalogueEntries} FDA context entries</option></select></div>
-              <label className="regional-jump"><span>Region</span><select aria-label="Explore anatomical region" value={region} onChange={e=>chooseRegion(e.target.value)}><option value="all">Whole body · {families.length} entries</option>{structures.filter(s=>s.id!=='BODY:human'&&s.id!=='BODY:nervous-system').map(s=><option key={s.id} value={s.id}>{s.name} · {counts[s.id]||0}</option>)}</select></label></div>
+              <div className="region-filter-row"><div className="mobile-collection-filter"><select aria-label="Map evidence layer" value={collection} onChange={e=>{setCollection(e.target.value);setSelected(null);}}><option value="explained">Explained interventions</option><option value="all">All {families.length} indexed entries</option><option value="reviewed">10 reviewed entries</option><option value="catalogue">{catalogueCoverage.catalogueEntries} FDA context entries</option></select></div>
+              <label className="regional-jump"><span>Region</span><select aria-label="Explore anatomical region" value={region} onChange={e=>chooseRegion(e.target.value)}><option value="all">Whole body · {allAvailable.length} entries</option>{structures.filter(s=>s.id!=='BODY:human'&&s.id!=='BODY:nervous-system').map(s=><option key={s.id} value={s.id}>{s.name} · {counts[s.id]||0}</option>)}</select></label></div>
               <div className="results-kicker">
                 {year < 2026
                   ? `Indexed by ${year}`
@@ -878,7 +856,7 @@ export default function AtlasExperience() {
                           </strong>
                           {item.collection==='catalogue' && <span className="catalogue-badge">FDA text match · Provisional</span>}
                           <span className="intervention-product">
-                            {item.name}
+                            {productName(item)}
                           </span>
                           <small>
                             {item.id === "cochlear"
@@ -937,7 +915,8 @@ export default function AtlasExperience() {
                 {visible.length>resultsLimit && <button className="load-records" onClick={()=>setResultsLimit(v=>v+60)}>Show more entries ({resultsLimit} / {visible.length})</button>}
                 {!visible.length && (
                   <div className="atlas-empty">
-                    <p>No mapped interventions in this view.</p>
+                    <p>{collection === "explained" ? "No source-backed intervention explanation has been prepared for this region yet." : "No matching interventions in this view."}</p>
+                    {collection === "explained" && <button onClick={()=>setCollection("catalogue")}>Browse unreviewed FDA text matches for this region</button>}
                     <button
                       onClick={() => {
                         setQuery("");
@@ -978,19 +957,24 @@ export default function AtlasExperience() {
                       ).values(),
                     ].map((item) => (
                       <option key={item.id} value={item.id}>
-                        {interventionNames[item.id]} — {item.name}
+                        {interventionNames[item.id]} — {productName(item)}
                       </option>
                     ))}
                   </select>
                 </label>
-                <h2>{f.collection==='catalogue'?(primaryRecord?.genericName||f.name):(interventionNames[f.id] || f.name)}</h2>
-                <p className="device-product">{f.name}</p>
-                {f.collection==='catalogue'&&<div className="source-context-label">FDA {f.sourceField==='statement'?'indication excerpt':'device name'} · not a reviewed placement</div>}
-                <p className="device-action">
+                <h2>{interventionNames[f.id] || f.name}</h2>
+                <p className="device-product">{productName(f)}</p>
+
+                <p className="device-action" aria-label="What this intervention does">
                   {interventionActions[f.id] || f.description}
                 </p>
+                {explanation && <section className="intervention-relevance" aria-label="Why this region">
+                  <h3>Why this region</h3><p>{explanation.relevance}</p>
+                  <External href={explanation.sourceUrl || primaryRecords(f)[0].url}>Read the supporting FDA source</External>
+                  <small>{explanation.locator}</small>
+                </section>}
                 <div className="device-status">
-                  {statusOf(f)}
+                  {statusOf(f)}{f.regulatoryIds.length > 0 && " · Historical decision"}
                   {f.regulatoryIds.map((id) => {
                     const r = recordById(id);
                     return r && <span key={id}> · {r.decisionDate}</span>;
@@ -1254,7 +1238,7 @@ export default function AtlasExperience() {
           {dialog === "compare" && (
             <>
               <div className="compare-options">
-                {families.filter(item=>item.collection!=='catalogue'||comparison.includes(item.id)).map((item) => (
+                {families.filter(item=>hasExplanation(item)||comparison.includes(item.id)).map((item) => (
                   <button
                     key={item.id}
                     aria-pressed={comparison.includes(item.id)}
@@ -1264,7 +1248,7 @@ export default function AtlasExperience() {
                     }
                   >
                     {comparison.includes(item.id) ? <Check size={12} /> : "+"}
-                    {item.name}
+                    {productName(item)}
                   </button>
                 ))}
               </div>
@@ -1283,7 +1267,7 @@ export default function AtlasExperience() {
                         <tr>
                           <th>Interaction</th>
                           {comparison.map((id) => (
-                            <th key={id}>{familyById(id)?.name}</th>
+                            <th key={id}>{productName(familyById(id)!)}</th>
                           ))}
                         </tr>
                       </thead>

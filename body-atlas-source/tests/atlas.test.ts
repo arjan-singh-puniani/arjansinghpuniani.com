@@ -23,6 +23,7 @@ import {
   familyMappings,
   firstEventYear,
   mappings,
+  matchesRegion,
   publicationDate,
   recordById,
   records,
@@ -407,4 +408,28 @@ test("portable brief downloads preserve citations, source roles and Unicode", ()
  assert.equal(text,brief(['activa','exablate'],2026));
  assert.match(text,/P960009/);assert.match(text,/Physical implantation/);
  assert.match(text,/BODY\/\/ATLAS/);
+});
+
+
+test("explained interventions are explicitly sourced and region-specific", async () => {
+ const {interventionSummaries,hasExplanation,inCollection,productName}=await import('../lib/intervention-view');
+ assert.equal(families.filter(hasExplanation).length,16);
+ for(const [id,s] of Object.entries(interventionSummaries)){
+  const f=familyById(id)!;assert.ok(f);assert.ok(f.regulatoryIds.includes(s.recordId));
+  assert.ok(recordById(s.recordId));assert.ok(s.locator);assert.ok(s.purpose.length<500);
+  assert.ok(inCollection(f,'explained'));assert.ok(productName(f).length<120);
+  assert.deepEqual(familyMappings(id).map(m=>m.structureId).sort(),[...s.regions].sort());
+ }
+ const raw=families.find(f=>f.collection==='catalogue'&&!hasExplanation(f))!;
+ assert.equal(inCollection(raw,'explained'),false);assert.equal(inCollection(raw,'catalogue'),true);
+ assert.match(interventionActions[raw.id],/Purpose not established/);
+ assert.notEqual(interventionActions[raw.id],raw.name);
+});
+test("Shiley tube relevance and briefs cannot turn Murphy eye into an ocular intervention",()=>{
+ const id='source-fda-k250173';
+ assert.equal(matchesRegion(familyById(id)!,'BODY:eye'),false);
+ assert.equal(matchesRegion(familyById(id)!,'BODY:airway'),true);
+ assert.match(interventionActions[id],/surgery/);assert.match(interventionActions[id],/airway/);
+ assert.match(brief([id]),/K250173.pdf/);
+ assert.match(brief([id]),/Anatomical relevance/);
 });
