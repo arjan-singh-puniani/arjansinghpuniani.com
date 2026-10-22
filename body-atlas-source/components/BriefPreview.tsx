@@ -6,6 +6,7 @@ import {
   statusOf,
   timeline,
 } from "@/lib/atlas";
+import { interventionActions, interventionSummaries, productName } from "@/lib/intervention-view";
 import { frontier } from "@/lib/curation";
 import type { Family } from "@/lib/types";
 export default function BriefPreview({
@@ -18,8 +19,9 @@ export default function BriefPreview({
   return (
     <article className="brief-document">
       <div className="eyebrow">BODY//ATLAS / RESEARCH BRIEF</div>
-      <h2>{f.name}</h2>
-      <p>{f.description}</p>
+      <h2>{productName(f)}</h2>
+      <p>{interventionActions[f.id]}</p>
+      {interventionSummaries[f.id] && <p><a href={interventionSummaries[f.id].sourceUrl || recordById(f.regulatoryIds[0])!.url} target="_blank" rel="noopener noreferrer">Explanation source</a> · {interventionSummaries[f.id].locator}</p>}
       <div className="brief-scope">
         Cached source export: {coverage.exportedAt} (UTC). Timeline cutoff:{" "}
         {year}. Historical records are not current labeling. This is an indexed

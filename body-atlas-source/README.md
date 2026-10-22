@@ -73,3 +73,12 @@ See [ARCHITECTURE.md](ARCHITECTURE.md), [DATA_SOURCES.md](DATA_SOURCES.md), [ANA
 Open **https://arjansinghpuniani.com/atlas** directly, or use **Launch interactive atlas** on the project page. The website serves a self-contained, read-only snapshot. Search/retrieval remains local; Markdown briefs download without a server API; original responses are available through content-addressed `/atlas/sources/` links. The website source tree retains this app under `body-atlas-source`, sharing its geometry and original evidence through relative symlinks to the hosted files.
 
 Rebuild from that source directory with `npm ci` then `node scripts/export-static.mjs ../arjan-portfolio/public/atlas`. The export excludes ingestion databases, private data and server API routes. It verifies original response hashes and only replaces a recognized generated destination after a successful build. The normal standalone app keeps its existing APIs.
+
+
+### Relevance correction — 2026-10-21
+
+The default layer now shows 16 explicitly explained interventions (10 existing neurotechnology entries and six record-specific FDA explanations). Device purpose, anatomical relevance and the supporting source are separate. Unexplained applications remain available through explicit source-context layers and Records; a raw product title is never used as a functional explanation. An empty explained region states the coverage gap instead of suggesting unrelated devices.
+
+`anatomical-context-v2` excludes Murphy/needle-eye product features and aortic-valve wording from separate eye/aorta assignments. Regeneration yields 650 applications and 717 exact contextual spans before six editorial region restrictions. These remain Provisional; explanation review does not validate component placement. “Upper airway” was broadened to “Airway” to avoid calling the trachea an upper-airway structure. Timeline events, counts and model annotations now follow the selected evidence layer and filters. Earlier counts and the unadjudicated v1 review queue above describe the previous snapshot, not a precision measurement.
+
+The Shiley explanation was checked against K250173, PDF pages 4, 7 and 8. Other additions use the original FDA approval statements for P130008, P010047, P130013, P140031 and P020023. These are historical indications; later supplements and current labeling have not been exhaustively reviewed. Regression checks cover source identity, region restrictions, missing-purpose abstention, exported explanation citations, and the actual airway/eye desktop/mobile workflow.

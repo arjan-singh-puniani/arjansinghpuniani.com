@@ -1,6 +1,7 @@
 import { familyMappings, structures, descendants } from "./atlas";
 import regionDefinitions from "@/data/body-regions.json";
 import organRegions from "@/public/anatomy/organ-regions.json";
+import { interventionNames } from "./intervention-view";
 import type { Family, Mapping } from "./types";
 
 export interface InterventionAnnotation {
@@ -73,7 +74,7 @@ export function interventionAnnotations(
       {
         familyId: f.id,
         name: f.name,
-        title: titles[f.id] || f.name,
+        title: titles[f.id] || interventionNames[f.id] || f.name,
         mapping,
         regionName:
           structures.find((s) => s.id === mapping.structureId)?.name ||

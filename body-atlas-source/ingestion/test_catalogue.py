@@ -23,6 +23,12 @@ class CatalogueTests(unittest.TestCase):
   self.assertNotIn('BODY:foot',self.hits('Oxygen tubing 6 foot long'))
   self.assertNotIn('BODY:hand',self.hits('Handpiece for dental use'))
   self.assertNotIn('BODY:eye',self.hits('Visible to the naked eye'))
+ def test_product_features_are_not_anatomical_targets(self):
+  self.assertEqual(self.hits('Shiley Oral RAE Tracheal Tube Cuffed, Murphy Eye'),['BODY:airway'])
+  self.assertNotIn('BODY:eye',self.hits('Needle eye for surgical suture'))
+  self.assertIn('BODY:eye',self.hits('Ophthalmic instrument for the eye'))
+  self.assertNotIn('BODY:aorta',self.hits('Transcatheter aortic valve replacement'))
+  self.assertIn('BODY:heart-valves',self.hits('Transcatheter aortic valve replacement'))
  def test_cortical_bone_and_pulmonary_valve_are_not_brain_or_lung(self):
   self.assertNotIn('UBERON:0000956',self.hits('Cortical bone screw'))
   self.assertNotIn('BODY:lung',self.hits('Pulmonary valve replacement for severe pulmonary stenosis'))

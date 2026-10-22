@@ -46,3 +46,9 @@ Current screenshots are under `validation/screenshots/`: whole-body overviews, h
 ## Direct website launch
 
 The website now mounts the actual app at `/atlas`, with its own compiled assets. Desktop and mobile-emulated checks cover model loading, device selection, original FDA links, byte-for-byte cached-source hashes, Markdown download and cited retrieval. Website/browser records are saved separately from the historical October 19 atlas checks. No new device placements or clinical outcomes are inferred by this deployment.
+
+## Relevance regression — 2026-10-21
+
+The public snapshot now defaults to explicitly explained interventions. `npm run typecheck`, `npm test` (33 passing) and `npm run test:ingestion` (25 passing) check source identity, exact quote spans, missing-purpose abstention and restricted anatomical associations. Portfolio TypeScript, 95 tests, production build and isolated atlas export pass.
+
+`node tests/body-atlas.browser.mjs http://127.0.0.1:3210` now exercises the actual Shiley airway example on desktop and mobile emulation: two explained regional interventions and two matching historical events; a concise functional explanation with its original FDA PDF; no Shiley tube under Eyes; explicit coverage gaps where an explanation is unavailable. The prior Activa/source-hash/brief/retrieval workflow, automated accessibility checks and twelve existing portfolio routes remain covered. Physical phones and independent expert precision evaluation remain unverified.
