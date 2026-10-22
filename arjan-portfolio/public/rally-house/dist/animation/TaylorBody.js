@@ -243,7 +243,8 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             }
             if (stroke) {
                 const center = Vec3.lerp(p.shoulderL, p.shoulderR, .5), x = Vec3.dot(Vec3.sub(p[`hand${side}`], center), torsoRight) * (side === 'L' ? -1 : 1), across = smooth((.10 - x) / .30), low = smooth((shoulder.y - p[`hand${side}`].y - .08) / .16);
-                const outside = shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.24 : .24)).add(new Vec3(0, -.28 - .27 * low, 0)).add(torsoForward.clone().scale(-.16)), front = shoulder.clone().add(torsoForward.clone().scale(.75));
+                // Lower and open the elbow with a low cross-body grip to clear the chest.
+                const outside = shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.24 : .24)).add(new Vec3(0, -.28 - .27 * low, 0)).add(torsoForward.clone().scale(-.16)), front = shoulder.clone().add(torsoForward.clone().scale(.75)).add(torsoRight.clone().scale((side === 'L' ? -.22 : .22) * low)).add(new Vec3(0, -.42 * low, 0));
                 mixed.add(Vec3.lerp(outside, front, across).scale(stroke));
             }
             pole = mixed;

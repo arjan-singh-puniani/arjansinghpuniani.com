@@ -45,6 +45,11 @@ function frameFor(p, def) {
     const leg = def.joint.startsWith('thigh') || def.joint.startsWith('shin'), forward = leg ? Vec3.cross(new Vec3(-p.forward.z, 0, p.forward.x), Vec3.sub(target, a)) : p.forward;
     return rigidFrame(a, target, def.joint === 'foreArmTwistL' && p.foreArmForwardL ? p.foreArmForwardL : def.joint === 'foreArmTwistR' && p.foreArmForwardR ? p.foreArmForwardR : def.joint === 'head' && p.headForward ? p.headForward : forward.len() > .001 ? forward : p.forward);
 }
+function transportedFrame(source, start, end) {
+    const from = new Vec3(source[4], source[5], source[6]), to = Vec3.sub(end, start).normalize(), axis = Vec3.cross(from, to), cosine = Vec3.dot(from, to), forward = new Vec3(source[8], source[9], source[10]), turn = Vec3.cross(axis, forward);
+    const hint = cosine > -.9999 ? forward.clone().add(turn).add(Vec3.cross(axis, turn).scale(1 / (1 + cosine))) : forward.clone().scale(-1);
+    return rigidFrame(start, end, hint);
+}
 const bindInv = defs.map(d => invertRigid(frameFor(bind, d)));
 const authoredBindInv = new WeakMap();
 export function skinMatrices(p, restPose = bind) {
@@ -67,19 +72,18 @@ export function skinMatrices(p, restPose = bind) {
         let frame = frameFor(p, d);
         if ((d.joint.startsWith('upperArm') || d.joint === 'foreArmL' || d.joint === 'foreArmR') && restPose.wristL) {
             // Forward-axis projection flips the sleeve; carry the authored shoulder roll with the torso.
-            const parent = d.joint.startsWith('upperArm') ? BONE.chest : BONE[d.joint.endsWith('L') ? 'upperArmL' : 'upperArmR'], source = multiply(multiply(frames[parent], inverse[parent]), frameFor(restPose, d)), from = new Vec3(source[4], source[5], source[6]), to = Vec3.sub(endpoint(p, d), jointPoint(p, d.joint)).normalize(), axis = Vec3.cross(from, to), cosine = Vec3.dot(from, to), forward = new Vec3(source[8], source[9], source[10]), turn = Vec3.cross(axis, forward);
-            const hint = cosine > -.9999 ? forward.clone().add(turn).add(Vec3.cross(axis, turn).scale(1 / (1 + cosine))) : forward.clone().scale(-1);
-            frame = rigidFrame(jointPoint(p, d.joint), endpoint(p, d), hint);
+            const parent = d.joint.startsWith('upperArm') ? BONE.chest : BONE[d.joint.endsWith('L') ? 'upperArmL' : 'upperArmR'], source = multiply(multiply(frames[parent], inverse[parent]), frameFor(restPose, d));
+            frame = transportedFrame(source, jointPoint(p, d.joint), endpoint(p, d));
             if (d.joint === 'foreArmL' || d.joint === 'foreArmR') {
                 // Start grip roll above the twist seam instead of concentrating it at the wrist.
-                const palm = BONE[d.joint.endsWith('L') ? 'handL' : 'handR'], palmFrame = multiply(multiply(frameFor(p, defs[palm]), inverse[palm]), frameFor(restPose, d)), roll = Vec3.cross(new Vec3(palmFrame[0], palmFrame[1], palmFrame[2]), to);
-                frame = interpolateRigidFrame(frame, rigidFrame(jointPoint(p, d.joint), endpoint(p, d), roll.len() > .1 ? roll : hint), .25);
+                const palm = BONE[d.joint.endsWith('L') ? 'handL' : 'handR'], palmFrame = multiply(multiply(frameFor(p, defs[palm]), inverse[palm]), frameFor(restPose, d));
+                frame = interpolateRigidFrame(frame, transportedFrame(palmFrame, jointPoint(p, d.joint), endpoint(p, d)), .25);
             }
         }
         if (d.joint.startsWith('foreArmTwist') && restPose.wristL) {
             const side = d.joint.endsWith('L') ? 'L' : 'R', proximal = BONE[`foreArm${side}`], palm = BONE[`hand${side}`], source = frameFor(restPose, d), predicted = multiply(multiply(frames[proximal], inverse[proximal]), source), palmFrame = multiply(multiply(frameFor(p, defs[palm]), inverse[palm]), source);
-            // Palm width defines roll even when a bent wrist aligns its normal with the forearm.
-            const axis = Vec3.sub(endpoint(p, d), jointPoint(p, d.joint)).normalize(), forward = Vec3.cross(new Vec3(palmFrame[0], palmFrame[1], palmFrame[2]), axis), target = rigidFrame(jointPoint(p, d.joint), endpoint(p, d), forward.len() > .1 ? forward : new Vec3(palmFrame[8], palmFrame[9], palmFrame[10])), half = interpolateRigidFrame(predicted, target, .5);
+            // Transport palm roll continuously when the palm axis aligns with the forearm.
+            const target = transportedFrame(palmFrame, jointPoint(p, d.joint), endpoint(p, d)), half = interpolateRigidFrame(predicted, target, .5);
             // Share palm roll across the forearm rather than concentrating it at one skin seam.
             frame = rigidFrame(jointPoint(p, d.joint), endpoint(p, d), new Vec3(half[8], half[9], half[10]));
         }
