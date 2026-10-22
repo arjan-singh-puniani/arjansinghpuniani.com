@@ -113,6 +113,12 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
    const edge=Math.sqrt(Math.max(0,1-x*x/(rx*rx)))*rz,across=stroke>0?smooth((.10-x*(side==='L'?-1:1))/.30):0,front=edge+(rz-edge)*across+.07*route,weight=Math.max(normal,route);
    if(weight>0)hand.add(torsoForward.clone().scale(Math.max(0,front-z)*weight*(1-world)));
   }
+  // Leave room for the fingers as a free hand lowers past the skirt waistband.
+  // shortcut: fitted to this authored skirt; derive per-garment bounds if its silhouette changes.
+  if(constraints.armLengths&&!stroke&&!seat&&!affection&&world<.999&&(walk||constraints.restWeight)){
+   const sign=side==='L'?-1:1,height=hand.y-p.pelvisCenter.y,clearance=.53*smooth((.36-height)/.16),outside=Vec3.dot(Vec3.sub(hand,p.pelvisCenter),torsoRight)*sign;
+   if(outside<clearance)hand.add(torsoRight.clone().scale(sign*(clearance-outside)*(1-world)));
+  }
   if(world<.999){const d=Vec3.sub(hand,shoulder),distance=d.len(),reach=arms.upperArm+arms.forearm-.003;
    if(distance>reach)p[`hand${side}`]=shoulder.clone().add(d.normalize().scale(reach));
    // The compact serve wind-up can place a hand almost on its shoulder,

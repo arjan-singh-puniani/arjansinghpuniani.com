@@ -198,6 +198,13 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             if (weight > 0)
                 hand.add(torsoForward.clone().scale(Math.max(0, front - z) * weight * (1 - world)));
         }
+        // Leave room for the fingers as a free hand lowers past the skirt waistband.
+        // shortcut: fitted to this authored skirt; derive per-garment bounds if its silhouette changes.
+        if (constraints.armLengths && !stroke && !seat && !affection && world < .999 && (walk || constraints.restWeight)) {
+            const sign = side === 'L' ? -1 : 1, height = hand.y - p.pelvisCenter.y, clearance = .53 * smooth((.36 - height) / .16), outside = Vec3.dot(Vec3.sub(hand, p.pelvisCenter), torsoRight) * sign;
+            if (outside < clearance)
+                hand.add(torsoRight.clone().scale(sign * (clearance - outside) * (1 - world)));
+        }
         if (world < .999) {
             const d = Vec3.sub(hand, shoulder), distance = d.len(), reach = arms.upperArm + arms.forearm - .003;
             if (distance > reach)
