@@ -22,3 +22,8 @@ Vector/graph databases, language-model summarization, OpenAlex/Crossref enrichme
 The local preview now includes 2,490 source records, 650 provisional whole-body application entries across 39 regions, ten curated neurotechnology entries, dense regional record glyphs, native region selection, direct sources and cited exports. Licensed registered organ/skeletal geometry is included, with male-reference and coverage limitations. This expansion does not satisfy independent mapping validation or establish current product labeling.
 
 Next curation work should adjudicate the 150-row region-balanced context queue, promote only original-source-supported relationships into typed physical roles, complete cochlear evidence, and add selected source-backed interventions outside neurology. Correctness and current safety histories remain more valuable than a larger unreviewed record count.
+
+
+## Dossier milestone — 2026-10-22
+
+The 91-entry dossier source inventory is implemented. Next scientific work: reconcile current model/revision-specific labeling with supplement history; read and cite indications, contraindications, warnings/precautions and interaction restrictions; adjudicate affected recall models/lots; extend earlier FDA archives and manufacturer notices. Current-label and safety applicability status stays pending until that evidence is recorded. No automatic clinical sign-off is enabled.

@@ -1,3 +1,4 @@
+import { dossierBrief } from "./dossiers";
 import snapshot from "@/data/atlas.json";
 import { families as curatedFamilies, frontier, mappings as curatedMappings, structures as curatedStructures } from "./curation";
 import catalogue from "@/data/catalogue.json";
@@ -246,7 +247,7 @@ export function brief(ids: string[], year = 2026): string {
     "# BODY//ATLAS — research brief",
     "",
     `Cached evidence snapshot exported ${coverage.exportedAt}. Timeline cutoff: ${year}.`,
-    `Scope: ${fs.map((f) => f.name).join("; ")}. Historical records are not current labeling.`,
+    `Scope: ${fs.map((f) => f.name).join("; ")}. Per-entry dossiers show labeling and safety review status.`,
     `This brief is a reproducible extract of indexed sources. It is not a clinical recommendation.`,
     "",
   ];
@@ -272,7 +273,7 @@ export function brief(ids: string[], year = 2026): string {
           `- [${md(r.title)}](${r.url}) — ${r.id}; ${r.status || r.publicationDate || "publication"}; ${r.decisionDate || r.firstPosted || ""}; retrieved ${r.retrievedAt}; SHA-256 ${r.sourceSha}.`,
         );
     }
-    lines.push("", `Limits: ${md(f.limitations)}`, "");
+    lines.push("", ...dossierBrief(f.id), `Limits: ${md(f.limitations)}`, "");
   }
   lines.push(
     "## Documented events",

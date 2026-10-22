@@ -1,0 +1,1272 @@
+{
+  "familyId": "source-fda-p020047",
+  "name": "Multi-Link Vision coronary stent systems",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "75 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 75,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P020047",
+        "supplement": "S076",
+        "date": "2023-06-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION® RX Coronary Stent System, MULTI-LINK MINI VISION® RX Coronary Stent System",
+        "applicant": "Abbott Vascular",
+        "statement": "Alternative sourcing of raw materials for one of the adhesives.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S076",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S077",
+        "date": "2023-06-12",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION RX Coronary Stent System, MULTI-LINK MINI VISION Coronary Stent System",
+        "applicant": "Abbott Vascular",
+        "statement": "Implementing a new test method and test location for the resin proximal shaft raw material.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S077",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S075",
+        "date": "2022-09-07",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION RX Coronary Stent System, MULTI-LINK VISION RX 2.75 mm Coronary Stent System, MULTI-LINK MINI VISION",
+        "applicant": "Abbott Vascular",
+        "statement": "Addition of secondary sterilization equipment.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S075",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S074",
+        "date": "2021-03-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION, MULTI-LINK MINI VISION and MULTI-LINK 8 Coronary Stent Systems",
+        "applicant": "Abbott Vascular",
+        "statement": "Change to the sub-assembly stent inspection process to increase manufacturing efficiency.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S074",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S073",
+        "date": "2020-09-11",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Multi-Link Vision RX Coronary Stent System, Multi-Link Mini Vision RX Coronary Stent System, Multi-Link 8/8SV/8LL Corona",
+        "applicant": "Abbott Vascular",
+        "statement": "Change the resin of a molded component on the delivery system.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S073",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S072",
+        "date": "2020-03-19",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK 8, MULTI-LINK 8 SV/LL CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "Approval for changing the ethylene oxide (EO) sterilization release process for the affected products from the traditional method of biological indicator testing to a parametric release process.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S072",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S071",
+        "date": "2019-02-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK 8, MULTI-LINK 8 SV, and MULTI-LINK 8 LL Coronary Stent System",
+        "applicant": "Abbott Vascular",
+        "statement": "Add a third sterilization chamber at the contract sterilizer.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S071",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S070",
+        "date": "2018-10-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK 8 Coronary Stent System, MULTI-LINK 8 SV/ 8 LL Coronary Stent System",
+        "applicant": "Abbott Vascular",
+        "statement": "Increase the sterilization load density with a modified configuration.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S070",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S069",
+        "date": "2018-07-10",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK Vision/ MULTI-LINK Mini Vision Coronary Stent System, MULTI-LINK 8/ 8 SV/ 8 LL Coronary Stent System",
+        "applicant": "Abbott Vascular",
+        "statement": "Change the product bioburden sampling plan for coronary stent systems.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S069",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S067",
+        "date": "2018-03-05",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK  8 Coronary, 8 LL Coronary, and 8 SV Coronary Stent System",
+        "applicant": "Abbott Vascular",
+        "statement": "Approval for an alternate contract sterilizer site located at Synergy Heath Ireland Ltd, IDA Business & Technology Park, Sragh Industrial Estate, Tullamore, Co. Offaly, Ireland.  To perform as an alternate ethylene oxide sterilization vendor for the GRAFTMASTER Coronary Stent Graft System, MULTI-LINK  8 Coronary, 8 LL Coronary, and 8 SV Coronary Stent System, XIENCE V and Nano Everolimus Eluting Coronary Stent System, and XIENCE Prime/Xpedition/Alpine/Sierra Everolimus Eluting Coronary Stent System (SV, LL).",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S067",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S068",
+        "date": "2018-02-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK 8 Coronary Stent System and SV/LL Coronary Stent System",
+        "applicant": "Abbott Vascular",
+        "statement": "Change the time point when pyrogen testing for ethylene oxide (EO) sterilized products is conducted for products manufactured at its facility located in Clonmel, Ireland.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S068",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S066",
+        "date": "2018-01-25",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK 8 Coronary Stent System / SV / LL Coronary Stent System",
+        "applicant": "Abbott Vascular",
+        "statement": "Approval to change the ethylene oxide (EO) sterilization release process for the affected products from using the traditional method of biological indicator testing to a parametric release process.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S066",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S065",
+        "date": "2017-12-15",
+        "decision": "PMA approval",
+        "tradeName": "Multi-Link 8 Coronary Stent System",
+        "applicant": "Abbott Vascular",
+        "statement": "Approval for a manufacturing site located at Sterigenics UK Limited, Cotes Park Estate, Somercotes, Derbeyshire DE55 4NJ, United Kingdom, for sterilization of Multi-Link 8 / Multi-Link 8LL / Multi-Link 8SV Coronary Stent System manufactured at Abbott Vasculars Clonmel, Ireland facility.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S065",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S064",
+        "date": "2017-03-21",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK VISION/MULTI-LINK 8 LL/SV  CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "Approval for update to device labeling.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S064",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S063",
+        "date": "2015-10-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION MULTI-LINK MINI-VISION AND MULTI-LINK 8",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE TO THE STENT PROCESS MONITORING SYSTEM.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S063",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S061",
+        "date": "2015-02-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION,MULTI-LINK MINI VISION,MULTI-LINK 8 CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "IMPLEMENT AN ALTERNATE DIGESTION SYSTEM USED TO PREPARE PURCHASED STAINLESS STEEL SAMPLES FOR CHEMICAL CHARACTERIZATION.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S061",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S060",
+        "date": "2014-10-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK 8 CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE TO THE PYROGEN TESTING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S060",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S059",
+        "date": "2014-10-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ML8 CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE TO THE PYROGEN TESTING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S059",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S058",
+        "date": "2014-05-13",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION CORONARY STENT SYSTEMS, MULTI-LINK MINI VISION CORONARY STENT SYSTEMS, MULTI-LINK 8 CONONARY STENT",
+        "applicant": "Abbott Vascular",
+        "statement": "ADDITION OF RECEIVING INSPECTION AND TESTING ACTIVITIES OF RAW MATERIALS AND SUPPLY ITEMS AT THE CLONMEL, IRELAND FACILITY AND CONTRACT LABORATORIES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S058",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S057",
+        "date": "2014-04-15",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK  VISION / MULTI-LINK MINI VISION / MULTI-LINK 8 CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE TO INCREASE THE SPEED AT WHICH THE COBALT CHROMIUM-BASED STENTS ARE LASER CUT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S057",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S056",
+        "date": "2013-11-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "VISION RX, MINI VISION RX,MULTILINK 8 CORONARY STENT SYSTEM(CSS)",
+        "applicant": "Abbott Vascular",
+        "statement": "ADDITION OF AN ALTERNATESUPPLIER FOR THE ADAPTION CUP COMPONENTS USED TO MANUFACTURE THE  DEVICES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S056",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S055",
+        "date": "2013-10-28",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK 8 CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE TO THE SAMPLING PLAN USED FOR PYROGEN TESTING AT THE TEMECULA, CALIFORNIA, MANUFACTURING FACILITY.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S055",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S054",
+        "date": "2013-10-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK 8 CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE TO THE STENT DISLODGEMENT TESTING SAMPLING PLAN.",
+        "reason": "",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S054",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S053",
+        "date": "2012-12-05",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK 8, MULTI-LINK 8 SV AND MULTI-LINK 8 LL CORONARY STENT SYSTEM (CSS)",
+        "applicant": "Abbott Vascular",
+        "statement": "ADDITION OF A SECOND STERILIZATION CHAMBER IN IRELAND.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S053",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S052",
+        "date": "2012-11-02",
+        "decision": "FDA decision code OK30",
+        "tradeName": "VISION AND ML8 CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE TO SAMPLING FOR PYROGEN TESTING.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S052",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S051",
+        "date": "2012-10-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "VISION AND ML8 CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "MODIFICATION TO THE PYROGEN SAMPLING FREQUENCY.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S051",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S050",
+        "date": "2012-08-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK 8 CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "IRRADIATION EQUIPMENT CHANGE FOR THE MANUFACTURING OF THE DEVICES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S050",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S046",
+        "date": "2012-08-20",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK 8 AND MULTI-LINK 8 LL CORONARY STENT SYSTEM (CSS)",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL FOR A STERILIZATION SITE LOCATED IN TIPPERARY. IRELAND.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S046",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S049",
+        "date": "2012-08-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "VISION AND MINI-VISION CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "ADDITION OF A NEW TEST TO INSPECT TUBING USED IN THE MANUFACTURING OF STENTS FOR THE DEVICES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S049",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S048",
+        "date": "2012-06-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK 8 CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "REMOVAL OF A FINAL PRODUCT TEST FOR RELIABILITY ENGINEERING.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S048",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S041",
+        "date": "2012-05-25",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK VISION CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL OF A STERILIZATION SITE LOCATED AT SYNERGY HEALTH IRELAND, LTD., IN OFFALY, IRELAND.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S041",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S042",
+        "date": "2012-04-03",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK 8 CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL FOR CHANGES TO THE MULTI-LINK 8 CORONARY STENT SYSTEM INSTRUCTIONS FOR USE (IFU) TO ALIGN/UPDATE THE IFU VERBIAGE WITH A RECENTLY APPROVED CORONARY STENT SYSTEM.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S042",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S047",
+        "date": "2012-03-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK 8 CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "NEW HEAT SEALER FOR FINISHED GOODS PACKAGING.",
+        "reason": "",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S047",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S043",
+        "date": "2012-03-07",
+        "decision": "FDA decision code OK30",
+        "tradeName": "VISION RX, VISION OTW MINI VISION RX, MINI VISION OTW",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE TO THE BALLOON MANUFACTURING PROCESS.",
+        "reason": "",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S043",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S044",
+        "date": "2012-02-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK 8 CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "MODIFICATION OF A MARKER ALIGNMENT TEMPLATE; AND A CHANGE TO THE IN-PROCESS ACCEPTANCE CRITERIA FOR ONE BALLOON LENGTH SIZE.",
+        "reason": "",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S044",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S036",
+        "date": "2012-01-06",
+        "decision": "PMA approval",
+        "tradeName": "VISION/MINIVISION & ML8 CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL FOR A NEW AUTOMATED TUBING EXTRUSION MEASUREMENT PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S036",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S040",
+        "date": "2011-10-28",
+        "decision": "FDA decision code OK30",
+        "tradeName": "VISION/MINIVISION & ML8 CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "AUTOMATED PROCESS FOR PREPARATION OF THE ADAPTION CUP.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S040",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S035",
+        "date": "2011-10-04",
+        "decision": "PMA approval",
+        "tradeName": "VISION & ML8 CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL FOR AUTOMATION OF THE EXISTING BALLOON NECKING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S035",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S039",
+        "date": "2011-09-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "VISION RAPID EXCHANGE (RX) & MINI VISION RX MULTI-LINK FAMILY OF CORONARY STENT SYSTEM (CSS)",
+        "applicant": "Abbott Vascular",
+        "statement": "MODIFICATION IN THE CUTTING PROCESS OF A COMPONENT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S039",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S038",
+        "date": "2011-09-01",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK FAMILY OF CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "IMPLEMENTATION OF AN AUTOMATED SYSTEM FOR PROCESS MONITORING.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S038",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S037",
+        "date": "2011-08-10",
+        "decision": "FDA decision code OK30",
+        "tradeName": "VISION AND MINVISION CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE TO A COMPONENT IN-PROCESS INSPECTION",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S037",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S029",
+        "date": "2011-06-16",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK VISION & MULTI-LINK MINI-VISION OTW & RX ML-8",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL TO REMOVE A REDUNDANT RECEIVING INSPECTION TEST.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S029",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S032",
+        "date": "2011-05-19",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK VISION & MULTI-LINK MINI-VISION OTW & RX; ML-8",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL TO REMOVE A REDUNDANT VERIFICATION STEP FOR A SPIRAL MANDREL USED IN THE STENT MANUFACTURING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S032",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S034",
+        "date": "2011-05-12",
+        "decision": "FDA decision code OK30",
+        "tradeName": "VISION RX/OTW/MINI VISION RX/OTW/MULTI LINK 8 OTW",
+        "applicant": "Abbott Vascular",
+        "statement": "A MANUAL TO AN AUTOMATED PROCESS CHANGE FOR PACKAGING LABELING INSPECTION.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S034",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S033",
+        "date": "2011-04-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION & MULTI-LINK MINI-VISION CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE IN EXTRUDED TUBING LENGTH, AND A CHANGE FROM A MANUAL TUBE CUTTING PROCESS TO AN AUTOMATED PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S033",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S031",
+        "date": "2011-03-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION/MINI VISION/8TM/8TMLL/8TM SV CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE IN QUALITY CONTROL TESTING FOR BALLOON RUPTURE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S031",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S030",
+        "date": "2011-03-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION/MINI VISION/MULTI-LINK 8TM/8TM LL/8TM SV CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE IN RESIN VERIFICATION AT RECEIVING INSPECTION.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S030",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S023",
+        "date": "2011-02-03",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK 8TM/MULTI-LINK 8 LLTM/MULTI-LINK 8TM SV CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL FOR: 1) THE ADDITION OF SENSORS FOR MONITORING THE COATING PROCESS; AND 2) MINOR TOOLING UPGRADES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S023",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S027",
+        "date": "2010-12-07",
+        "decision": "FDA decision code OK30",
+        "tradeName": "VISION RX/OTW/MINI VISION RX/OTW/MULTI LINK 8 RX",
+        "applicant": "Abbott Vascular",
+        "statement": "ADDITION OF A BARCODE READER TO THE MANUFACTURING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S027",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S026",
+        "date": "2010-11-01",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION FAMILY OF CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "DISCONTINUATION OF THE QUARTERLY PYROGEN TESTING OF THE ABOVE NAMED PRE- AND POST-E-BEAM STERILIZED PRODUCTS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S026",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S025",
+        "date": "2010-10-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK 8TM/MULTI-LINK 8TM LL/MULTI-LINK 8TM SV CORONARY STENT",
+        "applicant": "Abbott Vascular",
+        "statement": "ADDITION OF A SUPPLIER FOR THE DEVICE COMPONENT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S025",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S024",
+        "date": "2010-10-15",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION FAMILY OF CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE TO THE METHODOLOGY FOR STERILIZATION DOSE AUDITS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S024",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S022",
+        "date": "2010-08-31",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK 8 SMALL VESSEL CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL FOR THE 2.25MM DIAMETER STENT SIZE AS PART OF THE MULTI-LINK 8 CORONARY STENT SYSTEM.  THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME MULTI-LINK 8 SV CORONARY STENT SYSTEM AND IS INDICATED FOR PATIENTS WITH ABRUPT OR THREATENED ABRUPT CLOSURE WITH FAILED INTERVENTIONAL THERAPY OF DE NOVO AND RESTENOTIC NATIVE CORONARY ARTERY LESIONS (LENGTH <=25 MM) WITH REFERENCE VESSEL DIAMETERS OF 2.25MM.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S022",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S021",
+        "date": "2010-07-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK/VISION/MINI VISION FAMILY OF CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "INCREASE IN THE MINIMUM SEAL LENGTH REQUIREMENT FOR THE MANUFACTURING OF THE STENT DELIVERY SYSTEM.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S021",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S020",
+        "date": "2010-06-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK MINI VISION CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "OPTIMIZATION OF THE LASER POWER SETTING USED FOR SOFT TIP ATTACH.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S020",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S017",
+        "date": "2010-06-22",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK 8 AND MULTI-LINK 8 LL CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL FOR THE MULTI-LINK 8 AND MULTI-LINK 8 LONG LESION CORONARY STENT SYSTEM.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S017",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S019",
+        "date": "2010-05-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTILINK VISION & MULTI LINK MINI VISION OTW CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE TO THE EXTRUSION MANUFACTURING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S019",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S018",
+        "date": "2010-04-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION FAMILY OF CORONARY STENT SYSTEMS VISION/MINI VISION",
+        "applicant": "Abbott Vascular",
+        "statement": "REQUESTED A CHANGE IN MANUFACTURING EQUIPMENT USED TO COAT THE STENT DELIVERY SYSTEM AND BALLOON DILATATION CATHETERS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S018",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S016",
+        "date": "2009-11-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION FAMILY OF CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE TO OPTIMIZE THE VISION STENT LASER CUTTING PROCESS TO REDUCE STENT (STRUT) DIMENSIONAL VARIATION AND IMPROVE OVERALL PROCESS CAPABILITY.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S016",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S015",
+        "date": "2009-07-28",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION FAMILY OF CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGES IN STENT RETENTION TESTING FOR THE DEVICE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S015",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S014",
+        "date": "2008-12-10",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION FAMILY OF CORONARY STENT SYSTEMS (CSS)",
+        "applicant": "Abbott Vascular",
+        "statement": "MODIFICATION OF THE ENVIRONMENTAL MONITORING ACTION LIMITS FOR VIABLE AIR AND SURFACE TESTING IN THE MANUFACTURING PRODUCTION AREAS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S014",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S013",
+        "date": "2008-12-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION RX FAMILY OF CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "ADDITION OF AN IN-PROCESS VISUAL INSPECTION STEP TO THE CATHETER MANUFACTURING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S013",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S012",
+        "date": "2008-09-03",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION OTW FAMILY OF CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE IN RADIATION EQUIPMENT USED IN THE MANUFACTURE OF THE DEVICE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S012",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S011",
+        "date": "2007-10-29",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION RX FAMILY OF CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "CHANGE IN E-BEAM IRRADIATION EQUIPMENT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S011",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S010",
+        "date": "2007-10-26",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK VISION CORONARY STENT SYSTEM AND MULTI-LINK MINI VISION CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED AT ABBOTT VASCULAR, GALWAY, IRELAND.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S010",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S009",
+        "date": "2007-04-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION RX CORONARY STENT & MULTI-LINK MINI VISION RX CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "REPLACEMENT OF THE EXISTING BONDING EQUIPMENT WITH A NEW HEAT BONDER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S009",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S008",
+        "date": "2007-02-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "MULTI-LINK VISION CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "MODIFICATION IN THE DOSE RANGE AND CONVEYOR SPEED FOR E-BEAM STERILIZATION FOR THE MULTI-LINK AND MULTI-LINK VISION CORONARY STENT SYSTEMS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S008",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S007",
+        "date": "2007-02-09",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK VISION & MULTI-LINK MINI VISION CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL FOR MINOR MODIFICATIONS TO THE W-CREST PORTION OF BOTH MULTI-LINK VISION STENT SYSTEMS AS WELL AS A NON-LINEAR LINK SHIFT TO THE MEDIUM DESIGN MULTI-LINK VISION CORONARY STENT SYSTEM.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S007",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S005",
+        "date": "2006-11-21",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK RX AND OTW VISION AND MINI VISION CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL FOR A CHANGE TO THE TYPE OF LASER USED TO CUT THE STENTS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S005",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S006",
+        "date": "2006-07-13",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK VISION CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL FOR MODIFICATIONS FOR THE IFUS TO INCLUDE ADDITIONAL INFORMATION REGARDING THE MATERIAL COMPONENTS OF THE STENTS.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S006",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S004",
+        "date": "2004-09-10",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK VISION CORONARY STENT SYSTEM - 2.75 MM",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL FOR THE 2.75 MM LINE EXTENSION FOR THE MULTI-LINK VISION CORONARY STENT SYSTEM.  THE DEVICE IS INDICATED FOR IMPROVING CORONARY LUMINAL DIAMETER IN PATIENTS WITH ABRUPT OR THREATENED ABRUPT CLOSURE WITH FAILED INTERVENTIONAL THERAPY OF DE NOVO AND RESTENOTIC NATIVE CORONARY ARTERY LESIONS (LENGTH <=25 MM) WITH REFERENCE VESSEL DIAMETERS OF 2.75 MM.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S004",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S003",
+        "date": "2004-09-10",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK MINI VISION CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL FOR THE NEW PRODUCT LINE, THE MULTI-LINK MINI VISION CORONARY STENT SYSTEM.  THE DEVICE IS INDICATED FOR IMPROVING CORONARY LUMINAL DIAMETER IN PATIENTS WITH ABRUPT OR THREATENED ABRUPT CLOSURE WITH FAILED INTERVENTIONAL THERAPY OF DE NOVO AND RESTENOTIC NATIVE CORONARY ARTERY LESIONS (LENGTH <=25 MM) WITH REFERENCE VESSEL DIAMETERS FROM 2.0 TO 2.5 MM.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S003",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S002",
+        "date": "2004-03-22",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK VISION CORONARY STENT SYSTEM",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL FOR A STERILIZATION SITE LOCATED AT GUIDANT CORPORATION, GUIDANT IRELAND, CLONMEL, IRELAND.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S002",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "S001",
+        "date": "2003-10-08",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK RX AND OTW VISION CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL FOR THE ADDITION OF A TEMPORARY, POST-STERILE SAMPLING INSPECTION PLAN FOR THE SMALL (3.0 MM DIAMETER) MULTI-LINK VISION CORONARY STENT SYSTEM.",
+        "reason": "",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047S001",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      },
+      {
+        "application": "P020047",
+        "supplement": "",
+        "date": "2003-07-16",
+        "decision": "PMA approval",
+        "tradeName": "MULTI-LINK VISION/MINI/8 CORONARY STENT SYSTEMS",
+        "applicant": "Abbott Vascular",
+        "statement": "APPROVAL FOR THE MULTI-LINK RX AND OTW VISION CORONARY STENT SYSTEMS (CSS).  THESE DEVICES ARE INDICATED FOR IMPROVING CORONARY LUMINAL DIAMETER IN THE FOLLOWING:1) PATIENTS WITH SYMPTOMATIC ISCHEMIC HEART DISEASE DUE TO DISCRETE DE NOVO OR RESTENOTIC NATIVE CORONARY ARTERY LESIONS (LENGTH <25 MM) WITH REFERENCE VESSEL DIAMETERS RANGING FROM 3.0 MM TO 4.0 MM.  2)  PATIENTS WITH SYMPTOMATIC ISCHEMIC HEART DISEASE DUE TO LESIONS IN SAPHENOUS VEIN BYPASS GRAFTS (LENGTH <25 MM) WITH REFERENCE VESSEL DIAMETERS RANGING FROM 3.0 MM TO 4.0 MM  3) RESTORING CORONARY FLOW IN PATIENTS EXPERIENCING ACUTE MYOCARDIAL INFARCTION, AS CONFIRMED BY ST SEGMENT ELEVATION OR ANGIOGRAPHIC FINDINGS, WHO PRESENT WITHIN 12 HOURS OF SYMPTOM ONSET WITH NATIVE CORONARY ARTERY LESIONS OF LENGTH <25 MM WITH A REFERENCE VESSEL DIAMETER OF 3.0 MM TO 4.0 MM.  OUTCOME (BEYOND 9 MONTHS) FOR THIS PERMANENT IMPLANT IS UNKNOWN AT PRESENT.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047",
+        "sourceSha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=1900&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5",
+        "file": "2aa1f26028adfae192eedcb8ab2d80010b9b4975d9926bb7a91628ea8a7448e5.json",
+        "retrievedAt": "2026-10-22T18:59:29.540627+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=2000&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c",
+        "file": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c.json",
+        "retrievedAt": "2026-10-22T18:59:30.381868+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "2 original labeling document link(s) located; 4 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 2,
+    "changes": 4,
+    "rows": [
+      {
+        "application": "P020047",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020047C.pdf",
+        "pages": 28,
+        "textAvailable": true,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047",
+        "locator": "L58: Labeling 【38†Labeling】",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: last month; Content type: application/pdf; Number of pages: 28;",
+        "sections": [
+          {
+            "title": "INDICATIONS",
+            "pdfPage": 2,
+            "sourceLine": 51,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "WARNINGS AND PRECAUTIONS",
+            "pdfPage": 2,
+            "sourceLine": 53,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "ADVERSE EVENTS",
+            "pdfPage": 2,
+            "sourceLine": 60,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          }
+        ]
+      },
+      {
+        "application": "P020047",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020047D.pdf",
+        "title": "Labeling Part 2",
+        "pages": 18,
+        "retrievalNote": "[wordlim: 200] Crawled: last week; Content type: application/pdf; Number of pages: 18;",
+        "textAvailable": true,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047",
+        "locator": "L58: Labeling 【38†Labeling】",
+        "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P020047",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047",
+        "discovery": "[wordlim: 200] Crawled: last month; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047\",\"lineno\":null}); Total lines: 109",
+        "locator": "L58: Labeling 【38†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P020047S064",
+      "P020047S042",
+      "P020047S034",
+      "P020047S006"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "2 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 2,
+    "rows": [
+      {
+        "cfres_id": "54962",
+        "product_res_number": "Z-1211-2007",
+        "product_description": "Multi-Link Vision RX Coronary Stent System, 3.0 x 15mm, Part number 1007848-15, lot number 7052951",
+        "code_info": "Part number 1007848-15, lot number 7052951",
+        "reason_for_recall": "The affected single lot did not meet an internal specification. One unit failed the test criteria for stent dislodgment testing.",
+        "action": "The firm initiated the recall on 07/16/2007 by sending recall letters with attached Customer Reply form via FedEx to each direct account that received the recalled product. Customers were informed of the issue and given instructions to work with their local account representative to review their inventory, remove the recalled product, complete the Customer Reply form and return the recalled product to Abbott Vascular.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-16",
+        "event_date_posted": "2007-08-29",
+        "event_date_terminated": "2011-06-14",
+        "recalling_firm": "Abbott Vascular-Cardiac Therapies dba Guidant Corporation",
+        "root_cause_description": "Other",
+        "applications": [
+          "P020047"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=54962",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "26752",
+        "product_res_number": "Z-0775-03",
+        "product_description": "Guidant Multi-Link Vision Coronary Stent System\n\nCatalog Numbers: 30 different catalog numbers have been listed.  \n\nThe firm indicates that total numbers of devices subject to this removal are being defined.",
+        "code_info": "All lots are included in the action.",
+        "reason_for_recall": "Complaints that the stents are being dislodged from the delivery system.",
+        "action": "Information as an Advisory Notice was sent by facsimile to the Competent Authorities and to distributors on April 1 2003. Recall letters will be delivered by hand in most instances.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2003-04-01",
+        "event_date_posted": "2003-04-22",
+        "event_date_terminated": "2004-06-23",
+        "recalling_firm": "Guidant Corporation ACS",
+        "root_cause_description": "Other",
+        "applications": [
+          "P020047"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=26752",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020047C.pdf"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020047D.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=54962"
+    }
+  ],
+  "path": "/dossiers/source-fda-p020047.json",
+  "applications": [
+    "P020047"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

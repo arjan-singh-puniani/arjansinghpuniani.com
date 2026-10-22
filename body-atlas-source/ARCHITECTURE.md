@@ -68,3 +68,8 @@ The bounded acquisition scope adds original PMA approvals and cross-panel submis
 ## Static website delivery
 
 `scripts/export-static.mjs` builds a separate `/atlas` export in an isolated temporary directory, excluding server API routes. Only explicit public snapshot files and manifest-listed, hash-verified source responses are copied. `lib/deployment.ts` prefixes geometry and source URLs. Hosted Markdown download uses the same deterministic brief generator through a data URL; standalone API behavior is preserved. The portfolio rewrites only `/atlas` to its static entry point, and uses native links between application runtimes. The homepage imports no atlas code or geometry.
+
+
+## Dossier milestone — 2026-10-22
+
+Dossiers reuse the existing SQLite jobs/artifacts/checkpoint transport, with a separate ignored `data/dossiers.sqlite`. A compact source manifest and immutable hashed public artifacts rebuild 91 per-entry JSON files plus a lightweight summary. Only summaries enter the initial client bundle; detailed histories/recalls load on demand. The static exporter includes the summary and public dossiers without introducing a server, credentials or database requirement for visitors. See [DOSSIERS.md](DOSSIERS.md).

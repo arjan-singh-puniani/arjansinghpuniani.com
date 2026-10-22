@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html  lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-273DTKB5QW"></script>
+<meta name="description" content="The FDA posts information about certain medical device recalls and early alerts to help increase awareness of these issues." />
+<meta name="dcterms.title" content="2024 Medical Device Recalls" />
+<meta name="dcterms.creator" content="Center for Devices and Radiological Health" />
+<meta name="dcterms.description" content="The FDA posts information about certain medical device recalls and early alerts to help increase awareness of these issues." />
+<meta name="dcterms.publisher" content="FDA" />
+<meta name="dcterms.type" content="Article" />
+<meta name="dcterms.source" content="FDA" />
+<meta property="og:site_name" content="U.S. Food and Drug Administration" />
+<meta property="og:type" content="Article" />
+<meta property="og:url" content="https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls" />
+<meta property="og:title" content="2024 Medical Device Recalls" />
+<meta property="og:description" content="The FDA posts information about certain medical device recalls and early alerts to help increase awareness of these issues." />
+<meta property="og:updated_time" content="Fri, 01/31/2025 - 00:00" />
+<meta property="article:publisher" content="FDA" />
+<meta property="article:published_time" content="Fri, 01/31/2025 - 10:59" />
+<meta property="article:modified_time" content="Fri, 01/31/2025 - 00:00" />
+<meta name="google-site-verification" content="tWxlDhm4ANdksJZPj7TBmHgNoMqZCnecPp0Aa2vC9XA" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@US_FDA" />
+<meta property="twitter:description" content="The FDA posts information about certain medical device recalls and early alerts to help increase awareness of these issues." />
+<meta name="twitter:title" content="2024 Medical Device Recalls" />
+<meta name="twitter:creator" content="@US_FDA" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Article",
+            "headline": "2024 Medical Device Recalls",
+            "name": "2024 Medical Device Recalls",
+            "description": "The FDA posts information about certain medical device recalls and early alerts to help increase awareness of these issues.",
+            "datePublished": "Fri, 01/31/2025 - 10:59",
+            "dateModified": "Fri, 01/31/2025 - 00:00",
+            "author": {
+                "@type": "Organization",
+                "name": "Center for Devices and Radiological Health"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "FDA"
+            }
+        }
+    ]
+}</script>
+<meta property="og:image" content="https://www.fda.gov/themes/custom/preview/img/FDA-Social-Graphic.png" />
+<meta name="twitter:image" content="https://www.fda.gov/themes/custom/preview/img/FDA-Social-Graphic.png" />
+<link rel="icon" href="/themes/custom/preview/favicon.ico" type="image/vnd.microsoft.icon" />
+<link rel="alternate" hreflang="en" href="https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls" />
+<link rel="canonical" href="https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls" />
+<link rel="shortlink" href="https://www.fda.gov/node/420420" />
+<script src="/files/google_tag/production/google_tag.script.js?tlw6bs" defer></script>
+
+    <title>2024 Medical Device Recalls | FDA</title>
+    <link rel="stylesheet" media="all" href="/files/css/css_eK8g324EC2H65Epj0rcHWphsdBbFdB-sjJn18Po86QI.css?delta=0&amp;language=en&amp;theme=preview&amp;include=eJx1zkEOgzAMBMAPhebS_6CELMjFxGnsUPH7hh5KL5Wl1Ui7B08rEpnUkXJCtsgyrf7HTg81bD4GhSsVO-HlF5YYeFA7mPLiHs-GeoyNxhQMhaYV1V90nf0iQ_3FIWEOjW2o0CJZacefYRQxtRrK3c2dWaz3X7nzI_WfvG2SGuMN6YpTyw" />
+<link rel="stylesheet" media="all" href="/files/css/css_kzM3UfAkXr38eWZ807nc-7-NjN8_C9qpn2PkF7glUTU.css?delta=1&amp;language=en&amp;theme=preview&amp;include=eJx1zkEOgzAMBMAPhebS_6CELMjFxGnsUPH7hh5KL5Wl1Ui7B08rEpnUkXJCtsgyrf7HTg81bD4GhSsVO-HlF5YYeFA7mPLiHs-GeoyNxhQMhaYV1V90nf0iQ_3FIWEOjW2o0CJZacefYRQxtRrK3c2dWaz3X7nzI_WfvG2SGuMN6YpTyw" />
+
+    <script src="https://script.crazyegg.com/pages/scripts/0024/3700.js" async></script>
+<script src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=HHS&amp;subagency=FDA&amp;sdor=fda.gov&amp;dclink=true" language="javascript" id="_fed_an_ua_tag"></script>
+
+            <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "G-273DTKB5QW", {"groups":"default","page_placeholder":"PLACEHOLDER_page_location","allow_ad_personalization_signals":false});</script>
+        
+  </head>
+  <body class="role-anonymous path-node page-node-type-article has-glyphicons">
+      <div id="quicklinks" class="sr-only display-on-focus">
+        <ul class="list-inline padding-left-3 padding-right-3">
+          <li><a href="#main-content" class="btn btn-default margin-top-3" tabindex="1">Skip to main content</a></li>
+          <li><a href="#search-form" class="btn btn-default margin-top-3" tabindex="1">Skip to FDA Search</a></li>
+          <li><a href="#section-nav" class="btn btn-default margin-top-3" tabindex="1">Skip to in this section menu</a></li>
+          <li><a href="#footer" class="btn btn-default margin-top-3" tabindex="1">Skip to footer links</a></li>
+        </ul>   
+      </div>    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M95XGZW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+       
+  <div class="main-container container-fluid">     <div class="row">
+                                                               
+
+
+	
+	<header class="lcds-header container-fluid" role="banner">
+		                    
+			<div class="row us-masthead">                            
+
+				<div class="usa-banner col-xs-12">
+
+					<img class="usa-banner__us-flag" src="/themes/custom/preview/assets/images/US_Flag.png" alt="U.S. flag" />
+
+					<span>An official website of the United States government</span>
+
+				    <a id="USMenuButton" class="collapsed" role="button" aria-expanded="false" aria-controls="USABannerMenu" href="#" data-toggle="collapse" data-target="#USABannerMenu">Here’s how you know <span class="toggle-indicator"> </span></a>
+
+          			<div class="col-xs-12 collapse usa-banner__menu" id="USABannerMenu" aria-labelledby="USMenuButton">
+
+
+						<div id="gov-banner" class="row usa-banner-content usa-grid usa-accordion-content" aria-hidden="true">
+							      <div class="col-xs-12 col-sm-6 col-md-3">
+							        <img class="usa-banner-icon usa-media_block-img" src="/themes/custom/preview/assets/images/icon-dot-gov.svg" alt="Dot gov" style="width:3em;">
+									<div class="usa-media_block-body">
+								      <p><strong>The .gov means it’s official.</strong><br>Federal government websites often end in .gov or .mil. Before sharing sensitive information, make sure you're on a federal government site.</p>
+								    </div>
+							      </div>
+							      <div class="col-xs-12 col-sm-6 col-md-3">
+							        <img class="usa-banner-icon usa-media_block-img" src="/themes/custom/preview/assets/images/icon-https.svg" alt="SSL" style="width:3em;">
+							        <div class="usa-media_block-body">
+								         <p><strong>The site is secure.</strong><br> The <strong>https://</strong> ensures that you are connecting to the official website and that any information you provide is encrypted and transmitted securely.</p>
+							        </div>
+							      </div>
+						</div>
+					</div>
+
+				</div>
+			</div> 			<div class="row fda-masthead">
+			
+
+							<div class="col-xs-4 col-md-8 fda-masthead__fda-logo"> 
+					<a href="/" title="FDA Homepage">
+            <picture>
+              <!-- Set media breakpoint to value equivalent to $screen-md -->
+              <source media="(min-width:992px)" srcset="/themes/custom/preview/assets/images/gov-fda-new-white.svg">
+              <img src="/themes/custom/preview/assets/images/FDA_Logo_Icon_White.svg" height="40px" alt="U.S. Food and Drug Administration logo">
+            </picture>
+          </a>
+       	</div>
+				
+        <div class="col-xs-8 col-md-4">
+        <ul class="fda-masthead__item-list">
+            <li>
+                <button id="btn-search" class="btn btn-default btn-sm fda-masthead__btn-search" aria-expanded="false" aria-controls="search-form" title="Open search bar">
+					<span class="fa fa-search" aria-hidden="true">&nbsp;</span>
+			    	<span class="fda-masthead__btn-label">Search</span>
+				</button>
+            </li>
+            <li>
+                <button id="menu-btn" class="btn btn-default btn-sm fda-masthead__btn-menu collapsed" href="#primary-nav" data-toggle="collapse" aria-expanded="true">
+                    <span class="fa fa-bars" aria-hidden="true">&nbsp;</span>
+                    <span class="fda-masthead__btn-label">Menu</span>
+                </button>
+            </li>
+        </ul>
+		</div>
+							
+						<form class="fda-masthead__search sr-only" id="search-form" aria-hidden="true" role="search" action="/search" method="GET" accept-charset="UTF-8">
+							<div class="search-popover" id="search-popover">
+								<div class="input-group pull-right" id="search-group">
+									<label class="sr-only" for="search-query">Search FDA</label>
+									
+									<input class="form-control search-input" tabindex="-1" id="search-query" name="s" aria-autocomplete="list" aria-haspopup="true" title="Enter the terms you wish to search for." placeholder="Search FDA"  type="text" /> 
+									
+									<span class="input-group-btn" id="input-group-btn">
+										
+										<button type="submit" type="button" class="btn btn-danger search-btn" id="search-btn" tabindex="-1" title="Search"><span class="fa fa-search" aria-hidden="true"><span class="sr-only">Submit search</span></span></button>
+
+									</span>
+
+								</div>
+							</div>
+																				
+						</form>					
+
+			</div> 
+		<nav id="primary-nav" class="lcds-primary-nav row collapse">					<div class="col-md-5 col-lg-4">
+						<section class="lcds-primary-nav__group lcds-primary-nav__group--bordered">
+							<h2 class="lcds-primary-nav__group-heading">Featured</h2>
+							<ul class="lcds-primary-nav__list lcds-primary-nav__list--featured">
+								<li class="lcds-primary-nav__list-item"><a href="https://contact.fda.gov/report-problem?utm_medium=referral&utm_source=fda_gov_menu" title="Report a Problem with an FDA Regulated Product">Report a Product Problem</a></li>
+	                <li class="lcds-primary-nav__list-item"><a href="/about-fda/contact-fda">Contact FDA</a></li>
+	                <li class="lcds-primary-nav__list-item"><a href="/regulatory-information/search-fda-guidance-documents">FDA Guidance Documents</a></li>
+	                <li class="lcds-primary-nav__list-item"><a href="/safety/recalls-market-withdrawals-safety-alerts">Recalls, Market Withdrawals and Safety Alerts</a></li>
+	                <li class="lcds-primary-nav__list-item"><a href="/news-events/newsroom/press-announcements">Press Announcements</a></li>
+	                <li class="lcds-primary-nav__list-item"><a href="/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters">Warning Letters</a></li>
+	                <li class="lcds-primary-nav__list-item"><a href="/advisory-committees">Advisory Committees</a></li>
+	                <li class="lcds-primary-nav__list-item"><a href="/fda-en-espanol">En Espa&#241ol</a></li>
+							</ul>
+						</section>
+					</div>
+
+					<div class="col-md-7 col-lg-8">
+          <section class="lcds-primary-nav__group lcds-primary-nav__group--bordered">
+            <h2 class="lcds-primary-nav__group-heading">Products</h2>
+            <ul class="lcds-primary-nav__list">
+							<li class="lcds-primary-nav__list-item"><a href="/food">Food</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/drugs">Drugs</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/medical-devices">Medical Devices</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/radiation-emitting-products">Radiation-Emitting Products</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/vaccines-blood-biologics">Vaccines, Blood, and Biologics</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/animal-veterinary">Animal and Veterinary</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/cosmetics">Cosmetics</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/tobacco-products">Tobacco Products</a></li>
+            </ul>
+          </section>
+          <section class="lcds-primary-nav__group lcds-primary-nav__group--bordered">
+            <h2 class="lcds-primary-nav__group-heading">Topics</h2>
+            <ul class="lcds-primary-nav__list">
+							<li class="lcds-primary-nav__list-item"><a href="/about-fda">About FDA</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/combination-products">Combination Products</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/regulatory-information">Regulatory Information</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/safety">Safety</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/emergency-preparedness-and-response">Emergency Preparedness</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/international-programs">International Programs</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/news-events">News and Events</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/training-and-continuing-education">Training and Continuing Education</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/inspections-compliance-enforcement-and-criminal-investigations">Inspections and Compliance</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/science-research">Science and Research</a></li>
+            </ul>
+          </section>
+          <section class="lcds-primary-nav__group lcds-primary-nav__group--bordered">
+            <h2 class="lcds-primary-nav__group-heading">Information For</h2>
+            <ul class="lcds-primary-nav__list">
+	            <li class="lcds-primary-nav__list-item"><a href="/consumers">Consumers</a></li>
+	            <li class="lcds-primary-nav__list-item"><a href="/patients">Patients</a></li>
+	            <li class="lcds-primary-nav__list-item"><a href="/industry">Industry</a></li>
+	            <li class="lcds-primary-nav__list-item"><a href="/health-professionals">Health Professionals</a></li>
+	            <li class="lcds-primary-nav__list-item"><a href="/federal-state-local-tribal-and-territorial-officials">Federal, State and Local Officials</a></li>
+            </ul>
+          </section>
+					</div>
+	      </nav>
+    </header>
+
+<div class="col-xs-12 block-prev-message">
+	<div data-drupal-messages-fallback class="hidden"></div>
+
+</div>
+
+                              
+                                                                     <section id="block-entityviewcontent-15" data-block-plugin-id="entity_view:node" class="block block-ctools block-entity-viewnode clearfix">
+  
+    
+
+      
+    <ol class="lcds-breadcrumb visible-md visible-lg">
+          <li >
+                  <a href="/">Home</a>
+              </li>
+          <li >
+                  <a href="/medical-devices">Medical Devices</a>
+              </li>
+          <li >
+                  <a href="/medical-devices/medical-device-safety">Medical Device Safety</a>
+              </li>
+          <li >
+                  <a href="/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts">Medical Device Recalls and Early Alerts</a>
+              </li>
+          <li >
+                  <a class="current-link">2024 Medical Device Recalls</a>
+              </li>
+      </ol>
+
+
+
+
+<ol class="lcds-breadcrumb visible-sm visible-xs">
+  <li>
+    <a href="/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts" title="Medical Device Recalls and Early Alerts">
+     Medical Device Recalls and Early Alerts
+    </a>
+  </li>
+</ol>
+
+  </section>
+
+<section id="block-entityviewcontent" data-block-plugin-id="entity_view:node" class="block block-ctools block-entity-viewnode clearfix">
+  
+    
+
+      
+<div class="lcds-section-nav-container hidden-md hidden-lg">
+<a class="lcds-button--expandable collapsed hidden-md hidden-lg" data-toggle="collapse" href="#section-nav" >In this section</a>
+
+<nav id="section-nav" class="lcds-card lcds-section-nav lcds-section-nav hidden-md hidden-lg collapse">
+
+    <ul class="lcds-section-nav__list">
+
+      <li>
+
+              <a href="/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts" title="Medical Device Recalls and Early Alerts" class="lcds-section-nav__section-link lcds-section-nav__link lcds-section-nav__parent-link visible-xs-block visible-sm-block">
+                                        Medical Device Recalls and Early Alerts
+                    </a>
+
+                        <div class="views-element-container form-group"><div class="view view-in-this-section view-id-in_this_section view-display-id-block_5 js-view-dom-id-cf965664d950ba68e714519a154cf6cd3da4167628266af9df981e7293f9a009">
+  
+    
+      
+  
+      <div>
+  
+  <ul class="lcds-section-nav__section-link__active lcds-section-nav__list">
+
+          <li><a href="/medical-devices/medical-device-recalls-and-early-alerts/what-medical-device-recall" class="lcds-section-nav__link">What is a Medical Device Recall?</a></li>
+          <li><a href="/medical-devices/medical-device-recalls-and-early-alerts/what-early-alert" class="lcds-section-nav__link">What is an Early Alert?</a></li>
+          <li><a href="/medical-devices/medical-device-recalls-and-early-alerts/recall-and-alert-resources" class="lcds-section-nav__link">Recall and Alert Resources</a></li>
+    
+  </ul>
+
+</div>
+
+
+  
+          </div>
+</div>
+
+
+                        <div class="views-element-container form-group"><div class="view view-in-this-section-sub view-id-in_this_section_sub view-display-id-block_2 js-view-dom-id-e6512351692c090105eb780c8bed7b532bdab90de23caee44fa710c37834d27f">
+  
+    
+      
+  
+          </div>
+</div>
+
+
+      </li>
+
+    </ul>
+
+</nav>
+</div>
+
+  </section>
+
+
+
+
+
+
+                                
+      <main>
+
+                                 <article id="main-content" class="article main-content container-fluid" role="article">
+          
+                                                                <header class="row content-header">
+                         <section id="block-entityviewcontent-2" data-block-plugin-id="entity_view:node" class="block block-ctools block-entity-viewnode clearfix">
+  
+    
+
+      <div class="col-sm-12 col-md-8 col-md-offset-2">
+
+  
+  <h1 class="content-title text-center">2024 Medical Device Recalls</h1>
+  
+  	</div>
+
+  </section>
+
+
+
+
+
+
+                      </header>
+                              
+                                                          
+                              <aside class="col-md-2" role="complementary">
+                  <section id="block-entityviewcontent-3" data-block-plugin-id="entity_view:node" class="block block-ctools block-entity-viewnode clearfix">
+  
+    
+
+        <div class="region region-">
+        <nav id="section-nav"class="lcds-card lcds-section-nav lcds-section-nav--side hidden-xs hidden-sm">
+      <ul class="lcds-section-nav__list lcds-section-nav--side__list">
+        <li>
+
+                    <a href="/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts" class="lcds-section-nav__link lcds-section-nav--side__link lcds-section-nav__parent-link lcds-section-nav--side__parent-link">
+                                        Medical Device Recalls and Early Alerts
+                      </a>
+
+          
+                        <div class="views-element-container form-group"><div class="view view-in-this-section view-id-in_this_section view-display-id-block_4 js-view-dom-id-012f46ed8314259c3bb94e762613afc8a2f397ce38d2e15d53c039a6b62d1102">
+  
+    
+      
+  
+      <div class="item-list">
+  
+  <ul class="lcds-section-nav__active lcds-section-nav__list lcds-section-nav--side__list">
+
+          <li><a href="/medical-devices/medical-device-recalls-and-early-alerts/what-medical-device-recall" class="lcds-section-nav__link lcds-section-nav--side__link">What is a Medical Device Recall?</a></li>
+          <li><a href="/medical-devices/medical-device-recalls-and-early-alerts/what-early-alert" class="lcds-section-nav__link lcds-section-nav--side__link">What is an Early Alert?</a></li>
+          <li><a href="/medical-devices/medical-device-recalls-and-early-alerts/recall-and-alert-resources" class="lcds-section-nav__link lcds-section-nav--side__link">Recall and Alert Resources</a></li>
+    
+  </ul>
+
+</div>
+
+
+  
+          </div>
+</div>
+
+
+                        <div class="views-element-container form-group"><div class="view view-in-this-section-sub view-id-in_this_section_sub view-display-id-block_1 js-view-dom-id-e672fedd8a88bdbe611b3e738341c3f19e39f373661a8fa3aad0dc982b5f4685">
+  
+    
+      
+  
+          </div>
+</div>
+
+
+        </li>
+      </ul>
+    </nav>
+    </div>
+
+  </section>
+
+
+                </aside>
+              
+                                                          
+              <div class="col-md-8" role="main">
+
+                            
+                            
+                            
+                            
+                                              
+  
+<div class="table-responsive"><p></p><div class="callout">
+	<p><strong>Update - November 21, 2024</strong></p><p>CDRH announced <a href="/medical-devices/medical-devices-news-and-events/cdrh-announces-communications-pilot-enhance-medical-device-recall-program" data-entity-type="node" data-entity-uuid="b6e92b3d-e49e-4605-ae1c-bdc440917844" data-entity-substitution="canonical" title="CDRH Announces Communications Pilot to Enhance Medical Device Recall Program">Communications Pilot to Enhance the Medical Device Recall Program</a> to improve the timeliness of communications about corrective actions being taken by companies that the FDA believes are likely to be high-risk recalls. The pilot will include early alerts of potentially high-risk device removals or corrections related to cardiovascular, gastrorenal, general hospital, obstetrics and gynecology, and urology. This pilot follows the commitments noted in our 2024 Safety Report and recommendations from the Patient Engagement Advisory Committee, to enhance our medical device recall program.</p><p>
+</p></div>
+<p>Through the <a href="/medical-devices/medical-devices-news-and-events/cdrh-announces-communications-pilot-enhance-medical-device-recall-program" data-entity-type="node" data-entity-uuid="b6e92b3d-e49e-4605-ae1c-bdc440917844" data-entity-substitution="canonical" title="CDRH Announces Communications Pilot to Enhance Medical Device Recall Program">Communications Pilot to Enhance the Medical Device Recall Program</a>, the FDA has committed to improve the timeliness of communications about corrective actions being taken by companies that the FDA believes are likely to be high-risk recalls. However, the FDA may not yet have determined that the actions meet the regulatory definition of a recall. These actions may include when companies remove products from the market, correct products, or update instructions for using products due to potentially high safety risks.</p><p>The FDA will keep the public informed and update this web page as significant new information becomes available.</p><p>The FDA lists the most serious type of medical device recalls as well as early alert communications about corrective actions being taken by companies that the FDA believes are likely to be the most serious type of recalls on our website by the date that the FDA posts the information on our website.</p><h2>Recent Medical Device Recalls and Early Alerts</h2><div class="table-responsive lcds-datatable lcds-datatable--ckeditor"><table class="table" aria-readonly="true" data-column-defs="[{ &quot;targets&quot;: 0, &quot;type&quot;: &quot;date&quot; }]" data-excel-button="true" data-order="[ 0, &quot;desc&quot; ]" data-page-length="50" data-paging="true" data-searching="true" role="grid"><thead><tr><th><strong>Date</strong></th><th><strong>Issue</strong></th><th><strong>Product Area</strong></th><th><strong>Status</strong></th></tr></thead><tbody><tr><td>12/31/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/update-alert-solution-set-issue-baxter-healthcare-corporation" data-entity-type="node" data-entity-uuid="7df5343d-1b73-4f86-9660-4246cfa48789" data-entity-substitution="canonical" title="Update on Alert: Solution Set Issue from Baxter Healthcare Corporation">Early Alert: Solution Set Issue from Baxter Healthcare Corporation</a></td><td>Solution Sets</td><td>Early Alert - FDA Collecting information</td></tr><tr><td>01/31/2025</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/update-alert-fluid-delivery-set-issue-medline" data-entity-type="node" data-entity-uuid="9f6e4f80-88a7-4709-b7fd-60f7e2d16ede" data-entity-substitution="canonical" title="Update on Alert: Fluid Delivery Set Issue from Medline">Update to Alert: Fluid Delivery Set Issue from Medline</a></td><td>Fluid Delivery Set</td><td>Recall Confirmed</td></tr><tr><td>01/31/2025</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/update-alert-extracorporeal-blood-circuit-issue-nuwellis" data-entity-type="node" data-entity-uuid="953ccad5-9ae9-4bcc-9496-4bba8bc3bc33" data-entity-substitution="canonical" title="Update on Alert: Extracorporeal Blood Circuit Issue from Nuwellis">Update to Alert: Extracorporeal Blood Circuit Issue from Nuwellis</a></td><td>Single Use Blood Circuit</td><td>Recall Confirmed</td></tr><tr><td>01/31/2025</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/update-alert-endoscope-accessories-forcepsirrigation-plug-issue-olympus" data-entity-type="node" data-entity-uuid="4e0fecde-9b5d-48a0-915d-7915c9d23494" data-entity-substitution="canonical" title="Update on Alert: Endoscope Accessories Forceps/Irrigation Plug Issue from Olympus">Update to Alert: Endoscope Accessories Forceps/Irrigation Plug Issue from Olympus</a></td><td>Endoscope Accessory</td><td>Recall Confirmed</td></tr><tr><td>12/20/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/infusion-pump-battery-recall-icu-medical-removes-some-csb-batteries-intended-use-plum-360-and-a3" data-entity-type="node" data-entity-uuid="34284021-3dd5-4908-85d1-a585597c0482" data-entity-substitution="canonical" title="Infusion Pump Battery Recall: ICU Medical Removes Some CSB Batteries Intended For Use With Plum 360, A+, and A+3 Infusion Systems Due to Reports of Allegedly Counterfeit, Untested Batteries In Use ">Infusion Pump Battery Recall: ICU Medical Removes Some CSB Batteries Intended For Use With Plum 360, A+, and A+3 Infusion Systems Due to Reports of Allegedly Counterfeit, Untested Batteries In Use</a></td><td>Infusion Pumps</td><td>Recall Confirmed</td></tr><tr><td>01/31/2025</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/update-alert-nephroscope-sheath-issue-trokamed-gmbh" data-entity-type="node" data-entity-uuid="380d5ef7-84cf-42e8-a497-7e4e4fa2f1fc" data-entity-substitution="canonical" title="Update on Alert: Nephroscope Sheath Issue from Trokamed GmbH">Update to Alert: Nephroscope Sheath Issue from Trokamed GmbH</a></td><td>Nephroscope Sheath</td><td>Recall Confirmed</td></tr><tr><td>12/18/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/catheter-correction-boston-scientific-updates-use-instructions-polarx-and-polarx-fit-cryoablation" data-entity-type="node" data-entity-uuid="bc015158-8fb1-41e4-9376-7e59b9be4e5a" data-entity-substitution="canonical" title="Catheter Correction: Boston Scientific Updates Use Instructions for POLARx and POLARx FIT Cryoablation Balloon Catheters due to Higher than Anticipated Number of Reports of Atrio-Esophageal Fistula">Catheter Correction: Boston Scientific Updates Use Instructions for POLARx and POLARx FIT Cryoablation Balloon Catheters due to Higher than Anticipated Number of Reports of Atrio-Esophageal Fistula</a></td><td>Balloon Catheter</td><td>Recall Confirmed</td></tr><tr><td>12/18/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/implantable-marker-recall-hologic-removes-biozorb-3d-bioabsorbable-markers-due-risk-patient" data-entity-type="node" data-entity-uuid="bc7b5896-c6bb-4de0-b503-b5cbcd0766c1" data-entity-substitution="canonical" title="Implantable Marker Recall: Hologic Removes BioZorb 3D Bioabsorbable Markers due to Risk for Patient Complications">Implantable Marker Recall: Hologic Removes BioZorb 3D Bioabsorbable Markers due to Risk for Patient Complications</a></td><td>Implantable Radiographic Marker</td><td>Recall Confirmed</td></tr><tr><td>01/31/2025</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/update-alert-infusion-pump-issue-fresenius-kabi-usa" data-entity-type="node" data-entity-uuid="a807b6b2-0aac-4318-9c5f-5a05fd67c4ef" data-entity-substitution="canonical" title="Update on Alert: Infusion Pump Issue from Fresenius Kabi USA">Update to Alert: Infusion Pump Issue from Fresenius Kabi USA</a></td><td>Infusion Pumps</td><td>Recall Confirmed</td></tr><tr><td>12/06/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/neonatal-incubator-correction-ge-healthcare-updates-use-instructions-ge-healthcare-giraffe-omnibed" data-entity-type="node" data-entity-uuid="2143985c-066d-43f1-960d-ca4de3c302ca" data-entity-substitution="canonical" title="Neonatal Incubator Correction: GE HealthCare Updates Use Instructions for GE HealthCare Giraffe OmniBed Carestation and Incubator Carestation due to Risk of Patient Formaldehyde Exposure">Neonatal Incubator Correction: GE HealthCare Updates Use Instructions for GE HealthCare Giraffe OmniBed Carestation and Incubator Carestation due to Risk of Patient Formaldehyde Exposure</a></td><td>Neonatal Incubator</td><td>Recall Confirmed</td></tr><tr><td>12/04/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/syringe-recall-cardinal-health-removes-certain-monoject-u-100-ml-insulin-syringe-luer-lock-tip-cap" data-entity-type="node" data-entity-uuid="2fc2e7fc-465e-4ab2-bc74-aee81f8cb552" data-entity-substitution="canonical" title="Syringe Recall: Cardinal Health Removes Certain Monoject U-100 mL Insulin Syringe Luer Lock with Tip Cap Soft Packs due to Incompatibility with Needleless Connectors">Syringe Recall: Cardinal Health Removes Certain Monoject U-100 mL Insulin Syringe Luer Lock with Tip Cap Soft Packs due to Incompatibility with Needleless Connectors</a></td><td>Syringes</td><td>Recall Confirmed</td></tr><tr><td>11/29/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/hemodialysis-correction-baxter-issues-correction-ak-98-hemodialysis-machines-due-risk-patient" data-entity-type="node" data-entity-uuid="82cd14d9-f263-4f9c-bf16-bb8d1f46e5bc" data-entity-substitution="canonical" title="Hemodialysis Correction: Baxter Issues Correction for AK 98 Hemodialysis Machines Due to Risk of Patient Exposure to Higher Than Allowable Levels of Toxic Compound NDL-PCBA and/or NDL-PCBs">Hemodialysis Correction: Baxter Issues Correction for AK 98 Hemodialysis Machines Due to Risk of Patient Exposure to Higher Than Allowable Levels of Toxic Compound NDL-PCBA and/or NDL-PCBs</a></td><td>Hemodialysis</td><td>Recall Confirmed</td></tr><tr><td>11/29/2024</td><td><a href="Peritoneal Dialysis Set Correction: Baxter Issues Correction for MiniCap Extended Life Peritoneal Dialysis Transfer Sets Due to Risk of Patient Exposure to Higher Than Allowable Levels of Toxic Compound NDL-PCBA and/or NDL-PCBs" title="Peritoneal Dialysis Set Correction: Baxter Issues Correction for MiniCap Extended Life Peritoneal Dialysis Transfer Sets Due to Risk of Patient Exposure to Higher Than Allowable Levels of Toxic Compound NDL-PCBA and/or NDL-PCBs">Peritoneal Dialysis Set Correction: Baxter Issues Correction for MiniCap Extended Life Peritoneal Dialysis Transfer Sets Due to Risk of Patient Exposure to Higher Than Allowable Levels of Toxic Compound NDL-PCBA and/or NDL-PCBs</a></td><td>Peritoneal Dialysis Set</td><td>Recall Confirmed</td></tr><tr><td>11/29/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/insertion-tube-recall-fhc-removes-microtargeting-insertion-tube-sets-due-manufacturing-size-error" data-entity-type="node" data-entity-uuid="53056ab4-c838-4e11-b4e5-bc582b523dd4" data-entity-substitution="canonical" title="Insertion Tube Recall: FHC Removes microTargeting Insertion Tube Sets due to a Manufacturing Size Error That May Lead to Patient Harm">Insertion Tube Recall: FHC Removes microTargeting Insertion Tube Sets due to a Manufacturing Size Error That May Lead to Patient Harm</a></td><td>Insertion Tube</td><td>Recall Confirmed</td></tr><tr><td>11/29/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/biopsy-needle-recall-elekta-removes-disposable-biopsy-needle-kits-due-risk-microscopic-stainless" data-entity-type="node" data-entity-uuid="01389ab1-2707-42ce-9eac-b170a270e767" data-entity-substitution="canonical" title="Biopsy Needle Recall: Elekta Removes Disposable Biopsy Needle Kits due to Risk of Microscopic Stainless Steel Debris Inside Needle">Biopsy Needle Recall: Elekta Removes Disposable Biopsy Needle Kits due to Risk of Microscopic Stainless Steel Debris Inside Needle</a></td><td>Biopsy Needle</td><td>Recall Confirmed</td></tr><tr><td>11/19/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/anesthesia-machine-correction-draeger-inc-issues-correction-atlan-a350-and-a350-xl-anesthesia" data-entity-type="node" data-entity-uuid="dd17619d-8595-466d-96fa-e3a449e82c04" data-entity-substitution="canonical" title="Anesthesia Machine Correction: Draeger, Inc., Issues Correction for Atlan A350 and A350 XL Anesthesia Workstations Due to Possible Mechanical Ventilation Failure">Anesthesia Machine Correction: Draeger, Inc., Issues Correction for Atlan A350 and A350 XL Anesthesia Workstations Due to Possible Mechanical Ventilation Failure</a></td><td>Anesthesia Machine</td><td>Recall Confirmed</td></tr><tr><td>11/19/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/ventilator-correction-philips-updates-use-instructions-trilogy-evo-evoo2-ev300-evo-universal-aeris" data-entity-type="node" data-entity-uuid="d58b97e7-e265-43d5-930b-b46032e59809" data-entity-substitution="canonical" title="Ventilator Correction: Philips Updates Use Instructions for Trilogy Evo, EvoO2, EV300, Evo Universal, Aeris EVO, Garbin Evo, and LifeVent EVO2 due to Risk of Inaccurate Flow Measurements Caused By Certain In-Line Nebulizer Placements ">Ventilator Correction: Philips Updates Use Instructions for Trilogy Evo, EvoO2, EV300, Evo Universal, Aeris EVO, Garbin Evo, and LifeVent EVO2, due to Risk of Inaccurate Flow Measurements Caused by Certain In-Line Nebulizer Placements&nbsp;</a></td><td>Ventilator</td><td>Recall Confirmed</td></tr><tr><td>11/19/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/battery-pack-correction-smiths-medical-updates-use-instructions-cadd-solis-li-ion-rechargeable" data-entity-type="node" data-entity-uuid="f15abee9-f544-40ec-b788-af69b6df2e0e" data-entity-substitution="canonical" title="Battery Pack Correction: Smiths Medical Updates Use Instructions for CADD-Solis Li-ion Rechargeable Battery Packs Due to Risk That Pack Damage May Cause a Circuit Short and Prevent Recharge  ">Battery Pack Correction: Smiths Medical Updates Use Instructions for CADD-Solis Li-ion Rechargeable Battery Packs Due to Risk That Pack Damage May Cause a Circuit Short and Prevent Recharge</a></td><td>Battery Pack</td><td>Recall Confirmed</td></tr><tr><td>11/15/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/endoscopic-vessel-harvesting-system-recall-getinge-and-maquet-cardiovascular-remove-vasoview-hemopro" data-entity-type="node" data-entity-uuid="28df00a6-ee59-4c60-bf30-cbeda0385532" data-entity-substitution="canonical" title="Endoscopic Vessel Harvesting System Recall: Getinge and Maquet Cardiovascular Remove VasoView HemoPro 1 and 1.5 Endoscopic Vessel">Endoscopic Vessel Harvesting System Recall: Getinge and Maquet Cardiovascular Remove VasoView HemoPro 1 and 1.5 Endoscopic Vessel</a></td><td>Endoscopic Vessel Harvesting System</td><td>Recall Confirmed</td></tr><tr><td>11/1/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/ipv-therapy-device-recall-percussionaire-removes-certain-phasitron-5-breathing-circuits-due-risk" data-entity-type="node" data-entity-uuid="bbe62898-cb79-4d14-ad10-193b12c56b9c" data-entity-substitution="canonical" title="IPV Therapy Device Recall: Percussionaire Removes Certain Phasitron 5 Breathing Circuits Due to Risk of Nickel Exposure ">IPV Therapy Device Recall: Percussionaire Removes Certain Phasitron 5 Breathing Circuits Due to Risk of Nickel Exposure</a></td><td>IPV Therapy</td><td>Recall Confirmed</td></tr><tr><td>10/31/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/incubatorwarmer-correction-ge-healthcare-updates-use-instructions-giraffe-omnibed-and-giraffe" data-entity-type="node" data-entity-uuid="4832054f-eb6f-4215-9da5-be49391e5b37" data-entity-substitution="canonical" title="Incubator/Warmer Correction: GE Healthcare Updates Use Instructions for Giraffe OmniBed and Giraffe Omnibed CareStation due to Risk of Heater Door Falling and Causing Infant Injury">Incubator/Warmer Correction: GE Healthcare Updates Use Instructions for Giraffe OmniBed and Giraffe Omnibed CareStation due to Risk of Heater Door Falling and Causing Infant Injury</a></td><td>Incubator/Warmer</td><td>Recall Confirmed</td></tr><tr><td>10/29/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/air-compressor-device-correction-ge-healthcare-provides-updates-evair-compressors-due-final" data-entity-type="node" data-entity-uuid="3ce5621d-3db5-4cfa-b185-ad45055f879b" data-entity-substitution="canonical" title="Air Compressor Device Correction: GE HealthCare Provides Updates to EVair Compressors Due to Final Formaldehyde Testing Results ">Air Compressor Device Correction: GE HealthCare Provides Updates to EVair Compressors Due to Final Formaldehyde Testing Results</a></td><td>Air Compressor</td><td>Recall Confirmed</td></tr><tr><td>10/25/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/assistive-arm-correction-kinova-issues-correction-jaco-assistive-robotic-arm-due-fire-hazard-and" data-entity-type="node" data-entity-uuid="4454a695-48b6-424b-94c0-ff32d58011b9" data-entity-substitution="canonical" title="Assistive Arm Correction: Kinova Issues Correction for Jaco Assistive Robotic Arm due to Fire Hazard and Burn Risk  ">Assistive Arm Correction: Kinova Issues Correction for Jaco Assistive Robotic Arm due to Fire Hazard and Burn Risk</a></td><td>Assistive Arm</td><td>Recall Confirmed</td></tr><tr><td>10/25/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/tracheostomy-tube-recall-smiths-medical-removes-bluselect-blugriggs-and-bluperc-tracheostomy-tube" data-entity-type="node" data-entity-uuid="9147e50c-7cce-4e1a-a173-d96cc6a95f6a" data-entity-substitution="canonical" title="Tracheostomy Tube Recall: Smiths Medical Removes BLUselect, BLUgriggs, and BLUperc Tracheostomy Tube Kits due to Potential Disconnection of Pilot Balloon ">Tracheostomy Tube Recall: Smiths Medical Removes BLUselect, BLUgriggs, and BLUperc Tracheostomy Tube Kits due to Potential Disconnection of Pilot Balloon</a></td><td>Tracheostomy Tube</td><td>Recall Confirmed</td></tr><tr><td>10/24/2024</td><td><a href="/medical-devices/ventilator-correction-baxter-healthcare-updates-use-instructions-life2000-ventilation-system-due" data-entity-type="node" data-entity-uuid="0c23833f-75be-490c-b1eb-b16f4c1f87fd" data-entity-substitution="canonical" title="Ventilator Correction: Baxter Healthcare Updates Use Instructions for Life2000 Ventilation System Due to Risk of No Low Gas Pressure Alarm   ">Ventilator Correction: Baxter Healthcare Updates Use Instructions for Life2000 Ventilation System Due to Risk of No Low Gas Pressure Alarm</a></td><td>Ventilator</td><td>Recall Confirmed</td></tr><tr><td>10/18/2024</td><td><a href="https://www.fda.gov/medical-devices/medical-device-recalls/vascular-embolization-device-correction-boston-scientific-updates-use-instructions-obsidio" title="Vascular Embolization Device Correction: Boston Scientific Updates Use Instructions for Obsidio Conformable Embolic for Increased Ischemia Risk When Used for GI Bleeding">Vascular Embolization Device Correction: Boston Scientific Updates Use Instructions for Obsidio Conformable Embolic for Increased Ischemia Risk When Used for GI Bleeding</a></td><td>Vascular Embolization</td><td>Recall Confirmed</td></tr><tr><td>10/17/2024</td><td><a href="https://www.fda.gov/medical-devices/medical-device-recalls/insulin-pump-recall-medtronic-notifies-users-minimed-600-and-700-series-pumps-risk-shorter-expected" title="Insulin Pump Recall: Medtronic Notifies Users of MiniMed 600 and 700 Series Pumps of Risk of Shorter than Expected Battery Life">Insulin Pump Recall: Medtronic Notifies Users of MiniMed 600 and 700 Series Pumps of Risk of Shorter than Expected Battery Life</a></td><td>Insulin Pump</td><td>Recall Confirmed</td></tr><tr><td>10/11/2024</td><td><a href="Infusion Pump Recall: Zyno Medical Removes Certain Z-800, Z-800F, Z-800W, and Z800WF Infusion Pumps due to an Air-in-Line Software Defect That May Allow Larger than Expected Air Bubbles to Enter Patients   ">Infusion Pump Recall: Zyno Medical Removes Certain Z-800, Z-800F, Z-800W, and Z800WF Infusion Pumps due to an Air-in-Line Software Defect That May Allow Larger than Expected Air Bubbles to Enter Patients</a></td><td>Infusion Pump</td><td>Recall Confirmed</td></tr><tr><td>10/7/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/resuscitator-recall-mercury-medical-removes-neo-tee-t-piece-resuscitators-due-risk-inline-controller" data-entity-type="node" data-entity-uuid="90a4c60d-5873-4726-92ee-a294e6e4c245" data-entity-substitution="canonical" title="Resuscitator Recall: Mercury Medical Removes Neo-Tee T-Piece Resuscitators due to Risk of Inline Controller Detachment that May Impact Ventilation">Resuscitator Recall: Mercury Medical Removes Neo-Tee T-Piece Resuscitators due to Risk of Inline Controller Detachment that May Impact Ventilation</a></td><td>Resuscitator</td><td>Recall Confirmed</td></tr><tr><td>10/2/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/ipv-therapy-device-correction-sentecpercussionaire-updates-use-instructions-phasitron-5-line-valve" data-entity-type="node" data-entity-uuid="0ea106f4-bac0-4de1-a98c-ff2194766031" data-entity-substitution="canonical" title="IPV Therapy Device Correction: Sentec/Percussionaire Updates Use Instructions for Phasitron 5 In-Line Valve to Prevent Accidental Misuse of Expiratory Port Plug">IPV Therapy Device Correction: Sentec/Percussionaire Updates Use Instructions for Phasitron 5 In-Line Valve to Prevent Accidental Misuse of Expiratory Port Plug</a></td><td>IPV Therapy</td><td>Recall Confirmed</td></tr><tr><td>10/1/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/ventilator-software-correction-philips-respironics-issues-mandatory-software-correction-and-updates" data-entity-type="node" data-entity-uuid="f4299efa-2716-4771-8f57-109ef6b6c753" data-entity-substitution="canonical" title="Ventilator Software Correction: Philips Respironics Issues Mandatory Software Correction and Updates Use Instructions for Trilogy Evo, EV300, EvoO2, and Evo Universal to Address Multiple Issues that May Impact Ventilation">Ventilator Software Correction: Philips Respironics Issues Mandatory Software Correction and Updates Use Instructions for Trilogy Evo, EV300, EvoO2, and Evo Universal to Address Multiple Issues that May Impact Ventilation</a></td><td>Ventilator Software</td><td>Recall Confirmed</td></tr><tr><td>10/1/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/infusion-pump-software-correction-fresenius-kabi-usa-llc-issues-correction-ivenix-infusion-system" data-entity-type="node" data-entity-uuid="489b37b6-05b3-45e1-bcd7-bcf8f87f4149" data-entity-substitution="canonical" title="Infusion Pump Software Correction: Fresenius Kabi USA, LLC, Issues Correction for Ivenix Infusion System Large Volume Pump (LVP) Software due to Multiple Anomalies that May Cause Delay or Underdosage of Therapy">Infusion Pump Software Correction: Fresenius Kabi USA, LLC, Issues Correction for Ivenix Infusion System Large Volume Pump (LVP) Software due to Multiple Anomalies that May Cause Delay or Underdosage of Therapy</a></td><td>Infusion Pump</td><td>Recall Confirmed</td></tr><tr><td>09/30/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/ventilator-correction-smiths-medical-issues-correction-parapac-plus-p300-and-p310-ventilators-due" data-entity-type="node" data-entity-uuid="82363c61-10a4-4965-8d3a-ebdc1f76e958" data-entity-substitution="canonical" title="Ventilator Correction: Smiths Medical Issues Correction for paraPAC Plus P300 and P310 Ventilators due to Inadvertent Tidal Volume Knob Movement">Ventilator Correction: Smiths Medical Issues Correction for paraPAC Plus P300 and P310 Ventilators due to Inadvertent Tidal Volume Knob Movement</a></td><td>Ventilator</td><td>Recall Confirmed</td></tr><tr><td>09/24/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/compounding-device-inlet-correction-baxter-healthcare-corporation-updates-use-instructions-exactamix" data-entity-type="node" data-entity-uuid="cbe8d368-ea45-4d61-9f81-fa4d7372676b" data-entity-substitution="canonical" title="Compounding Device Inlet Correction: Baxter Healthcare Corporation Updates Use Instructions for Exactamix Automated Compounding Device Inlets due to Risk for Particulate Matter in Device Components">Compounding Device Inlet Correction: Baxter Healthcare Corporation Updates Use Instructions for Exactamix Automated Compounding Device Inlets due to Risk for Particulate Matter in Device Components</a></td><td>Compounding Device</td><td>Recall Confirmed</td></tr><tr><td>09/20/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/ventilator-recall-smiths-medical-removes-parapac-plus-ventilators-due-loosened-or-detached-patient" data-entity-type="node" data-entity-uuid="0ce0ac75-d060-409b-a1b9-c629ac1b07f9" data-entity-substitution="canonical" title="Ventilator Recall: Smiths Medical Removes ParaPAC Plus Ventilators due to Loosened or Detached Patient Outlet Connector">Ventilator Recall: Smiths Medical Removes ParaPAC Plus Ventilators due to Loosened or Detached Patient Outlet Connector</a></td><td>Ventilator</td><td>Recall Confirmed</td></tr><tr><td>09/18/2024</td><td><a href="Tracheostomy Tube Recall: Smiths Medical Removes Certain Bivona Neonatal/Pediatric and Adult Tracheostomy Tubes due to Manufacturing Defect that May Cause Tracheostomy Displacement or Decannulation&nbsp; " title="Tracheostomy Tube Recall: Smiths Medical Removes Certain Bivona Neonatal/Pediatric and Adult Tracheostomy Tubes due to Manufacturing Defect that May Cause Tracheostomy Displacement or Decannulation   ">Tracheostomy Tube Recall: Smiths Medical Removes Certain Bivona Neonatal/Pediatric and Adult Tracheostomy Tubes due to Manufacturing Defect that May Cause Tracheostomy Displacement or Decannulation&nbsp;&nbsp;</a></td><td>Tracheostomy Tube</td><td>Recall Confirmed</td></tr><tr><td>09/17/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/infusion-pump-correction-b-braun-medical-inc-issues-correction-lnfusomat-space-infusion-systemlarge" data-entity-type="node" data-entity-uuid="8df2ef5e-ae49-4ae8-876f-cecd1ebb77af" data-entity-substitution="canonical" title="Infusion Pump Correction: B. Braun Medical Inc. Issues Correction for lnfusomat Space Infusion System/Large Volume Pump, in addition to Infusomat Space Large Volume Pump Wireless, and lnfusomat Space Large Volume Pump Non-Wireless BATTERY PACK, Due to Fau">Infusion Pump Correction: B. Braun Medical Inc. Issues Correction for lnfusomat Space Infusion System/Large Volume Pump, in addition to Infusomat Space Large Volume Pump Wireless, and lnfusomat Space Large Volume Pump Non-Wireless BATTERY PACK, Due to Faulty Occlusion Alarm</a></td><td>Infusion Pump</td><td>Recall Confirmed</td></tr><tr><td>09/16/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/infusion-pump-administration-set-recall-fresenius-kabi-usa-removes-certain-ivenix-large-volume-pump" data-entity-type="node" data-entity-uuid="b050dbe7-51af-4fa8-a405-74e22916899a" data-entity-substitution="canonical" title="Infusion Pump Administration Set Recall: Fresenius Kabi USA Removes Certain Ivenix Large Volume Pump Primary Administration Sets">Infusion Pump Administration Set Recall: Fresenius Kabi USA Removes Certain Ivenix Large Volume Pump Primary Administration Sets</a></td><td>Infusion Pump</td><td>Recall Confirmed</td></tr><tr><td>09/05/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/continuous-glucose-monitoring-cgm-sensor-recall-abbott-diabetes-care-inc-issues-recall-certain" data-entity-type="node" data-entity-uuid="f6d580de-bbd5-4f4b-a585-b9be40d039f8" data-entity-substitution="canonical" title="Continuous Glucose Monitoring (CGM) Sensor Recall: Abbott Diabetes Care Inc Issues Recall for Certain FreeStyle Libre 3 Sensors due to Risk for Inaccurate High Glucose Readings">Continuous Glucose Monitoring (CGM) Sensor Recall: Abbott Diabetes Care Inc Issues Recall for Certain FreeStyle Libre 3 Sensors due to Risk for Inaccurate High Glucose Readings</a></td><td>Continuous Glucose Monitoring (CGM) Sensor</td><td>Recall Confirmed</td></tr><tr><td>09/05/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/ventilator-correction-breas-medical-updates-use-instructions-in-vivo-45-ls-due-potential-elevated" data-entity-type="node" data-entity-uuid="3fd01518-9504-4afd-8081-edd4fdbbe830" data-entity-substitution="canonical" title="Ventilator Correction: Breas Medical Updates Use Instructions for Vivo 45 LS due to Potential Elevated Formaldehyde Levels in Newly Manufactured Ventilators">Ventilator Correction: Breas Medical Updates Use Instructions for Vivo 45 LS due to Potential Elevated Formaldehyde Levels in Newly Manufactured Ventilators</a></td><td>Ventilator</td><td>Recall Confirmed</td></tr><tr><td>09/05/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/laryngoscope-recall-medtronic-removes-certain-mcgrath-mac-video-laryngoscopes-updates-use" data-entity-type="node" data-entity-uuid="19aaf9a6-cf08-4b0c-9ed1-186c7a0cc289" data-entity-substitution="canonical" title="Laryngoscope Recall: Medtronic Removes Certain McGrath MAC Video Laryngoscopes, Updates Use Instructions for Others due to Increased Risk for Battery Overheat and Explosion ">Laryngoscope Recall: Medtronic Removes Certain McGrath MAC Video Laryngoscopes, Updates Use Instructions for Others due to Increased Risk for Battery Overheat and Explosion</a></td><td>Laryngoscope</td><td>Recall Confirmed</td></tr><tr><td>09/04/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/lung-therapy-component-recall-baxter-healthcare-corporation-recalls-certain-volara-system-single" data-entity-type="node" data-entity-uuid="e154e133-555f-434c-b68a-73b0a69b09c1" data-entity-substitution="canonical" title="Lung Therapy Component Recall: Baxter Healthcare Corporation Recalls Certain Volara System Single-Patient Use Circuits and Blue Ventilator Adapter Assemblies Due to Disconnection Risk That May Prevent Proper Ventilation">Lung Therapy Component Recall: Baxter Healthcare Corporation Recalls Certain Volara System Single-Patient Use Circuits and Blue Ventilator Adapter Assemblies Due to Disconnection Risk That May Prevent Proper Ventilation</a></td><td>Lung Therapy</td><td>Recall Confirmed</td></tr><tr><td>08/23/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/clot-removal-device-correction-inari-medical-updates-use-instructions-clottriever-xl-catheter-due" data-entity-type="node" data-entity-uuid="8c13758b-5119-4e17-aebe-fb48ca859498" data-entity-substitution="canonical" title="Clot Removal Device Correction: Inari Medical Updates Use Instructions for ClotTriever XL Catheter due to Reports of Patient Injury and Death from Device Entrapment and Pulmonary Emboli ">Clot Removal Device Correction: Inari Medical Updates Use Instructions for ClotTriever XL Catheter due to Reports of Patient Injury and Death from Device Entrapment and Pulmonary Emboli</a></td><td>Clot Removal</td><td>Recall Confirmed</td></tr><tr><td>08/23/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/convenience-kit-component-recall-medline-industries-lp-removes-convenience-kit-syringes-manufactured" data-entity-type="node" data-entity-uuid="518ec2a9-23bf-4476-93ce-3257f069f529" data-entity-substitution="canonical" title="Convenience Kit Component Recall: Medline Industries, LP, Removes Convenience Kit Syringes Manufactured in China that May Be Contaminated, Break, Leak, or Otherwise Fail ">Convenience Kit Component Recall: Medline Industries, LP, Removes Convenience Kit Syringes Manufactured in China that May Be Contaminated, Break, Leak, or Otherwise Fail</a></td><td>Convenience Kit</td><td>Recall Confirmed</td></tr><tr><td>08/22/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/chest-compression-device-recall-defibtech-llc-removes-rmu-2000-arm-xr-chest-compression-device-due" data-entity-type="node" data-entity-uuid="af8f84e3-4b64-48f9-8fc5-f2f5c0699571" data-entity-substitution="canonical" title="Chest Compression Device Recall: Defibtech, LLC, Removes RMU-2000 ARM XR Chest Compression Device due to Risk of Device Stopping Compressions  ">Chest Compression Device Recall: Defibtech, LLC, Removes RMU-2000 ARM XR Chest Compression Device due to Risk of Device Stopping Compressions</a></td><td>Chest Compression Device</td><td>Recall Confirmed</td></tr><tr><td>08/20/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/infusion-pump-battery-correction-icu-medical-updates-instructions-use-regarding-batteries-plum-360" data-entity-type="node" data-entity-uuid="3d44dd04-0c69-400f-b348-c02c4e689bf6" data-entity-substitution="canonical" title="Infusion Pump Battery Correction: ICU Medical Updates Instructions for Use Regarding Batteries in Plum 360, A+ and A+3 Infusion System due to Diminished Battery Life that May Impact Infusion Delivery  ">Infusion Pump Battery Correction: ICU Medical Updates Instructions for Use Regarding Batteries in Plum 360, A+ and A+3 Infusion System due to Diminished Battery Life that May Impact Infusion Delivery</a></td><td>Infusion Pump</td><td>Recall Confirmed</td></tr><tr><td>08/12/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/heart-pump-recall-abiomed-removes-certain-impella-cp-smartassist-systems-due-failed-quality" data-entity-type="node" data-entity-uuid="ba7aa013-fd11-4a6e-bac3-1ea0e443fcdc" data-entity-substitution="canonical" title="Heart Pump Recall: Abiomed Removes Certain Impella CP with SmartAssist Systems due to Failed Quality Inspections">Heart Pump Recall: Abiomed Removes Certain Impella CP with SmartAssist Systems due to Failed Quality Inspections</a></td><td>Heart Pump</td><td>Recall Confirmed</td></tr><tr><td>08/06/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/nerve-monitoring-system-correction-medtronic-issues-correction-nim-vital-nerve-monitoring-system-due" data-entity-type="node" data-entity-uuid="8472b4d5-27f5-4839-9c37-a830e91ae27a" data-entity-substitution="canonical" title="Nerve Monitoring System Correction: Medtronic Issues Correction for NIM Vital Nerve Monitoring System due to the Potential for False Negative Response">Nerve Monitoring System Correction: Medtronic Issues Correction for NIM Vital Nerve Monitoring System due to the Potential for False Negative Response</a></td><td>Nerve Monitoring System</td><td>Recall Confirmed</td></tr><tr><td>08/06/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/ambulatory-infusion-pump-software-correction-smiths-medical-issues-correction-cadd-solis-and-cadd" data-entity-type="node" data-entity-uuid="f2a1a626-ca29-4be5-8b63-a0994f45f038" data-entity-substitution="canonical" title="Ambulatory Infusion Pump Software Correction: Smiths Medical Issues Correction for CADD-Solis and CADD-Solis VIP Ambulatory Infusion Pump Software due to Multiple Issues Related to Outdated Software">Ambulatory Infusion Pump Software Correction: Smiths Medical Issues Correction for CADD-Solis and CADD-Solis VIP Ambulatory Infusion Pump Software due to Multiple Issues Related to Outdated Software</a></td><td>Ambulatory Infusion Pump</td><td>Recall Confirmed</td></tr><tr><td>07/15/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/eye-injection-kit-recall-bausch-lombsynergetics-inc-removes-certain-i-pack-injection-kits-due" data-entity-type="node" data-entity-uuid="fc350616-a60f-4f8c-a4e6-f60d4e41bf79" data-entity-substitution="canonical" title="Eye Injection Kit Recall: Bausch + Lomb/Synergetics Inc. Removes Certain I-Pack Injection Kits Due to Potential Non-Sterility">Eye Injection Kit Recall: Bausch + Lomb/Synergetics Inc. Removes Certain I-Pack Injection Kits Due to Potential Non-Sterility</a></td><td>Eye Injection Kit</td><td>Recall Confirmed</td></tr><tr><td>07/15/2024</td><td><a href="https://www.fda.gov/medical-devices/medical-device-recalls/ventilator-recall-baxter-removes-life2000-ventilator-due-potential-failure-battery-charging-dongle" title="Ventilator Recall: Baxter Removes Life2000 Ventilator Due to Potential Failure of Battery Charging Dongle">Ventilator Recall: Baxter Removes Life2000 Ventilator Due to Potential Failure of Battery Charging Dongle</a></td><td>Ventilator</td><td>Recall Confirmed</td></tr><tr><td>07/11/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/electrode-pad-correction-megadyne-issues-correction-mega-soft-mega-soft-dual-and-mega-2000-patient" data-entity-type="node" data-entity-uuid="0ab4c852-f866-4046-86cf-6edf44b2668e" data-entity-substitution="canonical" title="Electrode Pad Correction: Megadyne Issues Correction for MEGA SOFT, MEGA SOFT DUAL and MEGA 2000 Patient Return Electrodes to Limit Risk of Pediatric Burns ">Electrode Pad Correction: Megadyne Issues Correction for MEGA SOFT, MEGA SOFT DUAL and MEGA 2000 Patient Return Electrodes to Limit Risk of Pediatric Burns</a></td><td>Electrode Pad</td><td>Recall Confirmed</td></tr><tr><td>07/11/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/ventilator-software-correction-hamilton-medical-issues-correction-hamilton-c6-medical-ventilators" data-entity-type="node" data-entity-uuid="e5db26be-06aa-4a9c-bf71-13db5b20571c" data-entity-substitution="canonical" title="Ventilator Software Correction: Hamilton Medical Issues Correction for HAMILTON-C6 Medical Ventilators to Address Risk of Failed Ventilation Restart">Ventilator Software Correction: Hamilton Medical Issues Correction for HAMILTON-C6 Medical Ventilators to Address Risk of Failed Ventilation Restart</a></td><td>Ventilator</td><td>Recall Confirmed</td></tr><tr><td>07/08/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/implantable-hypoglossal-nerve-stimulator-device-removal-inspire-medical-systems-inc-removes-inspire" data-entity-type="node" data-entity-uuid="9fd8e7c8-201d-4da5-9701-b3b66964aa22" data-entity-substitution="canonical" title="An Implantable Hypoglossal Nerve Stimulator Device Removal: Inspire Medical Systems, Inc. Removes Inspire IV Implantable Pulse Generator due to Manufacturing Defect That Can Result in System Malfunctions">An Implantable Hypoglossal Nerve Stimulator Device Removal: Inspire Medical Systems, Inc. Removes Inspire IV Implantable Pulse Generator due to Manufacturing Defect That Can Result in System Malfunctions</a></td><td>Implantable Hypoglossal Nerve Stimulator</td><td>Recall Confirmed</td></tr><tr><td>07/08/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/radiofrequency-rf-coils-correction-philips-north-america-llc-updates-use-instructions-sense-xl-torso" data-entity-type="node" data-entity-uuid="6f788d3c-22bf-4694-8048-744896ed83a9" data-entity-substitution="canonical" title="Radiofrequency (RF) Coils Correction: Philips North America LLC Updates Use Instructions For SENSE XL Torso (1.5T And 3.0T) Coils Due to a Potential Issue Where the Coil Heats Up During MRI Scans, Possibly Leading to Thermal Injury">Radiofrequency (RF) Coils Correction: Philips North America LLC Updates Use Instructions For SENSE XL Torso (1.5T And 3.0T) Coils Due to a Potential Issue Where the Coil Heats Up During MRI Scans, Possibly Leading to Thermal Injury</a></td><td>Radiofrequency (RF) Coils</td><td>Recall Confirmed</td></tr><tr><td>06/28/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/continuous-ventilator-correction-philips-respironics-inc-updates-use-instructions-omnilab-advanced" data-entity-type="node" data-entity-uuid="3acd4a02-1621-48d1-b309-b3ffd5e82b5c" data-entity-substitution="canonical" title="Continuous Ventilator Correction: Philips Respironics, Inc. Updates Use Instructions for OmniLab Advanced+ (OLA+) Ventilator due to Interruptions and/or Loss of Therapy    ">Continuous Ventilator Correction: Philips Respironics, Inc. Updates Use Instructions for OmniLab Advanced+ (OLA+) Ventilator due to Interruptions and/or Loss of Therapy</a></td><td>Ventilator</td><td>Recall Confirmed</td></tr><tr><td>06/28/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/left-ventricular-assist-system-lvas-monitor-correction-abbott-medical-issues-correction-heartmate" data-entity-type="node" data-entity-uuid="daa9cc19-09d1-42e4-b9c7-690a052d8a8a" data-entity-substitution="canonical" title="Left Ventricular Assist System (LVAS) Monitor Correction: Abbott Medical Issues Correction for HeartMate LVAS System Monitor due to Screen Issues that May Cause Unintentional Pump Stop">Left Ventricular Assist System (LVAS) Monitor Correction: Abbott Medical Issues Correction for HeartMate LVAS System Monitor due to Screen Issues that May Cause Unintentional Pump Stop</a></td><td>Left Ventricular Assist System (LVAS) Monitor</td><td>Recall Confirmed</td></tr><tr><td>06/27/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/ventilator-correction-zoll-medical-corporation-updates-use-instructions-731-ventilators-due-missing" data-entity-type="node" data-entity-uuid="a04cc387-2368-453f-aa09-477efe55de36" data-entity-substitution="canonical" title="Ventilator Correction: ZOLL Medical Corporation Updates Use Instructions For 731 Ventilators Due to Missing MRI Safety Information in The Labeling That May Lead to Misuse and Ventilator Failure ">Ventilator Correction: ZOLL Medical Corporation Updates Use Instructions For 731 Ventilators Due to Missing MRI Safety Information in The Labeling That May Lead to Misuse and Ventilator Failure</a></td><td>Ventilator</td><td>Recall Confirmed</td></tr><tr><td>06/27/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/continuous-ventilator-correction-philips-respironics-inc-updates-use-instructions-bipap-v30-bipap" data-entity-type="node" data-entity-uuid="34a93ead-abe0-4f29-a8f7-9c211fe42721" data-entity-substitution="canonical" title="Continuous Ventilator Correction: Philips Respironics, Inc. Updates Use Instructions for BiPAP V30, BiPAP A30, BiPAP A40 Due to Interruptions and/or Loss of Therapy  ">Philips Respironics, Inc. Updates Use Instructions for BiPAP V30, BiPAP A30, BiPAP A40 Due to Interruptions and/or Loss of Therapy</a></td><td>BiPAP</td><td>Recall Confirmed</td></tr><tr><td>06/13/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/electrode-pad-recall-megadyne-removes-megadyne-mega-soft-pediatric-patient-return-electrodes-risk" data-entity-type="node" data-entity-uuid="1a0b06cb-337e-4e6d-a8c3-36682189194e" data-entity-substitution="canonical" title="Electrode Pad Recall: Megadyne Removes MEGADYNE MEGA SOFT Pediatric Patient Return Electrodes for Risk of Serious Burn Injuries to Patients ">Electrode Pad Recall: Megadyne Removes MEGADYNE MEGA SOFT Pediatric Patient Return Electrodes for Risk of Serious Burn Injuries to Patients</a></td><td>Electrode Pad</td><td>Recall Confirmed</td></tr><tr><td>06/13/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/getinge-recalls-vaporizer-sevoflurane-maquet-filling-risk-patient-and-health-care-professional" data-entity-type="node" data-entity-uuid="ae681635-2bdf-4e05-8d45-ccd175cf2121" data-entity-substitution="canonical" title="Getinge Recalls Vaporizer Sevoflurane Maquet Filling for Risk of Patient and Health Care Professional Exposure to Toxic Chemical Hydrogen Fluoride">Getinge Recalls Vaporizer Sevoflurane Maquet Filling for Risk of Patient and Health Care Professional Exposure to Toxic Chemical Hydrogen Fluoride</a></td><td>Vaporizer</td><td>Recall Confirmed</td></tr><tr><td>06/13/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/teleflexarrow-international-recall-arrow-fiberoptix-and-ultraflex-intra-aortic-balloon-iab-catheter" data-entity-type="node" data-entity-uuid="ae9a8c1f-4b23-4320-85dd-4063aa437e71" data-entity-substitution="canonical" title="Teleflex/Arrow International Recall Arrow FiberOptix and UltraFlex Intra-Aortic Balloon (IAB) Catheter Kits for Manufacturing Issue That May Prevent Full Balloon Inflation and Cause Patient Harm">Teleflex/Arrow International Recall Arrow FiberOptix and UltraFlex Intra-Aortic Balloon (IAB) Catheter Kits for Manufacturing Issue That May Prevent Full Balloon Inflation and Cause Patient Harm</a></td><td>Catheter Kit</td><td>Recall Confirmed</td></tr><tr><td>06/11/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/endotracheal-tube-recall-medline-industries-lp-removes-medline-sub-g-endotracheal-tube-subglottic" data-entity-type="node" data-entity-uuid="d87eb971-fc4c-44b2-88d6-0174c3cba903" data-entity-substitution="canonical" title="Endotracheal Tube Recall: Medline Industries, LP Removes Medline Sub-G Endotracheal Tube with Subglottic Suctioning due to Detachment or Tearing of the Inflation Tube from the Main Tube ">Endotracheal Tube Recall: Medline Industries, LP Removes Medline Sub-G Endotracheal Tube with Subglottic Suctioning due to Detachment or Tearing of the Inflation Tube from the Main Tube</a></td><td>Endrotracheal Tube</td><td>Recall Confirmed</td></tr><tr><td>06/05/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/medtronic-recalls-stealthstation-s8-application-versions-120-110-103-102-and-101-software-error-may" data-entity-type="node" data-entity-uuid="334948aa-7389-4ca7-a58e-f953dee9c683" data-entity-substitution="canonical" title="Medtronic Recalls StealthStation S8 Application Versions 1.2.0, 1.1.0, 1.0.3, 1.0.2, and 1.0.1 for Software Error that May Cause Incorrect Measurements During Cranial Surgery">Medtronic Recalls StealthStation S8 Application Versions 1.2.0, 1.1.0, 1.0.3, 1.0.2, and 1.0.1 for Software Error that May Cause Incorrect Measurements During Cranial Surgery</a></td><td>Software</td><td>Recall Confirmed</td></tr><tr><td>05/30/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/optumhealth-care-solutions-recalls-nimbus-ii-infusion-pump-systems-under-recall-infutronix-llc" data-entity-type="node" data-entity-uuid="77495719-92e9-48b7-8891-ff95f27bb44d" data-entity-substitution="canonical" title="OptumHealth Care Solutions Recalls Nimbus II Infusion Pump Systems Under Recall by InfuTronix, LLC">OptumHealth Care Solutions Recalls Nimbus II Infusion Pump Systems Under Recall by InfuTronix, LLC</a></td><td>Infusion Pump</td><td>Recall Confirmed</td></tr><tr><td>05/23/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/vyaire-medical-inc-recalls-twin-tube-due-potential-nozzle-separating-during-patient-use" data-entity-type="node" data-entity-uuid="9ced710c-a1ee-4349-8caf-eed241b900a2" data-entity-substitution="canonical" title="Vyaire Medical, Inc. Recalls the Twin Tube Due to The Potential of The Nozzle Separating During Patient Use">Vyaire Medical, Inc. Recalls the Twin Tube Due to The Potential of The Nozzle Separating During Patient Use</a></td><td>Tube</td><td>Recall Confirmed</td></tr><tr><td>05/22/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/hologic-inc-recalls-biozorb-marker-due-complications-implanted-devices" data-entity-type="node" data-entity-uuid="9baa0817-1f35-452b-8c01-02de01b250e6" data-entity-substitution="canonical" title="Hologic, Inc. Recalls BioZorb Marker Due to Complications with Implanted Devices ">Hologic, Inc. Recalls BioZorb Marker Due to Complications with Implanted Devices</a></td><td>Implantable Radiographic Marker</td><td>Recall Confirmed</td></tr><tr><td>05/15/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/abbott-recalls-heartmate-3-left-ventricular-assist-system-lvas-implant-kit-risk-blood-leakage-or-air" data-entity-type="node" data-entity-uuid="143029a6-8fb7-4137-946a-5a081b0ad74a" data-entity-substitution="canonical" title="Abbott Recalls HeartMate 3 Left Ventricular Assist System (LVAS) Implant Kit for Risk of Blood Leakage or Air Entering System Between Inflow Cannula and Apical Cuff">Abbott Recalls HeartMate 3 Left Ventricular Assist System (LVAS) Implant Kit for Risk of Blood Leakage or Air Entering System Between Inflow Cannula and Apical Cuff</a></td><td>Ventricular Assist System</td><td>Recall Confirmed</td></tr><tr><td>05/13/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/philips-respironics-inc-recalls-trilogy-evo-continuous-ventilators-due-software-related-possible" data-entity-type="node" data-entity-uuid="4e8b7386-62f3-4df4-82ba-adba15d2ded0" data-entity-substitution="canonical" title="Philips Respironics, Inc. Recalls Trilogy Evo Continuous Ventilators due to a Software-Related Possible Power Malfunction">Philips Respironics, Inc. Recalls Trilogy Evo Continuous Ventilators due to a Software-Related Possible Power Malfunction</a></td><td>Ventilators</td><td>Recall Confirmed</td></tr><tr><td>05/10/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/route-92-medical-inc-recalls-catheter-due-distal-tip-separation-proximal-marker-band" data-entity-type="node" data-entity-uuid="d397a1db-21ba-4ddf-8873-091435b3010e" data-entity-substitution="canonical" title="Route 92 Medical Inc. Recalls Catheter due to Distal Tip Separation at the Proximal Marker Band">Route 92 Medical Inc. Recalls Catheter due to Distal Tip Separation at the Proximal Marker Band</a></td><td>Catheter</td><td>Recall Confirmed</td></tr><tr><td>05/08/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/tandem-diabetes-care-inc-recalls-version-27-apple-ios-tconnect-mobile-app-used-conjunction-tslim-x2" data-entity-type="node" data-entity-uuid="f000ac67-2d61-4948-8a74-1c9e0cf35849" data-entity-substitution="canonical" title="Tandem Diabetes Care, Inc. Recalls Version 2.7 of the Apple iOS t:connect Mobile App Used in Conjunction with t:slim X2 Insulin Pump with Control-IQ Technology Prompted by a Software Problem Leading to Pump Battery Depletion">Tandem Diabetes Care, Inc. Recalls Version 2.7 of the Apple iOS t:connect Mobile App Used in Conjunction with t:slim X2 Insulin Pump with Control-IQ Technology Prompted by a Software Problem Leading to Pump Battery Depletion</a></td><td>Mobile App</td><td>Recall Confirmed</td></tr><tr><td>04/30/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/biomerieux-inc-recalls-vitek-2-ast-kit-due-incorrect-ceftriaxone-concentrations" data-entity-type="node" data-entity-uuid="1ae12390-af5a-428b-b7f2-6169eb675870" data-entity-substitution="canonical" title="BioMérieux Inc. Recalls VITEK 2 AST Kit due to Incorrect Ceftriaxone Concentrations">BioMérieux Inc. Recalls VITEK 2 AST Kit due to Incorrect Ceftriaxone Concentrations</a></td><td>Test</td><td>Recall Confirmed</td></tr><tr><td>04/29/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/sonarmed-inc-recalls-airway-acoustic-sensors-due-restricted-inner-diameter-airway-causing-suction" data-entity-type="node" data-entity-uuid="0b1e33c6-bffd-49d5-84ad-c138c50ccd33" data-entity-substitution="canonical" title="SonarMed Inc. Recalls Airway Acoustic Sensors Due to a Restricted Inner Diameter of Airway Causing Suction Catheter Passage Difficulty">SonarMed Inc. Recalls Airway Acoustic Sensors Due to a Restricted Inner Diameter of Airway Causing Suction Catheter Passage Difficulty</a></td><td>Sensor</td><td>Recall Confirmed</td></tr><tr><td>04/29/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/sonarmed-inc-recalls-airway-monitors-due-software-anomaly-resulting-failure-detect-partial" data-entity-type="node" data-entity-uuid="f889e9c5-3e82-4c07-99cf-b38225301cd2" data-entity-substitution="canonical" title="SonarMed Inc. Recalls Airway Monitors Due to a Software Anomaly Resulting in Failure to Detect a Partial Obstruction in 2.5mm Sensors and Up To 3mm Distal to the Sensor Tip">SonarMed Inc. Recalls Airway Monitors Due to a Software Anomaly Resulting in Failure to Detect a Partial Obstruction in 2.5mm Sensors and Up To 3mm Distal to the Sensor Tip</a></td><td>Monitor</td><td>Recall Confirmed</td></tr><tr><td>04/26/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/elekta-instrument-ab-recalls-disposable-biopsy-needle-kit-leksell-stereotactic-system-possibly" data-entity-type="node" data-entity-uuid="0796ffed-7509-4510-a554-039fd8f2e864" data-entity-substitution="canonical" title="Elekta Instrument AB Recalls Disposable Biopsy Needle Kit for Leksell Stereotactic System for Possibly Containing Microscopic Stainless Steel Debris on the Inside of the Biopsy Needle">Elekta Instrument AB Recalls Disposable Biopsy Needle Kit for Leksell Stereotactic System for Possibly Containing Microscopic Stainless Steel Debris on the Inside of the Biopsy Needle</a></td><td>Biopsy Needle</td><td>Recall Confirmed</td></tr><tr><td>04/25/2024</td><td><a href="InfuTronix, LLC Recalls Nimbus and Nimbus II Infusion Pump Systems for Multiple Device Failures That May Cause Severe Injury and Death" title="InfuTronix, LLC Recalls Nimbus and Nimbus II Infusion Pump Systems for Multiple Device Failures That May Cause Severe Injury and Death">InfuTronix, LLC Recalls Nimbus and Nimbus II Infusion Pump Systems for Multiple Device Failures That May Cause Severe Injury and Death</a></td><td>Infusion Pump</td><td>Recall Confirmed</td></tr><tr><td>04/25/2024</td><td><a href="Draeger, Inc. Recalls Perseus A500 Anesthesia System for Risk of Sudden Unexpected Shutdown When Used on Battery Power" title="Draeger, Inc. Recalls Perseus A500 Anesthesia System for Risk of Sudden Unexpected Shutdown When Used on Battery Power">Draeger, Inc. Recalls Perseus A500 Anesthesia System for Risk of Sudden Unexpected Shutdown When Used on Battery Power</a></td><td>Anesthesia System</td><td>Recall Confirmed</td></tr><tr><td>04/25/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/outset-medical-inc-recalls-certain-tablo-hemodialysis-systems-risk-patient-exposure-higher-allowable" data-entity-type="node" data-entity-uuid="9111f27b-a51a-453e-9420-2223a0e8314c" data-entity-substitution="canonical" title="Outset Medical, Inc. Recalls Certain Tablo Hemodialysis Systems for Risk of Patient Exposure to Higher Than Allowable Levels of Toxic Compound NDL-PCBAs">Outset Medical, Inc. Recalls Certain Tablo Hemodialysis Systems for Risk of Patient Exposure to Higher Than Allowable Levels of Toxic Compound NDL-PCBAs</a></td><td>Hemodialysis System</td><td>Recall Confirmed</td></tr><tr><td>04/25/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/fresenius-medical-care-recalls-stay-safe-catheter-extension-sets-and-stay-safeluer-lock-adapter-risk" data-entity-type="node" data-entity-uuid="14b6e672-4202-43b2-a2a9-44866fe1d747" data-entity-substitution="canonical" title="Fresenius Medical Care Recalls Stay-Safe Catheter Extension Sets and Stay-Safe/Luer Lock Adapter for Risk of Patient Exposure to Higher Than Allowable Levels of Toxic Compound NDL-PCBA">Fresenius Medical Care Recalls Stay-Safe Catheter Extension Sets and Stay-Safe/Luer Lock Adapter for Risk of Patient Exposure to Higher Than Allowable Levels of Toxic Compound NDL-PCBA</a></td><td>Catheter Extension</td><td>Recall Confirmed</td></tr><tr><td>04/24/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/deroyal-industries-inc-recalls-tracecarts-containing-16fr-urine-meter-foley-under-recall-nurse" data-entity-type="node" data-entity-uuid="6e40ca2e-5f48-45bc-9305-c6e60423826c" data-entity-substitution="canonical" title="DeRoyal Industries, Inc. Recalls Tracecarts Containing 16FR Urine Meter Foley Under Recall by Nurse Assist">DeRoyal Industries, Inc. Recalls Tracecarts Containing 16FR Urine Meter Foley Under Recall by Nurse Assist</a></td><td>General Surgery Tray</td><td>Recall Confirmed</td></tr><tr><td>04/17/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/fresenius-kabi-usa-llc-recalls-ivenix-infusion-pump-lvp-software-anomalies-have-potential-cause" data-entity-type="node" data-entity-uuid="c299fa91-bf90-48ad-bb40-94496ece0f75" data-entity-substitution="canonical" title="Fresenius Kabi USA, LLC Recalls Ivenix Infusion Pump LVP Software for Anomalies That Have the Potential to Cause Serious Patient Harm or Death">Fresenius Kabi USA, LLC Recalls Ivenix Infusion Pump LVP Software for Anomalies That Have the Potential to Cause Serious Patient Harm or Death</a></td><td>Software</td><td>Recall Confirmed</td></tr><tr><td>04/17/2024</td><td><a href="Boston Scientific Recalls Obsidio Conformable Embolic for Increased Bowel Ischemia Risk When Used for Lower GI Bleeding" title="Vascular Embolization Device Correction: Boston Scientific Updates Use Instructions for Obsidio Conformable Embolic for Increased Ischemia Risk When Used for GI Bleeding">Boston Scientific Recalls Obsidio Conformable Embolic for Increased Bowel Ischemia Risk When Used for Lower GI Bleeding</a></td><td>Embolic Agent</td><td>Recall Confirmed</td></tr><tr><td>04/14/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/abbottthoratec-corp-recalls-heartmate-ii-and-heartmate-3-left-ventricular-assist-system-lvas-due" data-entity-type="node" data-entity-uuid="7e40d9be-36d3-4e15-ac4c-e9b490a4ac26" data-entity-substitution="canonical" title="Abbott/Thoratec Corp. Recalls HeartMate II and HeartMate 3 Left Ventricular Assist System (LVAS) due to Long-term Buildup Causing an Obstruction ">Abbott/Thoratec Corp. Recalls HeartMate II and HeartMate 3 Left Ventricular Assist System (LVAS) due to Long-term Buildup Causing an Obstruction</a></td><td>Ventricular Assist System</td><td>Recall Confirmed</td></tr><tr><td>04/04/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/medos-international-sarl-recalls-cerenovus-cerebase-da-guide-sheath-due-cracking-distal-catheter" data-entity-type="node" data-entity-uuid="19370115-eed4-4850-8bec-0d9b8bd10d35" data-entity-substitution="canonical" title="Medos International Sàrl Recalls Cerenovus CEREBASE DA Guide Sheath due to Cracking of the Distal Catheter Shaft">Medos International Sàrl Recalls Cerenovus CEREBASE DA Guide Sheath due to Cracking of the Distal Catheter Shaft</a></td><td>Catheter</td><td>Recall Confirmed</td></tr><tr><td>04/04/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/smiths-medical-asd-recalls-pneupac-parapac-plus-300-and-310-ventilator-kits-malfunction-causing-non" data-entity-type="node" data-entity-uuid="87a8fe9c-4f3a-4453-8da6-dba2c9e3675f" data-entity-substitution="canonical" title="Smiths Medical ASD Recalls PneuPac ParaPAC Plus 300 and 310 Ventilator Kits for a Malfunction Causing Non-Cycling, Continuous Positive Gas Flow and Preventing Proper Ventilation">Smiths Medical ASD Recalls PneuPac ParaPAC Plus 300 and 310 Ventilator Kits for a Malfunction Causing Non-Cycling, Continuous Positive Gas Flow and Preventing Proper Ventilation</a></td><td>Ventilator Kit</td><td>Recall Confirmed</td></tr><tr><td>04/03/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/teleflex-and-arrow-international-recall-arrow-quickflash-radial-artery-and-radial-arteryarterial" data-entity-type="node" data-entity-uuid="2453b15d-eb84-48b2-af58-807c0ca4ed93" data-entity-substitution="canonical" title="Teleflex and Arrow International Recall ARROW QuickFlash Radial Artery and Radial Artery/Arterial Line Catheterization Kits for Increased Resistance That May Lead to Vessel Injuries, Narrowing, or Blockage">Teleflex and Arrow International Recall ARROW QuickFlash Radial Artery and Radial Artery/Arterial Line Catheterization Kits for Increased Resistance That May Lead to Vessel Injuries, Narrowing, or Blockage</a></td><td>Catheter Kit</td><td>Recall Confirmed</td></tr><tr><td>03/25/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/medline-industries-recalls-certain-kits-and-trays-containing-sterile-water-based-products-under" data-entity-type="node" data-entity-uuid="24bc33f3-6591-44de-aedb-d75d5f604e65" data-entity-substitution="canonical" title="Medline Industries Recalls Certain Kits and Trays Containing Sterile Water Based Products Under Recall by Nurse Assist">Medline Industries Recalls Certain Kits and Trays Containing Sterile Water Based Products Under Recall by Nurse Assist</a></td><td>Kits and Trays</td><td>Recall Confirmed</td></tr><tr><td>03/21/2024</td><td><a href="https://www.fda.gov/medical-devices/medical-device-recalls/vyaire-medical-inc-recalls-airlife-manual-resuscitators-due-manufacturing-defect-can-lead-injury-or" title="Vyaire Medical, Inc. Recalls AirLife Manual Resuscitators Due to Manufacturing Defect That Can Lead to Injury or Death">Vyaire Medical, Inc. Recalls AirLife Manual Resuscitators Due to Manufacturing Defect That Can Lead to Injury or Death</a></td><td>Resuscitator</td><td>Recall Confirmed</td></tr><tr><td>03/21/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/abiomed-recalls-instructions-use-impella-left-sided-blood-pumps-due-perforation-risks" data-entity-type="node" data-entity-uuid="35a3be92-9e18-4980-84f6-2bc536c64ad7" data-entity-substitution="canonical" title="Abiomed Recalls the Instructions for Use for Impella Left Sided Blood Pumps due to Perforation Risks">Abiomed Recalls the Instructions for Use for Impella Left Sided Blood Pumps due to Perforation Risks</a></td><td>Blood Pump</td><td>Recall Confirmed</td></tr><tr><td>03/14/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/avanos-recalls-mic-gastric-jejunal-feeding-tube-kits-containing-sterile-water-based-products-under" data-entity-type="node" data-entity-uuid="06377cb9-f4ee-4935-a1c5-42d7717dfde1" data-entity-substitution="canonical" title="Avanos Recalls MIC Gastric – Jejunal Feeding Tube Kits Containing Sterile Water Based Products Under Recall by Nurse Assist">Avanos Recalls MIC Gastric - Jejunal Feeding Tube Kits Containing Sterile Water Based Products Under Recall by Nurse Assist</a></td><td>Feeding Tube Kit</td><td>Recall Confirmed</td></tr><tr><td>03/11/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/abbott-recalls-heartmate-touch-communication-system-unintentional-pump-start-and-stop" data-entity-type="node" data-entity-uuid="aaa3adf6-4bce-4256-ab51-cee3c30236e6" data-entity-substitution="canonical" title="Abbott Recalls HeartMate Touch Communication System for Unintentional Pump Start and Stop ">Abbott Recalls HeartMate Touch Communication System for Unintentional Pump Start and Stop</a></td><td>Monitor</td><td>Recall Confirmed</td></tr><tr><td>03/11/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/windstone-medical-packaging-inc-recalls-local-lower-extremity-pack-house-ocular-pack-and-closure-kit" data-entity-type="node" data-entity-uuid="38c33c9f-868c-4c16-a3b9-300f4660761b" data-entity-substitution="canonical" title="Windstone Medical Packaging, Inc. Recalls Local Lower Extremity Pack, In House Ocular Pack and Closure Kit Containing Sterile Water Based Products Under Recall by Nurse Assist">Windstone Medical Packaging, Inc. Recalls Local Lower Extremity Pack, In House Ocular Pack and Closure Kit Containing Sterile Water Based Products Under Recall by Nurse Assist</a></td><td>Lower Extremity Pack</td><td>Recall Confirmed</td></tr><tr><td>03/07/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/ventec-life-systems-recalls-vocsn-patient-breathing-package-pediatric-active-oxygen-blue" data-entity-type="node" data-entity-uuid="6968f067-8890-40b9-a33e-4b207e3d3d3c" data-entity-substitution="canonical" title="Ventec Life Systems Recalls VOCSN Patient Breathing Package (Pediatric, Active, Oxygen, Blue) for Manufacturing Issue with Bonded Spiral Wrap">Ventec Life Systems Recalls VOCSN Patient Breathing Package (Pediatric, Active, Oxygen, Blue) for Manufacturing Issue with Bonded Spiral Wrap</a></td><td>Breathing Pack</td><td>Recall Confirmed</td></tr><tr><td>03/07/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/medtronic-neurosurgery-recalls-duet-external-drainage-and-monitoring-system-catheter-tubing-due" data-entity-type="node" data-entity-uuid="174221a7-55f6-4655-82bc-5a1b318121de" data-entity-substitution="canonical" title="Medtronic Neurosurgery Recalls Duet External Drainage and Monitoring System Catheter Tubing due to a Potential for the Catheter Disconnection from the Patient Line Stopcock Connectors">Medtronic Neurosurgery Recalls Duet External Drainage and Monitoring System Catheter Tubing due to a Potential for the Catheter Disconnection from the Patient Line Stopcock Connectors</a></td><td>Catheter</td><td>Recall Confirmed</td></tr><tr><td>03/06/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/baxter-healthcare-recalls-exactamix-pro-1200-and-pro-2400-due-software-error" data-entity-type="node" data-entity-uuid="a8e925bc-289d-4405-8f01-4a345f01b5e1" data-entity-substitution="canonical" title="Baxter Healthcare Recalls ExactaMix Pro 1200 and Pro 2400 Due to a Software Error">Baxter Healthcare Recalls ExactaMix Pro 1200 and Pro 2400 Due to a Software Error</a></td><td>Software</td><td>Recall Confirmed</td></tr><tr><td>03/05/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/smiths-medical-asd-inc-recalls-medfusion-model-3500-syringe-pump-due-issues-associated-earlier" data-entity-type="node" data-entity-uuid="cd1595d2-c936-4c74-bb2a-a2cbf0271347" data-entity-substitution="canonical" title="Smiths Medical ASD Inc. Recalls Medfusion Model 3500 Syringe Pump Due to Issues Associated with Earlier Software Versions">Smiths Medical ASD Inc. Recalls Medfusion Model 3500 Syringe Pump Due to Issues Associated with Earlier Software Versions</a></td><td>Syringe Pump</td><td>Recall Confirmed</td></tr><tr><td>02/29/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/wipro-ge-healthcare-private-ltd-recalls-care-plus-care-plus-models-1000-4000-and-lullaby-incubators" data-entity-type="node" data-entity-uuid="e9036a2b-331d-4010-8103-c81a7e19245a" data-entity-substitution="canonical" title="Wipro GE Healthcare Private Ltd. Recalls Care Plus, Care Plus models 1000-4000 and Lullaby Incubators Due to Problems with Door Latch">Wipro GE Healthcare Private Ltd. Recalls Care Plus, Care Plus models 1000-4000 and Lullaby Incubators Due to Problems with Door Latch</a></td><td>Incubator</td><td>Recall Confirmed</td></tr><tr><td>02/15/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/philips-recalls-brightview-imaging-systems-due-detector-unexpectedly-falling" data-entity-type="node" data-entity-uuid="502105e1-0a53-442a-bf2f-abef102ae652" data-entity-substitution="canonical" title="Philips Recalls BrightView Imaging Systems Due to the Detector Unexpectedly Falling">Philips Recalls BrightView Imaging Systems Due to the Detector Unexpectedly Falling</a></td><td>Imaging System</td><td>Recall Confirmed</td></tr><tr><td>02/14/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/smiths-medical-asd-inc-recalls-medfusion-model-4000-syringe-pump-due-issues-associated-earlier" data-entity-type="node" data-entity-uuid="2144dcf3-b202-4965-9d80-9e46b1289e62" data-entity-substitution="canonical" title="Smiths Medical ASD Inc. Recalls Medfusion Model 4000 Syringe Pump Due to Issues Associated with Earlier Software Versions">Smiths Medical ASD Inc. Recalls Medfusion Model 4000 Syringe Pump Due to Issues Associated with Earlier Software Versions</a></td><td>Syringe Pump</td><td>Recall Confirmed</td></tr><tr><td>02/06/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/percussionaire-recalls-high-frequency-transport-phasitron-breathing-circuit-kits-over-pressurization" data-entity-type="node" data-entity-uuid="7094bfb0-6e36-47c0-88c3-74232e65cda3" data-entity-substitution="canonical" title="Percussionaire Recalls High Frequency Transport Phasitron Breathing Circuit Kits for Over-Pressurization">Percussionaire Recalls High Frequency Transport Phasitron Breathing Circuit Kits for Over-Pressurization</a></td><td>Breathing Circuit Kit</td><td>Recall Confirmed</td></tr><tr><td>01/31/2024</td><td><a href="Maquet Cardiovascular, LLC Recalls Atrium Express Dry Suction Dry Seal Chest Drain Containing Sterile Water Based Products Under Recall by Nurse Assist" title="Maquet Cardiovascular, LLC Recalls Atrium Express Dry Suction Dry Seal Chest Drain Containing Sterile Water Based Products Under Recall by Nurse Assist">Maquet Cardiovascular, LLC Recalls Atrium Express Dry Suction Dry Seal Chest Drain Containing Sterile Water Based Products Under Recall by Nurse Assist</a></td><td>Chest Drain</td><td>Recall Confirmed</td></tr><tr><td>01/30/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/globus-medical-inc-recalls-excelsiusgps-flat-panel-fluoroscopy-registration-fixture-due-calibration" data-entity-type="node" data-entity-uuid="743fc3ee-af2e-405d-b7c9-98f2427d4b20" data-entity-substitution="canonical" title="Globus Medical, Inc. Recalls ExcelsiusGPS Flat Panel Fluoroscopy Registration Fixture Due to a Calibration Error">Globus Medical, Inc. Recalls ExcelsiusGPS Flat Panel Fluoroscopy Registration Fixture Due to a Calibration Error</a></td><td>Fluoroscopy</td><td>Recall Confirmed</td></tr><tr><td>01/16/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/roi-cps-llc-recalls-regard-operative-lap-ps-surgical-kit-due-possible-lack-sterility" data-entity-type="node" data-entity-uuid="0f738b86-aa55-446b-96c9-6d58dbd14268" data-entity-substitution="canonical" title="ROi CPS, LLC Recalls Regard Operative Lap P&amp;S Surgical Kit Due to Possible Lack of Sterility">ROi CPS, LLC Recalls Regard Operative Lap P&amp;S Surgical Kit Due to Possible Lack of Sterility</a></td><td>Surgical Kit</td><td>Recall Confirmed</td></tr><tr><td>01/12/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/fresenius-kabi-usa-llc-recalls-ivenix-large-volume-pump-lvp-ivenix-infusion-system-due-mechanical" data-entity-type="node" data-entity-uuid="3693e2c9-1562-4d39-9ee4-876efb1b0f8c" data-entity-substitution="canonical" title="Fresenius Kabi USA, LLC Recalls Ivenix Large Volume Pump (LVP) of the Ivenix Infusion System Due to Mechanical Interference">Fresenius Kabi USA, LLC Recalls Ivenix Large Volume Pump (LVP) of the Ivenix Infusion System Due to Mechanical Interference</a></td><td>Pump</td><td>Recall Confirmed</td></tr><tr><td>01/11/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/resmed-ltd-recalls-continuous-positive-airway-pressure-cpap-masks-magnets-due-possible-magnetic" data-entity-type="node" data-entity-uuid="eee3b6f6-da75-4015-86f0-94f4b3fe99cc" data-entity-substitution="canonical" title="ResMed Ltd. Recalls Continuous Positive Airway Pressure (CPAP) Masks with Magnets due to Possible Magnetic Interference with Certain Medical Devices">ResMed Ltd. Recalls Continuous Positive Airway Pressure (CPAP) Masks with Magnets due to Possible Magnetic Interference with Certain Medical Devices</a></td><td>CPAP</td><td>Recall Confirmed</td></tr><tr><td>01/11/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/busse-hospital-disposables-inc-recalls-care-trays-and-kits-containing-sterile-water-based-products" data-entity-type="node" data-entity-uuid="b9f88d2f-6eb4-4d2f-bd88-5acde48c3041" data-entity-substitution="canonical" title="Busse Hospital Disposables, Inc. Recalls Care Trays and Kits Containing Sterile Water Based Products Under Recall by Nurse Assist ">Busse Hospital Disposables, Inc. Recalls Care Trays and Kits Containing Sterile Water Based Products Under Recall by Nurse Assist</a></td><td>Trays and Kits</td><td>Recall Confirmed</td></tr><tr><td>01/08/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/megadyne-medical-products-inc-recalls-mega-soft-universal-patient-return-electrode-due-reports" data-entity-type="node" data-entity-uuid="be896405-3280-4653-acbe-e51c715c0399" data-entity-substitution="canonical" title="Megadyne Medical Products, Inc. Recalls Mega Soft Universal Patient Return Electrode Due to Reports of Patient Burns">Megadyne Medical Products, Inc. Recalls Mega Soft Universal Patient Return Electrode Due to Reports of Patient Burns</a></td><td>Electrode</td><td>Recall Confirmed</td></tr><tr><td>01/08/2024</td><td><a href="/medical-devices/medical-device-recalls-and-early-alerts/insulet-corporation-recalls-omnipod-5-android-app-due-software-error" data-entity-type="node" data-entity-uuid="3fad0488-e984-44a3-983e-72827dd970b9" data-entity-substitution="canonical" title="Insulet Corporation Recalls Omnipod 5 Android App due to a Software Error">Insulet Corporation Recalls Omnipod 5 Android App due to a Software Error</a></td><td>Software</td><td>Recall Confirmed</td></tr></tbody></table></div></div>
+
+<!--BEGIN QUALTRICS WEBSITE FEEDBACK SNIPPET-->
+<!--BEGIN QUALTRICS WEBSITE FEEDBACK SNIPPET-->
+
+
+
+              
+                                            
+              
+            </div>
+
+                                                  
+                          <aside class="col-md-2" role="complementary">
+                <section id="block-entityviewcontent-4" data-block-plugin-id="entity_view:node" class="block block-ctools block-entity-viewnode clearfix">
+  
+    
+
+      
+
+<div class="region region-">
+  <aside class="lcds-card lcds-card--border-top">
+    <ul role="menu" class="lcds-description-list">
+      
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li role="menuitem" class="node-current-date lcds-description-list__item">
+    <div>
+      <h2 class="lcds-description-list__item-heading">Content current as of:</h2>
+      <p class="lcds-description-list__item-text"><time datetime="2025-01-31T00:00:00Z">01/31/2025</time>
+</p>
+    </div>
+  </li>
+              
+              
+<li role="menuitem" class="lcds-description-list__item">  
+	<div>
+		
+		 <h2 class="lcds-description-list__item-heading">Regulated Product(s)</h2>
+		 <ul role="menu" class="lcds-metadata-list">
+						  <li role="menuitem">Medical Devices</li>
+			  			     			  			     <li role="menuitem">Radiation-Emitting Products</li>
+			     			  						              
+			
+			
+			
+			
+			
+			
+			
+			
+					</ul>
+	 
+			     
+						       
+
+			  
+						  
+
+			  
+						 
+	</div>
+</li>   
+
+    </ul>
+
+  </aside>
+</div>
+
+
+  </section>
+
+
+              </aside>
+            
+                 </article>        
+      </main>
+
+    </div>  </div>
+<div id="fda-survey-comments"></div>
+<script src=https://touchpoints.app.cloud.gov/touchpoints/0eb673d9.js async></script>
+<button class="btn btn-primary btn-vertical" id="survey-btn">Feedback</button>
+<script src=https://touchpoints.app.cloud.gov/touchpoints/d45bb814.js async=""></script>
+                <div class="region region-subscribe">
+    <section id="block-entityviewcontent-5" data-block-plugin-id="entity_view:node" class="block block-ctools block-entity-viewnode clearfix">
+  
+    
+
+      
+<section class="lcds-subscribe" id="subscribe">
+  <div class="row">
+    <div class="col-sm-12 col-md-3 col-md-offset-3">
+                <p>Subscribe to Medical Device Safety and Recalls</p>
+                        <span>Sign up to receive email updates on medical device recalls, safety communications, and other safety information.</span>
+            </div>
+    <div class="col-sm-12 col-md-3">
+            <form class="form-horizontal" id="GD-snippet-form" action="https://public.govdelivery.com/accounts/USFDA/subscribers/qualify" accept-charset="UTF-8" method="post">
+        <input name="utf8" type="hidden" value="&#x2713;">
+        <input type="hidden" name="authenticity_token" value="VJuyc1HyD63+xVCkN+K9qiH1bD9zSSJ+BfdR1d4LXjZ0BncrJ/u9dEw/e0U869OeCw6JxhyYXfnZCCGNF1oVkQ==">
+        <input type="hidden" name="topic_id" id="topic_id" value="USFDA_81">
+
+        <label class="sr-only" for="email">Enter your email address to subscribe:</label>
+        <div class="input-group subscribe-group">
+          <input type="text" name="email" id="custom_email_input" placeholder="Email Address" class="form-control">
+          <span class="input-group-btn">
+            <input class="btn btn-primary" type="submit" name="commit" value="Subscribe">
+          </span>
+        </div>
+
+        <!-- Tooltip-style error message below input -->
+        <div id="errorMessage" class="tooltip-error" style="display: none;">
+          <span class="tooltip-text" role="alert" aria-live="polite" tabindex="0" ></span>
+        </div>
+      </form>
+       
+    </div>
+  </div>
+</section>
+
+  </section>
+
+
+  </div>
+
+  
+      <footer id="footer" class="lcds-footer container-fluid">
+        
+    <div class="row lcds-footer__primary">
+    <nav class="text-center">
+      <div class="col-sm-4">
+        <ul class="nav">
+          <li><a href="/about-fda/about-website/fdagov-archive" >FDA Archive</a></li>
+          <li><a href="/about-fda" >About FDA</a></li>
+          <li><a href="/about-fda/about-website/internet-accessibility" >Accessibility</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-4">
+        <ul class="nav">
+          <li><a href="/about-fda/visitor-information" >Visitor Information</a> </li>
+          <li><a href="/about-fda/about-website/website-policies" >Website Policies / Privacy</a></li>
+          <li><a href="/about-fda/jobs-and-training-fda/no-fear-act" >No FEAR Act</a></li>
+          <li><a href="https://www.hhs.gov/vulnerability-disclosure-policy/index.html" >Vulnerability Disclosure Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-4">
+        <ul class="nav">
+          <li><a href="/regulatory-information/freedom-information" title="Freedom of Information Act">FOIA</a></li>
+          <li><a href="https://www.hhs.gov/" title="Health and Human Services" target="_blank">HHS.gov</a></li>
+          <li><a href="https://www.usa.gov/" target="_blank">USA.gov</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+    <div class="row lcds-footer__secondary">
+    <div class="col-sm-12 col-md-6 col-lg-4 lcds-footer__social-links">
+      <a href="/about-fda/contact-fda" class="btn btn-default btn-md">Contact FDA</a>
+      <a href="https://www.facebook.com/FDA" title="Follow FDA on Facebook" class="no-disclaimer"> 
+        <span class="fa fa-facebook fa-2x" aria-hidden="true">
+          <span class="sr-only">Follow FDA on Facebook</span> 
+        </span>
+      </a>
+      <a href="https://x.com/FDA" title="Follow FDA on X" class="no-disclaimer">
+        <svg class="icon-svg-inline fa-2x" aria-hidden="true">
+          <use href="/themes/custom/preview/assets/images/fa-icons.svg#icon-x-twitter">
+        </svg>
+        <span class="sr-only">Follow FDA on X</span>
+      </a>
+      <a href="https://instagram.com/FDA" title="Follow FDA on Instagram" class="no-disclaimer">
+        <span class="fa fa-instagram fa-2x" aria-hidden="true"> 
+          <span class="sr-only">Follow FDA on Instagram</span>
+        </span>
+      </a>
+      <br class='visible-xs-inline'/>
+      <a href="https://www.linkedin.com/company/fda/" title="Follow FDA on LinkedIn" class="no-disclaimer">
+        <span class="fa fa-linkedin fa-2x" aria-hidden="true"> 
+          <span class="sr-only">Follow FDA on LinkedIn</span>
+        </span>
+      </a>
+      <a href="https://youtube.com/@US_FDA" title="View FDA videos on YouTube" class="no-disclaimer">
+        <span class="fa fa-youtube fa-2x" aria-hidden="true"> 
+          <span class="sr-only">View FDA videos on YouTube</span>
+        </span>
+      </a>
+      <a href="/about-fda/contact-fda/subscribe-podcasts-and-news-feeds" title="Subscribe to FDA RSS feeds">
+        <span class="fa fa-rss fa-2x" aria-hidden="true">
+          <span class="sr-only">Subscribe to FDA RSS feeds</span>
+        </span>
+      </a>
+    </div>
+    <a href="/" title="FDA Homepage">
+        <div class="visible-lg-block col-lg-4 text-center">
+          <img src="/themes/custom/preview/assets/images/FDA_Logo_Icon_White.svg" height="60px" alt="Food and Drug Administration Logo">
+        </div>
+    </a>
+    <div class="col-sm-12 col-md-6 col-lg-4 text-center lcds-footer__contact-number">
+      <span class="fa fa-phone" aria-hidden="true"> </span> 
+     <span class="sr-only">Contact Number</span>
+      1-888-INFO-FDA (1-888-463-6332)
+    </div>
+  </div>
+  
+      <!--END WEBSITE FEEDBACK SNIPPET-->
+  
+
+    </footer>
+    <a href="" id="btn-top" class="btn btn-primary btn-top"><span class="sr-only">Back to </span>Top</a>
+  
+
+  </div>
+
+    
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/420420","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"fda_ckeditor_enhancements":{"basePath":"modules\/custom\/fda_ckeditor_enhancements"},"google_analytics":{"account":"G-273DTKB5QW","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"bootstrap":{"forms_has_error_value_toggle":1,"modal_animation":1,"modal_backdrop":"true","modal_focus_input":1,"modal_keyboard":1,"modal_select_text":1,"modal_show":1,"modal_size":"","popover_enabled":1,"popover_animation":1,"popover_auto_close":1,"popover_container":"body","popover_content":"","popover_delay":"0","popover_html":0,"popover_placement":"right","popover_selector":"","popover_title":"","popover_trigger":"click"},"ajax":[],"user":{"uid":0,"permissionsHash":"1b1b521ce0efd787b9481ef00f514b542eb396217a4d74c357d2ecd6b6b52a2d"}}</script>
+<script src="/files/js/js_nol62-71-VcU-Vm554ii80k_VGa4nFJwcyaILa2bl3s.js?scope=footer&amp;delta=0&amp;language=en&amp;theme=preview&amp;include=eJxdjtEKwzAIRX-oJXsZ7G-CNS4NS6OodHRfv3Ww0A7fjnruzcy5UoQGdfOCFvIfGERpLfQMufIEdTTUIm7DxOzmChKEhVfS4Z4g4oNScdZIbYaGtFBzC4DImgq36Jx3u82sjpyo2z_PYwL_zFTJTvjnPO6_WbxILXtK2G8tXi-3A-wOVHhtlHMHCeSU3duMvegbbCJttQ"></script>
+<script src="/libraries/datatables/media/js/jquery.dataTables.min.js?tlw6bs"></script>
+<script src="/files/js/js_YyYIiMtJciIueQ0BARuCH2PNjjWVtBSQgxhnYkG17UU.js?scope=footer&amp;delta=2&amp;language=en&amp;theme=preview&amp;include=eJxdjtEKwzAIRX-oJXsZ7G-CNS4NS6OodHRfv3Ww0A7fjnruzcy5UoQGdfOCFvIfGERpLfQMufIEdTTUIm7DxOzmChKEhVfS4Z4g4oNScdZIbYaGtFBzC4DImgq36Jx3u82sjpyo2z_PYwL_zFTJTvjnPO6_WbxILXtK2G8tXi-3A-wOVHhtlHMHCeSU3duMvegbbCJttQ"></script>
+<script src="/libraries/datatables/extensions/Responsive/js/dataTables.responsive.min.js?tlw6bs"></script>
+<script src="/libraries/datatables/media/js/dataTables.bootstrap4.min.js?tlw6bs"></script>
+<script src="/files/js/js_ibVfOK-mMRC9AGiOMnu4UnaXEa13E-y45uMq1vXFtik.js?scope=footer&amp;delta=5&amp;language=en&amp;theme=preview&amp;include=eJxdjtEKwzAIRX-oJXsZ7G-CNS4NS6OodHRfv3Ww0A7fjnruzcy5UoQGdfOCFvIfGERpLfQMufIEdTTUIm7DxOzmChKEhVfS4Z4g4oNScdZIbYaGtFBzC4DImgq36Jx3u82sjpyo2z_PYwL_zFTJTvjnPO6_WbxILXtK2G8tXi-3A-wOVHhtlHMHCeSU3duMvegbbCJttQ"></script>
+
+  <script type="text/javascript"  src="/nKjuT3KLa/lM3_35y8C/_87nK/l5Sc/G3fumXtrGb6JhLuY/SUhwTQ/D3ZBOn/FAEn4"></script></body>
+</html>

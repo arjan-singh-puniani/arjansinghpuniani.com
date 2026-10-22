@@ -100,14 +100,14 @@ def date(value):
     fmt = '%Y%m%d' if len(value)==8 else '%Y-%m-%d'
     return datetime.strptime(value,fmt).date().isoformat()
 
-def fetch(url, kind):
+def fetch(url, kind, allowed_hosts=ALLOWED):
     parsed = urlparse(url)
-    if parsed.scheme != 'https' or parsed.hostname not in ALLOWED or parsed.username or parsed.port:
+    if parsed.scheme != 'https' or parsed.hostname not in allowed_hosts or parsed.username or parsed.port:
         raise ValueError('Source URL outside allowlist')
     payload = None
     if kind == 'grant':
         payload = json.dumps({'criteria':{'advanced_text_search':{'operator':'and','search_field':'projecttitle','search_text':'brain computer interface'}},'offset':0,'limit':5}).encode()
-    req = Request(url, data=payload, headers={'User-Agent':'BodyAtlas/0.1 (bounded public research snapshot)', 'Accept':'application/json', 'Content-Type':'application/json'})
+    req = Request(url, data=payload, headers={'User-Agent':'BodyAtlas/0.1 (bounded public research snapshot)', 'Accept':'text/html' if kind=='html' else 'application/json', 'Content-Type':'application/json'})
     # python.org macOS builds may lack their own CA bundle. Keep TLS verification
     # enabled and use the OS CA store if OpenSSL's default bundle is absent.
     cafile = os.environ.get('SSL_CERT_FILE')
@@ -116,12 +116,12 @@ def fetch(url, kind):
     class SourceRedirects(HTTPRedirectHandler):
         def redirect_request(self, request, fp, code, msg, headers, newurl):
             target=urlparse(newurl)
-            if target.scheme!='https' or target.hostname not in ALLOWED or target.username or target.port:
+            if target.scheme!='https' or target.hostname not in allowed_hosts or target.username or target.port:
                 raise ValueError('Redirect outside allowlist')
             return super().redirect_request(request,fp,code,msg,headers,newurl)
     opener=build_opener(SourceRedirects(),HTTPSHandler(context=ssl.create_default_context(cafile=cafile)))
     with opener.open(req,timeout=25) as response:
-        if urlparse(response.url).hostname not in ALLOWED:
+        if urlparse(response.url).hostname not in allowed_hosts:
             raise ValueError('Redirect outside allowlist')
         raw = response.read(MAX_BYTES+1)
     if len(raw)>MAX_BYTES:

@@ -1,0 +1,1258 @@
+{
+  "familyId": "source-fda-p040033",
+  "name": "Birmingham Hip Resurfacing",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "37 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 37,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P040033",
+        "supplement": "S039",
+        "date": "2025-01-10",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "a change in packaging to add alternative top foam inserts used in the packaging of specified sizes of BIRMINGHAM HIP RESURFACING (BHR) Acetabular Cups and BHR Femoral Head Implants manufactured at Smith & Nephew Orthopaedics Ltd. (SNOL), Leamington Spa, United Kingdom",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S039",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S038",
+        "date": "2024-01-19",
+        "decision": "PMA approval",
+        "tradeName": "Birmingham Hip Resurfacing (BHR) System",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "a change to the Catalog Item (CI) reference codes (i.e., US market only) for the BIRMINGHAM HIP RESURFACING SYSTEM femoral head and acetabular cup implants",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S038",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S037",
+        "date": "2023-02-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Birmingham Hip Resurfacing (BHR) System",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "Addition of a more time-efficient laser maker to the laser marking process for the Birmingham Hip Resurfacing System including moving the laser marking operation earlier in the manufacturing process flow.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S037",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S036",
+        "date": "2022-05-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Birmingham Hip Resurfacing (BHR) System",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "Removal of the x-ray equipment used in the post-irradiation receiving process for the Birmingham Hip Resurfacing System.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S036",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S033",
+        "date": "2018-03-02",
+        "decision": "PMA approval",
+        "tradeName": "Birmingham Hip Resurfacing (BHR) System",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "Approval for modifications to the device labeling.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S033",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S031",
+        "date": "2018-02-22",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "Approval for a change to the sterilization parameters that will be used for the BHR components from the previously approved dose range of 25-35 kGy to 25-50 kGy.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S031",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S032",
+        "date": "2017-12-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Birmingham Hip Resurfacing System",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "Modification of the in-process visual inspection criteria for the sterile packaging for the subject device.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S032",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S030",
+        "date": "2016-12-21",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP SYSTEM (BHR)",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "Approval for a manufacturing site located at Synergy Health Sterilisation UK Ltd., Brunel Close, Drayton Fields Industrial Estate, Daventry, Northamptonshire, UK NN11 8RB for the sterilization of the Birmingham Hip Resurfacing System.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S030",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S029",
+        "date": "2016-01-28",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "LOCATION CHANGE OF A PACKAGE SUPPLIER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S029",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S024",
+        "date": "2015-12-11",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR AN UPDATE TO THE DEVICE LABELING TO INCLUDE THE RESULTS OF THE COMPLETED UNITED KINGDOM (UK) POST-APPROVAL STUDY.",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S024",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S028",
+        "date": "2015-08-10",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR MODIFICATIONS TO THE DEVICE LABELING.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S028",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S025",
+        "date": "2014-08-12",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR AN ADDITION TO THE LABELING FOR THE BIRMINGHAM HIPRESURFACING (BHR) SYSTEM TO INCLUDE MR CONDITIONAL LANGUAGE IN THE WARNINGS AND PRECAUTIONS FOR THE SYSTEM.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S025",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S027",
+        "date": "2014-07-30",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR AN INSTRUMENT TO ASSIST IN FEMORAL COMPONENT SIZING AND POSITIONING.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S027",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S026",
+        "date": "2014-06-17",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR REVISIONS TO THE DEVICE LABELING.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S026",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S023",
+        "date": "2014-03-06",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR A PACKAGING CHANGE FOR THE BHR FEMORAL HEADS ANDACETABULAR CUPS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S023",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S018",
+        "date": "2012-09-11",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED IN WARWICK, UNITED KINGDOM.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S018",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S017",
+        "date": "2011-10-14",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING SYSTEM (BHR)",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR THE ADDITION OF AN ALTERNATIVE SITE FOR THE POROUS COATING PROCESS FOR THE R3 ACETABULAR SHELLS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S017",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S021",
+        "date": "2011-07-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "USE OF A NEW DEGREASING SYSTEM AT A CONTRACT MANUFACTURER.",
+        "reason": "",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S021",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S019",
+        "date": "2011-04-01",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING SYSTEM (BHR)",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S019",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S020",
+        "date": "2011-03-16",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR REVISIONS TO THE SURGICAL TECHNIQUE MANUAL.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S020",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S016",
+        "date": "2010-10-13",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR REVISIONS TO THE PHYSICIAN AND PATIENT LABELING.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S016",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S015",
+        "date": "2010-03-09",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR THE ADDITION OF SURGICAL INSTRUMENTS FOR USE WITH THE BHR SYSTEM AND AN UPDATE TO THE SURGICAL TECHNIQUE TO REFLECT THE NEW SURGICAL INSTRUMENTS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S015",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S013",
+        "date": "2009-12-31",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR A CHANGE TO NEW TESTING EQUIPMENT USED FOR MEASURING SURFACE FINISH, TAPE ANGLE, AND DIAMETER FOR THE R3 METAL LINERS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S013",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S014",
+        "date": "2009-12-11",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR REVISIONS TO THE PHYSICIAN AND PATIENT LABELING.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S014",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S012",
+        "date": "2009-10-07",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING SYSTEM, REFLECTION CERAMIC ACETABULAR HIP SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR THE USE OF NEW MANUFACTURING EQUIPMENT USED TO PRECLEAN DEVICES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S012",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S011",
+        "date": "2009-06-09",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR THE MODIFICATION OF THE BHR/R3 MODULAR RESURFACING SURGICAL TECHNIQUE ADDENDUM.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S011",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S010",
+        "date": "2009-02-13",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR THE ADDITION OF SURGICAL INSTRUMENTS FOR USE WITH THE BHR SYSTEM AND REVISIONS TO THE SURGICAL TECHNIQUE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S010",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S008",
+        "date": "2009-01-12",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR THE ADDITION OF SURGICAL INSTRUMENTS FOR USE WITH THE BHR SYSTEM AND REVISIONS TO THE SURGICAL TECHNIQUE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S008",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S009",
+        "date": "2008-12-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BIRMINGHAM HIP RESURFACING SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "CHANGE IN LOCATION OF THE DISTRIBUTION AND STORAGE FACILITIES TO A FACILITY IN MEMPHIS, TENNESSEE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S009",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S006",
+        "date": "2008-11-13",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR A LINE EXTENSION TO THE BHR SYSTEM (IE., MODULAR VERSION OF THE BHR CUP FOR USES WITH OPTIONAL SCREWS AND APEX/SCREW HOLD COVERS) AND A SITE CHANGE (SMITH & NEPHEW, INC., MEMPHIS, TENNESSEE).",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S006",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S003",
+        "date": "2008-10-14",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED AT SMITH & NEPHEW ORTHOPAEDICS LTD., WARWICKSHIRE, UNITED KINGDOM, TO PERFORM FINAL MACHINING, AND A MANUFACTURING SITE LOCATED AT LPE MEDICAL LTD., HAMPSHIRE, UNITED KINGDOM.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S003",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S007",
+        "date": "2008-06-20",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR AUTOMATION OF TWO MANUFACTURING PROCESSES UTILIZING CNC MACHINING.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S007",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S004",
+        "date": "2007-10-01",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S004",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S005",
+        "date": "2007-06-27",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR THE ADDITION AND MODIFICATION OF SURGICAL INSTRUMENTS FOR USE WITH THE BHR SYSTEM AND REVISIONS TO THE SURGICAL TECHNIQUE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S005",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S002",
+        "date": "2007-02-23",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED AT SMITH & NEPHEW ORTHOPAEDIC LTD. IN WARWICKSHIRE, UNITED KINGDOM, FOR PURCHASING, RECEIVING ACCEPTANCE ACTIVITIES, STORAGE AND RELEASE AND DISPATCH OF PRODUCT.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S002",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "S001",
+        "date": "2006-10-13",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR: 1) ADDITION OF INTERMEDIATE SIZED FEMORAL HEAD COMPONENTS TO THE BHR SYSTEM (40MM, 44MM, 48MM, 52MM AND 56MM);  2) ADDITION OF ACETABULAR CUPS THAT MATE WITH THE INTERMEDIATE SIZED FEMORAL HEAD COMPONENTS (STANDARD, DYSPLASIA AND BRIDGING); AND 3) REVISIONS TO THE BHR LABELING TO REFLECT THE ADDITIONAL INTERMEDIATE SIZED COMPONENTS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033S001",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      },
+      {
+        "application": "P040033",
+        "supplement": "",
+        "date": "2006-05-09",
+        "decision": "PMA approval",
+        "tradeName": "BIRMINGHAM HIP RESURFACING (BHR) SYSTEM",
+        "applicant": "Smith & Nephew, Inc.",
+        "statement": "APPROVAL FOR THE BIRMINGHAM HIP RESURFACING (BHR) SYSTEM.  THE BHR SYSTEM IS A SINGLE USE DEVICE INTENDED FOR HYBRID FIXATION: CEMENTED FEMORAL HEAD COMPONENT AND CEMENTLESS ACETABULAR COMPONENT.  THE HGR SYSTEM IS INTENDED FOR USE IN PATIENTS REQUIRING PRIMARY HIP RESURFACING ARTHROPLASTY DUE TO: 1) NON-INFLAMMATORY ARTHRITIS (DEGENERATIVE JOINT DISEASE) SUCH AS OSTEOARTHRITIS, TRAUMATIC ARTHRITIS, AVASCULAR NECROSIS, OR DYSPLASIA/DEVELOPMENTAL DISLOCATION OF THE HIP (DDH), OR 2) INFLAMMATORY ARTHRITIS SUCH AS RHEUMATOID ARTHRITIS.  THE BHR SYSTEM IS INTENDED FOR PATIENTS WHO, DUE TO THEIR RELATIVELY YOUNGER AGE OR INCREASED ACTIVITY LEVEL, MAY NOT BE SUITABLE FOR TRADITIONAL TOTAL HIP ARTHROPLASTY DUE TO AN INCREASED POSSIBILITY OF REQUIRING FUTURE IPSILATERAL HIP JOINT REVISION.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033",
+        "sourceSha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=2700&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5",
+        "file": "48591290474be33bd2c43784d20c96a65027a31cf4a8195f7c789730c30541f5.json",
+        "retrievedAt": "2026-10-22T18:59:36.806171+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "1 original labeling document link(s) located; 11 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 1,
+    "changes": 11,
+    "rows": [
+      {
+        "application": "P040033",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf4/P040033C.pdf",
+        "pages": 33,
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033",
+        "locator": "L58: Labeling 【38†Labeling】",
+        "pageUpdatedAt": "10/19/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: 2 weeks ago; Content type: application/pdf; Number of pages: 33;",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P040033",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033",
+        "discovery": "[wordlim: 200] Crawled: yesterday; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033\",\"lineno\":null}); Total lines: 106",
+        "pageUpdatedAt": "10/19/2026",
+        "locator": "L58: Labeling 【38†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P040033S038",
+      "P040033S033",
+      "P040033S024",
+      "P040033S028",
+      "P040033S025",
+      "P040033S026",
+      "P040033S020",
+      "P040033S016",
+      "P040033S014",
+      "P040033S011",
+      "P040033S001"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "29 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 29,
+    "rows": [
+      {
+        "cfres_id": "164624",
+        "product_res_number": "Z-2267-2018",
+        "product_description": "Birmingham Hip Resurfacing Femoral Head:\n(a) Size 58 mm, REF 74121158\n(b) Size 56 mm, REF 74123156",
+        "code_info": "(a) Size 58 mm, REF 74121158, Lot 16CW08945 (b) Size 56 mm, REF 74123156, Lot 16CW08246",
+        "reason_for_recall": "The affected devices are manufactured to the same design specification as products intended for sale and use in the US but do not contain the FDA approved labeling (i.e., IFU and Patient Information Brochure). The affected devices were distributed in the US with the IFU intended for use outside of the US",
+        "action": "The firm initiated the recall by email and letter on 05/11/2018.  Consignees are asked to inspect inventory, locate and quarantine affected, unused devices. Affected product will be returned to Smith & Nephew.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2018-05-11",
+        "event_date_posted": "2018-05-21",
+        "event_date_terminated": "2019-04-05",
+        "recalling_firm": "Smith & Nephew, Inc.",
+        "root_cause_description": "Process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=164624",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "164626",
+        "product_res_number": "Z-2268-2018",
+        "product_description": "Birmingham Hip Resurfacing Acetabular Cup with Impactor:\n(a) Size 56 mm, REF 74120156\n(b) Size 64 mm, REF 74120164\n(c) Size 54 mm, REF 74122154\n(d) Size 58 mm, REF 74122158\n(e) Size 60 mm, REF 74122160\n(f) Size 62 mm, REF 74122162",
+        "code_info": "(a) Size 56 mm, REF 74120156, Lot 16CW01824 (b) Size 64 mm, REF 74120164, Lot 16DW10975 (c) Size 54 mm, REF 74122154, Lot 16BW17747 (d) Size 58 mm, REF 74122158, Lot 16CW16199 (e) Size 60 mm, REF 74122160, Lot 08GW18001B (f) Size 62 mm, REF 74122162, Lot 16CW20851",
+        "reason_for_recall": "The affected devices are manufactured to the same design specification as products intended for sale and use in the US but do not contain the FDA approved labeling (i.e., IFU and Patient Information Brochure). The affected devices were distributed in the US with the IFU intended for use outside of the US",
+        "action": "The firm initiated the recall by email and letter on 05/11/2018.  Consignees are asked to inspect inventory, locate and quarantine affected, unused devices. Affected product will be returned to Smith & Nephew.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2018-05-11",
+        "event_date_posted": "2018-05-21",
+        "event_date_terminated": "2019-04-05",
+        "recalling_firm": "Smith & Nephew, Inc.",
+        "root_cause_description": "Process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=164626",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "139519",
+        "product_res_number": "Z-2745-2015",
+        "product_description": "Smith & Nephew BIRMINGHAM HIP (TM) RESURFACING FEMORAL HEAD, STERILE R, Rx only, REF Numbers: 74121138 (38 MM), 74123140 (40 MM), 74121142 (42 MM), 74123144 (44 MM), 74121146 (46 MM).\n\nProduct Usage:  Hip joint prosthesis",
+        "code_info": "all codes",
+        "reason_for_recall": "The firm observed that the BIRMINGHAM HIP(TM) Resurfacing (BHR) System had revision rates which were higher than established benchmarks.",
+        "action": "Smith & Nephew sent an notification letter dated June 3, 2015 to customers via E-mail and Fed- Ex.  The letter identified the affected product, problem and actions to be taken.  Customers were asked to quarantine the product and return it.  Distributors were asked to notified their customers of the recall and ask them to return the product.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2015-06-03",
+        "event_date_posted": "2015-09-10",
+        "event_date_terminated": "2017-01-21",
+        "recalling_firm": "Smith & Nephew, Inc.",
+        "root_cause_description": "Device Design",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=139519",
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+      },
+      {
+        "cfres_id": "139520",
+        "product_res_number": "Z-2746-2015",
+        "product_description": "Smith & Nephew BIRMINGHAM HIP (TM) RESURFACING ACETABULAR CUP W/IMPACTOR, REF Numbers:  74120144 (44 MM), 74120146 (46 MM), 74122146 (46 MM), 74122148 (48 MM), 74120148 (48 MM), 74120150 (50 MM), 74122150 (50 MM), 74122152 (52 MM), 74120152 (52 MM), 74120154 (54 MM)\n\nProduct Usage:  Hip joint prosthesis",
+        "code_info": "all codes",
+        "reason_for_recall": "The firm observed that the BIRMINGHAM HIP(TM) Resurfacing (BHR) System had revision rates which were higher than established benchmarks.",
+        "action": "Smith & Nephew sent an notification letter dated June 3, 2015 to customers via E-mail and Fed- Ex.  The letter identified the affected product, problem and actions to be taken.  Customers were asked to quarantine the product and return it.  Distributors were asked to notified their customers of the recall and ask them to return the product.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2015-06-03",
+        "event_date_posted": "2015-09-10",
+        "event_date_terminated": "2017-01-21",
+        "recalling_firm": "Smith & Nephew, Inc.",
+        "root_cause_description": "Device Design",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=139520",
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+      },
+      {
+        "cfres_id": "139521",
+        "product_res_number": "Z-2747-2015",
+        "product_description": "Smith & Nephew BIRMINGHAM HIP (TM) RESURFACING DYSPLASIA CUP W/IMPACTOR, REF Numbers:  74120246 (46 MM), 74122248 (48 MM), 74120250 (50 MM), 74122252 (52 MM), 74120254 (54 MM)\n\nProduct Usage:  Hip joint prosthesis",
+        "code_info": "all codes",
+        "reason_for_recall": "The firm observed that the BIRMINGHAM HIP(TM) Resurfacing (BHR) System had revision rates which were higher than established benchmarks.",
+        "action": "Smith & Nephew sent an notification letter dated June 3, 2015 to customers via E-mail and Fed- Ex.  The letter identified the affected product, problem and actions to be taken.  Customers were asked to quarantine the product and return it.  Distributors were asked to notified their customers of the recall and ask them to return the product.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2015-06-03",
+        "event_date_posted": "2015-09-10",
+        "event_date_terminated": "2017-01-21",
+        "recalling_firm": "Smith & Nephew, Inc.",
+        "root_cause_description": "Device Design",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=139521",
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+      },
+      {
+        "cfres_id": "55398",
+        "product_res_number": "Z-0016-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup 46 mm cup Ref.:  74120146.  Hip implant component.",
+        "code_info": "Lot Number:  64803",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55398",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55399",
+        "product_res_number": "Z-0017-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup, 44 mm cup Ref.:  74120144.  Hip implant component.",
+        "code_info": "Lot Numbers:  64739, 66135, 66857, 67626, 67663, 67958, 67860",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55399",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55400",
+        "product_res_number": "Z-0018-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup, 46 mm cup Ref.:  74120146.  Hip implant component.",
+        "code_info": "Lot Numbers:  66608, 65074, 65569, 66778, 66780",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55400",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55401",
+        "product_res_number": "Z-0019-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup, 48 mm cup Ref.:  74120148.  Hip implant component.",
+        "code_info": "Lot Numbers:  66781, 63743, 64110, 64498, 65674",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55401",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55402",
+        "product_res_number": "Z-0020-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup, 50 mm cup Ref.:  74120150.  Hip implant component.",
+        "code_info": "Lot Numbers:  65654, 64188, 67081, 67582, 67421, 67945, 68035",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55402",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55403",
+        "product_res_number": "Z-0021-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup, 52 mm cup Ref.:  74120152.  Hip implant component.",
+        "code_info": "Lot Numbers:  64797, 64798, 64846, 65084, 67553, 67555, 67557, 67871, 67388, 67589, 67706",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55403",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55404",
+        "product_res_number": "Z-0022-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup, 54 mm cup Ref.:  74120154.  Hip implant component.",
+        "code_info": "Lot Numbers:  65543, 66655, 63286, 63765, 64773, 65676, 66861, 67510",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55404",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55406",
+        "product_res_number": "Z-0023-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup, 56 mm cup Ref.:  74120156.  Hip implant component.",
+        "code_info": "Lot Numbers:  64767, 65679, 65943, 63452, 64595, 64800, 64840, 64841, 64856, 64858, 65004, 65005, 65075, 65078, 65080, 65082, 65478, 65529, 65533, 65942, 65946, 66109, 66131, 66621, 66878, 67220, 67346",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55406",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55408",
+        "product_res_number": "Z-0024-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup, 58 mm cup Ref.:  74120158.  Hip implant component.",
+        "code_info": "Lot Numbers:  65655, 64496, 65081, 66111, 67874, 67477, 67925, 67940",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55408",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55409",
+        "product_res_number": "Z-0025-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup, 60 mm cup Ref.:  74120160.  Hip implant component.",
+        "code_info": "Lot Numbers:  64599, 65540, 65501, 65660, 66862, 66862, 66886, 66926, 67062, 67218, 67223, 67345, 67560, 67576, 67886, 67887, 67923, 68299, 68302, 67704, 67944",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55409",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55410",
+        "product_res_number": "Z-0026-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup, 62 mm cup Ref.:  74120162.  Hip implant component.",
+        "code_info": "Lot Numbers:  Lot Numbers:  64740, 64957, 65657, 67343, 67580, 67971",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55410",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55411",
+        "product_res_number": "Z-0027-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup, 64 mm cup Ref.:  74120164.  Hip implant component.",
+        "code_info": "Lot Numbers:  64178, 65670, 66424, 66802",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55411",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55412",
+        "product_res_number": "Z-0028-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup, 66 mm cup Ref.:  74120166.  Hip implant component.",
+        "code_info": "Lot Numbers:  66700, 67558, 67630, 67733",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55412",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55413",
+        "product_res_number": "Z-0029-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Dysplasia Cup, 50 mm cup Ref.:  74120250.  Hip implant component.",
+        "code_info": "Lot Numbers:  66612, 66999",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55413",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55414",
+        "product_res_number": "Z-0030-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup, 50 mm cup Ref.:  74120250.  Hip implant component.",
+        "code_info": "Lot Number 66925",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55414",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55415",
+        "product_res_number": "Z-0031-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Dysplasia Cup, 54 mm cup Ref.:  74120254.  Hip implant component.",
+        "code_info": "Lot Number 64868",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55415",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55416",
+        "product_res_number": "Z-0032-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup, 58 mm cup Ref.:  74120258.  Hip implant component.",
+        "code_info": "Lot Number 66949",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55416",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "55417",
+        "product_res_number": "Z-0033-2008",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup, 62 mm cup Ref.:  74120262.  Hip implant component.",
+        "code_info": "Lot Number 67216",
+        "reason_for_recall": "The carton label may not reflect the correct size of the acetabular cup.",
+        "action": "The consignees were notified of the problem and the recall by initially by telephone on 07/12/2007 and followed by a letter dated 07/24/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-07-12",
+        "event_date_posted": "2007-10-25",
+        "event_date_terminated": "2010-02-02",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55417",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "51517",
+        "product_res_number": "Z-0862-2007",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup W/ Impactor, 46 mm cup Ref.:  74120146",
+        "code_info": "Lot Number:  64803",
+        "reason_for_recall": "The carton label reads BHR Acetabular Cup 60mm contained a 58mm cup.",
+        "action": "The consignees (hospital CEOs) were notified of the problem and the recall by letter (Fed Ex) on 03/13/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-03-13",
+        "event_date_posted": "2007-06-07",
+        "event_date_terminated": "2011-10-28",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Other",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=51517",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "51518",
+        "product_res_number": "Z-0863-2007",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup W/ Impactor, 50 mm cup Ref.:  74120150",
+        "code_info": "Lot Number:  64603",
+        "reason_for_recall": "The carton label reads BHR Acetabular Cup 60mm contained a 58mm cup.",
+        "action": "The consignees (hospital CEOs) were notified of the problem and the recall by letter (Fed Ex) on 03/13/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-03-13",
+        "event_date_posted": "2007-06-07",
+        "event_date_terminated": "2011-10-28",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Other",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=51518",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "51519",
+        "product_res_number": "Z-0864-2007",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup W/ Impactor, 56 mm cup Ref.:  74120156",
+        "code_info": "Lot Numbers:  64597, 65004, 57078",
+        "reason_for_recall": "The carton label reads BHR Acetabular Cup 60mm contained a 58mm cup.",
+        "action": "The consignees (hospital CEOs) were notified of the problem and the recall by letter (Fed Ex) on 03/13/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-03-13",
+        "event_date_posted": "2007-06-07",
+        "event_date_terminated": "2011-10-28",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Other",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=51519",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "51520",
+        "product_res_number": "Z-0865-2007",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup W/ Impactor, 58 mm cup Ref.:  74120158",
+        "code_info": "Lot Number:  65015",
+        "reason_for_recall": "The carton label reads BHR Acetabular Cup 60mm contained a 58mm cup.",
+        "action": "The consignees (hospital CEOs) were notified of the problem and the recall by letter (Fed Ex) on 03/13/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-03-13",
+        "event_date_posted": "2007-06-07",
+        "event_date_terminated": "2011-10-28",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Other",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=51520",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "51521",
+        "product_res_number": "Z-0866-2007",
+        "product_description": "Smith + Nephew, Birmingham Hip Resurfacing, Acetabular Cup W/ Impactor, 60 mm cup Ref.:  74120160",
+        "code_info": "Lot Number:  66701",
+        "reason_for_recall": "The carton label reads BHR Acetabular Cup 60mm contained a 58mm cup.",
+        "action": "The consignees (hospital CEOs) were notified of the problem and the recall by letter (Fed Ex) on 03/13/2007.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-03-13",
+        "event_date_posted": "2007-06-07",
+        "event_date_terminated": "2011-10-28",
+        "recalling_firm": "Smith & Nephew Inc",
+        "root_cause_description": "Other",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=51521",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "188414",
+        "product_res_number": "Z-2242-2021",
+        "product_description": "smith&nephew BHR SQUARE HEADED NAIL, REF CATALOG NUMBER 999908.  For use during orthopedic surgery.",
+        "code_info": "Lot/Batch Codes:  20LW15962, 20LW15963",
+        "reason_for_recall": "The nail head may become detached during surgery.",
+        "action": "The firm notified its consignee by letter on 07/14/2021.  The letter explained the issue and the hazard and requested the return of the products.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2021-07-14",
+        "event_date_posted": "",
+        "event_date_terminated": "2024-05-13",
+        "recalling_firm": "Smith & Nephew Orthopaedics Ltd. (Aurora)",
+        "root_cause_description": "Component change control",
+        "applications": [
+          "P040033"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=188414",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [
+      "birmingham",
+      "metal-on-metal"
+    ],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf4/P040033C.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=164624"
+    }
+  ],
+  "path": "/dossiers/source-fda-p040033.json",
+  "applications": [
+    "P040033"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

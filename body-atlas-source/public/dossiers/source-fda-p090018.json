@@ -1,0 +1,775 @@
+{
+  "familyId": "source-fda-p090018",
+  "name": "Esteem implantable hearing system",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "40 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 40,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P090018",
+        "supplement": "S043",
+        "date": "2026-06-03",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Esteem®",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "approval for the manufacturing equipment change affecting the hermetic sealing process of the Esteem® Sensor and Driver",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S043",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S042",
+        "date": "2026-05-21",
+        "decision": "PMA approval",
+        "tradeName": "Esteem®",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "Approval for a new laser reflector material used with Laser Doppler Vibrometer (LDV) measurements during the implantation procedure.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S042",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S041",
+        "date": "2022-08-24",
+        "decision": "PMA approval",
+        "tradeName": "Esteem® Totally Implantable Hearing System",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "Approval of final labeling changes for the post-approval study (PAS) referenced above. The updates to the final PAS labeling have been submitted to comply with the conditions of approval outlined in our approval order for P090018.",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S041",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S039",
+        "date": "2020-02-24",
+        "decision": "PMA approval",
+        "tradeName": "Esteem",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "Approval of the following changes to the post-approval study (i.e., the New Enrollment 2 study, approved under P090018/S030) for your device: (a) use the evaluable bone conduction data at 1 month as a safety endpoint to measure cochlear stability collected from the 45 subjects used for the efficacy endpoints (SRT and WRS), and (b) supplement the AE safety endpoints (SAEs including facial paresis/paralysis at 1 month) with data from a retrospective review of charts from patients not participating in the post-approval study.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S039",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S038",
+        "date": "2019-09-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Esteem System",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "Change in a component supplier for the Model 7010 Sensor and Model 7510 Driver transducers.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S038",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S037",
+        "date": "2018-07-31",
+        "decision": "PMA approval",
+        "tradeName": "Esteem Totally Implantable Hearing Device",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "Approval for MR Conditional Labeling for the Esteem System.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S037",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S036",
+        "date": "2017-06-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Esteem",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "New component supplier for the polyether ether ketone (PEEK) overmold component of the Esteem Model 7004/7010 Sensor assemblies and Model 7504/7510 Driver assemblies.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S036",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S034",
+        "date": "2017-05-24",
+        "decision": "PMA approval",
+        "tradeName": "Esteem",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "Approval for relocation and requalification of the supplier for the seam welding and laser marking processes for the Esteem System Sound Processor, Model 2001.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S034",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S035",
+        "date": "2017-04-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Model 7010 Sensor and Model 7510 Driver transducers",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "Change in a component supplier and a manufacturing process change for the Model 7010 Sensor and Model 7510 Driver transducers.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S035",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S033",
+        "date": "2017-01-26",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "Approval for changes to the header connector design of the Esteem Model 2001 Sound Processor and for manufacturing process improvements.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S033",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S032",
+        "date": "2016-12-12",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "Approval for a manufacturing site located at Envoy Medical Corporation, 4875 White Bear Parkway, St Paul, Minnesota.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S032",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S031",
+        "date": "2016-08-01",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "Approval for modification of the approved labeling for the Esteem to reflect the findings of the Post-Approval Study protocol.",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S031",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S030",
+        "date": "2016-03-18",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "Approval of the following changes to the post-approval study for your device:change in sample size, removal of blinded audiologists, removal of requirement for x-ray ofimplanted device, change in follow-up point of evaluation and data gathering for safety objective.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S030",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S029",
+        "date": "2015-06-19",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL FOR A CHANGE TO THE UV EPOXY MATERIAL IN THE HEADER CONNECTOR OF THE SOUND PROCESSOR AND FOR A NEW PLASMA PRE-TREATMENT STEP TO ENHANCE ADHESION OF THE SILICONE DIP COATING.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S029",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S028",
+        "date": "2015-01-30",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ESTEEM SYSTEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "NEW SUPPLIER FOR THE HEADER COMPONENT OF THE SOUND PROCESSOR.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S028",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S027",
+        "date": "2014-09-10",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL FOR CHANGES TO CAPACITANCE SPECIFICATIONS FOR THE ESTEEM SENSOR AND DRIVER COMPONENTS, AND THE ESTEEM SYSTEM IS INTENDED TO ALLEVIATE HEARING LOSS INPATIENTS BY REPLICATING THE OSSICULAR CHAIN AND PROVIDING ADDITIONAL GAIN. THE ESTEEM IS INDICATED FOR PATIENTS WITH HEARING LOSS THAT MEET THE FOLLOWING CRITERIA:1) 18 YEARS OF AGE OR OLDER; 2) STABLE BILATERAL SENSORINEURAL HEARING LOSS;3) MODERATE TO SEVERE SENSORINEURAL HEARING LOSS DEFINED BY PURE TONE AVERAGE (PTA);4) UNAIDED SPEECH DISCRIMINATION TEST SCORE GREATER THAN OR EQUAL TO 40%;5) NORMALLY FUNCTIONING EUSTACHIAN TUBE6) NORMAL MIDDLE EAR ANATOMY;7) NORMAL TYMPANIC MEMBRANE;8) ADEQUATE SPACE FOR ESTEEM IMPLANT DETERMINED VIA A HIGH RESOLUTION CT SCAN; AND 9) MINIMUM 30 DAYS OF EXPERIENCE WITH APPROPRIATELY FIT HEARING AIDS.",
+        "reason": "",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S027",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S026",
+        "date": "2014-08-21",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL FOR SOFTWARE CHANGES THAT HAVE BEEN MADE TO THE ESTEEMCOMMANDER IN VERSION 3.0.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S026",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S025",
+        "date": "2014-04-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ESTEEM SYSTEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "ACCEPTANCE OF A MANUFACTURING PROCESS CHANGE FOR THE ESTEEM SYSTEM.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S025",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S024",
+        "date": "2013-11-04",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL FOR CHANGES TO THE INTRAOPERATIVE SYSTEM ANALYZER (ISA) SOFTWARE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S024",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S023",
+        "date": "2013-08-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "ADDITIONAL MANUFACTURING LOCATION FOR THE MEDCEM CEMENT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S023",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S021",
+        "date": "2013-06-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "CHANGES TO THE LEAD MANUFACTURING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S021",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S020",
+        "date": "2013-06-06",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM SYSTEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL FOR ADDITION OF TECHNICAL NOTES TO EXPAND UPON THE INFORMATION IN THE AUDIOLOGISTS MANUAL AND TO REMIND SURGEONS AND AUDIOLOGISTS OF THE IMPORTANCE OF REPORTING SIGNIFICANT INJURIES TO CRANIAL NERVE VII VIA THE MEDICAL DEVICE REPORTING SYSTEM.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S020",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S019",
+        "date": "2013-05-17",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM IMPLANTABLE HEARING SYSTEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL FOR THE FOLLOWING: 1) REVISIONS TO THE INSTRUCTIONS FOR USE FOR THE IMPLANTING SURGEON; 2) A MANUAL TO INFORM AUDIOLOGISTS ON THE PROGRAMMING OF THE ESTEEM SYSTEM; AND 3) FOR MAKING MANUALS, WHICH ARE MADE REDUNDANT BY THE FORMER LABELING CHANGES, OBSOLETE.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S019",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S014",
+        "date": "2013-03-26",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL FOR REUSABLE SURGICAL ACCESSORIES INCLUDING REUSABLE TRANSDUCER REPLICAS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S014",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S011",
+        "date": "2012-11-13",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL FOR THE EO STERILIZATION LOAD CONFIGURATION CHANGE FOR THE ESTEEM PRODUCT FAMILY.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S011",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S018",
+        "date": "2012-09-28",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "CHANGE TO THE EAR INSERT TUBE CLEANING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S018",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S016",
+        "date": "2012-06-22",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL TO ADD NEW, PHYSICALLY SMALLER, SENSOR/ DRIVER MODELS TO THE ESTEEM FAMILY.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S016",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S017",
+        "date": "2011-12-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "CHANGE TO THE FINAL SHELF BOX PACKAGING PROCESS FOR THE ESTEEM IMPLANTABLE COMPONENTS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S017",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S013",
+        "date": "2011-10-28",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL FOR USER INTERFACE FIRMWARE CHANGES TO THE ESTEEM PERSONAL PROGRAMMER.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S013",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S010",
+        "date": "2011-09-23",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S010",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S012",
+        "date": "2011-09-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL FOR CHANGING FROM THE USE OF FETAL BOVINE SERUM TO THE USE OF BOVINE CALF SERUM AS A MEDIA SUPPLEMENT FOR EXPANDING CELLS IN EXPANDED SURFACE ROLLER BOTTLES, I.E., THE CELL EXPANSION PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S012",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S009",
+        "date": "2011-07-07",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL FOR THE USER INTERFACE SOFTWARE CHANGE TO THE ESTEEM COMMANDER PROGRAMMER.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S009",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S001",
+        "date": "2011-05-06",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL FOR THE LEAD DESIGN (MODEL 7004/7504 LEADS) AND LEAD MANUFACTURING SITE CHANGE (ENVOY MEDICAL CORP., ST. PAUL, MINNESOTA).",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S001",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S004",
+        "date": "2010-12-14",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL OF COMPUTER MANUFACTURING CHANGES FOR THE ESTEEM PROGRAMMER AND INTRAOPERATIVE SYSTEM ANALYZER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S004",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S008",
+        "date": "2010-11-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "CHANGE IN THE USB CABLE ASSEMBLY, AS WELL AS THE SUPPLIER FOR THE CABLE, TO BE USED WITH THE ESTEEM PROGRAMMER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S008",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S007",
+        "date": "2010-09-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "CHANGES FOR THE PERSONAL PROGRAMMER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S007",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S005",
+        "date": "2010-09-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "CHANGE THE MANUFACTURE OF THE EAR INSERT ASSEMBLY AND MICROPHONE ASSEMBLY.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S005",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S003",
+        "date": "2010-08-16",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL OF THE POST-APPROVAL PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S003",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "S002",
+        "date": "2010-08-16",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL OF THE POST-APPROVAL PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018S002",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P090018",
+        "supplement": "",
+        "date": "2010-03-17",
+        "decision": "PMA approval",
+        "tradeName": "ESTEEM TOTALLY IMPLANTABLE HEARING SYSTEM",
+        "applicant": "Envoy Medical Corporation",
+        "statement": "APPROVAL FOR THE ESTEEM.  THE ESTEEM IS INTENDED TO ALLEVIATE HEARING LOSS IN PATIENTS BY REPLICATING THE OSSICULAR CHAIN AND PROVIDING ADDITIONAL GAIN.  THE ESTEEM IS INDICATED FOR PATIENTS WITH HEARING LOSS THAT MEET THE FOLLOWING CRITERIA: 1) 18 YEARS OF AGE OR OLDER;2) STABLE BILATERAL SENSORINEURAL HEARING LOSS;3) MODERATE TO SEVERE SENSORINEURAL HEARING LOSS DEFINED BY PURE TONE AVERAGE (PTA);4) UNAIDED SPEECH DISCRIMINATION TEST SCORE GREATER THAN OR EQUAL TO 40%;5) NORMALLY FUNCTIONING EUSTACHIAN TUBE;6) NORMAL MIDDLE EAR ANATOMY;7) NORMAL TYMPANIC MEMBRANE;8) ADEQUATE SPACE FOR ESTEEM IMPLANT DETERMINED VIA A HIGH RESOLUTION CT SCAN; AND9) MINIMUM 30 DAYS OF EXPERIENCE WITH APPROPRIATELY FIT HEARING AIDS.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=3700&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523",
+        "file": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523.json",
+        "retrievedAt": "2026-10-22T18:59:45.580180+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "1 original labeling document link(s) located; 5 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 1,
+    "changes": 5,
+    "rows": [
+      {
+        "application": "P090018",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf9/P090018C.pdf",
+        "pages": 73,
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018",
+        "locator": "L57: Labeling 【38†Labeling】",
+        "pageUpdatedAt": "10/19/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: today; Content type: application/pdf; Number of pages: 73;",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P090018",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018",
+        "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018\",\"lineno\":null}); Total lines: 105",
+        "pageUpdatedAt": "10/19/2026",
+        "locator": "L57: Labeling 【38†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P090018S041",
+      "P090018S037",
+      "P090018S031",
+      "P090018S020",
+      "P090018S019"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "2 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 2,
+    "rows": [
+      {
+        "cfres_id": "114942",
+        "product_res_number": "Z-0750-2013",
+        "product_description": "Esteem Programmer Model 6001, US and ISA, Model 3001 Dell E54XX, part of the Esteem Totally Implantable Hearing System.  \n\n\nThe ISA and Commander are software packages that run on a laptop personal computer.",
+        "code_info": "Lot# EMC0004011 EMC0004665 EMC0004114 EMC0004356 EMC0004639 EMC0004399 EMC0004922 EMC0004923 EMC0004989 EMC0004126 EMC0004310 EMC0004724 EMC0004967 EMC0004759 EMC0004235 EMC0004929 EMC0004234 EMC0004965 EMC0004932 EMC0004928 EMC0004969 EMC0004930 EMC0004844 EMC0004053   Lot# EMC0003968 EMC0003985 EMC0003935 EMC0004028 EMC0004027 EMC0004376 EMC0004125 EMC0004303 EMC0004196 EMC0003852 EMC0004191 EMC0004286 EMC0004491 EMC0004594 EMC0004757 EMC0004510   Lot# EMC0004304 EMC0004797    Lot# EMC0003827 EMC0004233",
+        "reason_for_recall": "Envoy Medical is conducting a voluntary correction of a limited number of Esteem Programmers, part of the Esteem Totally Implantable Hearing System, to reduce their susceptibility to noise interference.",
+        "action": "Envoy Medical Corporation sent an \"URGENT MEDICAL DEVICE CORRECTION\" letter dated December 7, 2012 to all affected customers.  The letter identified the product, problem, and actions to be taken by the customers. Contact the firm at 949-233-1204 for questions relating to this notice.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2013-01-09",
+        "event_date_posted": "2013-01-30",
+        "event_date_terminated": "2013-04-09",
+        "recalling_firm": "Envoy Medical Corporation",
+        "root_cause_description": "Software design",
+        "applications": [
+          "P090018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=114942",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "165600",
+        "product_res_number": "Z-2590-2018",
+        "product_description": "Final Pack, Esteem II, Sound Processor Model 2001, containing 2 Sterile Wipes 002866-001 (which expired in April 2018).  An Implantable Middle Ear Hearing Device.",
+        "code_info": "Lot Numbers: EMC0006145, EMC0006155, & EMC0006217",
+        "reason_for_recall": "Sterile Wipes packed in these four Esteem II Sound Processors had an earlier expiration date than the final pack and the Esteem II Sound Processors. The Sterile Wipes expired prior to the date labeled on the final pack.",
+        "action": "The firm notified its customers via email on 06/18/2018 and 06/19/2018.  The 06/18/2018 email to a customer stated Envoy Medical would like to have the devices the customer has on site returned, as apparently, it was confirmed that each device is packaged with a wipe that shows expired just on the wipe only.  Envoy will replace the recalled devices by overnight shipping replacements.\n\nThe 06/19/2018 email to a customer stated it was discovered that the sound processors (primary and backup) were previously sent to the site have a wipe in them that show an expired date on the packaging.  The email also stated this is something that doesn't affect the actual sound processor itself as those are good, but just to be on the safe side, make sure the 2 sound processors currently at the site (serial #s 213658 and 213729) are returned to Envoy Medical ASAP so we can have them repackaged with wipes within their expiration dates added to the sound processor packaging.  Envoy will send out 2 new Sound Processors (primary and backup).  \n\nBoth emails contained Envoy Medical contact information for the consignees in case any questions or concerns arose.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2018-06-28",
+        "event_date_posted": "",
+        "event_date_terminated": "2020-11-03",
+        "recalling_firm": "Envoy Medical Corporation",
+        "root_cause_description": "Packaging process control",
+        "applications": [
+          "P090018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=165600",
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf9/P090018C.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=114942"
+    }
+  ],
+  "path": "/dossiers/source-fda-p090018.json",
+  "applications": [
+    "P090018"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

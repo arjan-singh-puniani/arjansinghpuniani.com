@@ -10,3 +10,6 @@ __pycache__/
 test-results/
 playwright-report/
 .DS_Store
+
+data/dossiers.sqlite*
+data/dossier-acquisition.json

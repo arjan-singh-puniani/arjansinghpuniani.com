@@ -1,0 +1,304 @@
+{
+  "familyId": "cooling",
+  "name": "Focal cortical cooling research",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "not-established",
+    "detail": "No public FDA marketing application established in this collection. Trial registration/publication is not authorization.",
+    "records": 0,
+    "identityChecked": false,
+    "rows": [],
+    "sources": []
+  },
+  "labeling": {
+    "state": "not-applicable",
+    "detail": "No commercial labeling assigned to this investigational entry; protocol/publication evidence is separate.",
+    "documents": 0,
+    "changes": 0,
+    "rows": [],
+    "pages": [],
+    "changeIds": [],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "not-established",
+    "detail": "No reliable application-based recall join is available; no safety clearance is inferred.",
+    "recalls": 0,
+    "rows": [],
+    "sources": [],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "not-applicable",
+  "noticeReview": "partial",
+  "modelLotReview": "not-established",
+  "sourceLinks": [
+    {
+      "title": "Research evidence: NCT06391294",
+      "url": "https://clinicaltrials.gov/study/NCT06391294"
+    },
+    {
+      "title": "Research evidence: PMID:25902001",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25902001/"
+    },
+    {
+      "title": "Research evidence: PMID:33307258",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33307258/"
+    },
+    {
+      "title": "Research evidence: PMID:38735427",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38735427/"
+    }
+  ],
+  "path": "/dossiers/cooling.json",
+  "applications": [],
+  "researchEvidence": [
+    {
+      "id": "NCT06391294",
+      "kind": "trial",
+      "sourceSha": "4a9240b0d64a317933e2cf7dcc5dc0d1163472dedc4c2e675bdd736be81d03a3",
+      "retrievedAt": "2026-10-19T07:06:49.845645+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?query.term=%22cortical+cooling%22&pageSize=5&format=json",
+      "title": "Neuronal and Network Mechanisms of Electrocortical Stimulation",
+      "status": "ENROLLING_BY_INVITATION",
+      "firstPosted": "2024-04-30",
+      "interventions": [
+        {
+          "armGroupLabels": [
+            "Experimental group"
+          ],
+          "description": "Focal cortical cooling will be applied",
+          "name": "Focal cortical cooling",
+          "type": "PROCEDURE"
+        }
+      ],
+      "sponsor": "Northwestern University",
+      "summary": "Electrocortical stimulation (ECS) mapping is a procedure used during brain surgeries, for example when treating diseases like epilepsy or when removing brain tumors. ECS mapping helps surgeons locate areas of the cerebral cortex (the outer part of the brain) that are important for everyday tasks like movement and speech. ECS mapping has been used for decades, and is considered the \"gold-standard\" tool for locating important areas of cortex. Despite this long history, there is still no clear understanding of exactly how ECS works.\n\nThe goal of this study is to learn details about the effects ECS has on the brain. The main questions the study aims to answer are: 1) how ECS affects the neurons of the cortex at the stimulation site; and 2) how ECS impacts brain regions that are critically important for human speech and language. These so-called \"critical sites\" can be physically distant from one another on the brain's surface, requiring extensive ECS mapping and long surgeries. Critical sites are thought to be part of a speech/language network of brain areas, and so the study's goal is to learn about how they are connected. In some participants, the brain's surface will also be slightly cooled. This is a painless procedure that does not harm the brain's function, but could provide insight as to which parts of the brain (the surface, or deeper parts) are responsible for the effects of ECS.\n\nBy improving the understanding of how ECS affects the brain and improving the ability to identify critical sites, this study could potentially lead to shorter surgeries and better outcomes for future individuals who need this care.\n\nParticipants will be recruited from among individuals who are undergoing brain surgery for epilepsy treatment or tumor removal. Participants will complete simple tasks like reading words or naming pictures, similar to standard testing that is already performed during their hospital stay.",
+      "url": "https://clinicaltrials.gov/study/NCT06391294"
+    },
+    {
+      "id": "PMID:25902001",
+      "kind": "publication",
+      "sourceSha": "0f98d9731e9d83f1ef3e9fa530d0d798e3f7e976157d607744bf3ff85958d356",
+      "retrievedAt": "2026-10-19T07:08:41.695006+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=38735427%2C33307258%2C25902001&retmode=json&tool=BodyAtlas",
+      "title": "Temperatures achieved in human and canine neocortex during intraoperative passive or active focal cooling.",
+      "publicationDate": "2015 Jun",
+      "authors": [
+        "Smyth MD",
+        "Han RH",
+        "Yarbrough CK",
+        "Patterson EE",
+        "Yang XF",
+        "Miller JW",
+        "Rothman SM",
+        "D'Ambrosio R"
+      ],
+      "journal": "Therapeutic hypothermia and temperature management",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25902001/",
+      "identifiers": [
+        {
+          "idtype": "pubmed",
+          "idtypen": 1,
+          "value": "25902001"
+        },
+        {
+          "idtype": "pmc",
+          "idtypen": 8,
+          "value": "PMC4490666"
+        },
+        {
+          "idtype": "pmcid",
+          "idtypen": 5,
+          "value": "pmc-id: PMC4490666;"
+        },
+        {
+          "idtype": "doi",
+          "idtypen": 3,
+          "value": "10.1089/ther.2014.0025"
+        }
+      ]
+    },
+    {
+      "id": "PMID:33307258",
+      "kind": "publication",
+      "sourceSha": "0f98d9731e9d83f1ef3e9fa530d0d798e3f7e976157d607744bf3ff85958d356",
+      "retrievedAt": "2026-10-19T07:08:41.695006+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=38735427%2C33307258%2C25902001&retmode=json&tool=BodyAtlas",
+      "title": "Focal Cortical Surface Cooling is a Novel and Safe Method for Intraoperative Functional Brain Mapping.",
+      "publicationDate": "2021 Mar",
+      "authors": [
+        "Ibayashi K",
+        "Cardenas AR",
+        "Oya H",
+        "Kawasaki H",
+        "Kovach CK",
+        "Howard MA 3rd",
+        "Long MA",
+        "Greenlee JDW"
+      ],
+      "journal": "World neurosurgery",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33307258/",
+      "identifiers": [
+        {
+          "idtype": "pubmed",
+          "idtypen": 1,
+          "value": "33307258"
+        },
+        {
+          "idtype": "mid",
+          "idtypen": 8,
+          "value": "NIHMS1661216"
+        },
+        {
+          "idtype": "pmc",
+          "idtypen": 8,
+          "value": "PMC8590747"
+        },
+        {
+          "idtype": "pmcid",
+          "idtypen": 5,
+          "value": "pmc-id: PMC8590747;manuscript-id: NIHMS1661216;"
+        },
+        {
+          "idtype": "doi",
+          "idtypen": 3,
+          "value": "10.1016/j.wneu.2020.11.164"
+        },
+        {
+          "idtype": "pii",
+          "idtypen": 4,
+          "value": "S1878-8750(20)32549-3"
+        }
+      ]
+    },
+    {
+      "id": "PMID:38735427",
+      "kind": "publication",
+      "sourceSha": "0f98d9731e9d83f1ef3e9fa530d0d798e3f7e976157d607744bf3ff85958d356",
+      "retrievedAt": "2026-10-19T07:08:41.695006+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=38735427%2C33307258%2C25902001&retmode=json&tool=BodyAtlas",
+      "title": "Effects of focal cortical cooling on somatosensory evoked potentials in rats.",
+      "publicationDate": "2024 Oct 1",
+      "authors": [
+        "Gotoh M",
+        "Dezawa S",
+        "Takashima I",
+        "Yamamoto S"
+      ],
+      "journal": "Brain research",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38735427/",
+      "identifiers": [
+        {
+          "idtype": "pubmed",
+          "idtypen": 1,
+          "value": "38735427"
+        },
+        {
+          "idtype": "doi",
+          "idtypen": 3,
+          "value": "10.1016/j.brainres.2024.148995"
+        },
+        {
+          "idtype": "pii",
+          "idtypen": 4,
+          "value": "S0006-8993(24)00249-X"
+        }
+      ]
+    }
+  ],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

@@ -55,5 +55,33 @@
     "ingestionChecksPassed": 26,
     "browserEntriesCheckedPerViewport": 75,
     "scope": "Record-specific editorial explanations checked against original FDA sources. Historical evidence; current labeling, recall completeness and independent expert mapping precision remain unverified."
+  },
+  "dossierMilestone": {
+    "recordedDate": "2026-10-22",
+    "explainedEntriesWithDossiers": 91,
+    "marketingApplicationsChecked": 89,
+    "pmaApplications": 85,
+    "pmaDecisionRecords": 6505,
+    "originalLabelDocumentsLinked": 100,
+    "entriesWithOriginalLabels": 71,
+    "locatedLabelSectionHeadings": 61,
+    "readableDocumentsWithSectionLocators": 19,
+    "recallQueryRecords": 351,
+    "acceptedDirectApplicationRecallRecords": 349,
+    "malformedRecallReferencesHeldForReview": 2,
+    "noticeIndexPages": 6,
+    "uniqueNoticeUrlsScreened": 410,
+    "domainChecksPassed": 41,
+    "ingestionChecksPassed": 36,
+    "portfolioChecksPassed": 95,
+    "browserDossiersCheckedPerViewport": 91,
+    "viewportModes": [
+      "desktop Chrome",
+      "mobile Chrome viewport/touch emulation"
+    ],
+    "currentLabelContentAndRevisionReview": "pending",
+    "affectedModelLotApplicabilityReview": "pending",
+    "completeManufacturerAndPre2023NoticeReview": "pending",
+    "scope": "Source inventory and original decision identity/date reconciliation. Label discovery/section headings do not certify current labeling; direct application recall links do not establish model/lot applicability. No independent clinical or anatomical precision claim."
   }
 }

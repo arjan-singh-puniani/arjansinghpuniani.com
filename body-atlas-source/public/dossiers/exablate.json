@@ -1,0 +1,775 @@
+{
+  "familyId": "exablate",
+  "name": "ExAblate Neuro",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "43 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 43,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P150038",
+        "supplement": "S044",
+        "date": "2026-09-16",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Model 4000 System",
+        "applicant": "Insightec",
+        "statement": "approval for a manufacturing site located at Molded Rubber and Plastics Corporation, 13161 W. Glendale Avenue, Butler, WI 53007, USA. This new site will be an additional manufacturing site for the Exablate 4000 Treatment Kits.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S044",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S041",
+        "date": "2026-03-23",
+        "decision": "PMA approval",
+        "tradeName": "EXABLATE",
+        "applicant": "Insightec",
+        "statement": "Approval of the post-approval study (PAS) to comply with the conditions of approval outlined in our approval order for P150038/S037.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S041",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S042",
+        "date": "2026-03-05",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Model 4000 Type 1.0 and 1.1 (Exablate Neuro; Exablate Prime)",
+        "applicant": "Insightec",
+        "statement": "Approval to add a third-party remote connection software used for installation and configuration management and to add the Siemens CimaX MRI to the list of compatible platforms.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S042",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S043",
+        "date": "2026-01-28",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Exablate Model 4000 System",
+        "applicant": "Insightec",
+        "statement": "a change in Exablate 4000 Digital Control and Acquisition board (DCA) testing procedure",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S043",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S037",
+        "date": "2025-07-03",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Model 4000 Type-1 System",
+        "applicant": "Insightec",
+        "statement": "The Exablate Neuro is intended indicated for use in the unilateral pallidothalamic tractotomy of advanced idiopathic Parkinsons Disease with medication-refractory moderate to severe motor complications as an adjunct to Parkinsons disease medication treatment, and in the staged (by at least 6 months from the first pallidothalamic tractotomy), unilateral pallidothalamic tractotomy of idiopathic Parkinsons Disease with medication-refractory motor complications of their contralateral side that was not previously treated in the first unilateral pallidothalamic tractotomy. Patients must be at least age 30. The designated area in the brain responsible for the motor complications symptoms (pallidothalamic tract) must be identified and accessible for targeted thermal ablation by the Exablate device.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Panel Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S037",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S039",
+        "date": "2025-06-03",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Model 4000 System Type 1.0 and 1.1 System (Exablate Neuro; Exablate Prime)",
+        "applicant": "Insightec",
+        "statement": "Approval for changes in the design of the Exablate Head Frame to include the option of anterior posts as a connection configuration and increase in inner diameter of the Patient Fixation Kit (PFK) Short Jacket adapter.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S039",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S040",
+        "date": "2025-04-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Exablate 4000; Exablate Transcarnial MRgFUS; Exablate Neuro; Exablate Prime; ExAblate Neuravive",
+        "applicant": "Insightec",
+        "statement": "a change to the in-process testing for ferromagnetic content",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S040",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S038",
+        "date": "2025-04-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Exablate Model 4000 System",
+        "applicant": "Insightec",
+        "statement": "a change to the ethylene oxide residuals testing frequency from every batch to once annually during annual sterilization requalification",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S038",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S026",
+        "date": "2025-03-25",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Model 4000 Type 1.0 and 1.1 Systems (Exablate Neuro)",
+        "applicant": "Insightec",
+        "statement": "approval for a change to the prescribers labeling to include the post-approval study (PAS) results from the 5-year follow-up of the continued access cohort (ET002-CA) evaluated under investigational device exemption (IDE) G120246/S007 to continue use of the Exablate Neuro while the original PMA P150038 application was being reviewed by the FDA",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S026",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S036",
+        "date": "2024-10-08",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Neuro, Exablate Prime, Exablate Transcranial MRgFUS, Exablate Model 4000, Exablate Neuravive",
+        "applicant": "Insightec",
+        "statement": "approval for the Exablate Model 4000 Type 1.1 System software version 9.0.1 to be compatible with Philips 1.5 Tesla (T) and 3.0 T magnetic resonance imaging (MRI) scanners, and the hardware and labeling were modified accordingly as a result of this proposed change. In addition, the P150038/S036 application proposed the following changes to the subject device:\tExpanded tractography support, to allow the display of overlapping anatomical structures.\tAdded baseline thermometry averaging (compared to approved baseline calculation using the last cold phase image), for enhanced sound-to-noise ratio (SNR), within approved specifications.\tAdded a visual indication of auto-calibration process bar and tracking planning scan acquisition.\tEnhanced cavitation monitoring mechanism requirements, to further improve the robustness of the monitoring to sporadic noises and reduce false cavitation alerts.\tAdded additional thermometry protocols for GE and Siemens MRI scanners as additional options for users.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S036",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S034",
+        "date": "2024-02-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Exablate",
+        "applicant": "Insightec",
+        "statement": "a change of the manufacturing method for the head membrane rings from computer numerical control (CNC) machining to molding, and the manufacturing method of attaching the rings to head membrane was changed from screws to over-molding",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S034",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S035",
+        "date": "2024-02-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Exablate Model 4000 Type 1.0 & Type 1.1 System, Exablate Neuro",
+        "applicant": "Insightec",
+        "statement": "a change to the in-process specification of the individual tile level impedance testing to accept a different range of impedances",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S035",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S033",
+        "date": "2024-01-21",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Model 4000 Type 1.0 & Type 1.1 System (Exablate Neuro)",
+        "applicant": "Insightec",
+        "statement": "approval for a manufacturing site located at R.H. Electronics Ltd., 5 Hatzoref St. Har-Yona Industrial Area, Nof Hagalil, Nazereth Illit, 17000, Israel, for assembly activities of the Exablate Neuro treatment kits",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S033",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S032",
+        "date": "2024-01-08",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Model 4000 Type 1.0 & Type 1.1 System (Exablate Neuro)",
+        "applicant": "Insightec",
+        "statement": "approval for design changes to the patient stop sonication button, image processing, and software for the Exablate Model 4000 Type 1.0 & Type 1.1 System",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S032",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S025",
+        "date": "2023-10-12",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Model 400 Type 1.0 & Type 1.1 (Exablate Neuro)",
+        "applicant": "Insightec",
+        "statement": "approval for a new software version 9.0 and hardware changes for the Exablate Model 4000 Type 1.1 System",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S025",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S031",
+        "date": "2023-07-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Exablate Model 4000 System",
+        "applicant": "Insightec",
+        "statement": "Change to the Exablate Neuro manufacturing process to allow use of pre-owned systems and system components.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S031",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S028",
+        "date": "2023-07-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Exablate Model 400 Type 1.0 & Type 1.1, Exablate Transcranial MRgFUS, Exablate Neuro, Exablate TcMRgFUS, Exablate Neurav",
+        "applicant": "Insightec",
+        "statement": "Change to allow fully automated assembly of the coil isolation board PCB layout.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S028",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S027",
+        "date": "2023-07-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Exablate Model 400 Type 1.0 & Type 1.1, Exablate Transcranial MRgFUS, Exablate Neuro, Exablate TcMRgFUS, Exablate Neurav",
+        "applicant": "Insightec",
+        "statement": "Add a second engraving machine.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S027",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S030",
+        "date": "2023-07-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Exablate Model 4000 System",
+        "applicant": "Insightec",
+        "statement": "Adding a contract manufacturer for the assembly of the head coils and membranes, and adding a label with serial number on the coils for warehouse goods tracking.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S030",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S029",
+        "date": "2023-07-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Exablate 4000 (Exablate Neuro)",
+        "applicant": "Insightec",
+        "statement": "Change to the Exablate Neuro manufacturing process which involves the addition of a water recycling system for dicing machines.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S029",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S015",
+        "date": "2023-07-18",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Model 4000 Type 1.0 and 1.1 Systems (Exablate Neuro)",
+        "applicant": "Insightec",
+        "statement": "Approval for a change to the prescribers labeling to include the post-approval study (PAS) results from the 5-year follow-up.",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S015",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S022",
+        "date": "2022-12-08",
+        "decision": "PMA approval",
+        "tradeName": "Exablate 4000 System Type-1 (i.e. Type 1.0/1.1)",
+        "applicant": "Insightec",
+        "statement": "Approval for labeling changes to the indications for use of the device in idiopathic Essential tremor patients with medication-refractory tremor.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S022",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S024",
+        "date": "2022-11-11",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Model 4000 Type 1.0 and 1.1 System (Exablate Neuro)",
+        "applicant": "Insightec",
+        "statement": "Approval of the revised protocol for the post-approval study (PAS) protocol.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S024",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S023",
+        "date": "2022-11-02",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Model 4000 Type 1.0 and 1.1 System (Exablate Neuro)",
+        "applicant": "Insightec",
+        "statement": "Approval for the addition of another sterile disposable head ring screws (DHRS) option, manufactured by INSIGHTEC and marketed under a name PFK (Patient Fixation Kit), as an accessory to Exablate Neuro system.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S023",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S018",
+        "date": "2022-07-29",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Model 4000 Type 1.0 and 1.1 Systems",
+        "applicant": "Insightec",
+        "statement": "Approval of the revised protocol for the post-approval study (PAS) protocol.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S018",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S021",
+        "date": "2022-06-07",
+        "decision": "PMA approval",
+        "tradeName": "Exablate 4000 (Exablate Neuro)",
+        "applicant": "Insightec",
+        "statement": "Approval for the replacement of the Control Personal Computer (PC) and Workstation PC to address end-of-life and software-related defects.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S021",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S019",
+        "date": "2022-04-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Exablate Model 4000 System",
+        "applicant": "Insightec",
+        "statement": "Change is for a new Extract Trackers Data SW Tool for production in place of the usual manual extract.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S019",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S020",
+        "date": "2022-03-31",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Exablate Model 4000 System",
+        "applicant": "Insightec",
+        "statement": "approval of a sandblasting machine and a dicing machine added to the production line at the Tirat Carmel, Israel facility",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S020",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S014",
+        "date": "2021-10-29",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Model 4000 Type 1.0 and 1.1 System (Exablate Neuro)",
+        "applicant": "Insightec",
+        "statement": "Approval for the Exablate Neuro.  The device is indicated for use in the unilateral pallidotomy of patients with advanced, idiopathic Parkinsons disease with medication-refractory moderate to severe motor complications as an adjunct to Parkinsons disease medication treatment. Patients must be at least age 30. The designated area in the brain responsible for the movement disorder symptoms [globus pallidus (GPi)] must be identified and accessible for targeted thermal ablation by the Exablate device.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Panel Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S014",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S013",
+        "date": "2021-07-22",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Model 4000 Type 1.0 and 1.1 System (Exablate Neuro)",
+        "applicant": "Insightec",
+        "statement": "Approval for design changes to the Exablate Model 4000 Type 1.0 & 1.1 System (Exablate Neuro) to address the end-of-life of some of the system components; to support Exablate Neuro Type 1.1 imaging quality improvements to align with the imaging quality improvements approved for the Exablate Neuro Type 1.0 and to address minor software version 7.33 defects and usability aspects.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S013",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S010",
+        "date": "2020-11-09",
+        "decision": "PMA approval",
+        "tradeName": "Exablate 4000 (Neuro) Type 1.0 & 1.1",
+        "applicant": "Insightec",
+        "statement": "Approval of the revised protocol, Protocol Number PD012  Version 1, amended on April 28, 2020, for the post-approval study (PAS) protocol.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S010",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S012",
+        "date": "2020-04-14",
+        "decision": "PMA approval",
+        "tradeName": "ExAblate 4000 System (Exablate Neuro  or the system)",
+        "applicant": "Insightec",
+        "statement": "Approval for changes to the Exablate Neuro to introduce software version 7.33, expand the use of the device with an additional Siemens 1.5 Tesla (T) Aera magnetic resonance imaging (MRI) scanner, and addition of a custom 1.5 T receive-only imaging coil for the Exablate 4000 Type 1.1 System and a custom 3.0 T receive-only imaging coil for the Exablate 4000 Type 1.0 System.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S012",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S009",
+        "date": "2019-06-28",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Model 4000 System",
+        "applicant": "Insightec",
+        "statement": "Approval for the Exablate 4000 Type 1.1 System SW Version 7.3 to support the operation of the Type 1.1 System SW version 7.2 and to include compatibility with the GE Premier Magnetic Resonance (MR) System.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S009",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S011",
+        "date": "2019-04-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Exablate 4000 System",
+        "applicant": "Insightec",
+        "statement": "Introduction of a US based warehouse and distribution facility for the purpose of receipt, handling, storage, shipping, and distributing of ExablateTreatment Kits and for storing replacement parts.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S011",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S006",
+        "date": "2018-12-16",
+        "decision": "PMA approval",
+        "tradeName": "ExAblate",
+        "applicant": "Insightec",
+        "statement": "Approval for the Exablate Model 4000 (Neuro).  The device is intended in the unilateral Thalamotomy (ventralis intermedius) treatment of Tremor-dominant Parkinsons Disease with medication-refractory tremor.  Patients must be at least age 30.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Panel Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S006",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S008",
+        "date": "2018-10-24",
+        "decision": "PMA approval",
+        "tradeName": "ExAblate (Model 4000) System",
+        "applicant": "Insightec",
+        "statement": "Approval to include the 2-year and 3-year post-market study outcomes in the device labeling.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S008",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S005",
+        "date": "2018-09-20",
+        "decision": "PMA approval",
+        "tradeName": "Exablate Model 4000 System",
+        "applicant": "Insightec",
+        "statement": "Approval for the Exablate 4000 Type 1.1 System, an expansion of the Exablate 4000 Type 1.0 System to add compatibility with Siemens 3T Skyra, Prisma and PrismaFIT MR systems, including hardware changes to the devices Helmet System, changes to the electronics of the devices Front End Cabinet, and changes to the device sub-systems required for connectivity with these Siemens MRI systems.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S005",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S007",
+        "date": "2018-05-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Exablate 4000 System",
+        "applicant": "Insightec",
+        "statement": "Consolidate the two connector types of the 1.5T Head Coil cables into a single connector type (P-Type).  The change is being made to maintain compatibility with the GE Medical Systems (GE) Signa Artist MR scanner.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S007",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S004",
+        "date": "2017-10-13",
+        "decision": "PMA approval",
+        "tradeName": "ExAblate Neuro Thalamotomy",
+        "applicant": "Insightec",
+        "statement": "Approval of the revised protocol for the post-approval study (PAS) protocol.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S004",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S003",
+        "date": "2017-06-26",
+        "decision": "PMA approval",
+        "tradeName": "ExAblate",
+        "applicant": "Insightec",
+        "statement": "Approval for a software maintenance upgrade from Software Version 6.6 to Version 7.0 for the unilateral Thalamotomy treatment of idiopathic Essential Tremor (ET) patients with medication refractory tremor.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S003",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S002",
+        "date": "2017-04-17",
+        "decision": "PMA approval",
+        "tradeName": "EXABLATE",
+        "applicant": "Insightec",
+        "statement": "Approval for a new Magnetic Resonance (MR) Head Coil for compatibility and use with the 1.5 Tesla (T) MR scanner environment when used with the ExAblate Model 4000 Type 1.0 System.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S002",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "S001",
+        "date": "2016-09-29",
+        "decision": "PMA approval",
+        "tradeName": "EXABLATE NEURO THALAMOTOMY",
+        "applicant": "Insightec",
+        "statement": "Approval of the protocol for the ODE Lead PMA Post-Approval Study protocol.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038S001",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P150038",
+        "supplement": "",
+        "date": "2016-07-11",
+        "decision": "PMA approval",
+        "tradeName": "EXABLATE",
+        "applicant": "Insightec",
+        "statement": "Approval for the ExAblate Model 4000 Type 1.0 System (ExAblate Neuro).  This device is indicated for use in the unilateral Thalamotomy treatment of idiopathic Essential Tremor patients with medication-refractory tremor. Patients must be at least age 22. The designated area in the brain responsible for the movement disorder symptoms (ventralis intermedius) must be identified and accessible for targeted thermal ablation by the ExAblate device.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=5400&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8",
+        "file": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8.json",
+        "retrievedAt": "2026-10-22T19:00:00.785809+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "1 original labeling document link(s) located; 9 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 1,
+    "changes": 9,
+    "rows": [
+      {
+        "application": "P150038",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf15/P150038C.pdf",
+        "pages": 278,
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038",
+        "locator": "L56: Labeling 【38†Labeling】",
+        "pageUpdatedAt": "10/19/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: last week; Content type: application/pdf; Number of pages: 278;",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P150038",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038",
+        "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038\",\"lineno\":null}); Total lines: 104",
+        "pageUpdatedAt": "10/19/2026",
+        "locator": "L56: Labeling 【38†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P150038S037",
+      "P150038S026",
+      "P150038S036",
+      "P150038S030",
+      "P150038S015",
+      "P150038S022",
+      "P150038S014",
+      "P150038S006",
+      "P150038S008"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+    "recalls": 0,
+    "rows": [],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "not-established",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf15/P150038C.pdf"
+    }
+  ],
+  "path": "/dossiers/exablate.json",
+  "applications": [
+    "P150038"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

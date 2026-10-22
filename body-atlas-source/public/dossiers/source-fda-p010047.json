@@ -1,0 +1,1155 @@
+{
+  "familyId": "source-fda-p010047",
+  "name": "Progel pleural air leak sealant",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "68 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 68,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P010047",
+        "supplement": "S073",
+        "date": "2026-03-12",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "For the reduction of testing frequency for Air Flow Test, Standard Spray Tips and Extended Spray Tips; removal of Neomend Inc. Pouch Peel Strength Testing for Incoming Packaging Materials with the adoption of Supplier-Performed ASTM F88 Testing for Chevron Seal Pouches; and elimination of SDS-PAGE Lot Release Testing",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S073",
+        "sourceSha": "b420b7ede9d1777b7e7190741365c9133f028b66cb96e4d4be89d68854122c30"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S072",
+        "date": "2025-12-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "to reduce the testing frequencies of three tests for the TRIDYNE Vascular Sealant and the PROGEL Pleural Air Leak Sealant",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S072",
+        "sourceSha": "b420b7ede9d1777b7e7190741365c9133f028b66cb96e4d4be89d68854122c30"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S071",
+        "date": "2025-06-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "For the reduction of TM-0080 Particulate Testing for PEG Filled Cartridges (78-8110-3501-9) and to qualify an alternate supplier (Neomend, Inc.) to perform Sodium Concentration Testing (TM-0056 REV.1).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S071",
+        "sourceSha": "b420b7ede9d1777b7e7190741365c9133f028b66cb96e4d4be89d68854122c30"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S070",
+        "date": "2025-05-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "reinstatement of quarterly dose auditing for the chemistry kit component of the PROGEL and TRIDYNE sealant products",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S070",
+        "sourceSha": "b420b7ede9d1777b7e7190741365c9133f028b66cb96e4d4be89d68854122c30"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S069",
+        "date": "2024-03-05",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "to change the incoming component embedded particulate specification for the Chemistry Kit Lids and Trays for the PROGEL Pleural Air Leak Sealant and the TRIDYNE Vascular Sealant devices",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S069",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S068",
+        "date": "2023-02-07",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "Change water quality inspection method from Oxidized Substances test to Total Organic Carbon test.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S068",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S067",
+        "date": "2022-09-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "Relocation of the Glass Cartridge Syringe Manufacturing site.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S067",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S065",
+        "date": "2022-02-09",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "Approval for labeling changes.",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S065",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S066",
+        "date": "2021-09-15",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Progel Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "Adding verification dose audit function to STERIS-RCT in Libertyville, IL.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S066",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S063",
+        "date": "2021-08-17",
+        "decision": "PMA approval",
+        "tradeName": "Progel Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "Approval for replacing the 5mL sterile water vial with a 10mL vial",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S063",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S064",
+        "date": "2021-02-11",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Progel Pleural Air Leak Sealant (Progel PALS)",
+        "applicant": "Neomend, Inc.",
+        "statement": "Addition of an equivalent piece of testing equipment utilized in a lot release test.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S064",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S062",
+        "date": "2020-12-21",
+        "decision": "PMA approval",
+        "tradeName": "Progel Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "Approval for changes to the HPLC chromatography column and test method used to evaluate the protein aggregate content in the Human Serum Albumin component of the chemistry kits contained in the PROGEL PALS and TRIDYNE VS finished devices.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S062",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S061",
+        "date": "2019-02-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Progel Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "Change to implement multiple autoclaving cycles for carboys that directly contact materials used in the manufacture of approved device.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S061",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S054",
+        "date": "2018-10-17",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL Pleural Air Leak Sealant (PALS)",
+        "applicant": "Neomend, Inc.",
+        "statement": "Approval for packaging modification of the subject device. The changes being made include 1) modification of the materials and process for packaging Progel PALS for shipment in order to maintain its labeled environmental condition of two to eight (2-8) degrees Celsius, 2) release a manufacturing procedure regarding how the contract manufacturer AMP is required to package and ship HSA-filled and PEG-filled cartridges to Neomend, 3) replacement of a custom-made spray tip gauge with a spray tip reference aid to confirm set up of the Uson Sprint LC multi-leak air tester, and 4) modification of the Freeze Watch indicator.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S054",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S060",
+        "date": "2018-09-13",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Progel Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "Modify the manufacturing process for the siliconized cartridges.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S060",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S051",
+        "date": "2018-09-12",
+        "decision": "PMA approval",
+        "tradeName": "Progel Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "Approval for alternate sterilization sites located at Bard Regional Sterilization, 1211 Mary Magnum Boulevard, Madison, Georgia and Bard Regional Sterilization, 8195 Industrial Boulevard, Covington, Georgia.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S051",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S059",
+        "date": "2018-07-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Progel Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "Change to the radiation dose used for the sterile Nalgene plastic containers used to store and deliver the Polyethylene Glycol Disuccinimidyl Succinate (PEG(SS)2) raw material to Neomend.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S059",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S046",
+        "date": "2018-07-03",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL Pleural Air Leak Sealant (PALS)",
+        "applicant": "Neomend, Inc.",
+        "statement": "Approval for manufacturing changes regarding the silicone concentration and application methods to the glass cartridges containing the chemical pre-gel components of the PROGEL Pleural Air Leak Sealant (PALS) device.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S046",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S058",
+        "date": "2018-06-13",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Progel Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "New supplier of the Self Contained Biological Indicator (SCBI) used to monitor sterilization of the Progel Pleural Air Leak Sealant.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S058",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S057",
+        "date": "2018-06-12",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "Change to the number of unsterilized kits for bioburden testing, change to location of testing EO sterilized product and modification of a gowning certification program.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S057",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S056",
+        "date": "2018-05-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Progel Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "Use of calibrated spray tips ('standards') in the flow rate testing process.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S056",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S055",
+        "date": "2018-02-05",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Progel Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "Expand the use of the Lighthouse Monitoring System (LMS) to additional cleanroom and product storage areas.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S055",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S053",
+        "date": "2018-02-01",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL Pleural Air Leak Sealant (PALS)",
+        "applicant": "Neomend, Inc.",
+        "statement": "Change to the acceptance testing of the outer pouch used to package the extended tip accessory",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S053",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S050",
+        "date": "2017-11-29",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL Pleural Air Leak Sealant",
+        "applicant": "Neomend, Inc.",
+        "statement": "Manufacturing process and location change of DuPonts production of Tyvek used in the manufacture of packaging material for the device.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S050",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S048",
+        "date": "2017-10-12",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL Pleural Air Leak Sealant (PALS), PROGEL Spare Tips accessory, PROGEL 6 and 11 Extended Tips accessory",
+        "applicant": "Neomend, Inc.",
+        "statement": "Changes to the manufacturing of the extended applicator tip, assembly/sealing/packaging, labeling processes, and environmental controls.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S048",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S047",
+        "date": "2017-10-12",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL Pleural Air Leak Sealant (PALS); PROGEL Spare Tips accessory; PROGEL 6 Extended Tips accessory; PROGEL 11 Extende",
+        "applicant": "Neomend, Inc.",
+        "statement": "Manufacturing process change to the Human Serum Albumin (HSA) and Polyethylene Glycol (PEG) filling.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S047",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S049",
+        "date": "2017-10-10",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL Pleural Air Leak Sealant (PALS), PROGEL Spare Tips accessory, PROGEL 6 and 11 Extended Tips accessory",
+        "applicant": "Neomend, Inc.",
+        "statement": "Manufacturing process change to the Human Serum Albumin (HSA) and Polyethylene Glycol (PEG) processing.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S049",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S044",
+        "date": "2016-10-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "Removal of the temperature indicator located on the Chemistry Kit component of the Pro gel Pleural Air Leak Sealant.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S044",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S043",
+        "date": "2016-08-17",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "Addition of a particulate matter quality checks at various stages of the Progel manufacturing process.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S043",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S032",
+        "date": "2016-04-15",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT WITH RECOMBINANT HUMAN ALBUMIN",
+        "applicant": "Neomend, Inc.",
+        "statement": "Approval to add a model that changes the source material for the protein solution from Human Serum Albumin (HSA) to recombinant Human Albumin (rHA for the Progel® Pleural Air Leak Sealant (PALS) with Recombinant Human Albumin (rHA) .",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S032",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S042",
+        "date": "2016-01-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL OF ALTERNATE SUPPLIERS OF TESTING REAGENTS USED FOR ANALYTICAL TESTING (I.E., THE BIURET TEST REAGENT AND PROTEIN PRIMARY STANDARD) OF THE TOTAL PROTEIN CONTENT OF THE HUMAN SERUM ALBUMIN (HAS) COMPONENT OF THE PROGEL PALS FINISHED DEVICE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S042",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S041",
+        "date": "2015-12-17",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "ALTERNATE SUPPLIER OF ANALYTICAL TESTING SERVICES FOR DETERMINATION OF THE TOTAL SODIUM CONTENT IN BICARBONATE BUFFER SOLUTIONS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S041",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S040",
+        "date": "2015-12-11",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL FOR PHASE 1 OF THE CLEANROOM EXPANSION PLAN AND ALLOW PRODUCT TO BE BUILT AND DISTRIBUTED USING THE EXPANDED CLEANROOM ENVIRONMENT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S040",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S039",
+        "date": "2015-06-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT, PROGEL EXTENDED APPLICATOR SPRAY TIP16CM/6IN, PROGEL EXTENDED APPLICATOR SPRAY TIP29CM/",
+        "applicant": "Neomend, Inc.",
+        "statement": "ADD A SECOND SUPPLIER FOR THE BIOBURDEN TESTING, WHICH IS PERFORMED ON A QUARTERLY BASIS TO CONFIRM BIOBURDEN LEVELS PRIOR TO RELEASE OF THE EXTENDED APPLICATOR SPRAY TIPS FOR ETHYLENE OXIDE STERILIZATION REMAIN ACCEPTABLE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S039",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S034",
+        "date": "2015-06-17",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL FOR MODIFYING THE STORAGE CONDITIONS OF PROGEL PLEURAL AIR LEAK. THE INCLUSION OF A CONSECUTIVE OR CUMULATIVE CONTROLLED ROOM TEMPERATURE STORAGE EXCURSION OF 8 °C TO 25 °C FOR A PERIOD UP TO 35 DAYS WITHIN THE APPROVED 24-MONTH SHELF LIFE WHEN THE DEVICE IS NORMALLY STORED BETWEEN 2 °C TO 8°C.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S034",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S037",
+        "date": "2015-03-16",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT AND PROGEL EXTENDED APPLICATOR SPRAY TIP",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL TO EXTEND ENROLLMENT BY 13 MONTHS TO COMPLETE ENROLLMENT IN THE PAS TO THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S037",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S036",
+        "date": "2015-02-13",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL FOR THE PROGEL PLEURAL AIR LEAK SEALANT (PALS). THE SINGLE USE PROGEL PLEURAL AIR LEAK SEALANT DEVICE IS INDICATED FOR APPLICATION TO VISCERAL PLEURA AFTER STANDARD VISCERAL PLEURAL CLOSURE WITH, FOR EXAMPLE, SUTURES OR STAPLES, OF VISIBLE AIR LEAKS INCURRED DURING RESECTION OF LUNG PARENCHYMA.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Panel Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S036",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S035",
+        "date": "2014-07-02",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "ALTERNATE EXTENDED APPLICATOR SPRAY TIP SUPPLIER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S035",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S033",
+        "date": "2014-01-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "ADDITION OF A SECOND SOURCE COMPONENT SUPPLIER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S033",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S028",
+        "date": "2013-11-08",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S028",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S030",
+        "date": "2013-09-25",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL FOR REMOVAL OF THE UPPER LIMIT SEAL STRENGTH SPECIFICATION FOR THE STERILE BARRIER POUCH PACKAGING AND REPLACING IT WITH THE PEEL-OPEN VERIFICATION TEST.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S030",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S027",
+        "date": "2013-08-08",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL FOR A MODIFIED KIT ORIENTATION DURING E-BEAM STERILIZATION.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S027",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S031",
+        "date": "2013-08-01",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "CHANGES IN THE UV BONDING PROCESS FOR THE PROGEL® EXTENDED TIPS PROVIDED WITH THE PROGEL PLEURAL AIR LEAK SEALANT KIT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S031",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S026",
+        "date": "2013-07-25",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL FOR A CHANGE IN THE SHIPPING TEMPERATURE RANGE TO 1ºC TO 30°C TO ALLOW FOR BRIEF POSSIBLE EXTREMES IN TEMPERATURE DURING SHIPMENT. THE AGENCY NOTES THAT THE \"KEEP REFRIGERATED\" LABEL, C-00473, WILL BE AFFIXED TO THE SHIPPING CONTAINER.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S026",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S029",
+        "date": "2013-04-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "CHANGES IN THE STERILIZATION PROCEDURES FOR THE EXTENDED TIPS AND SPARE TIPS PROVIDED WITH THE PROGEL PLEURAL AIR LEAK SEALANT KIT.",
+        "reason": "",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S029",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S022",
+        "date": "2013-04-04",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL FOR CHANGE TO A RESIN SUPPLIER.",
+        "reason": "",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S022",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S024",
+        "date": "2012-12-07",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S024",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S023",
+        "date": "2012-10-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL PLEURAL  AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "ADDITION OF A SECOND SUPPLIER FOR THE MATERIALS COMPRISING THE OUTER POUCH, WHICH MAINTAINS THE STERILE BARRIER AND HOLDS THE APPLICATOR ACCESSORIES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S023",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S021",
+        "date": "2012-09-05",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL FOR MODIFICATIONS TO THE PUSH ROD (C-00286), END CAP(C-00280) AND OUTER HOUSING (C-00279) COMPONENTS OF THE APPLICATOR KIT AND ASSOCIATED MINOR LABELING CHANGES.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S021",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S019",
+        "date": "2012-08-23",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT DEVICE",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL FOR AN EXTENSION OF THE REFRIGERATED SHELF LIFE OF THE DEVICE.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S019",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S020",
+        "date": "2012-05-30",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALNAT",
+        "applicant": "Neomend, Inc.",
+        "statement": "ADD AN ADDITIONAL SUPPLIER FOR STERILE WATER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S020",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S011",
+        "date": "2012-05-10",
+        "decision": "PMA approval",
+        "tradeName": "NEOMEND PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL FOR THE ADDITION OF NEOMEND, INCORPORATED, IRVINE, CALIFORNIA AS A SECOND SOURCE SUPPLIER FOR THE HUMAN SERUM ALBUMIN (HSA) PROTEIN CARTRIDGES FOR THE DEVICE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S011",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S018",
+        "date": "2012-04-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "IMPLEMENT AN AUTOMATED OPTICAL INSPECTION SYSTEM IN ADDITION TO A CURRENT MANUAL INSPECTION.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S018",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S016",
+        "date": "2012-03-23",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL PLEURAL LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL FOR AN EXTENSION OF SHELF LIFE OF THE PROGEL EXTENDED APPLICATOR SPRAY TIPS FORM 12 TO 24 MONTHS.  THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME PROGEL EXTENDED APPLICATOR SPRAY TIPS AND IS INDICATED TO DELIVER PROGEL TO VISCERAL PLEURA DURING AN OPEN THORACOTOMY AFTER STANDARD VISCERAL PLEURAL CLOSURE (I.E. WITH SUTURES OR STAPLES) OF VISIBLE AIR LEAKS (>= 2 MM) INCURRED DURING OPEN RESECTION OF LUNG PARENCHYMA IN ADULT HUMANS BY BENDING THE MALLEABLE TIP TO DIRECT PROGEL FROM THE DELIVERY TIP IN A STREAM OR SPRAY CONE PATTERN THAT IS PERPENDICULAR TO THETARGET SURFACE.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S016",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S015",
+        "date": "2012-03-19",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S015",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S017",
+        "date": "2012-03-01",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "IMPLEMENT AN AUTOMATED UV BONDING SYSTEM TO BUILD EXTENDED TIPS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S017",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S010",
+        "date": "2011-12-21",
+        "decision": "PMA approval",
+        "tradeName": "NEOMEND PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL FOR THE PROGEL APPLICATOR EXTENDED SPRAY TIPS AS AN ACCESSORY FOR THE PROGEL PLEURAL AIR LEAK SEALANT.  THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME PROGEL APPLICATOR EXTENDED SPRAY TIPS AND THE INDICATIONS FOR USE IS TO DELIVER PROGEL TO VISCERAL PLEURA DURING AN OPEN THORACOTOMY AFTER STANDARD VISCERAL PLEURAL CLOSURE (I.E. WITH SUTURES OR STAPLES) OF VISIBLE AIR LEAKS (>= 2 MM) INCURRED DURING OPEN RESECTION OF LUNG PARENCHYMA IN ADULT HUMANS BY BENDING THE MALLEABLE TIP TO DIRECT PROGEL FROM THE DELIVERY TIP IN A STREAM OR SPRAY CONE PATTERN THAT IS PERPENDICULAR TO THE TARGET SURFACE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S010",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S014",
+        "date": "2011-11-10",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEOMEND PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "MODIFICATIONS IN AN INSPECTION PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S014",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S013",
+        "date": "2011-10-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEOMEND PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "REDUCTION IN SAMPLE SIZE OF THE CURRENT TESTING FOR THE APPLICATOR KITS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S013",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S009",
+        "date": "2011-04-13",
+        "decision": "PMA approval",
+        "tradeName": "NEOMEND PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED IN IRVINE, CALIFORNIA.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S009",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S001",
+        "date": "2011-02-17",
+        "decision": "PMA approval",
+        "tradeName": "NEOMEND'S PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S001",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S008",
+        "date": "2011-02-10",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEOMEND PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "MARKETING OF PROGEL¿ APPLICATOR SPRAY TIPS AS AN ACCESSORY FOR THE NEOMEND PLEURAL AIR LEAK SEALANT DEVICE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S008",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S005",
+        "date": "2010-12-29",
+        "decision": "PMA approval",
+        "tradeName": "NEOMEND PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL FOR THE ADDITION OF A SECOND MANUFACTURING SOURCE FOR A CRITICAL DEVICE COMPONENT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S005",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S006",
+        "date": "2010-10-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEOMEND PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "ADDITION OF A SECOND SOURCE FOR HUMAN SERUM ALBUMIN.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S006",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S004",
+        "date": "2010-08-05",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEOMEND PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "CHANGE IN THE LOCATION OF THE CONTRACT MANUFACTURER OF ONE OF THE COMPONENTS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S004",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S003",
+        "date": "2010-05-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEOMEND PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "MODIFICATION OF A TEST PROCEDURE USED TO DETERMINE THE PERCENT PROTEIN OF HUMAN SERUM ALBUMIN IN THE COMPONENT MANUFACTURING PROCESS AND FOR FINAL RELEASE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S003",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "S002",
+        "date": "2010-04-15",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEOMEND PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "CHANGE FROM A MANUAL MANUFACTURING PROCESS TO AUTOMATED PROCESS FOR FILLING A COMPONENT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047S002",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      },
+      {
+        "application": "P010047",
+        "supplement": "",
+        "date": "2010-01-14",
+        "decision": "PMA approval",
+        "tradeName": "PROGEL PLEURAL AIR LEAK SEALANT",
+        "applicant": "Neomend, Inc.",
+        "statement": "APPROVAL FOR PROGEL PLEURAL AIR LEAK SEALANT.  THE DEVICE IS INDICATED FOR APPLICATION TO VISCERAL PLEURA DURING AN OPEN THORACOTOMY AFTER STANDARD VISCERAL PLEURAL CLOSURE WITH, FOR EXAMPLE, SUTURES OR STAPLES, OF VISIBLE AIR LEAKS (>=2 MM) INCURRED DURING OPEN RESECTION OF LUNG PARENCHYMA.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047",
+        "sourceSha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=1600&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69",
+        "file": "649a29bdd337a94ddd1e1794219405dde2c08fe2638c9f886181846a77570d69.json",
+        "retrievedAt": "2026-10-22T18:59:26.704652+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=1700&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "b420b7ede9d1777b7e7190741365c9133f028b66cb96e4d4be89d68854122c30",
+        "file": "b420b7ede9d1777b7e7190741365c9133f028b66cb96e4d4be89d68854122c30.json",
+        "retrievedAt": "2026-10-22T18:59:27.518233+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "1 original labeling document link(s) located; 7 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 1,
+    "changes": 7,
+    "rows": [
+      {
+        "application": "P010047",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010047C.pdf",
+        "pages": 23,
+        "textAvailable": true,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047",
+        "locator": "L56: Labeling 【39†Labeling】",
+        "pageUpdatedAt": "10/19/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: 2 weeks ago; Content type: application/pdf; Number of pages: 23;",
+        "sections": [
+          {
+            "title": "3.0 CONTRAINDICATIONS",
+            "pdfPage": 2,
+            "sourceLine": 44,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "4.0 WARNINGS",
+            "pdfPage": 3,
+            "sourceLine": 58,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "5.0 PRECAUTIONS",
+            "pdfPage": 3,
+            "sourceLine": 65,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "ADVERSE EVENTS",
+            "pdfPage": 6,
+            "sourceLine": 209,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          }
+        ]
+      }
+    ],
+    "pages": [
+      {
+        "application": "P010047",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047",
+        "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047\",\"lineno\":null}); Total lines: 106",
+        "pageUpdatedAt": "10/19/2026",
+        "locator": "L56: Labeling 【39†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P010047S065",
+      "P010047S048",
+      "P010047S036",
+      "P010047S026",
+      "P010047S021",
+      "P010047S019",
+      "P010047S016"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 1,
+    "rows": [
+      {
+        "cfres_id": "112705",
+        "product_res_number": "Z-2454-2012",
+        "product_description": "Progel Pleural Air Leak Sealant, Model #: PGPS002\nLot #: 111202-002\n\nProduct Usage:\nThe Progel Pleural Air Leak Sealant is indicated for application to visceral pleura during an open thoracotomy after standard visceral pleural closure with, for example, sutures or staples, of visible air leaks (;::2mm) incurred during open resection of lung parenchyma.",
+        "code_info": "Model #: PGPS002 Lot #: 111202-002",
+        "reason_for_recall": "Product was distributed with an incorrect expiration date. Product was labeled with an\nexpiration date of 2013-04 and should have been labeled with 2012-09.",
+        "action": "Neomend sent a Product Recall Notice letter dated August 13, 2012 to all affected customers. The notification letter identified the product affected, problem and actions to be taken.  Customers were instructed to check their stock supply and ask the Central Supply Department to determine whether they have any unused product from the affected lot.  If you do have unused units of this product follow the instructions provided.   If you do not have any product with the affected lot number complete and return the enclosed\nTrackingVerification Form.  For questions contact your Neomend sales representative.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2012-08-13",
+        "event_date_posted": "2012-09-25",
+        "event_date_terminated": "2012-09-25",
+        "recalling_firm": "Neomend Inc",
+        "root_cause_description": "Incorrect or no expiration date",
+        "applications": [
+          "P010047"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=112705",
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010047C.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=112705"
+    }
+  ],
+  "path": "/dossiers/source-fda-p010047.json",
+  "applications": [
+    "P010047"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

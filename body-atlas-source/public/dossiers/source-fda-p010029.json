@@ -1,0 +1,795 @@
+{
+  "familyId": "source-fda-p010029",
+  "name": "Euflexxa / original Nuflexxa approval",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "41 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 41,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P010029",
+        "supplement": "S043",
+        "date": "2026-09-02",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA® (1% sodium hyaluronate)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "introduction of a new Working Cell Bank (WCB) \"WC18-16072025\"",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S043",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S042",
+        "date": "2025-10-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA® (1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "Approval for replacement of the autoclave used for sterilization of the filling machine parts.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S042",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S041",
+        "date": "2025-05-28",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA (1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "Approval for the addition of an alternate 160L intermediate vessel and formulation capacity increase for the manufacturing of the Euflexxa (1% sodium hyaluronate) product.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S041",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S040",
+        "date": "2024-09-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "Approval for introduction of a new 1 ?m filter to be used during the second step of the bulk intermediate purification process for the manufacturing of the Euflexxa (1% sodium hyaluronate) product.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S040",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S039",
+        "date": "2024-08-17",
+        "decision": "PMA approval",
+        "tradeName": "EUFLEXXA",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "Approval for addition of an alternative autoclave for the NaHA filling machine parts.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S039",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S038",
+        "date": "2024-04-06",
+        "decision": "PMA approval",
+        "tradeName": "EUFLEXXA",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "Approval for updating the syringe label to include the symbol for a single barrier system with protective packaging outside.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S038",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S037",
+        "date": "2024-03-01",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "modifications to the purification process utilized in the manufacturing of NaHA bulk intermediate batches to optimize the ability to remove contaminants and to improve yield. Proposed modifications include increasing the amount of activated charcoal, Celatom and water for injection for the 1 kg and 1.5 kg batch sizes as well as two additional ethanol washes for the 1.5 kg batch size",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S037",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S036",
+        "date": "2024-02-02",
+        "decision": "PMA approval",
+        "tradeName": "EUFLEXXA® (1% sodium hyaluronate)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "Approval for introduction of new silicone gaskets for ceramic membranes of the Ultrafiltration (UF3) formulation and filling unit used in the manufacturing of the Euflexxa (1% sodium hyaluronate) product.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S036",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S035",
+        "date": "2023-06-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "Replacement of the first dissolution vessel agitator.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S035",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S034",
+        "date": "2023-05-12",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "Removal of package integrity testing.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S034",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S033",
+        "date": "2023-04-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "Modifications to the ultrafiltration system in the manufacturing process.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S033",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S032",
+        "date": "2023-04-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "Alternative pressure set point during the fermentation process.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S032",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S030",
+        "date": "2020-04-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA (1% Sodium Hyaluronate)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "Change in manufacturing to shorten the time required for the concentration step during formulation by slightly increasing the pressure and reducing the concentration time in the UF (ultrafiltration) unit.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S030",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S029",
+        "date": "2020-01-02",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Euflexxa (1% Sodium Hyaluronate)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "Elimination of syringeability testing from finished product testing, and the elimination of the syringeability test parameter from EUFLEXXA release and stability test parameters.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S029",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S028",
+        "date": "2019-05-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA (1% Sodium Hyaluronate)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "Addition of an alternative supplier of the syringes used to inject EUFLEXXA.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S028",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S027",
+        "date": "2018-11-19",
+        "decision": "PMA approval",
+        "tradeName": "EUFLEXXA",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "Approval for a minor design and material change to the tip cap of the syringe utilized to inject EUFLEXXA.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S027",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S026",
+        "date": "2018-04-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Euflexxa (1% Sodium Hyaluronate)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "Modification to a purification step for a sodium hyaluronate intermediate used to manufacture EUFLEXXA.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S026",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S025",
+        "date": "2017-12-28",
+        "decision": "PMA approval",
+        "tradeName": "EUFLEXXA (1% Sodium Hyaluronate)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "Approval for BTG (Ferring) to manufacture, package and release Euflexxa at both the BTG (Ferring) and Lifecore facilities.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S025",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S024",
+        "date": "2015-05-07",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA (1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "SCALE UP THE MANUFACTURING PROCESS OF EUFLEXXA BY INCREASING THE FORMULATION CAPACITY.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S024",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S023",
+        "date": "2015-04-02",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA (1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "INCREASE IN THE PURIFICATION CAPACITY OF AN INTERMEDIATE USED IN THE MANUFACTURE OF THE EUFLEXXA PRODUCT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S023",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S022",
+        "date": "2015-03-12",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA (1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "PROPOSED SCALE-UP OF MANUFACTURING PROCESSES TO INCREASE PRODUCT YIELD PER LOT FOR THE EUFLEXXA PRODUCT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S022",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S021",
+        "date": "2015-01-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "PROPOSED REVISED STABILITY PROTOCOL.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S021",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S020",
+        "date": "2014-05-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA (1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "USE OF A NEW INTERMEDIATE VESSEL FOR BVI 1% AND EUFLEXXA OVD.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S020",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S019",
+        "date": "2014-03-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "INTRODUCTION OF A NEW THERMOFORMING MACHINE FOR SECONDARY PACKAGING.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S019",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S018",
+        "date": "2013-12-10",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA (1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "BVI 1% OVD (1% SODIUM HYALURONATE VISCOELASTIC SURGICAL AID FLUID)",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S018",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S017",
+        "date": "2013-06-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "ADD A NEW SYRINGE DENESTER MACHINE AND AN ALTERNATIVE ASSEMBLY AND LABELING MACHINE.",
+        "reason": "",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S017",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S016",
+        "date": "2013-03-13",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA (1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "CHANGE IN THE CLASSIFICATION OF A MATERIALS WEIGHING ROOM.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S016",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S015",
+        "date": "2012-05-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA (1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "ADDITION OF A NEW FILLING MACHINE.",
+        "reason": "",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S015",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S014",
+        "date": "2012-03-30",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA (1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "ALTERNATE USE OF A NEW SYRINGEABILITY MACHINE FOR QC TESTING.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S014",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S013",
+        "date": "2012-01-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA (1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "NEW VISCOMETER, FOR THE IN-PROCESS AND QUALITY CONTROL RELEASE TESTING.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S013",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S008",
+        "date": "2011-10-11",
+        "decision": "PMA approval",
+        "tradeName": "EUFLEXXA (1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "APPROVAL FOR EUFLEXXA (1% SODIUM HYALURONATE). THIS DEVICE IS INDICATED FOR THE TREATMENT OF PAIN IN OSTEOARTHRITIS (OA) OF THE KNEE IN PATIENTS WHO HAVE FAILED TO RESPOND ADEQUATELY TO CONSERVATIVENON-PHARMACOLOGIC THERAPY AND TO SIMPLE ANALGESICS (E.G., ACETAMINOPHEN).",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Panel Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S008",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S012",
+        "date": "2011-04-01",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA (1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "ALTERNATE RHEOMETER FOR TESTING IN-PROCESS CONTROL AND FINISHED PRODUCT SAMPLES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S012",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S010",
+        "date": "2010-10-25",
+        "decision": "PMA approval",
+        "tradeName": "EUFLEXXA (1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "APPROVAL FOR ADDITION OF NEW EQUIPMENT USED IN THE MANUFACTURING PROCESS TO INCREASE FINISHED PRODUCT LOT CAPACITY 3 ¿ 4 FOLD.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S010",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S011",
+        "date": "2009-12-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA ( 1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "INTRODUCTION OF AN ADDITIONAL PIECE OF EQUIPMENT FOR TESTING IN-PROCESS CONTROL (IPC) AND FINISHED PRODUCT SAMPLES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S011",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S009",
+        "date": "2009-12-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "EUFLEXXA (1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "CHANGE IN PRESSURE SET POINTS DURING SODIUM HYALURONATE FERMENTATION.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S009",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S007",
+        "date": "2009-07-01",
+        "decision": "PMA approval",
+        "tradeName": "EUFLEXXA 1% SODIUM HYALURONATE",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "APPROVAL FOR THE STERILE SODIUM HYALURONATE (NAHA) TO BE STORED IN STERILE, DISPOSABLE POLYETHYLENE BAGS FOR UP TO 48 HOURS PRIOR TO FILLING THE SYRINGES.  THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME EUFLEXXA AND IS INDICATED FOR THE TREATMENT OF PAIN IN OSTEOARTHRITIS OF THE KNEE IN PATIENTS WHO HAVE FAILED TO RESPOND ADEQUATELY TO CONSERVATIVE NONPHARMACOLOGIC THERAPY AND SIMPLE ANALGESICS, E.G., ACETAMINOPHEN.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S007",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S004",
+        "date": "2007-08-23",
+        "decision": "PMA approval",
+        "tradeName": "EUFLEXXA",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "APPROVAL FOR A CHANGE IN INFLAMMATION TESTING FOR BULK SODIUM HYALURONATE FROM OXIDATIVE BURST TESTING TO AN IL-6 ELISA METHOD.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S004",
+        "sourceSha": "c1274dc917173ac6a3bc0a727943b6f87e6a84fba71a41779372e00162f3de00"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S006",
+        "date": "2007-07-11",
+        "decision": "PMA approval",
+        "tradeName": "EUFLEXXA 1% SODIUM HYALURONATE",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "APPROVAL FOR A SYRINGE TIP CAP MATERIAL CHANGE FROM NATURAL RUBBER TO A SYNTHETIC RUBBER FORMULATION.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S006",
+        "sourceSha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S001",
+        "date": "2006-02-27",
+        "decision": "PMA approval",
+        "tradeName": "NUXFLEXXA (SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "APPROVAL FOR 1) CHANGING THE STORAGE CONDITIONS SPECIFIED IN THE PRODUCT LABELING FROM, ?STORE IN A COLD DARK PLACE [2 ? 8 DEGREES C (36-46 DEGREES F)].  PROTECT FROM LIGHT.  DO NOT FREEZE?.  2) CHANGE THE SPECIFIED SHELF LIFE TIME IN THE LABELING FORM 3 YEARS (AT REFRIGERATED TEMPERATURES) TO 12 MONTHS.  THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME EUFLEXXA AND IS INDICATED FOR THE TREATMENT OF PAIN IN OSTEOARTHRITIS (OA) OF THE KNEE IN PATIENTS WHO HAVE FAILED TO RESPOND ADEQUATELY TO CONSERVATIVE NON-PHARMACOLOGIC THERAPY AND TO SIMPLE ANALGESICS (E.G., ACETAMINOPHEN.)",
+        "reason": "",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S001",
+        "sourceSha": "c1274dc917173ac6a3bc0a727943b6f87e6a84fba71a41779372e00162f3de00"
+      },
+      {
+        "application": "P010029",
+        "supplement": "S002",
+        "date": "2005-10-20",
+        "decision": "PMA approval",
+        "tradeName": "EUFLEXXA",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "APPROVAL FOR CHANGING THE TRADE NAME O THE PRODUCT FROM NUFLEXXA TO EUFLEXXA.  THE DEVICE IS INDICATED FOR THE TREATMENT OF PAIN IN OSTEOARTHRITIS (OA) OF THE KNEE IN PATIENTS WHO HAVE FAILED TO RESPOND ADEQUATELY TO CONSERVATIVE NON-PHARMACOLOGIC THERAPY AND TO SIMPLE ANALGESICS (E.G., ACETAMINOPHEN).",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029S002",
+        "sourceSha": "c1274dc917173ac6a3bc0a727943b6f87e6a84fba71a41779372e00162f3de00"
+      },
+      {
+        "application": "P010029",
+        "supplement": "",
+        "date": "2004-12-03",
+        "decision": "PMA approval",
+        "tradeName": "EUFLEXXA (1% SODIUM HYALURONATE)",
+        "applicant": "Ferring Pharmaceuticals, Inc.",
+        "statement": "APPROVAL FOR NUFLEXXA (1% SODIUM HYALURONATE).  THE DEVICE IS INDICATED FOR THE TREATMENT OF PAIN IN OSTEOARTHRITIS (OA) OF THE KNEE IN PATIENTS WHO HAVE FAILED TO RESPOND ADEQUATELY TO CONSERVATIVE NON-PHARMACOLOGIC THERAPY AND TO SIMPLE ANALGESICS (E.G., ACETAMINOPHEN).",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029",
+        "sourceSha": "c1274dc917173ac6a3bc0a727943b6f87e6a84fba71a41779372e00162f3de00"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=1300&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "c1274dc917173ac6a3bc0a727943b6f87e6a84fba71a41779372e00162f3de00",
+        "file": "c1274dc917173ac6a3bc0a727943b6f87e6a84fba71a41779372e00162f3de00.json",
+        "retrievedAt": "2026-10-22T18:59:24.264380+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=1400&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013",
+        "file": "0444174784477cd442ac9661adb05a2a07ac081ea24136cbb9477826f1bac013.json",
+        "retrievedAt": "2026-10-22T18:59:25.078686+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "2 original labeling document link(s) located; 5 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 2,
+    "changes": 5,
+    "rows": [
+      {
+        "application": "P010029",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010029C.pdf",
+        "pages": 12,
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029",
+        "locator": "L56: Labeling 【38†Labeling】",
+        "pageUpdatedAt": "10/19/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: today; Content type: application/pdf; Number of pages: 12;",
+        "sections": []
+      },
+      {
+        "application": "P010029",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010029D.pdf",
+        "title": "Labeling Part 2",
+        "pages": 3,
+        "retrievalNote": "[wordlim: 200] Crawled: last week; Content type: application/pdf; Number of pages: 3;",
+        "textAvailable": true,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029",
+        "locator": "L56: Labeling 【38†Labeling】",
+        "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P010029",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029",
+        "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029\",\"lineno\":null}); Total lines: 104",
+        "pageUpdatedAt": "10/19/2026",
+        "locator": "L56: Labeling 【38†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P010029S038",
+      "P010029S017",
+      "P010029S008",
+      "P010029S001",
+      "P010029S002"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 1,
+    "rows": [
+      {
+        "cfres_id": "90770",
+        "product_res_number": "Z-1635-2010",
+        "product_description": "Euflexxa (1% sodium hyaluronate).  Pre-filled syringe, Rx only, 3 syringes per carton; Manufactured by Ferring Pharmaceuticals In, Parsippany, NJ 07054;\nManufactured by Bio-Technology General (Israel Ltd. Be er Tuvia, Kiryat Malachi 83104 Israel.\n\nIndicated for the treatment of pain in osteoarthritis of the knee in patients who have failed to respond adequately to conservative non-pharmacologic therapy and simple analgesics.",
+        "code_info": "Lot Numbers: RC0101A, Exp. 5/2010; RC0102A, Exp. 5/2010; RC0107A, Exp 5/2010; RC0114A, Exp 5/2010; RC0118A, Exp 6/2010; RC0122A, Exp 6/2010;  RC0123A, Exp 6/2010;  RC0127A, Exp 6/2010;   and RC0131A, Exp 6/2010.",
+        "reason_for_recall": "Out of Specification results for molecular weight or viscosity through the established expiration date.",
+        "action": "Ferring Pharmaceuticals issued a \"Medical Device Recall\" notification dated April 16, 2010 by Federal Express to all distributors, retail pharmacies and physicians who received the product.  Consignees were asked to stop distribution, return affected product to the firm and fax a completed Product Inventory Form to the firm.\n\nFor further information, contact Ferring Pharmaceuticals at 1-973-796-1600 or via fax at 1-973-796-1660.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2010-04-16",
+        "event_date_posted": "2010-05-21",
+        "event_date_terminated": "2010-07-27",
+        "recalling_firm": "Ferring Pharmaceuticals Inc",
+        "root_cause_description": "Process control",
+        "applications": [
+          "P010029"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=90770",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010029C.pdf"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010029D.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=90770"
+    }
+  ],
+  "path": "/dossiers/source-fda-p010029.json",
+  "applications": [
+    "P010029"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

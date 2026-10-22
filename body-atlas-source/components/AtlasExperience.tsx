@@ -59,6 +59,8 @@ import {
 import { frontier } from "@/lib/curation";
 import { External, SourceRecord, State } from "./Evidence";
 import BriefPreview from "./BriefPreview";
+import { dossiers, dossierCoverage } from "@/lib/dossiers";
+const Dossier = dynamic(() => import("./Dossier"));
 import type { AtlasRecord, Family, Mapping } from "@/lib/types";
 import "./atlas.css";
 
@@ -189,7 +191,7 @@ export default function AtlasExperience() {
     [playing, setPlaying] = useState(false),
     [comparison, setComparison] = useState(["activa", "exablate"]),
     [dialog, setDialog] = useState<Dialog>(null),
-    [tab, setTab] = useState<"components" | "sources" | "studies">(
+    [tab, setTab] = useState<"components" | "dossier" | "sources" | "studies">(
       "components",
     );
   const [libraryQuery, setLibraryQuery] = useState(""),
@@ -951,7 +953,7 @@ export default function AtlasExperience() {
                   <select
                     aria-label="Choose another intervention in this region"
                     value={f.id}
-                    onChange={(e) => chooseFamily(e.target.value)}
+                    onChange={(e) => {setSelected(e.target.value);setAnatomyExpanded(false);}}
                   >
                     {[
                       ...new Map(
@@ -1012,13 +1014,18 @@ export default function AtlasExperience() {
                       </External>
                     ))}
                 </div>
+                {dossiers[f.id] && <button className="dossier-entry" onClick={() => { setTab("dossier");document.getElementById("device-dossier")?.focus(); }}>
+                  <strong>Regulatory, labeling & safety dossier <ArrowUpRight size={13} /></strong>
+                  <span>{dossiers[f.id].regulatory.state === "checked" ? "Regulatory checked" : "Marketing authorization not established"} · {dossiers[f.id].safety.state === "checked" ? `${dossiers[f.id].safety.recalls} application-linked recalls` : "Safety applicability unreviewed"}</span>
+                  <small>{dossiers[f.id].currentLabelReview === "not-applicable" ? "Commercial labeling not applicable" : dossiers[f.id].labeling.documents ? "Original label linked" : "Original label pending"} · current labeling review {dossiers[f.id].currentLabelReview}</small>
+                </button>}
               </div>
               <div
                 className="device-tabs"
                 role="tablist"
                 aria-label="Device details"
               >
-                {(["components", "sources", "studies"] as const).map(
+                {(["components", "dossier", "sources", "studies"] as const).map(
                   (name, i) => (
                     <button
                       key={name}
@@ -1033,11 +1040,12 @@ export default function AtlasExperience() {
                           e.preventDefault();
                           const tabs = [
                             "components",
+                            "dossier",
                             "sources",
                             "studies",
                           ] as const;
                           const next =
-                            tabs[(i + (e.key === "ArrowRight" ? 1 : 2)) % 3];
+                            tabs[(i + (e.key === "ArrowRight" ? 1 : 3)) % 4];
                           setTab(next);
                           document.getElementById(`device-${next}`)?.focus();
                         }
@@ -1045,7 +1053,9 @@ export default function AtlasExperience() {
                     >
                       {name === "components"
                         ? "Anatomy"
-                        : name === "sources"
+                        : name === "dossier"
+                          ? "Dossier"
+                          : name === "sources"
                           ? "Sources"
                           : "Studies"}
                     </button>
@@ -1058,7 +1068,7 @@ export default function AtlasExperience() {
                 aria-labelledby={`device-${tab}`}
                 className="device-panel"
               >
-                {tab === "components" ? (
+                {tab === "dossier" ? <Dossier key={f.id} familyId={f.id} /> : tab === "components" ? (
                   <>
                     {activeMappings.map((m) => (
                       <article className="device-relationship" key={m.id}>
@@ -1476,6 +1486,7 @@ export default function AtlasExperience() {
                 select its available regional group. Unmapped structures do not
                 acquire inferred device relationships.
               </p>
+              <h3>Dossier coverage</h3><p>{dossierCoverage.entries} explained entries have dossiers. {dossierCoverage.regulatory} original marketing decisions and {dossierCoverage.recalls} application-based recall searches checked; {dossierCoverage.labels} entries have original labeling links. Current-label content and model/lot applicability review remain pending. The two investigational entries have no established public marketing application.</p>
               <h3>Source coverage</h3>
               <p>
                 {records.length} authentic API records; {families.filter(f=>f.collection!=='catalogue').length} reviewed entries and {catalogueCoverage.catalogueEntries} source-indexed applications. Anatomical text matches are Provisional, not reviewed physical placements. Snapshot exported {coverage.exportedAt} UTC.

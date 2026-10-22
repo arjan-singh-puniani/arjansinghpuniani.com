@@ -12,7 +12,10 @@
     "test:browser": "playwright test",
     "ingest": "python3 ingestion/pipeline.py refresh",
     "snapshot": "python3 ingestion/pipeline.py export",
-    "verify": "npm run typecheck && npm test && npm run test:ingestion && npm run build"
+    "verify": "npm run typecheck && npm test && npm run test:ingestion && npm run build",
+    "dossiers:scope": "node --import tsx scripts/export-dossier-scope.ts",
+    "dossiers:acquire": "python3 ingestion/dossiers.py acquire",
+    "dossiers:build": "python3 ingestion/build_dossiers.py"
   },
   "dependencies": {
     "next": "16.4.2",

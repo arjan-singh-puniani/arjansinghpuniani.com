@@ -38,3 +38,8 @@ The 650-entry contextual catalogue is generated offline, idempotently, from vers
 Forced refresh now resets only jobs in the selected acquisition scope; a regression check confirms a whole-body refresh does not refetch unrelated completed inquiries.
 
 The website snapshot is static: query/retrieval and brief generation run in the browser, and original evidence is served as immutable hash-named files. The parent site applies the atlas CSP only under `/atlas`; its other routes and security policy remain unchanged. Hosted background ingestion and operational monitoring are not enabled.
+
+
+## Dossier milestone — 2026-10-22
+
+The dossier acquisition reconciles 6,505 unique PMA decisions and 351 recall query results to the FDA counts and provider update dates. Root application references establish joins; two malformed references are quarantined. Failed forced refreshes retain old evidence with stale state; incomplete refreshes cannot regenerate published dossiers. A fresh offline rebuild from the compact manifest and immutable artifacts reproduces all 91 dossiers byte-for-byte without SQLite/network. No scheduled refresh or live hosted ingestion was added. Label PDFs were provider-blocked for direct downloads; located public links/cached metadata do not certify current IFUs. See [DOSSIERS.md](DOSSIERS.md).

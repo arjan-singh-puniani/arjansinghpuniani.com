@@ -34,6 +34,10 @@ describe("BODY//ATLAS portfolio integration", () => {
     expect(report.independentlyAdjudicatedMappings).toBe(0);
     expect(report.precision).toBeNull();
     expect(report.explanationExpansion.explainedEntries).toBe(91);
+    expect(report.dossierMilestone.explainedEntriesWithDossiers).toBe(91);
+    expect(report.dossierMilestone.marketingApplicationsChecked).toBe(89);
+    expect(report.dossierMilestone.currentLabelContentAndRevisionReview).toBe("pending");
+    expect(report.dossierMilestone.affectedModelLotApplicabilityReview).toBe("pending");
     expect(report.explanationExpansion.directlyAssociatedStructuresAndRegions).toBe(44);
     expect(project.status).toBe("Prototype");
     expect(project.limitations?.join(" ")).toContain("Provisional source-text contexts");
