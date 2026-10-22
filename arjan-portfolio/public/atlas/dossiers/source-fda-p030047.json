@@ -1,0 +1,984 @@
+{
+  "familyId": "source-fda-p030047",
+  "name": "Cordis PRECISE nitinol stent",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "52 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 52,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P030047",
+        "supplement": "S055",
+        "date": "2026-06-05",
+        "decision": "PMA approval",
+        "tradeName": "PRECISE PRO RX Nitinol Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "Approval for labeling updates.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S055",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S053",
+        "date": "2026-01-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE® PRO RX Nitinol Stent System; PRECISE® PRO Transcarotid Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "approval to change the receiving inspection level for 15 part numbers",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S053",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S052",
+        "date": "2025-10-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE® PRO Rx Nitinol Stent System; PRECISE® PRO Transcarotid Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "to transfer post-laser manufacturing processes of the stent component from Confluent in Fremont, California, to Confluent in Costa Rica",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S052",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S051",
+        "date": "2025-09-12",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE® PRO RX Nitinol Stent System; PRECISE® PRO Transcarotid Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "an additional supplier of the packaging tray and minor geometry modifications",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S051",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S049",
+        "date": "2025-04-04",
+        "decision": "PMA approval",
+        "tradeName": "PRECISE PRO RX Transcarotid Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "The PRECISE® PRO Transcarotid Stent System used in conjunction with the ENROUTE® Transcarotid Neuroprotection System (NPS), is indicated for the treatment of patients at high risk for adverse events from carotid endarterectomy who require carotid revascularization and meet the criteria outlined below.1. Patients with neurological symptoms and >= 50% stenosis of the common or internal carotid artery by ultrasound or angiogram OR patients without neurological symptoms and >= 80% stenosis of the common or internal carotid artery by ultrasound or angiogram, AND2. Patients must have a vessel diameter of 4-9 mm at the target lesion,AND 3. Carotid bifurcation is located at minimum 5cm above the clavicle to allow for placement of the ENROUTE Transcarotid NPS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Panel Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S049",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S050",
+        "date": "2024-12-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE Nitinol Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "to reduce the frequency of the Support Member subassembly and wire lumen fuse joint pull test",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S050",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S048",
+        "date": "2024-10-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE PRO Rx Nitinol Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "the removal of an in-process inspection test for the packaging system",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S048",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S047",
+        "date": "2023-07-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Cordis® PRECISE® Nitinol Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "Reduction of ethylene oxide concentration for the sterilization cycle.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S047",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S046",
+        "date": "2022-12-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Cordis® PRECISE® Nitinol Stent Systems",
+        "applicant": "Cordis US Corporation",
+        "statement": "In-source polytetrafluorethylene (PTFE) component manufacturing.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S046",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S045",
+        "date": "2022-12-07",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Cordis® PRECISE® Nitinol Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "New polyimide supplier.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S045",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S044",
+        "date": "2022-04-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Cordis PRECISE Nitinol Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "Automation of a welding process for the delivery system.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S044",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S043",
+        "date": "2022-02-11",
+        "decision": "PMA approval",
+        "tradeName": "Cordis® PRECISE® Nitinol Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "Approval for labeling updates.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S043",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S042",
+        "date": "2021-04-01",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Cordis PRECISE Nitinol Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "Implementing recertification procedures for returned stents.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S042",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S041",
+        "date": "2021-04-01",
+        "decision": "PMA approval",
+        "tradeName": "PRECISE Pro Rx Nitinol Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "Approval for changes to the tip pull test.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S041",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S040",
+        "date": "2020-05-29",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Cordis PRECISE Nitinol Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "Updates to the software and mechanical components of the control system for Vessel 2 and Vessel 4 at the Steris, El Paso, TX ethylene oxide sterilization facility.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S040",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S039",
+        "date": "2019-06-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE PRO RX Nitinol Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "Transfer of Final Release activities from the Cordis Miami Lakes site to the Cordis de Mexico site.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S039",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S038",
+        "date": "2019-04-30",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Cordis PRECISE Nitinol Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "Process improvement to upgrade the sterilization vessel control system and associated mechanical components.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S038",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S036",
+        "date": "2018-12-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Cordis PRECISE PRO Rx Nitinol Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "Relocation of manufacturing lines from one building to another within the same establishment.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S036",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S035",
+        "date": "2018-03-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Precise Nitinol Stent Systems",
+        "applicant": "Cordis US Corporation",
+        "statement": "Modification to a supplier processing aid.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S035",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S034",
+        "date": "2017-12-15",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Cordis Precise Nitinol Stent System",
+        "applicant": "Cordis US Corporation",
+        "statement": "Tighten a specification and add an in-process test.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S034",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S033",
+        "date": "2016-12-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "Introduction of new stent laser cutting equipment.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S033",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S032",
+        "date": "2016-04-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CORDIS PRECISE NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "Supplier site change.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S032",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S030",
+        "date": "2016-01-04",
+        "decision": "PMA approval",
+        "tradeName": "CORDIS PRECISE NITINOL  STENT SYSTEMS",
+        "applicant": "Cordis US Corporation",
+        "statement": "APPROVAL FOR REPLACEMENT OF A RAW MATERIAL SUPPLIER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S030",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S029",
+        "date": "2015-11-25",
+        "decision": "PMA approval",
+        "tradeName": "PRECISE, PRECISE RX AND PRECISE PRO RX NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "APPROVAL FOR REMOVAL OF PERFLUORO-OCTANOIC ACID (PFOA) FROM THE POLYTETRAFLUORO-ETHYLENE (PTFE) TUBING.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S029",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S031",
+        "date": "2015-05-28",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CORDIS PRECISE NITINOL STENT SYSTEMS",
+        "applicant": "Cordis US Corporation",
+        "statement": "USE AN ALTERNATE STABILIZING ADDITIVE IN PLASTIC COMPOUNDING PROCESSES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S031",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S028",
+        "date": "2015-04-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE NITINOL STENT SYSTEMS",
+        "applicant": "Cordis US Corporation",
+        "statement": "REMOVAL OF A REDUNDANT MANUFACTURING IN-PROCESS WATERBORNE TESTING STEP USED IN THE STENT CLEANING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S028",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S027",
+        "date": "2014-10-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "CHANGES TO OPTIMIZE THE POUCH SEALING PROCESS AS WELL AS A NEW POUCH SEALER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S027",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S025",
+        "date": "2012-05-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "CHANGES TO THE SEALING EQUIPMENT AND ADDITIONS TO IMPROVE THE VISUAL INSPECTION PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S025",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S024",
+        "date": "2012-03-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE, PRECISE RX, AND PRECISE PRO RXNITINOL STENT SYSTEMS",
+        "applicant": "Cordis US Corporation",
+        "statement": "PACKAGE HANDLING CHANGE TO THE HEAT SEALING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S024",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S023",
+        "date": "2012-02-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE OTW/PRECISE RX & PRECISE PRO RX NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "USE OF NEW EQUIPMENT FOR THE UV BONDING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S023",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S019",
+        "date": "2011-02-14",
+        "decision": "PMA approval",
+        "tradeName": "PRECISE/PRECISE RX/PRECISE PRO RX NITINOL STENT SYSTEMS",
+        "applicant": "Cordis US Corporation",
+        "statement": "APPROVAL FOR A CHANGE IN COLORANT USED IN THE CATHETERS OF THE PRECISE AND SMART NITINOL STENT SYSTEMS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S019",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S022",
+        "date": "2010-09-02",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE OTW/PRECISE RX/PRECISE PRO RX NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "DISCONTINUANCE OF A FINAL PACKAGING INSPECTION.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S022",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S021",
+        "date": "2010-08-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE/PRECISE RX/PRECISE PRO RX NITINOL STENTS SYSTEMS",
+        "applicant": "Cordis US Corporation",
+        "statement": "ADDITION OF AN IN-PROCESS INSPECTION.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S021",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S020",
+        "date": "2010-03-17",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE/PRECISE RX/PRECISE PRO RX NITINOL STENT SYSTEMS",
+        "applicant": "Cordis US Corporation",
+        "statement": "CHANGE IN PACKAGING CONFIGURATION.",
+        "reason": "",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S020",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S018",
+        "date": "2009-06-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CORDIS PRECISE/PRECISE RX/PRECISE PRO RX NITINOL STENT SYSTEMS",
+        "applicant": "Cordis US Corporation",
+        "statement": "ADDITION OF A PACKAGING INSPECTION STEP.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S018",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S017",
+        "date": "2009-04-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE/PRECISE RX/PRECISE PRO RX NITINOL STENT SYSTEMS",
+        "applicant": "Cordis US Corporation",
+        "statement": "MODIFICATIONS TO THE DELIVERY SYSTEM BONDING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S017",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S016",
+        "date": "2008-12-24",
+        "decision": "PMA approval",
+        "tradeName": "PRECISE NITINOL STENT SYSTEM/PRECISE RX NITINOL STENT SYSTEM/PRECISE PRO RX NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "APPROVAL TO INCORPORATE AN ADDITIONAL PRECAUTION INTO THE INSTRUCTIONS FOR USE TO ADDRESS THE POTENTIAL FOR STENT FRACTURES THAT MAY OCCUR WITH SELF-EXPANDING STENTS SUCH AS THE CORDIS PRECISE STENT SYSTEMS.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S016",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S015",
+        "date": "2008-10-30",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "CHANGE TO THE TEST METHOD FOR A DELIVERY SYSTEM COMPONENT USED IN THE MANUFACTURE OF THE DEVICE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S015",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S011",
+        "date": "2008-09-30",
+        "decision": "PMA approval",
+        "tradeName": "CORDIS PRECISE NITINOL STENT SYSTEM & RX NITINOL STENT & PRO RX NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "APPROVAL FOR REDUCING THE SAMPLE SIZE FOR THE FOLLOWING PROCESSES: 1) THE FUSING OPERATION FOR ALL PRECISE DEVICES AND THE SEALING OPERATION FOR PRECISE RX; AND 2) THE BONDING PROCESS OF THE PRECISE RX AND PRECISE PRO RX SUPPORT MEMBER/WIRE LUMEN SUBASSEMBLY.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S011",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S012",
+        "date": "2008-09-10",
+        "decision": "PMA approval",
+        "tradeName": "CORDIS PRECISE NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "APPROVAL FOR A CHANGE TO THE INCOMING INSPECTION SPECIFICATIONS FOR THE RAW MATERIAL USED FOR THE HYPOTUBE COMPONENT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S012",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S014",
+        "date": "2008-08-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CORDIS PRECISE RX NITINOL STENT SYSTEM & PRECISE PRO RX NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "ADDITION OF A SET-UP VERIFICATION STEP IN THE SUPPORT MEMBER ASSEMBLY PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S014",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S009",
+        "date": "2008-04-14",
+        "decision": "PMA approval",
+        "tradeName": "CORDIS PRECISE NITINOL STENT",
+        "applicant": "Cordis US Corporation",
+        "statement": "APPROVAL FOR MODIFICATIONS TO THE LABELING TO INCLUDE THE POST-APPROVAL STUDIES FINDINGS.",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S009",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S013",
+        "date": "2008-04-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CORDIS PRECISE PRO RX NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "CHANGE IN A QUALITY CONTROL TEST USED TO DETERMINE SPECIFIC ATTRIBUTES OF THE POLYESTER (PET) SLEEVE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S013",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S010",
+        "date": "2008-01-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CORDIS PRECISE RX NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "CHANGE IN THE MANUFACTURING MATERIALS FOR THE PROCESSING AID, WHICH IS USED TO TACK THE SUPPORT MEMBER SLEEVE IN PLACE WHILE THE SLEEVE IS HEAT-SHRUNK OVER THE ENTIRE ASSEMBLY.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S010",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S008",
+        "date": "2007-11-30",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE NITINOL STENT SYSTEM & PRECISE RX NITINOL STENT SYSTEM & PRECISE PRO RX NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "CHANGE TO THE BIOLOGICAL INDICATORS USED TO MONITOR THE ETHYLENE OXIDE STERILIZATION CYCLES (USE OF A SELF CONTAINED BIOLOGICAL INDICATOR IN PLACE OF A SPORE STRIP BIOLOGICAL INDICATOR).",
+        "reason": "",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S008",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S007",
+        "date": "2007-11-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CORDIS PRECISE NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "CHANGE TO THE FILLER INGREDIENT IN THE UV ADHESIVE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S007",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S005",
+        "date": "2007-09-20",
+        "decision": "PMA approval",
+        "tradeName": "CORDIS PRECISE NITINOL & RX NITINOL & PRO RX NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "APPROVAL FOR THE ESTABLISHMENT OF AN ADDITIONAL SPECIFICATION FOR A BISMUTH SUBCARBONATE BLEND RAW MATERIAL.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S005",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S003",
+        "date": "2007-07-12",
+        "decision": "PMA approval",
+        "tradeName": "CORDIS PRECISE OTW 5.5 FR AND 6.0 FR NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "APPROVAL FOR THE CORDIS PRECISE PRO RX NITINOL STENT SYSTEM.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S003",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S004",
+        "date": "2007-06-29",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE AND PRECISE RX NITINOL STENT SYSTEMS",
+        "applicant": "Cordis US Corporation",
+        "statement": "ADDITION OF AN INSPECTION STEP IN THE PRODUCTION PROCESS OF THE DEVICE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S004",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S002",
+        "date": "2007-03-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PRECISE AND PRECISE RX NITINOL STENT SYSTEMS",
+        "applicant": "Cordis US Corporation",
+        "statement": "MODIFY THE ACCEPTANCE CRITERION FOR A PRODUCTION INSPECTION FOR THE PRECISE AND PRECISE RX NITINOL STENT SYSTEM.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S002",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "S001",
+        "date": "2006-11-16",
+        "decision": "PMA approval",
+        "tradeName": "CORDIS PRECISE OTW 5.5 FR AND 6.0 FR NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "APPROVAL FOR THE PRECISE? RX NITINOL STENT SYSTEM.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047S001",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      },
+      {
+        "application": "P030047",
+        "supplement": "",
+        "date": "2006-09-22",
+        "decision": "PMA approval",
+        "tradeName": "CORDIS PRECISE NITINOL STENT SYSTEM",
+        "applicant": "Cordis US Corporation",
+        "statement": "APPROVAL FOR THE CORDIS PRECISE NITINOL STENT SYSTEM (5.5 FR AND 6.0 FR SIZES, OVER-THE-WIRE CONFIGURATION).  THIS DEVICE IS INDICATED FOR USE IN CONJUNCTION WITH THE ANGIOGUARD XP EMBOLI CAPTURE GUIDEWIRE FOR THE TREATMENT OF PATIENTS AT HIGH RISK FOR ADVERSE EVENTS FROM CAROTID ENDARTERECTOMY (DEFINED IN THE IFU) WHO REQUIRE CAROTID REVASCULARIZATION AND MEET THE CRITERIA OUTLINED BELOW: 1) PATIENTS WITH NEUROLOGICAL SYMPTOMS AND >=50% STENOSIS OF THE COMMON OR INTERNAL CAROTID ARTERY BY ULTRASOUND OR ANGIOGRAM OR PATIENTS WITHOUT NEUROLOGICAL SYMPTOMS AND >=80% STENOSIS OF THE COMMON OR INTERNAL CAROTID ARTERY BY ULTRASOUND OR ANGIOGRAM, AND 2) PATIENTS MUST HAVE A VESSEL DIAMETER OF 4-9MM AT THE TARGET LESION.  THE VESSEL DISTAL TO THE TARGET LESION MUST BE WITHIN THE RANGE OF 3MM AND 7.5MM TO ALLOW FOR PLACEMENT OF THE ANGIOGUARD XP EMBOLI CAPTURE GUIDEWIRE.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047",
+        "sourceSha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=2500&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722",
+        "file": "e5cee098dd3f4f185743880f133b6f312bae8277eacf1a446083b50150b65722.json",
+        "retrievedAt": "2026-10-22T18:59:35.107347+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "2 original labeling document link(s) located; 4 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 2,
+    "changes": 4,
+    "rows": [
+      {
+        "application": "P030047",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030047C.pdf",
+        "pages": 16,
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047",
+        "locator": "L58: Labeling 【38†Labeling】",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: yesterday; Content type: application/pdf; Number of pages: 16;",
+        "sections": []
+      },
+      {
+        "application": "P030047",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030047D.pdf",
+        "title": "Labeling Part 2",
+        "pages": 13,
+        "retrievalNote": "[wordlim: 200] Crawled: 2 weeks ago; Content type: application/pdf; Number of pages: 13;",
+        "textAvailable": true,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047",
+        "locator": "L58: Labeling 【38†Labeling】",
+        "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P030047",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047",
+        "discovery": "[wordlim: 200] Crawled: 2 weeks ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047\",\"lineno\":null}); Total lines: 108",
+        "locator": "L58: Labeling 【38†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P030047S055",
+      "P030047S043",
+      "P030047S016",
+      "P030047S009"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "4 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 4,
+    "rows": [
+      {
+        "cfres_id": "178071",
+        "product_res_number": "Z-0729-2020",
+        "product_description": "Cordis Precise Nitinol Stent System.   \nThe Cordis PRECISE Nitinol Stent System devices are designed to deliver a flexible, self-expanding endoluminal stent to the carotid vasculature via over-the-wire (OTW) 5.5F or 6F sheathed delivery systems.  The stent is cut from a solid nitinol tube into a fine mesh ( Z  configuration) design.  The delivery systems consist mainly of an inner shaft and an outer sheath with radiopaque markers, and a Tuohy Borst valve.  The inner shaft terminates distally in a catheter tip and originates proximally in a luer hub designed to accept a 0.018  guidewire.  The delivery systems have a nominal working length of 135 cm.  The self-expanding PRECISE stent is constrained within the space between the inner shaft and the outer sheath, located between distal and proximal stent makers on the inner shaft.  The stent expands to its unconstrained diameter when released from the deployment catheter into the carotid artery.  Upon deployment the stent forms an open lattice and pushes outward on the luminal surface, helping to maintain the patency of the artery.  \nDue to the self-expanding behavior of nitinol, the stents are indicated for placement into vessels that are 1-2mm smaller in diameter than the unconstrained diameter of the stent.",
+        "code_info": "All Lot Codes.  Affected SKUs:  N1020SB, N1020SB, N1020SC, N1030SB, N1030SB, N1030SC, N1040SB, N1040SB, N1040SC, N520SB, N520SC,  N530SB, N530SC, N540SB, N540SC, N620SB, N620SC, N630SB, N630SC, N640SB, N640SC, N720SB, N720SC, N730SB, N730SC, N740SB, N740SC,  N820SB, N820SB, N820SC, N830SB, N830SB, N830SC, N840SB, N840SB, N840SC, N920SB, N920SB, N920SC, N930SB, N930SB, N930SC, N940SB, N940SB, N940SC, P05020RXB, P05030RXB, P05040RXB, P0520RXCE, P0530RXCE, P0540RXCE, P06020RXB, P06030RXB, P06040RXB, P0620RXCE, P0630RXCE, P0640RXCE, P07020RXB, P07030RXB, P07040RXB, P0720RXCE, P0730RXCE, P0740RXCE, P08020RXB, P08030RXB, P08040RXB, P0820RXCE, P0830RXCE, P0840RXCE, P09020RXB, P09030RXB, P0920RXCE, P0930RXCE, P0940RXCE, P10020RXB, P1020RXCE, P1030RXCE, P1040RXCE.",
+        "reason_for_recall": "Cordis has initiated a labeling correction for S.M.A.R.T. and PRECISE stents due to incorrect MRI information on the IFU.  The correct classification is \"MRI Conditional\" not \"MRI Safe\".",
+        "action": "Customers were notified with a Medical Device Correction letter.  The letter was sent via overnight delivery beginning 11/14/2019.  The letter identified affected product, provided a description of the problem, and asked that a copy of the letter be retained where the product is stored.  Customer were asked to completed and return an Acknowledgement Form.  Questions can be directed to the Cordis Endovascular Medical Information Line 877-DEVICE5 (877-338-4235) Monday through Friday 9:00 am - 5:00 pm EST.",
+        "recall_status": "Open, Classified",
+        "event_date_initiated": "2019-11-14",
+        "event_date_posted": "",
+        "event_date_terminated": "",
+        "recalling_firm": "Cardinal Health Inc.",
+        "root_cause_description": "Under Investigation by firm",
+        "applications": [
+          "P030047"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=178071",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "185850",
+        "product_res_number": "Z-1257-2021",
+        "product_description": "PRECISE PRO RX CAROTID STENT implant system, Product Codes:  PC0520RXC, PC0530RXC, PC0540RXC, PC0620RXC, PC0630RXC, PC0640RXC, PC0720RXC, PC0730RXC, PC0740RXC, PC0820RXC, PC0830RXC, PC0840RXC, PC0920RXC, PC0930RXC, PC0940RXC, PC1030RXC, PC1040RXC",
+        "code_info": "1.\tPC0520RXC, Lot Numbers:  17917082, 17925698, 17945241, 17946961 2.\tPC0530RXC, Lot Numbers:  17907242, 17915157, 17931757, 17936915, 17940306, 17945490, 17950283, 17952939 3.\tPC0540RXC, Lot Numbers:  17907243, 17911879, 17920422, 17931758, 17942800, 17945242, 17947078, 17950284, 17955963, 17960311 4.\tPC0620RXC, Lot Numbers:  17917084, 17920423, 17931102, 17949017, 17955964 5.\tPC0630RXC, Lot Numbers:  17910548, 17914196, 17915158, 17921807, 17937805, 17939529, 17945243, 17945883, 17949018, 17957289   6.\tPC0640RXC, Lot Numbers:  17903563, 17908608, 17912281, 17916478, 17928282, 17934629, 17936243, 17939530, 17946675, 17950285, 17958864, 17961560  7.\tPC0720RXC, Lot Numbers:  17929124, 17933386 8.\tPC0730RXC, Lot Numbers:  17909814, 17916479, 17925699, 17929770, 17935168, 17940238, 17941419, 17949346, 17951255, 17951944, 17954156, 17959599  9.\tPC0740RXC, Lot Numbers:  17905295, 17915162, 17920425, 17922174, 17926320, 17935169, 17936920, 17937807, 17940240, 17941874, 17941875, 17956888, 17959601, 17962539   10.\tPC0820RXC, Lot Numbers:  17905297, 17919723, 17942803, 17945491 11.\tPC0830RXC, Lot Numbers:  17910553, 17916481, 17919724, 17928285, 17931762, 17934630, 17936244, 17939531, 17945884, 17945885, 17949962, 17955967, 17959602  12.\tPC0840RXC, Lot Numbers:  17904654, 17907246, 17910556, 17912285, 17913915, 17918979, 17918980, 17920427, 17921809, 17924451, 17926321, 17928286, 17929771, 17931763, 17933387, 17935170, 17936245, 17936922, 17936923, 17941421, 17941422, 17941876, 17941877, 17947267, 17947268, 17948772, 17949964, 17951256, 17958217, 17959603, 17961226 13.\tPC0920RXC, Lot Numbers:  17949965 14.\tPC0930RXC, Lot Numbers:  17906531, 17914902, 17929126, 17934632, 17941424, 17945244, 17946676, 17946963, 17960312  15.\tPC0940RXC, Lot Numbers:  17907250, 17912290, 17914198, 17916482, 17917085, 17919725, 17928287, 17931103, 17935173, 17936247, 17939532, 17940242, 17945886, 17950287, 17955668 16.\tPC1030RXC, Lot Numbers:  17911881, 17913484, 17918070, 17934633, 17940243, 17947080   17.\tPC1040RXC, Lot Numbers:  17913485, 17917086, 17917087, 17917088, 17920429, 17927599, 17929128, 17931104, 17934634, 17935176, 17936248, 17940244, 17940245",
+        "reason_for_recall": "Distal tip may become separated from the lumen wire in specific lots.",
+        "action": "The firm initiated the recall by letter on 02/11/2021.  The letter explained the reason for recall and potential impact to the patient, along with the request to further disseminate the notices and return of the recalled units.",
+        "recall_status": "Completed",
+        "event_date_initiated": "2021-02-11",
+        "event_date_posted": "",
+        "event_date_terminated": "",
+        "recalling_firm": "Cordis Corporation",
+        "root_cause_description": "Process control",
+        "applications": [
+          "P030047"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=185850",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "146277",
+        "product_res_number": "Z-1946-2016",
+        "product_description": "Cordis PRECISE (R) PRO RX Nitinol Stent System (Carotid)",
+        "code_info": "Catalog Number:  PC0520RXC, Lot Numbers: 17298513, 17340803;  Catalog Number:  PC0530RXC, Lot Numbers: 17283329, 17286330, 17333401 and 17376719; Catalog Number:  PC0540RXC, Lot Numbers: 17295225 , 17312647, 17337070 and 17366679; Catalog Number:  PC0620RXC, Lot Numbers:  17256203, 17264566, 17282136 and 17382573; Catalog Number:  PC0630RXC, Lot Numbers: 17255095, 17264568, 17287132, 17294353, 17306044, 17308314, 17328366, 17337071, 17364507, 17388949 and 17392573;  Catalog Number:  PC0640RXC, Lot Numbers: 17249849, 17264995, 17283330, 17296211, 17331381, 17356085, 17364567, 17370803 and 17392574; Catalog Number:  PC0720RXC, Lot Numbers: 17249850 and 17260987; Catalog Number: PC0730RXC, Lot Numbers: 17256214, 17264569, 17276754, 17290641, 17322268,17332269, 17341779, 17347010, 17357107, 17361603, 17381650 and 17386230;   Catalog Number:  PC0740RXC, Lot Numbers: 17250948, 17253599, 17264571, 17282140, 17287345, 17295226, 17308316, 17322270, 17325372, 17331383, 17335082, 17344455, 17351475, 17361605, 17371407 and  17378613;  Catalog Number:  PC0820RXC, Lot Numbers: 17260988 and 17347026;  Catalog Number: PC0830RXC, Lot Numbers: 17250952,   17256217, 17259977, 17265886, 17270630, 17280875, 17291876, 17294239, 17323767, 17328144, 17335802, 17340809,17349810, 17357109, 17360669,  17364569, 17369477,17376721, 17379881, 17381652 and 17388950;   Catalog Number:  PC0840RXC, Lot Numbers:  17247325, 17251834, 17259051, 17264572, 17276782, 17287346, 17296212, 17306048,17321489,   17325375, 17328145,17335084, 17335085, 17346758, 17346759, 17349811,   17356086,  17360672, 17364570, 17370806 and 17379882;  Catalog Number:  PC0920RXC, Lot Numbers:  17269319 and  17388951; Catalog Number:  PC0930RXC, Lot Numbers: 17251837,  17274483,  17290643, 17298514, 17312648, 17313248, 17349018 , 17357110, 17361606, 17366682 and 17393271;    Catalog Number:  PC0940RXC, Lot Number: 17260989, 17264998, 17270632, 17272818, 17280877, 17307877, 17312649, 17319031, 17319032, 17329303, 17339531, 17349019, 17354593, 17386232, 17387886 and 17397607.  Catalog Number:  PC1020RXC, Lot Number:  17314385;  Catalog Number:  PC1030RXC, Lot Numbers: 17251838, 17268217, 17274485, 17283332, 17287135, 17313250, 17329304, 17344458 and 17397609;  Catalog Number:  PC1040RXC, Lot Numbers: 17253601, 17259979, 17268219, 17282144, 17286334, 17290644, 17294357, 17298515, 17298516, 17310830, 17313251, 17316969, 17319035, 17319036, 17329305, 17329306,  17349020, 17354594, 17358957, 17364509, 17369479, 17375323, 17379887, 17388953,  17390538 and 17394539.",
+        "reason_for_recall": "Inability to deploy the stent or partial stent deployment.",
+        "action": "Cordis sent an Urgent Medical Device Recall (Removal) letter dated May 4, 2016, to all affected customers.\n\nAction to be taken by the customer: \n\n1)   Immediately check your inventory to confirm whether you have any units from affected lots in your possession. Identify  and set aside any units from the affected lot in a manner that ensures the affected product will not be used. Check all storage and usage locations.\n\n2)   Review, complete, sign and return the enclosed Acknowledgement Form directly to Cordis at the fax number on the form. Note that you will receive multiple letters and Acknowledgement Forms if your facility received affected product at both a legacy Ship-To account number and a Cardinal Health Ship To account number at the same address. In that scenario, please sign and return both forms.\n\n3)   Return all affected products to the address listed on the form, with reference to Return Authorization Number ( i.e. RA #)#which is listed on the form. Replacement devices will be shipped after the affected product is returned. Consigned Inventory will also be replaced after the product is returned and an analysis of SKU mix needed to properly support the customer is conducted.\n\n4)   Share this letter with others in your facility who need to be made aware of this recall, including the areas in some facilities where these products are frequently used (see list above) Contact any other facilities that have been\nprovided with units of affected lots.  Maintain awareness of this notice until all affected product has been returned to Cordis.\n\n5)   Keep a copy of this notice with any affected product until returned.\n\nFor questions related to assistance returning product or billing concerns or questions please contact your sales representative or Cordis Customer Service at 1-800-327-7714 Option 1, Monday through Friday from 7:00AM\nto 8:00 PM EDT.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2016-05-04",
+        "event_date_posted": "",
+        "event_date_terminated": "2019-07-26",
+        "recalling_firm": "Cordis Corporation",
+        "root_cause_description": "Component design/selection",
+        "applications": [
+          "P030047"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=146277",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "146282",
+        "product_res_number": "Z-1947-2016",
+        "product_description": "Cordis PRECISE (R)  RX Nitinol Stent System (Biliary)",
+        "code_info": "Catalog Number:  P05030RXB, Lot Number: 17241836; Catalog Number: P09030RXB, Lot Number:  17241838; Catalog Number: P07030RXB, Lot Number : 17291878;  Catalog Number: P07040RXB, Lot Number:  17291879; Catalog Number: P06040RXB, Lot Number:  17415243.",
+        "reason_for_recall": "Inability to deploy the stent or partial stent deployment.",
+        "action": "Cordis sent an Urgent Medical Device Recall (Removal) letter dated May 4, 2016, to all affected customers.\n\nAction to be taken by the customer: \n\n1)   Immediately check your inventory to confirm whether you have any units from affected lots in your possession. Identify  and set aside any units from the affected lot in a manner that ensures the affected product will not be used. Check all storage and usage locations.\n\n2)   Review, complete, sign and return the enclosed Acknowledgement Form directly to Cordis at the fax number on the form. Note that you will receive multiple letters and Acknowledgement Forms if your facility received affected product at both a legacy Ship-To account number and a Cardinal Health Ship To account number at the same address. In that scenario, please sign and return both forms.\n\n3)   Return all affected products to the address listed on the form, with reference to Return Authorization Number ( i.e. RA #)#which is listed on the form. Replacement devices will be shipped after the affected product is returned. Consigned Inventory will also be replaced after the product is returned and an analysis of SKU mix needed to properly support the customer is conducted.\n\n4)   Share this letter with others in your facility who need to be made aware of this recall, including the areas in some facilities where these products are frequently used (see list above) Contact any other facilities that have been\nprovided with units of affected lots.  Maintain awareness of this notice until all affected product has been returned to Cordis.\n\n5)   Keep a copy of this notice with any affected product until returned.\n\nFor questions related to assistance returning product or billing concerns or questions please contact your sales representative or Cordis Customer Service at 1-800-327-7714 Option 1, Monday through Friday from 7:00AM\nto 8:00 PM EDT.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2016-05-04",
+        "event_date_posted": "",
+        "event_date_terminated": "2019-07-26",
+        "recalling_firm": "Cordis Corporation",
+        "root_cause_description": "Component design/selection",
+        "applications": [
+          "P030047"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=146282",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030047C.pdf"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030047D.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=178071"
+    }
+  ],
+  "path": "/dossiers/source-fda-p030047.json",
+  "applications": [
+    "P030047"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

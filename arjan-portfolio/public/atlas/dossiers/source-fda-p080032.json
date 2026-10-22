@@ -1,0 +1,505 @@
+{
+  "familyId": "source-fda-p080032",
+  "name": "Alair bronchial thermoplasty system",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "21 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 21,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P080032",
+        "supplement": "S019",
+        "date": "2022-02-18",
+        "decision": "PMA approval",
+        "tradeName": "Alair Bronchial Thermoplasty System",
+        "applicant": "Boston Scientific Corp",
+        "statement": "Approval for updating the labeling to include the results of the post approval study RESCUE 3.",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S019",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S020",
+        "date": "2021-11-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Alair Bronchial Thermoplasty System",
+        "applicant": "Boston Scientific Corp",
+        "statement": "Rotablator Rotational Angioplasty System, ROTAPRO Rotational Atherectomy System and the Alair Bronchial Thermoplasty System is approved for the addition of automated ultrasonic cleaning equipment with forced air dryer at the supplier for components used in the Rotalink and ROTAPRO Advancers and Alair Catheter.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S020",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S018",
+        "date": "2021-05-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Alair Bronchial Thermoplasty System",
+        "applicant": "Boston Scientific Corp",
+        "statement": "Replacing components of an extrusion line.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S018",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S017",
+        "date": "2018-10-05",
+        "decision": "PMA approval",
+        "tradeName": "Alair Bronchial Thermoplasty Catheter",
+        "applicant": "Boston Scientific Corp",
+        "statement": "Approval for revising the manufacturing procedure for the Alair Bronchial Thermoplasty Catheter by allowing rework of the polyester heat shrink insulation placed over the electrodes if inspection criteria are not met.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S017",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S016",
+        "date": "2015-12-29",
+        "decision": "PMA approval",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY SYSTEM",
+        "applicant": "Boston Scientific Corp",
+        "statement": "APPROVAL FOR DESIGN CHANGE TO THE ALAIR RF CONTROLLER TO REPLACE AN OBSOLETE COMPONENT THAT IS NO LONGER COMMERCIALLY AVAILABLE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S016",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S015",
+        "date": "2014-06-17",
+        "decision": "PMA approval",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY RADIOFREQUENCY CONTROLLER",
+        "applicant": "Boston Scientific Corp",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED AT STELLARTECH RESEARCH CORPORATION, IN MILPITAS, CALIFORNIA.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S015",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S014",
+        "date": "2013-12-02",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY SYSTEM",
+        "applicant": "Boston Scientific Corp",
+        "statement": "CHANGE TO THE MANUFACTURING OF A CABLE CONNECTOR, THE ADDITION OF ANINSPECTION STEP AND THE ELIMINATION OF A FINAL ACCEPTANCE ACTIVITY.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S014",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S012",
+        "date": "2013-07-03",
+        "decision": "PMA approval",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY SYSTEM",
+        "applicant": "Boston Scientific Corp",
+        "statement": "APPROVAL FOR 1) THE MANUFACTURING TRANSFER OF THE ALAIR CATHETER FROM THE CURRENT FACILITY IN SUNNYVALE, CALIFORNIA, TO THE BOSTON SCIENTIFIC FACILITY IN CORK, IRELAND; AND 2) THE QUALIFICATION OF SYNERGY HEALTH IRELAND LTD, LOCATED IN TULLAMORE, IRELAND, AS A STERILIZATION SITE FOR THE ALAIR CATHETER, AND MINOR DESIGN CHANGES TO THE ALAIR CATHETER.APPROVAL FOR 1) THE MANUFACTURING TRANSFER OF THE ALAIR CATHETER FROM THE CURRENT FACILITY IN SUNNYVALE, CALIFORNIA, TO THE BOSTON SCIENTIFIC FACILITY IN CORK, IRELAND; AND 2) THE QUALIFICATION OF SYNERGY HEALTH IRELAND LTD, LOCATED IN TULLAMORE, IRELAND, AS A STERILIZATION SITE FOR THE ALAIR CATHETER, AND MINOR DESIGN CHANGES TO THE ALAIR CATHETER.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S012",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S013",
+        "date": "2013-06-03",
+        "decision": "PMA approval",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY SYSTEM",
+        "applicant": "Boston Scientific Corp",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED AT BOSTON SCIENTIFIC CORPORATION IN QUINCY, MASSACHUSETTS.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S013",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S011",
+        "date": "2012-12-11",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY SYSTEM",
+        "applicant": "Boston Scientific Corp",
+        "statement": "IMPLEMENTATION OF CHANGE RELATED TO THE STERILIZATION OF THE CATHETER WHICH IS USED WITH THE DEVICE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S011",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S010",
+        "date": "2012-11-09",
+        "decision": "PMA approval",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY SYSTEM",
+        "applicant": "Boston Scientific Corp",
+        "statement": "APPROVAL FOR LABELING CHANGES TO THE ALAIR CATHETER MODEL ATS 2-5 DIRECTIONS FOR USE (DFU), ALAIR RADIOFREQUENCY (RF) CONTROLLER MODEL ATS 200 OPERATOR'S MANUAL, AND ALAIR BRONCHIAL THERMOPLASTY SYSTEM PATIENT BROCHURE.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S010",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S009",
+        "date": "2012-06-26",
+        "decision": "PMA approval",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY SYSTEM",
+        "applicant": "Boston Scientific Corp",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S009",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S008",
+        "date": "2012-03-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY SYSTEM",
+        "applicant": "Boston Scientific Corp",
+        "statement": "PROCESS CHANGES RELATED TO THE ALAIR CATHETER MODEL AS WELL AS THE ALAIR RADIOFREQUENCY CONTROLLER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S008",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S007",
+        "date": "2011-06-21",
+        "decision": "PMA approval",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY SYSTEM",
+        "applicant": "Boston Scientific Corp",
+        "statement": "APPROVAL OF THE POST APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S007",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S005",
+        "date": "2011-06-10",
+        "decision": "PMA approval",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY SYSTEM",
+        "applicant": "Boston Scientific Corp",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED AT ASTHMATX, INC. IN SUNNYVALE, CALIFORNIA.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S005",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S006",
+        "date": "2011-04-07",
+        "decision": "PMA approval",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY SYSTEM",
+        "applicant": "Boston Scientific Corp",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S006",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S004",
+        "date": "2011-02-04",
+        "decision": "PMA approval",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY SYSTEM",
+        "applicant": "Boston Scientific Corp",
+        "statement": "APPROVAL FOR ADDING GAMMA IRRADIATION AS AN ALTERNATIVE STERILIZATION METHOD, ESTABLISHING EXPIRATION DATING FOR THAT STERILIZATION METHOD, AND ADDING STERIGENICS (HAYWARD, CALIFORNIA) AS A CONTRACT STERILIZER.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S004",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S003",
+        "date": "2010-09-30",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY SYSTEM",
+        "applicant": "Boston Scientific Corp",
+        "statement": "ADDITION OF A NEW TEST METHOD FOR IMPEDANCE MEASUREMENT ACCURACY.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S003",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S001",
+        "date": "2010-09-14",
+        "decision": "PMA approval",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY SYSTEM",
+        "applicant": "Boston Scientific Corp",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S001",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "S002",
+        "date": "2010-07-27",
+        "decision": "PMA approval",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY SYSTEM",
+        "applicant": "Boston Scientific Corp",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032S002",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      },
+      {
+        "application": "P080032",
+        "supplement": "",
+        "date": "2010-04-27",
+        "decision": "PMA approval",
+        "tradeName": "ALAIR BRONCHIAL THERMOPLASTY SYSTEM",
+        "applicant": "Boston Scientific Corp",
+        "statement": "APPROVAL FOR THE ALAIR BRONCHIAL THERMOPLASTY SYSTEM.  THE DEVICE IS INDICATED FOR THE TREATMENT OF SEVERE PERSISTENT ASTHMA IN PATIENT 18 YEARS AND OLDER WHOSE ASTHMA IS NOT WELL CONTROLLED WITH INHALED CORTICOSTEROIDS AND LONG ACTING BETA AGONISTS.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032",
+        "sourceSha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=3700&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523",
+        "file": "31440b280c4334e199a02593d245deb0c1d04671057841a6935e478e394ec523.json",
+        "retrievedAt": "2026-10-22T18:59:45.580180+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "1 original labeling document link(s) located; 2 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 1,
+    "changes": 2,
+    "rows": [
+      {
+        "application": "P080032",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf8/P080032C.pdf",
+        "title": "Labeling",
+        "pages": 39,
+        "retrievalNote": "[wordlim: 200] Crawled: 2 months ago; Content type: application/pdf; Number of pages: 39;",
+        "textAvailable": true,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?ID=P080032",
+        "locator": "FDA index Labeling link",
+        "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P080032",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032",
+        "locator": "Original page retrieval unavailable",
+        "state": "unavailable"
+      }
+    ],
+    "changeIds": [
+      "P080032S019",
+      "P080032S010"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 1,
+    "rows": [
+      {
+        "cfres_id": "118510",
+        "product_res_number": "Z-1748-2013",
+        "product_description": "Alair Bronchial Thermoplasty Catheter, Bronchial Thermoplasty System; Material Number: M005ATS25010, Catalog Number: ATS 2-5. Product is manufactured and distributed by Boston Scientific Corporation (BSC), Sunnyvale, CA \n\nThe Alair Bronchial Thermoplasty System (including the Alair Bronchial Thermoplasty Catheter) is indicated for the treatment of severe persistent asthma in patients 18 years and older whose asthma is not well controlled with inhaled corticosteroids and long acting beta agonists.",
+        "code_info": "Lot/batch Number: CM040212; Exp. Date: April 2014",
+        "reason_for_recall": "Boston Scientific has discovered an inconsistent \"Use By\" expiration date on a single lot/batch of Alair Bronchial Thermoplasty Catheters.  The expiration date indicated on the inner tray, 2012-04, is incorrect. The correct expiration date is 2014-04 as indicated on the outer box label.",
+        "action": "The firm, Boston Scientific, sent a letter dated May 28, 2013, via express mail to all its direct consignees.  The letter described the product, problem and actions to be taken.  The customers were informed that  you can continue to use the device until the expiration date on the outer box lablel, 2014-04; No product is being recalled and the you are not required to return product to Boston Scientific. The customers were instructed to read the enclosed information carefully and post the information in a conspicuous location near the affected product and/or take such other steps, consistent with your internal policies and procedures, to ensure that the information is easily accessible to all users of this device; and  to complete and return the Customer Acknowledgment Form even if you no longer have any units from the affected lot/batch via email: MapleGroveFieldAc@bsci.com or Fax to: Field Action Center - 1866-213-1806. \n\nIf you have any questions, call 763-494-1133 or email: MapleGroveFieldAc@bsci.com .",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2013-05-28",
+        "event_date_posted": "2013-07-17",
+        "event_date_terminated": "2013-08-28",
+        "recalling_firm": "Boston Scientific Corporation",
+        "root_cause_description": "Error in labeling",
+        "applications": [
+          "P080032"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=118510",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf8/P080032C.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=118510"
+    }
+  ],
+  "path": "/dossiers/source-fda-p080032.json",
+  "applications": [
+    "P080032"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

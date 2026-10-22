@@ -1,0 +1,1168 @@
+{
+  "familyId": "source-fda-p000037",
+  "name": "On-X prosthetic heart valve, ONXA",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "66 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 66,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P000037",
+        "supplement": "S071",
+        "date": "2026-08-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "On-X Prosthetic Heart Valves and Ascending Aortic Prothesis (On-X AAP)",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "revisions to manufacturing and inspection procedures for the graft collar material",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S071",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S070",
+        "date": "2026-07-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "On-X Prosthetic Heart Valves and Ascending Aortic Prothesis",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "an alternate leaflet substrate machining process for On-X Prosthetic Heart Valve and Ascending Aortic Prothesis products",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S070",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S068",
+        "date": "2026-01-05",
+        "decision": "FDA decision code OK30",
+        "tradeName": "On-X Prosthetic Heart Valves and Ascending Aortic Prothesis",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "to introduce a 2D Barcode label verification system",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S068",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S067",
+        "date": "2025-12-17",
+        "decision": "FDA decision code OK30",
+        "tradeName": "On-X Ascending Aortic Prosthesis",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "to increase the blue soiling acceptance criteria limit for the vascular prosthesis component of the On-X Ascending Aorta Prosthesis",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S067",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S066",
+        "date": "2025-10-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "On-X Prosthetic Heart Valves and Ascending Aortic Prothesis (AAP)",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "implementing a new fixture for holding heart valve leaflets during the dye penetration inspection process",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S066",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S065",
+        "date": "2025-10-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "On-X Prosthetic Heart Valves and Ascending Aortic Prothesis",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "reducing the environmental monitoring program within the Controlled Environment Areas (CEAs)",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S065",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S064",
+        "date": "2025-10-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "On-X Prosthetic Heart Valves; On-X Ascending Aortic Prothesis",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "an alternate paper for use in the Controlled Environment Areas (CEAs)",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S064",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S063",
+        "date": "2025-10-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "On-X Heart Valve; On-X Ascending Aortic Prosthesis",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "changing the supplier responsible for die-cutting and pressing the serial number tags",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S063",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S062",
+        "date": "2024-03-05",
+        "decision": "FDA decision code OK30",
+        "tradeName": "On-X Prosthetic Heart Valve",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "implementation of new sterilization equipment",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S062",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S061",
+        "date": "2023-11-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "On-X Prosthetic Heart Valve and Ascending Aortic Prothesis",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "an alternative supplier for the aluminum oxide abrasive material used in the mass finishing process",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S061",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S060",
+        "date": "2022-08-01",
+        "decision": "FDA decision code OK30",
+        "tradeName": "On- X Prosthetic Heart Valve, Ascending Aortic Prothesis",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "Alternate defoaming agent used in the manufacturing process.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S060",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S059",
+        "date": "2022-03-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "On X Prosthetic Heart Valve Ascending Aortic Prothesis",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "Implementation of a new Controlled Environment Area (CEA) to perform On-X Heart Valve (HV) and Ascending Aortic Prosthesis (AAP) manufacturing steps from subassembly through sterilization and final packaging.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S059",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S056",
+        "date": "2021-10-13",
+        "decision": "PMA approval",
+        "tradeName": "On-X Ascending Aortic Prosthesis",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "Approval for several changes to the On-X Ascending Aortic Prosthesis including changes to the yarn and gelatin component manufacturing and changes to device labeling.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S056",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S057",
+        "date": "2021-03-04",
+        "decision": "PMA approval",
+        "tradeName": "On-X Prosthetic Heart Valve and On-X Ascending Aortic Prosthesis devices",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "Approval for changes to the polyester fiber in the suture component.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S057",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S054",
+        "date": "2019-08-15",
+        "decision": "PMA approval",
+        "tradeName": "On-X Aortic Prosthetic Heart Valve Low Dose Warfarin Post Approval Clinical Registry Study",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "Approval for the revised protocol for the Newly Enrolled On-X Post-Approval Study.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S054",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S053",
+        "date": "2019-02-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "On-X Prosthetic Heart Valve",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "Implementation of new tooling and modified CNC software used to machine On-X device housing substrates.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S053",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S052",
+        "date": "2018-10-18",
+        "decision": "PMA approval",
+        "tradeName": "On-X Prosthetic Heart Valve, Model Onxa",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "Approval for the addition of an inspection to verify suture orientation marks.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S052",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S051",
+        "date": "2017-12-14",
+        "decision": "PMA approval",
+        "tradeName": "On-X Ascending Aortic Prosthesis",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "Approval for an additional ethylene oxide sterilization site located at 1300 East Anderson Lane, Building B, Austin, Texas.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S051",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S050",
+        "date": "2017-12-05",
+        "decision": "PMA approval",
+        "tradeName": "ON-X (R) PROSTHETIC HEART VALVE, MODEL ONXA",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "Approval for an additional manufacturing lathe and a new coolant for the leaflet substrate grinding process.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S050",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S048",
+        "date": "2017-02-07",
+        "decision": "PMA approval",
+        "tradeName": "ON-X (R) PROSTHETIC HEART VALVE, ON-X CONFORM-X AORTIC PROSTHETIC HEART VALVE, ON-X AORTIC PROSTHETIC HEART VALVE WITH A",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "Approval for multiple changes, including clinical changes to the current protocol for the post-approval study (PAS) protocol.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S048",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S047",
+        "date": "2016-09-28",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X  PROSTHETIC HEART VALVE AND ON-X ASCENDING AORTIC PROSTHESIS",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "Change to the secondary supplier for the valve holder and holder handle material.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S047",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S046",
+        "date": "2016-07-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE and On-X Ascending Aortic Prothesis",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "Use of an additional Coordinate Measuring Machine for heart valve housing measurements.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S046",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S045",
+        "date": "2016-05-31",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X (R) PROSTHETIC HEART VALVE, MODEL ONXA",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "the addition of a new piece of test equipment used in the manufacture of heart valve subassemblies",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S045",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S044",
+        "date": "2016-01-06",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL OF THE FOLLOWING CHANGES TO THE POST-APPROVAL STUDY FOR THE DEVICE:CLARIFICATION ON THE FOLLOW-UP INTERVALS.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S044",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S043",
+        "date": "2015-10-05",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "THE ADDITION OF A COORDINATE MEASURING MACHINE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S043",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S040",
+        "date": "2015-09-15",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL TO ADD A SECOND VACUUM-ASSISTED STEAM STERILIZER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S040",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S041",
+        "date": "2015-06-19",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S041",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S030",
+        "date": "2015-04-01",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL FOR A LABELING CHANGE TO ALLOW AORTIC VALVE REPLACEMENT PATIENTS TO BE TREATED USING A LOWERED ANTICOAGULATION TARGET.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S030",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S039",
+        "date": "2015-03-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "ADDITIONAL X-RAY MACHINE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S039",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S037",
+        "date": "2015-02-09",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL FOR MODIFIED DEVICE PACKAGING AND AN EXTENSION TO THE PRODUCT SHELF LIFE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S037",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S036",
+        "date": "2014-10-28",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL FOR VERTICAL INTEGRATION OF A COMPONENT SUBSTRATE MANUFACTURING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S036",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S038",
+        "date": "2014-10-10",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "CHANGE TO THE SOFTWARE USED FOR THE PROOFTESTER EQUIPMENT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S038",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S035",
+        "date": "2014-03-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "CHANGE FROM MANUAL ETCHING TO AUTOMATED COMPUTER-CONTROLLED LASER ETCHING OF SERIAL NUMBERS ON COMPONENTS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S035",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S033",
+        "date": "2013-11-14",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETICHEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL FOR SEVERAL CHANGES TO YOUR ROUTINE STERILIZATION PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S033",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S028",
+        "date": "2013-02-13",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL FOR A MODIFIED AORTIC SEWING CUFF AS AN EXTENSION TO THE LINE OF AVAILABLE VALVES; THE REQUEST APPLIED TO THE AORTIC SIZES OF 19, 21, 23, 25, AND 27/29 MM. THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME ON-X AORTIC PROSTHETIC HEART VALVE WITH ANATOMIC SEWING RING, AND WILL BE GIVEN THE MODEL DESIGNATIONS OF ONXAN (STANDARD VALVE HOLDER) AND ONXANE (EXTENDED VALVE HOLDER).",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S028",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S032",
+        "date": "2013-01-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "CHANGE THE SUSPENSION AGENT-TO-WATER MIXING RATIO OF POLISHING SLURRY OF THE VIBRATORY POLISH PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S032",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S031",
+        "date": "2012-12-01",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "MOVE THE MACHINING PROCESS FOR SPECIFIED SIZES OF VALVE HOUSING SUBSTRATES IN-HOUSE.",
+        "reason": "",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S031",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S029",
+        "date": "2012-09-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE AND ON-X ASCENDING AORTIC PROSTHESIS (ONXAAP)",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "MODIFICATION TO THE LIMULUS AMEBOCYTE LYSATE (LAL) TEST METHOD AND PROCEDURE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S029",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S027",
+        "date": "2012-07-11",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "CHANGE IN RECEIVING ACCEPTANCE TESTING.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S027",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S025",
+        "date": "2012-06-08",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL TO MOVE THE MACHINING PROCESS FOR SIZE 25 VALVE HOUSING SUBSTRATES IN-HOUSE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S025",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S026",
+        "date": "2012-05-03",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "AUTOMATION OF THE VACUUM CLEANING PROCESS.",
+        "reason": "",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S026",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S024",
+        "date": "2012-02-17",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL FOR RELOCATING A SEALING MACHINE FROM A CONTRACT MANUFACTURER TO IN-HOUSE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S024",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S023",
+        "date": "2011-07-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "VALIDATIONS FOR A MASS FINISHING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S023",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S022",
+        "date": "2011-02-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "ADDED PRODUCTION CAPABILITY FOR TWO CURRENTLY OUTSOURCED MACHINING PROCESSES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S022",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S018",
+        "date": "2011-01-14",
+        "decision": "PMA approval",
+        "tradeName": "ON-X ASCENDING AORTIC PROSTHESIS",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED AT VASCUTEK, LTD., SCOTLAND, GREAT BRITAIN (UK).  ALSO APPROVAL FOR A VALVED CONDUIT.  THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER HE TRADE NAME ON-X ASCENDING AORTIC PROSTHESIS AND IS INDICATED FOR THE REPLACEMENT OF A DISEASED, DAMAGED, OR MALFUNCTIONING NATIVE OR PROSTHETIC HEART VALVE IN THE AORTIC POSITION IN CASES THAT INVOLVE AN ASCENDING AORTIC ANEURYSM OR OTHER ASSOCIATED AORTIC DISEASE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S018",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S021",
+        "date": "2010-11-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHESTIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "USE OF ADDITIONAL MANUFACTURING EQUIPMENT AT THE ANDERSON LANE FACILITY.",
+        "reason": "",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S021",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S020",
+        "date": "2010-10-29",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "USE OF ADDITIONAL MANUFACTURING EQUIPMENT AT THE ANDERSON LANE FACILITY.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S020",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S019",
+        "date": "2010-09-23",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED IN AUSTIN, TEXAS.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S019",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S017",
+        "date": "2010-01-14",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL TO CHANGE THE MATERIAL SPECIFICATIONS FOR THE SEWING CUFF PTFE FABRIC USED IN THE ASSEMBLY OF THE ON-X VALVE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S017",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S016",
+        "date": "2009-10-16",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL TO MOVE A MANUFACTURING OPERATION FROM AN OUTSIDE VENDOR TO IN-HOUSE.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S016",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S014",
+        "date": "2008-10-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "INTRODUCTION OF A SECOND D-OX CLEANING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S014",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S015",
+        "date": "2008-10-03",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "REVISION TO THE SOFTWARE USED TO POST-PROCESS DIMENSIONAL MEASUREMENT INFORMATION.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S015",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S013",
+        "date": "2008-05-12",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "INTRODUCTION OF A SECOND PROOF TEST UNIT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S013",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S012",
+        "date": "2007-04-11",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL FOR WARNING AGAINST RESTERILIZATION.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S012",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S008",
+        "date": "2006-06-23",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE IN AUSTIN, TEXAS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S008",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S011",
+        "date": "2006-04-07",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "LOWERING THE MINIMUM TOTAL GAS FLOW FOR LEAFLET COATINGS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S011",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S010",
+        "date": "2006-01-10",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "ADDITION OF BATCH SET-UP SOFTWARE USED IN THE DIMENSIONAL MEASUREMENT PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S010",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S009",
+        "date": "2006-01-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "CHANGE IN THE OPERATOR INTERFACE FOR THE PROCESS MONITORING SOFTWARE USED IN THE DIMENSIONAL INSPECTION PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S009",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S007",
+        "date": "2005-08-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "CHANGE IN MANUFACTURING FOR THE ON-X VALVE THAT ENTAILS A FAMILY OF CHANGES TO CMM SOFTWARE AND RELATED PROCEDURES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S007",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S006",
+        "date": "2005-07-11",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "CHANGE IN THE CLEANING METHODS USED TO REMOVE MANUFACTURING MATERIALS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S006",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S005",
+        "date": "2005-06-03",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "CHANGE IN THE SEWING RING CLOTH ENDOTOXIN TESTING TO ALLOW FOR COMBINATION OF SAMPLES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S005",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S004",
+        "date": "2005-05-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "CHANGE IN THE MANUFACTURING PROCESS TO INCLUDE AN ADDITIONAL STANDARD LEAFLET INSPECTION STEP FOR REWORKED PRODUCT WITH UNACCEPTABLY HIGH LEAK TEST RESULT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S004",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S003",
+        "date": "2003-12-16",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL FOR A CHANGE TO THE VENT HOLE CONFIGURATION OF THE PACKAGE AND RELATED CHANGE TO THE VENT COVER SEALER PATTERN.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S003",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S002",
+        "date": "2002-10-11",
+        "decision": "PMA approval",
+        "tradeName": "ON-X CONFORM-X AORTIC PROSTHETIC HEART VALVE, MODEL ONXAC",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL FOR A MODIFIED AORTIC SEWING CUFF AS AN EXTENSION TO THE LINE OF AVAILABLE VALVES; THE REQUEST APPLIED TO THE AORTIC SIZES 19, 21, 23, 25, AND 27/29 MM.  THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME ON-X CONFORM-X AORTIC PROSTHETIC HEART VALVE AND WILL BE GIVEN THE MODEL DESIGNATION OF MODEL ONXAC AND IS INDICATED FOR REPLACEMENT OF DISEASED, DAMAGED, OR MALFUNCTIONING NATIVE OR PROSTHETIC HEART VALVES IN THE AORTIC POSITION.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S002",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "S001",
+        "date": "2002-03-06",
+        "decision": "PMA approval",
+        "tradeName": "ON-X PROSTHETIC HEART VALVE",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL FOR THE ON-X PROSTHETIC HEART VALVE, MODEL ONXM IN SIZES 25 MM, 27/29 MM, 31/33 MM, AND MODEL ONXMC IN SIZE 25/33 MM IN THE MITRAL POSITION.  THIS DEVICE IS INDICATED FOR THE REPLACEMENT OF DISEASED, DAMAGED, OR MALFUNCTIONING NATIVE OR PROSTHETIC HEART VALVES IN THE MITRAL POSITION.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Panel Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037S001",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000037",
+        "supplement": "",
+        "date": "2001-05-30",
+        "decision": "PMA approval",
+        "tradeName": "ON-X (R) PROSTHETIC HEART VALVE, MODEL ONXA",
+        "applicant": "On-X Life Technologies, Inc.",
+        "statement": "APPROVAL FOR THE ON-X. PROSTHETIC HEART VALVE, MODEL ONXA IN THE AORTIC POSITION INCLUDING SIZES 19, 21, 23, 25, AND 27/29 MM.  THIS DEVICE IS INDICATED FOR REPLACEMENT OF DISEASED, DAMAGED, OR MALFUNCTIONING NATIVE OR PROSTHETIC HEART VALVES IN THE AORTIC POSITION.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=400&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee",
+        "file": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee.json",
+        "retrievedAt": "2026-10-22T18:59:16.776776+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "2 original labeling document link(s) located; 4 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 2,
+    "changes": 4,
+    "rows": [
+      {
+        "application": "P000037",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000037C.pdf",
+        "pages": 20,
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037",
+        "locator": "L56: Labeling 【38†Labeling】",
+        "pageUpdatedAt": "10/19/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: 4 days ago; Content type: application/pdf; Number of pages: 20;",
+        "sections": []
+      },
+      {
+        "application": "P000037",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000037D.pdf",
+        "title": "Labeling Part 2",
+        "pages": 16,
+        "retrievalNote": "[wordlim: 200] Crawled: 2 weeks ago; Content type: application/pdf; Number of pages: 16;",
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037",
+        "locator": "L56: Labeling 【38†Labeling】",
+        "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P000037",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037",
+        "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037\",\"lineno\":null}); Total lines: 106",
+        "pageUpdatedAt": "10/19/2026",
+        "locator": "L56: Labeling 【38†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P000037S068",
+      "P000037S056",
+      "P000037S030",
+      "P000037S012"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "4 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 4,
+    "rows": [
+      {
+        "cfres_id": "219053",
+        "product_res_number": "Z-2133-2026",
+        "product_description": "On-X Mitral Heart Valve with Conform-X Sewing Ring, Model: ONXMC-25/33",
+        "code_info": "UDI-DI: 00851788001303.\nSerial Numbers: A2013401, A2013402, A2013403, A2013404, A2013405, A2013407, A2013408, A2013409, A2013410, A2013411.\nExpiration: 2031Dec17",
+        "reason_for_recall": "Heart valves were released and distributed before all required testing was complete, so it cannot be confirmed that they meet all release specifications.",
+        "action": "On 2/1/2026, the firm contacted their customer to quarantine affected devices.",
+        "recall_status": "Open, Classified",
+        "event_date_initiated": "2026-02-01",
+        "event_date_posted": "2026-05-08",
+        "event_date_terminated": "",
+        "recalling_firm": "On-X Life Technologies, Inc.",
+        "root_cause_description": "Under Investigation by firm",
+        "applications": [
+          "P000037"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=219053",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "170731",
+        "product_res_number": "Z-1073-2019",
+        "product_description": "On-X Aortic Heart Valve with Anatomic Sewing Ring\n\nProduct Usage:\nThe On-X Prosthetic Heart Valve is indicated for the replacement of diseased, damaged, or malfunctioning native or prosthetic heart valves in the aortic position. It is a bileaflet mechanical heart valve, which consists of an orifice housing and two leaflets. The On-X Prosthetic Heart Valve is available in 3 aortic configurations. All aortic configurations are available in sizes 19, 21, 23, 25, and 27/29 mm. Aortic valves, size 19 mm through 25 mm, are designed for intrasupra-annular sewing ring position, while the valve size 27/29 mm is designed for intra-annular sewing ring position. All mitral valve sizes are designed for the supra-annular sewing ring position.",
+        "code_info": "Model/Catalog Number ONXANE - 23,  Lot number 6827216, Expiration Date 11/19/2024",
+        "reason_for_recall": "On-X Valve was mislabeled with the incorrect serial number.",
+        "action": "The affected customer was initially notified via email on 01/16/2019.  A follow up notification explaining the reason for recall was provided via email on about 01/24/2019.  Instructions included to quarantine and return the affected device.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2019-01-17",
+        "event_date_posted": "",
+        "event_date_terminated": "2020-06-09",
+        "recalling_firm": "CryoLife, Inc.",
+        "root_cause_description": "Employee error",
+        "applications": [
+          "P000037"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=170731",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "156532",
+        "product_res_number": "Z-2715-2017",
+        "product_description": "On-X Prosthetic Heart Valve\n\nProduct Usage:\nIndicated for the replacement of diseased, damaged, or malfunctioning native or prosthetic heart valves in the aortic and mitral positions",
+        "code_info": "Serial #'s: 4622210, 4587605, 4741470, 4750714, 4622025, 4737722, 4737726, 4632012, 4237725, 4616112, 4520208, 4520709, 4632013, 4771217, 4771005, 4781414, 4782107, 4782132, 4765118, 4750707, 4508717, 4525417, 4520719, 4771302, 4771302, 4771210, 4751315, 4741406, 4616313, 4781416, 4771305, 4737922, 4520711, 4508804, 4508807, 4712108, 4765119, 4765106, 4587712, 4525415, 4622315, 4622126, 4771205, 4001123, 4771202, 4780914, 4741412, 4717904, 4671765, 458719, 4622225, and 4731908",
+        "reason_for_recall": "Incorrect product label.  The type of Sewing Ring was mislabeled as being a Standard Sewing Ring instead of an Anatomic Sewing Ring.",
+        "action": "On-X LTI Management Team had assessed this event to not be reportable. Correction were done by the On-X LTI in 2015.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2015-06-12",
+        "event_date_posted": "",
+        "event_date_terminated": "2020-08-04",
+        "recalling_firm": "CryoLife, Inc.",
+        "root_cause_description": "Labeling mix-ups",
+        "applications": [
+          "P000037"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=156532",
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+      },
+      {
+        "cfres_id": "157776",
+        "product_res_number": "Z-3108-2017",
+        "product_description": "On-X Prosthetic Heart Valve with Gelweave Valsalva Graft, single use.\n\nIndicated for the replacement of diseased, damaged, or malfunctioning native or prosthetic heart valves in the aortic position in cases that involve an ascending aortic aneurysm or other associated aortic disease.",
+        "code_info": "Model No. ONXAAP; Serial No. 3260716, 3718302, 3190113, 3194122 and 3634902",
+        "reason_for_recall": "Mix-up RGA (Return Goods Authorization) leading to 5 devices being redistributed and implanted 2 patients.",
+        "action": "On February 12, 2014, it was discovered that five devices were processed under the wrong RGA number\n\nThis is a retrospective reporting. Three units were collected and returned to the firm, while two were implanted.  For further questions, please call ( 770)  419-3355.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2014-02-12",
+        "event_date_posted": "",
+        "event_date_terminated": "2019-11-05",
+        "recalling_firm": "CryoLife, Inc.",
+        "root_cause_description": "Other",
+        "applications": [
+          "P000037"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=157776",
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000037C.pdf"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000037D.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=219053"
+    }
+  ],
+  "path": "/dossiers/source-fda-p000037.json",
+  "applications": [
+    "P000037"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

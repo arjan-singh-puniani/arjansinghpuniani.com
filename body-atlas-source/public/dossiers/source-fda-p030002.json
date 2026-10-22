@@ -1,0 +1,777 @@
+{
+  "familyId": "source-fda-p030002",
+  "name": "Crystalens AT-45",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "39 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 39,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P030002",
+        "supplement": "S039",
+        "date": "2022-04-08",
+        "decision": "PMA approval",
+        "tradeName": "Trulign® Toric Posterior Chamber Intraocular Lens (IOL)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "Approval for revised device labeling to describe results of the New Enrollment Study Post Approval Study (PAS) protocol.",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S039",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S040",
+        "date": "2022-01-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Crystalens Accommodating Posterior Chamber & Trulign Toric Intraocular Lenses (IOL)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "Updating the raw material specification for one chemical used in the formulation of the polishing slurry for the intraocular lenses.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S040",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S038",
+        "date": "2016-07-27",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS ACCOMMODATING INTRAOCULAR LENS & TRULIGN TORIC INTRAOCULAR LENS",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "Approval for labeling changes to the patient labeling and directions for use.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S038",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S035",
+        "date": "2016-03-24",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS AND TRULIGN TORIC INTRAOCULAR LENSES (IOLS)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "Approval for a manufacturing site located at Bausch & Lomb, Incorporated, 21 Park Place Boulevard North, Clearwater, Florida 33759 as an alternate manufacturing facility for the Crystalens and Trulign IOLs.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S035",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S036",
+        "date": "2016-02-17",
+        "decision": "PMA approval",
+        "tradeName": "TRULIGN TORIC WEB BASED TORIC CALCULATOR",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "Approval for software changes to the web-based toric calculator (WBTC) used with the Trulign Toric IOL.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S036",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S037",
+        "date": "2016-02-09",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS AND TRULIGN TORIC POSTERIOR CHAMBER INTRAOCULAR LENS",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "Approval of the following changes to the post-approval study for the device: administrative changes, including changes to personnel and organization and changes to the informed consent form.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S037",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S034",
+        "date": "2015-06-02",
+        "decision": "PMA approval",
+        "tradeName": "TRULIGN TORIC POSTERIOR CHAMBER INTRAOCULAR LENS",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S034",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S033",
+        "date": "2015-04-09",
+        "decision": "PMA approval",
+        "tradeName": "TRULIGN TORIC WEB-BASED TORIC CALCULATOR",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL FOR SOFTWARE CHANGES TO THE WEB-BASED TORIC CALCULATOR (WBTC) USED WITH THE TRULIGN TORIC IOL.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S033",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S032",
+        "date": "2014-12-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CRYSTALENS AND TRULIGN TORIC INTRAOCULAR LENS (IOLS)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "INSPECTION PROCEDURE CHANGES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S032",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S028",
+        "date": "2014-06-27",
+        "decision": "PMA approval",
+        "tradeName": "TRULIGN TORIC POSTER CHAMBER INTRAOCULAR LENS",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S028",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S031",
+        "date": "2014-05-13",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CRYSTALENS AND TRULIGN TORIC INTRAOCULAR LENS (IOLS)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "ACCEPTANCE OF A MICROBIOLOGICAL TESTING FACILITY AND THE REPURPOSING OF A MANUFACTURING ROOM.",
+        "reason": "",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S031",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S030",
+        "date": "2014-03-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CRYSTALENS ACCOMMODATING INTRAOCULAR LENS AND TRULIGN TORIC INTRAOCULAR LENS",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "ADDITIONAL HAPTIC SUPPLIER BE USED.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S030",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S029",
+        "date": "2014-02-13",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CRYSTALENS  ACCOMMODATING INTRAOCULAR LENS (IOL) AND TRULIGN TORIC POSTERIOR CHAMBER IOL",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "MANUFACTURING CHANGE TO THE TUMBLING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S029",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S027",
+        "date": "2013-05-20",
+        "decision": "PMA approval",
+        "tradeName": "TRULIGN TORIC POSTERIOR CHAMBER INTRAOCULAR LENS",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL FOR THE TRULIGN TORIC POSTERIOR CHAMBER INTRAOCULAR LENS (MODELS: AT50T, BL1AT AND BL1UT) AND TRULIGN TORIC CALCULATOR.  THIS DEVICE IS INDICATED FOR PRIMARY IMPLANTATION IN THE CAPSULAR BAG OF THE EYE FOR THE VISUAL CORRECTION OF APHAKIA AND POSTOPERATIVE REFRACTIVE ASTIGMATISM SECONDARY TO REMOVAL OF A CATARACTOUS LENS IN ADULT PATIENTS WITH OR WITHOUT PRESBYOPIA WHO DESIRE REDUCTION OF RESIDUAL REFRACTIVE CYLINDER WITH INCREASED SPECTACLE INDEPENDENCE ANDIMPROVED UNCORRECTED NEAR, INTERMEDIATE AND DISTANCE VISION.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Panel Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S027",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S025",
+        "date": "2011-09-15",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING INTRAOCULAR LENS",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "REFURBISHMENT OF AN AUTOCLAVE STERILIZER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S025",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S024",
+        "date": "2011-09-08",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTLENS MODEL AT-45 ACCOMODATING INTROCULAR LENS",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL TO MODIFY THE LABELING TO INCLUDE THE ADDITION OF 0.25 DIOPTER INCREMENTS FOR THE +17 TO +27 POWER RANGE FOR THE CRYSTALENS ACCOMMODATING INTRAOCULAR LENS, MODEL AT52AO.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S024",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S020",
+        "date": "2011-08-05",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING INTRAOCULAR LENS",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL TO MARKET CRYSTALENS® MODEL AT-45 ACCOMMODATING INTRAOCULAR LENS (IOL) WITH A BENZOTRIAZOLE ULTRA-VIOLET (UV) ABSORBER CHROMOPHORE (UVAM). TO BE DESIGNATED AS MODELS AT1UV, AT2UV, HD1UV, HD2UV, AO1UV AND AO2UV.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S020",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S023",
+        "date": "2011-03-29",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING INTRAOCULAR LENS",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "RELOCATION OF THE FINAL INSPECTION AND PRE-PACK OPERATION AT THE MANUFACTURING FACILITY LOCATED IN RANCHO CUCAMONGA, CALIFORNIA.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S023",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S022",
+        "date": "2010-04-30",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING INTRAOCULAR LENS (IOL)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL TO MODIFY THE PHYSICIAN¿S LABELING TO INCLUDE THE ADDITION OF 0.25 DIOPTER INCREMENTS FOR THE CRYSTALENS MODEL AT50AO LENSES IN THE +17 TO +27 DIOPTRIC POWER RANGE AND FOR MODEL AT52AO LENSES IN THE +16 TO +16.75 DIOPTRIC POWER RANGE.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S022",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S021",
+        "date": "2009-10-23",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS MODELS AT50AO AND AT52AO ACCOMMODATING INTRAOCULAR LENS (IOL)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL FOR THE ADDITION OF AN ASPHERIC SURFACE TO THE APPROVED PARENT CRYSTALENS IOL MODEL AT-45.  THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME CRYSTALENS MODELS AT50AO AND AT52AO AND IS INDICATED FOR PRIMARY IMPLANTATION IN THE CAPSULAR BAG OF THE EYE FOR THE VISUAL CORRECTION OF APHAKIA IN ADULT PATIENTS IN WHOM A CATARACTOUS LENS HAS BEEN REMOVED AND IS INTENDED TO PROVIDE NEAR, INTERMEDIATE, AND DISTANCE VISION WITHOUT SPECTACLES.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S021",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S019",
+        "date": "2009-06-30",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING INTRACULAR LENS (IOL)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL TO MODIFY THE PHYSICIAN¿S LABELING TO INCLUDE THE ADDITION OF 0.25 DIOPTER INCREMENTS FOR THE CRYSTALENS MODEL HD500 AND HD520 AS FOLLOWS: THE ADDITION OF 0.25 DIOPTER INCREMENTS FOR MODEL HD500 LENSES IN THE +18 TO +22 DIOPTRIC POWER RANGE AND FOR MODEL HD520 LENSES IN THE +16.25 TO +16.75 DIOPTRIC POWER RANGE.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S019",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S018",
+        "date": "2009-02-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING INTRAOCULAR LENS",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "IMPLEMENTATION OF AN ALTERNATE COMPONENT CLEANING METHOD.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S018",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S017",
+        "date": "2008-09-05",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING INTRAOCULAR LENS",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "ADDITION OF AN ALTERNATE OPTICAL COMPARATOR.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S017",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S016",
+        "date": "2008-07-11",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING INTRAOCULAR LENS",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "ADDITION OF AN ALTERNATIVE OPTICAL BENCH.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S016",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S014",
+        "date": "2008-06-19",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS ACCOMMODATING POSTERIOR CHAMBER INTRAOCULAR LENS (AIOL), MODELS AT-45-HD100, HD500, AND HD520",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL TO MARKET THE FOLLOWING MODELS IN 0.5 DIOPTER INCREMENTS: MODELS AT-45-HD100 (10 TO 33 DIOPTERS), HD500 (17.0 TO 33.0 DIOPTERS), AND HD520 (10 TO 16.5 DIOPTERS).  ADDITIONALLY, APPROVAL TO RECOMMEND USE OF THE STAAR MSI-PR/TR AND MSI-PF/TF INJECTORS WITH MTC-60C CARTRIDGE TO DELIVER THESE LENS MODELS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S014",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S015",
+        "date": "2008-06-13",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING INTRAOCULAR LENS",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL FOR AN ALTERNATE MANUFACTURING SITE LOCATED AT BAUSCH & LOMB, INC., RANCHO CUCAMONGA, CALIFORNIA.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S015",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S013",
+        "date": "2007-12-12",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING INTRAOCULAR (IOL)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL FOR INCLUSION OF THE MICROSTAAR MSI-PR AND MSI-TR INJECTORS AND MTC-60C CARTRIDGE IN THE PHYSICIAN LABELING FOR THE CRYSTALENS MODELS AT-50SE AND AT-52SE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S013",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S012",
+        "date": "2007-09-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING INTRAOCULAR LENS",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "ADDITION OF A CHANGE IN THE RAW MATERIALS MIXING METHOD.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S012",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S010",
+        "date": "2007-07-26",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS? MODELS AT-50SE AND AT-52SE ACCOMMODATING INTRAOCULAR LENSES (IOLS)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL FOR THE MODELS AT-50SE AND AT-52SE ACCOMMODATING IOLS USED WITH THE STAAR MSI-PF/TF INJECTOR AND MTC-60C CARTRIDGE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S010",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S009",
+        "date": "2007-06-29",
+        "decision": "PMA approval",
+        "tradeName": "EYEONICS CRYSTALENS MODEL AT-45 ACCOMMODATING INTRAOCULAR LENS (IOL)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL FOR RECOMMENDATION TO USE THE STAAR MSI-PF INJECTOR AND MTC-60C CARTRIDGE SYSTEM FOR INJECTING THE CRYSTALENS MODELS AT-45 & AT-45SE) TO BE ADDED TO THE PHYSICIAN LABELING.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S009",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S011",
+        "date": "2007-05-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING INTRAOCULAR LENS (IOL)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "CHANGE IN THE TUMBLING AND PRE-CLEANING PROCESS FOR THE DEVICE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S011",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S008",
+        "date": "2007-05-24",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING INTRAOCULAR LENS (IOL)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "PERFORM MOIST HEAT STERILIZATION IN HOUSE AT EYEONICS? RANCHO CUCAMONGA FACILITY.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S008",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S006",
+        "date": "2006-03-03",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING INTRACULAR LENS",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL FOR UPDATED PHYSICIAN LABELING WITH 3-YEAR CLINICAL DATA.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S006",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S005",
+        "date": "2005-09-26",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING INTRAOCULAR (IOL)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL FOR CHANGES IN THE ?RECOMMENDATIONS FOR MAXIMIZING PATIENT OUTCOMES? SECTION OF THE PHYSICIANS LABELING.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S005",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S004",
+        "date": "2005-09-08",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS SE, MODEL AT-45 SE",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL FOR THE FOLLOWING MODIFICATIONS TO THE PHYSICIAN'S LABELING: CHANGE IN THE MODEL NUMBER AND TRADE NAME; CHANGE IN DIRECTIONS FOR USE TO FACILITATE PROPER INSERTION AND ORIENTATION OF THE LENS; AND, CHANGE IN THE EXISTING RECOMMENDATIONS FOR MAXIMIZING PATIENT OUTCOMES.  THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME CRYSTALENS SE (MODEL AT-45 SE) AND IS INDICATED FOR PRIMARY IMPLANTATION IN THE CAPSULAR BAG OF THE EYE FOR THE VISUAL CORRECTION OF APHAKIA SECONDARY TO THE REMOVAL OF A CATARACTOUS LENS IN ADULT PATIENTS WITH AND WITHOUT PRESBYOPIA.  THE CRYSTALENS SE (MODEL AT-45 SE) PROVIDES APPROXIMATELY ONE DIOPTER OF MONOCULAR ACCOMMODATION WHICH ALLOWS FOR NEAR, INTERMEDIATE, AND DISTANCE VISION WITHOUT SPECTACLES.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S004",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S003",
+        "date": "2005-06-06",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING INTRAOCULAR LENS (IOL)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED AT LIFE SCIENCES OUTSOURCING (LSO), BREA, CALIFORNIA.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S003",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S002",
+        "date": "2004-09-29",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS MODEL AT-45 MULTIPIECE SILICONE POSTERIOR CHAMBER ACCOMODATING INTRAOCULAR LENS (IOL)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL TO MODIFY THE DEVICE DESCRIPTION IN THE PHYSICIAN LABELING.",
+        "reason": "Other",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S002",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "S001",
+        "date": "2004-08-16",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS MODEL AT-45 MULTIPIECE SILICONE POSTERIOR CHAMBER ACCOMMODATING INTRAOCULAR LENS (IOL)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL FOR MODIFICATIONS TO THE PHYSICIAN'S LABELING.",
+        "reason": "",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002S001",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      },
+      {
+        "application": "P030002",
+        "supplement": "",
+        "date": "2003-11-14",
+        "decision": "PMA approval",
+        "tradeName": "CRYSTALENS MODEL AT-45 ACCOMMODATING POSTERIOR CHAMBER INTRAOCULAR LENS (IOL)",
+        "applicant": "Bausch & Lomb, Inc.",
+        "statement": "APPROVAL FOR THE CRYSTALENS MODEL AT-45 ACCOMMODATING POSTERIOR CHAMBER IOL.  THE DEVICE IS INDICATED FOR PRIMARY IMPLANTATION IN THE CAPSULAR BAG OF THE EYE FOR THE VISUAL CORRECTION OF APHAKIA IN ADULT PATIENTS IN WHOM A CATARACTOUS LENS HAS BEEN REMOVED AND IS INTENDED TO PROVIDE NEAR, INTERMEDIATE AND DISTANCE VISION WITHOUT SPECTACLES.  THE CRYSTALENS IOL PROVIDES APPROXIMATELY ONE DIOPTER OF MONOCULAR ACCOMMODATION.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002",
+        "sourceSha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=2000&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c",
+        "file": "22814b6a3da2dae0d451628b0dfcde006dee59e2980e6f06cb6704b18157051c.json",
+        "retrievedAt": "2026-10-22T18:59:30.381868+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=2100&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6",
+        "file": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6.json",
+        "retrievedAt": "2026-10-22T18:59:31.215437+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "2 original labeling document link(s) located; 13 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 2,
+    "changes": 13,
+    "rows": [
+      {
+        "application": "P030002",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030002C.pdf",
+        "pages": 12,
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002",
+        "locator": "L57: Labeling 【39†Labeling】",
+        "pageUpdatedAt": "10/19/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: 2 days ago; Content type: application/pdf; Number of pages: 12;",
+        "sections": []
+      },
+      {
+        "application": "P030002",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030002D.pdf",
+        "title": "Labeling Part 2",
+        "pages": 17,
+        "retrievalNote": "[wordlim: 200] Crawled: 6 days ago; Content type: application/pdf; Number of pages: 17;",
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002",
+        "locator": "L57: Labeling 【39†Labeling】",
+        "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P030002",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002",
+        "discovery": "[wordlim: 200] Crawled: yesterday; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002\",\"lineno\":null}); Total lines: 105",
+        "pageUpdatedAt": "10/19/2026",
+        "locator": "L57: Labeling 【39†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P030002S039",
+      "P030002S038",
+      "P030002S027",
+      "P030002S024",
+      "P030002S022",
+      "P030002S019",
+      "P030002S013",
+      "P030002S009",
+      "P030002S006",
+      "P030002S005",
+      "P030002S004",
+      "P030002S002",
+      "P030002S001"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 1,
+    "rows": [
+      {
+        "cfres_id": "105816",
+        "product_res_number": "Z-0445-2012",
+        "product_description": "Crystalens Accommodating Posterior Chamber Intraocular Lens, AT-50AO.\n\nCrystalens Accommodating Posterior Chamber Intraocular Lens\nPMA No.: P030002.\n\nThe Crystalens is intended for primary implantation in the capsular bag of the eye for the visual correction of aphakia secondary to the removal of a cataractous lens in adult patients with and without presbyopia.",
+        "code_info": "Serial No.: Expiration Date: 11-699865 to 11-699951 01/14/2016 11-699952 to 11-700027 01/14/2016",
+        "reason_for_recall": "Bausch + Lomb voluntary initiated the recall due to a physician complaint of haze on the Crystalens AO\nwhich was visualized using an angled beam from a slit lamp during the post-operative\nexamination.",
+        "action": "Bausch + Lomb sent an \"URGENT- MEDICAL DEVICE RECALL\" letter dated November 14, 2011 to all affected customers.  The letter described the product, problem, and actions to be taken by the customers.  The letter instructs customers to remove the affected products from inventory and return the lenses to the firm.  Additionally, a Recall Acknowledgement Form was attached to the letter for customers to complete and return with the affected products.  Contact Bausch + Lomb at 949-521-7895 for questions regarding this recall..",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2011-11-14",
+        "event_date_posted": "2012-01-11",
+        "event_date_terminated": "2012-05-23",
+        "recalling_firm": "Bausch and Lomb, Incorporated",
+        "root_cause_description": "Nonconforming Material/Component",
+        "applications": [
+          "P030002"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=105816",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030002C.pdf"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030002D.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=105816"
+    }
+  ],
+  "path": "/dossiers/source-fda-p030002.json",
+  "applications": [
+    "P030002"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

@@ -1,0 +1,896 @@
+{
+  "familyId": "source-fda-p000008",
+  "name": "LAP-BAND system",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "47 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 47,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P000008",
+        "supplement": "S051",
+        "date": "2025-07-11",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ReShape Lap-Band System",
+        "applicant": "Medtimo, Inc.",
+        "statement": "addition of a contract supplier, known as Needle Tech Products, for the Lap-Band System Access Port Needles",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S051",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S050",
+        "date": "2024-05-15",
+        "decision": "PMA approval",
+        "tradeName": "ReShape Lap-Band Adjustable Gastric Banding System",
+        "applicant": "Medtimo, Inc.",
+        "statement": "labeling updates to the approved ReShape Lap-Band Systems",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S050",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S049",
+        "date": "2024-01-26",
+        "decision": "PMA approval",
+        "tradeName": "ReShape Lap-Band System",
+        "applicant": "Medtimo, Inc.",
+        "statement": "approval to change the product trade name from Lap-Band Adjustable Gastric Banding System to ReShape Lap-Band Adjustable Gastric Banding System",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S049",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S048",
+        "date": "2023-12-12",
+        "decision": "PMA approval",
+        "tradeName": "Lap-Band Adjustable Gastric Banding System",
+        "applicant": "Medtimo, Inc.",
+        "statement": "a product line extension, referred to as ReShape Lap-Band® 2.0 FLEX System, which contains the FLEX Tubing. The FLEX Tubing acts as a reservoir within the ReShape Lap-Band® 2.0 FLEX System and can expand to hold extra saline out of the band cuff, allowing the band stoma to temporarily dilate and facilitate the passage of a food bolus through the band",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S048",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S047",
+        "date": "2019-11-13",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND System",
+        "applicant": "Medtimo, Inc.",
+        "statement": "Approval for updates to three LAP-BAND® System Directions for Use and the Surgical Aid instructions with a change of the initial post-operative band fluid volume adjustment period to four weeks post-implantation.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S047",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S045",
+        "date": "2019-05-02",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND Adjustable Gastric Banding System",
+        "applicant": "Medtimo, Inc.",
+        "statement": "Approval for the pneumatic assist to automatically load and unload catheter tubing on the punch mandrel.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S045",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S046",
+        "date": "2019-01-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Lap-Band Adjustable Gastric Banding System",
+        "applicant": "Medtimo, Inc.",
+        "statement": "Change in manufacturing site for the contract manufacturer of a critical device components accessory.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S046",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S044",
+        "date": "2018-11-30",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LAP-BAND Adjustable Gastric Banding System",
+        "applicant": "Medtimo, Inc.",
+        "statement": "Change of a testing equipment at a contract manufacturing site.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S044",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S043",
+        "date": "2018-07-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LAP-BAND Adjustable Gastric Banding System",
+        "applicant": "Medtimo, Inc.",
+        "statement": "Change in manufacturing site for the contract manufacturer of a critical device component.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S043",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S042",
+        "date": "2018-01-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LAP-BAND Adjustable Gastric Banding System",
+        "applicant": "Medtimo, Inc.",
+        "statement": "Change of a suppliers manufacturing site location for production of the thermoform trays used in primary packaging of the Lap-Band system.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S042",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S041",
+        "date": "2018-01-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LAP-BAND Adjustable Gastric Banding System",
+        "applicant": "Medtimo, Inc.",
+        "statement": "Installation and qualification of the primary equipment for performing the Lap-Band primary packaging thermoform tray peel test.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S041",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S040",
+        "date": "2018-01-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LAP-BAND Adjustable Gastric Banding System",
+        "applicant": "Medtimo, Inc.",
+        "statement": "Changes to the adhesive strip tolerance limits and an additional cavity in the Outer Tray Sealing Nest Tool.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S040",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S039",
+        "date": "2017-10-02",
+        "decision": "PMA approval",
+        "tradeName": "Lap-Band Adjustable Gastric Banding System",
+        "applicant": "Medtimo, Inc.",
+        "statement": "Approval for the addition of the long-term data from the HERO-002 post-approval study, the addition of the MR Conditional labeling claim, and the addition of warnings for adverse events associated with device erosion and device migration/twisting/slipping.",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S039",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S038",
+        "date": "2017-03-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LAP-BAND Adjustable Gastric Banding System",
+        "applicant": "Medtimo, Inc.",
+        "statement": "Removal of the Ultrasonic Thickness Gauge (UTG) inspection step of the shell thickness of the band of the LAP-BAND Adjustable Gastric Banding System from the incoming product inspection protocol.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S038",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S035",
+        "date": "2016-05-23",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "approval for a manufacturing site located at Apollo Endosurgery, Building 13.3, Zona Franca Coyol, Alajuela, Costa Rica",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S035",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S037",
+        "date": "2016-03-28",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "Approval of the post-approval study protocol.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S037",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S034",
+        "date": "2016-03-03",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "Approval of the following changes to the post-approval study for the device:  revisions reflecting alignment of protocol terminology with terms used in the electronic datamanagement system and points of clarification based on IRB input.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S034",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S036",
+        "date": "2016-02-08",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "Approval of the following changes to the post-approval study for the device: Addition of a Canadian site, which has been operating under the larger, international HERO study protocol.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S036",
+        "sourceSha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S033",
+        "date": "2015-05-27",
+        "decision": "PMA approval",
+        "tradeName": "ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR A POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S033",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S032",
+        "date": "2014-11-05",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR LABELING MODIFICATIONS TO 1) ADD IDENTIFIERS TO A PICTURE OF ACALIBRATION TUBE; AND (2) ADD A NOTE THAT THE USER SHOULD NOT OVERINFLATE THE BALLOON.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S032",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S028",
+        "date": "2014-10-07",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING (LAGB) SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR DESIGN CHANGES TO THE RAPIDPORT EZ ACCESS PORT, DESIGN CHANGES TO THE RAPIDPORT EZ ACCESS PORT APPLIER, AND PACKAGING CHANGES.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S028",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S031",
+        "date": "2014-09-24",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S031",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S027",
+        "date": "2013-08-29",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BAND",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR CHANGES TO THE PACKAGING, SEALING PARAMETERS AND STERILIZATION LOAD SIZE FOR THE DEVICE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S027",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S030",
+        "date": "2013-03-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING (LAGB) SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "AGENCY TO ACCEPT A CHANGE IN THE LAP-BAND STERILIZATION VALIDATION METHOD.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S030",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S029",
+        "date": "2012-11-09",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S029",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S026",
+        "date": "2011-12-09",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING (LAGB) SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR AN ALTERNATE HUB MATERIAL ON THE 3.5 INCH AND 2.0 INCH ACCESS PORT NEEDLES USED WITH THE LAP-BAND SYSTEM.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S026",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S022",
+        "date": "2011-11-18",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S022",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S019",
+        "date": "2011-09-16",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S019",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S023",
+        "date": "2011-08-15",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S023",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S024",
+        "date": "2011-07-29",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING (LAGB) SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL TO MODIFY THE DIRECTIONS FOR USE FOR THE RAPIDPORT EZ PORT APPLIER, AN ACCESSORY TO THE LAP-BAND SYSTEM, TO CLARIFY THE PROPER METHOD OF HOLDING THE RAPIDPORT EZ PORT APPLIER AND HOW TO APPLY PRESSURE TO THE PORT APPLIER TO ENSURE THE CORRECT POSITIONING OF THE ACCESS PORT.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S024",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S017",
+        "date": "2011-02-16",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM.  THE LAP-BAND SYSTEM IS INDICATED FOR WEIGHT REDUCTION FOR PATIENTS WITH OBESITY, WITH A BODY MASS INDEX (BMI) OF AT LEAST 40 KG/M2 OR A BMI OF AT LEAST 30 KG/ M2 WITH ONE OR MORE OBESITY RELATED COMORBID CONDITIONS.  IT IS INDICATED FOR USE IN ADULT PATIENTS WHO HAVE FAILED MORE CONSERVATIVE WEIGHT REDUCTION ALTERNATIVES, SUCH AS SUPERVISED DIET, EXERCISE AND BEHAVIOR MODIFICATION PROGRAMS.  PATIENTS WHO ELECT TO HAVE THIS SURGERY MUST MAKE THE COMMITMENT TO ACCEPT SIGNIFICANT CHANGES IN THEIR EATING HABITS FOR THE REST OF THEIR LIVES.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Panel Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S017",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S021",
+        "date": "2010-12-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING (LAGB) SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "ADDITIONAL COMPONENT SUPPLIER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S021",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S020",
+        "date": "2010-10-08",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL TO MODIFY THE DIRECTIONS FOR USE TO ADD CAUTIONARY STATEMENTS REGARDING HOW THE NEEDLE IS TO BE INSERTED INTO THE ACCESS PORT SEPTUM TO PREVENT DAMAGE TO THE ACCESS PORT.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S020",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S018",
+        "date": "2010-06-18",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL TO MODIFY THE INSTRUCTIONS FOR USE TO ADD ¿DATA FROM A POST-APPROVAL STUDY SHOWED AN ESTIMATED EXPLANT RATE OF 6.5% PER YEAR OVER THE FIRST FIVE YEARS FOLLOWING IMPLANTATION¿ TO THE ADVERSE EVENTS SECTION.",
+        "reason": "",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S018",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S014",
+        "date": "2009-01-16",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING (LAGB) SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR MODIFYING THE LABELING TO IDENTIFY THE ¿PARS FLACCIDA¿ TECHNIQUE AS THE RECOMMENDED TECHNIQUE TO USE DURING SURGICAL PLACEMENT OF THE DEVICE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S014",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S013",
+        "date": "2008-11-25",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING (LAGB) SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR THE IMPLEMENTATION OF A SKIP-LOT TESTING OPTION FOR THE FORCE TO CLOSE TEST.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S013",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S012",
+        "date": "2008-08-26",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING (LAGB) SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S012",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S010",
+        "date": "2007-08-22",
+        "decision": "PMA approval",
+        "tradeName": "LAP BAND ADJUSTABLE GASTRIC BANDING (LAGB) SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE IN LA AURORA DE HEREDIA, COSTA RICA.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S010",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S009",
+        "date": "2006-04-24",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR AN EXTENSION TO THE LAP-BAND ADJUSTABLE GASTRIC BANDING (LAGB) PRODUCT LINE TO INCLUDE THE LARGE AND SMALL LAP-BAND ADVANCED PLATFORM (AP) DESIGN.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S009",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S008",
+        "date": "2006-02-02",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING (LAGB) SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR AN OPTIONAL ACCESSORY DEVICE, THE RAPIDPORT SYSTEM, TO BE USED WITH THE LAGB SYSTEM ACCESS PORT II.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S008",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S006",
+        "date": "2003-12-05",
+        "decision": "PMA approval",
+        "tradeName": "BIOENTERICS LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR AN ADDITIONAL SIZE (11.0 CM) FOR THE LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM.  THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME VANGUARD LAP-BAND.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S006",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S005",
+        "date": "2003-01-08",
+        "decision": "PMA approval",
+        "tradeName": "BIOENTERICS LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING FACILITY LOCATED AT INAMED CORPORATION, SANTA BARBARA, CALIFORNIA.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S005",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S004",
+        "date": "2002-09-10",
+        "decision": "PMA approval",
+        "tradeName": "BIOENTERICS LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR A DESIGN MODIFICATION TO THE LAP-BAND SYSTEM'S ACCESS PORT WITH TAPERED CONNECTOR.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S004",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S001",
+        "date": "2002-08-26",
+        "decision": "PMA approval",
+        "tradeName": "BIOENTERICS LAP-BAND",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING METHOD CHANGE WITH A CORRESPONDING CHANGE IN MATERIAL.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S001",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S002",
+        "date": "2002-08-01",
+        "decision": "PMA approval",
+        "tradeName": "BIOENTERICS LAP-BAND ADJUSTABLE GASTRIC BANDING (LAGB) SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR THE FOLLOWING MODIFICATIONS TO THE LAP-BAND ADUSTABLE GASTRIC BANDING (LAGB) SYSTEM:  1) INTRODUCTION OF A REDESIGNED ACCESS PORT (ACCESS PORT II);  2) REPLACE THE CALIBRATION TUBE (CALIBRATION TUBE I) CURRENTLY PROVIDED IN THE LAGB) SYSTEM WITH A REDESIGNED CALIBRATION TUBE (CALIBRATION TUBE II); AND  3) INTRODUCTION OF 2\" ACCESS PORT NEEDLES TO BE SOLD AS AN ACCESSORY ITEM.  IN ADDITION TO BEING SOLD AS COMPONENTS OF THE LAGB SYSTEM, BOTH THE ACCESS PORT II AND THE CALIBRATION TUBE II WILL BE SOLD AS SEPARATE ACCESSORIES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S002",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "S003",
+        "date": "2002-05-24",
+        "decision": "PMA approval",
+        "tradeName": "BIOENTERICS LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED AT MCGHAN MEDICO, BARREAL DE HEREDIA, COSTA RICA.",
+        "reason": "Express GMP Supplement",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008S003",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      },
+      {
+        "application": "P000008",
+        "supplement": "",
+        "date": "2001-06-05",
+        "decision": "PMA approval",
+        "tradeName": "LAP-BAND ADJUSTABLE GASTRIC BANDING SYSTEM",
+        "applicant": "Medtimo, Inc.",
+        "statement": "APPROVAL FOR THE LAP-BAND. ADJUSTABLE GASTRIC BANDING (LAGB.) SYSTEM.  THE DEVICE IS INDICATED FOR USE IN WEIGHT REDUCTION FOR SEVERELY OBESE PATIENTS WITH A BODY MASS INDEX (BMI) OF AT LEAST 40 OR A BMI OF AT LEAST 35 WITH ONE OR MORE SEVERE COMORBID CONDITIONS, OR THOSE WHO ARE 100 LBS. OR MORE OVER THEIR ESTIMATED IDEAL WEIGHT ACCORDING TO THE 1983 METROPOLITAN LIFE INSURANCE TABLES (USE THE MIDPOINT FOR MEDIUM FRAME).  IT IS INDICATED FOR USE ONLY IN SEVERELY OBESE ADULT PATIENTS WHO HAVE FAILED MORE CONSERVATIVE WEIGHT-REDUCTION ALTERNATIVES, SUCH AS SUPERVISED DIET, EXERCISE AND BEHAVIOR MODIFICATION PROGRAMS.  PATIENTS WHO ELECT TO HAVE THIS SURGERY MUST MAKE THE COMMITMENT TO ACCEPT SIGNIFICANT CHANGES IN THEIR EATING HABITS FOR THE REST OF THEIR LIVES.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008",
+        "sourceSha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=0&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8",
+        "file": "2e5c580b09cb96000a1eb9433c0ae36d39825b32a4b5512f7ad9dba012d5f3e8.json",
+        "retrievedAt": "2026-10-22T18:59:12.822696+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=100&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1",
+        "file": "f253edb2cf8e9f53c6a66eeaad15f2822853b9e8271e65c5d3120fea0f6b9dd1.json",
+        "retrievedAt": "2026-10-22T18:59:13.642829+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "1 original labeling document link(s) located; 10 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 1,
+    "changes": 10,
+    "rows": [
+      {
+        "application": "P000008",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000008C.pdf",
+        "pages": 56,
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008",
+        "locator": "L58: Labeling 【38†Labeling】",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: 3 weeks ago; Content type: application/pdf; Number of pages: 56;",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P000008",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008",
+        "discovery": "[wordlim: 200] Crawled: yesterday; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008\",\"lineno\":null}); Total lines: 106",
+        "locator": "L58: Labeling 【38†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P000008S050",
+      "P000008S049",
+      "P000008S047",
+      "P000008S039",
+      "P000008S033",
+      "P000008S032",
+      "P000008S024",
+      "P000008S017",
+      "P000008S020",
+      "P000008S014"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "3 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 3,
+    "rows": [
+      {
+        "cfres_id": "99617",
+        "product_res_number": "Z-2123-2011",
+        "product_description": "Lap-Band Access Port Needle 10-Pack, 20 G x 51 mm (2 in.), Product Code: 8-20302-10, Lot Number: 9L01N\n20 gauge, 51 mm (2 in.) length non-coring deflected tip (Huber) needle, used with the LAP-BAND System for band adjustment.",
+        "code_info": "Lot Number: 9L01 N",
+        "reason_for_recall": "The recall was initiated because Allergan has determined that a number of Access Port Needle pouches from one specific lot number may have small gaps in a pouch seal. Consequently the product may no longer be sterile.",
+        "action": "Allegan sent an Urgent Medical Device Recall letter dated March 21, 2011, to all affected customers.  Allergan requested that upon receipt of letter, that the customer check their existing inventory of product for affected lot.  Customers were requested to complete Business Reply Card, stating quantity of inventory of affected lot, if any, and return to Allergan Medical.  Customer with remaining inventory were instructed to contact Allergan Medical Product Support at 1-800-624-4261, x5972 or 1-805-961-5972 for return and immediate replacement.  .  Customers will be issued credit for returned product.\nFor questions regarding this recall call 805-319-0589.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2011-03-21",
+        "event_date_posted": "2011-05-02",
+        "event_date_terminated": "2012-04-06",
+        "recalling_firm": "Allergan",
+        "root_cause_description": "Pending",
+        "applications": [
+          "P000008"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=99617",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "95382",
+        "product_res_number": "Z-0418-2011",
+        "product_description": "LAP-BAND Adjustable Gastric Band System; Product codes:\nB-2105 (ACCSS PRT II KIT (0-10CC) US),\nB-2106 (ACCESS PRT II KIT (0-14CC) US),\nB-2210 (LP-BND SYS, 9.75, STER, US),\nB-2215 (LAP-BAND 9.75 W/ACC PRT II US),\nB-2220 (LP-BND SYS, 10.0, STER, US),\nB-2225 (LAP-BND 10.0,ACCESS PORT II,US),\nB-2255 (LAP-BAND VG W/ACS PORT II (US),\nB-2260 (LP-BND AP STANDARD SYS, W ACC PRT II),\nB-2265 (LP-BND AP LG SYS, W/ACC PRT II);\nThe Lap-Band System is a long-term implantable device intended to induce weight loss in morbidly obese patients by limiting food consumption restrictive and satiating, rather than malabsorptive). The device is surgically implanted, using either a laparoscopic or open procedure, to create a restricted opening (stoma) and a small gastric pouch to limit food consumption and induce early satiety. The main components of the device are the silicone elastomer band, access port. and kink-resistant tubing used to connect the other two components. The inner surface of the silicone band, which is placed around the stomach, is inflatable and connected by the tubing to the access port (a remote injection site. The access port is implanted on, or attached to, the rectus muscle to permit non-surgical, percutaneous adjustments to the band and thus, the stoma diameter, using sterile saline.",
+        "code_info": "All Lot Numbers for the listed Product Codes are affected by this recall.",
+        "reason_for_recall": "In a LAP-BAND System adjustment, failure to inject the needle perpendicular to the access port septum, as described in Directions for Use, may lead to port damage, resulting in subsequent port leakage. Leakage results in deflation of the LAP-BAND to its widest, open position requiring a procedure to replace the port. The patient may have symptoms of reduced satiety and increased appetite. Stalling",
+        "action": "Allergan sent an URGENT FIELD CORRECTIVE ACTION letter dated September 15, 2010, to all affected customers.  The recall communication was initiated on 09/16/2010 when the firm begin forwarding Customer letters with attached current Directions for Use distributed via Federal Express, with tracking verification provided by Federal Express, to the direct consignees.\n\nThe Customer letters informed consignees of the products affected, description of the Issue, clinical implications and firm recommendations.\n\nCustomers were instructed to follow the Directions for Use for inserting the needle.  \nCustomers were instructed to report any malfunction or adverse event related to the device to Allergan Product Support at 1-800-624-4261 ext. 5972 or 1-805-961-5972 and FDA's Medwatch Program (1-800-FDA-1088 or www.fda.gov/medwatch). \nFor questions, consignees were instructed to contact their Allergan field representative or contact Allergan Product Support at 1-800-624-4261.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2010-09-16",
+        "event_date_posted": "2010-11-18",
+        "event_date_terminated": "2010-12-22",
+        "recalling_firm": "Allergan",
+        "root_cause_description": "Pending",
+        "applications": [
+          "P000008"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=95382",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "164436",
+        "product_res_number": "Z-2743-2018",
+        "product_description": "Apollo Lap-Band AP System Small with RapidPort EZ \r\n\r\nProduct Usage:\r\nThe Lap-Band system consists of a silicone band with pillows that are filled with saline and a buckle that joins the ends of the bands together, an access port and silicone tubing that connects the band to the access port. The band is placed laparoscopically around the stomach, creating a small pouch or stoma, thereby limiting food consumption. The band can be inflated or deflated with saline, through the access port, depending on patient needs and progress. The Lap-Band access port is a low-profile cylindrical port attached to kink-resistant tubing . The port is implanted subcutaneously or in the rectus muscle and can be penetrated in its silicone septum by a non-coring needle to inject or remove saline into or from the band. The kink-resistant tubing connects the access port to the band.",
+        "code_info": "Item\t\tLot #\t\tSerial # C-2306\tAF00921\tS0034428 C-2306\tAF00921\tS0034429 C-2306\tAF00921\tS0034430 C-2306\tAF00921\tS0034431 C-2306\tAF00921\tS0034433 C-2306\tAF00921\tS0034435 C-2306\tAF00921\tS0034437 C-2306\tAF00921\tS0034439 C-2306\tAF00921\tS0034441 C-2306\tAF00921\tS0034443 C-2306\tAF00921\tS0034445 C-2306\tAF00921\tS0034447 C-2306\tAF00921\tS0034449 C-2306\tAF00921\tS0034450 C-2306\tAF00921\tS0034451 C-2306\tAF00921\tS0034453 C-2306\tAF00921\tS0034455 C-2306\tAF00921\tS0034457 C-2306    \tAF00921 \tS0034440 C-2306    \tAF00921 \t S0034433 C-2306    \tAF00921 \t S0034450 C-2306    \tAF00921 \tS0034434 C-2306    \tAF00921 \tS0034436 C-2306    \tAF00921 \tS0034438 C-2306    \tAF00921 \tS0034444 C-2306    \tAF00921 \tS0034446 C-2306    \tAF00921 \tS0034448 C-2306    \tAF00921 \tS0034452 C-2306    \tAF00921 \tS0034454 C-2306    \tAF00921 \tS0034456 C-2306    \tAF00921 \tS0034442 C-2306    \tAF00921 \tS0034432 C-20360\tAF00929\tS0034459 C-20360\tAF00929\tS0034460 C-20360\tAF00929\tS0034461 C-20360\tAF00929\tS0034463 C-20360\tAF00929\tS0034464 C-20360\tAF00929\tS0034466 C-20360\tAF00929\tS0034467 C-20360\tAF00929\tS0034468 C-20360\tAF00929\tS0034469 C-20360\tAF00929\tS0034470 C-20360\tAF00929\tS0034472 C-20360\tAF00929\tS0034473 C-20360  \tAF00929 \t S0034460 C-20360  \tAF00929 \tS0034465 C-20360  \tAF00929 \tS0034480 C-20360  \tAF00929 \tS0034486 C-20360  \tAF00929 \t S0034467 C-20360  \tAF00929 \t S0034469 C-20360  \tAF00929 \t S0034473 C-20360  \tAF00929 \tS0034458 C-20360  \tAF00929 \tS0034462 C-20360  \tAF00929 \tS0034471 C-20360  \tAF00929 \tS0034474 C-20360  \tAF00929 \tS0034475 C-20360  \tAF00929 \tS0034476 C-20360  \tAF00929 \tS0034477 C-20360  \tAF00929 \tS0034478 C-20360  \tAF00929 \tS0034479 C-20360  \tAF00929 \tS0034481 C-20360  \tAF00929 \tS0034482 C-20360  \tAF00929 \tS0034483 C-20360  \tAF00929 \tS0034484 C-20360  \tAF00929 \tS0034485 C-20360  \tAF00929 \tS0034487",
+        "reason_for_recall": "Component of the Lap-Band system was missing from the package",
+        "action": "Consignees were initially contacted via telephone and later via letter. The firms letter requested the hospital risk manager dispose of the defective product.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2017-11-22",
+        "event_date_posted": "",
+        "event_date_terminated": "2020-10-06",
+        "recalling_firm": "Apollo Endosurgery Inc",
+        "root_cause_description": "Under Investigation by firm",
+        "applications": [
+          "P000008"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=164436",
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000008C.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=99617"
+    }
+  ],
+  "path": "/dossiers/source-fda-p000008.json",
+  "applications": [
+    "P000008"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

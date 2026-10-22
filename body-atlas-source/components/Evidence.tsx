@@ -16,10 +16,11 @@ export function External({
   try {
     const u = new URL(href);
     valid =
-      u.protocol === "https:" &&
+      u.protocol === "https:" && !u.username && !u.password && !u.port &&
       [
         "www.accessdata.fda.gov",
         "api.fda.gov",
+        "www.fda.gov",
         "clinicaltrials.gov",
         "pubmed.ncbi.nlm.nih.gov",
         "www.ncbi.nlm.nih.gov",

@@ -1,0 +1,2 @@
+# Preserve provider response bytes and their SHA-256 digests.
+arjan-portfolio/public/atlas/dossier-sources/* -text -whitespace

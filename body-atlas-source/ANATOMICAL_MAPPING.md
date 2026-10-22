@@ -68,3 +68,8 @@ The dense map uses one primary regional relationship per visible entry; entries 
 `lib/whole-body-explanations.json` contains 75 record-specific explanations and explicit regional scopes. `anatomical-context-v3` restricts source extraction to these scopes and raises an error if any named region lacks an exact anatomical phrase in the indexed record. This prevents a co-procedure, disease origin, access vessel or injury diagnosis from inheriting the intervention's target. The source quote, character span, record identity and immutable source hash are retained. Statements remain Provisional `indication_context` relationships; no new accepted implantation or tissue-interface edge is created.
 
 Positive/negative cases distinguish liver metastasis treatment from the colorectal primary, femoropopliteal stenting from knee replacement, glaucoma treatment from lens replacement, spinal reconstruction from cord penetration, and hand assistance from a spinal-cord implant. The 91-entry explained layer directly covers 44 structures/regions, including existing curated relationships. Uterus and vagina have text-only exploration with a visible model limitation and no fabricated male-reference locator. Coverage and source traceability are tested; an independent expert precision estimate remains unavailable.
+
+
+## Dossier milestone — 2026-10-22
+
+Dossier completion does not upgrade any anatomical relationship. FDA application/supplement and recall joins concern regulatory identity, not implantation coordinates or confirmed affected models. Existing Provisional contexts and unknown placements remain unchanged.

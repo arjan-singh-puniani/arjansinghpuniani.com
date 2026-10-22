@@ -16,7 +16,7 @@
 | Public gate | State / disposition |
 | --- | --- |
 | Representative independently adjudicated anatomical precision | **Unverified; release blocker for validated mapping claims.** 150-row context review queue is unreviewed. No precision estimate or confidence interval. |
-| Current authorization, labeling and safety completeness | **Incomplete.** No comprehensive supplement, recall, MAUDE or current marketed-model coverage. Historical source records only. |
+| Current authorization, labeling and safety completeness | **Partially checked.** All public API PMA decisions for the 85 scoped PMAs and application-based recall inventories for 89 applications are indexed; current labeling, model/lot applicability, MAUDE and exhaustive older/manufacturer notices remain incomplete. |
 | Comprehensive device/product normalization | **Incomplete.** An FDA application is not necessarily a distinct device family. No name-similarity merges. |
 | Hosted deployment, operational recovery and monitoring | Public snapshot delivery at `/atlas` is covered by the website launch checks. Hosted ingestion, operational recovery and monitoring remain unverified. |
 | Cross-browser, physical mobile, low-GPU/slow-network QA | **Unverified.** Local Chrome observations only. Organ geometry adds memory/network cost. |
@@ -37,3 +37,8 @@ The explained layer contains 91 entries associated with 44 anatomical structures
 Validation commands: `npm run typecheck`, `npm test` (35 passing), `npm run test:ingestion` (26 passing), `node scripts/export-static.mjs ../arjan-portfolio/public/atlas`, portfolio `npm run typecheck`, `npm test` (95 passing) and `npm run build` pass. `node tests/body-atlas.browser.mjs http://127.0.0.1:3210` checks every one of the 75 additions on both desktop and mobile emulation through the real regional picker, inspector, explanation and source link. Female-only regions show an explicit text-only notice and no model annotation. Existing FDA source/hash, cited download, retrieval, accessibility and twelve-route regression checks pass.
 
 These checks establish functional behavior and source traceability, not clinical effectiveness, complete current safety/labeling coverage or an independent anatomical precision estimate. Provisional context edges have not been upgraded to verified placement. Physical-phone testing remains unverified.
+
+
+## Dossier milestone — 2026-10-22
+
+The public read-only preview now includes dossiers for all 91 explained entries: 89 decision identities and recall queries checked, 6,505 PMA decisions, 100 original label links across 71 entries, 349 direct recall joins and two malformed references excluded. This passes source-inventory and traceability gates within the documented snapshot. Current-label content/revision reconciliation, affected model/lot adjudication, exhaustive older/manufacturer notices and independent anatomical validation remain incomplete. These are specific withheld claims, not an assertion of comprehensive safety review. See [DOSSIERS.md](DOSSIERS.md).

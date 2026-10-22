@@ -1,0 +1,433 @@
+{
+  "familyId": "source-fda-p080003",
+  "name": "Selenia Dimensions 3D",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "11 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 11,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P080003",
+        "supplement": "S011",
+        "date": "2025-11-24",
+        "decision": "PMA approval",
+        "tradeName": "Envision Mammography Platform",
+        "applicant": "Hologic, Inc.",
+        "statement": "Approval for a manufacturing site located at Hologic, Inc., 600 Technology Drive, Newark, DE 19702-2463.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003S011",
+        "sourceSha": "7889419ba21bf6ac750da3bb5ae8647b0c27b31ecb9784d97c4de46a76ce9c60"
+      },
+      {
+        "application": "P080003",
+        "supplement": "S009",
+        "date": "2024-07-05",
+        "decision": "PMA approval",
+        "tradeName": "Envision Mammography Platform",
+        "applicant": "Hologic, Inc.",
+        "statement": "Approval for introduction of Envision Mammography Platform that include updated gantry with adjustable tilted C-Arm, detector electronics, user interfaces, anti-scatter grid, dynamic collimator, and introduction of X-ray source with moving focal spot.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003S009",
+        "sourceSha": "7889419ba21bf6ac750da3bb5ae8647b0c27b31ecb9784d97c4de46a76ce9c60"
+      },
+      {
+        "application": "P080003",
+        "supplement": "S010",
+        "date": "2024-05-29",
+        "decision": "PMA approval",
+        "tradeName": "Selenia Dimensions/3Dimensions",
+        "applicant": "Hologic, Inc.",
+        "statement": "Approval for a manufacturing site change to Hologic, Inc., 600 Technology Drive, Newark, DE 19702-2463.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003S010",
+        "sourceSha": "7889419ba21bf6ac750da3bb5ae8647b0c27b31ecb9784d97c4de46a76ce9c60"
+      },
+      {
+        "application": "P080003",
+        "supplement": "S008",
+        "date": "2019-10-24",
+        "decision": "PMA approval",
+        "tradeName": "Selenia Dimensions 3D System High Resolution Tomosynthesis",
+        "applicant": "Hologic, Inc.",
+        "statement": "Approval for software option 3DQuoromTM technology, which generates thicker 6 mm slices (also referred as SmartSlices or slabs) and change to the indications for use statement as a result of this update.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003S008",
+        "sourceSha": "7889419ba21bf6ac750da3bb5ae8647b0c27b31ecb9784d97c4de46a76ce9c60"
+      },
+      {
+        "application": "P080003",
+        "supplement": "S007",
+        "date": "2018-06-22",
+        "decision": "PMA approval",
+        "tradeName": "Selenia Dimensions / 3Dimensions",
+        "applicant": "Hologic, Inc.",
+        "statement": "Approval for a change to the Selenia Dimensions/3Dimensions detector subsystem for approval of a new Application Specific Integrated Circuit (ASIC), and also the necessary changes to some of the detector PCB hardware, detector embedded software and detector firmware in order to support dual sourcing.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003S007",
+        "sourceSha": "7889419ba21bf6ac750da3bb5ae8647b0c27b31ecb9784d97c4de46a76ce9c60"
+      },
+      {
+        "application": "P080003",
+        "supplement": "S006",
+        "date": "2018-03-23",
+        "decision": "PMA approval",
+        "tradeName": "Selenia Dimensions/3Dimensions 3D System",
+        "applicant": "Hologic, Inc.",
+        "statement": "Approval for a change to the Selenia Dimensions/3Dimensions 3D System with 15 projection angles for approval of the high resolution tomosynthesis and synthesized 2D feature, SmartCurve compression paddles, as well as a new linear grid for the Full-field Digital Mammography System.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003S006",
+        "sourceSha": "7889419ba21bf6ac750da3bb5ae8647b0c27b31ecb9784d97c4de46a76ce9c60"
+      },
+      {
+        "application": "P080003",
+        "supplement": "S005",
+        "date": "2017-05-23",
+        "decision": "PMA approval",
+        "tradeName": "Selenia Dimensions 3D System.",
+        "applicant": "Hologic, Inc.",
+        "statement": "Approval for a change to the Physician Labeling of the Selenia Dimensions 3D System and the Selenia Dimensions 3D System with C-View Software Module, to claim superior screening accuracy of 3D plus 2D imaging, where the 2D image can be either a synthesized 2D or a Full Field Digital Mammography (FFDM) image, as compared to FFDM alone, for women with dense breasts.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003S005",
+        "sourceSha": "7889419ba21bf6ac750da3bb5ae8647b0c27b31ecb9784d97c4de46a76ce9c60"
+      },
+      {
+        "application": "P080003",
+        "supplement": "S004",
+        "date": "2017-04-20",
+        "decision": "PMA approval",
+        "tradeName": "3Dimensions",
+        "applicant": "Hologic, Inc.",
+        "statement": "Approval for a change to the Selenia Dimensions name to 3Dimensions.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003S004",
+        "sourceSha": "7889419ba21bf6ac750da3bb5ae8647b0c27b31ecb9784d97c4de46a76ce9c60"
+      },
+      {
+        "application": "P080003",
+        "supplement": "S003",
+        "date": "2016-07-07",
+        "decision": "PMA approval",
+        "tradeName": "SELENIA DIMENSIONS FULL FIELD DIGITAL MAMMOGRAPHY SYSTEM",
+        "applicant": "Hologic, Inc.",
+        "statement": "Approval for the 30 projection tomosynthesis feature.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003S003",
+        "sourceSha": "7889419ba21bf6ac750da3bb5ae8647b0c27b31ecb9784d97c4de46a76ce9c60"
+      },
+      {
+        "application": "P080003",
+        "supplement": "S001",
+        "date": "2013-05-16",
+        "decision": "PMA approval",
+        "tradeName": "SELENIA DIMENSIONS 3D SYSTEM",
+        "applicant": "Hologic, Inc.",
+        "statement": "APPROVAL  FOR THE SELENIA DIMENSIONS 3D SYSTEM.  THIS DEVICE IS INDICATED TO GENERATE DIGITAL MAMMOGRAPHIC IMAGES THAT CAN BE USED FOR SCREENING AND DIAGNOSIS OF BREAST CANCER. THE SELENIA DIMENSIONS (2D OR 3D) SYSTEM IS INTENDED FOR USE IN THE SAME CLINICAL APPLICATIONS AS A 2D MAMMOGRAPHY SYSTEM FOR SCREENING MAMMOGRAMS. SPECIFICALLY, THE SELENIA DIMENSIONS SYSTEM CAN BE USED TO GENERATE 2D DIGITAL MAMMOGRAMS AND 3D MAMMOGRAMS. EACH SCREENING EXAMINATION MAY CONSIST OF: A 2D FFDM IMAGE SET; OR A 2D AND 3D IMAGE SET, WHERE THE 2D IMAGE CAN BE EITHER A FFDM OR A 2D IMAGE GENERATED FROM THE 3D IMAGE SET. THE SELENIA DIMENSIONS SYSTEM MAY ALSO BE USED FOR ADDITIONAL DIAGNOSTIC WORKUP OF THE BREAST.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Panel Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003S001",
+        "sourceSha": "7889419ba21bf6ac750da3bb5ae8647b0c27b31ecb9784d97c4de46a76ce9c60"
+      },
+      {
+        "application": "P080003",
+        "supplement": "",
+        "date": "2011-02-11",
+        "decision": "PMA approval",
+        "tradeName": "SELENIA DIMENSIONS FULL FIELD DIGITAL MAMMOGRAPHY SYSTEM",
+        "applicant": "Hologic, Inc.",
+        "statement": "APPROVAL FOR THE SELENIA DIMENSIONS 3D SYSTEM.  THIS DEVICE IS INDICATED TO GENERATE DIGITAL MAMMOGRAPHIC IMAGES THAT CAN BE USED FOR SCREENING AND DIAGNOSIS OF BREAST CANCER.  THE SELENIA DIMENSIONS (2D OR 3D) SYSTEM IS INTENDED FOR USE IN THE SAME CLINICAL APPLICATIONS AS 2D MAMMOGRAPHY SYSTEMS FOR SCREENING MAMMOGRAMS.  SPECIFICALLY, THE SELENIA DIMENSIONS SYSTEM CAN BE USED TO ACQUIRE 2D DIGITAL MAMMOGRAMS AND 3D MAMMOGRAMS.  THE SCREENING EXAMINATION WILL CONSIST OF A 2D IMAGE SET OR A 2D AND 3D IMAGE SET.  THE SELENIA DIMENSIONS SYSTEM MAY ALSO BE USED FOR ADDITIONAL DIAGNOSTIC WORKUP OF THE BREAST.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003",
+        "sourceSha": "7889419ba21bf6ac750da3bb5ae8647b0c27b31ecb9784d97c4de46a76ce9c60"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=3300&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "7889419ba21bf6ac750da3bb5ae8647b0c27b31ecb9784d97c4de46a76ce9c60",
+        "file": "7889419ba21bf6ac750da3bb5ae8647b0c27b31ecb9784d97c4de46a76ce9c60.json",
+        "retrievedAt": "2026-10-22T18:59:42.310242+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "1 original labeling document link(s) located; 2 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 1,
+    "changes": 2,
+    "rows": [
+      {
+        "application": "P080003",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf8/P080003C.pdf",
+        "pages": 9,
+        "textAvailable": true,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003",
+        "locator": "L57: Labeling 【38†Labeling】",
+        "pageUpdatedAt": "10/19/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: 4 days ago; Content type: application/pdf; Number of pages: 9;",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P080003",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003",
+        "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003\",\"lineno\":null}); Total lines: 101",
+        "pageUpdatedAt": "10/19/2026",
+        "locator": "L57: Labeling 【38†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P080003S005",
+      "P080003S004"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "4 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 4,
+    "rows": [
+      {
+        "cfres_id": "219089",
+        "product_res_number": "Z-2168-2026",
+        "product_description": "3DIMENSIONS MAMMOGRAPHY SYSTEM; Model Numbers: 3DM-SYS-INTL2D, 3DM-SYS-INTL2D-MOB, 3DM-SYS-INTL2D-NS, 3DM-SYS-INTL3D, 3DM-SYS-INTL3D-MOB, 3DM-SYS-INTL3D-NS, 3DM-SYS-STD, 3DM-SYS-STD-MOB, 3DM-SYS-STD-NS.",
+        "code_info": "\"[Model No.; UDI]: [3DM-SYS-INTL2D;15420045510609], [3DM-SYS-INTL2D-MOB;15420045510593], [3DM-SYS-INTL2D-NS;15420045510586], [3DM-SYS-INTL3D;15420045510579], [3DM-SYS-INTL3D-MOB;15420045510562], [3DM-SYS-INTL3D-NS;15420045510555], [3DM-SYS-STD;15420045510524], [3DM-SYS-STD-MOB;15420045510531], [3DM-SYS-STD-NS;15420045510548]; All Serial No.",
+        "reason_for_recall": "Complaints have been received of systems developing loose, missing, or broken internal bolts over time.",
+        "action": "On April 8, 2026 URGENT FIELD SAFETY NOTICE letters were sent to customers. Customers were informed of implementing an updated recurring maintenance inspection for detecting loosened, missing, or broken bolts within the VTA. Hologic Service will reach out to schedule your service appointment and perform the required inspection. Following the initial inspection, recurring inspections are required to be conducted at least every 6 months to ensure continued safe/proper operation of the system. Future inspections will consist of torque and visual confirmation that all bolts are present and that there is no indication of loosening.\nActions: \nYou may continue to use your 3Dimensions or Selenia Dimensions for its intended use. If at any time during system operation, you observe unexpected C-Arm movement, please discontinue use and contact Hologic s Technical Support immediately.\nReport suspected device complaints and/or adverse events to Hologic and the FDA (contact details below).\nAfter initial inspection by Hologic, it is required to have the inspection performed at least every 6 months as well as the other defined maintenance and service activities which are critical for continued safe and effective operation of the Selenia Dimensions or 3Dimensions system.\nForward this notice to anyone in your facility that needs to be informed.\nPost a copy of this notice in a visible area near the affected devices where operators can view for awareness and please keep a copy for your records.",
+        "recall_status": "Open, Classified",
+        "event_date_initiated": "2026-04-08",
+        "event_date_posted": "2026-05-12",
+        "event_date_terminated": "",
+        "recalling_firm": "Hologic, Inc",
+        "root_cause_description": "Device Design",
+        "applications": [
+          "P080003"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=219089",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "209902",
+        "product_res_number": "Z-3248-2024",
+        "product_description": "Selenia Dimensions/ 3Dimensions-Digital breast tomosynthesis\nSoftware Version Dimensions 1.12.0 and 3Dimensions 2.3.0 system software as follows\nModel/Catalog Number:\n1.\tASY-16824\tFMI UPGRADE KIT, DIMENSIONS 1.12.0.3 SYSTEM SOFTWARE UPGRADE FOR 1.11.1 SYSTEMS\n2.\tASY-16825\tFMI UPGRADE KIT, 3DIMENSIONS 2.3.0.3 SYSTEM SOFTWARE UPGRADE FOR 2.2.1 SYSTEMS\n3.\tASY-17219\tFMI UPGRADE KIT, DIMENSIONS 1.12.0.3 SYSTEM SOFTWARE UPGRADE FOR 1.10.0 SYSTEMS\n4.\tASY-17220\tFMI UPGRADE KIT, 3DIMENSIONS 2.3.0.3 SYSTEM SOFTWARE UPGRADE FOR 2.1.0 SYSTEMS\n5.\tASY-17221\tFMI UPGRADE KIT, DIMENSIONS 1.12.0.3 SYSTEM SOFTWARE UPGRADE FOR 1.11.0 SYSTEMS\n6.\tASY-17222\tFMI UPGRADE KIT, 3DIMENSIONS 2.3.0.3 SYSTEM SOFTWARE UPGRADE FOR 2.2.0 SYSTEMS\n7.\t3DM-LIC-SW-UP-V2.3\tDIMENSIONS SOFTWARE 2.3 (3DIMENSIONS)\n8.\tSDM-LIC-SW-UP-V1.12\tDIMENSION SOFTWARE 1.12 (SELENIA DIMENSIONS)",
+        "code_info": "UDI-DI: 15420045505636, 15420045511897\nSelenia Dimensions 1.12.0 and 3Dimensions 2.3.0 system software when used in combination with C-View¿ software",
+        "reason_for_recall": "Identified an issue with Selenia Dimensions 1.12.0 and 3Dimensions 2.3.0 system software when used in combination with C-View software in which the quality of the final C-View synthesized 2D image is impacted and may appear blurry and result in misdiagnosis with the possibility being a false negative diagnosis",
+        "action": "Hologic issued Urgent: Medical Device Correction Fa-00248 letter via third party IQVIA on 8/30/24. Letter states reason for recall, health risk and action to take:\nFor Health Care Providers with systems that do not have C-View software\nCustomers may continue to use Dimensions 1.12.0 and 3Dimensions 2.3.0.\nFor Health Care Providers with systems that do have C-View software (regardless of usage)\nImmediate action should be the discontinuation of C-View software usage.\nWe will contact you to schedule a field visit from your field service engineer. Until your service appointment, you can continue to use your Selenia Dimensions 1.12.0 or 3Dimensions 2.3.0 system in Combo imaging mode to acquire tomosynthesis and FFDM images.\nDuring your appointment, one of the two following options will be completed by your selection:\nOption 1: C-View software will be disabled, and you can continue to use Selenia Dimensions 1.12.0 and 3Dimensions 2.3.0 system software in Combo imaging mode.\nOption 2: To resume using C-View software, system software will be downgraded to Selenia Dimensions 1.11.1 or 3Dimensions 2.2.1.\n\"PLEASE NOTE: Downgrading to Selenia Dimensions 1.11.1 or 3Dimensions 2.2.1 systemsoftware will delete all data saved on the mammography system. You are responsible forbacking up all raw data saved on the mammography system prior to your serviceappointment.\n\"The downgrade procedure will take approximately 4-8 hours to complete.\n\"Once the mammography system is running Selenia Dimensions 1.11.1 or 3Dimensions 2.2.1,you may be able to reprocess certain saved images for reevaluation with C-View software;however, not all prior images may be reprocessed if the raw data associated with the imageis no longer available, such as those images saved on a Picture Archiving andCommunication System (PACS).\nA software upgrade will be available to correct the C-View issue on 1.12.0/2.3.0. A service appointment will be scheduled for an upgrade upon availability. Letter Receipt Requested We are",
+        "recall_status": "Open, Classified",
+        "event_date_initiated": "2024-08-19",
+        "event_date_posted": "2024-09-25",
+        "event_date_terminated": "",
+        "recalling_firm": "Hologic Inc",
+        "root_cause_description": "Software design",
+        "applications": [
+          "P080003"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=209902",
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+      },
+      {
+        "cfres_id": "197684",
+        "product_res_number": "Z-1144-2023",
+        "product_description": "Hologic 3Dimensions/Selenia Dimensions \nModels:\nRM-SDM-00001-3D\nSDM-00001-2D\nSDM-00001-3D\nSDM-05000-3D3\nSDM-05000-2DC\nSDM-00001-M3D\nSDM-05000-3DC\nSDM-SYS-6000-3D\nSDM-05000-2D3\nSDA-SYS-3000-2D\nSDM-00001\nSDM-SYS-9000-2D\nSDM-00001-M2D\n3DM-SYS-STD\n3DM-SYS-STD-NS\nSDM-05000-2AC\nSDM-05000-2A2\nSDA-SYS-3000-3D\nSDA-SYS-3000-3D-UPS\nSDM-SYS-6000-3D-HTC\nSDM-05000-2D2\nSDM-05000-3D2\nSDM-SYS-6000-2D\nSDM-SYS-9000-3D",
+        "code_info": "UDI: 15420045508019; 15420045505636\nSerial Numbers;\n81001090068\n81001100177\n81001110594\n81001110612\n81001110627\n81001121279\n81001132051\n81001132057\n81001132096\n81001142983\n81001142990\n81001142995\n81001143035\n81001143051\n81001143060\n81001143068\n81001143071\n81001154286\n81001154309\n81001154310\n81001154320\n81001154322\n81001154340\n81001165989\n81001165997\n81001165999\n81001166000\n81001166015\n81001166073\n81001166090\n81001166094\n81001166098\n81001166109\n81001166119\n81001166124\n81001177755\n81001177759\n81001177764\n81001177803\n81001177809\n81001177819\n81001177820\n81001177822\n81001177826\n81001177829\n81001177832\n81001177844\n81001177851\n81001177853\n81002100189\n81002100197\n81002110651\n81002110662\n81002110663\n81002110664\n81002121291\n81002121328\n81002132113\n81002143090\n81002143092\n81002143112\n81002143142\n81002143144\n81002143146\n81002143151\n81002154368\n81002154378\n81002154384\n81002154388\n81002154403\n81002154405\n81002154434\n81002154449\n81002154452\n81002154459\n81002154466\n81002154467\n81002154475\n81002154479\n81002154480\n81002154484\n81002166176\n81002166178\n81002166212\n81002166220\n81002166252\n81002166256\n81002166308\n81002177848\n81002177861\n81002177882\n81002177883\n81002177897\n81002177898\n81002177899\n81002177923\n81002177941\n81003090087\n81003090092\n81003110694\n81003110696\n81003110709\n81003110728\n81003110747\n81003121404\n81003132209\n81003132220\n81003154491\n81003154508\n81003154513\n81003154514\n81003154566\n81003154567\n81003154578\n81003154579\n81003154588\n81003154595\n81003154596\n81003154598\n81003154621\n81003154622\n81003166319\n81003166327\n81003166337\n81003166344\n81003166357\n81003166381\n81003166406\n81003166412\n81003166413\n81003166420\n81003166435\n81003177988\n81003178012\n81003178039\n81003178050\n81003178076\n81003178078\n81003178079\n81003178106\n81003178127\n81004100226\n81004110780\n81004110782\n81004121467\n81004132251\n81004132271\n81004143293\n81004143300\n81004143311\n81004143328\n81004143337\n81004143383\n81004154645\n81004154651\n81004154657\n81004154674\n81004154697\n81004154713\n81004154721\n81004154758\n81004166448\n81004166472\n81004166503\n81004166531\n81004166553\n81005100266\n81005100276\n81005110801\n81005110807\n81005110814\n81005121520\n81005121533\n81005132313\n81005132322\n81005132333\n81005132356\n81005132363\n81005143477\n81005143480\n81005143482\n81005143495\n81005154790\n81005154812\n81005154857\n81005154868\n81005154869\n81005166565\n81005166597\n81005166598\n81005166604\n81005166626\n81005166627\n81005166661\n81005166669\n81005166691\n81006110832\n81006110838\n81006110852\n81006110871\n81006121555\n81006121586\n81006121594\n81006121596\n81006132382\n81006132384\n81006132426\n81006132441\n81006132442\n81006143508\n81006143541\n81006143585\n81006143593\n81006143610\n81006143611\n81006154882\n81006154895\n81006154912\n81006154925\n81006155003\n81006155004\n81006155034\n81006166774\n81006166777\n81006166781\n81006166835\n81007090115\n81007100305\n81007110882\n81007110891\n81007121652\n81007121657\n81007121671\n81007132483\n81007132485\n81007132493\n81007132495\n81007132508\n81007132511\n81007132516\n81007143630\n81007143643\n81007143644\n81007143665\n81007143685\n81007143701\n81007143702\n81007143705\n81007143727\n81007155056\n81007155057\n81007155092\n81007155109\n81007155110\n81007155127\n81007155136\n81007155170\n81007166878\n81007166882\n81007166907\n81007166916\n81007166920\n81007166923\n81007166934\n81007166949\n81008100344\n81008110911\n81008110918\n81008110936\n81008110939\n81008110943\n81008110969\n81008110974\n81008121685\n81008121692\n81008121693\n81008132538\n81008132556\n81008132571\n81008132572\n81008132591\n81008143738\n81008143740\n81008143748\n81008143762\n81008143776\n81008143795\n81008143808\n81008143812\n81008155204\n81008155240\n81008155265\n81008155284\n81008155285\n81008155286\n81008155321\n81008155322\n81008155327\n81008155335\n81008166976\n81008166980\n81008167029\n81008167037\n81008167055\n81008167075\n81008167118\n81008167125\n81008167126\n81008167130\n81008167132\n81008167160\n81008167166\n81009080038\n81009100406\n81009100415\n81009100439\n81009110990\n81009111043\n81009111044\n81009121746\n81009121752\n81009132710\n81009143858\n81009143928\n81009143928\n81009155376\n81009155380\n81009155437\n81009155440\n81009155484\n81009155488\n81009155489\n81009167212\n81009167213\n81009167218\n81009167231\n81009167282\n81009167287\n81009167294\n81009167299\n81010100454\n81010100455\n81010100463\n81010100464\n81010100466\n81010100467\n81010100472\n81010100501\n81010111060\n81010111070\n81010111089\n81010121887\n81010121889\n81010121898\n81010121904\n81010132786\n81010132795\n81010132825\n81010143937\n81010143939\n81010143950\n81010143953\n81010143975\n81010144038\n81010155538\n81010155542\n81010155550\n81010155597\n81010155639\n81010155679\n81010167341\n81010167342\n81010167371\n81010167372\n81010167377\n81010167386\n81010167396\n81010167468\n81011090150\n81011100521\n81011100524\n81011100525\n81011100526\n81011100531\n81011100540\n81011100548\n81011100549\n81011100553\n81011111120\n81011111143\n81011121946\n81011132847\n81011132854\n81011132872\n81011132886\n81011132900\n81011132906\n81011144099\n81011144125\n81011144128\n81011144147\n81011155719\n81011155762\n81011155764\n81011155765\n81011155799\n81011155835\n81011155838\n81011167502\n81011167566\n81011167567\n81011167572\n81011167576\n81011167581\n81011167588\n81011167601\n81011167608\n81011167610\n81011167610\n81012111177\n81012111207\n81012121976\n81012121977\n81012122013\n81012132933\n81012132954\n81012132960\n81012132964\n81012132974\n81012132975\n81012144161\n81012144163\n81012144190\n81012144191\n81012144194\n81012144197\n81012144198\n81012144220\n81012144221\n81012144242\n81012155889\n81012155894\n81012167617\n81012167621\n81012167641\n81012167644\n81012167650\n81012167655\n81012167656\n81012167657\n81012167663\n81012167672\n81012167680\n81012167688\n81012167700\n81012167702\n3DM160100109\n3DM160100110\n3DM160100112\n3DM160100115\n3DM160100118\n3DM160100122\n3DM160100124\n3DM160100137\n3DM160100138\n3DM160100140\n3DM160100142\n3DM160100149\n3DM160100150\n3DM160100159\n3DM160100160\n3DM160100163\n3DM160100164\n3DM160100166\n3DM160100170\n3DM160100176\n3DM160100179\n3DM160100183\n3DM160100192\n3DM160100230\n3DM160100262\n3DM160100286\n3DM160100290\n3DM160100318\n3DM160100319\n3DM160100366\n3DM160100378\n3DM160100412\n3DM160100415\n3DM160100429\n3DM160100437\n3DM160100450\n3DM160100481\n3DM160100495\n3DM160100498\n3DM160100500\n3DM160100506\n3DM160100516\n3DM160100554\n3DM160100574\n3DM160100575\n3DM160100578\n3DM160100604\n3DM160100647\n3DM160100656\n3DM160100663\n3DM160100679\n3DM160100709\n3DM160100722\n3DM160100737\n3DM160100739\n3DM160100741\n3DM160100752\n3DM160100762\n3DM160100766\n3DM160100770\n3DM160100781\n3DM160100786\n3DM160100787\n3DM160100788\n3DM160100795\n3DM160100801\n3DM160100824\n3DM160100849\n3DM160100856\n3DM160100859\n3DM160100958\n3DM160101011\n3DM160101086\n3DM160101104\n3DM160101111\n3DM160101111\n3DM160101113\n3DM160101118\n3DM160101136\n3DM160101142\n3DM160101146\n3DM160101148\n3DM160101179\n3DM160101209\n3DM160101214\n3DM160101223\n3DM160101231\n3DM160101277\n3DM160101280\n3DM160101314\n3DM160101335\n3DM160101375\n3DM160101408\n3DM160101533\n3DM160101539\n3DM160101587\n3DM160101782\n3DM160101792\n3DM160101852\n3DM160101854\n3DM160300102\n3DM160300103\n3DM160300135\n3DM160300137\n81001154362A\n81002143115A\n81007143656A\n81011155708A\nSDM130200111\nSDM130200115\nSDM130200122\nSDM130200124\nSDM130200126\nSDM130200127\nSDM131400149\nSDM131400308\nSDM131500142\nSDM131500149\nSDM131500196\nSDM131500198\nSDM131500212\nSDM131500214\nSDM131500244\nSDM131500264\nSDM131500270\nSDM131500299\nSDM131500310\nSDM131500317\nSDM131500318\nSDM131500327\nSDM131500334\nSDM131500335\nSDM131500341\nSDM131500346\nSDM131500353\nSDM131500355\nSDM131500359\nSDM131500360\nSDM131500364\nSDM131500365\nSDM131500370\nSDM131500374\nSDM131500375\nSDM131500376\nSDM131500379\nSDM131500381\nSDM131500385\nSDM131500388\nSDM131500390\nSDM131500392\nSDM131500400\nSDM131500401\nSDM131500404\nSDM131500405\nSDM131500416\nSDM131500420\nSDM131500432\nSDM131500436\nSDM131500439\nSDM131500442\nSDM131500450\nSDM131500452\nSDM131500453\nSDM131500461\nSDM131500482\nSDM131500496\nSDM131500589\nSDM131500636\nSDM131500666\nSDM131500695\nSDM131500701\nSDM131500702\nSDM131500784\nSDM131500789\nSDM131500880\nSDM131500930\nSDM131500933\nSDM131500961\nSDM131500980\nSDM131501101\nSDM131501168\nSDM131501207\nSDM131501227\nSDM131501250\nSDM131501260\nSDM131501273\nSDM131501323\nSDM131501359\nSDM131600106\nSDM131600106\nSDM131600121\nSDM131700100\nSDM131700101\nSDM131700107\nSDM131700121\nSDM131700132\nSDM131700135\nSDM131700143\nSDM131700145\nSDM131700146\nSDM131700147\nSDM131700151\nSDM131700152\nSDM131700153\nSDM131700155\nSDM131700160\nSDM131700161\nSDM131700194\nSDM131700195\nSDM131700199\nSDM131700200\nSDM131700207\nSDM131700212\nSDM131700228\nSDM131700240\nSDM131700243\nSDM131700251\nSDM131700253\nSDM131700264\nSDM131700269\nSDM131700279\nSDM131700280\nSDM131700284\nSDM131700285\nSDM131700286\nSDM131700291\nSDM131700292\nSDM131700293\nSDM131700295\nSDM131700297\nSDM131700299\nSDM131700305\nSDM131700315\nSDM131700325\nSDM131700326\nSDM131700329\nSDM131700330\nSDM131700333\nSDM131700335\nSDM131700342\nSDM131700347\nSDM131700352\nSDM131700353\nSDM131700354\nSDM131700354\nSDM131700357\nSDM131700358\nSDM131700362\nSDM131700367\nSDM131700412\nSDM131700428\nSDM131700495\nSDM131800162\nSDM131800289\nSDM131900105\nSDM131900112\nSDM131900117\nSDM131900123\nSDM131900124\nSDM131900137\nSDM131900156\nSDM131900162\nSDM131900169\nSDM131900172\nSDM131900174\nSDM131900175\nSDM131900176\nSDM131900180\nSDM131900181\nSDM131900187\nSDM131900188\nSDM131900196\nSDM131900201\nSDM131900203\nSDM131900204\nSDM131900208\nSDM131900210\nSDM131900213\nSDM131900216\nSDM131900217\nSDM131900222\nSDM131900236\nSDM131900244\nSDM131900260\nSDM131900263\nSDM131900279\nSDM131900295\nSDM131900305\nSDM131900310\nSDM131900371\nSDM131900375\nSDM131900431\nSDM131900476\nSDM131900491\nSDM131900494\nSDM131900498\nSDM131900509\nSDM131900563\nSDM131900599\nSDM131900621\nSDM131900635\nSDM131900663\nSDM131900710\nSDM131900716\nSDM131900752\nSDM131900766\nSDM131900799\nSDM131900824\nSDM131900829\nSDM131900850\nSDM131900856\nSDM131900894\nSDM131900907\nSDM131900942\nSDM131900952\nSDM131900992\nSDM131901027\nSDM131901042\nSDM131901058\nSDM131901082\nSDM131901087\nSDM131901109\nSDM131901117\nSDM131901167\nSDM131901178\nSDM131901181\nSDM131901184\nSDM131901188\nSDM131901191\nSDM131901203\nSDM131901213\nSDM131901218\nSDM131901236\nSDM131901248\nSDM131901281\nSDM131901287\nSDM131901297\nSDM131901371\nSDM131901427\nSDM131901433\nSDM131901434\nSDM131901528\nSDM131901625\nSDM131901761\nSDM132700105\nSDM181700182",
+        "reason_for_recall": "C-Arm unexpected movement may cause blunt trauma  should the tube arm impinge upon an individual",
+        "action": "Hologic issued Urgent Medical Device Correction Letter customized to the customer on 01/16/23. Letter states reason for recall, health risk and action to take:\nWe will schedule a service appointment and dispatch a field service engineer to visit your site to inspect your system and if necessary, make any corrections.\n\" This will take approximately 6-14 hours to complete.\n\" Until your service appointment, you will be able to continue to use your Selenia Dimensions or 3Dimensions system.\nIf at any time during system operation, you observe any unanticipated error messages, or unexpected Carm movement, please discontinue use and contact Hologic's Technical Support immediately.\nAdditionally, if you have any questions, please do not hesitate to reach out to Hologic's Technical Support at 1-877-371-4372 or breasthealth.support@hologic.com.\nComplete the on line Customer Confirmation Form using the link below within 3 business days of receiving this notice. Replying promptly will confirm your receipt of the notification and prevent you from receiving repeat notices.\nwww.novasyte.com/hologic/selenia-dimensions-2022",
+        "recall_status": "Open, Classified",
+        "event_date_initiated": "2023-01-16",
+        "event_date_posted": "2023-02-21",
+        "event_date_terminated": "",
+        "recalling_firm": "Hologic, Inc.",
+        "root_cause_description": "Device Design",
+        "applications": [
+          "P080003"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=197684",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "179604",
+        "product_res_number": "Z-1343-2020",
+        "product_description": "Selenia Dimensions Mammography System, Model number ASY-04160, Selenia Dimensions Gantry, UDI 15420045505636,",
+        "code_info": "Serial Numbers 81002143175 81002143176 81002143177 81003143178 81003143179 81003143180 81003143181 81003143182 81003143183 81003143184 81003143185 81003143186 81003143187 81003143188 81003143189 81003143190 81003143191 81003143192 81003143193 81003143194 81003143195 81003143196 81003143197 81003143198 81003143199 81003143200 81003143201 81003143202 81003143203 81003143204 81003143205 81003143206 81003143207 81003143208 81003143209 81003143210 81003143211 81003143212 81003143213 81003143214 81003143215 81003143216 81003143217 81003143218 81003143219 81003143220 81003143221A 81003143222A 81003143223 81003143224A 81003143225 81003143226 81003143227 81003143228 81003143229 81003143230 81003143231 81003143232 81003143234 81003143235 81003143236 81003143237 81003143238 81003143239 81003143240 81003143241 81003143242 81003143243 81003143244 81003143245 81003143246A 81003143247",
+        "reason_for_recall": "The recalling firm has received reports from the field of the C-arm on the Selenia Dimensions system seizing or dropping during field repairs and cleaning of the systems.",
+        "action": "On January 21, 2020, the firm notified affected customers of the recall via hand-delivered Urgent Medical Device Correction letter. Customers were informed that the firm had received reports of the C-arm seizing or dropping during field repairs and cleaning of the systems. In order to ensure continued safe use of the system, Hologic sent field service engineers to customer sites on January 21, 2020, to inspect affected systems. Customers were asked to not use the system until the inspection was completed.\n\nIf you have any questions, please contact Technical Support at breasthealth.support@hologic.com",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2020-01-21",
+        "event_date_posted": "2020-02-18",
+        "event_date_terminated": "2021-08-11",
+        "recalling_firm": "Hologic, Inc.",
+        "root_cause_description": "Process control",
+        "applications": [
+          "P080003"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=179604",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf8/P080003C.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=219089"
+    }
+  ],
+  "path": "/dossiers/source-fda-p080003.json",
+  "applications": [
+    "P080003"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

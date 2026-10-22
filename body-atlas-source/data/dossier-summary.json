@@ -1,0 +1,3459 @@
+{
+  "tms": {
+    "familyId": "tms",
+    "name": "NeuroStar TMS Therapy System",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "Original 510(k) clearance and source identity checked; PMA supplement history does not apply.",
+      "records": 1
+    },
+    "labeling": {
+      "state": "summary-only",
+      "detail": "Clearance summary available; complete current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 0
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K130233"
+      }
+    ],
+    "path": "/dossiers/tms.json"
+  },
+  "rns": {
+    "familyId": "rns",
+    "name": "NeuroPace RNS System",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "99 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 99
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 7 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 7
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Research evidence: NCT00264810",
+        "url": "https://clinicaltrials.gov/study/NCT00264810"
+      },
+      {
+        "title": "Research evidence: NCT04839601",
+        "url": "https://clinicaltrials.gov/study/NCT04839601"
+      },
+      {
+        "title": "Research evidence: PMID:21917777",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21917777/"
+      },
+      {
+        "title": "Research evidence: PMID:25141960",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25141960/"
+      },
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100026C.pdf"
+      }
+    ],
+    "path": "/dossiers/rns.json"
+  },
+  "activa": {
+    "familyId": "activa",
+    "name": "Activa Tremor Control System",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "529 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 529
+    },
+    "labeling": {
+      "state": "unavailable",
+      "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 49
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "32 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 32
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P960009"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=220167"
+      }
+    ],
+    "path": "/dossiers/activa.json"
+  },
+  "brio": {
+    "familyId": "brio",
+    "name": "Brio Neurostimulation System",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "136 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 136
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 11 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 11
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "8 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 8
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140009"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf14/P140009C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=216515"
+      }
+    ],
+    "path": "/dossiers/brio.json"
+  },
+  "vns": {
+    "familyId": "vns",
+    "name": "VNS / NCP System",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "239 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 239
+    },
+    "labeling": {
+      "state": "unavailable",
+      "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 57
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "32 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 32
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P970003"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=210265"
+      }
+    ],
+    "path": "/dossiers/vns.json"
+  },
+  "exablate": {
+    "familyId": "exablate",
+    "name": "ExAblate Neuro",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "43 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 43
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 9 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 9
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf15/P150038C.pdf"
+      }
+    ],
+    "path": "/dossiers/exablate.json"
+  },
+  "precision": {
+    "familyId": "precision",
+    "name": "Precision Spinal Cord Stimulation",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "374 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 374
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 24 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 24
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "17 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 17
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030017"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030017C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030017D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=220311"
+      }
+    ],
+    "path": "/dossiers/precision.json"
+  },
+  "cochlear": {
+    "familyId": "cochlear",
+    "name": "Nucleus Multichannel Hearing Prosthesis",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "96 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 96
+    },
+    "labeling": {
+      "state": "unavailable",
+      "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 20
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P840024"
+      }
+    ],
+    "path": "/dossiers/cochlear.json"
+  },
+  "braingate": {
+    "familyId": "braingate",
+    "name": "BrainGate2 research system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "not-established",
+      "detail": "No public FDA marketing application established in this collection. Trial registration/publication is not authorization.",
+      "records": 0
+    },
+    "labeling": {
+      "state": "not-applicable",
+      "detail": "No commercial labeling assigned to this investigational entry; protocol/publication evidence is separate.",
+      "documents": 0,
+      "changes": 0
+    },
+    "safety": {
+      "state": "not-established",
+      "detail": "No reliable application-based recall join is available; no safety clearance is inferred.",
+      "recalls": 0
+    },
+    "currentLabelReview": "not-applicable",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Research evidence: NCT05724173",
+        "url": "https://clinicaltrials.gov/study/NCT05724173"
+      },
+      {
+        "title": "Research evidence: PMID:36639237",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36639237/"
+      }
+    ],
+    "path": "/dossiers/braingate.json"
+  },
+  "cooling": {
+    "familyId": "cooling",
+    "name": "Focal cortical cooling research",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "not-established",
+      "detail": "No public FDA marketing application established in this collection. Trial registration/publication is not authorization.",
+      "records": 0
+    },
+    "labeling": {
+      "state": "not-applicable",
+      "detail": "No commercial labeling assigned to this investigational entry; protocol/publication evidence is separate.",
+      "documents": 0,
+      "changes": 0
+    },
+    "safety": {
+      "state": "not-established",
+      "detail": "No reliable application-based recall join is available; no safety clearance is inferred.",
+      "recalls": 0
+    },
+    "currentLabelReview": "not-applicable",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Research evidence: NCT06391294",
+        "url": "https://clinicaltrials.gov/study/NCT06391294"
+      },
+      {
+        "title": "Research evidence: PMID:25902001",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25902001/"
+      },
+      {
+        "title": "Research evidence: PMID:33307258",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33307258/"
+      },
+      {
+        "title": "Research evidence: PMID:38735427",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38735427/"
+      }
+    ],
+    "path": "/dossiers/cooling.json"
+  },
+  "source-fda-k250173": {
+    "familyId": "source-fda-k250173",
+    "name": "Shiley oral / nasal RAE tracheal tubes",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "Original 510(k) clearance and source identity checked; PMA supplement history does not apply.",
+      "records": 1
+    },
+    "labeling": {
+      "state": "summary-only",
+      "detail": "Clearance summary available; complete current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 0
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K250173"
+      }
+    ],
+    "path": "/dossiers/source-fda-k250173.json"
+  },
+  "source-fda-k260007": {
+    "familyId": "source-fda-k260007",
+    "name": "Hudi hyaluronic-acid vaginal suppositories",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "Original 510(k) clearance and source identity checked; PMA supplement history does not apply.",
+      "records": 1
+    },
+    "labeling": {
+      "state": "summary-only",
+      "detail": "Clearance summary available; complete current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 0
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K260007"
+      }
+    ],
+    "path": "/dossiers/source-fda-k260007.json"
+  },
+  "source-fda-k260721": {
+    "familyId": "source-fda-k260721",
+    "name": "Tornier Perform Advanced Glenoid",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "Original 510(k) clearance and source identity checked; PMA supplement history does not apply.",
+      "records": 1
+    },
+    "labeling": {
+      "state": "summary-only",
+      "detail": "Clearance summary available; complete current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 0
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K260721"
+      }
+    ],
+    "path": "/dossiers/source-fda-k260721.json"
+  },
+  "source-fda-p000006": {
+    "familyId": "source-fda-p000006",
+    "name": "Mentor Alpha I penile prosthesis, P000006",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "70 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 70
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 12 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 12
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "18 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 18
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000006"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000006C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=198898"
+      }
+    ],
+    "path": "/dossiers/source-fda-p000006.json"
+  },
+  "source-fda-p000008": {
+    "familyId": "source-fda-p000008",
+    "name": "LAP-BAND system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "47 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 47
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 10 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 10
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "3 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 3
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000008C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=99617"
+      }
+    ],
+    "path": "/dossiers/source-fda-p000008.json"
+  },
+  "source-fda-p000009": {
+    "familyId": "source-fda-p000009",
+    "name": "Phylax AV ICD",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "126 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 126
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 8 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 8
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "5 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 5
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000009"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000009C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=32910"
+      }
+    ],
+    "path": "/dossiers/source-fda-p000009.json"
+  },
+  "source-fda-p000013": {
+    "familyId": "source-fda-p000013",
+    "name": "Osteonics ABC / Trident systems",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "27 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 27
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 10 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 10
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 1
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000013C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=82672"
+      }
+    ],
+    "path": "/dossiers/source-fda-p000013.json"
+  },
+  "source-fda-p000023": {
+    "familyId": "source-fda-p000023",
+    "name": "TMJ fossa-eminence / condylar prostheses",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "11 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 11
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 3 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 3
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000023"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000023C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000023D.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p000023.json"
+  },
+  "source-fda-p000025": {
+    "familyId": "source-fda-p000025",
+    "name": "MED-EL COMBI 40+",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "131 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 131
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 15 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 15
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "5 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 5
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000025"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000025C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=207499"
+      }
+    ],
+    "path": "/dossiers/source-fda-p000025.json"
+  },
+  "source-fda-p000030": {
+    "familyId": "source-fda-p000030",
+    "name": "Focus Night & Day contact lenses",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "4 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 4
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 0 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 0
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000030"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000030C.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p000030.json"
+  },
+  "source-fda-p000037": {
+    "familyId": "source-fda-p000037",
+    "name": "On-X prosthetic heart valve, ONXA",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "66 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 66
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 4 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 4
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "4 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 4
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000037C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000037D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=219053"
+      }
+    ],
+    "path": "/dossiers/source-fda-p000037.json"
+  },
+  "source-fda-p000040": {
+    "familyId": "source-fda-p000040",
+    "name": "Hydro ThermAblator",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "43 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 43
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 6 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 6
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "8 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 8
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000040C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000040D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=83989"
+      }
+    ],
+    "path": "/dossiers/source-fda-p000040.json"
+  },
+  "source-fda-p000046": {
+    "familyId": "source-fda-p000046",
+    "name": "STAARVISC II ophthalmic viscoelastic",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "32 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 32
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 10 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 10
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "4 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 4
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000046C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=40651"
+      }
+    ],
+    "path": "/dossiers/source-fda-p000046.json"
+  },
+  "source-fda-p000057": {
+    "familyId": "source-fda-p000057",
+    "name": "Ascension MCP",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "15 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 15
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 4 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 4
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 1
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000057"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000057C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000057D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=25089"
+      }
+    ],
+    "path": "/dossiers/source-fda-p000057.json"
+  },
+  "source-fda-p000058": {
+    "familyId": "source-fda-p000058",
+    "name": "INFUSE / LT-Cage lumbar fusion system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "91 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 91
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 18 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 18
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "8 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 8
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000058"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000058C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=118497"
+      }
+    ],
+    "path": "/dossiers/source-fda-p000058.json"
+  },
+  "source-fda-p010003": {
+    "familyId": "source-fda-p010003",
+    "name": "BioGlue surgical adhesive",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "41 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 41
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 7 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 7
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "4 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 4
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010003C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=127033"
+      }
+    ],
+    "path": "/dossiers/source-fda-p010003.json"
+  },
+  "source-fda-p010014": {
+    "familyId": "source-fda-p010014",
+    "name": "Oxford meniscal unicompartmental knee",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "108 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 108
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 15 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 15
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "22 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 22
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010014"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010014C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=100122"
+      }
+    ],
+    "path": "/dossiers/source-fda-p010014.json"
+  },
+  "source-fda-p010015": {
+    "familyId": "source-fda-p010015",
+    "name": "Medtronic InSync pacing system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "574 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 574
+    },
+    "labeling": {
+      "state": "unavailable",
+      "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 13
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "11 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 11
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010015"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=214616"
+      }
+    ],
+    "path": "/dossiers/source-fda-p010015.json"
+  },
+  "source-fda-p010018": {
+    "familyId": "source-fda-p010018",
+    "name": "ViewPoint conductive keratoplasty system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "10 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 10
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 3 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 3
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010018"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010018C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010018D.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p010018.json"
+  },
+  "source-fda-p010029": {
+    "familyId": "source-fda-p010029",
+    "name": "Euflexxa / original Nuflexxa approval",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "41 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 41
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 5 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 5
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 1
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010029C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010029D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=90770"
+      }
+    ],
+    "path": "/dossiers/source-fda-p010029.json"
+  },
+  "source-fda-p010030": {
+    "familyId": "source-fda-p010030",
+    "name": "LifeVest WCD 2000",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "199 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 199
+    },
+    "labeling": {
+      "state": "unavailable",
+      "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 13
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "6 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 6
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010030"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=160876"
+      }
+    ],
+    "path": "/dossiers/source-fda-p010030.json"
+  },
+  "source-fda-p010047": {
+    "familyId": "source-fda-p010047",
+    "name": "Progel pleural air leak sealant",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "68 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 68
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 7 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 7
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 1
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010047C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=112705"
+      }
+    ],
+    "path": "/dossiers/source-fda-p010047.json"
+  },
+  "source-fda-p010055": {
+    "familyId": "source-fda-p010055",
+    "name": "ProstaLund CoreTherm",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "10 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 10
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 0 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 0
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010055"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010055C.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p010055.json"
+  },
+  "source-fda-p010059": {
+    "familyId": "source-fda-p010059",
+    "name": "Morcher capsular tension ring",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "11 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 11
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 3 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 3
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010059"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010059C.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p010059.json"
+  },
+  "source-fda-p020004": {
+    "familyId": "source-fda-p020004",
+    "name": "Gore Excluder bifurcated endoprosthesis",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "200 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 200
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 9 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 9
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "2 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 2
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020004"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020004C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020004D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=178536"
+      }
+    ],
+    "path": "/dossiers/source-fda-p020004.json"
+  },
+  "source-fda-p020023": {
+    "familyId": "source-fda-p020023",
+    "name": "Restylane injectable gel",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "13 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 13
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 4 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 4
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020023"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020023C.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p020023.json"
+  },
+  "source-fda-p020047": {
+    "familyId": "source-fda-p020047",
+    "name": "Multi-Link Vision coronary stent systems",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "75 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 75
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 4 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 4
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "2 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 2
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020047C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020047D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=54962"
+      }
+    ],
+    "path": "/dossiers/source-fda-p020047.json"
+  },
+  "source-fda-p020056": {
+    "familyId": "source-fda-p020056",
+    "name": "Inamed silicone-filled breast implants, P020056",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "57 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 57
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 9 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 9
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "4 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 4
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020056"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020056C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020056D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=175502"
+      }
+    ],
+    "path": "/dossiers/source-fda-p020056.json"
+  },
+  "source-fda-p030002": {
+    "familyId": "source-fda-p030002",
+    "name": "Crystalens AT-45",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "39 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 39
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 13 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 13
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 1
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030002C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030002D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=105816"
+      }
+    ],
+    "path": "/dossiers/source-fda-p030002.json"
+  },
+  "source-fda-p030004": {
+    "familyId": "source-fda-p030004",
+    "name": "Onyx liquid embolic system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "41 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 41
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 7 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 7
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030004C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030004D.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p030004.json"
+  },
+  "source-fda-p030047": {
+    "familyId": "source-fda-p030047",
+    "name": "Cordis PRECISE nitinol stent",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "52 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 52
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 4 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 4
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "4 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 4
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030047C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030047D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=178071"
+      }
+    ],
+    "path": "/dossiers/source-fda-p030047.json"
+  },
+  "source-fda-p040003": {
+    "familyId": "source-fda-p040003",
+    "name": "ExAblate 2000",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "21 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 21
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 6 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 6
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040003"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf4/P040003C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf4/P040003D.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p040003.json"
+  },
+  "source-fda-p040013": {
+    "familyId": "source-fda-p040013",
+    "name": "GEM 21S growth-factor enhanced matrix",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "30 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 30
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 8 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 8
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040013"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf4/P040013C.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p040013.json"
+  },
+  "source-fda-p040026": {
+    "familyId": "source-fda-p040026",
+    "name": "Orthospec shock-wave system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "1 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 1
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 0 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 0
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040026"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf4/P040026C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf4/P040026D.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p040026.json"
+  },
+  "source-fda-p040027": {
+    "familyId": "source-fda-p040027",
+    "name": "Gore VIATORR TIPS endoprosthesis",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "95 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 95
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 5 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 5
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040027"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf4/P040027C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf4/P040027D.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p040027.json"
+  },
+  "source-fda-p040033": {
+    "familyId": "source-fda-p040033",
+    "name": "Birmingham Hip Resurfacing",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "37 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 37
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 11 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 11
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "29 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 29
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf4/P040033C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=164624"
+      }
+    ],
+    "path": "/dossiers/source-fda-p040033.json"
+  },
+  "source-fda-p050027": {
+    "familyId": "source-fda-p050027",
+    "name": "Karl Storz D-Light C PDD system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "35 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 35
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 4 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 4
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P050027"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf5/P050027C.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p050027.json"
+  },
+  "source-fda-p050050": {
+    "familyId": "source-fda-p050050",
+    "name": "STAR total ankle replacement",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "24 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 24
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 4 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 4
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P050050"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf5/P050050C.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p050050.json"
+  },
+  "source-fda-p050052": {
+    "familyId": "source-fda-p050052",
+    "name": "Radiesse injectable implant",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "170 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 170
+    },
+    "labeling": {
+      "state": "unavailable",
+      "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 17
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "3 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 3
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P050052"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=146973"
+      }
+    ],
+    "path": "/dossiers/source-fda-p050052.json"
+  },
+  "source-fda-p060006": {
+    "familyId": "source-fda-p060006",
+    "name": "Express SD renal stent",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "105 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 105
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 1 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 1
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060006"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf6/P060006C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf6/P060006D.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p060006.json"
+  },
+  "source-fda-p060010": {
+    "familyId": "source-fda-p060010",
+    "name": "Spanner temporary prostatic stent",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "14 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 14
+    },
+    "labeling": {
+      "state": "unavailable",
+      "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 1
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060010"
+      }
+    ],
+    "path": "/dossiers/source-fda-p060010.json"
+  },
+  "source-fda-p060023": {
+    "familyId": "source-fda-p060023",
+    "name": "BRYAN cervical disc",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "8 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 8
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 2 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 2
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060023"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf6/P060023C.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p060023.json"
+  },
+  "source-fda-p060037": {
+    "familyId": "source-fda-p060037",
+    "name": "NexGen LPS mobile-bearing knees",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "98 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 98
+    },
+    "labeling": {
+      "state": "unavailable",
+      "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 10
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "15 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 15
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060037"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=143368"
+      }
+    ],
+    "path": "/dossiers/source-fda-p060037.json"
+  },
+  "source-fda-p060040": {
+    "familyId": "source-fda-p060040",
+    "name": "HeartMate II LVAS",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "126 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 126
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 22 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 22
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "18 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 18
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060040"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf6/P060040C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=216562"
+      }
+    ],
+    "path": "/dossiers/source-fda-p060040.json"
+  },
+  "source-fda-p080003": {
+    "familyId": "source-fda-p080003",
+    "name": "Selenia Dimensions 3D",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "11 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 11
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 2 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 2
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "4 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 4
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf8/P080003C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=219089"
+      }
+    ],
+    "path": "/dossiers/source-fda-p080003.json"
+  },
+  "source-fda-p080025": {
+    "familyId": "source-fda-p080025",
+    "name": "InterStim therapy for bowel control",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "350 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 350
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 32 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 32
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "7 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 7
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080025"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf8/P080025C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=213404"
+      }
+    ],
+    "path": "/dossiers/source-fda-p080025.json"
+  },
+  "source-fda-p080030": {
+    "familyId": "source-fda-p080030",
+    "name": "Glaukos iStent trabecular micro-bypass",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "26 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 26
+    },
+    "labeling": {
+      "state": "unavailable",
+      "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 3
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080030"
+      }
+    ],
+    "path": "/dossiers/source-fda-p080030.json"
+  },
+  "source-fda-p080032": {
+    "familyId": "source-fda-p080032",
+    "name": "Alair bronchial thermoplasty system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "21 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 21
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 2 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 2
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 1
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf8/P080032C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=118510"
+      }
+    ],
+    "path": "/dossiers/source-fda-p080032.json"
+  },
+  "source-fda-p090018": {
+    "familyId": "source-fda-p090018",
+    "name": "Esteem implantable hearing system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "40 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 40
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 5 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 5
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "2 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 2
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf9/P090018C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=114942"
+      }
+    ],
+    "path": "/dossiers/source-fda-p090018.json"
+  },
+  "source-fda-p100006": {
+    "familyId": "source-fda-p100006",
+    "name": "Augment bone graft",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "13 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 13
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 3 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 3
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 1
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100006"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100006C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100006D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=188567"
+      }
+    ],
+    "path": "/dossiers/source-fda-p100006.json"
+  },
+  "source-fda-p100009": {
+    "familyId": "source-fda-p100009",
+    "name": "MitraClip delivery system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "83 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 83
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 10 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 10
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "2 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 2
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100009"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100009C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=143617"
+      }
+    ],
+    "path": "/dossiers/source-fda-p100009.json"
+  },
+  "source-fda-p100014": {
+    "familyId": "source-fda-p100014",
+    "name": "Solesta injectable gel",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "34 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 34
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 4 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 4
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100014"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100014C.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p100014.json"
+  },
+  "source-fda-p100018": {
+    "familyId": "source-fda-p100018",
+    "name": "Pipeline embolization device",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "52 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 52
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 10 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 10
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "15 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 15
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100018C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=222202"
+      }
+    ],
+    "path": "/dossiers/source-fda-p100018.json"
+  },
+  "source-fda-p100022": {
+    "familyId": "source-fda-p100022",
+    "name": "Zilver PTX peripheral stent",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "44 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 44
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 7 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 7
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "2 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 2
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100022"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100022C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=117571"
+      }
+    ],
+    "path": "/dossiers/source-fda-p100022.json"
+  },
+  "source-fda-p100034": {
+    "familyId": "source-fda-p100034",
+    "name": "NovoTTF-100A treatment kit",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "46 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 46
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 6 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 6
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100034C.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p100034.json"
+  },
+  "source-fda-p100040": {
+    "familyId": "source-fda-p100040",
+    "name": "Valiant thoracic stent-graft",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "70 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 70
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 9 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 9
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 1
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100040"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100040C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=185929"
+      }
+    ],
+    "path": "/dossiers/source-fda-p100040.json"
+  },
+  "source-fda-p100045": {
+    "familyId": "source-fda-p100045",
+    "name": "CardioMEMS HF System",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "91 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 91
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 11 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 11
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "13 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 13
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100045"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100045C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100045D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=212553"
+      }
+    ],
+    "path": "/dossiers/source-fda-p100045.json"
+  },
+  "source-fda-p100049": {
+    "familyId": "source-fda-p100049",
+    "name": "LINX reflux management system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "41 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 41
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 9 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 9
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "5 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 5
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100049C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=163588"
+      }
+    ],
+    "path": "/dossiers/source-fda-p100049.json"
+  },
+  "source-fda-p110006": {
+    "familyId": "source-fda-p110006",
+    "name": "Somo-V automated breast ultrasound",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "12 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 12
+    },
+    "labeling": {
+      "state": "unavailable",
+      "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 4
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 1
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P110006"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=118703"
+      }
+    ],
+    "path": "/dossiers/source-fda-p110006.json"
+  },
+  "source-fda-p110010": {
+    "familyId": "source-fda-p110010",
+    "name": "Promus Element Plus coronary stent",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "208 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 208
+    },
+    "labeling": {
+      "state": "unavailable",
+      "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 10
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P110010"
+      }
+    ],
+    "path": "/dossiers/source-fda-p110010.json"
+  },
+  "source-fda-p110015": {
+    "familyId": "source-fda-p110015",
+    "name": "Gastric Emptying Breath Test",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "11 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 11
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 1 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 1
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P110015"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf11/P110015C.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p110015.json"
+  },
+  "source-fda-p130008": {
+    "familyId": "source-fda-p130008",
+    "name": "Inspire II upper airway stimulator",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "135 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 135
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 15 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 15
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "4 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 4
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130008"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf13/P130008C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf13/P130008D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=220369"
+      }
+    ],
+    "path": "/dossiers/source-fda-p130008.json"
+  },
+  "source-fda-p130013": {
+    "familyId": "source-fda-p130013",
+    "name": "WATCHMAN LAA closure technology",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "85 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 85
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 9 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 9
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "2 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 2
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130013"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf13/P130013C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf13/P130013D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=139666"
+      }
+    ],
+    "path": "/dossiers/source-fda-p130013.json"
+  },
+  "source-fda-p130028": {
+    "familyId": "source-fda-p130028",
+    "name": "Algovita spinal cord stimulation system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "31 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 31
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 2 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 2
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "5 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 5
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf13/P130028C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf13/P130028D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=150431"
+      }
+    ],
+    "path": "/dossiers/source-fda-p130028.json"
+  },
+  "source-fda-p140019": {
+    "familyId": "source-fda-p140019",
+    "name": "i-FACTOR peptide-enhanced bone graft",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "15 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 15
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 3 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 3
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 1
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140019"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf14/P140019C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf14/P140019D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=193161"
+      }
+    ],
+    "path": "/dossiers/source-fda-p140019.json"
+  },
+  "source-fda-p140031": {
+    "familyId": "source-fda-p140031",
+    "name": "Edwards SAPIEN 3 heart valve",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "202 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 202
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 19 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 19
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "7 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 7
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140031"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf14/P140031C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf14/P140031D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=174651"
+      }
+    ],
+    "path": "/dossiers/source-fda-p140031.json"
+  },
+  "source-fda-p150033": {
+    "familyId": "source-fda-p150033",
+    "name": "Micra transcatheter pacemaker",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "226 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 226
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 9 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 9
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "4 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 4
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150033"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf15/P150033C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf15/P150033D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=214616"
+      }
+    ],
+    "path": "/dossiers/source-fda-p150033.json"
+  },
+  "source-fda-p160013": {
+    "familyId": "source-fda-p160013",
+    "name": "Organ Care System Lung",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "19 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 19
+    },
+    "labeling": {
+      "state": "unavailable",
+      "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 2
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013"
+      }
+    ],
+    "path": "/dossiers/source-fda-p160013.json"
+  },
+  "source-fda-p170001": {
+    "familyId": "source-fda-p170001",
+    "name": "Virtis sacral neuromodulation system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "1 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 1
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 0 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 0
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170001"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf17/P170001C.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p170001.json"
+  },
+  "source-fda-p170023": {
+    "familyId": "source-fda-p170023",
+    "name": "Bulkamid urethral bulking system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "22 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 22
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 0 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 0
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 1
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170023"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf17/P170023C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf17/P170023D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=187970"
+      }
+    ],
+    "path": "/dossiers/source-fda-p170023.json"
+  },
+  "source-fda-p170029": {
+    "familyId": "source-fda-p170029",
+    "name": "CALCIVIS Imaging System",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "5 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 5
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 0 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 0
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170029"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf17/P170029C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf17/P170029D.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p170029.json"
+  },
+  "source-fda-p180002": {
+    "familyId": "source-fda-p180002",
+    "name": "Zephyr endobronchial valve",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "30 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 30
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 1 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 1
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 1
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf18/P180002C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=203609"
+      }
+    ],
+    "path": "/dossiers/source-fda-p180002.json"
+  },
+  "source-fda-p200029": {
+    "familyId": "source-fda-p200029",
+    "name": "TheraSphere",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "14 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 14
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 3 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 3
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "2 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 2
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P200029"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf20/P200029C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf20/P200029D.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=188522"
+      }
+    ],
+    "path": "/dossiers/source-fda-p200029.json"
+  },
+  "source-fda-p200031": {
+    "familyId": "source-fda-p200031",
+    "name": "Organ Care System Liver",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "13 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 13
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "2 original labeling document link(s) located; 3 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 2,
+      "changes": 3
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P200031"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf20/P200031C.pdf"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf20/P200031D.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p200031.json"
+  },
+  "source-fda-p210007": {
+    "familyId": "source-fda-p210007",
+    "name": "Vivistim paired VNS system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "15 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 15
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 1 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 1
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P210007"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf21/P210007C.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p210007.json"
+  },
+  "source-fda-p210020": {
+    "familyId": "source-fda-p210020",
+    "name": "Optilume urethral drug-coated balloon",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "10 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 10
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 1 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 1
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P210020"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf21/P210020C.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p210020.json"
+  },
+  "source-fda-p220023": {
+    "familyId": "source-fda-p220023",
+    "name": "Paradise ultrasound renal denervation system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "12 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 12
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 0 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 0
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "2 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+      "recalls": 2
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "pending",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf22/P220023C.pdf"
+      },
+      {
+        "title": "Application-linked recall (applicability pending)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=218620"
+      }
+    ],
+    "path": "/dossiers/source-fda-p220023.json"
+  },
+  "source-fda-p240015": {
+    "familyId": "source-fda-p240015",
+    "name": "Womed Leaf resorbable adhesion barrier",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "3 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 3
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 0 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 0
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P240015"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf24/P240015D.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p240015.json"
+  },
+  "source-fda-p950035": {
+    "familyId": "source-fda-p950035",
+    "name": "NeuroControl Freehand",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "11 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 11
+    },
+    "labeling": {
+      "state": "unavailable",
+      "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 7
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P950035"
+      }
+    ],
+    "path": "/dossiers/source-fda-p950035.json"
+  },
+  "source-fda-p960053": {
+    "familyId": "source-fda-p960053",
+    "name": "Braun-Cutter trapezometacarpal prosthesis",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "6 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 6
+    },
+    "labeling": {
+      "state": "unavailable",
+      "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+      "documents": 0,
+      "changes": 2
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P960053"
+      }
+    ],
+    "path": "/dossiers/source-fda-p960053.json"
+  },
+  "source-fda-p990065": {
+    "familyId": "source-fda-p990065",
+    "name": "SIR-Spheres",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "checked",
+      "detail": "15 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+      "records": 15
+    },
+    "labeling": {
+      "state": "located",
+      "detail": "1 original labeling document link(s) located; 3 history records mention labeling. Current revision, contraindications and warnings review pending.",
+      "documents": 1,
+      "changes": 3
+    },
+    "safety": {
+      "state": "checked",
+      "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+      "recalls": 0
+    },
+    "currentLabelReview": "pending",
+    "noticeReview": "partial",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Original FDA decision",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P990065"
+      },
+      {
+        "title": "Original labeling",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P990065C.pdf"
+      }
+    ],
+    "path": "/dossiers/source-fda-p990065.json"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "site": "http://127.0.0.1:3210",
+  "results": [
+    {
+      "viewport": "desktop",
+      "homeCard": true,
+      "caseStudy": true,
+      "workFilter": true,
+      "sources": true,
+      "canonical": true,
+      "horizontalOverflow": false,
+      "axeViolations": 0,
+      "atlasLoaded": true,
+      "originalSourceHashVerified": true,
+      "briefDownload": true,
+      "retrieval": true,
+      "airwayRelevance": true,
+      "falseOcularMatchExcluded": true,
+      "explainedEntriesChecked": 75,
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "homeCard": true,
+      "caseStudy": true,
+      "workFilter": true,
+      "sources": true,
+      "canonical": true,
+      "horizontalOverflow": false,
+      "axeViolations": 0,
+      "atlasLoaded": true,
+      "originalSourceHashVerified": true,
+      "briefDownload": true,
+      "retrieval": true,
+      "airwayRelevance": true,
+      "falseOcularMatchExcluded": true,
+      "explainedEntriesChecked": 75,
+      "pageErrors": []
+    }
+  ],
+  "existingRoutesChecked": 12,
+  "sitemap": true,
+  "environment": "Installed Chrome; mobile is viewport/touch emulation, not a physical device."
+}

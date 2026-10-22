@@ -1,0 +1,870 @@
+{
+  "familyId": "source-fda-p100049",
+  "name": "LINX reflux management system",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "41 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 41,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P100049",
+        "supplement": "S041",
+        "date": "2026-01-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "replacement of laser welder for the manufacturing processes",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S041",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S040",
+        "date": "2026-01-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "replacement of microscope and micrometer to perform inspections of incoming components",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S040",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S038",
+        "date": "2025-10-08",
+        "decision": "PMA approval",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "for the manufacturing site change.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S038",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S037",
+        "date": "2024-02-22",
+        "decision": "PMA approval",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "APPROVAL FOR THE FOLLOWING LABELING UPDATES:1) Removal of Barrett's Esophagus (BE) from a precaution statement in the instructions for use. LINX has not been demonstrated to be an effective treatment that leads to BE regression or prevention of progression to cancer.  As such, patients with BE who are treated with LINX for management of GERD symptoms should consult with their physician for continued treatment of BE (including PPI use).2) Addition of a \"Clinical Data Summary\" section that describes a single observational study that supports safe use of the LINX device to treat GERD symptoms in patients with known BE3) Updates to the Patient Information Booklet to align with changes to the instructions for use.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S037",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S036",
+        "date": "2023-12-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "removal of an inspection procedure and update to a cleaning procedure in relation to the wire specification.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S036",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S035",
+        "date": "2023-12-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "for the change of an internal inspection process to an equivalent inspection process at their magnet component supplier.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S035",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S033",
+        "date": "2022-10-04",
+        "decision": "PMA approval",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "Approval for the following labeling updates: 1) inclusion of final post-approval study results; 2) addition of a precaution based on RELIEF study results; 3) addition of swallow-induced syncope to the list of adverse events; and 4) revised registered/trademark status.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S033",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S029",
+        "date": "2022-08-26",
+        "decision": "PMA approval",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "Approval for the qualification of a new supplier to manufacture the washer, bead case-female, bead case-male and clasp case.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S029",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S034",
+        "date": "2022-06-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "Qualification of a new components supplier for the LINX Reflux Management System.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S034",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S032",
+        "date": "2022-01-07",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "Changes regarding DCOs 3872, 3893, 3876, 3753, 3792, and 3860.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S032",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S031",
+        "date": "2022-01-07",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "Changes regarding DCO 3814 & DCO 3780.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S031",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S030",
+        "date": "2022-01-07",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "30-Day Notice Supplement in accordance with the letter from FDA following review of the Annual Report.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S030",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S027",
+        "date": "2020-06-29",
+        "decision": "PMA approval",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "adding a second Hardwell Controlled Environmental Area (CEA).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S027",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S028",
+        "date": "2019-12-10",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Linx Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "Implementation of a new automatic measuring system and measuring test method.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S028",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S026",
+        "date": "2019-07-15",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX Reflux Mnagement System",
+        "applicant": "Torax Medical",
+        "statement": "Implementation of new packaging equipment and packaging testing.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S026",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S025",
+        "date": "2018-11-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "Adding a step to the incoming inspection process for the washers and male bead cases of the LINX Reflux Management System.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S025",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S024",
+        "date": "2018-10-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "Implementation of changes to a manufacturing equipment.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S024",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S023",
+        "date": "2018-09-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "Integration of updated labeling, shipping, and distribution procedures.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S023",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S022",
+        "date": "2018-07-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "Implementation of manufacturing process changes involving new equipment, fixtures, and inspection aids.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S022",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S021",
+        "date": "2018-03-15",
+        "decision": "PMA approval",
+        "tradeName": "Linx Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "Approval for updating the precautions statement to state that use of the LINX Reflux Management System in patients with a hiatal hernia larger than 3 cm should include hiatal hernia repair to reduce the hernia to less than 3 cm and that the LINX Reflux Management System has not been evaluated in patients with an unrepaired hiatal hernia greater than 3 cm, add a hiatal hernia clinical data summary in the instructions for use, update the instructions for use section to highlight the recommendation to repair a hiatal hernia, if present, at the time of the LINX Reflux Management System implantation, and update the patient information booklet to align with the instructions for use and include 5 year clinical study results.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S021",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S020",
+        "date": "2018-01-29",
+        "decision": "PMA approval",
+        "tradeName": "Linx Reflux Management System",
+        "applicant": "Torax Medical",
+        "statement": "Approval of the revised protocol for the post-approval study (PAS) protocol.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S020",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S019",
+        "date": "2017-01-12",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "Utilization of an additional, higher capacity laser welding system and to maintain 100% individual link length inspection conducted at final device inspection, but remove all in-process assembly weld link length inspections and the overall device length final inspection.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S019",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S018",
+        "date": "2016-10-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM, IMPLANT AND SIZING TOOL",
+        "applicant": "Torax Medical",
+        "statement": "Revised labeling process of printing labels on a single sheet label stock, per device.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S018",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S017",
+        "date": "2016-05-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "Process change is for gross leak hermeticity testing.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S017",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S016",
+        "date": "2016-03-02",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "Update weld ball formation laser processing parameters at a qualified vendor.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S016",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S015",
+        "date": "2016-03-02",
+        "decision": "PMA approval",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "Approval for updating the labeling with safety and effectiveness data out to five (5) years for the pivotal trial cohort extended follow-up that has been completed and modify the Indications For Use.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S015",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S014",
+        "date": "2015-07-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "IMPLEMENT AN UPGRADED, AUTOMATED WIRE LINK CUTTER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S014",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S013",
+        "date": "2015-07-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "IMPLEMENTATION OF AN UPGRADED MEASUREMENT SYSTEM TO FACILITATE RECEIVING/INSPECTION AND VARIOUS R&D PROJECTS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S013",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S012",
+        "date": "2015-04-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "1) UTILIZATION OF AN IN-HOUSE LASER WELDING SYSTEM;2) UTILIZATION OF IN-HOUSE HERMETICITY TESTING SYSTEMS;3) UTILIZATION OF AN IN-HOUSE WIRE CUTTING PROCESS;4) UTILIZATION OF AN IN-HOUSE PNEUMATIC WIRE LINK BENDING PROCESS; AND5) MODIFICATION OF AN INCOMING INSPECTION ACCEPTANCE CRITERION FOR ONE OF THE MAGNET TYPES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S012",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S011",
+        "date": "2015-01-21",
+        "decision": "PMA approval",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "APPROVAL FOR MODIFICATIONS TO THE INTERNAL MAGNETS AND WIRE LINKS CONNECTING THE BEADS, AS WELL AS ASSOCIATED MODIFICATIONS TO THE LABELING, ALLOWING THE DEVICE TO BE MAGNETIC RESONANCE (MR) CONDITIONAL UP TO 1.5 TESLA.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S011",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S010",
+        "date": "2014-07-22",
+        "decision": "PMA approval",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "APPROVAL FOR LABELING ALTERATIONS INCLUDING ADVERSE EVENT INFORMATION ABOUT EROSION OF THE LINX DEVICE, CLARIFICATIONS OR CONTRAINDICATIONS REGARDING NICKEL, WARNINGS REGARDING STORAGE AND USE ABOVE 60 DEGREES C, ADDITIONAL POTENTIAL RISK OF SALIVA/MUCUS BUILD-UP, AND DIRECTIONS WHICH ADD THE REMOVAL OF SUTURES AFTER THE CLASP ENDS ARE FULLY ENGAGED.",
+        "reason": "",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S010",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S009",
+        "date": "2014-06-11",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "INTRODUCTION OF NEW TENSILE TESTERS TO BE USED DURING LINX DEVICE MANUFACTURING.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S009",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S008",
+        "date": "2014-04-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX REGLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "CHANGE TO THE DIAMETER FOR THE WELD BALLS THAT ARE AT THE END OF THE LINKS THAT CONNECT THE INDIVIDUAL LINX DEVICE BEADS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S008",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S007",
+        "date": "2013-12-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "CHANGES TO THE FIRMS CLEANING MACHINE, CLEANING DETERGENT, MAXIMUM BEAD LOAD AND CLEANING TEMPERATURE, AND THE ADDITION OF MESHES DURING THE CLEANING AND RINSING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S007",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S006",
+        "date": "2013-12-19",
+        "decision": "PMA approval",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "APPROVAL FOR AN UPDATE TO THE LABELING FOR THE LINX DEVICE REGARDING EXPOSURE TO MRI SCANS.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S006",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S005",
+        "date": "2013-04-17",
+        "decision": "FDA decision code OK30",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "UPDATE IN MANUFACTURING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S005",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S004",
+        "date": "2013-03-07",
+        "decision": "PMA approval",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "APPROVAL FOR A NEW ESOPHAGUS SIZING TOOL THAT WILL BE USED DURING THE IMPLANT PROCEDURE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S004",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S003",
+        "date": "2013-01-24",
+        "decision": "PMA approval",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "APPROVAL FOR A DESIGN CHANGE THAT INCORPORATES A CLASP INTO THE LINX DEVICE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S003",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S002",
+        "date": "2012-06-22",
+        "decision": "PMA approval",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S002",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "S001",
+        "date": "2012-06-22",
+        "decision": "PMA approval",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049S001",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      },
+      {
+        "application": "P100049",
+        "supplement": "",
+        "date": "2012-03-22",
+        "decision": "PMA approval",
+        "tradeName": "LINX REFLUX MANAGEMENT SYSTEM",
+        "applicant": "Torax Medical",
+        "statement": "APPROVAL FOR THE LINX REFLUX MANAGEMENT SYSTEM.  THIS DEVICE IS INDICATED FOR PATIENTS DIAGNOSED WITH GASTROESOPHAGEAL REFLUX DISEASE (GERD) AS DEFINED BY ABNORMAL PH TESTING, AND WHO CONTINUE TO HAVE CHRONIC GERD SYMPTOMS DESPITE MAXIMUM THERAPY FOR THE TREATMENT OF REFLUX.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049",
+        "sourceSha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=4300&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4",
+        "file": "db91f7f843d16048b710d4edb8e0d331d82fb42abf2db6b95dbd894c2cdf56e4.json",
+        "retrievedAt": "2026-10-22T18:59:50.816092+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "1 original labeling document link(s) located; 9 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 1,
+    "changes": 9,
+    "rows": [
+      {
+        "application": "P100049",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100049C.pdf",
+        "pages": 36,
+        "textAvailable": true,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049",
+        "locator": "L57: Labeling 【39†Labeling】",
+        "pageUpdatedAt": "10/19/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: last week; Content type: application/pdf; Number of pages: 36;",
+        "sections": [
+          {
+            "title": "4. WARNINGS",
+            "pdfPage": 3,
+            "sourceLine": 31,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "5. PRECAUTIONS",
+            "pdfPage": 3,
+            "sourceLine": 50,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "6. ADVERSE EVENTS",
+            "pdfPage": 4,
+            "sourceLine": 91,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          }
+        ]
+      }
+    ],
+    "pages": [
+      {
+        "application": "P100049",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049",
+        "discovery": "[wordlim: 200] Crawled: yesterday; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049\",\"lineno\":null}); Total lines: 105",
+        "pageUpdatedAt": "10/19/2026",
+        "locator": "L57: Labeling 【39†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P100049S037",
+      "P100049S033",
+      "P100049S023",
+      "P100049S021",
+      "P100049S018",
+      "P100049S015",
+      "P100049S011",
+      "P100049S010",
+      "P100049S006"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "5 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 5,
+    "rows": [
+      {
+        "cfres_id": "163588",
+        "product_res_number": "Z-2037-2018",
+        "product_description": "LINX Reflux Management System, Implant Suture, 12-17 Bead, 0.7T, Product Code LS-xx, sterile, Rx only.  Labeled as:\n\na. Product Code LS-12;  \nb. Product Code LS-13; \nc. Product Code LS-14;  \nd. Product Code LS-15;  \ne. Product Code LS-16;  \nf. Product Code LS-17;  \n\n Laparoscopic, fundic-sparing anti-reflux procedure indicated for patients diagnosed with Gastroesophageal Reflux Disease (GERD) as defined by abnormal pH testing, and who are seeking an alternative to continuous acid suppression therapy (i.e. proton pump inhibitors or equivalent) in the management of their GERD.",
+        "code_info": "a. Product Code LS-12, Part No. 2170-6, GTIN 00855106005011;   b. Product Code LS-13, Part No. 2170-7, GTIN 00855106005028;  c. Product Code LS-14, Part No. 2170-8, GTIN 00855106005035;   d. Product Code LS-15, Part No. 2170-9, GTIN 00855106005042;   e. Product Code LS-16, Part No. 2170-10, GTIN 00855106005059;   f. Product Code LS-17, Part No. 2170-11, GTIN 00855106005066;    Lot No. 6100 through 14055, 15286, 15287, 15314, 15315, 15317, and 16557",
+        "reason_for_recall": "Possible out of specification condition which may allow a bead component to separate from an adjacent wire link. This condition may result in a discontinuous or open LINX device.",
+        "action": "The firm, Consignees Torax Medical Inc., sent an \"URGENT: FIELD SAFETY NOTICE (REMOVAL)\" letter mailed on approximately 04/20/2018 (US consignees and physicians) and 04/23/2018 (OUS consignees and physicians).  The letter described the product, problem and actions to be taken. The customers were instructed to examine inventory for affected product, quarantine any affected product, communicate the issue to all relevant operating room or materials management personnel, forward the recall information to facilities where the product may have been forwarded to,  complete the Business Reply Form confirming receipt of this notice and return it to Torax Medical, Inc. within three (3) business days via email at brf@toraxmedical.com; ( return the BRF even if you do not have the product lot subject to this recall.), and arrange the return of any affected product on hand.  \n\nAdditionally, a recall notification will be sent to sent to physicians outlining the reason for recall and to advise them to monitor their patients.\n\nQuestion regarding the recall can be directed to the Customer Support Cetner at 1-877-384-4266, which is open Monday through Friday, 7:30 AM to 6:30 PM ET.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2018-04-20",
+        "event_date_posted": "",
+        "event_date_terminated": "2020-11-04",
+        "recalling_firm": "Torax Medical, Inc.",
+        "root_cause_description": "Nonconforming Material/Component",
+        "applications": [
+          "P100049"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=163588",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "163589",
+        "product_res_number": "Z-2038-2018",
+        "product_description": "LINX Reflux Management System, Implant Clasp, 12-17 Bead, 0.7T, Product Code LXC-xx, sterile, Rx only.  Labeled as:\n\na. Product Code LXC-12;  \nb. Product Code LXC-13; \nc. Product Code LXC-14;  \nd. Product Code LXC-15;  \ne. Product Code LXC-16;  \nf. Product Code LXC-17;  \n\n Laparoscopic, fundic-sparing anti-reflux procedure indicated for patients diagnosed with Gastroesophageal Reflux Disease (GERD) as defined by abnormal pH testing, and who are seeking an alternative to continuous acid suppression therapy (i.e. proton pump inhibitors or equivalent) in the management of their GERD.",
+        "code_info": "a. Product Code LXC-12, Part No. 3718-12, GTIN 00855106005134;   b. Product Code LXC-13, Part No. 3718-13, GTIN 00855106005141;  c. Product Code LXC-14, Part No. 3718-14, GTIN 00855106005158;   d. Product Code LXC-15, Part No. 3718-15, GTIN 00855106005165;   e. Product Code LXC-16, Part No. 3718-16, GTIN 00855106005172;   f. Product Code LXC-17, Part No. 3718-17, GTIN 00855106005189;    Lot No. 6100 through 14055, 15286, 15287, 15314, 15315, 15317, and 16557",
+        "reason_for_recall": "Possible out of specification condition which may allow a bead component to separate from an adjacent wire link. This condition may result in a discontinuous or open LINX device.",
+        "action": "The firm, Consignees Torax Medical Inc., sent an \"URGENT: FIELD SAFETY NOTICE (REMOVAL)\" letter mailed on approximately 04/20/2018 (US consignees and physicians) and 04/23/2018 (OUS consignees and physicians).  The letter described the product, problem and actions to be taken. The customers were instructed to examine inventory for affected product, quarantine any affected product, communicate the issue to all relevant operating room or materials management personnel, forward the recall information to facilities where the product may have been forwarded to,  complete the Business Reply Form confirming receipt of this notice and return it to Torax Medical, Inc. within three (3) business days via email at brf@toraxmedical.com; ( return the BRF even if you do not have the product lot subject to this recall.), and arrange the return of any affected product on hand.  \n\nAdditionally, a recall notification will be sent to sent to physicians outlining the reason for recall and to advise them to monitor their patients.\n\nQuestion regarding the recall can be directed to the Customer Support Cetner at 1-877-384-4266, which is open Monday through Friday, 7:30 AM to 6:30 PM ET.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2018-04-20",
+        "event_date_posted": "",
+        "event_date_terminated": "2020-11-04",
+        "recalling_firm": "Torax Medical, Inc.",
+        "root_cause_description": "Nonconforming Material/Component",
+        "applications": [
+          "P100049"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=163589",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "163590",
+        "product_res_number": "Z-2039-2018",
+        "product_description": "LINX Reflux Management System, Implant Clasp, 13-17 Bead, 1.5T, Product Code LXMC-xx, sterile, Rx only.  Labeled as:\n\na. Product Code LXMC-13;  \nb. Product Code LXMC-14; \nc. Product Code LXMC-15;  \nd. Product Code LXMC-16;  \ne. Product Code LXMC-17;  \n  \n Laparoscopic, fundic-sparing anti-reflux procedure indicated for patients diagnosed with Gastroesophageal Reflux Disease (GERD) as defined by abnormal pH testing, and who are seeking an alternative to continuous acid suppression therapy (i.e. proton pump inhibitors or equivalent) in the management of their GERD.",
+        "code_info": "a. Product Code LXMC-13, Part No. 4550-13, GTIN 00855106005332;  b. Product Code LXMC-14, Part No. 4550-14, GTIN 00855106005349;   c. Product Code LXMC-15, Part No. 4550-15, GTIN 00855106005356;   d. Product Code LXMC-16, Part No. 4550-16, GTIN 00855106005363;   e. Product Code LXMC-17, Part No. 4550-17, GTIN 00855106005370;    Lot No. 6100 through 14055, 15286, 15287, 15314, 15315, 15317, and 16557",
+        "reason_for_recall": "Possible out of specification condition which may allow a bead component to separate from an adjacent wire link. This condition may result in a discontinuous or open LINX device.",
+        "action": "The firm, Consignees Torax Medical Inc., sent an \"URGENT: FIELD SAFETY NOTICE (REMOVAL)\" letter mailed on approximately 04/20/2018 (US consignees and physicians) and 04/23/2018 (OUS consignees and physicians).  The letter described the product, problem and actions to be taken. The customers were instructed to examine inventory for affected product, quarantine any affected product, communicate the issue to all relevant operating room or materials management personnel, forward the recall information to facilities where the product may have been forwarded to,  complete the Business Reply Form confirming receipt of this notice and return it to Torax Medical, Inc. within three (3) business days via email at brf@toraxmedical.com; ( return the BRF even if you do not have the product lot subject to this recall.), and arrange the return of any affected product on hand.  \n\nAdditionally, a recall notification will be sent to sent to physicians outlining the reason for recall and to advise them to monitor their patients.\n\nQuestion regarding the recall can be directed to the Customer Support Cetner at 1-877-384-4266, which is open Monday through Friday, 7:30 AM to 6:30 PM ET.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2018-04-20",
+        "event_date_posted": "",
+        "event_date_terminated": "2020-11-04",
+        "recalling_firm": "Torax Medical, Inc.",
+        "root_cause_description": "Nonconforming Material/Component",
+        "applications": [
+          "P100049"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=163590",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "163593",
+        "product_res_number": "Z-2040-2018",
+        "product_description": "LINX Reflux Management System, Implant Clasp, 12-17 Bead, 0.7T, Product Code LX-xx, sterile, Rx only.  Labeled as:\n\na. Product Code LX-12;  \nb. Product Code LX-13; \nc. Product Code LX-14;  \nd. Product Code LX-15;  \ne. Product Code LX-16;  \nf. Product Code LX-17;  \n\n Laparoscopic, fundic-sparing anti-reflux procedure indicated for patients diagnosed with Gastroesophageal Reflux Disease (GERD) as defined by abnormal pH testing, and who are seeking an alternative to continuous acid suppression therapy (i.e. proton pump inhibitors or equivalent) in the management of their GERD.",
+        "code_info": "a. Product Code LX-12, Part No. 2684-12, GTIN 00855106005073;   b. Product Code LX-13, Part No. 2684-13, GTIN 00855106005080;  c. Product Code LX-14, Part No. 2684-14, GTIN 00855106005097;   d. Product Code LX-15, Part No. 2684-15, GTIN 00855106005103;   e. Product Code LX-16, Part No. 2684-16, GTIN 00855106005110;   f. Product Code LX-17, Part No. 2684-17, GTIN 00855106005127;    Lot No. 6100 through 14055, 15286, 15287, 15314, 15315, 15317, and 16557",
+        "reason_for_recall": "Possible out of specification condition which may allow a bead component to separate from an adjacent wire link. This condition may result in a discontinuous or open LINX device.",
+        "action": "The firm, Consignees Torax Medical Inc., sent an \"URGENT: FIELD SAFETY NOTICE (REMOVAL)\" letter mailed on approximately 04/20/2018 (US consignees and physicians) and 04/23/2018 (OUS consignees and physicians).  The letter described the product, problem and actions to be taken. The customers were instructed to examine inventory for affected product, quarantine any affected product, communicate the issue to all relevant operating room or materials management personnel, forward the recall information to facilities where the product may have been forwarded to,  complete the Business Reply Form confirming receipt of this notice and return it to Torax Medical, Inc. within three (3) business days via email at brf@toraxmedical.com; ( return the BRF even if you do not have the product lot subject to this recall.), and arrange the return of any affected product on hand.  \n\nAdditionally, a recall notification will be sent to sent to physicians outlining the reason for recall and to advise them to monitor their patients.\n\nQuestion regarding the recall can be directed to the Customer Support Cetner at 1-877-384-4266, which is open Monday through Friday, 7:30 AM to 6:30 PM ET.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2018-04-20",
+        "event_date_posted": "",
+        "event_date_terminated": "2020-11-04",
+        "recalling_firm": "Torax Medical, Inc.",
+        "root_cause_description": "Nonconforming Material/Component",
+        "applications": [
+          "P100049"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=163593",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "163595",
+        "product_res_number": "Z-2041-2018",
+        "product_description": "LINX Reflux Management System, Implant Clasp, 13-16 Bead, 1.5T, Product Code LXM-xx, sterile, Rx only.  Labeled as:\n\na. Product Code LXM-13;  \nb. Product Code LXM-14; \nc. Product Code LXM-15;  \nd. Product Code LXM-16;  \n\n Laparoscopic, fundic-sparing anti-reflux procedure indicated for patients diagnosed with Gastroesophageal Reflux Disease (GERD) as defined by abnormal pH testing, and who are seeking an alternative to continuous acid suppression therapy (i.e. proton pump inhibitors or equivalent) in the management of their GERD.",
+        "code_info": "a. Product Code LXM-13, Part No. 4549-13, GTIN 00855106005394;  b. Product Code LXM-14, Part No. 4549-14, GTIN 00855106005400;   c. Product Code LXM-15, Part No. 4549-15, GTIN 00855106005417;   d. Product Code LXM-16, Part No. 4549-16, GTIN 00855106005424;      Lot No. 6100 through 14055, 15286, 15287, 15314, 15315, 15317, and 16557",
+        "reason_for_recall": "Possible out of specification condition which may allow a bead component to separate from an adjacent wire link. This condition may result in a discontinuous or open LINX device.",
+        "action": "The firm, Consignees Torax Medical Inc., sent an \"URGENT: FIELD SAFETY NOTICE (REMOVAL)\" letter mailed on approximately 04/20/2018 (US consignees and physicians) and 04/23/2018 (OUS consignees and physicians).  The letter described the product, problem and actions to be taken. The customers were instructed to examine inventory for affected product, quarantine any affected product, communicate the issue to all relevant operating room or materials management personnel, forward the recall information to facilities where the product may have been forwarded to,  complete the Business Reply Form confirming receipt of this notice and return it to Torax Medical, Inc. within three (3) business days via email at brf@toraxmedical.com; ( return the BRF even if you do not have the product lot subject to this recall.), and arrange the return of any affected product on hand.  \n\nAdditionally, a recall notification will be sent to sent to physicians outlining the reason for recall and to advise them to monitor their patients.\n\nQuestion regarding the recall can be directed to the Customer Support Cetner at 1-877-384-4266, which is open Monday through Friday, 7:30 AM to 6:30 PM ET.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2018-04-20",
+        "event_date_posted": "",
+        "event_date_terminated": "2020-11-04",
+        "recalling_firm": "Torax Medical, Inc.",
+        "root_cause_description": "Nonconforming Material/Component",
+        "applications": [
+          "P100049"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=163595",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [
+      "linx"
+    ],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100049C.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=163588"
+    }
+  ],
+  "path": "/dossiers/source-fda-p100049.json",
+  "applications": [
+    "P100049"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

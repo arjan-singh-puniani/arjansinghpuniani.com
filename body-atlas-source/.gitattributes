@@ -1,6 +1,2 @@
-* text=auto
-*.csv text eol=lf
-*.glb binary
-*.png binary
-# Content hashes refer to original response bytes, including their newlines.
-data/sources/* -text
+# Preserve provider response bytes and their SHA-256 digests.
+public/dossier-sources/* -text -whitespace

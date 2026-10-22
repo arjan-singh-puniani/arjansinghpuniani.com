@@ -1,0 +1,836 @@
+{
+  "familyId": "source-fda-p010003",
+  "name": "BioGlue surgical adhesive",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "41 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 41,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P010003",
+        "supplement": "S043",
+        "date": "2026-07-15",
+        "decision": "PMA approval",
+        "tradeName": "BioGlue® Surgical Adhesive",
+        "applicant": "Cryolife, Inc.",
+        "statement": "approval for transferring the 2 mL BioGlue Surgical Adhesive fill from the currently approved 5 mL syringe body to the larger 10 mL syringe body and requested to extend the shelf life from 21 to 24 months for the 2 mL configuration.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S043",
+        "sourceSha": "e332ecc63e1db3631df3509f6d91192d5df992767244d3a564740cc21de42f7d"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S042",
+        "date": "2025-03-18",
+        "decision": "PMA approval",
+        "tradeName": "BioGlue® Surgical Adhesive",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Approval for the addition of:\tSTERIS, located at 1800 Industrial Drive, Libertyville, IL 60048, FEI #1450662, as an alternate sterilization site for the BioGlue Surgical Adhesive syringes\tMedline Industries  Northpoint Services, located at 1160 S. Northpoint Blvd, Waukegan, IL 60085, FEI #1000514656, as an alternate sterilization site the Syringe Extender Tips accessory",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S042",
+        "sourceSha": "e332ecc63e1db3631df3509f6d91192d5df992767244d3a564740cc21de42f7d"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S041",
+        "date": "2023-10-20",
+        "decision": "PMA approval",
+        "tradeName": "BioGlue® Surgical Adhesive",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Approval for an additional caution statement regarding use of the device in aortic dissection surgery and other minor updates to the Instructions for Use.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S041",
+        "sourceSha": "e332ecc63e1db3631df3509f6d91192d5df992767244d3a564740cc21de42f7d"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S040",
+        "date": "2022-05-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BioGlue Surgical Adhesive",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Alternative irradiation box and configuration for shipping product, and a new supplier for the strong ammonium solution.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S040",
+        "sourceSha": "e332ecc63e1db3631df3509f6d91192d5df992767244d3a564740cc21de42f7d"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S039",
+        "date": "2021-12-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BioGlue® Surgical Adhesive",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Changes to the resin used to manufacture a portion of the syringe extender tips and a reduction in the shelf life of the finished device.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S039",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S038",
+        "date": "2021-07-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BioGlue Surgical Adhesive",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Change LAL extraction methods for the syringe, extender tips, and delivery tip extensions, and implementation of electronic IFU.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S038",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S037",
+        "date": "2019-12-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BioGlue Surgical Adhesive",
+        "applicant": "Cryolife, Inc.",
+        "statement": "1) An alternate supplier for a device component; 2) a change in quality control sampling of another device component; and 3) a change in the 5mL syringe plungers dimension lower tolerance.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S037",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S033",
+        "date": "2019-11-21",
+        "decision": "PMA approval",
+        "tradeName": "BioGlue Surgical Adhesive",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Approval for changes to the resin, design and shelf-life of the Spreader Applicator Tips.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S033",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S035",
+        "date": "2019-09-05",
+        "decision": "PMA approval",
+        "tradeName": "BioGlue Surgical Adhesive",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Approval for a modification to the extraction method of the mixing and spreader tips for the Limulus Amebocyte Lysate (LAL) endotoxin testing, as well as modifications to the test method for LAL endotoxin testing.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S035",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S036",
+        "date": "2019-08-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BioGlue Surgical Adhesive",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Change to the in-process incoming inspection of pouched, irradiated BioGlue syringes.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S036",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S032",
+        "date": "2019-01-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Bioglue Surgical Adhesive",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Use an electronic system to monitor environmental conditions and equipment in the BioGlue manufacturing, quality control and raw material warehouse areas.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S032",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S031",
+        "date": "2018-11-01",
+        "decision": "PMA approval",
+        "tradeName": "BioGlue Surgical Adhesive",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Approval for changes to the instructions for use.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S031",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S030",
+        "date": "2018-06-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BioGlue Surgical Adhesive",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Change in the sterilization dosimetry system for BioGlue Surgical Adhesive.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S030",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S029",
+        "date": "2018-01-03",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BioGlue Surgical Adhesive",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Implement use of an additional resin in the manufacture of the mixing tip of the BioGlue Surgical Adhesive.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S029",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S028",
+        "date": "2017-09-12",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BioGlue Surgical Adhesive",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Removal of the EO gas weight parameter from CryoLife procedures.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S028",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S027",
+        "date": "2017-08-21",
+        "decision": "PMA approval",
+        "tradeName": "BioGlue Surgical Adhesive",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Approval to establish a minimum seal width specification for the outer-most pouches of BioGlue and BioGlue accessories.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S027",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S023",
+        "date": "2017-02-10",
+        "decision": "PMA approval",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Approval for changes in the molding parameters used in the manufacturing of the 5 mL BioGlue container, as well as the addition of a new resin for molding portions of all BioGlue containers used with the BioGlue Surgical Adhesive.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S023",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S025",
+        "date": "2016-09-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Reuse of the BioGlue insulated outer shipper for irradiation.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S025",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S024",
+        "date": "2016-07-07",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Change in the sampling plan used for BioGlue Surgical Adhesive testing.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S024",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S022",
+        "date": "2016-05-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Change to the frequency of the bioburden assessments from quarterly to annually for BioGlue Accessories that undergo Ethylene Oxide (EO) sterilization, a modification to the Limulus Amebocyte Lysate (LAL) test method for BioGlue to include agitation during the extraction process and change the dilution to test the BioGlue extract, and to eliminate the quarterly autoclave cycle verification and the quarterly issuance of Certificates of Completion for the autoclaves used in production and microbiology.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S022",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S021",
+        "date": "2016-04-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "implementation of an autotitrator for the determination of glutaraldehyde concentration and an alternate gel for SDS-PAGE testing",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S021",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S020",
+        "date": "2016-04-07",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "Modified cartoning and labeling process.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S020",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S019",
+        "date": "2015-09-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "CHANGE IN THE METHOD TO DETERMINE PROTEIN CONCENTRATION.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S019",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S017",
+        "date": "2013-09-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "ADDITION OF A SERVICE SUPPLIER FOR POUCHING THE DELIVERY TIP EXTENSION.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S017",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S016",
+        "date": "2012-03-07",
+        "decision": "PMA approval",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "APPROVAL FOR A NEW ACCESSORY CALLED THE DELIVERY TIP EXTENSION (DTE).",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S016",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S015",
+        "date": "2010-05-12",
+        "decision": "PMA approval",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "APPROVAL FOR CLARIFICATION REGARDING ONE OF THE WARNINGS IN THE INSTRUCTIONS FOR USE (IFU).",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S015",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S014",
+        "date": "2009-06-26",
+        "decision": "PMA approval",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "APPROVAL FOR PRINTING THE PRODUCT NAME ON THE SYRINGE BODY.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S014",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S013",
+        "date": "2009-05-01",
+        "decision": "PMA approval",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "APPROVAL FOR CHANGES TO THE LABELING.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S013",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S012",
+        "date": "2008-06-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BIOGLUE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "ADDITION OF AN AUTOMATED PUMP FOR DISPENSING BOVINE SERUM ALBUMIN AND GLUTERALDEHYDE IN THE MANUFACTURE OF BIOGLUE® SURGICAL ADHESIVE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S012",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S011",
+        "date": "2007-10-18",
+        "decision": "PMA approval",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "APPROVAL FOR A CHANGE TO THE STERILE 5 ML SYRINGE PRODUCT.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S011",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S010",
+        "date": "2007-06-07",
+        "decision": "PMA approval",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "APPROVAL FOR THE ADDITION OF A NON-STERILE, REUSABLE SYRINGE DELIVERY DEVICE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S010",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S009",
+        "date": "2007-02-12",
+        "decision": "PMA approval",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "APPROVAL FOR ADDITIONAL PRECAUTIONARY STATEMENTS, AND OTHER MINOR MODIFICATIONS TO THE INSTRUCTIONS FOR USE OF THE CARTRIDGE AND SYRINGE LABELS.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S009",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S008",
+        "date": "2006-07-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "CHANGE OF BSA SUPPLIERS.",
+        "reason": "",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S008",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S006",
+        "date": "2006-04-13",
+        "decision": "PMA approval",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "APPROVAL FOR TWO MANUFACTURING SITES: 1) CENTURION STERILIZATION SERVICES, PART OF TRI-STATE HOSPITAL SUPPLY, SALISBURY, NORTH CAROLINA FOR THE STERILIZATION OF BIOGLUE EXTENDER TIPS; AND 2) COMMAND MEDICAL PRODUCTS, ORMOND BEACH, FLORIDA AS A COMPONENT ASSEMBLER.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S006",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S005",
+        "date": "2006-01-20",
+        "decision": "PMA approval",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "APPROVAL FOR: 1) ADDITION OF TWO SPREADER TIPS, SIZE 12 MM AND 16 MM; 2) ADDITION OF A GREEN COLORANT (FDA 21 CFR 178.3297 COMPLIANT MBPP 11962) TO THE COLLAR OF THE MIXING TIP FOR EASIER VISUALIZATION OF THE MATING MECHANISM; 3) MODIFICATION (BLUNTING THE END RATHER THAN POINTED TIP) OF THE MIXING CHAMBER STEM END TO ACCEPT THE NEW APPLICATOR TIPS; 4) MODIFICATION OF THE COLLAR FORMULATION FOR THE POLYPROPYLENE; 5) USE OF A NEW MATERIAL FOR THE SPREADER EXTENSION; AND 6) MODIFICATION OF THE STEM MATERIAL.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S005",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S007",
+        "date": "2005-12-08",
+        "decision": "PMA approval",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "APPROVAL FOR A 10 ML SYRINGE VOLUME; A SOFTER POLYMER IN THE PISTON OF THE SYRINGE; AN ALTERNATE SUPPLIER FOR THE POLYETHYLENE FOR THE CAP PLUG OF THE ENTIRE DELIVERY SYSTEM PRODUCT LINE; AND ADDITION OF A 10 PACK OF POUCHED (4/POUCH) STANDARD SYRING TIPS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S007",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S004",
+        "date": "2004-10-20",
+        "decision": "PMA approval",
+        "tradeName": "CRYOLIFE BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "APPROVAL FOR ADDING A BOXED WARNING TO BE ADDED TO THE LABELING.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S004",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S003",
+        "date": "2004-05-03",
+        "decision": "PMA approval",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE IN SYRINGE DELIVERY SYSTEM (MODEL BG3500)",
+        "applicant": "Cryolife, Inc.",
+        "statement": "APPROVAL FOR A DISPOSABLE DUAL-BARREL PISTON-DRIVEN SYRINGE DISPENSING SYSTEM AS AN ALTERNATE TO THE CURRENT DUAL-BARREL REUSABLE RATCHETING PISTON-DRIVEN CARTRIDGE SYSTEM.  THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME BG3500 AND IS INDICATED FOR USE AS AN ADJUNCT TO STANDARD METHODS OF ACHIEVING HEMOSTASIS (SUCH AS SUTURES AND STAPLES) IN ADULT PATIENTS IN OPEN SURGICAL REPAIR OF LARGE VESSELS (SUCH AS AORTA, FEMORAL, AND CAROTID ARTERIES).",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S003",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S002",
+        "date": "2002-10-08",
+        "decision": "PMA approval",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED AT CRYOLIFE, INC., KENNESAW, GEORGIA.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S002",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "S001",
+        "date": "2002-07-29",
+        "decision": "PMA approval",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "APPROVAL FOR  1) ADDING AN ADDITIONAL VENDOR, DOMNICK HUNTER, PLC, FOR THE 0.2 UM-FILTER TO FILTER BULK COMPONENT SOLUTIONS, AND  2) ADDING A SOLUTION MIXING SYSTEM FOR THE BOVINE SERUM ALBUMIN BULK SOLUTION FOR BAGS UP TO 20L IN CAPACITY.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003S001",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      },
+      {
+        "application": "P010003",
+        "supplement": "",
+        "date": "2001-12-03",
+        "decision": "PMA approval",
+        "tradeName": "BIOGLUE SURGICAL ADHESIVE",
+        "applicant": "Cryolife, Inc.",
+        "statement": "APPROVAL FOR THE BIOFLUE SURGICAL ADHESIVE.  THIS DEVICE IS INDICATED FOR USE AS AN ADJUNCT TO STANDARD METHODS OF ACHIEVING HEMOSTASIS (SUCH AS SUTURES AND STAPLES) IN ADULT PATIENTS IN OPEN SURGICAL REPAIR OF LARGE VESSELS (SUCH AS AORTA, FEMORAL AND CAROTID ARTERIES).",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003",
+        "sourceSha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=600&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987",
+        "file": "825e23da69a275bfda6c074c9cac6094bce06caae90fc138b50bb3bc2fa33987.json",
+        "retrievedAt": "2026-10-22T18:59:18.363192+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=700&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "e332ecc63e1db3631df3509f6d91192d5df992767244d3a564740cc21de42f7d",
+        "file": "e332ecc63e1db3631df3509f6d91192d5df992767244d3a564740cc21de42f7d.json",
+        "retrievedAt": "2026-10-22T18:59:19.144267+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "1 original labeling document link(s) located; 7 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 1,
+    "changes": 7,
+    "rows": [
+      {
+        "application": "P010003",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010003C.pdf",
+        "pages": 14,
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003",
+        "locator": "L56: Labeling 【38†Labeling】",
+        "pageUpdatedAt": "10/19/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: 2 days ago; Content type: application/pdf; Number of pages: 14;",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P010003",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003",
+        "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003\",\"lineno\":null}); Total lines: 103",
+        "pageUpdatedAt": "10/19/2026",
+        "locator": "L56: Labeling 【38†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P010003S041",
+      "P010003S031",
+      "P010003S020",
+      "P010003S015",
+      "P010003S013",
+      "P010003S009",
+      "P010003S004"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "4 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 4,
+    "rows": [
+      {
+        "cfres_id": "127033",
+        "product_res_number": "Z-1674-2014",
+        "product_description": "BG3515-5 US 5mL BioGlue Surgical Adhesive.\n\n BioGlue Surgical Adhesive (BioGlue) is indicated for use as an adjunct to standard methods of achieving hemostasis (such as sutures and staples) in adult patients in open surgical repair of of large vessels (such as aorta, femoral, and carotid arteries).",
+        "code_info": "12MUV034, 12MUX035, 12MUV069, 12MUV037, 12MUV038, 12MUV040, 12MUV041, 12MUV042, 12MUV043, 12MUV044, 12MUV045, 12MUV046, 12MUV047, 12MUV048, 12MUV049, 12MUV050, 12MUV051, 12MUV052, 12MUV053, 12MUV054, 12MUV055, 12MUV056, 12MUV057, 12MUV058, 12MUV059, 12MUV060, 12MUV061, 12MUV062, 12MUV063, 12MUV064, 12MUV065, 12MUV067, 12MUV068, 12MUV069, 12MUV070, 12MUV071, 12MUV072, 12MUV073, 12MUV074, 12MUV075, 12MUV076, 13MUV001, 13MUV002, 13MUV003, 13MUV004,",
+        "reason_for_recall": "Serum albumin component monomer failed to meet internally established end of shelf-life specification.",
+        "action": "All consignees were notified of the voluntary actions by issuance of Field Correction/Removal Notice on April 24, 2014.  This notices states which lot numbers are to be returned, and which lot numbers can be relabeled with a corrected expiration date.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2014-04-25",
+        "event_date_posted": "2014-05-30",
+        "event_date_terminated": "2014-11-10",
+        "recalling_firm": "CryoLife, Inc.",
+        "root_cause_description": "Process control",
+        "applications": [
+          "P010003"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=127033",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "190050",
+        "product_res_number": "Z-0384-2022",
+        "product_description": "BioGlue Surgical Adhesive, Model BG3510-5-G",
+        "code_info": "Model BG3510-5-G, Lot BG000255",
+        "reason_for_recall": "Product is not approved for use in the EU and should not have been distributed in the EU.",
+        "action": "A customer letter titled \"Urgent Field Safety Notice BioGlue\" was issued 10/07/2021 to  the impacted consignee.  All product is to be returned for final disposition.  A customer reply letter should be completed and submitted to the recalling firm.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2021-10-07",
+        "event_date_posted": "",
+        "event_date_terminated": "2023-10-23",
+        "recalling_firm": "CryoLife, Inc.",
+        "root_cause_description": "No Marketing Application",
+        "applications": [
+          "P010003"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=190050",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "165020",
+        "product_res_number": "Z-2556-2018",
+        "product_description": "BioGlue Spreader Tip, 12mm, Sterile, RX Only.\n\nProduct Usage:\nBioGlue is indicated for use as an adjunct to standard methods of achieving hemostasis (such as sutures and staples) in adult patients in open surgical repair of large vessels (such as aorta, femoral , and carotid arteries).",
+        "code_info": "Model Number BG3510-5-J, Lot Number 18MJX002",
+        "reason_for_recall": "The CryoLife L6318 (Label, BioGlue 12mm Spreader Tip, Indicator Label 2 1/8\" x 1 1/4\") was incorrectly applied to the Syringe Applicator Tip pouches and Syringe Spreader Tip pouches were not included in the boxes.",
+        "action": "CyroLife notified their customers on/about 06/04/2018 via Urgent - Important Product Removal letter.  instructions indicated that affected pouches have been returned to CryoLife, Inc.  Any questions/clarifications regarding this removal are directed to contact 800-438-8285 or by email to  fieldassurance@c ryolife.com.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2018-06-04",
+        "event_date_posted": "",
+        "event_date_terminated": "2019-02-08",
+        "recalling_firm": "CryoLife, Inc.",
+        "root_cause_description": "Error in labeling",
+        "applications": [
+          "P010003"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=165020",
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+      },
+      {
+        "cfres_id": "155852",
+        "product_res_number": "Z-2623-2017",
+        "product_description": "BioGlue Surgical Adhesive, Model/Catalog Number BG3510-5-J",
+        "code_info": "Lot Code 17MJX002, Model/Catalog Number BG3510-5-J",
+        "reason_for_recall": "The courtesy labels in 9 boxes of BioGlue were incorrectly labeled as lot 17MJX007 instead of lot 17MJX002.",
+        "action": "Firm notified customer on approximately 06/02/2017 via letter. Instructions included to inspect inventory on hand, to destroy the incorrect courtesy labels and replace them with the correct labels what were shipped.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2017-05-19",
+        "event_date_posted": "",
+        "event_date_terminated": "2019-02-08",
+        "recalling_firm": "CryoLife, Inc.",
+        "root_cause_description": "Labeling mix-ups",
+        "applications": [
+          "P010003"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=155852",
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010003C.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=127033"
+    }
+  ],
+  "path": "/dossiers/source-fda-p010003.json",
+  "applications": [
+    "P010003"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}
