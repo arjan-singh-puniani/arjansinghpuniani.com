@@ -52,3 +52,12 @@ The website now mounts the actual app at `/atlas`, with its own compiled assets.
 The public snapshot now defaults to explicitly explained interventions. `npm run typecheck`, `npm test` (33 passing) and `npm run test:ingestion` (25 passing) check source identity, exact quote spans, missing-purpose abstention and restricted anatomical associations. Portfolio TypeScript, 95 tests, production build and isolated atlas export pass.
 
 `node tests/body-atlas.browser.mjs http://127.0.0.1:3210` now exercises the actual Shiley airway example on desktop and mobile emulation: two explained regional interventions and two matching historical events; a concise functional explanation with its original FDA PDF; no Shiley tube under Eyes; explicit coverage gaps where an explanation is unavailable. The prior Activa/source-hash/brief/retrieval workflow, automated accessibility checks and twelve existing portfolio routes remain covered. Physical phones and independent expert precision evaluation remain unverified.
+
+
+## Whole-body explanation expansion — 2026-10-22
+
+The explained layer contains 91 entries associated with 44 anatomical structures/regions. Seventy-five record-specific additions have a clear purpose, regional rationale and original FDA source. All 73 additional PMA statements and decision dates matched a bounded October 22 FDA API response; two 510(k) PDF indications were checked separately. The frozen original response, request/hash and per-entry review ledger are in `validation/`.
+
+Validation commands: `npm run typecheck`, `npm test` (35 passing), `npm run test:ingestion` (26 passing), `node scripts/export-static.mjs ../arjan-portfolio/public/atlas`, portfolio `npm run typecheck`, `npm test` (95 passing) and `npm run build` pass. `node tests/body-atlas.browser.mjs http://127.0.0.1:3210` checks every one of the 75 additions on both desktop and mobile emulation through the real regional picker, inspector, explanation and source link. Female-only regions show an explicit text-only notice and no model annotation. Existing FDA source/hash, cited download, retrieval, accessibility and twelve-route regression checks pass.
+
+These checks establish functional behavior and source traceability, not clinical effectiveness, complete current safety/labeling coverage or an independent anatomical precision estimate. Provisional context edges have not been upgraded to verified placement. Physical-phone testing remains unverified.

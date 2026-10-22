@@ -117,6 +117,7 @@
     "geometry": null,
     "patterns": [
       "femoral arter(?:y|ies)",
+      "femoropopliteal",
       "popliteal arter(?:y|ies)",
       "tibial arter(?:y|ies)",
       "iliac arter(?:y|ies)",
@@ -329,7 +330,8 @@
     "geometry": null,
     "patterns": [
       "esophag(?:us|eal)",
-      "oesophag(?:us|eal)"
+      "oesophag(?:us|eal)",
+      "gastroesophageal"
     ],
     "locator": [
       0,
@@ -421,6 +423,7 @@
     "geometry": "VH_M_liver",
     "patterns": [
       "hepatic",
+      "hepatocellular",
       "liver"
     ],
     "locator": [
@@ -647,6 +650,7 @@
     "patterns": [
       "cutaneous",
       "dermal",
+      "subdermal",
       "dermis",
       "skin",
       "wound",

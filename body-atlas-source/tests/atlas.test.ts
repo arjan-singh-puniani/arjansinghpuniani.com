@@ -413,7 +413,7 @@ test("portable brief downloads preserve citations, source roles and Unicode", ()
 
 test("explained interventions are explicitly sourced and region-specific", async () => {
  const {interventionSummaries,hasExplanation,inCollection,productName}=await import('../lib/intervention-view');
- assert.equal(families.filter(hasExplanation).length,16);
+ assert.equal(families.filter(hasExplanation).length,91);
  for(const [id,s] of Object.entries(interventionSummaries)){
   const f=familyById(id)!;assert.ok(f);assert.ok(f.regulatoryIds.includes(s.recordId));
   assert.ok(recordById(s.recordId));assert.ok(s.locator);assert.ok(s.purpose.length<500);
@@ -432,4 +432,43 @@ test("Shiley tube relevance and briefs cannot turn Murphy eye into an ocular int
  assert.match(interventionActions[id],/surgery/);assert.match(interventionActions[id],/airway/);
  assert.match(brief([id]),/K250173.pdf/);
  assert.match(brief([id]),/Anatomical relevance/);
+});
+
+
+test("whole-body explanations retain exact original evidence and broad anatomical coverage", async () => {
+ const data=(await import('../lib/whole-body-explanations.json')).default;
+ const review=JSON.parse(readFileSync('validation/whole-body-explanation-review.json','utf8'));
+ const live=JSON.parse(readFileSync('validation/fda-originals-2026-10-22.json','utf8'));
+ const check=JSON.parse(readFileSync('validation/whole-body-source-check.json','utf8'));
+ assert.equal(createHash('sha256').update(readFileSync('validation/fda-originals-2026-10-22.json')).digest('hex'),check.responseSha256);
+ assert.equal(check.originalsRequested,73);assert.deepEqual(check.issues,[]);
+ assert.equal(Object.keys(data).length,75);
+ assert.equal(new Set(Object.values(data).flatMap(s=>s.regions)).size,36);
+ for(const [id,s] of Object.entries(data)) {
+  const r=recordById(s.recordId)!;assert.ok(r,id);
+  const proof=review.find((v:{familyId:string})=>v.familyId===id);assert.ok(proof);
+  assert.equal(proof.sourceSha,r.sourceSha);assert.ok(proof.sourceText);
+  assert.deepEqual(familyMappings(id).map(m=>m.structureId).sort(),[...s.regions].sort());
+  assert.ok(s.purpose.length>40&&s.purpose.length<500);assert.ok(s.relevance.length>40);
+  if(r.kind==='pma') {
+   assert.equal(proof.sourceText,r.statement);
+   const original=live.results.find((v:{pma_number:string;supplement_number:string})=>v.pma_number===r.application&&!v.supplement_number);
+   assert.ok(original,r.id);assert.equal(original.ao_statement.trim(),r.statement!.trim());
+   assert.equal(original.decision_date,r.decisionDate);
+  } else {
+   assert.equal(r.status,'510(k) clearance');assert.match(proof.sourceUrl,/accessdata.fda.gov\/cdrh_docs\/pdf26\/K260(007|721).pdf$/);
+  }
+ }
+});
+test("disease origin, co-procedures and access routes cannot become the explained treatment site",()=>{
+ for(const [id,rejected] of [
+  ['source-fda-p990065','BODY:colon'],
+  ['source-fda-p100022','BODY:knee'],
+  ['source-fda-p080030','BODY:lens'],
+  ['source-fda-p060023','UBERON:0002240'],
+  ['source-fda-p950035','UBERON:0002240'],
+  ['source-fda-p100018','BODY:carotid'],
+  ['source-fda-p020004','BODY:lower-limb-vessels'],
+ ]) assert.equal(matchesRegion(familyById(id)!,rejected),false,id);
+ assert.ok(!humanRegionLocators['BODY:uterus']);assert.ok(!humanRegionLocators['BODY:vagina']);
 });

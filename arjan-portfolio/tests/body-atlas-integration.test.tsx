@@ -30,9 +30,11 @@ describe("BODY//ATLAS portfolio integration", () => {
     const project = getProject("body-atlas")!;
     const report = JSON.parse(readFileSync("public/documents/body-atlas-validation.json", "utf8"));
     expect(Object.values(report.recordCounts).reduce((sum: number, count) => sum + Number(count), 0)).toBe(2490);
-    expect(report.sourceContextEntries).toBe(650);
+    expect(report.sourceContextEntries).toBe(652);
     expect(report.independentlyAdjudicatedMappings).toBe(0);
     expect(report.precision).toBeNull();
+    expect(report.explanationExpansion.explainedEntries).toBe(91);
+    expect(report.explanationExpansion.directlyAssociatedStructuresAndRegions).toBe(44);
     expect(project.status).toBe("Prototype");
     expect(project.limitations?.join(" ")).toContain("Provisional source-text contexts");
     expect(project.media?.[0].caption).toContain("Kristen Browne and Heidi Schlehlein");

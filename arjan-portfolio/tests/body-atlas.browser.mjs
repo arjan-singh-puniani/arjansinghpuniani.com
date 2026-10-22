@@ -10,6 +10,7 @@ const out='test-results/body-atlas';
 await mkdir(out,{recursive:true});
 const browser=await chromium.launch({channel:'chrome'});
 const results=[];
+const expanded=JSON.parse(await readFile('../body-atlas-source/lib/whole-body-explanations.json','utf8'));
 try {
   for(const [name,viewport] of [['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]]) {
     const context=await browser.newContext({viewport,isMobile:name==='mobile',hasTouch:name==='mobile',reducedMotion:'reduce'});
@@ -30,7 +31,7 @@ try {
     assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'),'https://arjansinghpuniani.com/work/body-atlas');
     assert.equal(await page.getByRole('link',{name:'Read the recorded scope and validation'}).getAttribute('href'),'/documents/body-atlas-validation.json');
     const report=await page.request.get(base+'/documents/body-atlas-validation.json');
-    assert.equal(report.status(),200);assert.equal((await report.json()).sourceContextEntries,650);
+    assert.equal(report.status(),200);assert.equal((await report.json()).sourceContextEntries,652);
     const accessibility=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
     assert.deepEqual(accessibility.violations,[]);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
@@ -84,16 +85,46 @@ try {
     await page.screenshot({path:`${out}/airway-${name}.png`});
     await page.getByRole('button',{name:'Interventions',exact:true}).last().click();
     await page.getByRole('combobox',{name:'Explore anatomical region',exact:true}).selectOption('BODY:eye');
+    assert.ok(await page.locator('.intervention-choice').count()>0);
+    assert.equal(await page.getByRole('button',{name:/Inspect Shiley/}).count(),0);
+    await page.getByRole('combobox',{name:'Explore anatomical region',exact:true}).selectOption('BODY:elbow');
     assert.equal(await page.getByText('No source-backed intervention explanation has been prepared for this region yet.',{exact:true}).isVisible(),true);
     await page.getByRole('button',{name:'Browse unreviewed FDA text matches for this region'}).click();
     assert.equal(await page.getByRole('button',{name:/Inspect Shiley/}).count(),0);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+    // Exercise every newly explained entry through region selection and its real inspector.
+    const byRegion=new Map();
+    for(const [id,entry] of Object.entries(expanded)) byRegion.set(entry.regions[0],[...(byRegion.get(entry.regions[0])||[]),[id,entry]]);
+    let explainedChecked=0;
+    await page.getByRole('button',{name:'Atlas',exact:true}).click();
+    await page.getByRole('combobox',{name:name==='mobile'?'Map evidence layer':'Evidence layer',exact:true}).selectOption('explained');
+    for(const [region,entries] of byRegion){
+      await page.getByRole('button',{name:'Atlas',exact:true}).click();
+      await page.getByRole('combobox',{name:'Explore anatomical region',exact:true}).selectOption(region);
+      for(const [i,[id,entry]] of entries.entries()){
+        if(i===0) await page.locator(`.intervention-choice[data-family="${id}"] .choose-intervention`).click();
+        else await page.getByRole('combobox',{name:'Choose another intervention in this region',exact:true}).selectOption(id);
+        assert.equal(await panel.getByRole('heading',{name:entry.title,exact:true}).isVisible(),true,id);
+        assert.equal(await panel.getByLabel('What this intervention does').innerText(),entry.purpose,id);
+        assert.ok((await panel.getByRole('region',{name:'Why this region'}).innerText()).includes(entry.relevance),id);
+        const original=entry.sourceUrl || `https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=${entry.recordId.split(':')[1]}`;
+        assert.equal(await panel.getByRole('link',{name:'Read the supporting FDA source'}).getAttribute('href'),original,id);
+        if(['BODY:uterus','BODY:vagina'].includes(region)) {
+          assert.equal(await page.getByText('Text-only region: this male reference has no corresponding anatomy. No device position is shown.',{exact:true}).isVisible(),true);
+          assert.equal(await page.locator(`.intervention-annotation[data-family="${id}"]`).count(),0);
+        }
+        explainedChecked++;
+      }
+    }
+    assert.equal(explainedChecked,75);
+    await page.getByRole('button',{name:'Atlas',exact:true}).click();
+    await page.waitForSelector('[data-organs-status="loaded"]',{timeout:90000});
     const atlasAccessibility=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();assert.deepEqual(atlasAccessibility.violations,[]);
     await page.screenshot({path:`${out}/atlas-${name}.png`});
     assert.ok(geometry.some(url=>url.includes('/atlas/anatomy/body.glb')));
     assert.ok(geometry.every(url=>url.includes('/atlas/anatomy/')));
     assert.deepEqual(errors,[]);
-    results.push({viewport:name,homeCard:true,caseStudy:true,workFilter:true,sources:true,canonical:true,horizontalOverflow:false,axeViolations:0,atlasLoaded:true,originalSourceHashVerified:true,briefDownload:true,retrieval:true,airwayRelevance:true,falseOcularMatchExcluded:true,pageErrors:errors});
+    results.push({viewport:name,homeCard:true,caseStudy:true,workFilter:true,sources:true,canonical:true,horizontalOverflow:false,axeViolations:0,atlasLoaded:true,originalSourceHashVerified:true,briefDownload:true,retrieval:true,airwayRelevance:true,falseOcularMatchExcluded:true,explainedEntriesChecked:explainedChecked,pageErrors:errors});
     await context.close();
   }
   const context=await browser.newContext();

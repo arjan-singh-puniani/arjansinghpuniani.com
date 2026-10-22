@@ -216,6 +216,7 @@ export default function AtlasExperience() {
   }, [allAvailable, region, collection, query, modality, authorization, year]);
   const f = selected ? familyById(selected) : undefined;
   const explanation = f ? interventionSummaries[f.id] : undefined;
+  const explanationRecord = explanation ? recordById(explanation.recordId) : undefined;
   useEffect(()=>setResultsLimit(60),[region,query,modality,authorization,year,collection]);
   useEffect(()=>setLibraryLimit(100),[libraryQuery,sourceKind]);
   const counts = useMemo(() => Object.fromEntries(
@@ -804,6 +805,7 @@ export default function AtlasExperience() {
             )}
             <span>{showDetail ? "" : visible.length}</span>
           </div>
+          {["BODY:uterus","BODY:vagina"].some(id => region === id || explanation?.regions.includes(id)) && <p className="reference-note" role="status">Text-only region: this male reference has no corresponding anatomy. No device position is shown.</p>}
           {year < 2026 && (
             <div className="active-history-filter">
               <span>Through {year}</span>
@@ -840,7 +842,7 @@ export default function AtlasExperience() {
               </label>
               <div className="intervention-list">
                 {visible.slice(0,resultsLimit).map((item) => (
-                  <div key={item.id} className="intervention-choice">
+                  <div key={item.id} className="intervention-choice" data-family={item.id}>
                     <div className="intervention-entry">
                       <button
                         className="choose-intervention"
@@ -972,6 +974,7 @@ export default function AtlasExperience() {
                   <h3>Why this region</h3><p>{explanation.relevance}</p>
                   <External href={explanation.sourceUrl || primaryRecords(f)[0].url}>Read the supporting FDA source</External>
                   <small>{explanation.locator}</small>
+                  {explanationRecord?.kind === "pma" && explanationRecord.statement && <details><summary>Original FDA passage</summary><blockquote>{explanationRecord.statement}</blockquote></details>}
                 </section>}
                 <div className="device-status">
                   {statusOf(f)}{f.regulatoryIds.length > 0 && " · Historical decision"}

@@ -1,0 +1,982 @@
+[
+  {
+    "familyId": "source-fda-p000009",
+    "recordId": "FDA:P000009:",
+    "regions": [
+      "BODY:heart"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000009",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE PHYLAX AV ICD SYSTEM INCLUDING THE PULSE GENERATOR, MODEL NUMBER 122 382 AND PHYLAX AV SOFTWARE CARTRIDGE SWM 1000/I-GAV.2.U, MODEL NUMBER 128 814.  THE DEVICE IS INDICATED FOR USE IN PATIENTS WHO ARE AT HIGH RISK OF SUDDEN DEATH DUE TO VENTRICULAR ARRHYTHMIAS AND HAVE EXPERIENCED ONE OR MORE OF THE FOLLOWING SITUATIONS:  1) SURVIVAL OF AT LEAST ONE EPISODE OF CARDIAC ARREST (MANIFESTED BY A LOSS OF CONSCIOUSNESS DUE TO A VENTRICULAR TACHYARRHYTHMIA  2) RECURRENT, POORLY TOLERATED SUSTAINED VENTRICULAR TACHYCARDIA (VT)  NOTE: THE CLINICAL OUTCOME FOR HEMODYNAMICALLY STABLE, SUSTAINED-VT PATIENTS ID NOT FULLY KNOWN.  SAFETY AND EFFECTIVENESS STUDIES FOR THIS INDICATION HAVE NOT BEEN CONDUCTED.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p010015",
+    "recordId": "FDA:P010015:",
+    "regions": [
+      "BODY:heart"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010015",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE MEDTRONIC INSYNC BIVENTRICULAR PACING SYSTEM INCLUDING THE MODEL 8040 INSYNC PULSE GENERATOR, THE MODEL 9980 PROGRAMMER SOFTWARE, AND THE ATTAIN LV MODEL 2187 AND ATTAIN CS MODEL 2188 LEADS.  THE PULSE GENERATOR AND LEADS ARE INDICATED AS FOLLOWS:  1) THE INSYNC MODEL 8040 PULSE GENERATOR IS INDICATED FOR THE REDUCTION OF THE SYMPTOMS OF MODERATE TO SECERE HEART FAILURE (NYHA FUNCTIONAL CLASS III OR IV) IN THOSE PATIENTS WHO REMAIN SYMPTOMATIC DESPITE STABLE, OPTIMAL, MEDICAL THERAPY, AND HAVE A LEFT VENTRICULAR EJECTION FRACTION <= 35% AND A QRS DURATION = 130 MS.  2) THE ATTAIN LV MODEL 2187 LEAD HAS APPLICATION AS PART OF A MEDTRONIC BIVENTRICULAR PACING SYSTEM.  3) THE ATTAIN CS MODEL 2188 LEAD HAS APPLICATION WHERE PERMANENT ATRIAL, OR FUAL-CHAMBER PACING SYSTEMS ARE INDICATED, OR AS PART OF A MEDTRONIC BIVENTRICULAR PACING SYSTEM.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p010030",
+    "recordId": "FDA:P010030:",
+    "regions": [
+      "BODY:heart"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010030",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE WCD 2000 SYSTEM.  THIS DEVICE IS INDICATED FOR ADULT PATIENTS WHO ARE AT RISK FOR SUDDEN CARDIAC ARREST AND EITHER ARE NOT CANDIDATES FOR OR REFUSE AN IMPLANTABLE DEFIBRILLATOR.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p060040",
+    "recordId": "FDA:P060040:",
+    "regions": [
+      "BODY:heart"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060040",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE THORATEC HEARTMATE II LVAS. THIS DEVICE IS INDICATED FOR USE AS A BRIDGE TO TRANSPLANTATION IN CARDIAC TRANSPLANT CANDIDATES AT RISK OF IMMINENT DEATH FROM NON-REVERSIBLE LEFT VENTRICULAR FAILURE. THE HEARTMATE II LVAS IS INTENDED FOR USE BOTH INSIDE AND OUTSIDE THE HOSPITAL, OR FOR TRANSPORTATION OF VENTRICULAR ASSIST DEVICE PATIENTS VIA GROUND AMBULANCE, FIXED-WING AIRCRAFT, OR HELICOPTER.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p100045",
+    "recordId": "FDA:P100045:",
+    "regions": [
+      "BODY:heart"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100045",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE CARDIOMEMS HF SYSTEM, WHICH INCLUDES THE CM2000 IMPLANTABLE PA SENSOR/MONITOR AND TRANSVENOUS CATHETER DELIVERY SYSTEM, THE CM1000 PATIENT ELECTRONICS SYSTEM (GSM), THECM1010 PATIENT ELECTRONICS SYSTEM (GSM), AND CM3000 HOSPITAL ELECTRONICS SYSTEM. THIS DEVICE IS INDICATED FOR WIRELESSLY MEASURING AND MONITORING PULMONARY ARTERY (PA) PRESSURE AND HEART RATE IN NEW YORK HEART ASSOCIATION (NYHA) CLASS III HEART FAILURE PATIENTS WHO HAVE BEEN HOSPITALIZED FOR HEART FAILURE IN THE PREVIOUS YEAR. THE HEMODYNAMIC DATA ARE USED BY PHYSICIANS FOR HEART FAILURE MANAGEMENT AND WITH THE GOAL OF REDUCING HEART FAILURE HOSPITALIZATIONS.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p150033",
+    "recordId": "FDA:P150033:",
+    "regions": [
+      "BODY:heart"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150033",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "Approval for the Micra Transcatheter Pacemaker System (Pacemaker Model MC1VR01 and Programmer Application Software model SW022 Version 1.1).  This device is indicated for use in patients who have experienced one or more of the following conditions: symptomatic paroxysmal or permanent high-grade AV block in the presence of AF symptomatic paroxysmal or permanent high-grade AV block in the absence of AF, as an alternative to dual chamber pacing, when atrial lead placement is considered difficult, high risk, or not deemed necessary for effective therapy symptomatic bradycardia-tachycardia syndrome or sinus node dysfunction (sinus bradycardia or sinus pauses), as an alternative to atrial or dual chamber pacing, when atrial lead placement is considered difficult, high risk, or not deemed necessary for effective therapyRate-responsive pacing is indicated to provide increased heart rate appropriate to increasing levels of activity.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p100009",
+    "recordId": "FDA:P100009:",
+    "regions": [
+      "BODY:heart-valves"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100009",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE MITRACLIP CLIP DELIVERY SYSTEM (MITRACLIP CDS). THIS DEVICE IS INDICATED FOR THE PERCUTANEOUS REDUCTION OFSIGNIFICANT SYMPTOMATIC MITRAL REGURGITATION (MR >= 3+) DUE TO PRIMARY ABNORMALITY OF THE MITRAL APPARATUS [DEGENERATIVE MR] IN PATIENTS WHO HAVE BEEN DETERMINED TO BE AT PROHIBITIVE RISK FOR MITRAL VALVE SURGERY BY A HEART TEAM, WHICH INCLUDES A CARDIAC SURGEON EXPERIENCED IN MITRAL VALVE SURGERY AND A CARDIOLOGIST EXPERIENCED IN MITRAL VALVE DISEASE, AND IN WHOM EXISTING COMORBIDITIES WOULD NOT PRECLUDE THE EXPECTED BENEFIT FROM REDUCTION OF THE MITRAL REGURGITATION.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p000037",
+    "recordId": "FDA:P000037:",
+    "regions": [
+      "BODY:heart-valves"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE ON-X. PROSTHETIC HEART VALVE, MODEL ONXA IN THE AORTIC POSITION INCLUDING SIZES 19, 21, 23, 25, AND 27/29 MM.  THIS DEVICE IS INDICATED FOR REPLACEMENT OF DISEASED, DAMAGED, OR MALFUNCTIONING NATIVE OR PROSTHETIC HEART VALVES IN THE AORTIC POSITION.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p020047",
+    "recordId": "FDA:P020047:",
+    "regions": [
+      "BODY:coronary"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE MULTI-LINK RX AND OTW VISION CORONARY STENT SYSTEMS (CSS).  THESE DEVICES ARE INDICATED FOR IMPROVING CORONARY LUMINAL DIAMETER IN THE FOLLOWING:1) PATIENTS WITH SYMPTOMATIC ISCHEMIC HEART DISEASE DUE TO DISCRETE DE NOVO OR RESTENOTIC NATIVE CORONARY ARTERY LESIONS (LENGTH <25 MM) WITH REFERENCE VESSEL DIAMETERS RANGING FROM 3.0 MM TO 4.0 MM.  2)  PATIENTS WITH SYMPTOMATIC ISCHEMIC HEART DISEASE DUE TO LESIONS IN SAPHENOUS VEIN BYPASS GRAFTS (LENGTH <25 MM) WITH REFERENCE VESSEL DIAMETERS RANGING FROM 3.0 MM TO 4.0 MM  3) RESTORING CORONARY FLOW IN PATIENTS EXPERIENCING ACUTE MYOCARDIAL INFARCTION, AS CONFIRMED BY ST SEGMENT ELEVATION OR ANGIOGRAPHIC FINDINGS, WHO PRESENT WITHIN 12 HOURS OF SYMPTOM ONSET WITH NATIVE CORONARY ARTERY LESIONS OF LENGTH <25 MM WITH A REFERENCE VESSEL DIAMETER OF 3.0 MM TO 4.0 MM.  OUTCOME (BEYOND 9 MONTHS) FOR THIS PERMANENT IMPLANT IS UNKNOWN AT PRESENT.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p110010",
+    "recordId": "FDA:P110010:",
+    "regions": [
+      "BODY:coronary"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P110010",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE PROMUS ELEMENT PLUS EVEROLIMUS-ELUTING PLATINUM CHROMIUM CORONARY STENT SYSTEM. THIS DEVICE IS INDICATED FOR IMPROVING LUMINAL DIAMETER IN PATIENTS WITH SYMPTOMATIC HEART DISEASE DUE TO DE NOVO LESIONS IN NATIVE CORONARY ARTERIES >=2.25 MM TO <=4.00 MM IN DIAMETER IN LESIONS <=28 MM INLENGTH.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p020004",
+    "recordId": "FDA:P020004:",
+    "regions": [
+      "BODY:aorta"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020004",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE EXCLUDER BIFURCATED ENDOPROSTHESIS.  THE EXCLUDER BIFURCATED ENDOPROSTHESIS IS INTENDED TO EXCLUDE THE ANEURYSM FROM THE BLOOD CIRCULATION IN PATIENTS DIAGNOSED WITH INFRARENAL ABDOMINAL AORTIC ANEURYSMS (AAA) DISEASE AND WHO HAVE APPROPRIATE ANATOMY AS DESCRIBED:  1) ADEQUATE ILIAC/FEMORAL ACCESS  2) INFRARENAL AORTIC NECK TREATMENT DIAMETER RANGE OF 19-26 MM AND A MINIMUM AORTIC NECK LENGTH OF 15 MM  3) PROXIMAL AORTIC NECK ANGULATION <= 60 DEGREES  4) ILIAC ARTERY TREATMENT DIAMETER RANGE OF 8-13.5 MM AND ILIAC DISTAL VESSEL SEAL ZONE LENGTH OF AT LEAST 10 MM.  THE AORTIC AND ILIAC EXTENDER ENDOPROSTHESES ARE INTENDED TO BE USED AFTER DEPLOYMENT OF THE EXCLUDER BIFURCATED ENDOPROSTHESIS.  THESE EXTENSIONS ARE INTENDED TO BE USED WHEN ADDITIONAL LENGTH AND/OR SEALING FOR ANEURISMAL EXCLUSION IS DESIRED.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p100040",
+    "recordId": "FDA:P100040:",
+    "regions": [
+      "BODY:aorta"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100040",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE FALIANT THORACIC STENT GRAFT WITH THE CAPTIVA DELIVERY SYSTEM.  THE DEVICE IS INDICATED FOR THE ENDOVASCULAR REPAIR OF FUSIFORM AND ANEURYSMS/PENETRATING ULCERS OF THE DESCENDING THORACIC AORTA IN PATIENTS HAVING APPROPRIATE ANATOMY, INCLUDING: 1) ILIAC/FEMORAL ACCESS VESSLE MORPHOLOGY THAT IS COMPATIBLE WITH VASCULAR ACCESS TECHNIQUES, DEVICES, AND/OR ACCESSORIES; 2) NON-ANEURYSMAL AORTIC DIAMETER IN THE RANGE OF 18-42 MM; AND 3) NON-ANEURYSMAL AORTIC PROXIMAL AND DISTAL NECK LENGTHS >=20 MM.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p030047",
+    "recordId": "FDA:P030047:",
+    "regions": [
+      "BODY:carotid"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE CORDIS PRECISE NITINOL STENT SYSTEM (5.5 FR AND 6.0 FR SIZES, OVER-THE-WIRE CONFIGURATION).  THIS DEVICE IS INDICATED FOR USE IN CONJUNCTION WITH THE ANGIOGUARD XP EMBOLI CAPTURE GUIDEWIRE FOR THE TREATMENT OF PATIENTS AT HIGH RISK FOR ADVERSE EVENTS FROM CAROTID ENDARTERECTOMY (DEFINED IN THE IFU) WHO REQUIRE CAROTID REVASCULARIZATION AND MEET THE CRITERIA OUTLINED BELOW: 1) PATIENTS WITH NEUROLOGICAL SYMPTOMS AND >=50% STENOSIS OF THE COMMON OR INTERNAL CAROTID ARTERY BY ULTRASOUND OR ANGIOGRAM OR PATIENTS WITHOUT NEUROLOGICAL SYMPTOMS AND >=80% STENOSIS OF THE COMMON OR INTERNAL CAROTID ARTERY BY ULTRASOUND OR ANGIOGRAM, AND 2) PATIENTS MUST HAVE A VESSEL DIAMETER OF 4-9MM AT THE TARGET LESION.  THE VESSEL DISTAL TO THE TARGET LESION MUST BE WITHIN THE RANGE OF 3MM AND 7.5MM TO ALLOW FOR PLACEMENT OF THE ANGIOGUARD XP EMBOLI CAPTURE GUIDEWIRE.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p010003",
+    "recordId": "FDA:P010003:",
+    "regions": [
+      "BODY:aorta",
+      "BODY:carotid"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE BIOFLUE SURGICAL ADHESIVE.  THIS DEVICE IS INDICATED FOR USE AS AN ADJUNCT TO STANDARD METHODS OF ACHIEVING HEMOSTASIS (SUCH AS SUTURES AND STAPLES) IN ADULT PATIENTS IN OPEN SURGICAL REPAIR OF LARGE VESSELS (SUCH AS AORTA, FEMORAL AND CAROTID ARTERIES).",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p100022",
+    "recordId": "FDA:P100022:",
+    "regions": [
+      "BODY:lower-limb-vessels"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100022",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE ZILVER PTX DRUG-ELUTING PERIPHERAL STENT. THIS DEVICE IS INDICATED FOR IMPROVING LUMINAL DIAMETER FOR THE TREATMENT OF DE NOVO OR RESTENOTIC SYMPTOMATIC LESIONS IN NATIVE VASCULAR DISEASE OF THE ABOVE-THE-KNEE FEMOROPOPLITEAL ARTERIES HAVING REFERENCE VESSEL DIAMETERS FROM 4 MM TO 9 MM AND TOTAL LESION LENGTHS UP TO 140 MM PER LIMB AND 280 MM PER PATIENT.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p080032",
+    "recordId": "FDA:P080032:",
+    "regions": [
+      "BODY:lung"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080032",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE ALAIR BRONCHIAL THERMOPLASTY SYSTEM.  THE DEVICE IS INDICATED FOR THE TREATMENT OF SEVERE PERSISTENT ASTHMA IN PATIENT 18 YEARS AND OLDER WHOSE ASTHMA IS NOT WELL CONTROLLED WITH INHALED CORTICOSTEROIDS AND LONG ACTING BETA AGONISTS.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p160013",
+    "recordId": "FDA:P160013:",
+    "regions": [
+      "BODY:lung"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "Approval for the OCS Lung System, indicated for the preservation of standard criteria donor lungs in a near physiologic, ventilated, and perfused state for double lung transplantation.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p180002",
+    "recordId": "FDA:P180002:",
+    "regions": [
+      "BODY:lung"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "Approval of the Pulmonx Zephyr® Endobronchial Valve System.  The device is an implantable bronchial valve indicated for the bronchoscopic treatment of adult patients with hyperinflation associated with severe emphysema in regions of the lung that have little to no collateral ventilation.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p080030",
+    "recordId": "FDA:P080030:",
+    "regions": [
+      "BODY:eye"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080030",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE GLAUKOS ISTENT® TRABECULAR MICRO-BYPASS STENT (MODELS: GTS-100R, GTS-100L) AND INSERTER (GTS-L00I).  THIS DEVICE IS INDICATED FOR USE IN CONJUNCTION WITH CATARACT SURGERY FOR THE REDUCTION OFINTRAOCULAR PRESSURE (IOP) IN ADULT PATIENTS WITH MILD TO MODERATE OPEN-ANGLE GLAUCOMA CURRENTLY TREATED WITH OCULAR HYPOTENSIVE MEDICATION.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p000030",
+    "recordId": "FDA:P000030:",
+    "regions": [
+      "BODY:cornea"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000030",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE FOCUS NIGHT AND DAY (LOTRAFILCON A) SOFT CONTACT LENSES.  THE DEVICE IS INDICATED FOR THE OPTICAL CORRECTION OF REFRACTIVE AMETROPIA (MYOPIA AND HYPEROPIA) IN PHAKIC OR APHAKIC PERSONS WITH NON-DISEASED EYES WITH UP TO APPROXIMATELY 1.50 DIOPTERS OF ASTIGMATISM.  THE LENSES MAY BE PRESCRIBED FOR EXTENDED WEAR FOR 1 TO 7 DAYS BETWEEN REMOVALS FOR CLEANING AND DISINFECTION OR DISPOSAL OF THE LENS, AS RECOMMENDED BY THE EYE CARE PROFESSIONAL.  LENSES SHOULD BE REPLACED EVERY MONTH AND WHEN REMOVED BETWEEN REPLACEMENT TIMES MUST BE CLEANED AND DISINFECTED WITH A CHEMICAL, NOT HEAT, DISINFECTION SYSTEM BEFORE REINSERTION.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p010018",
+    "recordId": "FDA:P010018:",
+    "regions": [
+      "BODY:cornea"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010018",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE REFRACTEC VIEWPOINT CK SYSTEM.  THIS DEVICE IS INDICATED FOR:  TEMPORARY REDUCTION OF SPHERICAL HYPEROPIA IN PATIENTS WHO HAVE 0.75 D TO 3.25 D OF CYCLOPLEGIC SPHERICAL HYPEROPIA, LESS THAN OR EQUAL TO 0.75 D OF REFRACTIVE ASTIGMATISM (MINUS CYLINDER FORMAT), A CYCLOPLEGIC SPHERICAL EQUIVALENT OF 0.75 D TO 3.00 D, AND ARE 40 YEARS OF AGE OR GREATER WITH A DOCUMENTED STABILITY OF REFRACTION FOR THE PRIOR 12 MONTH, AS DEMONSTRATED BY A CHANGE OF LESS THAN 0.50 D IN SPHERICAL AND CYLINDRICAL COMPONENTS OF THE MANIFEST REFRACTION.  THE MAGNITUDE OF CORRECTION WITH THIS TREATMENT DIMINISHES OVER TIME, WITH SOME PATIENTS RETAINING SOME OR ALL OF THEIR INTENDED REFRACTIVE CORRECTION.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p000046",
+    "recordId": "FDA:P000046:",
+    "regions": [
+      "BODY:cornea",
+      "BODY:lens",
+      "BODY:retina"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR REFERENCE RIGHTS TO P810025, AND FOR STAAR SURGICAL COMPANY TO DISTRIBUTE THE SODIUM HYALURONATE UNDER THE TRADENAME STAARVISC(TM) II.  THE DEVICE IS INDICATED FOR USE DURING SURGERY IN THE ANTERIOR AND POSTERIOR SEGMENTS OF THE HUMAN EYE.  PROCEDURES INCLUDE: CATARACT EXTRACTION, INTRAOCULAR LENS (IOL) IMPLANTATION, CORNEAL TRANSPLANTATION SURGERY, GLAUCOMA FILTERING SURGERY AND SURGICAL PROCEDURES TO REATTACH THE RETINA.  STAARVISC9TM) II IS DESIGNED TO CREATE AND MAINTAIN ANTERIOR CHAMBER DEPTH AND VISIBILITY, PROTECT CORNEAL ENDOTHELIAL CELLS AND OTHER INTRAOCULAR TISSUES, MINIMIZE INTERATION BETWEEN TISSUES DURING SURGICAL MANIPULATION, AND ACT AS A VITREOUS SUBSTITUTE DURING RETINAL REATTACHMENT SURGERY.  STAARVISC(TM) II ALSO PRESERVES TISSUE INTEGRITY AND GOOD VISIBILITY WHEN USED TO FILL THE ANTERIOR AND POSTERIOR SEGMENTS OF THE EYE FOLLOWING OPEN SKY PROCEDURES.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p010059",
+    "recordId": "FDA:P010059:",
+    "regions": [
+      "BODY:lens"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010059",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE MORCHER CAPSULAR TENSION RING, TYPES 14, 14A AND 14C.  THE DEVICE IS INDICATED FOR THE STABILIZATION OF THE CRYSTALLINE LENS CAPSULE IN THE PRESENCE OF WEAK OR PARTIALLY ABSENT ZONULES IN ADULT PATIENTS UNDERGOING CATARACT EXTRACTION WITH INTRAOCULAR LENS IMPLANTATION.  CONDITIONS ASSOCIATED WITH WEAK OR PARTIALLY ABSENT ZONULES MAY INCLUDE PRIMARY ZONULAR WEAKNESS (E.G., MARFAN'S SYNDROME), SECONDARY ZONULAR WEAKNESS (E.G., TRAUMA OR VITRECTOMY) CASES OF ZONULYSIS, CASES OF PSEUDOEXFOLIATION AND CASES OF MARCHESANI'S SYNDROME.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p030002",
+    "recordId": "FDA:P030002:",
+    "regions": [
+      "BODY:lens"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE CRYSTALENS MODEL AT-45 ACCOMMODATING POSTERIOR CHAMBER IOL.  THE DEVICE IS INDICATED FOR PRIMARY IMPLANTATION IN THE CAPSULAR BAG OF THE EYE FOR THE VISUAL CORRECTION OF APHAKIA IN ADULT PATIENTS IN WHOM A CATARACTOUS LENS HAS BEEN REMOVED AND IS INTENDED TO PROVIDE NEAR, INTERMEDIATE AND DISTANCE VISION WITHOUT SPECTACLES.  THE CRYSTALENS IOL PROVIDES APPROXIMATELY ONE DIOPTER OF MONOCULAR ACCOMMODATION.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p000025",
+    "recordId": "FDA:P000025:",
+    "regions": [
+      "BODY:ear"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000025",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE MED-EL COMBI 40+ COCHLEAR IMPLANT SYSTEM (COMBI 40+).  THE DEVICE IS INTENDED TO PROVIDE THE OPPORTUNITY TO DETECT AND RECOGNIZE AUDITORY INFORMATION THROUGH ELECTRICAL STIMULATION OF THE AUDITORY NERVE FOR SERVER TO PROFOUNDLY HEARING-IMPAIRED INDIVIDUALS WHO OBTAIN LITTLE OR NO BENEFIT FROM CONVENTIONAL ACOUSTIC AMPLIFICATION IN THE BEST-AIDED CONDITION.  THE COMBI 40+ IS INDICATED FOR THE FOLLOWING PATIENT POPULATIONS:  ADULTS OF EIGHTEEN (18) YEARS OF AGE OR OLDER WHO HAVE BILATERAL, SENSORINEURAL HEARING IMPAIRMENT AND OBTAIN LIMITED BENEFIT FROM APPROPRIATELY FITTED BINAURAL HEARING AIDS.  THESE INDIVIDUALS TYPICALLY DEMONSTRATE BILATERAL SEVERE TO PROFOUND SENSORINEURAL HEARING LOSS DETERMINED BY A PURE TONE AVERAGE OF 70 DB OR GREATER AT 500 HZ, 1000 HZ, AND 2000 HZ.  LIMITED BENEFIT FROM AMPLIFICATION IS DEFINED BY TEST SCORES OF 40% CORRECT OR LESS IN BEST-AIDED LISTENING CONDITION ON CD RECORDED TESTS OF OPEN-SET SENTENCE RECOGNITION HEARING IN NOISE TEST (HINT) SENTENCES.  CHILDREN AGED EIGHTEEN (18) MONTHS TO SEVENTEEN (17) YEARS ELEVEN (11) MONTHS MUST DEMONSTRATE A PROFOUND, BILATERAL SENSORINEURAL HEARING LOSS WITH THRESHOLDS OF 90 DB OR GREATER AT 1000HZ.  IN YOUNGER CHILDREN, LITTLE OR NO BENEFIT IS DEFINED BY LACK OF PROGRESS IN THE DEVELOPMENT OF SIMPLE AUDITORY SKILLS IN CONJUNCTION WITH APPROPRIATE AMPLIFICATION AND PARTICIPATION IN INTENSIVE AURAL HABILITATION OVER A THREE (3) TO SIX (6) MONTH PERIOD.  IN OLDER CHILDREN, LACK OF AIDED BENEFIT IS DEFINED AS < 20% CORRECT ON THE MULTI-SYLLABIC LEXICAL NEIGHBORHOOD TEST (MLNT) OR LEXICAL NEIGHBORHOOD TEST (LNT), DEPENDING UPON THE CHILD'S COGNITIVE ABILITY AND LINGUISTIC SKILLS.  A THREE (3) TO SIX (6) MONTH HEARING AID TRIAL IS REQUIRED FOR CHILDREN WITHOUT PREVIOUS EXPERIENCE WITH HEARING AIDS.  RADIOLOGICAL EVIDENCE OF COCHLEAR OSSIFICATION MAY JUSTIFY A SHORTER TRIAL WITH AMPLIFICATION.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p090018",
+    "recordId": "FDA:P090018:",
+    "regions": [
+      "BODY:ear"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE ESTEEM.  THE ESTEEM IS INTENDED TO ALLEVIATE HEARING LOSS IN PATIENTS BY REPLICATING THE OSSICULAR CHAIN AND PROVIDING ADDITIONAL GAIN.  THE ESTEEM IS INDICATED FOR PATIENTS WITH HEARING LOSS THAT MEET THE FOLLOWING CRITERIA: 1) 18 YEARS OF AGE OR OLDER;2) STABLE BILATERAL SENSORINEURAL HEARING LOSS;3) MODERATE TO SEVERE SENSORINEURAL HEARING LOSS DEFINED BY PURE TONE AVERAGE (PTA);4) UNAIDED SPEECH DISCRIMINATION TEST SCORE GREATER THAN OR EQUAL TO 40%;5) NORMALLY FUNCTIONING EUSTACHIAN TUBE;6) NORMAL MIDDLE EAR ANATOMY;7) NORMAL TYMPANIC MEMBRANE;8) ADEQUATE SPACE FOR ESTEEM IMPLANT DETERMINED VIA A HIGH RESOLUTION CT SCAN; AND9) MINIMUM 30 DAYS OF EXPERIENCE WITH APPROPRIATELY FIT HEARING AIDS.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p000023",
+    "recordId": "FDA:P000023:",
+    "regions": [
+      "BODY:dental"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000023",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE TMJ FOSSA-EMINENCE/CONDYLAR PROSTHESIS SYSTEM.  THE DEVICE IS INDICATED FOR RECONSTRUCTION OF THE TEMPOROMANDIBULAR JOINT.  PATIENTS SHOULD BE CONSIDERED IF THEY HAVE ONE OR MORE OF THE FOLLOWING CONDITIONS:  1) INFLAMMATORY ARTHRITIS INVOLVING THE TEMPOROMANDIBULAR JOINT NOT RESPONSIVE TO OTHER MODALITIES OF TREATMENT  2) RECURRENT FIBROUS AND/OR BONY ANKYLOSIS NOT RESPONSIVE TO OTHER MODALITIES OF TREATMENT  3) FAILED TISSUE GRAFT  4) FAILED ALLOPLASTIC JOINT RECONSTRUCTION  5) LOSS OF VERTICAL MANDIBULAR HEIGHT AND/OR OCCLUSAL RELATIONSHIP DUE TO BONE RESORPTION, TRAUMA, DEVELOPMENTAL RELATIONSHIP DUE TO BONE RESORPTION, TRAUMA, DEVELOPMENTAL ABNORMALITY, OR PATHOLOGIC LESION.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p040013",
+    "recordId": "FDA:P040013:",
+    "regions": [
+      "BODY:dental"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040013",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE GEM 21S (GROWTH-FACTOR ENHANCED MATRIX).  THE DEVICE IS INDICATED TO TREAT THE FOLLOWING PERIODONTALLY RELATED DEFECTS: 1) INTRABONY PERIODONTAL DEFECTS 2) FURCATION PERIODONTAL DEFECTS 3) GINGIVAL RECESSION ASSOCIATED WITH PERIODONTAL DEFECTS.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p170029",
+    "recordId": "FDA:P170029:",
+    "regions": [
+      "BODY:dental"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170029",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "Approval for The CALCIVIS Imaging System.  The device is intended to be used by dental healthcare professionals on patients (6 years and older) with, or at risk of developing, demineralization associated with caries lesions, on accessible coronal tooth surfaces.The CALCIVIS Imaging System is indicated for use to provide images of active demineralization on tooth surfaces, as an aid to the assessment, diagnosis and treatment planning of demineralization associated with caries lesions.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p100049",
+    "recordId": "FDA:P100049:",
+    "regions": [
+      "BODY:esophagus"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE LINX REFLUX MANAGEMENT SYSTEM.  THIS DEVICE IS INDICATED FOR PATIENTS DIAGNOSED WITH GASTROESOPHAGEAL REFLUX DISEASE (GERD) AS DEFINED BY ABNORMAL PH TESTING, AND WHO CONTINUE TO HAVE CHRONIC GERD SYMPTOMS DESPITE MAXIMUM THERAPY FOR THE TREATMENT OF REFLUX.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p000008",
+    "recordId": "FDA:P000008:",
+    "regions": [
+      "BODY:stomach"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE LAP-BAND. ADJUSTABLE GASTRIC BANDING (LAGB.) SYSTEM.  THE DEVICE IS INDICATED FOR USE IN WEIGHT REDUCTION FOR SEVERELY OBESE PATIENTS WITH A BODY MASS INDEX (BMI) OF AT LEAST 40 OR A BMI OF AT LEAST 35 WITH ONE OR MORE SEVERE COMORBID CONDITIONS, OR THOSE WHO ARE 100 LBS. OR MORE OVER THEIR ESTIMATED IDEAL WEIGHT ACCORDING TO THE 1983 METROPOLITAN LIFE INSURANCE TABLES (USE THE MIDPOINT FOR MEDIUM FRAME).  IT IS INDICATED FOR USE ONLY IN SEVERELY OBESE ADULT PATIENTS WHO HAVE FAILED MORE CONSERVATIVE WEIGHT-REDUCTION ALTERNATIVES, SUCH AS SUPERVISED DIET, EXERCISE AND BEHAVIOR MODIFICATION PROGRAMS.  PATIENTS WHO ELECT TO HAVE THIS SURGERY MUST MAKE THE COMMITMENT TO ACCEPT SIGNIFICANT CHANGES IN THEIR EATING HABITS FOR THE REST OF THEIR LIVES.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p110015",
+    "recordId": "FDA:P110015:",
+    "regions": [
+      "BODY:stomach"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P110015",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL  FOR THE GASTRIC EMPTYING BREATH TEST (GEBT). THIS DEVICE, TO BE USED WITH THE GEBT TEST MEAL, IS INTENDED FOR USE IN THE MEASUREMENT OF THE RATE OF GASTRIC EMPTYING OF SOLIDS AND AS AN AID IN THE DIAGNOSIS OF DELAYED GASTRIC EMPTYING (GASTROPARESIS) IN ADULT HUMANS WHO ARE SYMPTOMATIC FOR GASTOPARESIS. FOR THESE PURPOSES, THE TEST SYSTEM UTILIZES A GAS ISOTOPE RATIO MASS SPECTROMETER (GIRMS) FOR THE MEASUREMENT OF THE RATIO OF 13CO2 TO 12CO2 IN BREATH SAMPLES. THE GEBT PROCEDURE SHOULD BE ADMINISTERED UNDER SUPERVISION OF A HEALTH CARE PROFESSIONAL ALTHOUGH NO SPECIALIZED FACILITIES OR SPECIALLY LICENSED PERSONNEL ARE REQUIRED.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p080025",
+    "recordId": "FDA:P080025:",
+    "regions": [
+      "BODY:colon"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080025",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE MEDTRONIC INTERSTIM THERAPY SYSTEM.  THE DEVICE IS INDICATED FOR THE TREATMENT OF CHRONIC FECAL INCONTINENCE IN PATIENTS WHO HAVE FAILED OR COULD NOT TOLERATE MORE CONSERVATIVE TREATMENTS.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p100014",
+    "recordId": "FDA:P100014:",
+    "regions": [
+      "BODY:colon"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100014",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE SOLESTA.  THIS DEVICE IS INDICATED FOR THE TREATMENT OF FECAL INCONTINENCE IN PATIENTS 18 YEARS AND OLDER WHO HAVE FAILED CONSERVATIVE THERAPY (E.G., DIET, FIBER THERAPY, ANTI-MOTILITY MEDICATIONS).",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p040027",
+    "recordId": "FDA:P040027:",
+    "regions": [
+      "BODY:liver"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040027",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE GORE VIATORR TIPS ENDOPROSTHESIS.  THE DEVICE IS INDICATED FOR USE IN DE NOVO AND REVISION TREATMENT OF PORTAL HYPERTENSION AND ITS COMPLICATIONS SUCH AS VARICEAL BLEEDING, GASTROPATHY, ASCITES, AND/OR HEPATIC HYDROTHORAX.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p200029",
+    "recordId": "FDA:P200029:",
+    "regions": [
+      "BODY:liver"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P200029",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "Approval for TheraSphereTM. This device is indicated for use as selective internal radiation therapy (SIRT) for local tumor control of solitary tumors (1-8 cm in diameter), in patients with unresectable hepatocellular carcinoma (HCC), Child-Pugh Score A cirrhosis, well-compensated liver function, no macrovascular invasion, and good performance status.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p200031",
+    "recordId": "FDA:P200031:",
+    "regions": [
+      "BODY:liver"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P200031",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "Approval for Organ Care System (OCS) Liver for the indication of: The TransMedics® Organ Care System (OCS) Liver is a portable extracorporeal liver perfusion and monitoring system indicated for preservation and monitoring of hemodynamics and metabolic function which allows for ex-vivo assessment of liver allografts from donors after brain death (DBD) or liver allografts from donors after circulatory death (DCD) <=55 years old and with <=30 mins of warm ischemic time, macrosteatosis <=15%, in a near-physiologic, normothermic and functioning state intended for a potential transplant recipient.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p990065",
+    "recordId": "FDA:P990065:",
+    "regions": [
+      "BODY:liver"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P990065",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR SIR-SPHERES.  THE DEVICE IS INDICATED FOR THE TREATMENT OF UNRESECTABLE METASTATIC LIVER TUMORS FROM PRIMARY COLORECTAL CANCER WITH ADJUVANT INTRA-HEPATIC ARTERY CHEMOTHERAPY (IHAC) OF FUDR (FLOXURIDINE).",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p060006",
+    "recordId": "FDA:P060006:",
+    "regions": [
+      "BODY:kidney"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060006",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE BOSTON SCIENTIFIC EXPRESS SD RENAL MONORAIL PREMOUNTED STENT SYSTEM.  THE DEVICE IS INDICATED AS AN ADJUNCT TO PERCUTANEOUS TRANSLUMINAL RENAL ANGIOPLASTY (PTRA) OF A SINGLE DE NOVO OR RESTENOTIC ATHEROSCLEROTIC LESION (<=15 MM IN LENGTH) OF THE RENAL ARTERY, LOCATED WITHIN 5 MM OF THE OPACIFIED AORTIC LUMEN, WITH A REFERENCE VESSEL DIAMETER OF 4.0 ¿ 7.0 MM TO ASSIST IN THE MAINTENANCE OF VESSEL PATENCY.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p220023",
+    "recordId": "FDA:P220023:",
+    "regions": [
+      "BODY:kidney"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "The Paradise Ultrasound Renal Denervation System is indicated to reduce blood pressure as an adjunctive treatment in hypertension patients in whom lifestyle modifications and antihypertensive medications do not adequately control blood pressure.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p170001",
+    "recordId": "FDA:P170001:",
+    "regions": [
+      "BODY:bladder"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170001",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "Approval for the Virtis Sacral Neuromodulation System. This device is indicated for the treatment of urinary retention and the symptoms of overactive bladder, including urinary urge incontinence and significant symptoms of urgency-frequency alone or in combination, in patients who have failed or could not tolerate more conservative treatments.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p050027",
+    "recordId": "FDA:P050027:",
+    "regions": [
+      "BODY:bladder"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P050027",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE KARL STORZPHOTODYNAMIC DIAGNOSTIC D-LIGHT C (PDD) SYSTEM. THE KARL STORZ PHOTODYNAMIC DIAGNOSTIC D-LIGHTC (PDD) SYSTEM IN COMBINATION WITH THE OPTICAL IMAGING DRUG CYSVIEW(HEXAMINOLEVULINATE HYDROCHLORIDE) FOR INTRAVESICAL SOLUTION IS INDICATED FOR PHOTODYNAMIC BLUELIGHT CYSTOSCOPY, AS AN ADJUNCT TO WHITE LIGHT CYSTOSCOPY FOR THE DETECTION OF NON-MUSCLE INVASIVEPAPILLARY CANCER OF THE BLADDER IN PATIENTS SUSPECTED OR KNOWN TO HAVE THE LESION ON THE BASIS OF A PRIOR CYSTOSCOPY.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p170023",
+    "recordId": "FDA:P170023:",
+    "regions": [
+      "BODY:urethra"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170023",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "Approval for the Bulkamid Urethral Bulking System.  The device is indicated for urethral injection for the treatment of stress urinary incontinence (SUI) due to intrinsic sphincter deficiency (ISD) in adult women who have SUI or stress predominant mixed incontinence.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p210020",
+    "recordId": "FDA:P210020:",
+    "regions": [
+      "BODY:urethra"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P210020",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "Approval of the Optilume® Urethral Drug Coated Balloon.  The device  is used to treat patients with obstructive urinary symptoms associated with anterior urethral stricture. It is designed to be used in adult males for urethral strictures of less than or equal to 3 cm in length.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p010055",
+    "recordId": "FDA:P010055:",
+    "regions": [
+      "BODY:prostate"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010055",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE PROSTALUND CORETHERM MICROWAVE THERMOTHERAPY SYSTEM.  THE PROSTALUND CORETHERM IS A NON-SURGICAL, MINIMALLY INVASIVE DEVICE INTENDED TO RELIEVE SYMPTOMS ASSOCIATED WITH SYMPTOMATIC BENIGN PROSTATIC HYPERPLASIA (BPH) BYE PROSTALUND FEEDBACK TREATMENT (PLFT), AND IS INDICATED FOR MEN WITH PROSTATE SIZE OF 30 TO 100G AND PROSTATIC URETHRA LENGTH >= 35 MM.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p060010",
+    "recordId": "FDA:P060010:",
+    "regions": [
+      "BODY:prostate"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060010",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE SPANNER TEMPORARY PROSTATIC STENT.  THE DEVICE IS INTENDED FOR TEMPORARY USE (UP TO 30 DAYS) TO MAINTAIN URINE FLOW AND ALLOW VOLUNTARY URINATION IN PATIENTS FOLLOWING MINIMALLY INVASIVE TREATMENT FOR BENIGN PROSTATIC HYPERPLASIA (BPH) AND AFTER INITIAL POST-TREATMENT CATHETERIZATION.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p000006",
+    "recordId": "FDA:P000006:",
+    "regions": [
+      "BODY:penis"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000006",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE MENTOR ALPHA I INFLATABLE PENILE PROSTHESIS.  THIS DEVICE IS INDICATED FOR MALE PATIENTS SUFFERING FROM ERECTILE DYSFUNCTION (IMPOTENCE) WHO ARE CONSIDERED TO BE CANDIDATES FOR IMPLANTATION OF A PENILE PROSTHESIS.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p000040",
+    "recordId": "FDA:P000040:",
+    "regions": [
+      "BODY:uterus"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE HYDRO THERMABLATOR(R) ENDOMETRIAL ABLATION SYSTEM.  THE DEVICE IS INTENDED TO ABLATE THE ENDOMETRIAL LINING OF THE UTERUS IN PREMENOPAUSAL WOMEN WITH MENORRHAGIA (EXCESSIVE UTERINE BLEEDING) DUE TO BENIGN CAUSES FOR WHOM CHILD BEARING IS COMPLETE.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p040003",
+    "recordId": "FDA:P040003:",
+    "regions": [
+      "BODY:uterus"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040003",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE EXABLATE 2000 SYSTEM.  THE DEVICE IS INDICATED FOR ABLATION OF UTERINE FIBROID TISSUE IN PRE-OR PERI-MENOPAUSAL WOMEN WITH SYMPTOMATIC UTERINE FIBROIDS WHO DESIRE A UTERINE SPARING PROCEDURE.  PATIENTS MUST HAVE A UTERINE SIZE OF LESS THAN 24 WEEKS AND HAVE COMPLETED CHILD BEARING.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p240015",
+    "recordId": "FDA:P240015:",
+    "regions": [
+      "BODY:uterus"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P240015",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "Approval for the Womed Leaf® Resorbable Adhesion Barrier is intended to reduce the reoccurrence and severity of post-surgical adhesion formation inside the uterus. It is indicated for adult women undergoing hysteroscopic surgery for symptomatic moderate to severe intrauterine adhesions.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-k260007",
+    "recordId": "FDA:K260007",
+    "regions": [
+      "BODY:vagina"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260007.pdf",
+    "sourceSha": "f63853830d8fbf04a94e368fa7e4703a01870e78ffa24b5b149ce20da77df195",
+    "sourceField": "PDF indications for use",
+    "sourceText": "personal lubricants designed for vaginal application to moisturize and lubricate",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22",
+    "textExtraction": "Transcribed short excerpt; whitespace normalized; page checked against FDA PDF"
+  },
+  {
+    "familyId": "source-fda-p020056",
+    "recordId": "FDA:P020056:",
+    "regions": [
+      "BODY:breast"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020056",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE INAMED SILICONE-FILLED BREAST IMPLANTS.  THIS DEVICE IS INDICATED FOR BREAST AUGMENTATION FOR WOMEN AT LEAST 22 YEARS OLD AND FOR BREAST RECONSTRUCTION FOR WOMEN OF ANY AGE.  BREAST AUGMENTATION INCLUDES PRIMARY BREAST AUGMENTATION TO INCREASE THE BREAST SIZE, AS WELL AS REVISION SURGERY TO CORRECT OR IMPROVE THE RESULT OF A PRIMARY BREAST AUGMENTATION SURGERY.  BREAST RECONSTRUCTION INCLUDES PRIMARY RECONSTRUCTION TO REPLACE BREAST TISSUE THAT HAS BEEN REMOVED DUE TO CANCER OR TRAUMA OR THAT HAS FAILED TO DEVELOP PROPERLY DUE TO A SEVERE BREAST ABNORMALITY.  BREAST RECONSTRUCTION ALSO INCLUDES REVISION SURGERY TO CORRECT OR IMPROVE THE RESULT OF A PRIMARY BREAST RECONSTRUCTION SURGERY.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p080003",
+    "recordId": "FDA:P080003:",
+    "regions": [
+      "BODY:breast"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE SELENIA DIMENSIONS 3D SYSTEM.  THIS DEVICE IS INDICATED TO GENERATE DIGITAL MAMMOGRAPHIC IMAGES THAT CAN BE USED FOR SCREENING AND DIAGNOSIS OF BREAST CANCER.  THE SELENIA DIMENSIONS (2D OR 3D) SYSTEM IS INTENDED FOR USE IN THE SAME CLINICAL APPLICATIONS AS 2D MAMMOGRAPHY SYSTEMS FOR SCREENING MAMMOGRAMS.  SPECIFICALLY, THE SELENIA DIMENSIONS SYSTEM CAN BE USED TO ACQUIRE 2D DIGITAL MAMMOGRAMS AND 3D MAMMOGRAMS.  THE SCREENING EXAMINATION WILL CONSIST OF A 2D IMAGE SET OR A 2D AND 3D IMAGE SET.  THE SELENIA DIMENSIONS SYSTEM MAY ALSO BE USED FOR ADDITIONAL DIAGNOSTIC WORKUP OF THE BREAST.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p110006",
+    "recordId": "FDA:P110006:",
+    "regions": [
+      "BODY:breast"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P110006",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE SOMO-V:  AUTOMATED BREAST ULTRASOUND SYSTEM (ABUS). THIS DEVICE IS INDICATED AS AN ADJUNCT TO MAMMOGRAPHY FOR BREAST CANCER SCREENING IN ASYMPTOMATIC WOMEN FOR WHOM SCREENINGMAMMOGRAPHY FINDINGS ARE NORMAL OR BENIGN (BI-RADS ASSESSMENT CATEGORY 1 OR 2), WITH DENSE BREAST PARENCHYMA (BI-RADS COMPOSITION/DENSITY 3 OR 4) AND HAVE NOT HAD PREVIOUS CLINICALBREAST INTERVENTION. THE DEVICE IS INTENDED TO INCREASE BREAST CANCER DETECTION IN THE DESCRIBED PATIENT POPULATION.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p050052",
+    "recordId": "FDA:P050052:",
+    "regions": [
+      "BODY:skin"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P050052",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR RADIESSE.  THIS DEVICE IS INDICATED FOR SUBDERMAL IMPLANTATION FOR THE CORRECTION OF MODERATE TO SEVERE FACIAL WRINKLES AND FOLDS, SUCH AS NASOLABIAL FOLDS.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p000013",
+    "recordId": "FDA:P000013:",
+    "regions": [
+      "BODY:hip"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE OSTEONICS ABC SYSTEM AND TRIDENT SYSTEM.  THESE DEVICES ARE INDICATED FOR PATIENTS REQUIRING PRIMARY TOTAL HIP ARTHROPLASTY DUE TO PAINFUL DISABLING JOINT DISEASE OF THE HIP RESULTING FROM NON-INFLAMMATORY DEGENERATIVE ARTHRITIS (OSTEOARTHRITIS, AVASCULAR NECROSIS, TRAUMATIC ARTHRITIS, SLIPPED CAPITAL EPIPHYSIS, PELVIC FRACTURE, FEMORAL FRACTURE, FAILED FRACTURE FIXATION, OR DIASTROPHIC VARIANT).",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p040033",
+    "recordId": "FDA:P040033:",
+    "regions": [
+      "BODY:hip"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE BIRMINGHAM HIP RESURFACING (BHR) SYSTEM.  THE BHR SYSTEM IS A SINGLE USE DEVICE INTENDED FOR HYBRID FIXATION: CEMENTED FEMORAL HEAD COMPONENT AND CEMENTLESS ACETABULAR COMPONENT.  THE HGR SYSTEM IS INTENDED FOR USE IN PATIENTS REQUIRING PRIMARY HIP RESURFACING ARTHROPLASTY DUE TO: 1) NON-INFLAMMATORY ARTHRITIS (DEGENERATIVE JOINT DISEASE) SUCH AS OSTEOARTHRITIS, TRAUMATIC ARTHRITIS, AVASCULAR NECROSIS, OR DYSPLASIA/DEVELOPMENTAL DISLOCATION OF THE HIP (DDH), OR 2) INFLAMMATORY ARTHRITIS SUCH AS RHEUMATOID ARTHRITIS.  THE BHR SYSTEM IS INTENDED FOR PATIENTS WHO, DUE TO THEIR RELATIVELY YOUNGER AGE OR INCREASED ACTIVITY LEVEL, MAY NOT BE SUITABLE FOR TRADITIONAL TOTAL HIP ARTHROPLASTY DUE TO AN INCREASED POSSIBILITY OF REQUIRING FUTURE IPSILATERAL HIP JOINT REVISION.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p010014",
+    "recordId": "FDA:P010014:",
+    "regions": [
+      "BODY:knee"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010014",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE OXFORD MENISCAL UNICOMPARTMENTAL KNEE SYSTEM (PHASE 3).  THE DEVICE IS INDICATED FOR USE IN PATIENTS WITH OSTEOARTHRITIS OR AVASCULAR NECROSIS LIMITED TO THE MEDIAL COMPARTMENT OF THE KNEE AND INTENDED TO BE IMPLANTED WITH BONE CEMENT.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p010029",
+    "recordId": "FDA:P010029:",
+    "regions": [
+      "BODY:knee"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR NUFLEXXA (1% SODIUM HYALURONATE).  THE DEVICE IS INDICATED FOR THE TREATMENT OF PAIN IN OSTEOARTHRITIS (OA) OF THE KNEE IN PATIENTS WHO HAVE FAILED TO RESPOND ADEQUATELY TO CONSERVATIVE NON-PHARMACOLOGIC THERAPY AND TO SIMPLE ANALGESICS (E.G., ACETAMINOPHEN).",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p060037",
+    "recordId": "FDA:P060037:",
+    "regions": [
+      "BODY:knee"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060037",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE ZIMMER NEXGEN LPS-FLEX MOBILE AND LPS-MOBILE BEARING KNEES.  THESE DEVICES ARE INDICATED FOR PATIENTS WITH SEVERE KNEE PAIN AND DISABILITY DUE TO OSTEOARTHRITIS; PRIMARY AND SECONDARY TRAUMATIC ARTHRITIS; AVASCULAR NECROSIS OF THE FEMORAL CONDYLE; OR MODERATE VALGUS, VARUS, OR FLEXION DEFORMITIES (I.E., VALGUS/VARUS DEFORMITY OF <=15 DEGREES, FIXED FLEXION DEFORMITY OF <=10 DEGREES).  THIS DEVICE IS INTENDED FOR CEMENTED USE ONLY.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-k260721",
+    "recordId": "FDA:K260721",
+    "regions": [
+      "BODY:shoulder"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260721.pdf",
+    "sourceSha": "4eed94c86314c3a77e198fdb506407efda379ea55581ecbce6c09d62b2a56e7b",
+    "sourceField": "PDF indications for use",
+    "sourceText": "Prosthetic replacement with the Tornier Perform Advanced Glenoid implants may be indicated to relieve severe pain or significant disability",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22",
+    "textExtraction": "Transcribed short excerpt; whitespace normalized; page checked against FDA PDF"
+  },
+  {
+    "familyId": "source-fda-p000057",
+    "recordId": "FDA:P000057:",
+    "regions": [
+      "BODY:hand"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000057",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "THIS DEVICE IS INDICATED FOR USE AS A TOTAL JOINT REPLACEMENT OF INDEX, LONG, RING, AND SMALL FINGER METACARPOPHALANGEAL JOINTS THAT EXHIBIT SYMPTOMS OF PAIN, LIMITED MOTION, OR INADEQUATE BONY ALIGNMENT (I.E., SUBLUXATION/DISLOCATION) SECONDRY TO ARTICULAR DESTRUCTION OR DEGENERATIVE DISEASE RELATED TO RHEUMATOID ARTHRITIS, LUPUS ERYTHEMATOSUS, OSTEOARTHRITIS, OR POST TRAUMATIC ARTHRITIS WHERE SOFT TISSUE RECONSTRUCTION CAN PROVIDE ADEQUATE STABILIZATION.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p950035",
+    "recordId": "FDA:P950035:",
+    "regions": [
+      "BODY:hand"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P950035",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "Approval for the Freehand System(R).  The system includes: implantable receiver-stimulator Model 202-1, implantable epimysial electrode set Model 203-1, surgical electrode positioning kit Model 207-1, patient external system Model 204-1, programming system Model 209-1.  The system is an upper extremity neuroprosthesis and is intended to improve a patient's ability to grasp, hold, and release objects.  The system is indicated for use in patients who: are tetraplegic due to C5 or C6 spinal cord injury (ASIA Classification); have adequate functional range of motion of the upper extremity; have intact lower motor neuron innervation of hte forearm and hand musculature; and are skeletally mature.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p960053",
+    "recordId": "FDA:P960053:",
+    "regions": [
+      "BODY:hand"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P960053",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE AVANTA BRAUN-CUTTER TRAPEZO-METACARPAL PROSTHESIS.  THIS DEVICE IS INDICATED FOR TOTAL JOINT REPLACEMENT IN SKELETALLY MATURE PATIENTS WITH PAIN OR INSTABILITY OF THE TRAPEZO-METACARPAL JOINT DUE TO TRAUMA, INFLAMMATORY OR DEGENERATIVE DISEASE OR REVISION OF PREVIOUS PROCEDURES, AS AN ALTERNATIVE TO ARTHRODESIS OR RECONSTRUCTIVE SURGERY.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p050050",
+    "recordId": "FDA:P050050:",
+    "regions": [
+      "BODY:ankle"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P050050",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE STAR ANKLE.  THE DEVICE IS INDICATED FOR USE AS A NON-CEMENTED IMPLANT TO REPLACE A PAINFUL ARTHRITIC ANKLE JOINT DUE TO OSTEOARTHRITIS, POST-TRAUMATIC ARTHRITIS OR RHEUMATOID ARTHRITIS.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p100006",
+    "recordId": "FDA:P100006:",
+    "regions": [
+      "BODY:ankle"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100006",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR AUGMENT® BONE GRAFT. THIS DEVICE IS INDICATED FOR USE AS AN ALTERNATIVE TO AUTOGRAFT IN ARTHRODESIS (I.E., SURGICAL FUSION PROCEDURES) OF THE ANKLE (TIBIOTALAR JOINT) AND/OR HINDFOOT (INCLUDING SUBTALAR, TALONAVICULAR, AND CALCANEOCUBOID JOINTS, ALONE OR IN COMBINATION), DUE TO OSTEOARTHRITIS, POST-TRAUMATIC ARTHRITIS, RHEUMATOID ARTHRITIS, PSORIATIC ARTHRITIS, AVASCULAR NECROSIS, JOINT INSTABILITY, JOINT DEFORMITY, CONGENITAL DEFECT, OR JOINT ARTHROPATHY IN PATIENTS WITH PREOPERATIVE OR INTRAOPERATIVE EVIDENCE INDICATING THE NEED FOR SUPPLEMENTAL GRAFT MATERIAL.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p040026",
+    "recordId": "FDA:P040026:",
+    "regions": [
+      "BODY:foot"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040026",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE ORTHOSPEC EXTRACORPOREAL SHOCK WAVE THERAPY DEVICE.  THE DEVICE IS INDICATED FOR THE TREATMENT OF PROXIMAL PLANTAR FASCIITIS WITH OR WITHOUT HEEL SPUR IN PATIENTS 18 YEARS OF AGE OR OLDER.  THE ORTHOSPEC EXTRACORPOREAL SHOCK WAVE THERAPY IS A NON-INVASIVE ALTERNATIVE METHOD FOR PATIENT WITH SYMPTOMS OF PROXIMAL PLANTAR FASCIITIS FOR 6 MONTHS OR MORE AND A HISTORY OF UNSUCCESSFUL CONSERVATIVE THERAPIES TO RELIEVE HEEL PAIN.  PROXIMAL PLANTAR FASCIITIS IS DEFINED AS HEEL PAIN IN THE AREA OF THE INSERTION OF THE PLANTAR FASCIA ON THE PLANTAR CALCANEAL TUBEROSITY.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p000058",
+    "recordId": "FDA:P000058:",
+    "regions": [
+      "BODY:vertebral"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000058",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE INFUSE BONE GRAFT/LT-CAGE LUMBAR TAPERED FUSION DEVICE.  THIS DEVICE IS INDICATED FOR SPINAL FUSION PROCEDURES IN SKELETALLY MATURE PATIENTS WITH DEGENERATIVE DISC DISEASE (DDD) AT ONE LEVEL FROM L4-S1.  DDD IS DEFINED AS DISCOGENIC BACK PAIN WITH DEGENERATION OF THE DISC CONFIRMED BY PATIENT HISTORY, FUNCTION DEFICIT AND/OR NEUROLOGICAL DEFICIT AND RADIOGRAPHIC STUDIES.  THESE DDD PATIENTS MAY ALSO HAVE UP TO GRADE I SPONDYLOLISTHESIS AT THE INVOLVED LEVEL.  INFUSE BONE GRAFT/LT-CAGE DEVICES ARE TO BE IMPLANTED VIA AN ANTERIOR OPEN OR AN ANTERIOR LAPAROSCOPIC APPROACH.  PATIENTS RECEIVING THE INFUSE BONE GRAFT/LT-CAGE LUMBAR TAPERED FUSION DEVICE SHOULD HAVE HAD AT LEAST SIX MONTHS OF NONOPERATIVE TREATMENT PRIOR TO TREATMENT WITH THE INFUSE BONE GRAFT/LT-CAGE DEVICE.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p060023",
+    "recordId": "FDA:P060023:",
+    "regions": [
+      "BODY:vertebral"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060023",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE BRYAN CERVICAL DISC.  THE DEVICE IS INDICATED IN SKELETALLY MATURE PATIENTS FOR RECONSTRUCTION OF THE DISC FROM C3-C7 FOLLOWING SINGLE-LEVEL DISCECTOMY FOR INTRACTABLE RADICULOPATHY AND/OR MYELOPATHY.THE BRYAN DEVICE IS IMPLANTED VIA AN OPEN ANTERIOR APPROACH. INTRACTABLE RADICULOPATHYAND/OR MYELOPATHY IS DEFINED AS ANY COMBINATION OF THE FOLLOWING: DISC HERNIATION WITHRADICULOPATHY. SPONDYLOTIC RADICULOPATHY, DISC HERNIATION WITH MYELOPATHY, OR SPONDYLOTICMYELOPATHY RESULTING IN IMPAIRED FUNCTION AND AT LEAST ONE CLINICAL NEUROLOGICAL SIGN ASSOCIATEDWITH THE CERVICAL LEVEL TO BE TREATED, AND NECESSITATING SURGERY AS DEMONSTRATED USING COMPUTEDTOMOGRAPHY (CT), MYELOGRAPHY AND CT, AND/OR MAGNETIC RESONANCE IMAGING (MR1). PATIENTSRECEIVING THE BRYAN CERVICAL DISC SHOULD HAVE FAILED AT LEAST SIX WEEKS OF NON-OPERATIVE TREATMENT PRIOR TO IMPLANTATION OF THE BRYAN CERVICAL DISC.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p140019",
+    "recordId": "FDA:P140019:",
+    "regions": [
+      "BODY:vertebral"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140019",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE I-FACTOR PEPTIDE ENHANCED BONE GRAFT. THIS COMBINATION PRODUCT IS INDICATED FOR USE IN SKELETALLY MATURE PATIENTS FOR RECONSTRUCTION OF A DEGENERATED CERVICAL DISC AT ONE LEVEL FROM C3-C4 TO C6-C7 FOLLOWING SINGLE-LEVEL DISCECTOMY FOR INTRACTABLE RADICULOPATHY (ARM PAIN AND/OR A NEUROLOGICAL DEFICIT), WITH OR WITHOUT NECK PAIN, OR MYELOPATHY DUE TO A SINGLE-LEVEL ABNORMALITY LOCALIZED TO THE DISC SPACE, AND CORRESPONDING TO AT LEAST ONE OF THE FOLLOWING CONDITIONS CONFIRMED BY RADIOGRAPHIC IMAGING (CT, MRI, X-RAYS): HERNIATED NUCLEUS PULPOSUS, SPONDYLOSIS (DEFINED BY THE PRESENCE OF OSTEOPHYTES), AND/OR VISIBLE LOSS OF DISC HEIGHT AS COMPARED TO ADJACENT LEVELS, AFTER FAILURE OF AT LEAST 6 WEEKS OF CONSERVATIVE TREATMENT. I-FACTOR PEPTIDE ENHANCED BONE GRAFT P-15 PUTTY MUST BE USED INSIDE AN ALLOGRAFT BONE RING AND WITH SUPPLEMENTAL ANTERIOR PLATE FIXATION.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p030004",
+    "recordId": "FDA:P030004:",
+    "regions": [
+      "UBERON:0000955"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004",
+    "sourceSha": "0cc426c65a8b1593e2716953b7899854cf14cc4bcbc14393b23d9284da68b64e",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE ONYX LIQUID EMBOLIC SYSTEM (LES).  THE DEVICE IS INDICATED FOR PRESURGICAL EMBOLIZATION OF BRAIN ARTERIOVENOUS MALFORMATIONS.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p100018",
+    "recordId": "FDA:P100018:",
+    "regions": [
+      "UBERON:0000955"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE PIPELINE EMBOLIZATION DEVICE.  THIS DEVICE IS INDICATED FOR THE ENDOVASCULAR TREATMENT OF ADULTS (AGE 22 AND ABOVE) WITH LARGE OR GIANT WIDE-NECKED INTRACRANIAL ANEURYSMS IN THE INTERNAL CAROTID ARTERY FROM THE PETROUS TO THE SUPERIOR HYPOPHYSEAL SEGMENTS.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p100034",
+    "recordId": "FDA:P100034:",
+    "regions": [
+      "UBERON:0000955"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE NOVOTTF-100A SYSTEM.  THE DEVICE IS INDICATED FOR TREATMENT OF ADULT PATIENTS (22 YEARS OF AGE OR OLDER) WITH HISTOLOGICALLY- CONFIRMED GLIOBLASTOMA MULTIFORME, FOLLOWING HISTOLOGICALLY- OR RADIOLOGICALLY- CONFIRMED RECURRENCE IN THE SUPRATENTORIAL REGION OF THE BRAIN AFTER RECEIVING CHEMOTHERAPY.  THE DEVICE IS INTENDED TO BE USED AS A MONOTHERAPY, AND IS INTENDED AS AN ALTERNATIVE TO STANDARD MEDICAL THERAPY FOR GBM AFTER SURGICAL AND RADIATION OPTIONS HAVE BEEN EXHAUSTED.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p210007",
+    "recordId": "FDA:P210007:",
+    "regions": [
+      "UBERON:0001759"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P210007",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "Approval the MicroTransponder® Vivistim® Paired VNS System (Vivistim ® System) is intended to be used to stimulate the vagus nerve during rehabilitation therapy in order to reduce upper extremity motor deficits and improve motor function in chronic ischemic stroke patients with moderate to severe arm impairment.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  },
+  {
+    "familyId": "source-fda-p130028",
+    "recordId": "FDA:P130028:",
+    "regions": [
+      "UBERON:0002240"
+    ],
+    "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028",
+    "sourceSha": "2edd42071d2ac9e3028fe64584b52b6f01bf7abfe375e208e597bfdaa7a3ee03",
+    "sourceField": "statement",
+    "sourceText": "APPROVAL FOR THE ALGOVITA SPINAL CORD STIMULATION SYSTEM. THIS DEVICE IS INDICATED AS AN AID IN THE MANAGEMENT OF CHRONIC INTRACTABLE PAIN OF THE TRUNK AND/OR LIMBS, INCLUDING UNILATERAL OR BILATERAL PAIN ASSOCIATED WITH FAILED BACK SURGERY SYNDROME, INTRACTABLE LOW BACK PAIN AND LEG PAIN.",
+    "review": "Source-specific editorial explanation; not an independent expert placement adjudication",
+    "checkedOn": "2026-10-22"
+  }
+]
