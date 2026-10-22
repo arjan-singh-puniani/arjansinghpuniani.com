@@ -249,7 +249,12 @@ with tempfile.TemporaryDirectory(prefix='rally-head-') as directory:
  fitting=Path(directory)/'input.json';output=Path(directory)/'head.json';fitting.write_text(json.dumps({'source':str(SRC/'rocketbox'),'eyes':target_eyes}))
  subprocess.run(['/Applications/Blender.app/Contents/MacOS/Blender','--background','--factory-startup','--python',str(Path(__file__).with_name('fit-athlete-head.py')),'--',str(fitting),str(output)],check=True,stdout=subprocess.DEVNULL)
  head=json.loads(output.read_text())
-bodyfaces=[(g,f) for g,f in faces if g=='body' and not all(v[0] in hidden for v in f) and np.mean(shape[[v[0] for v in f],1])>-6.5 and np.mean(W[[v[0] for v in f],names.index('head')])<.15]
+covered_arms=np.zeros(len(shape),dtype=bool);weight_ids=np.argsort(W,axis=1)[:,-4:];visible_weights=np.zeros_like(W)
+np.put_along_axis(visible_weights,weight_ids,np.take_along_axis(W,weight_ids,axis=1),axis=1);visible_weights/=np.maximum(visible_weights.sum(1)[:,None],1e-10)
+for side in ['L','R']:
+ axis=bind['wrist'+side]-bind['foreArm'+side];axis/=np.linalg.norm(axis)
+ covered_arms|=(visible_weights[:,[names.index(n+side) for n in ['upperArm','foreArm','foreArmTwist','hand']]].sum(1)>.5)&((metric(shape)-bind['wrist'+side])@axis<-.005)
+bodyfaces=[(g,f) for g,f in faces if g=='body' and not all(v[0] in hidden or covered_arms[v[0]] or 2.5<shape[v[0],1]<5.10 for v in f) and np.mean(shape[[v[0] for v in f],1])>-6.5 and np.mean(W[[v[0] for v in f],names.index('head')])<.15]
 body_uv=uv.copy();body_uv[:,1]=.5+body_uv[:,1]*.5
 for part in head['parts']:
  name='skin' if part['kind']=='face' else part['kind'];hp=np.array(part['p']).reshape(-1,3)*np.array([-1,1,1])/scale+np.array([0,floor,0]);hu=np.array(part['uv']).reshape(-1,2);hu[:,1]=1-hu[:,1]
@@ -257,6 +262,9 @@ for part in head['parts']:
  hf=[('',[(i,i),(i+2,i+2),(i+1,i+1)]) for i in range(0,len(hp),3)];hw=np.zeros((len(hp),len(names)));hw[:,names.index('head')]=1
  delta=np.array(part['morphs']).reshape(5,len(hp),3)*np.array([-1,1,1])/scale;normal=np.array(part['n']).reshape(-1,3)*np.array([-1,1,1]);normal_delta=np.array(part['morphNormals']).reshape(5,len(hp),3)*np.array([-1,1,1])
  if name=='skin':
+  # The imported head extends beneath the collar; keep its ponytail, omit covered neck faces.
+  head_points=metric(hp);tail=(hu[:,0]>.5)&(hu[:,1]<.2)&(head_points[:,2]<-.075)
+  hf=[(g,f) for g,f in hf if any(tail[v] for v,_ in f) or max(head_points[v,1] for v,_ in f)>=bind['neck'][1]+.03]
   offset=len(shape);hp=np.vstack([shape,hp]);hu=np.vstack([body_uv,hu]);hf=[*bodyfaces,*[(g,[(v+offset,u+len(body_uv)) for v,u in face]) for g,face in hf]];hw=np.vstack([W,hw]);morph_data[name]=np.zeros((5,len(hp),3));morph_data[name][4,:offset]=grip_delta;morph_data[name][:,offset:]=delta;normal_data[name]=(slice(offset,None),normal);normal_delta_data[name]=(slice(offset,None),normal_delta);parts.insert(0,(name,hp,hu,hf,hw,'skin.webp','humanSkin'))
  else:
   morph_data[name]=delta;normal_data[name]=(slice(None),normal);normal_delta_data[name]=(slice(None),normal_delta);parts.append((name,hp,hu,hf,hw,'hair.webp' if name=='hair' else 'skin.webp','groomedHair' if name=='hair' else 'iris'))

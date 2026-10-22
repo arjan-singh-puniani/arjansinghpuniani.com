@@ -30,7 +30,7 @@ const asset=inspectCharacterAsset(bytes.buffer.slice(bytes.byteOffset,bytes.byte
  assert.equal(components(surface),1,'torso and sleeves must form one continuous garment');assert.equal(components(boundary),4,'jersey must only open at the neck, hem and cuffs');assert([...boundary.values()].every(neighbors=>neighbors.size===2),'garment boundaries must close into loops');
  console.log('Continuous jersey PASS: one surface, four closed boundary loops, manifold seams.');
 }
-assert.deepEqual(asset.primitives.map(p=>p.materialSlot),['skin','kit','skirt','shoes','eyes','hair']);const body=asset.primitives[0].geometry;for(const bone of [BONE.foreArmTwistL,BONE.foreArmTwistR])assert(body.boneIndices.filter((n,i)=>n===bone&&body.boneWeights[i]>.1).length>100,'authored forearm twist weights must reach the visible skin');assert(asset.primitives.reduce((n,p)=>n+p.geometry.positions.length/9,0)<40000);
+assert.deepEqual(asset.primitives.map(p=>p.materialSlot),['skin','kit','skirt','shoes','eyes','hair']);const body=asset.primitives[0].geometry;assert(asset.primitives.reduce((n,p)=>n+p.geometry.positions.length/9,0)<40000);
 for(const p of asset.primitives){assert(p.geometry.uvs?.every(Number.isFinite));assert(p.albedo);if(['eyes','hair','brows','lashes'].includes(p.materialSlot))assert.equal(p.alphaCutoff,.35);if(['skin','eyes','hair','skirt'].includes(p.materialSlot)){assert.equal(p.geometry.morphs.length,5);assert(p.geometry.morphs.every(d=>d.length===p.geometry.positions.length&&d.every(Number.isFinite)));assert.equal(p.geometry.morphNormals.length,5);assert(p.geometry.morphNormals.every(d=>d.length===p.geometry.positions.length&&d.every(n=>Number.isFinite(n)&&Math.abs(n)<=2.01)));}}
 for(const slot of ['kit','skirt']){
  const g=asset.primitives.find(p=>p.materialSlot===slot).geometry,vertices=[];for(let i=0;i<g.positions.length/3;i++)if(slot==='skirt'||(g.uvs[i*2+1]>.55&&[0,1,2,3].reduce((sum,j)=>sum+([BONE.pelvis,BONE.spine,BONE.chest,BONE.neck].includes(g.boneIndices[i*4+j])?g.boneWeights[i*4+j]:0),0)>.95))vertices.push(i);
@@ -39,8 +39,23 @@ for(const slot of ['kit','skirt']){
  assert(pairs>50,'inspect actual shared hem vertices');
 }
 const rest=Object.fromEntries(Object.entries(meta.bind).map(([key,p])=>[key,new Vec3(...p)]));rest.headUp=new Vec3(0,1,0);
-// Measure the exported skin, so a later bake cannot silently restore the bulky arms.
-for(const [surface,armGeometry,padding] of [['skin',body,0],['sleeves',asset.primitives.find(p=>p.materialSlot==='kit').geometry,.005]])for(const side of ['L','R'])for(const [start,end,bones,limit] of [['upperArm','foreArm',['upperArm'],.063],['foreArm','wrist',['foreArm','foreArmTwist'],.051]]){
+{
+ let neckSamples=0;
+ for(let v=0;v<body.positions.length/3;v+=3){
+  const ids=[v,v+1,v+2];if(!ids.every(i=>body.uvs[i*2+1]>.5)||ids.some(i=>body.uvs[i*2]>.5&&body.uvs[i*2+1]>.8&&body.positions[i*3+2]<-.075))continue;
+  assert(Math.max(...ids.map(i=>body.positions[i*3+1]))>=rest.neck.y+.03-1e-6,'covered head-neck triangles must not protrude through the jersey');neckSamples++;
+ }
+ assert(neckSamples>1000,'inspect the actual authored head surface');console.log(JSON.stringify({neckSamples}));
+}
+// Covered arms must not break through the sleeves; the visible sleeve retains the fitted silhouette.
+const sleeves=asset.primitives.find(p=>p.materialSlot==='kit').geometry;
+for(const bone of [BONE.foreArmTwistL,BONE.foreArmTwistR])assert(sleeves.boneIndices.filter((n,i)=>n===bone&&sleeves.boneWeights[i]>.1).length>100,'authored forearm twist weights must reach the visible sleeves');
+for(const side of ['L','R']){
+ const axis=Vec3.sub(rest['wrist'+side],rest['foreArm'+side]).normalize(),bones=['upperArm','foreArm','foreArmTwist','hand'].map(n=>BONE[n+side]);
+ // Quads straddling the cuff retain skin at the wrist; inspect the fully covered sleeve interior.
+ for(let v=0;v<body.positions.length/3;v+=3)assert(![v,v+1,v+2].every(i=>[0,1,2,3].reduce((sum,j)=>sum+(bones.includes(body.boneIndices[i*4+j])?body.boneWeights[i*4+j]:0),0)>.5&&Vec3.dot(Vec3.sub(new Vec3(...body.positions.slice(i*3,i*3+3)),rest['wrist'+side]),axis)<-.025),'covered arm triangles must not protrude through the jersey');
+}
+for(const [surface,armGeometry,padding] of [['sleeves',sleeves,.005]])for(const side of ['L','R'])for(const [start,end,bones,limit] of [['upperArm','foreArm',['upperArm'],.063],['foreArm','wrist',['foreArm','foreArmTwist'],.051]]){
  const a=rest[start+side],axis=Vec3.sub(rest[end+side],a),length=axis.len();axis.scale(1/length);const radii=[];
  for(let v=0;v<armGeometry.positions.length/3;v++){
   const p=Vec3.sub(new Vec3(...armGeometry.positions.slice(v*3,v*3+3)),a),along=Vec3.dot(p,axis)/length;let weight=0;
