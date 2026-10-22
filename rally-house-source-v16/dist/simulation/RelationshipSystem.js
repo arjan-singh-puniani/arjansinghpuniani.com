@@ -7,6 +7,7 @@ export class RelationshipSystem {
         this.rel.set(id, fresh()); return this.rel.get(id); }
     getBetween(a, b) { const k = pairKey(a, b); if (!this.rel.has(k))
         this.rel.set(k, fresh()); return this.rel.get(k); }
+    courtship(id) { const r = this.get(id); return r.courtship ??= { flirted: false, won: false, hugs: 0 }; }
     label(id) { const score = this.get(id).familiarity; let label = relationshipTiers[0].label; for (const t of relationshipTiers)
         if (score >= t.min)
             label = t.label; return label; }
@@ -36,7 +37,7 @@ export class RelationshipSystem {
         for (const [k, v] of Object.entries(data || {}))
             this.rel.set(k, {
                 familiarity: v.familiarity ?? 10, warmth: v.warmth ?? 12, trust: v.trust ?? 10, rivalry: v.rivalry ?? 0,
-                memories: v.memories ?? [], events: (v.events ?? []).map(e => ({ ...e, people: e.people ?? [], tags: e.tags ?? [], sentiment: e.sentiment ?? 0, strength: e.strength ?? .5, detail: e.detail ?? '' }))
+                memories: v.memories ?? [], events: (v.events ?? []).map(e => ({ ...e, people: e.people ?? [], tags: e.tags ?? [], sentiment: e.sentiment ?? 0, strength: e.strength ?? .5, detail: e.detail ?? '' })), ...(v.courtship ? { courtship: { ...v.courtship } } : {})
             });
     }
     serialize() { return Object.fromEntries(this.rel.entries()); }

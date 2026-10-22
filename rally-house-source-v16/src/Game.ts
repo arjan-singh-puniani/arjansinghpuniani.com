@@ -9,7 +9,7 @@ import {LifeTelemetry} from './simulation/LifeTelemetry.js';
 import {Renderer,type Mesh,type RenderItem} from './rendering/Renderer.js';
 import {ClubAtmosphere} from './rendering/ClubAtmosphere.js';
 import {CameraController} from './rendering/CameraController.js';
-import {Vec3,clamp} from './rendering/Math3D.js';
+import {Vec3,clamp,smoothstep} from './rendering/Math3D.js';
 import {World,type InteractiveObject,type Placement,type Weather} from './world/World.js';
 import {GameClock} from './core/GameClock.js';
 import {AudioManager} from './core/AudioManager.js';
@@ -254,7 +254,7 @@ export class Game {
       }
 
       const key=e.key.toLowerCase();
-      if(e.key==='Escape'){const hadPanel=!!this.spatial.selectedId||!!document.querySelector('#context.open,#book.open');this.spatial.dismiss(true);this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);this.buildType=null;this.buildRotation=0;this.movingPlacement=null;if(!hadPanel)this.canvas.focus();return;}
+      if(e.key==='Escape'){const connection=this.activities.active.find(a=>a.kind.startsWith('connection-')&&a.participants.includes('player'));if(connection)this.cancelActivity(connection);const hadPanel=!!this.spatial.selectedId||!!document.querySelector('#context.open,#book.open');this.spatial.dismiss(true);this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);this.buildType=null;this.buildRotation=0;this.movingPlacement=null;if(!hadPanel)this.canvas.focus();return;}
       if(this.buildType&&(key==='q'||key==='e')){e.preventDefault();this.rotateBuild(key==='q'?-1:1,e.shiftKey);return;}
       if(e.target!==this.canvas)return;
       const c=this.characters[Number(e.key)-1];if(c)this.openCharacter(c);if(key==='c')this.openCoaching();if(key==='b')this.ui.toggleBuild();if(e.key.startsWith('Arrow')){e.preventDefault();this.camera.pan(e.key==='ArrowLeft'?-25:e.key==='ArrowRight'?25:0,e.key==='ArrowUp'?-25:e.key==='ArrowDown'?25:0);}
@@ -336,6 +336,8 @@ export class Game {
         else if(id==='tea')this.visitMember(c,true);
         else if(id==='watch')this.watchRallyAsPlayer();
         else if(id==='coach')this.openCoaching();
+        else if(id==='connect')this.openConnection(c);
+        else if(id==='endConnection'){const a=this.activities.active.find(a=>a.kind.startsWith('connection-')&&a.participants.includes(c.id));if(a)this.cancelActivity(a);this.ui.closeContext();}
       }});
   }
 
@@ -596,6 +598,7 @@ export class Game {
 
     this.championshipCompletedRound = this.championshipRound;
     const score = this.championship.snapshot().score;
+    if(score.player>score.opponent)this.relations.courtship(opponent.id).won=true;
     const detail = `${this.player.spec.name} ${score.player}–${score.opponent} ${opponent.spec.name} · completed Championship.`;
     this.relations.remember(opponent.id,{
       // Equal scores on separate rematches are still distinct completed events.
@@ -619,6 +622,60 @@ export class Game {
     const base=tea?destinations.cafe:new Vec3(c.position.x,0,c.position.z);
     const a=this.startActivity(tea?'matcha':'greeting',['player',c.id],tea?'cafe-table':`conversation-${c.id}`,[new Vec3(base.x-1,0,base.z),base],tea?'Sharing matcha':'Making time to listen');
     this.ui.toast(a?'You make time to meet.':'They are busy just now. Try after their activity.');if(a)this.ui.closeContext();
+  }
+  private openConnection(c:Character){
+    const bond=this.relations.courtship(c.id),cozy=bond.flirted&&bond.won;
+    const actions=[
+      {title:'Rizz about tennis',subtitle:'“Your footwork isn’t the only reason I keep looking over.”',run:()=>this.startConnection(c,'tennis')},
+      {title:'Rizz about bonsai',subtitle:'“I came for the bonsai. I stayed for the company.”',run:()=>this.startConnection(c,'bonsai')},
+    ];
+    if(cozy)actions.push({title:'Cozy together · hug',subtitle:'Offer a warm hug',run:()=>this.startConnection(c,'hug')});
+    if(cozy&&bond.hugs>=2)actions.push({title:'💋 Mack',subtitle:'Share a brief kiss, if you both want to',run:()=>this.startConnection(c,'kiss')});
+    this.ui.showContext('A closer connection',c.spec.name,'A little flirting, a shared match, and time together.',[
+      bond.flirted?'A spark between you':'Start with a little flirtation',bond.won?'You won your shared Championship':'Win a Championship together to unlock cozy time',`${bond.hugs}/2 hugs · then 💋`,
+    ],actions);
+  }
+  private startConnection(c:Character,kind:'tennis'|'bonsai'|'hug'|'kiss'){
+    const bond=this.relations.courtship(c.id),close=kind==='hug'||kind==='kiss';
+    if(!this.characters.includes(c)||this.championship?.active||this.performanceLab?.active||this.phoneCapture?.active)return null;
+    if(close&&(!bond.flirted||!bond.won||(kind==='kiss'&&bond.hugs<2)))return null;
+    const gap=close?.68:1.1,base=c.position.clone(),offset=Vec3.sub(this.player.position,base);offset.y=0;if(offset.len()<.01)offset.set(1,0,0);offset.normalize().scale(gap);
+    const target=[offset,new Vec3(gap,0,0),new Vec3(-gap,0,0),new Vec3(0,0,gap),new Vec3(0,0,-gap)].map(d=>base.clone().add(d)).find(p=>!this.world.nav.isBlocked(p.x,p.z)&&this.world.nav.clearSegment(base,p)&&this.characters.every(other=>other===c||Vec3.sub(p,other.position).len()>.9));
+    if(!target){this.ui.toast('Find a little more room together first.');return null;}
+    const a=this.startActivity(`connection-${kind}`,['player',c.id],`conversation-${c.id}`,[target,base],close?`Sharing a ${kind}`:`Flirting about ${kind}`);
+    if(!a){this.ui.toast('They are busy just now. Try after their activity.');return null;}
+    if(close){this.player.affection={kind,target:c.position,weight:0,upper:true};c.affection={kind,target:this.player.position,weight:0,upper:false};}
+    this.ui.closeContext();return a;
+  }
+  private updateConnection(a:Activity){
+    const [player,c]=a.participants.map(id=>this.actor(id)),targets=this.routes.get(a.id)!;
+    const kind=a.kind.slice('connection-'.length),close=kind==='hug'||kind==='kiss',duration=kind==='kiss'?2.4:3.6;
+    if(a.elapsed>65){this.cancelActivity(a);return;}
+    if(a.phase==='traveling'){
+      if(![player,c].every((person,i)=>person.pathIndex>=person.path.length&&Vec3.sub(person.position,targets[i]).len()<.12))return;
+      this.activities.transition(a,'starting');
+      if(close&&!this.settings.reducedMotion)this.camera.focus((player.position.x+c.position.x)/2,(player.position.z+c.position.z)/2,Math.max(this.camera.minDistance,20),.8);
+      for(const person of [player,c]){const other=person===player?c:player;person.face(other.position);person.setConversationPartner(other.position);person.setAnimation('watch');person.racketStowed=true;person.socialGesture='none';person.setEmotion('pleased',5);}
+      if(!close)player.setAnimation('talk');
+      this.speechOwner=a.id;this.activeSpeechId=close?c.id:player.id;this.speechUntil=Infinity;
+      this.ui.showSpeech(close?c.spec.name:player.spec.name,close?kind==='hug'?'“I’d like that. Come here.”':'“Yes. I’d like a kiss.”':kind==='tennis'?'“Your footwork isn’t the only reason I keep looking over.”':'“I came for the bonsai. I stayed for the company.”',0);
+    }
+    if(a.phase==='starting'&&a.phaseTime>=1.2){
+      this.activities.transition(a,'active');
+      if(!close){player.setAnimation('watch');player.socialGesture='laugh';c.socialGesture='laugh';c.setAnimation('talk');this.activeSpeechId=c.id;this.ui.showSpeech(c.spec.name,kind==='tennis'?'“Then you’ll have to stay for another point with me.”':'“Good. I was hoping you’d stay a little longer.”',0);}
+    }
+    if(a.phase==='active'){
+      if(close){const weight=smoothstep(0,.7,a.phaseTime)*(1-smoothstep(duration-.7,duration,a.phaseTime));for(const person of [player,c])if(person.affection)person.affection.weight=weight;}
+      if(a.phaseTime>=duration)this.activities.transition(a,'resolving');
+    }
+    if(a.phase==='resolving'&&a.phaseTime>=.25){
+      const detail=close?`You and ${c.spec.name} shared ${kind==='hug'?'a warm hug':'a brief kiss'}.`:`You and ${c.spec.name} flirted about ${kind}.`;
+      this.activities.finish(a,detail,()=>{
+        const bond=this.relations.courtship(c.id);if(kind==='hug')bond.hugs=Math.min(2,bond.hugs+1);else if(!close)bond.flirted=true;
+        this.interact(c,close?'listen':'compliment',detail);this.life.addMemory(this.clock.day,detail);
+      });
+      this.releaseActivity(a);this.ui.showMoment('A closer connection',kind==='hug'&&this.relations.courtship(c.id).hugs===2?'Two hugs shared. 💋 is now available when you connect.':detail);void this.save();
+    }
   }
   private openObject(o:InteractiveObject){
     this.ui.closeContext();this.ui.closeBook();this.ui.toggleBuild(false);
@@ -960,7 +1017,7 @@ export class Game {
     const touchRun=this.touchRuns?.get(a.id);if(touchRun)this.world.authored.cancel(touchRun.objectId);this.touchRuns?.delete(a.id);
     this.lifeRuns.delete(a.id);if(this.speechOwner===a.id){this.speechOwner=null;this.ui.hideSpeech();this.activeSpeechId=null;}
     if(a.resource==='court'&&a.kind!=='championship'){this.rally.stop();this.socialRally.stop();this.byId('mika')!.practiceCue='';this.evidence.practicing=false;}
-    for(const id of a.participants){const c=this.actor(id);c.currentScheduleIndex=-1;c.clearCourtMove();c.clearShotIntent();c.path=[];c.setLook(undefined);c.setConversationPartner(undefined);c.setAnimation('idle');c.seatDepth=0;c.seatHeight=.54;c.socialGesture='none';c.socialProp=null;c.setInteractionTarget(undefined);c.racketStowed=c.spec.avatar==='taylor';c.acting.setRole('exit');}
+    for(const id of a.participants){const c=this.actor(id);c.affection=null;c.currentScheduleIndex=-1;c.clearCourtMove();c.clearShotIntent();c.path=[];c.setLook(undefined);c.setConversationPartner(undefined);c.setAnimation('idle');c.seatDepth=0;c.seatHeight=.54;c.socialGesture='none';c.socialProp=null;c.setInteractionTarget(undefined);c.racketStowed=c.spec.avatar==='taylor';c.acting.setRole('exit');}
     this.routes.delete(a.id);if(a.kind!=='championship')this.lessonActive=false;
   }
   private cancelActivity(a:Activity,retry=false){if(a.kind==='lesson'){this.traceCoaching('cancelled',{id:a.id,retry,phase:a.phase,seconds:a.phaseTime,positions:a.participants.map(id=>({id,position:this.actor(id).position,path:this.actor(id).path, index:this.actor(id).pathIndex}))});if(retry)this.queuedLesson=this.lessonKeys?.get(a.id)??this.queuedLesson;this.lessonKeys?.delete(a.id);}this.telemetry.cancellations++;const run=this.lifeRuns.get(a.id);if(run)this.everyday.failed(run.scene);this.activities.cancel(a,'Interrupted safely; no completion rewards.');this.releaseActivity(a);}
@@ -1190,6 +1247,7 @@ export class Game {
       if(a.kind==='touch'){this.updateClubTouch(a,step);continue;}
       if(a.kind==='championship'){this.updateChampionshipActivity(a,dt);continue;}
       if(a.kind==='everyday'){this.updateEveryday(a,step);continue;}
+      if(a.kind.startsWith('connection-')){this.updateConnection(a);continue;}
       if(a.elapsed>180){this.cancelActivity(a,true);continue;}
       if(a.kind==='object'&&!this.world.placements.some(p=>p.id===a.resource)){this.cancelActivity(a);continue;}
       if(a.phase==='traveling'){
@@ -1270,7 +1328,7 @@ export class Game {
     this.noticeTimer-=this.renderDt;
     if(this.noticeTimer<=0){
       this.noticeTimer=.5;
-      this.worldNotices=this.characters.filter(c=>this.activities.busy(c.id)).map(c=>{
+      this.worldNotices=this.characters.filter(c=>this.activities.busy(c.id)&&c.id!==this.activeSpeechId).map(c=>{
         const a=this.activities.active.find(a=>a.participants.includes(c.id))!;
         const label=a.phase==='traveling'?'On the way':a.kind==='lesson'?'In a lesson':a.kind==='match'||a.kind==='observe'?'On court':a.kind==='everyday'?'A club moment':a.detail;
         return {id:c.id,position:c.position,name:c.spec.name,activity:label,select:()=>this.openCharacter(c)};

@@ -1,0 +1,36 @@
+{
+  "nativeFlows": [
+    {
+      "profile": "desktop",
+      "errors": [],
+      "http": [],
+      "saved": {
+        "flirted": true,
+        "won": true,
+        "hugs": 2
+      }
+    },
+    {
+      "profile": "phone",
+      "errors": [],
+      "http": [],
+      "saved": {
+        "flirted": true,
+        "won": true,
+        "hugs": 2
+      }
+    }
+  ],
+  "checks": [
+    "npm test",
+    "npm run release:check",
+    "node tests/run.mjs; node tests/causality.mjs; node tests/everyday.mjs; node tests/connections.mjs",
+    "QA_OUT=/tmp/rh-connections-release node qa/connections-browser.mjs"
+  ],
+  "notes": [
+    "Match results in the browser flow use the existing development score hook; the native gameplay input path was covered by the previous arrival checks.",
+    "Schema 10 preserves courtship progress and refuses downgrade into older readers.",
+    "Screenshots show the live game camera, with no pose or geometry substitutions.",
+    "Codex browser-panel lag has not been certified resolved."
+  ]
+}

@@ -73,6 +73,7 @@ for(const phase of ['starting','active'])g.activities.transition(a,phase);
 g.routes.set(a.id,[new Vec3(1,0,5),new Vec3(1,0,-5)]);
 g.updateChampionshipActivity(a,1/60);
 assert.equal(c.phase,'matchResult');
+assert(g.relations.courtship('leo').won,'Only a completed Championship win unlocks cozy progression');
 for(let i=0;i<60;i++)g.updateChampionshipActivity(a,1/60);
 assert.equal(g.relations.get('leo').events.filter(e=>e.type==='championship_result').length,1);
 g.rematchChampionship();assert.equal(g.championshipRound,2);
