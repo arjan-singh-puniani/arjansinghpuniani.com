@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T11:45:25.292Z",
+  "generatedAt": "2026-10-22T18:21:31.968367+00:00",
   "snapshotExportedAt": "2026-10-19T11:12:05.379339+00:00",
   "recordCounts": {
     "de_novo": 37,
@@ -14,8 +14,8 @@
   "curatedAssertions": 21,
   "localizedAssertions": 20,
   "explicitAbstentions": 1,
-  "sourceContextEntries": 650,
-  "sourceContextAssertions": 721,
+  "sourceContextEntries": 652,
+  "sourceContextAssertions": 712,
   "automaticallyAcceptedMappings": 0,
   "independentlyAdjudicatedMappings": 0,
   "precision": null,
@@ -43,5 +43,17 @@
   "interactivePreview": {
     "path": "/atlas",
     "delivery": "Self-contained static snapshot; no live ingestion or private workspace."
+  },
+  "explanationExpansion": {
+    "recordedDate": "2026-10-22",
+    "explainedEntries": 91,
+    "directlyAssociatedStructuresAndRegions": 44,
+    "newExplainedEntries": 75,
+    "newPmaStatementsAndDecisionDatesMatchedToOriginals": 73,
+    "newPdfIndicationsChecked": 2,
+    "domainAndExportChecksPassed": 35,
+    "ingestionChecksPassed": 26,
+    "browserEntriesCheckedPerViewport": 75,
+    "scope": "Record-specific editorial explanations checked against original FDA sources. Historical evidence; current labeling, recall completeness and independent expert mapping precision remain unverified."
   }
 }

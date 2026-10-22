@@ -2552,3 +2552,7 @@
 .intervention-relevance h3 {font-size:13px;margin:0 0 8px}
 .intervention-relevance p {font-size:14px;line-height:1.6;margin:0 0 10px}
 .intervention-relevance small {display:block;margin-top:7px;color:var(--muted);line-height:1.5}
+
+.intervention-relevance details {margin-top:12px;font-size:12px}
+.intervention-relevance blockquote {margin:10px 0;max-height:220px;overflow:auto;line-height:1.6;white-space:pre-wrap}
+.reference-note {max-width:420px;color:var(--quiet);font-size:12px;line-height:1.6}

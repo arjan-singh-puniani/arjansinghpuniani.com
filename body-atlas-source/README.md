@@ -1,6 +1,6 @@
 # BODY//ATLAS
 
-Explore interventions across a rotatable human reference with internal organs, select an FDA application, inspect its original evidence, and export a cited brief. The cached collection contains **2,490 authentic source records**, **650 source-indexed FDA applications across 39 regions**, and **10 curated neurotechnology entries**. The two evidence layers are explicitly different: source-text context is Provisional, not verified device placement.
+Explore interventions across a rotatable human reference with internal organs, select an FDA application, inspect its original evidence, and export a cited brief. The cached collection contains **2,490 authentic source records**, **652 source-indexed FDA applications**, and **91 explained entries across 44 anatomical structures/regions**. The two evidence layers are explicitly different: source-text context is Provisional, not verified device placement.
 
 **Status: public research preview; scientific and clinical validation is not certified.** This is a bounded authentic snapshot, not a live feed, medical recommendation, complete device catalogue, or validated anatomical classifier. Read [RELEASE_READINESS.md](RELEASE_READINESS.md).
 
@@ -27,7 +27,7 @@ Open <http://127.0.0.1:3100>. For editing, use `npm run dev`. Local servers bind
 
 **Organs** toggles registered internal geometry; **Surface** changes skin rendering. **Expand** gives the anatomy the workspace while keeping a selected source-linked summary available. Narrow screens split anatomy and a scrollable evidence panel. Source-record dots do not capture touch gestures; region buttons and the list provide touch/keyboard discovery. If WebGL or an asset fails, text selection and brief export remain usable.
 
-The HRA reference is male and incomplete. Uterus/vagina source entries are discoverable as text but are never placed on this male model. Coarse navigation locators do not establish anatomical/device coordinates. The 650 contextual entries are **not independently reviewed**. No automatic physical-placement acceptance is enabled.
+The HRA reference is male and incomplete. Uterus/vagina source entries are discoverable as text but are never placed on this male model. Coarse navigation locators do not establish anatomical/device coordinates. The 652 contextual entries are **not independently reviewed**. No automatic physical-placement acceptance is enabled.
 
 ## Ingestion and verification
 
@@ -77,8 +77,19 @@ Rebuild from that source directory with `npm ci` then `node scripts/export-stati
 
 ### Relevance correction — 2026-10-21
 
-The default layer now shows 16 explicitly explained interventions (10 existing neurotechnology entries and six record-specific FDA explanations). Device purpose, anatomical relevance and the supporting source are separate. Unexplained applications remain available through explicit source-context layers and Records; a raw product title is never used as a functional explanation. An empty explained region states the coverage gap instead of suggesting unrelated devices.
+The 2026-10-21 release introduced 16 explicitly explained interventions (10 existing neurotechnology entries and six record-specific FDA explanations). Device purpose, anatomical relevance and the supporting source are separate. Unexplained applications remain available through explicit source-context layers and Records; a raw product title is never used as a functional explanation. An empty explained region states the coverage gap instead of suggesting unrelated devices.
 
 `anatomical-context-v2` excludes Murphy/needle-eye product features and aortic-valve wording from separate eye/aorta assignments. Regeneration yields 650 applications and 717 exact contextual spans before six editorial region restrictions. These remain Provisional; explanation review does not validate component placement. “Upper airway” was broadened to “Airway” to avoid calling the trachea an upper-airway structure. Timeline events, counts and model annotations now follow the selected evidence layer and filters. Earlier counts and the unadjudicated v1 review queue above describe the previous snapshot, not a precision measurement.
 
 The Shiley explanation was checked against K250173, PDF pages 4, 7 and 8. Other additions use the original FDA approval statements for P130008, P010047, P130013, P140031 and P020023. These are historical indications; later supplements and current labeling have not been exhaustively reviewed. Regression checks cover source identity, region restrictions, missing-purpose abstention, exported explanation citations, and the actual airway/eye desktop/mobile workflow.
+
+
+### Whole-body explanation expansion — 2026-10-22
+
+The default collection now contains **91 explained entries**, up from 16, with direct associations to **44 anatomical structures/regions**. The 75 additions cover 36 regions, including cardiac/vascular, pulmonary, ophthalmic, hearing, dental, digestive, hepatobiliary, renal/urinary, reproductive, breast, skin, hand/shoulder/hip/knee/ankle/foot and spinal interventions. These are explained application entries, not a claim of 91 distinct invention categories or current marketed product families.
+
+Every addition is keyed to one original FDA record and has a specific purpose, regional rationale, source and scope restrictions in `lib/whole-body-explanations.json`. The 73 PMA originals were checked in one bounded live FDA request on October 22: all original approval statements and decision dates matched the cached source records. The two 510(k) explanations were checked against K260007 (PDF page 5) and K260721 (PDF page 4). The original response, digest, request and review ledger are preserved in `validation/fda-originals-2026-10-22.json`, `validation/whole-body-source-check.json` and `validation/whole-body-explanation-review.json`.
+
+Version 3 context extraction applies explicit editorial region scopes only where an exact anatomical phrase can be recovered from the source. It does not upgrade Provisional context to a physical placement. Regression cases exclude colorectal-primary liver treatment from the colon, above-knee vascular stents from the knee joint, glaucoma stents from lens replacement, and disc prostheses or hand neuroprostheses from spinal-cord implantation. Organ-perfusion systems are explained as extracorporeal; original product-name changes remain explicit. Female-only anatomy stays text-only on the male mesh and now has a visible notice.
+
+The catalogue contains 652 applications and 712 contextual assertions after the restrictions; original raw records remain intact. Completeness, current labeling, recall status and independent expert mapping precision have not been exhaustively established. This editorial review is not a representative clinical validation study.

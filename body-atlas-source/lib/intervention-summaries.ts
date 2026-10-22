@@ -1,8 +1,10 @@
+import wholeBodyExplanations from "./whole-body-explanations.json";
 // Editorial explanations are record-specific; never apply them by name similarity.
 export const interventionSummaries: Record<string, {
   title: string; product: string; purpose: string; relevance: string;
   regions: string[]; recordId: string; sourceUrl?: string; locator: string;
 }> = {
+  ...wholeBodyExplanations,
   'source-fda-k250173': {
     title: 'Airway management during surgery', product: 'Shiley oral / nasal RAE tracheal tubes',
     purpose: 'Preformed breathing tubes provide airway access during head, neck or mouth surgery. Their shape directs breathing-circuit connections away from the surgical field and reduces kinking.',

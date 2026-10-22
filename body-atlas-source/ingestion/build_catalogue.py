@@ -6,7 +6,7 @@ import json,re
 from pathlib import Path
 from collections import Counter
 ROOT=Path(__file__).resolve().parent.parent
-VERSION='anatomical-context-v2'
+VERSION='anatomical-context-v3'
 IVD=re.compile(r'\b(in[ -]?vitro|assays?|specimens?|genotyp\w*|reagents?|immunoassay|polymerase|dna|rna|serum|plasma samples?|sequencing|diagnostic kits?|cell analyzer|chemistry analyzer)\b',re.I)
 NEGATED=re.compile(r'(not (?:intended|indicated|recommended)|contraindicated|excluding|except for|non[- ])[^.;:]{0,55}$',re.I)
 
@@ -19,6 +19,7 @@ def incidental(text,match):
     if word in ['finger','fingers'] and re.match(r'[ -]?stick',after,re.I):return True
     if word=='pulmonary' and re.match(r'\s+valve',after,re.I):return True
     if word in ['eye','eyes'] and re.search(r'(naked|murphy|needle)\s*$',before,re.I):return True
+    if word=='knee' and re.search(r'(above|below)[ -](?:the[ -])?$',before,re.I):return True
     if word=='aortic' and re.match(r'\s+(?:heart\s+)?valve',after,re.I):return True
     return False
 
@@ -53,14 +54,18 @@ def contexts(record,regions):
 def build():
     snapshot=json.loads((ROOT/'data/atlas.json').read_text());regions=json.loads((ROOT/'data/body-regions.json').read_text())
     curated={'FDA:K130233','FDA:P100026:','FDA:P960009:','FDA:P140009:','FDA:P970003:','FDA:P150038:','FDA:P030017:','FDA:P840024:'}
+    explanations=json.loads((ROOT/'lib/whole-body-explanations.json').read_text())
     entries=[];mappings=[];excluded=[]
     for record in snapshot['records']:
         if record['kind'] not in ['pma','510k','de_novo'] or record['id'] in curated:continue
         if record.get('supplement') or record.get('status') not in ['PMA approval','510(k) clearance','De Novo authorization']:continue
-        matches,reason=contexts(record,regions)
+        fid='source-'+record['id'].lower().replace(':','-').rstrip('-')
+        scope=explanations.get(fid,{}).get('regions')
+        matches,reason=contexts(record,[r for r in regions if not scope or r['id'] in scope])
+        if scope and set(scope)!={m['region']['id'] for m in matches}:
+            raise ValueError('Editorial region lacks an exact source context: '+record['id'])
         if not matches:
             excluded.append({'id':record['id'],'reason':reason or 'no explicit anatomical phrase'});continue
-        fid='source-'+record['id'].lower().replace(':','-').rstrip('-')
         for match in matches:
             rid=match['region']['id']
             mappings.append({'id':fid+'-'+rid.replace(':','-'),'familyId':fid,'component':'FDA indication text' if match['field']=='statement' else 'FDA device-name text','structureId':rid,'type':'indication_context','state':'Provisional','precision':'region','laterality':'unspecified','assertion':match['quote'],'sourceUrl':record['url'],'locator':match['field']+'; characters '+str(match['span'][0])+'–'+str(match['span'][1]),'method':VERSION+'; exact phrase match; not independently reviewed','limitations':'Source-text anatomical context only. Does not establish implantation, tissue interface, clinical effectiveness, current labeling or a unique product family.','reviewedAt':'not independently reviewed','evidence':{'recordId':record['id'],'sourceSha':record['sourceSha'],**{k:v for k,v in match.items() if k!='region'}}})

@@ -40,6 +40,12 @@ class CatalogueTests(unittest.TestCase):
   self.assertEqual(self.hits('Coronary stent'),['BODY:coronary'])
   self.assertIn('BODY:knee',self.hits('Knee replacement implant'))
   self.assertEqual(self.hits('Medical software with no anatomical phrase'),[])
+ def test_expanded_region_patterns_retain_anatomical_specificity(self):
+  self.assertIn('BODY:lower-limb-vessels',self.hits('Stent for above-the-knee femoropopliteal arteries'))
+  self.assertNotIn('BODY:knee',self.hits('Stent for above-the-knee femoropopliteal arteries'))
+  self.assertIn('BODY:esophagus',self.hits('Gastroesophageal reflux disease','pma'))
+  self.assertIn('BODY:skin',self.hits('Subdermal implantation for facial folds','pma'))
+  self.assertIn('BODY:liver',self.hits('Unresectable hepatocellular carcinoma','pma'))
  def test_legacy_nda_identifier_never_relabelled_pma(self):
   with self.assertRaises(ValueError):validate('pma',{'results':[{'pma_number':'N123456','supplement_number':'','decision_date':'19990101','decision_code':'APPR'}]})
  def test_generated_snapshot_relationships_are_exact_and_unreviewed(self):

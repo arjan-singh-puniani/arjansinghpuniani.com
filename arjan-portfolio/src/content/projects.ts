@@ -13,12 +13,12 @@ export const projects: Project[] = [
       "Kept automatically indexed anatomical mentions Provisional, with exact source excerpts and an explicit review queue. Record dots indicate regional membership rather than implant coordinates."
     ],
     results: [
-      "The October 19, 2026 snapshot contains 2,490 authentic source records, 650 source-indexed FDA applications across 39 regions, and ten curated neurotechnology entries.",
+      "The cached October 19 source collection contains 2,490 authentic records. October 22 curation provides 91 explained entries across 44 anatomical structures/regions and a 652-application source-context index.",
       "Recorded local verification on October 19 passed 29 domain/data checks, 24 ingestion checks, 16 desktop/mobile-emulated browser checks, TypeScript, and the production build. These checks do not measure independent scientific accuracy."
     ],
     limitations: [
       "Public research preview at /atlas. The interactive application serves a bounded cached snapshot, not a live data service or a clinically validated reference.",
-      "The 721 automatically indexed anatomical relationships are Provisional source-text contexts, not verified device placements. No independently adjudicated anatomical precision estimate is available.",
+      "The 712 indexed anatomical relationships are Provisional source-text contexts, not verified device placements. No independently adjudicated anatomical precision estimate is available.",
       "An FDA application is not necessarily a distinct device family. Historical clearance, approval, and De Novo decisions do not establish current labeling, clinical effectiveness, or FDA endorsement of this project.",
       "Coverage is incomplete, including subsequent supplements and safety notices. The male anatomical reference omits some structures; female-only contexts remain text-only. This is not a clinical decision tool."
     ],
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     links: [{ label: "Launch interactive atlas", href: "/atlas" }, { label: "Read the recorded scope and validation", href: "/documents/body-atlas-validation.json" }],
     evidence: [
       { label: "Application source, mapping rules, tests and reproducible export", url: "https://github.com/arjan-singh-puniani/arjansinghpuniani.com/tree/main/body-atlas-source", verified: true },
-      { label: "Recorded dataset scope and local verification — October 19, 2026", url: "/documents/body-atlas-validation.json", verified: true },
+      { label: "Dataset scope, source checks and recorded verification — October 22, 2026", url: "/documents/body-atlas-validation.json", verified: true },
       { label: "FDA openFDA device data and limitations", url: "https://open.fda.gov/apis/device/", verified: true },
       { label: "Original Activa FDA evidence used in the neurotechnology workflow", url: "https://www.accessdata.fda.gov/cdrh_docs/pdf/P960009B.pdf", verified: true },
       { label: "ClinicalTrials.gov data API", url: "https://clinicaltrials.gov/data-api/api", verified: true },
