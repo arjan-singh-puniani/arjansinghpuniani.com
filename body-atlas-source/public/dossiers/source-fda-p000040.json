@@ -1,0 +1,955 @@
+{
+  "familyId": "source-fda-p000040",
+  "name": "Hydro ThermAblator",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "43 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 43,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P000040",
+        "supplement": "S042",
+        "date": "2022-05-26",
+        "decision": "PMA approval",
+        "tradeName": "Genesys HTA System",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "Approval for manufacturing sites located at Life Science Outsourcing, Inc, 830 Challenger Street, Brea, CA  92821 and sterilization services at STERIS Applied Sterilization Technologies, 43425 Business Park Drive, Temecula, CA  92590.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S042",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S041",
+        "date": "2021-06-17",
+        "decision": "PMA approval",
+        "tradeName": "Minerva Genesys HTA Endometrial Ablation System",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "Approval for a manufacturing site change to your new facility located at Apical Instruments, Inc, 2971 Spring Street, Redwood City, CA 94063.  The facility operations at this site will involve the manufacturing of the Minerva Genesys HTA Controller.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S041",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S040",
+        "date": "2020-12-17",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Hydro Thermablator Endometrial Ablation System",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "updates to the software for sterilization aeration at the BSC Coventry, Rhode Island facility",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S040",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S039",
+        "date": "2020-07-30",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Hydro Thermablator Endometrial Ablation System",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "Updates to the software and utilities for sterilization preconditioning and aeration at the BSC Coventry, Rhode Island facility.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S039",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S038",
+        "date": "2020-05-19",
+        "decision": "PMA approval",
+        "tradeName": "Hydro Thermablator Endometrial Ablation System",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "Approval for a manufacturing site located at Boston Scientific Corp. in Ballybrit Business Park Galway, Ireland for sterilization.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S038",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S037",
+        "date": "2019-09-13",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Hydro Thermablator Endometrial Ablation",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "Update the software and utilities for sterilization preconditioning and aeration at the BSC Coventry, Rhode Island facility.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S037",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S035",
+        "date": "2017-06-29",
+        "decision": "PMA approval",
+        "tradeName": "Genesys Hta 115V Control Unit, Genesys Hta 115V Control Unit (Demo), Genesys Hta 115V Control Unit (Refurb), Genesys Hta",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "Approval for a manufacturing site located at Boston Scientific Corporation, 150 Baytech Drive, San Jose, California.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S035",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S036",
+        "date": "2017-05-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Hydro Thermablator Endometrial Ablation System",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "Updates to the Programmable Logic Controller (PLC) software used for sterilization Chamber 3, an update to the vacuum pump system used in Chamber 3, and an update to the validation documentation structure used to support the system.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S036",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S034",
+        "date": "2014-11-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "REMOVAL OF THE IN-PROCESS BURST TEST FOR THE SHEATH ASSEMBLY TRAY.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S034",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S033",
+        "date": "2014-10-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "REMOVE REDUNDANT INSPECTIONS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S033",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S032",
+        "date": "2014-06-10",
+        "decision": "FDA decision code OK30",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "QUALIFY AN ALTERNATE SECONDARY SUPPLIER OF THE TACKIFIER RESINS USED IN THE PRODUCTION OF THE COATINGS USED ON SHEATH AND CASSETTE TRAY TYVEK LIDS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S032",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S031",
+        "date": "2013-12-11",
+        "decision": "FDA decision code OK30",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "REPLACEMENT OF A VISUAL AID USED IN MANUFACTURING WITH A VISION SYSTEM THAT WILL AUTOMATE ALL ASPECTS OF THE VISUAL AID AS WELL AS INSPECT FOR THE PRESENCE OF ADDITIONAL COMPONENTS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S031",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S029",
+        "date": "2013-08-14",
+        "decision": "PMA approval",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR UPDATED LABELING TO REFLECT THE RESULTS OF THE GENESYS HTA SYSTEM POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S029",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S030",
+        "date": "2013-07-19",
+        "decision": "PMA approval",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR A CHANGE TO THE GOLD THICKNESS SPECIFICATION OF THE CASSETTE CONTACT PINS FROM FLASH GOLD TO >= 15 MICRON-INCHES AND A MODIFICATION TO THE SHIPPER TRAY SO THAT THE CONTACT PINS DO NOT CONTACT ITS LID.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S030",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S028",
+        "date": "2013-07-09",
+        "decision": "PMA approval",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR AN ENERGY DIRECTED WELDING PROCESS FOR THE GENESYS HTA FILTER ASSEMBLY COMPONENTS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S028",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S027",
+        "date": "2013-05-16",
+        "decision": "PMA approval",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING SITES LOCATED AT BOSTON SCIENTIFIC CORPORATION, IN SPENCER, INDIANA, AND BOSTON SCIENTIFIC CORPORATION, IN COVENTRY, RHODE ISLAND.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S027",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S026",
+        "date": "2013-01-11",
+        "decision": "PMA approval",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL TO REPLACE OBSOLETE COMPONENTS IN THE CONTROL UNIT AND MAKE CHANGES TO OTHER COMPONENTS TO ACCOMMODATE THESE NEW PARTS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S026",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S025",
+        "date": "2012-10-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "SUPPLIER SITE CHANGE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S025",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S024",
+        "date": "2012-06-19",
+        "decision": "PMA approval",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR MINOR CHANGES TO THE ELECTRICAL DESIGN OF THE CONTROLLER.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S024",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S021",
+        "date": "2012-04-23",
+        "decision": "PMA approval",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S021",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S023",
+        "date": "2012-02-29",
+        "decision": "FDA decision code OK30",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "NEW SUPPLIER OF SEVERAL COMPONENTS OF THE CONTROL UNIT SUBASSEMBLIES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S023",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S022",
+        "date": "2012-02-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "ADDITION OF A NEW SUPPLIER IN THE MANUFACTURING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S022",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S020",
+        "date": "2012-01-24",
+        "decision": "PMA approval",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR SOFTWARE CHANGES TO THE GENESYS HTA SYSTEM CONTROL UNIT.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S020",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S019",
+        "date": "2011-10-03",
+        "decision": "FDA decision code OK30",
+        "tradeName": "HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "ADDITION OF A NEW MANUFACTURING FIXTURE AND THE MODIFICATIONS OF AN EXISTING MANUFACTURING FIXTURE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S019",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S018",
+        "date": "2010-12-23",
+        "decision": "PMA approval",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR SOFTWARE CHANGES TO THE PROCEDURE CONTROLLER AND GRAPHICAL USER INTERFACE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S018",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S017",
+        "date": "2010-08-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "GENESYS/HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "QUALIFICATION OF A SECONDARY ALTERNATIVE SUPPLIER FOR TWO COMPONENTS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S017",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S015",
+        "date": "2010-07-16",
+        "decision": "PMA approval",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S015",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S016",
+        "date": "2010-07-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "IMPLEMENTATION OF AN INSPECTION AT THE CASSETTE MANUFACTURER AND AN UPDATE TO A SUBASSEMBLY DRAWING.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S016",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S014",
+        "date": "2010-04-23",
+        "decision": "PMA approval",
+        "tradeName": "GENESYS HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR THE ¿NEXT GENERATION¿ HTA SYSTEM WITH A REDESIGNED OPERATIONAL UNIT (CONTROL UNIT, POWER CORD, PEDESTAL, IV POLE) AND A MODIFIED STERILE PROCEDURE SET.  THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME GENESYS HTA SYSTEM AND IS INDICATED FOR ABLATION OF THE ENDOMETRIAL LINING OF THE UTERUS IN PREMENOPAUSAL WOMEN WITH MENORRHAGIA (EXCESSIVE UTERINE BLEEDING) DUE TO BENIGN CAUSES FOR WHOM CHILDBEARING IS COMPLETE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S014",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S013",
+        "date": "2009-05-14",
+        "decision": "PMA approval",
+        "tradeName": "HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR MODIFICATIONS TO THE HTA PROCEDURE SHEATH (A COMPONENT OF THE HTA SYSTEM) WHICH INCLUDE THE ADDITION OF THE CERVICAL SEAL ASSIST COMPONENT AND A REDESIGN OF THE RESERVOIR TIP.  THE SHEATH, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME HTA PROCERVA PROCEDURE SHEATH.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S013",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S012",
+        "date": "2007-11-02",
+        "decision": "PMA approval",
+        "tradeName": "HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR A CHANGE TO THE INTERFACE BETWEEN THE THERMISTOR CONDITIONING BOARD, MOTHER BOARD, AND TEMPERATURE CONTROLLER BOARD TO IMPROVE CONNECTIONS AND MITIGATE SIGNAL LOSS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S012",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S010",
+        "date": "2007-08-08",
+        "decision": "PMA approval",
+        "tradeName": "HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED AT NEXCORE TECHNOLOGY, INC., WALDWICK, NEW JERSEY TO MANUFACTURE THE FOLLOWING COMPONENTS: HTA SYSTEM CONSOLE, REUSABLE HEATER CANISTER, AND SCOPE ADAPTER.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S010",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S011",
+        "date": "2007-07-16",
+        "decision": "PMA approval",
+        "tradeName": "HTA SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR THE INCLUSION OF ADDITIONAL WARNINGS AND PRECAUTIONS TO MINIMIZE BURN INJURIES AND TO ENSURE PROPER HANDLING OF THE PROCEDURE SHEATH.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S011",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S009",
+        "date": "2007-03-23",
+        "decision": "PMA approval",
+        "tradeName": "HYDRO THERMABLATOR (HTA) ENDOMETRIAL ABLATION  SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL TO INCLUDE CLEANING, STERILIZATION AND REUSE INSTRUCTIONS FOR THE HTA SYSTEM SCOPE ADAPTORS IN A NEW PACKAGE INSERT AND IN THE HTA SYSTEM USER?S MANUAL.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S009",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S007",
+        "date": "2006-08-18",
+        "decision": "PMA approval",
+        "tradeName": "HYDRO THERMABLATOR (HTA) ENDOMETRIAL ABLATION SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR MODIFICATIONS TO THE HTA PROCEDURE SET.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S007",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S008",
+        "date": "2006-06-23",
+        "decision": "PMA approval",
+        "tradeName": "HYDRO THERMABLATOR (HTA) ENDOMETRIAL ABLATION  SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR 1) ADDITION OF THE LINEAR FLASH CARD MEMORY TO THE CENTRAL PROCESSING BOARD; 2) TEMPERATURE CONTROLLER PID SETTINGS/INCREASE IN CYCLE TIME PROGRAMMED INTO HEATER LOGIC AND CONTROLLER BOARD; AND 3) ADDITION OF COMPONENTS TO THE LEVEL SENSOR BOARD.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S008",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S006",
+        "date": "2005-09-21",
+        "decision": "PMA approval",
+        "tradeName": "HYDRO THERMABLATOR (HTA) ENDOMETRIAL ABLATION SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR THE ADDITION OF THE TENACULUM STABILIZER COMPONENT TO THE HTA PROCEDURE SET AND FOR CHANGES TO THE PACKAGING, SHELF-LIFE AND LABELING ASSOCIATED WITH THE ADDITION OF THE COMPONENT.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S006",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S005",
+        "date": "2005-07-12",
+        "decision": "PMA approval",
+        "tradeName": "HYDRO THERMABLATOR (HTA) ENDOMETRIAL ABLATION SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR MANUFACTURING PROCESS AND QUALITY CONTROL CHANGES TO THE ADAPTERS USED TO CONNECT A HYSTEROSCOPE TO THE HTA SYSTEM PROCEDURE SHEATH.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S005",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S004",
+        "date": "2004-02-24",
+        "decision": "PMA approval",
+        "tradeName": "HYDRO THERMABLATOR (HTA) ENDOMETRIAL ABLATION SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR UPDATED LABELING THAT REFLECTS THE 2 AND 3 YEAR PATIENT FOLLOW-UP DATA.  THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME HTZ SYSTEM AND IS INDICATED FOR ABLATION OF THE ENDOMETRIAL LINING OF THE UTERUS IN PREMENOPAUSAL WOMEN WITH MENORRHAGIA (EXCESSIVE UTERINE BLEEDING) DUE TO BENIGN CAUSES FOR WHOM CHILDBEARING IS COMPLETE.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S004",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S003",
+        "date": "2003-02-20",
+        "decision": "PMA approval",
+        "tradeName": "HYDRO-THERMABLATOR(HTA) ENDOMETRIAL ABLATION SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR A REVISED HTA SYSTEM INSTALLATION AND OPERATOR'S MANUAL.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S003",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S002",
+        "date": "2001-12-07",
+        "decision": "PMA approval",
+        "tradeName": "HYDRO THERMABLATOR. ENDOMETRIAL ABLATION SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR USING MOLDING AND EXTRUDING TECHNIQUES RATHER THAN MACHINING THE COMPONENTS THAT NMAKE UP THE DISPOSABLE SHEATH OF THE HYDRO THERMABLATOR ENDOMETRIAL ABLATION SYSTEM.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S002",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "S001",
+        "date": "2001-07-10",
+        "decision": "PMA approval",
+        "tradeName": "HYDRO THERMABLATOR(R) ENDOMETRIAL ABLATION SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR MANUFACTURING CHANGES TO THE PHYSICAL STRUCTURE OF THE HYDRO THERMABLATOR(R) UNIT.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040S001",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      },
+      {
+        "application": "P000040",
+        "supplement": "",
+        "date": "2001-04-20",
+        "decision": "PMA approval",
+        "tradeName": "HYDRO THERMABLATOR ENDOMETRIAL ABLATION SYSTEM",
+        "applicant": "Axora Medical, Inc.",
+        "statement": "APPROVAL FOR THE HYDRO THERMABLATOR(R) ENDOMETRIAL ABLATION SYSTEM.  THE DEVICE IS INTENDED TO ABLATE THE ENDOMETRIAL LINING OF THE UTERUS IN PREMENOPAUSAL WOMEN WITH MENORRHAGIA (EXCESSIVE UTERINE BLEEDING) DUE TO BENIGN CAUSES FOR WHOM CHILD BEARING IS COMPLETE.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040",
+        "sourceSha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=400&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee",
+        "file": "2c3bee921892d7d0331c56981f5e4f4095d36482bddb969ade8f6d975e08e6ee.json",
+        "retrievedAt": "2026-10-22T18:59:16.776776+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=500&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e",
+        "file": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e.json",
+        "retrievedAt": "2026-10-22T18:59:17.549252+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "2 original labeling document link(s) located; 6 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 2,
+    "changes": 6,
+    "rows": [
+      {
+        "application": "P000040",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000040C.pdf",
+        "pages": 12,
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040",
+        "locator": "L63: Labeling【35†Labeling】",
+        "pageUpdatedAt": "07/20/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: 3 weeks ago; Content type: application/pdf; Number of pages: 12;",
+        "sections": []
+      },
+      {
+        "application": "P000040",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000040D.pdf",
+        "title": "Labeling Part 2",
+        "pages": 11,
+        "retrievalNote": "[wordlim: 200] Crawled: 3 days ago; Content type: application/pdf; Number of pages: 11;",
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040",
+        "locator": "L63: Labeling【35†Labeling】",
+        "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P000040",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040",
+        "discovery": "[wordlim: 200] Crawled: 3 months ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040\",\"lineno\":null}); Total lines: 122",
+        "pageUpdatedAt": "07/20/2026",
+        "locator": "L63: Labeling【35†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P000040S029",
+      "P000040S011",
+      "P000040S009",
+      "P000040S006",
+      "P000040S004",
+      "P000040S003"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "8 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 8,
+    "rows": [
+      {
+        "cfres_id": "83989",
+        "product_res_number": "Z-2208-2009",
+        "product_description": "Boston Scientific HydroThermAblator Endometrial Ablation System- HTA Procedure Set (5/bx)\nMaterial/UPN/Catalog Number: M006550161\t\nBoston Scientific HydroThermAblator Endometrial Ablation System-HTA Procedure Set (ea) \nMaterial/UPN/Catalog Number: M006550160\t\n\nIntended to ablate the endometrial lining of the uterus in premenopausal women with menorrhagia due to benign causes for whom childbearing is complete.",
+        "code_info": "Lot Numbers: 35773, 35854, 35855, 36070, 36071, 36072, 36073, 36259, 36462, 36463, 36852, 37046, 37047, 37432, and 37433.",
+        "reason_for_recall": "Cracked procedure sheaths, incorrect care/use of device, and console malfunctions may result in fluid leaks and loss of a cervical seal that are responsible for burns.",
+        "action": "Boston Scientific issued an Urgent Medical Device Recall - Immediate Action Required notification to hospitals and distributors dated July 31, 2009 via Federal Express and requested the immediate discontinued use and segregation of Recall product for return and Complete and return the Reply Verification Tracking Form.  An email was sent to Physicians to provide the recall information.  Boston Scientific issued a Clarification letter dated August 6, 2009 via Federal Express as a follow-up to the July 31, 2009 Recall letter for the following reason: customers may remove product from the outer box and store it on the inventory shelf by the inner package only. If this is a practice at the facility, a customer must consider both the inner and outer packaging product codes when searching for affected recalled product as the UPN numbers on the inner and outer labeling are different. A  reply verification tracking form for customers was provided in case they have located any additional product to return.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2009-07-31",
+        "event_date_posted": "2009-09-22",
+        "event_date_terminated": "2011-05-03",
+        "recalling_firm": "Boston Scientific Corporation",
+        "root_cause_description": "Process design",
+        "applications": [
+          "P000040"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=83989",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "83991",
+        "product_res_number": "Z-2209-2009",
+        "product_description": "Boston Scientific HydroThermAblator Endometrial Ablation System-\nHTA System Procedure Set with Tenaculum Stabilizer and Disposable Heater Canister (5/bx)\t\nMaterial/UPN/Catalog Number: M006560201\t\nSystem-HTA System Procedure Set with Tenaculum Stabilizer and Disposable Heater Canister (ea)\nMaterial/UPN/Catalog Number: M006560200\t\n\nIntended to ablate the endometrial lining of the uterus in premenopausal women with menorrhagia due to benign causes for whom childbearing is complete.",
+        "code_info": "Lot Numbers: 35421, 35422, 35423, 35424, 35425, 35426, 35846, 35847, 35890, 35891, 35892, 36038, 36039, 36040, 36041, 36042, 36047, 36048, 36104, 36105, 36141, 36142, 36143, 36146, 36147, 36148, 36214, 36215, 36234,36235, 36249, 36250,  36251, 36260, 36261 ,36370, 36371, 36372, 36467, 36468, 36682, 36683, 36684, 36685, 36686, 36688, 36689, 36690, 36693, 36694, 36695, 37049, 37098, 37099, 37149, 37150, 37151,  37154,  37192, 37218, 37219, 37220, 37221, 37222, 3and 7223.",
+        "reason_for_recall": "Cracked procedure sheaths, incorrect care/use of device, and console malfunctions may result in fluid leaks and loss of a cervical seal that are responsible for burns.",
+        "action": "Boston Scientific issued an Urgent Medical Device Recall - Immediate Action Required notification to hospitals and distributors dated July 31, 2009 via Federal Express and requested the immediate discontinued use and segregation of Recall product for return and Complete and return the Reply Verification Tracking Form.  An email was sent to Physicians to provide the recall information.  Boston Scientific issued a Clarification letter dated August 6, 2009 via Federal Express as a follow-up to the July 31, 2009 Recall letter for the following reason: customers may remove product from the outer box and store it on the inventory shelf by the inner package only. If this is a practice at the facility, a customer must consider both the inner and outer packaging product codes when searching for affected recalled product as the UPN numbers on the inner and outer labeling are different. A  reply verification tracking form for customers was provided in case they have located any additional product to return.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2009-07-31",
+        "event_date_posted": "2009-09-22",
+        "event_date_terminated": "2011-05-03",
+        "recalling_firm": "Boston Scientific Corporation",
+        "root_cause_description": "Process design",
+        "applications": [
+          "P000040"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=83991",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "50292",
+        "product_res_number": "Z-0687-2007",
+        "product_description": "HTA Console  System, 110 Volt, Product Number: 56000  (HTA system is a software-controlled hysteroscopic thermal endometrial ablation system)",
+        "code_info": "Unit Numbers: N1190JC, N1191JC, N1192JC, N1194JC, N1197JC, N1199JC, N1200JC, N1201JC, N1203JC, N1204JC, N1205JC, N1206JC, N1208JC, N1210JC, N1211JC, N1214JC, N1215JC, N1217JC, N1218JC, N1220JC, N1222JC, N1226JC, N1227JC, N1229JC, N1230JC, N1231JC, N1232JC, N1233JC, N1234JC, N1235JC, N1237JC, N1238JK, N1239JF, N1240JF, N1241JF, N1242JF, N1243JF, N1245JF, N1247JF, N1251JF, N1252JF, N1253JF, N1254JF, N1255JF, N1257JF, N1258JF, N1259JF, N1261JF, N1262JF, N1263JF, N1264JF, N1266JF, N1267JF, N1268JF, N1269JF, N1294JI, N1295JI,",
+        "reason_for_recall": "Defective integrated circuit board could result in loss of the system pump and patient injury (hot fluid 90 degree C into uterus) if in use during the recirculation/heating phase of treatment",
+        "action": "Boston Scientific notiifed accounts by letter dated January 24, 2007 via federal Express Mail. Accounts were requested to examine inventory, remove and return product.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-01-24",
+        "event_date_posted": "2007-03-31",
+        "event_date_terminated": "2007-12-12",
+        "recalling_firm": "Boston Scientific Corporation",
+        "root_cause_description": "Other",
+        "applications": [
+          "P000040"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=50292",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "50293",
+        "product_res_number": "Z-0688-2007",
+        "product_description": "HTA Console  System, 230 Volt, English, Product Number: 560010 (HTA system is a software-controlled hysteroscopic thermal endometrial ablation system)",
+        "code_info": "Unit Numbers: IN0335JC, IN0337JC, IN0341JD, IN0342JD, IN0343JD, IN0344JE, IN0345JE, IN0347JE, IN0348JE, IN0349JE, IN0352JG, IN0353JG, IN0355JG, IN0356JG",
+        "reason_for_recall": "Defective integrated circuit board could result in loss of the system pump and patient injury (hot fluid 90 degree C into uterus) if in use during the recirculation/heating phase of treatment",
+        "action": "Boston Scientific notiifed accounts by letter dated January 24, 2007 via federal Express Mail. Accounts were requested to examine inventory, remove and return product.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-01-24",
+        "event_date_posted": "2007-03-31",
+        "event_date_terminated": "2007-12-12",
+        "recalling_firm": "Boston Scientific Corporation",
+        "root_cause_description": "Other",
+        "applications": [
+          "P000040"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=50293",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "50295",
+        "product_res_number": "Z-0689-2007",
+        "product_description": "HTA Console  System, 230 Volt, Product Number: 56001 DO- English Demonstration Evaluation Unit  (HTA system is a software-controlled hysteroscopic thermal endometrial ablation system)",
+        "code_info": "Unit Numbers: IN0335JC, IN0344JE, IN0345JE, IN0349JE, IN0352JG, IN0353JG, IN0355JG, IN0356JG",
+        "reason_for_recall": "Defective integrated circuit board could result in loss of the system pump and patient injury (hot fluid 90 degree C into uterus) if in use during the recirculation/heating phase of treatment",
+        "action": "Boston Scientific notiifed accounts by letter dated January 24, 2007 via federal Express Mail. Accounts were requested to examine inventory, remove and return product.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-01-24",
+        "event_date_posted": "2007-03-31",
+        "event_date_terminated": "2007-12-12",
+        "recalling_firm": "Boston Scientific Corporation",
+        "root_cause_description": "Other",
+        "applications": [
+          "P000040"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=50295",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "50296",
+        "product_res_number": "Z-0690-2007",
+        "product_description": "HTA Console  System, 230 Volt , French, Product Number: 56001FO  (HTA system is a software-controlled hysteroscopic thermal endometrial ablation system)",
+        "code_info": "Unit Numbers: IN0350JG, IN0351JG,",
+        "reason_for_recall": "Defective integrated circuit board could result in loss of the system pump and patient injury (hot fluid 90 degree C into uterus) if in use during the recirculation/heating phase of treatment",
+        "action": "Boston Scientific notiifed accounts by letter dated January 24, 2007 via federal Express Mail. Accounts were requested to examine inventory, remove and return product.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-01-24",
+        "event_date_posted": "2007-03-31",
+        "event_date_terminated": "2007-12-12",
+        "recalling_firm": "Boston Scientific Corporation",
+        "root_cause_description": "Other",
+        "applications": [
+          "P000040"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=50296",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "50297",
+        "product_res_number": "Z-0691-2007",
+        "product_description": "HTA Console  System, 230 Volt , Italian, \nProduct Number: 56001 IO  (HTA system is a software-controlled hysteroscopic thermal endometrial ablation system)",
+        "code_info": "Unit Numbers: IN0339JC, IN0340JC,",
+        "reason_for_recall": "Defective integrated circuit board could result in loss of the system pump and patient injury (hot fluid 90 degree C into uterus) if in use during the recirculation/heating phase of treatment",
+        "action": "Boston Scientific notiifed accounts by letter dated January 24, 2007 via federal Express Mail. Accounts were requested to examine inventory, remove and return product.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2007-01-24",
+        "event_date_posted": "2007-03-31",
+        "event_date_terminated": "2007-12-12",
+        "recalling_firm": "Boston Scientific Corporation",
+        "root_cause_description": "Other",
+        "applications": [
+          "P000040"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=50297",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "40419",
+        "product_res_number": "Z-1020-05",
+        "product_description": "Adapter for ACMI Hysteroscope\nCatalog Number: 55035",
+        "code_info": "Lot Number: 20410191",
+        "reason_for_recall": "The Hysteroscope Adapter used with the HTA System may disassemble and result in a fluid leak.",
+        "action": "Boston Scientifc notified accounts by letter dated June 28, 2005 via Federal Express. Accounts are requested to check invnetory and return. Any adapters out of box have no lot identification and can be tested per instructions",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2005-07-28",
+        "event_date_posted": "2005-07-19",
+        "event_date_terminated": "2006-06-14",
+        "recalling_firm": "Boston Scientific Marlbourgh",
+        "root_cause_description": "Other",
+        "applications": [
+          "P000040"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=40419",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000040C.pdf"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000040D.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=83989"
+    }
+  ],
+  "path": "/dossiers/source-fda-p000040.json",
+  "applications": [
+    "P000040"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

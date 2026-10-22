@@ -15,6 +15,24 @@
   font-size: 12px;
   color-scheme: dark;
 }
+.human-atlas .dossier-entry {display:grid;gap:7px;width:100%;margin-top:17px;padding:12px;text-align:left;border:1px solid var(--rule);border-left:2px solid var(--blue);background:#102230;color:var(--ink);line-height:1.5}
+.dossier-entry strong {display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:400}
+.dossier-entry span,.dossier-entry small {color:var(--quiet);font-size:11px}
+.dossier {overflow-wrap:anywhere;padding-top:16px}
+.dossier h3 {margin:0 0 10px;font-size:18px}
+.dossier h4 {display:flex;align-items:baseline;flex-wrap:wrap;gap:10px;color:var(--ink);font-size:14px;font-weight:400;margin:0 0 10px}
+.dossier h4 span {font-size:11px;color:var(--gold)}
+.dossier section {border-bottom:1px solid var(--rule);padding:20px 0}
+.dossier small {display:block;color:var(--quiet);line-height:1.6;margin-top:7px}
+.dossier a {color:var(--blue);text-decoration:underline;text-underline-offset:4px}
+.dossier-record {border-top:1px solid var(--rule);padding:10px 0;line-height:1.7}
+.dossier summary {cursor:pointer;color:var(--ink);padding:8px 0;line-height:1.6}
+.dossier blockquote {margin:12px 0;border-left:2px solid var(--rule);padding-left:12px;color:var(--quiet);font-size:12px;white-space:pre-wrap}
+.dossier button {padding:12px;border:1px solid var(--rule);color:var(--blue);margin:10px 0}
+.dossier-source {border-top:1px solid var(--rule);padding:12px 0;display:grid;gap:8px}
+.dossier-filter {display:flex;align-items:center;gap:10px;color:var(--quiet);min-height:44px;line-height:1.5}
+.dossier-filter input {width:18px;height:18px;flex-shrink:0;accent-color:var(--blue)}
+.dossier li {color:var(--quiet);line-height:1.75;margin:8px 0}
 .human-atlas button {
   font-size: 12px;
   border-radius: 0;
@@ -2556,3 +2574,5 @@
 .intervention-relevance details {margin-top:12px;font-size:12px}
 .intervention-relevance blockquote {margin:10px 0;max-height:220px;overflow:auto;line-height:1.6;white-space:pre-wrap}
 .reference-note {max-width:420px;color:var(--quiet);font-size:12px;line-height:1.6}
+
+.dossier-label-sections {display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}

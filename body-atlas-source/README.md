@@ -93,3 +93,8 @@ Every addition is keyed to one original FDA record and has a specific purpose, r
 Version 3 context extraction applies explicit editorial region scopes only where an exact anatomical phrase can be recovered from the source. It does not upgrade Provisional context to a physical placement. Regression cases exclude colorectal-primary liver treatment from the colon, above-knee vascular stents from the knee joint, glaucoma stents from lens replacement, and disc prostheses or hand neuroprostheses from spinal-cord implantation. Organ-perfusion systems are explained as extracorporeal; original product-name changes remain explicit. Female-only anatomy stays text-only on the male mesh and now has a visible notice.
 
 The catalogue contains 652 applications and 712 contextual assertions after the restrictions; original raw records remain intact. Completeness, current labeling, recall status and independent expert mapping precision have not been exhaustively established. This editorial review is not a representative clinical validation study.
+
+
+## Dossier milestone — 2026-10-22
+
+All 91 explained entries now have a **Dossier** tab: regulatory history, original labeling, reported recalls, original-source links, source dates and explicit review status. See [DOSSIERS.md](DOSSIERS.md) for counts, reproducible commands and remaining review. The dossier snapshot is cached, not a live safety-alert feed.

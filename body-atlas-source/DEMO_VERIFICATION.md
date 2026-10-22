@@ -61,3 +61,14 @@ The explained layer contains 91 entries associated with 44 anatomical structures
 Validation commands: `npm run typecheck`, `npm test` (35 passing), `npm run test:ingestion` (26 passing), `node scripts/export-static.mjs ../arjan-portfolio/public/atlas`, portfolio `npm run typecheck`, `npm test` (95 passing) and `npm run build` pass. `node tests/body-atlas.browser.mjs http://127.0.0.1:3210` checks every one of the 75 additions on both desktop and mobile emulation through the real regional picker, inspector, explanation and source link. Female-only regions show an explicit text-only notice and no model annotation. Existing FDA source/hash, cited download, retrieval, accessibility and twelve-route regression checks pass.
 
 These checks establish functional behavior and source traceability, not clinical effectiveness, complete current safety/labeling coverage or an independent anatomical precision estimate. Provisional context edges have not been upgraded to verified placement. Physical-phone testing remains unverified.
+
+
+## Dossier workflow verification — 2026-10-22
+
+`npm test`: **41 passed**; `npm run test:ingestion`: **36 passed**; `npm run typecheck`: passed. `npm run build -- --webpack` and the static exporter passed. The temporary source worktree uses an external dependency symlink, which Turbopack rejects; webpack is used explicitly here. The normal portfolio `npm run typecheck`, `npm test` (**95 passed**) and `npm run build` passed.
+
+From `arjan-portfolio`, both `node tests/body-atlas-dossiers.browser.mjs http://127.0.0.1:3210` and `node tests/body-atlas.browser.mjs http://127.0.0.1:3210` passed. Each of desktop 1440×1000 and mobile 390×844 Chrome touch emulation exercised **all 91 dossier selections** and the established **75 explanation/region cases**. Original BHR label/recall links, lot 64803 / reference 74120146, source dates, uncertainty, Markdown citations, keyboard tabs, lazy loading, missing-artifact error/retry, Axe and zero page errors passed. Twelve existing portfolio routes and sitemap checks passed. Zero dossier requests occurred before opening Dossier. Local cached selection-to-dossier p95 was 39 ms desktop / 38 ms mobile; these are loopback observations, not production or physical-device performance guarantees.
+
+Results: `validation/dossier-dossiers-local-2026-10-22.json` and `validation/dossier-workflow-local-2026-10-22.json`. Browser screenshots remain generated artifacts. Physical phones/Safari and comprehensive current-label/model-lot clinical review remain unverified. See [DOSSIERS.md](DOSSIERS.md) for exact scientific coverage.
+
+Portfolio CLI lint passes with **0 errors and 14 existing warnings** in generated Rally House files. Generated `public/atlas/_next/` bundles are excluded from source lint; the maintained atlas TypeScript, unit checks and build are verified separately. The dossier branch incorporates the already merged Rally House update without editing its files.

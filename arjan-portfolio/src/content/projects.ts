@@ -14,13 +14,13 @@ export const projects: Project[] = [
     ],
     results: [
       "The cached October 19 source collection contains 2,490 authentic records. October 22 curation provides 91 explained entries across 44 anatomical structures/regions and a 652-application source-context index.",
-      "Recorded local verification on October 19 passed 29 domain/data checks, 24 ingestion checks, 16 desktop/mobile-emulated browser checks, TypeScript, and the production build. These checks do not measure independent scientific accuracy."
+      "All 91 entries have a sourced regulatory, labeling and safety dossier. The October 22 inventory includes 6,505 PMA decision records, 100 original label links across 71 entries, and application-based recall checks for 89 marketing applications."
     ],
     limitations: [
       "Public research preview at /atlas. The interactive application serves a bounded cached snapshot, not a live data service or a clinically validated reference.",
       "The 712 indexed anatomical relationships are Provisional source-text contexts, not verified device placements. No independently adjudicated anatomical precision estimate is available.",
       "An FDA application is not necessarily a distinct device family. Historical clearance, approval, and De Novo decisions do not establish current labeling, clinical effectiveness, or FDA endorsement of this project.",
-      "Coverage is incomplete, including subsequent supplements and safety notices. The male anatomical reference omits some structures; female-only contexts remain text-only. This is not a clinical decision tool."
+      "Current labeling and affected model/lot review remain pending. The anatomical reference is male; female-only regions remain text-only."
     ],
     featured: true,
     media: [{

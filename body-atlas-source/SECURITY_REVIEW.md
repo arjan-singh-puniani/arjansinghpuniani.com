@@ -27,3 +27,8 @@ Hosted denial-of-service limits, authentication/authorization, write CSRF policy
 The intervention overlay reads local curated relationships and separately marked generated source contexts; it does not execute source text or fetch external documents while orbiting. Original-source anchors open with `noopener noreferrer`. DOM text is rendered through React, and SVG paths contain only projected numeric coordinates. No device or anatomy coordinates are accepted from user input. Existing API boundaries are unchanged.
 
 Whole-body additions retain the same public-only boundaries. No new remote-fetch API, upload, document execution, LLM tool channel or writable endpoint is introduced. Generated quotes and source names render as escaped React text. Dot positions derive solely from code-owned numeric regional locators and camera projection. Source hash/record membership and exact-span tests cover the larger collection. A larger client snapshot and geometry increase resource use; list pagination and demand rendering bound ordinary interaction, while hosted rate limits remain unimplemented.
+
+
+## Dossier milestone — 2026-10-22
+
+The dossier path adds no authentication, keys, server mutation endpoint or executable external content. Existing default source allowlists remain intact; the FDA-only override is checked across redirects and final responses. Security regressions cover arbitrary hosts, credentials/ports, source tampering and failure isolation. JSON/HTML response size, page counts and retries are bounded; external HTML is published as `.txt`. Dependencies are unchanged. See [DOSSIERS.md](DOSSIERS.md).

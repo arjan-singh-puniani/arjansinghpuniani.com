@@ -1,0 +1,1197 @@
+{
+  "familyId": "source-fda-p100018",
+  "name": "Pipeline embolization device",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "52 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 52,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P100018",
+        "supplement": "S055",
+        "date": "2026-07-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device (Pipeline Flex); Pipeline Flex Embolization Device with Shield Technology (Pipelin",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "a change to in-process monitoring for the Pipeline Flex Embolization Device",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S055",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S054",
+        "date": "2026-06-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device with Shield Technology (Pipeline Shield); Pipeline Vantage Embolization Device wit",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "approval to remove the X-ray Photelectron Spectroscopy (XPS) testing and its associated Statistical Process Control (SPC) recording for the application of Shield Technology to the Pipeline braid and additional enhanced process controls, including minimum fill height verification and the addition of a 9 mm guard band",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S054",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S053",
+        "date": "2026-05-15",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device (Pipeline Flex); Pipeline Flex Embolization Device with Shield Technology (Pipelin",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "approval for the relocation of the Pipeline Flex and Pipeline Shield heat treatment and passivation operations from an ISO 8 Controlled Environment Area (CEA) to a Non-Controlled Area (Non-CEA) and the repositioning of the Pipeline implant braider within the Non-CEA",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S053",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S052",
+        "date": "2026-02-20",
+        "decision": "PMA approval",
+        "tradeName": "PIPELINE EMBOLIZATION DEVICE",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Approval of claims regarding reduced material thrombogenicity of a proprietary surface modification for the Pipeline Flex Embolization Device with Shield Technology and Pipeline Vantage Embolization Device with Shield Technology supported by acute benchtop in-vitro testing.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S052",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S048",
+        "date": "2025-08-14",
+        "decision": "PMA approval",
+        "tradeName": "Pipeline Vantage Embolization Device with Shield Technology",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Approval for changes to the post-approval study (PAS) protocol for Pipeline Vantage device following the removal of the Vantage 027 devices, including updates to include additional follow-up imaging to assess for braid deformation events.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S048",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S051",
+        "date": "2025-06-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device (Pipeline Flex); Pipeline Flex Embolization Device with Shield Technology (Pipelin",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "approval for sampling frequency modification for tensile testing of the pouch seal strength for the Pipeline Flex Embolization Device and Pipeline Flex Embolization Device with Shield Technology",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S051",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S050",
+        "date": "2025-03-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device; Pipeline Flex Embolization Device with Shield Technology (Pipeline Shield)",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "approval for a change in the vapor degreaser and vapor pressure used during the manufacturing of delivery system components",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S050",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S049",
+        "date": "2025-03-05",
+        "decision": "PMA approval",
+        "tradeName": "Pipeline Vantage Embolization Device with Shield Technology (Pipeline Vantage)",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Approval for changes to the Instructions for Use (IFU) for the Pipeline Vantage to clarify procedural steps for using the Pipeline Vantage and to provide additional information for the safe use of the device.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S049",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S047",
+        "date": "2024-09-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device with Shield Technology, Pipeline Vantage Embolization Device with Shield Technology",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "approval for a sub-tier supplier change for reagent grade water",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S047",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S046",
+        "date": "2024-07-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device with Shield Technology, Pipeline Vantage Embolization Device with Shield Technology",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "approval for updates to the braid dipping inspection and sampling plan for the Pipeline Flex Embolization Device with Shield Technology and Pipeline Vantage Embolization Device with Shield Technology",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S046",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S043",
+        "date": "2024-06-06",
+        "decision": "PMA approval",
+        "tradeName": "Pipeline Vantage Embolization Device with Shield Technology",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "approval of the protocol for the post-approval study (PAS) referenced above. The PAS protocol has been submitted to comply with the conditions of approval outlined in our approval order for P100018/S034",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S043",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S044",
+        "date": "2024-04-25",
+        "decision": "PMA approval",
+        "tradeName": "Pipeline Flex Embolization Device with Shield Technology (PED2), Pipeline Vantage Embolization Device with Shield Tec",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "approval for labeling changes [Directions for Use and Magnetic Resonance Imaging (MRI) Card] to the Pipeline Flex Embolization Device with Shield Technology and Pipeline Vantage Embolization Device with Shield Technology to incorporate more comprehensive MRI safety information",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S044",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S042",
+        "date": "2023-10-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Vantage Embolization Device with Shield Technology",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "approval for manufacturing facility location change and a new degreasing solvent for the solder preform ring component of the Pipeline Vantage Embolization Device with Shield Technology",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S042",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S041",
+        "date": "2023-10-10",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device, Pipeline Flex Embolization Device with Shield Technology",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "approval for additional alternate pouch sealing equipment for the Pipeline Flex Embolization Device and Pipeline Flex Embolization Device with Shield Technology",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S041",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S034",
+        "date": "2023-09-15",
+        "decision": "PMA approval",
+        "tradeName": "Pipeline Vantage Embolization Device with Shield Technology",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Approval for a new neurovascular flow-diverting stent and delivery system in the Pipeline product family.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S034",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S040",
+        "date": "2023-09-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device, Pipeline Flex Embolization Device with Shield Technology",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Manufacturing facility location change and a new degreasing solvent for the solder preform ring component of the Pipeline Flex Embolization Device and Pipeline Flex Embolization Device with Shield Technology.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S040",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S039",
+        "date": "2023-03-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex with Shield Technology",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Repackage and relabel the Pipeline Flex Embolization Device with Shield Technology at Medtronic Inc, -Swinnea, 4340 Swinnea Road, Memphis, Tennessee, 38118.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S039",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S038",
+        "date": "2023-02-28",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device, Pipeline Flex Embolization Device with Shield Technology",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Use of additional validated equipment for sealing the pouch of the Pipeline Flex Embolization Device and Pipeline Flex Embolization Device with Shield Technology.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S038",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S037",
+        "date": "2022-11-02",
+        "decision": "PMA approval",
+        "tradeName": "Pipeline Flex Embolization Device and Pipeline Flex Embolization Device with Shield Technology",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Approval for changes to the packaging for the box/carton and pouch materials, dimensions, and sealing equipment for the Pipeline Flex Embolization Device and Pipeline Flex Embolization Device with Shield Technology.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S037",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S035",
+        "date": "2022-02-08",
+        "decision": "PMA approval",
+        "tradeName": "Pipeline Flex, Pipeline Flex with Shield Technology",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Approval for changes to the hypotube composition specification and full-length tensile strength specifications for the Pipeline Flex Embolization Device and Pipeline Flex Embolization Device with Shield Technology.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S035",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S036",
+        "date": "2021-12-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device, Pipeline Flex Embolization Device with Shield Technology",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Relocation of the distal bump wire supplier, Creganna Medical, from the manufacturing location in Tualatin, Oregon, to Wilsonville, Oregon.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S036",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S033",
+        "date": "2021-07-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device and Pipeline Flex Embolization Device with Shield Technology",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Modifications to hypotube tensile strength test of Pipeline Flex Embolization Device and Pipeline Flex Embolization Device with Shield Technology, using an in-process manufacturing acceptance criteria of  >= 3.0 N for the test, and shifting the hypotube tensile strength test from the final inspection step to an earlier subassembly step.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S033",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S032",
+        "date": "2021-07-19",
+        "decision": "PMA approval",
+        "tradeName": "Pipeline Flex Embolization Device with Shield Technology",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Approval of the revised protocol for the post-approval study (PAS) protocol..",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S032",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S029",
+        "date": "2021-04-29",
+        "decision": "PMA approval",
+        "tradeName": "Pipeline Flex Embolization Device",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Approval for the inclusion of radial access considerations in the Pipeline Flex Embolization Device labeling.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S029",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S026",
+        "date": "2021-04-13",
+        "decision": "PMA approval",
+        "tradeName": "Pipeline Flex Embolization Device with Shield Technology",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Approval for design changes to the Pipeline Flex Embolization Device to add a surface modification to the implant.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S026",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S031",
+        "date": "2021-02-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Addition of an alternate sub-tier supplier to provide raw material used in the manufacturing of the Pipeline Flex Embolization Device.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S031",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S030",
+        "date": "2020-12-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "implementation of a statistical process monitoring control limit for the Pipeline Flex Embolization Device proximal delivery system hypotube subassembly",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S030",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S024",
+        "date": "2020-10-05",
+        "decision": "PMA approval",
+        "tradeName": "Pipeline Flex Embolization Device",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Approval for labeling changes to incorporate completed results from the post-approval study (PAS) titled Prospective Study on Embolization of Intracranial Aneurysms with Pipeline Embolization Device (PREMIER).",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S024",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S028",
+        "date": "2020-09-21",
+        "decision": "PMA approval",
+        "tradeName": "Pipeline Flex Embolization Device",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Approval for labeling changes to the instructions for use to strengthen information about possible device component separation, fracture, or breakage in the warnings, cautions and potential complications sections.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S028",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S027",
+        "date": "2020-06-29",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Moving the braiding operation for the Pipeline Flex Embolization Device from the clean room to a non-controlled environment.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S027",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S022",
+        "date": "2019-12-10",
+        "decision": "PMA approval",
+        "tradeName": "Pipeline Flex Embolization Device",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Approval for a manufacturing site located at Medtronic Distribution Center, 4340 Swinnea Road, Memphis, Tennessee 38118 for the repackaging of the Apollo Onyx Delivery Micro Catheter and Pipeline Flex Embolization Device.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S022",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S023",
+        "date": "2019-09-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Changes to the packaging operations of the Pipeline Flex Embolization Device, including the addition of a new pouch heat sealer and replacing quality control visual inspections with equivalent in-line inspections.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S023",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S021",
+        "date": "2019-07-15",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Manufacturing facility relocation at a metal wire critical component supplier.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S021",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S020",
+        "date": "2019-05-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Upgrades to the laser equipment used to form the distal tip of the introducer sheath of the Pipeline Flex Embolization device.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S020",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S019",
+        "date": "2018-12-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Change to allow sterile product to be released based on parametric release, rather than conventional release at the contract sterilization site (Sterigenics US LLC).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S019",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S015",
+        "date": "2018-12-14",
+        "decision": "PMA approval",
+        "tradeName": "Pipeline Flex Embolization Device",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Approval for the Pipeline Flex Embolization Device to expand the indications for use to include use in the internal carotid artery up to the terminus for the endovascular treatment of adults (22 years of age or older) with small and medium wide-necked (neck width >= 4 mm or dome-to-neck ratio < 2) saccular or fusiform intracranial aneurysms arising from a parent vessel with a diameter >= 2.0 mm and <= 5.0 mm.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Panel Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S015",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S018",
+        "date": "2018-10-15",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Changing HDPE and LDPE suppliers for introducer and temporary sheaths.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S018",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S017",
+        "date": "2018-06-15",
+        "decision": "PMA approval",
+        "tradeName": "Pipeline Flex Embolization Device (PFED)",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Approval for modifications to the device labeling to include a summary of the long-term follow-up results of the Pipeline for Uncoilable or Failed Aneurysms - Post Approval Study (PUFS-PAS).",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S017",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S016",
+        "date": "2017-10-11",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Pipeline Flex Embolization Device",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Change to the hypotube manufacturing process of a sub tier supplier in order to improve overall component yield and reduce scrap.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S016",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S014",
+        "date": "2016-03-31",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PIPELINE EMBOLIZATION DEVICE",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "Additional sterilization chambers for the Pipeline Embolization Device and Pipeline Flex Embolization Device.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S014",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S011",
+        "date": "2015-01-26",
+        "decision": "PMA approval",
+        "tradeName": "PIPELINE EMBOLIZATION DEVICES,PIPELINE FLEX EMBOLIZATION DEVICE",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "APPROVAL FOR DESIGN CHANGES TO THE DELIVERY SYSTEM OF THE PIPELINE¿ EMBOLIZATION SYSTEM. THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME, PIPELINE¿ FLEX EMBOLIZATION DEVICE (PFED), AND REMAINS INDICATED FOR THE ENDOVASCULAR TREATMENT OF ADULTS (22 YEARS OF AGE OR OLDER) WITH LARGE OR GIANT WIDE-NECKED INTRACRANIAL ANEURYSMS (IAS) IN THE INTERNAL CAROTID ARTERY FROM THE PETROUS TO THE SUPERIOR HYPOPHYSEAL SEGMENTS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S011",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S013",
+        "date": "2014-11-04",
+        "decision": "PMA approval",
+        "tradeName": "PIPELINE EMBOLIZATION DEVICE",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "APPROVAL FOR THE MODIFICATION OF SAFETY INFORMATION IN THE LABELING.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S013",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S012",
+        "date": "2014-08-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PIPELINE EMBOLIZATION DEVICE",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "SUPPLIER PROCESS CHANGES TO THE PIPELINE EMBOLIZATION DEVICE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S012",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S010",
+        "date": "2014-02-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PIPELINE EMBOLIZATION DEVICE",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "STERILIZATION PROCESS CHANGE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S010",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S008",
+        "date": "2013-10-22",
+        "decision": "PMA approval",
+        "tradeName": "PIPELINE  EMBOLIZATION DEVICE",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "APPROVAL FOR A DESIGN CHANGE FOR THE SHORTER PIPELINE¿ EMBOLIZATIONDEVICES (PED), MODEL NUMBERS FA-77XXX-XX, WITH LENGTHS BETWEEN 10MM AND 20MM. THIS DESIGN CHANGE INVOLVES REPLACING THE DELIVERY CORE WIRE CURRENTLY AVAILABLE ON THESE SHORTER PED LENGTHS (RM-00013-XX) WITH THE DELIVERY CORE WIRE CURRENTLY AVAILABLE ON THE LONGER PEDLENGTHS (RM-00089-XX), MODEL NUMBERS FA-71XXX-XX, BETWEEN 25MM AND 35MM.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S008",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S007",
+        "date": "2013-05-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PIPELINE EMBOLIZATION DEVICE, PIPELINE EMBOLIZATION DEVICE",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "MANUFACTURING PROCESS CHANGE FOR THE PROTECTIVE COIL OF THE PIPELINEEMBOLIZATION DEVICE DELIVERY SYSTEM.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S007",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S006",
+        "date": "2013-04-02",
+        "decision": "FDA decision code OK30",
+        "tradeName": "PIPLINE TM EMBOLIZATION DEVICE",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "CHANGE THE SOFTWARE USED TO GENERATE PRINTED WORK ORDERS.",
+        "reason": "",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S006",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S005",
+        "date": "2013-01-18",
+        "decision": "PMA approval",
+        "tradeName": "PIPELINE EMBOLIZATION DEVICE",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "APPROVAL FOR REVISIONS AND ADDITIONAL WARNINGS TO THE INSTRUCTIONS FOR USE.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S005",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S004",
+        "date": "2012-03-22",
+        "decision": "PMA approval",
+        "tradeName": "PIPELINE EMBOLIZATION DEVICE",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED AT EV3 NEUROVASCULAR, IRVINE, CALIFORNIA AS AN ADDITIONAL MANUFACTURING SITE FOR THE DEVICE.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S004",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S003",
+        "date": "2011-08-30",
+        "decision": "PMA approval",
+        "tradeName": "PIPELINE EMBOLIZATION DEVICE",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "APPROVAL FOR ADDING A WARNING ABOUT ALLERGIES TO METALS USED IN THE DEVICE AND CLARIFYING YOUR INSTRUCTIONS FOR UESE.",
+        "reason": "",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S003",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "S001",
+        "date": "2011-06-27",
+        "decision": "PMA approval",
+        "tradeName": "PIPELINE EMBOLIZATION DEVICE",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "APPROVAL OF  POST- APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018S001",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      },
+      {
+        "application": "P100018",
+        "supplement": "",
+        "date": "2011-04-06",
+        "decision": "PMA approval",
+        "tradeName": "PIPELINE EMBOLIZATION DEVICE",
+        "applicant": "Micro Therapeutics, Inc. d/b/a ev3 Neurovascular",
+        "statement": "APPROVAL FOR THE PIPELINE EMBOLIZATION DEVICE.  THIS DEVICE IS INDICATED FOR THE ENDOVASCULAR TREATMENT OF ADULTS (AGE 22 AND ABOVE) WITH LARGE OR GIANT WIDE-NECKED INTRACRANIAL ANEURYSMS IN THE INTERNAL CAROTID ARTERY FROM THE PETROUS TO THE SUPERIOR HYPOPHYSEAL SEGMENTS.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018",
+        "sourceSha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=3900&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe",
+        "file": "a3cf0b5ef256bac649b6a9870797825c44c21747947fb1ff3095b6805e3ebabe.json",
+        "retrievedAt": "2026-10-22T18:59:47.156929+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "1 original labeling document link(s) located; 10 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 1,
+    "changes": 10,
+    "rows": [
+      {
+        "application": "P100018",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100018C.pdf",
+        "pages": 12,
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018",
+        "locator": "L57: Labeling 【39†Labeling】",
+        "pageUpdatedAt": "10/12/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: 5 days ago; Content type: application/pdf; Number of pages: 12;",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P100018",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018",
+        "discovery": "[wordlim: 200] Crawled: 4 days ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018\",\"lineno\":null}); Total lines: 106",
+        "pageUpdatedAt": "10/12/2026",
+        "locator": "L57: Labeling 【39†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P100018S052",
+      "P100018S049",
+      "P100018S044",
+      "P100018S029",
+      "P100018S024",
+      "P100018S028",
+      "P100018S015",
+      "P100018S017",
+      "P100018S013",
+      "P100018S005"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "15 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 15,
+    "rows": [
+      {
+        "cfres_id": "222202",
+        "product_res_number": "Z-3326-2026",
+        "product_description": "Pipeline Flex Embolization Device with Shield Technology REF PED2-300-12\nUDI-DI code: 00763000448806\n\nhe Pipeline Flex Embolization Device with Shield Technology consists of a permanent implant combined with a guidewire based delivery system. The Pipeline Flex Embolization Device with Shield Technology implant is a braided, multi-alloy, mesh cylinder woven from platinum/tungsten and cobalt-chromium-nickel alloy wires and indicated for the endovascular treatment of adults (22 years of age or older) with large or giant wide-necked intracranial aneurysms (IAs) in the internal carotid artery from the petrous to the superior hypophyseal segments.",
+        "code_info": "Product/Catalog Number: PED2-300-12\nUDI-DI/GTIN: 00763000448806\nLot Number: #D112860",
+        "reason_for_recall": "Due to incorrect label/product dimensions.  Product is supposed to be 3.00 mm in diameter, but unit is packaging was a 2.50 mm in diameter.",
+        "action": "On 06/25/2026, an \"URGENT: MEDICAL DEVICE RECALL\" letter was sent to customers to inform them that, Medtronic has confirmed a labeling error involving implant diameter in the affected lot. Devices from Lot # D112860 labeled as PED2-300-12 (3.00 mm diameter, 12 mm length) contain 2.50 mm diameter implants instead of the labeled 3.00 mm diameter.\n\nCustomers are instructed to:\n1. Do NOT use any impacted Pipeline Flex Embolization Device with Shield Technology devices listed. Remove and quarantine all unused impacted product units in their  inventory.\n2. Return the impacted product(s) to Medtronic. Their Medtronic representative can assist in facilitating the return of product and/or identifying suitable replacement product as necessary.\n3. Complete the attached Customer Confirmation Form and email it to neuro.quality@medtronic.com.\n4. Review their records to identify any patients who may have been treated with devices from the affected lot and assess whether any follow-up is appropriate.\n5. Share this recall communication within their organization, with other organizations where impacted devices have been transferred, and any other associated organizations that may be impacted by this action. Maintain a copy of this letter for their records and the records of their patients with Pipeline Shield.\n\nFor questions - contact Medtronic at 1 (800) 633-8766 or (763) 514-4000 (Worldwide) or Email: rs.nvquality@medtronic.com",
+        "recall_status": "Open, Classified",
+        "event_date_initiated": "2026-06-25",
+        "event_date_posted": "2026-09-28",
+        "event_date_terminated": "",
+        "recalling_firm": "Micro Therapeutics, Inc.",
+        "root_cause_description": "Under Investigation by firm",
+        "applications": [
+          "P100018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=222202",
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+      },
+      {
+        "cfres_id": "221301",
+        "product_res_number": "Z-2773-2026",
+        "product_description": "Pipeline Flex Embolization Device with Shield Technology, 3.00 mm x 12 mm 027\nREF PED2-300-12. Intracranial aneurysm flow diverter",
+        "code_info": "UDI: 00763000448806/ Lot: D062612",
+        "reason_for_recall": "Incorrect labeling - embolization devices labeled as 3.0 mm x 20 mm implants contain 12 mm implants, and devices labeled as 3.0 mm x 12 mm implants contain 20 mm implants.",
+        "action": "On June 4, 2026, Medtronic (parent company of Micro Therapeutics)  issued a Urgent Medical Device Expansion to affected consignees via visit. Medtronic ask consignees to take the following actions: \n\n1. Do NOT use any impacted Pipeline Shield products. Remove and quarantine all unused\nimpacted product units in your inventory.\n2. Return the impacted product(s) to Medtronic. Your Medtronic representative can assist in facilitating the return of product and/or identifying suitable replacement product as necessary.\n3. Complete the attached Customer Confirmation Form and email it to neuro.quality@medtronic.com.\n\n4. Please share this communication within your organization, with other organizations where impacted devices have been transferred, and any other associated organizations that may be impacted by this action. \n5. Please maintain a copy of this letter for your records and the records of your patients with Pipeline Shield.",
+        "recall_status": "Open, Classified",
+        "event_date_initiated": "2026-06-08",
+        "event_date_posted": "2026-07-22",
+        "event_date_terminated": "",
+        "recalling_firm": "Micro Therapeutics, Inc.",
+        "root_cause_description": "Labeling Change Control",
+        "applications": [
+          "P100018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=221301",
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+      },
+      {
+        "cfres_id": "221302",
+        "product_res_number": "Z-2774-2026",
+        "product_description": "Pipeline Flex Embolization Device with Shield Technology, 3.00 mm x 20 mm 027\nREF PED2-300-20. Intracranial aneurysm flow diverter",
+        "code_info": "UDI: 00763000448844/ Lot: D062531",
+        "reason_for_recall": "Incorrect labeling - embolization devices labeled as 3.0 mm x 20 mm implants contain 12 mm implants, and devices labeled as 3.0 mm x 12 mm implants contain 20 mm implants.",
+        "action": "On June 4, 2026, Medtronic (parent company of Micro Therapeutics)  issued a Urgent Medical Device Expansion to affected consignees via visit. Medtronic ask consignees to take the following actions: \n\n1. Do NOT use any impacted Pipeline Shield products. Remove and quarantine all unused\nimpacted product units in your inventory.\n2. Return the impacted product(s) to Medtronic. Your Medtronic representative can assist in facilitating the return of product and/or identifying suitable replacement product as necessary.\n3. Complete the attached Customer Confirmation Form and email it to neuro.quality@medtronic.com.\n\n4. Please share this communication within your organization, with other organizations where impacted devices have been transferred, and any other associated organizations that may be impacted by this action. \n5. Please maintain a copy of this letter for your records and the records of your patients with Pipeline Shield.",
+        "recall_status": "Open, Classified",
+        "event_date_initiated": "2026-06-08",
+        "event_date_posted": "2026-07-22",
+        "event_date_terminated": "",
+        "recalling_firm": "Micro Therapeutics, Inc.",
+        "root_cause_description": "Labeling Change Control",
+        "applications": [
+          "P100018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=221302",
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+      },
+      {
+        "cfres_id": "212204",
+        "product_res_number": "Z-1245-2025",
+        "product_description": "Medtronic Pipeline Vantage Embolization Device with Shield Technology, REF: PED3-027-350-12, PED3-027-350-14, PED3-027-350-16, PED3-027-350-20, PED3-027-350-25, PED3-027-400-12, PED3-027-400-14, PED3-027-400-16, PED3-027-400-18, PED3-027-400-20, PED3-027-400-25, PED3-027-400-30, PED3-027-450-12, PED3-027-450-14, PED3-027-450-16, PED3-027-450-18, PED3-027-450-20, PED3-027-450-25, PED3-027-450-30, PED3-027-450-40, PED3-027-500-14, PED3-027-500-16, PED3-027-500-18, PED3-027-500-20, PED3-027-500-25, PED3-027-500-30, PED3-027-500-40, PED3-027-550-16, PED3-027-550-18, PED3-027-550-20, PED3-027-550-30, PED3-027-550-40, PED3-027-550-50, PED3-027-600-16, PED3-027-600-18, PED3-027-600-20, PED3-027-600-30, PED3-027-600-40, PED3-027-600-50",
+        "code_info": "All unused devices. Product lots including and between B317266 and B817292.\n\nREF/UDI-DI/Lot:\nPED3-027-350-12/00847536035263, 00847536030770/B409106, B637287, B700548;\n\nPED3-027-350-14/00847536035287, 00847536030787/B409234, B700550, B794880;\n\nPED3-027-350-16/00847536035294, 00847536030794/B409692, B697962, B700551, B795136, B795142, B809808;\n\nPED3-027-350-20/00847536035317, 00847536030817/B410645, B558444, B623124, B672921, B700552, B777630;\n\nPED3-027-350-25/00847536035324, 00847536030824/B410718, B672530, B700553, B771934, B771938;\n\nPED3-027-400-12/00847536030862, 00847536035362, 00847536036680/B321585, B336094, B349668,B371137, B409814, B414591, B437740, B482271, B594119, B597085, B598465, B612514, B616043, B616052, B647374, B649853, B655648, B658620, B658685, B666385, B666418, B671805, B720634, B720635, B744619, B744621, B756639, B765446, B765448, B780611, B786108;\n\nPED3-027-400-14/00847536030879, 00847536035379, 00847536036697/B318079, B335275, B339540, B350391, B364366, B372416, B375523, B410879, B415080, B422400, B438538, B448437, B459694, B460349, B464650, B469525, B474550, B556978, B601007, B608852, B616050, B622657, B625452, B625453, B629552, B683800, B689019, B691414, B698756, B714840, B715051, B721683, B745065, B753732, B763635, B763642, B802419;\n\nPED3-027-400-16/00847536030886, 00847536035386, 00847536036703/B326193, B330879, B330881, B357080, B401867, B402034, B403012, B417737, B419736, B420127, B422990, B423257, B426548, B438677, B439156, B439301, B445198, B449040, B449149, B449591, B453559, B454843, B459846, B460523, B465307, B469682, B474417, B560503, B575892, B578340, B597083, B603196, B608221, B611268, B615571, B623135, B623136, B625944, B625945, B672865, B678987, B694225, B694934, B699098, B715043, B721778, B721782, B730828, B730829, B738422, B738423, B739914, B744842, B744860, B766155, B766701, B769315, B776922, B776933, B777378, B791207;\n\nPED3-027-400-18/00847536036710/B795091;\n\nPED3-027-400-20/00847536030909, 00847536035409, 00847536036727/B318459, B329314, B329316, B338468, B368540, B374265, B380481, B381434, B383600, B384092, B384233, B388982, B391816, B420182, B420318, B423735, B439714, B441852, B449699, B450256, B460915, B461092, B461510, B465420, B470193, B475106, B478030, B485264, B487677, B557537, B565556, B571634, B575122, B576711, B577356, B578341, B631830, B632949, B635238, B636674, B649884, B654937, B657799, B658273, B658540, B659188, B659211, B666546, B671140, B679007, B680109, B692381, B692536, B692916, B693469, B705994, B722574, B722592, B730946, B739972, B741664, B741666, B746709, B752946, B753532, B756807, B756808, B763701, B778174, B778192, B778193, B778534, B778535, B781327, B781347, B791327, B811796;\n\nPED3-027-400-25/00847536030916, 00847536035416, 00847536036734/B322422, B394134, B400793, B411501, B415161, B424676, B432804, B442338, B470284, B474964, B481516, B483308, B568647, B576712, B577358, B634985, B636192, B648012, B649383, B661189, B675951, B689989, B704525, B706229, B706230, B709931, B712123, B726423, B741049, B741051, B747537, B747541, B754030, B765519, B776777, B777166, B780003, B780520, B786557;\n\nPED3-027-400-30/00847536030923, 00847536035423, 00847536036741/B394830, B401265, B413855, B415343, B415743, B444760, B470728, B475566, B484529, B594121, B603201, B608917, B616555, B622661, B623126, B637143, B675952, B681380, B681596, B711437, B711438, B723555, B731515, B731516, B741809, B764098, B778206, B778207, B798796;\n\nPED3-027-450-12/00847536030961, 00847536035461, 00847536036789/B322748, B456666, B471328, B486866, B575963, B601277, B637185, B666423, B703226, B706228, B708791, B711095, B750794, B751129, B758665, B758666, B758667, B794235;\n\nPED3-027-450-14/00847536030978, 00847536035478, 00847536036796/B320465, B336565, B340244, B351032, B374880, B404541, B425289, B432042, B462206, B470900, B477408, B481700, B483148, B601181, B604476, B617556, B637191, B669563, B669568, B675953, B692841, B694794, B696125, B697448, B704465, B709288, B711828, B719080, B719084, B741791, B745142, B745143, B751967, B753463, B772618, B814124;\n\nPED3-027-450-16/00847536030985, 00847536035485, 00847536036802/B318562, B331383, B331528, B340320, B351038, B374958, B384705, B385273, B395007, B405061, B407737, B424599, B450972, B465971, B471455, B483899, B485855, B535234, B552285, B568744, B571592, B585330, B596585, B622035, B625593, B626044, B628700, B629503, B643420, B659204, B659718, B660616, B661809, B666550, B666589, B668758, B669369, B675954, B682011, B698182, B723071, B723072, B723787, B723791, B735828, B735829, B735830, B746751, B746752, B753483, B757640, B757645, B762226, B762228, B764394, B787789, B789383, B803301; \n\nPED3-027-450-18/00847536036819/B797308;\n\nPED3-027-450-20/00847536031005, 00847536035508, 00847536036826/B325710, B328706, B328709, B355336, B357077, B357672, B377120, B381729, B389289, B390355, B397986, B419639, B421094, B423116, B425691, B440190, B440356, B440859, B442521, B449796, B450384, B451092, B452205, B461652, B462339, B464094, B480010, B481041, B487030, B549631, B550980, B557508, B569276, B573461, B574475, B584490, B585331, B594727, B632801, B635651, B650035, B651312, B651584, B652220, B669427, B673379, B674005, B681938, B696501, B696960, B700714, B700961, B703735, B705508, B728234, B729519, B732220, B752592, B758912, B758914, B760821, B774880, B776153, B794615, B794620, B798765, B810476, B811668;\n\nPED3-027-450-25/00847536031012, 00847536035515, 00847536036833/B319170, B352790, B370633, B395978, B403146, B408241, B419571, B425960, B443719, B453438, B453676, B463202, B467023, B471895, B472002, B488714, B558531, B590206, B596591, B597131, B600999, B604474, B604478, B611115, B613070, B616042, B645444, B645874, B646698, B652027, B654357, B681223, B681901, B693373, B696977, B697584, B699639, B699762, B730899, B751210, B751305, B752452, B759553, B759554, B775532, B800797;\n\nPED3-027-450-30/00847536031029, 00847536035522, 00847536036840/B396144, B404416, B411353, B434096, B436536, B535757, B561797, B574352, B616037, B644866, B645276, B651451, B652656, B654460, B658656, B659930, B675955, B688941, B713232, B714797, B714798, B717097, B730298, B731601, B731603, B784372, B785363, B810615, B815818;\n\nPED3-027-450-40/00847536031043, 00847536035546, 00847536036864/B353358, B377744, B411399, B448343, B549634, B559739, B615408, B623125, B637017, B675956, B683288, B684783, B699735, B699776, B704439, B710043, B710051, B733018, B761384, B761385, B761386, B764292, B778738, B778836, B786518;\n\nPED3-027-500-14/00847536031067, 00847536035577, 00847536036895/B353371, B411952, B425824, B432210, B447358, B455035, B455951, B601160, B603379, B606137, B624428, B637037, B651443, B674478, B675957, B685652, B701387, B706116, B706164, B710564, B710571, B711705, B729531, B764751, B765289, B785958, B790520;\n\nPED3-027-500-16/00847536031074, 00847536035584, 00847536036901/B320910, B353996, B375682, B425116, B426932, B432683, B441009, B479353, B536475, B558194, B568648, B622122, B622123, B638485, B638487, B644714, B645376, B647467, B649263, B652167, B652663, B654363, B655727, B683524, B703758, B704315, B704999, B710455, B729572, B730327, B785458, B785792, B785793, B807437, B809811;\n\nPED3-027-500-18/00847536036918/B797650;\n\nPED3-027-500-20/00847536031098, 00847536035607, 00847536036925/B326325, B331608, B341953, B354635, B370450, B377872, B381636, B386124, B396652, B416028, B426418, B443827, B456058, B457830, B466125, B472700, B476324, B479966, B485115, B566387, B590194, B596594, B603380, B645491, B645898, B645962, B647222, B650050, B651347, B677890, B678397, B678959, B679068, B684999, B695686, B705596, B705610, B707567, B707606, B717655, B727541, B734039, B737927, B737928, B752681, B763087, B772659, B773371, B773372, B779449, B779450, B779633;\n\nPED3-027-500-25/00847536031104, 00847536035614, 00847536036932/B354639, B382191, B387287, B396748, B413971, B417560, B472568, B478679, B536229, B570707, B603199, B646445, B648039, B680655, B688975, B689445, B693010, B694374, B695076, B700554, B702913, B720212, B720213, B720231, B747329, B747330, B747332, B751359, B761968, B763427, B800923;\n\nPED3-027-500-30/00847536031111, 00847536035621, 00847536036949/B337320, B342643, B358320, B378426, B382386, B382844, B401379, B427074, B428049, B428522, B429875, B435865, B436340, B445405, B452880, B456544, B596584, B598708, B606136, B623128, B655004, B655034, B655744, B663561, B666422, B668512, B669368, B669370, B707244, B728433, B743037, B743038, B743039, B750658, B751192, B752314, B752315, B779538;\n\nPED3-027-500-40/00847536031135, 00847536035645, 00847536036963/B319346, B340946, B373012, B373062, B374156, B379194, B397871, B398496, B456742, B457215, B464764, B467126, B473757, B482175, B567777, B573469, B585305, B590192, B677757, B682747, B693594, B701050, B703777, B703949, B707108, B710395, B711021, B711022, B736159, B747948, B749861, B753183, B753184, B762889, B773500;\n\nPED3-027-550-16/00847536031166, 00847536035683, 00847536037007/B358321, B369526, B452971, B497779, B575962, B580922, B622743, B623127, B686266, B689577, B707045, B707126, B708154, B708159, B720912, B720913, B739371, B749920, B782490, B806751;\n\nPED3-027-550-18/00847536037014/B803199;\n\nPED3-027-550-20/00847536035706, 00847536031180, 00847536037021/B412256, B417797, B446018, B454303, B496490, B560727, B565445, B578965, B615897, B623137, B623138, B690738, B691319, B692483, B695336, B713205, B713214, B717726, B731786, B731789, B740657, B741946, B764254, B764286, B766393, B766406, B780554, B781697, B800693, B808083;\n\nPED3-027-550-30/00847536031203, 00847536035720, 00847536037045/B397247, B408458, B414706, B416571, B473971, B475784, B479273, B494116, B608410, B611882, B615380, B663584, B666410, B695406, B696119, B697734, B709920, B713734, B713735, B729710, B738501, B738502, B746449, B783057, B783239, B783566;\n\nPED3-027-550-40/00847536031227, 00847536035744, 00847536037069/B358931, B378536, B389916, B409027, B433336, B437033, B454059, B493075, B494673, B612534, B615604, B616547, B652056, B654234, B655595, B671064, B672455, B672476, B684986, B704973, B706035, B707059, B717259, B717261, B742095, B750469, B761584, B768849, B771892, B771893, B773963, B778320, B778326, B780176;\n\nPED3-027-550-50/00847536031241, 00847536035768, 00847536037083/B397414, B412119, B431531, B435644, B437187, B616028, B637697, B658014, B705133, B717320, B717336, B717341, B724924, B745389, B745405, B745974, B749926, B785200, B785874;\n\nPED3-027-600-16/00847536031289, 00847536035805, 00847536037120/B368960, B454127, B603197, B607478, B611280, B611281, B690544, B691908, B693533, B709546, B720780, B732968, B762785, B801322;\n\nPED3-027-600-18/00847536037137/B801452;\n\nPED3-027-600-20/00847536031302, 00847536035829, 00847536037144/B317266, B338536, B376423, B412355, B446526, B491096, B596581, B608223, B624427, B624430, B681791, B682681, B698133, B701028, B708016, B708642, B709539, B713242, B720316, B720318, B747892, B747893, B761449, B769429, B805791;\n\nPED3-027-600-30/00847536031326, 00847536035843, 00847536037168/B339559, B412787, B457289, B467222, B489389, B594600, B597081, B611169, B611170, B626128, B652141, B653242, B654415, B681946, B682043, B701346, B711916, B712145, B719705, B726352, B726417, B728348, B735171, B748081, B748545, B748565, B758585, B808813;\n\nPED3-027-600-40/00847536031340, 00847536035867, 00847536037182/B320318, B337325, B360226, B369513, B379020, B419419, B480964, B485981, B485982, B549767, B552409, B559740, B567778, B608855, B618581, B622005, B655601, B655798, B669603, B694091, B695569, B699270, B711618, B716111, B720752, B721600, B742928, B745966, B758046, B758050, B760363, B767594, B790633, B800873;\n\nPED3-027-600-50/00847536031364, 00847536035881, 00847536037205/B327190, B332681, B342121, B403885, B415948, B428706, B429330, B433507, B434230, B457419, B557587, B617560, B623582, B626133, B651590, B652749, B653261, B653391, B658476, B658484, B670055, B670398, B673424, B680095, B695531, B703875, B713824, B714234, B726282, B732261, B732262, B732459, B733700, B746625, B758339, B758371, B768841, B783879, B783888, B788852, B790033, B794845",
+        "reason_for_recall": "Use of embolization device with diameters greater-than-or-equal-to 4mm may lead to incomplete wall apposition and/or braid deformation (fish-mouthing/braid narrowing/braid collapse) noted during procedure and post-procedure, typically noted at 6-12 month imaging follow-up, potentially can lead to thrombosis and/or serious adverse events. Higher risk in females less-than-or-equal-to 45 years of age",
+        "action": "On 1/30/2025, Medtronic Neurovascular mailed \"Urgent Safety and Labeling Notification\" recall notices to healthcare professions who were asked to do the following:\n\nRemoval (retrieval) is isolated to unused inventory of the Pipeline Vantage 027 devices:\n1) Remove and quarantine all unused impacted products in your inventory.\n2) Return the impacted products to firm. Firm representative can assist with identifying suitable replacement product.\n\nCorrection of Instructions for Use applies to Pipeline Vantage 021 devices:\nThe key updates are:\n1) Appropriate device diameter and length selection to account for complex anatomy.\n2) Techniques to deploy Pipeline Vantage compared to Pipeline Shield using a balance of device tension and compression to achieve adequate wall apposition and landing around curves.\n2) Warnings about the consequences of incomplete wall apposition and suboptimal deployment and the increased risk of braid deformation in females, especially in females less-than-or-equal-to 45 years of age.\n\nUpdated IFU M067713CDOC2 Rev. A (01/2025) was sent with the notice and can be found at: https://manuals.medtronic.com/manuals/\n\nShare this communication within your organization, with other organizations where impacted devices have been transferred, and any other associated organizations that may be impacted by this action. Please maintain a copy of this letter for your records and the records of your patients.\n\nComplete and return the customer confirmation form via email to neuro.quality@medtronic.com\n\nQuestions can be directed to the firm at rs.nvquality@medtronic.com or call at 1(800) 633-8766 (US Toll free) or (763) 514-4000 (Worldwide), available 24 hours a day, 7 days a week.",
+        "recall_status": "Open, Classified",
+        "event_date_initiated": "2025-01-30",
+        "event_date_posted": "2025-03-05",
+        "event_date_terminated": "",
+        "recalling_firm": "Micro Therapeutics, Inc.",
+        "root_cause_description": "Device Design",
+        "applications": [
+          "P100018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=212204",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "212391",
+        "product_res_number": "Z-1246-2025",
+        "product_description": "Medtronic Pipeline Vantage Embolization Device with Shield Technology, REF: PED3-021-350-16, PED3-021-250-14, PED3-021-350-20, PED3-021-250-20, PED3-021-300-16, PED3-021-300-20, PED3-021-275-12, PED3-021-275-16, PED3-021-325-12, PED3-021-325-14, PED3-021-325-16, PED3-021-325-20, PED3-021-250-12, PED3-021-300-14, PED3-021-250-16, PED3-021-300-12, PED3-021-275-14, PED3-021-350-14, PED3-021-350-25, PED3-021-350-12, PED3-021-250-10, PED3-021-275-20, PED3-021-350-18, PED3-021-325-18, PED3-021-275-18, PED3-021-250-18, PED3-021-300-18; and Instructions for Use, Part: M056989CDOC2",
+        "code_info": "Instructions for Use, Version: Rev. A (01/2024).\n\nREF/UDI-DI/Lot:\nPED3-021-350-16/00847536030701, 00847536035195, 00847536036529/B317460, B327449, B335184, B340948, B349032, B389162, B392918, B424454, B430015, B495821, B497938, B547396, B550307, B551615, B559033, B603377, B623564, B656863, B656887, B658904, B692346, B715057, B715058, B715541, B726894, B735821, B735823, B756029, B756030, B760210, B760211, B768202, B768387, B769453, B770633, B807494;\n\nPED3-021-250-14/00847536030411, 00847536034907, 00847536036239/B317936\nB332767, B333492, B333536, B334545, B376967, B388041, B391185, B399354, B416713, B431395, B452416, B457963, B467691, B476239, B564173, B564970, B574472, B580923, B629372, B630998, B670305, B673035, B699576, B707568, B709193, B736698, B736893, B739090, B739091, B795110, B796586, B800827, B801770;\n\nPED3-021-350-20/00847536030725, 00847536035218, 00847536036543/B319436, B336571, B379993, B383427, B389708, B400103, B400599, B403612, B407062, B415211, B446722, B483987, B490972, B492403, B494049, B552487, B559741, B591782, B591864, B592074, B622656, B626023, B648708, B684905, B715692, B719565, B719567, B719659, B726923, B728926, B735667, B756330, B765053, B768231, B770237, B770248, B792630;\n\nPED3-021-250-20/00847536030442, 00847536034938, 00847536036260/B321465, B337378, B360749, B371070, B412868, B467843, B477487, B488713, B548244, B557602, B644034, B673388, B679822, B684208, B686727, B695486, B698571, B703035, B708080, B709204, B711078, B746067, B757056, B757060, B761030, B771498, B775215, B789892, B790055;\n\nPED3-021-300-16/00847536030541, 00847536035034, 00847536036369/B321725, B338497, B405720, B418200, B570723, B574473, B603375, B604477, B656277, B658580, B659806, B666425, B681289, B691752, B699606, B703209, B707982, B711365, B725679, B736659, B738114, B769551, B769582, B798864;\n\nPED3-021-300-20/00847536030565, 00847536035058, 00847536036383/B322263, B336066, B347327, B376257, B405892, B414535, B458672, B458776, B469040, B490920, B495292, B563197, B607500, B607501, B635214, B636992, B656299, B656355, B657960, B668529, B678482, B680045, B681190, B712110, B712111, B718522, B720923, B725457, B732895, B735956, B737156, B737367, B748272, B748683, B749541, B775230, B778774, B780044;\n\nPED3-021-275-12/00847536030466, 00847536034952, 00847536036284/B323044, B383016, B391275, B399486, B454385, B468406, B623580, B623583, B624424, B657776, B666498, B669520, B670179, B670226, B710976, B743820, B743822, B754659, B762034, B768199, B798851;\n\nPED3-021-275-16/00847536030480, 00847536034976, 00847536036307/B323046, B361987, B406342, B414102, B458076, B468915, B477868, B558538, B562688, B563304, B603078, B654235, B656399, B657059, B666486, B669610,B670343, B677246, B699308, B736874, B743098, B755194, B755196, B755673, B769461, B771317, B775167, B775168;\n\nPED3-021-325-12/00847536030602, 00847536035096, 00847536036420/B324297, B407597, B418843, B494876, B561787, B592073, B623579, B629046, B676507, B678997, B716220, B741395, B751748, B787015, B787017;\n\nPED3-021-325-14/00847536030619, 00847536035102, 00847536036437/B324809, B347993, B362685, B459598, B558177, B563209, B575964, B580901, B628946, B675724, B678948, B681904, B714342, B714344, B733352, B733353, B769593, B790478;\n\nPED3-021-325-16/00847536030626, 00847536035119, 00847536036444/B324954, B339033, B371691, B418451, B460439, B495941, B603378, B604475, B623578, B624422, B660509, B664402, B666503, B667510, B667920, B668523, B680717, B681747, B733912, B739722, B739723, B739724, B746618, B794191, B794192;\n\nPED3-021-325-20/00847536030640, 00847536035133, 00847536036468/B325613, B371743, B418905, B421650, B463895, B487451, B495368, B591952, B591955, B644630, B644769, B644809, B657857, B659135, B659138, B659243, B684852, B716733, B716735, B741305, B741316, B741321, B787131;\n\nPED3-021-250-12/00847536030404, 00847536034891, 00847536036222/B326236, B335270, B387931, B390988, B394283, B421249, B477292, B497244, B578963, B664457, B666521, B667945, B669726, B696189, B719158, B724199, B724200.B724764, B741102, B746521, B764797, B764798, B787764, B787765, B787766, B793905;\n\nPED3-021-300-14/00847536030534, 00847536035027, 00847536036352/B327828, B335957, B346789, B393640, B399293, B403772, B456576, B547554, B568649, B575299, B631125, B631126, B649258, B650123, B652886, B657773, B683152, B711496, B712157, B712158, B732804, B732807, B754755, B754756, B754757, B760951, B760953, B768142, B769947, B789256;\n\nPED3-021-250-16/00847536030428, 00847536034914, 00847536036246/B328095, B416673, B452284, B478579, B494048, B565441, B573470, B575302, B628868, B628869, B630965, B656206, B666535, B667323, B668743, B739139, B739405, B739408, B754155, B754886, B754888, B755651, B794406, B794408, B794426;\n\nPED3-021-300-12/00847536030527, 00847536035010, 00847536036345/B338969, B345449, B346121, B361988, B405158, B418358, B454923, B551608, B561782, B562698, B563303, B575894, B677108, B677319, B699289, B703245, B718483, B718491, B739905, B744728, B760716, B766588;\n\nPED3-021-275-14/00847536030473, 00847536034969, 00847536036291/B343142, B361366, B379727, B429213, B448933, B452378, B461124, B601345, B607550, B624425, B626121, B678023, B680119, B711192, B713287, B724745, B744169, B744175, B744176, B770971, B770988;\n\nPED3-021-350-14/00847536030695, 00847536035188, 00847536036512/B349031, B372357, B388981, B391924, B399969, B421758, B445867, B491603, B492310, B497318, B596593, B629649, B630549, B631109, B670495, B678371, B679957, B713023, B713796, B740630, B740631, B742526, B743935, B753618;\n\nPED3-021-350-25/00847536030732, 00847536035225, 00847536036550/B364361, B393438, B403082, B419021, B422233, B430531, B437842, B447224, B488266, B616574, B624414, B629444, B629660, B672265, B672892, B673364, B717131, B717132, B724110, B733587, B733590, B741976, B761681, B768780, B771211, B772034, B773456, B773457;\n\nPED3-021-350-12/00847536030688, 00847536035171, 00847536036505/B368529, B406425, B419491, B490325, B496666, B497114, B611908, B615889, B616569, B643508, B643509, B644619, B657109, B658427, B659171, B690687, B715610, B715612, B716621, B742378, B746455, B787264;\n\nPED3-021-250-10/00847536030398, 00847536036215, 00847536034884/B387475, B390553, B427939, B490270, B575123, B578342, B628755, B654233, B666402, B670376, B693553, B707945, B711113, B740699, B764024, B764025, B766116, B769419, B797931, B801945;\n\nPED3-021-275-20/00847536030503, 00847536034990, 00847536036321/B391792, B398628, B418296, B452832, B461730, B497830, B548241, B567772, B655966, B656945, B666505, B671729, B677211, B679094, B680758, B693403, B699179, B711385, B725638, B725639, B736012, B736612, B737225, B751998, B756411, B797986;\n\nPED3-021-350-18/00847536036536/B798906;\n\nPED3-021-325-18/00847536036451/B800239;\n\nPED3-021-275-18/00847536036314/B805162;\n\nPED3-021-250-18/00847536036253/B805488;\n\nPED3-021-300-18/00847536036376/B807417",
+        "reason_for_recall": "Use of embolization device with diameters greater-than-or-equal-to 4mm may lead to incomplete wall apposition and/or braid deformation (fish-mouthing/braid narrowing/braid collapse) noted during procedure and post-procedure, typically noted at 6-12 month imaging follow-up, potentially can lead to thrombosis and/or serious adverse events. Higher risk in females less-than-or-equal-to 45 years of age",
+        "action": "On 1/30/2025, Medtronic Neurovascular mailed \"Urgent Safety and Labeling Notification\" recall notices to healthcare professions who were asked to do the following:\n\nRemoval (retrieval) is isolated to unused inventory of the Pipeline Vantage 027 devices:\n1) Remove and quarantine all unused impacted products in your inventory.\n2) Return the impacted products to firm. Firm representative can assist with identifying suitable replacement product.\n\nCorrection of Instructions for Use applies to Pipeline Vantage 021 devices:\nThe key updates are:\n1) Appropriate device diameter and length selection to account for complex anatomy.\n2) Techniques to deploy Pipeline Vantage compared to Pipeline Shield using a balance of device tension and compression to achieve adequate wall apposition and landing around curves.\n2) Warnings about the consequences of incomplete wall apposition and suboptimal deployment and the increased risk of braid deformation in females, especially in females less-than-or-equal-to 45 years of age.\n\nUpdated IFU M067713CDOC2 Rev. A (01/2025) was sent with the notice and can be found at: https://manuals.medtronic.com/manuals/\n\nShare this communication within your organization, with other organizations where impacted devices have been transferred, and any other associated organizations that may be impacted by this action. Please maintain a copy of this letter for your records and the records of your patients.\n\nComplete and return the customer confirmation form via email to neuro.quality@medtronic.com\n\nQuestions can be directed to the firm at rs.nvquality@medtronic.com or call at 1(800) 633-8766 (US Toll free) or (763) 514-4000 (Worldwide), available 24 hours a day, 7 days a week.",
+        "recall_status": "Open, Classified",
+        "event_date_initiated": "2025-01-30",
+        "event_date_posted": "2025-03-05",
+        "event_date_terminated": "",
+        "recalling_firm": "Micro Therapeutics, Inc.",
+        "root_cause_description": "Device Design",
+        "applications": [
+          "P100018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=212391",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "180023",
+        "product_res_number": "Z-1527-2020",
+        "product_description": "ev3 Pipeline Flex Embolization Device.  For neurological endovascular use.",
+        "code_info": "Lots: A920066 A920068 A920069 A920070 A920071 A920072 A920073 A920074 A920075 A920076 A920078 A920079 A921354 A921355 A921356 A921357 A921358 A921359 A921360 A921361 A921362 A921363 A922016 A922017 A922018 A922020 A922021 A922022 A922480 A922481 A922483 A922484 A922571 A922572 A922575 A923951 A923956 A923959 A923960 A923963 A923967 A923968 A923969 A924193 A924194 A924197 A924198 A924199 A924638 A924640 A924641 A924642 A924643 A924644 A924645 A924646 A924647 A924648 A924650 A927827 A927828 A927829 A927830 A927831 A927832 A927833 A927834 A927835 A927836 A927837 A927838 A927839 A927840 A927841 A927842 A927843 A927844 A927845 A927847 A927848 A929704 A929705 A929706 A929707 A929708 A929710 A929711 A929713 A929714 A929716 A929717 A929893 A929894 A929896 A929897 A929898 A929901 A929902 A929903 A929904 A929906 A929907 A932604 A932605 A932607 A932609 A932610 A932611 A932612 A932613 A933706 A933707 A933709 A933710 A933781 A933782 A933783 A933784 A933785 A933786 A933787 A933788 A933789 A934499 A934500 A934503 A934504 A934505 A934506 A935182 A935184 A937237 A937238 A937239 A937240 A937241 A937645 A937646 A937647 A937648 A937649 A937650 A937651 A937652 A937653 A937654 A938289 A938290 A938291 A938293 A939611 A941306 A941307 A941308 A941309 A941310 A942157 A942159 A942160 A942161 A942162 A942163 A942164 A942165 A942166 A944241 A944242 A944244 A944245 A944246 A944247 A944249 A944250 A944251 A944253 A944254 A944255 A944256 A944257 A945204 A945205 A945438 A945441 A945445 A945447 A945450 A945451 A945452 A945454 A945455 A946808 A946811 A946813 A946815 A946816 A946817 A947150 A947151 A947152 A947153 A947154 A947155 A947396 A947397 A947398 A947399 A947400 A947401 A947402 A947403 A947405 A947407 A947408 A948123 A948124 A948125 A948126 A948127 A948128 A948129 A948130 A948131 A949486 A949487 A949488 A949489 A949490 A949491 A949492 A949493 A949494 A949495 A949496 A949497 A950324 A950329 A950332 A950333 A950335 A950337 A950341 A950344 A950346 A950753 A950754 A950945 A950946 A950947 A952499 A952500 A953289 A953290 A953291 A953292 A953294 A953295 A953296 A953297 A955938 A955939 A955940 A955943 A955944 A955945 A955946 A955947 A955948 A956502 A956504 A956505 A956506 A956507 A956508 A956509 A956510 A956511 A956512 A957173 A957175 A957176 A957270 A957271 A957272 A957273 A957274 A957282 A957461 A957470 A957472 A957473 A957475 A957476 A957477 A957478 A957479 A957480 A957481 A957483 A957484 A957485 A957486 A957488 A957490 A957492 A958533 A958534 A958535 A958536 A958537 A958538 A958539 A958540 A958542 A958543 A958547 A959339 A959341",
+        "reason_for_recall": "Embolization device delivery system may fracture at the distal section during device implantation. A weakened bond may result in unintended separation, where the distal portion of the device delivery system remains in the patient. If a Pipeline Flex embolization device has already been implanted successfully, there is no increased risk to patients due to this issue.",
+        "action": "On 02/14/20, Medtronic mailed Urgent Medical Device Recall notices to Healthcare Professionals and Risk Managers. They were advised of the following:\n1) Do not use any affected product. Remove and quarantine all unused affected products in your inventory.\n2) Return the affected products.  Medtronic representatives can assist with facilitating the return of affected product and with identifying suitable replacement product.\n3) Complete and return the Customer Confirmation Form.\n\nIn addition, customers were asked to share the communication within their organization, with other organizations where affected devices were transferred, and any other associated organizations that may be impacted.\n\nOn 09/04/2020, a Safety and Labeling Notification was sent to customers informing them that that Instructions for Use will be supplemented to update the Precaution and Warning statements and the Device Complications section. Medtronic recommends that physician users be attentive to the updated information in the Instructions for Use and include this information in discussions with patients. Further, please share this communication within your organization, with other organizations where these devices have been transferred, and any other associated organizations that may be impacted by this action.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2020-02-14",
+        "event_date_posted": "2020-03-09",
+        "event_date_terminated": "2024-06-12",
+        "recalling_firm": "Micro Therapeutics Inc, Dba Ev3 Neurovascular",
+        "root_cause_description": "Process change control",
+        "applications": [
+          "P100018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=180023",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "150126",
+        "product_res_number": "Z-0307-2017",
+        "product_description": "Pipeline Embolization Device (Pipeline Classic)\nThe device is indicated for the endovascular treatment of adults (22 year of age or older) with large or giant widenecked intracranial aneurysms (lAs) in the internal carotid artery from the petrous to the superior hypophyseal segements.\n\nCatalog No. \n\nFA-71300-25V09\t\nFA-71350-25V16\t\nFA-71400-25V10\t\nFA-71425-35V13\t\nFA-71475-30V16\nFA-71300-25V12\t\nFA-71350-25V17\t\nFA-71400-25V11\t\nFA-71425-35V15\t\nFA-71475-30V18\nFA-71300-25V13\t\nFA-71350-25V18\t\nFA-71400-25V12\t\nFA-71425-35V18\t\nFA-71475-35V09\nFA-71300-25V15\t\nFA-71350-25V19\t\nFA-71400-25V13\t\nFA-71450-25V09\t\nFA-71475-35V10\nFA-71300-25V16\t\nFA-71350-30V09\t\nFA-71400-25V15\t\nFA-71450-25V10\t\nFA-71475-35V11\nFA-71300-25V17\t\nFA-71350-30V10\t\nFA-71400-25V16\t\nFA-71450-25V11\t\nFA-71475-35V12\nFA-71300-25V18\t\nFA-71350-30V12\t\nFA-71400-25V18\t\nFA-71450-25V12\t\nFA-71475-35V13\nFA-71300-25V19\t\nFA-71350-30V13\t\nFA-71400-25V19\t\nFA-71450-25V13\t\nFA-71475-35V15\nFA-71300-30V09\t\nFA-71350-30V15\t\nFA-71400-30V09\t\nFA-71450-25V15\t\nFA-71475-35V18\nFA-71300-30V12\t\nFA-71350-30V16\t\nFA-71400-30V10\t\nFA-71450-25V16\t\nFA-71475-35V19\nFA-71300-30V13\t\nFA-71350-30V18\t\nFA-71400-30V11\t\nFA-71450-25V18\t\nFA-71500-25V09\nFA-71300-30V15\t\nFA-71350-35V09\t\nFA-71400-30V12\t\nFA-71450-25V19\t\nFA-71500-25V10\nFA-71300-30V16\t\nFA-71350-35V10\t\nFA-71400-30V13\t\nFA-71450-30V09\t\nFA-71500-25V11\nFA-71300-30V19\t\nFA-71350-35V12\t\nFA-71400-30V15\t\nFA-71450-30V10\t\nFA-71500-25V12\nFA-71300-35V09\t\nFA-71350-35V13\t\nFA-71400-30V16\t\nFA-71450-30V11\t\nFA-71500-25V13\nFA-71300-35V12\t\nFA-71350-35V15\t\nFA-71400-30V18\t\nFA-71450-30V12\t\nFA-71500-25V15\nFA-71300-35V13\t\nFA-71350-35V18\t\nFA-71400-35V09\t\nFA-71450-30V13\t\nFA-71500-25V16\nFA-71300-35V15\t\nFA-71375-25V09\t\nFA-71400-35V13\t\nFA-71450-30V15\t\nFA-71500-25V18\nFA-71325-25V09\t\nFA-71375-25V10\t\nFA-71400-35V15\t\nFA-71450-30V16\t\nFA-71500-25V19\nFA-71325-25V10\t\nFA-71375-25V11\t\nFA-71400-35V18\t\nFA-71450-30V18\t\nFA-71500-30V09\nFA-71325-25V12\t\nFA-71375-25V12\t\nFA-71425-25V09\t\nFA-71450-30V19\t\nFA-71500-30V10\nFA-71325-25V13\t\nFA-71375-25V13\t\nFA-71425-25V10\t\nFA-71450-35V09\t\nFA-71500-30V11\nFA-71325-25V15\t\nFA-71375-25V15\t\nFA-71425-25V11\t\nFA-71450-35V10\t\nFA-71500-30V12\nFA-71325-25V18\t\nFA-71375-25V16\t\nFA-71425-25V12\t\nFA-71450-35V12\t\nFA-71500-30V13\nFA-71325-25V19\t\nFA-71375-25V17\t\nFA-71425-25V13\t\nFA-71450-35V13\t\nFA-71500-30V15\nFA-71325-30V09\t\nFA-71375-25V18\t\nFA-71425-25V15\t\nFA-71450-35V15\t\nFA-71500-30V16\nFA-71325-30V10\t\nFA-71375-25V19\t\nFA-71425-25V16\t\nFA-71450-35V16\t\nFA-71500-30V17\nFA-71325-30V12\t\nFA-71375-30V09\t\nFA-71425-25V18\t\nFA-71475-25V09\t\nFA-71500-30V18\nFA-71325-30V13\t\nFA-71375-30V10\t\nFA-71425-25V19\t\nFA-71475-25V10\t\nFA-71500-35V09\nFA-71325-30V15\t\nFA-71375-30V12\t\nFA-71425-30V09\t\nFA-71475-25V11\t\nFA-71500-35V10\nFA-71325-30V16\t\nFA-71375-30V13\t\nFA-71425-30V10\t\nFA-71475-25V12\t\nFA-71500-35V11\nFA-71325-30V18\t\nFA-71375-30V15\t\nFA-71425-30V11\t\nFA-71475-25V13\t\nFA-71500-35V12\nFA-71325-30V19\t\nFA-71375-30V16\t\nFA-71425-30V12\t\nFA-71475-25V15\t\nFA-71500-35V13\nFA-71325-35V09\t\nFA-71375-30V18\t\nFA-71425-30V13\t\nFA-71475-25V16\t\nFA-71500-35V15\nFA-71325-35V12\nFA-71325-35V13\nFA-71325-35V15\nFA-71350-25V09\nFA-71350-25V10\nFA-71350-25V13\nFA-71350-25V15\nFA-77250-10V13\nFA-77250-10V19\nFA-77250-12V11\nFA-77250-12V12\nFA-77250-12V13\nFA-77250-12V18\nFA-77250-14V12\nFA-77250-14V13\nFA-77250-14V15\nFA-77250-14V18\nFA-77250-14V19\nFA-77250-16V11\nFA-77250-16V12\nFA-77250-16V13\nFA-77250-16V15\nFA-77250-16V16\nFA-77250-16V19\nFA-77250-18V09\nFA-77250-18V10\nFA-77250-18V11\nFA-77250-18V12\nFA-77250-18V13\nFA-77250-18V16\nFA-77250-18V18\nFA-77250-18V19\nFA-77250-20V10\nFA-77250-20V11\nFA-71375-35V09\nFA-71375-35V12\nFA-71375-35V13\nFA-71375-35V15\nFA-71375-35V16\nFA-71375-35V18\nFA-71400-25V09\nFA-77275-14V11\nFA-77275-14V12\nFA-77275-14V13\nFA-77275-14V17\nFA-77275-14V18\nFA-77275-14V19\nFA-77275-16V12\nFA-77275-16V13\nFA-77275-16V16\nFA-77275-16V18\nFA-77275-16V19\nFA-772",
+        "code_info": "A010308 A020911 A026317 A032375 A036898 A043417 A046146 A053154 A010309 A020912 A026319 A032378 A036899 A043663 A047160 A053878 A010310 A020913 A026835 A032381 A036900 A043667 A047161 A053881 A010312 A020914 A026836 A032383 A036901 A043668 A047162 A053882 A010314 A020916 A026842 A033000 A036904 A043911 A047808 A053993 A010316 A021047 A026843 A033001 A036905 A043912 A047809 A053994 A013030 A021410 A026939 A033237 A036906 A043913 A047810 A054421 A013031 A021411 A026940 A033238 A037896 A043914 A047811 A054422 A013591 A021412 A026941 A033240 A037897 A043915 A048395 A054423 A013592 A021479 A026942 A033242 A038406 A044125 A048396 A054424 A013594 A021483 A027316 A033243 A038407 A044126 A048397 A054425 A014538 A021484 A027317 A033246 A038410 A044127 A048398 A054426 A014542 A021677 A027319 A033738 A038411 A044128 A049717 A054427 A014543 A021678 A028325 A033740 A039064 A044129 A049718 A054714 A015450 A021679 A028326 A033831 A039066 A044130 A049721 A054777 A015451 A021680 A028327 A033832 A039067 A044131 A049722 A054778 A015557 A021681 A028328 A033833 A039068 A044278 A049724 A054779 A016139 A021688 A028588 A033879 A039727 A044279 A049726 A054780 A016140 A021691 A028591 A033880 A040185 A044284 A049727 A055473 A016152 A022538 A028609 A033881 A040188 A044285 A049933 A055475 A016155 A022707 A029206 A033882 A040330 A044287 A049938 A055476 A016797 A022710 A029208 A034154 A040331 A044378 A049939 A055477 A016798 A023091 A029223 A034156 A040480 A044379 A049942 A056174 A016801 A023092 A029315 A034201 A041006 A044380 A049945 A056178 A016802 A023094 A029316 A034203 A041009 A044381 A049947 A056180 A017024 A023255 A029965 A034334 A041510 A044382 A049949 A056181 A017485 A023256 A029968 A034335 A041511 A044826 A050932 A056182 A017486 A023261 A030489 A034336 A041513 A044827 A050933 A056768 A017487 A023269 A030490 A034337 A041514 A044829 A050935 A056771 A017489 A024218 A030542 A036036 A041870 A044831 A050936 A056775 A017861 A024228 A030543 A036189 A041871 A044834 A050973 A056778 A017862 A024268 A030544 A036338 A042005 A044873 A050974 A056794 A018467 A024577 A030545 A036339 A042392 A044883 A050976 A057026 A018469 A024908 A031358 A036340 A042396 A045690 A051066 A057027 A018470 A024917 A031360 A036391 A042399 A045691 A051067 A058140 A019062 A024920 A031361 A036404 A042400 A045692 A051069 A058142 A019063 A024923 A031364 A036514 A042658 A045693 A052643 A058143 A019065 A025001 A031794 A036606 A043061 A045695 A052644 A058145 A019499 A025002 A031795 A036607 A043063 A045697 A052645 A058146 A019500 A025634 A031948 A036608 A043064 A045698 A052646 A058147 A019616 A025635 A031949 A036749 A043065 A046133 A052648 A058148 A020032 A025654 A031951 A036750 A043272 A046134 A052649 A058505 A020186 A025655 A031953 A036777 A043273 A046139 A053151 A058506 A020488 A026312 A032012 A036778 A043285 A046141 A053152 A058507 A020909 A026314 A032372 A036780 A043416 A046142 A053153 A058508 A058509 A069632 A081553 A098121 A113419 A125915 A134228 A139869 A058510 A069633 A081557 A098122 A113420 A125916 A134229 A139870 A059244 A070370 A081558 A098123 A113421 A125919 A134230 A139871 A059245 A070380 A086827 A098124 A113791 A125921 A134886 A139872 A059246 A070552 A086831 A100283 A113792 A125922 A134887 A140870 A059247 A070553 A086837 A100284 A113793 A125924 A134888 A140872 A061332 A070554 A086840 A100295 A113794 A125925 A134889 A140873 A061934 A070555 A087759 A100297 A113795 A125926 A134890 A140875 A061935 A073701 A087760 A100298 A113796 A125927 A134891 A140876 A062283 A073702 A087761 A100299 A115088 A127285 A135409 A140877 A062284 A073704 A088653 A100323 A115090 A127287 A135410 A140878 A062752 A073705 A088654 A100324 A115091 A127291 A135411 A142033 A062988 A073707 A088655 A100327 A115605 A127292 A135412 A142036 A062989 A073709 A088658 A100328 A115606 A128359 A135413 A142037 A063057 A073711 A088659 A106144 A115607 A128360 A135414 A142038 A063745 A074018 A088660 A106155 A117448 A128361 A135415 A142039 A063747 A074019 A090010 A106160 A117449 A128363 A135417 A142040 A064308 A074021 A090012 A106223 A117665 A128364 A135418 A142041 A064309 A074022 A090013 A106880 A117667 A129828 A135419 A142042 A064310 A074023 A090016 A107034 A117696 A129830 A137811 A142043 A064313 A074026 A090018 A107035 A117697 A129831 A137812 A143592 A064973 A074892 A090019 A107036 A117698 A131570 A137813 A143593 A064975 A074893 A091998 A107039 A117700 A131573 A137814 A143594 A065074 A074895 A092000 A107673 A117701 A131575 A137815 A143595 A065075 A074896 A092002 A107674 A117702 A131576 A137819 A148018 A065522 A076813 A092003 A107675 A119160 A131577 A137820 A148019 A065523 A076815 A092005 A107679 A119161 A131579 A137821 A148022 A065524 A076817 A092006 A107680 A119162 A131581 A137823 A148024 A065526 A076818 A092007 A107681 A119164 A131582 A138559 A148025 A065639 A076820 A093615 A107682 A120209 A132269 A138560 A148026 A065642 A076821 A093616 A108850 A120210 A132270 A138561 A148028 A065649 A076822 A093617 A108856 A120212 A132271 A138562 A148035 A065651 A076823 A093618 A108857 A120213 A132272 A138563 A148042 A065653 A078964 A093619 A108858 A120215 A132276 A139221 A148043 A066073 A078965 A094468 A108859 A122026 A133598 A139222 A148044 A066074 A080848 A094469 A108860 A122027 A133599 A139223 A148045 A066078 A080849 A094470 A110200 A122028 A133600 A139224 A150199 A066079 A080850 A094473 A110201 A122029 A133602 A139225 A150200 A066692 A080851 A096665 A110203 A122033 A133605 A139226 A150201 A066694 A080852 A096669 A110206 A122035 A133606 A139227 A150202 A066695 A080853 A096670 A110207 A123930 A133607 A139229 A150203 A066696 A080854 A096671 A110208 A123931 A134224 A139853 A150204 A069628 A080855 A096673 A110209 A123932 A134225 A139854 A150205 A069630 A081550 A096675 A110210 A123933 A134226 A139864 A150894 A069631 A081551 A098120 A113417 A123935 A134227 A139867 A150898 A150899 A162848 A185769 A225554 A261101 A297968 A317168 A015452 A150900 A162850 A185771 A225555 A261102 A297970 A317171 A017863 A150901 A162851 A185772 A226043 A261106 A297971 A317937 A019067 A150902 A162853 A185773 A226051 A261109 A297973 A317940 A019687 A151239 A162854 A188190 A227129 A263738 A300193 A318732 A019498 A151240 A162855 A188195 A229179 A265492 A300194 A319040 A019689 A151241 A164383 A190077 A232637 A266994 A300991 A319043 A019686 A151242 A164384 A190079 A232638 A266997 A300992 A319130 A019688 A151243 A164385 A190080 A232640 A266999 A300993 A320823 A020051 A151244 A165179 A190081 A234756 A267000 A302644 A320826 A020185 A151245 A165180 A190082 A238664 A267001 A302645 A320827 A020487 A151246 A166121 A193900 A238666 A269767 A302646 A322378 A020486 A151248 A166122 A193902 A238667 A269771 A304830 A322381 A020485 A152139 A166123 A193904 A239875 A269773 A304842 A322384 A020484 A152140 A167455 A193905 A239877 A269774 A304844 A327069 A020184 A152141 A167457 A193906 A241057 A269775 A304846 9961450 A020035 A152142 A169229 A197312 A242547 A271509 A304847 9961902 A020047 A152143 A169230 A197314 A242548 A272748 A306243 9961900 A020910 A153769 A169231 A199979 A242550 A272750 A306245 9961899 A021481 A153770 A171151 A199983 A242559 A272752 A306251 9962409 A021690 A153771 A171156 A204514 A242561 A274216 A306253 9962411 A021689 A153772 A171163 A204515 A245762 A274223 A306254 9962666 A022709 A153773 A171165 A204516 A245765 A276038 A306256 9962420 A022520 A154448 A171168 A211767 A245767 A276041 A307932 9962984 A022522 A154450 A171248 A211769 A245768 A278715 A307935 9963258 A022519 A154452 A174423 A214097 A245770 A278718 A307940 9963003 A024283 A154453 A174424 A214779 A245771 A281388 A307941 9963797 A024276 A154454 A174426 A214781 A249221 A281389 A309598 9963255 A023270 A156152 A174427 A214782 A249225 A281390 A309599 9963792 A024213 A156157 A174428 A214783 A250673 A283037 A309601 9962996 A021046 A157201 A174430 A214784 A250675 A283040 A309603 9964272 A029219 A157202 A174432 A215491 A252980 A283041 A311498 9963787 A029216 A157203 A177772 A215494 A252981 A283042 A311499 9963786 A033834 A157204 A177775 A216381 A252983 A287710 A311500 9964271 A044281 A157205 A180608 A217701 A253701 A287712 A311502 9964269 A044288 A157206 A180610 A219813 A253703 A289358 A311503 9965334 A044282 A157207 A180654 A219814 A256125 A289361 A313697 A005065 A044280 A157210 A180656 A220212 A256127 A291847 A313698 A005067 A043664 A157211 A183853 A220502 A256129 A294769 A313699 A008831 A043301 A160075 A183854 A220506 A256855 A294772 A313700 A008829 A044283 A160076 A183875 A221351 A258774 A294776 A313701 A008832 A043661 A160077 A183876 A221352 A258777 A294786 A316285 A010289 A047036 A160919 A183877 A221354 A258784 A296212 A316286 A010917 A047751 A160920 A183879 A223464 A258846 A296214 A316436 A013596 A049094 A160921 A185767 A223465 A258848 A296216 A316437 A014546 A047788 A047786 A157208 A230275 A239181 A033899 A036714 A043575 A059875 A049098 A162846 A230621 A250676 A033921 A036761 A043607 A059883 A047787 A167458 A300192 A263745 A034028 A036762 A043608 A059889 A047790 A169227 A300191 A294784 A034047 A037727 A043620 A059898 A049087 A167454 A256868 A307933 A034056 A037783 A043622 A059901 A047752 A167459 A296219 A024002 A034069 A037792 A043671 A059907 A047789 A167456 A252984 A025079 A034331 A037890 A044712 A059909 A049089 A177776 A253705 A025131 A034348 A037944 A044750 A061683 A049106 A177773 A256867 A025453 A034348 A037949 A047035 A064065 A049780 A177774 A249223 A025469 A034378 A037957 A047070 A064101 A049080 A177777 A268268 A025490 A034387 A037968 A047418 A064122 A043418 A180655 A287709 A025816 A034405 A037975 A047452 A064134 A049104 A185764 A241048 A027429 A034430 A037994 A047473 A064147 A049102 A185766 A249224 A027949 A034763 A038333 A047492 A064154 A049107 A185765 A261105 A027958 A034790 A038529 A047517 A065277 A049096 A185774 A271508 A027960 A034805 A038550 A048296 A065305 A049100 A198686 A287711 A027966 A034818 A034405 A048336 A065317 A050118 A188192 A230623 A028002 A034887 A039292 A048366 A065330 A049781 A188191 A263747 A028019 A035376 A039800 A050293 A065342 A049779 A188194 A249226 A028025 A035407 A039819 A050314 A065354 A049782 A193910 A278717 A028748 A035474 A039819 A050341 A071060 A049105 A199982 A289359 A028816 A035474 A039877 A050375 A071079 A050117 A193907 A289360 A028845 A035484 A039916 A050416 A071095 A086855 A215497 A297969 A029783 A035526 A040676 A050461 A071130 A096668 A204517 A263739 A029776 A035547 A040683 A051858 A071141 A131037 A214100 A263748 A030150 A035554 A040714 A051869 A071167 A131039 A215506 A234754 A030271 A035731 A040803 A051869 A071786 A131040 A215504 A256856 A030287 A035774 A040804 A052182 A071791 A132274 A216380 A271507 A031103 A036013 A040852 A052211 A072457 A132273 A218414 A239184 A031136 A036044 A040853 A052245 A074811 A133596 A216377 A241045 A031151 A036084 A040880 A052282 A074829 A133597 A216378 A250671 A031182 A036127 A040884 A052296 A074839 A137824 A218224 A263742 A031224 A036136 A040948 A052305 A074877 A148031 A217703 A238668 A031240 A036137 A040955 A053710 A074897 A151238 A218226 A239185 A031274 A036176 A040967 A053760 A067913 A152133 A216379 A250672 A032693 A036188 A040968 A056706 A076175 A152136 A215496 A263744 A033113 A036177 A041392 A056721 A076233 A152135 A218413 A230622 A033124 A036219 A041713 A056730 A076207 A152134 A220211 A250674 A033445 A036228 A041734 A056737 A076238 A152137 A227130 A261103 A033490 A036245 A041746 A057442 A076248 A156153 A226053 A271511 A033809 A036603 A041756 A057449 A076258 A156154 A226046 A230625 A033819 A036613 A041760 A057454 A078408 A156158 A229181 A241049 A033850 A036615 A043549 A057461 A078418 A156155 A228013 A253706 A033857 A036696 A043548 A057470 A078451 A157209 A228014 A265490 A033887 A036697 A043567 A057481 A079821 A080450 A089979 A090139 A095566 A097029 A099768 A104413 A110371 A083417 A089991 A090167 A095618 A097729 A100859 A105772 A110376 A084728 A090011 A090181 A095637 A099267 A103256 A112687 A110383 A084761 A090047 A090209 A095694 A099348 A103270 A112690 A110389 A084820 A090070 A090241 A095716 A099367 A104383 A112693 A110396 A084834 A090076 A092811 A095724 A099374 A104400 A105810 A112046 A087689 A090107 A095509 A097001 A099734 A104409 A110354 A112674 A089934 9947374 9956715 9961032 9969715 9972030 9974427 9977717 9936174 9947375 9956717 9965803 9969716 9972031 9974429 9977718 9938400 9947376 9956719 9966844 9969717 9972037 9974430 9979347 9939295 9947429 9957296 9966845 9969762 9972507 9974926 9979595 9939297 9948948 9958024 9966850 9971070 9973294 9974927 9979597 9940045 9948952 9958034 9966852 9971071 9973296 9976336 A000429 9940046 9952154 9958040 9966853 9971072 9973298 9976338 A003369 9941533 9952183 9958091 9967670 9971303 9973299 9976339 A003372 9941535 9953585 9958112 9967674 9971309 9974011 9976342 A010293 9941539 9954488 9958114 9967677 9971310 9974012 9977016 A010297 9941540 9954489 9959779 9969487 9971644 9974026 9977711 A010297 9944947 9955853 9960360 9969489 9971646 9974028 9977712 A010914 9944948 9956647 9960363 9969507 9971648 9974419 9977715 A011604 A011605 A011611 A012315  Additional Lots A000433 A012314 A017636 A026690 A031793 A033182 9938393 9937699 9937696 9944949 9942856 9936172 9936899 9942855 9944946 9936171 9938396 9953241 9952967 9941531 9971651 9972525 9972509 9978562 9974928 9974929 9979349 9969504 9979593 9978561 9977716 A001480 A001481 A001482 A001483 A001484 A003371 A003456 A003458 A004018 A004019 A004021 A004572 A004574 A005069 A005576 A005578 A005579 A006535 A006536 A006537 A007195 A007197 A007785 A007786 A007788 A007789 A010924 A011567 A011607 A011613 A011615 A011629 A011662 A012039 A012066 A012190 A012232 A012282 A012318 A012320 A012322 A012675 A012707 A012767 A012885 A012954 A012989 A013050 A014279 9968894 9964705 9969438 9967981 9964672 9968318 9967991 9968317 9964671 9968320 9969440 9968895 9980770 9980772 9980771 A004578 A005066 A012292 A012383 A000132 A003455 A004022 A004573 A007198 A008186 9964670 9964704 9968891 9968841 9968844 9969444 9980775 9954287 9954294 9954267 9954308 9954266 9954320 9954288 9954306 9954255 9954256 9959777 9959780 9960366 9959806 9960820 9960821 9960824 9961030 9961033 9959809 9966139 A003373 A007199 A007200 A004577 A015144 A020247 A008184 A008830 A012064 A043162 A069444 A033379 A014270 A026679 9937700 9971073 9971641 9934763 9957293 9957298 9979351 A014261 9934764 9938394 A000434 9965804 A025799 A026695 9939294 A024009 9972033 A012002 A017643 A034305 A059913 A033211 A068601 A068619 A071153 9967675 9958037 A034933 9957297 9978563 9969761 9938395 A023983 A034997 A057476 A057480 A029761 9942854 A035425 A057283 A010926 A032608 9952964 9953580 9969491 9979343 A012106 A025250 A016069 A040916 A040923 A017043 A014289 A029760 9974027 A014271 A016123 A024023 A025484 9955854 9977719 A015155 A018446 9979592 A036782 A016412 A036740 A023987 A033495 A039951 A033505 A033502 A036112 9971653 9934765 A031974 A031624 A016091 A069419 A035720 A014284 A031282 A029786 A025166 A016210 A034342 A014247 9979598 A081437 A012865 A013028 A013029 9977714 A035769 A016168 A069193 A034903 A022010 A023998 A025779 A016137 A034019 A024008 A033202 A034423 A031818 A032503 A033982 A016428 A025487 A035649 A029732 A033362 A035787 A041395 A046089 A051861 A065238 A075536 A076263 A036743 A034773 A035560 A031623 A015159 A035449 A069253",
+        "reason_for_recall": "Delamination and detachment of the PTFE (polytetrafluoroethylene) coating material may lead to PTFE coating in the blood stream.",
+        "action": "Medtronic sent an Urgent Medical Device Recall letter dated October 5, 2016, to all affected customers to inform them that Medtronic has identified the potential for an issue with a specific set of lot numbers of Medtronic Neurovascular products as noted where the PTFE (polytetrafluoroethylene) coating could delaminate and separate from the delivery wire.  Customers are instructed to complete the attached customer confirmation certificate and fax it to Medtronic at (949) 434-5020 to the attention of Neurovascular Quality.\n\nOn October 14, 2016, Medtronic announced that it has notified customers of a voluntary recall of certain lots of its Pipeline embolization device, Alligator retrieval device and X-Celerator hydrophilic guidewire. The recall also includes the stylet containing UltraFlow flow directed micro catheters and Marathon flow directed micro catheters.  This voluntary recall is being conducted due to the potential separation and detachment of the polytetrafluoroethylene (PTFE) coating on parts of these devices. Should the PTFE separate from the delivery wire or stylets, PTFE particulate could enter the blood stream of the patient. PTFE in the blood stream, based on the size and quantity, could lead to a thromboembolic event.\n\nCustomers were asked to complete the attached Customer Confirmation Certificate and fax it to Medtronic at 1-949-434-5020 to the attention of Neurovascular Quality.  Customers with questions were instructed to contact their Medtronic representative.\n\nOn 1/12/17, an Urgent Medical Device Recall letter was sent to expand the recall to include additional lots.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2016-10-05",
+        "event_date_posted": "2016-11-09",
+        "event_date_terminated": "2017-10-11",
+        "recalling_firm": "Micro Therapeutics Inc, Dba Ev3 Neurovascular",
+        "root_cause_description": "Device Design",
+        "applications": [
+          "P100018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=150126",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "150201",
+        "product_res_number": "Z-0308-2017",
+        "product_description": "Alligator Retrieval Device\nThe device is intended for use in the peripheral and neurovasculature for foreign body removal.\n\nCatalog No.\nFA-88810-20V04\nFA-88810-20V06\nFA-88810-30V04\nFA-88810-30V06\nFA-88810-40V04\nFA-88810-40V06\nFA-88810-50V04\nFA-88810-50V06",
+        "code_info": "9948077 9972887 A010848 A053541 A116064 A131036 9948396 9972889 A011322 A053542 A117476 A132044 9952512 9972890 A011359 A053543 A118368 A154323 9957329 9974418 A013554 A053763 A120498 A154324 9957336 9976051 A013556 A053764 A122265 A156580 9957342 9976060 A014832 A053766 A123213 A156581 9944965 9977018 A014868 A066445 A124445 A161317 9945280 9977019 A014953 A066446 A125283 A161318 9951876 9977396 A016804 A068660 A132937 A163895 9954273 9977397 A018473 A068664 A134257 A163896 9957330 9978556 A019068 A071295 A134900 A166199 9957339 9978557 A021485 A072578 A135945 A168759 9957343 9979590 A022023 A091991 A137794 A168760 9957347 9980261 A022527 A093697 A138489 A173721 9945281 9980272 A024541 A094487 A142716 A173722 9946234 A002055 A026133 A095510 A147975 A177071 9952511 A002875 A027036 A096506 A147976 A177073 9957331 A002976 A028730 A098665 A147978 A197692 9957340 A004046 A028731 A098667 A150526 A242153 9957344 A004049 A030919 A102229 A150527 A242931 9948387 A005156 A030920 A102232 A150529 A242936 9950866 A006168 A033160 A104111 A152100 A242937 9953649 A006169 A033161 A104113 A153748 A242939 9954974 A007336 A036879 A107473 A153749 A247199 9955940 A007955 A037969 A110323 A127224 A247612 9957333 A008188 A039135 A111254 A127844 A254814 9957341 A009329 A039136 A112093 A129002 A282350 9957346 A010342 A039142 A114200 A130573 A290956 A311410 A312892 A321463  Additional Lots 9973587 A003969 A003985 A004024 A004819 A004964 A004983 A005025 A005630 A005730 A006093 A006966 A007043 A008142 A008144 A011434",
+        "reason_for_recall": "Delamination and detachment of the PTFE (polytetrafluoroethylene) coating material may lead to PTFE coating in the blood stream.",
+        "action": "Medtronic sent an Urgent Medical Device Recall letter dated October 5, 2016, to all affected customers to inform them that Medtronic has identified the potential for an issue with a specific set of lot numbers of Medtronic Neurovascular products as noted where the PTFE (polytetrafluoroethylene) coating could delaminate and separate from the delivery wire.  Customers are instructed to complete the attached customer confirmation certificate and fax it to Medtronic at (949) 434-5020 to the attention of Neurovascular Quality.\n\nOn October 14, 2016, Medtronic announced that it has notified customers of a voluntary recall of certain lots of its Pipeline embolization device, Alligator retrieval device and X-Celerator hydrophilic guidewire. The recall also includes the stylet containing UltraFlow flow directed micro catheters and Marathon flow directed micro catheters.  This voluntary recall is being conducted due to the potential separation and detachment of the polytetrafluoroethylene (PTFE) coating on parts of these devices. Should the PTFE separate from the delivery wire or stylets, PTFE particulate could enter the blood stream of the patient. PTFE in the blood stream, based on the size and quantity, could lead to a thromboembolic event.\n\nCustomers were asked to complete the attached Customer Confirmation Certificate and fax it to Medtronic at 1-949-434-5020 to the attention of Neurovascular Quality.  Customers with questions were instructed to contact their Medtronic representative.\n\nOn 1/12/17, an Urgent Medical Device Recall letter was sent to expand the recall to include additional lots.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2016-10-05",
+        "event_date_posted": "2016-11-09",
+        "event_date_terminated": "2017-10-11",
+        "recalling_firm": "Micro Therapeutics Inc, Dba Ev3 Neurovascular",
+        "root_cause_description": "Device Design",
+        "applications": [
+          "P100018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=150201",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "150202",
+        "product_res_number": "Z-0309-2017",
+        "product_description": "Marathon Flow Directed Micro Catheter, UltraFlow HPC Flow Directed Micro Catheter\nMarathon Flow: The device is intended to access periphera and neurovasculature for the controlled selective infusion of physician-specified therapeutics agents such as embolization materials and of diagnostic materials such as contrast media. UltraFlow HPC Flow: The device is intended for the controlled selective infusion of physician-specified pharmacologic agents or contrast media into the distal vasculature of the peripheral and neuroanatomy. It is not intended for use in the coronary vasculature.\n\nCatalog No.\n105-5055V02\n105-5055V02\n105-5055V05\n105-5065V02\n105-5065V05\n105-5066V02\n105-5066V05",
+        "code_info": "9946730 9960999 9965968 9974493 A004327 A011297 A016502 A024591 9952156 9961016 9965970 9975117 A004329 A011515 A016504 A024594 9952519 9961297 9965980 9975118 A004435 A011522 A016507 A024893 9952892 9961308 9965983 9976018 A004436 A011731 A016510 A024894 9953171 9961313 9965984 9976024 A004437 A011735 A016632 A024896 9953177 9963245 9966022 9976049 A004535 A011818 A017149 A025130 9953699 9963247 9966200 9976052 A004537 A011845 A017150 A025857 9953892 9963249 9966203 9976055 A004542 A011972 A017154 A025862 9955091 9963378 9966205 9978598 A004543 A012088 A018239 A026331 9955406 9963380 9966550 A000215 A004544 A012341 A018301 A026336 9955408 9963382 9966562 A000219 A004614 A012591 A018307 A026337 9955530 9963386 9966563 A000220 A004616 A012691 A018310 A026375 9955561 9963622 9966674 A000369 A005866 A012738 A018721 A027449 9955726 9963627 9966674 A000453 A005870 A012743 A018722 A027805 9955727 9963633 9966676 A002304 A005980 A012755 A018741 A027862 9955845 9963851 9966934 A002305 A006045 A013058 A018885 A027922 9956028 9964145 9966945 A002307 A006222 A013211 A019293 A028081 9956396 9964148 9966946 A002404 A006225 A013685 A019401 A028468 9956460 9964157 9971999 A002406 A006229 A013686 A019539 A028566 9957242 9964161 9972000 A002408 A006237 A013688 A019550 A028760 9957512 9964259 9972002 A002595 A006829 A013689 A019567 A028777 9957684 9964494 9972610 A002606 A006831 A013796 A019573 A028780 9957685 9964496 9972613 A002616 A006834 A013969 A019834 A028787 9957927 9964498 9972719 A002898 A007148 A014018 A019912 A029143 9957947 9964756 9972720 A003029 A007150 A014061 A020026 A029145 9957949 9964810 9973291 A003038 A007304 A014063 A020056 A029146 9958187 9964826 9973322 A003039 A007344 A014351 A020244 A029318 9958345 9965055 9973329 A003044 A007345 A014352 A020313 A029460 9958346 9965062 9973567 A003164 A007349 A014359 A020315 A029508 9958393 9965067 9973570 A003291 A007354 A014450 A020457 A029610 9958740 9965070 9973597 A003296 A007462 A014753 A020464 A029613 9958741 9965483 9973779 A003311 A007463 A014768 A020564 A029617 9958750 9965488 9973880 A003316 A008617 A014795 A020569 A029794 9959038 9965489 9974008 A003603 A008767 A014840 A020699 A029862 9959490 9965768 9974013 A003692 A008886 A015227 A021233 A029863 9959502 9965771 9974068 A003703 A009203 A015228 A021384 A029865 9959520 9965805 9974070 A003706 A009221 A015332 A021386 A029866 9959884 9965946 9974071 A003710 A010851 A015362 A021416 A031039 9959885 9965947 9974165 A003805 A010947 A015541 A021885 A031102 9960141 9965950 9974226 A004047 A010948 A015559 A021887 A031106 9960147 9965956 9974230 A004085 A010956 A015563 A021913 A031385 9960150 9965958 9974247 A004116 A010990 A015570 A022134 A031387 9960720 9965962 9974250 A004259 A011059 A015957 A022404 A031391 9960761 9965963 9974426 A004318 A011267 A016217 A022406 A031649 9960776 9965965 9974433 A004321 A011295 A016477 A024199 A031663 A031670 A040153 A049233 A058253 A067173 A075715 A081223 A091333 A031677 A040155 A049236 A059305 A067407 A075721 A081718 A091341 A031963 A040163 A049237 A059307 A067409 A076320 A081725 A091589 A032065 A040168 A050083 A059311 A067412 A076402 A081859 A091708 A032068 A040705 A050084 A059577 A068091 A076406 A081893 A091710 A032070 A040718 A050119 A059691 A068094 A076410 A081895 A091713 A032072 A040725 A050263 A059727 A068098 A076412 A082393 A093603 A032398 A041039 A050356 A059731 A068222 A077046 A083144 A093607 A032835 A041157 A050361 A059733 A068382 A077048 A083166 A093787 A032837 A041166 A050399 A061328 A068419 A077049 A083203 A093789 A032840 A041283 A050404 A061329 A068436 A077557 A083206 A093795 A033206 A041359 A050744 A062218 A068563 A077565 A083545 A093797 A033229 A041404 A050745 A062266 A068565 A077607 A083546 A094057 A033230 A041456 A050756 A062267 A068773 A077650 A085047 A094083 A033233 A041488 A050855 A062268 A068835 A077664 A085059 A094085 A034330 A041495 A050863 A062269 A068839 A078031 A085063 A094100 A034351 A041754 A051742 A062987 A068842 A078033 A085066 A094794 A034352 A041861 A051875 A062991 A068850 A078870 A085070 A094796 A034353 A041866 A051939 A063168 A068966 A078879 A085073 A094801 A034354 A041867 A051940 A063235 A068981 A078950 A085329 A095119 A034509 A042017 A051941 A063275 A072687 A078962 A086510 A095305 A034511 A043949 A051943 A063399 A072735 A078963 A086658 A095308 A034512 A043960 A051958 A063400 A072738 A079311 A087223 A095397 A034517 A043964 A052051 A063960 A072740 A079320 A087228 A096868 A034568 A046465 A052195 A063968 A072810 A079321 A087231 A096899 A034585 A046470 A052217 A063976 A073361 A079324 A087234 A097061 A034586 A046485 A052227 A064156 A073364 A079334 A088753 A097090 A034587 A046487 A052237 A064238 A073371 A079456 A088756 A097095 A037007 A046488 A052246 A064250 A073382 A079606 A089280 A097098 A037008 A046610 A052542 A064251 A073384 A080017 A089296 A097100 A037009 A046611 A052828 A064252 A074651 A080018 A089334 A097427 A037010 A046735 A052873 A064254 A075001 A080019 A089673 A097429 A037014 A046739 A052874 A064373 A075030 A080021 A089675 A097430 A037410 A046868 A052876 A064908 A075034 A080022 A089837 A097433 A037415 A046873 A053105 A064910 A075040 A080241 A090423 A097435 A037416 A047032 A053180 A064912 A075046 A080269 A090577 A097436 A037513 A048479 A053183 A064999 A075177 A080272 A090598 A097437 A038097 A048480 A053452 A065056 A075183 A080276 A090712 A098264 A038103 A048487 A053459 A065597 A075298 A080387 A091142 A100171 A038785 A048645 A058121 A065598 A075361 A080592 A091143 A100172 A038794 A048646 A058149 A065602 A075362 A080600 A091145 A100240 A038802 A048808 A058152 A066531 A075366 A080613 A091147 A100243 A039450 A048815 A058154 A066948 A075619 A080712 A091224 A100251 A039461 A048821 A058157 A066965 A075697 A081143 A091312 A100584 A040138 A048825 A058160 A066966 A075709 A081213 A091331 A100588 A100593 A117561 A123429 A135805 A142934 A156901 A163572 A179306 A100895 A117826 A123434 A136017 A142937 A156904 A164739 A181904 A101575 A117907 A123805 A136086 A143067 A156909 A164745 A181919 A101628 A117969 A123807 A136448 A143074 A157053 A164825 A181921 A101634 A117971 A124180 A136451 A144556 A157135 A164903 A181952 A101638 A118192 A124276 A136456 A144585 A157322 A164981 A182269 A101641 A118425 A124277 A136580 A144591 A157325 A164989 A182274 A101941 A118687 A124464 A136583 A144597 A157367 A165291 A182284 A101944 A118689 A124476 A137622 A144736 A157895 A165294 A182289 A101950 A118708 A125090 A137641 A144873 A157896 A165297 A183791 A102234 A118842 A126669 A137643 A145017 A157898 A165563 A183801 A102251 A118850 A126670 A137645 A145023 A158504 A165564 A183802 A102287 A118854 A127819 A137757 A145031 A158512 A165565 A183928 A102289 A119044 A127937 A137803 A145039 A158557 A165932 A184118 A102293 A119046 A127949 A137873 A145165 A159131 A165935 A184221 A102646 A119144 A128031 A137879 A153798 A159132 A165946 A184222 A102685 A119346 A128212 A137885 A153890 A159133 A165985 A184357 A102686 A119879 A128333 A137886 A153892 A159134 A165986 A185869 A103326 A119891 A128942 A137888 A153894 A159337 A172223 A185871 A103395 A120131 A128953 A138208 A153896 A159338 A172229 A185872 A103398 A120204 A129090 A138219 A154486 A159813 A172232 A185875 A103401 A120240 A129091 A138220 A154498 A159830 A172236 A186101 A103406 A120283 A129327 A138225 A154505 A159844 A174414 A186135 A103410 A120400 A129335 A138231 A154514 A159848 A174416 A186140 A103412 A120413 A129898 A138490 A154522 A159851 A175520 A186333 A104092 A121145 A130244 A138906 A154633 A160096 A175556 A186481 A104114 A121151 A130945 A138908 A154634 A161031 A175695 A189181 A104120 A121155 A130985 A138921 A154813 A161039 A175710 A189190 A105499 A121156 A131044 A138923 A154816 A161042 A175715 A189192 A105549 A121772 A131047 A138926 A155028 A161051 A175935 A189194 A105553 A121779 A131939 A139599 A155131 A161142 A176084 A189815 A105757 A121785 A131943 A139607 A155133 A161279 A176157 A189816 A105880 A122401 A131966 A139610 A155140 A161288 A176158 A189818 A105883 A122468 A132855 A139615 A155147 A161289 A176216 A189825 A105887 A122621 A133983 A139617 A155157 A161292 A178717 A190048 A105895 A122651 A134515 A139993 A155434 A161463 A178718 A190117 A105913 A122655 A134519 A140160 A155668 A162951 A178726 A190118 A106016 A122656 A134630 A140235 A156090 A162954 A178883 A190283 A106026 A123032 A135227 A140561 A156286 A163149 A178912 A190446 A116756 A123037 A135229 A140671 A156380 A163157 A178918 A190453 A116759 A123039 A135232 A142410 A156402 A163168 A178921 A190455 A117473 A123202 A135380 A142419 A156409 A163353 A179058 A190456 A117485 A123205 A135786 A142422 A156415 A163499 A179077 A191757 A117494 A123211 A135789 A142552 A156419 A163513 A179079 A191759 A117516 A123427 A135800 A142556 A156421 A163526 A179304 A191767 A191864 A213290 A228170 A235536 A246111 A253655 A264501 A275676 A200836 A214210 A228172 A235538 A246120 A253663 A264962 A275677 A200884 A214214 A228208 A236147 A246128 A253664 A264965 A275678 A201108 A214215 A228603 A236466 A246131 A255799 A264967 A275679 A201216 A214558 A228604 A237340 A246255 A255814 A264971 A276176 A201220 A214561 A228859 A237344 A246256 A255821 A265128 A276177 A201224 A214564 A228862 A237349 A246570 A255823 A265129 A276284 A201331 A214898 A230195 A237353 A246571 A255827 A265691 A276285 A201490 A214905 A230269 A237466 A246633 A255985 A265699 A277023 A201510 A214908 A230847 A237467 A246634 A255986 A265706 A277024 A201532 A214909 A230930 A237561 A247155 A256542 A265773 A277025 A201542 A214965 A230931 A237564 A247267 A256548 A265775 A277172 A201907 A215131 A230984 A237642 A247287 A256550 A265873 A278439 A203970 A215149 A230985 A237645 A248003 A256555 A267430 A278441 A203975 A215156 A230987 A237647 A248009 A256742 A267432 A278443 A203985 A215164 A230991 A238041 A248020 A256819 A267525 A278627 A203990 A215167 A231005 A238047 A248023 A256822 A267534 A279421 A204483 A215538 A231643 A239537 A248028 A256823 A267535 A279423 A204486 A215602 A231645 A239539 A248215 A256826 A267536 A279439 A204493 A215651 A231649 A239540 A248743 A256827 A267537 A279729 A204871 A215652 A231652 A239550 A248746 A257352 A268139 A279730 A204875 A222349 A231656 A239551 A248753 A257358 A268176 A280700 A204876 A222570 A232346 A240033 A248759 A257360 A268243 A280706 A205105 A222647 A232352 A240038 A248894 A257363 A268246 A280709 A209299 A222648 A232359 A240043 A248896 A257368 A268247 A280855 A209303 A223013 A232363 A240047 A249006 A258088 A268253 A280856 A209304 A223015 A232365 A240159 A249008 A258096 A268254 A280931 A209330 A223124 A232587 A240161 A249010 A258107 A268742 A281003 A209430 A223125 A232588 A243270 A249406 A258255 A272372 A281667 A209707 A223150 A232598 A243277 A249648 A260041 A272384 A282592 A209710 A224545 A233765 A243282 A249650 A260047 A272390 A282622 A209714 A224546 A233766 A243284 A249714 A260055 A272537 A282625 A209717 A224547 A233767 A243415 A249715 A260216 A272612 A282647 A210619 A225374 A233768 A243417 A249953 A260768 A272614 A282650 A210621 A225445 A234758 A243529 A250226 A260776 A272624 A282821 A210623 A225446 A234759 A243532 A250259 A260782 A274619 A282834 A210624 A225449 A234760 A243533 A250825 A260786 A274627 A282840 A210897 A225654 A234761 A243535 A250851 A260946 A274630 A282841 A210906 A227264 A235062 A243994 A250852 A262262 A274641 A282843 A210918 A227265 A235063 A243997 A250856 A262287 A274813 A283310 A212857 A227684 A235210 A244001 A251155 A262288 A275504 A283606 A212865 A227685 A235215 A244012 A253403 A262289 A275505 A283641 A213284 A227714 A235220 A244099 A253411 A262382 A275506 A283642 A213286 A227717 A235221 A244101 A253414 A262419 A275507 A283643 A213288 A227794 A235532 A244139 A253427 A264500 A275666 A283644 A284103 A290773 A297537 A303119 A309234 A316750 A323580 A329235 A284108 A290791 A297612 A303136 A309394 A316751 A323582 A329356 A284109 A291365 A297616 A303137 A309522 A316752 A324273 A329358 A284113 A291405 A297618 A303138 A310667 A317330 A324274 A329359 A284119 A291406 A299056 A303140 A310668 A317394 A325147 A329761 A284907 A291407 A299057 A303142 A310803 A317412 A325150 A329765 A284920 A291567 A299059 A303388 A310809 A317437 A325360 A329891 A284927 A292912 A299329 A303393 A312420 A318015 A325361 A329892 A284934 A292918 A299330 A303411 A312421 A318019 A325772 A329935 A284939 A292921 A299331 A303412 A312461 A318187 A325773 A330004 A284944 A293023 A299593 A303413 A314037 A320445 A325949 A330008 A284948 A293329 A300051 A303688 A314041 A320448 A326557 A330010 A286589 A293332 A300060 A303840 A314042 A321077 A326564 A330011 A286591 A293333 A300237 A303853 A314043 A321079 A326565 A335114 A286649 A293540 A300319 A303859 A314044 A321202 A326723 A335138 A288843 A293541 A300569 A305247 A314477 A321291 A326787 A335146 A288845 A293856 A300570 A305283 A314479 A321294 A326805 A335151 A288854 A293858 A300595 A305285 A314492 A321295 A326806 A335171 A288946 A293861 A300982 A305287 A315198 A321297 A326808 A335537 A288960 A295763 A300994 A305291 A315204 A322497 A326809 A335543 A288961 A296040 A300995 A305950 A315207 A322498 A327070 A336022 A288965 A296042 A300996 A305960 A315210 A322504 A328301 A336359 A288966 A296043 A301001 A305962 A315214 A322669 A328310 A336361 A290567 A296134 A301556 A305966 A316607 A323235 A328319 A336692 A290575 A296135 A301558 A305969 A316610 A323237 A328442 A336700 A290582 A296701 A301560 A309144 A316612 A323241 A328474 A336702 A290599 A297361 A301563 A309230 A316746 A323579 A329194 A336704 9945407 9945399 9946910 9946737 9948666 9949668 9949448 9948915 9945725 9946271 9945991 9948660 9963219 A006885 A028706 A046108 A092226 A125138 A197490 A217465 9972750 A006886 A032436 A046114 A092708 A125142 A197771 A218093 9972981 A017413 A032439 A049550 A092709 A125735 A198001 A218094 9972987 A017429 A033725 A049557 A092735 A125819 A198024 A218095 9973009 A017430 A033841 A060565 A092741 A125820 A198044 A221276 9976672 A017432 A033856 A060578 A092742 A125943 A198049 A221279 9976687 A020842 A033858 A072386 A119501 A126381 A205358 A221280 9976691 A020853 A033861 A072396 A119534 A126394 A205362 A221281 9977163 A020921 A034550 A081121 A119537 A126396 A211498 A229624 9977489 A021063 A036785 A081129 A119547 A126424 A211509 A229671 A001785 A021473 A036788 A081140 A119552 A127015 A211511 A265947 A001914 A025088 A036790 A091993 A119802 A127019 A217418 A265948 A001919 A025090 A044657 A091996 A120128 A127211 A217448 A266807 A001959 A025123 A044663 A091999 A120130 A153128 A217449 A266811 A002231 A025129 A044668 A092004 A124985 A197485 A217460 A280246 A003190 A028569  Additional Lots A335134 A335148 A335154 9952403 9952144 9950754 9950731 9950392 9951451 9950007 9951453 A076257 A336031 A336033 A335161 A335378 A335379 A335404 A335541 A335542 A336029 A336036 A336354 A336688 A336706 A337379 A338056 A338065 A338068 A086973",
+        "reason_for_recall": "Delamination and detachment of the PTFE (polytetrafluoroethylene) coating material may lead to PTFE coating in the blood stream.",
+        "action": "Medtronic sent an Urgent Medical Device Recall letter dated October 5, 2016, to all affected customers to inform them that Medtronic has identified the potential for an issue with a specific set of lot numbers of Medtronic Neurovascular products as noted where the PTFE (polytetrafluoroethylene) coating could delaminate and separate from the delivery wire.  Customers are instructed to complete the attached customer confirmation certificate and fax it to Medtronic at (949) 434-5020 to the attention of Neurovascular Quality.\n\nOn October 14, 2016, Medtronic announced that it has notified customers of a voluntary recall of certain lots of its Pipeline embolization device, Alligator retrieval device and X-Celerator hydrophilic guidewire. The recall also includes the stylet containing UltraFlow flow directed micro catheters and Marathon flow directed micro catheters.  This voluntary recall is being conducted due to the potential separation and detachment of the polytetrafluoroethylene (PTFE) coating on parts of these devices. Should the PTFE separate from the delivery wire or stylets, PTFE particulate could enter the blood stream of the patient. PTFE in the blood stream, based on the size and quantity, could lead to a thromboembolic event.\n\nCustomers were asked to complete the attached Customer Confirmation Certificate and fax it to Medtronic at 1-949-434-5020 to the attention of Neurovascular Quality.  Customers with questions were instructed to contact their Medtronic representative.\n\nOn 1/12/17, an Urgent Medical Device Recall letter was sent to expand the recall to include additional lots.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2016-10-05",
+        "event_date_posted": "2016-11-09",
+        "event_date_terminated": "2017-10-11",
+        "recalling_firm": "Micro Therapeutics Inc, Dba Ev3 Neurovascular",
+        "root_cause_description": "Device Design",
+        "applications": [
+          "P100018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=150202",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "150203",
+        "product_res_number": "Z-0310-2017",
+        "product_description": "X-Celerator Hydrophilic Exchange Guidewire\n\nCatalog No.\n103-0601-300\n103-0601-350V10\n103-0602-350V06\n103-0601-300V01\n103-0602-300\n103-0602-350V09\n103-0601-300V02\n103-0602-300V01\n103-0602-350V10\n103-0601-300V03\n103-0602-300V02\n103-0601-300V06\n103-0602-300v06\n103-0601-300V10\n103-0602-300V09\n103-0601-300V11\n103-0602-300V10\n103-0601-350\n103-0602-350\n103-0601-350V01\n103-0602-350V01\n103-0601-350V06\n103-0602-350V02",
+        "code_info": "9530849 9709603 9797735 A002136 A043280 A123449 A183571 9530851 9743324 9802698 A002460 A043281 A123450 A185838 9531882 9743328 9802700 A002610 A043969 A123452 A185841 9567732 9746399 9848318 A004560 A044251 A134837 A194324 9585211 9746403 9882269 A004561 A044252 A136164 A194327 9585247 9750614 9931088 A005008 A097470 A136165 A195347 9585249 9750615 9931089 A005011 A097472 A142394 A200386 9585282 9750618 9931093 A005477 A097473 A142395 A200387 9585283 9750619 9979485 A005478 A097474 A145004 A202560 9594629 9750621 9979495 A006080 A097475 A136161 A202563 9601922 9750624 9979497 A006171 A097476 A145006 A211246 9601924 9751548 9979498 A006176 A097477 A145149 A211248 9612762 9767048 9979500 A006182 A114384 A145150 A217138 9612763 9794407 201401398X A006887 A114385 A145152 A217141 9628372 9794409 201601079E A008199 A114389 A145153 A217142 9641711 9794795 201602502E A008201 A114391 A150759 A221040 9643550 9794924 201603429E A014137 A114393 A150762 A221041 9660868 9794925 201603430E A014297 A114543 A150764 A221042 9666144 9795119 201605381E A014819 A114545 A151577 A221043 9666146 9795120 201605382E A014821 A114546 A152854 A237364 9666148 9795516 201605383E A014825 A115726 A152856 A237366 9666835 9795517 201605384E A019031 A116267 A159822 A237368 9667132 9796816 201606174E A019337 A116270 A159826 A243986 9690683 9796817 201606178E A035856 A116271 A165319 A243987 9690686 9796817 201606179E A035858 A116272 A165320 A243988 9690687 9796818 201606180E A037439 A116274 A165321 A247255 9701004 9797467 201606297E A040174 A123439 A183549 A247256 9702147 9797469 201606298E A040176 A123440 A183550 A247259 9706211 9797470 A002129 A040177 A123442 A183561 A247270 9709599 9797734 A002131 A040222 A123445 A183563 A258089",
+        "reason_for_recall": "Delamination and detachment of the PTFE (polytetrafluoroethylene) coating material may lead to PTFE coating in the blood stream.",
+        "action": "Medtronic sent an Urgent Medical Device Recall letter dated October 5, 2016, to all affected customers to inform them that Medtronic has identified the potential for an issue with a specific set of lot numbers of Medtronic Neurovascular products as noted where the PTFE (polytetrafluoroethylene) coating could delaminate and separate from the delivery wire.  Customers are instructed to complete the attached customer confirmation certificate and fax it to Medtronic at (949) 434-5020 to the attention of Neurovascular Quality.\n\nOn October 14, 2016, Medtronic announced that it has notified customers of a voluntary recall of certain lots of its Pipeline embolization device, Alligator retrieval device and X-Celerator hydrophilic guidewire. The recall also includes the stylet containing UltraFlow flow directed micro catheters and Marathon flow directed micro catheters.  This voluntary recall is being conducted due to the potential separation and detachment of the polytetrafluoroethylene (PTFE) coating on parts of these devices. Should the PTFE separate from the delivery wire or stylets, PTFE particulate could enter the blood stream of the patient. PTFE in the blood stream, based on the size and quantity, could lead to a thromboembolic event.\n\nCustomers were asked to complete the attached Customer Confirmation Certificate and fax it to Medtronic at 1-949-434-5020 to the attention of Neurovascular Quality.  Customers with questions were instructed to contact their Medtronic representative.\n\nOn 1/12/17, an Urgent Medical Device Recall letter was sent to expand the recall to include additional lots.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2016-10-05",
+        "event_date_posted": "2016-11-09",
+        "event_date_terminated": "2017-10-11",
+        "recalling_firm": "Micro Therapeutics Inc, Dba Ev3 Neurovascular",
+        "root_cause_description": "Device Design",
+        "applications": [
+          "P100018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=150203",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "140075",
+        "product_res_number": "Z-0120-2016",
+        "product_description": "-Pipeline Embolization Device\n-Pipeline Flex Embolization Device\n\nThe Pipeline and Pipeline Flex Embolization Devices consist of a permanent implant combined with a guidewire based delivery system.  The Pipeline and Pipeline Flex embolization device implant is a braided, multi-alloy, mesh cylinder woven from platinum/tungsten and cobalt-chromium-nickel alloy wires.\n\nThe Pipeline and Pipeline Flex Embolization Devices are indicated for the endovascular treatment of adults (22 years of age or older) with large or giant wide-necked intracranial aneurysms (IAs) in the internal carotid artery from the petrous to the superior hypophyseal segments.",
+        "code_info": "Pipeline Model Number\tLot Number FA-77250-16V06\t9724629 FA-77350-16V10\tA024276 FA-77350-16V12\tA012865 FA-77350-18Vl0\tA013596 FA-77350-20V12\tA012039 FA-77375-14V12\tA013029 FA-77375-16Vl2\tA011629 FA-77375-16Vl2\tA029223 FA-77375-16Vl2\tA031361 FA-77375-18V10\tA024213 FA-77375-20Vl2\tA029315 FA-77400-14V12\tA012885 FA-77425-18V12\tA026942 FA-77450-14V12\tA013028 FA-77475-20Vl2\tA012383 FA-77500-16Vl2\tA029316   Pipeline Flex Model Number\tLot Number PED-400-20VO1\t9977371 PED-475-20V01\tA047151 PED-375-18V01\t9971250",
+        "reason_for_recall": "The firm is recalling Pipeline and Pipeline Flex Embolization Devices from U.S. since the devices were shipped with an EU version of the Instructions for Use.",
+        "action": "The firm, Medtronic, sent a \"Notification of Recall\" letter dated 09/04/15 to its customers. The letter described the product, problem and actions to be taken.  \n\nThe firm's letter instructed that customers return the Pipeline Embolization Devices to Medtronic for replacement with the US version of product.  \n\nThe firm asks customers to take the following steps:\n1) Stop using this product immediately.\n2) Segregate this product from other Inventory.\n3) Fill out the reply form and fax to the completed form directly to Customer Service at (800) 716-6700 or email to: andrew.schramm@medtronic.com. Customer Service will issue an RGA number for the return of the affected product back to Medtronic Neurovascular.\n4) Upon receipt of an RGA number, write the RGA number on the FEDEX\nslip and send the product back to: Medtronic Neurovascular, Attention: Product Recall, 9775 Toledo Way, Irvine, CA 92618.  Prepaid and preaddressed FEDEX slips are enclosed for convenience.\n5. Once they receive the returned units, product  replacement units will be shipped directly to customers.  The local Neurovascular representative can also be available to assist in expediting the exchange of product.\n\nFor any questions contact directly at 949-680-1340.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2015-09-04",
+        "event_date_posted": "2015-10-14",
+        "event_date_terminated": "2017-05-18",
+        "recalling_firm": "Micro Therapeutics Inc, Dba Ev3 Neurovascular",
+        "root_cause_description": "Process control",
+        "applications": [
+          "P100018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=140075",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      },
+      {
+        "cfres_id": "126573",
+        "product_res_number": "Z-1453-2014",
+        "product_description": "Pipeline Embolization Device (PED).  Used endovascular treatment of adults with intracranial aneurysms in the internal carotid artery.",
+        "code_info": "PED Model/ Lot  FA7735014 / 9879718  FA7742512 / 9864827 FA7150035 / 9855921 FA7735016 / 9856429  FA7742518 / 9856431 FA7730010 / 9869991  FA7737514 / 9855933  FA7742518 / 9860762 FA7732514 / 9873854  FA7737516 / 9858010  FA7745014 / 9874111 FA7735014 / 9855265  FA7740016 / 9859214  FA7745016 / 9879736 FA7735014 / 9875267  FA7740016 / 9879180  FA7747514 / 9868888",
+        "reason_for_recall": "Potential for the PTFE (polytetrafluoroethylene) coating to delaminate and detach from the delivery wire.",
+        "action": "A customer notification letter was sent on 4/1/14 to all customers who purchased the Pipeline Embolization Device and the Alligator Retrieval Device.  The letter informs the customers of the problems identified and the actions to be taken.  Customers are instructed to complete the customer response form and fax the completed form to Covidien at (763) 591-3519.  Customers with questions are instructed to contact Dr. Mark A. Turco at (202) 310-5120.\n\nA press release was sent on 4/11/14 to Business Wire Newsroom to inform the public about the recall from Covidien.  The recall is regarding certain lots of its Pipeline Embolization Device and Alligator Retrieval Device where the polytetrafluoroethylene (PTFE) coating applied to the delivery wire could delaminate adn detach from the devices.  Consumers are instructed to report any adverse reactions or quality problems experienced with the use of the product to the FDA's MedWatch Adverse Event Reporting program either online, by regular mail or by fax.  Consumers with may also contact Covidien Customer Service at (800) 716-6700 between 7am to 7pm (central) or email at customerserviceus@covidien.com.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2014-04-01",
+        "event_date_posted": "2014-04-16",
+        "event_date_terminated": "2014-10-31",
+        "recalling_firm": "Micro Therapeutics Inc, Dba Ev3 Neurovascular",
+        "root_cause_description": "Process change control",
+        "applications": [
+          "P100018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=126573",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "120283",
+        "product_res_number": "Z-2045-2013",
+        "product_description": "Pipeline Embolization Device (PED)\n\nThe Pipeline Embolization Device is indicated for the endovascular treatment of adults (22 years of age and older) with large or giant wide-necked intracranial aneurysms in the internal carotid artery from the petrous to the superior hypophyseal segments.",
+        "code_info": "Model/Lot Numbers:  FA-71400-25 / 9747602  FA-77350-18 / 9749412  FA-77400-20 / 9759088 FA-71500-35 / 9747604  FA-77375-16 / 9744487  FA-77425-16 / 9752788 FA-77300-16 / 9757068  FA-77375-20 / 9757065  FA-77425-20 / 9744123 FA-77325-14 / 9759141  FA-77400-14 / 9757233  FA-77425-20 / 9752438 FA-77325-16 / 9753034  FA-77400-14 / 9768698  FA-77450-18 / 9753033 FA-77325-16 / 9757024  FA-77400-16 / 9743468  FA-77475-20 / 9752787 FA-77325-18 / 9759560  FA-77400-18 / 9751579  FA-77500-20 / 9750678 FA-77350-16 / 9752785  FA-77400-20 / 9755707",
+        "reason_for_recall": "Covidien Neurovascular has initiated the recall of several lots of Pipeline Embolization Device (PED) because the Instructions For Use (IFU) do not include the following contraindication:  Patients in whom a pre-existing stent is in place in the parent artery at the target aneurysm location.  Additionally, the designation of aspirin and clopidogrel was missing from the following contraindication \"",
+        "action": "Covidien sent an Customer Notification letter dated  July 19, 2013, to all affected customers who received affected lots of Pipeline Embolization Device (PED).  \n\nThe customer notification letter informed the customers of the problems identified and the actions to be taken.  Customer are instructed to reply and fax response form to Covidien Customer Service at (763) 398-7001.  Customers are instructed that Customer Service will issue an RGA number for the return of the affected product back to Covidien.  Customers are also instructed that upon receipt of a Returned Goods Authorization (RGA) number, to write the\nRGA number on the FEDEX slip and send the product back to:\nCovidien\nAttention: Product Recall\n14005 13th Ave\nPlymouth, MN 55441\n\nPrepaid and preaddressed FEDEX slips are enclosed for their convenience. \n\nOnce Covidien receives the returned units, product replacement units will be shipped directly to customers.  Local Covidien Neurovascular representative is also available to assist them in expediting the exchange of product.\n\nCustomers with any questions, are instructed to call  (949) 839-3700.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2013-07-19",
+        "event_date_posted": "2013-08-23",
+        "event_date_terminated": "2013-10-17",
+        "recalling_firm": "Micro Therapeutics Inc, Dba Ev3 Neurovascular",
+        "root_cause_description": "Employee error",
+        "applications": [
+          "P100018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=120283",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "188691",
+        "product_res_number": "Z-2402-2021",
+        "product_description": "Pipeline Flex Embolization Device",
+        "code_info": "Product/REF/UDI: PED-250-10 PIPELINE FLEX 2.50MM X 10MM\tPED-250-10 \t00847536014343 Lot Numbers: A815698 A835648 A837027 A837028 A856681 A867213 A877526 A879720 A885865 A887304 A889034 A894160 A898559 A910394 A911797 A915537  Product/REF/UDI: PED-250-12 PIPELINE FLEX 2.50MM X 12MM\tPED-250-12 \t00847536014374 A813321 A819204 A822948 A848725 A876747 A879721 A887306 A887308 A887311 A887311 A887314 A887314 A894161 A894162 A894163 A904254 A908288 B005860 B017059  Product/REF/UDI: PED-250-14 PIPELINE FLEX 2.50MM X 14MM\tPED-250-14 \t00847536014404 Lot Numbers: A813323 A822948 A839880 A854063 A859756 A879723 A879724 A889035 A889037 A902102 A906073 A914143 A915539  Product/REF/UDI: PED-250-16 PIPELINE FLEX 2.50MM X 16MM\tPED-250-16 \t00847536014435 Lot Numbers: A822949 A829045 A843379 A882136 A887316 A889039 A894609 A909355 B005846  Product/REF/UDI: PED-250-18 PIPELINE FLEX 2.50MM X 18MM\tPED-250-18 \t00847536014466 Lot Numbers: A867848 A877526 A877527 A877532 A879725 A887317 A910395 B007408  Product/REF/UDI: PED-250-20 PIPELINE FLEX 2.50MM X 20MM\tPED-250-20 \t00847536014497 Lot Numbers: A867214 A877533 A885866 A885867 A887318  Product/REF/UDI: PED-275-10 PIPELINE FLEX 2.75MM X 10MM\tPED-275-10 \t00847536014527 Lot Numbers: A854607 A867215 A900753 A912447 B002744  Product/REF/UDI: PED-275-12 PIPELINE FLEX 2.75MM X 12MM\tPED-275-12 \t00847536014558 Lot Numbers: A822950 A864485 A866005 A873187 A873201 A885868 A885869 A906074 A909356  Product/REF/UDI: PED-275-14 PIPELINE FLEX 2.75MM X 14MM\tPED-275-14 \t00847536014589 Lot Numbers: A812097 A822951 A861761 A873187 A873201 A873204 A873205 A874035 A874035 A883589 A885870 A885871 A885872 A906076 A906725  Product/REF/UDI: PED-275-16 PIPELINE FLEX 2.75MM X 16MM\tPED-275-16 \t00847536014619 Lot Numbers: A813324 A877534 A883590 A894164 A894611 B005862  Product/REF/UDI: PED-275-18 PIPELINE FLEX 2.75MM X 18MM\tPED-275-18 \t00847536014640 Lot Numbers: A823540 A876748 A882137 A894613  Product/REF/UDI: PED-275-20 PIPELINE FLEX 2.75MM X 20MM\tPED-275-20 \t00847536014671 Lot Numbers: A864487 A866006 A896158 A896159 A900754  Product/REF/UDI: PED-300-10 PIPELINE FLEX 3.00MM X 10MM\tPED-300-10 \t00847536014701 Lot Numbers: A823542 A870630 A878414 A879726 A894613 A910395  Product/REF/UDI: PED-300-12 PIPELINE FLEX 3.00MM X 12MM\tPED-300-12 \t00847536014732 Lot Numbers: A839881 A848726 A863674 A863675 A865228 A866008 A896160 A902103 A903567 A911798  Product/REF/UDI: PED-300-14 PIPELINE FLEX 3.00MM X 14MM\tPED-300-14 \t00847536014763 Lot Numbers: 00847536014763 00847536014763 00847536014763 00847536014763 00847536014763 00847536014763 00847536014763 00847536014763 00847536014763  Product/REF/UDI: PED-300-16 PIPELINE FLEX 3.00MM X 16MM\tPED-300-16 \t00847536014794 Lot Numbers: A829045 A850778 A852544 A865229 A866009 A896161 A902104 A902106 A906077 B008202  Product/REF/UDI: PED-300-18 PIPELINE FLEX 3.00MM X 18MM\tPED-300-18 \t00847536014824 Lot Numbers: A835649 A850780 A852545 A852546 A867713 A902106 A902107  Product/REF/UDI: PED-300-20 PIPELINE FLEX 3.00MM X 20MM\tPED-300-20 \t00847536014855 Lot Numbers: A813325 A819205 A823544 A870631 A876749 A878414 A879731 A882138 A895293 A911799 B002749 B005863  Product/REF/UDI: PED-300-25 PIPELINE FLEX 3.00MM X 25MM\tPED-300-25 \t00847536014886 Lot Numbers: A813325 A865229 A866010 A874036 A909357 A910396  Product/REF/UDI: PED-300-30 PIPELINE FLEX 3.00MM X 30MM\tPED-300-30 \t00847536014916 Lot Numbers: A843381 A859757 A861763 A873188 A873189 A873190  Product/REF/UDI: PED-300-35 PIPELINE FLEX 3.00MM X 35MM\tPED-300-35 \t00847536014947 Lot Numbers: A843385 A848727 A879732 A883591  Product/REF/UDI: PED-325-10 PIPELINE FLEX 3.25MM X 10MM\tPED-325-10 \t00847536014978 Lot Numbers: A813326 A894165 A900262 A910397  Product/REF/UDI: PED-325-12 PIPELINE FLEX 3.25MM X 12MM\tPED-325-12 \t00847536015005 Lot Numbers: A823545 A829047 A843387 A843389 A879733 A879734 A887319 A895294 A900263 A909358 A909360 B002757 B008203  Product/REF/UDI: PED-325-14 PIPELINE FLEX 3.25MM X 14MM\tPED-325-14 \t00847536015036 Lot Numbers: A823546 A835650 A835651 A837029 A837030 A839886 A887320 A894393 A900265 A911800 B008204 B008206  Product/REF/UDI: PED-325-16 PIPELINE FLEX 3.25MM X 16MM\tPED-325-16 \t00847536015067 Lot Numbers: A826928 A843391 A843393 A858345 A874039 A882139 A882141 A887320 A900756 B008207  Product/REF/UDI: PED-325-18 PIPELINE FLEX 3.25MM X 18MM\tPED-325-18 \t00847536015098 Lot Numbers: A813327 A819208 A823548 A823549 A879735 A880355 A895295 A899369  Product/REF/UDI: PED-325-20 PIPELINE FLEX 3.25MM X 20MM\tPED-325-20 \t00847536015128 Lot Numbers: A823550 A848744 A861764 A868568 A873191 A874039 A880355 A882141 A909361 A910398 A910918 B005864  Product/REF/UDI: PED-325-25 PIPELINE FLEX 3.25MM X 25MM\tPED-325-25 \t00847536015159 Lot Numbers: A813329 A815698 A819209 A852547 A880357 A898562 A899369  Product/REF/UDI: PED-325-30 PIPELINE FLEX 3.25MM X 30MM\tPED-325-30 \t00847536015180 Lot Numbers: A839887 A854822 A859758  Product/REF/UDI: PED-325-35 PIPELINE FLEX 3.25MM X 35MM\tPED-325-35 \t00847536015210 Lot Numbers: A829048 A850781 A852548 A865230 A866010 A899370 A909361 A912449  Product/REF/UDI: PED-350-10 PIPELINE FLEX 3.50MM X 10MM\tPED-350-10 \t00847536015241 Lot Numbers: A812119 A819062 A889041 A894394 A894396 B008208  Product/REF/UDI: PED-350-12 PIPELINE FLEX 3.50MM X 12MM\tPED-350-12 \t00847536015272 Lot Numbers: A817117 A823551 A826930 A843396 A844327 A859759 A871937 A885873 A894397 A894398 A902107 A903540 A908291 A911801 A912451 B005852 B008215  Product/REF/UDI: PED-350-14 PIPELINE FLEX 3.50MM X 14MM\tPED-350-14 \t00847536015296 Lot Numbers: A813907 A823553 A829744 A844327 A844328 A844329 A844330 A856682 A861765 A890031 A894400 A894401 A898564 A899372 A902751 A906079 A906734 A909361 A910919 A910920 A911802 A911803 A914208 A914212  Product/REF/UDI: PED-350-16 PIPELINE FLEX 3.50MM X 16MM\tPED-350-16 \t00847536015333 Lot Numbers: A829745 A834388 A839889 A844331 A844333 A844335 A844336 A856683 A890034 A894402 A894404 A899373 A900757 A902753 A914214  Product/REF/UDI: PED-350-18 PIPELINE FLEX 3.50MM X 18MM\tPED-350-18 \t00847536015364 Lot Numbers: A815699 A837024 A844759 A850788 A859760 A859761 A861766 A871938 A874042 A883593 A884540 A908292 A914206 A914804  Product/REF/UDI: PED-350-20 PIPELINE FLEX 3.50MM X 20MM\tPED-350-20 \t00847536015395 Lot Numbers: A813907 A815702 A816329 A817119 A820989 A823553 A844760 A844761 A890035 A890036 A890037 A890038 A896162 A899375 A899376 A900758 A909362 A909363 A913162 A914075 A914076 A914077 A914141 A914142 A914144 A914805 B005837 B005865 B007373  Product/REF/UDI: PED-350-25 PIPELINE FLEX 3.50MM X 25MM\tPED-350-25 \t00847536015425 Lot Numbers: A810945 A817119 A837026 A850789 A850790 A861767 A865231 A873191 A874045 A880359 A912440 B005838  Product/REF/UDI: PED-350-30 PIPELINE FLEX 3.50MM X 30MM\tPED-350-30 \t00847536015456 Lot Numbers: A817119 A850791 A856684 A865232 A866011 A874046 A904246  Product/REF/UDI: PED-350-35 PIPELINE FLEX 3.50MM X 35MM\tPED-350-35 \t00847536015487 Lot Numbers: A823553 A861768 A895296 A900759  Product/REF/UDI: PED-375-10 PIPELINE FLEX 3.75MM X 10MM\tPED-375-10 \t00847536015517 Lot Numbers: A823554 A869097 A877514 A880359 A900253 A912441  Product/REF/UDI: PED-375-12 PIPELINE FLEX 3.75MM X 12MM\tPED-375-12 \t00847536015548 Lot Numbers: A823555 A844762 A844763 A852549 A861768 A877516 A880361 A885874 A885877 A910922 B008216  Product/REF/UDI: PED-375-14 PIPELINE FLEX 3.75MM X 14MM\tPED-375-14 \t00847536015579 Lot Numbers: A811477 A813908 A819102 A821009 A830782 A841067 A865233 A866011 A870632 A871941 A874049 A877517 A878417 A878418 A878419 A882143 A882146 A890039 A894405 A895302 A896163 A908295 A913140 B008217  Product/REF/UDI: PED-375-16 PIPELINE FLEX 3.75MM X 16MM\tPED-375-16 \t00847536015609 Lot Numbers: A811477 A817119 A821010 A826931 A826932 A841068 A852550 A854823 A867714 A869098 A877518 A878420 A880362 A880363 A882147 A885880 A890041 A894406 A896936 A909370 A910923  Product/REF/UDI: PED-375-18 PIPELINE FLEX 3.75MM X 18MM\tPED-375-18 \t00847536015623 Lot Numbers: A813909 A832014 A838062 A844763 A848745 A852551 A859761 A861769 A884541 A887321 A896937 A902089 B005867  Product/REF/UDI: PED-375-20 PIPELINE FLEX 3.75MM X 20MM\tPED-375-20 \t00847536015661 Lot Numbers: A832014 A835652 A835653 A837026 A848746 A850792 A850793 A850795 A850796 A851427 A852551 A863676 A880365 A887928 A897373 A902755 B007374  Product/REF/UDI: PED-375-25 PIPELINE FLEX 3.75MM X 25MM\tPED-375-25 \t00847536015692 Lot Numbers: A829746 A844763 A844764 A852552 A856685 A861771 A874050 A897375 A900266 A908296 B007366  Product/REF/UDI: PED-375-30 PIPELINE FLEX 3.75MM X 30MM\tPED-375-30 \t00847536015722 Lot Numbers: A841069 A852553 A856686 A868571 A906733 A907482  Product/REF/UDI: PED-375-35 PIPELINE FLEX 3.75MM X 35MM\tPED-375-35 \t00847536015753 Lot Numbers: A865233 A866012 A886638 A894597 A904870 B007367  Product/REF/UDI: PED-400-10 PIPELINE FLEX 4.00MM X 10MM\tPED-400-10 \t00847536015784 Lot Numbers: A823556 A838063 A841072 A878840 A887929 A897377 A906736 A909371  Product/REF/UDI: PED-400-12 PIPELINE FLEX 4.00MM X 12MM\tPED-400-12 \t00847536015807 Lot Numbers: A813912 A813912 A817119 A823559 A823559 A830782 A838064 A841072 A854824 A869101 A877519 A877520 A878842 A878844 A878845 A880366 A880367 A880367 A880368 A882796 A882797 A887930 A887931 A887932 A906737 A907483 A908626 A910924 A914210  Product/REF/UDI: PED-400-14 PIPELINE FLEX 4.00MM X 14MM\tPED-400-14 \t00847536015845 Lot Numbers: A817119 A823560 A826932 A830783 A844765 A844766 A844766 A856687 A859762 A859763 A859764 A869102 A869105 A871380 A871943 A878846 A878848 A880369 A882798 A882799 A882800 A886640 A887933 A906728 A910924 A913143 A914806  Product/REF/UDI: PED-400-16 PIPELINE FLEX 4.00MM X 16MM\tPED-400-16 \t00847536015876 Lot Numbers: A813912 A817119 A823561 A824249 A826933 A830785 A848747 A854825 A854826 A856742 A856743 A859765 A867715 A867716 A868572 A871943 A871943 A877521 A878849 A880370 A882801 A882802 A887934 A887937 A896938 A914207 B008219  Product/REF/UDI: PED-400-18 PIPELINE FLEX 4.00MM X 18MM\tPED-400-18 \t00847536015906 Lot Numbers: A821011 A824251 A844767 A845199 A845201 A859765 A862900 A862901 A871944 A882804 A882805 A886640 A887938 A895303 A897378 A902090 A902091 A906054 A907484 A913144 A914808 A914809 A914810 A914811 B005839  Product/REF/UDI: PED-400-20 PIPELINE FLEX 4.00MM X 20MM\tPED-400-20 \t00847536015937 Lot Numbers: A813913 A816330 A817119 A821012 A835655 A837027 A845202 A845204 A845205 A845206 A848749 A848749 A859164 A859165 A859766 A859767 A859768 A862902 A871382 A871944 A874053 A882806 A884542 A895304 A902092 A904234 A904255 A909371 A909372 A909372 A909373 A913145 A914812 A914814 A917152 B005848 B005849 B007407  Product/REF/UDI: PED-400-25 PIPELINE FLEX 4.00MM X 25MM\tPED-400-25 \t00847536015968 Lot Numbers: A817119 A829747 A838065 A838084 A841073 A841074 A841075 A854827 A856744 A867717 A887940 A887941 A896938 A896941 B007375  Product/REF/UDI: PED-400-30 PIPELINE FLEX 4.00MM X 30MM\tPED-400-30 \t00847536015999 Lot Numbers: A817123 A852554 A854828 A859166 A859769 A868573 A869087 A874057 A817126 A856745 A859770 A867718 A869897 A874059 A886640 B007376  Product/REF/UDI: PED-425-10 PIPELINE FLEX 4.25MM X 10MM\tPED-425-10 \t00847536016057 Lot Numbers: A874062 A886642 A910925  Product/REF/UDI: PED-425-12 PIPELINE FLEX 4.25MM X 12MM\tPED-425-12 \t00847536016071 Lot Numbers: A816330 A817130 A826934 A827586 A829748 A845207 A845208 A848750 A859771 A859772 A862904 A874064 A890605 A900254 A903565 A908627 A912442 A917154  Product/REF/UDI: PED-425-14 PIPELINE FLEX 4.25MM X 14MM\tPED-425-14 \t00847536016118 Lot Numbers: A816330 A827587 A834389 A845209 A848751 A852555 A859773 A863677 A875013 A880371 A883575 A883576 A883576 A883577 A884543 A890606 A895305 A895306 A895307 A896942 A906055 A906068 A907490 A909373 A914815 A914816 A914817 B005853 B013889  Product/REF/UDI: PED-425-16 PIPELINE FLEX 4.25MM X 16MM\tPED-425-16 \t00847536016149 Lot Numbers: A813915 A827587 A835656 A845210 A852556 A856746 A863678 A865234 A866014 A867719 A867721 A869898 A875015 A880372 A880373 A883578 A884544 A890609 A890612 A894599 A895308 A902756 A904255 A906729  Product/REF/UDI: PED-425-18 PIPELINE FLEX 4.25MM X 18MM\tPED-425-18 \t00847536016170 Lot Numbers: A816330 A821013 A824252 A841076 A854829 A859773 A862905 A888378 A888379 A896944 A896945 A898564 A900254 A906069 A908628  Product/REF/UDI: PED-425-20 PIPELINE FLEX 4.25MM X 20MM\tPED-425-20 \t00847536016200 Lot Numbers: A813915 A816334 A817751 A818291 A818292 A819105 A821014 A841077 A845211 A849265 A849265 A854832 A859774 A859775 A859776 A867849 A871384 A875017 A888380 A896946 A899357 A899360 A900255 A900256 A902758 A902759 A902760 A902761 A904243 A909374  Product/REF/UDI: PED-425-25 PIPELINE FLEX 4.25MM X 25MM\tPED-425-25 \t00847536016231 Lot Numbers: A817753 A818295 A827589 A835657 A859776 A862906 A869078 A869079 A871386 A873192 A875022 A875030 A881403 A883579 A904871 B007377  Product/REF/UDI: PED-425-30 PIPELINE FLEX 4.25MM X 30MM\tPED-425-30 \t00847536016262 Lot Numbers: A816335 A829750 A841081 A845212 A849266 A859167 A859777 A862907 A873192 A875033 A881405 A884546 A906057  Product/REF/UDI: PED-425-35 PIPELINE FLEX 4.25MM X 35MM\tPED-425-35 \t00847536016293 Lot Numbers: A829751 A838085 A845213 A854833 A856747 A859778 A896947 A908634 A909375 A909377 A909378 B007378  Product/REF/UDI: PED-450-10 PIPELINE FLEX 4.50MM X 10MM\tPED-450-10 \t00847536016323 Lot Numbers: A835658 A852556  Product/REF/UDI: PED-450-12 PIPELINE FLEX 4.50MM X 12MM\tPED-450-12 \t00847536016354 Lot Numbers: A817754 A827591 A835659 A863679 A871947 A881406 A881406 A890613 A895309 A903545 A910385 A910387 A915508  Product/REF/UDI: PED-450-14 PIPELINE FLEX 4.50MM X 14MM\tPED-450-14 \t00847536016385 Lot Numbers: A813916 A821016 A824252 A824253 A841084 A854834 A859778 A863680 A869081 A871949 A878850 A881407 A883581 A884549 A890614 A890615 A895310 A896948 A900258 A902762 A902764 A906730 A907491 A910389 A915540  Product/REF/UDI: PED-450-16 PIPELINE FLEX 4.50MM X 16MM\tPED-450-16 \t00847536016415 Lot Numbers: A813917 A817756 A821017 A824253 A829751 A835660 A838086 A846023 A846024 A846024 A846025 A851428 A852557 A862908 A867722 A878850 A881408 A883582 A884549 A888381 A890619 A895312 A896948 A900736 A902093 A902764 A903560 A906726 A906730 A906735 A907480 A908629 A910390 A910391 A910926 A910927 A912443 A912444 A912445 A913148 A913149 A913155 A913155 A913156 A913157 A915516 A915541  Product/REF/UDI: PED-450-18 PIPELINE FLEX 4.50MM X 18MM\tPED-450-18 \t00847536016446 A813920 A813921 A821018 A824257 A841086 A852711 A859779 A862909 A863681 A871949 A875034 A875035 A883583 A884551 A886644 A906062 A906063 A908629 A910392 A915518 A915542 B007400 B007401 B015360  Product/REF/UDI: PED-450-20 PIPELINE FLEX 4.50MM X 20MM\tPED-450-20 \t00847536016477 Lot Numbers: A815062 A817758 A821019 A821020 A824258 A835661 A841088 A851429 A855375 A856748 A863682 A863683 A867723 A867838 A869899 A871949 A878851 A881409 A883585 A884552 A884552 A884576 A888383 A906731 A910928 A915520 A916289 A917155 A917157 A917159  Product/REF/UDI: PED-450-25 PIPELINE FLEX 4.50MM X 25MM\tPED-450-25 \t00847536016507 Lot Numbers: A817759 A821029 A832005 A835662 A835663 A846025 A846027 A846028 A846030 A852712 A852713 A862910 A881409 A886644 A886647 A897379 A908631 A915521 A916290 B007368  Product/REF/UDI: PED-450-30 PIPELINE FLEX 4.50MM X 30MM\tPED-450-30 \t00847536016538 Lot Numbers: A815063 A819110 A846032 A849267 A851431 A855377 A855378 A856749 A898544 A898545 A900739 A902094  Product/REF/UDI: PED-450-35 PIPELINE FLEX 4.50MM X 35MM\tPED-450-35 \t00847536016569 Lot Numbers: A815064 A841090 A856750 A856751 A856752 A862911 A864456 A869900 A871390 A871951 A873193 A875035 A875036 A875036 A884579 A904256 A906064 A910929 A913158 B005850 B007369 B007402 B007403  Product/REF/UDI: PED-475-10 PIPELINE FLEX 4.75MM X 10MM\tPED-475-10 \t00847536016590 Lot Numbers: A817761 A827591 A903544  Product/REF/UDI: PED-475-12 PIPELINE FLEX 4.75MM X 12MM\tPED-475-12 \t00847536016620 Lot Numbers: A818296 A827592 A865235 A866014 A884580 A890623 A900260 B016955  Product/REF/UDI: PED-475-14 PIPELINE FLEX 4.75MM X 14MM\tPED-475-14 \t00847536016651 Lot Numbers: A824259 A851432 A856753 A869901 A875037 A877523 A881410 A881412 A883586 A890625 A907481 A914209  Product/REF/UDI: PED-475-16 PIPELINE FLEX 4.75MM X 16MM\tPED-475-16 \t00847536016682 A816338 A818297 A827593 A827594 A833120 A838089 A846033 A849269 A881414 A890626 A890627 A895312 A895313 A895314 A895314 A906053 A910393 A910930 A911793 A911794 A915523 A915524 B016957  Product/REF/UDI: PED-475-18 PIPELINE FLEX 4.75MM X 18MM\tPED-475-18 \t00847536016712 Lot Numbers: A815065 A821504 A824260 A868552 A869902 A877524 A878853 A878853 A881414 A881415 A881415 A883587 A886649 A886650 A886651 A895315 A896153 A896154 A903561 A913160 B016960 B016962  Product/REF/UDI: PED-475-20 PIPELINE FLEX 4.75MM X 20MM\tPED-475-20 \t00847536016743 Lot Numbers: A821505 A824262 A824263 A824264 A841091 A859168 A859169 A864456 A871391 A871391 A871951 A876745 A876746 A881416 A881417 A902095 A908633 A916291  Product/REF/UDI: PED-475-25 PIPELINE FLEX 4.75MM X 25MM\tPED-475-25 \t00847536016774 Lot Numbers: A815066 A824264 A838092 A851433 A852714 A852714 A852715 A856754 A867839 A867840 A869087 A871392 A907496 A907497 A911795 A911796 A916292  Product/REF/UDI: PED-475-30 PIPELINE FLEX 4.75MM X 30MM\tPED-475-30 \t00847536016804 Lot Numbers: A815067 A824266 A825688 A838095 A838097 A838100 A851434 A852716 A852717 A855382 A869903 A871392 A907498 B007404 B007405  Product/REF/UDI: PED-475-35 PIPELINE FLEX 4.75MM X 35MM\tPED-475-35 \t00847536016835 Lot Numbers: A838102 A841092 A852718 A852718 A856755 A867841 A869082 A869088 A869904 A907499 A907500 A908635  Product/REF/UDI: PED-500-10 PIPELINE FLEX 5.00MM X 10MM\tPED-500-10 \t00847536016866 Lot Numbers: A817762 A827595 A902767 A903541 A908636  Product/REF/UDI: PED-500-12 PIPELINE FLEX 5.00MM X 12MM\tPED-500-12 \t00847536016897 Lot Numbers: A825689 A825690 A838104 A841093 A855383 A897345 A900740 A902767 A903543  Product/REF/UDI: PED-500-14 PIPELINE FLEX 5.00MM X 14MM\tPED-500-14 \t00847536019645 Lot Numbers: A815071 A825695 A825696 A842684 A859174 A861601 A867843 A869905 A869906 A871393 A871952 A906080 A909350 A917160  Product/REF/UDI: PED-500-16 PIPELINE FLEX 5.00MM X 16MM\tPED-500-16 \t00847536019669 Lot Numbers: A812724 A815071 A821507 A821508 A825697 A846035 A849270 A859177 A862916 A862917 A864462 A876740 A876741 A876742 A876743 A884585 A886652 A906066 A906067 A906070 A906728 A917837 B005840 B016964 B016966  Product/REF/UDI: PED-500-18 PIPELINE FLEX 5.00MM X 18MM\tPED-500-18 \t00847536019690 Lot Numbers: A825698 A833121 A846036 A846036 A861602 A869907 A876744 A878854 A881418 A884589 A886653 A886654 A886655 A894600 A894600 A917839 B017057 B017058  Product/REF/UDI: PED-500-20 PIPELINE FLEX 5.00MM X 20MM\tPED-500-20 \t00847536019720 Lot Numbers: A815073 A816341 A825699 A825700 A830302 A832006 A833122 A833123 A835664 A846037 A846038 A846039 A846919 A846920 A849271 A861603 A861603 A861604 A871953 A871954 A881419 A886656 A887300 A887301 A889026 A889027 A890628 A909351 A909353 A909354 A915529 B007371  Product/REF/UDI: PED-500-25 PIPELINE FLEX 5.00MM X 25MM\tPED-500-25 \t00847536019751 Lot Numbers: A815074 A816341 A832007 A836543 A838105 A842687 A846922 A851436 A852252 A855386 A864463 A864463 A867844 A887302 A887303 A890629 A894601 A894602 A902767 A902772 A903537 A906724 A918056 A918057 A918058 B007406  Product/REF/UDI: PED-500-30 PIPELINE FLEX 5.00MM X 30MM\tPED-500-30 \t00847536019782 Lot Numbers: A821511 A826269 A826272 A842688 A842689 A855387 A855388 A855389 A861605 A862917 A867845 A869082 A897348 A903538 A918061 B007372  Product/REF/UDI: PED-500-35 PIPELINE FLEX 5.00MM X 35MM\tPED-500-35 \t00847536016903 Lot Numbers: A815068 A815069 A817763 A821506 A825691 A825692 A825693 A846034 A849270 A855384 A859171 A859172 A859780 A861600 A861601 A862912 A862914 A864457 A864459 A864460 A871952 A873193 A873194 A875039 A875042 A875048 A875051 A875056 A875062 A876738 A877525 A883588 A884581 A884583 A886652 A889026 A897347 A904252 A904257 A906065 A906071 A906072 A906727 A915527 B005851 B005855 B005859 B007370  Product/REF/UDI:",
+        "reason_for_recall": "Due to potential push wire fractures in the delivery system during use.  The issue presents as a fracture in the spiral cut area of the Hypotube.",
+        "action": "On 07/13/2021, the firm sent via mail courier service an \"URGENT: MEDICAL DEVICE RECALL\" Notification letter to customer informing them they have received reports of serious injuries and deaths in connection with delivery pushwire fracture at the distal section of the delivery system during use.  This recall affects all models of the embolization devices manufactured between April - October 2019, and April - May 2020.\n\nCustomers are instructed to:\n1. Do NOT use any impacted product. Remove and quarantine all unused impacted products in their inventory.\n2. Return the impacted products to the Recalling Firm. Their Recalling Firm representative can assist in facilitating the return of product as necessary. If alternative product is needed, their Recalling Firm representative can assist them with identifying suitable replacement product.\n3. Complete the attached Customer Confirmation Form, see Attachment 2, and fax it to 1-651-367-7075 to the attention of Neurovascular Quality or email it to rs.navfca@medtronic.com.\n4. Share this communication within their organization, with other organizations where impacted devices may have been transferred, and any other associated organizations that may be impacted by this action.\n\nFor additional questions and/or assistance, contact the Recalling Firm's Representative or email the Office of Medical Affairs at rs.nvoma@medtronic.com.",
+        "recall_status": "Open, Classified",
+        "event_date_initiated": "2021-07-13",
+        "event_date_posted": "",
+        "event_date_terminated": "",
+        "recalling_firm": "Micro Therapeutics Inc,",
+        "root_cause_description": "Device Design",
+        "applications": [
+          "P100018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=188691",
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+      },
+      {
+        "cfres_id": "188730",
+        "product_res_number": "Z-2403-2021",
+        "product_description": "EV3 Pipeline Flex Embolization Device with Flex Shield Technology",
+        "code_info": "Product/REF/UDI: PED2-250-10 PIPELINE FLEX SHIELD\tPED2-250-10\t00847536002029 Lot Numbers: A816342 A827596 A834390 A849720  Product/REF/UDI: PED2-250-14 PIPELINE FLEX SHIELD\tPED2-250-14\t00847536002043 Lot Numbers: A812725 A832008 A833123 A846924  Product/REF/UDI: PED2-250-16 PIPELINE FLEX SHIELD\tPED2-250-16\t00847536002050 Lot Numbers: A816342 A826273 A827599 A832010 A842690 A846927  Product/REF/UDI: PED2-250-20 PIPELINE FLEX SHIELD\tPED2-250-20\t00847536002074 Lot Numbers: A810946 A816343 A816343 A819116  Product/REF/UDI: PED2-275-12 PIPELINE FLEX SHIELD\tPED2-275-12\t00847536002098 Lot Number: A916293  Product/REF/UDI: PED2-275-14 PIPELINE FLEX SHIELD\tPED2-275-14\t00847536002104 Lot Numbers: A830303 A830304 A846930 A846931  Product/REF/UDI: PED2-275-16 PIPELINE FLEX SHIELD\tPED2-275-16\t00847536002111 Lot Numbers: A819135 A846932 A855391 A859750 A869908 A871955 A873194  Product/REF/UDI: PED2-275-18 PIPELINE FLEX SHIELD\tPED2-275-18\t00847536002128 Lot Numbers: A810946 A821512 A836546 A849721  Product/REF/UDI: PED2-275-20 PIPELINE FLEX SHIELD\tPED2-275-20\t00847536002135 Lot Numbers: A827600 A842691  Product/REF/UDI: PED2-300-10 PIPELINE FLEX SHIELD\tPED2-300-10\t00847536002142 Lot Numbers: A833123 A836549  Product/REF/UDI: PED2-300-12 PIPELINE FLEX SHIELD\tPED2-300-12\t00847536002159 Lot Number: A821514  Product/REF/UDI: PED2-300-14 PIPELINE FLEX SHIELD\tPED2-300-14\t00847536002166 Lot Numbers: A818298 A916294  Product/REF/UDI: PED2-300-16 PIPELINE FLEX SHIELD\tPED2-300-16\t00847536002173 Lot Numbers: A826275 A830766 A834391 A846933  Product/REF/UDI: PED2-300-18 PIPELINE FLEX SHIELD\tPED2-300-18\t00847536002180 Lot Numbers: A818299 A827602 A836550 A842691 A847555  Product/REF/UDI: PED2-300-20 PIPELINE FLEX SHIELD\tPED2-300-20\t00847536002197 Lot Number: A916295  Product/REF/UDI: PED2-300-25 PIPELINE FLEX SHIELD\tPED2-300-25\t00847536002685 Lot Numbers: A818459 A826923 A829033 A848678  Product/REF/UDI: PED2-300-30 PIPELINE FLEX SHIELD\tPED2-300-30\t00847536002692 Lot Numbers: A829034 A848679  Product/REF/UDI: PED2-300-35 PIPELINE FLEX SHIELD\tPED2-300-35\t00847536002708 Lot Number: A822215  Product/REF/UDI: PED2-325-10 PIPELINE FLEX SHIELD\tPED2-325-10\t00847536002203 Lot Numbers: A817764 A827602 A847556  Product/REF/UDI: PED2-325-14 PIPELINE FLEX SHIELD\tPED2-325-14\t00847536002227 Lot Numbers: A832011 A832016  Product/REF/UDI: PED2-325-16 PIPELINE FLEX SHIELD\tPED2-325-16\t00847536002234 Lot Numbers: A833044 A833700 A834393  Product/REF/UDI: PED2-325-18 PIPELINE FLEX SHIELD\tPED2-325-18\t00847536002241 Lot Numbers: A830768 A832012 A833701  Product/REF/UDI: PED2-325-20 PIPELINE FLEX SHIELD\tPED2-325-20\t00847536002258 Lot Numbers: A817764 A821515 A821517 A830770 A833702  Product/REF/UDI: PED2-325-25 PIPELINE FLEX SHIELD\tPED2-325-25\t00847536002715 Lot Number: A843367  Product/REF/UDI: PED2-325-30 PIPELINE FLEX SHIELD\tPED2-325-30\t00847536002722 Lot Numbers: A829036 A837012  Product/REF/UDI: PED2-325-35 PIPELINE FLEX SHIELD\tPED2-325-35\t00847536002739 Lot Numbers: A812734 A818460 A822627  Product/REF/UDI: PED2-350-12 PIPELINE FLEX SHIELD\tPED2-350-12\t00847536002272 Lot Number: A819136  Product/REF/UDI: PED2-350-14 PIPELINE FLEX SHIELD\tPED2-350-14\t00847536002289 Lot Numbers: A816345 A816346 A817765 A830771 A830772 A847557 A847558  Product/REF/UDI: PED2-350-16 PIPELINE FLEX SHIELD\tPED2-350-16\t00847536002296 Lot Numbers: A821519 A826276 A827603 A833703 A833704 A838752 A838754 A847559 A852253 A861606  Product/REF/UDI: PED2-350-18 PIPELINE FLEX SHIELD\tPED2-350-18\t00847536002302 Lot Numbers: A811477 A819168 A821521 A833706 A834396 A849722 A864469 A864470 A900741 A900742 A902096 A902097 A906054  Product/REF/UDI: PED2-350-20 PIPELINE FLEX SHIELD\tPED2-350-20\t00847536002319 Lot Numbers: A815075 A816346 A819169 A822208 A838755 A855392 A870618 A871636 A898546 A900744  Product/REF/UDI: PED2-350-25 PIPELINE FLEX SHIELD\tPED2-350-25\t00847536002746 Lot Numbers: A822630 A830777 A837014 A843368 A848680 A861757 A917150  Product/REF/UDI: PED2-350-30 PIPELINE FLEX SHIELD\tPED2-350-30\t00847536002753 Lot Numbers: A813318 A817116 A818461 A826924  Product/REF/UDI: PED2-350-35 PIPELINE FLEX SHIELD\tPED2-350-35\t00847536002760 Lot Numbers: A817117 A822664 A829037 A838762 A848680 A848681 A861758  Product/REF/UDI: PED2-375-10 PIPELINE FLEX SHIELD\tPED2-375-10\t00847536002326 Lot Numbers: A855393 A859750 A871637 A873195 A903562  Product/REF/UDI: PED2-375-12 PIPELINE FLEX SHIELD\tPED2-375-12\t00847536002333 Lot Numbers: A866016 A887303  Product/REF/UDI: PED2-375-14 PIPELINE FLEX SHIELD\tPED2-375-14\t00847536002340 Lot Numbers: A836551 A838756 A861607  Product/REF/UDI: PED2-375-16 PIPELINE FLEX SHIELD\tPED2-375-16\t00847536002357 Lot Numbers: A817766 A827605 A838757 A838758 A861608 A914211  Product/REF/UDI: PED2-375-18 PIPELINE FLEX SHIELD\tPED2-375-18\t00847536002364 Lot Numbers: A812726 A819170 A822209 A834397 A834398 A835004 A849723 A849724 A849725 A871637 A884594 A889028 A890630 A894603  Product/REF/UDI: PED2-375-20 PIPELINE FLEX SHIELD\tPED2-375-20\t00847536002371 Lot Numbers: A835005 A849731 A866017 A881420 A884598 A894604  Product/REF/UDI: PED2-375-25 PIPELINE FLEX SHIELD\tPED2-375-25\t00847536002777 Lot Numbers: A822666 A822667 A832013 A843371 A867847 A869092 A882136 A885864 A887303  Product/REF/UDI: PED2-375-30 PIPELINE FLEX SHIELD\tPED2-375-30\t00847536002784 Lot Numbers: A822668 A837015 A848681 A849905 A867210  Product/REF/UDI: PED2-375-35 PIPELINE FLEX SHIELD\tPED2-375-35\t00847536002791 Lot Numbers: A813318 A818462 A822669 A862921 A870625  Product/REF/UDI: PED2-400-10 PIPELINE FLEX SHIELD\tPED2-400-10\t00847536002388 Lot Number: A882122  Product/REF/UDI: PED2-400-12 PIPELINE FLEX SHIELD\tPED2-400-12\t00847536002395 Lot Numbers: A810946 A852254 A856756 A856757 A859751 A871639 A904258 A904873 A916296  Product/REF/UDI: PED2-400-14 PIPELINE FLEX SHIELD\tPED2-400-14\t00847536002401 Lot Numbers: A856757 A859752 A870618 A871640  Product/REF/UDI: PED2-400-16 PIPELINE FLEX SHIELD\tPED2-400-16\t00847536002418 Lot Numbers: A812727 A812728 A822210 A822210 A830774 A836552 A847560 A849731 A849731 A861609 A861756 A864472 A864474 A865236 A865239 A871933 A882134 A903563 A904237 A904239 A904875 A904876 A916297 A916298 A916299  Product/REF/UDI: PED2-400-18 PIPELINE FLEX SHIELD\tPED2-400-18\t00847536002425 Lot Numbers: A811477 A812729 A812730 A812731 A815076 A827606 A833045 A833046 A833707 A833709 A833710 A836553 A836554 A847561 A847562 A847563 A847564 A847565 A847635 A849732 A849733 A849891 A852255 A864475 A864476 A865240 A865241 A882135  Product/REF/UDI: PED2-400-20 PIPELINE FLEX SHIELD\tPED2-400-20\t00847536002432 Lot Numbers: A811477 A815077 A815078 A815078 A815079 A815080 A815080 A827607 A833105 A833107 A836555 A836555 A847636 A847637 A849892 A849893 A849895 A852256 A864477 A864480 A864482 A865242 A866003 A903567 A916300 A917147 A917148 A918062 A918063 A918069  Product/REF/UDI: PED2-400-25 PIPELINE FLEX SHIELD\tPED2-400-25\t00847536002807 Lot Numbers: A829039 A833712 A843371 A848720 A848722 A858335 A858337 A861758 A871935 A873200 A903566 A904232 A904241 A904906  Product/REF/UDI: PED2-400-30 PIPELINE FLEX SHIELD\tPED2-400-30\t00847536002814 Lot Numbers: A822670 A822671 A830778 A833115 A837018 A843372 A858340 A871936  Product/REF/UDI: PED2-400-35 PIPELINE FLEX SHIELD\tPED2-400-35\t00847536002821 Lot Numbers: A826925 A829042 A835012 A837019 A843372 A843374 A849906  Product/REF/UDI: PED2-425-10 PIPELINE FLEX SHIELD\tPED2-425-10\t00847536002449 Lot Numbers: A811477 A816346  Product/REF/UDI: PED2-425-12 PIPELINE FLEX SHIELD\tPED2-425-12\t00847536002456 Lot Numbers: A811477 A816347  Product/REF/UDI: PED2-425-14 PIPELINE FLEX SHIELD\tPED2-425-14\t00847536002463 Lot Numbers: A838759 A871955  Product/REF/UDI: PED2-425-16 PIPELINE FLEX SHIELD\tPED2-425-16\t00847536002470 Lot Numbers: A811477 A816348 A826462 A830774 A842691 A842691 A842692 A848260 A902098 A902098  Product/REF/UDI: PED2-425-18 PIPELINE FLEX SHIELD\tPED2-425-18\t00847536002487 A816349 A817106 A826463 A827608 A869091 A898549 A900745  Product/REF/UDI: PED2-425-20 PIPELINE FLEX SHIELD\tPED2-425-20\t00847536002494 Lot Numbers: A815080 A817107 A817108 A826464 A827609 A828614 A848261 A898549 A898551  Product/REF/UDI: PED2-425-25 PIPELINE FLEX SHIELD\tPED2-425-25\t00847536002838 Lot Numbers: A813319 A815694 A839454 A839455 A843374 A843374 A898557 A898558  Product/REF/UDI: PED2-425-30 PIPELINE FLEX SHIELD\tPED2-425-30\t00847536002845 Lot Numbers: A822673 A822938 A822939 A822941 A839456 A843374 A918068  Product/REF/UDI: PED2-425-35 PIPELINE FLEX SHIELD\tPED2-425-35\t00847536002852 Lot Numbers: A822942 A839459 A839463 A839466  Product/REF/UDI: PED2-450-10 PIPELINE FLEX SHIELD\tPED2-450-10\t00847536002500 Lot Numbers: A817767 A918065  Product/REF/UDI: PED2-450-12 PIPELINE FLEX SHIELD\tPED2-450-12\t00847536002517 Lot Numbers: A849896 A859753 A862918 A871933 A873197 A904253  Product/REF/UDI: PED2-450-14 PIPELINE FLEX SHIELD\tPED2-450-14\t00847536002524 Lot Numbers: A862919 A866018 A866019 A870621  Product/REF/UDI: PED2-450-16 PIPELINE FLEX SHIELD\tPED2-450-16\t00847536002531 Lot Numbers: A815080 A822210 A826464 A828615 A842693 A842694 A848262 A849897 A852720 A852721 A854046 A855394 A858331 A868555 A868564 A869091 A894605  Product/REF/UDI: PED2-450-18 PIPELINE FLEX SHIELD\tPED2-450-18\t00847536002548 Lot Numbers: A811479 A815080 A822211 A826465 A828616 A833109 A842695 A848263 A854048 A858332 A858334 A859754 A859755 A867846 A868565 A871934 A871935 A894606 A918066  Product/REF/UDI: PED2-450-20 PIPELINE FLEX SHIELD\tPED2-450-20\t00847536002555 Lot Numbers: A811480 A815080 A815080 A815080 A815080 A815691 A817109 A817110 A817769 A818290 A833111 A866021 A866023 A866025 A868566 A869091 A890631 A897350 A897354 A897358 A903543  Product/REF/UDI: PED2-450-25 PIPELINE FLEX SHIELD\tPED2-450-25\t00847536002869 Lot Numbers: A815695 A815696 A826926 A826926 A829043 A830779 A839468 A843374 A843375 A852256 A854050 A858341 A858342 A861759 A894607 A896157 A918070  Product/REF/UDI: PED2-450-30 PIPELINE FLEX SHIELD\tPED2-450-30\t00847536002876 Lot Numbers: A822943 A826926 A839471 A843376 A843376 A852257 A854051 A854052 A856680 A858343 A864484 A866004 A899364  Product/REF/UDI: PED2-450-35 PIPELINE FLEX SHIELD\tPED2-450-35\t00847536002883 Lot Numbers: A839474 A839878 A854055 A854056 A854061 A869085  Product/REF/UDI: PED2-475-12 PIPELINE FLEX SHIELD\tPED2-475-12\t00847536002579 Lot Numbers: A826465 A885863  Product/REF/UDI: PED2-475-14 PIPELINE FLEX SHIELD\tPED2-475-14\t00847536002586 Lot Numbers: A822212 A854049 A855395 A873198 A903566  Product/REF/UDI: PED2-475-16 PIPELINE FLEX SHIELD\tPED2-475-16\t00847536002593 Lot Numbers: A815692 A828617 A835008 A842696 A848660 A848661 A889029 A898552 A904230  Product/REF/UDI: PED2-475-18 PIPELINE FLEX SHIELD\tPED2-475-18\t00847536002609 Lot Numbers: A812732 A819171 A833711 A835009 A837011 A838760 A849898 A849898 A849904 A878855 A878856 A899361  Product/REF/UDI: PED2-475-20 PIPELINE FLEX SHIELD\tPED2-475-20\t00847536002616 Lot Numbers: A812733 A817110 A817111 A817112 A826466 A826467 A826919 A826920 A828618 A866412 A867208 A869083 A885863 A894159 A898555 A900746 A900747 A900749 A902100  Product/REF/UDI: PED2-475-25 PIPELINE FLEX SHIELD\tPED2-475-25\t00847536002890 Lot Numbers: A813320 A822944 A822945 A830780 A833117 A835014 A837020 A843378 A848723 A848724 A900750  Product/REF/UDI: PED2-475-30 PIPELINE FLEX SHIELD\tPED2-475-30\t00847536002906 Lot Numbers: A815697 A817117 A819203 A826926 A833119 A835015 A835018 A848724 A852543 A869085 A900752 A902101  Product/REF/UDI: PED2-475-35 PIPELINE EMB DEVICE\tPED2-475-35\t00847536002913 Lot Numbers: A833713 A833714 A833715 A835019 A848724 A849911 A850777 A879717 A879718 A879719  Product/REF/UDI: PED2-500-12 PIPELINE FLEX SHIELD\tPED2-500-12\t00847536002630 Lot Numbers: A812095 A818300 A819172  Product/REF/UDI: PED2-500-14 PIPELINE FLEX SHIELD\tPED2-500-14\t00847536002647 Lot Numbers: A812733 A818301 A822213  Product/REF/UDI: PED2-500-16 PIPELINE FLEX SHIELD\tPED2-500-16\t00847536002654 Lot Numbers: A822213 A833113 A867209 A868567  Product/REF/UDI: PED2-500-18 PIPELINE FLEX SHIELD\tPED2-500-18\t00847536002661 Lot Numbers: A822215 A829030 A830775 A838761 A848676 A848677 A897361 A899362  Product/REF/UDI: PED2-500-20 PIPELINE FLEX SHIELD\tPED2-500-20\t00847536002678 Lot Numbers: A815693 A817113 A817115 A826921 A826921 A826922 A829031 A830776 A833114 A835010 A862920 A889033 A894607 A896155 A896155 A897363 A897365  Product/REF/UDI: PED2-500-25 PIPELINE FLEX SHIELD\tPED2-500-25\t00847536002920 Lot Numbers: A822946 A826927 A830781 A835020 A837021 A837022 A897367 A897369  Product/REF/UDI: PED2-500-35 PIPELINE EMB DEVICE\tPED2-500-35\t00847536002944 Lot Numbers: A822947 A839879 A873200 A899368 A903564 B005844",
+        "reason_for_recall": "Due to potential push wire fractures in the delivery system during use.  The issue presents as a fracture in the spiral cut area of the Hypotube.",
+        "action": "On 07/13/2021, the firm sent via mail courier service an \"URGENT: MEDICAL DEVICE RECALL\" Notification letter to customer informing them they have received reports of serious injuries and deaths in connection with delivery pushwire fracture at the distal section of the delivery system during use.  This recall affects all models of the embolization devices manufactured between April - October 2019, and April - May 2020.\n\nCustomers are instructed to:\n1. Do NOT use any impacted product. Remove and quarantine all unused impacted products in their inventory.\n2. Return the impacted products to the Recalling Firm. Their Recalling Firm representative can assist in facilitating the return of product as necessary. If alternative product is needed, their Recalling Firm representative can assist them with identifying suitable replacement product.\n3. Complete the attached Customer Confirmation Form, see Attachment 2, and fax it to 1-651-367-7075 to the attention of Neurovascular Quality or email it to rs.navfca@medtronic.com.\n4. Share this communication within their organization, with other organizations where impacted devices may have been transferred, and any other associated organizations that may be impacted by this action.\n\nFor additional questions and/or assistance, contact the Recalling Firm's Representative or email the Office of Medical Affairs at rs.nvoma@medtronic.com.",
+        "recall_status": "Open, Classified",
+        "event_date_initiated": "2021-07-13",
+        "event_date_posted": "",
+        "event_date_terminated": "",
+        "recalling_firm": "Micro Therapeutics Inc,",
+        "root_cause_description": "Device Design",
+        "applications": [
+          "P100018"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=188730",
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [
+      {
+        "date": "03/18/2025",
+        "title": "Embolization Device Recall and Correction: Medtronic Removes Unused 027 Compatible Pipeline Vantage Embolization Device with Shield Technology, Updates Use Instructions for 021 Compatible Pipeline Vantage Embolization Devices due to Increased Risk of Incomplete Wall Apposition and Braid Deformation",
+        "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/embolization-device-recall-and-correction-medtronic-removes-unused-027-compatible-pipeline-vantage",
+        "category": "Embolization Device",
+        "sourceSha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+        "matchedTerms": [
+          "pipeline"
+        ],
+        "review": "Candidate: title or class context only; model/application applicability not established"
+      }
+    ],
+    "unresolvedReferences": [],
+    "screenedTerms": [
+      "pipeline"
+    ],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100018C.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=222202"
+    }
+  ],
+  "path": "/dossiers/source-fda-p100018.json",
+  "applications": [
+    "P100018"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

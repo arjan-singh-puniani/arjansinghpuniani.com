@@ -8,6 +8,8 @@ import {
 } from "@/lib/atlas";
 import { interventionActions, interventionSummaries, productName } from "@/lib/intervention-view";
 import { frontier } from "@/lib/curation";
+import { dossiers } from "@/lib/dossiers";
+import { atlasPath } from "@/lib/deployment";
 import type { Family } from "@/lib/types";
 export default function BriefPreview({
   family: f,
@@ -24,7 +26,7 @@ export default function BriefPreview({
       {interventionSummaries[f.id] && <p><a href={interventionSummaries[f.id].sourceUrl || recordById(f.regulatoryIds[0])!.url} target="_blank" rel="noopener noreferrer">Explanation source</a> · {interventionSummaries[f.id].locator}</p>}
       <div className="brief-scope">
         Cached source export: {coverage.exportedAt} (UTC). Timeline cutoff:{" "}
-        {year}. Historical records are not current labeling. This is an indexed
+        {year}. See the dossier for labeling and safety review status. This is an indexed
         evidence extract, not a clinical recommendation.
       </div>
       <h3>Technology and regulatory landscape</h3>
@@ -47,6 +49,7 @@ export default function BriefPreview({
           <p>Limit: {m.limitations}</p>
         </section>
       ))}
+      {dossiers[f.id] && <section className="brief-dossier"><h3>Regulatory, labeling & safety dossier</h3><p>Snapshot {dossiers[f.id].reviewedAt}. Current labeling review: {dossiers[f.id].currentLabelReview}.</p><p>{dossiers[f.id].regulatory.detail}</p><p>{dossiers[f.id].labeling.detail}</p><p>{dossiers[f.id].safety.detail}</p><p>Safety notice review: partial; affected model/lot review: {dossiers[f.id].modelLotReview}.</p>{dossiers[f.id].sourceLinks.map(s=><p key={s.url}><a href={s.url} target="_blank" rel="noopener noreferrer">{s.title}</a></p>)}<a href={atlasPath(dossiers[f.id].path)} target="_blank" rel="noopener noreferrer">Complete dossier, coverage and original source links</a></section>}
       <h3>Indexed source records</h3>
       {[...f.regulatoryIds, ...f.studyIds, ...f.publicationIds].map((id) => {
         const r = recordById(id);

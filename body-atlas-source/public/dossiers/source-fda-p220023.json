@@ -1,0 +1,413 @@
+{
+  "familyId": "source-fda-p220023",
+  "name": "Paradise ultrasound renal denervation system",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "12 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 12,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P220023",
+        "supplement": "S011",
+        "date": "2026-08-13",
+        "decision": "PMA approval",
+        "tradeName": "Paradise Ultrasound Renal Denervation System (Paradise System)",
+        "applicant": "Recor Medical, Inc.",
+        "statement": "Approval of revision to the protocol for the Post-Approval Study (PAS) referenced above.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023S011",
+        "sourceSha": "fcd7260166244954e91551bb5d2244483ec1a6a6bb52f2c8611391d0cc27d515"
+      },
+      {
+        "application": "P220023",
+        "supplement": "S012",
+        "date": "2026-07-29",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Paradise Ultrasound Renal Denervation System (Paradise System); Paradise Catheter",
+        "applicant": "Recor Medical, Inc.",
+        "statement": "approval for changes to the manufacturing process of the ultrasound transducer",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023S012",
+        "sourceSha": "fcd7260166244954e91551bb5d2244483ec1a6a6bb52f2c8611391d0cc27d515"
+      },
+      {
+        "application": "P220023",
+        "supplement": "S009",
+        "date": "2025-09-11",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ReCor Paradise Catheter",
+        "applicant": "Recor Medical, Inc.",
+        "statement": "automated processes for determining transducer measurements and programming parameters into the catheter EEPROM",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023S009",
+        "sourceSha": "fcd7260166244954e91551bb5d2244483ec1a6a6bb52f2c8611391d0cc27d515"
+      },
+      {
+        "application": "P220023",
+        "supplement": "S008",
+        "date": "2025-03-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Paradise Ultrasound Renal Denervation System; Paradise Catheter",
+        "applicant": "Recor Medical, Inc.",
+        "statement": "approval for an alternative supplier of a coaxial cable component of the Paradise Catheter System",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023S008",
+        "sourceSha": "fcd7260166244954e91551bb5d2244483ec1a6a6bb52f2c8611391d0cc27d515"
+      },
+      {
+        "application": "P220023",
+        "supplement": "S007",
+        "date": "2025-03-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Paradise Ultrasound Renal Denervation System; Paradise Catheter",
+        "applicant": "Recor Medical, Inc.",
+        "statement": "a change to the supplier of the piezoelectric material block used in manufacturing ultrasound transducers",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023S007",
+        "sourceSha": "fcd7260166244954e91551bb5d2244483ec1a6a6bb52f2c8611391d0cc27d515"
+      },
+      {
+        "application": "P220023",
+        "supplement": "S006",
+        "date": "2025-01-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Paradise Ultrasound Renal Denervation System (Paradise System), Paradise Catheter",
+        "applicant": "Recor Medical, Inc.",
+        "statement": "a change to in-process testing equipment for measuring specific ultrasound transducer parameters.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023S006",
+        "sourceSha": "fcd7260166244954e91551bb5d2244483ec1a6a6bb52f2c8611391d0cc27d515"
+      },
+      {
+        "application": "P220023",
+        "supplement": "S004",
+        "date": "2024-12-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Paradise Ultrasound Renal Denervation System, Paradise Cartridge, Paradise Generator",
+        "applicant": "Recor Medical, Inc.",
+        "statement": "to add torque inspections at the supplier final inspection stage for the Paradise Cartridge and Paradise Generator system components",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023S004",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P220023",
+        "supplement": "S005",
+        "date": "2024-12-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Paradise Ultrasound Renal Denervation System, Paradise Generator",
+        "applicant": "Recor Medical, Inc.",
+        "statement": "to add a dimensional inspection at lot release for a part of the Paradise Generator",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023S005",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P220023",
+        "supplement": "S003",
+        "date": "2024-10-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Paradise® Ultrasound Renal Denervation System",
+        "applicant": "Recor Medical, Inc.",
+        "statement": "approval to implement a change to the supplier and material of the Paradise Catheter strain relief component",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023S003",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P220023",
+        "supplement": "S002",
+        "date": "2024-02-05",
+        "decision": "PMA approval",
+        "tradeName": "ReCor Paradise® Ultrasound Renal Denervation System",
+        "applicant": "Recor Medical, Inc.",
+        "statement": "Approval of the protocol for the US arm of the Global Paradise System Post Approval Study",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023S002",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P220023",
+        "supplement": "S001",
+        "date": "2023-12-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Paradise Ultrasound Renal Denervation System (Paradise System), Paradise Cartridge",
+        "applicant": "Recor Medical, Inc.",
+        "statement": "modification of the cartridge packaging tray",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023S001",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P220023",
+        "supplement": "",
+        "date": "2023-11-07",
+        "decision": "PMA approval",
+        "tradeName": "Paradise® Ultrasound Renal Denervation System",
+        "applicant": "Recor Medical, Inc.",
+        "statement": "The Paradise Ultrasound Renal Denervation System is indicated to reduce blood pressure as an adjunctive treatment in hypertension patients in whom lifestyle modifications and antihypertensive medications do not adequately control blood pressure.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=5500&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0",
+        "file": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0.json",
+        "retrievedAt": "2026-10-22T19:00:01.572453+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=5600&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "fcd7260166244954e91551bb5d2244483ec1a6a6bb52f2c8611391d0cc27d515",
+        "file": "fcd7260166244954e91551bb5d2244483ec1a6a6bb52f2c8611391d0cc27d515.json",
+        "retrievedAt": "2026-10-22T19:00:03.056726+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "1 original labeling document link(s) located; 0 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 1,
+    "changes": 0,
+    "rows": [
+      {
+        "application": "P220023",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf22/P220023C.pdf",
+        "pages": 56,
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023",
+        "locator": "L57: Labeling 【39†Labeling】",
+        "pageUpdatedAt": "10/19/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: today; Content type: application/pdf; Number of pages: 56;",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P220023",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023",
+        "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023\",\"lineno\":null}); Total lines: 102",
+        "pageUpdatedAt": "10/19/2026",
+        "locator": "L57: Labeling 【39†Labeling】"
+      }
+    ],
+    "changeIds": [],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "2 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 2,
+    "rows": [
+      {
+        "cfres_id": "218620",
+        "product_res_number": "Z-1654-2026",
+        "product_description": "Brand Name: Paradise Ultrasound Renal Denervation System\nProduct Name: Paradise  Catheter\nModel/Catalog Number: PRDS-068-02\nProduct Description: Common name: Ablation catheter renal denervation",
+        "code_info": "Lot Code: Model No PRDS-068-02; UDI-DI 00810008950043; Lot Number: M4907",
+        "reason_for_recall": "Due to firm distributing a nonconforming product that supposed to be scrapped and not for human use.",
+        "action": "On 01/28/2026, the firm informed customers verbally and sent via mail an \"MEDICAL DEVICE RECALL\" Letter that nonconforming products (cracking in the hub  adjacent to the guidewire port) that may lead to fluid leaks and could trigger a pressure error.\n\nCustomers are instructed to:\n1. Do not use the affected catheters for any patient procedures.\n2. Identify the catheters from the affected lot and return to Recor Clinical Specialist through RMA process.\n3. Review and complete the Acknowledgement and Receipt Form and provide to the Recor Clinical Specialist.\n\nFor questions or further assistance - contact Director of Regulatory & Quality Compliance  at Lisa.luu@recormedical.com or telephone at 650-542-7700",
+        "recall_status": "Open, Classified",
+        "event_date_initiated": "2026-01-29",
+        "event_date_posted": "2026-03-27",
+        "event_date_terminated": "",
+        "recalling_firm": "ReCor Medical Inc.",
+        "root_cause_description": "Under Investigation by firm",
+        "applications": [
+          "P220023"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=218620",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "218970",
+        "product_res_number": "Z-1655-2026",
+        "product_description": "Brand Name: Paradise Ultrasound Renal Denervation System\nProduct Name: Paradise  Catheter\nModel/Catalog Number: PRDS-068-02\nProduct Description: Common name: Ablation catheter renal denervation",
+        "code_info": "Lot Code: Model No PRDS-068-02; UDI-DI 00810008950043; Lot Number: M4862",
+        "reason_for_recall": "Due to firm distributing a nonconforming product that supposed to be scrapped and not for human use.",
+        "action": "On 01/28/2026, the firm informed customers verbally and sent via mail an \"MEDICAL DEVICE RECALL\" Letter that nonconforming products (cracking in the hub  adjacent to the guidewire port) that may lead to fluid leaks and could trigger a pressure error.\n\nCustomers are instructed to:\n1. Do not use the affected catheters for any patient procedures.\n2. Identify the catheters from the affected lot and return to Recor Clinical Specialist through RMA process.\n3. Review and complete the Acknowledgement and Receipt Form and provide to the Recor Clinical Specialist.\n\nFor questions or further assistance - contact Director of Regulatory & Quality Compliance  at Lisa.luu@recormedical.com or telephone at 650-542-7700",
+        "recall_status": "Open, Classified",
+        "event_date_initiated": "2026-01-29",
+        "event_date_posted": "2026-03-27",
+        "event_date_terminated": "",
+        "recalling_firm": "ReCor Medical Inc.",
+        "root_cause_description": "Under Investigation by firm",
+        "applications": [
+          "P220023"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=218970",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf22/P220023C.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=218620"
+    }
+  ],
+  "path": "/dossiers/source-fda-p220023.json",
+  "applications": [
+    "P220023"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

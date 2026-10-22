@@ -1,0 +1,436 @@
+{
+  "familyId": "source-fda-p160013",
+  "name": "Organ Care System Lung",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "19 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 19,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P160013",
+        "supplement": "S021",
+        "date": "2026-05-13",
+        "decision": "PMA approval",
+        "tradeName": "Organ Care System (OCS) Lung System",
+        "applicant": "TransMedics, Inc.",
+        "statement": "approval for material, supplier, and design changes to the filter cap and raw material and supplier changes to the pleated filter assembly",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S021",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S020",
+        "date": "2025-12-16",
+        "decision": "PMA approval",
+        "tradeName": "Organ Care System (OCS) Lung System",
+        "applicant": "TransMedics, Inc.",
+        "statement": "approval for a change in the pressure test condition in the inline leak test performed during assembly.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S020",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S019",
+        "date": "2025-10-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Organ Care System (OCS) Lung System",
+        "applicant": "TransMedics, Inc.",
+        "statement": "Changes in assembly inspection documentation",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S019",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S018",
+        "date": "2024-10-11",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Organ Care System (OCS) Lung",
+        "applicant": "TransMedics, Inc.",
+        "statement": "change in manufacturing process",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S018",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S016",
+        "date": "2024-01-09",
+        "decision": "PMA approval",
+        "tradeName": "Organ Care System (OCS) Lung System",
+        "applicant": "TransMedics, Inc.",
+        "statement": "Recommend Approval of Manufacturing Site Change and EO sterilization.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S016",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S014",
+        "date": "2023-06-28",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Organ Care System (OCS) Lung",
+        "applicant": "TransMedics, Inc.",
+        "statement": "Change the supplier for the vented bag component of the OCS Perfusion module.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S014",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S013",
+        "date": "2023-06-28",
+        "decision": "PMA approval",
+        "tradeName": "Organ Care System (OCS) Lung System",
+        "applicant": "TransMedics, Inc.",
+        "statement": "Approval of the revised protocol for the post-approval study (PAS) protocol.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S013",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S012",
+        "date": "2023-05-09",
+        "decision": "PMA approval",
+        "tradeName": "Organ Care System (OCS) Lung System",
+        "applicant": "TransMedics, Inc.",
+        "statement": "Approval for a change to the wireless monitor of the OCS Lung System, including replacing the obsolete display panel with an updated panel, replacing the existing CCFL backlight driver with an LED backlight driver, updating the Wireless Monitor PCBA with minor component updates.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S012",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S010",
+        "date": "2023-02-24",
+        "decision": "PMA approval",
+        "tradeName": "Organ Care System (OCS) Lung System",
+        "applicant": "TransMedics, Inc.",
+        "statement": "Approval for revised labeling to reflect the final results of INSPIRE, Lung EXPAND and Lung EXPAND II clinical trials.",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S010",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S011",
+        "date": "2023-02-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Organ Care System (OCS) Lung",
+        "applicant": "TransMedics, Inc.",
+        "statement": "Expand the clean room area at the existing manufacturing facility.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S011",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S009",
+        "date": "2022-05-06",
+        "decision": "PMA approval",
+        "tradeName": "Organ Care System (OCS) Lung System",
+        "applicant": "TransMedics, Inc.",
+        "statement": "Approval for the addition of the Lung Small Trachea Cannula Set to the currently available trachea cannulas for the OCS Lung System.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S009",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S008",
+        "date": "2021-08-02",
+        "decision": "PMA approval",
+        "tradeName": "Organ Care System (OCS) Lung System",
+        "applicant": "TransMedics, Inc.",
+        "statement": "Approval for an alternate check valve for the OCS Lung System.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S008",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S007",
+        "date": "2020-12-03",
+        "decision": "PMA approval",
+        "tradeName": "Organ Care System (OCS) Lung System",
+        "applicant": "TransMedics, Inc.",
+        "statement": "Approval for a software update (Software Version 3.1.3-C).",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S007",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S006",
+        "date": "2019-12-20",
+        "decision": "PMA approval",
+        "tradeName": "Organ Care System (OCS) Lung System",
+        "applicant": "TransMedics, Inc.",
+        "statement": "Approval for a change in the material of the Large Valve Ball of the OCS Perfusion Module.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S006",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S005",
+        "date": "2019-12-20",
+        "decision": "PMA approval",
+        "tradeName": "Organ Care System (OCS) Lung System",
+        "applicant": "TransMedics, Inc.",
+        "statement": "Approval for a change in the OCS Monitor Battery printed circuit board.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S005",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S002",
+        "date": "2019-05-31",
+        "decision": "PMA approval",
+        "tradeName": "Organ Care System (OCS) Lung System",
+        "applicant": "TransMedics, Inc.",
+        "statement": "Approval for the Organ Care System (OCS) Lung System. The TransMedics Organ Care System (OCS) Lung is a portable, normothermic organ perfusion, ventilation and monitoring medical device indicated for preservation of standard criteria donor lung pairs and for preservation of donor lung pairs initially deemed unacceptable for procurement and transplantation based on limitations of cold static preservation.  The device allows for ex vivo assessment of donor lungs prior to transplantation.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Panel Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S002",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S003",
+        "date": "2018-12-21",
+        "decision": "PMA approval",
+        "tradeName": "Organ Care System (OCS) Lung System",
+        "applicant": "TransMedics, Inc.",
+        "statement": "Approval for component changes to the printed circuit board (PCB), SD (Secure Digital) memory card, and cable connectors in the OCS Lung System.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S003",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "S001",
+        "date": "2018-06-14",
+        "decision": "PMA approval",
+        "tradeName": "Organ Care System (OCS) Lung System",
+        "applicant": "TransMedics, Inc.",
+        "statement": "Approval for protocol for post-approval study (PAS) protocol.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013S001",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      },
+      {
+        "application": "P160013",
+        "supplement": "",
+        "date": "2018-03-22",
+        "decision": "PMA approval",
+        "tradeName": "Organ Care System (OCS) Lung System",
+        "applicant": "TransMedics, Inc.",
+        "statement": "Approval for the OCS Lung System, indicated for the preservation of standard criteria donor lungs in a near physiologic, ventilated, and perfused state for double lung transplantation.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013",
+        "sourceSha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=5400&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8",
+        "file": "7d0cb4f1208889fad50058fd9d9d6402808dfba063721f25306d516bb347acf8.json",
+        "retrievedAt": "2026-10-22T19:00:00.785809+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "unavailable",
+    "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+    "documents": 0,
+    "changes": 2,
+    "rows": [],
+    "pages": [
+      {
+        "application": "P160013",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013",
+        "locator": "Original page retrieval unavailable",
+        "state": "unavailable"
+      }
+    ],
+    "changeIds": [
+      "P160013S010",
+      "P160013S002"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+    "recalls": 0,
+    "rows": [],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "not-established",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P160013"
+    }
+  ],
+  "path": "/dossiers/source-fda-p160013.json",
+  "applications": [
+    "P160013"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

@@ -29,3 +29,8 @@ Final build/browser/security outcomes and their scope are in RELEASE_READINESS.m
 - [ ] Verify requested subdomain, DNS ownership, TLS, and rollback plan without changing portfolio routes.
 
 `mission-control.arjansinghpuniani.com` is a future target only. Existence and deployment configuration have not been verified. No deployed URL is claimed.
+
+
+## Dossier milestone — 2026-10-22
+
+Dossier release gates: all 91 explained entries resolve; 89 commercial decision/recall inventories checked; investigational entries retain non-authorization status; originals/supplements remain distinct; checksum and offline reproduction tests pass; incomplete refresh retains published artifacts; lazy dossier navigation, original links, cited brief export, error/retry and keyboard/accessibility checks required in desktop/mobile emulation. Current-label content and model/lot review cannot be marked complete by document discovery alone. See [DOSSIERS.md](DOSSIERS.md).

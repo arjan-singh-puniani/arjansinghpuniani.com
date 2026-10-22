@@ -15,3 +15,8 @@ Before a hosted private workspace: implement authentication, per-user authorizat
 Report vulnerabilities privately to the repository owner; do not attach credentials or private source records to public issues. See SECURITY_REVIEW.md for this execution's findings and residual risks.
 
 The whole-body index contains authentic public source text only. Catalogue generation runs offline through CLI; browser actions cannot initiate scraping. New source-context matches remain untrusted quoted data. No private workspace or owner project records are included.
+
+
+## Dossier milestone — 2026-10-22
+
+Dossier fetching uses HTTPS with explicit FDA host allowlists checked before and after redirects, OS CA verification, bounded responses/pages, bounded retry and atomic source writes. Provider HTML is served as `.txt`; the UI renders text through React and links only approved HTTPS hosts without embedded credentials/ports. No new public ingestion endpoint or private workspace exists. Raw FDA public records include public firm information; no private owner documents are imported.

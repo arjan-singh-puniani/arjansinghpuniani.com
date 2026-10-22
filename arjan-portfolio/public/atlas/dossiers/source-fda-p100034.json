@@ -1,0 +1,811 @@
+{
+  "familyId": "source-fda-p100034",
+  "name": "NovoTTF-100A treatment kit",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "46 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 46,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P100034",
+        "supplement": "S045",
+        "date": "2026-09-18",
+        "decision": "PMA approval",
+        "tradeName": "Novocure GmbHs Optune Gio",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval for a manufacturing site located at SorVan Radiation, Ltd., Kiryat Soreq, POB 214, Yavne, 8180000, Israel for sterilization.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S045",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S046",
+        "date": "2026-09-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Optune HFE Transducer Arrays",
+        "applicant": "Novocure, GmbH",
+        "statement": "approval to implement a minor change to the pallet configuration for the maximum load during gamma sterilization process for the HFE arrays performed at Steris Schweiz",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S046",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S042",
+        "date": "2026-06-04",
+        "decision": "PMA approval",
+        "tradeName": "Optune Gio",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval for an additional manufacturing site, AvailMed S.A. de C.V., located at C. Industrial Lt. 001 Mz. 105, No. 20905 Int. A. Col. Cd. IndustrialTijuana, Baja California, Mexico, for the HFE Arrays in the Optune Gio system.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S042",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S044",
+        "date": "2026-04-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Optune HFE Transducer Array Soft Part Components",
+        "applicant": "Novocure, GmbH",
+        "statement": "approval for an additional servicing supplier for the soft parts components used in the Optune HFE transducer arrays",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S044",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S043",
+        "date": "2026-02-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Optune Gio®",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval for an additional servicing supplier for components of the device.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S043",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S041",
+        "date": "2025-10-23",
+        "decision": "PMA approval",
+        "tradeName": "Optune Gio - Maxpoint Version 2.0",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval for changes to the transducer array layout planning software MAXPOINT BR-I, including a trade name change to MAXPOINT.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S041",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S040",
+        "date": "2025-06-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Optune®",
+        "applicant": "Novocure, GmbH",
+        "statement": "the implementation of a second-source supplier of Li-Ion battery cells",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S040",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S039",
+        "date": "2025-03-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Optune®",
+        "applicant": "Novocure, GmbH",
+        "statement": "the addition of a second supplier for the thermistor component of the HFE Transducer Arrays",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S039",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S036",
+        "date": "2025-02-04",
+        "decision": "PMA approval",
+        "tradeName": "Optune Gio",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval to assemble the Optune Gio device and its battery using the plastic enclosure components which are currently used to assemble the Optune Lua device and its battery.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S036",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S038",
+        "date": "2024-12-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Optune® Gio",
+        "applicant": "Novocure, GmbH",
+        "statement": "approval for scale-up of manufacturing processes for the Optune HFE Transducer array at the contract manufacturer",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S038",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S037",
+        "date": "2024-12-10",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Optune Gio",
+        "applicant": "Novocure, GmbH",
+        "statement": "an additional manufacturer for the sub assembly component of the INE Transducer Arrays",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S037",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S033",
+        "date": "2024-10-30",
+        "decision": "PMA approval",
+        "tradeName": "Optune Gio",
+        "applicant": "Novocure, GmbH",
+        "statement": "approval for the new Optune HFE Transducer Arrays and the NovoTAL flex software, which generates layout maps for the placement of the Optune HFE Transducer Arrays on the patient's head",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S033",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S035",
+        "date": "2024-09-24",
+        "decision": "PMA approval",
+        "tradeName": "Optune System",
+        "applicant": "Novocure, GmbH",
+        "statement": "approval to adjust the capacitance specification for the ceramic discs used in the INE Transducer Arrays. The supplement also proposed to add TDK Electronics GmbH & Co. OG (TDK), located at Siemensstrasse 43, 8530 Deutschlandsberg, Austria, as an additional supplier for the lead-free ceramic discs, so that these components may be sourced from either Vishay Electronics GmbH or TDK",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S035",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S034",
+        "date": "2024-07-12",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Optune Gio",
+        "applicant": "Novocure, GmbH",
+        "statement": "the addition of a second supplier for the thermistor component of the INE Transducer Arrays",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S034",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S032",
+        "date": "2024-02-02",
+        "decision": "PMA approval",
+        "tradeName": "Optune",
+        "applicant": "Novocure, GmbH",
+        "statement": "approval for a manufacturing site located at United States (U.S.) Operation Center II (USOC II), Novocure Inc., 2555 USA Parkway, Suite 104A, Sparks, Nevada 89437, that will perform the activities of receipt, cleaning, acceptance, storage, service, packaging, labeling and release for distribution of the Optune treatment kit.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S032",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S030",
+        "date": "2024-01-16",
+        "decision": "PMA approval",
+        "tradeName": "Optune",
+        "applicant": "Novocure, GmbH",
+        "statement": "approval for the MAXPOINT BR-I (MAXPOINT) Optune transducer array layout software",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S030",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S031",
+        "date": "2023-08-14",
+        "decision": "PMA approval",
+        "tradeName": "Optune System",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval for a trade name change from Optune to Optune Gio.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S031",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S029",
+        "date": "2022-05-10",
+        "decision": "PMA approval",
+        "tradeName": "Optune® device",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval for changes to the specifications of the ceramic discs used in the INE Transducer Arrays to make them lead-free, and the addition of a new supplier for these lead-free ceramic discs, Vishay Electronics GmbH, located at Dr.-Felix-Zandman-Platz 1, Selb 95100, Germany.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S029",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S026",
+        "date": "2021-07-07",
+        "decision": "PMA approval",
+        "tradeName": "Optune System",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval for an update of the Optune System labeling with the final post-approval study (Registry Study for Optune System) results.",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S026",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S028",
+        "date": "2021-05-24",
+        "decision": "PMA approval",
+        "tradeName": "Optune System",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval for a manufacturing site, Synergy Health Däniken AG (Steris), located at Hogenweidstrasse 6, CH-4658, Daniken, Switzerland. This site is a sterilization facility used to sterilize the INE Transducer Arrays in the Optune System.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S028",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S027",
+        "date": "2021-03-09",
+        "decision": "PMA approval",
+        "tradeName": "Optune System",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval for a manufacturing site, A.L. Electronics LTD, located at 24 Giron Abraham Street, Yehud, Israel 56217, to manufacture the INE Transducer Arrays in the Optune System.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S027",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S025",
+        "date": "2021-03-09",
+        "decision": "PMA approval",
+        "tradeName": "Optune System",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval for a manufacturing site, Flex-Romania, located at Calea Torontalului, DN 6, Km 5,7, Timisoara, Romania 300668 to manufacture the INE Transducer Arrays in the Optune System.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S025",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S023",
+        "date": "2020-03-15",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Optune System",
+        "applicant": "Novocure, GmbH",
+        "statement": "Move certain assembly activities performed for the Optune System from one building to another at the approved contract manufacturers site.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S023",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S021",
+        "date": "2019-04-12",
+        "decision": "PMA approval",
+        "tradeName": "Optune System",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval for an additional ceramic disc supplier with no changes to electrical specifications.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S021",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S022",
+        "date": "2019-02-28",
+        "decision": "PMA approval",
+        "tradeName": "Optune System",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval for a color change to the INE Transducer Array medical tape from white to tan, and a change to the release liner of the INE Transducer Array from a paper-based material to polyester.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S022",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S019",
+        "date": "2018-12-19",
+        "decision": "PMA approval",
+        "tradeName": "Optune System",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval for changes to Optune System carrying case and INE Transducer Array package sizes; Optune System software modifications increasing the secondary alarm threshold for INE Transducer Array partial attachment, correcting data transfer processing following switch from battery to mains power, and eliminating a redundant INE Transducer Array overheating alarm; and NovoTerminal software modifications improving Optune System data transfer processing.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S019",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S018",
+        "date": "2018-11-30",
+        "decision": "PMA approval",
+        "tradeName": "Optune",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval to update the Optune device labeling with the clinical outcome data from the pivotal study conducted to treat newly diagnosed glioblastoma (Long-Term EF-14).",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S018",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S020",
+        "date": "2018-10-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Optune System",
+        "applicant": "Novocure, GmbH",
+        "statement": "Change to lead-free solder.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S020",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S017",
+        "date": "2017-03-15",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Novocure Ltd.'s Optune",
+        "applicant": "Novocure, GmbH",
+        "statement": "Addition of two second source component suppliers related to the INE transducer array subassembly as well as automation of a related soldering procedure.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S017",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S015",
+        "date": "2016-07-13",
+        "decision": "PMA approval",
+        "tradeName": "OPTUNE",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval for a smaller, lighter weight version of the original Optune System, referred to as the Optune System (NovoTTF-200A System).",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S015",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S016",
+        "date": "2016-03-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NOVOCURE LTD'S NOVOTTF-100A TREATMENT KIT",
+        "applicant": "Novocure, GmbH",
+        "statement": "Additional servicing and repair location for the Optune System.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S016",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S014",
+        "date": "2016-02-09",
+        "decision": "PMA approval",
+        "tradeName": "NOVOCURE'S OPTUNE SYSTEM",
+        "applicant": "Novocure, GmbH",
+        "statement": "Approval of the following changes to the post-approval study for the device:  modification to enrollment criteria.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S014",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S013",
+        "date": "2015-10-05",
+        "decision": "PMA approval",
+        "tradeName": "OPTUNE (FORMERLY THE NOVOTTF-100A SYSTEM)",
+        "applicant": "Novocure, GmbH",
+        "statement": "APPROVAL FOR THE OPTUNE (FORMERLY THE NOVOTTF-100A SYSTEM). THIS DEVICE IS INDICATED AS A TREATMENT FOR ADULT PATIENTS (22 YEARS OF AGE OR OLDER) WITH HISTOLOGICALLY-CONFIRMED GLIOBLASTOMA MULTIFORME (GBM). OPTUNE WITH TEMOZOLOMIDE IS INDICATED FOR THE TREATMENT OF ADULT PATIENTS WITH NEWLY DIAGNOSED, SUPRATENTORIAL GLIOBLASTOMA FOLLOWING MAXIMAL DEBULKING SURGERY AND COMPLETION OF RADIATION THERAPY TOGETHER WITH CONCOMITANT STANDARD OF CARE CHEMOTHERAPY. OPTUNE WAS PREVIOUSLY APPROVED IN 2011 FOR THE TREATMENT OF RECURRENT GBM WITH THE FOLLOWING INDICATIONS FOR USE (IFU): OPTUNE IS INDICATED FOLLOWING HISTOLOGICALLY-OR RADIOLOGICALLY-CONFIRMED RECURRENCE IN THE SUPRA-TENTORIAL REGION OF THE BRAIN AFTER RECEIVING CHEMOTHERAPY. THE DEVICE IS INTENDED TO BE USED AS A MONOTHERAPY, AND IS INTENDED AS AN ALTERNATIVE TO STANDARD MEDICAL THERAPY FOR GBM AFTER SURGICAL AND RADIATION OPTIONS HAVE BEEN EXHAUSTED.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Panel Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S013",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S012",
+        "date": "2015-03-23",
+        "decision": "PMA approval",
+        "tradeName": "NOVOTTF-100A SYSTEM",
+        "applicant": "Novocure, GmbH",
+        "statement": "APPROVAL FOR AN ADDITIONAL SUPPLIER FOR THE CONVERTER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S012",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S011",
+        "date": "2015-03-17",
+        "decision": "PMA approval",
+        "tradeName": "NOVA TTF-100A SYSTEM",
+        "applicant": "Novocure, GmbH",
+        "statement": "APPROVAL FOR AN ADDITIONAL MATERIAL SUPPLIER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S011",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S007",
+        "date": "2014-11-12",
+        "decision": "PMA approval",
+        "tradeName": "NOVOTFF-100A SYSTEM",
+        "applicant": "Novocure, GmbH",
+        "statement": "APPROVAL FOR CHANGES TO THE NOVOTTF-100A INSULATED ELECTRODE (INE) TRANSDUCER ARRAY MANUFACTURING PROCESS TO IMPROVE ITS EFFICIENCY BY AUTOMATING CERTAIN MANUAL PROCESSING STEPS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S007",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S010",
+        "date": "2014-09-28",
+        "decision": "PMA approval",
+        "tradeName": "OPTUNE",
+        "applicant": "Novocure, GmbH",
+        "statement": "APPROVAL FOR A TRADE NAME CHANGE FROM THE NOVOTTF-100A SYSTEM TO OPTUNE¿.  YOU HAVE ALSO REQUESTED THAT THE COMPONENTS OF THE NOVOTTF-100A SYSTEM (A PLUGIN POWER SUPPLY; CHARGER FOR PORTABLE BATTERIES; DEVICE & BATTERY CARRYING BAG; PORTABLE BATTERY; AND, CONNECTION CABLE & BOX), ALONG WITH THE TRANSDUCER ARRAY AND ELECTRIC FIELD GENERATOR (THE DEVICE), BE NAMED THE OPTUNE¿ TREATMENT KIT.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S010",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S009",
+        "date": "2014-07-25",
+        "decision": "PMA approval",
+        "tradeName": "NOVOTTF-100A TREATMENT KIT",
+        "applicant": "Novocure, GmbH",
+        "statement": "APPROVAL TO REPLACE THE CURRENT TYVEK POUCH PACKAGING MATERIAL FORTHE INE TRANSDUCER ARRAYS WITH AN ALUMINUM FOIL MOISTURE BARRIER AND TO EXTEND THE SHELF LIFE FOR THESE TRANSDUCER ARRAYS FROM 6 TO 9 MONTHS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S009",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S008",
+        "date": "2014-07-24",
+        "decision": "PMA approval",
+        "tradeName": "NOVO TTF-100A SYSTEM",
+        "applicant": "Novocure, GmbH",
+        "statement": "APPROVAL TO REPLACE THE CURRENT TYVEK POUCH PACKAGING MATERIAL FOR THE INE TRANSDUCER ARRAYS WITH AN ALUMINUM FOIL MOISTURE BARRIER AND TO EXTEND THE SHELF LIFE FOR THESE TRANSDUCER ARRAYS FROM 6 TO 9 MONTHS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S008",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S006",
+        "date": "2013-09-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NOVOTTF-100A SYSTEM",
+        "applicant": "Novocure, GmbH",
+        "statement": "CHANGE TO THE MANUFACTURING PRODUCTION FLOW TO INCLUDE DISTRIBUTION LOGISTICS THAT WILL BE PERFORMED BY NOVOCURE GMBH IN ROOT LUZERN, SWITZERLAND.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S006",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S004",
+        "date": "2013-08-08",
+        "decision": "PMA approval",
+        "tradeName": "NOVOTTF-100A SYSTEM",
+        "applicant": "Novocure, GmbH",
+        "statement": "APPROVAL FOR TRANSFERRING THE RESPONSIBILITY OF PERFORMING THE NOVOTAL TRANSDUCER ARRAY MAPPING FROM NOVOCURES STAFF TO TRAINED PHYSICIANS RESPONSIBLE FOR PRESCRIBING THE DEVICE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S004",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S005",
+        "date": "2013-06-12",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NOVA TTF-100A SYSTEM",
+        "applicant": "Novocure, GmbH",
+        "statement": "MANUFACTURING CHANGE TO THE INE TRANSDUCER ARRAY CABLE AND FLEXIBLE PRINTED CIRCUIT BOARD (PCB) OF THE DEVICE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S005",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S003",
+        "date": "2013-04-17",
+        "decision": "PMA approval",
+        "tradeName": "NOVOTTF-100A SYSTEM",
+        "applicant": "Novocure, GmbH",
+        "statement": "APPROVAL FOR SOFTWARE MODIFICATION TO ADD AN ALARM TO THE IDLE LOOP (THE NON-TREATMENT LOOP) TO INDICATE THAT THE DEVICE IS STILL POWERED ON EVEN WHEN TREATMENT IS NOT ACTIVE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S003",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S002",
+        "date": "2012-12-03",
+        "decision": "PMA approval",
+        "tradeName": "NOVOTTF-100A SYSTEM",
+        "applicant": "Novocure, GmbH",
+        "statement": "APPROVAL FOR MODIFICATION TO THE FIELD GENERATOR COMPONENT OF THENOVOTTF-L00A SYSTEM TO REPLACE PIN: DAC7614E WITH PIN: 2IC-103572, AND CORRESPONDING CHANGES TO THE ASSOCIATED RESISTORS AND CAPACITORS TO LIMIT THE PART VOLTAGE RANGE AND ELIMINATE AN OBSERVED CURRENT SPIKE.   CORRESPONDING SOFTWARE CHANGES WERE ALSO MADE TO REFLECT THESEMODIFICATIONS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S002",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "S001",
+        "date": "2012-01-03",
+        "decision": "PMA approval",
+        "tradeName": "NOVOCURE NOVOTTF-100A SYSTEM",
+        "applicant": "Novocure, GmbH",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034S001",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100034",
+        "supplement": "",
+        "date": "2011-04-08",
+        "decision": "PMA approval",
+        "tradeName": "NOVOCURE LTD'S NOVOTTF-100A TREATMENT KIT",
+        "applicant": "Novocure, GmbH",
+        "statement": "APPROVAL FOR THE NOVOTTF-100A SYSTEM.  THE DEVICE IS INDICATED FOR TREATMENT OF ADULT PATIENTS (22 YEARS OF AGE OR OLDER) WITH HISTOLOGICALLY- CONFIRMED GLIOBLASTOMA MULTIFORME, FOLLOWING HISTOLOGICALLY- OR RADIOLOGICALLY- CONFIRMED RECURRENCE IN THE SUPRATENTORIAL REGION OF THE BRAIN AFTER RECEIVING CHEMOTHERAPY.  THE DEVICE IS INTENDED TO BE USED AS A MONOTHERAPY, AND IS INTENDED AS AN ALTERNATIVE TO STANDARD MEDICAL THERAPY FOR GBM AFTER SURGICAL AND RADIATION OPTIONS HAVE BEEN EXHAUSTED.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=4100&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e",
+        "file": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e.json",
+        "retrievedAt": "2026-10-22T18:59:48.865835+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "1 original labeling document link(s) located; 6 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 1,
+    "changes": 6,
+    "rows": [
+      {
+        "application": "P100034",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100034C.pdf",
+        "pages": 74,
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034",
+        "locator": "L56: Labeling 【38†Labeling】",
+        "pageUpdatedAt": "10/19/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: last week; Content type: application/pdf; Number of pages: 74;",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P100034",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034",
+        "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034\",\"lineno\":null}); Total lines: 104",
+        "pageUpdatedAt": "10/19/2026",
+        "locator": "L56: Labeling 【38†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P100034S032",
+      "P100034S031",
+      "P100034S026",
+      "P100034S018",
+      "P100034S013",
+      "P100034S010"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+    "recalls": 0,
+    "rows": [],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "not-established",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100034C.pdf"
+    }
+  ],
+  "path": "/dossiers/source-fda-p100034.json",
+  "applications": [
+    "P100034"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

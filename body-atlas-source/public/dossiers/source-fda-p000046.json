@@ -1,0 +1,715 @@
+{
+  "familyId": "source-fda-p000046",
+  "name": "STAARVISC II ophthalmic viscoelastic",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "32 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 32,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P000046",
+        "supplement": "S032",
+        "date": "2026-08-28",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Ophthalmic Viscosurgical Device Family",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "the replacement of reusable components with single-use, presterilized components for use during transfer steps of the formulation and fill process during manufacturing of the subject sodium hyaluronate devices",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S032",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S031",
+        "date": "2025-10-15",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Ophthalin; Nuvisc; Anikavisc",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "a replacement adhesive laminate film for the sealed pouch used as a sterile barrier system for the subject ophthalmic viscosurgical device",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S031",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S030",
+        "date": "2021-12-22",
+        "decision": "PMA approval",
+        "tradeName": "Ophthalin, Anikavisc, Nuvisc",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "Approval of the labeling change to update labels of OPHTHALIN® to identify Carl Zeiss Canada Ltd. as a Private Label Manufacturer and Distributor.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S030",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S029",
+        "date": "2021-10-21",
+        "decision": "PMA approval",
+        "tradeName": "Nuvisc, Anikavisc, Ophthalin",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "Approval for request of an additional tradename, OPHTHALIN®",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S029",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S028",
+        "date": "2021-06-02",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Ophthalmic",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "Use of an alternate stopper from the current supplier for the syringe that holds your approved ophthalmic viscosurgical device.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S028",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S027",
+        "date": "2019-08-28",
+        "decision": "PMA approval",
+        "tradeName": "Ophthalmic Viscoelastic",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "Approval for an extension of the shelf-life of Ophthalmic Viscoelastic® from 24 months to 36 months.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S027",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S026",
+        "date": "2017-03-31",
+        "decision": "PMA approval",
+        "tradeName": "Ophthaalmic Viscoelastic",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "Approval for the addition of a new trade name, Ophthalmic Viscoelastic.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S026",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S025",
+        "date": "2014-07-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "OPHTHALMICS- ANIKAVISC, OPTIVISC AND NUVISC",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "CHANGE TO THE SYRINGE RESIDUAL SOLVENT TESTING FROM A SUPPLIERS CONTRACT LABORATORY TO THE SUPPLIERS IN-HOUSE FACILITY FOR ANIKAS OPHTHALMIC DEVICES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S025",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S024",
+        "date": "2014-06-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "STAARVISC, OPTIVISC AND ANIKAVISC SODIUM HYALURONATE",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "CHANGE TO THE QUALITY CONTROL METHOD FOR REDUCED TESTING FOR ANIKA¿SOPHTHALMIC DEVICES: STAARVISC, OPTIVISC, NUVISC, AND ANIKAVISC SODIUM HYALURONATE AT THE POSTFILL STAGE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S024",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S023",
+        "date": "2014-04-10",
+        "decision": "PMA approval",
+        "tradeName": "NUVISC",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "APPROVAL FOR A NEW TRADE NAME. THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME NUVISCTM AND IS INDICATED FOR USE DURING SURGERY IN THE ANTERIOR AND POSTERIOR SEGMENTS OF THE HUMAN EYE. PROCEDURES INCLUDE: CATARACT EXTRACTION, INTRAOCULAR LENS (IOL) IMPLANTATION, CORNEAL TRANSPLANTATION SURGERY, GLAUCOMA FILTERING SURGERY, AND SURGICAL PROCEDURES TO REATTACH THE RETINA.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S023",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S021",
+        "date": "2014-01-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "STAARVISC, OPTIVISC, AND ANIKAVISC SODIUM HYALURONATE",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "CHANGE TO THE MANUFACTURING PROCESS WITH REGARD TO THE DEVICE¿S PACKAGING.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S021",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S022",
+        "date": "2014-01-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "STAARVISC II, SHELLGEL",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "ADDITION OF A NEW CANNULA SUPPLIER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S022",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S015",
+        "date": "2012-03-27",
+        "decision": "PMA approval",
+        "tradeName": "STAARVISC II & SHELLGEL SODIUM HYAURONATE",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE CHANGE FROM THE PREVIOUS FACILITY IN WEST CUMMINGS PARK, WOBURN, MASSACHUSETTS TO THE NEW FACILITY LOCATED IN BEDFORD, MASSACHUSETTS. IN ADDITION, THE SUPPLEMENT REQUESTED APPROVAL TO CHANGE THE TERMINAL STERILIZATION METHOD OF THE PRODUCT FROM E-BEAM CONTROLLED DEPTH STERILIZATION TO VAPORIZED HYDROGEN PEROXIDE (VHP) GAS STERILIZATION.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S015",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S017",
+        "date": "2012-01-17",
+        "decision": "PMA approval",
+        "tradeName": "STAARVISC II & SHELLGEL SODIUM HYALURONATE",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED AT ANIKA THERAPEUTICS, INC., IN BEDFORD, MASSACHUSETTS.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S017",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S020",
+        "date": "2011-12-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "STAARVISC II, OPTIVISC/ANIKAVISC/SODIUM HYALURONATE",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "ADDITION OF TWO STABILITY CHAMBERS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S020",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S019",
+        "date": "2011-01-24",
+        "decision": "PMA approval",
+        "tradeName": "ANIKA VISC",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "APPROVAL FOR A NEW TRADE NAME.  THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME ANIKAVISC AND IS INDICATED FOR USE DURING SURGERY IN THE ANTERIOR AND POSTERIOR SEGMENTS OF THE HUMAN EYE.",
+        "reason": "Other",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S019",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S018",
+        "date": "2010-12-01",
+        "decision": "FDA decision code OK30",
+        "tradeName": "STAARVISC II & SHELLGEL SODIUM HYALURONATE",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "CHANGE IN RAW MATERIAL SAMPLE PREPARATION FOR ENDOTOXIN TESTING.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S018",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S016",
+        "date": "2010-02-12",
+        "decision": "PMA approval",
+        "tradeName": "OPTIVISC",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "APPROVAL FOR REVISIONS TO THE LABELING TO REFLECT A NEW DISTRIBUTOR NAME AND TO CHANGE THE TRADE NAME TO OPTIVISC.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S016",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S014",
+        "date": "2006-08-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "STAARVISC II AND SHELLGEL SODIUM HYALURONATE",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "A STERILIZATION FILTER CHANGE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S014",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S013",
+        "date": "2006-01-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "STAARVISC II, SHELLGEL AND COEASE",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "REMOVAL OF THE CHLOROFORM TREATMENT STEP FROM THE MANUFACTURING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S013",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S012",
+        "date": "2005-09-26",
+        "decision": "PMA approval",
+        "tradeName": "STAARVISC II SODIUM HYALURONATE",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "APPROVAL FOR THE CHANGE IN LABELING TO INCLUDE CANNULA ASSEMBLY INSTRUCTIONS.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S012",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S011",
+        "date": "2005-08-03",
+        "decision": "PMA approval",
+        "tradeName": "SHELLGEL SODIUM HYALURONATE",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "APPROVAL FOR THE CHANGE IN LABELING TO INCLUDE CANNULA ASSEMBLY INSTRUCTIONS AND FOUR ADDITION LANGUAGES.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S011",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S010",
+        "date": "2004-07-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "STAARVISC II, SHELLGEL, COEASE SODIUM HYALURONATE",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "CHANGE IN PROCEDURE FOR THE QUALITY CONTROL TEST METHOD (OWL MONKEY TEST) FOR STAARVISC II, SHELLGEL AND COEASE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S010",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S009",
+        "date": "2004-06-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "STAARVISC II,SHELLGEL AND COEASE",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "ADDITION OF A QUALITY TEST METHOD FOR STAARVISC II, SHELLGEL AND COEASE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S009",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S008",
+        "date": "2003-05-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "STAARVISC II,  SHELLGEL AND COEASE",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "MANUFACTURING CHANGE FOR AN ADDITIONAL PROCESS CONTROL TREATMENT FOR STAARVISC II, SHELLGEL AND COEASE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S008",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S006",
+        "date": "2003-03-18",
+        "decision": "PMA approval",
+        "tradeName": "STAARVISC II, SHELLGEL AND COEASE SODIUM HYALURONATE VISCOELASTICS",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "APPROVAL FOR AN ADDITIONAL METHOD FOR ENDOTOXIN TESTING.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S006",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S007",
+        "date": "2003-03-12",
+        "decision": "PMA approval",
+        "tradeName": "STAARVISC II, SHELLGEL AND COEASE SODIUM HYALURONATE VISCOELASTICS",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "APPROVAL FOR USE OF AN ALTERNATE RAW MATERIAL SOURCE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S007",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S004",
+        "date": "2002-12-03",
+        "decision": "PMA approval",
+        "tradeName": "STAARVISC II,SHELLGEL AND COEASE VISCOELASTICS",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "APPROVAL FOR A BUFFERED FORMULATION (PH 6.8 - 7.6) FOR STAARVISC II, SHELLGEL, AND COEASE VISCOELASTICS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S004",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S002",
+        "date": "2002-08-30",
+        "decision": "PMA approval",
+        "tradeName": "STAARVISC II SODIUM HYALURONATE AND SHELLGEL SODIUM HYALURONATE",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "APPROVAL FOR AN ADDITIONAL CLEANROOM AREA.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S002",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S003",
+        "date": "2002-05-08",
+        "decision": "PMA approval",
+        "tradeName": "COEASE SODIUM HYALURONATE",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "APPROVAL FOR A PRIVATE DISTRIBUTOR AGREEMENT WITH ADVANCED MEDICAL OPTICS.  THE DEVICE WILL BE MARKETED UNDER THE TRADE NAME COEASE SODIUM HYALURONATE AND WILL BE DISTRIBUTED IN VOLUMES OF 0.5 ML AND 0.8 ML.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S003",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "S001",
+        "date": "2001-06-11",
+        "decision": "PMA approval",
+        "tradeName": "SHELLGEL(TM) SODIUM HYALURONATE",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "APPROVAL FOR A PRIVATE DISTRIBUTOR AGREEMENT WITH CYTOSOL OPHTHALMICS, INC.  THE DEVICE WILL BE MARKETED UNDER THE TRADE NAME SHELLGEL(TM) SODIUM HYALURONATE.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046S001",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      },
+      {
+        "application": "P000046",
+        "supplement": "",
+        "date": "2001-04-18",
+        "decision": "PMA approval",
+        "tradeName": "STAARVISC II",
+        "applicant": "Anika Therapeutics, Inc.",
+        "statement": "APPROVAL FOR REFERENCE RIGHTS TO P810025, AND FOR STAAR SURGICAL COMPANY TO DISTRIBUTE THE SODIUM HYALURONATE UNDER THE TRADENAME STAARVISC(TM) II.  THE DEVICE IS INDICATED FOR USE DURING SURGERY IN THE ANTERIOR AND POSTERIOR SEGMENTS OF THE HUMAN EYE.  PROCEDURES INCLUDE: CATARACT EXTRACTION, INTRAOCULAR LENS (IOL) IMPLANTATION, CORNEAL TRANSPLANTATION SURGERY, GLAUCOMA FILTERING SURGERY AND SURGICAL PROCEDURES TO REATTACH THE RETINA.  STAARVISC9TM) II IS DESIGNED TO CREATE AND MAINTAIN ANTERIOR CHAMBER DEPTH AND VISIBILITY, PROTECT CORNEAL ENDOTHELIAL CELLS AND OTHER INTRAOCULAR TISSUES, MINIMIZE INTERATION BETWEEN TISSUES DURING SURGICAL MANIPULATION, AND ACT AS A VITREOUS SUBSTITUTE DURING RETINAL REATTACHMENT SURGERY.  STAARVISC(TM) II ALSO PRESERVES TISSUE INTEGRITY AND GOOD VISIBILITY WHEN USED TO FILL THE ANTERIOR AND POSTERIOR SEGMENTS OF THE EYE FOLLOWING OPEN SKY PROCEDURES.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046",
+        "sourceSha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=500&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e",
+        "file": "42a995f43ad47be1ac222a52bb5961c456d7876c40f7514d66c1b0c91acb573e.json",
+        "retrievedAt": "2026-10-22T18:59:17.549252+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "1 original labeling document link(s) located; 10 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 1,
+    "changes": 10,
+    "rows": [
+      {
+        "application": "P000046",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000046C.pdf",
+        "pages": null,
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046",
+        "locator": "L58: Labeling 【39†Labeling】",
+        "pageUpdatedAt": "08/24/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "link-located-content-unavailable",
+        "accessNote": "Failed to fetch https://www.accessdata.fda.gov/cdrh_docs/pdf/P000046C.pdf: Cache miss",
+        "retrievalNote": "[wordlim: 200]",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P000046",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046",
+        "discovery": "[wordlim: 200] Crawled: last month; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046\",\"lineno\":null}); Total lines: 104",
+        "pageUpdatedAt": "08/24/2026",
+        "locator": "L58: Labeling 【39†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P000046S030",
+      "P000046S029",
+      "P000046S027",
+      "P000046S026",
+      "P000046S023",
+      "P000046S016",
+      "P000046S012",
+      "P000046S011",
+      "P000046S003",
+      "P000046S001"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "4 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 4,
+    "rows": [
+      {
+        "cfres_id": "40651",
+        "product_res_number": "Z-1382-05",
+        "product_description": "Staarvisc II Sodium Hyaluronate 0.8 mL 12mg/mL Syringe. Sterile. Rx. For intraocular use. P/N490-001 Distributed by: STAAR Surgical Inc., Monrovia CA",
+        "code_info": "Lot Numbers: B041118C, B050510A",
+        "reason_for_recall": "Product sterility may be compromised due incomplete heat seals in the cannula pouches that are included with the viscoelastic syringe.",
+        "action": "Anika Therapeutics notified Distributor accounts by telephone on July 14.  The letters were faxed and sent by Fedex on July 14.  Distributors were provided with a end-user letter template letter for notification to their accounts.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2005-07-14",
+        "event_date_posted": "2005-08-23",
+        "event_date_terminated": "2006-05-02",
+        "recalling_firm": "Anika Therapeutics, Inc.",
+        "root_cause_description": "Other",
+        "applications": [
+          "P000046"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=40651",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "40652",
+        "product_res_number": "Z-1383-05",
+        "product_description": "ShellGell Sodium Hyaluronate 0.8mL Syringe, 12 mg/mL. Sterile. Rx. For intraocular use. Product Number: 1000 Distributed by Cytosol Opthalmics, Inc., Lenick, NC",
+        "code_info": "Lot Numbers: B041118E, B041118F, B050510C",
+        "reason_for_recall": "Product sterility may be compromised due incomplete heat seals in the cannula pouches that are included with the viscoelastic syringe.",
+        "action": "Anika Therapeutics notified Distributor accounts by telephone on July 14.  The letters were faxed and sent by Fedex on July 14.  Distributors were provided with a end-user letter template letter for notification to their accounts.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2005-07-14",
+        "event_date_posted": "2005-08-23",
+        "event_date_terminated": "2006-05-02",
+        "recalling_firm": "Anika Therapeutics, Inc.",
+        "root_cause_description": "Other",
+        "applications": [
+          "P000046"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=40652",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "40838",
+        "product_res_number": "Z-1106-05",
+        "product_description": "Staarvisic II\nSodium Hyaluronate, 0.8 mL",
+        "code_info": "Lot B041118C  Exp Date 12/31/2005",
+        "reason_for_recall": "Sterility may be compromised.",
+        "action": "Recall will be communicated by telephone, email and letter. A fax back form will be used to track response and to identify ammount on hand.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2005-07-18",
+        "event_date_posted": "2005-08-06",
+        "event_date_terminated": "2012-07-25",
+        "recalling_firm": "Staar Surgical Co Inc",
+        "root_cause_description": "Other",
+        "applications": [
+          "P000046"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=40838",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "29907",
+        "product_res_number": "Z-0109-04",
+        "product_description": "Staarvisc II Sodium Hyaluronate 0.8 mL 12mg/mL Syringe. Sterile. Rx.  For intraocular use.\n\nP/N490-001\nDistributed by: STAAR Surgical Inc., Monrovia CA",
+        "code_info": "Lot Number: B020122E",
+        "reason_for_recall": "Stability failure at the 20 month for viscosity specification",
+        "action": "Anika Therapeutics issued notification on 10/8/2003 by fax and FedEx to three Distributors. Distributors were requested to subrecall to their customers.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2003-10-08",
+        "event_date_posted": "2003-11-13",
+        "event_date_terminated": "2004-08-09",
+        "recalling_firm": "Anika Therapeutics",
+        "root_cause_description": "Other",
+        "applications": [
+          "P000046"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=29907",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000046C.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=40651"
+    }
+  ],
+  "path": "/dossiers/source-fda-p000046.json",
+  "applications": [
+    "P000046"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

@@ -1,0 +1,790 @@
+{
+  "familyId": "source-fda-p030004",
+  "name": "Onyx liquid embolic system",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "41 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 41,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P030004",
+        "supplement": "S042",
+        "date": "2026-08-05",
+        "decision": "PMA approval",
+        "tradeName": "Onyx Liquid Embolic System (LES)",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Approval to add the Onyx 12 LES to the Onyx LES product line for embolization of the middle meningeal artery (MMA) as an adjunct to surgery for the treatment of symptomatic subacute or chronic subdural hematoma (SDH).",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S042",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S044",
+        "date": "2026-07-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Onyx  Liquid Embolic System",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "introduction of a new stir plate and modifications to processing parameters related to the stir plate settings used to manufacture the Onyx device",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S044",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S043",
+        "date": "2026-05-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Apollo Onyx Delivery Micro Catheter",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "approval of a new supplier for the dispenser coil component and its tubing supplier for the Apollo Onyx Delivery Micro Catheter",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S043",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S040",
+        "date": "2026-04-29",
+        "decision": "PMA approval",
+        "tradeName": "Onyx Liquid Embolic System (LES)",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Approval for changes to the mixing time, packaging configuration, and sterilization process for the Onyx Liquid Embolic System (LES).",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S040",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S041",
+        "date": "2026-04-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Apollo Onyx Delivery Micro Catheter",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "approval to replace manually operated components of the 2-Spindle Coil Winder with automated safety features and procedures using the new MCS 3-Spindle coil winder for the Apollo Onyx Delivery Micro Catheter",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S041",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S035",
+        "date": "2025-12-08",
+        "decision": "PMA approval",
+        "tradeName": "Onyx Liquid Embolic System (LES)",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Onyx Liquid Embolic System (LES) is indicated for embolization of the middle meningeal artery (MMA) as an adjunct to surgery for the treatment of symptomatic subacute or chronic subdural hematoma (SDH).",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Panel Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S035",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S037",
+        "date": "2024-12-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Apollo Onyx Delivery Micro Catheter",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "approval for changes in viscosity and solids release testing and specification criteria for components of the hydrophilic coating of the Apollo Onyx Delivery Micro Catheter",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S037",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S036",
+        "date": "2024-11-07",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Apollo Onyx Delivery Micro Catheter",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "a change in sequence of in-process quality control tests for tensile strength and static burst pressure without changing the test methods themselves",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S036",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S034",
+        "date": "2024-09-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Apollo Onyx Delivery Micro Catheter",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "approval for a sub-tier supplier change for reagent grade water",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S034",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S033",
+        "date": "2024-07-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Onyx Liquid Embolic System",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "approval to change the size of the viscometer for measuring the viscosity of the Onyx 18 Liquid Embolic System",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S033",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S031",
+        "date": "2024-04-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Apollo Onyx Delivery Micro Catheter 1.5 cm, Apollo Onyx Delivery Micro Catheter 3.0 cm",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "approval for the additional supplier for the Hub used in the delivery catheter.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S031",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S030",
+        "date": "2023-11-03",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Onyx Liquid Embolic System",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "approval for the relocation of packaging supplier, House of Packaging, and associated thermoforming equipment change for the Onyx Liquid Embolic System",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S030",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S029",
+        "date": "2022-07-28",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Apollo Onyx Delivery Micro Catheter 1.5cm, Apollo Onyx Delivery Micro Catheter 3.0cm",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Addition of two new sub-tier suppliers of the raw material used in the coating of the Apollo Onyx Delivery Micro Catheter.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S029",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S027",
+        "date": "2021-09-16",
+        "decision": "PMA approval",
+        "tradeName": "Onyx Liquid Embolic System",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Approval for the inclusion of radial access considerations in the Onyx Liquid Embolic System labeling.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S027",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S028",
+        "date": "2021-09-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Apollo Onyx Delivery Micro Catheter 1.5 cm, Apollo Onyx Delivery Micro Catheter 3.0 cm",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Change to add an alternate test equipment for pouch seal tensile testing.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S028",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S026",
+        "date": "2021-03-18",
+        "decision": "PMA approval",
+        "tradeName": "Apollo Onyx Delivery Micro Catheter",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Approval for a new hub design, pouch material change and labeling changes for the Apollo Onyx Delivery Micro Catheter.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S026",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S025",
+        "date": "2020-11-13",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Onyx Liquid Embolic System",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Manufacturing location of the supplier of EVOH (ethylene vinyl alcohol) for Onyx Liquid Embolic System from Japan to Belgium to increase the production capacity.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S025",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S024",
+        "date": "2020-06-29",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Apollo Onyx Delivery Micro Catheter",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Moving the braiding and annealing operations for the Onyx Apollo Delivery Micro Catheter from the clean room to a non-controlled environment.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S024",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S017",
+        "date": "2020-06-15",
+        "decision": "PMA approval",
+        "tradeName": "Apollo Onyx Delivery Micro Catheter",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Approval for a labeling change for the Apollo Onyx Delivery Micro Catheter to include the results of the Apollo Onyx Delivery Micro Catheter Post Market Safety Study (APOLLO PMS).",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S017",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S023",
+        "date": "2020-02-28",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Apollo Onyx Delivery Micro Catheter",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Add manufacturing equipment at a supplier site that provides a component for the proximal sub-assembly of the Apollo Onyx Delivery Micro Catheter.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S023",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S022",
+        "date": "2019-12-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Onyx Liquid Embolic System and Apollo Onyx Delivery Micro Catheter",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Changes to packaging operations and qualification of additional heat sealing equipment.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S022",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S021",
+        "date": "2019-12-10",
+        "decision": "PMA approval",
+        "tradeName": "Apollo Onyx Delivery Microcatheter",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Approval for a manufacturing site located at Medtronic Distribution Center, 4340 Swinnea Road, Memphis, Tennessee 38118, for the repackaging of the Apollo Onyx Delivery Microcatheter and Pipeline Flex Embolization Device.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S021",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S020",
+        "date": "2019-07-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Onyx Liquid Embolic System",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Change to the Biological Indicator (BI) Bacillus atrophaeus STN 062MG that is used in the dry heat sterilization of the Onyx Liquid Embolic System.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S020",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S019",
+        "date": "2019-06-17",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Onyx Liquid Embolic System",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Supplier manufacturing site change for the molded tray components of the Onyx Liquid Embolic System.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S019",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S018",
+        "date": "2019-06-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Onyx Liquid Embolic System",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Remove mycoplasma testing from the incoming inspection acceptance criteria for non-sterile DMSO.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S018",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S016",
+        "date": "2018-12-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Apollo Onyx Delivery Micro Catheter",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Change to allow sterile product to be released based on parametric release, rather than conventional release at the contract sterilization site (Sterigenics US LLC).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S016",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S015",
+        "date": "2018-06-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Onyx Liquid Embolic System",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Site change of the hydrophilic coating components supplier to expand its capacity and process efficiency.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S015",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S014",
+        "date": "2018-02-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Onyx Liquid Embolic System",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Change in the supplier of the Biological Indicator used in the dry heat sterilization of Onyx Liquid Embolic System.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S014",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S013",
+        "date": "2017-10-17",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Apollo Onyx Delivery Micro Catheter, 1.5cm, Straight/Apollo Onyx Delivery Micro Catheter, 3.0cm, Straight",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Modifications and replacement of the hub mold.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S013",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S012",
+        "date": "2017-01-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ONYX LIQUID EMBOLIC SYSTEM",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Acceptance for manufacturing equipment/process changes related to the production of the Onyx Liquid Embolic System (LES), which include addition of an alternative cleaning and de-pyrogenation method for the Onyx LES, addition of an alternative dry heat sterilization oven for the Onyx LES, and change of bioburden testing lab for the Onyx vial subassembly.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S012",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S011",
+        "date": "2016-09-20",
+        "decision": "PMA approval",
+        "tradeName": "ONYX LIQUID EMBOLIC SYSTEM",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Approval for minor packaging, sterilization and labeling changes to the Onyx 18 and 34 Kits.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S011",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S010",
+        "date": "2016-03-31",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ONYX LIQUID EMBOLIC SYSTEM",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "Additional sterilization chambers for the Apollo Onyx Delivery Microcatheter.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S010",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S009",
+        "date": "2015-12-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ONYX 18, ONYX LIQUID EMBOLIC SYSTEM, ONYX 34,ONYX LIQUID EMBOLIC SYSTEM, APPOLLO ONYX DELIVERY MICRO CATHETER 1.5CM, STR",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "THE ADDITION OF CLARIFICATION TO THE COATING PROCEDURE REGARDING THE TOP COAT CURING TIME AND THE INCLUSION OF AN ADDITIONAL WEIGHING BALANCE TO THE COATING PREPARATION PROCEDURE FOR THE APOLLO ONYX DELIVERY MICRO CATHETER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S009",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S006",
+        "date": "2014-05-27",
+        "decision": "PMA approval",
+        "tradeName": "ONYX LIQUID EMBOLIC SYSTEM",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "APPROVAL FOR THE APOLLO ONYX DELIVERY MICRO CATHETER THAT WILL BE MANUFACTURED AT MICRO THERAPEUTICS, INC. D/B/A EV3 NEUROVASCULAR IN IRVINE, CALIFORNIA.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S006",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S008",
+        "date": "2013-10-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ONYX 18LES & ONYX 34 LES",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "ADD AN ALTERNATE SUPPLIER FOR PYROGEN TESTING.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S008",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S007",
+        "date": "2013-07-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ONYX LIQUID EMBOLIC SYSTEM (LES)",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "MODIFICATIONS TO THE ROUTER SOFTWARE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S007",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S005",
+        "date": "2012-04-05",
+        "decision": "PMA approval",
+        "tradeName": "ONYX LIQUID EMBOLIC SYSTEM",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "APPROVAL FOR CHANGES TO THE INSTRUCTIONS FOR USE AND PATIENT BROCHURE THAT STRENGTHEN THE WARNINGS ABOUT CATHETER ENTRAPMENT.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S005",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S003",
+        "date": "2007-10-09",
+        "decision": "PMA approval",
+        "tradeName": "ONYX LIQUID EMBOLIC SYSTEM",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "APPROVAL FOR REVISION OF THE PRODUCT LABEL TO INCLUDE A BOXED WARNING REGARDING THE EMISSION OF SPARKS THAT OCCURS WHEN ONYX-EMBOLIZED TISSUE IS SURGICALLY RESECTED WITH MONOPOLAR ELECTROCAUTERY DEVICES.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S003",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S002",
+        "date": "2006-11-29",
+        "decision": "PMA approval",
+        "tradeName": "ONYX LIQUID EMBOLIC SYSTEM",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "APPROVAL FOR A MANUFACTURING SITE LOCATED IN IRVINE, CALIFORNIA.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S002",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "S001",
+        "date": "2006-06-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ONYX LIQUID EMBOLIC SYSTEM",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "CHANGE IN THE MANUFACTURING INSTRUCTIONS TO EMPHASIZE A CONTINUOUS MIXING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004S001",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      },
+      {
+        "application": "P030004",
+        "supplement": "",
+        "date": "2005-07-21",
+        "decision": "PMA approval",
+        "tradeName": "ONYX LIQUID EMBOLIC SYSTEM",
+        "applicant": "Ev3 Neurovascular",
+        "statement": "APPROVAL FOR THE ONYX LIQUID EMBOLIC SYSTEM (LES).  THE DEVICE IS INDICATED FOR PRESURGICAL EMBOLIZATION OF BRAIN ARTERIOVENOUS MALFORMATIONS.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004",
+        "sourceSha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=2100&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6",
+        "file": "9078865130e6510744d08a4eba8d6591d634b84ab80475c9c6adaa636ccf56e6.json",
+        "retrievedAt": "2026-10-22T18:59:31.215437+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "2 original labeling document link(s) located; 7 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 2,
+    "changes": 7,
+    "rows": [
+      {
+        "application": "P030004",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030004C.pdf",
+        "pages": 15,
+        "textAvailable": true,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004",
+        "locator": "L55: Labeling 【37†Labeling】",
+        "pageUpdatedAt": "10/19/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: yesterday; Content type: application/pdf; Number of pages: 15;",
+        "sections": [
+          {
+            "title": "INDICATIONS FOR USE",
+            "pdfPage": 1,
+            "sourceLine": 25,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "CONTRAINDICATIONS",
+            "pdfPage": 1,
+            "sourceLine": 27,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "PRECAUTIONS",
+            "pdfPage": 3,
+            "sourceLine": 85,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "ADVERSE EVENTS",
+            "pdfPage": 4,
+            "sourceLine": 131,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          }
+        ]
+      },
+      {
+        "application": "P030004",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030004D.pdf",
+        "title": "Labeling Part 2",
+        "pages": 10,
+        "retrievalNote": "[wordlim: 200] Crawled: 3 weeks ago; Content type: application/pdf; Number of pages: 10;",
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004",
+        "locator": "L55: Labeling 【37†Labeling】",
+        "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "sections": []
+      }
+    ],
+    "pages": [
+      {
+        "application": "P030004",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004",
+        "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004\",\"lineno\":null}); Total lines: 104",
+        "pageUpdatedAt": "10/19/2026",
+        "locator": "L55: Labeling 【37†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P030004S035",
+      "P030004S027",
+      "P030004S026",
+      "P030004S017",
+      "P030004S011",
+      "P030004S005",
+      "P030004S003"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+    "recalls": 0,
+    "rows": [],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "not-established",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030004C.pdf"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030004D.pdf"
+    }
+  ],
+  "path": "/dossiers/source-fda-p030004.json",
+  "applications": [
+    "P030004"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

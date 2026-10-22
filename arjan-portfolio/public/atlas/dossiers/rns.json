@@ -1,0 +1,1658 @@
+{
+  "familyId": "rns",
+  "name": "NeuroPace RNS System",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "99 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 99,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P100026",
+        "supplement": "S104",
+        "date": "2026-08-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace® RNS® System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "to remove an in-process screening test used in the manufacture of the RNS-320 Neurostimulators",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S104",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S100",
+        "date": "2026-06-17",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace® RNS® System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "approval for migration of the Patient Data Management System from on-site server to cloud service",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S100",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S101",
+        "date": "2026-05-28",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace® RNS® System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "approval for an optional Electrocorticogram (ECoG) Assistant function, which is a clinician tool that highlights ECoG recordings of interest, for the Patient Data Management System.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S101",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S103",
+        "date": "2026-02-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace® RNS® System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "approval to change a supplier's ultrasonic rinse process for contacts used in the manufacture of the NeuroPace leads",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S103",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S099",
+        "date": "2025-08-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace® RNS® System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "approval for the approved supplier of the RNS-320 Neurostimulator battery to procure a raw material from an alternate supplier",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S099",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S098",
+        "date": "2025-05-12",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "new polyethylene bulk material from new supplier for the battery used within the RNS-320 system",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S098",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S097",
+        "date": "2024-12-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace Remote Monitor",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "to utilize an alternate supplier for the Tablet Remote Monitors",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S097",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S096",
+        "date": "2024-12-11",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "to replace several components for the Wand",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S096",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S095",
+        "date": "2024-08-13",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "to implement supplier process changes at the Integer, which include introducing automation for the lubricant application during the initial part-forming step; and bringing in-house the previously outsourced annealing process, which the Integer originally developed, with no changes to the annealing recipe, tooling, materials, or specifications",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S095",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S087",
+        "date": "2023-09-28",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace® RNS® System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval to add alternate cleaning equipment and solvent to degrease the Neurostimulator can and Ferrule.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S087",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S094",
+        "date": "2023-08-28",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace® RNS® System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for the modification of the devices Remote Monitor to allow for the use of either a Tablet or Laptop. For the tablet interface the Remote Monitor uses Wi-Fi to communicate with the PDMS SW Application. The tablet can also receive updates remotely.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S094",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S093",
+        "date": "2023-02-17",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace® RNS® System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Modify the Automated Test Equipment hardware, software and database to improve the yield of components used in the production of the RNS Neurostimulators.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S093",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S092",
+        "date": "2023-02-10",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace® RNS® System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for a revised the RNS System Implanting and Programming Program Qualifications Questionnaire as follows:1)  Provided a list of current diagnostic technologies utilized to identify the seizure onset;2)  Clarified that qualified neurosurgeon(s) are ABNS board-certified or board-eligible and tracking toward certification, with experience in epilepsy surgery procedures and placement of intracranial electrodes;3)  Specified that an established referral relationship is needed to ensure access to neuropsychological testing and mental health services; and4)  Neurologist(s) who is American Board of Psychiatry and Neurology (ABPN) board- certified and is fellowship trained in epilepsy or in clinical neurophysiology, or has experience in the treatment of epilepsy, including selection of antiepileptic medications, interpretation of scalp and intracranial EEG, video EEG monitoring, and selection of patients for epilepsy surgery or neuromodulation devices.2.\tRevised the RNS System Programming Physician Qualifications Questionnaire as follows:1)  At least one American Board of Psychiatry and Neurology (ABPN) board-certified neurologist with expertise in epilepsy and in the interpretation of EEG;2)  Established referral relationship with Epilepsy Program qualified to implant and program the RNS System;3)  Local access to urgent or emergent neurosurgical care; and4)  Capability to provide instructions to patient and family members in RNS System use.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S092",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S091",
+        "date": "2022-12-29",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace® RNS® System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval to use a second contract sterilizer for the ethylene oxide (EO) sterilization of RNS System products.",
+        "reason": "Location Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S091",
+        "sourceSha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S090",
+        "date": "2022-07-28",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for updates and improvements to the currently approved RNS® Tablet Programmer Application Software and related change to the NeuroPace® Patient Data Management System Application Software, along with related labeling updates.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S090",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S088",
+        "date": "2022-01-18",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace® RNS® System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval to modify the labeling for the NeuroPace® RNS® Neurostimulator model RNS-320 to provide updated estimates for battery longevity.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S088",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S089",
+        "date": "2021-12-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace® RNS® System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Add an existing NeuroPace supplier as an alternate supplier to manufacture the PEEK Connector Cover part of the Connector Cover Assemblies and Connector Cover Kits for the RNS Neurostimulators (Model RNS-320 and RNS-300M) and to manufacture this part by injection molding rather than by the current machining process.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S089",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S085",
+        "date": "2021-05-24",
+        "decision": "PMA approval",
+        "tradeName": "Neuropace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for minor updates to the RNS® Tablet. NeuroPace is requesting approval for addition of Mobile Device Management (MDM) capability on the tablet platform as well as changes to the login requirements for accessing the NeuroPace Programmer Application on the tablet.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S085",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S086",
+        "date": "2021-05-07",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Modify the Automatic Test Equipment (ATE) hardware, software and database to improve yield of components of the RNS Neurostimulators.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S086",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S084",
+        "date": "2020-09-28",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval to update the protocols and associated data collection and informed consent forms for PAS 2 and PAS 3 due to the current public health emergency.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S084",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S082",
+        "date": "2020-08-04",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for a minor update to the RNS Tablet (programmer) software and related update to the Patient Data Management System (PDMS) software, and a minor product configuration change to remove the infrequently used dial-up accessories from the Remote Monitor Kit and supply them in a separate new kit (model 5104).",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S082",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S083",
+        "date": "2020-07-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Use of an alternate sub-tier supplier to cut the polyester mesh, which is subsequently fully encapsulated within the NeuroPace Cortical Strip Leads during manufacturing.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S083",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S081",
+        "date": "2020-07-14",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for an update to the custom integrated circuit (IC) of the RNS® Neurostimulator, from Cinco 1E to Cinco 1F.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S081",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S080",
+        "date": "2020-04-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Implement minor manufacturing changes to the die attach process and transfer mold process used for fabricating the RNS Neurostimulator (model RNS-320) stackeddie ball grid array (SDBGA).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S080",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S079",
+        "date": "2020-03-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Modify the Telemetry Only System (TOS) and PXI Vader Temperature Test System Automatic Test Equipment (ATE) databases to improve yield of the components usedto manufacture the RNS® Neurostimulator (model RNS-320).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S079",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S069",
+        "date": "2020-02-20",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for the MRI Conditional labeling for the RNS system products.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S069",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S078",
+        "date": "2020-01-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Modify the PXI Vader automated test equipment (ATE) software, hardware, and test database to improve yield of the components used to manufacture the RNS® Neurostimulator (model RNS-320).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S078",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S075",
+        "date": "2019-12-17",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for 1) a firmware update (RAM 7.101) to the RNS Neurostimulator (model RNS-320) to disable Long Episode counting during telemetry; and 2) an adjustment to the crystal oscillator trim value (from 00h to 64h) on the neurostimulator to mitigate the possibility of the device unnecessarily transitioning into passive mode.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S075",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S076",
+        "date": "2019-11-05",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Manufacturing process changes to printed circuit assembly, interlay, and top can barrier tape for the RNS Neurostimulator, Model 320.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S076",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S063",
+        "date": "2019-09-19",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for the current NeuroPace supplier of the Tunneling Tool Straw (Straw), Teleflex Medical OEM (located at 50 Plantation Drive, Jaffrey NH 03452), to source raw polytetrafluoroethylene (PTFE) resin used in the Straw manufacture from an alternate supplier.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S063",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S074",
+        "date": "2019-08-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPac RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Addition of an alternate laser welder, the IPG Laser Weld System, to perform laser welding on the RNS Neurostimulator during manufacturing operations at NeuroPace (455 N. Bernardo Ave. Mountain, California).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S074",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S073",
+        "date": "2019-08-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Modify the PXI Vader automated test equipment (ATE) software to improve yield of the components used to manufacture the RNS® Neurostimulator (model RNS-320) during the custom packaged integrated circuit (Cassandra) and printed circuit assembly (PCA) testing. In addition, this submission includes an update to PXI Vader ATE software for final electrical test to support future product changes currently under development.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S073",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S070",
+        "date": "2019-08-01",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for the following protocol changes and associated changes to data collection and informed consent forms:1) Increase the upper limit on the number of subjects that can be implanted per study site;2) Simplify the text to remove references to activities that are not study-specific (i.e. are standard in the management of the RNS System);3) Revise inclusion/exclusion criteria to only include study-specific criteria;4) Add the option of phone appointments for specific follow-up time points; and5) Minor clarifications and administrative changes. for the post-approval studies (PAS) protocol.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S070",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S072",
+        "date": "2019-06-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Change the glass weave used to produce the inner core in the fabrication of the printed circuit board (PCB) of the RNS Neurostimulator (Model RNS-320).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S072",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S066",
+        "date": "2019-06-19",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for an alternate Wand with minor design changes.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S066",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S071",
+        "date": "2019-06-17",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Modify the magnet non-sterile finished goods packaging to align with the component's supplier packaging.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S071",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S068",
+        "date": "2019-05-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Addition of a new wafer sort test to the manufacturing flow of the RNS® Neurostimulator (model RNS-320). This testing service will be performed at a new supplier, NeuroPaces approved supplier Integra Technologies (located at 1635 McCarthy Blvd, Milpitas, CA 95035).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S068",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S067",
+        "date": "2019-04-26",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Eliminate the parylene coating process of the internal surface of contacts / electrodes of the NeuroPace Leads.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S067",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S065",
+        "date": "2019-04-09",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for changes to the labeling to strengthen instructions intended to enhance the safe use of the NeuroPace® Magnet.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S065",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S061",
+        "date": "2018-11-29",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Modify the Automatic Test Equipment (ATE) database and software to improve yield of components of the RNS® Neurostimulator (model RNS-320).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S061",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S060",
+        "date": "2018-10-05",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "NeuroPace's battery supplier, Integer, to use an alternate supplier (second tier) to procure electrolyte used in batteries for RNS Neurostimulator model RNS-300M and model RNS-320.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S060",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S059",
+        "date": "2018-09-07",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Change the supplier of the Lead Marker Band component of the NeuroPace Depth Leads and NeuroPace Cortical Strip Leads.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S059",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S058",
+        "date": "2018-09-05",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Change the sub-supplier of the Wands (Model W-02) USB cable components.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S058",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S057",
+        "date": "2018-08-15",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Implementation of a new minimum loading configuration for the ethylene oxide (EO) sterilization of the NeuroPace RNS® System products.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S057",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S056",
+        "date": "2018-08-01",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Modify the PXI Vader automated test equipment (ATE) power-up software to improve yield of the components used to manufacture the RNS® Neurostimulator (model RNS-320) during the custom packaged integrated circuitry (Cassandra) and printed circuit assembly (PCA) testing. Additionally, the Dog Tag test limits for the integrated circuit are being modified in the PXI Vader ATE, Telemetry Only System (TOS) ATE and the PXI Vader Temperature ATE databases to allow flexibility to also test future integrated circuits for product development purposes.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S056",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S054",
+        "date": "2018-05-16",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for an alternate smaller size NeuroPace Magnet, a new carabiner style convenience clip to carry the magnet, and minor labeling changes to incorporate new artwork depicting a more generic looking magnet and to add the clip to the contents on the label.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S054",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S053",
+        "date": "2018-02-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Modify the automated test equipment (ATE) test flow and PXI Vader ATE hardware, software as well as test database to support the manufacture of the RNS® Neurostimulator (model RNS-320).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S053",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S051",
+        "date": "2018-01-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Two changes to occur at NeuroPaces approved battery supplier:  1) to replace an aging Lid Assembly Machine (LAM) welding equipment with equivalent equipment; and 2) to change the sourcing location of the battery ferrules (same supplier, different location).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S051",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S052",
+        "date": "2018-01-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Implement an alternate inspection method using the Vertex Measurement System (Vertex System).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S052",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S050",
+        "date": "2017-12-09",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for modifications to the printed circuit assembly of the RNS® Neurostimulator model RNS-320 to remove Long Range Telemetry (LRT) components.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S050",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S047",
+        "date": "2017-08-14",
+        "decision": "PMA approval",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for the Neurostimulator (model RNS-320), NeuroPace Programmer (model 5000), Patient Data Management System (PDMS, model 4340), and Remote Monitor (model 5100).",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S047",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S049",
+        "date": "2017-05-02",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Add alternate equipment for thermoforming of outer tray device packaging.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S049",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S048",
+        "date": "2017-04-05",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NeuroPace RNS System",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Add a workmanship requirement to the molded distal tip of the NeuroPace Depth Leads.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S048",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S046",
+        "date": "2016-12-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Add alternate equipment for thermoforming device packaging.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S046",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S045",
+        "date": "2016-12-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Transfer manufacturing of the Ball Grid Array to a new component manufacturer.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S045",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S044",
+        "date": "2016-11-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Move the location of the laser and resistance welding processes for neurostimulator and ferrule components to their new manufacturing facility in a NeuroPaces approved sub-contractor, Cirtec Medical Systems (Cirtec), in Enfield, Connecticut.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S044",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S036",
+        "date": "2016-09-02",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for an update to the Patient Data Management System (PDMS).",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S036",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S043",
+        "date": "2016-07-28",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval for changes on the design of the Wand, which is used for communication between the Neurostimulator and the Remote Monitor, and the Neurostimulator and the Programmer.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S043",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S040",
+        "date": "2016-03-15",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Approval of an alternate supplier to manufacture a lead coil assembly, and resultant minor specification tolerance and testing changes.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S040",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S042",
+        "date": "2016-03-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Change to use a larger chamber for the ethylene oxide (EO) sterilization of RNS® System products at the same approved sterilization facility (Sterigenics, Salt Lake City, Utah).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S042",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S041",
+        "date": "2016-02-05",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "Updates/improvements to the LW5A laser welder hardware, operating software, and resulting processes.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S041",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S039",
+        "date": "2015-12-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "ADDITION OF A CLEANING STEP AND CLEANING SOLUTION TO THE MANUFACTURING PROCESS THAT PRODUCES THE LEAD RING MARKER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S039",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S038",
+        "date": "2015-11-05",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "THE USE OF AN ALTERNATE EPOXY ADHESIVE (EPOXY TECHNOLOGY EPO-TEK 301 EPOXY) DURING THE MANUFACTURING OF A COMPONENT FOR THE DEPTH AND CORTICAL STRIP LEADS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S038",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S032",
+        "date": "2015-09-09",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "APPROVAL FOR AN ADDITIONAL DRYING OVEN.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S032",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S037",
+        "date": "2015-07-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "CHANGE IN THE MATERIAL USED IN THE MANUFACTURING PROCESS OF THE TUNNELING TOOL STRAW BY REMOVING ONE OF THE MANUFACTURING PROCESS AIDS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S037",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S034",
+        "date": "2015-06-30",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "APPROVAL FOR A POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S034",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S033",
+        "date": "2015-06-30",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "APPROVAL FOR A POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S033",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S035",
+        "date": "2015-06-05",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "CHANGE NEUROPACE DEPTH LEAD DISTAL TIP ASSEMBLY PROCESS BY MODIFYING THE SLICONE PLUGGING PROCESS STEPS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S035",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S031",
+        "date": "2015-04-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "ALTERNATE MANUFACTURING PROCESS FOR THE LEAD CONTACTS AND LEAD ELECTRODES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S031",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S028",
+        "date": "2015-04-08",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "APPROVAL FOR A LABELING CHANGE TO STATE THE CALCULATED BATTERY LIFECONSISTENTLY THROUGHOUT THE INSTRUCTION MANUALS.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S028",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S026",
+        "date": "2015-03-10",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "APPROVAL FOR A MODIFICATION TO THE BATTERY ASSEMBLY TO ADD ADDITIONAL CARBON MONOFLOURIDE (CFX) CATHODE MATERIAL.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S026",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S030",
+        "date": "2015-03-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "MODIFY THE MANUFACTURING AND INSPECTION PROCESS FOR THE WAND (W-2).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S030",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S029",
+        "date": "2015-02-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "ADD ALTERNATE TEST EQUIPMENT FOR BATTERIES.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S029",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S027",
+        "date": "2015-01-16",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "MODIFY THE QUALITY CONTROL TEST FOR THE TELEMETRY COIL.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S027",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S025",
+        "date": "2014-12-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "UPDATE THE EQUIPMENT SOFTWARE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S025",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S022",
+        "date": "2014-09-05",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S022",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S021",
+        "date": "2014-09-03",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S021",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S020",
+        "date": "2014-09-02",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S020",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S024",
+        "date": "2014-08-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "MODIFY THE CORTICAL STRIP LEAD DISTAL ASSEMBLY MOLDING PROCESS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S024",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S023",
+        "date": "2014-08-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "ADDITIONAL EQUIPMENT FOR LASER MARKING.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S023",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S019",
+        "date": "2014-07-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "USE A REPLACEMENT DETERGENT TO CLEAN CERTAIN PARTS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S019",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S017",
+        "date": "2014-07-09",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "APPROVAL TO USE 20 MICRON THICK SEPARATORS IN THE QMR MODEL 2570BATTERY.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S017",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S018",
+        "date": "2014-06-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "ADD ADDITIONAL TESTING EQUIPMENT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S018",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S011",
+        "date": "2014-05-07",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "APPROVAL FOR THE ADDITION OF ETHERNET CONNECTIVITY TO ACCESS THE PATIENT DATA MANAGEMENT SYSTEM DATABASE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S011",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S016",
+        "date": "2014-05-01",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "ADD ALTERNATE EQUIPMENT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S016",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S015",
+        "date": "2014-04-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "MODIFY AUTOMATED TESTING EQUIPMENT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S015",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S014",
+        "date": "2014-04-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "ADD AN ALTERNATE SUPPLIER FOR A BATTERY COMPONENT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S014",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S013",
+        "date": "2014-03-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "ADD AN ALTERNATE SUPPLIER FOR THE CORTICAL STRIP LEAD ASSEMBLY.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S013",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S010",
+        "date": "2014-02-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "ADD A SECOND SUPPLIER FOR THE PRINTED CIRCUIT ASSEMBLY.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S010",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S004",
+        "date": "2014-02-24",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S004",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S009",
+        "date": "2014-02-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "ADD AN ALTERNATE SUPPLIER FOR THE MOLDED STYLET RETAINER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S009",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S005",
+        "date": "2014-02-18",
+        "decision": "PMA approval",
+        "tradeName": "NEURO PACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S005",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S008",
+        "date": "2014-02-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "UPDATE THE HARDWARE AND SOFTWARE PLATFORM OF AUTOMATED TEST EQUIPMENT.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S008",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S006",
+        "date": "2014-02-14",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S006",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S003",
+        "date": "2014-02-07",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL.",
+        "reason": "Postapproval Study Protocol - OSB",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S003",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S007",
+        "date": "2014-01-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "IMPLEMENT A NEW DATABASE USED TO COLLECT AND STORE MANUFACTURING TEST DATA.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S007",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S002",
+        "date": "2013-12-20",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "RE-IMPLEMENTATION OF A PREVIOUSLY USED LASER WELDER AS A BACKUP WELDER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S002",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "S001",
+        "date": "2013-12-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "ADDITION OF A SECONDARY COMPONENT SUPPLIER.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026S001",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      },
+      {
+        "application": "P100026",
+        "supplement": "",
+        "date": "2013-11-14",
+        "decision": "PMA approval",
+        "tradeName": "NEUROPACE RNS SYSTEM",
+        "applicant": "NeuroPace, Inc.",
+        "statement": "APPROVAL FOR THE RNS SYSTEM. THIS DEVICE IS INDICATED AS FOLLOWS: \" ... AS AN ADJUNCTIVE THERAPY IN REDUCING THE FREQUENCY OF SEIZURES IN INDIVIDUALS 18 YEARS OF AGE OR OLDER WITH PARTIAL ONSET SEIZURES WHO HAVE UNDERGONE DIAGNOSTIC TESTING THAT LOCALIZEDNO MORE THAN 2 EPILEPTOGENIC FOCI, ARE REFRACTORY TO TWO OR MORE ANTIEPILEPTIC MEDICATIONS, AND CURRENTLY HAVE FREQUENT AND DISABLING SEIZURES (MOTOR PARTIAL SEIZURES, COMPLEX PARTIAL SEIZURESAND/ OR SECONDARILY GENERALIZED SEIZURES). THE RNS SYSTEM HAS DEMONSTRATED SAFETY AND EFFECTIVENESS IN PATIENTS WHO AVERAGE 3 OR MORE DISABLING SEIZURES PER MONTH OVER THE THREE MOST RECENT MONTHS (WITH NO MONTH WITH FEWER THAN TWO SEIZURES), AND HAS NOT BEEN EVALUATED IN PATIENTS WITH LESS  FREQUENT SEIZURES.\"",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026",
+        "sourceSha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=4000&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee",
+        "file": "13127b409f8f6116a10137725c3ee789db845de5a5fd6d61892c09594be2d4ee.json",
+        "retrievedAt": "2026-10-22T18:59:47.944896+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=4100&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e",
+        "file": "a3e9aeecc45847931b3a65692f0cb8f92459474b3f6b7bb504b99459eedfb26e.json",
+        "retrievedAt": "2026-10-22T18:59:48.865835+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "1 original labeling document link(s) located; 7 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 1,
+    "changes": 7,
+    "rows": [
+      {
+        "application": "P100026",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100026C.pdf",
+        "pages": 40,
+        "textAvailable": true,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026",
+        "locator": "L57: Labeling 【38†Labeling】",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: 4 days ago; Content type: application/pdf; Number of pages: 40;",
+        "sections": [
+          {
+            "title": "Indications for Use",
+            "pdfPage": 5,
+            "sourceLine": 38,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "Contraindications",
+            "pdfPage": 9,
+            "sourceLine": 144,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          }
+        ]
+      }
+    ],
+    "pages": [
+      {
+        "application": "P100026",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026",
+        "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026\",\"lineno\":null}); Total lines: 110",
+        "locator": "L57: Labeling 【38†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P100026S094",
+      "P100026S090",
+      "P100026S088",
+      "P100026S069",
+      "P100026S065",
+      "P100026S054",
+      "P100026S028"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "No direct application-linked recall record found in the checked FDA snapshot. This does not establish absence of recalls or safety.",
+    "recalls": 0,
+    "rows": [],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [
+      "neuropace",
+      "rns system"
+    ],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "not-established",
+  "sourceLinks": [
+    {
+      "title": "Research evidence: NCT00264810",
+      "url": "https://clinicaltrials.gov/study/NCT00264810"
+    },
+    {
+      "title": "Research evidence: NCT04839601",
+      "url": "https://clinicaltrials.gov/study/NCT04839601"
+    },
+    {
+      "title": "Research evidence: PMID:21917777",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21917777/"
+    },
+    {
+      "title": "Research evidence: PMID:25141960",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25141960/"
+    },
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100026C.pdf"
+    }
+  ],
+  "path": "/dossiers/rns.json",
+  "applications": [
+    "P100026"
+  ],
+  "researchEvidence": [
+    {
+      "id": "NCT00264810",
+      "kind": "trial",
+      "sourceSha": "778e9237f6406c955fcdb435f8620113c56165bd793a492d62b83157d2effce1",
+      "retrievedAt": "2026-10-19T07:08:42.477353+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT00264810&format=json",
+      "title": "RNS® System Pivotal Study",
+      "status": "COMPLETED",
+      "firstPosted": "2005-12-13",
+      "interventions": [
+        {
+          "armGroupLabels": [
+            "Sham Group (stimulation OFF)",
+            "Treatment Group (stimulation ON)"
+          ],
+          "description": "Using standard neurosurgical techniques the surgical team implants the RNS® System, which includes the RNS® Neurostimulator and intracranial NeuroPace® Leads. Up to 4 Leads (Cortical Strips and/or Depth Leads) are placed in or near the epileptogenic focus/foci. The Neurostimulator is placed in the skull and connected to up to 2 Leads. At first the Neurostimulator is programmed to record brain activity (electrographic patterns). The neurologist or neurosurgeon reviews the recorded electrographic patterns and identifies abnormal (epileptiform, or seizure-like) activity. The Neurostimulator is then programmed to detect the abnormal activity.",
+          "name": "RNS® System implantation",
+          "type": "PROCEDURE"
+        },
+        {
+          "armGroupLabels": [
+            "Treatment Group (stimulation ON)"
+          ],
+          "description": "The RNS® System is programmed to provide responsive stimulation (stimulation is ON or enabled). Upon detecting electrographic patterns, previously identified by the neurologist or neurosurgeon as abnormal (epileptiform, or seizure-like) activity, the Neurostimulator provides brief pulses of electrical stimulation through the Leads to interrupt those patterns. The typical patient is treated with a cumulative total of 5 minutes of stimulation a day.",
+          "name": "RNS® System responsive stimulation",
+          "type": "DEVICE"
+        }
+      ],
+      "sponsor": "NeuroPace",
+      "summary": "The RNS® System Pivotal study is designed to assess safety and demonstrate that the RNS® System is effective as an adjunctive (add-on) therapy in reducing the frequency of seizures in individuals 18 years of age or older with partial onset seizures from no more than two foci (two areas of the brain) that are refractory (drug-resistant or hard-to-treat) to two or more antiepileptic medications. Patients continue to receive their epilepsy medications while participating in the study.",
+      "url": "https://clinicaltrials.gov/study/NCT00264810"
+    },
+    {
+      "id": "NCT04839601",
+      "kind": "trial",
+      "sourceSha": "a8a981402977529c17fc44865bbaf62812addc300811b62209e5c24c1ba4d19e",
+      "retrievedAt": "2026-10-19T07:06:51.588803+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?query.term=%22NeuroPace%22&pageSize=5&format=json",
+      "title": "RNS System RESPONSE Study",
+      "status": "TERMINATED",
+      "firstPosted": "2021-04-09",
+      "interventions": [
+        {
+          "armGroupLabels": [
+            "Evaluation Group (stimulation ON)"
+          ],
+          "description": "The RNS System provides closed loop responsive brain stimulation. The Neurostimulator monitors the electrical activity of the brain to detect abnormal activity that could lead to a seizure. If abnormal activity is detected, the neurostimulator delivers electrical stimulation to the brain through the leads to help prevent the seizure before it occurs.",
+          "name": "RNS System",
+          "type": "DEVICE"
+        }
+      ],
+      "sponsor": "NeuroPace",
+      "summary": "To demonstrate that the RNS System is safe and effective as an adjunctive therapy in individuals age 12 through 17 years with medically refractory partial onset epilepsy.",
+      "url": "https://clinicaltrials.gov/study/NCT04839601"
+    },
+    {
+      "id": "PMID:21917777",
+      "kind": "publication",
+      "sourceSha": "45a00e93675cd354be79b4b025bca52a6c682123e057e65245b1e93d70c29e16",
+      "retrievedAt": "2026-10-19T07:08:40.869663+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=21917777%2C18164485%2C25141960&retmode=json&tool=BodyAtlas",
+      "title": "Responsive cortical stimulation for the treatment of medically intractable partial epilepsy.",
+      "publicationDate": "2011 Sep 27",
+      "authors": [
+        "Morrell MJ",
+        "RNS System in Epilepsy Study Group"
+      ],
+      "journal": "Neurology",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21917777/",
+      "identifiers": [
+        {
+          "idtype": "pubmed",
+          "idtypen": 1,
+          "value": "21917777"
+        },
+        {
+          "idtype": "doi",
+          "idtypen": 3,
+          "value": "10.1212/WNL.0b013e3182302056"
+        },
+        {
+          "idtype": "pii",
+          "idtypen": 4,
+          "value": "WNL.0b013e3182302056"
+        }
+      ]
+    },
+    {
+      "id": "PMID:25141960",
+      "kind": "publication",
+      "sourceSha": "45a00e93675cd354be79b4b025bca52a6c682123e057e65245b1e93d70c29e16",
+      "retrievedAt": "2026-10-19T07:08:40.869663+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=21917777%2C18164485%2C25141960&retmode=json&tool=BodyAtlas",
+      "title": "The RNS System: responsive cortical stimulation for the treatment of refractory partial epilepsy.",
+      "publicationDate": "2014 Nov",
+      "authors": [
+        "Sun FT",
+        "Morrell MJ"
+      ],
+      "journal": "Expert review of medical devices",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25141960/",
+      "identifiers": [
+        {
+          "idtype": "pubmed",
+          "idtypen": 1,
+          "value": "25141960"
+        },
+        {
+          "idtype": "doi",
+          "idtypen": 3,
+          "value": "10.1586/17434440.2014.947274"
+        }
+      ]
+    }
+  ],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

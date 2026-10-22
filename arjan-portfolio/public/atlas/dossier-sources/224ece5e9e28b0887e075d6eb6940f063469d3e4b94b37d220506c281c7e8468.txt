@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html  lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-273DTKB5QW"></script>
+<meta name="description" content="Listing of Medical Device Safety Communications to describe FDA’s analysis of a current issue and provide specific regulatory approaches and clinical recommendations for patient management." />
+<meta name="dcterms.title" content="Safety Communications" />
+<meta name="dcterms.creator" content="Center for Devices and Radiological Health" />
+<meta name="dcterms.description" content="Listing of Medical Device Safety Communications to describe FDA’s analysis of a current issue and provide specific regulatory approaches and clinical recommendations for patient management." />
+<meta name="dcterms.publisher" content="FDA" />
+<meta name="dcterms.source" content="FDA" />
+<meta name="dcterms.audience" content="Consumers" />
+<meta property="og:site_name" content="U.S. Food and Drug Administration" />
+<meta property="og:type" content="Article" />
+<meta property="og:url" content="https://www.fda.gov/medical-devices/medical-device-safety/safety-communications" />
+<meta property="og:title" content="Medical Device Safety Communications" />
+<meta property="og:description" content="Listing of Medical Device Safety Communications to describe FDA’s analysis of a current issue and provide specific regulatory approaches and clinical recommenda" />
+<meta property="og:updated_time" content="Wed, 06/03/2026 - 00:00" />
+<meta property="article:published_time" content="Wed, 06/03/2026 - 12:03" />
+<meta property="article:modified_time" content="Wed, 06/03/2026 - 00:00" />
+<meta name="google-site-verification" content="tWxlDhm4ANdksJZPj7TBmHgNoMqZCnecPp0Aa2vC9XA" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@US_FDA" />
+<meta property="twitter:description" content="Listing of Medical Device Safety Communications to describe FDA’s analysis of a current issue and provide specific regulatory approaches and clinical recommenda" />
+<meta name="twitter:title" content="Medical Device Safety Communications" />
+<meta name="twitter:creator" content="@US_FDA" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Article",
+            "headline": "Safety Communications",
+            "name": "Safety Communications",
+            "description": "Listing of Medical Device Safety Communications to describe FDA’s analysis of a current issue and provide specific regulatory approaches and clinical recommendations for patient management.",
+            "datePublished": "Wed, 06/03/2026 - 12:03",
+            "dateModified": "Wed, 06/03/2026 - 00:00",
+            "author": {
+                "@type": "Organization",
+                "name": "Center for Devices and Radiological Health"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "FDA"
+            }
+        }
+    ]
+}</script>
+<meta property="og:image" content="https://www.fda.gov/themes/custom/preview/img/FDA-Social-Graphic.png" />
+<meta name="twitter:image" content="https://www.fda.gov/themes/custom/preview/img/FDA-Social-Graphic.png" />
+<link rel="icon" href="/themes/custom/preview/favicon.ico" type="image/vnd.microsoft.icon" />
+<link rel="alternate" hreflang="en" href="https://www.fda.gov/medical-devices/medical-device-safety/safety-communications" />
+<link rel="canonical" href="https://www.fda.gov/medical-devices/medical-device-safety/safety-communications" />
+<link rel="shortlink" href="https://www.fda.gov/node/359232" />
+<script src="/files/google_tag/production/google_tag.script.js?tlw6bs" defer></script>
+
+    <title>Safety Communications | FDA</title>
+    <link rel="stylesheet" media="all" href="/files/css/css_eK8g324EC2H65Epj0rcHWphsdBbFdB-sjJn18Po86QI.css?delta=0&amp;language=en&amp;theme=preview&amp;include=eJx1zkEOgzAMBMAPhebS_6CELMjFxGnsUPH7hh5KL5Wl1Ui7B08rEpnUkXJCtsgyrf7HTg81bD4GhSsVO-HlF5YYeFA7mPLiHs-GeoyNxhQMhaYV1V90nf0iQ_3FIWEOjW2o0CJZacefYRQxtRrK3c2dWaz3X7nzI_WfvG2SGuMN6YpTyw" />
+<link rel="stylesheet" media="all" href="/files/css/css_kzM3UfAkXr38eWZ807nc-7-NjN8_C9qpn2PkF7glUTU.css?delta=1&amp;language=en&amp;theme=preview&amp;include=eJx1zkEOgzAMBMAPhebS_6CELMjFxGnsUPH7hh5KL5Wl1Ui7B08rEpnUkXJCtsgyrf7HTg81bD4GhSsVO-HlF5YYeFA7mPLiHs-GeoyNxhQMhaYV1V90nf0iQ_3FIWEOjW2o0CJZacefYRQxtRrK3c2dWaz3X7nzI_WfvG2SGuMN6YpTyw" />
+
+    <script src="https://script.crazyegg.com/pages/scripts/0024/3700.js" async></script>
+<script src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=HHS&amp;subagency=FDA&amp;sdor=fda.gov&amp;dclink=true" language="javascript" id="_fed_an_ua_tag"></script>
+
+            <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "G-273DTKB5QW", {"groups":"default","page_placeholder":"PLACEHOLDER_page_location","allow_ad_personalization_signals":false});</script>
+        
+  </head>
+  <body class="role-anonymous path-node page-node-type-sub-section has-glyphicons">
+      <div id="quicklinks" class="sr-only display-on-focus">
+        <ul class="list-inline padding-left-3 padding-right-3">
+          <li><a href="#main-content" class="btn btn-default margin-top-3" tabindex="1">Skip to main content</a></li>
+          <li><a href="#search-form" class="btn btn-default margin-top-3" tabindex="1">Skip to FDA Search</a></li>
+          <li><a href="#section-nav" class="btn btn-default margin-top-3" tabindex="1">Skip to in this section menu</a></li>
+          <li><a href="#footer" class="btn btn-default margin-top-3" tabindex="1">Skip to footer links</a></li>
+        </ul>   
+      </div>    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M95XGZW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+       
+  <div class="main-container container-fluid">     <div class="row">
+                                                               
+
+
+	
+	<header class="lcds-header container-fluid" role="banner">
+		                    
+			<div class="row us-masthead">                            
+
+				<div class="usa-banner col-xs-12">
+
+					<img class="usa-banner__us-flag" src="/themes/custom/preview/assets/images/US_Flag.png" alt="U.S. flag" />
+
+					<span>An official website of the United States government</span>
+
+				    <a id="USMenuButton" class="collapsed" role="button" aria-expanded="false" aria-controls="USABannerMenu" href="#" data-toggle="collapse" data-target="#USABannerMenu">Here’s how you know <span class="toggle-indicator"> </span></a>
+
+          			<div class="col-xs-12 collapse usa-banner__menu" id="USABannerMenu" aria-labelledby="USMenuButton">
+
+
+						<div id="gov-banner" class="row usa-banner-content usa-grid usa-accordion-content" aria-hidden="true">
+							      <div class="col-xs-12 col-sm-6 col-md-3">
+							        <img class="usa-banner-icon usa-media_block-img" src="/themes/custom/preview/assets/images/icon-dot-gov.svg" alt="Dot gov" style="width:3em;">
+									<div class="usa-media_block-body">
+								      <p><strong>The .gov means it’s official.</strong><br>Federal government websites often end in .gov or .mil. Before sharing sensitive information, make sure you're on a federal government site.</p>
+								    </div>
+							      </div>
+							      <div class="col-xs-12 col-sm-6 col-md-3">
+							        <img class="usa-banner-icon usa-media_block-img" src="/themes/custom/preview/assets/images/icon-https.svg" alt="SSL" style="width:3em;">
+							        <div class="usa-media_block-body">
+								         <p><strong>The site is secure.</strong><br> The <strong>https://</strong> ensures that you are connecting to the official website and that any information you provide is encrypted and transmitted securely.</p>
+							        </div>
+							      </div>
+						</div>
+					</div>
+
+				</div>
+			</div> 			<div class="row fda-masthead">
+			
+
+							<div class="col-xs-4 col-md-8 fda-masthead__fda-logo"> 
+					<a href="/" title="FDA Homepage">
+            <picture>
+              <!-- Set media breakpoint to value equivalent to $screen-md -->
+              <source media="(min-width:992px)" srcset="/themes/custom/preview/assets/images/gov-fda-new-white.svg">
+              <img src="/themes/custom/preview/assets/images/FDA_Logo_Icon_White.svg" height="40px" alt="U.S. Food and Drug Administration logo">
+            </picture>
+          </a>
+       	</div>
+				
+        <div class="col-xs-8 col-md-4">
+        <ul class="fda-masthead__item-list">
+            <li>
+                <button id="btn-search" class="btn btn-default btn-sm fda-masthead__btn-search" aria-expanded="false" aria-controls="search-form" title="Open search bar">
+					<span class="fa fa-search" aria-hidden="true">&nbsp;</span>
+			    	<span class="fda-masthead__btn-label">Search</span>
+				</button>
+            </li>
+            <li>
+                <button id="menu-btn" class="btn btn-default btn-sm fda-masthead__btn-menu collapsed" href="#primary-nav" data-toggle="collapse" aria-expanded="true">
+                    <span class="fa fa-bars" aria-hidden="true">&nbsp;</span>
+                    <span class="fda-masthead__btn-label">Menu</span>
+                </button>
+            </li>
+        </ul>
+		</div>
+							
+						<form class="fda-masthead__search sr-only" id="search-form" aria-hidden="true" role="search" action="/search" method="GET" accept-charset="UTF-8">
+							<div class="search-popover" id="search-popover">
+								<div class="input-group pull-right" id="search-group">
+									<label class="sr-only" for="search-query">Search FDA</label>
+									
+									<input class="form-control search-input" tabindex="-1" id="search-query" name="s" aria-autocomplete="list" aria-haspopup="true" title="Enter the terms you wish to search for." placeholder="Search FDA"  type="text" /> 
+									
+									<span class="input-group-btn" id="input-group-btn">
+										
+										<button type="submit" type="button" class="btn btn-danger search-btn" id="search-btn" tabindex="-1" title="Search"><span class="fa fa-search" aria-hidden="true"><span class="sr-only">Submit search</span></span></button>
+
+									</span>
+
+								</div>
+							</div>
+																				
+						</form>					
+
+			</div> 
+		<nav id="primary-nav" class="lcds-primary-nav row collapse">					<div class="col-md-5 col-lg-4">
+						<section class="lcds-primary-nav__group lcds-primary-nav__group--bordered">
+							<h2 class="lcds-primary-nav__group-heading">Featured</h2>
+							<ul class="lcds-primary-nav__list lcds-primary-nav__list--featured">
+								<li class="lcds-primary-nav__list-item"><a href="https://contact.fda.gov/report-problem?utm_medium=referral&utm_source=fda_gov_menu" title="Report a Problem with an FDA Regulated Product">Report a Product Problem</a></li>
+	                <li class="lcds-primary-nav__list-item"><a href="/about-fda/contact-fda">Contact FDA</a></li>
+	                <li class="lcds-primary-nav__list-item"><a href="/regulatory-information/search-fda-guidance-documents">FDA Guidance Documents</a></li>
+	                <li class="lcds-primary-nav__list-item"><a href="/safety/recalls-market-withdrawals-safety-alerts">Recalls, Market Withdrawals and Safety Alerts</a></li>
+	                <li class="lcds-primary-nav__list-item"><a href="/news-events/newsroom/press-announcements">Press Announcements</a></li>
+	                <li class="lcds-primary-nav__list-item"><a href="/inspections-compliance-enforcement-and-criminal-investigations/compliance-actions-and-activities/warning-letters">Warning Letters</a></li>
+	                <li class="lcds-primary-nav__list-item"><a href="/advisory-committees">Advisory Committees</a></li>
+	                <li class="lcds-primary-nav__list-item"><a href="/fda-en-espanol">En Espa&#241ol</a></li>
+							</ul>
+						</section>
+					</div>
+
+					<div class="col-md-7 col-lg-8">
+          <section class="lcds-primary-nav__group lcds-primary-nav__group--bordered">
+            <h2 class="lcds-primary-nav__group-heading">Products</h2>
+            <ul class="lcds-primary-nav__list">
+							<li class="lcds-primary-nav__list-item"><a href="/food">Food</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/drugs">Drugs</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/medical-devices">Medical Devices</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/radiation-emitting-products">Radiation-Emitting Products</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/vaccines-blood-biologics">Vaccines, Blood, and Biologics</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/animal-veterinary">Animal and Veterinary</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/cosmetics">Cosmetics</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/tobacco-products">Tobacco Products</a></li>
+            </ul>
+          </section>
+          <section class="lcds-primary-nav__group lcds-primary-nav__group--bordered">
+            <h2 class="lcds-primary-nav__group-heading">Topics</h2>
+            <ul class="lcds-primary-nav__list">
+							<li class="lcds-primary-nav__list-item"><a href="/about-fda">About FDA</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/combination-products">Combination Products</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/regulatory-information">Regulatory Information</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/safety">Safety</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/emergency-preparedness-and-response">Emergency Preparedness</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/international-programs">International Programs</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/news-events">News and Events</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/training-and-continuing-education">Training and Continuing Education</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/inspections-compliance-enforcement-and-criminal-investigations">Inspections and Compliance</a></li>
+							<li class="lcds-primary-nav__list-item"><a href="/science-research">Science and Research</a></li>
+            </ul>
+          </section>
+          <section class="lcds-primary-nav__group lcds-primary-nav__group--bordered">
+            <h2 class="lcds-primary-nav__group-heading">Information For</h2>
+            <ul class="lcds-primary-nav__list">
+	            <li class="lcds-primary-nav__list-item"><a href="/consumers">Consumers</a></li>
+	            <li class="lcds-primary-nav__list-item"><a href="/patients">Patients</a></li>
+	            <li class="lcds-primary-nav__list-item"><a href="/industry">Industry</a></li>
+	            <li class="lcds-primary-nav__list-item"><a href="/health-professionals">Health Professionals</a></li>
+	            <li class="lcds-primary-nav__list-item"><a href="/federal-state-local-tribal-and-territorial-officials">Federal, State and Local Officials</a></li>
+            </ul>
+          </section>
+					</div>
+	      </nav>
+    </header>
+
+<div class="col-xs-12 block-prev-message">
+	<div data-drupal-messages-fallback class="hidden"></div>
+
+</div>
+
+                              
+                                                                     <section id="block-entityviewcontent-15" data-block-plugin-id="entity_view:node" class="block block-ctools block-entity-viewnode clearfix">
+  
+    
+
+      
+    <ol class="lcds-breadcrumb visible-md visible-lg">
+          <li >
+                  <a href="/">Home</a>
+              </li>
+          <li >
+                  <a href="/medical-devices">Medical Devices</a>
+              </li>
+          <li >
+                  <a href="/medical-devices/medical-device-safety">Medical Device Safety</a>
+              </li>
+          <li >
+                  <a class="current-link">Safety Communications</a>
+              </li>
+      </ol>
+
+
+
+
+<ol class="lcds-breadcrumb visible-sm visible-xs">
+  <li>
+    <a href="/medical-devices/medical-device-safety" title="Medical Device Safety">
+     Medical Device Safety
+    </a>
+  </li>
+</ol>
+
+  </section>
+
+<section id="block-entityviewcontent" data-block-plugin-id="entity_view:node" class="block block-ctools block-entity-viewnode clearfix">
+  
+    
+
+      
+<div class="lcds-section-nav-container hidden-md hidden-lg">
+<a class="lcds-button--expandable collapsed hidden-md hidden-lg" data-toggle="collapse" href="#section-nav">In this section</a>
+
+<nav id="section-nav" class="lcds-card lcds-section-nav lcds-section-nav hidden-md hidden-lg collapse">
+
+    <ul class="lcds-section-nav__list">
+
+      <li>
+
+        
+
+                    
+                        
+                <a href="/medical-devices/medical-device-safety/safety-communications" class="lcds-section-nav__section-link lcds-section-nav__link lcds-section-nav__parent-link">Safety Communications</a>
+
+                        
+                <div class="views-element-container form-group"><div class="view view-in-this-section view-id-in_this_section view-display-id-block_5 js-view-dom-id-5b5a1feeab4296dd5dec4dc86d288f8c239fbff96ad6dbdc3cbf789dcda043c4">
+  
+    
+      
+  
+          </div>
+</div>
+
+
+                <div class="views-element-container form-group"><div class="view view-in-this-section-sub view-id-in_this_section_sub view-display-id-block_2 js-view-dom-id-907b27824fae9a138bce3bf8645f6473034130428ebdb80afa4a9e7eea3cf884">
+  
+    
+      
+  
+          </div>
+</div>
+
+
+      </li>
+
+    </ul>
+
+</nav>
+</div>
+  </section>
+
+
+
+
+
+
+                                
+      <main>
+
+                                 <article id="main-content" class="article main-content container-fluid" role="article">
+          
+                                                                <header class="row content-header">
+                         <section id="block-entityviewcontent-14" data-block-plugin-id="entity_view:node" class="block block-ctools block-entity-viewnode clearfix">
+  
+    
+
+      
+<div class="col-sm-12 col-md-8 col-md-offset-2">
+
+  <h1 class="content-title text-center">Safety Communications</h1>
+  	
+</div>
+
+  </section>
+
+
+
+
+
+
+                      </header>
+                              
+                                                          
+                              <aside class="col-md-2" role="complementary">
+                  <section id="block-entityviewcontent-3" data-block-plugin-id="entity_view:node" class="block block-ctools block-entity-viewnode clearfix">
+  
+    
+
+      
+  <div class="region region-">
+        <nav id="section-nav" class="lcds-card lcds-section-nav lcds-section-nav--side hidden-xs hidden-sm">
+      <ul class="lcds-section-nav__list lcds-section-nav--side__list">
+
+        <li>
+
+          
+          
+                                                
+                        
+                     
+                <a href="/medical-devices/medical-device-safety/safety-communications" class="lcds-section-nav__link lcds-section-nav--side__link lcds-section-nav__parent-link lcds-section-nav--side__parent-link">Safety Communications</a>                
+                          
+
+                        <div class="views-element-container form-group"><div class="view view-in-this-section view-id-in_this_section view-display-id-block_4 js-view-dom-id-a68abd86c4978cfc9d51efe0bd005f75e463113bb378d2a9dab219f9b8a68a93">
+  
+    
+      
+  
+          </div>
+</div>
+
+
+                        <div class="views-element-container form-group"><div class="view view-in-this-section-sub view-id-in_this_section_sub view-display-id-block_1 js-view-dom-id-3eb0b89a88925f190b1b48b87541724de07ca18833e096b9812723f32d08e96b">
+  
+    
+      
+  
+          </div>
+</div>
+
+
+        </li>
+      </ul>
+    </nav>
+    </div>
+
+  </section>
+
+
+                </aside>
+              
+                                                          
+              <div class="col-md-8" role="main">
+
+                            
+                            
+                            
+                            
+                                              
+  <p>The FDA posts Medical Device Safety Communications to describe the FDA’s analysis of a current issue and provide specific regulatory approaches and clinical recommendations for patient management. The most recent safety communications are listed by date posted.</p><h2>Recent Safety Communications&nbsp;</h2><div class="lcds-datatable lcds-datatable--ckeditor table-responsive"><table class="table" aria-readonly="true" data-column-defs="[{ &quot;targets&quot;: 0, &quot;type&quot;: &quot;date&quot; }]" data-excel-button="true" data-order="[ 0, &quot;desc&quot; ]" data-page-length="50" data-paging="true" data-searching="true" role="grid"><thead><tr><th scope="col">Date</th><th scope="col">Issue</th><th scope="col">Product Area</th></tr></thead><tbody><tr><td>06/03/2026</td><td><a href="/medical-devices/safety-communications/update-hintermann-series-h3-total-ankle-replacement-has-higher-expected-risk-device-failure-fda" data-entity-type="node" data-entity-uuid="cf841484-d615-47ee-a936-a6ce2989f5d8" data-entity-substitution="canonical" title="UPDATE: Hintermann Series H3 Total Ankle Replacement Has a Higher-Than-Expected Risk of Device Failure: FDA Safety Communication">UPDATE: Hintermann Series H3 Total Ankle Replacement Has a Higher-Than-Expected Risk of Device Failure: FDA Safety Communication</a></td><td>Joint Replacement</td></tr><tr><td>04/28/2026</td><td><a href="/medical-devices/safety-communications/risks-using-true-metrix-blood-glucose-monitoring-systems-trividia-health-fda-safety-communication" data-entity-type="node" data-entity-uuid="0fc7b3c5-bed4-40f6-992f-03068a053491" data-entity-substitution="canonical" title="Risks of Using TRUE METRIX Blood Glucose Monitoring Systems by Trividia Health: FDA Safety Communication ">Risks of Using TRUE METRIX Blood Glucose Monitoring Systems by Trividia Health: FDA Safety Communication&nbsp;</a></td><td>Blood Glucose Monitoring System</td></tr><tr><td>03/04/2026</td><td><a href="/medical-devices/safety-communications/update-fda-encourages-public-follow-established-choking-rescue-protocols-fda-safety-communication" data-entity-type="node" data-entity-uuid="8593b287-cd0d-4514-b582-415df592677f" data-entity-substitution="canonical" title="Update: FDA Encourages the Public to Follow Established Choking Rescue Protocols - FDA Safety Communication">Update: FDA Encourages the Public to Follow Established Choking Rescue Protocols: FDA Safety Communication</a>&nbsp;[<a href="/medical-devices/la-fda-recomienda-al-publico-seguir-los-protocolos-establecidos-de-rescate-por-asfixia-comunicado-de" data-entity-type="node" data-entity-uuid="f79d76eb-19ab-4a9f-b02d-064ea1c8c97a" data-entity-substitution="canonical" title="La FDA recomienda al público seguir los protocolos establecidos de rescate por asfixia: Comunicado de seguridad de la FDA">Español</a>] [<a href="/medical-devices/safety-communications/fda-guligongzhongzunshoujidingdeyeshiqiangjiuxieyifda-anquantongbao" data-entity-type="node" data-entity-uuid="1c978894-e345-4189-be00-b976c9d91143" data-entity-substitution="canonical" title="FDA 鼓励公众遵守既定的噎食抢救协议：FDA 安全通报">简体中文 (Simplified Chinese)</a>] [<a href="/medical-devices/safety-communications/hinihikayat-ng-fda-ang-publiko-na-sundin-ang-mga-protocol-sa-pagsagip-sa-nabubulunan-komunikasyong" data-entity-type="node" data-entity-uuid="d7b197c6-3d7e-487e-987f-c87dc728e96d" data-entity-substitution="canonical" title="Hinihikayat ng FDA ang Publiko na Sundin ang mga Protocol sa Pagsagip sa Nabubulunan: Komunikasyong Pangkaligtasan ng FDA">Tagalog</a>]&nbsp;</td><td>Choking Rescue</td></tr><tr><td>10/15/2025</td><td><a href="/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication" data-entity-type="node" data-entity-uuid="a5728cfb-4326-4b18-9eaf-584b92ed52f8" data-entity-substitution="canonical" title="Potential Risks with Certain Uses of Radiofrequency (RF) Microneedling – FDA Safety Communication">Potential Risks with Certain Uses of Radiofrequency (RF) Microneedling – FDA Safety Communication</a></td><td>Radiofrequency Microneedling Devices</td></tr><tr><td>09/16/2025</td><td><a href="/medical-devices/safety-communications/do-not-use-unauthorized-infant-devices-monitoring-vital-signs-fda-safety-communication" data-entity-type="node" data-entity-uuid="59575dfd-18aa-42ab-a0aa-9cb608fc3319" data-entity-substitution="canonical" title="Do Not Use Unauthorized Infant Devices for Monitoring Vital Signs: FDA Safety Communication">Do Not Use Unauthorized Infant Devices for Monitoring Vital Signs: FDA Safety Communication</a></td><td>Vital Signs Monitor</td></tr><tr><td>09/16/2025</td><td><a href="/medical-devices/safety-communications/do-not-use-unauthorized-devices-measuring-blood-pressure-fda-safety-communication" data-entity-type="node" data-entity-uuid="36b854cf-f87a-4074-bfe3-2b46d4efcd60" data-entity-substitution="canonical" title="Do Not Use Unauthorized Devices for Measuring Blood Pressure: FDA Safety Communication">Do Not Use Unauthorized Devices for Measuring Blood Pressure: FDA Safety Communication</a></td><td>Blood Pressure Monitor</td></tr><tr><td>04/24/2025</td><td><a href="/medical-devices/safety-communications/risk-false-positive-lead-test-results-certain-capillary-blood-collection-tubes-used-magellan" data-entity-type="node" data-entity-uuid="31b839d8-3d9c-4118-95bb-87286734d0f1" data-entity-substitution="canonical" title="Risk of False Positive Lead Test Results with Certain Capillary Blood Collection Tubes Used with Magellan Diagnostics LeadCare Testing Systems – FDA Safety Communication">Update: Risk of False Positive Lead Test Results with Certain Capillary Blood Collection Tubes Used with Magellan Diagnostics LeadCare Testing Systems – FDA Safety Communication (updated on 5/27/2025)</a></td><td>In Vitro Diagnostics</td></tr><tr><td>02/05/2025</td><td><a href="/medical-devices/safety-communications/fda-alerts-patients-regularly-check-diabetes-related-smartphone-device-alert-settings-especially" data-entity-type="node" data-entity-uuid="e6c74689-61a9-4da2-9095-189d99453183" data-entity-substitution="canonical" title="FDA Alerts Patients to Regularly Check Diabetes-Related Smartphone Device Alert Settings, Especially Following Phone Hardware or Software Changes: FDA Safety Communication">FDA Alerts Patients to Regularly Check Diabetes-Related Smartphone Device Alert Settings, Especially Following Phone Hardware or Software Changes</a> [<a href="/medical-devices/safety-communications/la-fda-alerta-los-pacientes-para-que-revisen-con-frecuencia-las-configuraciones-de-alerta-de-los" data-entity-type="node" data-entity-uuid="510db44c-c0bc-4ebf-a70f-819c0f11b4fc" data-entity-substitution="canonical" title="La FDA alerta a los pacientes para que revisen con frecuencia las configuraciones de alerta de los teléfonos inteligentes relacionados con la diabetes, en especial, después de realizar cambios en el hardware o el software del teléfono: FDA Safety Communication">Español]</a> [<a href="/medical-devices/safety-communications/fda" data-entity-type="node" data-entity-uuid="9f8ee7d6-a638-4ed4-83ea-4c08f2022967" data-entity-substitution="canonical" title="FDA 提醒患者定期检查糖尿病相关智能手机器械警报设置，特别是在手机硬件或软件发生变更后：美国食品药品监督管理局 (FDA) 安全通报">简体中文 (Simplified Chinese)</a>] [<a href="/medical-devices/safety-communications/inaalertuhan-ng-fda-ang-mga-pasyente-na-regular-na-suriin-ang-mga-setting-ng-alerto-sa-kanilang" data-entity-type="node" data-entity-uuid="fd4c057d-4c3a-453f-a8b9-abba48b86a37" data-entity-substitution="canonical" title="Inaalertuhan ng FDA ang mga Pasyente na Regular na Suriin ang mga Setting ng Alerto sa Kanilang Smartphone Device na may Kaugnayan sa Diabetes, Lalo na Pagkatapos ng mga Pagbabago sa Hardware o Software ng Telepono: FDA Safety Communication">Tagalog</a>]</td><td>Diabetes Devices</td></tr><tr><td>01/30/2025</td><td><a href="/medical-devices/safety-communications/cybersecurity-vulnerabilities-certain-patient-monitors-contec-and-epsimed-fda-safety-communication" data-entity-type="node" data-entity-uuid="455dbbd3-e899-4989-8a85-22921304a5e8" data-entity-substitution="canonical" title="Cybersecurity Vulnerabilities with Certain Patient Monitors from Contec and Epsimed: FDA Safety Communication"><span data-teams="true">Update: Cybersecurity Vulnerabilities with Certain Patient Monitors from Contec and Epsimed: FDA Safety Communication (updated on 7/2/2025)</span></a> [<a href="/medical-devices/safety-communications/vulnerabilidades-de-ciberseguridad-en-monitores-de-pacientes-de-contec-y-epsimed-comunicacion-de" data-entity-type="node" data-entity-uuid="3f927ef4-ca9f-45f6-98e8-1be74689ce17" data-entity-substitution="canonical" title="Vulnerabilidades de Ciberseguridad en Monitores de Pacientes de Contec y Epsimed: Comunicación de Seguridad de la FDA">Español</a>] [<a href="/medical-devices/safety-communications/guanyucontecheepsimedmouxiebingrenjianhuyidewangluoanquanloudongfdaanquantongxin" data-entity-type="node" data-entity-uuid="0e663f22-5d0e-454b-abea-74c86fee9719" data-entity-substitution="canonical" title="关于Contec和Epsimed某些病人监护仪的网络安全漏洞：FDA安全通信">简体中文 (Simplified Chinese)</a>] [<a href="/medical-devices/safety-communications/mga-cybersecurity-vulnerability-sa-ilang-patient-monitor-mula-sa-contec-epsimed-komunikasyon" data-entity-type="node" data-entity-uuid="f36d25ef-10ac-40f0-ad92-eff11926334f" data-entity-substitution="canonical" title="Mga Cybersecurity Vulnerability sa Ilang Patient Monitor mula sa Contec at Epsimed: Komunikasyon Pangkaligtasan ng FDA">Tagalog</a>]</td><td>Patient Monitors</td></tr><tr><td>12/16/2024</td><td><a href="/medical-devices/safety-communications/accolade-pacemaker-devices-boston-scientific-and-potential-need-early-device-replacement-fda-safety" data-entity-type="node" data-entity-uuid="558adeeb-6d00-46ad-bf79-98b311750366" data-entity-substitution="canonical" title="Accolade Pacemaker Devices by Boston Scientific and Potential Need for Early Device Replacement - FDA Safety Communication ">Update: Accolade Pacemaker Devices by Boston Scientific and Potential Need for Early Device Replacement - FDA Safety Communication (updated on 9/11/2025)</a> [<a href="/medical-devices/safety-communications/los-marcapasos-accolade-de-boston-scientific-y-la-posible-necesidad-de-reemplazarlos-antes-de-tiempo" data-entity-type="node" data-entity-uuid="42ac4abc-f6a9-4e8b-a524-b6ad841b4fd3" data-entity-substitution="canonical" title="Los marcapasos Accolade de Boston Scientific y la posible necesidad de reemplazarlos antes de tiempo: Comunicado de seguridad de la FDA">Español</a>] [<a href="/medical-devices/safety-communications/boshidunkexuegongsisuoshengchande-accolade-qiboqiqixiekenengxuyaotizaogenghuan-fda-anquantongbao" data-entity-type="node" data-entity-uuid="a018784d-8c38-4499-851f-967a8b878cd0" data-entity-substitution="canonical" title="波士顿科学公司所生产的 Accolade 起搏器器械可能需要提早更换——FDA 安全通报">简体中文 (Simplified Chinese)</a>] [<a href="/medical-devices/safety-communications/ang-mga-accolade-pacemaker-device-ng-boston-scientific-potensiyal-na-pangangailangan-sa-maagang" data-entity-type="node" data-entity-uuid="9959ef58-94d4-485f-bd79-a4975d8df3c5" data-entity-substitution="canonical" title="Ang mga Accolade Pacemaker Device ng Boston Scientific at Potensiyal na Pangangailangan sa Maagang Pagpapalit ng Device – Pangkaligtasang Komunikasyon ng FDA">Tagalog</a>]</td><td>Pacemakers</td></tr><tr><td>10/25/2024</td><td><a href="/medical-devices/safety-communications/update-do-not-use-biozorb-marker-implantable-radiographic-marker-devices-fda-safety-communication" data-entity-type="node" data-entity-uuid="505072d2-f62e-48b4-9c8a-9f62b8bf316b" data-entity-substitution="canonical" title="Update: Do Not Use BioZorb Marker Implantable Radiographic Marker Devices: FDA Safety Communication">Update: Do Not Use BioZorb Marker Implantable Radiographic Marker Devices: FDA Safety Communication</a> [<a href="/medical-devices/safety-communications/marcadores-biozorb-y-posibles-riesgos-con-su-uso-en-tejido-mamario-comunicado-de-seguridad-de-la-fda" data-entity-type="node" data-entity-uuid="f40a1b29-99ff-4d0e-99b9-2015fdf7f84e" data-entity-substitution="canonical" title="Marcadores BioZorb y posibles riesgos con su uso en tejido mamario: Comunicado de seguridad de la FDA">Español</a>] [<a href="/medical-devices/safety-communications/biozorb-biaojiwuhezairuxianzuzhizhongshiyongdeqianzaifengxianfda-anquantongbao" data-entity-type="node" data-entity-uuid="03b92421-f58e-45ca-9a44-b2680427ff8c" data-entity-substitution="canonical" title="BioZorb 标记物和在乳腺组织中使用的潜在风险：FDA 安全通报">简体中文 (Simplified Chinese)</a>] [<a href="/medical-devices/safety-communications/ang-biozorb-markers-mga-potensyal-na-panganib-sa-paggamit-nito-sa-tissue-sa-suso-komunikasyon-sa" data-entity-type="node" data-entity-uuid="2299ea98-4889-4048-8fa8-65109aec9295" data-entity-substitution="canonical" title="Ang BioZorb Markers at mga Potensyal na Panganib sa Paggamit nito sa Tissue sa Suso: Komunikasyon sa Kaligtasan ng FDA">Tagalog</a>]</td><td>Breast Tissue</td></tr></tbody></table></div><p></p><div class=" panel-group" id="accordion_622033" role="tablist" aria-multiselectable="true">   
+<div title="Previous Safety Communications" open="no" class=" panel panel-default fda-accordion-panel">
+	<div class="panel-heading" role="tab" id="heading_6ada185597089">
+		<h2 class="panel-title">
+			<a role="button" class="collapsed" data-toggle="collapse" data-parent href="#6ada185597089" aria-controls="6ada185597089">Previous Safety Communications</a>
+		</h2>
+	</div>
+    <div id="6ada185597089" class="panel-collapse collapse " role="tabpanel" aria-labelledby="heading_6ada185597089">
+		<div class="panel-body">
+			<ul><li><a href="/medical-devices/safety-communications/2024-safety-communications" data-entity-type="node" data-entity-uuid="0b176924-29d2-49c5-be75-23eb3e1d4306" data-entity-substitution="canonical" title="2024 Safety Communications">2024&nbsp;Safety Communications</a></li><li><a href="/medical-devices/safety-communications/2023-safety-communications" data-entity-type="node" data-entity-uuid="20c1bc32-d16f-4329-ae15-a28bce9e313e" data-entity-substitution="canonical" title="2023 Safety Communications">2023 Safety Communications</a></li><li><a href="https://public4.pagefreezer.com/browse/FDA/01-08-2024T13:49/https:/www.fda.gov/medical-devices/medical-device-safety/safety-communications">2011-2022 Safety Communications</a> (Archived)</li></ul><p>
+		</p></div>
+	</div>
+</div></div><h2>Additional Resources</h2><ul><li><a href="/media/191587/download?attachment" data-entity-type="media" data-entity-uuid="71d8398f-008a-4735-9b0d-cc23a454a0b9" data-entity-substitution="media_download" title="Report to Congress: Postmarket Device Safety-Related Communications (2025)">Report to Congress: Postmarket Device Safety-Related Communications (2025)</a> [445 KB]</li><li><a href="/media/171929/download?attachment" data-entity-type="media" data-entity-uuid="43223eba-3bf1-4305-a42b-44adfed82981" data-entity-substitution="media_download" title="Postmarket Device&nbsp;Safety-Related&nbsp;Communications&nbsp;Report to Congress">Report to Congress: Postmarket Device Safety-Related Communications (2023)</a> [512 KB]</li></ul><br>
+
+	
+<br>
+
+
+
+              
+                                            
+              
+            </div>
+
+                                                  
+                          <aside class="col-md-2" role="complementary">
+                <section id="block-entityviewcontent-4" data-block-plugin-id="entity_view:node" class="block block-ctools block-entity-viewnode clearfix">
+  
+    
+
+      
+
+<div class="region region-">
+  <aside class="lcds-card lcds-card--border-top" >
+      <ul role="menu" class="lcds-description-list">
+        
+                                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li role="menuitem" class="node-current-date lcds-description-list__item">
+    <div>
+      <h2 class="lcds-description-list__item-heading">Content current as of:</h2>
+      <p class="lcds-description-list__item-text"><time datetime="2026-06-03T00:00:00Z">06/03/2026</time>
+</p>
+    </div>
+  </li>
+                  
+                   
+<li role="menuitem" class="lcds-description-list__item">  
+	<div>
+		
+		 <h2 class="lcds-description-list__item-heading">Regulated Product(s)</h2>
+		 <ul role="menu" class="lcds-metadata-list">
+						  <li role="menuitem">Medical Devices</li>
+			  			     			  			     <li role="menuitem">Radiation-Emitting Products</li>
+			     			  						              
+			
+			
+			
+			
+			
+			
+			
+			
+					</ul>
+	 
+			     
+						       
+
+			  
+						  
+
+			  
+						 
+	</div>
+</li>   
+         
+      </ul>
+  </aside>
+</div>
+
+
+  </section>
+
+
+              </aside>
+            
+                 </article>        
+      </main>
+
+    </div>  </div>
+<div id="fda-survey-comments"></div>
+<script src=https://touchpoints.app.cloud.gov/touchpoints/0eb673d9.js async></script>
+<button class="btn btn-primary btn-vertical" id="survey-btn">Feedback</button>
+<script src=https://touchpoints.app.cloud.gov/touchpoints/d45bb814.js async=""></script>
+                <div class="region region-subscribe">
+    <section id="block-entityviewcontent-5" data-block-plugin-id="entity_view:node" class="block block-ctools block-entity-viewnode clearfix">
+  
+    
+
+      
+<section class="lcds-subscribe" id="subscribe">
+  <div class="row">
+    <div class="col-sm-12 col-md-3 col-md-offset-3">
+                <p>Subscribe to Medical Device Safety and Recalls</p>
+                        <span>Sign up to receive email updates on medical device recalls, safety communications, and other safety information.</span>
+            </div>
+    <div class="col-sm-12 col-md-3">
+            <form class="form-horizontal" id="GD-snippet-form" action="https://public.govdelivery.com/accounts/USFDA/subscribers/qualify" accept-charset="UTF-8" method="post">
+        <input name="utf8" type="hidden" value="&#x2713;">
+        <input type="hidden" name="authenticity_token" value="VJuyc1HyD63+xVCkN+K9qiH1bD9zSSJ+BfdR1d4LXjZ0BncrJ/u9dEw/e0U869OeCw6JxhyYXfnZCCGNF1oVkQ==">
+        <input type="hidden" name="topic_id" id="topic_id" value="USFDA_81">
+
+        <label class="sr-only" for="email">Enter your email address to subscribe:</label>
+        <div class="input-group subscribe-group">
+          <input type="text" name="email" id="custom_email_input" placeholder="Email Address" class="form-control">
+          <span class="input-group-btn">
+            <input class="btn btn-primary" type="submit" name="commit" value="Subscribe">
+          </span>
+        </div>
+
+        <!-- Tooltip-style error message below input -->
+        <div id="errorMessage" class="tooltip-error" style="display: none;">
+          <span class="tooltip-text" role="alert" aria-live="polite" tabindex="0" ></span>
+        </div>
+      </form>
+       
+    </div>
+  </div>
+</section>
+
+  </section>
+
+
+  </div>
+
+  
+      <footer id="footer" class="lcds-footer container-fluid">
+        
+    <div class="row lcds-footer__primary">
+    <nav class="text-center">
+      <div class="col-sm-4">
+        <ul class="nav">
+          <li><a href="/about-fda/about-website/fdagov-archive" >FDA Archive</a></li>
+          <li><a href="/about-fda" >About FDA</a></li>
+          <li><a href="/about-fda/about-website/internet-accessibility" >Accessibility</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-4">
+        <ul class="nav">
+          <li><a href="/about-fda/visitor-information" >Visitor Information</a> </li>
+          <li><a href="/about-fda/about-website/website-policies" >Website Policies / Privacy</a></li>
+          <li><a href="/about-fda/jobs-and-training-fda/no-fear-act" >No FEAR Act</a></li>
+          <li><a href="https://www.hhs.gov/vulnerability-disclosure-policy/index.html" >Vulnerability Disclosure Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-4">
+        <ul class="nav">
+          <li><a href="/regulatory-information/freedom-information" title="Freedom of Information Act">FOIA</a></li>
+          <li><a href="https://www.hhs.gov/" title="Health and Human Services" target="_blank">HHS.gov</a></li>
+          <li><a href="https://www.usa.gov/" target="_blank">USA.gov</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+    <div class="row lcds-footer__secondary">
+    <div class="col-sm-12 col-md-6 col-lg-4 lcds-footer__social-links">
+      <a href="/about-fda/contact-fda" class="btn btn-default btn-md">Contact FDA</a>
+      <a href="https://www.facebook.com/FDA" title="Follow FDA on Facebook" class="no-disclaimer"> 
+        <span class="fa fa-facebook fa-2x" aria-hidden="true">
+          <span class="sr-only">Follow FDA on Facebook</span> 
+        </span>
+      </a>
+      <a href="https://x.com/FDA" title="Follow FDA on X" class="no-disclaimer">
+        <svg class="icon-svg-inline fa-2x" aria-hidden="true">
+          <use href="/themes/custom/preview/assets/images/fa-icons.svg#icon-x-twitter">
+        </svg>
+        <span class="sr-only">Follow FDA on X</span>
+      </a>
+      <a href="https://instagram.com/FDA" title="Follow FDA on Instagram" class="no-disclaimer">
+        <span class="fa fa-instagram fa-2x" aria-hidden="true"> 
+          <span class="sr-only">Follow FDA on Instagram</span>
+        </span>
+      </a>
+      <br class='visible-xs-inline'/>
+      <a href="https://www.linkedin.com/company/fda/" title="Follow FDA on LinkedIn" class="no-disclaimer">
+        <span class="fa fa-linkedin fa-2x" aria-hidden="true"> 
+          <span class="sr-only">Follow FDA on LinkedIn</span>
+        </span>
+      </a>
+      <a href="https://youtube.com/@US_FDA" title="View FDA videos on YouTube" class="no-disclaimer">
+        <span class="fa fa-youtube fa-2x" aria-hidden="true"> 
+          <span class="sr-only">View FDA videos on YouTube</span>
+        </span>
+      </a>
+      <a href="/about-fda/contact-fda/subscribe-podcasts-and-news-feeds" title="Subscribe to FDA RSS feeds">
+        <span class="fa fa-rss fa-2x" aria-hidden="true">
+          <span class="sr-only">Subscribe to FDA RSS feeds</span>
+        </span>
+      </a>
+    </div>
+    <a href="/" title="FDA Homepage">
+        <div class="visible-lg-block col-lg-4 text-center">
+          <img src="/themes/custom/preview/assets/images/FDA_Logo_Icon_White.svg" height="60px" alt="Food and Drug Administration Logo">
+        </div>
+    </a>
+    <div class="col-sm-12 col-md-6 col-lg-4 text-center lcds-footer__contact-number">
+      <span class="fa fa-phone" aria-hidden="true"> </span> 
+     <span class="sr-only">Contact Number</span>
+      1-888-INFO-FDA (1-888-463-6332)
+    </div>
+  </div>
+  
+      <!--END WEBSITE FEEDBACK SNIPPET-->
+  
+
+    </footer>
+    <a href="" id="btn-top" class="btn btn-primary btn-top"><span class="sr-only">Back to </span>Top</a>
+  
+
+  </div>
+
+    
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/359232","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"fda_ckeditor_enhancements":{"basePath":"modules\/custom\/fda_ckeditor_enhancements"},"google_analytics":{"account":"G-273DTKB5QW","trackOutbound":true,"trackMailto":true,"trackTel":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"bootstrap":{"forms_has_error_value_toggle":1,"modal_animation":1,"modal_backdrop":"true","modal_focus_input":1,"modal_keyboard":1,"modal_select_text":1,"modal_show":1,"modal_size":"","popover_enabled":1,"popover_animation":1,"popover_auto_close":1,"popover_container":"body","popover_content":"","popover_delay":"0","popover_html":0,"popover_placement":"right","popover_selector":"","popover_title":"","popover_trigger":"click"},"ajax":[],"user":{"uid":0,"permissionsHash":"1b1b521ce0efd787b9481ef00f514b542eb396217a4d74c357d2ecd6b6b52a2d"}}</script>
+<script src="/files/js/js_nol62-71-VcU-Vm554ii80k_VGa4nFJwcyaILa2bl3s.js?scope=footer&amp;delta=0&amp;language=en&amp;theme=preview&amp;include=eJxdjtEKwzAIRX-oJXsZ7G-CNS4NS6OodHRfv3Ww0A7fjnruzcy5UoQGdfOCFvIfGERpLfQMufIEdTTUIm7DxOzmChKEhVfS4Z4g4oNScdZIbYaGtFBzC4DImgq36Jx3u82sjpyo2z_PYwL_zFTJTvjnPO6_WbxILXtK2G8tXi-3A-wOVHhtlHMHCeSU3duMvegbbCJttQ"></script>
+<script src="/libraries/datatables/media/js/jquery.dataTables.min.js?tlw6bs"></script>
+<script src="/files/js/js_YyYIiMtJciIueQ0BARuCH2PNjjWVtBSQgxhnYkG17UU.js?scope=footer&amp;delta=2&amp;language=en&amp;theme=preview&amp;include=eJxdjtEKwzAIRX-oJXsZ7G-CNS4NS6OodHRfv3Ww0A7fjnruzcy5UoQGdfOCFvIfGERpLfQMufIEdTTUIm7DxOzmChKEhVfS4Z4g4oNScdZIbYaGtFBzC4DImgq36Jx3u82sjpyo2z_PYwL_zFTJTvjnPO6_WbxILXtK2G8tXi-3A-wOVHhtlHMHCeSU3duMvegbbCJttQ"></script>
+<script src="/libraries/datatables/extensions/Responsive/js/dataTables.responsive.min.js?tlw6bs"></script>
+<script src="/libraries/datatables/media/js/dataTables.bootstrap4.min.js?tlw6bs"></script>
+<script src="/files/js/js_ibVfOK-mMRC9AGiOMnu4UnaXEa13E-y45uMq1vXFtik.js?scope=footer&amp;delta=5&amp;language=en&amp;theme=preview&amp;include=eJxdjtEKwzAIRX-oJXsZ7G-CNS4NS6OodHRfv3Ww0A7fjnruzcy5UoQGdfOCFvIfGERpLfQMufIEdTTUIm7DxOzmChKEhVfS4Z4g4oNScdZIbYaGtFBzC4DImgq36Jx3u82sjpyo2z_PYwL_zFTJTvjnPO6_WbxILXtK2G8tXi-3A-wOVHhtlHMHCeSU3duMvegbbCJttQ"></script>
+
+  <script type="text/javascript"  src="/nKjuT3KLa/lM3_35y8C/_87nK/l5Sc/G3fumXtrGb6JhLuY/SUhwTQ/D3ZBOn/FAEn4"></script></body>
+</html>

@@ -1,0 +1,611 @@
+{
+  "familyId": "source-fda-p000013",
+  "name": "Osteonics ABC / Trident systems",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "27 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 27,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P000013",
+        "supplement": "S027",
+        "date": "2025-09-17",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Trident Alumina Insert (625-0T-XXX); Osteonics® ABC/Trident® System",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "the use of alternative sources for some of the ingredients which are part of the composition of the adhesive coating, TPT-0260, in the Tyvek packaging for the Osteonics ABC/Trident System / Trident Alumina Insert",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S027",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S026",
+        "date": "2025-05-23",
+        "decision": "PMA approval",
+        "tradeName": "Trident Acetabular System: Trident Alumina Inserts",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "approval for changes to the product labeling of the Trident Alumina Inserts that are part of the Trident Acetabular System (PMA #P000013).",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S026",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S025",
+        "date": "2024-03-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Trident® Acetabular System",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "addition of a new polishing front surface equipment for ceramic inserts and a second source for Titanium alloy material for the Titanium alloy sleeves",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S025",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S024",
+        "date": "2024-01-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Trident(R), ABC(R)",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "removal of duplicate incoming dimensional inspections of ceramic inserts at Stryker Orthopaedics",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S024",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S021",
+        "date": "2023-12-20",
+        "decision": "PMA approval",
+        "tradeName": "Trident Ceramic System",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "approval for adding MR Conditional labeling",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S021",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S023",
+        "date": "2023-12-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Trident(R), ABC(R)",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "to update the pack-to-sterilization timeframe from fourteen (14) to twenty eight (28) days",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S023",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S022",
+        "date": "2023-09-27",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Trident®, ABC®",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "Addition of a second supplier for the raw material Alumina used for the production of the ceramic material BIOLOX®forte.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S022",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S020",
+        "date": "2022-04-01",
+        "decision": "PMA approval",
+        "tradeName": "Trident Acetabular System: Trident Alumina Inserts",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "Approval for updating the instructions for use (IFU) for the Trident Acetabular System: Trident Alumina Inserts because of European Union (EU) requirements.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S020",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S019",
+        "date": "2022-03-01",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Trident(R) Acetabular System",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "Introduction of a process optimization for the sintering process with a new Hot Isostatic Pressure (HIP) equipment for the Trident Acetabular System.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S019",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S018",
+        "date": "2021-03-05",
+        "decision": "PMA approval",
+        "tradeName": "Trident Ceramic System",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "Approval for a change in packaging of the Trident Alumina inserts which are part of the Trident Ceramic System. The foam raw material used to manufacture the foam packaging components will change from Opflex Microcell L1900/MC1900 to Vizion 2.0, and the foam packaging component tolerances listed on the foam packaging component drawings will be updated to +/- 0.120 inches to align the drawings with the manufacturing process currently used by the foam packaging component supplier.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S018",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S017",
+        "date": "2020-09-30",
+        "decision": "PMA approval",
+        "tradeName": "Trident Ceramic System",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "Approval for a change of the de-nesting lubricant sprayed on polyethylene terephthalate glycol sheets that are thermoformed into blister trays used in Trident Alumina Inserts packaging.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S017",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S014",
+        "date": "2019-06-21",
+        "decision": "PMA approval",
+        "tradeName": "Osteonics ABC/Trident Systems",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "Approval for the addition of new sterilization trays.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S014",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S016",
+        "date": "2018-12-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Osteonics ABC/Trident System",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "Installation of two active carbon filters in the water pre-treatment system loop.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S016",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S015",
+        "date": "2018-10-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Trident Alumina Insert",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "Change in corrosion protection oil used during the vendor's proof test.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S015",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S013",
+        "date": "2016-03-04",
+        "decision": "FDA decision code OK30",
+        "tradeName": "TRIDENT CERAMIC INSERT",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "Upgrades to the systems at a vendor.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S013",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S012",
+        "date": "2015-11-05",
+        "decision": "FDA decision code OK30",
+        "tradeName": "TRIDENT",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "THE ADDITION OF A CMM MACHINE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S012",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S011",
+        "date": "2012-11-02",
+        "decision": "PMA approval",
+        "tradeName": "TRIDENT CERAMIC-ON-CERAMIC ACETABULAR SYSTEM",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "APPROVAL FOR LABELING UPDATES INCORPORATING RESULTS OF THE COMPLETED POST-APPROVAL STUDY.",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S011",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S010",
+        "date": "2012-01-18",
+        "decision": "PMA approval",
+        "tradeName": "TRIDENT SYSTEMS",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "APPROVAL FOR THE ADDITION OF THE TRITANIUM PSF ACETABULAR SHELLS (SOLID-BACKED AND CLUSTER SCREW-HOLE DESIGNS) AS COMPATIBLE COMPONENTS WITH THE TRIDENT CERAMIC INSERTS, AS WELL AS MODIFICATIONS TO THE TOLERANCES AND SURFACE ROUGHNESS VALUES OF THE TAPER REGION OF ALL COMPATIBLE TRIDENT AND TRITANIUM ACETABULAR SHELLS.  IN ADDITION, LABELING CHANGES WERE MADE TO ADDRESS THE COMPATIBILITY WITH THE NEW COMPONENTS.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S010",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S009",
+        "date": "2009-05-07",
+        "decision": "PMA approval",
+        "tradeName": "OSTEONICS ABC/TRIDENT SYSTEMS",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "APPROVAL FOR CHANGES TO THE LABELING (I.E., SURGICAL PROTOCOL) OF THE TRIDENT HIP SYSTEM.  THESE MODIFICATIONS INCLUDE CREATING SEPARATE AND DISTINCT SURGICAL PROTOCOLS, ONE FOR THE TRIDENT PSL SHELL AND ONE FOR THE TRIDENT HEMISPHERICAL SHELL, IN ORDER TO CLARIFY THE DIFFERENCES IN REAMING TECHNIQUES BETWEEN THE TWO SHELLS, AS WELL AS OTHER IMPROVEMENTS TO THE SURGICAL PROTOCOL.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S009",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S008",
+        "date": "2007-04-26",
+        "decision": "PMA approval",
+        "tradeName": "OSTEONICS ABC / TRIDENT SYSTEMS",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "APPROVAL FOR A NEW LOCKING MECHANISM DESIGN FOR THE TRIDENT ACETABULAR SYSTEM (TRIDENT ALUMINA INSERTS AND TRIDENT ACETABULAR SHELLS), AS WELL AS ASSOCIATED REVISIONS TO THE PACKAGE INSERT.  THIS DESIGN MODIFICATION IS INTENDED TO ALLOW FOR EASE OF INSERTION OF THE ALUMINA CERAMIC INSERT.  THE DEVICE, AS MODIFIED, WILL BE MARKETED UNDER THE TRADE NAME TRIDENT II ACETABULAR SYSTEM (TRIDENT II ALUMINA INSERTS, TRIDENT II ACETABULAR SHELLS) AND IS INDICATED FOR PATIENTS REQUIRING PRIMARY OR REVISION TOTAL HIP ARTHROPLASTY DUE TO NON-INFLAMMATORY DEGENERATIVE JOINT DISEASE (OSTEOARTHRITIS, AVASCULAR NECROSIS, TRAUMATIC ARTHRITIS, SLIPPED CAPITAL EPIPHYSIS, PELVIC FRACTURE, FEMORAL FRACTURE, FAILED FRACTURE FIXATION, OR DIASTROPHIC VARIANT), OR INFLAMMATORY JOINT DISEASE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S008",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S006",
+        "date": "2006-03-14",
+        "decision": "FDA decision code OK30",
+        "tradeName": "TRIDENT CERAMIC ON CERAMIC ACETABULAR SYSTEM",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "MANUFACTURING PROCESS CHANGES BY CERAMTEC, INC. FOR THE BIOLOX FORTE CERAMIC FEMORAL HEADS AND INSERTS.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S006",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S005",
+        "date": "2004-10-22",
+        "decision": "PMA approval",
+        "tradeName": "OSTEONICS ABC/TRIDENT SYSTEMS",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "APPROVAL FOR EXPANDED INDICATIONS FOR USE (INFLAMMATORY JOINT DISEASE AND REVISION HIP ARTHROPLASTY) AS WELL AS REVISIONS TO THE PACKAGE INSERT AND PATIENTS LABELING.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S005",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S004",
+        "date": "2004-08-16",
+        "decision": "PMA approval",
+        "tradeName": "OSTEONICS ABC/TRIDENT SYSTEMS",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "APPROVAL OF THE TRIDENT \"T\" SHELL FOR USE WITH THE TRIDENT ALUMINA INSERT.  THE TRIDENT \"T\" SHELL, WHICH FEATURES A THICKER SHELL WALL, IS A LINE EXTENSION TO THE TRIDENT ACETABULAR SHELLS PREVIOUSLY APPROVED FOR USE WITH THE TRIDENT ALUMINA INSERT.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S004",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S003",
+        "date": "2003-11-13",
+        "decision": "PMA approval",
+        "tradeName": "OSTEONICS ABC SYSTEM AND TRIDENT SYSTEM",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "APPROVAL OF THE POST-APPROVAL STUDY PROTOCOL FOR THE DEVICE.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S003",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S002",
+        "date": "2003-09-12",
+        "decision": "PMA approval",
+        "tradeName": "OSTEONICS ABC/TRIDENT SYSTEMS",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "APPROVAL FOR REVISIONS TO THE TRIDENT ACETABULAR SYSTEM PACKAGE INSERT AND PATIENT LABELING.  THESE CHANGES INCLUDE EDITING TEXT FOR CONCISENESS AND CLARITY, REORGANIZING ELEMENTS TO MORE CLEARLY CONVEY INTENT, AND PRESENTING DATA IN A MANNER THAT IS LESS CONFUSING AND MORE MEANINGFUL TO PATIENTS AND SURGEONS.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S002",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "S001",
+        "date": "2003-03-17",
+        "decision": "PMA approval",
+        "tradeName": "OSTEONICS ABC/TRIDENT SYSTEMS",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "APPROVAL FOR THE FOLLOWING ITEMS:  1) USE OF THE TRIDENT ACETABULAR SYSTEM WITH V40 ALUMINA HEADS AND ADDITIONAL C-TAPER ALUMINA HEAD SIZES (AND ASSOCIATED STEMS)  2) USE OF THE TRIDENT ACETABULAR SYSTEM WITH V40/C-TAPER AND MORSE TAPER ADAPTER SLEEVES (AND ASSOCIATED FEMORAL STEMS)  3) USE OF ADDITIONAL STYLES OF TRIDENT ACETABULAR SHELLS; AND  4) ASSOCIATED LABELING CHANGES DUE TO MODIFICATIONS IDENTIFIED ABOVE.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013S001",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      },
+      {
+        "application": "P000013",
+        "supplement": "",
+        "date": "2003-02-03",
+        "decision": "PMA approval",
+        "tradeName": "TRIDENT SYSTEM",
+        "applicant": "Howmedica Osteonics Corp.",
+        "statement": "APPROVAL FOR THE OSTEONICS ABC SYSTEM AND TRIDENT SYSTEM.  THESE DEVICES ARE INDICATED FOR PATIENTS REQUIRING PRIMARY TOTAL HIP ARTHROPLASTY DUE TO PAINFUL DISABLING JOINT DISEASE OF THE HIP RESULTING FROM NON-INFLAMMATORY DEGENERATIVE ARTHRITIS (OSTEOARTHRITIS, AVASCULAR NECROSIS, TRAUMATIC ARTHRITIS, SLIPPED CAPITAL EPIPHYSIS, PELVIC FRACTURE, FEMORAL FRACTURE, FAILED FRACTURE FIXATION, OR DIASTROPHIC VARIANT).",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013",
+        "sourceSha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=200&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4",
+        "file": "bd69cab0b542a5dfcb8028f271a5457ec5339ddf0b30fd3800ce12c3168eb5e4.json",
+        "retrievedAt": "2026-10-22T18:59:14.568303+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "1 original labeling document link(s) located; 10 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 1,
+    "changes": 10,
+    "rows": [
+      {
+        "application": "P000013",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000013C.pdf",
+        "pages": 27,
+        "textAvailable": true,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013",
+        "locator": "L63: Labeling【35†Labeling】",
+        "pageUpdatedAt": "05/04/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: 6 days ago; Content type: application/pdf; Number of pages: 27;",
+        "sections": [
+          {
+            "title": "Indications",
+            "pdfPage": 7,
+            "sourceLine": 314,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "Contraindications",
+            "pdfPage": 7,
+            "sourceLine": 318,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "Precautions",
+            "pdfPage": 7,
+            "sourceLine": 343,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          }
+        ]
+      }
+    ],
+    "pages": [
+      {
+        "application": "P000013",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013",
+        "discovery": "[wordlim: 200] Crawled: 5 months ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013\",\"lineno\":null}); Total lines: 122",
+        "pageUpdatedAt": "05/04/2026",
+        "locator": "L63: Labeling【35†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P000013S026",
+      "P000013S021",
+      "P000013S020",
+      "P000013S011",
+      "P000013S010",
+      "P000013S009",
+      "P000013S005",
+      "P000013S004",
+      "P000013S002",
+      "P000013S001"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 1,
+    "rows": [
+      {
+        "cfres_id": "82672",
+        "product_res_number": "Z-1703-2009",
+        "product_description": "Trident Acetabular System Surgical Protocol.  Instructions for use of hip prosthesis. Literature Number LSP55.",
+        "code_info": "Literature Number LSP55, all units, no lot number.",
+        "reason_for_recall": "The Surgical Protocol has been modified to create separate and distinct surgical protocols, one for the Trident PSL Shell (LSP68) and one for the Trident Hemispherical Shell (LSP69) in order to clarify and highlight the differences in reaming technique.",
+        "action": "Stryker sent Urgent - Product Correction - Surgical Protocol letters by Federal Express on June 9, 2009 to all Stryker branches/agencies, hospital Risk Management, hospital Chief of Orthopaedics, surgeons and all foreign consignees.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2009-06-09",
+        "event_date_posted": "2009-08-04",
+        "event_date_terminated": "2012-05-08",
+        "recalling_firm": "Stryker Howmedica Osteonics Corp.",
+        "root_cause_description": "Labeling design",
+        "applications": [
+          "P000013"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=82672",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000013C.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=82672"
+    }
+  ],
+  "path": "/dossiers/source-fda-p000013.json",
+  "applications": [
+    "P000013"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

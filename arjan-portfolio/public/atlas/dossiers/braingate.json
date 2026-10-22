@@ -1,0 +1,229 @@
+{
+  "familyId": "braingate",
+  "name": "BrainGate2 research system",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "not-established",
+    "detail": "No public FDA marketing application established in this collection. Trial registration/publication is not authorization.",
+    "records": 0,
+    "identityChecked": false,
+    "rows": [],
+    "sources": []
+  },
+  "labeling": {
+    "state": "not-applicable",
+    "detail": "No commercial labeling assigned to this investigational entry; protocol/publication evidence is separate.",
+    "documents": 0,
+    "changes": 0,
+    "rows": [],
+    "pages": [],
+    "changeIds": [],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "not-established",
+    "detail": "No reliable application-based recall join is available; no safety clearance is inferred.",
+    "recalls": 0,
+    "rows": [],
+    "sources": [],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "not-applicable",
+  "noticeReview": "partial",
+  "modelLotReview": "not-established",
+  "sourceLinks": [
+    {
+      "title": "Research evidence: NCT05724173",
+      "url": "https://clinicaltrials.gov/study/NCT05724173"
+    },
+    {
+      "title": "Research evidence: PMID:36639237",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36639237/"
+    }
+  ],
+  "path": "/dossiers/braingate.json",
+  "applications": [],
+  "researchEvidence": [
+    {
+      "id": "NCT05724173",
+      "kind": "trial",
+      "sourceSha": "75fece96e3aefd24662c138a2e2a266419d1fb5e2982ac2f6a8ead9306d82ea4",
+      "retrievedAt": "2026-10-19T07:06:49.180644+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?query.term=%22BrainGate%22&pageSize=5&format=json",
+      "title": "Feasibility of the BrainGate2 Neural Interface System in Persons With Tetraplegia",
+      "status": "RECRUITING",
+      "firstPosted": "2023-02-13",
+      "interventions": [
+        {
+          "armGroupLabels": [
+            "BrainGate Neural Interface System"
+          ],
+          "description": "Placement of the BrainGate2 sensor(s) into the speech-related cortex",
+          "name": "BrainGate Neural Interface System",
+          "type": "DEVICE"
+        }
+      ],
+      "sponsor": "Leigh R. Hochberg, MD, PhD.",
+      "summary": "The purpose of this study is to obtain preliminary device safety information and demonstrate proof of principle (feasibility) of the ability of people with tetraplegia to control a computer cursor and other assistive devices with their thoughts.",
+      "url": "https://clinicaltrials.gov/study/NCT05724173"
+    },
+    {
+      "id": "PMID:36639237",
+      "kind": "publication",
+      "sourceSha": "e6068e7107b61404b64ab5fdb5fc3cef09a84e92352d2af2872bcdc121cc0fb7",
+      "retrievedAt": "2026-10-19T07:08:40.187937+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=32166170%2C33847020%2C36639237&retmode=json&tool=BodyAtlas",
+      "title": "Interim Safety Profile From the Feasibility Study of the BrainGate Neural Interface System.",
+      "publicationDate": "2023 Mar 14",
+      "authors": [
+        "Rubin DB",
+        "Ajiboye AB",
+        "Barefoot L",
+        "Bowker M",
+        "Cash SS",
+        "Chen D",
+        "Donoghue JP",
+        "Eskandar EN",
+        "Friehs G",
+        "Grant C",
+        "Henderson JM",
+        "Kirsch RF",
+        "Marujo R",
+        "Masood M",
+        "Mernoff ST",
+        "Miller JP",
+        "Mukand JA",
+        "Penn RD",
+        "Shefner J",
+        "Shenoy KV",
+        "Simeral JD",
+        "Sweet JA",
+        "Walter BL",
+        "Williams ZM",
+        "Hochberg LR"
+      ],
+      "journal": "Neurology",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36639237/",
+      "identifiers": [
+        {
+          "idtype": "pubmed",
+          "idtypen": 1,
+          "value": "36639237"
+        },
+        {
+          "idtype": "pmc",
+          "idtypen": 8,
+          "value": "PMC10074470"
+        },
+        {
+          "idtype": "pmcid",
+          "idtypen": 5,
+          "value": "pmc-id: PMC10074470;"
+        },
+        {
+          "idtype": "doi",
+          "idtypen": 3,
+          "value": "10.1212/WNL.0000000000201707"
+        },
+        {
+          "idtype": "pii",
+          "idtypen": 4,
+          "value": "WNL.0000000000201707"
+        }
+      ]
+    }
+  ],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

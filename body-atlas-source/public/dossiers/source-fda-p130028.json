@@ -1,0 +1,770 @@
+{
+  "familyId": "source-fda-p130028",
+  "name": "Algovita spinal cord stimulation system",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "31 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 31,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P130028",
+        "supplement": "S031",
+        "date": "2020-05-05",
+        "decision": "PMA approval",
+        "tradeName": "Algovita Spinal Cord Stimulation System",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Approval use for the Algovita Clinician Programmer application and Nuvectra Bridge Communicator as per the letter dated May 5, 2020.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S031",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S028",
+        "date": "2020-02-12",
+        "decision": "PMA approval",
+        "tradeName": "Algovita Spinal Cord Stimulation System",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Approval for implementation of a modified reflow process to bond the polyurethane tip plug to the molded component of the distal end of the Algovita leads.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S028",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S025",
+        "date": "2019-12-31",
+        "decision": "PMA approval",
+        "tradeName": "Algovita Spinal Cord Stimulation System",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Approval for whole-body MRI labeling indication for implanted components of the Algovita SCS System for use in closed bore, horizontal, static magnetic field strength of 1.5T MR environments.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S025",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S030",
+        "date": "2019-10-25",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Algovita Spinal Cord Stimulation System",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Addition of an alternate supplier of the silicone seals used to manufacture the header assembly of the Algovita Implantable Pulse Generators (IPGs).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S030",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S029",
+        "date": "2019-09-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Algovita Spinal Cord Stimulation System",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Implementation of an additional bonding step to the manufacturing process of the printed circuit board assembly to provide reinforcement to the interface between the micro USB connector and the circuit board.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S029",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S027",
+        "date": "2019-08-28",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Algovita Spinal Cord Stimulation System",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Implementation of an update to the injection molding process for the distal subassembly of the Algovita® 12-Electrode Percutaneous Leads, Trial Leads, and LeadExtensions.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S027",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S026",
+        "date": "2019-08-09",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Algovita Spinal Cord Stimulation System",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Addition of alternative suppliers for the housing subcomponent and the spring/coil contact block subcomponent of the Algovita® Internal Pulse Generator (IPG).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S026",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S024",
+        "date": "2019-07-03",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Algovita Spinal Cord Stimulation System",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Incorporate a process improvement to the injection molding process for the distal subassembly of the 12 Electrode Percutaneous Leads and Trial Leads with compact spacing.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S024",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S023",
+        "date": "2019-05-31",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Algovita Spinal Cord Stimulation (SCS): 12-Electrode Percutaneous Leads, and Trial Leads",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Implementation of an update to the injection molding process for the distal subassembly of the Algovita Spinal Cord Stimulation (SCS) Leads.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S023",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S018",
+        "date": "2018-11-28",
+        "decision": "PMA approval",
+        "tradeName": "Algovita Spinal Cord Stimulation System",
+        "applicant": "Nuvectra Corporation",
+        "statement": "approval for new MR Conditional labeling limited to transmit/receive head coils and head scans only for the implanted components of the Algovita SCS System.",
+        "reason": "Labeling Change - Indications/instructions/shelf life/tradename",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S018",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S022",
+        "date": "2018-09-20",
+        "decision": "PMA approval",
+        "tradeName": "Algovita Spinal Cord Stimulation System",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Approval for modifying the design of the Algovita Model 4200 Programmer Charger cable, and the Model 4230 Charging Paddle cable to improve the mechanical reliability (flex reliability) of the cables.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S022",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S021",
+        "date": "2018-06-28",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Algovita Spinal Cord Stimulation System (SCS), Trial Lead: 8/12 Electrode Percutaneous Lead Kit",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Changes to incorporate several process enhancements to the distal final bond and distal epoxy backfill manufacturing processes for the Percutaneous Leads and Trial Leads. The changes do not change the design of the Leads",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S021",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S020",
+        "date": "2018-05-21",
+        "decision": "PMA approval",
+        "tradeName": "Algovita Spinal Cord Stimulation System",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Approval for a change to Model 2412 and 2408 Algovita Implantable Pulse Generator (IPG) software.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S020",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S017",
+        "date": "2017-05-24",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Algovita Spinal Cord Stimulation System",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Revisions to the IPG test system software to improve system reliability and align with device performance specifications.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S017",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S014",
+        "date": "2017-05-12",
+        "decision": "PMA approval",
+        "tradeName": "Algovita Spinal Cord Stimulation System",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Approval for the removal of sleep mode functionality and the modification of the boot logo branding for the device.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S014",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S015",
+        "date": "2017-03-31",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Algovita Spinal Cord Stimulation System",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Changes to the Implantable Pulse Generator printed circuit board (PCB) functional test system software in order to improve system reliability and to better conform to device performance specifications.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S015",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S016",
+        "date": "2017-03-30",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Algovita Spinal Cord Stimulation System",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Discontinue the process for evaluation of specific Radiofrequency (RF) parameters, and subsequent approval by Nuvectra based on the RF performance.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S016",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S013",
+        "date": "2017-02-07",
+        "decision": "PMA approval",
+        "tradeName": "ALGOVITA SPINAL CORD STIMULATION SYSTEM",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Approval for quality control changes that impact the manufacturing process for Algovita Percutaneous Leads and Trial Leads",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "Special (Immediate Track)",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S013",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S012",
+        "date": "2016-08-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ALGOVITA SPINAL CORD STIMULATION SYSTEM",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Changes to update the battery manufacturing equipment and addition of an alternate supplier for a wire battery component.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S012",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S011",
+        "date": "2016-08-12",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ALGOVITA SPINAL CORD STIMULATION SYSTEM",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Addition of 1) supplemental functional inspection; and 2) regular monitoring process of non-implantable electronic devices with integral batteries.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S011",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S009",
+        "date": "2016-07-14",
+        "decision": "PMA approval",
+        "tradeName": "ALGOVITA SPINAL CORD STIMULATION SYSTEM",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Approval for software and instructions for use (IFU) changes to the Model 4500 Clinician Programmer.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S009",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S010",
+        "date": "2016-07-13",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ALGOVITA SPINAL CORD STIMULATION SYSTEM",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Acceptance of an alternate manufacturing site for the supplier of the Algovita IPG electrical connector components.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S010",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S008",
+        "date": "2016-06-22",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ALGOVITA SPINAL CORD STIMULATION SYSTEM",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Use of an alternate polycarbonate/acrylonitrile butadiene styrene (PC/ABS) resin material to manufacture the lower housing of the Trial Cable Interface assembly.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S008",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S004",
+        "date": "2016-06-10",
+        "decision": "PMA approval",
+        "tradeName": "ALGOVITA SPINAL CORD STIMULATION SYSTEM",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Approval for the following changes to the 8- and 12-electrode lead extensions for your Algovita Spinal Cord Stimulation System:1)\tDecreasing your design specifications for the maximum insertion/withdrawal force from 2.0 lbf to 1.5 lbf;2)\tRevising your supplier shipping requirements for the spring system connector subassembly to have the subassembly shipped while threaded on a core pin; and 3)\tElimination of the distal end strain relief.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S004",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S007",
+        "date": "2016-06-08",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ALGOVITA SPINAL CORD STIMULATION SYSTEM",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Changes to the workflow for the Clinician Programmer Printed Circuit Board manufacturing process.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S007",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S005",
+        "date": "2016-05-26",
+        "decision": "PMA approval",
+        "tradeName": "ALGOVITA SPINAL CORD STIMULATION SYSTEM",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Approval for design changes to the Model 4500 Clinician Programmer.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S005",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S006",
+        "date": "2016-05-13",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ALGOVITA SPINAL CORD STIMULATION SYSTEM",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Optional replacement of a diode hand-soldering process with an automated surface mount technology process and optional replacement of an uncoated wire with a zero Ohm resistor on the printed circuit boards for the Model 4200 patient programmer charger of your Algovita Spinal Cord Stimulation system.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S006",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S003",
+        "date": "2016-03-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ALGOVITA SPINAL CORD STIMULATION SYSTEM",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Introduction of an additional IPG radiofrequency communications tuning step for IPG final assemblies.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S003",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S002",
+        "date": "2016-02-17",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ALGOVITA SPINAL CORD STIMULATION SYSTEM",
+        "applicant": "Nuvectra Corporation",
+        "statement": "Alternate supplier for a component of the device battery packs.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S002",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "S001",
+        "date": "2015-12-18",
+        "decision": "FDA decision code OK30",
+        "tradeName": "ALGOVITA SPINAL CORD STIMULATION SYSTEM",
+        "applicant": "Nuvectra Corporation",
+        "statement": "CHANGE IN SUPPLIER FOR THE LCD MODULE COMPONENT THAT PROVIDES THE PPC TOUCHSCREEN INTERFACE.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028S001",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      },
+      {
+        "application": "P130028",
+        "supplement": "",
+        "date": "2015-11-20",
+        "decision": "PMA approval",
+        "tradeName": "ALGOVITA SPINAL CORD STIMULATION SYSTEM",
+        "applicant": "Nuvectra Corporation",
+        "statement": "APPROVAL FOR THE ALGOVITA SPINAL CORD STIMULATION SYSTEM. THIS DEVICE IS INDICATED AS AN AID IN THE MANAGEMENT OF CHRONIC INTRACTABLE PAIN OF THE TRUNK AND/OR LIMBS, INCLUDING UNILATERAL OR BILATERAL PAIN ASSOCIATED WITH FAILED BACK SURGERY SYNDROME, INTRACTABLE LOW BACK PAIN AND LEG PAIN.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028",
+        "sourceSha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=4800&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4",
+        "file": "b5be792e2bdd58cdfd20c9b76898a8bc03197e504c506bd274ee1bbd8ab742b4.json",
+        "retrievedAt": "2026-10-22T18:59:55.201289+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "2 original labeling document link(s) located; 2 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 2,
+    "changes": 2,
+    "rows": [
+      {
+        "application": "P130028",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf13/P130028C.pdf",
+        "pages": null,
+        "textAvailable": false,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028",
+        "locator": "L56: Labeling 【38†Labeling】",
+        "pageUpdatedAt": "10/19/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "link-located-content-unavailable",
+        "accessNote": "Failed to fetch https://www.accessdata.fda.gov/cdrh_docs/pdf13/P130028C.pdf: (400) Content length is too large: 12911558",
+        "retrievalNote": "[wordlim: 200]",
+        "sections": []
+      },
+      {
+        "application": "P130028",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf13/P130028D.pdf",
+        "title": "Labeling Part 2",
+        "pages": 34,
+        "retrievalNote": "[wordlim: 200] Crawled: last month; Content type: application/pdf; Number of pages: 34;",
+        "textAvailable": true,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028",
+        "locator": "L56: Labeling 【38†Labeling】",
+        "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "sections": [
+          {
+            "title": "Indications for Use",
+            "pdfPage": 5,
+            "sourceLine": 36,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "Contraindications",
+            "pdfPage": 5,
+            "sourceLine": 40,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "Warnings",
+            "pdfPage": 5,
+            "sourceLine": 46,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "Precautions",
+            "pdfPage": 9,
+            "sourceLine": 157,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          }
+        ]
+      }
+    ],
+    "pages": [
+      {
+        "application": "P130028",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028",
+        "discovery": "[wordlim: 200] Crawled: yesterday; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028\",\"lineno\":null}); Total lines: 103",
+        "pageUpdatedAt": "10/19/2026",
+        "locator": "L56: Labeling 【38†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P130028S025",
+      "P130028S018"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "5 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 5,
+    "rows": [
+      {
+        "cfres_id": "150431",
+        "product_res_number": "Z-0781-2017",
+        "product_description": "Algovita Spinal Cord Stimulation System,  Percutaneous Leads, 8-Electrode Percutaneous Lead Kit;  \nAlgovita Spinal Cord Stimulation System Percutaneous Leads, 12-Electrode Percutaneous Lead Kit; \nAlgovita Spinal Cord Stimulation System Percutaneous Trial Leads, 8-electrode Lead Kit;\nAlgovita Spinal Cord Stimulation System Percutaneous Trial Leads, 12-electrode Lead Kit. \nModel Number (s)  112x-xx (CT), 108x-xx(T). \nThese are part of the Algovita Spinal Cord Stimulation System.\n\nThe Algovita Spinal Cord Stimulation system consists of a stimulator (EPG or IPG) that is physically and electrically connected to one or more leads inserted into the patient s spinal epidural space. The lead delivers electrical stimulation originating at the stimulator with the purpose of blocking pain signals going to the patient s brain. The stimulators are rechargeable, and the frequency of recharging is dependent on\nindividual patient s use of the system.",
+        "code_info": "Lot Numbers:  W2886402  , W2888100  , W2904692, W2909622  , W2909623  , W2912562  , W2918496, W2918506  , W2930816, W2930816  , W2938384  , W2939156  , W2943651  , W2946424  , W2952157  , W2964008  , W2964009, W2964009  , W2964010, W2964010  , W2964011  , W2972187  , W2978500  , W2981155, W2981155  , W2988382, W2988382  , W3040781  , W3041965, W3041965  , W3043467, W3048908, W3052511  , W3052514, W3052515  , W3057023, W3057024, W3057027, W3057033, W3057033  , W3063066, W3063073, W3063073  , W3088964, W3110760  , W3111249, W3114108, W3119243, W3123219  , W3123220, W3123220  , W3124197, W3127472, W3127472  , W3127473, W3133254, W3133264  , W3135521, W3232789, W3232789  , W3232790, W3232791, W3232792, W3232792  , W3236234, W3236235, W3236237, W3236239, W3236239  , W3321458  , W3321459  , W3321460  , W3321461  , W3321463  , W3321464, W3324818  , W3324820, W3324821  , W3324826  , W3324827, W3324829  , W3324830  , W3335022, W3335022  , W3335027, W3335033  , W3335041  , W3335050, W3335050  , W3335055, W3335055  , W3343777, W3343777  , W3348715  , W3356371, W3356371  , W3357155, W3357155  , W3357157  , W3357159, W3357159  , W3357160  , W3357162, W3357164  , W3357167, W3357169  , W3362186  , W3362187, W3362187  , W3362188, W3362188  , W3362209  , W3374818  , W3374820, W3374821  , W3374823  , W3378359, W3378360, W3389104, W3389105  , W3389112, W3389117  , W3393665  , W3393666  , W3393667, W3393668  , W3396586  , W3396603, W3396608, W3396609  , W3399272  , W3424531, W3424531  , W3424542, W3424565  , W3424585, W3424586, W3424586  , W3424589, W3424591  , W3424593, W3424599, W3424602, W3424616  , W3424623  , W3424627  , W3442616  , W3442617, W3442617  , W3442618, W3442618  , W3442619  , W3448170, W3448171, W3448172  , W3448173  , W3448174  , W3454201  , W3454202  , W3462791  , W3462792  , W3462794, W3462795, W3462795  , W3462796, W3462797, W3462798, W3472638, W3472639, W3472639  , W3472640  , W3472641, W3472641  , W3475288, W3475289, W3475289  , W3475290, W3475290  , W3475291, W3475291  , W3493137, W3498560, W3498562, W3498564, W3504760, W3504762, W3504763, W3504766  , W3506847, W3506848, W3506851, W3536038  , W3536039, W3536039  , W3539484, W3540924.",
+        "reason_for_recall": "Nuvectra is conducting a recall due to two clinical risks that are  associated with certain percutaneous leads currently being used in the Algovita Spinal Cord Stimulation System.\nIt has been reported that in some percutaneous leads, the stylet protruded beyond the distal lead tip.",
+        "action": "Nuvectra field sales associate or contracted distributor were sent a Nuvectra Urgent Field Safety Notice (Field Action Number: 2016-03) on 10/11/2016 via Fed-Ex. The letter provided background information, described the problem, & the product involved in the recall. The letter listed the potential clinical implications, rate of occurrence, recommendations and mitigations  and action needed.  Provided consignees with notices for them to deliver to physicians as well as Response forms for  them and the physician. For questions contact Kathy Jo Fahery +01.763.951.8219.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2016-10-11",
+        "event_date_posted": "2016-12-17",
+        "event_date_terminated": "2018-08-08",
+        "recalling_firm": "Nuvectra",
+        "root_cause_description": "Nonconforming Material/Component",
+        "applications": [
+          "P130028"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=150431",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "145307",
+        "product_res_number": "Z-1600-2016",
+        "product_description": "Nuvectra, Algovita Spinal Cord Stimulation System Clinical Programmer, Model 4500. For use with Algovita Spinal Cord Stimulation Systems.  The version of the software in the Clinician Programmer is v1.1.5. \n\nThe Algovita Spinal Cord Stimulation system consists of a stimulator (EPG or IPG) that is physically and electrically connected to one or more leads inserted into the patient\"s spinal epidural space. The lead delivers electrical stimulation originating at the stimulator with the purpose of blocking pain signals going to the patient\"s brain. The stimulators are rechargeable, and the frequency of recharging is dependent on individual patient\"s use of the system. \n\nThe Clinician Programmer (CP) is a hand-held, touch screen device used to create and adjust stimulation parameters that are developed to optimize the therapy for each patient. The CP communicates with the stimulator via the Medical Implant Communication Service (MICS). The CP wirelessly transfers the stimulation parameters to the stimulator.  In most clinical settings, the CP can be used by the Health Care Professional to program multiple patient EPGs and IPGs",
+        "code_info": "Serial 000010 000011 FF0043 FF0045 000014 000015 000016 FF0054 FF0048 FF004B FF005D FF0064 FF0065 FF0067 FF00A9 FF00AD FF00BB   Lot  P178713 P185700 P187989 P195875 P213108 P257056",
+        "reason_for_recall": "If used, the optional Swap feature copies programming parameters from the external pulse generator (EPG) as well as unintended calibration data to the implantable pulse generator (lPG). This may result in the user being unable to recharge the lPG.\nThis safety notice only applies to CPs Model 4500.",
+        "action": "Nuvectra sent an  \"Urgent Field Safety Notice\" letter dated April 6, 2016 to customers.   The letter identified the affected product, problem, recommendations and Mitigations, and actions to be taken.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2016-04-06",
+        "event_date_posted": "2016-05-03",
+        "event_date_terminated": "2017-09-29",
+        "recalling_firm": "Nuvectra",
+        "root_cause_description": "Software design",
+        "applications": [
+          "P130028"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=145307",
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+      },
+      {
+        "cfres_id": "143221",
+        "product_res_number": "Z-1192-2016",
+        "product_description": "Algostim LLC, Algovita Implanted Pulse Generator stimulator, Model 2408 ( 3 x 8 channel)",
+        "code_info": "Serial Numbers:  03EDBF, 03EDC1, 03EDC5, 03EDC7, 03EDC9, 03EDCA, 03EDCE, 03EDD0, 03EDE5, 03EDE8, 03EDE9, 03EDEA, 03EDEF, 03EDF0, 03EE01, 03EE03, 03EE05, 03EE1C, 03EE1F, 03EE24, 03EE25, 03EE26, 03EE28, 03EE34, 03EE35, 03EE36, 03EE37, 03EE3A, 03EE3B, 03EE5A, 03EE5B, 03EE60, 03EE96, 03EE97, 03EE98, 03EE9D, 03EE9F, 03EEA2, 03EEA3, 03EEA4, 03EEAC.",
+        "reason_for_recall": "The implantable pulse generator (IPG) model 2408  had suboptimal performance establishing a connection to the external devices unless they were brought into close proximity (as close as 5 cm).  The following functions may not be available:  Reprogramming the stimulator, Adjusting stimulation parameters (on/off, intensity modifications, stimulation program selection), and Recharging the stimulator.",
+        "action": "Consignee was sent on 1/26/2016 a Algostim, LLC \"Urgent Field safety Notice\" dated January 21, 2016. The letter described the problem and the product involved in the recall.  The letter provided Background information as well as described the Clinical Implications, Rate of Occurrence, Recommendations and Mitigations. Advised consignee to deliver the respective letter to each physician who have implanted affected product and collect signed Response forms.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2016-01-26",
+        "event_date_posted": "2016-03-18",
+        "event_date_terminated": "2017-04-05",
+        "recalling_firm": "QiG Group LLC",
+        "root_cause_description": "Nonconforming Material/Component",
+        "applications": [
+          "P130028"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=143221",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "143228",
+        "product_res_number": "Z-1193-2016",
+        "product_description": "Algostim LLC, Algovita Implanted Pulse Generator stimulator, Model 2412 ( 2 x 12 channel)",
+        "code_info": "Serial Numbers:  03EDB5, 03EDD9, 03EDDA, 03EDDB, 03EDDD, 03EDE0, 03EDE4, 03EDF5, 03EDF6, 03EDFA, 03EDFC, 03EDFF, 03EE07, 03EE08, 03EE0A, 03EE0D, 03EE0E, 03EE12, 03EE13, 03EE1A, 03EE30, 03EE3C, 03EE3F, 03EE44, 03EE48, 03EE4C, 03EE4D, 03EE6D, 03EE74, 03EE82, 03EE88, 03EE89, 03EE8F, 03EE94.",
+        "reason_for_recall": "The implantable pulse generator (IPG) model 2408  had suboptimal performance establishing a connection to the external devices unless they were brought into close proximity (as close as 5 cm).  The following functions may not be available:  Reprogramming the stimulator, Adjusting stimulation parameters (on/off, intensity modifications, stimulation program selection), and Recharging the stimulator.",
+        "action": "Consignee was sent on 1/26/2016 a Algostim, LLC \"Urgent Field safety Notice\" dated January 21, 2016. The letter described the problem and the product involved in the recall.  The letter provided Background information as well as described the Clinical Implications, Rate of Occurrence, Recommendations and Mitigations. Advised consignee to deliver the respective letter to each physician who have implanted affected product and collect signed Response forms.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2016-01-26",
+        "event_date_posted": "2016-03-18",
+        "event_date_terminated": "2017-04-05",
+        "recalling_firm": "QiG Group LLC",
+        "root_cause_description": "Nonconforming Material/Component",
+        "applications": [
+          "P130028"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=143228",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      },
+      {
+        "cfres_id": "143234",
+        "product_res_number": "Z-1194-2016",
+        "product_description": "Algostim LLC, Algovita External Pulse Generator, Trial Stimulator, Model 3400",
+        "code_info": "Serial Numbers:  01DC94, 01DC98, 01DC9B, 01DCA6, 01DCB2, 01DCB3, 01DCB4, 01DCB5, 01DCB6, 01DCB",
+        "reason_for_recall": "The implantable pulse generator (IPG) model 2408  had suboptimal performance establishing a connection to the external devices unless they were brought into close proximity (as close as 5 cm).  The following functions may not be available:  Reprogramming the stimulator, Adjusting stimulation parameters (on/off, intensity modifications, stimulation program selection), and Recharging the stimulator.",
+        "action": "Consignee was sent on 1/26/2016 a Algostim, LLC \"Urgent Field safety Notice\" dated January 21, 2016. The letter described the problem and the product involved in the recall.  The letter provided Background information as well as described the Clinical Implications, Rate of Occurrence, Recommendations and Mitigations. Advised consignee to deliver the respective letter to each physician who have implanted affected product and collect signed Response forms.",
+        "recall_status": "Terminated",
+        "event_date_initiated": "2016-01-26",
+        "event_date_posted": "2016-03-18",
+        "event_date_terminated": "2017-04-05",
+        "recalling_firm": "QiG Group LLC",
+        "root_cause_description": "Nonconforming Material/Component",
+        "applications": [
+          "P130028"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=143234",
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [
+      {
+        "date": "09/03/2026",
+        "title": "Spinal Cord Stimulator Recall: Boston Scientific Removes Infinion CX Leads",
+        "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/spinal-cord-stimulator-recall-boston-scientific-removes-infinion-cx-lead",
+        "category": "Spinal Cord Stimulator",
+        "sourceSha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+        "matchedTerms": [
+          "spinal cord stimulat"
+        ],
+        "review": "Candidate: title or class context only; model/application applicability not established"
+      }
+    ],
+    "unresolvedReferences": [],
+    "screenedTerms": [
+      "spinal cord stimulat"
+    ],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf13/P130028C.pdf"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf13/P130028D.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=150431"
+    }
+  ],
+  "path": "/dossiers/source-fda-p130028.json",
+  "applications": [
+    "P130028"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

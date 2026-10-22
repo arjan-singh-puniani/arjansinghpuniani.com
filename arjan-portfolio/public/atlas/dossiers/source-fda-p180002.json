@@ -1,0 +1,655 @@
+{
+  "familyId": "source-fda-p180002",
+  "name": "Zephyr endobronchial valve",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "checked",
+    "detail": "30 FDA decision records indexed; original identity/date checked. Public PMA history inventory reconciled to provider count.",
+    "records": 30,
+    "identityChecked": true,
+    "rows": [
+      {
+        "application": "P180002",
+        "supplement": "S032",
+        "date": "2026-09-11",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr Endobronchial Valve System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval for changes to the funnel component of the Endobronchial Loader System included with the Zephyr 4.0-LP Endobronchial Valve.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S032",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S031",
+        "date": "2026-06-17",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Zephyr Endobronchial Valve (EBV) System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "approval for the qualification of Confluent Medical (Fremont, CA) as a second source supplier for the nitinol retainer component of the Zephyr 5.5-LP EBV",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S031",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S030",
+        "date": "2026-03-17",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Zephyr Endobronchial Valve (EBV) System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Removal of the ambient aeration step of the ethylene oxide (EO) sterilization process.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S030",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S029",
+        "date": "2024-12-04",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr Endobronchial Valve System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval for the change of using a modified funnel component for the Endobronchial Loader System included with the Zephyr 4.0 and 5.5-LP Endobronchial Valve (EBV) product models",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S029",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S028",
+        "date": "2024-08-23",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Zephyr Endobronchial Valve (EBV) System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "A manufacturing change from two cycles of ethylene oxide (EO) sterilization to three cycles of ethylene oxide sterilization with a three-year shelf life for two lots of the Zephyr 4.0-LP EBV (Lot 506377-V7.1 and Lot 506412-V7.1).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S028",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S027",
+        "date": "2024-05-13",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr Endobronchial Valve System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval for the change of using a modified funnel component for the Endobronchial Loader System included with the Zephyr 5.5 Endobronchial Valve (EBV)",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S027",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S025",
+        "date": "2024-03-22",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr Endobronchial Valve System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval of the labeling supplement as required by the PASR letter issued following the PAS final report P180002/R020.",
+        "reason": "Labeling Change - PAS",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S025",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S026",
+        "date": "2024-03-01",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Zephyr Endobronchial Valve (EBV) System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Manufacturing change allowing option to perform two sterilization cycles on the Zephyr Endobronchial Delivery Catheters.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S026",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S024",
+        "date": "2023-09-05",
+        "decision": "PMA approval",
+        "tradeName": "modified 4.0-LP funnel component",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval for the proposed design changes to the funnel of the Endobronchial Loader System that is included with the Zephyr 4.0-LP Endobronchial valve model.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S024",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S022",
+        "date": "2023-03-25",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr Valve Reigstry (ZEVR)",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval for modifications to the protocol including an increase in study sites from 10 to 15 and minor clarification changes.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S022",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S020",
+        "date": "2022-03-09",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr Valve Registry (ZEVR)",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval for revising the study timeline due to COVID-19 pandemic delays",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S020",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S019",
+        "date": "2021-08-13",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr Endobronchial Valve (Zephyr Valve)",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval for modifications to the protocol to include collection of perfusion data at baseline, extension of high-resolution computed tomography (HRCT) baseline data collection window from 3 months to 6 months prior to Informed Consent date, and collection of HRCT data at 12 months.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S019",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S017",
+        "date": "2020-11-19",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Zephyr Endobronchial Valve System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Manufacturing changes affecting inspection of the Zephyr Endobronchial Delivery Catheter and the Endobronchial Valve.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S017",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S016",
+        "date": "2020-10-30",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Zephyr Endobronchial Valve (EBV) System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Modify the manufacturing process of laminating the inner shaft for Endobronchial Delivery Catheters (EDCs).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S016",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S015",
+        "date": "2020-10-06",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr Endobronchial Valve (EBV) System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval for a manufacturing change with the existing approved supplier Confluent Medical (Fremont, CA) for the nitinol retainer component of the Zephyr 4.0 EBV.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S015",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S011",
+        "date": "2019-12-23",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr Endobronchial Valve System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval for including a smaller outer shipper box option which has the capacity for up to five (5) Zephyr Endobronchial Delivery Catheter (EDC) devices.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S011",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S014",
+        "date": "2019-12-06",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Zephyr Endobronchial Valve (EBV) System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Manufacturing change of adding the option of performing lot release testing of the Zephyr Endobronchial Delivery Catheter (EDC) before sterilization.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S014",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S013",
+        "date": "2019-11-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Zephyr Endobronchial Valve (EBV) System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Manufacturing changes to the Endobronchial Valve (EBV) System.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S013",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S012",
+        "date": "2019-11-21",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Zephyr Endobronchial Valve (EBV) System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Changes to the to sterilization parameters for the Endobronchial Valve (EBV) System.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S012",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S010",
+        "date": "2019-11-13",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr 5.5 EBV Circle Flange Valve",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval for the Zephyr 5.5 EBV Circle Flange Valve.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S010",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S009",
+        "date": "2019-10-02",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr Valve Registry (ZEVR)",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval for the enrollment of at least 20 patients with the new sized Zephyr valve (5.5 LP EBV).",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S009",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S007",
+        "date": "2019-08-01",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr Endobronchial Valve (EBV) System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval to implement a revised process for the lot release testing sampling plan for Zephyr Endobronchial Valve System products.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S007",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S005",
+        "date": "2019-07-30",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr Endobronchial Valve (EBV) System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval for the Zephyr 5.5-LP Endobronchial Valve (EBV) and the Zephyr 5.5 Dual Mark Endobronchial Delivery Catheter (EDC).",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Normal 180 Day Track",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S005",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S006",
+        "date": "2019-07-19",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr Endobronchial Valve (EBV) System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval to use an alternate supplier, Laserage (Waukegan, IL), for the retainer component of the Zephyr 4.0 Endobronchial Valve.",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "135 Review Track For 30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S006",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S008",
+        "date": "2019-07-17",
+        "decision": "FDA decision code OK30",
+        "tradeName": "Zephyr Endobronchial Valve (EBV) System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Addition of an alternate supplier of the funnel component of the Endobronchial Loader System (ELS).",
+        "reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+        "type": "30-Day Notice",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S008",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S003",
+        "date": "2019-05-03",
+        "decision": "PMA approval",
+        "tradeName": "The Pulmonx Zephyr Endobronchial Valve System (EBV)",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval for the Pulmonx Zephyr® Endobronchial Valves.  These are implantable bronchial valves which are indicated for the bronchoscopic treatment of adult patients with hyperinflation associated with severe emphysema in regions of the lung that have little to no collateral ventilation.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S003",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S004",
+        "date": "2019-01-28",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr Endobronchial Valve System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval for a waiver of the 6-month Post Approval Study (PAS) reporting requirement for the LIBERATE extension study.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S004",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S001",
+        "date": "2018-10-25",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr Endobronchial Valve (EBV) System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval for the proposed design changes to the funnel of the Endobronchial Loader System that is included with the Zephyr 5.5 Endobronchial valve model.",
+        "reason": "Change Design/Components/Specifications/Material",
+        "type": "Real-Time Process",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S001",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "S002",
+        "date": "2018-09-25",
+        "decision": "PMA approval",
+        "tradeName": "Pulmonx Zephyr Endobronchial Valve (EBV)",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval for The Pulmonx Zephyr® Endobronchial Valves are implantable bronchial valves indicated for the bronchoscopic treatment of adult patients with hyperinflation associated with severe emphysema in regions of the lung that have little to no collateral ventilation.",
+        "reason": "Postapproval Study Protocol",
+        "type": "Normal 180 Day Track No User Fee",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002S002",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      },
+      {
+        "application": "P180002",
+        "supplement": "",
+        "date": "2018-06-29",
+        "decision": "PMA approval",
+        "tradeName": "Zephyr Endobronchial Valve System",
+        "applicant": "Pulmonx Corporation",
+        "statement": "Approval of the Pulmonx Zephyr® Endobronchial Valve System.  The device is an implantable bronchial valve indicated for the bronchoscopic treatment of adult patients with hyperinflation associated with severe emphysema in regions of the lung that have little to no collateral ventilation.",
+        "reason": "",
+        "type": "",
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002",
+        "sourceSha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/pma.json?search=pma_number%3A%28P000006+OR+P000008+OR+P000009+OR+P000013+OR+P000023+OR+P000025+OR+P000030+OR+P000037+OR+P000040+OR+P000046+OR+P000057+OR+P000058+OR+P010003+OR+P010014+OR+P010015+OR+P010018+OR+P010029+OR+P010030+OR+P010047+OR+P010055+OR+P010059+OR+P020004+OR+P020023+OR+P020047+OR+P020056+OR+P030002+OR+P030004+OR+P030017+OR+P030047+OR+P040003+OR+P040013+OR+P040026+OR+P040027+OR+P040033+OR+P050027+OR+P050050+OR+P050052+OR+P060006+OR+P060010+OR+P060023+OR+P060037+OR+P060040+OR+P080003+OR+P080025+OR+P080030+OR+P080032+OR+P090018+OR+P100006+OR+P100009+OR+P100014+OR+P100018+OR+P100022+OR+P100026+OR+P100034+OR+P100040+OR+P100045+OR+P100049+OR+P110006+OR+P110010+OR+P110015+OR+P130008+OR+P130013+OR+P130028+OR+P140009+OR+P140019+OR+P140031+OR+P150033+OR+P150038+OR+P160013+OR+P170001+OR+P170023+OR+P170029+OR+P180002+OR+P200029+OR+P200031+OR+P210007+OR+P210020+OR+P220023+OR+P240015+OR+P840024+OR+P950035+OR+P960009+OR+P960053+OR+P970003+OR+P990065%29&limit=100&skip=5500&sort=pma_number%3Aasc%2Csupplement_number%3Aasc",
+        "sha": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0",
+        "file": "61d63b587c5bfddc802bf1def37758a983867d06e00b5273b625c9c90cf5c4a0.json",
+        "retrievedAt": "2026-10-22T19:00:01.572453+00:00",
+        "providerUpdatedAt": "2026-10-12",
+        "state": "checked"
+      }
+    ]
+  },
+  "labeling": {
+    "state": "located",
+    "detail": "1 original labeling document link(s) located; 1 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "documents": 1,
+    "changes": 1,
+    "rows": [
+      {
+        "application": "P180002",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf18/P180002C.pdf",
+        "pages": 52,
+        "textAvailable": true,
+        "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002",
+        "locator": "L57: Labeling 【39†Labeling】",
+        "pageUpdatedAt": "10/19/2026",
+        "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+        "checkedAt": "2026-10-22",
+        "state": "located",
+        "retrievalNote": "[wordlim: 200] Crawled: today; Content type: application/pdf; Number of pages: 52;",
+        "sections": [
+          {
+            "title": "2.0 Indications for Use",
+            "pdfPage": 5,
+            "sourceLine": 97,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "3.0 Contraindications",
+            "pdfPage": 5,
+            "sourceLine": 101,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "4.0 Warnings",
+            "pdfPage": 5,
+            "sourceLine": 110,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "5.0 Precautions",
+            "pdfPage": 5,
+            "sourceLine": 121,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          },
+          {
+            "title": "5.2 Magnetic Resonance Imaging (MRI) Safety Information",
+            "pdfPage": 6,
+            "sourceLine": 138,
+            "method": "Exact heading match in publicly retrieved PDF text; page is 1-based. Section content and current revision not reviewed."
+          }
+        ]
+      }
+    ],
+    "pages": [
+      {
+        "application": "P180002",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002",
+        "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002\",\"lineno\":null}); Total lines: 104",
+        "pageUpdatedAt": "10/19/2026",
+        "locator": "L57: Labeling 【39†Labeling】"
+      }
+    ],
+    "changeIds": [
+      "P180002S025"
+    ],
+    "inventory": {
+      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
+      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "checked",
+    "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "recalls": 1,
+    "rows": [
+      {
+        "cfres_id": "203609",
+        "product_res_number": "Z-0235-2024",
+        "product_description": "Zephyr Endobronchial Valve (EBV) 5.5-LP, REF: EBV-TS-5.5-LP",
+        "code_info": "UDI: (01)00811907030423(10)506590V70(17)241208, Lot: 506590-V7.0",
+        "reason_for_recall": "Endobronchial implant devices may have been labeled with a shortened expiration date but they can be used until the correct expiration date: 08 December 2024.",
+        "action": "On 8/31/23, correction notices were emailed to customers who were asked to do the following:\n\n1) The affected lot can be used without risk to the patient until 08 December 2024. In addition, this lot was manufactured on 2021-12-08.\n2) Check your inventory and keep this letter with any remaining product of the affected lot to support the corrected manufacture and expiration date.\n3) Send a response email acknowledging receipt that includes the number of affected devices remaining at your site.\n\nCustomers with questions can call 650-743-6848.",
+        "recall_status": "Open, Classified",
+        "event_date_initiated": "2023-08-31",
+        "event_date_posted": "2023-11-06",
+        "event_date_terminated": "",
+        "recalling_firm": "Pulmonx, Corp.",
+        "root_cause_description": "Error in labeling",
+        "applications": [
+          "P180002"
+        ],
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=203609",
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=0",
+        "sha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "file": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c.json",
+        "retrievedAt": "2026-10-22T19:13:43.412198+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=100",
+        "sha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "file": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a.json",
+        "retrievedAt": "2026-10-22T19:13:44.640952+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=200",
+        "sha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "file": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5.json",
+        "retrievedAt": "2026-10-22T19:13:45.936588+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      },
+      {
+        "url": "https://api.fda.gov/device/recall.json?search=pma_numbers%3A%28P000006%2A+OR+P000008%2A+OR+P000009%2A+OR+P000013%2A+OR+P000023%2A+OR+P000025%2A+OR+P000030%2A+OR+P000037%2A+OR+P000040%2A+OR+P000046%2A+OR+P000057%2A+OR+P000058%2A+OR+P010003%2A+OR+P010014%2A+OR+P010015%2A+OR+P010018%2A+OR+P010029%2A+OR+P010030%2A+OR+P010047%2A+OR+P010055%2A+OR+P010059%2A+OR+P020004%2A+OR+P020023%2A+OR+P020047%2A+OR+P020056%2A+OR+P030002%2A+OR+P030004%2A+OR+P030017%2A+OR+P030047%2A+OR+P040003%2A+OR+P040013%2A+OR+P040026%2A+OR+P040027%2A+OR+P040033%2A+OR+P050027%2A+OR+P050050%2A+OR+P050052%2A+OR+P060006%2A+OR+P060010%2A+OR+P060023%2A+OR+P060037%2A+OR+P060040%2A+OR+P080003%2A+OR+P080025%2A+OR+P080030%2A+OR+P080032%2A+OR+P090018%2A+OR+P100006%2A+OR+P100009%2A+OR+P100014%2A+OR+P100018%2A+OR+P100022%2A+OR+P100026%2A+OR+P100034%2A+OR+P100040%2A+OR+P100045%2A+OR+P100049%2A+OR+P110006%2A+OR+P110010%2A+OR+P110015%2A+OR+P130008%2A+OR+P130013%2A+OR+P130028%2A+OR+P140009%2A+OR+P140019%2A+OR+P140031%2A+OR+P150033%2A+OR+P150038%2A+OR+P160013%2A+OR+P170001%2A+OR+P170023%2A+OR+P170029%2A+OR+P180002%2A+OR+P200029%2A+OR+P200031%2A+OR+P210007%2A+OR+P210020%2A+OR+P220023%2A+OR+P240015%2A+OR+P840024%2A+OR+P950035%2A+OR+P960009%2A+OR+P960053%2A+OR+P970003%2A+OR+P990065%2A%29+OR+k_numbers%3A%28K130233+OR+K250173+OR+K260007+OR+K260721%29&limit=100&skip=300",
+        "sha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "file": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369.json",
+        "retrievedAt": "2026-10-22T19:13:47.045516+00:00",
+        "providerUpdatedAt": "2026-10-19",
+        "state": "checked"
+      }
+    ],
+    "noticeCandidates": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [
+      "zephyr"
+    ],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+    ]
+  },
+  "currentLabelReview": "pending",
+  "noticeReview": "partial",
+  "modelLotReview": "pending",
+  "sourceLinks": [
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002"
+    },
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf18/P180002C.pdf"
+    },
+    {
+      "title": "Application-linked recall (applicability pending)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=203609"
+    }
+  ],
+  "path": "/dossiers/source-fda-p180002.json",
+  "applications": [
+    "P180002"
+  ],
+  "researchEvidence": [],
+  "review": {
+    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
+    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
+    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "next": [
+      "Reconcile latest instructions and labeling supplements by model/revision.",
+      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
+      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+    ]
+  }
+}

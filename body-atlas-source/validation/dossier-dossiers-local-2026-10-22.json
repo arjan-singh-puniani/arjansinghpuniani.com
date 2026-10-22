@@ -1,0 +1,32 @@
+{
+  "site": "http://127.0.0.1:3210",
+  "results": [
+    {
+      "viewport": "desktop",
+      "dossiers": 91,
+      "initialDossierRequests": 0,
+      "sourceAndModelLot": true,
+      "labelScope": true,
+      "briefCitations": true,
+      "keyboardTabs": true,
+      "retryRecovery": true,
+      "axeViolations": 0,
+      "pageErrors": [],
+      "p95SelectionToDossierMs": 39
+    },
+    {
+      "viewport": "mobile",
+      "dossiers": 91,
+      "initialDossierRequests": 0,
+      "sourceAndModelLot": true,
+      "labelScope": true,
+      "briefCitations": true,
+      "keyboardTabs": true,
+      "retryRecovery": true,
+      "axeViolations": 0,
+      "pageErrors": [],
+      "p95SelectionToDossierMs": 38
+    }
+  ],
+  "environment": "Installed Chrome; mobile is touch/viewport emulation, not a physical phone."
+}
