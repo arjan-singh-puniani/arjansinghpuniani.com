@@ -61,17 +61,29 @@ export function skinMatrices(p, restPose = bind) {
             p[`wrist${side}`] = new Vec3(wrist.x, wrist.y, wrist.z);
         }
     }
-    const out = new Float32Array(BONE_COUNT * 16);
+    const out = new Float32Array(BONE_COUNT * 16), frames = [];
     for (let i = 0; i < BONE_COUNT; i++) {
         const d = defs[i], length = Vec3.sub(endpoint(p, d), jointPoint(p, d.joint)).len(), rest = Vec3.sub(endpoint(restPose, d), jointPoint(restPose, d.joint)).len(), rigid = d.joint.startsWith('hand') || d.joint.startsWith('foot') || restPose !== bind && d.joint === 'head';
         let frame = frameFor(p, d);
+        if ((d.joint.startsWith('upperArm') || d.joint === 'foreArmL' || d.joint === 'foreArmR') && restPose.wristL) {
+            // Forward-axis projection flips the sleeve; carry the authored shoulder roll with the torso.
+            const parent = d.joint.startsWith('upperArm') ? BONE.chest : BONE[d.joint.endsWith('L') ? 'upperArmL' : 'upperArmR'], source = multiply(multiply(frames[parent], inverse[parent]), frameFor(restPose, d)), from = new Vec3(source[4], source[5], source[6]), to = Vec3.sub(endpoint(p, d), jointPoint(p, d.joint)).normalize(), axis = Vec3.cross(from, to), cosine = Vec3.dot(from, to), forward = new Vec3(source[8], source[9], source[10]), turn = Vec3.cross(axis, forward);
+            const hint = cosine > -.9999 ? forward.clone().add(turn).add(Vec3.cross(axis, turn).scale(1 / (1 + cosine))) : forward.clone().scale(-1);
+            frame = rigidFrame(jointPoint(p, d.joint), endpoint(p, d), hint);
+            if (d.joint === 'foreArmL' || d.joint === 'foreArmR') {
+                // Start grip roll above the twist seam instead of concentrating it at the wrist.
+                const palm = BONE[d.joint.endsWith('L') ? 'handL' : 'handR'], palmFrame = multiply(multiply(frameFor(p, defs[palm]), inverse[palm]), frameFor(restPose, d)), roll = Vec3.cross(new Vec3(palmFrame[0], palmFrame[1], palmFrame[2]), to);
+                frame = interpolateRigidFrame(frame, rigidFrame(jointPoint(p, d.joint), endpoint(p, d), roll.len() > .1 ? roll : hint), .25);
+            }
+        }
         if (d.joint.startsWith('foreArmTwist') && restPose.wristL) {
-            const side = d.joint.endsWith('L') ? 'L' : 'R', proximal = BONE[`foreArm${side}`], palm = BONE[`hand${side}`], source = frameFor(restPose, d), predicted = multiply(multiply(frameFor(p, defs[proximal]), inverse[proximal]), source), palmFrame = multiply(multiply(frameFor(p, defs[palm]), inverse[palm]), source);
+            const side = d.joint.endsWith('L') ? 'L' : 'R', proximal = BONE[`foreArm${side}`], palm = BONE[`hand${side}`], source = frameFor(restPose, d), predicted = multiply(multiply(frames[proximal], inverse[proximal]), source), palmFrame = multiply(multiply(frameFor(p, defs[palm]), inverse[palm]), source);
             // Palm width defines roll even when a bent wrist aligns its normal with the forearm.
             const axis = Vec3.sub(endpoint(p, d), jointPoint(p, d.joint)).normalize(), forward = Vec3.cross(new Vec3(palmFrame[0], palmFrame[1], palmFrame[2]), axis), target = rigidFrame(jointPoint(p, d.joint), endpoint(p, d), forward.len() > .1 ? forward : new Vec3(palmFrame[8], palmFrame[9], palmFrame[10])), half = interpolateRigidFrame(predicted, target, .5);
             // Share palm roll across the forearm rather than concentrating it at one skin seam.
             frame = rigidFrame(jointPoint(p, d.joint), endpoint(p, d), new Vec3(half[8], half[9], half[10]));
         }
+        frames[i] = frame;
         const m = multiply(multiply(frame, scaling(new Vec3(1, rigid ? 1 : length / Math.max(.001, rest), 1))), inverse[i]);
         out.set(m, i * 16);
     }

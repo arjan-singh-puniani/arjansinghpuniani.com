@@ -65,6 +65,19 @@ for(const [surface,armGeometry,padding] of [['sleeves',sleeves,.005]])for(const 
  radii.sort((a,b)=>a-b);const radius95=radii[Math.floor(radii.length*.95)];assert(radii.length>60&&radius95>.03&&radius95<limit+padding,'exported arm cross-section must retain the slimmer athletic silhouette');console.log(JSON.stringify({surface,arm:start+side,radius95,samples:radii.length}));
 }
 const bind=skinMatrices(rest,rest);for(let bone=0;bone<Object.keys(BONE).length;bone++)for(let i=0;i<16;i++)assert(Math.abs(bind[bone*16+i]-(i%5===0?1:0))<1e-5,'rest pose changed');
+{
+ let maxShoulderRollStep=0,shoulderRollSamples=0;
+ for(const side of ['L','R']){
+  const bone=BONE['upperArm'+side],origin=rest['upperArm'+side],length=Vec3.sub(rest['foreArm'+side],origin).len(),point=Vec3.lerp(origin,rest['foreArm'+side],.4).add(new Vec3(0,0,.05));let previous;
+  for(let y=-.008;y<=.008001;y+=.0005){
+   const pose={...rest,['foreArm'+side]:origin.clone().add(new Vec3(0,y,Math.sqrt(length*length-y*y)))},palette=skinMatrices(pose,rest),p=transformPoint(palette.slice(bone*16,bone*16+16),point);
+   if(previous)maxShoulderRollStep=Math.max(maxShoulderRollStep,Math.hypot(p.x-previous.x,p.y-previous.y,p.z-previous.z));previous=p;shoulderRollSamples++;
+  }
+  const opposite={...rest,['foreArm'+side]:origin.clone().sub(Vec3.sub(rest['foreArm'+side],origin))},palette=skinMatrices(opposite,rest);assert(palette.every(Number.isFinite),'opposite shoulder direction must remain finite');
+  const end=transformPoint(palette.slice(bone*16,bone*16+16),rest['foreArm'+side]);assert(Math.hypot(end.x-opposite['foreArm'+side].x,end.y-opposite['foreArm'+side].y,end.z-opposite['foreArm'+side].z)<1e-6,'shoulder roll must retain the elbow endpoint');
+ }
+ assert(maxShoulderRollStep<.004,'the shoulder must not roll over when its elbow crosses the torso forward axis');console.log(JSON.stringify({shoulderRollSamples,maxShoulderRollStep}));
+}
 assert(rest.handL.x<0&&rest.handR.x>0&&rest.thighL.x<0&&rest.thighR.x>0);
 // Native QA checks image decoding. This mock exercises the real verified loader and capture/replay path.
 const previousFetch=globalThis.fetch,previousImage=globalThis.Image;
@@ -89,11 +102,11 @@ for(const state of ['idle','sit','drink','ready','swingForehand','swingBackhand'
  character.trigger(state);for(let t=0;t<90;t++){character.update(1/120);if(t%15)continue;
   const observed=character.analysisPose();for(const side of ['L','R'])for(const [a,b,expected] of [[`shoulder${side}`,`elbow${side}`,Vec3.sub(rest[`upperArm${side}`],rest[`foreArm${side}`]).len()],[`elbow${side}`,`hand${side}`,Vec3.sub(rest[`foreArm${side}`],rest[`hand${side}`]).len()]]){const ratio=Vec3.sub(observed[a],observed[b]).len()/expected;assert(ratio>.999&&ratio<1.04,'the authored arm must retain its source length through poses');}
   const part=character.meshes().find(p=>'skin' in p&&p.rig),rig=part.rig.pose,matrices=part.boneMatrices;assert(matrices.every(Number.isFinite));
-  for(const side of ['L','R'])for(let v=0;v<body.positions.length/3;v+=3){
-   const joints=[0,1,2,3].map(j=>body.boneIndices[v*4+j]),weights=[0,1,2,3].map(j=>body.boneWeights[v*4+j]);
+  for(const geometry of [body,sleeves])for(const side of ['L','R'])for(let v=0;v<geometry.positions.length/3;v+=3){
+   const joints=[0,1,2,3].map(j=>geometry.boneIndices[v*4+j]),weights=[0,1,2,3].map(j=>geometry.boneWeights[v*4+j]);
    if(!joints.some((b,j)=>b===BONE['foreArmTwist'+side]&&weights[j]>.1)||joints.some((b,j)=>weights[j]>.001&&![BONE['foreArm'+side],BONE['foreArmTwist'+side],BONE['hand'+side]].includes(b)))continue;
    const axes=[0,4,8].map(offset=>{const out=new Vec3();for(let j=0;j<4;j++){if(!weights[j])continue;out.add(new Vec3(...matrices.slice(joints[j]*16+offset,joints[j]*16+offset+3)).normalize().scale(weights[j]));}return out;});
-   const volume=Vec3.dot(Vec3.cross(axes[0],axes[1]),axes[2]);minForearmVolume=Math.min(minForearmVolume,volume);assert(volume>.05,`${state}/${t}/${side}: forearm skin weights collapsed during a palm turn (${volume})`);
+   const volume=Vec3.dot(Vec3.cross(axes[0],axes[1]),axes[2]);minForearmVolume=Math.min(minForearmVolume,volume);assert(volume>.15,`${state}/${t}/${side}: forearm skin weights collapsed during a palm turn (${volume})`);
   }
   for(const side of ['L','R']){const expected=rig['hand'+side],actual=transformPoint(matrices.slice(BONE['hand'+side]*16,BONE['hand'+side]*16+16),rest['hand'+side]);const gap=Math.hypot(actual.x-expected.x,actual.y-expected.y,actual.z-expected.z);maxGripGap=Math.max(maxGripGap,gap);assert(gap<1e-5,'authored palm lost the authoritative grip');}
   const shoes=asset.primitives.find(p=>p.materialSlot==='shoes').geometry;let low=Infinity;

@@ -1,0 +1,10 @@
+# Arm roll / 2026-10-21
+
+1. **Wrong:** Tight backhands pinched the shoulder into angular folds. A forward-reaching shoulder could abruptly roll over; correcting that joint alone moved the distortion to the forehand elbow or wrist.
+2. **Cause:** Arm segments independently projected the torso's forward direction to choose their roll. That projection becomes singular when an arm points forward, and disconnected roll choices compress the sleeve between joints.
+3. **Fix:** Carry each authored arm segment's rest orientation through its parent, use the shortest rotation to its observed endpoint, and distribute grip roll through the forearm and existing twist joint. Hand and racket targets, torso, feet, body geometry, proportions, textures and gameplay tuning remain unchanged. The legacy/default rig keeps its previous behavior.
+4. **Regression:** The 66-sample synthetic forward-axis sweep fails on f0778f76 and passes after the fix: a marker moves at most 0.18 mm between 0.5 mm elbow steps, previously 70.56 mm. Opposite directions remain finite and keep the elbow endpoint. The existing forearm blend-volume check now covers visible sleeves as well as skin and requires >0.15, previously >0.05; the measured minimum is 0.261 across the sampled poses. The full npm suite passes. Native inspection covers four women × six poses × two angles, plus full-body low-backhand clearance views. `checks.json` records the final release, frame pacing, phone record/review and full-point checks.
+5. **Perception:** `strokes.webp` contains matched native renderer crops before (f0778f76) and after. The backhand shoulder is smoother and the forehand elbow retains a rounded contour. Inspection cameras are controlled; the images are from the actual character and production renderer. Isolated shoulder and fitted-weight experiments were rejected before the final change.
+6. **Colleague-send:** Closer, still no. Some tight cloth folds remain; this is not unrestricted cloth simulation. Character appeal and desire to play another point still require human evaluation. Automated checks do not establish studio caliber.
+
+All work is local. Public publishing remains unapproved.
