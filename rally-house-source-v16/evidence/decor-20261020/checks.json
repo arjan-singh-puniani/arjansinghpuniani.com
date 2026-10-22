@@ -1,0 +1,278 @@
+{
+  "implementation": "0e50d861",
+  "before": "5bfbb37b",
+  "checks": {
+    "fullSuite": "npm test passed; final speech/HUD changes then received focused native checks",
+    "focusedFinal": [
+      "node tests/decor-use.mjs",
+      "node tests/connections.mjs",
+      "node tests/experience.mjs",
+      "npm run release:check",
+      "git diff --check"
+    ],
+    "release": "92 source and served artifacts match"
+  },
+  "nativeInput": [
+    {
+      "profile": "desktop",
+      "errors": [],
+      "http": [],
+      "startFunds": 100,
+      "reward": {
+        "funds": 130,
+        "text": "7 \u2013 0  \u00b7  Best rally 0  \u00b7  +30 club funds"
+      },
+      "topbar": {
+        "overlap": false,
+        "height": 44
+      },
+      "funds": 25,
+      "saved": {
+        "water": 2546.25,
+        "off": true,
+        "visits": 1,
+        "funds": 25
+      },
+      "basketRequested": {
+        "active": [
+          {
+            "id": "activity-7",
+            "kind": "touch",
+            "participants": [
+              "player"
+            ],
+            "resource": "furniture-4",
+            "phase": "traveling",
+            "elapsed": 0.06666666666666667,
+            "phaseTime": 0.06666666666666667,
+            "detail": "Bounce a tennis ball"
+          }
+        ],
+        "toast": "Placed. The club feels a little more yours."
+      },
+      "basket": {
+        "funds": 0,
+        "ball": {
+          "x": -3.9935218181818204,
+          "y": 0.09,
+          "z": -4.55267636363637
+        }
+      }
+    },
+    {
+      "profile": "phone",
+      "errors": [],
+      "http": [],
+      "startFunds": 100,
+      "reward": {
+        "funds": 130,
+        "text": "7 \u2013 0  \u00b7  Best rally 0  \u00b7  +30 club funds"
+      },
+      "topbar": {
+        "overlap": false,
+        "height": 44
+      },
+      "funds": 25,
+      "saved": {
+        "water": 2545.75,
+        "off": true,
+        "visits": 1,
+        "funds": 25
+      },
+      "basketRequested": {
+        "active": [
+          {
+            "id": "activity-7",
+            "kind": "touch",
+            "participants": [
+              "player"
+            ],
+            "resource": "furniture-4",
+            "phase": "traveling",
+            "elapsed": 0,
+            "phaseTime": 0,
+            "detail": "Bounce a tennis ball"
+          }
+        ],
+        "toast": "Placed. The club feels a little more yours."
+      },
+      "basket": {
+        "funds": 0,
+        "ball": {
+          "x": -4.618181818181817,
+          "y": 0.3729030303030305,
+          "z": -4.830303030303035
+        }
+      }
+    }
+  ],
+  "nativeMethod": "Chromium Metal, DPR 2, real mouse clicks and touchscreen taps, exposed ray hits. Schedule/autonomous activity fixtures held quiet. Championship completion uses the existing debug score hook; this does not claim human swing input or human fun. Save/reload assertions precede the final basket use.",
+  "objectRegression": {
+    "flows": 13,
+    "viewports": 12,
+    "errors": [],
+    "requests": [],
+    "accessibility": [
+      {
+        "width": 1920,
+        "height": 1080,
+        "violations": []
+      },
+      {
+        "width": 1728,
+        "height": 1117,
+        "violations": []
+      },
+      {
+        "width": 1440,
+        "height": 900,
+        "violations": []
+      },
+      {
+        "width": 1280,
+        "height": 800,
+        "violations": []
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "violations": []
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "violations": []
+      },
+      {
+        "width": 430,
+        "height": 932,
+        "violations": []
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "violations": []
+      },
+      {
+        "width": 375,
+        "height": 667,
+        "violations": []
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "violations": []
+      },
+      {
+        "width": 640,
+        "height": 800,
+        "violations": []
+      },
+      {
+        "width": 390,
+        "height": 280,
+        "violations": []
+      }
+    ],
+    "restored": {
+      "bonsai": {
+        "uses": 2,
+        "lastAction": "Water",
+        "lastWater": 2504.25,
+        "sketched": false
+      },
+      "board": {
+        "uses": 3,
+        "lastAction": "Sketch a crosscourt arrow",
+        "lastWater": null,
+        "sketched": true
+      },
+      "lamp": {
+        "uses": 1,
+        "lastAction": "Adjust the glow",
+        "lastWater": null,
+        "sketched": false,
+        "dimmed": true
+      }
+    },
+    "touch": [
+      {
+        "viewport": "390x844",
+        "id": "clubClock",
+        "nativeTap": true,
+        "activityCount": 1
+      }
+    ]
+  },
+  "keyboardFocus": [
+    {
+      "width": 1280,
+      "focus": "catalog \u2192 rotation \u2192 cancel \u2192 funds",
+      "funds": 100,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "focus": "catalog \u2192 rotation \u2192 cancel \u2192 funds",
+      "funds": 100,
+      "errors": []
+    }
+  ],
+  "visualComparison": {
+    "method": "Exact baseline World.js, HUD.js, index.html and style.css routed into the current running game; other modules current. Four identical placed objects, fixed camera, 19:45, paused club. Catalog shows each default category (before Tennis, after Club). Native WebP conversion of runtime screenshots; no generated artwork.",
+    "images": [
+      "before-room.webp",
+      "after-room.webp",
+      "before-catalog.webp",
+      "after-catalog.webp",
+      "desktop-shared-table.webp",
+      "desktop-watering.webp",
+      "desktop-light-off.webp",
+      "desktop-basket-bounce.webp",
+      "phone-catalog.webp",
+      "phone-shared-table.webp"
+    ]
+  },
+  "renderTiming": {
+    "method": "One finite browser, sequential before/after/after/before, viewport 1280x800 at DPR 2, identical four-object wide club, paused simulation, 180 requestAnimationFrame gaps per run. Measures this rendering fixture; not active gameplay or the Codex browser panel.",
+    "runs": [
+      {
+        "mode": "before",
+        "index": 0,
+        "median": 16.699999999999818,
+        "p95": 16.700000000000728,
+        "mean": 16.665555555555557,
+        "errors": []
+      },
+      {
+        "mode": "after",
+        "index": 1,
+        "median": 16.699999999999818,
+        "p95": 16.800000000000182,
+        "mean": 16.666111111111114,
+        "errors": []
+      },
+      {
+        "mode": "after",
+        "index": 2,
+        "median": 16.699999999999818,
+        "p95": 16.799999999999727,
+        "mean": 16.665555555555557,
+        "errors": []
+      },
+      {
+        "mode": "before",
+        "index": 3,
+        "median": 16.699999999999818,
+        "p95": 16.700000000000728,
+        "mean": 16.665555555555557,
+        "errors": []
+      }
+    ]
+  },
+  "limits": [
+    "Human fun/replay desire for this build loop is pending. Earlier user accepted entry/travel smoothness.",
+    "No physical phone or Safari check in this pass.",
+    "Save version 11 reads existing saves; older builds reject newly written version 11 saves."
+  ]
+}

@@ -11,6 +11,7 @@ export class MatchInput {
     touchMovement = { x: 0, z: 0 };
     swingAge = Number.POSITIVE_INFINITY;
     swingQueued = false;
+    swingAim = 0;
     enabled = false;
     setEnabled(enabled) {
         if (this.enabled === enabled)
@@ -71,6 +72,7 @@ export class MatchInput {
             return;
         this.swingQueued = true;
         this.swingAge = 0;
+        this.swingAim = this.movement().x;
     }
     hasBufferedSwing() {
         return this.enabled && this.swingQueued;
@@ -82,6 +84,9 @@ export class MatchInput {
      */
     bufferedSwingAge() {
         return this.hasBufferedSwing() ? this.swingAge : Number.POSITIVE_INFINITY;
+    }
+    bufferedSwingAim() {
+        return this.hasBufferedSwing() ? this.swingAim : 0;
     }
     consumeSwing() {
         if (!this.hasBufferedSwing())
@@ -125,5 +130,6 @@ export class MatchInput {
     clearSwing() {
         this.swingQueued = false;
         this.swingAge = Number.POSITIVE_INFINITY;
+        this.swingAim = 0;
     }
 }

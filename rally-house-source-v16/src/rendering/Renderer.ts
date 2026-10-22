@@ -1,5 +1,6 @@
 import {foliageGeometry} from './FoliageGeometry.js';
 import {Mat4, Vec3, clamp, compose, hexToRgb, sunViewProjection} from './Math3D.js';
+import type {RigPoseLocal} from '../animation/CharacterSkin.js';
 
 /** The academy footprint. The shadow frustum is fitted to this once, so texel density stays constant all day. */
 export const SHADOW_CENTRE=new Vec3(-.4,1.5,-1.0);
@@ -27,10 +28,10 @@ export interface Mesh {
   id?:string;
 }
 
-export interface SkinGeometry {id:string;positions:Float32Array;normals:Float32Array;boneIndices:Float32Array;boneWeights:Float32Array}
+export interface SkinGeometry {id:string;positions:Float32Array;normals:Float32Array;boneIndices:Float32Array;boneWeights:Float32Array;uvs?:Float32Array;morphs?:Float32Array[];morphNormals?:Float32Array[]}
 export interface SkinnedMesh {
   /** Character body skin driven by the authoritative anatomical landmarks. */
-  poseRig?:boolean;
+  poseRig?:boolean;eyeCenters?:Float32Array;eyeYaw?:number;skirt?:boolean;rig?:{bind:RigPoseLocal;pose:RigPoseLocal};diffuse?:HTMLImageElement;alphaCutoff?:number;doubleSided?:boolean;expression?:[number,number,number,number];handGrip?:[number,number];
   skin:SkinGeometry; boneMatrices:Float32Array; position:Vec3; rotation?:Vec3; scale?:Vec3; color:string; material?:MaterialKind; alpha?:number; unlit?:boolean; noShadow?:boolean; id?:string;
 }
 export type RenderItem=Mesh|SkinnedMesh;
@@ -53,7 +54,7 @@ export interface Lighting {
 
 /** Shared lighting maths. One source of truth for both the rigid and skinned fragment shaders. */
 const LIGHT_UNIFORMS=`
-uniform int u_material;uniform vec3 u_color;uniform vec3 u_sun;uniform vec3 u_viewPos;uniform float u_ambient;uniform float u_alpha;uniform float u_unlit;uniform float u_emission;uniform float u_warmth;uniform float u_roughness;uniform float u_specular;uniform float u_softness;
+uniform sampler2D u_albedo;uniform float u_textured;uniform float u_alphaCutoff;uniform int u_material;uniform vec3 u_color;uniform vec3 u_sun;uniform vec3 u_viewPos;uniform float u_ambient;uniform float u_alpha;uniform float u_unlit;uniform float u_emission;uniform float u_warmth;uniform float u_roughness;uniform float u_specular;uniform float u_softness;
 uniform vec3 u_pointPos[8];uniform vec3 u_pointColor[8];uniform vec2 u_pointParams[8];
 uniform mat4 u_lightVP;uniform highp sampler2DShadow u_shadowMap;uniform float u_shadowStrength;uniform float u_shadowTexel;
 uniform mat4 u_lampVP;uniform highp sampler2DShadow u_lampShadow;uniform float u_lampStrength;uniform vec3 u_lampDir;uniform float u_lampTexel;
@@ -124,7 +125,8 @@ vec3 surfaceColor(vec3 p){
     variation=filteredWave(p.y*95.0+p.x*11.0)*.065;
   }else if(u_material==12){
     variation=filteredWave(dot(p,vec3(821.0,619.0,743.0))+2.7*sin(dot(p,vec3(379.0,521.0,433.0))))*.006;
-  }else if(u_material==13){
+  }else if(u_material==13&&u_textured<.5){
+    // Authored textures already contain strand direction and contrast.
     float flow=p.x*840.0+p.z*300.0+sin(p.y*25.0)*12.0;
     variation=filteredWave(flow)*.09+filteredWave(flow*.47)*.035;
   }else if(u_material==14){
@@ -150,12 +152,13 @@ vec3 surfaceColor(vec3 p){
     vec2 cheek=vec2((abs(p.x)-.073)/.031,(p.y+.032)/.029);
     float warmth=exp(-dot(cheek,cheek))*smoothstep(.045,.085,p.z);
     pigment*=mix(vec3(1.0),vec3(1.08,.86,.83),warmth*.38);
-  }else if(u_material==15){
+  }else if(u_material==15&&u_textured<.5){
     vec2 eye=vec2((abs(p.x)-.048)/.0073,(p.y-.018)/.0073);
     float radius=clamp(length(eye),0.0,1.0),angle=dot(eye,eye)>.000001?atan(eye.y,eye.x):0.0;
     float fibres=filteredWave(angle*27.0+radius*9.0)*.08;
     pigment*=mix(vec3(1.28,1.05,.73),vec3(.36,.40,.43),smoothstep(.55,1.0,radius))*(1.0+fibres);
   }
+  if(u_textured>.5)pigment*=pow(texture(u_albedo,v_uv).rgb,vec3(2.2));
   return pigment;
 }
 // Surface gradients use rest coordinates for stable detail and world-space
@@ -164,10 +167,8 @@ vec3 characterSurfaceNormal(vec3 N,vec3 world){
   float h=0.0;vec3 p=v_surface;
   if(u_material==12){
     h=.000018*filteredWave(dot(p,vec3(1243.0,1399.0,1583.0))+3.0*sin(dot(p,vec3(733.0,617.0,911.0))));
-  }else if(u_material==13){
+  }else if(u_material==13&&u_textured<.5){
     h=.00007*filteredWave(p.x*840.0+p.z*300.0+sin(p.y*25.0)*12.0);
-  }else if(u_material==16){
-    h=.000065*filteredWave(p.y*620.0)*filteredWave(p.x*480.0+p.z*140.0);
   }else return N;
   vec3 dx=dFdx(world),dy=dFdy(world),r1=cross(dy,N),r2=cross(N,dx);
   float det=dot(dx,r1);if(abs(det)<.0000000001)return N;
@@ -207,8 +208,8 @@ vec3 shade(vec3 N,vec3 world){
     // A broad secondary lobe avoids a waxy, single white highlight.
     spec+=pow(max(dot(N,H),0.0),8.0)*.018*shadow;
   }else if(u_material==13){
-    // A bounded grazing sheen gives curved locks a satin highlight.
-    spec+=pow(1.0-abs(dot(N,V)),2.5)*pow(max(dot(N,H),0.0),5.0)*.10*shadow;
+    // Keep the authored strand highlights readable under the room lights.
+    spec+=pow(1.0-abs(dot(N,V)),2.5)*pow(max(dot(N,H),0.0),5.0)*.035*shadow;
   }
   float velvet=pow(1.0-max(dot(N,V),0.0),2.0)*u_softness*0.055;
   vec3 local=vec3(0.0);
@@ -240,6 +241,11 @@ vec3 shade(vec3 N,vec3 world){
     float back=pow(max(dot(-L,V),0.0),3.0)*(1.0-ndl)*shadow;
     c+=base*vec3(1.0,.43,.28)*back*.055;
   }
+  if(u_material==15&&u_textured>.5){
+    // shortcut: one sky lobe; use local reflection probes for room-specific eye highlights.
+    vec3 reflection=reflect(-V,N);float window=pow(max(dot(reflection,normalize(vec3(-.45,.65,1.0))),0.0),96.0);
+    c+=u_skyColor*window*u_ambient*.75;
+  }
   c=mix(c,base,u_unlit)+base*u_emission;
   // Linear-light shading and a filmic highlight roll-off preserve wood/skin colour.
   c=max(c,vec3(0.0))*.78;
@@ -258,6 +264,7 @@ export class Renderer {
   private depthSkinProgram:WebGLProgram;
   private geos=new Map<GeometryKind,Geo>();
   private skinGeos=new Map<string,SkinGeo>();
+  private albedos=new WeakMap<HTMLImageElement,WebGLTexture>();
   // Shared pose arrays are immutable within a frame; each shader owns its uniforms.
   private skinBones:Float32Array|null=null;private shadowBones:Float32Array|null=null;
   private shadowFB:WebGLFramebuffer;
@@ -281,7 +288,7 @@ export class Renderer {
     this.depthProgram=this.link(this.rigidVS(true),this.depthFS());
     this.depthSkinProgram=this.link(this.skinVS(true),this.depthFS());
 
-    const litNames=['u_model','u_vp','u_material','u_color','u_sun','u_ambient','u_alpha','u_unlit','u_emission','u_viewPos','u_warmth','u_roughness','u_specular','u_softness','u_pointPos[0]','u_pointColor[0]','u_pointParams[0]','u_lightVP','u_shadowMap','u_shadowStrength','u_shadowTexel','u_lampVP','u_lampShadow','u_lampStrength','u_lampDir','u_lampTexel','u_sunColor','u_skyColor','u_bounceColor'];
+    const litNames=['u_textured','u_alphaCutoff','u_albedo','u_model','u_vp','u_material','u_color','u_sun','u_ambient','u_alpha','u_unlit','u_emission','u_viewPos','u_warmth','u_roughness','u_specular','u_softness','u_pointPos[0]','u_pointColor[0]','u_pointParams[0]','u_lightVP','u_shadowMap','u_shadowStrength','u_shadowTexel','u_lampVP','u_lampShadow','u_lampStrength','u_lampDir','u_lampTexel','u_sunColor','u_skyColor','u_bounceColor'];
     const grab=(p:WebGLProgram,names:string[],required:string[])=>{
       const map:Record<string,WebGLUniformLocation>={};
       for(const n of names){const loc=gl.getUniformLocation(p,n);if(loc)map[n.replace('[0]','')]=loc;else if(required.includes(n))throw new Error(`Missing uniform ${n}`);}
@@ -289,9 +296,9 @@ export class Renderer {
     };
     // u_model/u_vp/u_color must exist; the rest are allowed to be optimised away.
     this.u=grab(this.program,litNames,['u_model','u_vp','u_color']);
-    this.su=grab(this.skinProgram,[...litNames,'u_bones[0]'],['u_model','u_vp','u_color','u_bones[0]']);
-    this.du=grab(this.depthProgram,['u_model','u_lightVP'],['u_model','u_lightVP']);
-    this.dsu=grab(this.depthSkinProgram,['u_model','u_lightVP','u_bones[0]'],['u_model','u_lightVP','u_bones[0]']);
+    this.su=grab(this.skinProgram,[...litNames,'u_bones[0]','u_expression','u_handGrip','u_eyeYaw','u_eyeCenters[0]','u_skirt','u_skirtPelvis','u_skirtHips[0]','u_skirtKnees[0]'],['u_model','u_vp','u_color','u_bones[0]']);
+    this.du=grab(this.depthProgram,['u_model','u_lightVP','u_albedo','u_textured','u_alphaCutoff'],['u_model','u_lightVP']);
+    this.dsu=grab(this.depthSkinProgram,['u_model','u_lightVP','u_bones[0]','u_expression','u_handGrip','u_eyeYaw','u_eyeCenters[0]','u_skirt','u_skirtPelvis','u_skirtHips[0]','u_skirtKnees[0]','u_albedo','u_textured','u_alphaCutoff'],['u_model','u_lightVP','u_bones[0]']);
 
     const foliage=foliageGeometry();this.geos.set('foliage',this.upload({p:[...foliage.positions],n:[...foliage.normals]}));
     this.geos.set('box',this.upload(this.boxGeometry()));
@@ -397,7 +404,7 @@ export class Renderer {
     gl.clear(gl.DEPTH_BUFFER_BIT);
     gl.colorMask(false,false,false,false);
     gl.enable(gl.POLYGON_OFFSET_FILL);gl.polygonOffset(1.6,3.0);
-    gl.useProgram(this.depthProgram);gl.uniformMatrix4fv(this.du['u_lightVP'],false,lightVP);
+    gl.useProgram(this.depthProgram);gl.uniform1f(this.du['u_textured'],0);gl.uniform1i(this.du['u_albedo'],2);gl.uniformMatrix4fv(this.du['u_lightVP'],false,lightVP);
     for(const m of meshes){
       if(!this.casts(m))continue;
       const g=this.geos.get(m.kind)!;
@@ -407,17 +414,18 @@ export class Renderer {
     gl.useProgram(this.depthSkinProgram);gl.uniformMatrix4fv(this.dsu['u_lightVP'],false,lightVP);
     for(const s of skins){
       if(!this.casts(s))continue;
-      const g=this.skinGeometry(s.skin);
+      const g=this.skinGeometry(s.skin);this.bindSurface(s,this.dsu);
       gl.uniformMatrix4fv(this.dsu['u_model'],false,compose(s.position,s.rotation??new Vec3(),s.scale??new Vec3(1,1,1)));
       if(this.shadowBones!==s.boneMatrices){gl.uniformMatrix4fv(this.dsu['u_bones'],false,s.boneMatrices);this.shadowBones=s.boneMatrices;}
       gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.shadowCasters++;
     }
+    gl.enable(gl.CULL_FACE);
     gl.disable(gl.POLYGON_OFFSET_FILL);gl.polygonOffset(0,0);
     gl.colorMask(true,true,true,true);
   }
 
   private setupProgram(program:WebGLProgram,u:Record<string,WebGLUniformLocation>,vp:Mat4,lighting:Lighting,viewPosition:Vec3,lightVP:Mat4,strength:number,lampVP:Mat4,lampStrength:number){
-    const gl=this.gl;gl.useProgram(program);
+    const gl=this.gl;gl.useProgram(program);gl.enable(gl.CULL_FACE);
     const pls=lighting.pointLights??[],pos=this.lightPositions,col=this.lightColors,par=this.lightParams;pos.fill(0);col.fill(0);par.fill(0);
     for(let i=0;i<8;i++){const l=pls[i];if(l){pos.set([l.position.x,l.position.y,l.position.z],i*3);col.set(l.color,i*3);par.set([l.intensity,l.radius],i*2)}}
     const set=(n:string,fn:(loc:WebGLUniformLocation)=>void)=>{const loc=u[n];if(loc)fn(loc)};
@@ -430,6 +438,7 @@ export class Renderer {
     set('u_pointColor',l=>gl.uniform3fv(l,col));
     set('u_pointParams',l=>gl.uniform2fv(l,par));
     set('u_lightVP',l=>gl.uniformMatrix4fv(l,false,lightVP));
+    set('u_albedo',l=>gl.uniform1i(l,2));
     set('u_shadowMap',l=>gl.uniform1i(l,0));
     set('u_shadowStrength',l=>gl.uniform1f(l,strength));
     set('u_shadowTexel',l=>gl.uniform1f(l,(SHADOW_RADIUS*2)/SHADOW_RESOLUTION));
@@ -457,7 +466,7 @@ export class Renderer {
       case 'skin': return {roughness:.68,specular:.040,softness:.30};
       case 'hair': return {roughness:.72,specular:.028,softness:.14};
       case 'humanSkin': return {roughness:.53,specular:.082,softness:.27};
-      case 'groomedHair': return {roughness:.36,specular:.13,softness:.10};
+      case 'groomedHair': return {roughness:.52,specular:.065,softness:.10};
       case 'lip': return {roughness:.28,specular:.19,softness:.16};
       case 'iris': return {roughness:.18,specular:.18,softness:.02};
       case 'performanceKnit': return {roughness:.78,specular:.052,softness:.20};
@@ -467,37 +476,80 @@ export class Renderer {
   }
 
   private drawMesh(m:Mesh){const gl=this.gl,g=this.geos.get(m.kind)!;gl.uniformMatrix4fv(this.u['u_model'],false,(this.staticData.get(m)?.model??compose(m.position,m.rotation??new Vec3(),m.scale)));const cached=this.staticData.get(m),c=cached?.color??hexToRgb(m.color),mp=cached?.material??this.materialParams(m.material);gl.uniform1i(this.u['u_material'],this.materialId(m.material));gl.uniform3f(this.u['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.u['u_alpha'],m.alpha??1);gl.uniform1f(this.u['u_unlit'],m.unlit?1:0);gl.uniform1f(this.u['u_emission'],m.emission??0);gl.uniform1f(this.u['u_roughness'],mp.roughness);gl.uniform1f(this.u['u_specular'],mp.specular);gl.uniform1f(this.u['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
-  private drawSkin(m:SkinnedMesh){const gl=this.gl,g=this.skinGeometry(m.skin);gl.uniformMatrix4fv(this.su['u_model'],false,compose(m.position,m.rotation??new Vec3(),m.scale??new Vec3(1,1,1)));if(this.skinBones!==m.boneMatrices){gl.uniformMatrix4fv(this.su['u_bones'],false,m.boneMatrices);this.skinBones=m.boneMatrices;}const c=hexToRgb(m.color),mp=this.materialParams(m.material);gl.uniform1i(this.su['u_material'],this.materialId(m.material));gl.uniform3f(this.su['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.su['u_alpha'],m.alpha??1);gl.uniform1f(this.su['u_unlit'],m.unlit?1:0);gl.uniform1f(this.su['u_emission'],0);gl.uniform1f(this.su['u_roughness'],mp.roughness);gl.uniform1f(this.su['u_specular'],mp.specular);gl.uniform1f(this.su['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
-  private skinGeometry(data:SkinGeometry){const hit=this.skinGeos.get(data.id);if(hit)return hit;const gl=this.gl,vao=gl.createVertexArray()!;gl.bindVertexArray(vao);const put=(loc:number,arr:Float32Array,size:number)=>{const b=gl.createBuffer()!;gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,arr,gl.STATIC_DRAW);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,0,0);};put(0,data.positions,3);put(1,data.normals,3);put(2,data.boneIndices,4);put(3,data.boneWeights,4);gl.bindVertexArray(null);const geo={vao,count:data.positions.length/3};this.skinGeos.set(data.id,geo);return geo;}
+  private drawSkin(m:SkinnedMesh){const gl=this.gl,g=this.skinGeometry(m.skin);gl.uniformMatrix4fv(this.su['u_model'],false,compose(m.position,m.rotation??new Vec3(),m.scale??new Vec3(1,1,1)));if(this.skinBones!==m.boneMatrices){gl.uniformMatrix4fv(this.su['u_bones'],false,m.boneMatrices);this.skinBones=m.boneMatrices;}this.bindSurface(m,this.su);const c=hexToRgb(m.color),mp=this.materialParams(m.material);gl.uniform1i(this.su['u_material'],this.materialId(m.material));gl.uniform3f(this.su['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.su['u_alpha'],m.alpha??1);gl.uniform1f(this.su['u_unlit'],m.unlit?1:0);gl.uniform1f(this.su['u_emission'],0);gl.uniform1f(this.su['u_roughness'],mp.roughness);gl.uniform1f(this.su['u_specular'],mp.specular);gl.uniform1f(this.su['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
+  private bindSurface(m:SkinnedMesh,u:Record<string,WebGLUniformLocation>){
+    // shortcut: bounds approximate cloth contact; use authored or simulated cloth when folds need independent motion.
+    const gl=this.gl;if(u['u_skirt']){const pose=m.skirt?m.rig?.pose:undefined;gl.uniform1f(u['u_skirt'],pose?1:0);if(pose){gl.uniform3f(u['u_skirtPelvis'],pose.pelvis.x,pose.pelvis.y,pose.pelvis.z);gl.uniform4fv(u['u_skirtHips'],new Float32Array([pose.thighL.x,pose.thighL.y,pose.thighL.z,.18,pose.thighR.x,pose.thighR.y,pose.thighR.z,.18]));gl.uniform4fv(u['u_skirtKnees'],new Float32Array([pose.shinL.x,pose.shinL.y,pose.shinL.z,.145,pose.shinR.x,pose.shinR.y,pose.shinR.z,.145]));}}
+    if(u['u_eyeYaw'])gl.uniform1f(u['u_eyeYaw'],m.eyeCenters?m.eyeYaw??0:0);if(u['u_eyeCenters']&&m.eyeCenters)gl.uniform3fv(u['u_eyeCenters'],m.eyeCenters);
+    if(u['u_expression'])gl.uniform4fv(u['u_expression'],m.expression??[0,0,0,0]);if(u['u_handGrip'])gl.uniform2fv(u['u_handGrip'],m.handGrip??[0,0]);gl.uniform1i(u['u_albedo'],2);gl.uniform1f(u['u_textured'],m.diffuse?1:0);gl.uniform1f(u['u_alphaCutoff'],m.alphaCutoff??0);
+    if(m.diffuse){gl.activeTexture(gl.TEXTURE2);gl.bindTexture(gl.TEXTURE_2D,this.albedo(m.diffuse));gl.activeTexture(gl.TEXTURE0);}
+    if(m.doubleSided)gl.disable(gl.CULL_FACE);else gl.enable(gl.CULL_FACE);
+  }
+  private albedo(image:HTMLImageElement){
+    const hit=this.albedos.get(image);if(hit)return hit;if(!image.complete||!image.naturalWidth)throw new Error('Character texture is not decoded');
+    const gl=this.gl,texture=gl.createTexture()!;gl.bindTexture(gl.TEXTURE_2D,texture);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);gl.generateMipmap(gl.TEXTURE_2D);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR_MIPMAP_LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);this.albedos.set(image,texture);return texture;
+  }
+  private skinGeometry(data:SkinGeometry){const hit=this.skinGeos.get(data.id);if(hit)return hit;const gl=this.gl,vao=gl.createVertexArray()!;gl.bindVertexArray(vao);const put=(loc:number,arr:Float32Array,size:number)=>{const b=gl.createBuffer()!;gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,arr,gl.STATIC_DRAW);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,0,0);};put(0,data.positions,3);put(1,data.normals,3);put(2,data.boneIndices,4);put(3,data.boneWeights,4);if(data.uvs){if(data.uvs.length!==data.positions.length/3*2||!data.uvs.every(Number.isFinite))throw new Error('Invalid skinned UV coordinates');put(4,data.uvs,2);}if(data.morphs){if(data.morphs.length!==5)throw Error('Unsupported character expressions');data.morphs.forEach((delta,i)=>{if(delta.length!==data.positions.length||!delta.every(Number.isFinite))throw Error('Invalid character expression');put(5+i,delta,3);});}if(data.morphNormals){if(data.morphNormals.length!==5)throw Error('Unsupported normal expressions');data.morphNormals.forEach((delta,i)=>{if(delta.length!==data.positions.length||!delta.every(Number.isFinite))throw Error('Invalid expression normals');put(10+i,delta,3);});}gl.bindVertexArray(null);const geo={vao,count:data.positions.length/3};this.skinGeos.set(data.id,geo);return geo;}
 
   private rigidVS(depthOnly:boolean){
     return `#version 300 es
     precision highp float;layout(location=0) in vec3 a_position;layout(location=1) in vec3 a_normal;
     uniform mat4 u_model;uniform mat4 ${depthOnly?'u_lightVP':'u_vp'};
-    ${depthOnly?'':'out vec3 v_normal;out vec3 v_world;out vec3 v_surface;'}
+    out vec2 v_uv;${depthOnly?'':'out vec3 v_normal;out vec3 v_world;out vec3 v_surface;'}
     void main(){vec4 wp=u_model*vec4(a_position,1.0);
-    ${depthOnly?'':'v_world=wp.xyz;mat3 basis=mat3(u_model);vec3 axisScale=vec3(dot(basis[0],basis[0]),dot(basis[1],basis[1]),dot(basis[2],basis[2]));v_normal=normalize(basis*(a_normal/max(axisScale,vec3(.000001))));v_surface=a_position*sqrt(axisScale);'}
+    v_uv=vec2(0.0);${depthOnly?'':'v_world=wp.xyz;mat3 basis=mat3(u_model);vec3 axisScale=vec3(dot(basis[0],basis[0]),dot(basis[1],basis[1]),dot(basis[2],basis[2]));v_normal=normalize(basis*(a_normal/max(axisScale,vec3(.000001))));v_surface=a_position*sqrt(axisScale);'}
     gl_Position=${depthOnly?'u_lightVP':'u_vp'}*wp;}`;
   }
   private skinVS(depthOnly:boolean){
     return `#version 300 es
-    precision highp float;layout(location=0) in vec3 a_position;layout(location=1) in vec3 a_normal;layout(location=2) in vec4 a_bones;layout(location=3) in vec4 a_weights;
-    uniform mat4 u_model;uniform mat4 ${depthOnly?'u_lightVP':'u_vp'};uniform mat4 u_bones[15];
-    ${depthOnly?'':'out vec3 v_normal;out vec3 v_world;out vec3 v_surface;'}
+    precision highp float;layout(location=0) in vec3 a_position;layout(location=1) in vec3 a_normal;layout(location=2) in vec4 a_bones;layout(location=3) in vec4 a_weights;layout(location=4) in vec2 a_uv;layout(location=5) in vec3 a_smile;layout(location=6) in vec3 a_mouth;layout(location=7) in vec3 a_blink;layout(location=8) in vec3 a_brow;layout(location=9) in vec3 a_grip;layout(location=10) in vec3 a_smileNormal;layout(location=11) in vec3 a_mouthNormal;layout(location=12) in vec3 a_blinkNormal;layout(location=13) in vec3 a_browNormal;layout(location=14) in vec3 a_gripNormal;
+    uniform mat4 u_model;uniform mat4 ${depthOnly?'u_lightVP':'u_vp'};uniform mat4 u_bones[19];uniform vec4 u_expression;uniform vec2 u_handGrip;uniform float u_eyeYaw;uniform vec3 u_eyeCenters[2];uniform float u_skirt;uniform vec3 u_skirtPelvis;uniform vec4 u_skirtHips[2];uniform vec4 u_skirtKnees[2];
+    out vec2 v_uv;${depthOnly?'':'out vec3 v_normal;out vec3 v_world;out vec3 v_surface;'}
     mat4 skin(){ivec4 b=ivec4(a_bones+.5);return u_bones[b.x]*a_weights.x+u_bones[b.y]*a_weights.y+u_bones[b.z]*a_weights.z+u_bones[b.w]*a_weights.w;}
-    void main(){mat4 S=skin();vec4 wp=u_model*(S*vec4(a_position,1.0));
-    ${depthOnly?'':'v_world=wp.xyz;v_surface=a_position;mat3 B=mat3(u_model)*mat3(S);vec3 c0=cross(B[1],B[2]),c1=cross(B[2],B[0]),c2=cross(B[0],B[1]);float determinant=dot(B[0],c0);vec3 corrected=mat3(c0,c1,c2)*a_normal;v_normal=normalize(abs(determinant)<.000001?B*a_normal:corrected*(determinant<0.0?-1.0:1.0));'}
+    void main(){mat4 S=skin();float grip=a_position.x<0.0?u_handGrip.x:u_handGrip.y;vec3 normal=normalize(a_normal+a_smileNormal*u_expression.x+a_mouthNormal*u_expression.y+a_blinkNormal*u_expression.z+a_browNormal*u_expression.w+a_gripNormal*grip);vec3 posed=a_position+a_smile*u_expression.x+a_mouth*u_expression.y+a_blink*u_expression.z+a_brow*u_expression.w+a_grip*grip;if(abs(u_eyeYaw)>.00001){float c=cos(u_eyeYaw),s=sin(u_eyeYaw);mat3 turn=mat3(c,0,-s,0,1,0,s,0,c);vec3 centre=u_eyeCenters[a_position.x<0.0?0:1];posed=centre+turn*(posed-centre);normal=turn*normal;}vec3 skinned=(S*vec4(posed,1.0)).xyz;
+    // Preserve front-panel depth order before the radial safety correction can fold it.
+    if(u_skirt>.5){
+      vec3 right=normalize((u_skirtHips[1].xyz-u_skirtHips[0].xyz)*vec3(1,0,1)),forward=cross(right,vec3(0,1,0));
+      vec3 direction=normalize(mix(forward,vec3(0,1,0),u_expression.x));
+      float drape=max(u_expression.x,smoothstep(0.0,.3,u_expression.y)),front=smoothstep(-.01,.08,a_position.z)*drape,z=dot(skinned-u_skirtPelvis,direction),height=-1000.0;
+      vec3 origin=skinned-direction*z;
+      // Cover the panel beyond the thigh silhouette so it cannot straddle the field edge.
+      for(int leg=0;leg<2;leg++){
+        vec3 hip=u_skirtHips[leg].xyz,knee=u_skirtKnees[leg].xyz,axis=knee-hip,v=origin-hip;
+        float length2=max(dot(axis,axis),.000001),radius=u_skirtHips[leg].w+.02;
+        for(int cap=0;cap<2;cap++){
+          vec3 offset=origin-(cap==0?hip:knee);float along=dot(offset,direction),disc=radius*radius-dot(offset,offset)+along*along;
+          if(disc>=0.0){float exit=-along+sqrt(disc),t=dot(origin+direction*exit-hip,axis)/length2;if((cap==0&&t<=0.0)||(cap==1&&t>=1.0))height=max(height,exit);}
+        }
+        float va=dot(v,axis)/length2,da=dot(direction,axis)/length2;
+        vec3 vp=v-axis*va,dp=direction-axis*da;float A=dot(dp,dp),B=dot(vp,dp),C=dot(vp,vp)-radius*radius,disc=B*B-A*C;
+        if(A>.00001&&disc>=0.0){float exit=(-B+sqrt(disc))/A,t=va+da*exit;if(t>=0.0&&t<=1.0)height=max(height,exit);}
+      }
+      vec3 offset=origin-u_skirtPelvis,radii=vec3(.29,.32,.27),v=vec3(dot(offset,right),offset.y,dot(offset,forward))/radii,d=vec3(dot(direction,right),direction.y,dot(direction,forward))/radii;
+      float A=dot(d,d),B=dot(v,d),C=dot(v,v)-1.0,disc=B*B-A*C;if(disc>=0.0)height=max(height,(-B+sqrt(disc))/A);
+      if(height>-999.0){float gap=.05,cleared=z>=height?z+gap:height+gap*gap/(gap+height-z);skinned+=direction*((cleared-z)*front);}
+    }
+    // Overlapping bounds can push the garment back into a previously cleared bound.
+    if(u_skirt>.5)for(int pass=0;pass<20;pass++){
+      float correction=0.0;
+      for(int leg=0;leg<2;leg++){vec4 hip=u_skirtHips[leg],knee=u_skirtKnees[leg];vec3 axis=knee.xyz-hip.xyz;float t=clamp(dot(skinned-hip.xyz,axis)/max(dot(axis,axis),.000001),0.0,1.0);vec3 centre=hip.xyz+axis*t,delta=skinned-centre;float distance=length(delta),radius=mix(hip.w,knee.w,t);correction=max(correction,radius-distance);if(distance<radius)skinned=centre+(distance>.00001?delta/distance:vec3(0,1,0))*radius;}
+      vec3 right=normalize((u_skirtHips[1].xyz-u_skirtHips[0].xyz)*vec3(1,0,1)),forward=cross(right,vec3(0,1,0)),offset=skinned-u_skirtPelvis;
+      vec3 local=vec3(dot(offset,right),offset.y,dot(offset,forward)),radii=vec3(.29,.32,local.z<0.0?.235:.27),delta=local/radii;float distance=length(delta);correction=max(correction,(1.0-distance)*.32);if(distance<1.0){local=(distance>.00001?delta/distance:vec3(0,0,1))*radii;skinned=u_skirtPelvis+right*local.x+vec3(0,local.y,0)+forward*local.z;}
+      if(correction<.00001)break;
+    }
+    vec4 wp=u_model*vec4(skinned,1.0);
+    v_uv=a_uv;${depthOnly?'':'v_world=wp.xyz;v_surface=a_position;mat3 B=mat3(u_model)*mat3(S);vec3 c0=cross(B[1],B[2]),c1=cross(B[2],B[0]),c2=cross(B[0],B[1]);float determinant=dot(B[0],c0);vec3 corrected=mat3(c0,c1,c2)*normal;v_normal=normalize(abs(determinant)<.000001?B*normal:corrected*(determinant<0.0?-1.0:1.0));'}
     gl_Position=${depthOnly?'u_lightVP':'u_vp'}*wp;}`;
   }
   private litFS(){
     return `#version 300 es
-    precision highp float;in vec3 v_normal;in vec3 v_world;in vec3 v_surface;out vec4 outColor;
+    precision highp float;in vec3 v_normal;in vec3 v_world;in vec3 v_surface;in vec2 v_uv;out vec4 outColor;
     ${LIGHT_UNIFORMS}
     ${LIGHT_BODY}
-    void main(){outColor=vec4(shade(normalize(v_normal),v_world),u_alpha);}`;
+    void main(){if(u_textured>.5&&texture(u_albedo,v_uv).a<u_alphaCutoff)discard;vec3 N=normalize(v_normal)*(gl_FrontFacing?1.0:-1.0);outColor=vec4(shade(N,v_world),u_alpha);}`;
   }
   private depthFS(){return `#version 300 es
-    precision highp float;void main(){}`;}
+    precision highp float;in vec2 v_uv;uniform sampler2D u_albedo;uniform float u_textured;uniform float u_alphaCutoff;void main(){if(u_textured>.5&&texture(u_albedo,v_uv).a<u_alphaCutoff)discard;}`;}
 
   private link(vsSrc:string,fsSrc:string){
     const gl=this.gl;

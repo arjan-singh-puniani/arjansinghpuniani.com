@@ -17,6 +17,7 @@ export class MatchInput {
   private touchMovement: MatchMovementIntent = { x: 0, z: 0 };
   private swingAge = Number.POSITIVE_INFINITY;
   private swingQueued = false;
+  private swingAim = 0;
 
   enabled = false;
 
@@ -90,6 +91,7 @@ export class MatchInput {
 
     this.swingQueued = true;
     this.swingAge = 0;
+    this.swingAim = this.movement().x;
   }
 
   hasBufferedSwing() {
@@ -103,6 +105,10 @@ export class MatchInput {
    */
   bufferedSwingAge() {
     return this.hasBufferedSwing() ? this.swingAge : Number.POSITIVE_INFINITY;
+  }
+
+  bufferedSwingAim() {
+    return this.hasBufferedSwing() ? this.swingAim : 0;
   }
 
   consumeSwing() {
@@ -149,5 +155,6 @@ export class MatchInput {
   private clearSwing() {
     this.swingQueued = false;
     this.swingAge = Number.POSITIVE_INFINITY;
+    this.swingAim = 0;
   }
 }

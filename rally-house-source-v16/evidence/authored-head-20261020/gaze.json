@@ -1,0 +1,52 @@
+[
+  {
+    "label": "after",
+    "gpu": [
+      {
+        "yaw": -0.3,
+        "vertices": 756,
+        "finite": true,
+        "maxPositionError": 1.4276314622405407e-8,
+        "maxNormalError": 1.0529382769263694e-7,
+        "gl": 0
+      },
+      {
+        "yaw": 0,
+        "vertices": 756,
+        "finite": true,
+        "maxPositionError": 0,
+        "maxNormalError": 8.87308794814304e-8,
+        "gl": 0
+      },
+      {
+        "yaw": 0.3,
+        "vertices": 756,
+        "finite": true,
+        "maxPositionError": 1.3865684360901969e-8,
+        "maxNormalError": 9.844978350696047e-8,
+        "gl": 0
+      }
+    ],
+    "headYaw": 0.2727749162826907,
+    "eyeYaw": 0.2836377876889804,
+    "centers": [
+      -0.04419407248497009,
+      2.235039234161377,
+      0.1914718896150589,
+      0.044193167239427567,
+      2.235039710998535,
+      0.19146519899368286
+    ],
+    "parts": 6,
+    "gl": 0,
+    "motion": {
+      "frames": 240,
+      "maxEye": 0.3,
+      "median": 16.69999998807907,
+      "p95": 18.200000047683716,
+      "liveTracks": 0,
+      "gl": 0
+    },
+    "errors": []
+  }
+]

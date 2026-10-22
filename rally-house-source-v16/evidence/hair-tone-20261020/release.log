@@ -1,0 +1,9 @@
+
+> rally-house-3d@0.20.0-studio release:sync
+> npm run build && node qa/check-release.mjs --sync
+
+
+> rally-house-3d@0.20.0-studio build
+> tsc -p tsconfig.json
+
+104 release artifacts match; compiled relative imports resolve in source and served trees.

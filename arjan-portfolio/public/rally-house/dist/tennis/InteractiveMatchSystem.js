@@ -162,8 +162,9 @@ export class InteractiveMatchSystem {
         if (this.server === 'player') {
             if (!this.input.hasBufferedSwing())
                 return;
+            const aim = this.input.bufferedSwingAim();
             this.input.consumeSwing();
-            this.prepareShot('player', 'serve', 'clean');
+            this.prepareShot('player', 'serve', 'clean', aim);
             return;
         }
         this.opponentServeDelay -= dt;
@@ -295,8 +296,9 @@ export class InteractiveMatchSystem {
         const timingAtPress = timeToPlayer + pressAge;
         const timingError = timingAtPress - contactAt;
         const quality = this.playerQuality(timingError, lateralGap);
+        const aim = this.input.bufferedSwingAim();
         this.input.consumeSwing();
-        this.prepareShot('player', stroke, quality);
+        this.prepareShot('player', stroke, quality, aim);
     }
     tryOpponentReturn(dt) {
         if (!this.firstBounceSeen)
@@ -317,13 +319,13 @@ export class InteractiveMatchSystem {
         if (timeToOpponent <= 0.05 || timeToOpponent > commitThreshold)
             return;
         const lateralGap = Math.abs(this.ball.position.x - this.opponent.position.x);
-        const reach = 1.25 + this.opponentProfile.contactWindow * 0.65;
+        const reach = .85 + this.opponentProfile.contactWindow * 0.65;
         if (lateralGap > reach)
             return;
         const quality = this.aiQuality(false);
         this.prepareShot('opponent', this.strokeFor(this.opponent), quality);
     }
-    prepareShot(side, stroke, quality) {
+    prepareShot(side, stroke, quality, aim) {
         if (this.pending || this.pointResolved)
             return;
         const hitter = side === 'player' ? this.player : this.opponent;
@@ -331,7 +333,7 @@ export class InteractiveMatchSystem {
         const contactAt = hitter.shotContactTime(stroke);
         const duration = hitter.shotDuration(stroke);
         const predictedContact = this.predictedIncomingContact(contactAt, hitter);
-        const target = this.targetFor(side, quality);
+        const target = this.targetFor(side, quality, aim);
         const flightTime = this.flightTimeFor(side, quality);
         if (stroke !== 'serve') {
             hitter.setIncomingContact(predictedContact);
@@ -513,7 +515,7 @@ export class InteractiveMatchSystem {
             return 'defensive';
         return 'frame';
     }
-    targetFor(side, quality) {
+    targetFor(side, quality, aim = this.input.movement().x) {
         const direction = side === 'player' ? -1 : 1;
         const receiver = side === 'player' ? this.opponent : this.player;
         const assisted = side === 'opponent' && this.rallyLength < CHAMPIONSHIP_TUNING.assistContacts;
@@ -528,11 +530,10 @@ export class InteractiveMatchSystem {
             depth = clamp(receiver.position.z - 2.3, 1.5, 3.1);
         }
         if (side === 'player') {
-            // Steering also places the next shot. Releasing the stick gives a forgiving
-            // neutral return; holding left/right rewards chasing with a chosen angle.
-            const aim = this.input.movement().x;
+            // Keep the opening serve forgiving; placed returns can use the open sideline.
+            const margin = this.rallyLength === 0 ? .6 : .3;
             if (Math.abs(aim) > .18)
-                x = clamp(COURT_CENTER_X + aim * (COURT.singlesHalfWidth - .6) + variation * .2, SINGLES_MIN_X + .6, SINGLES_MAX_X - .6);
+                x = clamp(COURT_CENTER_X + aim * (COURT.singlesHalfWidth - margin) + variation * .2, SINGLES_MIN_X + margin, SINGLES_MAX_X - margin);
         }
         if (quality === 'frame') {
             x += (hash(seed + 18.4) - .5) * 2.1;

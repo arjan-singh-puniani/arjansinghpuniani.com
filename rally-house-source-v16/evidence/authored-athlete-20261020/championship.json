@@ -1,0 +1,114 @@
+[
+  {
+    "engine": "chromium",
+    "profile": "desktop",
+    "errors": [],
+    "requests": [],
+    "arrival": {
+      "paused": true,
+      "court": false
+    },
+    "playButton": {
+      "x": 909,
+      "y": 572,
+      "width": 316,
+      "height": 56
+    },
+    "accepted": {
+      "phase": "challenge",
+      "paused": false,
+      "active": [
+        {
+          "id": "activity-1",
+          "kind": "championship",
+          "participants": [
+            "player",
+            "leo"
+          ],
+          "resource": "court",
+          "phase": "traveling",
+          "elapsed": 0.11666666666666665,
+          "phaseTime": 0.11666666666666665,
+          "detail": "Championship vs Leo"
+        }
+      ],
+      "player": {
+        "x": -11.839409212827551,
+        "y": 0,
+        "z": 8.236329271138011
+      },
+      "blocked": false,
+      "toast": "Leo accepts. Championship court."
+    },
+    "focusResumes": 0,
+    "secondsToServe": 6.14,
+    "realRally": {
+      "phase": "rally",
+      "rally": 3,
+      "paused": false,
+      "cue": "nice"
+    },
+    "returned": {
+      "court": false,
+      "avatar": "Arjan",
+      "actors": 4,
+      "paused": false
+    }
+  },
+  {
+    "engine": "chromium",
+    "profile": "phone",
+    "errors": [],
+    "requests": [],
+    "arrival": {
+      "paused": true,
+      "court": false
+    },
+    "playButton": {
+      "x": 39,
+      "y": 634,
+      "width": 312,
+      "height": 56
+    },
+    "accepted": {
+      "phase": "challenge",
+      "paused": false,
+      "active": [
+        {
+          "id": "activity-1",
+          "kind": "championship",
+          "participants": [
+            "player",
+            "leo"
+          ],
+          "resource": "court",
+          "phase": "traveling",
+          "elapsed": 0.016666666666666666,
+          "phaseTime": 0.016666666666666666,
+          "detail": "Championship vs Leo"
+        }
+      ],
+      "player": {
+        "x": -11.897413356857694,
+        "y": 0,
+        "z": 8.10581994707019
+      },
+      "blocked": false,
+      "toast": "Leo accepts. Championship court."
+    },
+    "focusResumes": 0,
+    "secondsToServe": 6.087,
+    "realRally": {
+      "phase": "rally",
+      "rally": 3,
+      "paused": false,
+      "cue": "nice"
+    },
+    "returned": {
+      "court": false,
+      "avatar": "Taylor",
+      "actors": 4,
+      "paused": false
+    }
+  }
+]

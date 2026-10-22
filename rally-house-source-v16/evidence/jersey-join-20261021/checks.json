@@ -1,0 +1,193 @@
+{
+  "baselineCommit": "6e8bed93",
+  "capture": "Matched native production-renderer shoulder views with identical pose/camera; isolated candidate validated before install.",
+  "topology": {
+    "before": {
+      "components": 3,
+      "boundaryLoops": 10
+    },
+    "after": {
+      "components": 1,
+      "boundaryLoops": 4,
+      "boundaryDegree": 2,
+      "nonManifoldEdges": 0
+    },
+    "openings": [
+      "collar",
+      "hem",
+      "left cuff",
+      "right cuff"
+    ],
+    "beforeRegression": "Independent topology check rejects former jersey: 3 components != 1.",
+    "afterRegression": "Full authored-athlete test passes, including source hashes, manifold jersey, smooth hem, visible arm proportions, actual torso clearance, exact racket contact and replay."
+  },
+  "kitTriangles": {
+    "before": 5516,
+    "after": 4698
+  },
+  "nonKitAttributes": "All five non-kit primitives retain exact position, normal, bone-index/weight, UV and position/normal-morph hashes.",
+  "nativeGarment": {
+    "Taylor": {
+      "checks": 392,
+      "maxFrontCrossings": 0,
+      "maxIdleHandClips": 0,
+      "maxClothShortIntersections": 0,
+      "errors": []
+    },
+    "Contessa": {
+      "checks": 392,
+      "maxFrontCrossings": 0,
+      "maxIdleHandClips": 0,
+      "maxClothShortIntersections": 0,
+      "errors": []
+    },
+    "Lucresia": {
+      "checks": 392,
+      "maxFrontCrossings": 0,
+      "maxIdleHandClips": 0,
+      "maxClothShortIntersections": 0,
+      "errors": []
+    },
+    "Barbara": {
+      "checks": 392,
+      "maxFrontCrossings": 0,
+      "maxIdleHandClips": 0,
+      "maxClothShortIntersections": 0,
+      "errors": []
+    }
+  },
+  "nativeCast": {
+    "actors": [
+      "coach",
+      "mika",
+      "nia"
+    ],
+    "errors": [],
+    "http": [],
+    "passed": true
+  },
+  "phone": {
+    "avatar": "Taylor",
+    "samples": 162,
+    "liveTracks": 0,
+    "syncErrorSeconds": 0.008645000000000014,
+    "errors": [],
+    "requests": []
+  },
+  "point": {
+    "result": {
+      "phase": "pointResult",
+      "cameraMode": "pointReaction",
+      "opponentId": "leo",
+      "score": {
+        "player": 0,
+        "opponent": 1
+      },
+      "server": "player",
+      "bestRally": 8,
+      "currentRally": 8,
+      "lastPoint": {
+        "winner": "opponent",
+        "reason": "miss",
+        "rallyLength": 8
+      }
+    },
+    "samples": 743,
+    "gl": 0,
+    "errors": [],
+    "http": []
+  },
+  "isolatedABBA": [
+    {
+      "label": "before",
+      "median": 16.69999999999891,
+      "p95": 16.799999999999272,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 346000,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "median": 16.69999999999891,
+      "p95": 16.799999999999272,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 342728,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "median": 16.69999999999891,
+      "p95": 16.799999999999272,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 342728,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "before",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 346000,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    }
+  ],
+  "fullSuite": "npm test passes",
+  "releaseArtifacts": 111,
+  "limits": [
+    "Seam topology and sampled torso clearance do not establish unrestricted cloth self-collision; tight underarm folds still use linear skinning.",
+    "Frame timing is an isolated session sample, not a broad performance guarantee.",
+    "Studio-caliber appeal remains unproven pending human evaluation."
+  ]
+}

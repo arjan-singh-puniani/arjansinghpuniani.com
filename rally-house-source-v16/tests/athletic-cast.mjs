@@ -60,15 +60,20 @@ for(const spec of specs){
 for(const spec of specs)for(const hz of [30,60,120])for(const yaw of [0,.7,Math.PI]){
  const c=new Character({...spec},new Vec3(),new Navigation([]),{});c.yaw=c.targetYaw=yaw;c.matchCompetitor=true;c.trigger('ready');
  for(let i=0;i<hz;i++)c.update(1/hz);
- const first=c.analysisPose(),right=new Vec3(Math.cos(yaw),0,-Math.sin(yaw));let low=Infinity,high=-Infinity;
+ const first=c.analysisPose(),right=new Vec3(Math.cos(yaw),0,-Math.sin(yaw));let low=Infinity,high=-Infinity,maxGripTurn=0;const initialOffset=Vec3.sub(first.racketCenter,first.racketGrip);
  for(let i=0;i<hz*2;i++){
   c.update(1/hz);const p=c.analysisPose(),weight=Vec3.dot(p.pelvisCenter,right);low=Math.min(low,weight);high=Math.max(high,weight);
+  maxGripTurn=Math.max(maxGripTurn,Vec3.sub(Vec3.sub(p.racketCenter,p.racketGrip),initialOffset).len());
+  assert(Vec3.dot(Vec3.sub(p.racketCenter,p.racketGrip).normalize(),c.racketContactFrame().vertical)>.999,'Ready adjustment keeps the visible racket registered to its grip');
+  const centre=Vec3.lerp(p.shoulderL,p.shoulderR,.5),forward=new Vec3(Math.sin(yaw),0,Math.cos(yaw));assert(Vec3.dot(Vec3.sub(centre,p.pelvisCenter),forward)>.045,'Ready hip hinge reaches the actual torso landmarks');
   for(const side of ['L','R']){assert(Vec3.sub(p[`foot${side}`],first[`foot${side}`]).len()<1e-8,'Ready shoes stay planted while the body breathes');assert(Math.abs(p[`foot${side}`].y-.11)<1e-8,'Ready soles remain on the court');}
   assert(Vec3.dot(Vec3.sub(p.handR,c.position),right)>.05,'Racket wrist stays on its own side, without crossed forearms');
   assert(p.handL.y>p.handR.y+.08,'Free hand supports the throat above the grip');
+  assert(Vec3.sub(p.handL,Vec3.lerp(p.racketHandleTop,p.racketCenter,.20)).len()<.001,'Free palm follows the physical racket throat after retargeting');
   assert(p.shoulderR.y-p.shoulderL.y>.015,'Racket shoulder breaks the horizontal shoulder bar');
  }
  assert(high-low>.025&&high-low<.08,'Ready weight transfer is visible and restrained');
+ assert(maxGripTurn>.035&&maxGripTurn<.15,'Waiting grip adjusts quietly while the feet stay planted');
 }
 for(const spec of specs)for(const hz of [30,60,120])for(const netYaw of [0,Math.PI]){
  const c=new Character({...spec},new Vec3(),new Navigation([]),{});c.yaw=c.targetYaw=netYaw;c.matchCompetitor=true;c.trigger('ready');
@@ -87,3 +92,28 @@ assert.equal(signatures.size,specs.length,'Every named adult has a distinct rend
 assert(new Set(memberData.map(s=>JSON.stringify(locomotionStyleFor(s.id)))).size===memberData.length,'Individual footwork styles remain distinct');
 console.log(JSON.stringify({actors:specs.length,poses,maxStretch,maxContactError,minStrokePelvis,identities:signatures.size}));
 console.log('Athletic cast PASS: adult proportions, distinct identities, bounded geometry, shared skin rig, anatomical motion and exact tennis contact.');
+
+for(const spec of specs)for(const hz of [30,60,120])for(const yaw of [0,.7,Math.PI]){
+ const c=new Character({...spec},new Vec3(),new Navigation([]),{});c.yaw=c.targetYaw=yaw;c.acting.setRole('exit');
+ for(let i=0;i<hz*2;i++)c.update(1/hz);
+ const right=new Vec3(Math.cos(yaw),0,-Math.sin(yaw)),first=c.analysisPose(),feet=Vec3.lerp(first.footL,first.footR,.5);
+ assert(Vec3.dot(Vec3.sub(first.pelvisCenter,feet),right)>.04,'Rest visibly loads one leg, including after an interaction');
+ for(let i=0;i<hz;i++){
+  c.update(1/hz);const p=c.analysisPose();
+  for(const side of ['L','R']){
+   const hand=p[`hand${side}`],elbow=p[`elbow${side}`],sign=side==='L'?-1:1,offset=Vec3.sub(hand,p.pelvisCenter);
+   assert(sign*Vec3.dot(offset,right)>.21&&sign*Vec3.dot(offset,right)<.29,'Resting hands stay on their own side of the waist');
+   assert(offset.y>.15&&offset.y<.21,'Hands rest at waist height');
+   assert(sign*Vec3.dot(Vec3.sub(elbow,hand),right)>.12,'Elbows open away from the waist');
+   assert(Vec3.sub(p[`foot${side}`],first[`foot${side}`]).len()<1e-8,'Breathing cannot lift a resting shoe');
+  }
+ }
+ let prior=c.analysisPose();c.goTo(new Vec3(Math.sin(yaw)*4,0,Math.cos(yaw)*4));
+ for(let i=0;i<hz;i++){c.update(1/hz);const p=c.analysisPose();assert(Vec3.sub(p.handL,prior.handL).len()<.20,'Hands leave the waist continuously when walking begins');prior=p;}
+}
+console.log('Rest stance PASS: hands at the waist, open elbows, visible one-leg loading, grounded shoes, return after interactions and continuous walking departure.');
+for(const spec of specs)for(const hz of [30,60,120])for(const stroke of ['serve','swingForehand','swingBackhand']){
+ const c=new Character({...spec},new Vec3(),new Navigation([]),{});for(let i=0;i<hz*2;i++)c.update(1/hz);
+ c.triggerShot(stroke,new Vec3(0,.1,5));const contact=c.shotContactTime(stroke);for(let i=0;i<60;i++)c.update(contact/60);
+ assert(Vec3.sub(c.analysisPose().racketCenter,c.debugKinematics().contactTarget).len()<1e-6,'Leaving hands-on-waist rest preserves exact racket contact');
+}

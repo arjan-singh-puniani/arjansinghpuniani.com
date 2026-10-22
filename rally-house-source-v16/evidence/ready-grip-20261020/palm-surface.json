@@ -1,0 +1,24 @@
+{
+  "before": {
+    "L": {
+      "vertices": 10,
+      "maxGripShift": 0.033163782209157944
+    },
+    "R": {
+      "vertices": 10,
+      "maxGripShift": 0.033163782209157944
+    }
+  },
+  "after": {
+    "L": {
+      "vertices": 10,
+      "maxGripShift": 0.0009691736195236444
+    },
+    "R": {
+      "vertices": 10,
+      "maxGripShift": 0.0009691736195236444
+    }
+  },
+  "textureHashesUnchanged": true,
+  "wristLandmarksUnchanged": true
+}

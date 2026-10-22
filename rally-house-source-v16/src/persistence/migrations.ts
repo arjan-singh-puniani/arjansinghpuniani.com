@@ -1,7 +1,7 @@
 import type {GameSave} from '../core/types.js';
 import type {Relationship} from '../simulation/RelationshipSystem.js';
 import {DECOR_BY_ID} from '../content/DecorCatalog.js';
-export const CURRENT_SAVE_VERSION=9;
+export const CURRENT_SAVE_VERSION=11;
 const invalid=()=>{throw new Error('Saved club data is invalid. Storage has been left untouched.');};
 function scan(v:unknown,depth=0){
  if(depth>20)invalid();if(typeof v==='number'&&!Number.isFinite(v))invalid();
@@ -11,7 +11,8 @@ function scan(v:unknown,depth=0){
 function normalizeRelationship(v:Partial<Relationship>|undefined):Relationship{
  if(v&&(![v.familiarity??10,v.warmth??12,v.trust??10,v.rivalry??0].every(n=>typeof n==='number'&&Number.isFinite(n)&&n>=0&&n<=100)||!Array.isArray(v.memories??[])||!Array.isArray(v.events??[])))invalid();
  for(const e of v?.events??[])if(!e||typeof e.detail!=='string'||!Array.isArray(e.people)||!Array.isArray(e.tags)||!e.people.every(p=>typeof p==='string')||!e.tags.every(p=>typeof p==='string')||!Number.isFinite(e.day))invalid();
- return {familiarity:v?.familiarity??10,warmth:v?.warmth??12,trust:v?.trust??10,rivalry:v?.rivalry??0,memories:v?.memories??[],events:v?.events??[]};
+ if(v?.courtship!==undefined&&(!v.courtship||typeof v.courtship.flirted!=='boolean'||typeof v.courtship.won!=='boolean'||!Number.isSafeInteger(v.courtship.hugs)||v.courtship.hugs<0||v.courtship.hugs>2))invalid();
+ return {familiarity:v?.familiarity??10,warmth:v?.warmth??12,trust:v?.trust??10,rivalry:v?.rivalry??0,memories:v?.memories??[],events:v?.events??[],...(v?.courtship?{courtship:{...v.courtship}}:{})};
 }
 export function migrateGameSave(version:number,state:GameSave):GameSave{
  if(version>CURRENT_SAVE_VERSION)throw new Error('Save needs a newer version.');
@@ -26,6 +27,7 @@ export function migrateGameSave(version:number,state:GameSave):GameSave{
  if(state.playerAvatar!=null&&!['taylor','arjan'].includes(state.playerAvatar))invalid();
  if(state.queuedLesson!=null&&!['spacing','dropFeed','crosscourt','movement','shadowPrep'].includes(state.queuedLesson))invalid();
  if(state.objectIdentity!==undefined){if(!state.objectIdentity||typeof state.objectIdentity!=='object'||Array.isArray(state.objectIdentity)||Object.keys(state.objectIdentity).length>128)invalid();for(const s of Object.values(state.objectIdentity)){if(!s||!Number.isSafeInteger(s.uses)||s.uses<0||s.uses>9999||typeof s.lastAction!=='string'||s.lastAction.length>120||typeof s.sketched!=='boolean'||(s.dimmed!==undefined&&typeof s.dimmed!=='boolean')||(s.lastWater!==null&&(!Number.isFinite(s.lastWater)||s.lastWater<0||s.lastWater>state.clock.day*1440+state.clock.minutes)))invalid();}}
+ if(state.affordances?.objects)for(const h of Object.values(state.affordances.objects))if(h&&h.lastWater!==undefined&&h.lastWater>state.clock.day*1440+state.clock.minutes)invalid();
  const relationships:Record<string,Relationship>={};for(const [k,v] of Object.entries(state.relationships??{}))relationships[k]=normalizeRelationship(v);
  return {...state,stars:state.stars??3,coachXP:state.coachXP??14,weather:state.weather??'clear',placements:state.placements??[],equipment:state.equipment??{frame:'Cedar 98',tension:52,string:'Soft poly'},relationships,bestRally:state.bestRally??0,development:state.development??{preparation:0,recovery:0},emergentSocial:version>=4?state.emergentSocial:undefined,mind:version>=7?state.mind:undefined};
 }

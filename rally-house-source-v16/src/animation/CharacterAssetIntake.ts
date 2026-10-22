@@ -1,7 +1,7 @@
-import {BONE,type RigJointName} from './CharacterSkin.js';
+import {BONE,BONE_COUNT,type RigJointName} from './CharacterSkin.js';
 import type {SkinGeometry} from '../rendering/Renderer.js';
 export interface AssetProvenance {author:string;source:string;license:string;sha256:string;boneMap:Record<string,RigJointName>;}
-export interface IntakeResult {primitives:{geometry:SkinGeometry;materialSlot:string}[];inverseBindMatrices:number[];provenance:AssetProvenance;warnings:string[];}
+export interface IntakeResult {primitives:{geometry:SkinGeometry;materialSlot:string;albedo?:string;alphaCutoff?:number;doubleSided?:boolean}[];inverseBindMatrices:number[];provenance:AssetProvenance;warnings:string[];}
 /** Strict, non-networking glTF 2 / GLB intake. Output is never automatically activated on a character. */
 export function inspectCharacterAsset(input:ArrayBuffer|Record<string,unknown>,buffers:ArrayBuffer[],provenance:AssetProvenance):IntakeResult{
  const fail=(message:string):never=>{throw Error(`Character asset rejected: ${message}`);};
@@ -13,27 +13,36 @@ export function inspectCharacterAsset(input:ArrayBuffer|Record<string,unknown>,b
  if(doc?.asset?.version!=='2.0')fail('glTF 2.0 is required');if(doc.extensionsRequired?.length)fail('required extensions need an explicit decoder');
  if(!Array.isArray(doc.skins)||doc.skins.length!==1||!Array.isArray(doc.nodes)||!Array.isArray(doc.meshes))fail('one skin, nodes and meshes are required');
  if(doc.animations?.length)fail('animation retargeting is a separate review gate');
- const skin=doc.skins[0];if(!Array.isArray(skin.joints)||!skin.joints.length||skin.joints.length>15||new Set(skin.joints).size!==skin.joints.length)fail('invalid joint list');
+ const skin=doc.skins[0];if(!Array.isArray(skin.joints)||!skin.joints.length||skin.joints.length>BONE_COUNT||new Set(skin.joints).size!==skin.joints.length)fail('invalid joint list');
  const mapping=skin.joints.map((index:number)=>{const node=doc.nodes[index],name=node?.name,key=provenance.boneMap[name];if(!name||!(key in BONE))fail(`unmapped joint ${name??index}`);return BONE[key];});if(new Set(mapping).size!==mapping.length)fail('bone mappings must be unique');
  const read=(index:number,type:string,allowed:number[],weights=false)=>{
   const a=doc.accessors?.[index];if(!a||a.type!==type||!Number.isSafeInteger(a.count)||a.count<1||a.count>120000||a.sparse||!allowed.includes(a.componentType))fail('unsupported accessor');
   if(a.normalized&&(!weights||a.componentType===5126))fail('invalid normalized accessor');if(weights&&a.componentType!==5126&&!a.normalized)fail('integer weights require normalization');
-  const b=doc.bufferViews?.[a.bufferView],buf=data[b?.buffer];if(!b||!buf)fail('missing buffer');const components=({SCALAR:1,VEC3:3,VEC4:4,MAT4:16} as Record<string,number>)[type],bytes=a.componentType===5126||a.componentType===5125?4:a.componentType===5123?2:1,packed=components*bytes,stride=b.byteStride??packed,offset=(b.byteOffset??0)+(a.byteOffset??0);
+  const b=doc.bufferViews?.[a.bufferView],buf=data[b?.buffer];if(!b||!buf)fail('missing buffer');const components=({SCALAR:1,VEC2:2,VEC3:3,VEC4:4,MAT4:16} as Record<string,number>)[type],bytes=a.componentType===5126||a.componentType===5125?4:a.componentType===5123?2:1,packed=components*bytes,stride=b.byteStride??packed,offset=(b.byteOffset??0)+(a.byteOffset??0);
   if(!Number.isSafeInteger(offset)||!Number.isSafeInteger(b.byteOffset??0)||!Number.isSafeInteger(a.byteOffset??0)||!Number.isSafeInteger(stride)||stride%bytes||stride<packed||stride>252||offset<0||offset%bytes||!Number.isSafeInteger(b.byteLength)||b.byteLength<0||offset+(a.count-1)*stride+packed>(b.byteOffset??0)+b.byteLength||offset+(a.count-1)*stride+packed>buf.byteLength)fail('accessor outside buffer');
   const v=new DataView(buf),out:number[]=[];for(let i=0;i<a.count;i++)for(let j=0;j<components;j++){const pos=offset+i*stride+j*bytes;let n=a.componentType===5126?v.getFloat32(pos,true):a.componentType===5125?v.getUint32(pos,true):a.componentType===5123?v.getUint16(pos,true):v.getUint8(pos);if(a.normalized&&a.componentType!==5126)n/=a.componentType===5123?65535:255;if(!Number.isFinite(n))fail('non-finite vertex data');out.push(n);}return out;
  };
  const inverse=read(skin.inverseBindMatrices,'MAT4',[5126]);if(inverse.length!==skin.joints.length*16)fail('inverse bind count mismatch');
  const primitives:IntakeResult['primitives']=[];
  for(const [mi,mesh] of doc.meshes.entries())for(const [pi,p] of (mesh.primitives??[]).entries()){
-  if(p.mode!==undefined&&p.mode!==4)fail('triangle primitives only');if(p.targets)fail('morph targets require a reviewed channel adapter');
+  const drape=doc.materials?.[p.material]?.name==='skirt'&&['reserved1','crouchDrape'].some(second=>JSON.stringify(mesh.extras?.targetNames)===JSON.stringify(['seatedDrape',second,'reserved2','reserved3','reserved4']));
+  const crouch=drape&&mesh.extras.targetNames[1]==='crouchDrape';
+  if(p.mode!==undefined&&p.mode!==4)fail('triangle primitives only');if(p.targets&&(!Array.isArray(p.targets)||p.targets.length!==5||!drape&&JSON.stringify(mesh.extras?.targetNames)!==JSON.stringify(['smile','mouthOpen','blink','browRaise','grip'])))fail('morph targets require a reviewed channel adapter');
   const positions=read(p.attributes?.POSITION,'VEC3',[5126]),normals=read(p.attributes?.NORMAL,'VEC3',[5126]),joints=read(p.attributes?.JOINTS_0,'VEC4',[5121,5123]),weights=read(p.attributes?.WEIGHTS_0,'VEC4',[5121,5123,5126],true),count=positions.length/3;
   if(normals.length!==positions.length||joints.length!==count*4||weights.length!==count*4)fail('attribute counts differ');
   for(let i=0;i<count;i++){let sum=0;for(let j=0;j<4;j++){const n=i*4+j;if(!Number.isSafeInteger(joints[n])||joints[n]<0||joints[n]>=mapping.length||weights[n]<0||weights[n]>1)fail('invalid joint or weight');sum+=weights[n];joints[n]=mapping[joints[n]];}if(Math.abs(sum-1)>.015)fail('weights are not normalized');const len=Math.hypot(...normals.slice(i*3,i*3+3));if(len<.5||len>1.5)fail('invalid normals');}
-  const material=doc.materials?.[p.material];if(!material?.name)fail('named material slots required');if(material.pbrMetallicRoughness?.baseColorTexture||material.pbrMetallicRoughness?.metallicRoughnessTexture||material.normalTexture||material.occlusionTexture||material.emissiveTexture)fail('textured materials need a renderer adapter');
+  const material=doc.materials?.[p.material];if(!material?.name)fail('named material slots required');if(material.pbrMetallicRoughness?.metallicRoughnessTexture||material.normalTexture||material.occlusionTexture||material.emissiveTexture)fail('textured materials need a renderer adapter');
+  let albedo:string|undefined,uvs:number[]|undefined;
+  const texture=material.pbrMetallicRoughness?.baseColorTexture;
+  if(texture){const image=doc.images?.[doc.textures?.[texture.index]?.source];if(texture.texCoord||!image?.uri||!/^[a-z0-9-]+\.webp$/.test(image.uri))fail('unsupported albedo reference');albedo=image.uri;uvs=read(p.attributes?.TEXCOORD_0,'VEC2',[5126]);if(uvs.length!==count*2)fail('UV counts differ');}
+  if(material.alphaMode&& !['OPAQUE','MASK'].includes(material.alphaMode))fail('unsupported alpha mode');
+  if(material.alphaMode==='MASK'&&(!albedo||!Number.isFinite(material.alphaCutoff)||material.alphaCutoff<0||material.alphaCutoff>1))fail('invalid alpha mask');
+  const morphs=p.targets?.map((t:any,target:number)=>{if(Object.keys(t).some(k=>k!=='POSITION'&&k!=='NORMAL'))fail('unsupported expression channel');const delta=read(t.POSITION,'VEC3',[5126]);if(delta.length!==positions.length||delta.some((n:number)=>Math.abs(n)>(drape?(target===0?.25:target===1&&crouch?.4:0):target===4?.2:.06)))fail('invalid expression displacement');return delta;});
+  const morphNormals=p.targets?.some((t:any)=>t.NORMAL!==undefined)?p.targets.map((t:any)=>{const delta=t.NORMAL===undefined?Array(positions.length).fill(0):read(t.NORMAL,'VEC3',[5126]);if(delta.length!==positions.length||delta.some((n:number)=>Math.abs(n)>2.01))fail('invalid expression normals');return delta;}):undefined;
   const indices=p.indices===undefined?Array.from({length:count},(_,i)=>i):read(p.indices,'SCALAR',[5121,5123,5125]);if(indices.length%3||indices.some((i:number)=>!Number.isSafeInteger(i)||i<0||i>=count))fail('invalid triangle indices');
   const expand=(source:number[],size:number)=>new Float32Array(indices.flatMap((i:number)=>source.slice(i*size,(i+1)*size)));
-  primitives.push({geometry:{id:`asset-${provenance.sha256}-${mi}-${pi}`,positions:expand(positions,3),normals:expand(normals,3),boneIndices:expand(joints,4),boneWeights:expand(weights,4)},materialSlot:material.name});
+  primitives.push({geometry:{id:`asset-${provenance.sha256}-${mi}-${pi}`,positions:expand(positions,3),normals:expand(normals,3),boneIndices:expand(joints,4),boneWeights:expand(weights,4),...(uvs?{uvs:expand(uvs,2)}:{}),...(morphs?{morphs:morphs.map((d:number[])=>expand(d,3))}:{}),...(morphNormals?{morphNormals:morphNormals.map((d:number[])=>expand(d,3))}:{})},materialSlot:material.name,albedo,alphaCutoff:material.alphaMode==='MASK'?material.alphaCutoff:undefined,doubleSided:material.doubleSided===true});
  }
  if(!primitives.length||primitives.reduce((n,p)=>n+p.geometry.positions.length/3,0)>120000)fail('empty or over-budget geometry');
- return {primitives,inverseBindMatrices:inverse,provenance:structuredClone(provenance),warnings:['Intake only: compare bind pose, material mapping and motion before activation.','SHA-256 provenance must be verified by the file-loading caller.','No professional character or animation asset was supplied.']};
+ return {primitives,inverseBindMatrices:inverse,provenance:structuredClone(provenance),warnings:['Intake only: compare bind pose, material mapping and motion before activation.','SHA-256 provenance must be verified by the file-loading caller.']};
 }

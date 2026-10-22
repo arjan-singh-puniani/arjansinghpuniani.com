@@ -1,0 +1,386 @@
+[
+  {
+    "label": "before",
+    "state": "idle",
+    "age": 4,
+    "angle": 0,
+    "face": {
+      "smile": 0.55,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0.08,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "idle",
+    "age": 4,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.55,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0.08,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "ready",
+    "age": 4,
+    "angle": 0,
+    "face": {
+      "smile": 0.10199999999999995,
+      "mouthOpen": 0,
+      "browRaise": 0.18399999999999994,
+      "squint": 0.019999999999999993,
+      "focus": 0.5799999999999997
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "ready",
+    "age": 4,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.10199999999999995,
+      "mouthOpen": 0,
+      "browRaise": 0.18399999999999994,
+      "squint": 0.019999999999999993,
+      "focus": 0.5799999999999997
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "sit",
+    "age": 4,
+    "angle": 0,
+    "face": {
+      "smile": 0.1419999999999999,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "sit",
+    "age": 4,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.1419999999999999,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "swingForehand",
+    "age": 0.35,
+    "angle": 0,
+    "face": {
+      "smile": 0.021811843005339112,
+      "mouthOpen": 0.039702136677163026,
+      "browRaise": 0.09628631630919854,
+      "squint": 0.094742578884216,
+      "focus": 0.8384534058482321
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "swingForehand",
+    "age": 0.35,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.021811843005339112,
+      "mouthOpen": 0.039702136677163026,
+      "browRaise": 0.09628631630919854,
+      "squint": 0.094742578884216,
+      "focus": 0.8384534058482321
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "swingBackhand",
+    "age": 0.35,
+    "angle": 0,
+    "face": {
+      "smile": 0.021811843005339112,
+      "mouthOpen": 0.039702136677163026,
+      "browRaise": 0.0994208575250479,
+      "squint": 0.1024663584968186,
+      "focus": 0.8384534058482321
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "swingBackhand",
+    "age": 0.35,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.021811843005339112,
+      "mouthOpen": 0.039702136677163026,
+      "browRaise": 0.0994208575250479,
+      "squint": 0.1024663584968186,
+      "focus": 0.8384534058482321
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "serve",
+    "age": 0.35,
+    "angle": 0,
+    "face": {
+      "smile": 0.021811843005339112,
+      "mouthOpen": 0.039702136677163026,
+      "browRaise": 0.12157319203623021,
+      "squint": 0.1649343317518657,
+      "focus": 0.8384534058482321
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "state": "serve",
+    "age": 0.35,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.021811843005339112,
+      "mouthOpen": 0.039702136677163026,
+      "browRaise": 0.12157319203623021,
+      "squint": 0.1649343317518657,
+      "focus": 0.8384534058482321
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "idle",
+    "age": 4,
+    "angle": 0,
+    "face": {
+      "smile": 0.55,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0.08,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "idle",
+    "age": 4,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.55,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0.08,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "ready",
+    "age": 4,
+    "angle": 0,
+    "face": {
+      "smile": 0.10199999999999995,
+      "mouthOpen": 0,
+      "browRaise": 0.18399999999999994,
+      "squint": 0.019999999999999993,
+      "focus": 0.5799999999999997
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "ready",
+    "age": 4,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.10199999999999995,
+      "mouthOpen": 0,
+      "browRaise": 0.18399999999999994,
+      "squint": 0.019999999999999993,
+      "focus": 0.5799999999999997
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "sit",
+    "age": 4,
+    "angle": 0,
+    "face": {
+      "smile": 0.1419999999999999,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "sit",
+    "age": 4,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.1419999999999999,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "swingForehand",
+    "age": 0.35,
+    "angle": 0,
+    "face": {
+      "smile": 0.021811843005339112,
+      "mouthOpen": 0.039702136677163026,
+      "browRaise": 0.09628631630919854,
+      "squint": 0.094742578884216,
+      "focus": 0.8384534058482321
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "swingForehand",
+    "age": 0.35,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.021811843005339112,
+      "mouthOpen": 0.039702136677163026,
+      "browRaise": 0.09628631630919854,
+      "squint": 0.094742578884216,
+      "focus": 0.8384534058482321
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "swingBackhand",
+    "age": 0.35,
+    "angle": 0,
+    "face": {
+      "smile": 0.021811843005339112,
+      "mouthOpen": 0.039702136677163026,
+      "browRaise": 0.0994208575250479,
+      "squint": 0.1024663584968186,
+      "focus": 0.8384534058482321
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "swingBackhand",
+    "age": 0.35,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.021811843005339112,
+      "mouthOpen": 0.039702136677163026,
+      "browRaise": 0.0994208575250479,
+      "squint": 0.1024663584968186,
+      "focus": 0.8384534058482321
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "serve",
+    "age": 0.35,
+    "angle": 0,
+    "face": {
+      "smile": 0.021811843005339112,
+      "mouthOpen": 0.039702136677163026,
+      "browRaise": 0.12157319203623021,
+      "squint": 0.1649343317518657,
+      "focus": 0.8384534058482321
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "state": "serve",
+    "age": 0.35,
+    "angle": 0.6,
+    "face": {
+      "smile": 0.021811843005339112,
+      "mouthOpen": 0.039702136677163026,
+      "browRaise": 0.12157319203623021,
+      "squint": 0.1649343317518657,
+      "focus": 0.8384534058482321
+    },
+    "gl": 0,
+    "parts": 6,
+    "errors": []
+  }
+]

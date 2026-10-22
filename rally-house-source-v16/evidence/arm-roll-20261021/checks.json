@@ -1,0 +1,1121 @@
+{
+  "before": "f0778f76",
+  "forwardReach": {
+    "samples": 66,
+    "elbowStepMetres": 0.0005,
+    "beforeMaxMarkerStepMetres": 0.07055774070088883,
+    "afterMaxMarkerStepMetres": 0.0001817332987498217,
+    "scope": "Synthetic authored-arm forward-axis sweep, not a measured 7 cm jump during the recorded point."
+  },
+  "forearm": {
+    "normalizedBlendVolumeThreshold": 0.15,
+    "minimumObserved": 0.26116741162849216,
+    "scope": "Skin and visible-sleeve samples across 42 Character poses; previous implementation fails the strengthened check."
+  },
+  "suite": "npm test passed",
+  "release": "111 source/served artifacts match",
+  "poses": [
+    {
+      "actor": "taylor",
+      "label": "after",
+      "state": "idle",
+      "age": 1.5,
+      "angle": 0,
+      "face": {
+        "smile": 0.55,
+        "mouthOpen": 0,
+        "browRaise": 0.06400003466746117,
+        "squint": 0.08,
+        "focus": 0.1000000071023204
+      },
+      "gl": 0,
+      "parts": 6,
+      "errors": []
+    },
+    {
+      "actor": "taylor",
+      "label": "after",
+      "state": "idle",
+      "age": 1.5,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.55,
+        "mouthOpen": 0,
+        "browRaise": 0.06400003466746117,
+        "squint": 0.08,
+        "focus": 0.1000000071023204
+      },
+      "gl": 0,
+      "parts": 6,
+      "errors": []
+    },
+    {
+      "actor": "taylor",
+      "label": "after",
+      "state": "ready",
+      "age": 0.5,
+      "angle": 0,
+      "face": {
+        "smile": 0.10199261982218613,
+        "mouthOpen": 0,
+        "browRaise": 0.1839550480078611,
+        "squint": 0.019998645425270183,
+        "focus": 0.5799661356317546
+      },
+      "gl": 0,
+      "parts": 6,
+      "errors": []
+    },
+    {
+      "actor": "taylor",
+      "label": "after",
+      "state": "ready",
+      "age": 0.5,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.10199261982218613,
+        "mouthOpen": 0,
+        "browRaise": 0.1839550480078611,
+        "squint": 0.019998645425270183,
+        "focus": 0.5799661356317546
+      },
+      "gl": 0,
+      "parts": 6,
+      "errors": []
+    },
+    {
+      "actor": "taylor",
+      "label": "after",
+      "state": "swingBackhand",
+      "age": 0.21666666666666667,
+      "angle": 0,
+      "face": {
+        "smile": 0.020413935569371114,
+        "mouthOpen": 0.028555354376364108,
+        "browRaise": 0.09114984420950654,
+        "squint": 0.16807563887298063,
+        "focus": 0.8752177396532653
+      },
+      "gl": 0,
+      "parts": 6,
+      "errors": []
+    },
+    {
+      "actor": "taylor",
+      "label": "after",
+      "state": "swingBackhand",
+      "age": 0.21666666666666667,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.020413935569371114,
+        "mouthOpen": 0.028555354376364108,
+        "browRaise": 0.09114984420950654,
+        "squint": 0.16807563887298063,
+        "focus": 0.8752177396532653
+      },
+      "gl": 0,
+      "parts": 6,
+      "errors": []
+    },
+    {
+      "actor": "taylor",
+      "label": "after",
+      "state": "swingForehand",
+      "age": 0.5166666666666667,
+      "angle": 0,
+      "face": {
+        "smile": 0.01051847932217081,
+        "mouthOpen": 0.029978336705572404,
+        "browRaise": 0.08055511805594973,
+        "squint": 0.17967418206620403,
+        "focus": 0.8993228563966693
+      },
+      "gl": 0,
+      "parts": 6,
+      "errors": []
+    },
+    {
+      "actor": "taylor",
+      "label": "after",
+      "state": "swingForehand",
+      "age": 0.5166666666666667,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.01051847932217081,
+        "mouthOpen": 0.029978336705572404,
+        "browRaise": 0.08055511805594973,
+        "squint": 0.17967418206620403,
+        "focus": 0.8993228563966693
+      },
+      "gl": 0,
+      "parts": 6,
+      "errors": []
+    },
+    {
+      "actor": "taylor",
+      "label": "after",
+      "state": "serve",
+      "age": 0.6666666666666666,
+      "angle": 0,
+      "face": {
+        "smile": 0.010115688374189621,
+        "mouthOpen": 0.029997347190340206,
+        "browRaise": 0.08012386358072533,
+        "squint": 0.17994614265778086,
+        "focus": 0.8998880689152031
+      },
+      "gl": 0,
+      "parts": 6,
+      "errors": []
+    },
+    {
+      "actor": "taylor",
+      "label": "after",
+      "state": "serve",
+      "age": 0.6666666666666666,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.010115688374189621,
+        "mouthOpen": 0.029997347190340206,
+        "browRaise": 0.08012386358072533,
+        "squint": 0.17994614265778086,
+        "focus": 0.8998880689152031
+      },
+      "gl": 0,
+      "parts": 6,
+      "errors": []
+    },
+    {
+      "actor": "taylor",
+      "label": "after",
+      "state": "sit",
+      "age": 2,
+      "angle": 0,
+      "face": {
+        "smile": 0.14199999991529624,
+        "mouthOpen": 0,
+        "browRaise": 0.06400000023358753,
+        "squint": 7.343967631580016e-13,
+        "focus": 0.1000000000176049
+      },
+      "gl": 0,
+      "parts": 6,
+      "errors": []
+    },
+    {
+      "actor": "taylor",
+      "label": "after",
+      "state": "sit",
+      "age": 2,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.14199999991529624,
+        "mouthOpen": 0,
+        "browRaise": 0.06400000023358753,
+        "squint": 7.343967631580016e-13,
+        "focus": 0.1000000000176049
+      },
+      "gl": 0,
+      "parts": 6,
+      "errors": []
+    },
+    {
+      "actor": "coach",
+      "label": "after",
+      "state": "idle",
+      "age": 1.5,
+      "angle": 0,
+      "face": {
+        "smile": 0.32,
+        "mouthOpen": 0,
+        "browRaise": 0.06400003466746117,
+        "squint": 0.08,
+        "focus": 0.1000000071023204
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "coach",
+      "label": "after",
+      "state": "idle",
+      "age": 1.5,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.32,
+        "mouthOpen": 0,
+        "browRaise": 0.06400003466746117,
+        "squint": 0.08,
+        "focus": 0.1000000071023204
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "coach",
+      "label": "after",
+      "state": "ready",
+      "age": 0.5,
+      "angle": 0,
+      "face": {
+        "smile": 0.10199261982218613,
+        "mouthOpen": 0,
+        "browRaise": 0.1839550480078611,
+        "squint": 0.019998645425270183,
+        "focus": 0.5799661356317546
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "coach",
+      "label": "after",
+      "state": "ready",
+      "age": 0.5,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.10199261982218613,
+        "mouthOpen": 0,
+        "browRaise": 0.1839550480078611,
+        "squint": 0.019998645425270183,
+        "focus": 0.5799661356317546
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "coach",
+      "label": "after",
+      "state": "swingBackhand",
+      "age": 0.21666666666666667,
+      "angle": 0,
+      "face": {
+        "smile": 0.020413935569371114,
+        "mouthOpen": 0.028555354376364108,
+        "browRaise": 0.09114984420950654,
+        "squint": 0.16807563887298063,
+        "focus": 0.8752177396532653
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "coach",
+      "label": "after",
+      "state": "swingBackhand",
+      "age": 0.21666666666666667,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.020413935569371114,
+        "mouthOpen": 0.028555354376364108,
+        "browRaise": 0.09114984420950654,
+        "squint": 0.16807563887298063,
+        "focus": 0.8752177396532653
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "coach",
+      "label": "after",
+      "state": "swingForehand",
+      "age": 0.5166666666666667,
+      "angle": 0,
+      "face": {
+        "smile": 0.012053662073264668,
+        "mouthOpen": 0.03205944104220459,
+        "browRaise": 0.08055511805594973,
+        "squint": 0.15792187243556186,
+        "focus": 0.8902593940505683
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "coach",
+      "label": "after",
+      "state": "swingForehand",
+      "age": 0.5166666666666667,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.012053662073264668,
+        "mouthOpen": 0.03205944104220459,
+        "browRaise": 0.08055511805594973,
+        "squint": 0.15792187243556186,
+        "focus": 0.8902593940505683
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "coach",
+      "label": "after",
+      "state": "serve",
+      "age": 0.6666666666666666,
+      "angle": 0,
+      "face": {
+        "smile": 0.012950375268451728,
+        "mouthOpen": 0.033726456337609644,
+        "browRaise": 0.08012386358072533,
+        "squint": 0.14038454818205756,
+        "focus": 0.8834040712169849
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "coach",
+      "label": "after",
+      "state": "serve",
+      "age": 0.6666666666666666,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.012950375268451728,
+        "mouthOpen": 0.033726456337609644,
+        "browRaise": 0.08012386358072533,
+        "squint": 0.14038454818205756,
+        "focus": 0.8834040712169849
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "coach",
+      "label": "after",
+      "state": "sit",
+      "age": 2,
+      "angle": 0,
+      "face": {
+        "smile": 0.14199999991529624,
+        "mouthOpen": 0,
+        "browRaise": 0.06400000023358753,
+        "squint": 7.343967631580016e-13,
+        "focus": 0.1000000000176049
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "coach",
+      "label": "after",
+      "state": "sit",
+      "age": 2,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.14199999991529624,
+        "mouthOpen": 0,
+        "browRaise": 0.06400000023358753,
+        "squint": 7.343967631580016e-13,
+        "focus": 0.1000000000176049
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "mika",
+      "label": "after",
+      "state": "idle",
+      "age": 1.5,
+      "angle": 0,
+      "face": {
+        "smile": 0.32,
+        "mouthOpen": 0,
+        "browRaise": 0.06400003466746117,
+        "squint": 0.08,
+        "focus": 0.1000000071023204
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "mika",
+      "label": "after",
+      "state": "idle",
+      "age": 1.5,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.32,
+        "mouthOpen": 0,
+        "browRaise": 0.06400003466746117,
+        "squint": 0.08,
+        "focus": 0.1000000071023204
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "mika",
+      "label": "after",
+      "state": "ready",
+      "age": 0.5,
+      "angle": 0,
+      "face": {
+        "smile": 0.10199261982218613,
+        "mouthOpen": 0,
+        "browRaise": 0.1839550480078611,
+        "squint": 0.019998645425270183,
+        "focus": 0.5799661356317546
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "mika",
+      "label": "after",
+      "state": "ready",
+      "age": 0.5,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.10199261982218613,
+        "mouthOpen": 0,
+        "browRaise": 0.1839550480078611,
+        "squint": 0.019998645425270183,
+        "focus": 0.5799661356317546
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "mika",
+      "label": "after",
+      "state": "swingBackhand",
+      "age": 0.21666666666666667,
+      "angle": 0,
+      "face": {
+        "smile": 0.020413935569371114,
+        "mouthOpen": 0.028555354376364108,
+        "browRaise": 0.09114984420950654,
+        "squint": 0.16807563887298063,
+        "focus": 0.8752177396532653
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "mika",
+      "label": "after",
+      "state": "swingBackhand",
+      "age": 0.21666666666666667,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.020413935569371114,
+        "mouthOpen": 0.028555354376364108,
+        "browRaise": 0.09114984420950654,
+        "squint": 0.16807563887298063,
+        "focus": 0.8752177396532653
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "mika",
+      "label": "after",
+      "state": "swingForehand",
+      "age": 0.5166666666666667,
+      "angle": 0,
+      "face": {
+        "smile": 0.01051847932217081,
+        "mouthOpen": 0.029978336705572404,
+        "browRaise": 0.08055511805594973,
+        "squint": 0.17967418206620403,
+        "focus": 0.8993228563966693
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "mika",
+      "label": "after",
+      "state": "swingForehand",
+      "age": 0.5166666666666667,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.01051847932217081,
+        "mouthOpen": 0.029978336705572404,
+        "browRaise": 0.08055511805594973,
+        "squint": 0.17967418206620403,
+        "focus": 0.8993228563966693
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "mika",
+      "label": "after",
+      "state": "serve",
+      "age": 0.6666666666666666,
+      "angle": 0,
+      "face": {
+        "smile": 0.010115688374189621,
+        "mouthOpen": 0.029997347190340206,
+        "browRaise": 0.08012386358072533,
+        "squint": 0.17994614265778086,
+        "focus": 0.8998880689152031
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "mika",
+      "label": "after",
+      "state": "serve",
+      "age": 0.6666666666666666,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.010115688374189621,
+        "mouthOpen": 0.029997347190340206,
+        "browRaise": 0.08012386358072533,
+        "squint": 0.17994614265778086,
+        "focus": 0.8998880689152031
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "mika",
+      "label": "after",
+      "state": "sit",
+      "age": 2,
+      "angle": 0,
+      "face": {
+        "smile": 0.14199999991529624,
+        "mouthOpen": 0,
+        "browRaise": 0.06400000023358753,
+        "squint": 7.343967631580016e-13,
+        "focus": 0.1000000000176049
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "mika",
+      "label": "after",
+      "state": "sit",
+      "age": 2,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.14199999991529624,
+        "mouthOpen": 0,
+        "browRaise": 0.06400000023358753,
+        "squint": 7.343967631580016e-13,
+        "focus": 0.1000000000176049
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "nia",
+      "label": "after",
+      "state": "idle",
+      "age": 1.5,
+      "angle": 0,
+      "face": {
+        "smile": 0.32,
+        "mouthOpen": 0,
+        "browRaise": 0.06400003466746117,
+        "squint": 0.08,
+        "focus": 0.1000000071023204
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "nia",
+      "label": "after",
+      "state": "idle",
+      "age": 1.5,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.32,
+        "mouthOpen": 0,
+        "browRaise": 0.06400003466746117,
+        "squint": 0.08,
+        "focus": 0.1000000071023204
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "nia",
+      "label": "after",
+      "state": "ready",
+      "age": 0.5,
+      "angle": 0,
+      "face": {
+        "smile": 0.10199261982218613,
+        "mouthOpen": 0,
+        "browRaise": 0.1839550480078611,
+        "squint": 0.019998645425270183,
+        "focus": 0.5799661356317546
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "nia",
+      "label": "after",
+      "state": "ready",
+      "age": 0.5,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.10199261982218613,
+        "mouthOpen": 0,
+        "browRaise": 0.1839550480078611,
+        "squint": 0.019998645425270183,
+        "focus": 0.5799661356317546
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "nia",
+      "label": "after",
+      "state": "swingBackhand",
+      "age": 0.21666666666666667,
+      "angle": 0,
+      "face": {
+        "smile": 0.020413935569371114,
+        "mouthOpen": 0.028555354376364108,
+        "browRaise": 0.09114984420950654,
+        "squint": 0.16807563887298063,
+        "focus": 0.8752177396532653
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "nia",
+      "label": "after",
+      "state": "swingBackhand",
+      "age": 0.21666666666666667,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.020413935569371114,
+        "mouthOpen": 0.028555354376364108,
+        "browRaise": 0.09114984420950654,
+        "squint": 0.16807563887298063,
+        "focus": 0.8752177396532653
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "nia",
+      "label": "after",
+      "state": "swingForehand",
+      "age": 0.5166666666666667,
+      "angle": 0,
+      "face": {
+        "smile": 0.01051847932217081,
+        "mouthOpen": 0.029978336705572404,
+        "browRaise": 0.08055511805594973,
+        "squint": 0.17967418206620403,
+        "focus": 0.8993228563966693
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "nia",
+      "label": "after",
+      "state": "swingForehand",
+      "age": 0.5166666666666667,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.01051847932217081,
+        "mouthOpen": 0.029978336705572404,
+        "browRaise": 0.08055511805594973,
+        "squint": 0.17967418206620403,
+        "focus": 0.8993228563966693
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "nia",
+      "label": "after",
+      "state": "serve",
+      "age": 0.6666666666666666,
+      "angle": 0,
+      "face": {
+        "smile": 0.010115688374189621,
+        "mouthOpen": 0.029997347190340206,
+        "browRaise": 0.08012386358072533,
+        "squint": 0.17994614265778086,
+        "focus": 0.8998880689152031
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "nia",
+      "label": "after",
+      "state": "serve",
+      "age": 0.6666666666666666,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.010115688374189621,
+        "mouthOpen": 0.029997347190340206,
+        "browRaise": 0.08012386358072533,
+        "squint": 0.17994614265778086,
+        "focus": 0.8998880689152031
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "nia",
+      "label": "after",
+      "state": "sit",
+      "age": 2,
+      "angle": 0,
+      "face": {
+        "smile": 0.14199999991529624,
+        "mouthOpen": 0,
+        "browRaise": 0.06400000023358753,
+        "squint": 7.343967631580016e-13,
+        "focus": 0.1000000000176049
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "nia",
+      "label": "after",
+      "state": "sit",
+      "age": 2,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.14199999991529624,
+        "mouthOpen": 0,
+        "browRaise": 0.06400000023358753,
+        "squint": 7.343967631580016e-13,
+        "focus": 0.1000000000176049
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    }
+  ],
+  "lowBackhandClearance": [
+    {
+      "actor": "taylor",
+      "label": "after",
+      "state": "swingBackhand",
+      "age": 0.21666666666666667,
+      "angle": 0,
+      "face": {
+        "smile": 0.020413935569371114,
+        "mouthOpen": 0.028555354376364108,
+        "browRaise": 0.09114984420950654,
+        "squint": 0.16807563887298063,
+        "focus": 0.8752177396532653
+      },
+      "gl": 0,
+      "parts": 6,
+      "errors": []
+    },
+    {
+      "actor": "taylor",
+      "label": "after",
+      "state": "swingBackhand",
+      "age": 0.21666666666666667,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.020413935569371114,
+        "mouthOpen": 0.028555354376364108,
+        "browRaise": 0.09114984420950654,
+        "squint": 0.16807563887298063,
+        "focus": 0.8752177396532653
+      },
+      "gl": 0,
+      "parts": 6,
+      "errors": []
+    },
+    {
+      "actor": "coach",
+      "label": "after",
+      "state": "swingBackhand",
+      "age": 0.21666666666666667,
+      "angle": 0,
+      "face": {
+        "smile": 0.020413935569371114,
+        "mouthOpen": 0.028555354376364108,
+        "browRaise": 0.09114984420950654,
+        "squint": 0.16807563887298063,
+        "focus": 0.8752177396532653
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    },
+    {
+      "actor": "coach",
+      "label": "after",
+      "state": "swingBackhand",
+      "age": 0.21666666666666667,
+      "angle": 0.6,
+      "face": {
+        "smile": 0.020413935569371114,
+        "mouthOpen": 0.028555354376364108,
+        "browRaise": 0.09114984420950654,
+        "squint": 0.16807563887298063,
+        "focus": 0.8752177396532653
+      },
+      "gl": 0,
+      "parts": 5,
+      "errors": []
+    }
+  ],
+  "unchangedNonArmPalettes": {
+    "checkedPalettes": 5,
+    "otherBonesIdentical": true,
+    "cases": [
+      {
+        "state": "idle",
+        "age": 1.5
+      },
+      {
+        "state": "ready",
+        "age": 0.3
+      },
+      {
+        "state": "swingBackhand",
+        "age": 0.21666666666666667
+      },
+      {
+        "state": "swingForehand",
+        "age": 0.5166666666666667
+      },
+      {
+        "state": "serve",
+        "age": 0.6666666666666666
+      }
+    ],
+    "excludedBones": [
+      "upperArmL",
+      "foreArmL",
+      "foreArmTwistL",
+      "upperArmR",
+      "foreArmR",
+      "foreArmTwistR"
+    ]
+  },
+  "performance": {
+    "runs": [
+      {
+        "label": "before",
+        "median": 16.69999999999891,
+        "p95": 16.700000000000728,
+        "p99": 16.80000000000109,
+        "phases": {
+          "rally": 177,
+          "pointResult": 63,
+          "serving": 1
+        },
+        "paused": false,
+        "gl": 0,
+        "drawCalls": 767,
+        "triangles": 332296,
+        "authoredParts": 6,
+        "canvas": [
+          2112,
+          1320
+        ],
+        "errors": []
+      },
+      {
+        "label": "after",
+        "median": 16.69999999999891,
+        "p95": 16.799999999999272,
+        "p99": 16.80000000000109,
+        "phases": {
+          "rally": 177,
+          "pointResult": 63,
+          "serving": 1
+        },
+        "paused": false,
+        "gl": 0,
+        "drawCalls": 767,
+        "triangles": 332296,
+        "authoredParts": 6,
+        "canvas": [
+          2112,
+          1320
+        ],
+        "errors": []
+      },
+      {
+        "label": "after",
+        "median": 16.69999999999891,
+        "p95": 16.700000000000728,
+        "p99": 16.80000000000109,
+        "phases": {
+          "rally": 177,
+          "pointResult": 63,
+          "serving": 1
+        },
+        "paused": false,
+        "gl": 0,
+        "drawCalls": 767,
+        "triangles": 332296,
+        "authoredParts": 6,
+        "canvas": [
+          2112,
+          1320
+        ],
+        "errors": []
+      },
+      {
+        "label": "before",
+        "median": 16.69999999999891,
+        "p95": 16.799999999999272,
+        "p99": 16.80000000000109,
+        "phases": {
+          "rally": 177,
+          "pointResult": 63,
+          "serving": 1
+        },
+        "paused": false,
+        "gl": 0,
+        "drawCalls": 767,
+        "triangles": 332296,
+        "authoredParts": 6,
+        "canvas": [
+          2112,
+          1320
+        ],
+        "errors": []
+      }
+    ],
+    "scope": "ABBA, 240 RAF intervals per run, native Chromium Metal, frozen f0778f76 versus final runtime; short test, not sustained device-wide performance."
+  },
+  "phone": {
+    "engine": "chromium",
+    "avatar": "Taylor",
+    "width": 1440,
+    "errors": [],
+    "requests": [],
+    "hand": {
+      "phone": {
+        "active": true,
+        "phase": "mounting",
+        "mounted": false,
+        "avatar": "taylor",
+        "samples": 0,
+        "video": false,
+        "liveTracks": 0,
+        "anchor": {
+          "x": -3.8,
+          "y": 1.42,
+          "z": -8
+        }
+      },
+      "handError": 0
+    },
+    "result": {
+      "worldPreserved": true,
+      "worldAdvanced": true,
+      "phone": {
+        "active": false,
+        "phase": "finishing",
+        "mounted": true,
+        "avatar": "taylor",
+        "samples": 161,
+        "video": true,
+        "liveTracks": 0,
+        "anchor": {
+          "x": -3.8,
+          "y": 1.42,
+          "z": -8
+        }
+      },
+      "source": "phone-recording",
+      "kind": "phone",
+      "samples": 161,
+      "bytes": 1231830,
+      "mime": "video/webm",
+      "duration": 5.373601,
+      "width": 1440,
+      "height": 900,
+      "owner": "Three apps by Arjan Singh Puniani",
+      "uses": 1
+    },
+    "sync": {
+      "video": 0.665487,
+      "time": 0.657256,
+      "frame": 0.657256,
+      "error": 0.0082310000000001,
+      "overflow": false
+    },
+    "seek": {
+      "video": 2.698299,
+      "time": 2.698299,
+      "readout": "79°",
+      "camera": {
+        "x": 3.012048348959417,
+        "y": 4.257202928769491,
+        "z": -7.756910441636061
+      },
+      "opaqueSurfaces": 39
+    },
+    "axe": []
+  },
+  "point": {
+    "phase": "pointResult",
+    "cameraMode": "pointReaction",
+    "opponentId": "leo",
+    "score": {
+      "player": 0,
+      "opponent": 1
+    },
+    "server": "player",
+    "bestRally": 8,
+    "currentRally": 8,
+    "lastPoint": {
+      "winner": "opponent",
+      "reason": "miss",
+      "rallyLength": 8
+    },
+    "frames": 743,
+    "gl": 0,
+    "errors": [],
+    "http": [],
+    "intentionallyMissedAfterRally": 7
+  }
+}

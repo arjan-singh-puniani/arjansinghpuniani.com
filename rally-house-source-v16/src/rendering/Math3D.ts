@@ -59,7 +59,7 @@ export function smoothstep(a:number,b:number,v:number){const t=clamp((v-a)/(b-a)
 export function rigidFrame(origin:Vec3,target:Vec3,hintForward=new Vec3(0,0,1)):Mat4 {
   const y=Vec3.sub(target,origin).normalize();
   let z=hintForward.clone().sub(y.clone().scale(Vec3.dot(hintForward,y)));
-  if(z.len()<1e-4){z=new Vec3(1,0,0).sub(y.clone().scale(y.x));}
+  if(z.len()<1e-4){const reference=Math.abs(y.x)<.8?new Vec3(1,0,0):new Vec3(0,1,0);z=reference.sub(y.clone().scale(Vec3.dot(reference,y)));}
   z.normalize();const x=Vec3.cross(y,z).normalize();const zz=Vec3.cross(x,y).normalize();
   return new Float32Array([x.x,x.y,x.z,0, y.x,y.y,y.z,0, zz.x,zz.y,zz.z,0, origin.x,origin.y,origin.z,1]);
 }
@@ -73,6 +73,24 @@ export function invertRigid(m:Mat4):Mat4 {
   out[2]=r02;out[6]=r12;out[10]=r22;
   out[12]=-(r00*tx+r10*ty+r20*tz);out[13]=-(r01*tx+r11*ty+r21*tz);out[14]=-(r02*tx+r12*ty+r22*tz);
   return out;
+}
+
+/** Interpolate orientation without collapsing the axes as the hand turns. */
+export function interpolateRigidFrame(a:Mat4,b:Mat4,t:number):Mat4{
+ if(t<=0)return a.slice();if(t>=1)return b.slice();
+ const quaternion=(m:Mat4)=>{
+  const q=[0,0,0,0],trace=m[0]+m[5]+m[10];
+  if(trace>0){const s=Math.sqrt(trace+1)*2;q[3]=s/4;q[0]=(m[6]-m[9])/s;q[1]=(m[8]-m[2])/s;q[2]=(m[1]-m[4])/s;}
+  else{const i=m[0]>m[5]?(m[0]>m[10]?0:2):(m[5]>m[10]?1:2),j=(i+1)%3,k=(i+2)%3,s=Math.sqrt(Math.max(0,1+m[i*5]-m[j*5]-m[k*5]))*2;q[i]=s/4;q[j]=(m[j*4+i]+m[i*4+j])/s;q[k]=(m[k*4+i]+m[i*4+k])/s;q[3]=(m[j*4+k]-m[k*4+j])/s;}
+  return q;
+ };
+ const x=quaternion(a),y=quaternion(b);let dot=x.reduce((sum,n,i)=>sum+n*y[i],0);if(dot<0){for(let i=0;i<4;i++)y[i]*=-1;dot=-dot;}
+ const angle=Math.acos(clamp(dot,-1,1)),sine=Math.sin(angle),left=dot>.9995?1-t:Math.sin((1-t)*angle)/sine,right=dot>.9995?t:Math.sin(t*angle)/sine,q=x.map((n,i)=>n*left+y[i]*right),length=Math.hypot(...q);for(let i=0;i<4;i++)q[i]/=length;
+ const [qx,qy,qz,qw]=q,out=identity();
+ out[0]=1-2*(qy*qy+qz*qz);out[1]=2*(qx*qy+qz*qw);out[2]=2*(qx*qz-qy*qw);
+ out[4]=2*(qx*qy-qz*qw);out[5]=1-2*(qx*qx+qz*qz);out[6]=2*(qy*qz+qx*qw);
+ out[8]=2*(qx*qz+qy*qw);out[9]=2*(qy*qz-qx*qw);out[10]=1-2*(qx*qx+qy*qy);
+ for(const i of [12,13,14])out[i]=a[i]+(b[i]-a[i])*t;return out;
 }
 
 export function orthographic(l:number,r:number,b:number,t:number,n:number,f:number):Mat4 {

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {Vec3,transformPoint} from '../dist/rendering/Math3D.js';
 import {HUMAN_TAYLOR_GEOMETRY,HUMAN_FACE_VARIANTS} from '../dist/animation/TaylorHuman.js';
-import {CHARACTER_SKIN} from '../dist/animation/CharacterSkin.js';
+import {CHARACTER_SKIN,ATHLETE_WARDROBE} from '../dist/animation/CharacterSkin.js';
 import {ATHLETE_TRAINER_DETAIL,TAYLOR_FOOTWEAR} from '../dist/animation/TaylorAppearance.js';
 import {Character} from '../dist/entities/Character.js';
 import {playerSpec} from '../dist/content/PlayerAvatars.js';
@@ -19,7 +19,7 @@ for(const g of [face,...Object.values(ATHLETE_TRAINER_DETAIL)])for(let i=0;i<g.p
 // Recover the actual two emitted knee boundaries, rather than checking only
 // their joint centers. Center registration alone cannot detect a radial gap.
 function ring(g,side){const center=new Vec3(side*.17,.43,.04),axis=new Vec3(0,-.32,.04).normalize(),vertices=new Map();for(let i=0;i<g.positions.length;i+=3){const p=new Vec3(...g.positions.slice(i,i+3));if(Vec3.sub(p,center).len()<.16&&Math.abs(Vec3.dot(Vec3.sub(p,center),axis))<1e-6)vertices.set(key(g,i),i/3);}assert.equal(vertices.size,24);return [...vertices.values()];}
-const thigh=CHARACTER_SKIN.taylorLegs,calf=CHARACTER_SKIN.taylorBoots,pairs=[];
+const thigh=ATHLETE_WARDROBE.legs,calf=ATHLETE_WARDROBE.calves,pairs=[];
 for(const side of [-1,1]){const a=ring(thigh,side),b=ring(calf,side);for(const i of a){const p=new Vec3(...thigh.positions.slice(i*3,i*3+3)),j=b.reduce((best,j)=>Vec3.sub(p,new Vec3(...calf.positions.slice(j*3,j*3+3))).len()<Vec3.sub(p,new Vec3(...calf.positions.slice(best*3,best*3+3))).len()?j:best);assert(Vec3.sub(p,new Vec3(...calf.positions.slice(j*3,j*3+3))).len()<1e-7);pairs.push([i,j]);}}
 const deform=(g,i,bones)=>{const out=new Vec3(),p=new Vec3(...g.positions.slice(i*3,i*3+3));for(let n=0;n<4;n++){const w=g.boneWeights[i*4+n];if(w){const v=transformPoint(bones.slice(g.boneIndices[i*4+n]*16,g.boneIndices[i*4+n]*16+16),p);out.add(new Vec3(v.x,v.y,v.z).scale(w));}}return out;};
 let kneeChecks=0,maxKneeGap=0;
@@ -29,9 +29,9 @@ for(const hz of [30,60,120])for(const state of ['idle','walk','serve','swingFore
 function shoeTop(x,z){const p=TAYLOR_FOOTWEAR.upper.positions;let y=-Infinity;for(let i=0;i<p.length;i+=9){const ax=p[i],az=p[i+2],bx=p[i+3],bz=p[i+5],cx=p[i+6],cz=p[i+8],det=(bz-cz)*(ax-cx)+(cx-bx)*(az-cz);if(Math.abs(det)<1e-12)continue;const a=((bz-cz)*(x-cx)+(cx-bx)*(z-cz))/det,b=((cz-az)*(x-cx)+(ax-cx)*(z-cz))/det,c=1-a-b;if(a>=-1e-6&&b>=-1e-6&&c>=-1e-6)y=Math.max(y,a*p[i+1]+b*p[i+4]+c*p[i+7]);}return y;}
 let trainerChecks=0;for(const g of Object.values(ATHLETE_TRAINER_DETAIL))for(let i=0;i<g.positions.length;i+=3){const gap=g.positions[i+1]-shoeTop(g.positions[i],g.positions[i+2]);assert(gap>0&&gap<.008,'Emitted trainer detail stays just above its real shoe surface');trainerChecks++;}
 console.log(JSON.stringify({kneeChecks,maxKneeGap,trainerChecks,masculineTriangles:face.positions.length/9}));
-const w=new World(),baseline=w.meshes.filter(m=>Math.abs(m.position.y-.085)<1e-6&&Math.abs(m.scale.z-.055)<1e-6&&m.scale.x>3&&Math.abs(m.position.z)>6),width=baseline[0].scale.x,length=Math.abs(baseline[0].position.z-baseline[1].position.z);
+const w=new World(),baseline=w.meshes.filter(m=>m.id==='court-line'&&Math.abs(m.scale.z-.055)<1e-6&&m.scale.x>3&&Math.abs(m.position.z)>6),width=baseline[0].scale.x,length=Math.abs(baseline[0].position.z-baseline[1].position.z);
 assert.equal(baseline.length,2);assert(Math.abs(length/width-23.77/10.97)<1e-6,'Emitted outer court markings use the regulation aspect ratio');
-const service=w.meshes.filter(m=>Math.abs(m.position.y-.085)<1e-6&&Math.abs(m.scale.z-.045)<1e-6&&m.scale.x>3&&Math.abs(m.position.z)>3);
+const service=w.meshes.filter(m=>m.id==='court-line'&&Math.abs(m.scale.z-.045)<1e-6&&m.scale.x>3&&Math.abs(m.position.z)>3);
 assert.equal(service.length,2);assert(Math.abs(service[0].scale.x/width-8.23/10.97)<1e-6,'Service boxes end at singles sidelines, preserving doubles alleys');
 assert(Math.abs(Math.abs(service[0].position.z)/length-6.40/23.77)<1e-6);
 const rp=RACKET_FRAME.positions,xs=[...rp.filter((_,i)=>i%3===0)],ys=[...rp.filter((_,i)=>i%3===1)],headWidth=Math.max(...xs)-Math.min(...xs),headHeight=Math.max(...ys)-Math.min(...ys);

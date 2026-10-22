@@ -9,22 +9,22 @@ export function courtDetails() {
     // The visible top stays at the actual .94-unit collision plane, everywhere.
     for (let i = 0; i <= 86; i++) {
         const x = left + .05 + i / 86 * (right - left - .10);
-        cord.rod(new Vec3(x, .105, 0), new Vec3(x, .915, 0), .004, 0, 5);
+        cord.rod(new Vec3(x, .035, 0), new Vec3(x, .915, 0), .004, 0, 5);
     }
     for (let i = 0; i <= 10; i++) {
-        const y = .105 + i / 10 * .81;
+        const y = .035 + i / 10 * .88;
         cord.rod(new Vec3(left + .05, y, 0), new Vec3(right - .05, y, 0), .004, 0, 5);
     }
     tape.box(new Vec3(COURT.centerX, COURT.netTop - .022, 0), new Vec3(right - left, .044, .033));
-    tape.box(new Vec3(COURT.centerX, .51, .008), new Vec3(.045, .82, .019));
-    cord.rod(new Vec3(left, .085, 0), new Vec3(right, .085, 0), .009);
+    tape.box(new Vec3(COURT.centerX, .475, .008), new Vec3(.045, .89, .019));
+    cord.rod(new Vec3(left, .015, 0), new Vec3(right, .015, 0), .009);
     for (const x of [left, right]) {
-        metal.rod(new Vec3(x, .075, 0), new Vec3(x, 1.12, 0), .047, 0, 12);
+        metal.rod(new Vec3(x, .0025, 0), new Vec3(x, 1.12, 0), .047, 0, 12);
         metal.ellipsoid(new Vec3(x, 1.12, 0), new Vec3(.050, .025, .050));
-        metal.box(new Vec3(x, .08, 0), new Vec3(.19, .035, .19));
+        metal.box(new Vec3(x, .020, 0), new Vec3(.19, .035, .19));
         for (const dx of [-.065, .065])
             for (const dz of [-.065, .065])
-                brass.ellipsoid(new Vec3(x + dx, .105, dz), new Vec3(.011, .007, .011), 0, 4, 6);
+                brass.ellipsoid(new Vec3(x + dx, .045, dz), new Vec3(.011, .007, .011), 0, 4, 6);
         brass.rod(new Vec3(x, .75, .035), new Vec3(x, .75, .11), .022, 0, 10);
         brass.rod(new Vec3(x, .75, .11), new Vec3(x, .65, .11), .012);
         brass.ellipsoid(new Vec3(x, .645, .11), new Vec3(.020, .028, .020));

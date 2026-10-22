@@ -1,0 +1,38 @@
+[
+  {
+    "label": "before",
+    "state": "sit",
+    "handShift": 0,
+    "maxSurfaceJump": 0.26126742746297993
+  },
+  {
+    "label": "before",
+    "state": "ready",
+    "handShift": 0,
+    "maxSurfaceJump": 0.2170493920820365
+  },
+  {
+    "label": "before",
+    "state": "drink",
+    "handShift": 0,
+    "maxSurfaceJump": 0.18477262626498853
+  },
+  {
+    "label": "after",
+    "state": "sit",
+    "handShift": 0,
+    "maxSurfaceJump": 0
+  },
+  {
+    "label": "after",
+    "state": "ready",
+    "handShift": 0,
+    "maxSurfaceJump": 0
+  },
+  {
+    "label": "after",
+    "state": "drink",
+    "handShift": 0,
+    "maxSurfaceJump": 0
+  }
+]

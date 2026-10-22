@@ -1,9 +1,9 @@
-import {Mat4, Vec3, identity, scaling, multiply, invertRigid, rigidFrame} from '../rendering/Math3D.js';
+import {Mat4, Vec3, identity, scaling, multiply, invertRigid, rigidFrame,transformPoint,interpolateRigidFrame} from '../rendering/Math3D.js';
 import type {SkinGeometry} from '../rendering/Renderer.js';
 import type {CharacterPose} from '../entities/Character.js';
 
-export const BONE={pelvis:0,spine:1,chest:2,neck:3,head:4,upperArmL:5,foreArmL:6,handL:7,upperArmR:8,foreArmR:9,handR:10,thighL:11,shinL:12,thighR:13,shinR:14} as const;
-export const BONE_COUNT=15;
+export const BONE={pelvis:0,spine:1,chest:2,neck:3,head:4,upperArmL:5,foreArmL:6,handL:7,upperArmR:8,foreArmR:9,handR:10,thighL:11,shinL:12,thighR:13,shinR:14,footL:15,footR:16,foreArmTwistL:17,foreArmTwistR:18} as const;
+export const BONE_COUNT=19;
 export type RigJointName=keyof typeof BONE;
 
 export interface RigPoseLocal {
@@ -11,6 +11,9 @@ export interface RigPoseLocal {
   upperArmL:Vec3;foreArmL:Vec3;handL:Vec3;upperArmR:Vec3;foreArmR:Vec3;handR:Vec3;
   thighL:Vec3;shinL:Vec3;footL:Vec3;thighR:Vec3;shinR:Vec3;footR:Vec3;
   forward:Vec3;
+  headForward?:Vec3;headUp?:Vec3;handDirectionL?:Vec3;handDirectionR?:Vec3;handForwardL?:Vec3;handForwardR?:Vec3;footForwardL?:Vec3;footForwardR?:Vec3;footUpL?:Vec3;footUpR?:Vec3;
+  foreArmForwardL?:Vec3;foreArmForwardR?:Vec3;
+  wristL?:Vec3;wristR?:Vec3;foreArmTwistL?:Vec3;foreArmTwistR?:Vec3;
 }
 
 /** The mesh and continuous replay use the same landmark-to-skin mapping. */
@@ -34,12 +37,49 @@ const defs:BoneDef[]=[
   {joint:'pelvis',child:'spine'},{joint:'spine',child:'chest'},{joint:'chest',child:'neck'},{joint:'neck',child:'head'},{joint:'head',child:'neck'},
   {joint:'upperArmL',child:'foreArmL'},{joint:'foreArmL',child:'handL'},{joint:'handL',child:'foreArmL'},
   {joint:'upperArmR',child:'foreArmR'},{joint:'foreArmR',child:'handR'},{joint:'handR',child:'foreArmR'},
-  {joint:'thighL',child:'shinL'},{joint:'shinL',child:'footL'},{joint:'thighR',child:'shinR'},{joint:'shinR',child:'footR'}
+  {joint:'thighL',child:'shinL'},{joint:'shinL',child:'footL'},{joint:'thighR',child:'shinR'},{joint:'shinR',child:'footR'},
+  {joint:'footL',child:'footL'},{joint:'footR',child:'footR'},
+  {joint:'foreArmTwistL',child:'handL'},{joint:'foreArmTwistR',child:'handR'}
 ];
 
-function frameFor(p:RigPoseLocal,def:BoneDef){const a=p[def.joint] as Vec3,b=p[def.child] as Vec3;let target=b;if(def.joint==='head'||def.joint==='handL'||def.joint==='handR')target=Vec3.add(a,Vec3.sub(a,b));return rigidFrame(a,target,p.forward);}
+const jointPoint=(p:RigPoseLocal,j:RigJointName):Vec3=>j==='foreArmTwistL'?p.foreArmTwistL??Vec3.lerp(p.foreArmL,p.wristL??p.handL,.5):j==='foreArmTwistR'?p.foreArmTwistR??Vec3.lerp(p.foreArmR,p.wristR??p.handR,.5):p[j];
+const endpoint=(p:RigPoseLocal,d:BoneDef)=>(d.joint==='foreArmL'||d.joint==='foreArmTwistL')&&p.wristL?p.wristL:(d.joint==='foreArmR'||d.joint==='foreArmTwistR')&&p.wristR?p.wristR:jointPoint(p,d.child);
+function frameFor(p:RigPoseLocal,def:BoneDef){
+ if(def.joint==='handL'||def.joint==='handR'){const side=def.joint==='handL'?'L':'R',direction=p[`handDirection${side}`];if(direction)return rigidFrame(p[def.joint],Vec3.add(p[def.joint],direction),p[`handForward${side}`]??p.forward);}
+ if(def.joint==='head'&&p.headUp)return rigidFrame(p.head,Vec3.add(p.head,p.headUp),p.headForward??p.forward);
+ if(def.joint==='footL'||def.joint==='footR'){const side=def.joint==='footL'?'L':'R',a=p[def.joint];return rigidFrame(a,Vec3.add(a,p[`footUp${side}`]??new Vec3(0,1,0)),p[`footForward${side}`]??p.forward);}
+ const a=jointPoint(p,def.joint),b=endpoint(p,def);let target=b;if(def.joint==='head'||def.joint==='handL'||def.joint==='handR')target=Vec3.add(a,Vec3.sub(a,b));
+ // A forward-pointing thigh must not roll over when its knee passes hip height.
+ const leg=def.joint.startsWith('thigh')||def.joint.startsWith('shin'),forward=leg?Vec3.cross(new Vec3(-p.forward.z,0,p.forward.x),Vec3.sub(target,a)):p.forward;
+ return rigidFrame(a,target,def.joint==='foreArmTwistL'&&p.foreArmForwardL?p.foreArmForwardL:def.joint==='foreArmTwistR'&&p.foreArmForwardR?p.foreArmForwardR:def.joint==='head'&&p.headForward?p.headForward:forward.len()>.001?forward:p.forward);
+}
 const bindInv:Mat4[]=defs.map(d=>invertRigid(frameFor(bind,d)));
-export function skinMatrices(p:RigPoseLocal){const out=new Float32Array(BONE_COUNT*16);for(let i=0;i<BONE_COUNT;i++){const d=defs[i],length=Vec3.sub(p[d.child],p[d.joint]).len(),rest=Vec3.sub(bind[d.child],bind[d.joint]).len();const m=multiply(multiply(frameFor(p,d),scaling(new Vec3(1,d.joint==='handL'||d.joint==='handR'?1:length/Math.max(.001,rest),1))),bindInv[i]);out.set(m,i*16);}return out;}
+const authoredBindInv=new WeakMap<RigPoseLocal,Mat4[]>();
+export function skinMatrices(p:RigPoseLocal,restPose=bind){
+ let inverse=bindInv;if(restPose!==bind){inverse=authoredBindInv.get(restPose)??defs.map(d=>invertRigid(frameFor(restPose,d)));authoredBindInv.set(restPose,inverse);}
+ // The game anchors the palm/grip; an anatomical forearm ends at the wrist.
+ if(restPose.wristL&&restPose.wristR){p={...p};for(const side of ['L','R'] as const){const i=BONE[`hand${side}`],hand=multiply(frameFor(p,defs[i]),inverse[i]),wrist=transformPoint(hand,restPose[`wrist${side}`]!);p[`wrist${side}`]=new Vec3(wrist.x,wrist.y,wrist.z);}}
+ const out=new Float32Array(BONE_COUNT*16),frames:Mat4[]=[];for(let i=0;i<BONE_COUNT;i++){const d=defs[i],length=Vec3.sub(endpoint(p,d),jointPoint(p,d.joint)).len(),rest=Vec3.sub(endpoint(restPose,d),jointPoint(restPose,d.joint)).len(),rigid=d.joint.startsWith('hand')||d.joint.startsWith('foot')||restPose!==bind&&d.joint==='head';let frame=frameFor(p,d);
+  if((d.joint.startsWith('upperArm')||d.joint==='foreArmL'||d.joint==='foreArmR')&&restPose.wristL){
+   // Forward-axis projection flips the sleeve; carry the authored shoulder roll with the torso.
+   const parent=d.joint.startsWith('upperArm')?BONE.chest:BONE[d.joint.endsWith('L')?'upperArmL':'upperArmR'],source=multiply(multiply(frames[parent],inverse[parent]),frameFor(restPose,d)),from=new Vec3(source[4],source[5],source[6]),to=Vec3.sub(endpoint(p,d),jointPoint(p,d.joint)).normalize(),axis=Vec3.cross(from,to),cosine=Vec3.dot(from,to),forward=new Vec3(source[8],source[9],source[10]),turn=Vec3.cross(axis,forward);
+   const hint=cosine>-.9999?forward.clone().add(turn).add(Vec3.cross(axis,turn).scale(1/(1+cosine))):forward.clone().scale(-1);
+   frame=rigidFrame(jointPoint(p,d.joint),endpoint(p,d),hint);
+   if(d.joint==='foreArmL'||d.joint==='foreArmR'){
+    // Start grip roll above the twist seam instead of concentrating it at the wrist.
+    const palm=BONE[d.joint.endsWith('L')?'handL':'handR'],palmFrame=multiply(multiply(frameFor(p,defs[palm]),inverse[palm]),frameFor(restPose,d)),roll=Vec3.cross(new Vec3(palmFrame[0],palmFrame[1],palmFrame[2]),to);
+    frame=interpolateRigidFrame(frame,rigidFrame(jointPoint(p,d.joint),endpoint(p,d),roll.len()>.1?roll:hint),.25);
+   }
+  }
+  if(d.joint.startsWith('foreArmTwist')&&restPose.wristL){
+   const side=d.joint.endsWith('L')?'L':'R',proximal=BONE[`foreArm${side}`],palm=BONE[`hand${side}`],source=frameFor(restPose,d),predicted=multiply(multiply(frames[proximal],inverse[proximal]),source),palmFrame=multiply(multiply(frameFor(p,defs[palm]),inverse[palm]),source);
+   // Palm width defines roll even when a bent wrist aligns its normal with the forearm.
+   const axis=Vec3.sub(endpoint(p,d),jointPoint(p,d.joint)).normalize(),forward=Vec3.cross(new Vec3(palmFrame[0],palmFrame[1],palmFrame[2]),axis),target=rigidFrame(jointPoint(p,d.joint),endpoint(p,d),forward.len()>.1?forward:new Vec3(palmFrame[8],palmFrame[9],palmFrame[10])),half=interpolateRigidFrame(predicted,target,.5);
+   // Share palm roll across the forearm rather than concentrating it at one skin seam.
+   frame=rigidFrame(jointPoint(p,d.joint),endpoint(p,d),new Vec3(half[8],half[9],half[10]));
+  }
+  frames[i]=frame;const m=multiply(multiply(frame,scaling(new Vec3(1,rigid?1:length/Math.max(.001,rest),1))),inverse[i]);out.set(m,i*16);}return out;
+}
 
 interface Build {p:number[];n:number[];bi:number[];bw:number[]}
 const build=():Build=>({p:[],n:[],bi:[],bw:[]});
@@ -51,7 +91,7 @@ function addSegment(out:Build,a:Vec3,b:Vec3,ra:[number,number],rb:[number,number
   // Adjacent segments share the same joint ring plane. Using each segment's
   // own axis left hairline gaps at the waist, knees and elbows after skinning.
   const direction=Vec3.sub(b,a);
-  const axis=(bone:number)=>{const d=defs[bone],v=Vec3.sub(bind[d.child],bind[d.joint]).normalize();return Vec3.dot(v,direction)<0?v.scale(-1):v;};
+  const axis=(bone:number)=>{const d=defs[bone],v=Vec3.sub(endpoint(bind,d),jointPoint(bind,d.joint)).normalize();return Vec3.dot(v,direction)<0?v.scale(-1):v;};
   const axisA=axis(boneA),axisB=axis(boneB),mid=Vec3.lerp(a,b,.5);
   ring(temp,a,axisA,ra[0],ra[1],[boneA,boneB],[1,0],seg);
   ring(temp,mid,Vec3.lerp(axisA,axisB,.5),(ra[0]+rb[0])*.5,(ra[1]+rb[1])*.5,[boneA,boneB],[.5,.5],seg);
@@ -82,7 +122,7 @@ function appendSurface(out:Build,rings:Build,rows:number,seg:number){
 // transitions. Endpoint planes still match the authoritative bind joints.
 function sculptSegment(out:Build,a:Vec3,b:Vec3,radii:number[][],boneA:number,boneB:number,rows=12,seg=24,jointBlend=false,weightRange:[number,number]=[0,1]){
  const rings=build(),direction=Vec3.sub(b,a),length=direction.len();
- const axis=(bone:number)=>{const d=defs[bone],v=Vec3.sub(bind[d.child],bind[d.joint]).normalize();return Vec3.dot(v,direction)<0?v.scale(-1):v;};
+ const axis=(bone:number)=>{const d=defs[bone],v=Vec3.sub(endpoint(bind,d),jointPoint(bind,d.joint)).normalize();return Vec3.dot(v,direction)<0?v.scale(-1):v;};
  const axisA=axis(boneA),axisB=axis(boneB);
  for(let row=0;row<=rows;row++){
   const t=row/rows,center=Vec3.lerp(a,b,t),frame=basis(Vec3.lerp(axisA,axisB,t)),[rx,rz]=radiusAt(radii,t),low=Math.max(0,t-.001),high=Math.min(1,t+.001),before=radiusAt(radii,low),after=radiusAt(radii,high),sx=(after[0]-before[0])/((high-low)*length),sz=(after[1]-before[1])/((high-low)*length);
@@ -179,14 +219,15 @@ dressBand(taylorDressEdging,1.431,1.440,2,.007);
 dressBand(taylorDressEdging,.580,.591,2,.004);
 // The human shoulder yoke and sportswear sample one contour and weight field.
 // The scoop neckline stays sewn to the body in live motion and replay.
-const humanProfile=[[.575,.310,.219],[.66,.302,.213],[.78,.284,.206],[.88,.259,.193],[1.02,.197,.153],[1.10,.202,.163],[1.20,.230,.189],[1.27,.254,.202],[1.34,.262,.180],[1.385,.224,.144],[1.42,.153,.104],[1.445,.104,.092]];
+const humanProfile=[[.575,.360,.175],[.66,.342,.183],[.78,.312,.198],[.88,.259,.193],[1.02,.197,.153],[1.10,.202,.163],[1.20,.230,.189],[1.27,.254,.202],[1.34,.262,.180],[1.385,.224,.144],[1.42,.153,.104],[1.445,.104,.092]];
 const humanNeckY=(angle:number)=>1.415-.108*Math.pow(Math.max(0,Math.sin(angle)),2)-.028*Math.pow(Math.max(0,-Math.sin(angle)),2);
 function humanContour(y:number,angle:number,offset=0){
  const [x,z]=radiusAt(humanProfile,y),pleat=.016*(1-eased((y-.575)/.31))*Math.cos(angle*12);
  const px=Math.cos(angle)*(x+pleat+offset),front=Math.max(0,Math.sin(angle));
  const clavicle=.004*Math.exp(-(((y-(1.390-.18*Math.abs(px)))/.010)**2))*Math.exp(-(((Math.abs(px)-.090)/.085)**2));
  const hollow=.0025*Math.exp(-((px/.026)**2)-(((y-1.411)/.017)**2));
- return new Vec3(px,y,.015*clampUnit((y-.79)/.55)+Math.sin(angle)*(z+pleat*.65+offset)+(clavicle-hollow)*front**6+.0022*Math.exp(-(((y-1.03)/.05)**2))*Math.sin(angle*8+y*106)*front**2);
+ const chest=.024*Math.exp(-(((Math.abs(px)-.105)/.090)**2)-(((y-1.245)/.075)**2))-.006*Math.exp(-((px/.035)**2)-(((y-1.255)/.070)**2));
+ return new Vec3(px,y,.015*clampUnit((y-.79)/.55)+Math.sin(angle)*(z+pleat*.65+offset)+(clavicle-hollow+chest)*front**6+.0022*Math.exp(-(((y-1.03)/.05)**2))*Math.sin(angle*8+y*106)*front**2);
 }
 function humanNormal(y:number,angle:number){
  const lo=Math.max(.575,y-.001),hi=Math.min(1.445,y+.001);
@@ -196,7 +237,9 @@ function humanSurface(out:Build,low:(angle:number)=>number,high:(angle:number)=>
  const rings=build();
  for(let r=0;r<=rows;r++)for(let i=0;i<64;i++){
   const angle=i/64*Math.PI*2,y=low(angle)+(high(angle)-low(angle))*r/rows,p=humanContour(y,angle,offset),n=humanNormal(y,angle),[a,b,t]=dressWeights(y);
-  rings.p.push(p.x,p.y,p.z);rings.n.push(n.x,n.y,n.z);rings.bi.push(a,b,0,0);rings.bw.push(1-t,t,0,0);
+  // The hem follows the thighs; a pelvis-only skirt cuts through a seated leg.
+  const leg=(1-eased((y-.76)/.14))*eased((Math.sin(angle)+1)/2),right=eased((p.x+.12)/.24);
+  rings.p.push(p.x,p.y,p.z);rings.n.push(n.x,n.y,n.z);rings.bi.push(a,b,BONE.thighL,BONE.thighR);rings.bw.push((1-t)*(1-leg),t*(1-leg),leg*(1-right),leg*right);
  }
  appendSurface(out,rings,rows,64);
 }
@@ -218,7 +261,7 @@ for(const side of [-1,1]){
  }
 }
 export const HUMAN_TENNIS_SKIN={dress:finish('taylor-human-tailored-dress-v2',humanDress),yoke:finish('taylor-human-shoulder-yoke-v2',humanYoke),trim:finish('taylor-human-scoop-piping-v2',humanTrim),seams:finish('taylor-human-princess-seams-v1',humanSeams)};
-const athleteBodice=build(),athleteSkirt=build(),athleteTop=build(),athleteLegs=build(),athleteCalves=build(),athleteArms=build(),athleteBand=build(),athleteSocks=build(),athleteFreeHands=build(),athleteShorts:Build={p:[...shorts.p],n:[...shorts.n],bi:[...shorts.bi],bw:[...shorts.bw]};
+const athleteBodice=build(),athleteSkirt=build(),athleteTop=build(),athleteLegs=build(),athleteCalves=build(),athleteArms=build(),athleteFeminineArms=build(),athleteBand=build(),athleteSocks=build(),athleteFreeHands=build(),athleteShorts:Build={p:[...shorts.p],n:[...shorts.n],bi:[...shorts.bi],bw:[...shorts.bw]};
 humanSurface(athleteBodice,()=>.895,humanNeckY,24,.003);
 humanSurface(athleteSkirt,()=>.575,()=>.905,16,.003);
 sculptSegment(athleteTop,bind.pelvis,bind.spine,[[0,.265,.181],[.55,.244,.166],[1,.249,.172]],BONE.pelvis,BONE.spine,12,24);
@@ -227,9 +270,12 @@ sculptSegment(athleteTop,bind.chest,new Vec3(0,1.445,.015),[[0,.329,.204],[.4,.2
 for(const side of ['L','R'] as const){
  const a=bind[`upperArm${side}`],b=Vec3.lerp(a,bind[`foreArm${side}`],.32),bone=BONE[`upperArm${side}`];
  sculptSegment(athleteTop,a,b,[[0,.094,.088],[.45,.103,.094],[1,.098,.088]],bone,bone,8,24);shoulderCap(athleteTop,a,Vec3.sub(b,a),bone,.094,.088,24,.040);
- sculptSegment(athleteArms,a,bind[`foreArm${side}`],[[0,.090,.084],[.28,.101,.089],[.65,.087,.076],[1,.074,.067]],bone,BONE[`foreArm${side}`],12,24,true);
- sculptSegment(athleteArms,bind[`foreArm${side}`],bind[`hand${side}`],[[0,.074,.067],[.30,.083,.070],[.7,.065,.056],[1,.051,.046]],BONE[`foreArm${side}`],BONE[`hand${side}`],12,24,true);
- shoulderCap(athleteArms,a,Vec3.sub(b,a),bone,.090,.084,24,.04);
+ for(const [out,scale] of [[athleteArms,1],[athleteFeminineArms,.67]] as const){
+  const profile=(r:number[][])=>r.map(([t,x,z])=>[t,x*scale,z*scale]);
+  sculptSegment(out,a,bind[`foreArm${side}`],profile([[0,.090,.084],[.28,.101,.089],[.65,.087,.076],[1,.074,.067]]),bone,BONE[`foreArm${side}`],12,24,true);
+  sculptSegment(out,bind[`foreArm${side}`],bind[`hand${side}`],profile([[0,.074,.067],[.30,.083,.070],[.7,.065,.056],[1,.051,.046]]),BONE[`foreArm${side}`],BONE[`hand${side}`],12,24,true);
+  shoulderCap(out,a,Vec3.sub(b,a),bone,.090*scale,.084*scale,24,.04);
+ }
  sculptSegment(athleteLegs,bind[`thigh${side}`],bind[`shin${side}`],[[0,.131,.118],[.22,.142,.125],[.65,.113,.101],[1,.087,.078]],BONE[`thigh${side}`],BONE[`shin${side}`],16,24,true);
  sculptSegment(athleteCalves,bind[`shin${side}`],bind[`foot${side}`],[[0,.087,.078],[.28,.103,.088],[.5,.088,.075],[.78,.065,.057],[1,.052,.047]],BONE[`shin${side}`],BONE[`shin${side}`],16,24);
  const elbow=bind[`foreArm${side}`],hand=bind[`hand${side}`],shin=bind[`shin${side}`],foot=bind[`foot${side}`],handBone=BONE[`hand${side}`],frame=basis(Vec3.sub(hand,elbow)),sign=side==='L'?-1:1;
@@ -243,8 +289,19 @@ for(const side of ['L','R'] as const){
  }
  const thumbA=point(sign*.046,.002,.017),thumbB=point(sign*.069,.040,.031);handVolume(athleteFreeHands,Vec3.lerp(thumbA,thumbB,.5),basis(Vec3.sub(thumbB,thumbA)),new Vec3(.015,Vec3.sub(thumbB,thumbA).len()*.5+.007,.015),handBone,6,12);
 }
+// Share the bend across both sides of a joint, rather than turning the thigh's
+// last ring entirely onto the shin and folding an open cavity into the knee.
+function balanceJoint(out:Build,parent:number,joint:number){
+ const a=jointPoint(bind,defs[joint].joint),b=endpoint(bind,defs[joint]),axis=Vec3.sub(b,a),length=axis.len();axis.scale(1/length);
+ for(let i=0;i<out.p.length/3;i++){
+  const k=i*4;
+  if(out.bi[k]===parent&&out.bi[k+1]===joint){const w=out.bw[k+1]*.5;out.bw[k]=1-w;out.bw[k+1]=w;}
+  else if(out.bi[k]===joint){const p=new Vec3(...out.p.slice(i*3,i*3+3)),t=Vec3.dot(Vec3.sub(p,a),axis)/length;if(t>=-.001&&t<.25){const w=.5*(1-eased(t/.25));out.bi[k]=parent;out.bi[k+1]=joint;out.bw[k]=w;out.bw[k+1]=1-w;}}
+ }
+}
+for(const side of ['L','R'] as const){balanceJoint(athleteFeminineArms,BONE[`upperArm${side}`],BONE[`foreArm${side}`]);balanceJoint(athleteArms,BONE[`upperArm${side}`],BONE[`foreArm${side}`]);balanceJoint(athleteLegs,BONE[`thigh${side}`],BONE[`shin${side}`]);balanceJoint(athleteCalves,BONE[`thigh${side}`],BONE[`shin${side}`]);}
 sculptSegment(athleteShorts,new Vec3(0,.74,0),new Vec3(0,.825,0),[[0,.323,.170],[.7,.287,.175],[1,.269,.177]],BONE.pelvis,BONE.pelvis,8,32);
-export const ATHLETE_WARDROBE={bodice:finish('athlete-fitted-bodice-v1',athleteBodice),skirt:finish('athlete-pleated-skirt-v1',athleteSkirt),top:finish('athlete-performance-shirt-v2',athleteTop),legs:finish('athlete-shaped-legs-v1',athleteLegs),calves:finish('athlete-shaped-calves-v1',athleteCalves),arms:finish('athlete-shaped-arms-v1',athleteArms),shorts:finish('athlete-performance-shorts-v1',athleteShorts),wristband:finish('athlete-performance-wristband-v1',athleteBand),socks:finish('athlete-court-socks-v1',athleteSocks),freeHands:finish('athlete-relaxed-hands-v1',athleteFreeHands)};
+export const ATHLETE_WARDROBE={bodice:finish('athlete-fitted-bodice-v1',athleteBodice),skirt:finish('athlete-pleated-skirt-v1',athleteSkirt),top:finish('athlete-performance-shirt-v2',athleteTop),legs:finish('athlete-shaped-legs-v1',athleteLegs),calves:finish('athlete-shaped-calves-v1',athleteCalves),arms:finish('athlete-shaped-arms-v1',athleteArms),feminineArms:finish('athlete-feminine-arms-v1',athleteFeminineArms),shorts:finish('athlete-performance-shorts-v1',athleteShorts),wristband:finish('athlete-performance-wristband-v1',athleteBand),socks:finish('athlete-court-socks-v1',athleteSocks),freeHands:finish('athlete-relaxed-hands-v1',athleteFreeHands)};
 // A small embroidered crescent recreates the reference's central gold detail.
 // It samples the same surface and weights as the tunic, including in replay.
 const taylorTunicMark=build();

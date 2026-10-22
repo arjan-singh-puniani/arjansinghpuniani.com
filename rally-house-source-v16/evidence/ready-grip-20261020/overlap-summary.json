@@ -1,0 +1,28 @@
+{
+  "before": {
+    "ready": 40,
+    "swingForehand": 3,
+    "swingBackhand": 9,
+    "serve": 5
+  },
+  "after": {
+    "ready": 0,
+    "swingForehand": 3,
+    "swingBackhand": 9,
+    "serve": 3
+  },
+  "maximumPenetration": {
+    "before": {
+      "ready": 0.1778632090907783,
+      "swingForehand": 0.19271987630254978,
+      "swingBackhand": 0.2910264707746373,
+      "serve": 0.1858778996603998
+    },
+    "after": {
+      "ready": 0,
+      "swingForehand": 0.2324550460881191,
+      "swingBackhand": 0.30791892258473036,
+      "serve": 0.18331675795530278
+    }
+  }
+}

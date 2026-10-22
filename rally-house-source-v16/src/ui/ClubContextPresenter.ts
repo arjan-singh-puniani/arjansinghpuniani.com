@@ -77,7 +77,9 @@ export function characterContext(c: Character, s: CharacterContextState): ClubCo
         actions.push({ id: 'challenge', title: 'Challenge to Match', detail: 'First to 7 · win by 2', primary: true });
     else
         facts.push({ label: 'Court availability', text: 'A committed activity is in progress.' });
-    return { eyebrow: c.spec.role, title: c.spec.name, subtitle: c.spec.playStyle, status: `${s.mind.mood(c.id as MemberId)} · Energy ${Math.round(state.energy * 100)}%`, facts: [{ label: s.relations.label(c.id), text: active ? `${active.detail} · ${active.phase === 'traveling' ? 'on the way' : active.phase}` : c.activity || c.spec.goal }, ...facts].slice(0, 3), actions: actions.slice(0, 4) };
+    if(free)actions.push({id:'connect',title:'Rizz & connect',detail:'A little tennis or bonsai flirtation'});
+    if(active?.kind.startsWith('connection-')&&active.participants.includes('player'))actions.push({id:'endConnection',title:'End this moment',detail:'Step back whenever you like'});
+    return { eyebrow: c.spec.role, title: c.spec.name, subtitle: c.spec.playStyle, status: `${s.mind.mood(c.id as MemberId)} · Energy ${Math.round(state.energy * 100)}%`, facts: [{ label: s.relations.label(c.id), text: active ? `${active.detail} · ${active.phase === 'traveling' ? 'on the way' : active.phase}` : c.activity || c.spec.goal }, ...facts].slice(0, 3), actions };
 }
 export function objectContext(o: InteractiveObject, a: ActivitySystem, e: {
     frame: string;
@@ -107,8 +109,9 @@ export function objectContext(o: InteractiveObject, a: ActivitySystem, e: {
         facts.push({ label: 'From the club scrapbook', text: memories[0] });
     return { eyebrow: 'A little club ritual', title: o.label, subtitle: o.description, status: free ? 'Take a moment here' : 'A shared moment is in progress', facts, actions };
 }
-export function furnitureContext(p: Placement, f: ObjectAffordances, a: ActivitySystem, names: (id: string) => string): ClubContext {
-    const h = f.objects[p.id!], touch = touchForDecor(p.type), free = !a.reserved(p.id!), facts: ClubContext['facts'] = [];
+export function furnitureContext(p: Placement, f: ObjectAffordances, a: ActivitySystem, names: (id: string) => string, minute=0): ClubContext {
+    const h = f.objects[p.id!], touches = f.actions(p,minute), free = !a.reserved(p.id!), facts: ClubContext['facts'] = [];
+    if(h?.lastWater!==undefined&&minute-h.lastWater<30)facts.push({label:'Freshly watered',text:`Soil is damp · water again in ${Math.ceil(30-(minute-h.lastWater))} club minutes`});
     if (h?.favoriteOf.length)
         facts.push({ label: 'A familiar place', text: `A favorite of ${h.favoriteOf.map(names).join(', ')}` });
     if (h?.visits.player)
@@ -116,11 +119,14 @@ export function furnitureContext(p: Placement, f: ObjectAffordances, a: Activity
     if (h?.revision)
         facts.push({ label: 'Still the same place', text: `Moved ${h.revision} ${h.revision === 1 ? 'time' : 'times'} · history kept` });
     const actions: ContextAction[] = [];
-    if (free && !a.busy('player'))
-        actions.push({ id: 'touch', title: touch.title, detail: touch.detail, primary: true });
-    if (f.affordances(p).includes('spectate') && !a.busy('player'))
-        actions.push({ id: 'watch', title: 'Watch a rally', detail: 'Walk to the court sideline' });
+    if (free && !a.busy('player')){
+        actions.push(...touches.map((touch,i)=>({id:touch.id,title:touch.title,detail:touch.detail,primary:i===0})));
+        if(['racketRack','tennisBag'].includes(p.type))actions.push({id:'equipment',title:'Choose your racket setup',detail:'Use the pro shop: frames, strings and tension'});
+        if(['bench','cafeTable'].includes(p.type))actions.push({id:'invite',title:p.type==='bench'?'Invite someone to sit':'Invite someone for matcha',detail:'Make this a place you share'});
+    }
+    if (free && f.affordances(p).includes('spectate') && !a.busy('player'))
+        actions.push({ id: 'watch', title: 'Watch a rally from here', detail: 'Settle into your seat and follow the real ball' });
     if (free)
         actions.push({ id: 'arrange', title: 'Arrange this detail', detail: 'Move, rotate or return to catalog' });
-    return { eyebrow: 'Your academy', title: DECOR_BY_ID[p.type].label, subtitle: f.affordances(p).join(' · '), status: free ? 'A place for a small ritual' : 'Someone is using this place', facts: facts.slice(0, 2), actions };
+    return { eyebrow: 'Your academy', title: DECOR_BY_ID[p.type].label, subtitle: touches[0].detail, status: free ? 'Make yourself at home' : 'Someone is using this place', facts: facts.slice(0, 2), actions };
 }

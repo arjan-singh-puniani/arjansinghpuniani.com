@@ -1,0 +1,294 @@
+{
+  "author": "MakeHuman Community; MargaretToigo; Bobby_03; punkduck; Microsoft Rocketbox; Rally House fit and runtime adaptation",
+  "source": "https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482",
+  "license": "CC0-1.0 AND CC-BY-4.0 AND MIT",
+  "sha256": "67daefaa88d270c25d7880bdca6bafb3cae3f9f20a961ca6c152deac2c22786e",
+  "boneMap": {
+    "pelvis": "pelvis",
+    "spine": "spine",
+    "chest": "chest",
+    "neck": "neck",
+    "head": "head",
+    "upperArmL": "upperArmL",
+    "foreArmL": "foreArmL",
+    "handL": "handL",
+    "upperArmR": "upperArmR",
+    "foreArmR": "foreArmR",
+    "handR": "handR",
+    "thighL": "thighL",
+    "shinL": "shinL",
+    "thighR": "thighR",
+    "shinR": "shinR",
+    "footL": "footL",
+    "footR": "footR",
+    "foreArmTwistL": "foreArmTwistL",
+    "foreArmTwistR": "foreArmTwistR"
+  },
+  "bind": {
+    "pelvis": [
+      -0.0,
+      1.239622675,
+      0.03565615
+    ],
+    "spine": [
+      1.3487475025719675e-19,
+      1.44439285,
+      -0.0009563250000000007
+    ],
+    "chest": [
+      1.7263968032921184e-17,
+      1.8983284500000002,
+      0.03148875
+    ],
+    "neck": [
+      -0.0,
+      2.0239413500000003,
+      -0.0022392
+    ],
+    "head": [
+      -0.0,
+      2.23200035,
+      0.07464
+    ],
+    "upperArmL": [
+      -0.23089360665247247,
+      1.8983284500000002,
+      0.03148875
+    ],
+    "foreArmL": [
+      -0.4677109562499999,
+      1.6404453062500002,
+      0.03763683125
+    ],
+    "handL": [
+      -0.7165451199919141,
+      1.4214336298806147,
+      0.3410888114970177
+    ],
+    "thighL": [
+      -0.1459102912643967,
+      1.223746125,
+      0.026120112499999997
+    ],
+    "shinL": [
+      -0.20066284938929768,
+      0.6712429625,
+      0.07234637499999999
+    ],
+    "footL": [
+      -0.24455484999999996,
+      0.08067276250000019,
+      0.046253474999999995
+    ],
+    "upperArmR": [
+      0.2308936066524725,
+      1.8983284500000004,
+      0.03148875
+    ],
+    "foreArmR": [
+      0.4677109562499999,
+      1.6404453062500002,
+      0.03763683125
+    ],
+    "handR": [
+      0.716545119991914,
+      1.421433629880614,
+      0.3410888114970178
+    ],
+    "thighR": [
+      0.1459102912643967,
+      1.223746125,
+      0.026120112499999997
+    ],
+    "shinR": [
+      0.20066284938929768,
+      0.6712429625,
+      0.07234637499999999
+    ],
+    "footR": [
+      0.24455485,
+      0.08067276249999991,
+      0.046253474999999995
+    ],
+    "wristL": [
+      -0.6322008,
+      1.45957159375,
+      0.239057925
+    ],
+    "wristR": [
+      0.6322008,
+      1.45957159375,
+      0.239057925
+    ],
+    "foreArmTwistL": [
+      -0.549955878125,
+      1.55000845,
+      0.138347378125
+    ],
+    "foreArmTwistR": [
+      0.549955878125,
+      1.55000845,
+      0.138347378125
+    ],
+    "forward": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "handDirectionL": [
+      -0.4344920206879774,
+      -0.5384611559777805,
+      0.721994645036617
+    ],
+    "handForwardL": [
+      -0.6963387887733695,
+      0.6596809479285175,
+      0.2827248453704932
+    ],
+    "foreArmForwardL": [
+      -0.6963387887733695,
+      0.6596809479285175,
+      0.2827248453704932
+    ],
+    "handDirectionR": [
+      0.4344920206879774,
+      -0.5384611559777805,
+      0.721994645036617
+    ],
+    "handForwardR": [
+      0.6963387887733695,
+      0.6596809479285175,
+      0.2827248453704932
+    ],
+    "foreArmForwardR": [
+      0.6963387887733695,
+      0.6596809479285175,
+      0.2827248453704932
+    ]
+  },
+  "parts": [
+    {
+      "name": "skin",
+      "triangles": 12922,
+      "vertices": 14732,
+      "material": "humanSkin"
+    },
+    {
+      "name": "kit",
+      "triangles": 4698,
+      "vertices": 2610,
+      "material": "performanceKnit"
+    },
+    {
+      "name": "skirt",
+      "triangles": 4244,
+      "vertices": 2541,
+      "material": "performanceKnit"
+    },
+    {
+      "name": "shoes",
+      "triangles": 3064,
+      "vertices": 1744,
+      "material": "performanceKnit"
+    },
+    {
+      "name": "eyes",
+      "triangles": 252,
+      "vertices": 756,
+      "material": "iris"
+    },
+    {
+      "name": "hair",
+      "triangles": 668,
+      "vertices": 2004,
+      "material": "groomedHair"
+    }
+  ],
+  "textures": {
+    "cast-skin.webp": "0c11a14f25710b8d215d01bd967386a34c853ba0586f5b1ad03f0aef22314f9f",
+    "coach-kit.webp": "633c36742cda14d28f91fbe26255f246ed566afbe558875317f40e02783238e7",
+    "coach-skirt.webp": "45ecbb67c6471328682a351e587439c709310b8fcba72e875120424e4cdf6246",
+    "hair.webp": "a549fa4b5f121e176e18a2d8fde0f6750b46ca778f93daec700540609ef16df7",
+    "kit.webp": "81e0a7b1b29ea03ff544656b8e20b18d66f5865f38ac69911f6019b9bf7b6b2b",
+    "mika-kit.webp": "fb8ccef5e13e18a7dd762c56a9b305fb7ddcceee8a6ba3519a5cbd2a674cd770",
+    "mika-skirt.webp": "67bf2e24d1db65c86be0920aa34f3a7b792ef3928a48e0c777d5a27ce3f0458b",
+    "nia-kit.webp": "aed485db35569c9866148a8f9560eb185cc16af797ddf438b9ea45fd41bd8aea",
+    "nia-skirt.webp": "8e2b936d61510e0a1195e37a580be86bfde058c968a2925a1677e1ae6924be66",
+    "shoes.webp": "3af53b14cb45d2e1a5f09cab63d55b534ee8f7e0f2cb54b63c9f9c8e7513d018",
+    "skin.webp": "ec769c1543ecb476613019d221950cd0ffb439d5d85679167b6b2b150a9418a4",
+    "skirt.webp": "3ac69eb7fd0f27c3c78318e71cab59928b76632a4d236f80a6a8af47199fe822"
+  },
+  "sourceHashes": {
+    "base.obj": "8e761e6624b8f54536409135d1636da63b32486a90d4897f84e121d144f6fb4c",
+    "default_weights.mhw": "0f3641d651ae3d00ad6b4ccee43142edb109d3bd909d27d9e4139ef1beed8625",
+    "default.mhskel": "99f179bce0aa850b45d4191a1d0d234c5851f881c057439470ded3bddf729a24",
+    "skins/skins/bobby_03_young_female_hairless/Young_Female_Hairless.png": "9e2fa4ab993dd938ba896bb98848bd65346500c4c0a07d8789d2f1e14bb3dd7f",
+    "clothes/female_sportsuit01/female_sportsuit01_diffuse.png": "00910e3e85b3dcf48d1aa827b4c075cdc77689989423ff4f75bc67f2e86cc588",
+    "clothes/shoes05/shoes05_diffuse.png": "7fe5ea2600f6578cdf017da3392ae13aedabea8e8cc1dd6302a8f57e8fb7e5af",
+    "rocketbox/f001_opacity_color.tga": "12c9c366814e665687fe64056421213686b50a972a5ad47295f247d6a8ff7369",
+    "rocketbox/LICENSE.md": "17474e386e0b9e1a700cc3d06b2b0882a2c376d9c6b49c7f8274409b8f8d2352",
+    "rocketbox/f001_head_color.tga": "0d3153c59c54908d5f5194ffe3a7d882351f0dd74f9ef44ab3a2f164a3bf9d8e",
+    "rocketbox/Female_Adult_01_facial.fbx": "2e6ba71fb83a6899e3d4dd35da07fb5b078eef0c4d593f73d70cfc05dc4644cb",
+    "universal-female-young-maxmuscle-averageweight.target": "2e56b09b44a8497b927585447fdaac5ea7293521d1f3a3df1059495873c53f4e",
+    "african-female-young.target": "92d61eeb3c164b421fd5a7c3537ee45e7e1a51de4d49bf312e19c3df2be1d8fc",
+    "asian-female-young.target": "095fe79694fa19e1fe98d93009ec116199bd524e081c640351a10eccf2cca1eb",
+    "caucasian-female-young.target": "118379f6e8ba9266247fdb8788a20e1df40a239f97ced0b9905bcbcc74f6e820",
+    "clothes/female_sportsuit01/female_sportsuit01.mhclo": "6df057d3116db93afbbbb6d692f92cce84aa16db699f47dd14e825d07c6fd42f",
+    "clothes/female_sportsuit01/female_sportsuit01.obj": "fd529bb8dd6a994c1e9a3fb2fd8b236f52c0cc7cebb1f6fd9328953d9df6d6ff",
+    "clothes/punkduck_high_neck_crop_top/highneckcroptop.obj": "c67c81a922b30250c02bb404a139174ac39823c7b66d54c2e6ef237b6c8df64d",
+    "clothes/punkduck_high_neck_crop_top/punkduck_high_neck_crop_top.mhclo": "af3029784d154492c931718e93603d5440ebf9eee805d920fb13d7a060da01ef",
+    "clothes/toigo_skirt_with_lace_ruffle/skirt_full_lace_ruffle.obj": "3c2523c0a7d1a61f4667570598c27922e57f7bc16d2ad95f940fae6808f8cdd7",
+    "clothes/toigo_skirt_with_lace_ruffle/toigo_skirt_with_lace_ruffle.mhclo": "d8650bbb06adb94d5c73453fe4c7079a17161b0fdd442c829a739aa0876610ed",
+    "clothes/shoes05/shoes05.mhclo": "75fc467264b085d7a05ce0c9b5628bb364b246392c59524c556fa09f92b6cb16",
+    "clothes/shoes05/shoes05.obj": "5726aabac42ff489998d0a769545dea013961bbb71b9c6024d75170181a98818",
+    "eyes/high-poly/high-poly.mhclo": "b183cfe37120ab726f9b3f2ea6cd3a64c44ce7b4bd91a77c841cf70c04f83a0d",
+    "eyes/high-poly/high-poly.obj": "da2493215b708a344c33dc72f2a9a5b8fa985dcc5a70ad3b208995cf871da8e1",
+    "tools/athlete-textures/cast-face-stylized-v1.prompt.txt": "51a75d7a187bf716c25fc30e26970d0f9cde766570a6dccfbd3050beb2d404a5",
+    "tools/athlete-textures/cast-face-stylized-v1.png": "fa375480f476e06e8ff087c3d119182bf291931b78ebfb615e7c83e9f464ed36",
+    "tools/athlete-textures/head-brunette.prompt.txt": "2cc90d8cba5478e39e5bb6a270e67e2d85a4ec41395d43d41520308369289c55",
+    "tools/athlete-textures/head-refined-v2.png": "80a2cbcb900afd1634e290b80aaca5fe853b6ef3b92710a73b3c8c691e151c54",
+    "tools/athlete-textures/head-refined-v2.prompt.txt": "d28384704cfe0e02fcf3f6d086d2016e290ec1417b4819dfde1b411ca63c47be",
+    "tools/athlete-textures/head-brunette.png": "577fa9e05a0b53e23bb519e2088834f08dc083c795a629ccbe03dbe71f02309e",
+    "tools/athlete-poses/crouch.json": "4ab566af92d738a97d4ad0ac3e3cb0f74711d300b8201f9b0f4e0b6033c88252"
+  },
+  "gripSign": {
+    "L": -1,
+    "R": 1
+  },
+  "facialTargets": [
+    {
+      "AK_44_MouthSmileLeft": 0.8,
+      "AK_45_MouthSmileRight": 0.8
+    },
+    {
+      "AK_25_JawOpen": 0.8
+    },
+    {
+      "AK_09_EyeBlinkLeft": 1,
+      "AK_10_EyeBlinkRight": 1
+    },
+    {
+      "AK_03_BrowInnerUp": 0.35,
+      "AK_04_BrowOuterUpLeft": 0.65,
+      "AK_05_BrowOuterUpRight": 0.65
+    }
+  ],
+  "headSource": {
+    "author": "Microsoft Rocketbox",
+    "license": "MIT",
+    "revision": "0943055db6ec570bcef9f2c8b41c9e5467c808f9",
+    "source": "https://github.com/microsoft/Microsoft-Rocketbox",
+    "textureAdaptation": "Brunette recolor and face albedo refinement using built-in imagegen; source image and exact prompt in tools/athlete-textures/"
+  },
+  "assetPacks": [
+    "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
+    "https://static.makehumancommunity.org/assets/assetpacks/skins01.html",
+    "https://static.makehumancommunity.org/assets/assetpacks/skirts01.html",
+    "https://static.makehumancommunity.org/assets/assetpacks/shirts03.html"
+  ],
+  "authoringScripts": {
+    "bake-authored-athlete.py": "b45600f2b89c61e23bda920d20f994c804028ebcf1c9c0a81d914ec932cc6be7",
+    "fit-athlete-kit.py": "e926e13f6b0fa0221bd050b3fc7e6a49af7f97cbad0a2a77cf61e00885d7eb1b",
+    "fit-athlete-head.py": "4cc1fcdec5710d4b11e052b39f08bb8443cc715825518a2c785f009864b85c2f"
+  }
+}

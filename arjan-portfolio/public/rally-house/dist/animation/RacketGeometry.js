@@ -1,5 +1,6 @@
 import { Vec3, identity } from '../rendering/Math3D.js';
-export const RACKET = { headHalfWidth: .178, headHalfHeight: .245, beamRadius: .010, stringHalfWidth: .163, stringHalfHeight: .230, handleTopY: -.375 };
+export const RACKET = { headHalfWidth: .178, headHalfHeight: .245, beamRadius: .010, stringHalfWidth: .163, stringHalfHeight: .230, handleTopY: -.27, handSpacing: .18 };
+export const secondRacketHand = (grip, shaft) => grip.clone().add(shaft.clone().normalize().scale(RACKET.handSpacing));
 export const RACKET_BONES = new Float32Array(15 * 16);
 for (let i = 0; i < 15; i++)
     RACKET_BONES.set(identity(), i * 16);

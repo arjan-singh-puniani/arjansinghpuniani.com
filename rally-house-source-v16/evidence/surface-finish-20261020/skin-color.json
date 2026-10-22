@@ -1,0 +1,30 @@
+[
+  {
+    "label": "before",
+    "bodyNeckRGB": [
+      167.5,
+      128.0,
+      106.0
+    ],
+    "headNeckRGB": [
+      184.0,
+      133.0,
+      100.0
+    ],
+    "rgbDistance": 18.255136263528684
+  },
+  {
+    "label": "after",
+    "bodyNeckRGB": [
+      182.0,
+      130.0,
+      99.0
+    ],
+    "headNeckRGB": [
+      184.0,
+      133.0,
+      100.0
+    ],
+    "rgbDistance": 3.7416573867739413
+  }
+]

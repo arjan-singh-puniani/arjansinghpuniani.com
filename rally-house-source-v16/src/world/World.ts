@@ -8,17 +8,19 @@ import {ObjectIdentity,rayBox,type SelectionBox} from './ObjectIdentity.js';
 import {AuthoredObjects,authorObjectTargets} from './AuthoredObjects.js';
 import {PERFORMANCE_STATION,stationMeshes} from './PerformanceStation.js';
 import {courtDetails} from './CourtDetail.js';
+import type {ObjectHistory} from '../simulation/ObjectAffordances.js';
 
 export interface InteractiveObject {id:string;label:string;kind:string;position:Vec3;radius:number;description:string;interactionPoint?:Vec3;selection?:SelectionBox;seatHeight?:number;seatYaw?:number;seatCentre?:Vec3;observeOnly?:boolean;viewSpot?:Vec3;careSpot?:Vec3}
 export interface Placement {id?:string;type:DecorType;x:number;z:number;rotation?:number}
 export type Weather='clear'|'cloudy'|'rain';
-export type InteractionFxKind='cafe'|'bonsai'|'stringing'|'water'|'training'|'bell'|'comfort'|'lamp'|'paper'|'leaves'|'clock'|'sketch'|'read';
+export type InteractionFxKind='cafe'|'bonsai'|'stringing'|'water'|'training'|'bell'|'comfort'|'lamp'|'paper'|'leaves'|'clock'|'sketch'|'read'|'bounce';
 interface InteractionFxPulse {until:number;position?:Vec3}
 
 export class World {
   readonly courtDetails=courtDetails();
   meshes:Mesh[]=[];objects:InteractiveObject[]=[];nav:Navigation;weather:Weather='clear';placements:Placement[]=[];
   identity:ObjectIdentity;authored:AuthoredObjects;private currentMinute=0;private reducedObjectMotion=false;
+  decorState:(id:string)=>Readonly<ObjectHistory>|undefined=()=>undefined;
   private fixtureVisibility=new WeakMap<Mesh,number>();
   /** The same fixtures remain in the scene. Any low camera gets this reversible
    * dollhouse cutaway; visibility is independent of Championship or Lab state. */
@@ -66,7 +68,7 @@ export class World {
   interactionPoint(id:string,origin:Vec3,kind:InteractionFxKind){
     const contact=this.objects.find(o=>o.id===id)?.interactionPoint;
     if(contact)return contact.clone();
-    const height:Record<InteractionFxKind,number>={cafe:1.05,bonsai:1.05,stringing:1.34,water:1.28,training:.78,bell:1.30,comfort:.70,lamp:1.35,paper:1.15,leaves:1.5,clock:2.75,sketch:2.05,read:1.4};
+    const height:Record<InteractionFxKind,number>={bounce:.95,cafe:1.05,bonsai:1.45,stringing:1.34,water:1.28,training:.78,bell:1.30,comfort:.70,lamp:1.35,paper:1.15,leaves:1.5,clock:2.75,sketch:2.05,read:1.4};
     return new Vec3(origin.x,height[kind],origin.z);
   }
   triggerInteraction(kind:InteractionFxKind,duration=1.35,position?:Vec3){
@@ -83,12 +85,12 @@ export class World {
     this.rb(0,2.22,-9.75,26,4.55,.34,'#dbe7d1');
     this.rb(0,.22,-9.45,25.2,.24,.20,'#7fa28a');
     // Side walls are camera-aware cutaways and are emitted dynamically.
-    // Floor zones. Court remains crisp; social areas get tiny tile seams.
-    this.add('box',COURT.centerX,.035,0,COURT.doublesHalfWidth*2+.8,.07,COURT.halfLength*2+.55,palette.court,0,1,false,undefined,'court');this.add('box',-8.8,.02,0,6.3,.05,18.5,'#f8ead6',0,1,false,undefined,'stone');this.add('box',8.9,.02,0,6.0,.05,18.5,'#f5e6d2',0,1,false,undefined,'stone');
-    for(let z=-8;z<=8;z+=2)this.add('box',-8.8,.051,z,6.0,.012,.025,'#dfc8ae',0,.30,true);
-    for(let x=-11;x<=-6;x+=1.5)this.add('box',x,.052,0,.022,.012,18.1,'#e4ceb7',0,.22,true);
+    // Floor inlays share the gait ground plane; raised slabs bury the shoes.
+    this.add('box',COURT.centerX,-.0325,0,COURT.doublesHalfWidth*2+.8,.07,COURT.halfLength*2+.55,palette.court,0,1,false,undefined,'court');this.add('box',-8.8,-.0225,0,6.3,.05,18.5,'#f8ead6',0,1,false,undefined,'stone');this.add('box',8.9,-.0225,0,6.0,.05,18.5,'#f5e6d2',0,1,false,undefined,'stone');
+    for(let z=-8;z<=8;z+=2)this.add('box',-8.8,.0035,z,6.0,.001,.025,'#dfc8ae',0,.30,true);
+    for(let x=-11;x<=-6;x+=1.5)this.add('box',x,.0035,0,.022,.001,18.1,'#e4ceb7',0,.22,true);
     // Court lines.
-    const line=(x:number,z:number,w:number,d:number)=>this.add('box',x,.085,z,w,.026,d,palette.line);
+    const line=(x:number,z:number,w:number,d:number)=>this.add('box',x,.005,z,w,.0005,d,palette.line,0,1,false,'court-line');
     for(const sign of [-1,1]){line(COURT.centerX+sign*COURT.doublesHalfWidth,0,.045,COURT.halfLength*2);line(COURT.centerX+sign*COURT.singlesHalfWidth,0,.045,COURT.halfLength*2);line(COURT.centerX,sign*COURT.halfLength,COURT.doublesHalfWidth*2,.055);line(COURT.centerX,sign*COURT.serviceDistance,COURT.singlesHalfWidth*2,.045);}
     line(COURT.centerX,0,.045,COURT.serviceDistance*2);
     // Fine net, bound tape and anchored tension hardware are cached in four
@@ -111,7 +113,7 @@ export class World {
     for(let i=0;i<10;i++){const x=-10.7+i*2.25,y=3.76-Math.sin(i*.72)*.18;this.add('sphere',x,y,-9.12,.13,.13,.13,'#e9ca88',0,1,true);if(i<9)this.rb(x+1.12,y+.03,-9.12,2.22,.018,.018,'#6a756c',0,.42,true);}
 
     // Lounge rug and shadow anchors.
-    this.rb(8.5,.065,5.65,4.65,.055,3.05,'#ead7c2');for(let i=0;i<7;i++)this.rb(6.45+i*.70,.09,5.65,.10,.022,2.72,i%2?'#dfa990':'#a8c5a4',0,.30,true);
+    this.rb(8.5,.003,5.65,4.65,.002,3.05,'#ead7c2');for(let i=0;i<7;i++)this.rb(6.45+i*.70,.0045,5.65,.10,.001,2.72,i%2?'#dfa990':'#a8c5a4',0,.30,true);
     this.shadow(-9,4.8,3.1,1.15);this.shadow(-9.1,-5.8,3.8,1.2);this.shadow(8.5,5.8,3.6,1.45);this.shadow(9.2,-4.5,3.3,1.35);this.shadow(-7.5,.2,1.5,1.0);this.shadow(10.2,3.9,1.45,1.0);
 
     // Reception: softened desk, monitor, ledger, tiny bell and pin board.
@@ -138,7 +140,7 @@ export class World {
     this.add('cone',9.2,2.45,-4.6,.64,.32,.64,'#c19460',0,1,false,undefined,'metal');
     // Training nook: a rounder ball machine, cones and floor ladder.
     this.add('sphere',-7.5,.72,.2,1.02,.92,.92,'#6f9477');this.add('sphere',-7.45,.84,-.02,.62,.48,.48,'#96b19b');this.add('cylinder',-7.8,.25,.50,.16,.5,.16,'#56685a');this.add('cylinder',-7.2,.25,.50,.16,.5,.16,'#56685a');this.add('sphere',-7.1,.82,-.12,.11,.11,.11,'#e7c568',0,1,true);
-    for(let i=0;i<4;i++)this.add('cone',-6.9+i*.55,.18,1.45,.28,.36,.28,i%2?palette.peach:palette.gold);for(let i=0;i<5;i++){this.rb(-10.6+i*.62,.07,.8,.05,.02,1.1,'#d3bd91',0,.65,true);}
+    for(let i=0;i<4;i++)this.add('cone',-6.9+i*.55,.18,1.45,.28,.36,.28,i%2?palette.peach:palette.gold);for(let i=0;i<5;i++){this.rb(-10.6+i*.62,.0045,.8,.05,.001,1.1,'#d3bd91',0,.65,true);}
     this.objects.push({id:'machine',label:'Ball machine',kind:'training',position:new Vec3(-7.5,0,.2),radius:1.3,description:'A quiet rhythm machine for finding timing without pressure.'});
 
     // Water station and towel rail.
@@ -183,10 +185,10 @@ export class World {
     this.addBonsai(10.62,-7.04,.27,'flower',2.23,'#c8b08d');     // pro-shop shelf
 
     // Cozy floor islands and small storytelling clusters reduce the unused perimeter floor without touching playable court space.
-    this.rb(-9.05,.066,2.70,3.45,.045,1.65,'#d9c6ad',-.02,.92,false,undefined,'fabric');
-    for(let i=0;i<5;i++)this.rb(-10.48+i*.72,.087,2.70,.32,.016,1.43,i%2?'#c89279':'#829a87',0,.20,true);
-    this.rb(-8.82,.065,-3.35,3.60,.045,1.42,'#c7b49d',.015,.78,false,undefined,'fabric');
-    this.rb(9.35,.066,-1.05,3.10,.045,1.25,'#d9c9b4',-.01,.75,false,undefined,'fabric');
+    this.rb(-9.05,.003,2.70,3.45,.002,1.65,'#d9c6ad',-.02,.92,false,undefined,'fabric');
+    for(let i=0;i<5;i++)this.rb(-10.48+i*.72,.0045,2.70,.32,.001,1.43,i%2?'#c89279':'#829a87',0,.20,true);
+    this.rb(-8.82,.003,-3.35,3.60,.002,1.42,'#c7b49d',.015,.78,false,undefined,'fabric');
+    this.rb(9.35,.003,-1.05,3.10,.002,1.25,'#d9c9b4',-.01,.75,false,undefined,'fabric');
 
     // Reception shoe-and-bag cubbies, a tiny domestic detail borrowed from real clubs.
     this.rb(-11.08,.48,6.52,1.32,.96,.72,'#b88966',0,1,false,undefined,'wood');
@@ -218,8 +220,8 @@ export class World {
       for(let i=first;i<this.meshes.length;i++)this.meshes[i].id='court-pendant';
     }
 
-    this.add('box',-9.3,.055,1.6,3.5,.06,4.3,'#8fb0b3',0,1,false,undefined,'fabric');
-    this.add('box',-9.3,.075,1.6,3.1,.05,3.9,'#9dbcbd',0,1,false,undefined,'fabric');
+    this.add('box',-9.3,.003,1.6,3.5,.002,4.3,'#8fb0b3',0,1,false,undefined,'fabric');
+    this.add('box',-9.3,.0045,1.6,3.1,.001,3.9,'#9dbcbd',0,1,false,undefined,'fabric');
     for(let i=0;i<3;i++)this.add('cylinder',-10.55,.19+i*.001,.15+i*.62,.34,1.5,.34,[t,pe,pk][i],Math.PI/2,1,false,undefined,'fabric');
     this.rb(-8.05,.30,1.6,.62,.52,2.5,palette.wood,0,1,false,undefined,'wood');
     for(let i=0;i<3;i++)this.rb(-8.05,.62,.75+i*.85,.56,.14,.52,[palette.paper,mi,pe][i],0,1,false,undefined,'fabric');
@@ -237,8 +239,8 @@ export class World {
     this.rb(-10.75,.30,-3.5,.55,.60,.55,'#7f8c84',0,1,false,undefined,'metal');
     this.objects.push({id:'westWater',label:'Water & towels',kind:'water',position:new Vec3(-10.2,0,-2.2),radius:1.5,description:'Cold water, folded towels, and a bin that somebody quietly empties every evening.'});
 
-    this.add('box',-9.6,.055,7.2,3.6,.06,3.3,'#c9907a',0,1,false,undefined,'fabric');
-    this.add('box',-9.6,.075,7.2,3.15,.05,2.9,'#d69c85',0,1,false,undefined,'fabric');
+    this.add('box',-9.6,.003,7.2,3.6,.002,3.3,'#c9907a',0,1,false,undefined,'fabric');
+    this.add('box',-9.6,.0045,7.2,3.15,.001,2.9,'#d69c85',0,1,false,undefined,'fabric');
     for(const [cz,col] of [[6.35,t],[8.05,pe]] as [number,string][]){
       this.rb(-10.35,.42,cz,1.15,.60,1.15,col,0,1,false,undefined,'fabric');
       this.rb(-10.88,.80,cz,.20,.86,1.15,col,0,1,false,undefined,'fabric');
@@ -310,7 +312,7 @@ export class World {
 
   private addPlant(x:number,z:number,s=1){this.add('cone',x,.38*s,z,.66*s,.76*s,.66*s,palette.terracotta,0,1,false,undefined,'ceramic');this.add('cylinder',x,.94*s,z,.12*s,1.0*s,.12*s,'#5d725e',0,1,false,undefined,'wood');for(const [dx,dy,dz,c] of [[-.28,.0,0,'#6d896f'],[.28,.08,0,'#78aa82'],[0,.16,.18,'#7b987b'],[0,.08,-.2,'#668268']] as [number,number,number,string][])this.add('foliage',x+dx*s,1.28*s+dy*s,z+dz*s,.56*s,.28*s,.31*s,c,0,1,false,undefined,'leaf');}
   private addLamp(x:number,z:number){this.add('cylinder',x,1.1,z,.07,2.2,.07,'#56665b',0,1,false,undefined,'metal');this.add('cone',x,2.18,z,.80,.68,.80,palette.peach,0,1,true,undefined,'fabric');this.add('sphere',x,1.9,z,.22,.22,.22,'#f3d99b',0,1,true)}
-  lighting(minutes:number,_presentationFocus=0):Lighting{
+  lighting(minutes:number,_presentationFocus=0,focus?:Vec3):Lighting{
     const h=minutes/60;const daylight=smoothstep(5.45,7.9,h)*(1-smoothstep(18.15,20.65,h));const golden=Math.exp(-Math.pow((h-17.15)/1.65,2));const over=this.weather==='cloudy',rain=this.weather==='rain';
     // Keep the room slightly cooler and quieter than the practical fixtures.
     // Cozy contrast comes from warm islands inside a calm ambient field, not
@@ -345,6 +347,13 @@ export class World {
     const skyDay=rain?[.83,.87,.93]:[.86+.02*daylight,.905,.99];const skyColor=lerp3([.50,.60,.90],skyDay);
     const bounceColor=lerp3([.40,.45,.62],[.86,.805,.725]);
     const castingLight={centre:new Vec3(1.2,.75,0),radius:8.2,direction:new Vec3(.16,-1,.18).normalize(),position:pointLights[0].position.clone(),strength:Math.max(0,pointLights[0].intensity*.32)};
+    const lamps=this.placements.filter(p=>['lamp','lantern'].includes(p.type)&&!this.decorState(p.id??'')?.dimmed);
+    if(lamps.length){
+      for(const p of lamps)pointLights.push({position:new Vec3(p.x,p.type==='lamp'?1.8:.5,p.z),color:warm(1,.74,.40),intensity:.85,radius:p.type==='lamp'?3.2:2});
+      // shortcut: eight practicals light one view; revisit if a crowded room visibly loses nearby light.
+      const target=focus??new Vec3(),score=(light:typeof pointLights[number])=>light.intensity/(1+Math.hypot(light.position.x-target.x,light.position.z-target.z)**2/light.radius**2);
+      pointLights.sort((a,b)=>score(b)-score(a));pointLights.splice(8);
+    }
     return {sunDir,ambient,background:bg,warmth:warmMix,pointLights,shadowStrength,sunColor,skyColor,bounceColor,castingLight};
   }
   dynamicMeshes(time:number,minutes:number,cameraPosition?:Vec3,dt=1/60,_presentationFocus=0,effectTime=time):Mesh[]{const m:Mesh[]=[];
@@ -412,26 +421,38 @@ export class World {
     const add=(kind:Mesh['kind'],dx:number,y:number,dz:number,sx:number,sy:number,sz:number,color:string,ry=0,unlit=false,material?:MaterialKind,alpha=1)=>{
       out.push({kind,position:pos(dx,y,dz),rotation:new Vec3(0,rot+ry,0),scale:new Vec3(sx,sy,sz),color:override??color,alpha:alpha*alphaScale,unlit,material,noShadow:alphaScale<.99});
     };
+    const state=this.decorState(p.id??''),wet=state?.lastWater!==undefined&&this.currentMinute-state.lastWater<30,lit=!state?.dimmed;
     const fp=rotatedFootprint(p.type,rot);
     out.push({kind:'sphere',position:new Vec3(p.x,.025,p.z),scale:new Vec3(fp.w*.47,.03,fp.d*.47),color:override??'#4a584e',alpha:.10*alphaScale,unlit:true,noShadow:true});
 
     if(p.type==='plant'){
-      add('cone',0,.30,0,.50,.60,.50,palette.terracotta);
-      add('sphere',0,1.00,0,.82,.55,.68,palette.sage,0,false,'leaf');
+      add('cylinder',0,.08,0,.46,.10,.46,'#b58268',0,false,'ceramic');
+      add('cone',0,.34,0,.57,.50,.57,'#c9997e',0,false,'ceramic');
+      add('torus',0,.58,0,.56,.06,.56,'#e5c6ad',0,false,'ceramic');out[out.length-1].rotation!.x=Math.PI/2;
+      add('cylinder',0,.57,0,.46,.025,.46,wet?'#303c2c':'#665142');
+      add('cylinder',0,1.00,0,.045,.88,.045,'#667357',0,false,'wood');
+      for(const [x,y,z,k] of [[-.18,.91,.02,.52],[.18,1.10,.03,.55],[-.12,1.30,-.06,.48],[.14,1.47,.01,.44],[0,1.61,0,.39]])add('foliage',x,y,z,k,.24,k*.75,wet?'#729d70':y>1.3?'#8aa17b':'#617e62',0,false,'leaf');
     }else if(p.type==='planter'){
       add('roundBox',0,.27,0,1.28,.46,.52,'#b87958',0,false,'ceramic');
-      for(const x of [-.42,0,.42]){add('sphere',x,.72,0,.46,.45,.42,x===0?palette.sageLight:palette.sage,0,false,'leaf');}
+      add('roundBox',0,.50,0,1.16,.035,.40,wet?'#303c2c':'#665142');
+      for(const x of [-.42,0,.42]){add('cylinder',x,.67,0,.035,.32,.035,'#60754f',0,false,'wood');add('foliage',x,.83,0,.42,.37,.37,wet?'#83a47a':palette.sage,0,false,'leaf');for(const z of [-.10,.10])add('sphere',x+z*.5,1.01,z,.09,.075,.09,'#e7b19f',0,false,'fabric');}
     }else if(p.type==='bench'){
-      add('roundBox',0,.40,0,1.72,.28,.67,palette.wood,0,false,'wood');
-      add('roundBox',0,.77,.25,1.72,.66,.18,palette.woodDark,0,false,'wood');
-      add('cylinder',-.68,.20,0,.10,.40,.10,'#6f6254');
-      add('cylinder',.68,.20,0,.10,.40,.10,'#6f6254');
+      add('roundBox',0,.38,0,1.72,.16,.67,palette.wood,0,false,'wood');
+      for(const x of [-.68,.68])for(const z of [-.22,.24])add('cylinder',x,.18,z,.07,.36,.07,'#59695d',0,false,'metal');
+      for(const x of [-.78,.78])add('roundBox',x,.72,.27,.07,.72,.10,palette.woodDark,0,false,'wood');
+      for(const y of [.68,.86,1.04])add('roundBox',0,y,.27,1.72,.14,.09,palette.wood,0,false,'wood');
+      for(const x of [-.40,.40])add('roundBox',x,.49,-.025,.75,.10,.54,'#eee4ce',0,false,'fabric');
+      add('roundBox',.54,.72,.20,.35,.35,.14,'#ca947b',-.08,false,'fabric');
     }else if(p.type==='lamp'){
-      add('cylinder',0,1.00,0,.06,2.00,.06,'#5e6b61',0,false,'metal');
-      add('cone',0,2.05,0,.66,.56,.66,palette.gold,0,true);
+      add('cylinder',0,.06,0,.42,.09,.42,'#58675c',0,false,'metal');
+      add('cylinder',0,1.00,0,.045,1.90,.045,'#bba06e',0,false,'metal');
+      add('cone',0,2.05,0,.66,.48,.66,lit?'#e8d4a5':'#aaa58d',0,lit,'fabric');
+      add('cylinder',0,1.82,0,.58,.035,.58,lit?'#fff0be':'#a6a08c',0,lit,'fabric');
+      if(lit)add('sphere',0,.035,0,2.0,.025,2.0,'#efc780',0,true,undefined,.13);
     }else if(p.type==='lantern'){
       add('cylinder',0,.12,0,.34,.12,.34,'#675f54',0,false,'metal');
-      add('roundBox',0,.46,0,.40,.58,.40,'#e9ce8f',0,true,'glass',.80);
+      add('roundBox',0,.46,0,.40,.58,.40,lit?'#e9ce8f':'#7e8270',0,lit,'glass',.80);
+      if(lit)add('sphere',0,.035,0,1.2,.025,1.2,'#efc780',0,true,undefined,.12);
       add('torus',0,.86,0,.34,.34,.15,'#675f54',0,false,'metal');
     }else if(p.type==='basket'){
       add('cylinder',0,.32,0,.64,.55,.64,'#88745d',0,false,'fabric');
@@ -469,6 +490,8 @@ export class World {
       add('cylinder',0,.42,0,.16,.80,.16,'#735f50',0,false,'metal');
       add('cylinder',0,.86,0,.94,.12,.94,'#c99d72',0,false,'wood');
       add('cylinder',0,.08,0,.62,.08,.62,'#735f50',0,false,'metal');
+      for(const x of [-.24,.24]){add('cylinder',x,.94,0,.24,.025,.24,'#e7dfcb',0,false,'ceramic');add('cylinder',x,1.02,0,.13,.14,.13,'#f6efe0',0,false,'ceramic');add('cylinder',x,1.095,0,.10,.012,.10,'#9eae73');}
+      add('sphere',0,1.02,.26,.12,.23,.12,'#c78e78',0,false,'ceramic');add('foliage',0,1.23,.26,.20,.23,.15,'#6b8968',0,false,'leaf');
     }else if(p.type==='stool'){
       add('cylinder',0,.46,0,.11,.84,.11,'#6b5c50',0,false,'metal');
       add('cylinder',0,.87,0,.56,.18,.56,'#b98262',0,false,'fabric');
@@ -495,7 +518,11 @@ export class World {
   }
 
   placementMeshes():Mesh[]{const out:Mesh[]=[];for(const p of this.placements)out.push(...this.decorMeshes(p));return out;}
-  previewPlacement(type:Placement['type'],x:number,z:number,rotation:number,valid:boolean):Mesh[]{return this.decorMeshes({type,x,z,rotation},valid?'#87a87e':'#c6796c',.48);}
+  previewPlacement(type:Placement['type'],x:number,z:number,rotation:number,valid:boolean):Mesh[]{return this.decorMeshes({type,x,z,rotation},valid?undefined:'#c6796c',.68);}
+  placementBounds(p:Placement):SelectionBox{
+    const size=rotatedFootprint(p.type,p.rotation),height=p.type==='lamp'?2.35:p.type==='plant'?1.8:p.type==='racketRack'?1.65:p.type==='scoreboard'?1.7:1.3;
+    return {centre:new Vec3(p.x,height/2,p.z),size:new Vec3(Math.max(size.w,p.type==='lamp'?.76:0),height,Math.max(size.d,p.type==='lamp'?.76:0))};
+  }
   canPlace(x:number,z:number,type:Placement['type']='plant',rotation=0,ignoreId?:string){
     if(!Number.isFinite(x)||!Number.isFinite(z))return false;
     const f=rotatedFootprint(type,rotation);

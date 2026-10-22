@@ -1,3 +1,4 @@
+import { CHAMPIONSHIP_TUNING } from '../tennis/ChampionshipTuning.js';
 /**
  * Presentation-only overlay for Championship Mode.
  * Game state stays in ChampionshipController and InteractiveMatchSystem.
@@ -116,7 +117,7 @@ export class ChampionshipHUD {
         });
         this.controlsHint = document.createElement('div');
         this.controlsHint.className = 'championshipControlsHint';
-        this.controlsHint.textContent = 'WASD / ARROWS move  ·  SPACE swing';
+        this.controlsHint.textContent = 'WASD / ARROWS move & aim  ·  SPACE swing';
         this.swingButton.addEventListener('click', event => { if (event.detail === 0)
             this.input.queueSwing(); });
         this.bindTouchPad();
@@ -170,7 +171,7 @@ export class ChampionshipHUD {
             this.resetTouch();
         this.matchup.textContent = `${playerName.toUpperCase()}  vs  ${opponentName.toUpperCase()}`;
         this.score.textContent = `${snapshot.score.player}  –  ${snapshot.score.opponent}`;
-        const message = paused ? '' : this.messageFor(snapshot, cue);
+        const message = paused ? '' : this.messageFor(snapshot, cue, opponentName);
         if (this.message.textContent !== message)
             this.message.textContent = message;
         const showResults = snapshot.phase === 'matchResult';
@@ -178,7 +179,7 @@ export class ChampionshipHUD {
         if (showResults) {
             const playerWon = snapshot.score.player > snapshot.score.opponent;
             this.resultTitle.textContent = playerWon ? 'YOU WIN' : `${opponentName.toUpperCase()} WINS`;
-            this.resultSummary.textContent = `${snapshot.score.player} – ${snapshot.score.opponent}  ·  Best rally ${snapshot.bestRally}`;
+            this.resultSummary.textContent = `${snapshot.score.player} – ${snapshot.score.opponent}  ·  Best rally ${snapshot.bestRally}  ·  +${CHAMPIONSHIP_TUNING.completionFunds} club funds`;
         }
         this.touchPad.hidden = paused || !this.gameplayPhase(snapshot.phase);
         this.swingButton.hidden = paused || !this.gameplayPhase(snapshot.phase);
@@ -187,7 +188,7 @@ export class ChampionshipHUD {
     gameplayPhase(phase) {
         return phase === 'serving' || phase === 'rally';
     }
-    messageFor(snapshot, cue) {
+    messageFor(snapshot, cue, opponentName) {
         const phase = snapshot.phase;
         if (phase === 'intro')
             return '';
@@ -196,7 +197,7 @@ export class ChampionshipHUD {
         if (phase === 'ready')
             return 'Ready';
         if (phase === 'serving') {
-            return snapshot.server === 'player' ? (matchMedia('(pointer:coarse)').matches ? 'TAP SWING TO SERVE' : 'SPACE TO SERVE') : 'WATCH THE BALL';
+            return snapshot.server === 'player' ? (matchMedia('(pointer:coarse)').matches ? 'STICK TO AIM · SWING TO SERVE' : 'SPACE TO SERVE') : 'WATCH THE BALL';
         }
         if (phase === 'rally') {
             if (cue === 'queued')
@@ -215,13 +216,14 @@ export class ChampionshipHUD {
                 return '';
             const reason = {
                 winner: 'winner',
-                net: 'net',
-                wide: 'wide',
-                long: 'long',
-                doubleBounce: 'two bounces',
+                net: 'hit the net',
+                wide: 'hit wide',
+                long: 'hit long',
+                doubleBounce: 'couldn’t reach it',
                 miss: 'missed',
             };
-            const why = reason[point.reason] ?? point.reason;
+            const who = point.winner === 'player' ? opponentName : 'You';
+            const why = point.reason === 'winner' ? 'winner' : `${who} ${reason[point.reason] ?? point.reason}`;
             return point.winner === 'player'
                 ? `Your point · ${why}`
                 : `Their point · ${why}`;

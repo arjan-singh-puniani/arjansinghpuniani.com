@@ -1,0 +1,86 @@
+[
+  {
+    "label": "before",
+    "median": 33.29999999999927,
+    "p95": 33.400000000001455,
+    "p99": 50,
+    "phases": {
+      "rally": 169,
+      "pointResult": 36,
+      "serving": 36
+    },
+    "paused": false,
+    "gl": 0,
+    "drawCalls": 896,
+    "triangles": 363228,
+    "authoredParts": 6,
+    "canvas": [
+      2112,
+      1320
+    ],
+    "errors": []
+  },
+  {
+    "label": "after",
+    "median": 33.29999999999927,
+    "p95": 33.400000000001455,
+    "p99": 33.400000000001455,
+    "phases": {
+      "rally": 167,
+      "pointResult": 37,
+      "serving": 37
+    },
+    "paused": false,
+    "gl": 0,
+    "drawCalls": 896,
+    "triangles": 363228,
+    "authoredParts": 6,
+    "canvas": [
+      2112,
+      1320
+    ],
+    "errors": []
+  },
+  {
+    "label": "after",
+    "median": 33.30000000000109,
+    "p95": 33.400000000001455,
+    "p99": 33.5,
+    "phases": {
+      "rally": 161,
+      "pointResult": 47,
+      "serving": 33
+    },
+    "paused": false,
+    "gl": 0,
+    "drawCalls": 875,
+    "triangles": 359628,
+    "authoredParts": 6,
+    "canvas": [
+      2112,
+      1320
+    ],
+    "errors": []
+  },
+  {
+    "label": "before",
+    "median": 33.29999999999927,
+    "p95": 33.400000000001455,
+    "p99": 49.899999999999636,
+    "phases": {
+      "rally": 164,
+      "pointResult": 42,
+      "serving": 35
+    },
+    "paused": false,
+    "gl": 0,
+    "drawCalls": 875,
+    "triangles": 359628,
+    "authoredParts": 6,
+    "canvas": [
+      2112,
+      1320
+    ],
+    "errors": []
+  }
+]

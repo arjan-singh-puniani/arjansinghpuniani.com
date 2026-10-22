@@ -1,0 +1,800 @@
+{
+  "baseline": "9a8e07f6",
+  "regression": "Buffered-aim return assertion reproduced before and passed after at 30, 60 and 120 Hz; reset/replacement/expiry, opponent chase-before-commit and point-copy checks pass.",
+  "suite": "npm test passed",
+  "release": "111 source/served artifacts match",
+  "keyboard": {
+    "before": {
+      "errors": [],
+      "http": [],
+      "points": [],
+      "shots": [
+        {
+          "side": "player",
+          "stroke": "serve",
+          "target": {
+            "x": -0.6159023979806478,
+            "z": -2.95
+          },
+          "quality": "clean",
+          "playerX": 0.6159054480554157,
+          "opponentX": 1,
+          "rally": 0
+        },
+        {
+          "side": "opponent",
+          "stroke": "swingBackhand",
+          "target": {
+            "x": 0.5768325216806001,
+            "z": 3.1
+          },
+          "quality": "defensive",
+          "playerX": 0.6101077369926237,
+          "opponentX": 0.6185350000000002,
+          "rally": 1
+        },
+        {
+          "side": "player",
+          "stroke": "swingForehand",
+          "target": {
+            "x": 1.2259499828715086,
+            "z": -2.95
+          },
+          "quality": "clean",
+          "playerX": 1.1413650320200301,
+          "opponentX": 0.8766229664407106,
+          "rally": 2
+        },
+        {
+          "side": "opponent",
+          "stroke": "swingForehand",
+          "target": {
+            "x": 1.2069387191722396,
+            "z": 3.1
+          },
+          "quality": "defensive",
+          "playerX": 1.1413650320200301,
+          "opponentX": 1.4234629664407112,
+          "rally": 3
+        },
+        {
+          "side": "player",
+          "stroke": "swingBackhand",
+          "target": {
+            "x": 0.952408773656655,
+            "z": -2.25
+          },
+          "quality": "defensive",
+          "playerX": 0.7371816744593903,
+          "opponentX": 1.0273267595114637,
+          "rally": 4
+        },
+        {
+          "side": "opponent",
+          "stroke": "swingForehand",
+          "target": {
+            "x": 0.11248935199208188,
+            "z": 2.95
+          },
+          "quality": "clean",
+          "playerX": 0.7371816744593903,
+          "opponentX": 0.8302891375844009,
+          "rally": 5
+        },
+        {
+          "side": "player",
+          "stroke": "swingForehand",
+          "target": {
+            "x": 0.04510206143450224,
+            "z": -2.25
+          },
+          "quality": "defensive",
+          "playerX": 1.268438969486797,
+          "opponentX": 0.9895918295535948,
+          "rally": 6
+        },
+        {
+          "side": "opponent",
+          "stroke": "swingForehand",
+          "target": {
+            "x": 1.2512032638536585,
+            "z": 2.95
+          },
+          "quality": "clean",
+          "playerX": 1.268438969486797,
+          "opponentX": -0.054229744386658486,
+          "rally": 7
+        },
+        {
+          "side": "player",
+          "stroke": "swingForehand",
+          "target": {
+            "x": 0.23948247769536413,
+            "z": -2.95
+          },
+          "quality": "clean",
+          "playerX": 1.626272169104418,
+          "opponentX": 0.9365623297684029,
+          "rally": 8
+        },
+        {
+          "side": "opponent",
+          "stroke": "swingBackhand",
+          "target": {
+            "x": 2.7618668242346804,
+            "z": 2.15
+          },
+          "quality": "frame",
+          "playerX": 1.626272169104418,
+          "opponentX": 0.5506873297684031,
+          "rally": 9
+        },
+        {
+          "side": "player",
+          "stroke": "swingBackhand",
+          "target": {
+            "x": 2.6159023979806477,
+            "z": -2.95
+          },
+          "quality": "clean",
+          "playerX": 1.9779166831198833,
+          "opponentX": 0.9387895146386072,
+          "rally": 10
+        },
+        {
+          "side": "opponent",
+          "stroke": "swingForehand",
+          "target": {
+            "x": 2.465902397980648,
+            "z": 2.95
+          },
+          "quality": "clean",
+          "playerX": 1.9837143941826754,
+          "opponentX": 1.3797895146386077,
+          "rally": 11
+        },
+        {
+          "side": "player",
+          "stroke": "swingBackhand",
+          "target": {
+            "x": 1.1357390620613455,
+            "z": -2.95
+          },
+          "quality": "clean",
+          "playerX": 1.452457099155269,
+          "opponentX": 1.094855008500665,
+          "rally": 12
+        },
+        {
+          "side": "opponent",
+          "stroke": "swingForehand",
+          "target": {
+            "x": 0.31893994298066586,
+            "z": 2.95
+          },
+          "quality": "clean",
+          "playerX": 1.452457099155269,
+          "opponentX": 0.8031359918515111,
+          "rally": 13
+        },
+        {
+          "side": "player",
+          "stroke": "swingForehand",
+          "target": {
+            "x": 1.0412811102682749,
+            "z": -2.25
+          },
+          "quality": "defensive",
+          "playerX": 1.9837143941826754,
+          "opponentX": 0.9872451176937024,
+          "rally": 14
+        },
+        {
+          "side": "opponent",
+          "stroke": "swingForehand",
+          "target": {
+            "x": 1.8001728140242585,
+            "z": 2.95
+          },
+          "quality": "clean",
+          "playerX": 1.9837143941826754,
+          "opponentX": 1.0529831275413941,
+          "rally": 15
+        },
+        {
+          "side": "player",
+          "stroke": "swingBackhand",
+          "target": {
+            "x": 0.3975817675754433,
+            "z": -2.95
+          },
+          "quality": "clean",
+          "playerX": 1.452457099155269,
+          "opponentX": 1.0032005762211385,
+          "rally": 16
+        },
+        {
+          "side": "opponent",
+          "stroke": "swingBackhand",
+          "target": {
+            "x": 2.390124551549704,
+            "z": 2.95
+          },
+          "quality": "clean",
+          "playerX": 1.452457099155269,
+          "opponentX": 0.5622005762211386,
+          "rally": 17
+        },
+        {
+          "side": "player",
+          "stroke": "swingBackhand",
+          "target": {
+            "x": 1.5460508585795303,
+            "z": -2.95
+          },
+          "quality": "clean",
+          "playerX": 1.9837143941826754,
+          "opponentX": 0.9304348384666641,
+          "rally": 18
+        },
+        {
+          "side": "opponent",
+          "stroke": "swingForehand",
+          "target": {
+            "x": 1.2078943500658306,
+            "z": 2.15
+          },
+          "quality": "frame",
+          "playerX": 1.9837143941826754,
+          "opponentX": 1.1734430709017314,
+          "rally": 19
+        },
+        {
+          "side": "player",
+          "stroke": "swingForehand",
+          "target": {
+            "x": 1.6924527100147921,
+            "z": -2.25
+          },
+          "quality": "defensive",
+          "playerX": 1.5331706202292505,
+          "opponentX": 1.0096627552321538,
+          "rally": 20
+        },
+        {
+          "side": "opponent",
+          "stroke": "swingBackhand",
+          "target": {
+            "x": 0.5280152422163984,
+            "z": 2.25
+          },
+          "quality": "defensive",
+          "playerX": 1.5147939837100342,
+          "opponentX": 2.0528613525722967,
+          "rally": 21
+        },
+        {
+          "side": "player",
+          "stroke": "swingForehand",
+          "target": {
+            "x": 2.0598579917955764,
+            "z": -2.25
+          },
+          "quality": "defensive",
+          "playerX": 1.0500720867940196,
+          "opponentX": 1.0637319378568613,
+          "rally": 22
+        },
+        {
+          "side": "opponent",
+          "stroke": "swingForehand",
+          "target": {
+            "x": 1.617954008952773,
+            "z": 2.95
+          },
+          "quality": "clean",
+          "playerX": 1.0442743757312276,
+          "opponentX": 2.221356937856862,
+          "rally": 23
+        },
+        {
+          "side": "player",
+          "stroke": "swingBackhand",
+          "target": {
+            "x": 1.2726956113262387,
+            "z": -2.95
+          },
+          "quality": "clean",
+          "playerX": 0.5601300895082707,
+          "opponentX": 1.1127728409671946,
+          "rally": 24
+        }
+      ],
+      "final": {
+        "phase": "rally",
+        "cameraMode": "behindPlayer",
+        "opponentId": "leo",
+        "score": {
+          "player": 0,
+          "opponent": 0
+        },
+        "server": "player",
+        "bestRally": 25,
+        "currentRally": 25,
+        "lastPoint": null
+      }
+    },
+    "after": {
+      "errors": [],
+      "http": [],
+      "points": [
+        {
+          "phase": "pointResult",
+          "cameraMode": "pointReaction",
+          "opponentId": "leo",
+          "score": {
+            "player": 1,
+            "opponent": 0
+          },
+          "server": "player",
+          "bestRally": 3,
+          "currentRally": 3,
+          "lastPoint": {
+            "winner": "player",
+            "reason": "miss",
+            "rallyLength": 3
+          },
+          "cue": "none",
+          "state": "ready",
+          "opponentX": 2.9160668074752745,
+          "shot": null,
+          "message": "Your point · Leo missed"
+        },
+        {
+          "phase": "pointResult",
+          "cameraMode": "pointReaction",
+          "opponentId": "leo",
+          "score": {
+            "player": 2,
+            "opponent": 0
+          },
+          "server": "opponent",
+          "bestRally": 3,
+          "currentRally": 2,
+          "lastPoint": {
+            "winner": "player",
+            "reason": "miss",
+            "rallyLength": 2
+          },
+          "cue": "none",
+          "state": "shuffle",
+          "opponentX": -1.0396249999999996,
+          "shot": null,
+          "message": "Your point · Leo missed"
+        },
+        {
+          "phase": "pointResult",
+          "cameraMode": "pointReaction",
+          "opponentId": "leo",
+          "score": {
+            "player": 3,
+            "opponent": 0
+          },
+          "server": "player",
+          "bestRally": 3,
+          "currentRally": 3,
+          "lastPoint": {
+            "winner": "player",
+            "reason": "miss",
+            "rallyLength": 3
+          },
+          "cue": "none",
+          "state": "shuffle",
+          "opponentX": 2.971191828892496,
+          "shot": null,
+          "message": "Your point · Leo missed"
+        }
+      ],
+      "shots": [
+        {
+          "side": "player",
+          "stroke": "serve",
+          "target": {
+            "x": -0.6159023979806478,
+            "z": -2.95
+          },
+          "quality": "clean",
+          "playerX": 0.6159054480554157,
+          "opponentX": 1,
+          "rally": 0
+        },
+        {
+          "side": "opponent",
+          "stroke": "swingBackhand",
+          "target": {
+            "x": 0.5768325216806001,
+            "z": 3.1
+          },
+          "quality": "defensive",
+          "playerX": 0.6101077369926237,
+          "opponentX": 0.6141250000000001,
+          "rally": 1
+        },
+        {
+          "side": "player",
+          "stroke": "swingForehand",
+          "target": {
+            "x": 2.719319768175966,
+            "z": -2.95
+          },
+          "quality": "clean",
+          "playerX": 1.0142910945532635,
+          "opponentX": 0.8764418074752751,
+          "rally": 2
+        },
+        {
+          "side": "opponent",
+          "stroke": "serve",
+          "target": {
+            "x": 1.3245280211573116,
+            "z": 3.1
+          },
+          "quality": "perfect",
+          "playerX": 1,
+          "opponentX": 1,
+          "rally": 0
+        },
+        {
+          "side": "player",
+          "stroke": "swingBackhand",
+          "target": {
+            "x": -0.9159023979806478,
+            "z": -2.95
+          },
+          "quality": "clean",
+          "playerX": 0.6421668003823792,
+          "opponentX": 1,
+          "rally": 1
+        },
+        {
+          "side": "player",
+          "stroke": "serve",
+          "target": {
+            "x": -0.6159023979806478,
+            "z": -2.95
+          },
+          "quality": "clean",
+          "playerX": 0.627976335155011,
+          "opponentX": 1,
+          "rally": 0
+        },
+        {
+          "side": "opponent",
+          "stroke": "swingBackhand",
+          "target": {
+            "x": 0.8174279130723439,
+            "z": 3.1
+          },
+          "quality": "defensive",
+          "playerX": 0.6101077369926237,
+          "opponentX": 0.5126950000000002,
+          "rally": 1
+        },
+        {
+          "side": "player",
+          "stroke": "swingForehand",
+          "target": {
+            "x": 2.915902397980648,
+            "z": -2.95
+          },
+          "quality": "clean",
+          "playerX": 1.1413650320200301,
+          "opponentX": 0.8764418288924967,
+          "rally": 2
+        }
+      ],
+      "final": {
+        "phase": "pointResult",
+        "cameraMode": "pointReaction",
+        "opponentId": "leo",
+        "score": {
+          "player": 3,
+          "opponent": 0
+        },
+        "server": "player",
+        "bestRally": 3,
+        "currentRally": 3,
+        "lastPoint": {
+          "winner": "player",
+          "reason": "miss",
+          "rallyLength": 3
+        }
+      }
+    },
+    "scope": "Real directional key pulses and Space, chosen from the visible cue; diagnostic reads only, no score, ball or outcome injection. Before capped at 35 seconds; after stopped after three real points. Automated play is not a human difficulty or enjoyment evaluation."
+  },
+  "touch": {
+    "errors": [],
+    "http": [],
+    "serveMessage": "STICK TO AIM · SWING TO SERVE",
+    "afterRelease": {
+      "movement": {
+        "x": 0,
+        "z": 0
+      },
+      "aim": 0.9599999896550583,
+      "cue": "queued"
+    },
+    "target": {
+      "x": 2.9091316855276825,
+      "y": 0.09,
+      "z": -2.95
+    },
+    "direction": 1,
+    "point": {
+      "phase": "pointResult",
+      "cameraMode": "pointReaction",
+      "opponentId": "leo",
+      "score": {
+        "player": 1,
+        "opponent": 0
+      },
+      "server": "player",
+      "bestRally": 3,
+      "currentRally": 3,
+      "lastPoint": {
+        "winner": "player",
+        "reason": "miss",
+        "rallyLength": 3
+      }
+    },
+    "message": "Your point · Leo missed",
+    "returned": {
+      "court": false,
+      "movement": {
+        "x": 0,
+        "z": 0
+      }
+    }
+  },
+  "performance": {
+    "runs": [
+      {
+        "label": "before",
+        "median": 16.69999999999891,
+        "p95": 16.799999999999272,
+        "p99": 16.80000000000109,
+        "phases": {
+          "rally": 177,
+          "pointResult": 63,
+          "serving": 1
+        },
+        "paused": false,
+        "gl": 0,
+        "drawCalls": 767,
+        "triangles": 332296,
+        "authoredParts": 6,
+        "canvas": [
+          2112,
+          1320
+        ],
+        "errors": []
+      },
+      {
+        "label": "after",
+        "median": 16.69999999999891,
+        "p95": 16.700000000000728,
+        "p99": 16.799999999999272,
+        "phases": {
+          "rally": 177,
+          "pointResult": 63,
+          "serving": 1
+        },
+        "paused": false,
+        "gl": 0,
+        "drawCalls": 767,
+        "triangles": 332296,
+        "authoredParts": 6,
+        "canvas": [
+          2112,
+          1320
+        ],
+        "errors": []
+      },
+      {
+        "label": "after",
+        "median": 16.69999999999891,
+        "p95": 16.700000000000728,
+        "p99": 16.80000000000109,
+        "phases": {
+          "rally": 177,
+          "pointResult": 63,
+          "serving": 1
+        },
+        "paused": false,
+        "gl": 0,
+        "drawCalls": 767,
+        "triangles": 332296,
+        "authoredParts": 6,
+        "canvas": [
+          2112,
+          1320
+        ],
+        "errors": []
+      },
+      {
+        "label": "before",
+        "median": 16.69999999999891,
+        "p95": 16.799999999999272,
+        "p99": 16.80000000000109,
+        "phases": {
+          "rally": 177,
+          "pointResult": 63,
+          "serving": 1
+        },
+        "paused": false,
+        "gl": 0,
+        "drawCalls": 767,
+        "triangles": 332296,
+        "authoredParts": 6,
+        "canvas": [
+          2112,
+          1320
+        ],
+        "errors": []
+      }
+    ],
+    "scope": "ABBA, native Chromium Metal, 240 RAF intervals per run; short frame-pacing comparison, not a sustained performance benchmark."
+  },
+  "calibration": [
+    {
+      "label": "return-85",
+      "id": "leo",
+      "seed": 0,
+      "strategy": "center",
+      "result": null,
+      "seconds": 35.01666666666596,
+      "rally": 24,
+      "maxOpponentTravel": 1.4042426548631448
+    },
+    {
+      "label": "return-85",
+      "id": "leo",
+      "seed": 0,
+      "strategy": "space",
+      "result": {
+        "winner": "player",
+        "reason": "miss",
+        "rally": 9
+      },
+      "seconds": 14.116666666666948,
+      "rally": 9,
+      "maxOpponentTravel": 2.215902397980648
+    },
+    {
+      "label": "return-85",
+      "id": "leo",
+      "seed": 6,
+      "strategy": "center",
+      "result": null,
+      "seconds": 35.01666666666596,
+      "rally": 24,
+      "maxOpponentTravel": 1.6516916129149506
+    },
+    {
+      "label": "return-85",
+      "id": "leo",
+      "seed": 6,
+      "strategy": "space",
+      "result": {
+        "winner": "player",
+        "reason": "miss",
+        "rally": 13
+      },
+      "seconds": 19.98333333333348,
+      "rally": 13,
+      "maxOpponentTravel": 2.215902397980648
+    },
+    {
+      "label": "return-85",
+      "id": "coach",
+      "seed": 0,
+      "strategy": "center",
+      "result": {
+        "winner": "player",
+        "reason": "long",
+        "rally": 12
+      },
+      "seconds": 17.53333333333362,
+      "rally": 12,
+      "maxOpponentTravel": 1.4762904833886323
+    },
+    {
+      "label": "return-85",
+      "id": "coach",
+      "seed": 0,
+      "strategy": "space",
+      "result": null,
+      "seconds": 35.01666666666596,
+      "rally": 23,
+      "maxOpponentTravel": 2.215902397980648
+    },
+    {
+      "label": "return-85",
+      "id": "coach",
+      "seed": 6,
+      "strategy": "center",
+      "result": null,
+      "seconds": 35.01666666666596,
+      "rally": 24,
+      "maxOpponentTravel": 1.9011431742797202
+    },
+    {
+      "label": "return-85",
+      "id": "coach",
+      "seed": 6,
+      "strategy": "space",
+      "result": {
+        "winner": "player",
+        "reason": "miss",
+        "rally": 9
+      },
+      "seconds": 13.983333333333608,
+      "rally": 9,
+      "maxOpponentTravel": 2.215902397980648
+    },
+    {
+      "label": "return-85",
+      "id": "nia",
+      "seed": 0,
+      "strategy": "center",
+      "result": null,
+      "seconds": 35.01666666666596,
+      "rally": 23,
+      "maxOpponentTravel": 1.5924581197830343
+    },
+    {
+      "label": "return-85",
+      "id": "nia",
+      "seed": 0,
+      "strategy": "space",
+      "result": {
+        "winner": "player",
+        "reason": "doubleBounce",
+        "rally": 3
+      },
+      "seconds": 5.199999999999987,
+      "rally": 3,
+      "maxOpponentTravel": 2.0310122815752347
+    },
+    {
+      "label": "return-85",
+      "id": "nia",
+      "seed": 6,
+      "strategy": "center",
+      "result": null,
+      "seconds": 35.01666666666596,
+      "rally": 24,
+      "maxOpponentTravel": 0.575096331071655
+    },
+    {
+      "label": "return-85",
+      "id": "nia",
+      "seed": 6,
+      "strategy": "space",
+      "result": {
+        "winner": "player",
+        "reason": "doubleBounce",
+        "rally": 3
+      },
+      "seconds": 5.18333333333332,
+      "rally": 3,
+      "maxOpponentTravel": 2.002243963868472
+    }
+  ],
+  "humanGate": {
+    "characterReferenceAppeal": "unconfirmed",
+    "placementFunAndAnotherPoint": "pending user question",
+    "highestCaliber": "not established"
+  }
+}

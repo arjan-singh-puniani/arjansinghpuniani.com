@@ -1,0 +1,52 @@
+[
+  {
+    "state": "idle",
+    "angle": "0",
+    "maxChannelDelta": 0
+  },
+  {
+    "state": "idle",
+    "angle": "0.6",
+    "maxChannelDelta": 0
+  },
+  {
+    "state": "ready",
+    "angle": "0",
+    "maxChannelDelta": 0
+  },
+  {
+    "state": "ready",
+    "angle": "0.6",
+    "maxChannelDelta": 0
+  },
+  {
+    "state": "swingForehand",
+    "angle": "0",
+    "maxChannelDelta": 0
+  },
+  {
+    "state": "swingForehand",
+    "angle": "0.6",
+    "maxChannelDelta": 0
+  },
+  {
+    "state": "swingBackhand",
+    "angle": "0",
+    "maxChannelDelta": 0
+  },
+  {
+    "state": "swingBackhand",
+    "angle": "0.6",
+    "maxChannelDelta": 0
+  },
+  {
+    "state": "serve",
+    "angle": "0",
+    "maxChannelDelta": 0
+  },
+  {
+    "state": "serve",
+    "angle": "0.6",
+    "maxChannelDelta": 0
+  }
+]

@@ -1,3 +1,4 @@
+import { touchForDecor } from '../simulation/ClubInteractions.js';
 import { DECOR_CATALOG } from '../content/DecorCatalog.js';
 const byId = (id) => document.getElementById(id);
 export class HUD {
@@ -6,7 +7,7 @@ export class HUD {
     onBuildClose = () => { };
     onPlay = () => { };
     onSpeed = () => { };
-    onBook = () => { };
+    onBook = (tab) => { };
     onCoach = () => { };
     onBuild = () => { };
     onWeather = () => { };
@@ -22,7 +23,8 @@ export class HUD {
     speechTimer = 0;
     bookData = null;
     activeTab = 'today';
-    activeBuildCategory = 'tennis';
+    activeBuildCategory = 'clubhouse';
+    buildFunds = -1;
     opener = null;
     focusPanel(panel) { if (!panel.contains(document.activeElement))
         this.opener = document.activeElement; requestAnimationFrame(() => { if (panel.classList.contains('open'))
@@ -39,27 +41,37 @@ export class HUD {
         byId('closeContext').onclick = () => this.closeContext();
         byId('closeBook').onclick = () => this.closeBook();
         byId('brandBtn').onclick = () => this.onBook();
+        byId('fundsBtn').onclick = () => this.onBuild();
+        byId('peopleBtn').onclick = () => this.onBook('people');
+        byId('weatherChip').onclick = () => this.onWeather();
         const catalog = byId('buildCatalog');
         for (const d of DECOR_CATALOG) {
             const b = document.createElement('button');
             b.dataset.build = d.id;
             b.dataset.category = d.category;
+            b.dataset.cost = String(d.cost);
             b.setAttribute('aria-label', `${d.label}, ${d.cost} club funds`);
-            const icon = document.createElement('span');
+            const icon = document.createElement('img');
             icon.className = 'buildIcon';
-            icon.textContent = d.icon;
+            icon.alt = '';
+            icon.src = `./assets/decor/${d.id}.webp`;
+            icon.loading = 'lazy';
             const label = document.createElement('span');
             label.textContent = d.label;
             const price = document.createElement('small');
             price.textContent = `${d.cost} funds`;
-            b.append(icon, label, price);
-            b.onclick = () => { this.build.querySelectorAll('button[data-build]').forEach(x => x.classList.remove('selected')); b.classList.add('selected'); byId('buildControls').hidden = false; this.onBuildSelect(d.id); };
+            const use = document.createElement('span');
+            use.className = 'buildUse';
+            use.textContent = d.id === 'cafeTable' ? 'Invite someone for matcha' : d.id === 'bench' ? 'Sit together · watch a rally' : d.id === 'plant' || d.id === 'planter' ? 'Water · fresh leaves' : d.id === 'lamp' || d.id === 'lantern' ? 'Switch real room lighting' : touchForDecor(d.id).title;
+            b.append(icon, label, use, price);
+            b.onclick = () => { this.build.querySelectorAll('button[data-build]').forEach(x => x.classList.remove('selected')); b.classList.add('selected'); byId('buildControls').hidden = false; this.onBuildSelect(d.id); byId('placementLabel').textContent = `Place ${d.label} · ${d.cost} funds`; this.build.classList.remove('open'); byId('buildBtn').classList.remove('active'); byId('rotateLeft').focus(); };
             catalog.appendChild(b);
         }
         this.build.querySelectorAll('button[data-build-category]').forEach(b => b.onclick = () => this.setBuildCategory(b.dataset.buildCategory));
         byId('rotateLeft').onclick = () => this.onBuildRotate(-1);
         byId('rotateRight').onclick = () => this.onBuildRotate(1);
-        this.setBuildCategory('tennis');
+        byId('cancelPlacement').onclick = () => this.toggleBuild(false);
+        this.setBuildCategory('clubhouse');
         byId('bookTabs').addEventListener('click', e => { const b = e.target.closest('button[data-tab]'); if (!b)
             return; this.activeTab = b.dataset.tab; byId('bookTabs').querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b)); this.renderBook(); });
     }
@@ -70,7 +82,22 @@ export class HUD {
     }
     hideLoading() { setTimeout(() => byId('loading').classList.add('hide'), 180); }
     hideHint() { byId('hint').classList.add('hide'); }
-    update(stats, paused, speed) { byId('coins').textContent = String(Math.floor(stats.coins)); byId('stars').textContent = String(stats.stars); byId('heart').textContent = String(stats.heart); byId('clock').textContent = stats.clock; byId('weatherChip').firstChild.textContent = stats.weather === 'rain' ? '☂ ' : stats.weather === 'cloudy' ? '☁ ' : '☀ '; byId('weatherBtn').textContent = stats.weather === 'rain' ? '☂' : stats.weather === 'cloudy' ? '☁' : '☀'; byId('playBtn').textContent = paused ? '▶' : 'Ⅱ'; byId('playBtn').setAttribute('aria-label', paused ? 'Resume' : 'Pause'); byId('playBtn').classList.toggle('primary', !paused); byId('speedBtn').textContent = `${speed}×`; }
+    update(stats, paused, speed) {
+        if (this.buildFunds !== Math.floor(stats.coins)) {
+            this.buildFunds = Math.floor(stats.coins);
+            byId('buildFunds').textContent = String(this.buildFunds);
+            byId('fundsBtn').setAttribute('aria-label', `Open build catalog, ${this.buildFunds} club funds`);
+            this.build.querySelectorAll('button[data-build]').forEach(b => { const cost = Number(b.dataset.cost); b.disabled = cost > stats.coins; b.querySelector('small').textContent = cost > stats.coins ? `${cost} funds · need ${cost - this.buildFunds} more` : `${cost} funds`; });
+        }
+        byId('coins').textContent = String(Math.floor(stats.coins));
+        byId('clock').textContent = stats.clock;
+        byId('weatherChip').firstChild.textContent = stats.weather === 'rain' ? '☂ ' : stats.weather === 'cloudy' ? '☁ ' : '☀ ';
+        byId('weatherBtn').textContent = stats.weather === 'rain' ? '☂' : stats.weather === 'cloudy' ? '☁' : '☀';
+        byId('playBtn').textContent = paused ? '▶' : 'Ⅱ';
+        byId('playBtn').setAttribute('aria-label', paused ? 'Resume' : 'Pause');
+        byId('playBtn').classList.toggle('primary', !paused);
+        byId('speedBtn').textContent = `${speed}×`;
+    }
     setObjective(title, text) { byId('objectiveTitle').textContent = title; byId('objectiveText').textContent = text; }
     showContext(eyebrow, title, text, meta, actions) { this.context.classList.remove('arrival-card'); this.onPanelOpen(); byId('contextEyebrow').textContent = eyebrow.toUpperCase(); byId('contextTitle').textContent = title; byId('contextText').textContent = text; const mb = byId('contextMeta'); mb.innerHTML = ''; for (const x of meta) {
         const s = document.createElement('span');
@@ -88,7 +115,10 @@ export class HUD {
     } this.toggleBuild(false); this.context.scrollTop = 0; this.book.classList.remove('open'); this.context.classList.add('open'); this.focusPanel(this.context); }
     closeContext() { this.onContextClose(); const had = this.context.contains(document.activeElement); this.context.classList.remove('open', 'arrival-card'); if (had)
         this.opener?.focus(); }
-    showBook(data) { this.onPanelOpen(); this.toggleBuild(false); this.bookData = data; this.context.classList.remove('open'); this.book.classList.add('open'); this.renderBook(); this.focusPanel(this.book); }
+    showBook(data, tab) { if (tab) {
+        this.activeTab = tab;
+        byId('bookTabs').querySelectorAll('button[data-tab]').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    } this.onPanelOpen(); this.toggleBuild(false); this.bookData = data; this.context.classList.remove('open'); this.book.classList.add('open'); this.renderBook(); this.focusPanel(this.book); }
     renderBook() {
         if (!this.bookData)
             return;
@@ -99,6 +129,8 @@ export class HUD {
         }
         else if (this.activeTab === 'people') {
             c.innerHTML = d.members.map(m => `<div class="card personCard"><div class="row"><strong>${this.escape(m.name)}</strong><span>${this.escape(m.mood ?? m.tier)}</span></div><small>${this.escape(m.role)} · ${this.escape(m.quirk)}</small><p>${this.escape(m.intention ?? m.goal)}</p>${m.favorite ? `<small>Favorite place · ${this.escape(m.favorite)}</small>` : ''}${m.personalMemory ? `<em>${this.escape(m.personalMemory)}</em>` : m.memories[0] ? `<em>${this.escape(m.memories[0])}</em>` : ''}${m.possessions?.length ? `<small>${m.possessions.map(p => this.escape(p)).join(' · ')}</small>` : ''}</div>`).join('');
+            d.members.forEach((member, i) => { if (!member.open)
+                return; const b = document.createElement('button'); b.textContent = `Find ${member.name}`; b.onclick = member.open; c.children[i].append(b); });
         }
         else if (this.activeTab === 'coaching') {
             c.innerHTML = `<div class="card"><strong>Your coaching approach</strong><small>${this.escape(d.philosophy ?? 'Your approach will emerge through practice.')}</small></div><div class="card"><div class="row"><strong>Lucresia · forehand timing</strong><span>${d.mikaProgress}%</span></div><div class="meter"><i style="width:${Math.min(100, d.mikaProgress)}%"></i></div><small>Choose drills because they fit the problem, not because they pay more.</small></div><div class="card"><div class="row"><strong>${this.escape(d.coachLevel)}</strong><span>${d.coachXP} XP</span></div><small>Every completed lesson contributes 18 club funds. Results affect learning, not the fee.</small></div><div class="card"><div class="row"><strong>Best observed rally</strong><span>${d.bestRally} balls</span></div><small>Rallies are a little different every time. No score multiplier attached.</small></div>`;
@@ -123,7 +155,7 @@ export class HUD {
             }
         }
         else
-            c.innerHTML = `<div class="card"><strong>The club is becoming…</strong><small>${this.escape(d.culture ?? 'Still finding its rhythm.')}</small></div><div class="card"><strong>Current racket</strong><small>${this.escape(d.equipment.frame)} · ${this.escape(d.equipment.string)} · ${d.equipment.tension} lb</small></div><div class="card"><strong>Academy snapshot</strong><small>${d.coins} club funds · ${d.placements} placed details · indoor court · matcha nook · pro shop · lounge · bonsai corner</small></div><div class="card"><strong>Design principle</strong><small>Most management is optional. The physical club is the interface and the people remain the point.</small></div>`;
+            c.innerHTML = `<div class="card"><strong>The club is becoming…</strong><small>${this.escape(d.culture ?? 'Still finding its rhythm.')}</small></div><div class="card"><strong>Current racket</strong><small>${this.escape(d.equipment.frame)} · ${this.escape(d.equipment.string)} · ${d.equipment.tension} lb</small></div><div class="card"><strong>Academy snapshot</strong><small>${d.coins} club funds · ${d.placements} placed details · indoor court · matcha nook · pro shop · lounge · bonsai corner</small></div><div class="card"><strong>Character art</strong><small><a href="./assets/characters/CREDITS.html" target="_blank" rel="noopener">Character credits</a></small></div><div class="card"><strong>Design principle</strong><small>Most management is optional. The physical club is the interface and the people remain the point.</small></div>`;
     }
     escape(v) { return v.replace(/[&<>'"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[c])); }
     closeBook() { const had = this.book.contains(document.activeElement); this.book.classList.remove('open'); if (had)
@@ -138,7 +170,8 @@ export class HUD {
         this.clearBuildSelection();
         this.onBuildClose();
     } this.build.classList.toggle('open', next); byId('buildBtn').classList.toggle('active', next); }
-    clearBuildSelection() { this.build.querySelectorAll('button[data-build]').forEach(x => x.classList.remove('selected')); byId('buildControls').hidden = true; }
+    clearBuildSelection() { this.build.querySelectorAll('button[data-build]').forEach(x => x.classList.remove('selected')); const controls = byId('buildControls'), focused = controls.contains(document.activeElement); controls.hidden = true; if (focused)
+        byId('fundsBtn').focus(); }
     toast(msg) { const t = byId('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(this.toastTimer); this.toastTimer = window.setTimeout(() => t.classList.remove('show'), 2300); }
     showMoment(title, text) { byId('momentTitle').textContent = title; byId('momentText').textContent = text; const el = byId('moment'); el.classList.add('show'); clearTimeout(this.momentTimer); this.momentTimer = window.setTimeout(() => el.classList.remove('show'), 5200); }
     showSpeech(name, text, duration = 3600) { byId('speechName').textContent = name; byId('speechText').textContent = text; const el = byId('speech'); el.classList.add('show'); clearTimeout(this.speechTimer); if (duration > 0)

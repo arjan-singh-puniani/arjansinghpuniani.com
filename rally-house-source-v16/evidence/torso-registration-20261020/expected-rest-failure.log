@@ -1,0 +1,9 @@
+{"maxRestTorsoError":0.8381094336509705}
+file:///private/tmp/rh-neck-before-check.mjs:2
+const meta=JSON.parse(fs.readFileSync('/tmp/rh-neck-before/assets/characters/taylor/provenance.json')),rest=Object.fromEntries(Object.entries(meta.bind).map(([k,v])=>[k,new Vec3(...v)])),p={...new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{}).analysisPose(),pelvisCenter:rest.pelvis.clone(),head:rest.head.clone(),shoulderL:rest.upperArmL.clone(),shoulderR:rest.upperArmR.clone(),headYaw:0,torsoYaw:0,hipYaw:0},mesh=authoredAthleteMeshes(p,new Vec3(),0,[{pitch:0,yaw:0},{pitch:0,yaw:0}],0)[0];let max=0;for(const bone of [0,1,2,3])for(let i=0;i<16;i++)max=Math.max(max,Math.abs(mesh.boneMatrices[bone*16+i]-(i%5===0?1:0)));console.log(JSON.stringify({maxRestTorsoError:max}));if(max>=1e-5)throw Error('Authored rest torso was distorted');
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ^
+
+Error: Authored rest torso was distorted
+    at file:///private/tmp/rh-neck-before-check.mjs:2:715
+
+Node.js v22.23.2

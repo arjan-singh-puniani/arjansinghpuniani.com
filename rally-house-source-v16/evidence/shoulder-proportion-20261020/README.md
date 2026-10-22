@@ -1,0 +1,10 @@
+# Shoulder proportion: runtime comparison
+
+1. **Wrong:** Taylor’s upper body looked too broad relative to the hips. The user identified body proportions as the main remaining gap.
+2. **Cause:** the compact-avatar shoulder calibration expanded the authored joint span by 12.5% in the stable resting pose: .5200 versus .4621 game units.
+3. **Smallest fix:** change Taylor’s existing shoulder calibration from .90 to .80. Her actual pose, arm solves, skinned clothes, capture and replay all consume these shoulder landmarks. No mesh, texture, body target, shader or dependency changes. The skin-tone experiment was not shipped.
+4. **Regression:** full npm test passes. The new source-span guard fails on frozen c0f16a8c (ratio 1.125342) and passes after (1.000400). Seventy native color/shadow clothing cases, actual lounge Sit/navigation and desktop/touch three-shot rallies pass. All 104 source/served artifacts match. Pose views retain six hero parts and no GL/page errors. Active championship ABBA medians remain 16.7 ms; p95 is 16.7–16.8 ms at 2112×1320, with the same 875 draws and 359,632 scene triangles.
+5. **Perceptual result:** matched full-body views show a narrower shoulder/upper-arm silhouette and less top-heavy balance. The delta is modest; waist, hips, limbs, face and clothing design were not revised in this pass. `comparison.webp` shows the same camera, pose and lighting before/after; `pose-sheet.webp` includes ready, seated and stroke poses.
+6. **Colleague-send test:** closer, still no. This corrects one measured proportion mismatch. It does not establish that the body matches the user’s references or reaches studio quality.
+
+Before is frozen c0f16a8c; after uses the current source on the same running native renderer. Human review of the overall silhouette is pending; a clarification about the remaining proportion gap is open. Championship performance is recorded separately in `performance.json`. Earlier phone/replay evidence remains in the torso-registration pass; those flows were not re-recorded here.

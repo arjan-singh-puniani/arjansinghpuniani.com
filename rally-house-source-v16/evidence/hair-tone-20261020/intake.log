@@ -1,0 +1,4 @@
+Asset intake accepts a weighted synthetic triangle and rejects 16 malformed/unsupported cases; synthetic boundary fixture; the complete athlete is checked separately.
+Valid GLB JSON/BIN container and provenance CLI pass; mismatched source hash is rejected.
+Five authored normal channels accepted; nonfinite and excessive normal offsets rejected.
+Seated garment adapter accepts bounded motion and rejects wrong slots, reserved channels and excessive offsets.

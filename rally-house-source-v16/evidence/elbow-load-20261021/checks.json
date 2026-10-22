@@ -1,0 +1,52 @@
+{
+  "baseline": "6cbf20fc",
+  "fullSuite": "npm test PASS",
+  "regression": "New low-backhand assertion fails with the previous TaylorBody module and passes with this solve.",
+  "point": {
+    "phase": "pointResult",
+    "cameraMode": "pointReaction",
+    "opponentId": "leo",
+    "score": {
+      "player": 0,
+      "opponent": 1
+    },
+    "server": "player",
+    "bestRally": 8,
+    "currentRally": 8,
+    "lastPoint": {
+      "winner": "opponent",
+      "reason": "miss",
+      "rallyLength": 8
+    }
+  },
+  "pointSamples": 744,
+  "browserErrors": [],
+  "liveReplay": {
+    "errors": [],
+    "live": {
+      "frames": 356,
+      "captured": 356,
+      "maxDrape": 1,
+      "maxStep": 0.3614359882558931,
+      "finalDrape": 0.00037559336418851563,
+      "state": "ready",
+      "liveTracks": 0,
+      "gl": 0
+    },
+    "replay": {
+      "frames": 360,
+      "captured": 357,
+      "maxDrape": 1,
+      "maxStep": 0.36597086550879465,
+      "finalDrape": 0.0007475056595852072,
+      "state": "ready",
+      "liveTracks": 0,
+      "gl": 0
+    }
+  },
+  "gpu": {
+    "cases": 392,
+    "handClips": 0,
+    "shortsIntersections": 0
+  }
+}

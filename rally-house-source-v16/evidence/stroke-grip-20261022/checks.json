@@ -1,0 +1,173 @@
+{
+  "realRallyReview": {
+    "engine": "chromium",
+    "width": 1440,
+    "errors": [],
+    "http": [],
+    "returns": [
+      true,
+      true
+    ],
+    "input": "Actual UI challenge, keyboard movement/serve/attempted returns and review button; controlled initial club availability",
+    "contact": {
+      "count": 3,
+      "time": 6.466666666666649,
+      "frames": 201
+    },
+    "review": {
+      "sameWorld": true,
+      "samePlayer": true,
+      "sameCast": true,
+      "sameObjects": true,
+      "sameMeshes": true,
+      "sameRecording": true,
+      "source": "game-recording",
+      "contact": true,
+      "time": 6.466666666666649,
+      "playing": false,
+      "speed": 0.25,
+      "input": false,
+      "match": false,
+      "reserved": false,
+      "competitors": false,
+      "gl": 0
+    },
+    "framing": {
+      "head": {
+        "x": 550.2616190395428,
+        "y": 295.8248870110083,
+        "visible": true
+      },
+      "racketTop": {
+        "x": 711.0389745094025,
+        "y": 406.8256915914834,
+        "visible": true
+      },
+      "feet": [
+        {
+          "x": 505.92383992442996,
+          "y": 575.6072309476682,
+          "visible": true
+        },
+        {
+          "x": 568.7961945891752,
+          "y": 535.0176233567053,
+          "visible": true
+        }
+      ],
+      "panel": {
+        "x": 1096,
+        "y": 104,
+        "width": 320,
+        "height": 684,
+        "top": 104,
+        "right": 1416,
+        "bottom": 788,
+        "left": 1096
+      }
+    },
+    "returned": {
+      "lab": false,
+      "match": false,
+      "world": true,
+      "court": false
+    },
+    "passed": true
+  },
+  "frameTimes": [
+    {
+      "label": "before",
+      "median": 16.69999999999891,
+      "p95": 16.799999999999272,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 332296,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 332296,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "median": 16.69999999999891,
+      "p95": 16.799999999999272,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 332296,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "before",
+      "median": 16.69999999999891,
+      "p95": 16.799999999999272,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 332296,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    }
+  ],
+  "suite": "npm test passed; focused final arm-anatomy and authored-athlete checks passed",
+  "baselineFailures": [
+    "Closed backhand fingers must not penetrate the opposite palm",
+    "Follow-through must rotate without a snapping shaft reversal"
+  ],
+  "maxShaftTurnRadiansPerSecond": {
+    "before": 57.34950741353468,
+    "after": 21.56515476307778
+  },
+  "remaining": "Shoulder/armpit sleeve folding remains; no AAA-quality claim."
+}

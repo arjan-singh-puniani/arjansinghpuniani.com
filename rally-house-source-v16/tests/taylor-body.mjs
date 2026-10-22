@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {CHARACTER_SKIN} from '../dist/animation/CharacterSkin.js';
+import {CHARACTER_SKIN,ATHLETE_WARDROBE} from '../dist/animation/CharacterSkin.js';
 import {Character} from '../dist/entities/Character.js';import {playerSpec} from '../dist/content/PlayerAvatars.js';
 import {Navigation} from '../dist/world/Navigation.js';import {Vec3,compose,transformPoint} from '../dist/rendering/Math3D.js';
 
@@ -14,16 +14,17 @@ for(const name of ['taylorDress','taylorNeckline','taylorDressEdging','taylorArm
 }
 // Recover actual emitted joint rings by their plane and skin owner, rather
 // than repeating the surface generator or checking a parallel test skeleton.
+const liveLimbs={taylorArms:ATHLETE_WARDROBE.feminineArms,taylorLegs:ATHLETE_WARDROBE.legs,taylorBoots:ATHLETE_WARDROBE.calves};
 const rings=[
  ['taylorArms',5,'shoulderL',[-.37,1.34,.015],[-.49,1.12,.01]],['taylorArms',6,'elbowL',[-.49,1.12,.01],[-.50,.94,.01]],['taylorArms',7,'handL',[-.50,.94,.01],[-.49,1.12,.01]],
  ['taylorArms',8,'shoulderR',[.37,1.34,.015],[.49,1.12,.01]],['taylorArms',9,'elbowR',[.49,1.12,.01],[.50,.94,.01]],['taylorArms',10,'handR',[.50,.94,.01],[.49,1.12,.01]],
  ['taylorLegs',11,'hipL',[-.16,.76,0],[-.17,.43,.04]],['taylorLegs',12,'kneeL',[-.17,.43,.04],[-.17,.11,.08]],['taylorBoots',12,'footL',[-.17,.11,.08],[-.17,.43,.04]],
  ['taylorLegs',13,'hipR',[.16,.76,0],[.17,.43,.04]],['taylorLegs',14,'kneeR',[.17,.43,.04],[.17,.11,.08]],['taylorBoots',14,'footR',[.17,.11,.08],[.17,.43,.04]],
 ].map(([name,bone,joint,rest,next])=>{
- const g=CHARACTER_SKIN[name],center=new Vec3(...rest),axis=Vec3.sub(new Vec3(...next),center).normalize(),vertices=new Map();
+ const g=liveLimbs[name],center=new Vec3(...rest),axis=Vec3.sub(new Vec3(...next),center).normalize(),vertices=new Map();
  for(let i=0;i<g.positions.length/3;i++){
   const v=new Vec3(...g.positions.slice(i*3,i*3+3)),d=Vec3.sub(v,center);let weight=0;for(let n=0;n<4;n++)if(g.boneIndices[i*4+n]===bone)weight+=g.boneWeights[i*4+n];
-  if(weight>.99999&&Math.abs(Vec3.dot(d,axis))<1e-5&&d.len()>.035&&d.len()<.16)vertices.set([...g.positions.slice(i*3,i*3+3)].join(','),i);
+  if(weight>.49&&Math.abs(Vec3.dot(d,axis))<1e-5&&d.len()>.02&&d.len()<.16)vertices.set([...g.positions.slice(i*3,i*3+3)].join(','),i);
  }assert.equal(vertices.size,24,`${name}/${joint}: closed emitted joint ring`);return {name,joint,vertices:[...vertices.values()]};
 });
 let samples=0,maxError=0;
@@ -33,7 +34,7 @@ for(const hz of [30,60,120])for(const state of ['idle','walk','ready','swingFore
  for(let step=0;step<30;step++){
   c.update(1/hz);const pose=c.analysisPose(),meshes=c.meshes();
   for(const {name,joint,vertices} of rings){
-   const m=meshes.find(m=>m.skin===CHARACTER_SKIN[name]),g=m.skin,world=compose(m.position,m.rotation),center=new Vec3();
+   const m=meshes.find(m=>m.skin===liveLimbs[name]),g=m.skin,world=compose(m.position,m.rotation),center=new Vec3();
    for(const i of vertices){let local=new Vec3();const rest=new Vec3(...g.positions.slice(i*3,i*3+3));for(let n=0;n<4;n++){const w=g.boneWeights[i*4+n];if(!w)continue;const v=transformPoint(m.boneMatrices.slice(g.boneIndices[i*4+n]*16,g.boneIndices[i*4+n]*16+16),rest);local.add(new Vec3(v.x,v.y,v.z).scale(w));}const v=transformPoint(world,local);center.add(new Vec3(v.x,v.y,v.z));}
    center.scale(1/vertices.length);const error=Vec3.sub(center,pose[joint]).len();maxError=Math.max(maxError,error);assert(error<2e-6,'Actual shaped surface stays registered to the authoritative moving joint');samples++;
   }
