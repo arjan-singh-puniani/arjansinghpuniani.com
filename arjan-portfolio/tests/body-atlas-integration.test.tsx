@@ -47,5 +47,7 @@ describe("BODY//ATLAS portfolio integration", () => {
       expect(url.hostname).not.toMatch(/localhost|127\.0\.0\.1|mission-control/);
     }
     expect(project.evidence.some(source => source.url?.endsWith("P960009B.pdf"))).toBe(true);
+    expect(project.links).toContainEqual({label:"Launch interactive atlas",href:"/atlas"});
+    expect(sitemap().some(route=>route.url==="https://arjansinghpuniani.com/atlas")).toBe(true);
   });
 });

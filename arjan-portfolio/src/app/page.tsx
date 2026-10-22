@@ -105,7 +105,7 @@ export default function Home() {
           </div>
           <div className="v2-feature-copy">
             <p>02 / Research software · Biomedical evidence</p>
-            <h3 id="body-atlas-home-title">BODY//ATLAS</h3>
+            <h3 id="body-atlas-home-title"><Link href="/work/body-atlas">BODY//ATLAS</Link></h3>
             <p className="v2-feature-lead">
               Explore medical interventions through human anatomy, original FDA records, and linked research.
             </p>
@@ -114,7 +114,7 @@ export default function Home() {
               <div><dt>State</dt><dd>Working research prototype</dd></div>
               <div><dt>Snapshot</dt><dd>October 19, 2026</dd></div>
             </dl>
-            <Link href="/work/body-atlas">Explore BODY//ATLAS <span aria-hidden="true">↗</span></Link>
+            <a href="/atlas">Launch BODY//ATLAS <span aria-hidden="true">↗</span></a>
           </div>
         </article>
 

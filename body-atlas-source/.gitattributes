@@ -1,0 +1,6 @@
+* text=auto
+*.csv text eol=lf
+*.glb binary
+*.png binary
+# Content hashes refer to original response bytes, including their newlines.
+data/sources/* -text

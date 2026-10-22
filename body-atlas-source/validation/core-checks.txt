@@ -1,0 +1,300 @@
+
+> body-atlas@0.1.0 verify
+> npm run typecheck && npm test && npm run test:ingestion && npm run build
+
+
+> body-atlas@0.1.0 typecheck
+> tsc --noEmit
+
+
+> body-atlas@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+TAP version 13
+# Subtest: all cached source checksums match immutable original responses
+ok 1 - all cached source checksums match immutable original responses
+  ---
+  duration_ms: 21.311666
+  type: 'test'
+  ...
+# Subtest: stable record identifiers are unique; source artifacts are resolvable
+ok 2 - stable record identifiers are unique; source artifacts are resolvable
+  ---
+  duration_ms: 2.094125
+  type: 'test'
+  ...
+# Subtest: original RNS and Activa approvals retain original decisions, dates and identity
+ok 3 - original RNS and Activa approvals retain original decisions, dates and identity
+  ---
+  duration_ms: 0.10075
+  type: 'test'
+  ...
+# Subtest: De Novo records returned by 510k endpoint are not labelled clearances
+ok 4 - De Novo records returned by 510k endpoint are not labelled clearances
+  ---
+  duration_ms: 0.722917
+  type: 'test'
+  ...
+# Subtest: trial registration and publication do not imply marketing authorization
+ok 5 - trial registration and publication do not imply marketing authorization
+  ---
+  duration_ms: 0.081875
+  type: 'test'
+  ...
+# Subtest: every curated graph edge resolves an explicit source and anatomy identity
+ok 6 - every curated graph edge resolves an explicit source and anatomy identity
+  ---
+  duration_ms: 1.065208
+  type: 'test'
+  ...
+# Subtest: RNS cranial generator is distinct from cortical lead contact and brain target
+ok 7 - RNS cranial generator is distinct from cortical lead contact and brain target
+  ---
+  duration_ms: 0.066667
+  type: 'test'
+  ...
+# Subtest: VNS chest generator does not become a brain or intracardiac interface
+ok 8 - VNS chest generator does not become a brain or intracardiac interface
+  ---
+  duration_ms: 0.050333
+  type: 'test'
+  ...
+# Subtest: DBS original VIM mapping does not inherit later STN indications
+ok 9 - DBS original VIM mapping does not inherit later STN indications
+  ---
+  duration_ms: 0.2185
+  type: 'test'
+  ...
+# Subtest: epidural implantation does not imply spinal cord penetration
+ok 10 - epidural implantation does not imply spinal cord penetration
+  ---
+  duration_ms: 0.280375
+  type: 'test'
+  ...
+# Subtest: focused ultrasound is external with intracranial action, not a brain implant
+ok 11 - focused ultrasound is external with intracranial action, not a brain implant
+  ---
+  duration_ms: 0.093208
+  type: 'test'
+  ...
+# Subtest: TMS external head placement stays distinct from its cortical physiological target
+ok 12 - TMS external head placement stays distinct from its cortical physiological target
+  ---
+  duration_ms: 0.052667
+  type: 'test'
+  ...
+# Subtest: insufficient cochlear placement evidence causes explicit abstention
+ok 13 - insufficient cochlear placement evidence causes explicit abstention
+  ---
+  duration_ms: 0.981042
+  type: 'test'
+  ...
+# Subtest: anatomy graph has no orphan nodes or cycles
+ok 14 - anatomy graph has no orphan nodes or cycles
+  ---
+  duration_ms: 0.134833
+  type: 'test'
+  ...
+# Subtest: timeline uses source event dates and excludes database retrieval times
+ok 15 - timeline uses source event dates and excludes database retrieval times
+  ---
+  duration_ms: 7.880709
+  type: 'test'
+  ...
+# Subtest: publication date precision is preserved, including pre-approval history
+ok 16 - publication date precision is preserved, including pre-approval history
+  ---
+  duration_ms: 0.073875
+  type: 'test'
+  ...
+# Subtest: region, modality, authorization and time filters work together
+ok 17 - region, modality, authorization and time filters work together
+  ---
+  duration_ms: 2.033125
+  type: 'test'
+  ...
+# Subtest: natural language retrieval returns linked authentic sources and abstains for absent topics
+ok 18 - natural language retrieval returns linked authentic sources and abstains for absent topics
+  ---
+  duration_ms: 11.43075
+  type: 'test'
+  ...
+# Subtest: intracortical retrieval does not conflate all recording modalities; funding remains source metadata
+ok 19 - intracortical retrieval does not conflate all recording modalities; funding remains source metadata
+  ---
+  duration_ms: 10.2705
+  type: 'test'
+  ...
+# Subtest: source text is treated as data, never an instruction to execute
+ok 20 - source text is treated as data, never an instruction to execute
+  ---
+  duration_ms: 3.393583
+  type: 'test'
+  ...
+# Subtest: brief preserves citations, anatomical distinctions, and uncertainty
+ok 21 - brief preserves citations, anatomical distinctions, and uncertainty
+  ---
+  duration_ms: 0.319583
+  type: 'test'
+  ...
+# Subtest: body reference matches licensed source manifest and valid mesh buffers
+ok 22 - body reference matches licensed source manifest and valid mesh buffers
+  ---
+  duration_ms: 5.069084
+  type: 'test'
+  ...
+# Subtest: internal anatomy shares the official body source frame and retains source meshes
+ok 23 - internal anatomy shares the official body source frame and retains source meshes
+  ---
+  duration_ms: 10.334042
+  type: 'test'
+  ...
+# Subtest: intervention summaries keep original evidence and anatomical roles inspectable
+ok 24 - intervention summaries keep original evidence and anatomical roles inspectable
+  ---
+  duration_ms: 10.090292
+  type: 'test'
+  ...
+# Subtest: model annotations require accepted localized evidence and preserve typed relationships
+ok 25 - model annotations require accepted localized evidence and preserve typed relationships
+  ---
+  duration_ms: 0.796625
+  type: 'test'
+  ...
+# Subtest: timeline-filtered collections do not acquire future or unlocalized model labels
+ok 26 - timeline-filtered collections do not acquire future or unlocalized model labels
+  ---
+  duration_ms: 0.271833
+  type: 'test'
+  ...
+# Subtest: source-context catalogue retains exact source spans and never asserts placement
+ok 27 - source-context catalogue retains exact source spans and never asserts placement
+  ---
+  duration_ms: 1.213709
+  type: 'test'
+  ...
+# Subtest: whole-body geometry remains in licensed source frame with valid buffers
+ok 28 - whole-body geometry remains in licensed source frame with valid buffers
+  ---
+  duration_ms: 23.774958
+  type: 'test'
+  ...
+# Subtest: unreviewed text context cannot answer a physical-interface query as established placement
+ok 29 - unreviewed text context cannot answer a physical-interface query as established placement
+  ---
+  duration_ms: 3.56875
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 275.299958
+
+> body-atlas@0.1.0 test:ingestion
+> python3 -m unittest discover -s ingestion -p 'test_*.py' -v
+
+test_bounded_official_acquisition (test_catalogue.CatalogueTests) ... ok
+test_cortical_bone_and_pulmonary_valve_are_not_brain_or_lung (test_catalogue.CatalogueTests) ... ok
+test_explicit_context_keeps_child_and_abstains_from_parent_duplicate (test_catalogue.CatalogueTests) ... ok
+test_generated_snapshot_relationships_are_exact_and_unreviewed (test_catalogue.CatalogueTests) ... ok
+test_incidental_words_do_not_become_anatomy (test_catalogue.CatalogueTests) ... ok
+test_legacy_nda_identifier_never_relabelled_pma (test_catalogue.CatalogueTests) ... ok
+test_specimen_and_negated_context_abstains (test_catalogue.CatalogueTests) ... ok
+test_acceptance_requires_evidence_and_attributed_review (test_mapping_queue.MappingQueueTests) ... ok
+test_anatomical_word_is_a_candidate_only (test_mapping_queue.MappingQueueTests) ... ok
+test_external_eeg_not_assigned_to_intracardiac_or_cortical_tissue (test_mapping_queue.MappingQueueTests) ... ok
+test_multi_component_location_cannot_be_collapsed (test_mapping_queue.MappingQueueTests) ... ok
+test_rejection_is_preserved_without_placement (test_mapping_queue.MappingQueueTests) ... ok
+test_software_never_becomes_an_intracranial_implant (test_mapping_queue.MappingQueueTests) ... ok
+test_denovo_identity_is_preserved (test_pipeline.PipelineTests) ... ok
+test_expired_worker_lease_recovers (test_pipeline.PipelineTests) ... ok
+test_idempotent_and_versioned_writes (test_pipeline.PipelineTests) ... ok
+test_malformed_identifier_and_impossible_event_date_rejected (test_pipeline.PipelineTests) ... ok
+test_missing_or_empty_source_does_not_erase_previous_records (test_pipeline.PipelineTests) ... ok
+test_non_retryable_schema_failure_is_isolated (test_pipeline.PipelineTests) ... sample failed ValueError
+ok
+test_pma_supplements_have_separate_identifiers (test_pipeline.PipelineTests) ... ok
+test_schema_drift_and_partial_batch_never_overwrite_good_data (test_pipeline.PipelineTests) ... ok
+test_source_outage_preserves_snapshot_and_records_failed_job (test_pipeline.PipelineTests) ... sample queued HTTPError
+sample queued HTTPError
+sample failed HTTPError
+ok
+test_url_allowlist_rejects_local_credentials_and_arbitrary_sources (test_pipeline.PipelineTests) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.046s
+
+OK
+
+> body-atlas@0.1.0 build
+> next build
+
+▲ Next.js 16.4.2 (Turbopack)
+✓ Running next.config.ts took 17ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 476ms
+  Running TypeScript ...
+  Finished TypeScript in 1579ms ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/5) ...
+  Generating static pages using 7 workers (1/5)
+  Generating static pages using 7 workers (2/5)
+  Generating static pages using 7 workers (3/5)
+✓ Generating static pages using 7 workers (5/5) in 429ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/brief
+├ ƒ /api/search
+└ ƒ /api/source/[sha]
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+Final ingestion-only change: force refresh is restricted to the selected acquisition scope.
+
+> body-atlas@0.1.0 test:ingestion
+> python3 -m unittest discover -s ingestion -p 'test_*.py' -v
+
+test_bounded_official_acquisition (test_catalogue.CatalogueTests) ... ok
+test_cortical_bone_and_pulmonary_valve_are_not_brain_or_lung (test_catalogue.CatalogueTests) ... ok
+test_explicit_context_keeps_child_and_abstains_from_parent_duplicate (test_catalogue.CatalogueTests) ... ok
+test_generated_snapshot_relationships_are_exact_and_unreviewed (test_catalogue.CatalogueTests) ... ok
+test_incidental_words_do_not_become_anatomy (test_catalogue.CatalogueTests) ... ok
+test_legacy_nda_identifier_never_relabelled_pma (test_catalogue.CatalogueTests) ... ok
+test_specimen_and_negated_context_abstains (test_catalogue.CatalogueTests) ... ok
+test_acceptance_requires_evidence_and_attributed_review (test_mapping_queue.MappingQueueTests) ... ok
+test_anatomical_word_is_a_candidate_only (test_mapping_queue.MappingQueueTests) ... ok
+test_external_eeg_not_assigned_to_intracardiac_or_cortical_tissue (test_mapping_queue.MappingQueueTests) ... ok
+test_multi_component_location_cannot_be_collapsed (test_mapping_queue.MappingQueueTests) ... ok
+test_rejection_is_preserved_without_placement (test_mapping_queue.MappingQueueTests) ... ok
+test_software_never_becomes_an_intracranial_implant (test_mapping_queue.MappingQueueTests) ... ok
+test_denovo_identity_is_preserved (test_pipeline.PipelineTests) ... ok
+test_expired_worker_lease_recovers (test_pipeline.PipelineTests) ... ok
+test_forced_scope_does_not_refetch_unrelated_jobs (test_pipeline.PipelineTests) ... ok
+test_idempotent_and_versioned_writes (test_pipeline.PipelineTests) ... ok
+test_malformed_identifier_and_impossible_event_date_rejected (test_pipeline.PipelineTests) ... ok
+test_missing_or_empty_source_does_not_erase_previous_records (test_pipeline.PipelineTests) ... ok
+test_non_retryable_schema_failure_is_isolated (test_pipeline.PipelineTests) ... sample failed ValueError
+ok
+test_pma_supplements_have_separate_identifiers (test_pipeline.PipelineTests) ... ok
+test_schema_drift_and_partial_batch_never_overwrite_good_data (test_pipeline.PipelineTests) ... ok
+test_source_outage_preserves_snapshot_and_records_failed_job (test_pipeline.PipelineTests) ... sample queued HTTPError
+sample queued HTTPError
+sample failed HTTPError
+ok
+test_url_allowlist_rejects_local_credentials_and_arbitrary_sources (test_pipeline.PipelineTests) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.065s
+
+OK

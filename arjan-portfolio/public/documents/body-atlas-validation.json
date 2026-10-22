@@ -39,5 +39,9 @@
     "productionBuild": "passed",
     "scope": "Recorded local checks on the atlas snapshot. Mobile coverage is Chrome touch emulation, not physical iPhone/Safari. No independent scientific accuracy estimate."
   },
-  "releaseDisposition": "Local research prototype; public interactive deployment not verified."
+  "releaseDisposition": "Public research preview. Provisional anatomical contexts and incomplete historical coverage are not clinical validation.",
+  "interactivePreview": {
+    "path": "/atlas",
+    "delivery": "Self-contained static snapshot; no live ingestion or private workspace."
+  }
 }

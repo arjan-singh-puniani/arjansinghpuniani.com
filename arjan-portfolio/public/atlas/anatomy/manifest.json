@@ -1,0 +1,12 @@
+{
+  "asset": "HRA male brain v1.3",
+  "url": "https://cdn.humanatlas.io/hra-releases/v2.0/models/3d-vh-m-allen-brain.glb",
+  "doi": "https://doi.org/10.48539/HBM929.XKCL.339",
+  "license": "CC BY 4.0",
+  "sha256": "2b9ad5b53e40e9f0936da74f7be38d2eed15604e26358c3870a0ea13499b9a35",
+  "bytes": 11977312,
+  "nodes": 286,
+  "meshes": 283,
+  "triangles": 656268,
+  "transform": "Unmodified GLB. Runtime display centering and uniform scale only; material colors/opacity and visibility vary."
+}

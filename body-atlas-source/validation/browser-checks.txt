@@ -1,0 +1,31 @@
+
+> body-atlas@0.1.0 test:browser
+> playwright test
+
+[WebServer] (node:48325) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 16 tests using 1 worker
+
+(node:48328) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › tests/browser/workflow.spec.ts:4:5 › body callout to anatomy, evidence, history, comparison, research and export (4.1s)
+  ✓   2 [desktop] › tests/browser/workflow.spec.ts:127:5 › body surface itself selects; repeated view controls and partial search respond (3.3s)
+  ✓   3 [desktop] › tests/browser/workflow.spec.ts:182:5 › accessibility, keyboard tabs and modal focus (2.8s)
+  ✓   4 [desktop] › tests/browser/workflow.spec.ts:214:5 › API boundaries, citation export and performance evidence (1.4s)
+  ✓   5 [desktop] › tests/browser/workflow.spec.ts:269:5 › body asset failure preserves region selection and brief export (905ms)
+  ✓   6 [desktop] › tests/browser/workflow.spec.ts:296:5 › region results and original links stay visible in the compact split preview (3.4s)
+  ✓   7 [desktop] › tests/browser/workflow.spec.ts:371:5 › on-model innovation labels select facts and original sources without leaving anatomy (4.1s)
+  ✓   8 [desktop] › tests/browser/workflow.spec.ts:489:5 › dense whole-body catalogue opens authentic evidence, region filtering and cited export (2.7s)
+(node:48401) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [mobile] › tests/browser/workflow.spec.ts:4:5 › body callout to anatomy, evidence, history, comparison, research and export (4.1s)
+  ✓  10 [mobile] › tests/browser/workflow.spec.ts:127:5 › body surface itself selects; repeated view controls and partial search respond (3.3s)
+  ✓  11 [mobile] › tests/browser/workflow.spec.ts:182:5 › accessibility, keyboard tabs and modal focus (2.6s)
+  ✓  12 [mobile] › tests/browser/workflow.spec.ts:214:5 › API boundaries, citation export and performance evidence (1.4s)
+  ✓  13 [mobile] › tests/browser/workflow.spec.ts:269:5 › body asset failure preserves region selection and brief export (976ms)
+  ✓  14 [mobile] › tests/browser/workflow.spec.ts:296:5 › region results and original links stay visible in the compact split preview (3.7s)
+  ✓  15 [mobile] › tests/browser/workflow.spec.ts:371:5 › on-model innovation labels select facts and original sources without leaving anatomy (4.1s)
+  ✓  16 [mobile] › tests/browser/workflow.spec.ts:489:5 › dense whole-body catalogue opens authentic evidence, region filtering and cited export (2.6s)
+
+  16 passed (48.6s)

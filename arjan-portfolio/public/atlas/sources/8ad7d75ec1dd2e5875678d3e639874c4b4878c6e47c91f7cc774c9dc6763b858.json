@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
+    "terms": "https://open.fda.gov/terms/",
+    "license": "https://open.fda.gov/license/",
+    "last_updated": "2026-10-05",
+    "results": {
+      "skip": 0,
+      "limit": 1,
+      "total": 13
+    }
+  },
+  "results": [
+    {
+      "pma_number": "P150009",
+      "supplement_number": "",
+      "applicant": "CJ Healthtech Holdings, LLC",
+      "street_1": "125 Shore Ct.",
+      "street_2": "Unit 208a",
+      "city": "North Palm Beach",
+      "state": "FL",
+      "zip": "33408",
+      "zip_ext": "",
+      "generic_name": "Acute coronary syndrome event detector",
+      "trade_name": "Guardian System",
+      "product_code": "QBI",
+      "advisory_committee": "CV",
+      "advisory_committee_description": "Cardiovascular",
+      "supplement_type": "",
+      "supplement_reason": "",
+      "expedited_review_flag": "N",
+      "date_received": "2015-02-23",
+      "decision_date": "2018-04-09",
+      "docket_number": "18M-1447",
+      "fed_reg_notice_date": "2018-04-11",
+      "decision_code": "APPR",
+      "ao_statement": "Approval of the AngelMed Guardian System. This device is indicated for use in patients who have had prior acute coronary syndrome (ACS) events and who remain at high risk for recurrent ACS events.The Guardian System is indicated as an adjunct to patient recognized symptoms. The Guardian System detects potential ongoing ACS events, characterized by sustained ST segment changes, and alerts the patient to seek medical attention for those potential ACS events. A Guardian System alert is a more accurate predictor of ACS events when compared to patient recognized symptoms alone and demonstrates a reduced rate over time of patient presentations without ACS events (false positives) when compared to patient recognized symptoms alone. In the absence of symptoms, the Guardian System may identify asymptomatic ACS events and prompt the patient to seek medical attention.",
+      "openfda": {
+        "registration_number": [
+          "2528981",
+          "1035166",
+          "3017374019"
+        ],
+        "fei_number": [
+          "2528981",
+          "1035166",
+          "3017374019"
+        ],
+        "device_name": "Acute Coronary Syndrome Event Detector",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    }
+  ]
+}

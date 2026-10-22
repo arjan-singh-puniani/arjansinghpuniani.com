@@ -1,0 +1,12 @@
+node_modules
+.next/
+next-env.d.ts
+*.tsbuildinfo
+data/atlas.sqlite*
+data/private/
+.env*
+!.env.example
+__pycache__/
+test-results/
+playwright-report/
+.DS_Store

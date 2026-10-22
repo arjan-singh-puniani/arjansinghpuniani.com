@@ -1,0 +1,532 @@
+import { test, expect } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
+
+test("body callout to anatomy, evidence, history, comparison, research and export", async ({
+  page,
+}, testInfo) => {
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  await page.goto("/");
+  await expect(
+    page.getByRole("group", { name: "Whole-body intervention map" }),
+  ).toBeVisible();
+  await expect(page.getByTestId("scene-status")).toContainText(
+    "Reference loaded",
+    { timeout: 45000 },
+  );
+  await expect(page.getByTestId("human-reference")).toHaveAttribute(
+    "data-internal-status",
+    "loaded",
+    { timeout: 45000 },
+  );
+  await page.screenshot({
+    path: `test-results/${testInfo.project.name}-atlas.png`,
+    fullPage: true,
+  });
+  // This is an HTML callout anchored inside the rendered body, not the sidebar.
+  await page.getByRole("button", { name: "Show region labels" }).click();
+  await page.getByRole("button", { name: /Brain — \d+ approaches/ }).click();
+  await expect(page.locator(".map-breadcrumb")).toContainText("Brain");
+  await expect(page.getByTestId("scene-status")).toContainText(
+    "Reference loaded",
+    { timeout: 45000 },
+  );
+  await page
+    .locator(".brain-shortcuts")
+    .getByRole("button", { name: /Thalamus/ })
+    .click();
+  await page
+    .getByRole("button", { name: "Inspect Activa Tremor Control System" })
+    .click();
+  const inspector = page.getByRole("complementary", {
+    name: "Interventions and evidence",
+  });
+  await expect(
+    inspector.getByText("Model 7424 pulse generator", { exact: true }),
+  ).toBeVisible();
+  await inspector
+    .getByRole("button", { name: /Explore Chest implants for Model 7424/ })
+    .click();
+  await expect(page.locator(".map-breadcrumb")).toContainText("Chest implants");
+  await expect(page.getByTestId("scene-status")).toContainText(
+    "Reference loaded",
+  );
+  const generator = inspector
+    .locator("article")
+    .filter({ hasText: "Model 7424 pulse generator" });
+  await generator.getByText("Evidence", { exact: true }).click();
+  await expect(
+    generator.getByText(/subclavicular or subcostal/).first(),
+  ).toBeVisible();
+  await expect(
+    generator.getByRole("link", { name: "Original source" }),
+  ).toHaveAttribute("href", /P960009B.pdf/);
+  await page.getByRole("button", { name: "Focus brain" }).click();
+  await page
+    .locator(".brain-shortcuts")
+    .getByRole("button", { name: /Thalamus/ })
+    .click();
+  await page
+    .getByRole("slider", { name: "Documented history through year" })
+    .fill("1996");
+  await expect(
+    page.getByText("No mapped interventions in this view."),
+  ).toBeVisible();
+  await page
+    .getByRole("slider", { name: "Documented history through year" })
+    .fill("2026");
+  await page.getByRole("button", { name: /^Compare 2$/ }).click();
+  await expect(page.getByRole("table")).toContainText("ExAblate Neuro");
+  await expect(page.getByRole("table")).toContainText("PMA approval");
+  const downloadEvent = page.waitForEvent("download");
+  await page
+    .getByRole("link", { name: "Export comparison", exact: true })
+    .click();
+  expect((await downloadEvent).suggestedFilename()).toBe("body-atlas-brief.md");
+  await page.getByRole("button", { name: "Close dialog" }).click();
+  await page.getByRole("button", { name: /^Records \d+$/ }).click();
+  await page
+    .getByRole("textbox", { name: "Search source records" })
+    .fill("P100026");
+  await page.getByRole("button", { name: /FDA:P100026/ }).click();
+  await expect(
+    page.getByRole("link", { name: "NEUROPACE RNS SYSTEM" }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Close dialog" }).click();
+  await page.getByRole("button", { name: "Questions", exact: true }).click();
+  await page
+    .getByRole("textbox", { name: "Search the indexed evidence" })
+    .fill("Which authorized devices interface with the vagus nerve?");
+  await page.getByRole("button", { name: "Search", exact: true }).click();
+  await expect(page.getByRole("dialog").getByRole("status")).toContainText(
+    "VNS",
+  );
+  await expect(
+    page
+      .getByRole("dialog")
+      .getByRole("status")
+      .getByRole("link", { name: "VNS THERAPY SYSTEM" }),
+  ).toHaveAttribute("href", /P970003/);
+  await page.getByRole("button", { name: "Close dialog" }).click();
+  await page.getByRole("button", { name: "Atlas", exact: true }).click();
+  await page.getByRole("combobox", { name:"Explore anatomical region" }).selectOption("UBERON:0001844");
+  await page
+    .getByRole("button", { name: /Inspect Nucleus Multichannel/ })
+    .click();
+  await expect(
+    inspector.getByText("No location assigned", { exact: true }),
+  ).toBeVisible();
+  expect(errors).toEqual([]);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth,
+    ),
+  ).toBeTruthy();
+});
+
+test("body surface itself selects; repeated view controls and partial search respond", async ({
+  page,
+}, testInfo) => {
+  await page.goto("/");
+  await expect(page.getByTestId("scene-status")).toContainText(
+    "Reference loaded",
+    { timeout: 45000 },
+  );
+  await page.getByRole("button", { name: "Show region labels" }).click();
+  const canvas = page.locator("canvas");
+  const box = (await canvas.boundingBox())!;
+  // The middle of the visible source head, away from every floating label.
+  await canvas.click({
+    position: { x: box.width * 0.5, y: box.height * 0.14 },
+  });
+  await expect(page.locator(".map-breadcrumb")).toContainText("Brain");
+  await expect(page.getByTestId("scene-status")).toContainText(
+    "Reference loaded",
+    { timeout: 45000 },
+  );
+  await page.getByRole("button", { name: "Show whole human" }).click();
+  await expect(page.getByTestId("scene-status")).toContainText(
+    "Reference loaded",
+  );
+  await page.getByRole("button", { name: "Show whole human" }).click();
+  await expect(page.getByTestId("scene-status")).toContainText(
+    "Reference loaded",
+  );
+  await page.getByRole("button", { name: "Atlas", exact: true }).click();
+  const search = page.getByRole("textbox", {
+    name:
+      testInfo.project.name === "mobile"
+        ? "Find an intervention on mobile"
+        : "Find an intervention",
+    exact: true,
+  });
+  await search.fill("NeuroPa");
+  await expect(
+    page.getByRole("button", { name: "Inspect NeuroPace RNS System" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Inspect Activa Tremor Control System" }),
+  ).toHaveCount(0);
+  await page
+    .getByRole("button", { name: "Inspect NeuroPace RNS System" })
+    .click();
+  await page.getByRole("button", { name: "Brief", exact: true }).click();
+  await expect(
+    page.getByRole("heading", { name: "Unresolved questions" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Export Markdown" }),
+  ).toHaveAttribute("href", /ids=rns/);
+});
+
+test("accessibility, keyboard tabs and modal focus", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByTestId("scene-status")).toContainText(
+    "Reference loaded",
+    { timeout: 45000 },
+  );
+  const axe = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+    .analyze();
+  expect(axe.violations).toEqual([]);
+  await page
+    .getByRole("button", { name: "Inspect NeuroPace RNS System" })
+    .click();
+  await page.getByRole("tab", { name: "Anatomy", exact: true }).focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(
+    page.getByRole("tab", { name: "Sources", exact: true }),
+  ).toBeFocused();
+  await expect(
+    page.getByRole("tab", { name: "Sources", exact: true }),
+  ).toHaveAttribute("aria-selected", "true");
+  await page.getByRole("button", { name: "Sources and model" }).click();
+  await expect(
+    page.getByRole("button", { name: "Close dialog" }),
+  ).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await expect(
+    page.getByRole("button", { name: "Sources and model" }),
+  ).toBeFocused();
+});
+
+test("API boundaries, citation export and performance evidence", async ({
+  request,
+  page,
+}, testInfo) => {
+  const t = Date.now();
+  const response = await request.get("/");
+  expect(response.status()).toBe(200);
+  const query = await request.get(
+    "/api/search?q=Which%20authorized%20devices%20interface%20with%20the%20vagus%20nerve",
+  );
+  expect(query.status()).toBe(200);
+  expect(
+    (await query.json()).records.some(
+      (r: { id: string }) => r.id === "FDA:P970003:",
+    ),
+  ).toBeTruthy();
+  expect((await request.get("/api/search?q=" + "a".repeat(501))).status()).toBe(
+    400,
+  );
+  expect((await request.get("/api/brief?ids=../../etc/passwd")).status()).toBe(
+    400,
+  );
+  expect((await request.get("/api/source/" + "0".repeat(64))).status()).toBe(
+    404,
+  );
+  const markdown = await request.get("/api/brief?ids=rns");
+  expect(await markdown.text()).toContain("P100026");
+  expect(markdown.headers()["content-type"]).toContain("text/markdown");
+  expect(response.headers()["x-frame-options"]).toBe("DENY");
+  expect(response.headers()["content-security-policy"]).toContain(
+    "object-src 'none'",
+  );
+  await page.goto("/");
+  await expect(page.getByTestId("scene-status")).toContainText(
+    "Reference loaded",
+    { timeout: 45000 },
+  );
+  const metrics = await page.evaluate(() => ({
+    navigation: performance
+      .getEntriesByType("navigation")
+      .map((n) => n.toJSON()),
+    resources: performance
+      .getEntriesByType("resource")
+      .filter((r) => r.name.includes("body.glb"))
+      .map((r) => r.toJSON()),
+    heap: (performance as Performance & { memory?: { usedJSHeapSize: number } })
+      .memory?.usedJSHeapSize,
+    paint: performance.getEntriesByType("paint").map((p) => p.toJSON()),
+  }));
+  await testInfo.attach("performance.json", {
+    body: JSON.stringify({ elapsed: Date.now() - t, metrics }, null, 2),
+    contentType: "application/json",
+  });
+});
+
+test("body asset failure preserves region selection and brief export", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.route("**/anatomy/body.glb", (route) => route.abort());
+  await page.goto("/");
+  await expect(
+    page.getByText("3D unavailable. Select a region:"),
+  ).toBeVisible();
+  await expect(page.getByTestId("scene-status")).toContainText(
+    "3D unavailable",
+  );
+  await page
+    .getByRole("button", { name: /Inspect NeuroPace RNS System/ })
+    .click();
+  await expect(
+    page.getByText("RNS-300M neurostimulator", { exact: true }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Brief", exact: true }).click();
+  await expect(
+    page.getByRole("heading", { name: "Unresolved questions" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Export Markdown" }),
+  ).toHaveAttribute("href", /ids=rns/);
+});
+
+test("region results and original links stay visible in the compact split preview", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 540, height: 680 });
+  await page.goto("/");
+  await expect(page.getByTestId("scene-status")).toContainText(
+    "Reference loaded",
+    { timeout: 45000 },
+  );
+  await page.getByRole("button", { name: "Show region labels" }).click();
+  await page.getByRole("button", { name: /Brain —/ }).click();
+  await expect(page.getByTestId("scene-status")).toContainText(
+    "Reference loaded",
+    { timeout: 45000 },
+  );
+  await page.screenshot({ path: "test-results/compact-region-preview.png" });
+  const panel = page.getByRole("complementary", {
+    name: "Interventions and evidence",
+  });
+  const bounds = await panel.boundingBox();
+  expect(bounds!.y).toBeLessThan(450);
+  expect(bounds!.y + bounds!.height).toBeLessThanOrEqual(681);
+  await expect(
+    panel.getByRole("button", { name: "Inspect NeuroStar TMS Therapy System" }),
+  ).toBeInViewport();
+  await expect(
+    panel.getByRole("link", { name: "FDA K130233" }),
+  ).toBeInViewport();
+  await panel
+    .getByRole("button", { name: "Inspect NeuroPace RNS System" })
+    .click();
+  await expect(panel.getByRole("link", { name: "FDA P100026" })).toBeVisible();
+  await expect(
+    panel.getByRole("link", { name: "Device description" }),
+  ).toHaveAttribute("href", /P100026B.pdf/);
+  const axe = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+    .analyze();
+  expect(axe.violations).toEqual([]);
+  await panel
+    .getByRole("combobox", {
+      name: "Choose another intervention in this region",
+    })
+    .selectOption("activa");
+  await expect(
+    panel.getByText("Activa Tremor Control System", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    panel.getByRole("link", { name: "FDA P960009" }),
+  ).toHaveAttribute("href", /P960009/);
+  await page
+    .getByRole("slider", { name: "Documented history through year" })
+    .fill("1997");
+  await expect(panel.getByText("Through 1997")).toBeVisible();
+  await panel.getByRole("button", { name: "Show all years" }).click();
+  await expect(page.getByRole("slider")).toHaveValue("2026");
+  await page.getByRole("button", { name: "Expand 3D anatomy" }).click();
+  await expect(page.locator("#intervention-results")).toHaveAttribute(
+    "inert",
+    "",
+  );
+  await page
+    .getByRole("button", { name: "Show interventions alongside anatomy" })
+    .click();
+  await expect(page.locator("#intervention-results")).not.toHaveAttribute(
+    "inert",
+    "",
+  );
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBeTruthy();
+});
+
+test("on-model innovation labels select facts and original sources without leaving anatomy", async ({
+  page,
+}, testInfo) => {
+  await page.goto("/");
+  await expect(page.getByTestId("scene-status")).toContainText(
+    "Reference loaded",
+    { timeout: 45000 },
+  );
+  await page.getByRole("combobox", {name:testInfo.project.name==='mobile'?'Map evidence layer':'Evidence layer',exact:true}).selectOption('reviewed');
+  await page.getByRole("button", {name:"Show intervention callouts"}).click();
+  const annotations = page.getByRole("group", {
+    name: "Interventions on anatomy",
+  });
+  await expect(annotations).toBeVisible();
+  const activa = annotations.getByRole("button", {
+    name: "Select Activa Tremor Control System on anatomy",
+  });
+  if ((await activa.count()) === 0)
+    await annotations
+      .getByRole("button", { name: "Next intervention labels" })
+      .click();
+  if (testInfo.project.name === "mobile") await activa.tap();
+  else await activa.click();
+  await expect(activa).toHaveAttribute("aria-pressed", "true");
+  const panel = page.getByRole("complementary", {
+    name: "Interventions and evidence",
+  });
+  await expect(
+    panel.getByText(
+      "Implanted electrodes stimulate thalamic VIM for tremor suppression.",
+    ),
+  ).toBeVisible();
+  await expect(
+    annotations.getByRole("link", {
+      name: "Original source for Activa Tremor Control System",
+    }),
+  ).toHaveAttribute("href", /P960009B.pdf/);
+  const line = page.locator(".intervention-leaders .leader-selected path");
+  const before = await line.getAttribute("d");
+  const box = (await page.locator("canvas").boundingBox())!;
+  await page.mouse.move(box.x + box.width * 0.5, box.y + box.height * 0.72);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width * 0.7, box.y + box.height * 0.73, {
+    steps: 12,
+  });
+  await page.mouse.up();
+  await expect.poll(() => line.getAttribute("d")).not.toBe(before);
+  await expect(activa).toHaveAttribute("aria-pressed", "true");
+  await page.getByRole("button", { name: "Expand 3D anatomy" }).click();
+  await page.waitForFunction(
+    () =>
+      document.querySelector("canvas")!.getBoundingClientRect().height > 400,
+  );
+  const rns = annotations.getByRole("button", {
+    name: "Select NeuroPace RNS System on anatomy",
+  });
+  await rns.click();
+  const quick = page.getByRole("region", {
+    name: "Selected intervention on anatomy",
+  });
+  await expect(
+    quick.getByRole("heading", { name: "NeuroPace RNS System" }),
+  ).toBeVisible();
+  await expect(
+    quick.getByText(/Records brain electrical activity/),
+  ).toBeVisible();
+  await expect(
+    quick.getByRole("link", { name: "Original source", exact: true }),
+  ).toHaveAttribute("href", /P100026B.pdf/);
+  await expect(page.locator("#intervention-results")).toHaveAttribute(
+    "inert",
+    "",
+  );
+  await page.screenshot({
+    path: `test-results/${testInfo.project.name}-innovation-labels.png`,
+  });
+  await page
+    .getByRole("button", { name: "Show interventions alongside anatomy" })
+    .click();
+  await page.getByRole("button", { name: "Focus brain" }).click();
+  await expect(page.getByTestId("scene-status")).toContainText(
+    "Reference loaded",
+    { timeout: 45000 },
+  );
+  const brainActiva = page.getByRole("button", {
+    name: "Select Activa Tremor Control System on anatomy",
+  });
+  if ((await brainActiva.count()) === 0)
+    await page
+      .getByRole("group", { name: "Interventions on anatomy" })
+      .getByRole("button", { name: "Next intervention labels" })
+      .click();
+  await brainActiva.focus();
+  await page.keyboard.press("Enter");
+  await expect(brainActiva).toHaveAttribute("aria-pressed", "true");
+  await expect(
+    panel.getByText("Activa Tremor Control System", { exact: true }),
+  ).toBeVisible();
+  expect(
+    await page
+      .getByRole("button", { name: /Select Nucleus.*on anatomy/ })
+      .count(),
+  ).toBe(0);
+  const axe = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+    .analyze();
+  expect(axe.violations).toEqual([]);
+  await page
+    .getByRole("slider", { name: "Documented history through year" })
+    .fill("1996");
+  await expect(
+    page.getByRole("button", {
+      name: "Select Activa Tremor Control System on anatomy",
+    }),
+  ).toHaveCount(0);
+});
+
+
+test("dense whole-body catalogue opens authentic evidence, region filtering and cited export",async({page,request},testInfo)=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('/');
+ await expect(page.getByTestId('human-reference')).toHaveAttribute('data-organs-status','loaded',{timeout:45000});
+ const map=page.getByRole('group',{name:'Whole-body intervention map'});
+ await expect(map).toBeVisible();expect(await map.locator('.record-node').count()).toBeGreaterThan(500);
+ await expect(map.getByText('Dots are indexed records, not implant sites.')).toBeVisible();
+ await page.screenshot({path:`test-results/${testInfo.project.name}-whole-body.png`});
+ if(testInfo.project.name==='desktop'){
+  await map.locator('.node-reviewed').first().click();
+  await expect(page.locator('.device-intro h2')).toContainText('Transcranial magnetic stimulation');
+  await page.getByRole('button',{name:'Interventions',exact:true}).click();
+ }else{
+  await map.getByRole('button',{name:/Explore Heart —/}).tap();
+  await expect(page.locator('.map-breadcrumb')).toContainText('Heart');
+ }
+ // All regions remain reachable through the native selector, including those decluttered on mobile.
+ await page.getByRole('combobox',{name:'Explore anatomical region'}).selectOption('BODY:heart');
+ await expect(page.locator('.map-breadcrumb')).toContainText('Heart');
+ const panel=page.getByRole('complementary',{name:'Interventions and evidence'});
+ expect(await panel.locator('.catalogue-badge').count()).toBeGreaterThan(50);
+ await panel.locator('.choose-intervention').first().click();
+ await expect(panel.locator('.catalogue-banner')).toContainText('Provisional');
+ await expect(panel.locator('.source-context-label')).toContainText(/FDA (indication excerpt|device name)/);
+ const source=panel.locator('.direct-evidence a').first();
+ await expect(source).toHaveAttribute('href',/^https:\/\/www.accessdata.fda.gov\//);
+ const text=await panel.locator('.device-action').innerText();expect(text.trim().length).toBeGreaterThan(0);
+ const id=await panel.locator('.device-switch select').inputValue();
+ const md=await request.get('/api/brief?ids='+encodeURIComponent(id));expect(md.ok()).toBeTruthy();
+ expect(await md.text()).toContain('FDA source context (unreviewed)');expect(await md.text()).toContain('Provisional');
+ await page.screenshot({path:`test-results/${testInfo.project.name}-heart-evidence.png`});
+ await page.getByRole('button',{name:'Interventions',exact:true}).click();
+ await page.getByRole('combobox',{name:'Explore anatomical region'}).selectOption('BODY:knee');
+ await expect(panel.locator('.catalogue-badge').first()).toBeVisible();
+ await page.getByRole('combobox',{name:'Explore anatomical region'}).selectOption('BODY:uterus');
+ await expect(page.locator('.map-breadcrumb')).toContainText('Uterus');
+ await expect(panel.locator('.catalogue-badge').first()).toBeVisible();
+ // Female-only structures are indexed as text, never placed on this male reference.
+ expect(await map.getByRole('button',{name:/Explore Uterus/}).count()).toBe(0);
+ await page.getByRole('combobox',{name:'Explore anatomical region'}).selectOption('all');
+ await page.getByRole('combobox',{name:testInfo.project.name==='mobile'?'Map evidence layer':'Evidence layer',exact:true}).selectOption('reviewed');
+ await expect(page.locator('.catalogue-badge')).toHaveCount(0);expect(await map.locator('.record-node').count()).toBe(9);
+ expect(errors).toEqual([]);
+});

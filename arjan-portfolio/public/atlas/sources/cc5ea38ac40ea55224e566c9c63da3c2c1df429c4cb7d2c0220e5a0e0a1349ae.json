@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
+    "terms": "https://open.fda.gov/terms/",
+    "license": "https://open.fda.gov/license/",
+    "last_updated": "2026-10-05",
+    "results": {
+      "skip": 0,
+      "limit": 1,
+      "total": 99
+    }
+  },
+  "results": [
+    {
+      "pma_number": "P100026",
+      "supplement_number": "",
+      "applicant": "NeuroPace, Inc.",
+      "street_1": "455 N Bernardo Ave.",
+      "street_2": "",
+      "city": "Mountain View",
+      "state": "CA",
+      "zip": "94043",
+      "zip_ext": "",
+      "generic_name": "Implanted brain stimulator for epilepsy",
+      "trade_name": "NEUROPACE RNS SYSTEM",
+      "product_code": "PFN",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "",
+      "supplement_reason": "",
+      "expedited_review_flag": "N",
+      "date_received": "2010-07-02",
+      "decision_date": "2013-11-14",
+      "docket_number": "12M-1488",
+      "fed_reg_notice_date": "2013-11-25",
+      "decision_code": "APPR",
+      "ao_statement": "APPROVAL FOR THE RNS SYSTEM. THIS DEVICE IS INDICATED AS FOLLOWS: \" ... AS AN ADJUNCTIVE THERAPY IN REDUCING THE FREQUENCY OF SEIZURES IN INDIVIDUALS 18 YEARS OF AGE OR OLDER WITH PARTIAL ONSET SEIZURES WHO HAVE UNDERGONE DIAGNOSTIC TESTING THAT LOCALIZEDNO MORE THAN 2 EPILEPTOGENIC FOCI, ARE REFRACTORY TO TWO OR MORE ANTIEPILEPTIC MEDICATIONS, AND CURRENTLY HAVE FREQUENT AND DISABLING SEIZURES (MOTOR PARTIAL SEIZURES, COMPLEX PARTIAL SEIZURESAND/ OR SECONDARILY GENERALIZED SEIZURES). THE RNS SYSTEM HAS DEMONSTRATED SAFETY AND EFFECTIVENESS IN PATIENTS WHO AVERAGE 3 OR MORE DISABLING SEIZURES PER MONTH OVER THE THREE MOST RECENT MONTHS (WITH NO MONTH WITH FEWER THAN TWO SEIZURES), AND HAS NOT BEEN EVALUATED IN PATIENTS WITH LESS  FREQUENT SEIZURES.\"",
+      "openfda": {
+        "device_name": "Implanted Brain Stimulator For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "3009183442",
+          "1721676",
+          "3004426659"
+        ],
+        "fei_number": [
+          "3009183442",
+          "1721676",
+          "3004426659"
+        ]
+      }
+    }
+  ]
+}

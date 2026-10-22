@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
+    "terms": "https://open.fda.gov/terms/",
+    "license": "https://open.fda.gov/license/",
+    "last_updated": "2026-10-05",
+    "results": {
+      "skip": 0,
+      "limit": 1,
+      "total": 43
+    }
+  },
+  "results": [
+    {
+      "pma_number": "P150038",
+      "supplement_number": "",
+      "applicant": "Insightec",
+      "street_1": "5 Nahum Heth St.",
+      "street_2": "",
+      "city": "Tirat Carmel",
+      "state": "",
+      "zip": "39120",
+      "zip_ext": "",
+      "generic_name": "MR-guided focused ultrasound system",
+      "trade_name": "EXABLATE",
+      "product_code": "POH",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "",
+      "supplement_reason": "",
+      "expedited_review_flag": "N",
+      "date_received": "2015-10-21",
+      "decision_date": "2016-07-11",
+      "docket_number": "16M-2183",
+      "fed_reg_notice_date": "2016-07-25",
+      "decision_code": "APPR",
+      "ao_statement": "Approval for the ExAblate Model 4000 Type 1.0 System (ExAblate Neuro).  This device is indicated for use in the unilateral Thalamotomy treatment of idiopathic Essential Tremor patients with medication-refractory tremor. Patients must be at least age 22. The designated area in the brain responsible for the movement disorder symptoms (ventralis intermedius) must be identified and accessible for targeted thermal ablation by the ExAblate device.",
+      "openfda": {
+        "registration_number": [
+          "3008729892",
+          "9615058",
+          "3005238200",
+          "3012635238"
+        ],
+        "fei_number": [
+          "3002807555",
+          "3005238200",
+          "3012635238",
+          "3003105983"
+        ],
+        "device_name": "Mr-Guided Focused Ultrasound System",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    }
+  ]
+}

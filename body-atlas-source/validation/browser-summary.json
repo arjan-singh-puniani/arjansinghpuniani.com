@@ -1,0 +1,192 @@
+{
+  "runStarted": {
+    "actualWorkers": 1
+  },
+  "stats": {
+    "startTime": "2026-10-19T11:45:34.254Z",
+    "duration": 48638.472,
+    "expected": 16,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "body callout to anatomy, evidence, history, comparison, research and export",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 4108
+        }
+      ]
+    },
+    {
+      "title": "body surface itself selects; repeated view controls and partial search respond",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 3325
+        }
+      ]
+    },
+    {
+      "title": "accessibility, keyboard tabs and modal focus",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2838
+        }
+      ]
+    },
+    {
+      "title": "API boundaries, citation export and performance evidence",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1443
+        }
+      ]
+    },
+    {
+      "title": "body asset failure preserves region selection and brief export",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 905
+        }
+      ]
+    },
+    {
+      "title": "region results and original links stay visible in the compact split preview",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 3443
+        }
+      ]
+    },
+    {
+      "title": "on-model innovation labels select facts and original sources without leaving anatomy",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 4139
+        }
+      ]
+    },
+    {
+      "title": "dense whole-body catalogue opens authentic evidence, region filtering and cited export",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2708
+        }
+      ]
+    },
+    {
+      "title": "body callout to anatomy, evidence, history, comparison, research and export",
+      "project": "mobile",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 4127
+        }
+      ]
+    },
+    {
+      "title": "body surface itself selects; repeated view controls and partial search respond",
+      "project": "mobile",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 3301
+        }
+      ]
+    },
+    {
+      "title": "accessibility, keyboard tabs and modal focus",
+      "project": "mobile",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2636
+        }
+      ]
+    },
+    {
+      "title": "API boundaries, citation export and performance evidence",
+      "project": "mobile",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1443
+        }
+      ]
+    },
+    {
+      "title": "body asset failure preserves region selection and brief export",
+      "project": "mobile",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 976
+        }
+      ]
+    },
+    {
+      "title": "region results and original links stay visible in the compact split preview",
+      "project": "mobile",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 3699
+        }
+      ]
+    },
+    {
+      "title": "on-model innovation labels select facts and original sources without leaving anatomy",
+      "project": "mobile",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 4131
+        }
+      ]
+    },
+    {
+      "title": "dense whole-body catalogue opens authentic evidence, region filtering and cited export",
+      "project": "mobile",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2614
+        }
+      ]
+    }
+  ],
+  "note": "Installed Google Chrome; mobile viewport/touch emulation, not physical Safari."
+}

@@ -1,0 +1,977 @@
+[
+  {
+    "id": "BODY:heart",
+    "name": "Heart",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Heart",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_heart",
+    "patterns": [
+      "cardiac",
+      "myocardial",
+      "heart",
+      "electrocardiogra(?:ph|m)",
+      "ecg"
+    ],
+    "locator": [
+      0.12,
+      1.1,
+      0.18
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:coronary",
+    "name": "Coronary arteries",
+    "parent": "BODY:heart",
+    "synonyms": [],
+    "region": "Coronary arteries",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "coronary"
+    ],
+    "locator": [
+      0.12,
+      1.1,
+      0.18
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:heart-valves",
+    "name": "Heart valves",
+    "parent": "BODY:heart",
+    "synonyms": [],
+    "region": "Heart valves",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "(?:aortic|mitral|pulmonary|tricuspid) valve",
+      "heart.valve"
+    ],
+    "locator": [
+      0.12,
+      1.1,
+      0.18
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:aorta",
+    "name": "Aorta",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Aorta",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_aorta",
+    "patterns": [
+      "aort(?:a|ic)"
+    ],
+    "locator": [
+      0,
+      0.9,
+      0
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:carotid",
+    "name": "Carotid arteries",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Carotid arteries",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "carotid"
+    ],
+    "locator": [
+      0.13,
+      1.93,
+      0.1
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:lower-limb-vessels",
+    "name": "Lower-limb vessels",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Lower-limb vessels",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "femoral arter(?:y|ies)",
+      "popliteal arter(?:y|ies)",
+      "tibial arter(?:y|ies)",
+      "iliac arter(?:y|ies)",
+      "peripheral vascular",
+      "peripheral arter(?:y|ies|ial)"
+    ],
+    "locator": [
+      0.22,
+      -0.6,
+      0
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:lung",
+    "name": "Lungs",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Lungs",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_lungs",
+    "patterns": [
+      "lungs?",
+      "bronch(?:ial|us|i)",
+      "endobronchial",
+      "pulmonary function",
+      "pulmonary nodule"
+    ],
+    "locator": [
+      0.5,
+      1.35,
+      0
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:airway",
+    "name": "Upper airway",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Upper airway",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_larynx",
+    "patterns": [
+      "trache(?:a|al)",
+      "laryn(?:x|geal)",
+      "upper airway",
+      "hypoglossal",
+      "tongue"
+    ],
+    "locator": [
+      0,
+      1.93,
+      0.15
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:eye",
+    "name": "Eyes",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Eyes",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_eyes",
+    "patterns": [
+      "ocular",
+      "ophthalmic",
+      "eyes?"
+    ],
+    "locator": [
+      0.13,
+      2.66,
+      0.22
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:cornea",
+    "name": "Cornea",
+    "parent": "BODY:eye",
+    "synonyms": [],
+    "region": "Cornea",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "cornea(?:l)?",
+      "refractive",
+      "lasik",
+      "contact lens"
+    ],
+    "locator": [
+      0.13,
+      2.66,
+      0.22
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:retina",
+    "name": "Retina",
+    "parent": "BODY:eye",
+    "synonyms": [],
+    "region": "Retina",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "retina(?:l)?",
+      "macular",
+      "vitreoretinal"
+    ],
+    "locator": [
+      0.13,
+      2.66,
+      0.22
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:lens",
+    "name": "Eye lens",
+    "parent": "BODY:eye",
+    "synonyms": [],
+    "region": "Eye lens",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "intraocular lens",
+      "aphakia",
+      "cataract"
+    ],
+    "locator": [
+      0.13,
+      2.66,
+      0.22
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:ear",
+    "name": "Ear",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Ear",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "cochlea(?:r)?",
+      "hearing",
+      "middle ear",
+      "tympan(?:ic|oplasty)"
+    ],
+    "locator": [
+      -0.25,
+      2.56,
+      0.1
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:dental",
+    "name": "Teeth and jaw",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Teeth and jaw",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "dental",
+      "dentures?",
+      "mandib(?:le|ular)",
+      "maxilla(?:ry)?",
+      "orthodont",
+      "periodontal",
+      "teeth",
+      "tooth"
+    ],
+    "locator": [
+      0,
+      2.35,
+      0.3
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:esophagus",
+    "name": "Esophagus",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Esophagus",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "esophag(?:us|eal)",
+      "oesophag(?:us|eal)"
+    ],
+    "locator": [
+      0,
+      1.4,
+      0
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:stomach",
+    "name": "Stomach",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Stomach",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "gastric",
+      "stomach",
+      "bariatric"
+    ],
+    "locator": [
+      -0.25,
+      0.7,
+      0.15
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:intestine",
+    "name": "Small intestine",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Small intestine",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_small_intestine",
+    "patterns": [
+      "small intestin(?:e|al)",
+      "duoden(?:al|um)",
+      "jejun(?:al|um)",
+      "ileum",
+      "ileal"
+    ],
+    "locator": [
+      0,
+      0.35,
+      0.1
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:colon",
+    "name": "Colon and rectum",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Colon and rectum",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_colon",
+    "patterns": [
+      "colon",
+      "colorectal",
+      "rectal",
+      "rectum",
+      "anal sphincter",
+      "fecal"
+    ],
+    "locator": [
+      0,
+      0.12,
+      0.1
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:liver",
+    "name": "Liver",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Liver",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_liver",
+    "patterns": [
+      "hepatic",
+      "liver"
+    ],
+    "locator": [
+      0.4,
+      0.65,
+      0
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:biliary",
+    "name": "Biliary tract",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Biliary tract",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_biliary_tree",
+    "patterns": [
+      "biliary",
+      "bile duct",
+      "gallbladder"
+    ],
+    "locator": [
+      0.35,
+      0.5,
+      0.1
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:pancreas",
+    "name": "Pancreas",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Pancreas",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_pancreas",
+    "patterns": [
+      "pancrea(?:s|tic)"
+    ],
+    "locator": [
+      0,
+      0.52,
+      0
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:kidney",
+    "name": "Kidneys",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Kidneys",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_kidney",
+    "patterns": [
+      "renal",
+      "kidneys?"
+    ],
+    "locator": [
+      0.5,
+      0.4,
+      -0.1
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:bladder",
+    "name": "Urinary bladder",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Urinary bladder",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_urinary_bladder",
+    "patterns": [
+      "urinary bladder",
+      "intravesical",
+      "bladder"
+    ],
+    "locator": [
+      0,
+      -0.25,
+      0.1
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:urethra",
+    "name": "Urethra",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Urethra",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_urethra",
+    "patterns": [
+      "urethra(?:l)?",
+      "urinary sphincter"
+    ],
+    "locator": [
+      0,
+      -0.5,
+      0.15
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:prostate",
+    "name": "Prostate",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Prostate",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_prostate_gland",
+    "patterns": [
+      "prostat(?:e|ic)"
+    ],
+    "locator": [
+      0,
+      -0.4,
+      0.1
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:penis",
+    "name": "Penis",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Penis",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "penile",
+      "penis",
+      "erectile"
+    ],
+    "locator": [
+      0,
+      -0.65,
+      0.2
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:uterus",
+    "name": "Uterus",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Uterus",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "uter(?:ine|us)",
+      "endometrial",
+      "intrauterine"
+    ],
+    "locator": null,
+    "referenceSex": "female anatomy not in male reference"
+  },
+  {
+    "id": "BODY:vagina",
+    "name": "Vagina",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Vagina",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "vagin(?:a|al)",
+      "pelvic organ prolapse"
+    ],
+    "locator": null,
+    "referenceSex": "female anatomy not in male reference"
+  },
+  {
+    "id": "BODY:breast",
+    "name": "Breast / chest tissue",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Breast / chest tissue",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "breast",
+      "mammary"
+    ],
+    "locator": [
+      -0.45,
+      1.25,
+      0.25
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:skin",
+    "name": "Skin",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Skin",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "cutaneous",
+      "dermal",
+      "dermis",
+      "skin",
+      "wound",
+      "burns?",
+      "subcutaneous"
+    ],
+    "locator": [
+      0.7,
+      0.3,
+      0.15
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:hip",
+    "name": "Hip",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Hip",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_pelvis",
+    "patterns": [
+      "hip",
+      "acetabul(?:ar|um)",
+      "femoral head"
+    ],
+    "locator": [
+      0.3,
+      -0.65,
+      0
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:knee",
+    "name": "Knee",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Knee",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_lower_limb",
+    "patterns": [
+      "knee",
+      "menisc(?:us|al)",
+      "tibiofemoral",
+      "patella(?:r)?"
+    ],
+    "locator": [
+      0.25,
+      -1.6,
+      0.1
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:shoulder",
+    "name": "Shoulder",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Shoulder",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "shoulder",
+      "rotator cuff",
+      "glenoid",
+      "humeral head"
+    ],
+    "locator": [
+      0.75,
+      1.68,
+      0.1
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:elbow",
+    "name": "Elbow",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Elbow",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "elbow",
+      "ulnohumeral"
+    ],
+    "locator": [
+      1.05,
+      0.75,
+      0
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:wrist",
+    "name": "Wrist",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Wrist",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "wrist",
+      "carpal",
+      "distal radius"
+    ],
+    "locator": [
+      1.35,
+      0.12,
+      0
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:hand",
+    "name": "Hand and fingers",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Hand and fingers",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "hand",
+      "fingers?",
+      "metacarpal",
+      "phalangeal",
+      "thumb"
+    ],
+    "locator": [
+      1.5,
+      -0.05,
+      0
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:ankle",
+    "name": "Ankle",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Ankle",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "ankle",
+      "tibiotalar",
+      "talus"
+    ],
+    "locator": [
+      0.2,
+      -2.6,
+      0.05
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:foot",
+    "name": "Foot",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Foot",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "foot",
+      "feet",
+      "metatarsal",
+      "toes?",
+      "calcaneal",
+      "heel"
+    ],
+    "locator": [
+      0.2,
+      -2.85,
+      0.2
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:vertebral",
+    "name": "Vertebral column",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Vertebral column",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": "VH_M_vertebrae",
+    "patterns": [
+      "vertebra(?:l|e)",
+      "spinal fusion",
+      "spine",
+      "intervertebral",
+      "cervical disc",
+      "lumbar disc"
+    ],
+    "locator": [
+      0,
+      0.55,
+      -0.15
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "BODY:sacroiliac",
+    "name": "Sacroiliac joint",
+    "parent": "BODY:human",
+    "synonyms": [],
+    "region": "Sacroiliac joint",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "sacroiliac"
+    ],
+    "locator": [
+      0.15,
+      -0.35,
+      -0.15
+    ],
+    "referenceSex": "male reference; broad regional locator"
+  },
+  {
+    "id": "UBERON:0000955",
+    "name": "Brain",
+    "parent": "BODY:nervous-system",
+    "synonyms": [],
+    "region": "Nervous system",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "brain",
+      "cerebral",
+      "intracranial",
+      "electroencephalogra(?:ph|m)",
+      "eeg"
+    ],
+    "locator": null,
+    "referenceSex": "male reference"
+  },
+  {
+    "id": "UBERON:0000956",
+    "name": "Cerebral cortex",
+    "parent": "UBERON:0000955",
+    "synonyms": [],
+    "region": "Nervous system",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "cerebral cort(?:ex|ical)",
+      "motor cortex",
+      "intracortical"
+    ],
+    "locator": null,
+    "referenceSex": "male reference"
+  },
+  {
+    "id": "UBERON:0001897",
+    "name": "Thalamus",
+    "parent": "UBERON:0000955",
+    "synonyms": [],
+    "region": "Nervous system",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "thalamic",
+      "thalamus"
+    ],
+    "locator": null,
+    "referenceSex": "male reference"
+  },
+  {
+    "id": "UBERON:0001759",
+    "name": "Vagus nerve",
+    "parent": "BODY:nervous-system",
+    "synonyms": [],
+    "region": "Nervous system",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "vagus",
+      "vagal"
+    ],
+    "locator": null,
+    "referenceSex": "male reference"
+  },
+  {
+    "id": "UBERON:0002240",
+    "name": "Spinal cord",
+    "parent": "BODY:nervous-system",
+    "synonyms": [],
+    "region": "Nervous system",
+    "laterality": "unspecified",
+    "species": "Homo sapiens (NCBITaxon:9606)",
+    "source": "https://doi.org/10.48539/HBM646.RKKC.257",
+    "geometry": null,
+    "patterns": [
+      "spinal cord"
+    ],
+    "locator": null,
+    "referenceSex": "male reference"
+  }
+]
