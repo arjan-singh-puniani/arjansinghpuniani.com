@@ -82,7 +82,7 @@ export class Character {
   private previousState:AnimState='idle';private previousAnimTime=0;private transitionAge=1;private transitionDuration=.20;
   private walkCycle=new WalkCycle();private exitWalkPose:Pose|null=null;
   private walkingStride(){return (this.spec.appearance==='human'?1.7+clamp((this.travelSpeed-2.2)/3.3,0,1)*.7:1.02)*locomotionStyleFor(this.spec.id).stride;}
-  private walkingShape(){const jog=clamp((this.travelSpeed-2.2)/3.3,0,1);return this.spec.appearance==='human'?{halfWidth:.135,lift:.045+jog*.155,stance:.60-jog*.20}:undefined;}
+  private walkingShape(){const jog=clamp((this.travelSpeed-2.2)/3.3,0,1);return this.spec.appearance==='human'?{halfWidth:.135,lift:.045+jog*.155,stance:.52-jog*.12}:undefined;}
   private targetYaw=0;private locomotion=0;private horizontalSpeed=0;private gaitPhase=0;private travelSpeed=0;
   private leftFootLock:Vec3|null=null;private rightFootLock:Vec3|null=null;private prevLeftStance=false;private prevRightStance=false;
   private incomingContact:Vec3|null=null;private contactTarget:Vec3|null=null;private outgoingTarget:Vec3|null=null;
@@ -355,7 +355,7 @@ export class Character {
   }
 
   private poseFor(state:AnimState,time:number):Pose{
-    const sit=state==='sit';const clip=sampleClip(clipForState(state,this.seed()),this.clipPhase(state,time));let baseY=(sit?(this.seatHeight+.10-.79):0)+clip.pelvisY;const breathe=Math.sin(time*2.05+this.seed()*.01)*.014;
+    const sit=state==='sit';const clip=sampleClip(clipForState(state,this.seed()),this.clipPhase(state,time));let baseY=(sit?(this.seatHeight+.10-.79):0)+clip.pelvisY;const breathe=Math.sin(time*2.05+this.seed()*.01)*(state==='walk'||state==='jog'?.004:.014);
     const shot=isShot(state),sp=shot?this.shotProgress(state,time):0;const contact=shot?this.shotContactTime(state)/this.shotDuration(state):.45;const style=this.strokeStyle();
     let coil=clip.torsoTwist,hipCoil=clip.hipTwist,lean=clip.lean,knee=clip.knee,weightShift=0;
     if(state==='swingForehand'){const pre=clamp(sp/contact,0,1),post=clamp((sp-contact)/(1-contact),0,1);coil+=(-.62*(1-smoothstep(0,.82,pre))+.78*style.follow*smoothstep(0,1,post))*style.coil;hipCoil+=coil*.52;lean+=.035+.07*Math.sin(sp*Math.PI);knee+=.11*Math.sin(Math.min(1,sp/contact)*Math.PI);weightShift=smoothstep(.18,.75,sp);}
@@ -365,7 +365,7 @@ export class Character {
     const moving=state==='walk'||state==='jog';const shuffle=state==='shuffle';const gait=moving?Math.cos(this.gaitPhase):0;const gaitStyle=locomotionStyleFor(this.spec.id);const stepLift=moving?Math.pow(Math.abs(Math.sin(this.gaitPhase)),1.7)*gaitStyle.bounce*(this.spec.appearance==='human'?.25:1):0;const gaitCounter=moving?Math.sin(this.gaitPhase)*gaitStyle.torsoCounter:0;const splitHop=this.courtPhase==='split'?Math.sin(Math.min(1,this.courtPhaseAge/.10)*Math.PI)*.055:0;
     if(!shot&&!moving&&this.socialGesture==='think'){lean+=.055;}
     if(state==='idle'){const phase=time*this.acting.values.idleFidgetRate*(this.spec.id==='mika'?.92:this.spec.id==='nia'?.68:.58)+this.seed()*.037;const amp=this.spec.id==='coach'?.010:this.spec.id==='mika'?.024:this.spec.id==='nia'?.018:.015;hipCoil+=Math.sin(phase)*amp;coil-=Math.sin(phase)*amp*.72;baseY+=Math.sin(phase*1.7)*amp*.13;}
-    if(moving){coil=gait*gaitStyle.torsoCounter*.45;hipCoil=-gait*gaitStyle.hipSwing*.45;baseY=this.spec.appearance==='human'?-.025+Math.cos(this.gaitPhase*2)*.003:.008+Math.sin(this.gaitPhase*2)*.012;lean=0;knee=0;}const tracking=state==='watch'||this.spectating||state==='ready'||shuffle;const watchDelta=tracking?clamp(angleDelta(this.yaw,this.gazeYaw),-.78,.78):0;const torsoYaw=this.yaw+coil+watchDelta*.30,hipYaw=this.yaw+hipCoil+watchDelta*.07;
+    if(moving){coil=-gait*gaitStyle.torsoCounter*.45;hipCoil=gait*gaitStyle.hipSwing*.45;baseY=this.spec.appearance==='human'?-.025+Math.cos(this.gaitPhase*2)*.003:.008+Math.sin(this.gaitPhase*2)*.012;lean=0;knee=0;}const tracking=state==='watch'||this.spectating||state==='ready'||shuffle;const watchDelta=tracking?clamp(angleDelta(this.yaw,this.gazeYaw),-.78,.78):0;const torsoYaw=this.yaw+coil+watchDelta*.30,hipYaw=this.yaw+hipCoil+watchDelta*.07;
     // shortcut: horizontal gaze only; add pitch and convergence for close conversation staging.
     const targetHeadYaw=this.gazeYaw;const headLimit=tracking?.70:.42;const headYaw=this.yaw+clamp(angleDelta(this.yaw,targetHeadYaw),-headLimit,headLimit)+clip.headTurn;
     const sy=Math.sin(headYaw),cy=Math.cos(headYaw),right=new Vec3(cy,0,-sy),forward=new Vec3(sy,0,cy);

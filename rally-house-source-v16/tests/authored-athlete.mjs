@@ -321,3 +321,27 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
  }
  console.log('Loaded backhand: front sleeve and shoulder panels remain separated at 30/60/120 Hz.');
 }
+
+// Use the loaded athlete: fallback arm lengths hid the locked-elbow walk.
+{
+ let minWalkFlex=Infinity,maxWalkFlex=0,maxHeadBob=0,walkSamples=0;
+ for(const spec of [playerSpec('taylor'),...memberData.filter(c=>c.presentation==='feminine')])for(const hz of [30,60,120]){
+  const actor=new Character({...spec},new Vec3(0,0,-8),new Navigation([]),{});actor.racketStowed=true;actor.goTo(new Vec3(0,0,8));const heads=[];
+  for(let frame=0;frame<hz*4;frame++){
+   actor.update(1/hz);if(frame<hz)continue;assert.equal(actor.state,'walk');const p=actor.analysisPose(),mesh=actor.meshes().find(m=>m.rig&&m.material==='humanSkin');
+   assert(mesh.skin.id.startsWith(body.id),'Walking regression must exercise the authored athlete');heads.push(p.head.y);
+   const forward=new Vec3(Math.sin(actor.yaw),0,Math.cos(actor.yaw)),depth=(a,b)=>Vec3.dot(Vec3.sub(a,b),forward);
+   assert(depth(p.shoulderR,p.shoulderL)*depth(p.handR,p.handL)>-.0001,'Shoulders must follow the opposing arm swing');
+   assert(depth(p.hipR,p.hipL)*depth(p.footR,p.footL)>-.0001,'Pelvis turn must follow the leading leg');
+   for(const side of ['L','R']){
+    const upper=Vec3.sub(p[`elbow${side}`],p[`shoulder${side}`]),lower=Vec3.sub(p[`hand${side}`],p[`elbow${side}`]),flex=Math.acos(Math.max(-1,Math.min(1,Vec3.dot(upper.clone().normalize(),lower.clone().normalize()))));
+    minWalkFlex=Math.min(minWalkFlex,flex);maxWalkFlex=Math.max(maxWalkFlex,flex);
+    assert(flex>.20&&flex<1,`${spec.id}/${hz}/${frame}: walking elbow ${(flex*180/Math.PI).toFixed(2)}° in ${actor.state}`);
+    assert(Math.abs(upper.len()-Vec3.sub(rest[`upperArm${side}`],rest[`foreArm${side}`]).len())<.001,'Walking must not stretch the authored upper arm');
+    assert(Math.abs(lower.len()-Vec3.sub(rest[`foreArm${side}`],rest[`hand${side}`]).len())<.001,'Walking must not stretch the authored forearm');walkSamples++;
+   }
+  }
+  const bob=Math.max(...heads)-Math.min(...heads);maxHeadBob=Math.max(maxHeadBob,bob);assert(bob<.105,'Walking support must avoid the deep repeated body dip');
+ }
+ console.log(JSON.stringify({walkSamples,minWalkFlex,maxWalkFlex,maxHeadBob}));
+}
