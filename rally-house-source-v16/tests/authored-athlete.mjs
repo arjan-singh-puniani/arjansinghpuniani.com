@@ -298,3 +298,26 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
  }
  console.log(JSON.stringify({backhandGripChecks:checks,minFingerGap:minGap}));
 }
+
+// These front-sleeve and chest panels crossed during the loaded backhand.
+{
+ const segmentHits=(tri,from,to)=>{
+  const [a,b,c]=tri,d=Vec3.sub(to,from),e=Vec3.sub(b,a),f=Vec3.sub(c,a),h=Vec3.cross(d,f),det=Vec3.dot(e,h);
+  if(Math.abs(det)<1e-10)return false;
+  const o=Vec3.sub(from,a),u=Vec3.dot(o,h)/det;if(u<=0||u>=1)return false;
+  const q=Vec3.cross(o,e),v=Vec3.dot(d,q)/det;if(v<=0||u+v>=1)return false;
+  const t=Vec3.dot(f,q)/det;return t>0&&t<1;
+ };
+ for(const hz of [30,60,120]){
+  const actor=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});actor.matchCompetitor=true;actor.racketStowed=false;actor.setAnimation('ready');actor.update(.3);actor.setIncomingContact(new Vec3(-.6,1.02,.9));actor.triggerShot('swingBackhand',new Vec3(0,.09,5));for(let i=0;i<hz*.2;i++)actor.update(1/hz);
+  const m=actor.meshes().find(m=>m.rig&&m.material==='performanceKnit'&&!m.skirt),g=m.skin;
+  assert(Math.abs(g.positions[1677*3]-.259878367)<1e-6,'Jersey topology changed: review the shoulder regression panels');
+  const panels=[1677,1824].map(start=>[0,1,2].map(offset=>{
+   const v=start+offset,point=new Vec3(...g.positions.slice(v*3,v*3+3)),out=new Vec3();
+   for(let j=0;j<4;j++){const weight=g.boneWeights[v*4+j];if(weight){const q=transformPoint(m.boneMatrices.slice(g.boneIndices[v*4+j]*16,g.boneIndices[v*4+j]*16+16),point);out.add(new Vec3(q.x,q.y,q.z).scale(weight));}}
+   return out;
+  }));
+  assert(!panels.some((tri,i)=>tri.some((from,j)=>segmentHits(panels[1-i],from,tri[(j+1)%3]))),'Loaded backhand sleeve must not pass through the front shoulder panel');
+ }
+ console.log('Loaded backhand: front sleeve and shoulder panels remain separated at 30/60/120 Hz.');
+}
