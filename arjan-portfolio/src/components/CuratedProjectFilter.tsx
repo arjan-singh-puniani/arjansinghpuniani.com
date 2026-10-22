@@ -8,6 +8,7 @@ import { ProjectCard } from "./ProjectCard";
 const flagshipSlugs = [
   "vector-ekg-reasonos",
   "seizefreeze",
+  "body-atlas",
   "bci-calibration",
   "rigetti-quantum-operations",
 ] as const;
@@ -52,7 +53,7 @@ export function CuratedProjectFilter() {
                 <h2 id="flagship-work-heading">BCI research, software, and device concepts</h2>
               </div>
               <p>
-                Experimental interfaces from RNEL, independent educational models,
+                Experimental interfaces from RNEL, an anatomical evidence index, independent educational models,
                 an ECG prototype, and an early cortical-cooling concept.
               </p>
             </div>
