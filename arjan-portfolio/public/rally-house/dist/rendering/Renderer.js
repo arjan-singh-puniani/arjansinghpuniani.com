@@ -214,6 +214,9 @@ export class Renderer {
     depthSkinProgram;
     geos = new Map();
     skinGeos = new Map();
+    // Shared pose arrays are immutable within a frame; each shader owns its uniforms.
+    skinBones = null;
+    shadowBones = null;
     shadowFB;
     shadowTex;
     lampFB;
@@ -323,6 +326,8 @@ export class Renderer {
         this.triangles = 0;
         this.shadowCasters = 0;
         this.instancedDraws = 0;
+        this.skinBones = null;
+        this.shadowBones = null;
         const meshes = [], skins = [], overlays = [];
         for (const it of items) {
             if ('skin' in it)
@@ -411,7 +416,10 @@ export class Renderer {
                 continue;
             const g = this.skinGeometry(s.skin);
             gl.uniformMatrix4fv(this.dsu['u_model'], false, compose(s.position, s.rotation ?? new Vec3(), s.scale ?? new Vec3(1, 1, 1)));
-            gl.uniformMatrix4fv(this.dsu['u_bones'], false, s.boneMatrices);
+            if (this.shadowBones !== s.boneMatrices) {
+                gl.uniformMatrix4fv(this.dsu['u_bones'], false, s.boneMatrices);
+                this.shadowBones = s.boneMatrices;
+            }
             gl.bindVertexArray(g.vao);
             gl.drawArrays(gl.TRIANGLES, 0, g.count);
             this.shadowCasters++;
@@ -481,7 +489,10 @@ export class Renderer {
         }
     }
     drawMesh(m) { const gl = this.gl, g = this.geos.get(m.kind); gl.uniformMatrix4fv(this.u['u_model'], false, (this.staticData.get(m)?.model ?? compose(m.position, m.rotation ?? new Vec3(), m.scale))); const cached = this.staticData.get(m), c = cached?.color ?? hexToRgb(m.color), mp = cached?.material ?? this.materialParams(m.material); gl.uniform1i(this.u['u_material'], this.materialId(m.material)); gl.uniform3f(this.u['u_color'], c[0], c[1], c[2]); gl.uniform1f(this.u['u_alpha'], m.alpha ?? 1); gl.uniform1f(this.u['u_unlit'], m.unlit ? 1 : 0); gl.uniform1f(this.u['u_emission'], m.emission ?? 0); gl.uniform1f(this.u['u_roughness'], mp.roughness); gl.uniform1f(this.u['u_specular'], mp.specular); gl.uniform1f(this.u['u_softness'], mp.softness); gl.bindVertexArray(g.vao); gl.drawArrays(gl.TRIANGLES, 0, g.count); this.drawCalls++; this.triangles += g.count / 3; }
-    drawSkin(m) { const gl = this.gl, g = this.skinGeometry(m.skin); gl.uniformMatrix4fv(this.su['u_model'], false, compose(m.position, m.rotation ?? new Vec3(), m.scale ?? new Vec3(1, 1, 1))); gl.uniformMatrix4fv(this.su['u_bones'], false, m.boneMatrices); const c = hexToRgb(m.color), mp = this.materialParams(m.material); gl.uniform1i(this.su['u_material'], this.materialId(m.material)); gl.uniform3f(this.su['u_color'], c[0], c[1], c[2]); gl.uniform1f(this.su['u_alpha'], m.alpha ?? 1); gl.uniform1f(this.su['u_unlit'], m.unlit ? 1 : 0); gl.uniform1f(this.su['u_emission'], 0); gl.uniform1f(this.su['u_roughness'], mp.roughness); gl.uniform1f(this.su['u_specular'], mp.specular); gl.uniform1f(this.su['u_softness'], mp.softness); gl.bindVertexArray(g.vao); gl.drawArrays(gl.TRIANGLES, 0, g.count); this.drawCalls++; this.triangles += g.count / 3; }
+    drawSkin(m) { const gl = this.gl, g = this.skinGeometry(m.skin); gl.uniformMatrix4fv(this.su['u_model'], false, compose(m.position, m.rotation ?? new Vec3(), m.scale ?? new Vec3(1, 1, 1))); if (this.skinBones !== m.boneMatrices) {
+        gl.uniformMatrix4fv(this.su['u_bones'], false, m.boneMatrices);
+        this.skinBones = m.boneMatrices;
+    } const c = hexToRgb(m.color), mp = this.materialParams(m.material); gl.uniform1i(this.su['u_material'], this.materialId(m.material)); gl.uniform3f(this.su['u_color'], c[0], c[1], c[2]); gl.uniform1f(this.su['u_alpha'], m.alpha ?? 1); gl.uniform1f(this.su['u_unlit'], m.unlit ? 1 : 0); gl.uniform1f(this.su['u_emission'], 0); gl.uniform1f(this.su['u_roughness'], mp.roughness); gl.uniform1f(this.su['u_specular'], mp.specular); gl.uniform1f(this.su['u_softness'], mp.softness); gl.bindVertexArray(g.vao); gl.drawArrays(gl.TRIANGLES, 0, g.count); this.drawCalls++; this.triangles += g.count / 3; }
     skinGeometry(data) { const hit = this.skinGeos.get(data.id); if (hit)
         return hit; const gl = this.gl, vao = gl.createVertexArray(); gl.bindVertexArray(vao); const put = (loc, arr, size) => { const b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, arr, gl.STATIC_DRAW); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, size, gl.FLOAT, false, 0, 0); }; put(0, data.positions, 3); put(1, data.normals, 3); put(2, data.boneIndices, 4); put(3, data.boneWeights, 4); gl.bindVertexArray(null); const geo = { vao, count: data.positions.length / 3 }; this.skinGeos.set(data.id, geo); return geo; }
     rigidVS(depthOnly) {

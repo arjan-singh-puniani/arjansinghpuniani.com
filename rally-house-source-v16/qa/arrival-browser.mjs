@@ -8,7 +8,7 @@ const browser=await {chromium,firefox,webkit}[engine].launch({...engine==='chrom
 const reports=[];
 try{
  for(const profile of [{name:'desktop',width:1280,height:800,avatar:'Arjan'},{name:'phone',width:390,height:844,avatar:'Taylor'}].filter(p=>!process.env.QA_PROFILE||p.name===process.env.QA_PROFILE)){
-  const context=await browser.newContext({viewport:{width:profile.width,height:profile.height},hasTouch:profile.name==='phone'});
+  const context=await browser.newContext({viewport:{width:profile.width,height:profile.height},deviceScaleFactor:2,hasTouch:profile.name==='phone'});
   const page=await context.newPage(),report={engine,profile:profile.name,errors:[],requests:[]};reports.push(report);
   page.on('pageerror',e=>report.errors.push(e.message));page.on('response',r=>{if(r.status()>=400)report.requests.push([r.status(),r.url()]);});
   try{

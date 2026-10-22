@@ -307,13 +307,13 @@ export class World {
         }
         this.rb(7.35, .34, 3.02, .55, .16, .62, palette.paper, .08, 1, false, undefined, 'fabric');
         // Club board with sticky-note rhythm.
-        this.rb(2.8, 2.58, -9.42, 4.15, 1.18, .10, '#a7aba0');
-        this.rb(2.8, 2.58, -9.34, 3.98, 1.02, .055, '#f4f3e8');
+        this.rb(3.55, 2.58, -9.42, 2.8, 1.18, .10, '#a7aba0');
+        this.rb(3.55, 2.58, -9.34, 2.63, 1.02, .055, '#f4f3e8');
         for (let i = 0; i < 3; i++)
-            this.rb(1.35 + i * .76, 2.76, -9.23, .58, .27, .025, [palette.paper, palette.gold, palette.peach][i], (i - 1) * .025, 1, true);
-        this.rb(2.8, 1.98, -9.23, 4.0, .055, .17, '#989d92');
-        this.rb(2.75, 2.03, -9.17, .28, .025, .04, '#416775');
-        this.objects.push({ id: 'clubBoard', label: 'Club whiteboard', kind: 'board', position: new Vec3(2.8, 0, -7.8), radius: 1.6, description: 'Read the club scrapbook, or leave a small crosscourt sketch in the clean corner.' });
+            this.rb(2.5 + i * .72, 2.76, -9.23, .48, .27, .025, [palette.paper, palette.gold, palette.peach][i], (i - 1) * .025, 1, true);
+        this.rb(3.55, 1.98, -9.23, 2.68, .055, .17, '#989d92');
+        this.rb(3.5, 2.03, -9.17, .28, .025, .04, '#416775');
+        this.objects.push({ id: 'clubBoard', label: 'Club whiteboard', kind: 'board', position: new Vec3(3.55, 0, -7.8), radius: 1.6, description: 'Read the club scrapbook, or leave a small crosscourt sketch in the clean corner.' });
         this.buildFloorProgram();
     }
     buildFloorProgram() {

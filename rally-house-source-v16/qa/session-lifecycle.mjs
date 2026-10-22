@@ -20,6 +20,9 @@ try{
  await page.goto(`${process.env.QA_BASE_URL??'http://127.0.0.1:8078'}/?debug`);
  await page.waitForFunction(()=>window.__rh?.ready);
  await enterClub(page,'Arjan');
+ // Unlock the persistent club ambience before tracking transient match audio.
+ await page.locator('#brandBtn').click();await page.keyboard.press('Escape');
+ await page.waitForFunction(()=>!!window.__rh.game.audio.ambienceSource);
  await page.waitForTimeout(800);
   await page.evaluate(()=>{
    const g=window.__rh.game;

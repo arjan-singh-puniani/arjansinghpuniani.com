@@ -1,7 +1,7 @@
 import {Vec3} from '../rendering/Math3D.js';
 export const palette={cream:'#fff1de',paper:'#fffdf7',sage:'#76aa83',sageDark:'#416d59',sageLight:'#b9d6ad',wood:'#c58a5b',woodDark:'#895c43',peach:'#f0a17b',blue:'#78b5c0',gold:'#e6c65f',terracotta:'#d97961',ink:'#294f43',court:'#53866b',line:'#fff9ed',sky:'#faf4e8',pink:'#eca7aa',mint:'#a8d5b3'};
 export const destinations:Record<string,Vec3>={
-  entrance:new Vec3(-11.9,0,8.8),reception:new Vec3(-9,0,3.5),cafe:new Vec3(-9,0,-4.5),cafeTable:new Vec3(-6.5,0,-4.5),courtSouth:new Vec3(1.0,0,5.0),courtNorth:new Vec3(1.0,0,-5.0),courtBench:new Vec3(6.9,0,3.7),lounge:new Vec3(8.5,0,4),proshop:new Vec3(9,0,-6),bonsai:new Vec3(10,0,2.5),water:new Vec3(-5.5,0,5.8),stringing:new Vec3(9.2,0,-2.3),training:new Vec3(-9.5,0,.2),clubBoard:new Vec3(3.0,0,-7.3),
+  entrance:new Vec3(-11.9,0,8.8),reception:new Vec3(-9,0,3.5),cafe:new Vec3(-9,0,-4.5),cafeTable:new Vec3(-6.5,0,-4.5),courtSouth:new Vec3(1.0,0,5.0),courtNorth:new Vec3(1.0,0,-5.0),courtBench:new Vec3(6.9,0,3.7),lounge:new Vec3(8.5,0,4),proshop:new Vec3(9,0,-6),bonsai:new Vec3(10,0,2.5),water:new Vec3(-5.5,0,5.8),stringing:new Vec3(9.2,0,-2.3),training:new Vec3(-9.5,0,.2),clubBoard:new Vec3(3.55,0,-7.3),
   warmup:new Vec3(-9.3,0,1.6),westWater:new Vec3(-10.2,0,-2.2),lobbySeat:new Vec3(-11.9,0,6.9),gearWall:new Vec3(9.5,0,.3),spectatorBench:new Vec3(0,0,7.2),equipmentTrolley:new Vec3(-1.4,0,-7.5)
 };
 export const courtSpectatorSpots:Record<string,Vec3>={coach:new Vec3(6.9,0,1.3),mika:new Vec3(6.9,0,3.7),leo:new Vec3(8.1,0,2.0),nia:new Vec3(8.2,0,.3)};

@@ -1,0 +1,153 @@
+{
+  "baselineCommit": "b839c31a",
+  "firstServeSeconds": {
+    "before": {
+      "desktop": 10.603
+    },
+    "after": {
+      "desktop": 6.28,
+      "phone": 6.078
+    }
+  },
+  "nativeArrival": [
+    {
+      "engine": "chromium",
+      "profile": "desktop",
+      "errors": [],
+      "requests": [],
+      "arrival": {
+        "paused": true,
+        "court": false
+      },
+      "playButton": {
+        "x": 909,
+        "y": 572,
+        "width": 316,
+        "height": 56
+      },
+      "accepted": {
+        "phase": "challenge",
+        "paused": false,
+        "active": [
+          {
+            "id": "activity-1",
+            "kind": "championship",
+            "participants": [
+              "player",
+              "leo"
+            ],
+            "resource": "court",
+            "phase": "traveling",
+            "elapsed": 0.11666666666666665,
+            "phaseTime": 0.11666666666666665,
+            "detail": "Championship vs Leo"
+          }
+        ],
+        "player": {
+          "x": -11.839409212827551,
+          "y": 0,
+          "z": 8.236329271138011
+        },
+        "blocked": false,
+        "toast": "Leo accepts. Championship court."
+      },
+      "focusResumes": 0,
+      "secondsToServe": 6.28,
+      "realRally": {
+        "phase": "rally",
+        "rally": 3,
+        "paused": false,
+        "cue": "nice"
+      },
+      "returned": {
+        "court": false,
+        "avatar": "Arjan",
+        "actors": 4,
+        "paused": false
+      }
+    },
+    {
+      "engine": "chromium",
+      "profile": "phone",
+      "errors": [],
+      "requests": [],
+      "arrival": {
+        "paused": true,
+        "court": false
+      },
+      "playButton": {
+        "x": 39,
+        "y": 634,
+        "width": 312,
+        "height": 56
+      },
+      "accepted": {
+        "phase": "challenge",
+        "paused": false,
+        "active": [
+          {
+            "id": "activity-1",
+            "kind": "championship",
+            "participants": [
+              "player",
+              "leo"
+            ],
+            "resource": "court",
+            "phase": "traveling",
+            "elapsed": 0.08333333333333333,
+            "phaseTime": 0.08333333333333333,
+            "detail": "Championship vs Leo"
+          }
+        ],
+        "player": {
+          "x": -11.865560617954038,
+          "y": 0,
+          "z": 8.177488609603415
+        },
+        "blocked": false,
+        "toast": "Leo accepts. Championship court."
+      },
+      "focusResumes": 0,
+      "secondsToServe": 6.078,
+      "realRally": {
+        "phase": "rally",
+        "rally": 3,
+        "paused": false,
+        "cue": "nice"
+      },
+      "returned": {
+        "court": false,
+        "avatar": "Taylor",
+        "actors": 4,
+        "paused": false
+      }
+    }
+  ],
+  "sameWorldPassed": true,
+  "poseUploadsSamePixels": [
+    {
+      "minute": 780,
+      "cached": 63,
+      "repeated": 596,
+      "changedChannels": 0,
+      "trianglesMatch": true,
+      "gl": 0
+    },
+    {
+      "minute": 1190,
+      "cached": 63,
+      "repeated": 596,
+      "changedChannels": 0,
+      "trianglesMatch": true,
+      "gl": 0
+    }
+  ],
+  "lifecycleCycles": 32,
+  "reviewRoundTrips": 4,
+  "lifecyclePassed": true,
+  "limitations": [
+    "Headless Chromium checks do not establish input or frame pacing in the Codex browser panel.",
+    "No consistent whole-game FPS improvement was demonstrated.",
+    "Approach comparisons use controlled simulation frames, not native user input."
+  ]
+}

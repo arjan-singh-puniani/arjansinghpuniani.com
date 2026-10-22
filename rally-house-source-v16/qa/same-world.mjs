@@ -36,7 +36,22 @@ try{
   const q=window.qaContinuity={world:g.world,objects:[...g.world.objects],cast:[...g.characters],player:g.player,transforms:JSON.stringify(g.world.meshes),placements:JSON.stringify(g.world.placements),net:g.world.courtDetails,labState:JSON.stringify(g.world.identity.state('performanceLab')),activity,items:[]};
   const render=g.renderer.render.bind(g.renderer);g.renderer.render=(items,...args)=>{q.items=items;return render(items,...args);};
  });
- await page.waitForTimeout(100);await audit('A club');await page.screenshot({path:`${out}/A-club.png`});
+ await page.waitForTimeout(100);await audit('A club');
+ report.boneUploads=await page.evaluate(()=>{
+  const g=window.__rh.game,r=g.renderer,gl=r.gl,items=window.qaContinuity.items,upload=gl.uniformMatrix4fv,rows=[];let uploads=0;
+  gl.uniformMatrix4fv=function(...args){if(args[2].length===240)uploads++;return upload.apply(this,args);};
+  const cache=enabled=>{for(const key of ['skinBones','shadowBones'])Object.defineProperty(r,key,enabled?{value:null,writable:true,configurable:true}:{get:()=>null,set:()=>{},configurable:true});};
+  try{for(const minute of [780,1190]){
+   const vp=g.camera.viewProjection(),light=g.world.lighting(minute),position=g.camera.position;
+   const draw=enabled=>{cache(enabled);uploads=0;r.render(items,vp,light,position);const pixels=new Uint8Array(g.canvas.width*g.canvas.height*4);gl.readPixels(0,0,g.canvas.width,g.canvas.height,gl.RGBA,gl.UNSIGNED_BYTE,pixels);return {pixels,uploads,triangles:r.triangles};};
+   const cached=draw(true),repeated=draw(false);let changed=0;
+   for(let i=0;i<cached.pixels.length;i++)if(cached.pixels[i]!==repeated.pixels[i])changed++;
+   rows.push({minute,cached:cached.uploads,repeated:repeated.uploads,changedChannels:changed,trianglesMatch:cached.triangles===repeated.triangles,gl:gl.getError()});
+  }}finally{cache(true);gl.uniformMatrix4fv=upload;}
+  return rows;
+ });
+ for(const row of report.boneUploads){assert(row.cached<row.repeated*.2,'Shared poses avoid repeated GPU matrix uploads');assert.equal(row.changedChannels,0,'GPU pose reuse preserves the exact day/evening image');assert(row.trianglesMatch);assert.equal(row.gl,0);}
+ await page.screenshot({path:`${out}/A-club.png`});
  for(let cycle=0;cycle<3;cycle++){
   await page.evaluate(()=>{const g=window.__rh.game;g.camera.pin();window.qaContinuity.camera=g.camera.captureState();g.startChampionship(g.actor('leo'));if(!g.championship.active)throw Error('Challenge rejected unexpectedly');});
   if(cycle===2){await page.evaluate(()=>window.__rh.game.requestChampionshipExit());}

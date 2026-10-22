@@ -11,6 +11,7 @@ export class Navigation {
     minZ = -9.5;
     maxZ = 9.5;
     obstacles = [];
+    courtReserved = () => false;
     constructor(obstacles = []) { this.obstacles = obstacles; }
     isBlocked(x, z) { if (x < this.minX || x > this.maxX || z < this.minZ || z > this.maxZ)
         return true; return this.obstacles.some(o => x > o.x - o.w / 2 - clearance && x < o.x + o.w / 2 + clearance && z > o.z - o.d / 2 - clearance && z < o.z + o.d / 2 + clearance); }
@@ -21,6 +22,8 @@ export class Navigation {
             return [];
         if (this.isBlocked(end.x, end.z))
             return [];
+        if (this.clearSegment(start, end))
+            return [new Vec3(end.x, 0, end.z)];
         const anchor = (p) => { const x = this.snap(p.x, this.minX), z = this.snap(p.z, this.minZ), options = []; for (let dx = -2; dx <= 2; dx++)
             for (let dz = -2; dz <= 2; dz++) {
                 const w = this.world(x + dx, z + dz);
@@ -76,10 +79,10 @@ export class Navigation {
         }
         return [];
     }
-    /** Social circulation stays outside the playing area. Players leaving court first use a short exit route. */
+    /** Occupied courts stay clear; idle courts are ordinary walkable floor. */
     onCourt(p) { return Math.abs(p.x - COURT.centerX) < courtHalfWidth && Math.abs(p.z) < courtHalfDepth; }
     clubPath(start, end) {
-        if (this.onCourt(end))
+        if (!this.courtReserved() || this.onCourt(end))
             return this.path(start, end);
         // isBlocked expands obstacles by clearance; use exactly onCourt's bounds.
         const outside = new Navigation([...this.obstacles, { x: COURT.centerX, z: 0, w: 2 * (courtHalfWidth - clearance), d: 2 * (courtHalfDepth - clearance) }]);

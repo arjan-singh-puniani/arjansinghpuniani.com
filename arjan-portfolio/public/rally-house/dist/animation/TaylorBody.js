@@ -84,8 +84,14 @@ export function adultTaylorPose(source, root, yaw, constraints) {
     if (!constraints.sitting) {
         let drop = 0;
         for (const side of ['L', 'R']) {
+            const walk = constraints.walk;
+            let load = 1;
+            if (walk?.planted && !walk.planted[side === 'L' ? 0 : 1]) {
+                const phase = ((walk.phase / (Math.PI * 2) + (side === 'R' ? .5 : 0)) % 1 + 1) % 1, swing = clamp((phase - walk.stance) / (1 - walk.stance), 0, 1);
+                load = 1 - smooth(swing / .20) + smooth((swing - .80) / .20);
+            }
             const hip = p[`hip${side}`], foot = p[`foot${side}`], h = Math.hypot(hip.x - foot.x, hip.z - foot.z), vertical = Math.sqrt(Math.max(.01, (TAYLOR_BODY.thigh + TAYLOR_BODY.shin - .001) ** 2 - h * h));
-            drop = Math.max(drop, hip.y - foot.y - vertical);
+            drop = Math.max(drop, (hip.y - foot.y - vertical) * load);
         }
         lower(Math.max(0, drop));
     }
@@ -151,7 +157,14 @@ export function adultTaylorPose(source, root, yaw, constraints) {
         // outside the ribcage, with posterior loading rather than a reversed fold.
         const pole = walk ? shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.035 : .035)).add(new Vec3(0, -.18, 0)).add(torsoForward.clone().scale(-.30)) : constraints.human ? shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.24 : .24)).add(new Vec3(0, -.28, 0)).add(torsoForward.clone().scale(-.16)) : arm(source[`elbow${side}`]).add(forward.clone().scale(.04));
         p[`elbow${side}`] = joint(shoulder, p[`hand${side}`], TAYLOR_BODY.upperArm, TAYLOR_BODY.forearm, pole, forward);
-        const hip = p[`hip${side}`], foot = p[`foot${side}`], kneePole = Vec3.lerp(hip, foot, .5).add(forward.clone().scale(.5));
+        const hip = p[`hip${side}`];
+        // An airborne leg recovers toward the body; it cannot drag the planted body down.
+        if (walk?.planted && !walk.planted[side === 'L' ? 0 : 1]) {
+            const delta = Vec3.sub(p[`foot${side}`], hip), reach = TAYLOR_BODY.thigh + TAYLOR_BODY.shin - .001;
+            if (delta.len() > reach)
+                p[`foot${side}`] = hip.clone().add(delta.normalize().scale(reach));
+        }
+        const foot = p[`foot${side}`], kneePole = Vec3.lerp(hip, foot, .5).add(forward.clone().scale(.5));
         p[`knee${side}`] = joint(hip, foot, TAYLOR_BODY.thigh, TAYLOR_BODY.shin, kneePole, forward);
     }
     p.racketGrip = p.handR.clone();

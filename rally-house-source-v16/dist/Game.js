@@ -162,6 +162,7 @@ export class Game {
         this.renderer = new Renderer(canvas);
         this.camera = new CameraController(canvas);
         this.world = new World();
+        this.world.nav.courtReserved = () => this.activities.reserved('court');
         this.renderer.cacheStatic(this.world.meshes);
         const get = (id) => memberData.find(x => x.id === id);
         const coach = new Character(get('coach'), destinations.courtNorth, this.world.nav, destinations);

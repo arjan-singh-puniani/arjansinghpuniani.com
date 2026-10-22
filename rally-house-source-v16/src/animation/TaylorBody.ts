@@ -2,7 +2,7 @@ import {Vec3,clamp} from '../rendering/Math3D.js';
 import type {CharacterPose} from '../entities/Character.js';
 
 export const TAYLOR_BODY={pelvisHeight:1.245,strokePelvisFloor:.86,torsoScale:1.20,headScale:.62,upperArm:.425,forearm:.415,thigh:.56,shin:.55} as const;
-interface Constraints {sitting:boolean;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;shoulderScale?:number;restWeight?:number;walk?:{phase:number;weight:number;swing:number};posture?:{weight:number;right:Vec3;left?:Vec3};}
+interface Constraints {sitting:boolean;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;shoulderScale?:number;restWeight?:number;walk?:{phase:number;weight:number;swing:number;stance:number;planted?:[boolean,boolean]};posture?:{weight:number;right:Vec3;left?:Vec3};}
 const smooth=(t:number)=>{const u=clamp(t,0,1);return u*u*(3-2*u);};
 function joint(a:Vec3,b:Vec3,first:number,second:number,pole:Vec3,fallback:Vec3){
  const delta=Vec3.sub(b,a),d=Math.max(.0001,delta.len()),axis=delta.scale(1/d),stretch=Math.max(1,d/(first+second-.001));
@@ -52,7 +52,11 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
  // A long step lowers the pelvis to respect leg length while a planted foot
  // remains a world-space anchor. Sitting uses the actual seat height.
  if(!constraints.sitting){
-  let drop=0;for(const side of ['L','R'] as const){const hip=p[`hip${side}`],foot=p[`foot${side}`],h=Math.hypot(hip.x-foot.x,hip.z-foot.z),vertical=Math.sqrt(Math.max(.01,(TAYLOR_BODY.thigh+TAYLOR_BODY.shin-.001)**2-h*h));drop=Math.max(drop,hip.y-foot.y-vertical);}lower(Math.max(0,drop));
+  let drop=0;for(const side of ['L','R'] as const){
+   const walk=constraints.walk;let load=1;
+   if(walk?.planted&&!walk.planted[side==='L'?0:1]){const phase=((walk.phase/(Math.PI*2)+(side==='R'?.5:0))%1+1)%1,swing=clamp((phase-walk.stance)/(1-walk.stance),0,1);load=1-smooth(swing/.20)+smooth((swing-.80)/.20);}
+   const hip=p[`hip${side}`],foot=p[`foot${side}`],h=Math.hypot(hip.x-foot.x,hip.z-foot.z),vertical=Math.sqrt(Math.max(.01,(TAYLOR_BODY.thigh+TAYLOR_BODY.shin-.001)**2-h*h));drop=Math.max(drop,(hip.y-foot.y-vertical)*load);
+  }lower(Math.max(0,drop));
  }
  // Load the adult body toward the known contact before the short hand-contact
  // window. Rebuilding the free hand goals from the loaded shoulders prevents
@@ -91,7 +95,10 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
   // outside the ribcage, with posterior loading rather than a reversed fold.
   const pole=walk?shoulder.clone().add(torsoRight.clone().scale(side==='L'?-.035:.035)).add(new Vec3(0,-.18,0)).add(torsoForward.clone().scale(-.30)):constraints.human?shoulder.clone().add(torsoRight.clone().scale(side==='L'?-.24:.24)).add(new Vec3(0,-.28,0)).add(torsoForward.clone().scale(-.16)):arm(source[`elbow${side}`]).add(forward.clone().scale(.04));
   p[`elbow${side}`]=joint(shoulder,p[`hand${side}`],TAYLOR_BODY.upperArm,TAYLOR_BODY.forearm,pole,forward);
-  const hip=p[`hip${side}`],foot=p[`foot${side}`],kneePole=Vec3.lerp(hip,foot,.5).add(forward.clone().scale(.5));p[`knee${side}`]=joint(hip,foot,TAYLOR_BODY.thigh,TAYLOR_BODY.shin,kneePole,forward);
+  const hip=p[`hip${side}`];
+  // An airborne leg recovers toward the body; it cannot drag the planted body down.
+  if(walk?.planted&&!walk.planted[side==='L'?0:1]){const delta=Vec3.sub(p[`foot${side}`],hip),reach=TAYLOR_BODY.thigh+TAYLOR_BODY.shin-.001;if(delta.len()>reach)p[`foot${side}`]=hip.clone().add(delta.normalize().scale(reach));}
+  const foot=p[`foot${side}`],kneePole=Vec3.lerp(hip,foot,.5).add(forward.clone().scale(.5));p[`knee${side}`]=joint(hip,foot,TAYLOR_BODY.thigh,TAYLOR_BODY.shin,kneePole,forward);
  }
  p.racketGrip=p.handR.clone();p.racketCenter=p.handR.clone().add(Vec3.sub(source.racketCenter,source.racketGrip));p.racketHandleTop=p.handR.clone().add(Vec3.sub(source.racketHandleTop,source.racketGrip));
  return p;

@@ -12,6 +12,11 @@ for(const [from,to] of [[new Vec3(9,0,-6),new Vec3(-9,0,-4.5)],[new Vec3(9,0,-6)
   for(let t=0;t<=1;t+=.02){const p=Vec3.lerp(a,b,t);assert(!(p.x>6.7&&p.x<11.7&&p.z>-8.125&&p.z<-6.575),'Route clears the display plus actor radius');}
  }
 }
+const board=world.meshes.find(m=>m.color==='#a7aba0'),target=world.objects.find(o=>o.id==='clubBoard'),clock=world.objects.find(o=>o.id==='clubClock');
+const curtainRight=Math.max(...world.meshes.filter(m=>m.color==='#e7c9ac').map(m=>m.position.x+m.scale.x/2));
+assert(board.position.x-board.scale.x/2>curtainRight+.15,'Whiteboard frame clears the complete window curtain');
+assert(board.position.x+board.scale.x/2<clock.selection.centre.x-clock.selection.size.x/2-.15,'Whiteboard frame clears the clock');
+assert.equal(target.selection.centre.x,board.position.x,'Board selection follows its visible position');assert.equal(target.selection.size.x,board.scale.x,'Board selection follows its visible width');
 const foliage=foliageGeometry();
 for(const [name,g] of Object.entries(CHARACTER_SKIN))for(let i=0;i<g.positions.length;i+=9){
  const a=g.positions.slice(i,i+3),u=g.positions.slice(i+3,i+6).map((n,j)=>n-a[j]),v=g.positions.slice(i+6,i+9).map((n,j)=>n-a[j]);

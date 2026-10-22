@@ -25,8 +25,8 @@ test('An everyday caption has no wall-clock expiry while the simulation is pause
  const elements=new Map();globalThis.document={getElementById:id=>{if(!elements.has(id))elements.set(id,{textContent:'',classList:{add(){},remove(){}}});return elements.get(id)}};globalThis.window={setTimeout:()=>{timers++;return 1}};
  try{HUD.prototype.showSpeech.call({},'Barbara','The tea can wait.',0);assert.equal(timers,0);assert.equal(elements.get('speechText').textContent,'The tea can wait.');HUD.prototype.showSpeech.call({},'Leo','A normal brief comment.',3500);assert.equal(timers,1);}finally{globalThis.window=oldWindow;globalThis.document=oldDocument;}
 });
-test('Cafe-to-bonsai circulation does not cut through the playing area',()=>{
- const w=new World(),start=destinations.cafe,path=w.nav.clubPath(start,destinations.bonsai);assert(path.length);let previous=start;
+test('Cafe-to-bonsai circulation does not cut through a reserved playing area',()=>{
+ const w=new World();w.nav.courtReserved=()=>true;const start=destinations.cafe,path=w.nav.clubPath(start,destinations.bonsai);assert(path.length);let previous=start;
  for(const p of path){for(let t=0;t<=1;t+=.025){const v=Vec3.lerp(previous,p,t);assert(!(Math.abs(v.x-COURT.centerX)<COURT.doublesHalfWidth+.4&&Math.abs(v.z)<COURT.baselineDepth),'Crossed playing area');}previous=p;}
  assert(w.nav.clubPath(destinations.courtSouth,destinations.cafe).length,'Player cannot leave court');
 });
