@@ -199,21 +199,14 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             p[`hand${side}`] = Vec3.lerp(p[`hand${side}`], goal, constraints.restWeight * (1 - world));
         }
         const shoulder = p[`shoulder${side}`], hand = p[`hand${side}`];
-        // Route free crossing hands around the chest while preserving world-owned contact.
+        // Reserve the fingers' width and length when routing free stroke hands around the chest.
         if (constraints.human && world < .999 && !affection) {
-            const t = clamp((hand.y - p.pelvisCenter.y) / (shoulder.y - p.pelvisCenter.y), 0, 1), center = Vec3.lerp(p.pelvisCenter, Vec3.lerp(p.shoulderL, p.shoulderR, .5), t), d = Vec3.sub(hand, center), x = Vec3.dot(d, torsoRight), z = Vec3.dot(d, torsoForward), rx = t < .4 ? .27 : .30, rz = .265, inside = x * x / (rx * rx) + z * z / (rz * rz);
+            const t = clamp((hand.y - p.pelvisCenter.y) / (shoulder.y - p.pelvisCenter.y), 0, 1), center = Vec3.lerp(p.pelvisCenter, Vec3.lerp(p.shoulderL, p.shoulderR, .5), t), d = Vec3.sub(hand, center), x = Vec3.dot(d, torsoRight), z = Vec3.dot(d, torsoForward), rx = stroke > 0 ? .40 : t < .4 ? .27 : .30, rz = .265, inside = x * x / (rx * rx) + z * z / (rz * rz);
             const normal = !constraints.posture && hand.y > p.pelvisCenter.y + .08 && hand.y < shoulder.y - .12 && inside < 1 ? 1 : 0;
             const route = stroke > 0 ? smooth((hand.y - p.pelvisCenter.y + .18) / .12) * (1 - smooth((hand.y - shoulder.y - .02) / .16)) * smooth((rx + .12 - Math.abs(x)) / .10) : 0;
-            const edge = Math.sqrt(Math.max(0, 1 - x * x / (rx * rx))) * rz, across = stroke > 0 ? smooth((.10 - x * (side === 'L' ? -1 : 1)) / .30) : 0, front = edge + (rz - edge) * across + .07 * route, weight = Math.max(normal, route);
+            const edge = Math.sqrt(Math.max(0, 1 - x * x / (rx * rx))) * rz, across = stroke > 0 ? smooth((.10 - x * (side === 'L' ? -1 : 1)) / .30) : 0, front = edge + (rz - edge) * across + .17 * route, weight = Math.max(normal, route);
             if (weight > 0)
                 hand.add(torsoForward.clone().scale(Math.max(0, front - z) * weight * (1 - world)));
-        }
-        // Leave room for the fingers as a free hand lowers past the skirt waistband.
-        // shortcut: fitted to this authored skirt; derive per-garment bounds if its silhouette changes.
-        if (constraints.armLengths && !stroke && !seat && !affection && world < .999 && (walk || constraints.restWeight)) {
-            const sign = side === 'L' ? -1 : 1, height = hand.y - p.pelvisCenter.y, clearance = .53 * smooth((.36 - height) / .16), outside = Vec3.dot(Vec3.sub(hand, p.pelvisCenter), torsoRight) * sign;
-            if (outside < clearance)
-                hand.add(torsoRight.clone().scale(sign * (clearance - outside) * (1 - world)));
         }
         if (world < .999) {
             const d = Vec3.sub(hand, shoulder), distance = d.len(), reach = arms.upperArm + arms.forearm - .003;
@@ -230,6 +223,13 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             const throat = Vec3.sub(Vec3.lerp(source.racketHandleTop, source.racketCenter, .20), source.racketGrip), stack = secondRacketHand(p.handR, Vec3.sub(source.racketHandleTop, source.racketGrip));
             p.handL.scale(Math.max(0, 1 - ready - backhand)).add(p.handR.clone().add(throat).scale(ready)).add(stack.scale(backhand));
         }
+        // Clear the final free-hand target after a fading racket support can pull it inward.
+        // shortcut: fitted to this authored skirt; derive per-garment bounds if its silhouette changes.
+        if (constraints.armLengths && !stroke && !seat && !affection && world < .999 && (walk || constraints.restWeight)) {
+            const hand = p[`hand${side}`], sign = side === 'L' ? -1 : 1, height = hand.y - p.pelvisCenter.y, clearance = .53 * smooth((.38 - height) / .16), outside = Vec3.dot(Vec3.sub(hand, p.pelvisCenter), torsoRight) * sign;
+            if (outside < clearance)
+                hand.add(torsoRight.clone().scale(sign * (clearance - outside) * (1 - world)));
+        }
         // The old compact/feline elbow target can pass through the shoulder/wrist
         // axis after retargeting. A body-relative human pole keeps elbows down and
         // outside the ribcage, with posterior loading rather than a reversed fold.
@@ -244,7 +244,7 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             if (stroke) {
                 const center = Vec3.lerp(p.shoulderL, p.shoulderR, .5), x = Vec3.dot(Vec3.sub(p[`hand${side}`], center), torsoRight) * (side === 'L' ? -1 : 1), across = smooth((.10 - x) / .30), low = smooth((shoulder.y - p[`hand${side}`].y - .08) / .16);
                 // Lower and open the elbow with a low cross-body grip to clear the chest.
-                const outside = shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.24 : .24)).add(new Vec3(0, -.28 - .27 * low, 0)).add(torsoForward.clone().scale(-.16)), front = shoulder.clone().add(torsoForward.clone().scale(.75)).add(torsoRight.clone().scale((side === 'L' ? -.22 : .22) * low)).add(new Vec3(0, -.42 * low, 0));
+                const outside = shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.24 : .24)).add(new Vec3(0, -.28 - .27 * low, 0)).add(torsoForward.clone().scale(-.16)), front = shoulder.clone().add(torsoForward.clone().scale(.85)).add(torsoRight.clone().scale((side === 'L' ? -.22 : .22) * low)).add(new Vec3(0, -.42 * low, 0));
                 mixed.add(Vec3.lerp(outside, front, across).scale(stroke));
             }
             pole = mixed;
