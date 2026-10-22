@@ -15,6 +15,21 @@ assert.equal(hash(bytes),meta.sha256);for(const [name,sha] of Object.entries(met
 for(const [name,sha] of Object.entries(meta.authoringScripts))assert.equal(hash(fs.readFileSync(new URL('../tools/'+name,import.meta.url))),sha,'baked asset must match its authoring scripts');
 for(const [name,sha] of Object.entries(meta.sourceHashes).filter(([name])=>name.startsWith('tools/')))assert.equal(hash(fs.readFileSync(new URL('../'+name,import.meta.url))),sha,'checked-in authoring source must match the bake');
 const asset=inspectCharacterAsset(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),[],meta);
+// Inspect the emitted jersey, including UV-split vertices: only collar, hem and two cuffs stay open.
+{
+ const jersey=asset.primitives.find(p=>p.materialSlot==='kit');assert(jersey.doubleSided,'thin jersey must render inside the collar and cuffs');
+ const g=jersey.geometry,edges=new Map(),surface=new Map(),boundary=new Map();
+ const connect=(graph,a,b)=>{if(!graph.has(a))graph.set(a,new Set());if(!graph.has(b))graph.set(b,new Set());graph.get(a).add(b);graph.get(b).add(a);};
+ for(let i=0;i<g.positions.length/3;i+=3){
+  if(![i,i+1,i+2].every(v=>g.uvs[v*2+1]>.5))continue;
+  const vertices=[i,i+1,i+2].map(v=>[...g.positions.slice(v*3,v*3+3)].join(','));
+  for(let j=0;j<3;j++){const a=vertices[j],b=vertices[(j+1)%3],edge=[a,b].sort().join(';');edges.set(edge,(edges.get(edge)??0)+1);connect(surface,a,b);}
+ }
+ for(const [edge,count] of edges){assert(count<=2,'jersey seam must remain manifold');if(count===1)connect(boundary,...edge.split(';'));}
+ const components=graph=>{const seen=new Set();let count=0;for(const key of graph.keys()){if(seen.has(key))continue;count++;const pending=[key];while(pending.length){const v=pending.pop();if(seen.has(v))continue;seen.add(v);pending.push(...graph.get(v));}}return count;};
+ assert.equal(components(surface),1,'torso and sleeves must form one continuous garment');assert.equal(components(boundary),4,'jersey must only open at the neck, hem and cuffs');assert([...boundary.values()].every(neighbors=>neighbors.size===2),'garment boundaries must close into loops');
+ console.log('Continuous jersey PASS: one surface, four closed boundary loops, manifold seams.');
+}
 assert.deepEqual(asset.primitives.map(p=>p.materialSlot),['skin','kit','skirt','shoes','eyes','hair']);const body=asset.primitives[0].geometry;for(const bone of [BONE.foreArmTwistL,BONE.foreArmTwistR])assert(body.boneIndices.filter((n,i)=>n===bone&&body.boneWeights[i]>.1).length>100,'authored forearm twist weights must reach the visible skin');assert(asset.primitives.reduce((n,p)=>n+p.geometry.positions.length/9,0)<40000);
 for(const p of asset.primitives){assert(p.geometry.uvs?.every(Number.isFinite));assert(p.albedo);if(['eyes','hair','brows','lashes'].includes(p.materialSlot))assert.equal(p.alphaCutoff,.35);if(['skin','eyes','hair','skirt'].includes(p.materialSlot)){assert.equal(p.geometry.morphs.length,5);assert(p.geometry.morphs.every(d=>d.length===p.geometry.positions.length&&d.every(Number.isFinite)));assert.equal(p.geometry.morphNormals.length,5);assert(p.geometry.morphNormals.every(d=>d.length===p.geometry.positions.length&&d.every(n=>Number.isFinite(n)&&Math.abs(n)<=2.01)));}}
 for(const slot of ['kit','skirt']){
@@ -105,7 +120,8 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
   openRadius+=radius(false);closedRadius+=radius(true);count++;
  }
  assert(count>20);openRadius/=count;closedRadius/=count;assert(closedRadius<openRadius*.75&&closedRadius<.065,'fingers must close around the handle');const wristDeflection=Math.acos(Math.max(-1,Math.min(1,Vec3.dot(Vec3.sub(gripPose.handR,gripPose.foreArmR).normalize(),gripPose.handDirectionR))));assert(wristDeflection<.8,'ready grip must not buckle the wrist');console.log(JSON.stringify({fingerSamples:count,openRadius,closedRadius,wristDeflection}));
- // Check the fitted torso; the sleeve strip intentionally encloses each arm.
+ // Check torso surfaces by body weights; arm caps share the continuous jersey mapping.
+ const garmentArmBones=[BONE.upperArmL,BONE.foreArmL,BONE.foreArmTwistL,BONE.handL,BONE.upperArmR,BONE.foreArmR,BONE.foreArmTwistR,BONE.handR];
  let readyArmChecks=0,strokeArmChecks=0;
  for(const hz of [30,60,120])for(const state of ['ready','shuffle','swingForehand','swingBackhand','serve']){
   const actor=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{}),shot=['swingForehand','swingBackhand','serve'].includes(state);actor.racketStowed=false;actor.matchCompetitor=true;
@@ -118,7 +134,7 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
    for(let v=0;v<g.positions.length/3;v++){const p=new Vec3(...g.positions.slice(v*3,v*3+3)),out=new Vec3();for(let j=0;j<4;j++){const w=g.boneWeights[v*4+j];if(!w)continue;const q=transformPoint(kit.boneMatrices.slice(g.boneIndices[v*4+j]*16,g.boneIndices[v*4+j]*16+16),p);out.add(new Vec3(q.x,q.y,q.z).scale(w));}points.push(out);}
    for(const side of ['L','R'])for(const [start,end] of [['upperArm','foreArm'],['foreArm','hand']])for(const t of [.4,.6,.8]){
     const point=Vec3.lerp(pose[start+side],pose[end+side],t),hits=[];
-    for(let i=0;i<points.length;i+=3){if([i,i+1,i+2].every(v=>g.uvs[v*2]<.05))continue;const[a,b,c]=points.slice(i,i+3),det=(b.y-c.y)*(a.x-c.x)+(c.x-b.x)*(a.y-c.y);if(Math.abs(det)<1e-12)continue;const u=((b.y-c.y)*(point.x-c.x)+(c.x-b.x)*(point.y-c.y))/det,v=((c.y-a.y)*(point.x-c.x)+(a.x-c.x)*(point.y-c.y))/det,w=1-u-v;if(u>=0&&v>=0&&w>=0)hits.push(u*a.z+v*b.z+w*c.z);}
+    for(let i=0;i<points.length;i+=3){if([i,i+1,i+2].some(v=>[0,1,2,3].reduce((sum,j)=>sum+(garmentArmBones.includes(g.boneIndices[v*4+j])?g.boneWeights[v*4+j]:0),0)>.05))continue;const[a,b,c]=points.slice(i,i+3),det=(b.y-c.y)*(a.x-c.x)+(c.x-b.x)*(a.y-c.y);if(Math.abs(det)<1e-12)continue;const u=((b.y-c.y)*(point.x-c.x)+(c.x-b.x)*(point.y-c.y))/det,v=((c.y-a.y)*(point.x-c.x)+(a.x-c.x)*(point.y-c.y))/det,w=1-u-v;if(u>=0&&v>=0&&w>=0)hits.push(u*a.z+v*b.z+w*c.z);}
     assert(!(hits.length>1&&point.z>Math.min(...hits)+.015&&point.z<Math.max(...hits)-.015),`${state}/${hz}/${frame}/${side}: arm passes through the fitted top`);if(shot)strokeArmChecks++;else readyArmChecks++;
    }
   }

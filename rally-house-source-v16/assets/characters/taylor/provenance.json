@@ -2,7 +2,7 @@
   "author": "MakeHuman Community; MargaretToigo; Bobby_03; punkduck; Microsoft Rocketbox; Rally House fit and runtime adaptation",
   "source": "https://github.com/makehumancommunity/makehuman/tree/a8bc2d54ff0ac92e78ff71431b1023eda42bf482",
   "license": "CC0-1.0 AND CC-BY-4.0 AND MIT",
-  "sha256": "020f15687fe9fdec4cba654ad527a4457edccc0f358231b61c95ede7b35cb6b9",
+  "sha256": "4dd7d6c72a92b912b57e7549ad92924dd8b1019aa4ae52f09e336ba0220734e7",
   "boneMap": {
     "pelvis": "pelvis",
     "spine": "spine",
@@ -175,8 +175,8 @@
     },
     {
       "name": "kit",
-      "triangles": 5516,
-      "vertices": 3183,
+      "triangles": 4698,
+      "vertices": 2610,
       "material": "performanceKnit"
     },
     {
@@ -206,13 +206,13 @@
   ],
   "textures": {
     "cast-skin.webp": "0c11a14f25710b8d215d01bd967386a34c853ba0586f5b1ad03f0aef22314f9f",
-    "coach-kit.webp": "151d3084d6e1dd07a020e33be8c02d15b9c235897088ddcef977f4978c5b8fa9",
+    "coach-kit.webp": "633c36742cda14d28f91fbe26255f246ed566afbe558875317f40e02783238e7",
     "coach-skirt.webp": "45ecbb67c6471328682a351e587439c709310b8fcba72e875120424e4cdf6246",
     "hair.webp": "a549fa4b5f121e176e18a2d8fde0f6750b46ca778f93daec700540609ef16df7",
-    "kit.webp": "a7d07d4d6c6c8f99259a823ba831a95d547571d706e417bdf80a1965f128a9f5",
-    "mika-kit.webp": "17b79579712551f46856e77bfe50d9bc9d0420c848a0a5291ac12c58fbc7bea8",
+    "kit.webp": "81e0a7b1b29ea03ff544656b8e20b18d66f5865f38ac69911f6019b9bf7b6b2b",
+    "mika-kit.webp": "fb8ccef5e13e18a7dd762c56a9b305fb7ddcceee8a6ba3519a5cbd2a674cd770",
     "mika-skirt.webp": "67bf2e24d1db65c86be0920aa34f3a7b792ef3928a48e0c777d5a27ce3f0458b",
-    "nia-kit.webp": "d0a1ce30b75254f82ce29580affc82d46ead50d5815d59fbd99c26cbeb62d51e",
+    "nia-kit.webp": "aed485db35569c9866148a8f9560eb185cc16af797ddf438b9ea45fd41bd8aea",
     "nia-skirt.webp": "8e2b936d61510e0a1195e37a580be86bfde058c968a2925a1677e1ae6924be66",
     "shoes.webp": "3af53b14cb45d2e1a5f09cab63d55b534ee8f7e0f2cb54b63c9f9c8e7513d018",
     "skin.webp": "ec769c1543ecb476613019d221950cd0ffb439d5d85679167b6b2b150a9418a4",
@@ -287,8 +287,8 @@
     "https://static.makehumancommunity.org/assets/assetpacks/shirts03.html"
   ],
   "authoringScripts": {
-    "bake-authored-athlete.py": "dd7807f5301d6d838c6f8168129c8402e778f2fa2a4add1c26bb1576bb00a327",
-    "fit-athlete-kit.py": "e6d0c77cbb064aff6ddd2d9581e083ab9414418228fa81cf0c98bf9409470b2c",
+    "bake-authored-athlete.py": "cb0f9e18616d339b97133d729d18b20f7a0f344aa9cf4510a702dfd281dec4bd",
+    "fit-athlete-kit.py": "e926e13f6b0fa0221bd050b3fc7e6a49af7f97cbad0a2a77cf61e00885d7eb1b",
     "fit-athlete-head.py": "4cc1fcdec5710d4b11e052b39f08bb8443cc715825518a2c785f009864b85c2f"
   }
 }

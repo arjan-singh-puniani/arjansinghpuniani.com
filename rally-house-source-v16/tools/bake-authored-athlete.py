@@ -203,31 +203,42 @@ def fitted(name,folder,stem,texture,material='matte',force=None,clip=None):
  parts.append((name,p,u,f,pw,texture,material))
 fitted('kit','clothes/female_sportsuit01','female_sportsuit01','kit.webp','performanceKnit',clip=-.55)
 fitted('top','clothes/punkduck_high_neck_crop_top','punkduck_high_neck_crop_top','kit.webp','performanceKnit',clip=2.5)
-# Sleeves reuse the fitted adult arm topology and its existing twist weights.
+# One body-derived jersey joins torso and sleeves without overlapping armhole surfaces.
 body_faces=[(g,f) for g,f in faces if g=='body'];normals=np.zeros_like(shape)
 for _,face in body_faces:
  ids=[v[0] for v in face];normals[ids]+=np.cross(shape[ids[1]]-shape[ids[0]],shape[ids[2]]-shape[ids[0]])
 normals/=np.maximum(np.linalg.norm(normals,axis=1)[:,None],1e-12)
+arm_bones=[names.index(n+side) for side in ['L','R'] for n in ['upperArm','foreArm','foreArmTwist','hand']]
+arm=W[:,arm_bones].sum(1);jp=shape+normals*.025
+jp,ju,jf,jw=clip_faces(jp,uv,body_faces,W,np.where(arm>.5,1.0,jp[:,1]-2.5))
+jp,ju,jf,jw=clip_faces(jp,ju,jf,jw,5.15-jp[:,1])
 for side in ['L','R']:
- arm=W[:,[names.index(n+side) for n in ['upperArm','foreArm','foreArmTwist']]].sum(1)
- sf=[(g,f) for g,f in body_faces if max(arm[v[0]] for v in f)>.02]
- sp,su,sf,sw=clip_faces(shape+normals*.025,uv,sf,W,arm-.02)
  axis=bind['wrist'+side]-bind['foreArm'+side];axis/=np.linalg.norm(axis)
- sp,su,sf,sw=clip_faces(sp,su,sf,sw,-(metric(sp)-bind['wrist'+side])@axis-.005)
- assert sf and np.isfinite(sp).all()
- parts.append(('sleeve'+side,sp,su,sf,sw,'kit.webp','performanceKnit'))
+ jp,ju,jf,jw=clip_faces(jp,ju,jf,jw,-(metric(jp)-bind['wrist'+side])@axis-.005)
+top_index=next(i for i,p in enumerate(parts) if p[0]=='top');top=parts[top_index];blend=1-np.clip((jw[:,arm_bones].sum(1)-.02)/.33,0,1);blend=.9*blend*blend*(3-2*blend)
+import subprocess
+with tempfile.TemporaryDirectory(prefix='rally-jersey-') as directory:
+ fitting=Path(directory)/'jersey.json';fitting.write_text(json.dumps({'garment':'jersey','body':shape[:13380].tolist(),'faces':[[v[0] for v in face] for _,face in body_faces],'kit':jp.tolist(),'weights':W[:13380].tolist(),'reference':{'positions':top[1].tolist(),'faces':[[v[0] for v in face] for _,face in top[3]]},'blend':blend.tolist()}))
+ subprocess.run(['/Applications/Blender.app/Contents/MacOS/Blender','--background','--factory-startup','--python',str(Path(__file__).with_name('fit-athlete-kit.py')),'--',str(fitting)],check=True,stdout=subprocess.DEVNULL)
+ jp=np.array(json.loads(fitting.with_suffix('.fitted.json').read_text())['positions'])
+ju=np.column_stack([np.clip(.5+jp[:,0]/4,0,1),.02+.46*np.clip((jp[:,1]-2.5)/(5.15-2.5),0,1)])
+collar=np.clip((4.95-jp[:,1])/.15,0,1);collar=collar*collar*(3-2*collar)
+for side in ['L','R']:
+ arm_weight=np.clip((jw[:,[names.index(n+side) for n in ['upperArm','foreArm','foreArmTwist','hand']]].sum(1)-.02)/.33,0,1);arm_weight=arm_weight*arm_weight*(3-2*arm_weight)*collar
+ axis=bind['wrist'+side]-bind['foreArm'+side];axis/=np.linalg.norm(axis);distance=-(metric(jp)-bind['wrist'+side])@axis
+ fade=np.clip((distance-.08)/.08,0,1);fade=fade*fade*(3-2*fade)
+ sleeve_uv=np.column_stack([np.full(len(jp),.02),.01+.08*np.clip(distance/.07,0,1)+.31*fade])
+ # Blend through the same blue atlas row at the shoulder, retaining the physical cuff strip.
+ ju=ju*(1-arm_weight[:,None])+sleeve_uv*arm_weight[:,None]
+joined=[(g,[(v,v) for v,_ in face]) for g,face in jf];parts[top_index]=('top',jp,ju,joined,jw,'kit.webp','performanceKnit')
 fitted('skirt','clothes/toigo_skirt_with_lace_ruffle','toigo_skirt_with_lace_ruffle','skirt.webp','performanceKnit')
 fitted('shoes','clothes/shoes05','shoes05','shoes.webp','performanceKnit')
 fitted('eyes','eyes/high-poly','high-poly','eyes.webp','iris',force='head')
 # One draw retains the shorts, fitted crop and sleeves; atlas swatches cannot bleed.
 ki=next(i for i,p in enumerate(parts) if p[0]=='kit');kit=parts[ki];kp,ku,kf,kw=kit[1:5];ku=ku.copy();ku[:,1]=.5+ku[:,1]*.5
-for top in [p for p in parts if p[0] in ('top','sleeveL','sleeveR')]:
- tp,_,tf,tw=top[1:5]
- if top[0]=='top':tu=np.column_stack([np.clip(.5+tp[:,0]/4,0,1),.02+.46*(tp[:,1]-2.5)/(5.15-2.5)])
- else:
-  side=top[0][-1];axis=bind['wrist'+side]-bind['foreArm'+side];axis/=np.linalg.norm(axis);distance=-(metric(tp)-bind['wrist'+side])@axis
-  tu=np.column_stack([np.full(len(tp),.02),.01+.08*np.clip(distance/.07,0,1)])
- ku=np.vstack([ku,tu]);kf=[*kf,*[(g,[(v+len(kp),v+len(ku)-len(tu)) for v,_ in face]) for g,face in tf]];kp=np.vstack([kp,tp]);kw=np.vstack([kw,tw]);parts.remove(top)
+for top in [p for p in parts if p[0]=='top']:
+ tp,tu,tf,tw=top[1:5]
+ ku=np.vstack([ku,tu]);kf=[*kf,*[(g,[(v+len(kp),ui+len(ku)-len(tu)) for v,ui in face]) for g,face in tf]];kp=np.vstack([kp,tp]);kw=np.vstack([kw,tw]);parts.remove(top)
 parts[ki]=('kit',kp,ku,kf,kw,'kit.webp','performanceKnit')
 # Align the authored head to the original eye landmarks; the live anatomical rig stays unchanged.
 alignment=next(p for p in parts if p[0]=='eyes');parts.remove(alignment);eye_points=metric(alignment[1]);target_eyes=[]
@@ -259,7 +270,7 @@ for name,p in textures.items():
  im=Image.open(p);im.thumbnail((2048,2048) if name=='skin.webp' else (1024,1024));im.save(OUT/name,'WEBP',quality=91,method=6)
 atlas=Image.new('RGB',(1024,2048),(40,67,172));atlas.paste(Image.open(textures['kit.webp']).convert('RGB').resize((1024,1024)),(0,0))
 y,x=np.mgrid[1024:2048,0:1024];height=2.5+((1-y/2048)-.02)/.46*(5.15-2.5);width=np.abs((x/1024-.5)*4)
-cloth=np.full((1024,1024,3),(40,67,172),dtype=np.uint8);cloth[(width>.95)&(height<4.2)]=(18,35,68);cloth[height>4.95]=(210,231,89)
+cloth=np.full((1024,1024,3),(40,67,172),dtype=np.uint8);cloth[(width>.95)&(height<3.6)]=(18,35,68);cloth[height>4.95]=(210,231,89)
 # Sleeve strip maps physical wrist distance, giving both cuffs a continuous edge.
 cloth[:,0:42]=(40,67,172);cloth[(y>1971)&(x<42)]=(210,231,89)
 atlas.paste(Image.fromarray(cloth),(0,1024));atlas.save(OUT/'kit.webp','WEBP',quality=91,method=6)
@@ -272,7 +283,7 @@ Image.new('RGB',(4,4),(210,231,89)).save(OUT/'skirt.webp','WEBP',lossless=True)
 cast_atlas=skin_atlas.copy();cast_atlas.paste(Image.open(Path(__file__).with_name('athlete-textures')/'cast-face-stylized-v1.png').convert('RGB').resize((2048,1024)),(0,1024));cast_atlas.save(OUT/'cast-skin.webp','WEBP',quality=92,method=6)
 for identity,main,side,trim,bottom in [('coach','#4d8f79','#24584b','#fff0d7','#f0ecdb'),('mika','#d77d91','#8d455f','#ffe0bc','#fff0df'),('nia','#9b5a76','#60364f','#ffd9d3','#e6b8bb')]:
  color=lambda value:tuple(bytes.fromhex(value.lstrip('#')))
- dyed=np.full_like(cloth,color(main));dyed[(width>.95)&(height<4.2)]=color(side);dyed[height>4.95]=color(trim);dyed[:,0:42]=color(main);dyed[(y>1971)&(x<42)]=color(trim)
+ dyed=np.full_like(cloth,color(main));dyed[(width>.95)&(height<3.6)]=color(side);dyed[height>4.95]=color(trim);dyed[:,0:42]=color(main);dyed[(y>1971)&(x<42)]=color(trim)
  kit_atlas=atlas.copy();kit_atlas.paste(Image.fromarray(dyed),(0,1024));kit_atlas.save(OUT/(identity+'-kit.webp'),'WEBP',quality=91,method=6)
  Image.new('RGB',(4,4),color(bottom)).save(OUT/(identity+'-skirt.webp'),'WEBP',lossless=True)
 
@@ -304,7 +315,7 @@ for name,p,u,f,w,tex,mat in parts:
     bi.append(order);bw.append(weights)
    indices.append(mapping[key])
   for i in range(1,len(indices)-1):tri.append([indices[0],indices[i+1],indices[i]])
- ti=len(doc['textures']);doc['images'].append({'uri':tex});doc['textures'].append({'source':ti});doc['materials'].append({'name':name,'pbrMetallicRoughness':{'baseColorTexture':{'index':ti},'metallicFactor':0,'roughnessFactor':.75},'doubleSided':name in ('hair','brows','lashes','eyes','skirt'),'alphaMode':'MASK' if name in ('hair','brows','lashes','eyes') else 'OPAQUE','alphaCutoff':.35})
+ ti=len(doc['textures']);doc['images'].append({'uri':tex});doc['textures'].append({'source':ti});doc['materials'].append({'name':name,'pbrMetallicRoughness':{'baseColorTexture':{'index':ti},'metallicFactor':0,'roughnessFactor':.75},'doubleSided':name in ('hair','brows','lashes','eyes','skirt','kit'),'alphaMode':'MASK' if name in ('hair','brows','lashes','eyes') else 'OPAQUE','alphaCutoff':.35})
  attrs={'POSITION':accessor(pos,'VEC3'),'NORMAL':accessor(norm,'VEC3'),'TEXCOORD_0':accessor(uvs,'VEC2'),'JOINTS_0':accessor(bi,'VEC4',5123),'WEIGHTS_0':accessor(bw,'VEC4')}
  primitive={'attributes':attrs,'indices':accessor(np.array(tri).flatten(),'SCALAR',5125),'material':ti};extras={}
  if name in morph_data:
