@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
+    "terms": "https://open.fda.gov/terms/",
+    "license": "https://open.fda.gov/license/",
+    "last_updated": "2026-10-05",
+    "results": {
+      "skip": 0,
+      "limit": 1,
+      "total": 1
+    }
+  },
+  "results": [
+    {
+      "third_party_flag": "N",
+      "life_sustain_support_flag": "N",
+      "gmp_exempt_flag": "N",
+      "summary_malfunction_reporting": "Ineligible",
+      "product_code": "PFN",
+      "openfda": {
+        "pma_number": [
+          "P100026"
+        ],
+        "registration_number": [
+          "3009183442",
+          "1721676",
+          "3004426659"
+        ],
+        "fei_number": [
+          "3009183442",
+          "1721676",
+          "3004426659"
+        ]
+      },
+      "review_panel": "NE",
+      "medical_specialty": "",
+      "device_name": "Implanted Brain Stimulator For Epilepsy",
+      "review_code": "",
+      "unclassified_reason": "",
+      "medical_specialty_description": "Unknown",
+      "device_class": "3",
+      "definition": "For the treatment of epilepsy.",
+      "regulation_number": "",
+      "implant_flag": "Y",
+      "submission_type_id": "2"
+    }
+  ]
+}

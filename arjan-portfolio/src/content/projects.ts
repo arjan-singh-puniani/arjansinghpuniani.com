@@ -17,7 +17,7 @@ export const projects: Project[] = [
       "Recorded local verification on October 19 passed 29 domain/data checks, 24 ingestion checks, 16 desktop/mobile-emulated browser checks, TypeScript, and the production build. These checks do not measure independent scientific accuracy."
     ],
     limitations: [
-      "Working research prototype; the interactive atlas remains a separate local application. This case study documents the tested snapshot rather than a publicly hosted or live data service.",
+      "Public research preview at /atlas. The interactive application serves a bounded cached snapshot, not a live data service or a clinically validated reference.",
       "The 721 automatically indexed anatomical relationships are Provisional source-text contexts, not verified device placements. No independently adjudicated anatomical precision estimate is available.",
       "An FDA application is not necessarily a distinct device family. Historical clearance, approval, and De Novo decisions do not establish current labeling, clinical effectiveness, or FDA endorsement of this project.",
       "Coverage is incomplete, including subsequent supplements and safety notices. The male anatomical reference omits some structures; female-only contexts remain text-only. This is not a clinical decision tool."
@@ -28,8 +28,9 @@ export const projects: Project[] = [
       alt: "Actual BODY//ATLAS prototype showing regional intervention records on a human anatomical reference with an evidence panel",
       caption: "Actual local prototype, October 19, 2026. Dots represent indexed records, not implant sites. Anatomy adapted from Kristen Browne and Heidi Schlehlein, Human Reference Atlas united male v1.5 (2023), CC BY 4.0; display color, transparency, and overlays modified."
     }],
-    links: [{ label: "Read the recorded scope and validation", href: "/documents/body-atlas-validation.json" }],
+    links: [{ label: "Launch interactive atlas", href: "/atlas" }, { label: "Read the recorded scope and validation", href: "/documents/body-atlas-validation.json" }],
     evidence: [
+      { label: "Application source, mapping rules, tests and reproducible export", url: "https://github.com/arjan-singh-puniani/arjansinghpuniani.com/tree/main/body-atlas-source", verified: true },
       { label: "Recorded dataset scope and local verification — October 19, 2026", url: "/documents/body-atlas-validation.json", verified: true },
       { label: "FDA openFDA device data and limitations", url: "https://open.fda.gov/apis/device/", verified: true },
       { label: "Original Activa FDA evidence used in the neurotechnology workflow", url: "https://www.accessdata.fda.gov/cdrh_docs/pdf/P960009B.pdf", verified: true },

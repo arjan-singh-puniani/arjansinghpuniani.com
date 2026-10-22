@@ -87,10 +87,18 @@ The homepage intentionally uses the exact full name in the primary heading and t
 
 ## BODY//ATLAS portfolio integration
 
-`/work/body-atlas` uses the shared project case-study route and appears in the Work filters and generated sitemap. The homepage features an optimized screenshot linked to that case study. It imports no atlas code, 3D assets, database, or new dependencies. The interactive atlas remains separately hosted/developed; no localhost or unverified deployment URL is exposed to visitors.
+`/work/body-atlas` uses the shared project case-study route and appears in the Work filters and generated sitemap. The homepage features an optimized screenshot linked to that case study. It imports no atlas code, 3D assets, database, or new dependencies. The self-contained interactive atlas is served at `/atlas` with its own assets. Its link uses full-page navigation so it does not mix its runtime with the portfolio. No localhost or unverified deployment URL is exposed to visitors.
 
 The screenshot is an actual October 19, 2026 local capture, converted to WebP. Its HRA geometry attribution and CC BY 4.0 adaptations are recorded in the project caption and source links. `/documents/body-atlas-validation.json` records the authentic snapshot scope and historical local checks; provisional anatomical context is not presented as validated placement.
 
-Verify the portfolio with `npm run typecheck`, `npm test`, `npm run build`, then run `node tests/body-atlas.browser.mjs http://127.0.0.1:3210` against a local production server. No production hosting, DNS, atlas ingestion, or existing interactive projects need to change for this integration.
+Verify the portfolio with `npm run typecheck`, `npm test`, `npm run build`, then run `node tests/body-atlas.browser.mjs http://127.0.0.1:3210` against a local production server. The `/atlas` rewrite serves its generated static entry point. No new hosting account, DNS, atlas ingestion, or existing interactive project changes are needed.
 
 Integration verification: 95 portfolio tests, TypeScript and the production build passed. Desktop and mobile-emulated Chrome checks passed the homepage-to-case-study flow, Work filtering, canonical metadata, public scope record and sitemap; 12 existing routes returned HTTP 200. The case study had zero reported automated WCAG A/AA violations in those two inspected states, no page errors or horizontal overflow, and no atlas geometry requests. Physical-device and universal external-source availability checks remain outside this integration.
+
+### Direct atlas access
+
+The homepage launch link and case-study button navigate directly to `/atlas`, which rewrites to the exported atlas entry point. Native links provide a full-page transition between the independent application runtimes. The app performs search/retrieval and Markdown generation locally, serves content-addressed cached evidence under `/atlas/sources/`, and loads geometry only after the atlas is opened.
+
+Source, tests, ingestion code and attribution are maintained in `../body-atlas-source`. Geometry and original responses are shared through relative symlinks to the hosted assets. To rebuild the snapshot: `cd ../body-atlas-source && npm ci && node scripts/export-static.mjs ../arjan-portfolio/public/atlas`. The exporter validates source checksums and refuses to overwrite an unrecognized destination. It copies only application code, explicit public snapshot JSON and manifest-listed original responses; private data and ingestion databases are excluded.
+
+The direct-launch regression also opens the actual atlas on desktop and mobile emulation, waits for organs/brain geometry, selects Activa through its anatomical region, verifies a cached FDA response against its SHA-256, downloads a cited Markdown brief, and exercises evidence retrieval. Both case-study and atlas states pass the inspected automated accessibility checks.

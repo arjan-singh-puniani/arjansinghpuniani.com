@@ -1,0 +1,29 @@
+{
+  "scope": "Fresh temporary checkout on the same macOS host, using existing npm cache",
+  "commands": [
+    {
+      "command": "npm ci --offline --audit=false",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0
+    },
+    {
+      "command": "python3 ingestion/pipeline.py restore",
+      "exitCode": 0
+    }
+  ],
+  "node": "v22.23.2",
+  "python": "3.10.7",
+  "buildId": "jWFmSsp6bRUm5DykfA-fF",
+  "lockfileMatches": true,
+  "restoredRecords": 2490,
+  "restoredFailedJobs": 3,
+  "networkRequiredForSnapshotRestore": false,
+  "limits": [
+    "Same host, OS, runtimes and existing npm cache; not a clean OS or container.",
+    "Final application, ingestion and dataset source was recopied into the isolated fresh-install checkout; its build output/database were removed before final rebuild/offline restore. Documentation/checkpoint updates do not affect runtime behavior."
+  ],
+  "measuredAt": "2026-10-19"
+}

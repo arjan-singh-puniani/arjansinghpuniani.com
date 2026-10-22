@@ -1,10 +1,11 @@
 import assert from 'node:assert/strict';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { chromium } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import {createHash} from 'node:crypto';
 
 const base=process.argv[2] || 'http://127.0.0.1:3210';
-assert.ok(/^http:\/\/(127\.0\.0\.1|localhost):\d+$/.test(base),'Use an explicit loopback preview URL');
+assert.ok(/^http:\/\/(127\.0\.0\.1|localhost):\d+$/.test(base)||base==='https://arjansinghpuniani.com','Use the portfolio or a loopback preview URL');
 const out='test-results/body-atlas';
 await mkdir(out,{recursive:true});
 const browser=await chromium.launch({channel:'chrome'});
@@ -21,7 +22,8 @@ try {
     await card.scrollIntoViewIfNeeded();
     assert.equal(await card.getByRole('img').getAttribute('alt'),'BODY//ATLAS prototype: anatomical intervention map and original-source evidence panel');
     await card.screenshot({path:`${out}/home-${name}.png`});
-    await card.getByRole('link',{name:'Explore BODY//ATLAS'}).click();
+    assert.equal(await card.getByRole('link',{name:'Launch BODY//ATLAS'}).getAttribute('href'),'/atlas');
+    await card.getByRole('link',{name:'BODY//ATLAS',exact:true}).click();
     await page.waitForURL('**/work/body-atlas');
     assert.equal(await page.getByRole('heading',{level:1}).innerText(),'BODY//ATLAS');
     assert.match(await page.locator('main').innerText(),/Provisional source-text contexts/);
@@ -39,7 +41,41 @@ try {
     await page.waitForURL('**/work/body-atlas');
     assert.deepEqual(geometry,[],'Portfolio pages must not download atlas geometry');
     assert.deepEqual(errors,[]);
-    results.push({viewport:name,homeCard:true,caseStudy:true,workFilter:true,sources:true,canonical:true,horizontalOverflow:false,axeViolations:0,atlasGeometryRequests:0,pageErrors:errors});
+    await page.locator('.page-hero').getByRole('link',{name:'Launch interactive atlas'}).click();
+    await page.waitForURL('**/atlas');
+    await page.waitForSelector('[data-organs-status="loaded"]',{timeout:90000});
+    assert.match(await page.getByTestId('scene-status').innerText(),/Reference loaded/);
+    assert.equal(await page.getByText('Research preview',{exact:true}).isVisible(),true);
+    await page.getByRole('button',{name:'Focus brain'}).click();
+    await page.locator('.brain-shortcuts').getByRole('button',{name:/Thalamus/}).click();
+    await page.getByRole('button',{name:'Inspect Activa Tremor Control System'}).click();
+    const panel=page.getByRole('complementary',{name:'Interventions and evidence'});
+    assert.equal(await panel.getByText('Model 7424 pulse generator',{exact:true}).isVisible(),true);
+    assert.match(await panel.getByRole('link',{name:'FDA P960009',exact:true}).getAttribute('href'),/P960009/);
+    await page.getByRole('button',{name:'Brief',exact:true}).click();
+    const download=page.waitForEvent('download');
+    await page.getByRole('link',{name:'Export Markdown',exact:true}).click();
+    const file=await download;assert.equal(file.suggestedFilename(),'body-atlas-brief.md');
+    const markdown=await readFile(await file.path(),'utf8');
+    assert.match(markdown,/P960009/);assert.match(markdown,/Physical implantation/);assert.match(markdown,/SHA-256/);
+    await page.getByRole('button',{name:'Close dialog'}).click();
+    await page.getByRole('tab',{name:'Sources',exact:true}).click();
+    await panel.getByText('Provenance and cached source',{exact:true}).first().click();
+    const href=await panel.getByRole('link',{name:'Open authentic cached response'}).first().getAttribute('href');
+    assert.match(href,/^\/atlas\/sources\/[a-f0-9]{64}\.json$/);
+    const original=await page.request.get(base+href);assert.equal(original.status(),200);
+    assert.equal(createHash('sha256').update(await original.body()).digest('hex'),href.split('/').pop().replace('.json',''));
+    await page.getByRole('button',{name:'Questions',exact:true}).click();
+    await page.getByRole('textbox',{name:'Search the indexed evidence'}).fill('Which authorized devices interface with the vagus nerve?');
+    await page.getByRole('button',{name:'Search',exact:true}).click();
+    assert.match(await page.getByRole('dialog').getByRole('status').innerText(),/VNS/);
+    await page.getByRole('button',{name:'Close dialog'}).click();
+    const atlasAccessibility=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();assert.deepEqual(atlasAccessibility.violations,[]);
+    await page.screenshot({path:`${out}/atlas-${name}.png`});
+    assert.ok(geometry.some(url=>url.includes('/atlas/anatomy/body.glb')));
+    assert.ok(geometry.every(url=>url.includes('/atlas/anatomy/')));
+    assert.deepEqual(errors,[]);
+    results.push({viewport:name,homeCard:true,caseStudy:true,workFilter:true,sources:true,canonical:true,horizontalOverflow:false,axeViolations:0,atlasLoaded:true,originalSourceHashVerified:true,briefDownload:true,retrieval:true,pageErrors:errors});
     await context.close();
   }
   const context=await browser.newContext();
@@ -48,6 +84,6 @@ try {
   }
   const sitemap=await context.request.get(base+'/sitemap.xml');assert.match(await sitemap.text(),/https:\/\/arjansinghpuniani.com\/work\/body-atlas/);
   await context.close();
-  await writeFile(`${out}/results.json`,JSON.stringify({results,existingRoutesChecked:12,sitemap:true,environment:'Installed Chrome; mobile is viewport/touch emulation, not a physical device.'},null,2)+'\n');
+  await writeFile(`${out}/results.json`,JSON.stringify({site:base,results,existingRoutesChecked:12,sitemap:true,environment:'Installed Chrome; mobile is viewport/touch emulation, not a physical device.'},null,2)+'\n');
   console.log(JSON.stringify({results,existingRoutesChecked:12,sitemap:true},null,2));
 } finally { await browser.close(); }
