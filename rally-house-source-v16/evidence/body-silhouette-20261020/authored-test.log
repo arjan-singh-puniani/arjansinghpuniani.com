@@ -1,0 +1,13 @@
+{"maxRestTorsoError":9.297784231421247e-8,"registeredNeck":{"x":1.7306813390675477e-17,"y":2.0239413500000003,"z":-0.0022391999999999967}}
+{"shoulderRatio":1.0010933780126858}
+{"maxAuthoredContactError":1.5700924586837752e-16}
+{"assetTriangles":25996,"samples":42,"maxGripGap":2.2804675235325478e-7,"minSole":0.0014172713263666328,"minForearmVolume":0.08552412092210611}
+{"fingerSamples":2378,"openRadius":0.11412941587545211,"closedRadius":0.03560113037542368,"wristDeflection":0.6587269232261043}
+{"minFaceClearance":3.599410672664512}
+{"skirtHem":1.1139721870422363,"shortsHem":1.1854853630065918}
+{"maxSeatedGazeTranslation":0.006524167248953288}
+{"maxDrapeStep":0.12546464347596925,"seatedReplay":true}
+{"maxBlink":1,"maxBlinkStep":0.12439814814813799}
+{"gazeLead":0.27393872222439875,"gazeReverse":-0.3,"replayedGaze":-0.01303063888780065}
+{"transitionChecks":315,"zeroTimeJump":0,"maxHandRelativeStep":0.02656843856854058}
+Authored athlete loader, actual Character meshes, shared replay palette and facial interpolation PASS.

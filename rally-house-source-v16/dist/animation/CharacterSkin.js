@@ -1,6 +1,6 @@
-import { Vec3, scaling, multiply, invertRigid, rigidFrame } from '../rendering/Math3D.js';
-export const BONE = { pelvis: 0, spine: 1, chest: 2, neck: 3, head: 4, upperArmL: 5, foreArmL: 6, handL: 7, upperArmR: 8, foreArmR: 9, handR: 10, thighL: 11, shinL: 12, thighR: 13, shinR: 14 };
-export const BONE_COUNT = 15;
+import { Vec3, scaling, multiply, invertRigid, rigidFrame, transformPoint, interpolateRigidFrame } from '../rendering/Math3D.js';
+export const BONE = { pelvis: 0, spine: 1, chest: 2, neck: 3, head: 4, upperArmL: 5, foreArmL: 6, handL: 7, upperArmR: 8, foreArmR: 9, handR: 10, thighL: 11, shinL: 12, thighR: 13, shinR: 14, footL: 15, footR: 16, foreArmTwistL: 17, foreArmTwistR: 18 };
+export const BONE_COUNT = 19;
 /** The mesh and continuous replay use the same landmark-to-skin mapping. */
 export function rigFromPose(p, root, yaw, relax = 0) {
     const local = (v) => { const dx = v.x - root.x, dz = v.z - root.z, s = Math.sin(yaw), c = Math.cos(yaw); return new Vec3(c * dx - s * dz, v.y, s * dx + c * dz); };
@@ -19,23 +19,64 @@ const defs = [
     { joint: 'pelvis', child: 'spine' }, { joint: 'spine', child: 'chest' }, { joint: 'chest', child: 'neck' }, { joint: 'neck', child: 'head' }, { joint: 'head', child: 'neck' },
     { joint: 'upperArmL', child: 'foreArmL' }, { joint: 'foreArmL', child: 'handL' }, { joint: 'handL', child: 'foreArmL' },
     { joint: 'upperArmR', child: 'foreArmR' }, { joint: 'foreArmR', child: 'handR' }, { joint: 'handR', child: 'foreArmR' },
-    { joint: 'thighL', child: 'shinL' }, { joint: 'shinL', child: 'footL' }, { joint: 'thighR', child: 'shinR' }, { joint: 'shinR', child: 'footR' }
+    { joint: 'thighL', child: 'shinL' }, { joint: 'shinL', child: 'footL' }, { joint: 'thighR', child: 'shinR' }, { joint: 'shinR', child: 'footR' },
+    { joint: 'footL', child: 'footL' }, { joint: 'footR', child: 'footR' },
+    { joint: 'foreArmTwistL', child: 'handL' }, { joint: 'foreArmTwistR', child: 'handR' }
 ];
+const jointPoint = (p, j) => j === 'foreArmTwistL' ? p.foreArmTwistL ?? Vec3.lerp(p.foreArmL, p.wristL ?? p.handL, .5) : j === 'foreArmTwistR' ? p.foreArmTwistR ?? Vec3.lerp(p.foreArmR, p.wristR ?? p.handR, .5) : p[j];
+const endpoint = (p, d) => (d.joint === 'foreArmL' || d.joint === 'foreArmTwistL') && p.wristL ? p.wristL : (d.joint === 'foreArmR' || d.joint === 'foreArmTwistR') && p.wristR ? p.wristR : jointPoint(p, d.child);
 function frameFor(p, def) {
-    const a = p[def.joint], b = p[def.child];
+    if (def.joint === 'handL' || def.joint === 'handR') {
+        const side = def.joint === 'handL' ? 'L' : 'R', direction = p[`handDirection${side}`];
+        if (direction)
+            return rigidFrame(p[def.joint], Vec3.add(p[def.joint], direction), p[`handForward${side}`] ?? p.forward);
+    }
+    if (def.joint === 'head' && p.headUp)
+        return rigidFrame(p.head, Vec3.add(p.head, p.headUp), p.headForward ?? p.forward);
+    if (def.joint === 'footL' || def.joint === 'footR') {
+        const side = def.joint === 'footL' ? 'L' : 'R', a = p[def.joint];
+        return rigidFrame(a, Vec3.add(a, p[`footUp${side}`] ?? new Vec3(0, 1, 0)), p[`footForward${side}`] ?? p.forward);
+    }
+    const a = jointPoint(p, def.joint), b = endpoint(p, def);
     let target = b;
     if (def.joint === 'head' || def.joint === 'handL' || def.joint === 'handR')
         target = Vec3.add(a, Vec3.sub(a, b));
     // A forward-pointing thigh must not roll over when its knee passes hip height.
     const leg = def.joint.startsWith('thigh') || def.joint.startsWith('shin'), forward = leg ? Vec3.cross(new Vec3(-p.forward.z, 0, p.forward.x), Vec3.sub(target, a)) : p.forward;
-    return rigidFrame(a, target, forward.len() > .001 ? forward : p.forward);
+    return rigidFrame(a, target, def.joint === 'foreArmTwistL' && p.foreArmForwardL ? p.foreArmForwardL : def.joint === 'foreArmTwistR' && p.foreArmForwardR ? p.foreArmForwardR : def.joint === 'head' && p.headForward ? p.headForward : forward.len() > .001 ? forward : p.forward);
 }
 const bindInv = defs.map(d => invertRigid(frameFor(bind, d)));
-export function skinMatrices(p) { const out = new Float32Array(BONE_COUNT * 16); for (let i = 0; i < BONE_COUNT; i++) {
-    const d = defs[i], length = Vec3.sub(p[d.child], p[d.joint]).len(), rest = Vec3.sub(bind[d.child], bind[d.joint]).len();
-    const m = multiply(multiply(frameFor(p, d), scaling(new Vec3(1, d.joint === 'handL' || d.joint === 'handR' ? 1 : length / Math.max(.001, rest), 1))), bindInv[i]);
-    out.set(m, i * 16);
-} return out; }
+const authoredBindInv = new WeakMap();
+export function skinMatrices(p, restPose = bind) {
+    let inverse = bindInv;
+    if (restPose !== bind) {
+        inverse = authoredBindInv.get(restPose) ?? defs.map(d => invertRigid(frameFor(restPose, d)));
+        authoredBindInv.set(restPose, inverse);
+    }
+    // The game anchors the palm/grip; an anatomical forearm ends at the wrist.
+    if (restPose.wristL && restPose.wristR) {
+        p = { ...p };
+        for (const side of ['L', 'R']) {
+            const i = BONE[`hand${side}`], hand = multiply(frameFor(p, defs[i]), inverse[i]), wrist = transformPoint(hand, restPose[`wrist${side}`]);
+            p[`wrist${side}`] = new Vec3(wrist.x, wrist.y, wrist.z);
+        }
+    }
+    const out = new Float32Array(BONE_COUNT * 16);
+    for (let i = 0; i < BONE_COUNT; i++) {
+        const d = defs[i], length = Vec3.sub(endpoint(p, d), jointPoint(p, d.joint)).len(), rest = Vec3.sub(endpoint(restPose, d), jointPoint(restPose, d.joint)).len(), rigid = d.joint.startsWith('hand') || d.joint.startsWith('foot') || restPose !== bind && d.joint === 'head';
+        let frame = frameFor(p, d);
+        if (d.joint.startsWith('foreArmTwist') && restPose.wristL) {
+            const side = d.joint.endsWith('L') ? 'L' : 'R', proximal = BONE[`foreArm${side}`], palm = BONE[`hand${side}`], source = frameFor(restPose, d), predicted = multiply(multiply(frameFor(p, defs[proximal]), inverse[proximal]), source), palmFrame = multiply(multiply(frameFor(p, defs[palm]), inverse[palm]), source);
+            // Palm width defines roll even when a bent wrist aligns its normal with the forearm.
+            const axis = Vec3.sub(endpoint(p, d), jointPoint(p, d.joint)).normalize(), forward = Vec3.cross(new Vec3(palmFrame[0], palmFrame[1], palmFrame[2]), axis), target = rigidFrame(jointPoint(p, d.joint), endpoint(p, d), forward.len() > .1 ? forward : new Vec3(palmFrame[8], palmFrame[9], palmFrame[10])), half = interpolateRigidFrame(predicted, target, .5);
+            // Share palm roll across the forearm rather than concentrating it at one skin seam.
+            frame = rigidFrame(jointPoint(p, d.joint), endpoint(p, d), new Vec3(half[8], half[9], half[10]));
+        }
+        const m = multiply(multiply(frame, scaling(new Vec3(1, rigid ? 1 : length / Math.max(.001, rest), 1))), inverse[i]);
+        out.set(m, i * 16);
+    }
+    return out;
+}
 const build = () => ({ p: [], n: [], bi: [], bw: [] });
 function basis(dir) { const y = dir.clone().normalize(); let z = new Vec3(0, 0, 1); z.sub(y.clone().scale(Vec3.dot(z, y))); if (z.len() < .1) {
     z = new Vec3(1, 0, 0);
@@ -64,7 +105,7 @@ function addSegment(out, a, b, ra, rb, boneA, boneB, seg = 10) {
     // Adjacent segments share the same joint ring plane. Using each segment's
     // own axis left hairline gaps at the waist, knees and elbows after skinning.
     const direction = Vec3.sub(b, a);
-    const axis = (bone) => { const d = defs[bone], v = Vec3.sub(bind[d.child], bind[d.joint]).normalize(); return Vec3.dot(v, direction) < 0 ? v.scale(-1) : v; };
+    const axis = (bone) => { const d = defs[bone], v = Vec3.sub(endpoint(bind, d), jointPoint(bind, d.joint)).normalize(); return Vec3.dot(v, direction) < 0 ? v.scale(-1) : v; };
     const axisA = axis(boneA), axisB = axis(boneB), mid = Vec3.lerp(a, b, .5);
     ring(temp, a, axisA, ra[0], ra[1], [boneA, boneB], [1, 0], seg);
     ring(temp, mid, Vec3.lerp(axisA, axisB, .5), (ra[0] + rb[0]) * .5, (ra[1] + rb[1]) * .5, [boneA, boneB], [.5, .5], seg);
@@ -108,7 +149,7 @@ function appendSurface(out, rings, rows, seg) {
 // transitions. Endpoint planes still match the authoritative bind joints.
 function sculptSegment(out, a, b, radii, boneA, boneB, rows = 12, seg = 24, jointBlend = false, weightRange = [0, 1]) {
     const rings = build(), direction = Vec3.sub(b, a), length = direction.len();
-    const axis = (bone) => { const d = defs[bone], v = Vec3.sub(bind[d.child], bind[d.joint]).normalize(); return Vec3.dot(v, direction) < 0 ? v.scale(-1) : v; };
+    const axis = (bone) => { const d = defs[bone], v = Vec3.sub(endpoint(bind, d), jointPoint(bind, d.joint)).normalize(); return Vec3.dot(v, direction) < 0 ? v.scale(-1) : v; };
     const axisA = axis(boneA), axisB = axis(boneB);
     for (let row = 0; row <= rows; row++) {
         const t = row / rows, center = Vec3.lerp(a, b, t), frame = basis(Vec3.lerp(axisA, axisB, t)), [rx, rz] = radiusAt(radii, t), low = Math.max(0, t - .001), high = Math.min(1, t + .001), before = radiusAt(radii, low), after = radiusAt(radii, high), sx = (after[0] - before[0]) / ((high - low) * length), sz = (after[1] - before[1]) / ((high - low) * length);
@@ -318,7 +359,7 @@ for (const side of ['L', 'R']) {
 // Share the bend across both sides of a joint, rather than turning the thigh's
 // last ring entirely onto the shin and folding an open cavity into the knee.
 function balanceJoint(out, parent, joint) {
-    const a = bind[defs[joint].joint], b = bind[defs[joint].child], axis = Vec3.sub(b, a), length = axis.len();
+    const a = jointPoint(bind, defs[joint].joint), b = endpoint(bind, defs[joint]), axis = Vec3.sub(b, a), length = axis.len();
     axis.scale(1 / length);
     for (let i = 0; i < out.p.length / 3; i++) {
         const k = i * 4;

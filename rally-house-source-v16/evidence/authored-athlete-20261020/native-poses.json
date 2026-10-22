@@ -1,0 +1,152 @@
+{
+  "label": "after",
+  "errors": [],
+  "views": [
+    {
+      "id": "taylor",
+      "state": "idle",
+      "angle": 0.35,
+      "racket": true,
+      "height": 2.233031286205202,
+      "shoulderSpan": 0.5200409210690807,
+      "gl": 0,
+      "drawCalls": 9,
+      "triangles": 34254,
+      "image": "after-taylor-idle-0.35.png"
+    },
+    {
+      "id": "mika",
+      "state": "idle",
+      "angle": 0.35,
+      "racket": true,
+      "height": 2.220607843059755,
+      "shoulderSpan": 0.5200344967384001,
+      "gl": 0,
+      "drawCalls": 50,
+      "triangles": 43748,
+      "image": "after-mika-idle-0.35.png"
+    },
+    {
+      "id": "nia",
+      "state": "idle",
+      "angle": 0.35,
+      "racket": true,
+      "height": 2.2366749493205575,
+      "shoulderSpan": 0.5200517995091832,
+      "gl": 0,
+      "drawCalls": 49,
+      "triangles": 43256,
+      "image": "after-nia-idle-0.35.png"
+    },
+    {
+      "id": "coach",
+      "state": "idle",
+      "angle": 0.35,
+      "racket": true,
+      "height": 2.217872217567277,
+      "shoulderSpan": 0.5200669079719294,
+      "gl": 0,
+      "drawCalls": 48,
+      "triangles": 41624,
+      "image": "after-coach-idle-0.35.png"
+    },
+    {
+      "id": "taylor",
+      "state": "idle",
+      "angle": 1.5,
+      "racket": true,
+      "height": 2.233031286205202,
+      "shoulderSpan": 0.5200409210690807,
+      "gl": 0,
+      "drawCalls": 9,
+      "triangles": 34254,
+      "image": "after-taylor-idle-1.5.png"
+    },
+    {
+      "id": "taylor",
+      "state": "idle",
+      "angle": 0.1,
+      "face": true,
+      "racket": true,
+      "height": 2.233031286205202,
+      "shoulderSpan": 0.5200409210690807,
+      "gl": 0,
+      "drawCalls": 9,
+      "triangles": 34254,
+      "image": "after-taylor-idle-face.png"
+    },
+    {
+      "id": "taylor",
+      "state": "drink",
+      "angle": 0.65,
+      "racket": true,
+      "height": 2.2460101194679023,
+      "shoulderSpan": 0.5198401719075441,
+      "gl": 0,
+      "drawCalls": 12,
+      "triangles": 35454,
+      "image": "after-taylor-drink-0.65.png"
+    },
+    {
+      "id": "taylor",
+      "state": "sit",
+      "angle": 0.65,
+      "racket": true,
+      "height": 1.7174956784604476,
+      "shoulderSpan": 0.5198386728952497,
+      "gl": 0,
+      "drawCalls": 9,
+      "triangles": 34254,
+      "image": "after-taylor-sit-0.65.png"
+    },
+    {
+      "id": "taylor",
+      "state": "ready",
+      "angle": 0.35,
+      "racket": true,
+      "height": 2.165199293874651,
+      "shoulderSpan": 0.5212326073667713,
+      "gl": 0,
+      "drawCalls": 42,
+      "triangles": 37838,
+      "image": "after-taylor-ready-0.35.png"
+    },
+    {
+      "id": "taylor",
+      "state": "swingForehand",
+      "angle": 0.6,
+      "racket": true,
+      "height": 2.194167228843952,
+      "shoulderSpan": 0.5803326592306528,
+      "gl": 0,
+      "drawCalls": 42,
+      "triangles": 37838,
+      "image": "after-taylor-swingForehand-0.6.png"
+    },
+    {
+      "id": "taylor",
+      "state": "swingBackhand",
+      "angle": 0.6,
+      "racket": true,
+      "height": 2.1930579580729654,
+      "shoulderSpan": 0.5664867283799419,
+      "gl": 0,
+      "drawCalls": 42,
+      "triangles": 37838,
+      "image": "after-taylor-swingBackhand-0.6.png"
+    },
+    {
+      "id": "taylor",
+      "state": "serve",
+      "angle": 0.6,
+      "racket": true,
+      "height": 2.2571200474484927,
+      "shoulderSpan": 0.532165883207432,
+      "gl": 0,
+      "drawCalls": 42,
+      "triangles": 37838,
+      "image": "after-taylor-serve-0.6.png"
+    }
+  ],
+  "method": "Production Character.meshes and Renderer on the existing isolated diagnostic stage. Fixed camera, lighting and animation times."
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "label": "before",
+    "angle": -0.6,
+    "face": {
+      "smile": 0.55,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0.08,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 9,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "angle": 0,
+    "face": {
+      "smile": 0.55,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0.08,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 9,
+    "errors": []
+  },
+  {
+    "label": "before",
+    "angle": 0.6,
+    "face": {
+      "smile": 0.55,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0.08,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 9,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "angle": -0.6,
+    "face": {
+      "smile": 0.55,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0.08,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 9,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "angle": 0,
+    "face": {
+      "smile": 0.55,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0.08,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 9,
+    "errors": []
+  },
+  {
+    "label": "after",
+    "angle": 0.6,
+    "face": {
+      "smile": 0.55,
+      "mouthOpen": 0,
+      "browRaise": 0.06399999999999996,
+      "squint": 0.08,
+      "focus": 0.09999999999999998
+    },
+    "gl": 0,
+    "parts": 9,
+    "errors": []
+  }
+]

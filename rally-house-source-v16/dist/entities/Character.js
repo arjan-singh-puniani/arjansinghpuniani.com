@@ -10,6 +10,7 @@ import { adultTaylorPose, TAYLOR_BODY } from '../animation/TaylorBody.js';
 import { humanTaylorHead } from '../animation/TaylorHuman.js';
 import { CHARACTER_SKIN, HUMAN_TENNIS_SKIN, ATHLETE_WARDROBE, skinMatrices, rigFromPose } from '../animation/CharacterSkin.js';
 import { CAST_DESIGN } from '../content/CastDesign.js';
+import { authoredAthleteMeshes, authoredArmLengths, advanceAuthoredHands } from '../animation/AuthoredAthlete.js';
 export function locomotionStyleFor(id) {
     if (id === 'coach')
         return { cadence: 4.22, bounce: .018, armSwing: .155, hipSwing: .042, torsoCounter: .048, stride: .94, headStabilize: .72, turnSharpness: 8.0 };
@@ -49,6 +50,7 @@ export class Character {
     yieldUntil = 0;
     crowdCooldown = 0;
     gazeYaw = 0;
+    eyeAim = 0;
     gazeStarted = false;
     gazeClock = 0;
     transientLookRemaining = 0;
@@ -95,6 +97,8 @@ export class Character {
     contactTarget = null;
     outgoingTarget = null;
     facePose = { smile: .08, mouthOpen: 0, browRaise: .05, squint: 0, focus: .08 };
+    authoredHands;
+    handPose = { handRestWeight: 1, handLapWeight: 0, handGripL: 0, handGripR: 0, handRacketWeight: 0 };
     lastPose = null;
     prevPosition;
     localVelocity = new Vec3();
@@ -362,10 +366,11 @@ export class Character {
         if (look && !this.spectating && this.state !== 'watch' && !this.majorActivity && this.acting.role !== 'none' && this.gazeClock % (this.acting.values.gazeHold + 1) > this.acting.values.gazeHold)
             aim += .24;
         if (!this.gazeStarted) {
-            this.gazeYaw = this.yaw;
+            this.gazeYaw = this.eyeAim = this.yaw;
             this.gazeStarted = true;
         }
         this.gazeYaw = dampAngle(this.gazeYaw, aim, 5, dt);
+        this.eyeAim = dampAngle(this.eyeAim, aim, 20, dt);
         const held = Math.min(dt, this.contactHoldRemaining);
         this.contactHoldRemaining = Math.max(0, this.contactHoldRemaining - dt);
         const strokeDt = dt - held;
@@ -486,7 +491,12 @@ export class Character {
             desired.browRaise = clamp(desired.browRaise + this.acting.values.browBias + (reaction?.brow ?? 0) * w, -.25, 1);
         }
         this.facePose = { smile: expDamp(this.facePose.smile, desired.smile, 10, dt), mouthOpen: expDamp(this.facePose.mouthOpen, desired.mouthOpen, 14, dt), browRaise: expDamp(this.facePose.browRaise, desired.browRaise, 10, dt), squint: expDamp(this.facePose.squint, desired.squint, 12, dt), focus: expDamp(this.facePose.focus, desired.focus, 12, dt) };
+        const racket = this.holdsRacket(), hands = { handRestWeight: this.state === 'idle' && !this.propKind && !this.interactionTarget && !this.affection && this.socialGesture === 'none' && this.interactionWeight < .001 ? 1 : 0, handLapWeight: this.state === 'sit' && !this.propKind && !this.affection && !racket ? 1 : 0, handGripL: racket ? (this.state === 'swingBackhand' ? 1 : this.state === 'ready' || this.state === 'shuffle' ? .45 : 0) : 0, handGripR: racket ? 1 : this.state === 'drink' || this.propKind === 'cup' ? .45 : 0, handRacketWeight: racket ? 1 : 0 };
+        for (const key of Object.keys(hands))
+            this.handPose[key] = expDamp(this.handPose[key], hands[key], 12, dt);
         this.clubIdleRelax = expDamp(this.clubIdleRelax, this.canRelaxClubIdle() ? 1 : 0, 7, dt);
+        if (this.spec.presentation === 'feminine' && this.spec.appearance === 'human')
+            this.authoredHands = advanceAuthoredHands(this.pose(), this.position, this.yaw, this.authoredHands, dt);
         this.prevPosition = this.position.clone();
     }
     racketContactPoint() { const pose = this.pose(); return pose.racketCenter.clone(); }
@@ -610,7 +620,8 @@ export class Character {
             return emotional.pleased;
         return emotional.neutral;
     }
-    worldLocal(x, y, z, yaw = this.yaw) { const s = Math.sin(yaw), c = Math.cos(yaw); const shift = this.state === 'sit' ? -this.seatDepth * smoothstep(0, .6, this.animTime) : 0; return new Vec3(this.position.x + c * x + s * (z + shift), y, this.position.z - s * x + c * (z + shift)); }
+    // The chair offset is one root translation, independent of head or torso turning.
+    worldLocal(x, y, z, yaw = this.yaw) { const s = Math.sin(yaw), c = Math.cos(yaw); const shift = this.state === 'sit' ? -this.seatDepth * smoothstep(0, .6, this.animTime) : 0; return new Vec3(this.position.x + c * x + s * z + Math.sin(this.yaw) * shift, y, this.position.z - s * x + c * z + Math.cos(this.yaw) * shift); }
     localFromWorld(v, yaw = this.yaw) { const dx = v.x - this.position.x, dz = v.z - this.position.z, s = Math.sin(yaw), c = Math.cos(yaw); return new Vec3(c * dx - s * dz, v.y, s * dx + c * dz); }
     limb(a, b, r, color) { const d = Vec3.sub(b, a), len = d.len() || .001; const h = Math.hypot(d.x, d.z); const pitch = Math.atan2(h, d.y); const yaw = Math.atan2(d.x, d.z); return { kind: 'cylinder', position: Vec3.lerp(a, b, .5), rotation: new Vec3(pitch, yaw, 0), scale: new Vec3(r, len, r), color }; }
     seed() { let n = 0; for (const c of this.spec.id)
@@ -689,6 +700,7 @@ export class Character {
         const tracking = state === 'watch' || this.spectating || state === 'ready' || shuffle;
         const watchDelta = tracking ? clamp(angleDelta(this.yaw, this.gazeYaw), -.78, .78) : 0;
         const torsoYaw = this.yaw + coil + watchDelta * .30, hipYaw = this.yaw + hipCoil + watchDelta * .07;
+        // shortcut: horizontal gaze only; add pitch and convergence for close conversation staging.
         const targetHeadYaw = this.gazeYaw;
         const headLimit = tracking ? .70 : .42;
         const headYaw = this.yaw + clamp(angleDelta(this.yaw, targetHeadYaw), -headLimit, headLimit) + clip.headTurn;
@@ -749,6 +761,15 @@ export class Character {
         if (state === 'ready' || shuffle) {
             handL = this.worldLocal(.10, 1.24 + baseY, .56, torsoYaw);
             handR = this.worldLocal(.17, 1.18 + baseY, .40, torsoYaw);
+        }
+        const humanReady = this.spec.appearance === 'human' && (state === 'ready' || shuffle), authoredReady = humanReady && this.spec.presentation === 'feminine' && !!authoredArmLengths();
+        if (humanReady) {
+            handR = this.worldLocal(.27, 1.18 + baseY, .36, torsoYaw);
+            handL = this.worldLocal(.40, 1.24 + baseY, .375, torsoYaw);
+        }
+        if (authoredReady) {
+            handR = this.worldLocal(-.08, 1.18 + baseY, .48, torsoYaw);
+            handL = this.worldLocal(.05, 1.24 + baseY, .50, torsoYaw);
         }
         if (state === 'coachFeed') {
             handL = this.worldLocal(-.42, 1.05 + baseY, .12);
@@ -863,6 +884,8 @@ export class Character {
         racketForward.normalize();
         const racketRight = new Vec3(racketForward.z, 0, -racketForward.x);
         let headOffset = Vec3.add(new Vec3(0, .425, 0), racketForward.clone().scale(.225));
+        if (humanReady)
+            headOffset = rotateEulerVector(new Vec3(0, .48, 0), new Vec3(authoredReady ? .6 : .12, torsoYaw, -.70));
         if (state === 'serve')
             headOffset = Vec3.add(new Vec3(0, .525, 0), racketForward.clone().scale(.125));
         if (state === 'volley')
@@ -902,6 +925,8 @@ export class Character {
             racketRot = new Vec3(.46 - sp * .58, torsoYaw, .36 - sp * .72);
         else if (state === 'volley')
             racketRot = new Vec3(.04, torsoYaw, -.12);
+        if (humanReady)
+            racketRot = new Vec3(authoredReady ? .6 : .12, torsoYaw, -.70);
         if (humanGroundstroke)
             racketRot = new Vec3(Math.atan2(groundDepth, groundRise), Math.atan2(racketForward.x, racketForward.z), Math.atan2(-groundSide, Math.hypot(groundRise, groundDepth)));
         const vib = this.racketVibration * Math.sin(this.animTime * 62) * .045;
@@ -969,13 +994,13 @@ export class Character {
         const head = this.worldLocal(pelvisShiftX * .25, 1.80 + baseY + actingLift + breathe - knee + splitHop + clip.headNod - headStabilize + (!shot && !moving && (this.socialGesture === 'nod' || this.socialGesture === 'laugh') ? Math.sin(time * 6) * .022 : 0), .01 + pelvisShiftZ * .45, headYaw);
         const elbowL = Vec3.lerp(shoulderL, handL, .50).add(forward.clone().scale(.055)).add(right.clone().scale(-.035));
         const elbowR = Vec3.lerp(shoulderR, handR, .50).add(forward.clone().scale(.055)).add(right.clone().scale(.035));
-        return { baseY, breathe, walking: moving, gait, torsoYaw, hipYaw, headYaw, right, forward, shoulderL, shoulderR, elbowL, elbowR, handL, handR, hipL, hipR, kneeL, kneeR, footL, footR, torsoCenter, pelvisCenter, head, racketGrip, racketHandleTop, racketCenter, racketRot, lean, knee, shot, sp, face: { ...this.facePose }, weightShift };
+        return { baseY, breathe, walking: moving, gait, torsoYaw, hipYaw, headYaw, eyeYaw: clamp(angleDelta(headYaw, this.eyeAim), -.30, .30), right, forward, shoulderL, shoulderR, elbowL, elbowR, handL, handR, hipL, hipR, kneeL, kneeR, footL, footR, torsoCenter, pelvisCenter, head, racketGrip, racketHandleTop, racketCenter, racketRot, lean, knee, shot, sp, face: { ...this.facePose }, weightShift, ...this.handPose, ...this.authoredHands };
     }
     localVector(x, y, z) { const s = Math.sin(this.yaw), c = Math.cos(this.yaw); return new Vec3(c * x + s * z, y, -s * x + c * z); }
     blendPose(a, b, t) {
         const av = (k) => a[k], bv = (k) => b[k];
         const v = (k) => blendVec(av(k), bv(k), t);
-        return { ...b, baseY: a.baseY + (b.baseY - a.baseY) * t, breathe: a.breathe + (b.breathe - a.breathe) * t, gait: a.gait + (b.gait - a.gait) * t, torsoYaw: a.torsoYaw + angleDelta(a.torsoYaw, b.torsoYaw) * t, hipYaw: a.hipYaw + angleDelta(a.hipYaw, b.hipYaw) * t, headYaw: a.headYaw + angleDelta(a.headYaw, b.headYaw) * t, right: v('right'), forward: v('forward'), shoulderL: v('shoulderL'), shoulderR: v('shoulderR'), elbowL: v('elbowL'), elbowR: v('elbowR'), handL: v('handL'), handR: v('handR'), hipL: v('hipL'), hipR: v('hipR'), kneeL: v('kneeL'), kneeR: v('kneeR'), footL: v('footL'), footR: v('footR'), torsoCenter: v('torsoCenter'), pelvisCenter: v('pelvisCenter'), head: v('head'), racketGrip: v('racketGrip'), racketHandleTop: v('racketHandleTop'), racketCenter: v('racketCenter'), racketRot: v('racketRot'), lean: a.lean + (b.lean - a.lean) * t, knee: a.knee + (b.knee - a.knee) * t, sp: a.sp + (b.sp - a.sp) * t, face: blendFace(a.face, b.face, t), weightShift: a.weightShift + (b.weightShift - a.weightShift) * t };
+        return { ...b, baseY: a.baseY + (b.baseY - a.baseY) * t, breathe: a.breathe + (b.breathe - a.breathe) * t, gait: a.gait + (b.gait - a.gait) * t, torsoYaw: a.torsoYaw + angleDelta(a.torsoYaw, b.torsoYaw) * t, hipYaw: a.hipYaw + angleDelta(a.hipYaw, b.hipYaw) * t, headYaw: a.headYaw + angleDelta(a.headYaw, b.headYaw) * t, eyeYaw: (a.eyeYaw ?? 0) + ((b.eyeYaw ?? 0) - (a.eyeYaw ?? 0)) * t, right: v('right'), forward: v('forward'), shoulderL: v('shoulderL'), shoulderR: v('shoulderR'), elbowL: v('elbowL'), elbowR: v('elbowR'), handL: v('handL'), handR: v('handR'), hipL: v('hipL'), hipR: v('hipR'), kneeL: v('kneeL'), kneeR: v('kneeR'), footL: v('footL'), footR: v('footR'), torsoCenter: v('torsoCenter'), pelvisCenter: v('pelvisCenter'), head: v('head'), racketGrip: v('racketGrip'), racketHandleTop: v('racketHandleTop'), racketCenter: v('racketCenter'), racketRot: v('racketRot'), lean: a.lean + (b.lean - a.lean) * t, knee: a.knee + (b.knee - a.knee) * t, sp: a.sp + (b.sp - a.sp) * t, face: blendFace(a.face, b.face, t), weightShift: a.weightShift + (b.weightShift - a.weightShift) * t };
     }
     pose() {
         const target = this.poseFor(this.state, this.animTime);
@@ -1044,7 +1069,7 @@ export class Character {
                 result.face = { ...result.face, smile: Math.max(this.spec.avatar === 'taylor' ? .55 : this.spec.presentation === 'masculine' ? .18 : .32, result.face.smile), squint: Math.max(.08, result.face.squint) };
             }
             const design = CAST_DESIGN[this.spec.avatar ?? this.spec.id] ?? CAST_DESIGN.taylor;
-            return adultTaylorPose(result, this.position, this.yaw, { sitting: this.state === 'sit', seatWeight: this.state === 'sit' ? t : this.previousState === 'sit' ? 1 - t : 0, folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.clubIdleRelax, affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: this.state === 'jog' ? [!!this.leftFootLock, !!this.rightFootLock] : undefined, swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
+            return adultTaylorPose(result, this.position, this.yaw, { armLengths: this.spec.presentation === 'feminine' && this.spec.appearance === 'human' ? authoredArmLengths() : undefined, sitting: this.state === 'sit', seatWeight: this.state === 'sit' ? t : this.previousState === 'sit' ? 1 - t : 0, folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.clubIdleRelax, strokeWeight: isShot(this.state) ? t : isShot(this.previousState) ? 1 - t : 0, readyWeight: this.state === 'ready' || this.state === 'shuffle' ? t : this.previousState === 'ready' || this.previousState === 'shuffle' ? 1 - t : 0, affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: this.state === 'jog' ? [!!this.leftFootLock, !!this.rightFootLock] : undefined, swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
         }
         return result;
     }
@@ -1060,6 +1085,7 @@ export class Character {
         const low = Math.max(0, Math.min(p.footL.y, p.footR.y) - .12), high = Math.max(p.head.y + (this.spec.appearance === 'human' ? .23 : .42), p.handL.y + .1, p.handR.y + .1);
         return { centre: new Vec3((minX + maxX) / 2, (low + high) / 2, (minZ + maxZ) / 2), size: new Vec3(maxX - minX, high - low, maxZ - minZ) };
     }
+    holdsRacket() { return (this.matchCompetitor || this.spec.id !== 'nia') && (isShot(this.state) || this.state === 'ready' || this.state === 'shuffle' || this.socialGesture === 'inspect') && !this.racketStowed && this.state !== 'drink' && !this.propKind; }
     meshes(selected = false) {
         const m = [];
         const p = this.position;
@@ -1071,221 +1097,227 @@ export class Character {
         m.push({ kind: 'sphere', position: new Vec3(p.x, .028, p.z), scale: new Vec3(.78, .045, .50), color: '#4f5d53', alpha: .16, unlit: true });
         if (selected)
             m.push({ kind: 'torus', position: new Vec3(p.x, .055, p.z), rotation: new Vec3(Math.PI / 2, 0, 0), scale: new Vec3(1.35, 1.35, .55), color: '#e4c967', alpha: .52, unlit: true });
-        // Idle may use the authored club stance. Props, reaches and every match pose retain the contact rig.
-        const relax = 0;
-        const bones = skinMatrices(rigFromPose(pose, p, this.yaw, relax));
-        const skinRoot = { position: new Vec3(p.x, 0, p.z), rotation: new Vec3(0, this.yaw, 0), boneMatrices: bones, poseRig: true };
-        const torsoSkin = athlete ? (feline ? CHARACTER_SKIN.taylorDress : taylor ? HUMAN_TENNIS_SKIN.dress : feminine ? ATHLETE_WARDROBE.bodice : ATHLETE_WARDROBE.top) : this.spec.presentation === 'feminine' ? CHARACTER_SKIN.feminineTop : CHARACTER_SKIN.top;
-        const skinMaterial = human ? 'humanSkin' : 'skin', garmentMaterial = human ? 'performanceKnit' : 'fabric';
-        m.push({ ...skinRoot, skin: torsoSkin, color: this.spec.shirt, material: garmentMaterial }, { ...skinRoot, skin: athlete ? (human ? ATHLETE_WARDROBE.legs : CHARACTER_SKIN.taylorLegs) : CHARACTER_SKIN.pants, color: this.spec.skin, material: skinMaterial }, { ...skinRoot, skin: athlete ? (human ? (feminine ? ATHLETE_WARDROBE.feminineArms : ATHLETE_WARDROBE.arms) : CHARACTER_SKIN.taylorArms) : CHARACTER_SKIN.arms, color: this.spec.skin, material: skinMaterial });
-        if (feline)
-            m.push({ ...skinRoot, skin: CHARACTER_SKIN.taylorNeckline, color: TAYLOR_PALETTE.indigo, material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorDressEdging, color: '#f6dc7d', material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorTunicMark, color: '#b69a2a', material: 'toon', unlit: true }, { ...skinRoot, skin: CHARACTER_SKIN.taylorBoots, color: TAYLOR_PALETTE.indigo, material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorGloves, color: TAYLOR_PALETTE.indigo, material: 'fabric' });
-        else if (human) {
-            if (feminine) {
-                if (!taylor)
-                    m.push({ ...skinRoot, skin: ATHLETE_WARDROBE.skirt, color: design.bottom, material: garmentMaterial });
-                m.push({ ...skinRoot, skin: HUMAN_TENNIS_SKIN.yoke, color: this.spec.skin, material: 'humanSkin' }, { ...skinRoot, skin: HUMAN_TENNIS_SKIN.trim, color: this.spec.accent ?? '#cedb68', material: 'fabric' }, { ...skinRoot, skin: HUMAN_TENNIS_SKIN.seams, color: mixHex(this.spec.shirt, '#b7cced', .15), material: 'fabric' });
-            }
-            else
-                m.push({ ...skinRoot, skin: ATHLETE_WARDROBE.shorts, color: design.bottom, material: garmentMaterial });
-            m.push({ ...skinRoot, skin: ATHLETE_WARDROBE.calves, color: this.spec.skin, material: 'humanSkin' }, { ...skinRoot, skin: ATHLETE_WARDROBE.socks, color: '#f3f1e8', material: 'fabric' }, { ...skinRoot, skin: feminine ? CHARACTER_SKIN.taylorWristband : ATHLETE_WARDROBE.wristband, color: this.spec.accent ?? '#cedb68', material: 'fabric' });
-        }
-        else {
-            m.push({ kind: 'sphere', position: torsoCenter.clone().add(new Vec3(0, .025, 0)), rotation: new Vec3(0, torsoYaw, 0), scale: new Vec3(this.spec.presentation === 'feminine' ? .53 : .57, .68, .40), color: this.spec.shirt, material: 'fabric' });
-            if (this.spec.outfit === 'shorts')
-                m.push({ ...skinRoot, skin: CHARACTER_SKIN.shorts, color: mixHex(this.spec.shirt, '#192d37', .28), material: 'fabric' });
-            // Rounded sleeve caps belong to the upper-arm skin and its exact shoulder
-            // pivot; separate inward-shifted spheres left gaps when the arm lifted.
-        }
-        if (!athlete)
-            for (const elbow of [elbowL, elbowR])
-                m.push({ kind: 'sphere', position: elbow, scale: new Vec3(.20, .20, .19), color: this.spec.skin, material: 'skin' });
         const leftShoePitch = pose.walking && !this.leftFootLock ? clamp(-pose.gait * .18, -.18, .18) : 0, rightShoePitch = pose.walking && !this.rightFootLock ? clamp(pose.gait * .18, -.18, .18) : 0;
         const leftShoeYaw = pose.walking ? this.walkCycle.yaws[0] : this.yaw, rightShoeYaw = pose.walking ? this.walkCycle.yaws[1] : this.yaw;
-        const shoeColor = feline ? this.spec.skin : this.spec.shoe ?? '#fff8ee', soleColor = mixHex(shoeColor, '#ffffff', .62);
-        if (athlete) {
-            for (const [foot, pitch, yaw] of [[footL, leftShoePitch, leftShoeYaw], [footR, rightShoePitch, rightShoeYaw]])
-                m.push(...taylorFootMeshes(foot, pitch, yaw, feline ? undefined : this.spec.shoe, feline ? undefined : '#b5bcb6', human));
-        }
+        const holdsRacket = this.holdsRacket();
+        const authored = feminine && human ? authoredAthleteMeshes(pose, p, this.yaw, [{ pitch: leftShoePitch, yaw: leftShoeYaw }, { pitch: rightShoePitch, yaw: rightShoeYaw }], this.animTime, this.spec.avatar ?? this.spec.id) : undefined;
+        if (authored)
+            m.push(...authored);
         else {
-            m.push({ kind: 'roundBox', position: footL, rotation: new Vec3(leftShoePitch, leftShoeYaw, 0), scale: new Vec3(.29, .135, .43), color: shoeColor, material: 'fabric' }, { kind: 'roundBox', position: footR, rotation: new Vec3(rightShoePitch, rightShoeYaw, 0), scale: new Vec3(.29, .135, .43), color: shoeColor, material: 'fabric' });
-            m.push({ kind: 'roundBox', position: new Vec3(footL.x, footL.y - .055, footL.z), rotation: new Vec3(leftShoePitch, leftShoeYaw, 0), scale: new Vec3(.30, .055, .445), color: soleColor, material: 'fabric' }, { kind: 'roundBox', position: new Vec3(footR.x, footR.y - .055, footR.z), rotation: new Vec3(rightShoePitch, rightShoeYaw, 0), scale: new Vec3(.30, .055, .445), color: soleColor, material: 'fabric' });
-        }
-        const freeHands = human && !this.propKind && !this.interactionTarget && this.interactionWeight < .001 && ['idle', 'walk', 'jog', 'watch', 'talk', 'sit'].includes(this.state) && this.socialGesture !== 'inspect';
-        if (athlete)
-            m.push({ ...skinRoot, skin: freeHands ? ATHLETE_WARDROBE.freeHands : CHARACTER_SKIN.taylorHands, color: feline ? TAYLOR_PALETTE.indigo : this.spec.skin, material: feline ? 'toon' : 'humanSkin' });
-        else {
-            m.push({ kind: 'sphere', position: handL, scale: new Vec3(.16, .20, .15), color: this.spec.skin, material: 'skin' }, { kind: 'sphere', position: handR, scale: new Vec3(.16, .20, .15), color: this.spec.skin, material: 'skin' });
-            for (const [hand, side] of [[handL, -1], [handR, 1]])
-                m.push({ kind: 'sphere', position: Vec3.add(hand, this.localVector(-side * .075, .025, .045)), scale: new Vec3(.095, .12, .10), color: this.spec.skin, material: 'skin' });
-        }
-        const tilt = this.majorActivity ? 0 : this.acting.values.headTilt + (this.acting.reaction?.tilt ?? 0) * this.acting.reactionWeight;
-        if (feline) {
-            const headScale = TAYLOR_BODY.headScale;
-            m.push(...taylorHeadMeshes(head, headYaw, tilt, pose.face, this.animTime).map(m => ({ ...m, position: head.clone().add(Vec3.sub(m.position, head).scale(headScale)), scale: (m.scale ?? new Vec3(1, 1, 1)).clone().scale(headScale) })));
-            const neck = Vec3.lerp(Vec3.lerp(shoulderL, shoulderR, .5), head, .30);
-            m.push({ kind: 'sphere', position: neck, scale: new Vec3(.23, .32, .23), color: this.spec.skin, material: 'skin' });
-            m.push(...taylorTailMeshes(pelvisCenter, hipYaw, this.animTime, this.horizontalSpeed));
-        }
-        else if (human) {
-            m.push(...humanTaylorHead(head, headYaw, tilt, pose.face, this.animTime, this.spec.skin, design.head));
-            const shoulder = Vec3.lerp(shoulderL, shoulderR, .5), jaw = head.clone().add(new Vec3(0, -.143, 0)), neck = Vec3.lerp(shoulder, jaw, .5);
-            m.push({ kind: 'sphere', position: neck, rotation: new Vec3(0, headYaw, tilt), scale: new Vec3(.099, Math.max(.09, jaw.y - shoulder.y) + .065, .104), color: this.spec.skin, material: 'humanSkin' });
-        }
-        else {
-            const headStart = m.length;
-            const faceShape = this.spec.id === 'mika' ? new Vec3(.565, .600, .530) : this.spec.id === 'coach' ? new Vec3(.545, .590, .520) : this.spec.id === 'nia' ? new Vec3(.570, .585, .535) : new Vec3(.550, .595, .525);
-            m.push({ kind: 'sphere', position: head, scale: faceShape, color: this.spec.skin, material: 'skin' });
-            // A tiny neck bridge and outfit silhouette make the skinned body read as one soft adult figure rather than stacked primitives.
-            const neck = Vec3.lerp(Vec3.lerp(shoulderL, shoulderR, .5), head, .30);
-            m.push({ kind: 'cylinder', position: neck, scale: new Vec3(.18, .25, .18), color: this.spec.skin, material: 'skin' });
-            if (this.spec.outfit === 'skirt' || this.spec.outfit === 'skort' || this.spec.outfit === 'host')
-                m.push({ ...skinRoot, skin: CHARACTER_SKIN.skirt, color: mixHex(this.spec.shirt, '#ffffff', .12), material: 'fabric' });
-            // Boutique outfit details: bright collar, socks and a tiny club badge improve readability without texture assets.
-            const collar = Vec3.lerp(torsoCenter, Vec3.lerp(shoulderL, shoulderR, .5), .72);
-            m.push({ kind: 'torus', position: collar, rotation: new Vec3(Math.PI / 2, torsoYaw, 0), scale: new Vec3(.42, .34, .08), color: this.spec.accent ?? '#fff0d7', material: 'fabric', alpha: .86 });
-            const sockColor = mixHex(this.spec.shoe ?? '#fffaf0', '#ffffff', .35);
-            for (const f of [footL, footR])
-                m.push({ kind: 'cylinder', position: new Vec3(f.x, f.y + .16, f.z - .035), rotation: new Vec3(0, this.yaw, 0), scale: new Vec3(.145, .18, .145), color: sockColor, material: 'fabric' });
-            const badge = this.worldLocal(.18, 1.42 + baseY + pose.breathe - pose.knee, .195, torsoYaw);
-            m.push({ kind: 'sphere', position: badge, scale: new Vec3(.055, .055, .025), color: this.spec.accent ?? '#fff0d7', material: 'ceramic', unlit: true });
-            const placket = torsoCenter.clone().add(forward.clone().scale(.215)).add(new Vec3(0, .12, 0));
-            m.push({ kind: 'roundBox', position: placket, rotation: new Vec3(0, torsoYaw, 0), scale: new Vec3(.046, .16, .025), color: mixHex(this.spec.shirt, '#ffffff', .16), material: 'fabric' });
-            for (const dy of [-.025, .035])
-                m.push({ kind: 'sphere', position: placket.clone().add(forward.clone().scale(.018)).add(new Vec3(0, dy, 0)), scale: new Vec3(.018, .018, .010), color: '#eee9dc', material: 'ceramic' });
-            const faceDetailsStart = m.length;
-            m.push({ kind: 'sphere', position: Vec3.add(head, right.clone().scale(-.255)), scale: new Vec3(.085, .125, .075), color: this.spec.skin, material: 'skin' }, { kind: 'sphere', position: Vec3.add(head, right.clone().scale(.255)), scale: new Vec3(.085, .125, .075), color: this.spec.skin, material: 'skin' });
-            const hairStyle = this.spec.hairStyle ?? 'cap';
-            const hairSway = clamp(angleDelta(this.yaw, this.targetYaw), -.35, .35) * .12 + Math.sin(this.animTime * 7 + seed) * Math.min(.025, this.horizontalSpeed * .008);
-            const hair = (position, scale, alpha = 1) => m.push({ kind: 'sphere', position, rotation: new Vec3(0, headYaw, 0), scale, color: this.spec.hair, material: 'hair', alpha });
-            if (hairStyle === 'long') {
-                hair(Vec3.add(head, new Vec3(0, .17, 0)), new Vec3(.58, .34, .54));
-                hair(Vec3.add(head, forward.clone().scale(-.20)).add(new Vec3(0, -.27, 0)), new Vec3(.48, .62, .25));
-                for (const side of [-1, 1])
-                    hair(Vec3.add(head, right.clone().scale(side * .255)).add(forward.clone().scale(.015)).add(new Vec3(0, -.19, 0)), new Vec3(.145, .55, .20));
-                // Navy-and-gold cat-ear headband; the face remains human.
-                for (const side of [-1, 1]) {
-                    const ear = Vec3.add(head, right.clone().scale(side * .22)).add(new Vec3(0, .34, 0));
-                    m.push({ kind: 'cone', position: ear, rotation: new Vec3(0, headYaw, side * -.18), scale: new Vec3(.15, .18, .12), color: '#172a49', material: 'fabric' }, { kind: 'cone', position: Vec3.add(ear, forward.clone().scale(.055)), rotation: new Vec3(0, headYaw, side * -.18), scale: new Vec3(.080, .105, .035), color: '#dfbb50', material: 'metal' });
+            // Idle may use the authored club stance. Props, reaches and every match pose retain the contact rig.
+            const relax = 0;
+            const bones = skinMatrices(rigFromPose(pose, p, this.yaw, relax));
+            const skinRoot = { position: new Vec3(p.x, 0, p.z), rotation: new Vec3(0, this.yaw, 0), boneMatrices: bones, poseRig: true };
+            const torsoSkin = athlete ? (feline ? CHARACTER_SKIN.taylorDress : taylor ? HUMAN_TENNIS_SKIN.dress : feminine ? ATHLETE_WARDROBE.bodice : ATHLETE_WARDROBE.top) : this.spec.presentation === 'feminine' ? CHARACTER_SKIN.feminineTop : CHARACTER_SKIN.top;
+            const skinMaterial = human ? 'humanSkin' : 'skin', garmentMaterial = human ? 'performanceKnit' : 'fabric';
+            m.push({ ...skinRoot, skin: torsoSkin, color: this.spec.shirt, material: garmentMaterial }, { ...skinRoot, skin: athlete ? (human ? ATHLETE_WARDROBE.legs : CHARACTER_SKIN.taylorLegs) : CHARACTER_SKIN.pants, color: this.spec.skin, material: skinMaterial }, { ...skinRoot, skin: athlete ? (human ? (feminine ? ATHLETE_WARDROBE.feminineArms : ATHLETE_WARDROBE.arms) : CHARACTER_SKIN.taylorArms) : CHARACTER_SKIN.arms, color: this.spec.skin, material: skinMaterial });
+            if (feline)
+                m.push({ ...skinRoot, skin: CHARACTER_SKIN.taylorNeckline, color: TAYLOR_PALETTE.indigo, material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorDressEdging, color: '#f6dc7d', material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorTunicMark, color: '#b69a2a', material: 'toon', unlit: true }, { ...skinRoot, skin: CHARACTER_SKIN.taylorBoots, color: TAYLOR_PALETTE.indigo, material: 'fabric' }, { ...skinRoot, skin: CHARACTER_SKIN.taylorGloves, color: TAYLOR_PALETTE.indigo, material: 'fabric' });
+            else if (human) {
+                if (feminine) {
+                    if (!taylor)
+                        m.push({ ...skinRoot, skin: ATHLETE_WARDROBE.skirt, color: design.bottom, material: garmentMaterial });
+                    m.push({ ...skinRoot, skin: HUMAN_TENNIS_SKIN.yoke, color: this.spec.skin, material: 'humanSkin' }, { ...skinRoot, skin: HUMAN_TENNIS_SKIN.trim, color: this.spec.accent ?? '#cedb68', material: 'fabric' }, { ...skinRoot, skin: HUMAN_TENNIS_SKIN.seams, color: mixHex(this.spec.shirt, '#b7cced', .15), material: 'fabric' });
                 }
+                else
+                    m.push({ ...skinRoot, skin: ATHLETE_WARDROBE.shorts, color: design.bottom, material: garmentMaterial });
+                m.push({ ...skinRoot, skin: ATHLETE_WARDROBE.calves, color: this.spec.skin, material: 'humanSkin' }, { ...skinRoot, skin: ATHLETE_WARDROBE.socks, color: '#f3f1e8', material: 'fabric' }, { ...skinRoot, skin: feminine ? CHARACTER_SKIN.taylorWristband : ATHLETE_WARDROBE.wristband, color: this.spec.accent ?? '#cedb68', material: 'fabric' });
             }
-            else if (hairStyle === 'swept') {
-                hair(Vec3.add(head, new Vec3(0, .16, 0)), new Vec3(.58, .35, .54));
-                for (let i = 0; i < 4; i++) {
-                    const tuft = Vec3.add(head, right.clone().scale(-.17 + i * .10)).add(forward.clone().scale(.085)).add(new Vec3(0, .255 - i * .012, 0));
-                    hair(tuft, new Vec3(.18, .115, .32));
+            else {
+                m.push({ kind: 'sphere', position: torsoCenter.clone().add(new Vec3(0, .025, 0)), rotation: new Vec3(0, torsoYaw, 0), scale: new Vec3(this.spec.presentation === 'feminine' ? .53 : .57, .68, .40), color: this.spec.shirt, material: 'fabric' });
+                if (this.spec.outfit === 'shorts')
+                    m.push({ ...skinRoot, skin: CHARACTER_SKIN.shorts, color: mixHex(this.spec.shirt, '#192d37', .28), material: 'fabric' });
+                // Rounded sleeve caps belong to the upper-arm skin and its exact shoulder
+                // pivot; separate inward-shifted spheres left gaps when the arm lifted.
+            }
+            if (!athlete)
+                for (const elbow of [elbowL, elbowR])
+                    m.push({ kind: 'sphere', position: elbow, scale: new Vec3(.20, .20, .19), color: this.spec.skin, material: 'skin' });
+            const shoeColor = feline ? this.spec.skin : this.spec.shoe ?? '#fff8ee', soleColor = mixHex(shoeColor, '#ffffff', .62);
+            if (athlete) {
+                for (const [foot, pitch, yaw] of [[footL, leftShoePitch, leftShoeYaw], [footR, rightShoePitch, rightShoeYaw]])
+                    m.push(...taylorFootMeshes(foot, pitch, yaw, feline ? undefined : this.spec.shoe, feline ? undefined : '#b5bcb6', human));
+            }
+            else {
+                m.push({ kind: 'roundBox', position: footL, rotation: new Vec3(leftShoePitch, leftShoeYaw, 0), scale: new Vec3(.29, .135, .43), color: shoeColor, material: 'fabric' }, { kind: 'roundBox', position: footR, rotation: new Vec3(rightShoePitch, rightShoeYaw, 0), scale: new Vec3(.29, .135, .43), color: shoeColor, material: 'fabric' });
+                m.push({ kind: 'roundBox', position: new Vec3(footL.x, footL.y - .055, footL.z), rotation: new Vec3(leftShoePitch, leftShoeYaw, 0), scale: new Vec3(.30, .055, .445), color: soleColor, material: 'fabric' }, { kind: 'roundBox', position: new Vec3(footR.x, footR.y - .055, footR.z), rotation: new Vec3(rightShoePitch, rightShoeYaw, 0), scale: new Vec3(.30, .055, .445), color: soleColor, material: 'fabric' });
+            }
+            const freeHands = human && !this.propKind && !this.interactionTarget && this.interactionWeight < .001 && ['idle', 'walk', 'jog', 'watch', 'talk', 'sit'].includes(this.state) && this.socialGesture !== 'inspect';
+            if (athlete)
+                m.push({ ...skinRoot, skin: freeHands ? ATHLETE_WARDROBE.freeHands : CHARACTER_SKIN.taylorHands, color: feline ? TAYLOR_PALETTE.indigo : this.spec.skin, material: feline ? 'toon' : 'humanSkin' });
+            else {
+                m.push({ kind: 'sphere', position: handL, scale: new Vec3(.16, .20, .15), color: this.spec.skin, material: 'skin' }, { kind: 'sphere', position: handR, scale: new Vec3(.16, .20, .15), color: this.spec.skin, material: 'skin' });
+                for (const [hand, side] of [[handL, -1], [handR, 1]])
+                    m.push({ kind: 'sphere', position: Vec3.add(hand, this.localVector(-side * .075, .025, .045)), scale: new Vec3(.095, .12, .10), color: this.spec.skin, material: 'skin' });
+            }
+            const tilt = this.majorActivity ? 0 : this.acting.values.headTilt + (this.acting.reaction?.tilt ?? 0) * this.acting.reactionWeight;
+            if (feline) {
+                const headScale = TAYLOR_BODY.headScale;
+                m.push(...taylorHeadMeshes(head, headYaw, tilt, pose.face, this.animTime).map(m => ({ ...m, position: head.clone().add(Vec3.sub(m.position, head).scale(headScale)), scale: (m.scale ?? new Vec3(1, 1, 1)).clone().scale(headScale) })));
+                const neck = Vec3.lerp(Vec3.lerp(shoulderL, shoulderR, .5), head, .30);
+                m.push({ kind: 'sphere', position: neck, scale: new Vec3(.23, .32, .23), color: this.spec.skin, material: 'skin' });
+                m.push(...taylorTailMeshes(pelvisCenter, hipYaw, this.animTime, this.horizontalSpeed));
+            }
+            else if (human) {
+                m.push(...humanTaylorHead(head, headYaw, tilt, pose.face, this.animTime, this.spec.skin, design.head));
+                const shoulder = Vec3.lerp(shoulderL, shoulderR, .5), jaw = head.clone().add(new Vec3(0, -.143, 0)), neck = Vec3.lerp(shoulder, jaw, .5);
+                m.push({ kind: 'sphere', position: neck, rotation: new Vec3(0, headYaw, tilt), scale: new Vec3(.099, Math.max(.09, jaw.y - shoulder.y) + .065, .104), color: this.spec.skin, material: 'humanSkin' });
+            }
+            else {
+                const headStart = m.length;
+                const faceShape = this.spec.id === 'mika' ? new Vec3(.565, .600, .530) : this.spec.id === 'coach' ? new Vec3(.545, .590, .520) : this.spec.id === 'nia' ? new Vec3(.570, .585, .535) : new Vec3(.550, .595, .525);
+                m.push({ kind: 'sphere', position: head, scale: faceShape, color: this.spec.skin, material: 'skin' });
+                // A tiny neck bridge and outfit silhouette make the skinned body read as one soft adult figure rather than stacked primitives.
+                const neck = Vec3.lerp(Vec3.lerp(shoulderL, shoulderR, .5), head, .30);
+                m.push({ kind: 'cylinder', position: neck, scale: new Vec3(.18, .25, .18), color: this.spec.skin, material: 'skin' });
+                if (this.spec.outfit === 'skirt' || this.spec.outfit === 'skort' || this.spec.outfit === 'host')
+                    m.push({ ...skinRoot, skin: CHARACTER_SKIN.skirt, color: mixHex(this.spec.shirt, '#ffffff', .12), material: 'fabric' });
+                // Boutique outfit details: bright collar, socks and a tiny club badge improve readability without texture assets.
+                const collar = Vec3.lerp(torsoCenter, Vec3.lerp(shoulderL, shoulderR, .5), .72);
+                m.push({ kind: 'torus', position: collar, rotation: new Vec3(Math.PI / 2, torsoYaw, 0), scale: new Vec3(.42, .34, .08), color: this.spec.accent ?? '#fff0d7', material: 'fabric', alpha: .86 });
+                const sockColor = mixHex(this.spec.shoe ?? '#fffaf0', '#ffffff', .35);
+                for (const f of [footL, footR])
+                    m.push({ kind: 'cylinder', position: new Vec3(f.x, f.y + .16, f.z - .035), rotation: new Vec3(0, this.yaw, 0), scale: new Vec3(.145, .18, .145), color: sockColor, material: 'fabric' });
+                const badge = this.worldLocal(.18, 1.42 + baseY + pose.breathe - pose.knee, .195, torsoYaw);
+                m.push({ kind: 'sphere', position: badge, scale: new Vec3(.055, .055, .025), color: this.spec.accent ?? '#fff0d7', material: 'ceramic', unlit: true });
+                const placket = torsoCenter.clone().add(forward.clone().scale(.215)).add(new Vec3(0, .12, 0));
+                m.push({ kind: 'roundBox', position: placket, rotation: new Vec3(0, torsoYaw, 0), scale: new Vec3(.046, .16, .025), color: mixHex(this.spec.shirt, '#ffffff', .16), material: 'fabric' });
+                for (const dy of [-.025, .035])
+                    m.push({ kind: 'sphere', position: placket.clone().add(forward.clone().scale(.018)).add(new Vec3(0, dy, 0)), scale: new Vec3(.018, .018, .010), color: '#eee9dc', material: 'ceramic' });
+                const faceDetailsStart = m.length;
+                m.push({ kind: 'sphere', position: Vec3.add(head, right.clone().scale(-.255)), scale: new Vec3(.085, .125, .075), color: this.spec.skin, material: 'skin' }, { kind: 'sphere', position: Vec3.add(head, right.clone().scale(.255)), scale: new Vec3(.085, .125, .075), color: this.spec.skin, material: 'skin' });
+                const hairStyle = this.spec.hairStyle ?? 'cap';
+                const hairSway = clamp(angleDelta(this.yaw, this.targetYaw), -.35, .35) * .12 + Math.sin(this.animTime * 7 + seed) * Math.min(.025, this.horizontalSpeed * .008);
+                const hair = (position, scale, alpha = 1) => m.push({ kind: 'sphere', position, rotation: new Vec3(0, headYaw, 0), scale, color: this.spec.hair, material: 'hair', alpha });
+                if (hairStyle === 'long') {
+                    hair(Vec3.add(head, new Vec3(0, .17, 0)), new Vec3(.58, .34, .54));
+                    hair(Vec3.add(head, forward.clone().scale(-.20)).add(new Vec3(0, -.27, 0)), new Vec3(.48, .62, .25));
+                    for (const side of [-1, 1])
+                        hair(Vec3.add(head, right.clone().scale(side * .255)).add(forward.clone().scale(.015)).add(new Vec3(0, -.19, 0)), new Vec3(.145, .55, .20));
+                    // Navy-and-gold cat-ear headband; the face remains human.
+                    for (const side of [-1, 1]) {
+                        const ear = Vec3.add(head, right.clone().scale(side * .22)).add(new Vec3(0, .34, 0));
+                        m.push({ kind: 'cone', position: ear, rotation: new Vec3(0, headYaw, side * -.18), scale: new Vec3(.15, .18, .12), color: '#172a49', material: 'fabric' }, { kind: 'cone', position: Vec3.add(ear, forward.clone().scale(.055)), rotation: new Vec3(0, headYaw, side * -.18), scale: new Vec3(.080, .105, .035), color: '#dfbb50', material: 'metal' });
+                    }
                 }
-                hair(Vec3.add(head, right.clone().scale(-.23)).add(forward.clone().scale(.14)).add(new Vec3(0, .14, 0)), new Vec3(.15, .28, .15));
-            }
-            else if (hairStyle === 'bun') {
-                hair(new Vec3(head.x, head.y + .18, head.z - .035), new Vec3(.555, .33, .525));
-                hair(Vec3.add(head, forward.clone().scale(-.21)).add(right.clone().scale(-hairSway)).add(new Vec3(0, .22, 0)), new Vec3(.245, .245, .245));
-                hair(Vec3.add(head, right.clone().scale(-.28)).add(forward.clone().scale(.02)).add(new Vec3(0, .07, 0)), new Vec3(.12, .22, .12), .94);
-            }
-            else if (hairStyle === 'ponytail') {
-                hair(new Vec3(head.x, head.y + .16, head.z - .03), new Vec3(.555, .32, .525));
-                const tie = Vec3.add(head, forward.clone().scale(-.21)).add(new Vec3(0, .10, 0));
-                m.push({ kind: 'torus', position: tie, rotation: new Vec3(Math.PI / 2, this.yaw, 0), scale: new Vec3(.18, .18, .10), color: this.spec.accent ?? '#ead2bd', material: 'fabric' });
-                const tailBase = Vec3.add(tie, forward.clone().scale(-.11)).add(right.clone().scale(-hairSway * .75));
-                hair(tailBase.add(new Vec3(0, -.10, 0)), new Vec3(.18, .34, .16));
-                hair(Vec3.add(tailBase, new Vec3(0, -.34, 0)).add(right.clone().scale(-hairSway)), new Vec3(.14, .28, .13), .95);
-            }
-            else if (hairStyle === 'bob') {
-                hair(new Vec3(head.x, head.y + .14, head.z - .03), new Vec3(.565, .36, .535));
-                for (const side of [-1, 1])
-                    hair(Vec3.add(head, right.clone().scale(side * .31)).add(new Vec3(0, -.08, 0)), new Vec3(.17, .35, .15), .98);
-                hair(Vec3.add(head, forward.clone().scale(-.19)).add(new Vec3(0, -.13, 0)), new Vec3(.39, .30, .18), .96);
-            }
-            else if (hairStyle === 'waves') {
-                hair(new Vec3(head.x, head.y + .13, head.z - .03), new Vec3(.565, .37, .535));
-                for (const side of [-1, 1]) {
-                    hair(Vec3.add(head, right.clone().scale(side * .28)).add(new Vec3(0, -.02, 0)), new Vec3(.18, .33, .16), .96);
-                    hair(Vec3.add(head, right.clone().scale(side * .30)).add(new Vec3(0, -.30, 0)), new Vec3(.14, .28, .13), .92);
+                else if (hairStyle === 'swept') {
+                    hair(Vec3.add(head, new Vec3(0, .16, 0)), new Vec3(.58, .35, .54));
+                    for (let i = 0; i < 4; i++) {
+                        const tuft = Vec3.add(head, right.clone().scale(-.17 + i * .10)).add(forward.clone().scale(.085)).add(new Vec3(0, .255 - i * .012, 0));
+                        hair(tuft, new Vec3(.18, .115, .32));
+                    }
+                    hair(Vec3.add(head, right.clone().scale(-.23)).add(forward.clone().scale(.14)).add(new Vec3(0, .14, 0)), new Vec3(.15, .28, .15));
                 }
-            }
-            else if (hairStyle === 'crop') {
-                hair(new Vec3(head.x, head.y + .20, head.z - .02), new Vec3(.54, .26, .51));
-            }
-            else
-                hair(new Vec3(head.x, head.y + .17, head.z - .015), new Vec3(.55, .31, .525));
-            if (this.spec.presentation === 'feminine') {
-                for (const side of [-1, 1]) {
-                    const ear = Vec3.add(head, right.clone().scale(side * .27)).add(forward.clone().scale(.01)).add(new Vec3(0, -.075, 0));
-                    m.push({ kind: 'torus', position: ear, rotation: new Vec3(0, headYaw, 0), scale: new Vec3(.065, .09, .026), color: '#dcb76c', material: 'metal' });
+                else if (hairStyle === 'bun') {
+                    hair(new Vec3(head.x, head.y + .18, head.z - .035), new Vec3(.555, .33, .525));
+                    hair(Vec3.add(head, forward.clone().scale(-.21)).add(right.clone().scale(-hairSway)).add(new Vec3(0, .22, 0)), new Vec3(.245, .245, .245));
+                    hair(Vec3.add(head, right.clone().scale(-.28)).add(forward.clone().scale(.02)).add(new Vec3(0, .07, 0)), new Vec3(.12, .22, .12), .94);
                 }
-                if (hairStyle === 'bun' || hairStyle === 'ponytail')
-                    hair(Vec3.add(head, right.clone().scale(-.14)).add(forward.clone().scale(.20)).add(new Vec3(0, .17, 0)), new Vec3(.30, .17, .15));
-            }
-            // Small sheen patch gives hair a soft illustrated highlight rather than a plastic gloss.
-            hair(Vec3.add(head, right.clone().scale(-.12)).add(forward.clone().scale(.11)).add(new Vec3(0, .24, 0)), new Vec3(.16, .060, .11), .16);
-            // Face: sclera + pupils + independently posed brows + cheeks + two-corner mouth give us cheap but readable deformation.
-            const blinkPhase = (this.animTime + seed * .113) % 3.75, blink = blinkPhase < .085 ? 1 - smoothstep(0, .085, blinkPhase) : 0;
-            let gaze = 0;
-            if (this.targetLook) {
-                const aim = Math.atan2(this.targetLook.x - p.x, this.targetLook.z - p.z) - headYaw;
-                gaze = clamp(aim, -.22, .22) * .12;
-            }
-            const eyeOpen = clamp(1 - blink - pose.face.squint * .55, .08, 1);
-            const eyeSpacing = this.spec.id === 'mika' ? .112 : this.spec.id === 'nia' ? .106 : this.spec.id === 'coach' ? .102 : .108;
-            for (const sideEye of [-1, 1]) {
-                const ep = Vec3.add(head, forward.clone().scale(.224)).add(right.clone().scale(sideEye * eyeSpacing));
-                ep.y += .032;
-                m.push({ kind: 'sphere', position: ep, scale: new Vec3(.102, .066 * eyeOpen, .038), color: '#fffdf7', material: 'ceramic', unlit: true });
-                const pupil = Vec3.add(ep, forward.clone().scale(.018)).add(right.clone().scale(gaze));
-                m.push({ kind: 'sphere', position: pupil, scale: new Vec3(.055, .056 * eyeOpen, .023), color: this.spec.eye ?? '#34483f', material: 'hair', unlit: true });
-                m.push({ kind: 'sphere', position: Vec3.add(pupil, forward.clone().scale(.009)), scale: new Vec3(.030, .045 * eyeOpen, .015), color: '#182a2c', unlit: true });
-                const sparkle = Vec3.add(pupil, forward.clone().scale(.021)).add(right.clone().scale(-sideEye * .011));
-                sparkle.y += .010;
-                m.push({ kind: 'sphere', position: sparkle, scale: new Vec3(.016, .016, .008), color: '#ffffff', unlit: true });
-                const brow = Vec3.add(ep, new Vec3(0, .102 + pose.face.browRaise * .045, 0)).add(right.clone().scale(sideEye * .005));
-                m.push({ kind: 'roundBox', position: brow, rotation: new Vec3(0, headYaw, sideEye * (-.02 - pose.face.smile * .09)), scale: new Vec3(this.spec.avatar === 'arjan' ? .115 : .090, this.spec.avatar === 'arjan' ? .035 : .018, .015), color: this.spec.hair, material: 'hair', unlit: true });
-            }
-            const nose = Vec3.add(head, forward.clone().scale(.254));
-            nose.y -= .040;
-            m.push({ kind: 'sphere', position: nose, scale: new Vec3(.035, .050, .032), color: mixHex(this.spec.skin, '#86594f', .20), material: 'skin' });
-            const cheekY = head.y - .075;
-            for (const s of [-1, 1]) {
-                const cp = Vec3.add(head, forward.clone().scale(.215)).add(right.clone().scale(s * .15));
-                cp.y = cheekY;
-                m.push({ kind: 'sphere', position: cp, scale: new Vec3(.060, .034, .018), color: mixHex(this.spec.skin, '#dd8e91', .42), alpha: .32 + .12 * Math.max(0, pose.face.smile), unlit: true });
-            }
-            const mouthBase = Vec3.add(head, forward.clone().scale(.250));
-            mouthBase.y -= .135;
-            const width = .065 + .025 * Math.max(0, pose.face.smile), cornerLift = pose.face.smile * .045;
-            for (const s of [-1, 1]) {
-                const corner = Vec3.add(mouthBase, right.clone().scale(s * width * .72));
-                corner.y += cornerLift;
-                m.push({ kind: 'sphere', position: corner, scale: new Vec3(.026, .020, .016), color: mixHex(this.spec.skin, '#6c3f46', .48), unlit: true });
-            }
-            m.push({ kind: 'sphere', position: new Vec3(mouthBase.x, mouthBase.y + cornerLift * .5, mouthBase.z), rotation: new Vec3(0, headYaw, 0), scale: new Vec3(width * 1.7, .018 + .042 * pose.face.mouthOpen, .020), color: pose.face.mouthOpen > .18 ? '#5b3d43' : mixHex(this.spec.skin, '#6c3f46', .48), unlit: true });
-            if (this.spec.presentation === 'feminine') {
+                else if (hairStyle === 'ponytail') {
+                    hair(new Vec3(head.x, head.y + .16, head.z - .03), new Vec3(.555, .32, .525));
+                    const tie = Vec3.add(head, forward.clone().scale(-.21)).add(new Vec3(0, .10, 0));
+                    m.push({ kind: 'torus', position: tie, rotation: new Vec3(Math.PI / 2, this.yaw, 0), scale: new Vec3(.18, .18, .10), color: this.spec.accent ?? '#ead2bd', material: 'fabric' });
+                    const tailBase = Vec3.add(tie, forward.clone().scale(-.11)).add(right.clone().scale(-hairSway * .75));
+                    hair(tailBase.add(new Vec3(0, -.10, 0)), new Vec3(.18, .34, .16));
+                    hair(Vec3.add(tailBase, new Vec3(0, -.34, 0)).add(right.clone().scale(-hairSway)), new Vec3(.14, .28, .13), .95);
+                }
+                else if (hairStyle === 'bob') {
+                    hair(new Vec3(head.x, head.y + .14, head.z - .03), new Vec3(.565, .36, .535));
+                    for (const side of [-1, 1])
+                        hair(Vec3.add(head, right.clone().scale(side * .31)).add(new Vec3(0, -.08, 0)), new Vec3(.17, .35, .15), .98);
+                    hair(Vec3.add(head, forward.clone().scale(-.19)).add(new Vec3(0, -.13, 0)), new Vec3(.39, .30, .18), .96);
+                }
+                else if (hairStyle === 'waves') {
+                    hair(new Vec3(head.x, head.y + .13, head.z - .03), new Vec3(.565, .37, .535));
+                    for (const side of [-1, 1]) {
+                        hair(Vec3.add(head, right.clone().scale(side * .28)).add(new Vec3(0, -.02, 0)), new Vec3(.18, .33, .16), .96);
+                        hair(Vec3.add(head, right.clone().scale(side * .30)).add(new Vec3(0, -.30, 0)), new Vec3(.14, .28, .13), .92);
+                    }
+                }
+                else if (hairStyle === 'crop') {
+                    hair(new Vec3(head.x, head.y + .20, head.z - .02), new Vec3(.54, .26, .51));
+                }
+                else
+                    hair(new Vec3(head.x, head.y + .17, head.z - .015), new Vec3(.55, .31, .525));
+                if (this.spec.presentation === 'feminine') {
+                    for (const side of [-1, 1]) {
+                        const ear = Vec3.add(head, right.clone().scale(side * .27)).add(forward.clone().scale(.01)).add(new Vec3(0, -.075, 0));
+                        m.push({ kind: 'torus', position: ear, rotation: new Vec3(0, headYaw, 0), scale: new Vec3(.065, .09, .026), color: '#dcb76c', material: 'metal' });
+                    }
+                    if (hairStyle === 'bun' || hairStyle === 'ponytail')
+                        hair(Vec3.add(head, right.clone().scale(-.14)).add(forward.clone().scale(.20)).add(new Vec3(0, .17, 0)), new Vec3(.30, .17, .15));
+                }
+                // Small sheen patch gives hair a soft illustrated highlight rather than a plastic gloss.
+                hair(Vec3.add(head, right.clone().scale(-.12)).add(forward.clone().scale(.11)).add(new Vec3(0, .24, 0)), new Vec3(.16, .060, .11), .16);
+                // Face: sclera + pupils + independently posed brows + cheeks + two-corner mouth give us cheap but readable deformation.
+                const blinkPhase = (this.animTime + seed * .113) % 3.75, blink = blinkPhase < .085 ? 1 - smoothstep(0, .085, blinkPhase) : 0;
+                let gaze = 0;
+                if (this.targetLook) {
+                    const aim = Math.atan2(this.targetLook.x - p.x, this.targetLook.z - p.z) - headYaw;
+                    gaze = clamp(aim, -.22, .22) * .12;
+                }
+                const eyeOpen = clamp(1 - blink - pose.face.squint * .55, .08, 1);
+                const eyeSpacing = this.spec.id === 'mika' ? .112 : this.spec.id === 'nia' ? .106 : this.spec.id === 'coach' ? .102 : .108;
                 for (const sideEye of [-1, 1]) {
-                    const lash = Vec3.add(head, forward.clone().scale(.229)).add(right.clone().scale(sideEye * .156));
-                    lash.y += .066;
-                    m.push({ kind: 'roundBox', position: lash, rotation: new Vec3(0, headYaw, sideEye * -.08), scale: new Vec3(.038, .010, .008), color: this.spec.hair, unlit: true });
+                    const ep = Vec3.add(head, forward.clone().scale(.224)).add(right.clone().scale(sideEye * eyeSpacing));
+                    ep.y += .032;
+                    m.push({ kind: 'sphere', position: ep, scale: new Vec3(.102, .066 * eyeOpen, .038), color: '#fffdf7', material: 'ceramic', unlit: true });
+                    const pupil = Vec3.add(ep, forward.clone().scale(.018)).add(right.clone().scale(gaze));
+                    m.push({ kind: 'sphere', position: pupil, scale: new Vec3(.055, .056 * eyeOpen, .023), color: this.spec.eye ?? '#34483f', material: 'hair', unlit: true });
+                    m.push({ kind: 'sphere', position: Vec3.add(pupil, forward.clone().scale(.009)), scale: new Vec3(.030, .045 * eyeOpen, .015), color: '#182a2c', unlit: true });
+                    const sparkle = Vec3.add(pupil, forward.clone().scale(.021)).add(right.clone().scale(-sideEye * .011));
+                    sparkle.y += .010;
+                    m.push({ kind: 'sphere', position: sparkle, scale: new Vec3(.016, .016, .008), color: '#ffffff', unlit: true });
+                    const brow = Vec3.add(ep, new Vec3(0, .102 + pose.face.browRaise * .045, 0)).add(right.clone().scale(sideEye * .005));
+                    m.push({ kind: 'roundBox', position: brow, rotation: new Vec3(0, headYaw, sideEye * (-.02 - pose.face.smile * .09)), scale: new Vec3(this.spec.avatar === 'arjan' ? .115 : .090, this.spec.avatar === 'arjan' ? .035 : .018, .015), color: this.spec.hair, material: 'hair', unlit: true });
                 }
-                if (this.spec.id === 'mika') {
-                    const band = Vec3.add(head, new Vec3(0, .245, 0));
-                    m.push({ kind: 'torus', position: band, rotation: new Vec3(Math.PI / 2, headYaw, 0), scale: new Vec3(.64, .65, .09), color: this.spec.accent ?? '#efd7bb', material: 'fabric', alpha: .86 });
+                const nose = Vec3.add(head, forward.clone().scale(.254));
+                nose.y -= .040;
+                m.push({ kind: 'sphere', position: nose, scale: new Vec3(.035, .050, .032), color: mixHex(this.spec.skin, '#86594f', .20), material: 'skin' });
+                const cheekY = head.y - .075;
+                for (const s of [-1, 1]) {
+                    const cp = Vec3.add(head, forward.clone().scale(.215)).add(right.clone().scale(s * .15));
+                    cp.y = cheekY;
+                    m.push({ kind: 'sphere', position: cp, scale: new Vec3(.060, .034, .018), color: mixHex(this.spec.skin, '#dd8e91', .42), alpha: .32 + .12 * Math.max(0, pose.face.smile), unlit: true });
+                }
+                const mouthBase = Vec3.add(head, forward.clone().scale(.250));
+                mouthBase.y -= .135;
+                const width = .065 + .025 * Math.max(0, pose.face.smile), cornerLift = pose.face.smile * .045;
+                for (const s of [-1, 1]) {
+                    const corner = Vec3.add(mouthBase, right.clone().scale(s * width * .72));
+                    corner.y += cornerLift;
+                    m.push({ kind: 'sphere', position: corner, scale: new Vec3(.026, .020, .016), color: mixHex(this.spec.skin, '#6c3f46', .48), unlit: true });
+                }
+                m.push({ kind: 'sphere', position: new Vec3(mouthBase.x, mouthBase.y + cornerLift * .5, mouthBase.z), rotation: new Vec3(0, headYaw, 0), scale: new Vec3(width * 1.7, .018 + .042 * pose.face.mouthOpen, .020), color: pose.face.mouthOpen > .18 ? '#5b3d43' : mixHex(this.spec.skin, '#6c3f46', .48), unlit: true });
+                if (this.spec.presentation === 'feminine') {
+                    for (const sideEye of [-1, 1]) {
+                        const lash = Vec3.add(head, forward.clone().scale(.229)).add(right.clone().scale(sideEye * .156));
+                        lash.y += .066;
+                        m.push({ kind: 'roundBox', position: lash, rotation: new Vec3(0, headYaw, sideEye * -.08), scale: new Vec3(.038, .010, .008), color: this.spec.hair, unlit: true });
+                    }
+                    if (this.spec.id === 'mika') {
+                        const band = Vec3.add(head, new Vec3(0, .245, 0));
+                        m.push({ kind: 'torus', position: band, rotation: new Vec3(Math.PI / 2, headYaw, 0), scale: new Vec3(.64, .65, .09), color: this.spec.accent ?? '#efd7bb', material: 'fabric', alpha: .86 });
+                    }
+                }
+                // Scale the existing face/hair together, retaining identity and the skeletal contact rig.
+                for (const item of [m[headStart], ...m.slice(faceDetailsStart)]) {
+                    if ('skin' in item)
+                        continue;
+                    const offset = Vec3.sub(item.position, head), x = Vec3.dot(offset, right), y = offset.y;
+                    item.position.add(right.clone().scale((x * Math.cos(tilt) - y * Math.sin(tilt) - x))).add(new Vec3(0, x * Math.sin(tilt) + y * Math.cos(tilt) - y, 0));
+                    item.position = Vec3.add(head, Vec3.sub(item.position, head).scale(.80));
+                    item.scale.scale(.80);
                 }
             }
-            // Scale the existing face/hair together, retaining identity and the skeletal contact rig.
-            for (const item of [m[headStart], ...m.slice(faceDetailsStart)]) {
-                if ('skin' in item)
-                    continue;
-                const offset = Vec3.sub(item.position, head), x = Vec3.dot(offset, right), y = offset.y;
-                item.position.add(right.clone().scale((x * Math.cos(tilt) - y * Math.sin(tilt) - x))).add(new Vec3(0, x * Math.sin(tilt) + y * Math.cos(tilt) - y, 0));
-                item.position = Vec3.add(head, Vec3.sub(item.position, head).scale(.80));
-                item.scale.scale(.80);
+            if (this.spec.avatar && !athlete) {
+                const charm = this.worldLocal(0, 1.28 + baseY + pose.breathe - pose.knee, .235, torsoYaw);
+                m.push({ kind: 'torus', position: Vec3.add(charm, new Vec3(0, .07, 0)), rotation: new Vec3(.3, torsoYaw, 0), scale: new Vec3(.28, .20, .025), color: this.spec.avatar === 'taylor' ? '#dbb447' : '#c6c6bd', material: 'metal' });
+                if (this.spec.avatar === 'taylor')
+                    m.push({ kind: 'sphere', position: charm, scale: new Vec3(.10, .12, .035), color: '#50b8b4', material: 'ceramic' });
             }
         }
-        if (this.spec.avatar && !athlete) {
-            const charm = this.worldLocal(0, 1.28 + baseY + pose.breathe - pose.knee, .235, torsoYaw);
-            m.push({ kind: 'torus', position: Vec3.add(charm, new Vec3(0, .07, 0)), rotation: new Vec3(.3, torsoYaw, 0), scale: new Vec3(.28, .20, .025), color: this.spec.avatar === 'taylor' ? '#dbb447' : '#c6c6bd', material: 'metal' });
-            if (this.spec.avatar === 'taylor')
-                m.push({ kind: 'sphere', position: charm, scale: new Vec3(.10, .12, .035), color: '#50b8b4', material: 'ceramic' });
-        }
-        if ((this.matchCompetitor || this.spec.id !== 'nia') && (pose.shot || this.state === 'ready' || this.state === 'shuffle' || this.socialGesture === 'inspect' && !this.racketStowed) && !this.racketStowed && this.state !== 'drink' && !this.propKind) {
+        if (holdsRacket) {
             m.push(this.limb(racketGrip, racketHandleTop, .035, '#4b514e'));
             // One readable frame, then an actual string bed. The old second torus read as a hollow ring.
             m.push({ skin: RACKET_FRAME, boneMatrices: RACKET_BONES, position: racketCenter, rotation: racketRot, color: this.spec.accent ?? '#e0c474', material: 'metal' });

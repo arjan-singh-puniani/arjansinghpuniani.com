@@ -1,0 +1,70 @@
+[
+  {
+    "label": "before",
+    "gpu": [],
+    "headYaw": 0.2727749162826907,
+    "eyeYaw": 0,
+    "centers": null,
+    "parts": 9,
+    "gl": 0,
+    "motion": {
+      "frames": 240,
+      "maxEye": 0,
+      "median": 16.69999998807907,
+      "p95": 18.30000001192093,
+      "liveTracks": 0,
+      "gl": 0
+    },
+    "errors": []
+  },
+  {
+    "label": "after",
+    "gpu": [
+      {
+        "yaw": -0.3,
+        "vertices": 6120,
+        "finite": true,
+        "maxPositionError": 1.5107073108978363e-8,
+        "maxNormalError": 1.3123974479054858e-7,
+        "gl": 0
+      },
+      {
+        "yaw": 0,
+        "vertices": 6120,
+        "finite": true,
+        "maxPositionError": 0,
+        "maxNormalError": 9.563894962680769e-8,
+        "gl": 0
+      },
+      {
+        "yaw": 0.3,
+        "vertices": 6120,
+        "finite": true,
+        "maxPositionError": 1.4833754982417861e-8,
+        "maxNormalError": 1.1911438253729675e-7,
+        "gl": 0
+      }
+    ],
+    "headYaw": 0.2727749162826907,
+    "eyeYaw": 0.2836377876889804,
+    "centers": [
+      -0.04377828910946846,
+      2.2341227531433105,
+      0.1793893277645111,
+      0.04377828910946846,
+      2.2341227531433105,
+      0.17939209938049316
+    ],
+    "parts": 9,
+    "gl": 0,
+    "motion": {
+      "frames": 240,
+      "maxEye": 0.3,
+      "median": 16.600000023841858,
+      "p95": 18.5,
+      "liveTracks": 0,
+      "gl": 0
+    },
+    "errors": []
+  }
+]

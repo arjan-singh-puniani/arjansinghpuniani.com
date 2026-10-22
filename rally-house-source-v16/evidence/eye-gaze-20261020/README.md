@@ -1,0 +1,12 @@
+# Eye lead
+
+1. Wrong: Taylor turned her head while her eyes stayed fixed forward, producing a vacant stare.
+2. Cause: the authored eyeballs inherited only the head transform; existing look targets never reached them.
+3. Smallest fix: use the existing look target with faster eye response, clamp relative yaw to ±0.30 radians, and rotate each authored eyeball around its own centre before head skinning. Rotate normals too, through the shared color/shadow shader. Capture and interpolate the same yaw in replay. No extra bones, geometry, draw calls or dependency.
+4. Regression: full npm test passed, including hand/wrist/body/cloth, travel, decoration and phone checks. The new test covers eye lead, reversal, angular limits, settling, capture immutability, replay interpolation and render purity. Production GPU readback checks all 6,120 expanded eye vertices at -0.30, 0 and +0.30 radians; maximum position error 1.6e-8, normal error 1.4e-7, all finite and GL0. Matched native four-second recordings each rendered 240 frames and released every media track. Real unpaused championship ABBA measurements retained 16.7 ms medians, 16.7–16.8 ms p95, 878 draws and 373,506 triangles with no GL/page errors. All 106 release artifacts match.
+5. Actual perceptual result: before/after at the same camera, lighting, target and head rotation show the irises looking toward the target rather than remaining head-forward. The videos demonstrate eye lead and head follow. This is a small visible presence improvement; it does not change the character's underlying likeness or hair quality.
+6. Colleague-send: slightly closer, still no. Human visual approval is pending. Hairline/groom, natural clothing folds, acting and cast consistency remain below the requested bar.
+
+Baseline: 440855f1, frozen compiled runtime with identical assets. `comparison.webp` crops matched production-renderer captures on an isolated diagnostic stage, not generated art. `before.webm` and `after.webm` record that stage; `live-performance.json` separately measures the actual unpaused championship scene. `qa/eye-gaze.mjs` reproduces the native comparison with QA_BASELINE pointing to a directory containing the frozen dist tree.
+
+Limit: horizontal eye motion only; vertical tracking and close-range convergence remain unimplemented. Native checks cover Chromium/Metal on this Mac, not every GPU. This pass does not claim the highest-caliber bar or human approval.

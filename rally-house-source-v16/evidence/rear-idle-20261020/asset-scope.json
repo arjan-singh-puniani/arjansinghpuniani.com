@@ -1,0 +1,12 @@
+{
+  "bindUnchanged": true,
+  "texturesUnchanged": true,
+  "unchangedGeometry": [
+    "skin",
+    "kit",
+    "shoes",
+    "eyes",
+    "hair"
+  ],
+  "triangles": 25992
+}

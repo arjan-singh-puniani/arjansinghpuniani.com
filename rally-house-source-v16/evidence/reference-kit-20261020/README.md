@@ -1,0 +1,10 @@
+# Reference kit and face
+
+1. Wrong: the sleeveless crop and broad lower face still differed from the supplied adult references.
+2. Cause: the selected garment had no sleeves or color blocking, and the stock head/UV retained its original jaw and facial treatment.
+3. Fix: fit sleeves from the accepted adult arm topology, retaining its twist weights; merge them into the existing kit draw. Add continuous lime collar/cuff trim and navy side panels. Taper the jaw across every facial key and refine the licensed face albedo. Preserve the accepted body, shoulders, arm girth and rear silhouette.
+4. Regression: full npm test, GPU facial channels, sampled garment contact, isolated desktop/touch three-shot rallies and actual phone recording/review pass. Entry is 6.20/6.12 seconds. Sleeve radius checks allow only cloth thickness over the accepted arms. Shorts probes now identify the shorts atlas region, because sleeves also reach below the old height cutoff. Torso penetration probes exclude the sleeve strip that intentionally encloses the arms. All 104 release artifacts match.
+5. Perceptual result: outfit.webp and face.webp compare actual production-rendered meshes from matched inspection cameras, before 94e2a280 and after. The outfit change is pronounced; the face change is smaller. Native court and fixed-step stroke views were also inspected. The raised arms and some skirt folds still look stiff.
+6. Colleague-send: closer, still no. Full reference likeness, natural acting/cloth and cast consistency remain incomplete. Isolated ABBA championship runs measure 16.7 ms median / 33.4 ms p95 in both versions; these samples do not establish sustained 60 FPS. Earlier heavier-session timing was 33.3/50 ms.
+
+The hero remains six parts / 19 bones and now has 29,274 triangles. Matched inspection views use the same 864×1080 viewport, camera and resting pose; images are cropped only for comparison. No private reference photograph is embedded or supplied to imagegen. The selected licensed UV derivative and exact edit prompt are in tools/athlete-textures. The active quality goal remains incomplete.

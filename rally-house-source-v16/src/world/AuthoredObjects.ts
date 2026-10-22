@@ -16,7 +16,7 @@ export function authorObjectTargets(objects:InteractiveObject[]){
   set('cafe',[-9.1,.75,-5.8],[4.45,1.5,1.38]);
   set('machine',[-7.5,.72,.2],[1.1,1.3,1.1]);set('water',[-5.5,.85,5.9],[1.25,1.7,.85]);
   set('lounge',[8.5,.7,5.8],[3.75,1.4,1.48],'lounge',[8.5,.87,5.8],.87);
-  objects.find(o=>o.id==='lounge')!.seatCentre=new Vec3(8.35,0,5.8);
+  objects.find(o=>o.id==='lounge')!.seatCentre=new Vec3(8.35,0,5.5);
   set('journal',[6.95,.66,4.52],[.45,.3,.65]);
   set('historyShelf',[4.25,1.4,-9.1],[.75,.8,.35],'trophy',[4.25,1.4,-9.1]);
   set('bonsai',[10.54,2.10,3.9],[1.5,1.4,.9],'bonsai',[10.2,1.36,3.9]);

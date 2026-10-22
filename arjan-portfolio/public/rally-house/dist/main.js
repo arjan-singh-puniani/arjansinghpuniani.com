@@ -1,4 +1,5 @@
 import { Game, SavedClubLoadError } from './Game.js';
+import { loadAuthoredAthlete } from './animation/AuthoredAthlete.js';
 const canvas = document.getElementById('game');
 function showFallback(err, stage) {
     console.error(err);
@@ -44,6 +45,7 @@ catch (err) {
 }
 if (game) {
     try {
+        await loadAuthoredAthlete();
         await game.init();
     }
     catch (err) {

@@ -1,4 +1,5 @@
 import {Game,SavedClubLoadError} from './Game.js';
+import {loadAuthoredAthlete} from './animation/AuthoredAthlete.js';
 const canvas=document.getElementById('game') as HTMLCanvasElement;
 
 function showFallback(err:unknown,stage:'graphics'|'restore'|'startup'){
@@ -37,4 +38,4 @@ function showFallback(err:unknown,stage:'graphics'|'restore'|'startup'){
 
 let game:Game|undefined;
 try{game=new Game(canvas);}catch(err){showFallback(err,'graphics');}
-if(game){try{await game.init();}catch(err){showFallback(err,err instanceof SavedClubLoadError?'restore':'startup');}}
+if(game){try{await loadAuthoredAthlete();await game.init();}catch(err){showFallback(err,err instanceof SavedClubLoadError?'restore':'startup');}}

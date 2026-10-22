@@ -1,0 +1,117 @@
+{
+  "checks": [
+    {
+      "pass": "color",
+      "state": "idle",
+      "vertices": 16917,
+      "worstPenetration": 2.887996133904558e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "ready",
+      "vertices": 16917,
+      "worstPenetration": 7.18541509625581e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "sit",
+      "vertices": 16917,
+      "worstPenetration": 0.002584699648866734,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "swingForehand",
+      "vertices": 16917,
+      "worstPenetration": 3.517416766185555e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "swingBackhand",
+      "vertices": 16917,
+      "worstPenetration": 3.0147523755186256e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "serve",
+      "vertices": 16917,
+      "worstPenetration": 4.950559676086819e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "color",
+      "state": "replay-sit",
+      "vertices": 16917,
+      "worstPenetration": 0.0025782593314499502,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "idle",
+      "vertices": 16917,
+      "worstPenetration": 2.887996133904558e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "ready",
+      "vertices": 16917,
+      "worstPenetration": 7.18541509625581e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "sit",
+      "vertices": 16917,
+      "worstPenetration": 0.002584699648866734,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "swingForehand",
+      "vertices": 16917,
+      "worstPenetration": 3.517416766185555e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "swingBackhand",
+      "vertices": 16917,
+      "worstPenetration": 3.0147523755186256e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "serve",
+      "vertices": 16917,
+      "worstPenetration": 4.950559676086819e-8,
+      "finite": true,
+      "gl": 0
+    },
+    {
+      "pass": "shadow",
+      "state": "replay-sit",
+      "vertices": 16917,
+      "worstPenetration": 0.0025782593314499502,
+      "finite": true,
+      "gl": 0
+    }
+  ],
+  "errors": []
+}

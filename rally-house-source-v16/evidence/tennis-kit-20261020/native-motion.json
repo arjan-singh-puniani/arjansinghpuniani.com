@@ -1,0 +1,41 @@
+{
+  "method": "Matched production Character/Renderer diagnostic stage; real-time state transitions and native canvas recordings.",
+  "cases": [
+    {
+      "label": "before",
+      "state": "sit",
+      "frames": 146,
+      "jointShift": 0,
+      "gl": 0,
+      "liveTracks": 0,
+      "errors": []
+    },
+    {
+      "label": "before",
+      "state": "ready",
+      "frames": 145,
+      "jointShift": 0,
+      "gl": 0,
+      "liveTracks": 0,
+      "errors": []
+    },
+    {
+      "label": "after",
+      "state": "sit",
+      "frames": 146,
+      "jointShift": 0,
+      "gl": 0,
+      "liveTracks": 0,
+      "errors": []
+    },
+    {
+      "label": "after",
+      "state": "ready",
+      "frames": 146,
+      "jointShift": 0,
+      "gl": 0,
+      "liveTracks": 0,
+      "errors": []
+    }
+  ]
+}

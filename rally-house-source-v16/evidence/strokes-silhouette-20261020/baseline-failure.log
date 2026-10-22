@@ -1,0 +1,24 @@
+{"arm":"upperArmL","radius95":0.06001344718669376,"samples":642}
+{"arm":"foreArmL","radius95":0.048009506898295064,"samples":414}
+{"arm":"upperArmR","radius95":0.060013447186693845,"samples":642}
+{"arm":"foreArmR","radius95":0.048009506898295064,"samples":414}
+{"maxRestTorsoError":9.297784231421247e-8,"registeredNeck":{"x":1.7306813390675477e-17,"y":2.0239413500000003,"z":-0.0022391999999999967}}
+{"shoulderRatio":0.9760892904599162}
+{"maxAuthoredContactError":1.5700924586837752e-16}
+{"assetTriangles":25992,"samples":42,"maxGripGap":2.701097448286021e-7,"minSole":0.0014172713263666328,"minForearmVolume":0.15212826717394412}
+{"fingerSamples":2250,"openRadius":0.10137124405221411,"closedRadius":0.03941741478986538,"wristDeflection":0.3407337936832306}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: swingForehand/30/12/R: arm passes through the fitted top
+    at file:///private/tmp/rh-stroke-arms-before/tests/authored-athlete.mjs:104:5 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.2

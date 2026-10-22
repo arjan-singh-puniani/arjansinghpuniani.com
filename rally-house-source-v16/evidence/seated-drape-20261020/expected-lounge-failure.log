@@ -1,0 +1,15 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: seated head moved away from the torso
+    at file:///Users/arjan/Desktop/arjansinghpuniani.com/rally-house-source-v16/qa/lounge-seat.mjs:4:2092 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.2

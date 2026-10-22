@@ -1,0 +1,21 @@
+{
+  "errors": [],
+  "live": {
+    "frames": 356,
+    "captured": 356,
+    "maxDrape": 1,
+    "maxStep": 0.06332676694370393,
+    "finalDrape": 0,
+    "liveTracks": 0,
+    "gl": 0
+  },
+  "replay": {
+    "frames": 360,
+    "captured": 357,
+    "maxDrape": 1,
+    "maxStep": 0.07005764945108167,
+    "finalDrape": 0,
+    "liveTracks": 0,
+    "gl": 0
+  }
+}

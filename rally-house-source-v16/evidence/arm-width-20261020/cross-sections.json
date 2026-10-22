@@ -1,0 +1,46 @@
+{
+  "before": {
+    "upperL": {
+      "radius95": 0.07333324434111517,
+      "radiusMedian": 0.06345845782055935,
+      "samples": 112
+    },
+    "foreL": {
+      "radius95": 0.05448564045846652,
+      "radiusMedian": 0.0453136426708988,
+      "samples": 73
+    },
+    "upperR": {
+      "radius95": 0.07333324434111525,
+      "radiusMedian": 0.06345845782055937,
+      "samples": 112
+    },
+    "foreR": {
+      "radius95": 0.05448564045846652,
+      "radiusMedian": 0.0453136426708988,
+      "samples": 73
+    }
+  },
+  "after": {
+    "upperL": {
+      "radius95": 0.060133249878230384,
+      "radiusMedian": 0.05216646027492215,
+      "samples": 112
+    },
+    "foreL": {
+      "radius95": 0.04794735428578402,
+      "radiusMedian": 0.03987604110612792,
+      "samples": 73
+    },
+    "upperR": {
+      "radius95": 0.06013324987823047,
+      "radiusMedian": 0.052166460274922166,
+      "samples": 112
+    },
+    "foreR": {
+      "radius95": 0.04794735428578402,
+      "radiusMedian": 0.03987604110612792,
+      "samples": 73
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { Vec3, clamp } from '../rendering/Math3D.js';
+import { Vec3, clamp, rigidFrame, interpolateRigidFrame } from '../rendering/Math3D.js';
 import { rigFromPose, skinMatrices } from '../animation/CharacterSkin.js';
 export const LIMBS = [['shoulderL', 'elbowL'], ['elbowL', 'handL'], ['shoulderR', 'elbowR'], ['elbowR', 'handR'], ['shoulderL', 'shoulderR'], ['shoulderL', 'hipL'], ['shoulderR', 'hipR'], ['hipL', 'hipR'], ['hipL', 'kneeL'], ['kneeL', 'footL'], ['hipR', 'kneeR'], ['kneeR', 'footR']];
 export const JOINT_KEYS = ['shoulderL', 'shoulderR', 'elbowL', 'elbowR', 'handL', 'handR', 'hipL', 'hipR', 'kneeL', 'kneeR', 'footL', 'footR', 'pelvisCenter'];
@@ -86,12 +86,42 @@ export function interpolateFrame(a, b, time) {
     for (const key of Object.keys(pose.face))
         pose.face[key] = a.pose.face[key] + (b.pose.face[key] - a.pose.face[key]) * t;
     let bones;
+    const authored = new Map();
     const body = a.body.map((part, i) => {
         const other = b.body[i], position = Vec3.lerp(part.position, other.position, t), rotation = rotationLerp(part.rotation, other.rotation, t);
         if ('skin' in part && 'skin' in other) {
-            if (part.poseRig)
+            let rig = part.rig, palette = part.boneMatrices;
+            if (part.poseRig && part.rig && other.rig) {
+                let source = authored.get(part.rig.bind);
+                if (!source) {
+                    const local = rigFromPose(pose, root, rotation.y);
+                    for (const key of ['spine', 'neck', 'headUp', 'headForward', 'handDirectionL', 'handDirectionR', 'handForwardL', 'handForwardR', 'foreArmForwardL', 'foreArmForwardR', 'footForwardL', 'footForwardR', 'footUpL', 'footUpR']) {
+                        const x = part.rig.pose[key], y = other.rig.pose[key];
+                        if (x && y)
+                            local[key] = Vec3.lerp(x, y, t);
+                    }
+                    for (const side of ['L', 'R']) {
+                        const x = part.rig.pose, y = other.rig.pose, dx = x[`handDirection${side}`], dy = y[`handDirection${side}`], fx = x[`handForward${side}`], fy = y[`handForward${side}`];
+                        if (dx && dy && fx && fy) {
+                            const origin = new Vec3(), frame = interpolateRigidFrame(rigidFrame(origin, dx, fx), rigidFrame(origin, dy, fy), t);
+                            local[`handDirection${side}`] = new Vec3(frame[4], frame[5], frame[6]);
+                            local[`handForward${side}`] = new Vec3(frame[8], frame[9], frame[10]);
+                            local[`foreArmForward${side}`] = local[`handForward${side}`];
+                        }
+                    }
+                    source = { bind: part.rig.bind, pose: local, matrices: skinMatrices(local, part.rig.bind) };
+                    authored.set(part.rig.bind, source);
+                }
+                rig = { bind: source.bind, pose: source.pose };
+                palette = source.matrices;
+            }
+            else if (part.poseRig) {
                 bones ??= skinMatrices(rigFromPose(pose, root, rotation.y));
-            return { ...part, position, rotation, scale: part.scale && other.scale ? Vec3.lerp(part.scale, other.scale, t) : part.scale, boneMatrices: part.poseRig ? bones : part.boneMatrices };
+                palette = bones;
+            }
+            const expression = part.expression && other.expression ? part.expression.map((n, j) => n + (other.expression[j] - n) * t) : part.expression;
+            const handGrip = part.handGrip && other.handGrip ? part.handGrip.map((n, j) => n + (other.handGrip[j] - n) * t) : part.handGrip;
+            return { ...part, position, rotation, rig, expression, handGrip, eyeYaw: (part.eyeYaw ?? 0) + ((other.eyeYaw ?? 0) - (part.eyeYaw ?? 0)) * t, scale: part.scale && other.scale ? Vec3.lerp(part.scale, other.scale, t) : part.scale, boneMatrices: palette };
         }
         if ('skin' in part || 'skin' in other)
             throw Error('Replay topology changed');

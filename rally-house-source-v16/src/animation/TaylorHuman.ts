@@ -102,16 +102,25 @@ export interface HumanHeadOptions {width?:number;height?:number;hair?:string;eye
 
 export const HUMAN_TAYLOR_GEOMETRY={face,eyeWhite,iris,pupil,upperLip,lowerLip,smileUpper,smileLower,seam,smileSeam,nostrils,mouthGap,cap,ponytail,sweep,fineSweep,...Object.fromEntries(looseLocks.map((g,i)=>[`looseLock${i}`,g])),...Object.fromEntries(lids.map((g,i)=>[`lid${i}`,g])),...Object.fromEntries(lowerLids.map((g,i)=>[`lowerLid${i}`,g])),...Object.fromEntries(brows.map((g,i)=>[`brow${i}`,g])),...Object.fromEntries(lidFolds.map((g,i)=>[`lidFold${i}`,g]))};
 
-export function humanTaylorHead(head:Vec3,yaw:number,tilt:number,expression:{smile:number;mouthOpen:number;squint:number;browRaise:number},time:number,skin:string,options:HumanHeadOptions={}):RenderItem[]{
- const out:RenderItem[]=[],right=new Vec3(Math.cos(yaw),0,-Math.sin(yaw)),forward=new Vec3(Math.sin(yaw),0,Math.cos(yaw));
- const width=options.width??1,height=options.height??1,hair=options.hair??'#251e1d',style=options.hairStyle??'ponytail';
+export function humanHairMeshes(head:Vec3,yaw:number,tilt:number,options:HumanHeadOptions={}):RenderItem[]{
+ const out:RenderItem[]=[],right=new Vec3(Math.cos(yaw),0,-Math.sin(yaw)),forward=new Vec3(Math.sin(yaw),0,Math.cos(yaw)),width=options.width??1,height=options.height??1,hair=options.hair??'#251e1d',style=options.hairStyle??'ponytail';
  const point=(px:number,py:number,z:number)=>{const x=px*width,y=py*height;return head.clone().add(right.clone().scale(x*Math.cos(tilt)-y*Math.sin(tilt))).add(new Vec3(0,x*Math.sin(tilt)+y*Math.cos(tilt),0)).add(forward.clone().scale(z));};
- const part=(geometry:SkinGeometry,color:string,material:SkinnedMesh['material']='humanSkin',y=0,sy=1,unlit=false)=>out.push({skin:geometry,boneMatrices:bones,position:point(0,y,0),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(width,sy*height,1),color,material,unlit});
- part(options.masculine?masculineFace:face,skin);part(cap,hair,'groomedHair');
+ const part=(geometry:SkinGeometry,color:string,material:SkinnedMesh['material']='groomedHair')=>out.push({skin:geometry,boneMatrices:bones,position:head.clone(),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(width,height,1),color,material});
+ part(cap,hair,'groomedHair');
  if(style==='ponytail')part(ponytail,hair,'groomedHair');
  if(style==='bob')part(bob,hair,'groomedHair');
  if(style!=='crop')for(const g of [sweep,fineSweep,...(style==='ponytail'||style==='bob'?looseLocks:[])])part(g,options.hair??'#382820','groomedHair');
  if(style==='bun')out.push({kind:'sphere',position:point(.010,.163,-.119),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(.104*width,.096*height,.102),color:hair,material:'groomedHair'});
+ if(style==='ponytail'||style==='bun')out.push({kind:'torus',position:point(.003,style==='bun'?.163:.123,style==='bun'?-.119:-.105),rotation:new Vec3(Math.PI/2,yaw,tilt),scale:new Vec3(.066,.057,.012),color:'#cedb68',material:'fabric'});
+ return out;
+}
+
+export function humanTaylorHead(head:Vec3,yaw:number,tilt:number,expression:{smile:number;mouthOpen:number;squint:number;browRaise:number},time:number,skin:string,options:HumanHeadOptions={}):RenderItem[]{
+ const out:RenderItem[]=[],right=new Vec3(Math.cos(yaw),0,-Math.sin(yaw)),forward=new Vec3(Math.sin(yaw),0,Math.cos(yaw));
+ const width=options.width??1,height=options.height??1;
+ const point=(px:number,py:number,z:number)=>{const x=px*width,y=py*height;return head.clone().add(right.clone().scale(x*Math.cos(tilt)-y*Math.sin(tilt))).add(new Vec3(0,x*Math.sin(tilt)+y*Math.cos(tilt),0)).add(forward.clone().scale(z));};
+ const part=(geometry:SkinGeometry,color:string,material:SkinnedMesh['material']='humanSkin',y=0,sy=1,unlit=false)=>out.push({skin:geometry,boneMatrices:bones,position:point(0,y,0),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(width,sy*height,1),color,material,unlit});
+ part(options.masculine?masculineFace:face,skin);out.push(...humanHairMeshes(head,yaw,tilt,options));
  const phase=(time+.47)%3.75,blink=phase<.10?1-smoothstep(0,.10,phase):0,open=clamp(1-blink-expression.squint*.35,.06,1),offset=eyeY*(1-open);
  part(eyeWhite,'#d8d2c8','ceramic',offset,open);part(iris,options.eye??'#876641','iris',offset,open);part(pupil,'#231d1c','hair',offset,open,true);
  for(const g of lids)part(g,'#34221f','hair',offset,open);
@@ -126,6 +135,6 @@ export function humanTaylorHead(head:Vec3,yaw:number,tilt:number,expression:{smi
   const x=side*eyeX-.001,y=eyeY+.002;out.push({kind:'sphere',position:point(x,eyeY+(y-eyeY)*open,humanFaceDepth(x,y)+.0095),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(.0018,.0018*open,.0010),color:'#fff5dc',unlit:true,noShadow:true});
   out.push({kind:'sphere',position:point(side*.110,-.026,-.007),rotation:new Vec3(0,yaw,tilt),scale:new Vec3(.027,.058,.037),color:skin,material:'humanSkin'});
  }
- if(style==='ponytail'||style==='bun')out.push({kind:'torus',position:point(.003,style==='bun'?.163:.123,style==='bun'?-.119:-.105),rotation:new Vec3(Math.PI/2,yaw,tilt),scale:new Vec3(.066,.057,.012),color:'#cedb68',material:'fabric'});
+
  return out;
 }
