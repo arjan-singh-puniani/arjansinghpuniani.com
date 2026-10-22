@@ -1,0 +1,29 @@
+{
+  "method": "ABBA, same paused initial club, native Chromium Metal, 1280x800 DPR2, detail preset, 60 warm-up and 120 measured RAF intervals. Not active simulation FPS.",
+  "runs": [
+    {
+      "before": true,
+      "median": 16.699999999999818,
+      "p95": 16.799999999999955,
+      "gl": 0
+    },
+    {
+      "before": false,
+      "median": 16.699999999999818,
+      "p95": 16.700000000000273,
+      "gl": 0
+    },
+    {
+      "before": false,
+      "median": 16.699999999999818,
+      "p95": 16.799999999999955,
+      "gl": 0
+    },
+    {
+      "before": true,
+      "median": 16.699999999999818,
+      "p95": 16.799999999999955,
+      "gl": 0
+    }
+  ]
+}

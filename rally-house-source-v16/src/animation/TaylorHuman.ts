@@ -79,7 +79,7 @@ const mouthGap=surface('taylor-human-mouth-opening-v1',tri=>{
 },false);
 
 const cap=surface('taylor-human-groomed-hair-cap-v2',tri=>{
- const at=(r:number,i:number):Point=>{const angle=i/64*Math.PI*2,front=(1+Math.cos(angle))*.5,edge=-.046+.129*Math.pow(front,3)+.006*Math.sin(angle*2),y=edge+(.202-edge)*r/20,phi=clamp((y+.009)/.211,0,1),wave=r===20?0:Math.sqrt(Math.max(0,1-phi*phi)),ridge=.00065*Math.sin(angle*16+r/20*5)*wave,x=Math.sin(angle)*(.122*wave+ridge),z=Math.cos(angle)*(.110*wave+ridge)-.011;return [x,y,z];};
+ const at=(r:number,i:number):Point=>{const angle=i/64*Math.PI*2,front=(1+Math.cos(angle))*.5,edge=-.046+.129*Math.pow(front,3)+.006*Math.sin(angle*2),y=edge+(.202-edge)*r/20,phi=clamp((y+.009)/.211,0,1),wave=r===20?0:Math.sqrt(Math.max(0,1-phi*phi)),ridge=.00065*Math.sin(angle*16+r/20*5)*wave,[hx,hz]=radius(Math.min(.174,y)),rx=r===20?0:Math.max(y<.174?hx+.009:0,.125*wave)+ridge,rz=r===20?0:Math.max(y<.174?hz+.009:0,.118*wave)+ridge;return [Math.sin(angle)*rx,y,Math.cos(angle)*rz];};
  for(let r=0;r<20;r++)for(let i=0;i<64;i++){const a=at(r,i),b=at(r,i+1),c=at(r+1,i+1),d=at(r+1,i);tri(a,b,c);tri(a,c,d);}
 });
 function lock(id:string,points:Point[],radii:number[],rows=40,segments=20){return surface(id,tri=>{
@@ -87,7 +87,7 @@ function lock(id:string,points:Point[],radii:number[],rows=40,segments=20){retur
  const at=(r:number,i:number):Point=>{const t=r/rows,{p,c,radius}=(()=>{const s=sample(t);return {p:s.p,c:Vec3.sub(sample(Math.min(1,t+.002)).p,sample(Math.max(0,t-.002)).p).normalize(),radius:s.r};})(),z=new Vec3(0,0,1);z.sub(c.clone().scale(Vec3.dot(z,c))).normalize();const x=Vec3.cross(c,z).normalize(),a=i/segments*Math.PI*2,groove=1+.042*Math.sin(a*8+t*6)*Math.sin(Math.PI*t),v=p.add(x.scale(Math.cos(a)*radius*groove)).add(z.scale(Math.sin(a)*radius*.72*groove));return [v.x,v.y,v.z];};
  for(let r=0;r<rows;r++)for(let i=0;i<segments;i++){const a=at(r,i),b=at(r,i+1),c=at(r+1,i+1),d=at(r+1,i);tri(a,c,b);tri(a,d,c);}
 },true);}
-const ponytail=lock('taylor-human-athletic-ponytail-v2',[[0,.133,-.085],[.018,.091,-.159],[.038,-.015,-.183],[.018,-.134,-.157],[.046,-.267,-.131],[.075,-.349,-.113]],[.030,.039,.036,.030,.021,0]);
+const ponytail=lock('taylor-human-athletic-ponytail-v2',[[0,.176,-.075],[.018,.125,-.168],[.038,.005,-.209],[.018,-.145,-.224],[.046,-.285,-.246],[.075,-.390,-.270]],[.040,.049,.044,.036,.024,0]);
 const sweep=lock('taylor-human-side-part-v3',[[-.009,.184,.025],[-.052,.138,.060],[-.095,.076,.050],[-.115,.002,.010],[-.111,-.068,.006]],[0,.023,.018,.010,0]);
 const fineSweep=lock('taylor-human-temple-strand-v2',[[.079,.095,.055],[.112,.025,.031],[.112,-.045,.018],[.103,-.096,.015]],[0,.006,.005,0]);
 const looseLocks=[-1,1].map(side=>lock(`taylor-human-face-framing-lock-${side}-v1`,[[side*.095,.074,.054],[side*.121,.006,.043],[side*.124,-.082,.031],[side*.112,-.155,.043],[side*.130,-.209,.020]],[0,.008,.007,.004,0],24,12));
