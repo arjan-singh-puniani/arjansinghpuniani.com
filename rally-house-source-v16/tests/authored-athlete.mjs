@@ -255,5 +255,12 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
  }
  for(const key of ['handRestWeight','handLapWeight','handGripL','handGripR','handRacketWeight'])assert(Math.abs(middle.pose[key]-(a.pose[key]+b.pose[key])/2)<1e-12,'capture and replay share continuous hand controls');
  console.log(JSON.stringify({transitionChecks,zeroTimeJump,maxHandRelativeStep}));
+ for(const spec of [playerSpec('taylor'),...floorMembers.filter(s=>s.presentation==='feminine')])for(const hz of [30,60,120]){
+  const actor=new Character(spec,new Vec3(),new Navigation([]),{});actor.matchCompetitor=true;actor.trigger('ready');for(let i=0;i<hz;i++)actor.update(1/hz);
+  const first=actor.analysisPose(),offset=Vec3.sub(first.racketCenter,first.racketGrip);let turn=0;
+  for(let i=0;i<hz*3;i++){actor.update(1/hz);const p=actor.analysisPose();turn=Math.max(turn,Vec3.sub(Vec3.sub(p.racketCenter,p.racketGrip),offset).len());assert(Vec3.sub(p.handL,Vec3.lerp(p.racketHandleTop,p.racketCenter,.20)).len()<.001,'Authored free palm must follow the visible throat');for(const side of ['L','R'])assert(Vec3.sub(p['foot'+side],first['foot'+side]).len()<1e-8,'Grip adjustment must not move ready shoes');}
+  assert(turn>.035&&turn<.15,'Authored waiting grip must move without exaggerated fidgeting');
+  const a=captureFrame(actor,0,null);actor.update(1/hz);const b=captureFrame(actor,1/hz,null),replay=interpolateFrame(a,b,.5/hz).pose;assert(Vec3.sub(replay.handL,Vec3.lerp(replay.racketHandleTop,replay.racketCenter,.20)).len()<.001,'Replay must retain the throat support');
+ }
  console.log('Authored athlete loader, actual Character meshes, shared replay palette and facial interpolation PASS.');
 }finally{globalThis.fetch=previousFetch;if(previousImage)globalThis.Image=previousImage;else delete globalThis.Image;}

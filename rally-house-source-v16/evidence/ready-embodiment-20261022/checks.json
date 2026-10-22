@@ -1,0 +1,84 @@
+{
+  "baseline": "45025f28",
+  "oldRegression": "Fails ready hip-hinge landmark assertion",
+  "currentRegression": "Full npm suite passes; imported and fallback rigs cover ready grip/throat, feet, contact, state transitions and replay",
+  "actualPlay": {
+    "passed": true,
+    "returns": [
+      true,
+      true
+    ],
+    "review": {
+      "sameWorld": true,
+      "samePlayer": true,
+      "sameCast": true,
+      "sameObjects": true,
+      "sameMeshes": true,
+      "sameRecording": true,
+      "source": "game-recording",
+      "contact": true,
+      "time": 6.466666666666649,
+      "playing": false,
+      "speed": 0.25,
+      "input": false,
+      "match": false,
+      "reserved": false,
+      "competitors": false,
+      "gl": 0
+    },
+    "returned": {
+      "lab": false,
+      "match": false,
+      "world": true,
+      "court": false
+    },
+    "errors": [],
+    "http": []
+  },
+  "framePacing": [
+    {
+      "label": "before",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "gl": 0,
+      "errors": []
+    },
+    {
+      "label": "after",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "gl": 0,
+      "errors": []
+    },
+    {
+      "label": "after",
+      "median": 16.69999999999891,
+      "p95": 16.799999999999272,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "gl": 0,
+      "errors": []
+    },
+    {
+      "label": "before",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "gl": 0,
+      "errors": []
+    }
+  ]
+}

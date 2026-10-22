@@ -707,7 +707,7 @@ export class Character {
         const sy = Math.sin(headYaw), cy = Math.cos(headYaw), right = new Vec3(cy, 0, -sy), forward = new Vec3(sy, 0, cy);
         const contactLocal = this.contactTarget ? this.localFromWorld(this.contactTarget) : new Vec3(state === 'swingBackhand' ? -.52 : state === 'serve' ? .14 : .56, state === 'serve' ? 2.36 : 1.02, .5);
         const outside = clamp(contactLocal.x, -.85, .85);
-        const readyWeight = state === 'ready' ? Math.sin(time * 2.1 + this.seed() * .071) : 0;
+        const readyPhase = time * 2.1 + this.seed() * .071, readyWeight = state === 'ready' ? Math.sin(readyPhase) : 0;
         const pelvisShiftX = shot ? outside * .05 * bell(sp - contact, .24) : state === 'ready' ? readyWeight * .035 : moving && this.spec.appearance === 'human' ? -Math.sin(this.gaitPhase) * .018 : 0;
         const pelvisShiftZ = (shot ? .08 * weightShift : 0) + clip.pelvisZ;
         const pelvisCenter = this.worldLocal(pelvisShiftX, .79 + baseY - knee + splitHop, pelvisShiftZ, hipYaw);
@@ -764,12 +764,16 @@ export class Character {
         }
         const humanReady = this.spec.appearance === 'human' && (state === 'ready' || shuffle), authoredReady = humanReady && this.spec.presentation === 'feminine' && !!authoredArmLengths();
         if (humanReady) {
-            handR = this.worldLocal(.27, 1.18 + baseY, .36, torsoYaw);
-            handL = this.worldLocal(.40, 1.24 + baseY, .375, torsoYaw);
+            handR = this.worldLocal(.10, 1.18 + baseY, .36, torsoYaw);
+            handL = this.worldLocal(.24, 1.24 + baseY, .375, torsoYaw);
         }
         if (authoredReady) {
             handR = this.worldLocal(-.08, 1.18 + baseY, .48, torsoYaw);
             handL = this.worldLocal(.05, 1.24 + baseY, .50, torsoYaw);
+        }
+        if (humanReady) {
+            handL.y += breathe;
+            handR.y += breathe;
         }
         if (state === 'coachFeed') {
             handL = this.worldLocal(-.42, 1.05 + baseY, .12);
@@ -884,8 +888,9 @@ export class Character {
         racketForward.normalize();
         const racketRight = new Vec3(racketForward.z, 0, -racketForward.x);
         let headOffset = Vec3.add(new Vec3(0, .425, 0), racketForward.clone().scale(.225));
-        if (humanReady)
-            headOffset = rotateEulerVector(new Vec3(0, .48, 0), new Vec3(authoredReady ? .6 : .12, torsoYaw, -.70));
+        const readyRotation = humanReady ? new Vec3((authoredReady ? .6 : .12) + (state === 'ready' ? .06 * Math.cos(readyPhase) : 0), torsoYaw, (authoredReady ? -.70 : .35) + .10 * readyWeight) : null;
+        if (readyRotation)
+            headOffset = rotateEulerVector(new Vec3(0, .48, 0), readyRotation);
         if (state === 'serve')
             headOffset = Vec3.add(new Vec3(0, .525, 0), racketForward.clone().scale(.125));
         if (state === 'volley')
@@ -925,8 +930,8 @@ export class Character {
             racketRot = new Vec3(.46 - sp * .58, torsoYaw, .36 - sp * .72);
         else if (state === 'volley')
             racketRot = new Vec3(.04, torsoYaw, -.12);
-        if (humanReady)
-            racketRot = new Vec3(authoredReady ? .6 : .12, torsoYaw, -.70);
+        if (readyRotation)
+            racketRot = readyRotation;
         if (humanGroundstroke)
             racketRot = new Vec3(Math.atan2(groundDepth, groundRise), Math.atan2(racketForward.x, racketForward.z), Math.atan2(-groundSide, Math.hypot(groundRise, groundDepth)));
         const vib = this.racketVibration * Math.sin(this.animTime * 62) * .045;

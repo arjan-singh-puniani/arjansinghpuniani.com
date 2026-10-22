@@ -74,6 +74,15 @@ export function adultTaylorPose(source, root, yaw, constraints) {
     const arm = (v) => { const out = horizontal(v, .78), dy = v.y - oldShoulder.y, down = constraints.human ? 2.55 + (TAYLOR_BODY.torsoScale - 2.55) * stroke : 2.30, scale = down - (down - 1.20) * smooth((dy + .10) / .25); out.y = shoulder.y + dy * scale; return out; };
     p.handL = Vec3.lerp(arm(source.handL), source.handL, constraints.leftWorld);
     p.handR = Vec3.lerp(arm(source.handR), source.handR, constraints.rightWorld);
+    // The skinned body must carry the ready clip's hip hinge, not just its vertical load.
+    if (constraints.human && constraints.readyWeight) {
+        const angle = source.lean * constraints.readyWeight, c = Math.cos(angle), s = Math.sin(angle), forward = new Vec3(Math.sin(p.torsoYaw), 0, Math.cos(p.torsoYaw));
+        const hinge = (v) => { const d = Vec3.sub(v, p.pelvisCenter), depth = Vec3.dot(d, forward); return v.clone().add(forward.clone().scale(d.y * s + depth * (c - 1))).add(new Vec3(0, d.y * (c - 1) - depth * s, 0)); };
+        for (const key of ['torsoCenter', 'shoulderL', 'shoulderR', 'head'])
+            p[key] = hinge(p[key]);
+        for (const side of ['L', 'R'])
+            p[`hand${side}`] = Vec3.lerp(hinge(p[`hand${side}`]), p[`hand${side}`], side === 'L' ? constraints.leftWorld : constraints.rightWorld);
+    }
     const bodyKeys = ['pelvisCenter', 'torsoCenter', 'shoulderL', 'shoulderR', 'head', 'hipL', 'hipR'];
     // Loading and exact hand contact share one vertical budget. Applying each
     // solve's full drop independently could seat a standing player on the floor.
@@ -164,7 +173,7 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             p.torsoCenter.add(hinge.clone().scale(.6));
         }
     }
-    for (const side of ['L', 'R']) {
+    for (const side of ['R', 'L']) {
         const walk = constraints.human ? constraints.walk : undefined;
         const hip = p[`hip${side}`];
         // An airborne leg recovers toward the body; it cannot drag the planted body down.
@@ -213,6 +222,11 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             // folding a full-length adult forearm back through the upper arm.
             if (constraints.human && distance < .19)
                 p[`hand${side}`] = shoulder.clone().add((distance > .001 ? d.normalize() : torsoForward.clone()).scale(.19));
+        }
+        // Support the actual throat after retargeting, rather than a floating source-space hand goal.
+        if (side === 'L' && constraints.human && constraints.readyWeight) {
+            const throat = Vec3.lerp(source.racketHandleTop, source.racketCenter, .20), goal = p.handR.clone().add(Vec3.sub(throat, source.racketGrip));
+            p.handL = Vec3.lerp(p.handL, goal, constraints.readyWeight * (1 - world));
         }
         // The old compact/feline elbow target can pass through the shoulder/wrist
         // axis after retargeting. A body-relative human pole keeps elbows down and
