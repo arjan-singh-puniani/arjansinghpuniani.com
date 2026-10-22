@@ -6,6 +6,7 @@ import {Vec3} from '../dist/rendering/Math3D.js';
 import {InteractiveMatchSystem} from '../dist/tennis/InteractiveMatchSystem.js';
 import {MatchInput} from '../dist/tennis/MatchInput.js';
 import {CHAMPIONSHIP_OPPONENTS} from '../dist/tennis/ChampionshipOpponents.js';
+import {ChampionshipHUD} from '../dist/ui/ChampionshipHUD.js';
 const actor=(id,z)=>new Character({id,name:id,role:'member',shirt:'#888888',skin:'#c99977',hair:'#333333',playStyle:'test',goal:'test'},new Vec3(1,0,z),new Navigation(),{});
 function setup(){
  const p=actor('player',5),o=actor('leo',-5),input=new MatchInput(),hits=[];
@@ -32,6 +33,29 @@ for(const hz of [30,60,120])for(const timing of [-.04,.08,.3,.68,.92]){
 }
 {
  const {match,input}=setup();input.setTouchMovement(-1,0);const left=match.targetFor('player','clean');input.setTouchMovement(1,0);const right=match.targetFor('player','clean');assert(right.x-left.x>COURT.singlesHalfWidth*2*.65,'Movement direction aims across the playable court');assert(left.x>=COURT_MIN_X&&right.x<=COURT_MAX_X,'Aimed returns respect actual singles sidelines');
+}
+for(const hz of [30,60,120])for(const aim of [-1,1]){
+ const {input,match,tick}=setup();match.receiver='player';match.flightHitter='opponent';match.rallyLength=1;match.firstBounceSeen=true;
+ match.ball.active=true;match.ball.bounces=1;match.ball.position.set(1.7,1.1,.27);match.ball.velocity.set(0,2,6);
+ input.setTouchMovement(aim,0);input.queueSwing();input.setTouchMovement(0,0);
+ for(let i=0;i<hz&&!match.pending;i++)tick(1/hz);
+ assert.equal(match.pending?.side,'player','released early input still prepares a return');
+ assert((match.pending.target.x-COURT.centerX)*aim>1,'buffered placement must retain the direction chosen when swing was pressed');
+}
+{
+ const input=new MatchInput();input.setEnabled(true);input.setTouchMovement(-1,0);input.queueSwing();input.setTouchMovement(1,0);assert.equal(input.bufferedSwingAim(),-1,'steering after a press cannot change the queued placement');
+ input.queueSwing();assert.equal(input.bufferedSwingAim(),1,'a new press replaces the queued intent');input.update(2);assert.equal(input.bufferedSwingAim(),0,'expired input cannot leak aim into another stroke');
+ input.queueSwing();input.reset();assert.equal(input.bufferedSwingAim(),0);input.setEnabled(false);input.queueSwing();assert.equal(input.hasBufferedSwing(),false);
+}
+{
+ const {match,o}=setup();match.firstBounceSeen=true;match.ball.active=true;match.ball.position.set(2.6,1.1,-3.15);match.ball.velocity.set(0,2,-8);
+ match.tryOpponentReturn(1/60);assert.equal(match.pending,null,'an opponent on the wrong side must chase before preparing a return');
+ o.position.x=1.8;match.tryOpponentReturn(1/60);assert.equal(match.pending?.side,'opponent','a reachable return remains playable');
+}
+{
+ const snapshot={phase:'pointResult',lastPoint:{winner:'player',reason:'miss'}};
+ assert.equal(ChampionshipHUD.prototype.messageFor(snapshot,'none','Leo'),'Your point · Leo missed');
+ snapshot.lastPoint={winner:'opponent',reason:'wide'};assert.equal(ChampionshipHUD.prototype.messageFor(snapshot,'none','Leo'),'Their point · You hit wide');
 }
 {
  const club=actor('player',5),{p,match}=setup();assert(p.shotDuration('swingForehand')<club.shotDuration('swingForehand')*.75);match.stop();assert.equal(p.shotDuration('swingForehand'),club.shotDuration('swingForehand'),'Club animation remains unchanged');
