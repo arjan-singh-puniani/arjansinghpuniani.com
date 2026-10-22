@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
+    "terms": "https://open.fda.gov/terms/",
+    "license": "https://open.fda.gov/license/",
+    "last_updated": "2026-10-05",
+    "results": {
+      "skip": 0,
+      "limit": 1,
+      "total": 1
+    }
+  },
+  "results": [
+    {
+      "third_party_flag": "N",
+      "life_sustain_support_flag": "N",
+      "gmp_exempt_flag": "N",
+      "summary_malfunction_reporting": "Ineligible",
+      "product_code": "QCI",
+      "openfda": {
+        "k_number": [
+          "K221129",
+          "K183303",
+          "K233742",
+          "K212289",
+          "K230657",
+          "DEN170078",
+          "K231350",
+          "K193006",
+          "K243459"
+        ],
+        "registration_number": [
+          "3003144120",
+          "3012823347",
+          "3035374386",
+          "8021774",
+          "3020848550",
+          "3031980484",
+          "3014680784",
+          "3029767018",
+          "3005545216",
+          "3003127839",
+          "3004824012",
+          "3006418479",
+          "3007147067",
+          "3012352782",
+          "3010300912",
+          "3005268307"
+        ],
+        "fei_number": [
+          "3035374386",
+          "3012823347",
+          "3020848550",
+          "3031980484",
+          "3029767018",
+          "3005545216",
+          "3003127839",
+          "3004824012",
+          "3002808356",
+          "1825560",
+          "3006418479",
+          "3007147067",
+          "3004099094",
+          "3012352782",
+          "3010300912",
+          "3005268307"
+        ]
+      },
+      "review_panel": "NE",
+      "medical_specialty": "NE",
+      "device_name": "Transcranial Magnetic Stimulation System For Obsessive-Compulsive Disorder",
+      "review_code": "",
+      "unclassified_reason": "",
+      "medical_specialty_description": "Neurology",
+      "device_class": "2",
+      "definition": "External device that uses magnetic fields to induce neural activity in the cerebral cortex to treat neurological and psychiatric disorders and conditions.  It is not intended for applying or focusing magnetic fields towards brain areas outside cerebral cortex (e.g., cerebellum).",
+      "regulation_number": "882.5802",
+      "implant_flag": "N",
+      "submission_type_id": "1"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "measuredAt": "2026-10-19T11:47:21.457Z",
+  "heapAfterAllGeometry": 188095083,
+  "geometry": [
+    {
+      "asset": "organs.glb",
+      "durationMs": 1068.1000000238419,
+      "transferSize": 20399699,
+      "decodedBodySize": 30562436
+    },
+    {
+      "asset": "nervous.glb",
+      "durationMs": 519.8000000119209,
+      "transferSize": 10608510,
+      "decodedBodySize": 12506004
+    },
+    {
+      "asset": "body.glb",
+      "durationMs": 284.89999997615814,
+      "transferSize": 2662409,
+      "decodedBodySize": 5931648
+    }
+  ],
+  "environment": "Local loopback production server, installed Chrome, no CPU or network throttle",
+  "search": {
+    "requests": 30,
+    "p50Ms": 5.4950000000000045,
+    "p95Ms": 11.489291999999978,
+    "maxMs": 64.92087500000002
+  },
+  "orbit": {
+    "samples": 62,
+    "p50FrameIntervalMs": 16.699999999999818,
+    "p95FrameIntervalMs": 16.700000000000273,
+    "note": "requestAnimationFrame intervals during scripted mouse orbit; not an independently measured GPU frame rate or physical-device benchmark."
+  }
+}

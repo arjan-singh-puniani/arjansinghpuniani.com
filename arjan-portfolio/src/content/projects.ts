@@ -1,6 +1,45 @@
 import type { Project } from "@/types/content";
 export const projects: Project[] = [
   {
+    slug: "body-atlas", title: "BODY//ATLAS",
+    shortDescription: "A research prototype for exploring medical interventions through human anatomy, original FDA records, and linked studies.",
+    category: ["Software and Simulation", "Neurotechnology"], status: "Prototype", yearStart: 2026, yearEnd: "Present",
+    role: "Independent designer and developer",
+    problem: "Understanding an intervention requires connecting anatomy, regulatory documents, clinical investigations, and literature across separate systems.",
+    approach: [
+      "Built a rotatable anatomical interface with intervention selection, source inspection, historical events, comparisons, and cited Markdown briefs.",
+      "Acquired bounded public FDA, ClinicalTrials.gov, PubMed, and NIH RePORTER records while preserving identifiers, retrieval dates, and source hashes.",
+      "Separated physical placement, tissue interface, measurement, and intended target in the curated neurotechnology examples.",
+      "Kept automatically indexed anatomical mentions Provisional, with exact source excerpts and an explicit review queue. Record dots indicate regional membership rather than implant coordinates."
+    ],
+    results: [
+      "The cached October 19 source collection contains 2,490 authentic records. October 22 curation provides 91 explained entries across 44 anatomical structures/regions and a 652-application source-context index.",
+      "Recorded local verification on October 19 passed 29 domain/data checks, 24 ingestion checks, 16 desktop/mobile-emulated browser checks, TypeScript, and the production build. These checks do not measure independent scientific accuracy."
+    ],
+    limitations: [
+      "Public research preview at /atlas. The interactive application serves a bounded cached snapshot, not a live data service or a clinically validated reference.",
+      "The 712 indexed anatomical relationships are Provisional source-text contexts, not verified device placements. No independently adjudicated anatomical precision estimate is available.",
+      "An FDA application is not necessarily a distinct device family. Historical clearance, approval, and De Novo decisions do not establish current labeling, clinical effectiveness, or FDA endorsement of this project.",
+      "Coverage is incomplete, including subsequent supplements and safety notices. The male anatomical reference omits some structures; female-only contexts remain text-only. This is not a clinical decision tool."
+    ],
+    featured: true,
+    media: [{
+      src: "/images/home/body-atlas-preview.webp",
+      alt: "Actual BODY//ATLAS prototype showing regional intervention records on a human anatomical reference with an evidence panel",
+      caption: "Actual local prototype, October 19, 2026. Dots represent indexed records, not implant sites. Anatomy adapted from Kristen Browne and Heidi Schlehlein, Human Reference Atlas united male v1.5 (2023), CC BY 4.0; display color, transparency, and overlays modified."
+    }],
+    links: [{ label: "Launch interactive atlas", href: "/atlas" }, { label: "Read the recorded scope and validation", href: "/documents/body-atlas-validation.json" }],
+    evidence: [
+      { label: "Application source, mapping rules, tests and reproducible export", url: "https://github.com/arjan-singh-puniani/arjansinghpuniani.com/tree/main/body-atlas-source", verified: true },
+      { label: "Dataset scope, source checks and recorded verification — October 22, 2026", url: "/documents/body-atlas-validation.json", verified: true },
+      { label: "FDA openFDA device data and limitations", url: "https://open.fda.gov/apis/device/", verified: true },
+      { label: "Original Activa FDA evidence used in the neurotechnology workflow", url: "https://www.accessdata.fda.gov/cdrh_docs/pdf/P960009B.pdf", verified: true },
+      { label: "ClinicalTrials.gov data API", url: "https://clinicaltrials.gov/data-api/api", verified: true },
+      { label: "Human Reference Atlas geometry — Browne and Schlehlein (2023)", url: "https://doi.org/10.48539/HBM646.RKKC.257", verified: true },
+      { label: "Creative Commons Attribution 4.0 license", url: "https://creativecommons.org/licenses/by/4.0/", verified: true }
+    ]
+  },
+  {
     slug: "seizefreeze", title: "SeizeFreeze", shortDescription: "An early-stage focal cortical-cooling device concept for drug-resistant epilepsy.",
     category: ["Neurotechnology", "Clinical Research"], status: "Under development", yearStart: 2022, yearEnd: "Present", role: "Founder and device lead",
     problem: "Many people with drug-resistant epilepsy continue to experience seizures despite medication and may not qualify for resective surgery.",

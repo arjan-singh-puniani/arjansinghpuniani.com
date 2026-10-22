@@ -1,0 +1,832 @@
+{
+  "source-fda-p000009": {
+    "title": "Implantable defibrillation",
+    "product": "Phylax AV ICD",
+    "purpose": "An implantable defibrillator for selected patients at high risk of sudden death from ventricular arrhythmias, including survivors of cardiac arrest or poorly tolerated sustained ventricular tachycardia.",
+    "relevance": "The indication concerns the heart’s ventricular rhythm. It does not establish a brain interface or a vagus-nerve implant.",
+    "regions": [
+      "BODY:heart"
+    ],
+    "recordId": "FDA:P000009:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p010015": {
+    "title": "Biventricular pacing for heart failure",
+    "product": "Medtronic InSync pacing system",
+    "purpose": "A biventricular pacing system for patients with moderate to severe heart failure who remain symptomatic despite optimal medical therapy and meet the original electrical-conduction and ejection-fraction criteria.",
+    "relevance": "The pulse generator and cardiac leads support pacing of the heart; the approval does not specify a precise generator location here.",
+    "regions": [
+      "BODY:heart"
+    ],
+    "recordId": "FDA:P010015:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p010030": {
+    "title": "Wearable cardiac defibrillation",
+    "product": "LifeVest WCD 2000",
+    "purpose": "A wearable cardioverter defibrillator for adults at risk of sudden cardiac arrest who cannot receive or refuse an implantable defibrillator, under the original indication.",
+    "relevance": "The intended treatment concerns cardiac rhythm. The system is wearable; this is not evidence of implantation inside the heart.",
+    "regions": [
+      "BODY:heart"
+    ],
+    "recordId": "FDA:P010030:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p060040": {
+    "title": "Mechanical support before heart transplantation",
+    "product": "HeartMate II LVAS",
+    "purpose": "A left ventricular assist system originally indicated as a bridge to transplantation for transplant candidates at risk of imminent death from irreversible left ventricular failure.",
+    "relevance": "The assisted structure is the heart’s left ventricle. This original approval does not describe every later destination-therapy indication.",
+    "regions": [
+      "BODY:heart"
+    ],
+    "recordId": "FDA:P060040:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p100045": {
+    "title": "Wireless pulmonary-artery pressure monitoring",
+    "product": "CardioMEMS HF System",
+    "purpose": "Wirelessly measures pulmonary-artery pressure and heart rate to inform heart-failure management. The original indication covered NYHA class III patients hospitalized for heart failure in the previous year.",
+    "relevance": "The measured vessel is the pulmonary artery; the clinical purpose is heart-failure management. This is not a sensor implanted in lung tissue.",
+    "regions": [
+      "BODY:heart"
+    ],
+    "recordId": "FDA:P100045:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p150033": {
+    "title": "Leadless cardiac pacing",
+    "product": "Micra transcatheter pacemaker",
+    "purpose": "Provides pacing for specified symptomatic conduction disorders, including selected high-grade AV block and sinus-node dysfunction cases. The original indication includes situations where atrial lead placement is difficult, risky or unnecessary.",
+    "relevance": "The intervention addresses cardiac electrical rhythm. Eligibility depends on the exact rhythm disorder; this summary does not assign an intracardiac coordinate.",
+    "regions": [
+      "BODY:heart"
+    ],
+    "recordId": "FDA:P150033:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p100009": {
+    "title": "Catheter-based reduction of mitral regurgitation",
+    "product": "MitraClip delivery system",
+    "purpose": "A percutaneous intervention to reduce significant symptomatic degenerative mitral regurgitation in patients judged at prohibitive surgical risk by a heart team, under the original indication.",
+    "relevance": "The treated structure is the mitral valve. This entry concerns valve repair, not replacement of the aorta or a coronary artery.",
+    "regions": [
+      "BODY:heart-valves"
+    ],
+    "recordId": "FDA:P100009:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p000037": {
+    "title": "Mechanical aortic valve replacement",
+    "product": "On-X prosthetic heart valve, ONXA",
+    "purpose": "Replaces a diseased, damaged or malfunctioning native or prosthetic valve in the aortic position, in the approved sizes.",
+    "relevance": "The target is the aortic heart valve. The word aortic does not make this a separate treatment of the aortic vessel wall.",
+    "regions": [
+      "BODY:heart-valves"
+    ],
+    "recordId": "FDA:P000037:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p020047": {
+    "title": "Coronary stenting to widen narrowed vessels",
+    "product": "Multi-Link Vision coronary stent systems",
+    "purpose": "Stents intended to improve coronary lumen diameter in specified native coronary lesions, bypass-graft lesions and acute myocardial-infarction presentations. The original approval defines lesion length and vessel-size limits.",
+    "relevance": "The source explicitly identifies coronary arteries and certain bypass grafts. The exact lesion and access route are not located on this reference model.",
+    "regions": [
+      "BODY:coronary"
+    ],
+    "recordId": "FDA:P020047:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p110010": {
+    "title": "Drug-eluting coronary stenting",
+    "product": "Promus Element Plus coronary stent",
+    "purpose": "An everolimus-eluting coronary stent intended to improve lumen diameter in symptomatic ischemic heart disease with specified de novo native coronary lesions, subject to the original lesion and vessel criteria.",
+    "relevance": "The treated vessels are coronary arteries. This is neither a cardiac pacing lead nor evidence of clinical superiority over another stent.",
+    "regions": [
+      "BODY:coronary"
+    ],
+    "recordId": "FDA:P110010:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p020004": {
+    "title": "Endovascular exclusion of an abdominal aneurysm",
+    "product": "Gore Excluder bifurcated endoprosthesis",
+    "purpose": "A stent-graft intended to exclude an infrarenal abdominal aortic aneurysm from circulation in patients whose aortic neck, iliac landing zones and vascular access satisfy the original anatomical requirements.",
+    "relevance": "The treatment site is the abdominal aorta. Iliac and femoral access requirements are delivery constraints, not separate therapeutic targets in this entry.",
+    "regions": [
+      "BODY:aorta"
+    ],
+    "recordId": "FDA:P020004:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p100040": {
+    "title": "Thoracic aortic aneurysm repair",
+    "product": "Valiant thoracic stent-graft",
+    "purpose": "An endovascular stent-graft for specified thoracic aortic aneurysms and penetrating ulcers in patients with suitable access and landing-zone anatomy.",
+    "relevance": "The treated vessel is the thoracic aorta. The regional diagram does not establish an individual patient’s graft position or suitability.",
+    "regions": [
+      "BODY:aorta"
+    ],
+    "recordId": "FDA:P100040:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p030047": {
+    "title": "Carotid stenting with embolic protection",
+    "product": "Cordis PRECISE nitinol stent",
+    "purpose": "Used with the AngioGuard emboli-capture guidewire for carotid revascularization in selected patients at high risk from endarterectomy. The original indication specifies symptomatic or asymptomatic stenosis thresholds and vessel sizes.",
+    "relevance": "The source identifies the common or internal carotid artery. This does not imply implantation in brain tissue.",
+    "regions": [
+      "BODY:carotid"
+    ],
+    "recordId": "FDA:P030047:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p010003": {
+    "title": "Adjunctive sealing during large-vessel repair",
+    "product": "BioGlue surgical adhesive",
+    "purpose": "An adjunct to sutures, staples and other standard methods of achieving hemostasis during open repair of large vessels in adults.",
+    "relevance": "The source explicitly names the aorta and carotid arteries among the large vessels. The adhesive supplements surgical closure; it is not an intravascular stent.",
+    "regions": [
+      "BODY:aorta",
+      "BODY:carotid"
+    ],
+    "recordId": "FDA:P010003:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p100022": {
+    "title": "Drug-eluting femoropopliteal stenting",
+    "product": "Zilver PTX peripheral stent",
+    "purpose": "A drug-eluting stent intended to improve lumen diameter in symptomatic de novo or restenotic lesions of above-knee femoropopliteal arteries, within the original diameter and lesion-length limits.",
+    "relevance": "The intervention targets leg arteries, not the knee joint itself. Above-the-knee describes vessel location, not a knee prosthesis.",
+    "regions": [
+      "BODY:lower-limb-vessels"
+    ],
+    "recordId": "FDA:P100022:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p080032": {
+    "title": "Bronchial thermoplasty for severe asthma",
+    "product": "Alair bronchial thermoplasty system",
+    "purpose": "A bronchial thermoplasty system originally indicated for adults with severe persistent asthma not well controlled with inhaled corticosteroids and long-acting beta agonists.",
+    "relevance": "The relevant anatomy is the bronchial airway within the lungs. This indication does not establish benefit for all asthma severities.",
+    "regions": [
+      "BODY:lung"
+    ],
+    "recordId": "FDA:P080032:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p160013": {
+    "title": "Preserving donor lungs outside the body",
+    "product": "Organ Care System Lung",
+    "purpose": "Preserves standard-criteria donor lungs in a ventilated, perfused, near-physiologic state for double-lung transplantation, under the original indication.",
+    "relevance": "The system operates on donor lungs outside the recipient. It should not be read as a permanently implanted breathing device.",
+    "regions": [
+      "BODY:lung"
+    ],
+    "recordId": "FDA:P160013:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p180002": {
+    "title": "Bronchoscopic valve treatment for emphysema",
+    "product": "Zephyr endobronchial valve",
+    "purpose": "An implantable bronchial valve for adults with hyperinflation associated with severe emphysema in lung regions with little to no collateral ventilation.",
+    "relevance": "The source identifies bronchial placement and affected lung regions. This is a lung intervention, not replacement of a pulmonary heart valve.",
+    "regions": [
+      "BODY:lung"
+    ],
+    "recordId": "FDA:P180002:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p080030": {
+    "title": "Glaucoma pressure reduction during cataract surgery",
+    "product": "Glaukos iStent trabecular micro-bypass",
+    "purpose": "Used with cataract surgery to reduce intraocular pressure in adults with mild to moderate open-angle glaucoma already treated with ocular hypotensive medication, under the original indication.",
+    "relevance": "The treated function is pressure regulation within the eye. Cataract surgery is the co-procedure; it does not make this stent a lens replacement.",
+    "regions": [
+      "BODY:eye"
+    ],
+    "recordId": "FDA:P080030:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p000030": {
+    "title": "Optical correction with soft contact lenses",
+    "product": "Focus Night & Day contact lenses",
+    "purpose": "Soft contact lenses for correction of myopia or hyperopia in non-diseased eyes, within the original astigmatism limit. The historical approval specifies wear, replacement and disinfection requirements.",
+    "relevance": "These are external optical lenses associated with the corneal surface, not surgically implanted intraocular lenses. Wear instructions depend on the applicable labeling.",
+    "regions": [
+      "BODY:cornea"
+    ],
+    "recordId": "FDA:P000030:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p010018": {
+    "title": "Temporary correction of farsightedness",
+    "product": "ViewPoint conductive keratoplasty system",
+    "purpose": "A refractive treatment for temporary reduction of specified spherical hyperopia in patients aged 40 or older with stable refraction. The original approval states that the correction diminishes over time.",
+    "relevance": "The context is corneal refractive treatment. It should not be presented as permanent correction or as lens replacement.",
+    "regions": [
+      "BODY:cornea"
+    ],
+    "recordId": "FDA:P010018:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p000046": {
+    "title": "Maintaining space and protecting tissues during eye surgery",
+    "product": "STAARVISC II ophthalmic viscoelastic",
+    "purpose": "A sodium-hyaluronate surgical aid that maintains chamber depth and visibility and protects intraocular tissues during specified operations, including lens implantation, corneal transplantation and retinal reattachment.",
+    "relevance": "The original statement explicitly names procedures involving cornea, lens and retina. This is a surgical aid, not a retinal electrode or an optical implant.",
+    "regions": [
+      "BODY:cornea",
+      "BODY:lens",
+      "BODY:retina"
+    ],
+    "recordId": "FDA:P000046:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p010059": {
+    "title": "Stabilizing the lens capsule during cataract surgery",
+    "product": "Morcher capsular tension ring",
+    "purpose": "Stabilizes the crystalline-lens capsule in adults with weak or partially absent zonules undergoing cataract extraction with intraocular-lens implantation.",
+    "relevance": "The supported structure is the lens capsule and its support apparatus. The ring supports the capsule; it does not itself provide optical lens power.",
+    "regions": [
+      "BODY:lens"
+    ],
+    "recordId": "FDA:P010059:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p030002": {
+    "title": "Intraocular lens implantation after cataract removal",
+    "product": "Crystalens AT-45",
+    "purpose": "An intraocular lens implanted in the capsular bag to correct aphakia after cataractous-lens removal in adults. The original approval describes intended near, intermediate and distance vision.",
+    "relevance": "The implant replaces the optical function of the removed lens. This is distinct from a contact lens worn on the eye’s surface.",
+    "regions": [
+      "BODY:lens"
+    ],
+    "recordId": "FDA:P030002:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p000025": {
+    "title": "Cochlear electrical stimulation for hearing loss",
+    "product": "MED-EL COMBI 40+",
+    "purpose": "Intended to provide auditory information through electrical stimulation of the auditory nerve in specified severe-to-profound hearing-loss populations who gain little benefit from conventional amplification.",
+    "relevance": "The entry concerns the cochlear auditory pathway. The original approval includes different adult and pediatric hearing and hearing-aid-trial criteria.",
+    "regions": [
+      "BODY:ear"
+    ],
+    "recordId": "FDA:P000025:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p090018": {
+    "title": "Fully implanted hearing assistance",
+    "product": "Esteem implantable hearing system",
+    "purpose": "An implantable hearing system intended to alleviate hearing loss by replicating the ossicular chain and adding gain, for patients meeting the original hearing and anatomical requirements.",
+    "relevance": "The source concerns mechanical hearing transmission in the ear. It is not an intracortical recording system or a cochlear-nerve electrode.",
+    "regions": [
+      "BODY:ear"
+    ],
+    "recordId": "FDA:P090018:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p000023": {
+    "title": "Temporomandibular joint reconstruction",
+    "product": "TMJ fossa-eminence / condylar prostheses",
+    "purpose": "Reconstructs the temporomandibular joint in specified conditions such as refractory inflammatory arthritis, recurrent ankylosis or failed prior reconstruction.",
+    "relevance": "The temporomandibular joint connects the mandible and skull. This is jaw-joint reconstruction, not a tooth filling or brain implant.",
+    "regions": [
+      "BODY:dental"
+    ],
+    "recordId": "FDA:P000023:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p040013": {
+    "title": "Regenerative treatment of periodontal defects",
+    "product": "GEM 21S growth-factor enhanced matrix",
+    "purpose": "A growth-factor enhanced matrix for specified intrabony and furcation periodontal defects and gingival recession associated with periodontal defects.",
+    "relevance": "The relevant tissues support teeth and include periodontal bone and gingiva. This is not a general-purpose bone graft for every skeletal region.",
+    "regions": [
+      "BODY:dental"
+    ],
+    "recordId": "FDA:P040013:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p170029": {
+    "title": "Imaging active tooth demineralization",
+    "product": "CALCIVIS Imaging System",
+    "purpose": "Provides images of active demineralization on accessible coronal tooth surfaces to aid assessment, diagnosis and treatment planning for caries-related lesions in patients aged six or older.",
+    "relevance": "The measured surface is the tooth crown. The device aids dental assessment; an image alone is not proof of a treatment outcome.",
+    "regions": [
+      "BODY:dental"
+    ],
+    "recordId": "FDA:P170029:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p100049": {
+    "title": "Reflux management when medical therapy is insufficient",
+    "product": "LINX reflux management system",
+    "purpose": "An anti-reflux implant for patients with gastroesophageal reflux disease confirmed by abnormal pH testing who remain symptomatic despite maximum reflux therapy, under the original indication.",
+    "relevance": "The clinical target is reflux at the gastroesophageal junction. This is not a stomach-removal procedure, and the regional association does not establish exact placement.",
+    "regions": [
+      "BODY:esophagus"
+    ],
+    "recordId": "FDA:P100049:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p000008": {
+    "title": "Adjustable gastric banding for severe obesity",
+    "product": "LAP-BAND system",
+    "purpose": "A gastric-banding intervention originally indicated for severely obese adults who failed conservative weight-loss approaches and met specified weight or BMI criteria. Long-term eating-habit changes are part of the original indication.",
+    "relevance": "The intervention concerns the stomach. It is not a treatment placed in the pancreas, despite its potential relationship to metabolic disease.",
+    "regions": [
+      "BODY:stomach"
+    ],
+    "recordId": "FDA:P000008:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p110015": {
+    "title": "Measuring gastric emptying through breath analysis",
+    "product": "Gastric Emptying Breath Test",
+    "purpose": "Uses a test meal and the carbon-isotope ratio in breath to measure solid gastric-emptying rate and aid diagnosis of delayed emptying in symptomatic adults, under professional supervision.",
+    "relevance": "The physiological function being measured is stomach emptying. The analyzer measures breath outside the body; no sensor is implanted in the stomach.",
+    "regions": [
+      "BODY:stomach"
+    ],
+    "recordId": "FDA:P110015:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p080025": {
+    "title": "Sacral neuromodulation for fecal incontinence",
+    "product": "InterStim therapy for bowel control",
+    "purpose": "A sacral-nerve stimulation therapy originally indicated for chronic fecal incontinence in patients who failed or could not tolerate conservative treatment.",
+    "relevance": "The relevant function is bowel continence. This clinical association does not place the electrodes in the colon or rectal wall.",
+    "regions": [
+      "BODY:colon"
+    ],
+    "recordId": "FDA:P080025:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p100014": {
+    "title": "Injectable treatment for fecal incontinence",
+    "product": "Solesta injectable gel",
+    "purpose": "An injectable gel for fecal incontinence in adults who have failed conservative approaches such as dietary, fiber or anti-motility therapy, under the original indication.",
+    "relevance": "The entry concerns bowel continence. The indexed approval does not by itself establish a precise injection coordinate on this body model.",
+    "regions": [
+      "BODY:colon"
+    ],
+    "recordId": "FDA:P100014:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p040027": {
+    "title": "Portosystemic shunting for portal hypertension",
+    "product": "Gore VIATORR TIPS endoprosthesis",
+    "purpose": "An endoprosthesis for de novo or revision treatment of portal hypertension and complications including variceal bleeding, gastropathy, ascites or hepatic hydrothorax.",
+    "relevance": "The intervention concerns the liver’s portal circulation. A complication elsewhere in the body does not make that site the implant target.",
+    "regions": [
+      "BODY:liver"
+    ],
+    "recordId": "FDA:P040027:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p200029": {
+    "title": "Internal radiation treatment of liver cancer",
+    "product": "TheraSphere",
+    "purpose": "Selective internal radiation therapy for local control of specified solitary unresectable hepatocellular tumors. The original approval defines tumor size, liver function and performance-status requirements.",
+    "relevance": "The treatment target is hepatocellular carcinoma in the liver. This does not establish treatment of every liver tumor or a general cancer cure.",
+    "regions": [
+      "BODY:liver"
+    ],
+    "recordId": "FDA:P200029:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p200031": {
+    "title": "Preserving and assessing a donor liver",
+    "product": "Organ Care System Liver",
+    "purpose": "An extracorporeal perfusion and monitoring system that preserves donor livers and allows ex-vivo assessment of hemodynamic and metabolic function, subject to the original donor-selection criteria.",
+    "relevance": "The system works on a donor liver outside the body. It is not a liver implant or proof that a particular organ is suitable for transplantation.",
+    "regions": [
+      "BODY:liver"
+    ],
+    "recordId": "FDA:P200031:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p990065": {
+    "title": "Liver-directed treatment of colorectal metastases",
+    "product": "SIR-Spheres",
+    "purpose": "Originally indicated for unresectable liver metastases from colorectal cancer in combination with intra-hepatic-artery chemotherapy using floxuridine.",
+    "relevance": "The treated tumors are in the liver. Colorectal describes the primary cancer’s origin, not a delivery site in the colon.",
+    "regions": [
+      "BODY:liver"
+    ],
+    "recordId": "FDA:P990065:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p060006": {
+    "title": "Stenting a narrowed renal artery",
+    "product": "Express SD renal stent",
+    "purpose": "An adjunct to renal angioplasty to help maintain patency in specified short atherosclerotic renal-artery lesions near the aorta, within the original vessel-size criteria.",
+    "relevance": "The physical vessel is the renal artery supplying the kidney. This is not a stent implanted in kidney parenchyma.",
+    "regions": [
+      "BODY:kidney"
+    ],
+    "recordId": "FDA:P060006:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p220023": {
+    "title": "Ultrasound renal denervation for hypertension",
+    "product": "Paradise ultrasound renal denervation system",
+    "purpose": "An adjunctive blood-pressure treatment for hypertension inadequately controlled by lifestyle changes and antihypertensive medication, using an ultrasound renal-denervation system.",
+    "relevance": "The relevant system is the renal vascular and neural pathway. This is not evidence of measuring kidney filtration or placing electrodes inside kidney tissue.",
+    "regions": [
+      "BODY:kidney"
+    ],
+    "recordId": "FDA:P220023:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p170001": {
+    "title": "Sacral neuromodulation for urinary symptoms",
+    "product": "Virtis sacral neuromodulation system",
+    "purpose": "Treats urinary retention and overactive-bladder symptoms in patients who failed or could not tolerate conservative approaches, under the original indication.",
+    "relevance": "The physiological function is bladder control. Sacral neuromodulation does not imply implantation of the stimulator inside the bladder.",
+    "regions": [
+      "BODY:bladder"
+    ],
+    "recordId": "FDA:P170001:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p050027": {
+    "title": "Blue-light detection of bladder lesions",
+    "product": "Karl Storz D-Light C PDD system",
+    "purpose": "Used with Cysview as an adjunct to white-light cystoscopy to detect non-muscle-invasive papillary bladder cancer in specified suspected or known-lesion patients.",
+    "relevance": "The inspected organ is the bladder. This is an optical detection aid used with a drug, not a cancer-ablation device.",
+    "regions": [
+      "BODY:bladder"
+    ],
+    "recordId": "FDA:P050027:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p170023": {
+    "title": "Urethral bulking for stress incontinence",
+    "product": "Bulkamid urethral bulking system",
+    "purpose": "A urethral injection treatment for adult women with stress urinary incontinence due to intrinsic sphincter deficiency, including stress-predominant mixed incontinence, under the original indication.",
+    "relevance": "The source identifies urethral injection. This is distinct from an implanted bladder stimulator and from treatment of urinary infection.",
+    "regions": [
+      "BODY:urethra"
+    ],
+    "recordId": "FDA:P170023:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p210020": {
+    "title": "Drug-coated balloon treatment of urethral narrowing",
+    "product": "Optilume urethral drug-coated balloon",
+    "purpose": "Treats obstructive urinary symptoms associated with anterior urethral strictures of no more than 3 cm in adult men, under the original indication.",
+    "relevance": "The treated structure is the anterior urethra. The BPH catheter system has a different application and is not merged with this entry.",
+    "regions": [
+      "BODY:urethra"
+    ],
+    "recordId": "FDA:P210020:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p010055": {
+    "title": "Microwave thermotherapy for enlarged prostate symptoms",
+    "product": "ProstaLund CoreTherm",
+    "purpose": "A minimally invasive microwave-thermotherapy system for symptomatic benign prostatic hyperplasia. The original approval specifies prostate size and prostatic-urethral length requirements.",
+    "relevance": "The condition is enlargement of the prostate. The urethral length is a treatment-selection measurement, not evidence of a separate urethral implant.",
+    "regions": [
+      "BODY:prostate"
+    ],
+    "recordId": "FDA:P010055:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p060010": {
+    "title": "Temporary urine-flow support after BPH treatment",
+    "product": "Spanner temporary prostatic stent",
+    "purpose": "A temporary stent, originally for up to 30 days, to maintain urine flow and allow voluntary urination after minimally invasive BPH treatment and initial catheterization.",
+    "relevance": "The supported passage is in the prostatic urinary outlet. This is not a permanent prostate replacement or a treatment for prostate cancer.",
+    "regions": [
+      "BODY:prostate"
+    ],
+    "recordId": "FDA:P060010:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p000006": {
+    "title": "Penile prosthesis for erectile dysfunction",
+    "product": "Mentor Alpha I penile prosthesis, P000006",
+    "purpose": "A penile prosthesis for men with erectile dysfunction who are considered candidates for implantation, under the original approval statement.",
+    "relevance": "The intended intervention is penile implantation. The original statement names Alpha I while the database title now names Titan; this entry does not assume those historical product identities are interchangeable.",
+    "regions": [
+      "BODY:penis"
+    ],
+    "recordId": "FDA:P000006:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p000040": {
+    "title": "Endometrial ablation for excessive bleeding",
+    "product": "Hydro ThermAblator",
+    "purpose": "Ablates the uterine lining in premenopausal women with excessive bleeding from benign causes who have completed childbearing, under the original indication.",
+    "relevance": "The treated tissue is the endometrium within the uterus. It is not an intervention for preserving future fertility.",
+    "regions": [
+      "BODY:uterus"
+    ],
+    "recordId": "FDA:P000040:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p040003": {
+    "title": "Focused-ultrasound ablation of uterine fibroids",
+    "product": "ExAblate 2000",
+    "purpose": "An MR-guided focused-ultrasound ablation system for symptomatic uterine fibroids in selected pre- or perimenopausal women who have completed childbearing and meet the original uterine-size criterion.",
+    "relevance": "The target is fibroid tissue in the uterus. This application is separate from ExAblate neurotechnology used at intracranial targets.",
+    "regions": [
+      "BODY:uterus"
+    ],
+    "recordId": "FDA:P040003:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p240015": {
+    "title": "Reducing recurrence of intrauterine adhesions",
+    "product": "Womed Leaf resorbable adhesion barrier",
+    "purpose": "Intended to reduce recurrence and severity of postsurgical adhesions inside the uterus after hysteroscopic surgery for symptomatic moderate-to-severe intrauterine adhesions in adult women.",
+    "relevance": "The source explicitly identifies the uterine cavity. Female anatomy is listed textually and is not falsely placed on the male reference mesh.",
+    "regions": [
+      "BODY:uterus"
+    ],
+    "recordId": "FDA:P240015:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-k260007": {
+    "title": "Vaginal moisturization and lubrication",
+    "product": "Hudi hyaluronic-acid vaginal suppositories",
+    "purpose": "Vaginal lubricant suppositories intended to supplement natural lubrication and improve comfort during intimate activity. The FDA summary states that the product is not compatible with condoms.",
+    "relevance": "The source identifies vaginal application and mucosal contact. This is not a contraceptive, despite the regulatory category’s name, and it is not placed on the male reference mesh.",
+    "regions": [
+      "BODY:vagina"
+    ],
+    "recordId": "FDA:K260007",
+    "locator": "FDA 510(k) summary, PDF page 5; indications for use",
+    "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260007.pdf"
+  },
+  "source-fda-p020056": {
+    "title": "Breast augmentation and reconstruction",
+    "product": "Inamed silicone-filled breast implants, P020056",
+    "purpose": "Silicone-filled implants originally indicated for augmentation in women aged 22 or older and reconstruction in women of any age, including specified revision procedures.",
+    "relevance": "The intervention concerns breast volume and reconstruction. The application’s later Natrelle title does not establish that every later model shares this original labeling.",
+    "regions": [
+      "BODY:breast"
+    ],
+    "recordId": "FDA:P020056:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p080003": {
+    "title": "Digital breast imaging and tomosynthesis",
+    "product": "Selenia Dimensions 3D",
+    "purpose": "Generates 2D and 3D mammographic images for breast-cancer screening and diagnostic workup, under the original system indication.",
+    "relevance": "The imaged anatomy is the breast. This is external imaging, not a breast implant or proof of a cancer diagnosis from an image alone.",
+    "regions": [
+      "BODY:breast"
+    ],
+    "recordId": "FDA:P080003:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p110006": {
+    "title": "Supplemental ultrasound screening in dense breasts",
+    "product": "Somo-V automated breast ultrasound",
+    "purpose": "An adjunct to mammography for specified asymptomatic women with dense breasts and normal or benign mammograms, without prior clinical breast intervention, under the original indication.",
+    "relevance": "The measured tissue is breast parenchyma. The source describes supplemental screening, not replacement of mammography for all patients.",
+    "regions": [
+      "BODY:breast"
+    ],
+    "recordId": "FDA:P110006:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p050052": {
+    "title": "Subdermal filling of facial folds",
+    "product": "Radiesse injectable implant",
+    "purpose": "Originally indicated for subdermal implantation to correct moderate to severe facial wrinkles and folds, such as nasolabial folds.",
+    "relevance": "The specified tissue layer is beneath the dermis. This skin-region association is not a claim about implantation in muscle, bone or brain.",
+    "regions": [
+      "BODY:skin"
+    ],
+    "recordId": "FDA:P050052:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p000013": {
+    "title": "Primary total hip arthroplasty",
+    "product": "Osteonics ABC / Trident systems",
+    "purpose": "Hip-replacement systems for patients requiring primary total hip arthroplasty because of specified painful, disabling non-inflammatory degenerative hip disease.",
+    "relevance": "The replaced joint is the hip. This application does not establish eligibility for every revision procedure or every later component model.",
+    "regions": [
+      "BODY:hip"
+    ],
+    "recordId": "FDA:P000013:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p040033": {
+    "title": "Resurfacing the hip joint",
+    "product": "Birmingham Hip Resurfacing",
+    "purpose": "A hip-resurfacing system for specified arthritic conditions. The original design combines a cemented femoral-head component with a cementless acetabular component and has patient-selection restrictions.",
+    "relevance": "Both components belong to the hip joint. This historical resurfacing indication is not evidence of superiority over total hip replacement.",
+    "regions": [
+      "BODY:hip"
+    ],
+    "recordId": "FDA:P040033:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p010014": {
+    "title": "Partial replacement of the medial knee compartment",
+    "product": "Oxford meniscal unicompartmental knee",
+    "purpose": "A cemented partial-knee implant for osteoarthritis or avascular necrosis limited to the medial compartment, under the original indication.",
+    "relevance": "The treated structure is the medial knee compartment. It is not replacement of the whole knee or a vascular intervention above the knee.",
+    "regions": [
+      "BODY:knee"
+    ],
+    "recordId": "FDA:P010014:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p010029": {
+    "title": "Hyaluronate treatment for knee osteoarthritis pain",
+    "product": "Euflexxa / original Nuflexxa approval",
+    "purpose": "A sodium-hyaluronate treatment originally indicated for knee osteoarthritis pain after inadequate response to conservative non-drug therapy and simple analgesics.",
+    "relevance": "The clinical target is knee osteoarthritis pain. The original approval names Nuflexxa; the current database title uses Euflexxa, so the naming difference remains explicit.",
+    "regions": [
+      "BODY:knee"
+    ],
+    "recordId": "FDA:P010029:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p060037": {
+    "title": "Cemented mobile-bearing knee replacement",
+    "product": "NexGen LPS mobile-bearing knees",
+    "purpose": "Knee-replacement components for severe knee pain and disability associated with specified arthritic conditions or deformities. The original approval specifies cemented use.",
+    "relevance": "The intervention is at the knee joint. The source limits deformity and disease criteria; it is not a general treatment for all knee pain.",
+    "regions": [
+      "BODY:knee"
+    ],
+    "recordId": "FDA:P060037:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-k260721": {
+    "title": "Glenoid replacement in shoulder arthroplasty",
+    "product": "Tornier Perform Advanced Glenoid",
+    "purpose": "A cemented glenoid implant for severe pain or disability from degenerative shoulder disease, or qualifying revision surgery with sufficient bone stock. Compatible humeral-system indications also apply.",
+    "relevance": "The glenoid is the shoulder socket. This is an implant component used with specified humeral systems, not a whole-joint replacement independent of component compatibility.",
+    "regions": [
+      "BODY:shoulder"
+    ],
+    "recordId": "FDA:K260721",
+    "locator": "FDA 510(k) summary, PDF page 4; indications for use",
+    "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260721.pdf"
+  },
+  "source-fda-p000057": {
+    "title": "Replacement of damaged finger knuckle joints",
+    "product": "Ascension MCP",
+    "purpose": "Total replacement of specified finger metacarpophalangeal joints affected by painful, destructive or degenerative disease, where soft-tissue reconstruction can provide adequate stabilization.",
+    "relevance": "The source identifies finger MCP joints. This is not a wrist replacement, elbow implant or tendon repair.",
+    "regions": [
+      "BODY:hand"
+    ],
+    "recordId": "FDA:P000057:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p950035": {
+    "title": "Electrical assistance for grasp and release",
+    "product": "NeuroControl Freehand",
+    "purpose": "An upper-extremity neuroprosthesis intended to improve grasp, hold and release in selected skeletally mature people with C5 or C6 spinal-cord injury and preserved lower-motor-neuron innervation of the forearm and hand.",
+    "relevance": "The assisted function is hand grasp. Spinal-cord injury describes the clinical population; the source does not place this system’s electrodes inside the spinal cord.",
+    "regions": [
+      "BODY:hand"
+    ],
+    "recordId": "FDA:P950035:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p960053": {
+    "title": "Thumb-base joint replacement",
+    "product": "Braun-Cutter trapezometacarpal prosthesis",
+    "purpose": "A total-joint replacement for skeletally mature patients with pain or instability of the thumb’s trapezometacarpal joint from specified disease, trauma or prior procedures.",
+    "relevance": "The relevant joint is at the base of the thumb. It should not be displayed as a replacement of all fingers or of the wrist as a whole.",
+    "regions": [
+      "BODY:hand"
+    ],
+    "recordId": "FDA:P960053:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p050050": {
+    "title": "Non-cemented ankle replacement",
+    "product": "STAR total ankle replacement",
+    "purpose": "A non-cemented implant to replace a painful arthritic ankle joint affected by osteoarthritis, post-traumatic arthritis or rheumatoid arthritis, under the original indication.",
+    "relevance": "The replaced joint is the ankle. This is not an implant in the knee or a treatment of the plantar fascia.",
+    "regions": [
+      "BODY:ankle"
+    ],
+    "recordId": "FDA:P050050:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p100006": {
+    "title": "Graft material for ankle or hindfoot fusion",
+    "product": "Augment bone graft",
+    "purpose": "An alternative to autograft in specified ankle or hindfoot fusion procedures when supplemental graft material is needed, under the original disease and surgical criteria.",
+    "relevance": "The source identifies ankle and hindfoot arthrodesis. Fusion and joint replacement are different interventions; this is not a motion-preserving ankle prosthesis.",
+    "regions": [
+      "BODY:ankle"
+    ],
+    "recordId": "FDA:P100006:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p040026": {
+    "title": "External shock-wave treatment for chronic heel pain",
+    "product": "Orthospec shock-wave system",
+    "purpose": "A non-invasive treatment for proximal plantar fasciitis in adults with symptoms lasting at least six months despite unsuccessful conservative therapy, under the original indication.",
+    "relevance": "The target is the plantar-fascia insertion at the heel. The energy is applied externally; the entry does not imply an implanted heel device.",
+    "regions": [
+      "BODY:foot"
+    ],
+    "recordId": "FDA:P040026:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p000058": {
+    "title": "Bone-graft and cage system for lumbar fusion",
+    "product": "INFUSE / LT-Cage lumbar fusion system",
+    "purpose": "A spinal-fusion system originally indicated for skeletally mature patients with specified single-level L4–S1 degenerative disc disease after at least six months of nonoperative treatment.",
+    "relevance": "The structural target is the lumbar vertebral segment. The device is not implanted in spinal-cord tissue, and this original combination does not represent every later INFUSE use.",
+    "regions": [
+      "BODY:vertebral"
+    ],
+    "recordId": "FDA:P000058:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p060023": {
+    "title": "Cervical disc reconstruction after discectomy",
+    "product": "BRYAN cervical disc",
+    "purpose": "A cervical disc prosthesis for selected skeletally mature patients undergoing single-level C3–C7 discectomy for intractable radiculopathy or myelopathy after failed nonoperative treatment.",
+    "relevance": "The reconstructed structure is an intervertebral disc in the neck. Spinal-cord symptoms do not mean that the prosthesis contacts or penetrates the cord.",
+    "regions": [
+      "BODY:vertebral"
+    ],
+    "recordId": "FDA:P060023:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p140019": {
+    "title": "Bone-graft support for cervical reconstruction",
+    "product": "i-FACTOR peptide-enhanced bone graft",
+    "purpose": "A graft for specified single-level cervical reconstruction after failed conservative care. The original approval requires use inside an allograft bone ring with supplemental anterior plate fixation.",
+    "relevance": "The relevant anatomy is the cervical disc space and supporting vertebrae. This is not a stand-alone implant for spinal-cord stimulation.",
+    "regions": [
+      "BODY:vertebral"
+    ],
+    "recordId": "FDA:P140019:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p030004": {
+    "title": "Embolization before brain AVM surgery",
+    "product": "Onyx liquid embolic system",
+    "purpose": "Originally indicated for presurgical embolization of brain arteriovenous malformations.",
+    "relevance": "The intervention is in abnormal brain blood vessels. It is not an electrode, and the regional association does not establish a precise vessel location.",
+    "regions": [
+      "UBERON:0000955"
+    ],
+    "recordId": "FDA:P030004:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p100018": {
+    "title": "Endovascular treatment of intracranial aneurysms",
+    "product": "Pipeline embolization device",
+    "purpose": "Originally indicated for adults aged 22 or older with large or giant wide-necked intracranial aneurysms in specified internal-carotid segments.",
+    "relevance": "The source identifies intracranial vasculature. This entry is kept in the brain region rather than implying a target at the neck carotid landmark.",
+    "regions": [
+      "UBERON:0000955"
+    ],
+    "recordId": "FDA:P100018:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p100034": {
+    "title": "Electric-field treatment of recurrent glioblastoma",
+    "product": "NovoTTF-100A treatment kit",
+    "purpose": "Originally indicated as monotherapy for recurrent supratentorial glioblastoma in adults aged 22 or older after chemotherapy, when surgical and radiation options had been exhausted.",
+    "relevance": "The intended disease target is in the brain. This original approval does not establish the device’s later indications or a general treatment for every brain tumor.",
+    "regions": [
+      "UBERON:0000955"
+    ],
+    "recordId": "FDA:P100034:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p210007": {
+    "title": "Vagus stimulation paired with stroke rehabilitation",
+    "product": "Vivistim paired VNS system",
+    "purpose": "Stimulates the vagus nerve during rehabilitation therapy to address upper-extremity motor deficits in chronic ischemic-stroke patients with moderate to severe arm impairment, under the original indication.",
+    "relevance": "The stimulated structure is the vagus nerve. Stroke is the disease context, not evidence of an electrode implanted in the infarcted brain region.",
+    "regions": [
+      "UBERON:0001759"
+    ],
+    "recordId": "FDA:P210007:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  },
+  "source-fda-p130028": {
+    "title": "Spinal cord stimulation for chronic intractable pain",
+    "product": "Algovita spinal cord stimulation system",
+    "purpose": "An aid in managing chronic intractable trunk or limb pain, including specified pain associated with failed-back-surgery syndrome, under the original indication.",
+    "relevance": "The system is identified as spinal cord stimulation. The indexed approval does not by itself establish lead position, penetration of cord tissue or comparative effectiveness.",
+    "regions": [
+      "UBERON:0002240"
+    ],
+    "recordId": "FDA:P130028:",
+    "locator": "Original FDA approval order statement; historical indication and eligibility limits"
+  }
+}

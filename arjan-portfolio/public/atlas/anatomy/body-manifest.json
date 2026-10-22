@@ -1,0 +1,17 @@
+{
+  "asset": "HRA male united v1.5 \u2014 skin surface",
+  "sourceUrl": "https://cdn.humanatlas.io/hra-releases/v2.0/models/3d-vh-m-united.glb.zip",
+  "doi": "https://doi.org/10.48539/HBM646.RKKC.257",
+  "license": "CC BY 4.0",
+  "creators": [
+    "Kristen Browne",
+    "Heidi Schlehlein"
+  ],
+  "sourceNode": "VH_M_skin",
+  "ontologyId": "UBERON:0002097",
+  "sourceGlbSha256": "34c45c90aa4acd36be19edf8b878a8e7137db9e8cb90e8e6332c2abd49d7cf9d",
+  "sha256": "7260cde916540b160c28bdc552f34706f5de70b1e27a6b6689f9428abf2e64e3",
+  "bytes": 5931648,
+  "triangles": 185314,
+  "adaptations": "Isolated original skin mesh and retained original vertex/index buffers and metadata. Runtime color, contour shading, view centering and uniform scaling. Region links are UI locators, not registered device coordinates."
+}

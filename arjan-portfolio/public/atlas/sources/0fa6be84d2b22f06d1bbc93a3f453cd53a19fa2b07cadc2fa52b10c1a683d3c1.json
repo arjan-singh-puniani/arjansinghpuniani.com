@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
+    "terms": "https://open.fda.gov/terms/",
+    "license": "https://open.fda.gov/license/",
+    "last_updated": "2026-10-05",
+    "results": {
+      "skip": 0,
+      "limit": 1,
+      "total": 1
+    }
+  },
+  "results": [
+    {
+      "third_party_flag": "N",
+      "life_sustain_support_flag": "N",
+      "gmp_exempt_flag": "N",
+      "summary_malfunction_reporting": "Ineligible",
+      "product_code": "PKP",
+      "openfda": {
+        "k_number": [
+          "K251105",
+          "K222087",
+          "K230883",
+          "K173783",
+          "K240148",
+          "K142319",
+          "K161906"
+        ],
+        "registration_number": [
+          "3015276780",
+          "3036773433",
+          "9680306",
+          "3003927385",
+          "3008570882",
+          "1319660",
+          "2523167",
+          "3007428065",
+          "3008132411",
+          "3024122953",
+          "3010236732",
+          "3018229072"
+        ],
+        "fei_number": [
+          "3015276780",
+          "3036773433",
+          "3003927385",
+          "1000136478",
+          "2937446",
+          "3018229072",
+          "2523167",
+          "3007428065",
+          "3008132411",
+          "3024122953",
+          "3010236732",
+          "1000226372"
+        ]
+      },
+      "review_panel": "HO",
+      "medical_specialty": "HO",
+      "device_name": "Immunoglobulin G (Igg) Infusion System",
+      "review_code": "",
+      "unclassified_reason": "",
+      "medical_specialty_description": "General Hospital",
+      "device_class": "2",
+      "definition": "An Immunoglobulin G (IgG) Infusion System is a prescription device intended for subcutaneous delivery of Immunoglobulin G (IgG) in accordance with the FDA approved labeling.",
+      "regulation_number": "880.5725",
+      "implant_flag": "N",
+      "submission_type_id": "1"
+    }
+  ]
+}

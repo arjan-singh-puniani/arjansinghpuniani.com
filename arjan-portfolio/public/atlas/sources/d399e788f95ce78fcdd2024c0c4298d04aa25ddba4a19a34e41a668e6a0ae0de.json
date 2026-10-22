@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
+    "terms": "https://open.fda.gov/terms/",
+    "license": "https://open.fda.gov/license/",
+    "last_updated": "2026-10-05",
+    "results": {
+      "skip": 0,
+      "limit": 1,
+      "total": 239
+    }
+  },
+  "results": [
+    {
+      "pma_number": "P970003",
+      "supplement_number": "",
+      "applicant": "LivaNova USA, Inc.",
+      "street_1": "100 Cyberonics Blvd.",
+      "street_2": "",
+      "city": "Houston",
+      "state": "TX",
+      "zip": "77058",
+      "zip_ext": "",
+      "generic_name": "Stimulator, autonomic nerve, implanted for epilepsy",
+      "trade_name": "VNS THERAPY SYSTEM",
+      "product_code": "LYJ",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "",
+      "supplement_reason": "",
+      "expedited_review_flag": "Y",
+      "date_received": "1997-01-27",
+      "decision_date": "1997-07-16",
+      "docket_number": "98M-0140",
+      "fed_reg_notice_date": "1998-03-04",
+      "decision_code": "APPR",
+      "ao_statement": "Approval for the NeuroCybernetic Prosthesis (NCP(R)) System which includes the Model 100 NCP Generator, the Model 300 Series NCP Vagus Nerve Stimulation Lead, the Model 400 Tunneling Tool, and NCP System Accessories.",
+      "openfda": {
+        "device_name": "Stimulator, Autonomic Nerve, Implanted For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3",
+        "registration_number": [
+          "1644487"
+        ],
+        "fei_number": [
+          "1000117004"
+        ]
+      }
+    }
+  ]
+}

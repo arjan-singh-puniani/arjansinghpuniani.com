@@ -121,7 +121,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   return <>
     <StructuredData slug={slug} />
-    <header className="page-hero"><div className="shell"><p className="eyebrow">{project.category.join(" · ")}</p><h1>{project.title}</h1><p>{project.shortDescription}</p><p><span className="status">{statusLabels[project.status]}</span> · {project.role}</p></div></header>
+    <header className="page-hero"><div className="shell"><p className="eyebrow">{project.category.join(" · ")}</p><h1>{project.title}</h1><p>{project.shortDescription}</p><p><span className="status">{statusLabels[project.status]}</span> · {project.role}</p>{project.slug === "body-atlas" && <p><a className="button" href="/atlas">Launch interactive atlas ↗</a></p>}</div></header>
     <section className="section"><div className="shell case-grid"><div className="case-main">
       {project.media?.[0] && <figure className="case-hero"><Image src={project.media[0].src} alt={project.media[0].alt} width={1400} height={900} priority /><figcaption>{project.media[0].caption}</figcaption></figure>}
       <section><h2>Problem</h2><p>{project.problem}</p></section>

@@ -1,0 +1,60 @@
+# Validation
+
+The baseline workspace had no BODY//ATLAS application, database, tests, or Git repository. A separate repository was created without changing other projects. Validation applies to this implementation only.
+
+## Commands
+
+```sh
+npm run typecheck
+npm test
+npm run test:ingestion
+npm run build
+npm run test:browser
+node --import tsx scripts/validate.ts
+python3 ingestion/mapping_queue.py
+python3 ingestion/mapping_queue.py --validate validation/anatomical-review-queue.csv
+```
+
+`npm test` checks immutable source hashes, unique identities, original regulatory dates, De Novo semantics, graph links, anatomy distinctions, unknown placement abstention, date precision, timeline behavior, retrieval citations, filters, and exported brief limitations. Python tests check transaction isolation, deduplication/versioning, schema drift, partial updates, provider outages, bounded retries, lease recovery, URL restrictions, and conservative candidate mapping.
+
+Playwright runs the production build in installed Chrome at desktop 1440×1000 and iPhone 13 viewport/touch emulation. It exercises actual body-surface clicks and anchored callout clicks, repeated view controls, partial search, body and brain model loading, region selection, placement versus target, evidence links, timeline cutoff, comparison, Markdown download, source lookup, natural-language retrieval, unknown-location inspection, keyboard tabs and dialog focus, API boundaries, security headers, and automated WCAG A/AA checks. Emulation is not physical iPhone/Safari verification.
+
+## Evidence and precision
+
+`validation/data-integrity-report.json` contains exact dataset counts, failed job states, accepted/abstained assertion counts, and explicit null accuracy fields. `validation/curated-anatomy-sample.json` contains the full reviewable curated set. `validation/anatomical-review-queue.csv` contains 100+ genuine regulatory candidate rows, all unreviewed and none automatically accepted.
+
+There is no independently adjudicated representative set of 100 positive device-anatomy relationships. The available bounded record identities do not themselves provide suitable detailed placement evidence. Therefore mapping precision, recall, and uncertainty intervals are **not estimable**. Computing a Wilson interval on the curator's own assertions or the abstention queue would misrepresent validation. The 95% auto-acceptance precision target is unverified; auto-acceptance remains disabled.
+
+## Testing limitations
+
+No clinical usability study, penetration test, full corpus backfill, production outage drill, low-end physical-device benchmark, broad Safari/Firefox check, or expert anatomical sign-off has been completed. Automated accessibility passes cover inspected rendered states, not universal accessibility. Dependency advisory checks describe a point in time, not a security guarantee.
+
+Actual final command outcomes and measured browser evidence are recorded in DEMO_VERIFICATION.md and validation artifacts. Failed initial checks and their fixes are documented in the audit reports; they were not counted as successful verification.
+
+The compact-preview regression uses 540×680, checks that the intervention panel and its first original source link are in the viewport, switches interventions without losing the regional context, resets the historical filter, and expands/restores anatomy. Automated WCAG checks also cover that compact selected-device state. Model manifests test source-frame identity, hash integrity, hierarchy references and buffer bounds for the registered brain/spinal extraction. Mobile surface-callout collisions found during this revision were corrected by separating the coarse UI label positions; these remain navigation locators, not device coordinates.
+
+On-model intervention regression checks tap/click selection, immediate action text, exact FDA descriptive-document URLs, projected leader movement during orbit, retention of selection during rotation, an expanded-view source summary, brain-view keyboard selection, exclusion of unlocalized entries, historical cutoff behavior and automated WCAG checks. Domain tests verify accepted-source requirements and that chest implant labels remain distinct from neural targets. The original region navigation remains tested using the label-mode toggle.
+
+## Whole-body regression scope
+
+Current domain checks cover 2,490 original record identities and artifacts, all 721 contextual quote spans, explicit Provisional semantics, absence of invented clinical links/modalities, and licensed organ mesh integrity/source frame. Python adds bounded cross-panel acquisition, quoted OR handling, legacy N-identifier rejection, incidental-word/IVD/negation exclusions and positive anatomical contexts. The 150-row context review queue supplements the original neuro triage queue; both remain unadjudicated. Interface tests cover the dense map, organ load, heart/knee/female-only text discovery, original FDA links, context-aware exports and reviewed-layer filtering. Native region selectors provide keyboard/touch access when visual labels are decluttered.
+
+
+### Relevance correction — 2026-10-21
+
+The 2026-10-21 release introduced 16 explicitly explained interventions (10 existing neurotechnology entries and six record-specific FDA explanations). Device purpose, anatomical relevance and the supporting source are separate. Unexplained applications remain available through explicit source-context layers and Records; a raw product title is never used as a functional explanation. An empty explained region states the coverage gap instead of suggesting unrelated devices.
+
+`anatomical-context-v2` excludes Murphy/needle-eye product features and aortic-valve wording from separate eye/aorta assignments. Regeneration yields 650 applications and 717 exact contextual spans before six editorial region restrictions. These remain Provisional; explanation review does not validate component placement. “Upper airway” was broadened to “Airway” to avoid calling the trachea an upper-airway structure. Timeline events, counts and model annotations now follow the selected evidence layer and filters. Earlier counts and the unadjudicated v1 review queue above describe the previous snapshot, not a precision measurement.
+
+The Shiley explanation was checked against K250173, PDF pages 4, 7 and 8. Other additions use the original FDA approval statements for P130008, P010047, P130013, P140031 and P020023. These are historical indications; later supplements and current labeling have not been exhaustively reviewed. Regression checks cover source identity, region restrictions, missing-purpose abstention, exported explanation citations, and the actual airway/eye desktop/mobile workflow.
+
+
+### Whole-body explanation expansion — 2026-10-22
+
+The default collection now contains **91 explained entries**, up from 16, with direct associations to **44 anatomical structures/regions**. The 75 additions cover 36 regions, including cardiac/vascular, pulmonary, ophthalmic, hearing, dental, digestive, hepatobiliary, renal/urinary, reproductive, breast, skin, hand/shoulder/hip/knee/ankle/foot and spinal interventions. These are explained application entries, not a claim of 91 distinct invention categories or current marketed product families.
+
+Every addition is keyed to one original FDA record and has a specific purpose, regional rationale, source and scope restrictions in `lib/whole-body-explanations.json`. The 73 PMA originals were checked in one bounded live FDA request on October 22: all original approval statements and decision dates matched the cached source records. The two 510(k) explanations were checked against K260007 (PDF page 5) and K260721 (PDF page 4). The original response, digest, request and review ledger are preserved in `validation/fda-originals-2026-10-22.json`, `validation/whole-body-source-check.json` and `validation/whole-body-explanation-review.json`.
+
+Version 3 context extraction applies explicit editorial region scopes only where an exact anatomical phrase can be recovered from the source. It does not upgrade Provisional context to a physical placement. Regression cases exclude colorectal-primary liver treatment from the colon, above-knee vascular stents from the knee joint, glaucoma stents from lens replacement, and disc prostheses or hand neuroprostheses from spinal-cord implantation. Organ-perfusion systems are explained as extracorporeal; original product-name changes remain explicit. Female-only anatomy stays text-only on the male mesh and now has a visible notice.
+
+The catalogue contains 652 applications and 712 contextual assertions after the restrictions; original raw records remain intact. Completeness, current labeling, recall status and independent expert mapping precision have not been exhaustively established. This editorial review is not a representative clinical validation study.

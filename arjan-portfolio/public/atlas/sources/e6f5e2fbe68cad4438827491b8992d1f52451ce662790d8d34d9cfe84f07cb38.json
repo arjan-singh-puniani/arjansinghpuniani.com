@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
+    "terms": "https://open.fda.gov/terms/",
+    "license": "https://open.fda.gov/license/",
+    "last_updated": "2026-10-05",
+    "results": {
+      "skip": 0,
+      "limit": 1,
+      "total": 1
+    }
+  },
+  "results": [
+    {
+      "third_party_flag": "N",
+      "life_sustain_support_flag": "N",
+      "gmp_exempt_flag": "N",
+      "summary_malfunction_reporting": "Ineligible",
+      "product_code": "MCM",
+      "openfda": {
+        "pma_number": [
+          "P940022",
+          "P960058",
+          "P840024",
+          "P970051",
+          "P000015",
+          "P890027",
+          "P200021",
+          "P000025",
+          "P830069"
+        ],
+        "registration_number": [
+          "8043792",
+          "9611813",
+          "3005210579",
+          "3008947133",
+          "3033788852",
+          "3010363503",
+          "3005900820",
+          "3013177549",
+          "2030624",
+          "3020283264",
+          "3012654499",
+          "3009762645",
+          "3014579188",
+          "3030784382",
+          "3034170504",
+          "9613646",
+          "3007743836",
+          "3002808022",
+          "1721676",
+          "9710014",
+          "3009092818",
+          "3011823740",
+          "3002806740"
+        ],
+        "fei_number": [
+          "3005210579",
+          "3008947133",
+          "3033788852",
+          "3010363503",
+          "3002808269",
+          "3005900820",
+          "3013177549",
+          "3020283264",
+          "3012654499",
+          "3000249315",
+          "3014579188",
+          "3030784382",
+          "1000220815",
+          "3034170504",
+          "3003045432",
+          "3007743836",
+          "3002808022",
+          "3000206435",
+          "1721676",
+          "3002806685",
+          "3009092818",
+          "3011823740",
+          "3002806740"
+        ]
+      },
+      "review_panel": "EN",
+      "medical_specialty": "",
+      "device_name": "Implant, Cochlear",
+      "review_code": "",
+      "unclassified_reason": "",
+      "medical_specialty_description": "Unknown",
+      "device_class": "3",
+      "definition": "",
+      "regulation_number": "",
+      "implant_flag": "Y",
+      "submission_type_id": "2"
+    }
+  ]
+}

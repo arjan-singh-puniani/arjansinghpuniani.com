@@ -1,0 +1,29 @@
+
+> body-atlas@0.1.0 test:ingestion
+> python3 -m unittest discover -s ingestion -p 'test_*.py' -v
+
+test_acceptance_requires_evidence_and_attributed_review (test_mapping_queue.MappingQueueTests) ... ok
+test_anatomical_word_is_a_candidate_only (test_mapping_queue.MappingQueueTests) ... ok
+test_external_eeg_not_assigned_to_intracardiac_or_cortical_tissue (test_mapping_queue.MappingQueueTests) ... ok
+test_multi_component_location_cannot_be_collapsed (test_mapping_queue.MappingQueueTests) ... ok
+test_rejection_is_preserved_without_placement (test_mapping_queue.MappingQueueTests) ... ok
+test_software_never_becomes_an_intracranial_implant (test_mapping_queue.MappingQueueTests) ... ok
+test_denovo_identity_is_preserved (test_pipeline.PipelineTests) ... ok
+test_expired_worker_lease_recovers (test_pipeline.PipelineTests) ... ok
+test_idempotent_and_versioned_writes (test_pipeline.PipelineTests) ... ok
+test_malformed_identifier_and_impossible_event_date_rejected (test_pipeline.PipelineTests) ... ok
+test_missing_or_empty_source_does_not_erase_previous_records (test_pipeline.PipelineTests) ... ok
+test_non_retryable_schema_failure_is_isolated (test_pipeline.PipelineTests) ... sample failed ValueError
+ok
+test_pma_supplements_have_separate_identifiers (test_pipeline.PipelineTests) ... ok
+test_schema_drift_and_partial_batch_never_overwrite_good_data (test_pipeline.PipelineTests) ... ok
+test_source_outage_preserves_snapshot_and_records_failed_job (test_pipeline.PipelineTests) ... sample queued HTTPError
+sample queued HTTPError
+sample failed HTTPError
+ok
+test_url_allowlist_rejects_local_credentials_and_arbitrary_sources (test_pipeline.PipelineTests) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.172s
+
+OK

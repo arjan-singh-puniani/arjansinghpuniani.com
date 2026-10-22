@@ -1,0 +1,59 @@
+{
+  "generatedAt": "2026-10-22T18:21:31.968367+00:00",
+  "snapshotExportedAt": "2026-10-19T11:12:05.379339+00:00",
+  "recordCounts": {
+    "de_novo": 37,
+    "classification": 10,
+    "510k": 1564,
+    "pma": 836,
+    "trial": 17,
+    "grant": 5,
+    "publication": 21
+  },
+  "curatedEntries": 10,
+  "curatedAssertions": 21,
+  "localizedAssertions": 20,
+  "explicitAbstentions": 1,
+  "sourceContextEntries": 652,
+  "sourceContextAssertions": 712,
+  "automaticallyAcceptedMappings": 0,
+  "independentlyAdjudicatedMappings": 0,
+  "precision": null,
+  "confidenceInterval": null,
+  "reason": "No independent ground truth adjudication. Curator assertions and regression checks are not a precision estimate.",
+  "jobStates": {
+    "complete": 52,
+    "failed": 3
+  },
+  "thalamusTopography": {
+    "families": "3",
+    "regulatory": "3",
+    "grants": "Unmapped"
+  },
+  "localVerification": {
+    "recordedDate": "2026-10-19",
+    "domainAndDataChecksPassed": 29,
+    "ingestionChecksPassed": 24,
+    "browserChecksPassed": 16,
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "scope": "Recorded local checks on the atlas snapshot. Mobile coverage is Chrome touch emulation, not physical iPhone/Safari. No independent scientific accuracy estimate."
+  },
+  "releaseDisposition": "Public research preview. Provisional anatomical contexts and incomplete historical coverage are not clinical validation.",
+  "interactivePreview": {
+    "path": "/atlas",
+    "delivery": "Self-contained static snapshot; no live ingestion or private workspace."
+  },
+  "explanationExpansion": {
+    "recordedDate": "2026-10-22",
+    "explainedEntries": 91,
+    "directlyAssociatedStructuresAndRegions": 44,
+    "newExplainedEntries": 75,
+    "newPmaStatementsAndDecisionDatesMatchedToOriginals": 73,
+    "newPdfIndicationsChecked": 2,
+    "domainAndExportChecksPassed": 35,
+    "ingestionChecksPassed": 26,
+    "browserEntriesCheckedPerViewport": 75,
+    "scope": "Record-specific editorial explanations checked against original FDA sources. Historical evidence; current labeling, recall completeness and independent expert mapping precision remain unverified."
+  }
+}

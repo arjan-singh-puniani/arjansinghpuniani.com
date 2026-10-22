@@ -93,6 +93,31 @@ export default function Home() {
 
         <SeizeFreezeHomeFeature />
 
+        <article className="v2-feature" aria-labelledby="body-atlas-home-title">
+          <div className={`v2-feature-image ${styles.projectPreviewFrame} ${styles.darkPreviewFrame}`}>
+            <Image
+              src="/images/home/body-atlas-preview.webp"
+              alt="BODY//ATLAS prototype: anatomical intervention map and original-source evidence panel"
+              fill
+              className={styles.projectPreviewImage}
+              sizes="(max-width: 800px) 100vw, 56vw"
+            />
+          </div>
+          <div className="v2-feature-copy">
+            <p>02 / Research software · Biomedical evidence</p>
+            <h3 id="body-atlas-home-title"><Link href="/work/body-atlas">BODY//ATLAS</Link></h3>
+            <p className="v2-feature-lead">
+              Explore medical interventions through human anatomy, original FDA records, and linked research.
+            </p>
+            <dl>
+              <div><dt>Role</dt><dd>Independent designer + developer</dd></div>
+              <div><dt>State</dt><dd>Working research prototype</dd></div>
+              <div><dt>Snapshot</dt><dd>October 19, 2026</dd></div>
+            </dl>
+            <a href="/atlas">Launch BODY//ATLAS <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
         <article className="v2-feature v2-feature-light">
           <div className={`v2-feature-image ${styles.projectPreviewFrame} ${styles.lightPreviewFrame}`}>
             <Image
@@ -104,7 +129,7 @@ export default function Home() {
             />
           </div>
           <div className="v2-feature-copy">
-            <p>02 / Active inference · Orch OR</p>
+            <p>03 / Active inference · Orch OR</p>
             <h3>Conscious active inference</h3>
             <p className="v2-feature-lead">
               Two peer-reviewed theoretical reviews, co-authored with Michael C. Wiest in 2025, on quantum dynamics as a possible implementation of active inference.
@@ -138,7 +163,7 @@ export default function Home() {
             />
           </div>
           <div className="v2-feature-copy">
-            <p>03 / Research software · ECG education</p>
+            <p>04 / Research software · ECG education</p>
             <h3>Vector EKG + ReasonOS</h3>
             <p className="v2-feature-lead">
               An educational ECG prototype I built to record measurements, calculations, alternative explanations, and revisions.
@@ -165,7 +190,7 @@ export default function Home() {
 
         <article className="v2-feature v2-feature-light">
           <div className="v2-feature-copy">
-            <p>04 / Brain-computer interfaces</p>
+            <p>05 / Brain-computer interfaces</p>
             <h3>Gamified BCI calibration</h3>
             <p className="v2-feature-lead">
               A game-like calibration task for repeated BCI psychophysics sessions at Pitt RNEL.

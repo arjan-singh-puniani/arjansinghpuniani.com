@@ -1,0 +1,16 @@
+{
+  "asset": "HRA united male v1.5 \u2014 brain and spinal cord",
+  "sourceUrl": "https://cdn.humanatlas.io/hra-releases/v2.0/models/3d-vh-m-united.glb.zip",
+  "doi": "https://doi.org/10.48539/HBM646.RKKC.257",
+  "license": "CC BY 4.0",
+  "creators": [
+    "Kristen Browne",
+    "Heidi Schlehlein"
+  ],
+  "sourceGlbSha256": "34c45c90aa4acd36be19edf8b878a8e7137db9e8cb90e8e6332c2abd49d7cf9d",
+  "sha256": "5bc97cb9bdc0c9b7b5a381e0b08c474ad8f3159b516eb255f54cae529cb7df89",
+  "bytes": 12506004,
+  "meshes": 313,
+  "triangles": 672626,
+  "adaptations": "Extracted original brain and spinal meshes with original hierarchy, node transforms, attributes and indices. Buffer views repacked. Same united reference frame as body surface; shared display centering and uniform scale. No device coordinates or vagus nerve geometry."
+}

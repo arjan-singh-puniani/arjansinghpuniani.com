@@ -1,0 +1,16 @@
+{
+  "asset": "HRA united male v1.5 \u2014 whole-body organs and skeletal reference",
+  "sourceUrl": "https://cdn.humanatlas.io/hra-releases/v2.0/models/3d-vh-m-united.glb.zip",
+  "doi": "https://doi.org/10.48539/HBM646.RKKC.257",
+  "license": "CC BY 4.0",
+  "creators": [
+    "Kristen Browne",
+    "Heidi Schlehlein"
+  ],
+  "sourceGlbSha256": "34c45c90aa4acd36be19edf8b878a8e7137db9e8cb90e8e6332c2abd49d7cf9d",
+  "sha256": "c570bbde1d3a6252abc2fb8e09d65dbaba7f74e2effdca74394e20d61965601a",
+  "bytes": 30562436,
+  "meshes": 227,
+  "triangles": 1061132,
+  "adaptations": "Extracted original whole-body organ meshes with original hierarchy, node transforms, attributes and indices. Buffer views repacked. Same united reference frame as body surface; shared display centering and uniform scale. No device coordinates or vagus nerve geometry."
+}
