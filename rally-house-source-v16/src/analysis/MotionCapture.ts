@@ -1,3 +1,4 @@
+import {secondRacketHand} from '../animation/RacketGeometry.js';
 import {Vec3,clamp,rigidFrame,interpolateRigidFrame} from '../rendering/Math3D.js';
 import type {RenderItem} from '../rendering/Renderer.js';
 import type {Character,CharacterPose} from '../entities/Character.js';
@@ -75,6 +76,11 @@ export function interpolateFrame(a:MotionFrame,b:MotionFrame,time:number):Motion
   const x=a.pose[key],y=b.pose[key];
   if(x instanceof Vec3&&y instanceof Vec3)(pose as unknown as Record<string,unknown>)[key]=key==='racketRot'?rotationLerp(x,y,t):Vec3.lerp(x,y,t);
   else if(typeof x==='number'&&typeof y==='number')(pose as unknown as Record<string,unknown>)[key]=key.endsWith('Yaw')?angleLerp(x,y,t):x+(y-x)*t;
+ }
+ // Preserve an observed two-hand grip instead of shortening it along an interpolated chord.
+ if(a.state==='swingBackhand'&&b.state==='swingBackhand'){
+  const stacked=(p:CharacterPose)=>Vec3.sub(p.handL,secondRacketHand(p.handR,Vec3.sub(p.racketHandleTop,p.racketGrip))).len()<.001;
+  if(stacked(a.pose)&&stacked(b.pose))pose.handL=secondRacketHand(pose.handR,Vec3.sub(pose.racketHandleTop,pose.racketGrip));
  }
  pose.right.normalize();pose.forward.normalize();
  pose.face={...a.pose.face};

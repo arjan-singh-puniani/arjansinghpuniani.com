@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {RACKET} from '../dist/animation/RacketGeometry.js';
 import {Character} from '../dist/entities/Character.js';import {memberData} from '../dist/content/content.js';import {playerSpec} from '../dist/content/PlayerAvatars.js';import {Navigation} from '../dist/world/Navigation.js';import {Vec3} from '../dist/rendering/Math3D.js';
 const actor=()=>new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});
 let restChecks=0,frames=0,maxElbowTravel=0,maxFlex=0;
@@ -14,9 +15,14 @@ console.log(JSON.stringify({restChecks,frames,maxElbowTravel,maxFlexDegrees:maxF
 
 for(const spec of [...memberData,playerSpec('arjan'),playerSpec('taylor')])for(const hz of [30,60,120])for(const stroke of ['serve','swingForehand','swingBackhand']){
  const c=new Character(spec,new Vec3(),new Navigation([]),{});c.matchCompetitor=true;c.trigger('ready');for(let i=0;i<hz;i++)c.update(1/hz);c.triggerShot(stroke,new Vec3(0,.1,5));
- let tossHeight=0;while(c.animTime<c.shotDuration(stroke)*.98){c.update(Math.min(1/hz,c.shotDuration(stroke)*.98-c.animTime));const p=c.analysisPose();tossHeight=Math.max(tossHeight,p.handL.y-p.head.y);}
+ let tossHeight=0,lastShaft;
+ while(c.animTime<c.shotDuration(stroke)*.98){
+  const dt=Math.min(1/hz,c.shotDuration(stroke)*.98-c.animTime);c.update(dt);const p=c.analysisPose(),shaft=Vec3.sub(p.racketCenter,p.racketGrip).normalize();tossHeight=Math.max(tossHeight,p.handL.y-p.head.y);
+  if(stroke!=='serve'&&lastShaft&&dt>1e-6&&c.animTime>c.shotContactTime(stroke)+.02)assert(Math.acos(Math.max(-1,Math.min(1,Vec3.dot(lastShaft,shaft))))/dt<26,'Follow-through must rotate without a snapping shaft reversal');
+  lastShaft=shaft;
+ }
  const p=c.analysisPose();
  if(stroke==='serve'){assert(tossHeight>.25,'Serve shows an extended tossing arm');assert(p.handL.y<p.shoulderL.y-.15&&p.handR.y<p.shoulderR.y-.15,'Serve lowers both arms into the finish');}
- else{const right=new Vec3(Math.cos(p.torsoYaw),0,-Math.sin(p.torsoYaw)),across=Vec3.dot(Vec3.sub(p.handR,p.torsoCenter),right);assert(p.handR.y>p.shoulderR.y-.05,'Groundstroke releases at shoulder height');assert(stroke==='swingForehand'?across<-.1:across>.1,'Forehand and backhand finish across opposite shoulders');assert(Vec3.dot(Vec3.sub(p.racketCenter,p.racketGrip).normalize(),c.racketContactFrame().vertical)>.995,'Follow-through racket head and handle share their actual axis');if(stroke==='swingBackhand')assert(Vec3.sub(p.handL,p.handR).len()<.18,'Backhand keeps the second hand with the grip');}
+ else{const right=new Vec3(Math.cos(p.torsoYaw),0,-Math.sin(p.torsoYaw)),across=Vec3.dot(Vec3.sub(p.handR,p.torsoCenter),right);assert(p.handR.y>p.shoulderR.y-.05,'Groundstroke releases at shoulder height');assert(stroke==='swingForehand'?across<-.1:across>.1,'Forehand and backhand finish across opposite shoulders');assert(Vec3.dot(Vec3.sub(p.racketCenter,p.racketGrip).normalize(),c.racketContactFrame().vertical)>.995,'Follow-through racket head and handle share their actual axis');if(stroke==='swingBackhand')assert(Vec3.sub(p.handL,p.handR.clone().add(Vec3.sub(p.racketHandleTop,p.racketGrip).normalize().scale(RACKET.handSpacing))).len()<1e-6,'Backhand keeps the second palm on the physical handle');}
 }
 console.log('Stroke release PASS: toss to lowered-arm recovery, opposite shoulder finishes, two-hand backhand and registered racket axes across the cast.');

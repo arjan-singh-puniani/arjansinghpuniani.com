@@ -1,3 +1,4 @@
+import { secondRacketHand } from '../animation/RacketGeometry.js';
 import { Vec3, clamp, rigidFrame, interpolateRigidFrame } from '../rendering/Math3D.js';
 import { rigFromPose, skinMatrices } from '../animation/CharacterSkin.js';
 export const LIMBS = [['shoulderL', 'elbowL'], ['elbowL', 'handL'], ['shoulderR', 'elbowR'], ['elbowR', 'handR'], ['shoulderL', 'shoulderR'], ['shoulderL', 'hipL'], ['shoulderR', 'hipR'], ['hipL', 'hipR'], ['hipL', 'kneeL'], ['kneeL', 'footL'], ['hipR', 'kneeR'], ['kneeR', 'footR']];
@@ -79,6 +80,12 @@ export function interpolateFrame(a, b, time) {
             pose[key] = key === 'racketRot' ? rotationLerp(x, y, t) : Vec3.lerp(x, y, t);
         else if (typeof x === 'number' && typeof y === 'number')
             pose[key] = key.endsWith('Yaw') ? angleLerp(x, y, t) : x + (y - x) * t;
+    }
+    // Preserve an observed two-hand grip instead of shortening it along an interpolated chord.
+    if (a.state === 'swingBackhand' && b.state === 'swingBackhand') {
+        const stacked = (p) => Vec3.sub(p.handL, secondRacketHand(p.handR, Vec3.sub(p.racketHandleTop, p.racketGrip))).len() < .001;
+        if (stacked(a.pose) && stacked(b.pose))
+            pose.handL = secondRacketHand(pose.handR, Vec3.sub(pose.racketHandleTop, pose.racketGrip));
     }
     pose.right.normalize();
     pose.forward.normalize();

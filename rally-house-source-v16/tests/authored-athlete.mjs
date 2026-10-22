@@ -1,3 +1,4 @@
+import {memberData} from '../dist/content/content.js';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -264,3 +265,36 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
  }
  console.log('Authored athlete loader, actual Character meshes, shared replay palette and facial interpolation PASS.');
 }finally{globalThis.fetch=previousFetch;if(previousImage)globalThis.Image=previousImage;else delete globalThis.Image;}
+
+// Check the actual deformed hands, not only the two palm targets.
+{
+ const {RACKET}=await import('../dist/animation/RacketGeometry.js'),{captureFrame,interpolateFrame}=await import('../dist/analysis/MotionCapture.js');
+ const handGap=(p,m)=>{
+   const g=m.skin,axis=Vec3.sub(p.racketHandleTop,p.racketGrip).normalize(),edges=[Infinity,-Infinity];
+   for(let v=0;v<g.positions.length/3;v++)for(const [side,bone] of [[0,BONE.handL],[1,BONE.handR]]){
+    if(![0,1,2,3].some(j=>g.boneIndices[v*4+j]===bone&&g.boneWeights[v*4+j]>.99))continue;
+    const point=new Vec3(...g.positions.slice(v*3,v*3+3)).add(new Vec3(...g.morphs[4].slice(v*3,v*3+3)).scale(m.handGrip[side])),posed=new Vec3();
+    for(let j=0;j<4;j++){const weight=g.boneWeights[v*4+j];if(weight){const q=transformPoint(m.boneMatrices.slice(g.boneIndices[v*4+j]*16,g.boneIndices[v*4+j]*16+16),point);posed.add(new Vec3(q.x,q.y,q.z).scale(weight));}}
+    const along=Vec3.dot(Vec3.sub(posed,p.handR),axis);edges[side]=side===0?Math.min(edges[side],along):Math.max(edges[side],along);
+   }
+   return edges[0]-edges[1];
+ };
+ let checks=0,minGap=Infinity;
+ for(const id of ['taylor','coach','mika','nia'])for(const hz of [30,60,120]){
+  const spec=id==='taylor'?playerSpec(id):memberData.find(m=>m.id===id),actor=new Character(spec,new Vec3(),new Navigation([]),{});
+  actor.matchCompetitor=true;actor.racketStowed=false;actor.setAnimation('ready');for(let i=0;i<hz*.3;i++)actor.update(1/hz);
+  actor.setIncomingContact(new Vec3(-.6,1.02,.9));actor.triggerShot('swingBackhand',new Vec3(0,.09,5));
+  let previous;
+  for(let i=0;i<hz*.53;i++){
+   actor.update(1/hz);if(i/hz<.14||i%Math.max(1,Math.round(hz/15)))continue;
+   const p=actor.analysisPose(),axis=Vec3.sub(p.racketHandleTop,p.racketGrip).normalize();
+   const m=actor.meshes().find(m=>m.rig&&m.material==='humanSkin');
+   const gap=handGap(p,m);minGap=Math.min(minGap,gap);assert(gap>.003,'Closed backhand fingers must not penetrate the opposite palm');checks++;
+   assert(Vec3.sub(p.handL,p.handR.clone().add(axis.clone().scale(RACKET.handSpacing))).len()<1e-6,'Both backhand palms must remain stacked on the visible shaft');
+   const frame=captureFrame(actor,(i+1)/hz,null);
+   if(previous){const replay=interpolateFrame(previous,frame,(previous.time+frame.time)/2);const gap=handGap(replay.pose,replay.body.find(m=>m.rig&&m.material==='humanSkin'));assert(gap>.003,`Recorded backhand fingers intersect: ${id}/${hz}/${replay.time}, gap ${gap}`);}
+   previous=frame;
+  }
+ }
+ console.log(JSON.stringify({backhandGripChecks:checks,minFingerGap:minGap}));
+}

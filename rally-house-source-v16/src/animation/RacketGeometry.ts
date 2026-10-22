@@ -1,7 +1,8 @@
 import {Vec3,identity} from '../rendering/Math3D.js';
 import type {SkinGeometry} from '../rendering/Renderer.js';
 
-export const RACKET={headHalfWidth:.178,headHalfHeight:.245,beamRadius:.010,stringHalfWidth:.163,stringHalfHeight:.230,handleTopY:-.375} as const;
+export const RACKET={headHalfWidth:.178,headHalfHeight:.245,beamRadius:.010,stringHalfWidth:.163,stringHalfHeight:.230,handleTopY:-.27,handSpacing:.18} as const;
+export const secondRacketHand=(grip:Vec3,shaft:Vec3)=>grip.clone().add(shaft.clone().normalize().scale(RACKET.handSpacing));
 export const RACKET_BONES=new Float32Array(15*16);for(let i=0;i<15;i++)RACKET_BONES.set(identity(),i*16);
 const p:number[]=[],n:number[]=[],bi:number[]=[],bw:number[]=[];
 const point=(u:number,v:number)=>{

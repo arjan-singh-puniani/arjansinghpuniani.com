@@ -92,6 +92,8 @@ export function advanceAuthoredHands(p:CharacterPose,position:Vec3,yaw:number,pr
    add(rigidFrame(origin,fingers,Vec3.cross(axis,fingers).normalize()),racketGrip[i]);
   }
   if(previous)frame=interpolateRigidFrame(rigidFrame(origin,previous[`handDirection${side}`],previous[`handForward${side}`]),frame,1-Math.exp(-12*dt));
+  // Smooth grip roll without letting the palm's width lag behind the moving shaft.
+  if(p.shot&&racketGrip[i]>.0001){const axis=local(Vec3.sub(p.racketHandleTop,p.racketGrip)).normalize().scale(athlete.gripSign[side]),fingers=new Vec3(frame[4],frame[5],frame[6]);fingers.sub(axis.clone().scale(Vec3.dot(fingers,axis)));if(fingers.len()>.001)frame=interpolateRigidFrame(frame,rigidFrame(origin,fingers.normalize(),Vec3.cross(axis,fingers).normalize()),racketGrip[i]);}
   result[`handDirection${side}`]=new Vec3(frame[4],frame[5],frame[6]);result[`handForward${side}`]=new Vec3(frame[8],frame[9],frame[10]);
  }
  return result;

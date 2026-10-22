@@ -1,8 +1,8 @@
-import {RACKET,RACKET_FRAME,RACKET_BONES} from '../animation/RacketGeometry.js';
+import {RACKET,RACKET_FRAME,RACKET_BONES,secondRacketHand} from '../animation/RacketGeometry.js';
 import {CHAMPIONSHIP_TUNING} from '../tennis/ChampionshipTuning.js';
 import {ActingState,type ReactionName} from '../animation/ActingState.js';
 import {WalkCycle} from '../animation/WalkCycle.js';
-import {Vec3, clamp, smoothstep} from '../rendering/Math3D.js';
+import {Vec3, clamp, smoothstep, rigidFrame, interpolateRigidFrame} from '../rendering/Math3D.js';
 import type {Mesh,RenderItem,SkinnedMesh} from '../rendering/Renderer.js';
 import {Navigation} from '../world/Navigation.js';
 import {clipForState,sampleClip} from '../animation/ClipLibrary.js';
@@ -470,12 +470,14 @@ export class Character {
       groundRise=clamp(((this.contactTarget?.y??this.position.y+1.02)-this.position.y-1.02)*.5,-.20,.20);
       groundSide=Math.sqrt(.48**2-.14**2-groundRise**2)*(state==='swingForehand'?1:-1);
       headOffset=racketRight.clone().scale(groundSide).add(racketForward.clone().scale(.14)).add(new Vec3(0,groundRise,0));
-      // Release over the opposite shoulder after contact; the contact frame stays exact.
+      // Rotate into the opposite-shoulder finish; a normalized chord snaps near the half-turn.
       const finish=racketRight.clone().scale(state==='swingForehand'?-.38:.38).add(racketForward.clone().scale(-.14)).add(new Vec3(0,.25,0));
-      headOffset=Vec3.lerp(headOffset,finish,smoothstep(contact+.08,.94,sp)).normalize().scale(.48);
+      const origin=new Vec3(),release=interpolateRigidFrame(rigidFrame(origin,headOffset,racketForward),rigidFrame(origin,finish,racketForward),smoothstep(contact+.08,.94,sp));
+      headOffset=new Vec3(release[4],release[5],release[6]).scale(.48);
       groundRise=headOffset.y;groundSide=Vec3.dot(headOffset,racketRight);groundDepth=Vec3.dot(headOffset,racketForward);
     }
-    if(shot&&this.contactTarget){const w=bell(sp-contact,.11);const desiredHand=Vec3.sub(this.contactTarget,headOffset);handR=blendVec(handR,desiredHand,w);if(state==='swingBackhand'){const secondGrip=Vec3.add(handR,racketForward.clone().scale(-.08)).add(new Vec3(0,.04,0));handL=blendVec(handL,secondGrip,clamp(w*.90+.18,0,1));}}
+    if(shot&&this.contactTarget){const w=bell(sp-contact,.11);const desiredHand=Vec3.sub(this.contactTarget,headOffset);handR=blendVec(handR,desiredHand,w);if(state==='swingBackhand'&&!humanGroundstroke){const secondGrip=Vec3.add(handR,racketForward.clone().scale(-.08)).add(new Vec3(0,.04,0));handL=blendVec(handL,secondGrip,clamp(w*.90+.18,0,1));}}
+    if(humanGroundstroke&&state==='swingBackhand')handL=secondRacketHand(handR,headOffset);
     const racketGrip=handR.clone();const racketCenter=Vec3.add(racketGrip,headOffset);
     let racketRot=new Vec3(.02,Math.atan2(racketForward.x,racketForward.z),0);if(state==='swingForehand')racketRot=new Vec3(.10,torsoYaw,-.32+sp*.68);else if(state==='swingBackhand')racketRot=new Vec3(-.09,torsoYaw,.34-sp*.58);else if(state==='serve')racketRot=new Vec3(.46-sp*.58,torsoYaw,.36-sp*.72);else if(state==='volley')racketRot=new Vec3(.04,torsoYaw,-.12);
     if(readyRotation)racketRot=readyRotation;
@@ -537,14 +539,14 @@ export class Character {
       if(this.propKind&&this.propAnchor){const weight=this.propWanted?1-smoothstep(.4,1,this.propAge):smoothstep(0,.65,this.propAge);if(this.propKind==='notebook')left=Math.max(left,weight);else right=Math.max(right,weight);}
       let posture:Parameters<typeof adultTaylorPose>[3]['posture'];
       if(isShot(this.state)&&this.contactTarget&&this.spec.appearance==='human'){
-        const offset=Vec3.sub(result.racketCenter,result.racketGrip),grip=Vec3.sub(this.contactTarget,offset),forward=offset.clone();forward.y=0;forward.normalize();
-        posture={weight:bell(result.sp-this.shotContactTime(this.state)/this.shotDuration(this.state),.34),right:grip,left:this.state==='swingBackhand'?grip.clone().add(forward.scale(-.08)).add(new Vec3(0,.04,0)):undefined};
+        const offset=Vec3.sub(result.racketCenter,result.racketGrip),grip=Vec3.sub(this.contactTarget,offset);
+        posture={weight:bell(result.sp-this.shotContactTime(this.state)/this.shotDuration(this.state),.34),right:grip,left:this.state==='swingBackhand'?secondRacketHand(grip,offset):undefined};
       }
       if(this.spec.appearance==='human'&&this.canRelaxClubIdle()){
         result.face={...result.face,smile:Math.max(this.spec.avatar==='taylor'?.55:this.spec.presentation==='masculine'?.18:.32,result.face.smile),squint:Math.max(.08,result.face.squint)};
       }
       const design=CAST_DESIGN[this.spec.avatar??this.spec.id]??CAST_DESIGN.taylor;
-      return adultTaylorPose(result,this.position,this.yaw,{armLengths:this.spec.presentation==='feminine'&&this.spec.appearance==='human'?authoredArmLengths():undefined,sitting:this.state==='sit',seatWeight:this.state==='sit'?t:this.previousState==='sit'?1-t:0,folded:this.canFoldReferenceIdle(),rightWorld:right,leftWorld:left,human:this.spec.appearance==='human',shoulderScale:design.shoulderScale,restWeight:this.clubIdleRelax,strokeWeight:isShot(this.state)?t:isShot(this.previousState)?1-t:0,readyWeight:this.state==='ready'||this.state==='shuffle'?t:this.previousState==='ready'||this.previousState==='shuffle'?1-t:0,affection:this.affection??undefined,walk:result.walking&&this.spec.appearance==='human'&&!this.propKind&&this.interactionWeight<.001&&this.socialGesture==='none'?{phase:this.gaitPhase,weight:clamp(this.horizontalSpeed/1.2,0,1),stance:this.walkingShape()!.stance,planted:this.state==='jog'?[!!this.leftFootLock,!!this.rightFootLock]:undefined,swing:locomotionStyleFor(this.spec.id).armSwing*.75}:undefined,posture});
+      return adultTaylorPose(result,this.position,this.yaw,{armLengths:this.spec.presentation==='feminine'&&this.spec.appearance==='human'?authoredArmLengths():undefined,sitting:this.state==='sit',seatWeight:this.state==='sit'?t:this.previousState==='sit'?1-t:0,folded:this.canFoldReferenceIdle(),rightWorld:right,leftWorld:left,human:this.spec.appearance==='human',shoulderScale:design.shoulderScale,restWeight:this.clubIdleRelax,strokeWeight:isShot(this.state)?t:isShot(this.previousState)?1-t:0,backhandWeight:this.state==='swingBackhand'?t:this.previousState==='swingBackhand'?1-t:0,readyWeight:this.state==='ready'||this.state==='shuffle'?t:this.previousState==='ready'||this.previousState==='shuffle'?1-t:0,affection:this.affection??undefined,walk:result.walking&&this.spec.appearance==='human'&&!this.propKind&&this.interactionWeight<.001&&this.socialGesture==='none'?{phase:this.gaitPhase,weight:clamp(this.horizontalSpeed/1.2,0,1),stance:this.walkingShape()!.stance,planted:this.state==='jog'?[!!this.leftFootLock,!!this.rightFootLock]:undefined,swing:locomotionStyleFor(this.spec.id).armSwing*.75}:undefined,posture});
     }
     return result;
   }

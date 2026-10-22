@@ -1,8 +1,9 @@
 import {Vec3,clamp} from '../rendering/Math3D.js';
+import {secondRacketHand} from './RacketGeometry.js';
 import type {CharacterPose} from '../entities/Character.js';
 
 export const TAYLOR_BODY={pelvisHeight:1.245,strokePelvisFloor:.86,torsoScale:1.20,headScale:.62,upperArm:.425,forearm:.415,thigh:.56,shin:.55} as const;
-interface Constraints {armLengths?:{upperArm:number;forearm:number};sitting:boolean;seatWeight?:number;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;affection?:{kind:'hug'|'kiss';target:Vec3;weight:number;upper:boolean};shoulderScale?:number;restWeight?:number;readyWeight?:number;strokeWeight?:number;walk?:{phase:number;weight:number;swing:number;stance:number;planted?:[boolean,boolean]};posture?:{weight:number;right:Vec3;left?:Vec3};}
+interface Constraints {armLengths?:{upperArm:number;forearm:number};sitting:boolean;seatWeight?:number;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;affection?:{kind:'hug'|'kiss';target:Vec3;weight:number;upper:boolean};shoulderScale?:number;restWeight?:number;readyWeight?:number;backhandWeight?:number;strokeWeight?:number;walk?:{phase:number;weight:number;swing:number;stance:number;planted?:[boolean,boolean]};posture?:{weight:number;right:Vec3;left?:Vec3};}
 const smooth=(t:number)=>{const u=clamp(t,0,1);return u*u*(3-2*u);};
 function joint(a:Vec3,b:Vec3,first:number,second:number,pole:Vec3,fallback:Vec3){
  const delta=Vec3.sub(b,a),d=Math.max(.0001,delta.len()),axis=delta.scale(1/d),stretch=Math.max(1,d/(first+second-.001));
@@ -133,8 +134,12 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
    // folding a full-length adult forearm back through the upper arm.
    if(constraints.human&&distance<.19)p[`hand${side}`]=shoulder.clone().add((distance>.001?d.normalize():torsoForward.clone()).scale(.19));
   }
-  // Support the actual throat after retargeting, rather than a floating source-space hand goal.
-  if(side==='L'&&constraints.human&&constraints.readyWeight){const throat=Vec3.lerp(source.racketHandleTop,source.racketCenter,.20),goal=p.handR.clone().add(Vec3.sub(throat,source.racketGrip));p.handL=Vec3.lerp(p.handL,goal,constraints.readyWeight*(1-world));}
+  // Supporting hands follow the final grip, through both retargeting and state blends.
+  if(side==='L'&&constraints.human&&(constraints.readyWeight||constraints.backhandWeight)){
+   const ready=(constraints.readyWeight??0)*(1-world),backhand=constraints.backhandWeight??0;
+   const throat=Vec3.sub(Vec3.lerp(source.racketHandleTop,source.racketCenter,.20),source.racketGrip),stack=secondRacketHand(p.handR,Vec3.sub(source.racketHandleTop,source.racketGrip));
+   p.handL.scale(Math.max(0,1-ready-backhand)).add(p.handR.clone().add(throat).scale(ready)).add(stack.scale(backhand));
+  }
   // The old compact/feline elbow target can pass through the shoulder/wrist
   // axis after retargeting. A body-relative human pole keeps elbows down and
   // outside the ribcage, with posterior loading rather than a reversed fold.

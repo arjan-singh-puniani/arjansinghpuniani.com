@@ -1,4 +1,5 @@
 import { Vec3, clamp } from '../rendering/Math3D.js';
+import { secondRacketHand } from './RacketGeometry.js';
 export const TAYLOR_BODY = { pelvisHeight: 1.245, strokePelvisFloor: .86, torsoScale: 1.20, headScale: .62, upperArm: .425, forearm: .415, thigh: .56, shin: .55 };
 const smooth = (t) => { const u = clamp(t, 0, 1); return u * u * (3 - 2 * u); };
 function joint(a, b, first, second, pole, fallback) {
@@ -223,10 +224,11 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             if (constraints.human && distance < .19)
                 p[`hand${side}`] = shoulder.clone().add((distance > .001 ? d.normalize() : torsoForward.clone()).scale(.19));
         }
-        // Support the actual throat after retargeting, rather than a floating source-space hand goal.
-        if (side === 'L' && constraints.human && constraints.readyWeight) {
-            const throat = Vec3.lerp(source.racketHandleTop, source.racketCenter, .20), goal = p.handR.clone().add(Vec3.sub(throat, source.racketGrip));
-            p.handL = Vec3.lerp(p.handL, goal, constraints.readyWeight * (1 - world));
+        // Supporting hands follow the final grip, through both retargeting and state blends.
+        if (side === 'L' && constraints.human && (constraints.readyWeight || constraints.backhandWeight)) {
+            const ready = (constraints.readyWeight ?? 0) * (1 - world), backhand = constraints.backhandWeight ?? 0;
+            const throat = Vec3.sub(Vec3.lerp(source.racketHandleTop, source.racketCenter, .20), source.racketGrip), stack = secondRacketHand(p.handR, Vec3.sub(source.racketHandleTop, source.racketGrip));
+            p.handL.scale(Math.max(0, 1 - ready - backhand)).add(p.handR.clone().add(throat).scale(ready)).add(stack.scale(backhand));
         }
         // The old compact/feline elbow target can pass through the shoulder/wrist
         // axis after retargeting. A body-relative human pole keeps elbows down and
