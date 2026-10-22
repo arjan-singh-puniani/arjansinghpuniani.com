@@ -1,0 +1,193 @@
+{
+  "taylor": {
+    "samples": 934,
+    "failures": [],
+    "errors": []
+  },
+  "coach": {
+    "samples": 920,
+    "failures": [],
+    "errors": []
+  },
+  "mika": {
+    "samples": 942,
+    "failures": [],
+    "errors": []
+  },
+  "nia": {
+    "samples": 962,
+    "failures": [],
+    "errors": []
+  },
+  "baseline": {
+    "samples": 934,
+    "fingerTorsoFailures": 90,
+    "armSkirtFailures": 20
+  },
+  "rallyReview": {
+    "engine": "chromium",
+    "width": 1440,
+    "errors": [],
+    "http": [],
+    "returns": [
+      true,
+      true
+    ],
+    "input": "Actual UI challenge, keyboard movement/serve/attempted returns and review button; controlled initial club availability",
+    "contact": {
+      "count": 3,
+      "time": 6.483333333333316,
+      "frames": 205
+    },
+    "review": {
+      "sameWorld": true,
+      "samePlayer": true,
+      "sameCast": true,
+      "sameObjects": true,
+      "sameMeshes": true,
+      "sameRecording": true,
+      "source": "game-recording",
+      "contact": true,
+      "time": 6.483333333333316,
+      "playing": false,
+      "speed": 0.25,
+      "input": false,
+      "match": false,
+      "reserved": false,
+      "competitors": false,
+      "gl": 0
+    },
+    "framing": {
+      "head": {
+        "x": 551.0204062436486,
+        "y": 295.8748739416635,
+        "visible": true
+      },
+      "racketTop": {
+        "x": 716.1453849354328,
+        "y": 405.79553976528024,
+        "visible": true
+      },
+      "feet": [
+        {
+          "x": 505.3274145727188,
+          "y": 575.6279369408753,
+          "visible": true
+        },
+        {
+          "x": 570.1907117874695,
+          "y": 534.959562223733,
+          "visible": true
+        }
+      ],
+      "panel": {
+        "x": 1096,
+        "y": 104,
+        "width": 320,
+        "height": 684,
+        "top": 104,
+        "right": 1416,
+        "bottom": 788,
+        "left": 1096
+      }
+    },
+    "returned": {
+      "lab": false,
+      "match": false,
+      "world": true,
+      "court": false
+    },
+    "passed": true
+  },
+  "validation": {
+    "fullSuite": "npm test passed; final target reference then checked with authored-athlete, body-clearance, confident-gait and final native cast sweeps",
+    "release": "111 source/served artifacts match",
+    "limits": "High-backhand sleeve fold remains in the wider forearm/torso diagnostic; this regression asserts hands/torso and arms/skirt, not universal cloth separation."
+  },
+  "performance": [
+    {
+      "label": "before",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 332296,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "median": 16.69999999999891,
+      "p95": 16.799999999999272,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 332296,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "median": 16.69999999999891,
+      "p95": 16.799999999999272,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 332296,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "before",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 332296,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    }
+  ]
+}
