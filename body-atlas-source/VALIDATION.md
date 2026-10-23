@@ -86,3 +86,21 @@ A deeper trace added Hudi’s exact condom restriction, Advanced Glenoid cemente
 ### Original-label follow-up checks — 2026-10-22
 
 `npm test`: 47 atlas checks passed. `npm run test:ingestion`: 36 passed; TypeScript passed. Portfolio `npm test`: 95 passed; typecheck, full portfolio production build, standalone production build and static webpack export passed. Desktop and mobile Chrome tested all 91 dossier review boundaries, first limitations and original finding links, model/lot search, model context, exports and recovery. Zero Axe violations or browser errors. The broader anatomy/region/retrieval/brief workflow and 12 portfolio routes also passed. Mobile is viewport/touch emulation, not a physical device or Safari. All three complete-label gaps remain open; partial excerpts and decisions are not upgraded into complete IFUs.
+
+## Body contour — 2026-10-23
+
+The preview uses geometry-only body contours. Unit checks verify the single-mesh GLB and manifest/hash, absence of vertex colors/textures/photographs, unchanged neutral head, legs and unaffected regions, and broader shoulder/tapered waist geometry. Existing tests retain source-model checksums and reference evidence assertions. Updated browser checks exercise rotation, contour/reference switching, original-source selection and contour-asset failure recovery on desktop and mobile.
+
+Previous full-workflow verification: 48 source tests, 36 ingestion tests, 95 portfolio tests and 20 desktop/mobile browser tests passed for the preceding preview; the 91 dossier checks also passed. These are historical results, not automatic certification of the revised contour. Current rerun results are recorded below after completion. Calibrated body-fit accuracy and physical-device Safari/GPU performance remain unverified.
+
+Initial contour rerun (superseded shape): 48/48 source tests, 95/95 portfolio tests and 20/20 desktop/mobile Playwright tests pass. Maintained-source webpack build, static export, standalone build and full portfolio production build/typecheck pass. Geometry assertions verify the 1.38 glans radial scale in both cross-section axes, unchanged neutral head/legs, localized external edits and absence of identifying subject metadata, portrait colors and legacy face assets. The mobile on-model label pager is tested after fixing its collision with the view controls. No ingestion or dossier content changed; those previous checks were not repeated for this geometry revision. This validates the model edit, not correspondence to a real person's anatomy.
+
+### Smooth local contour revision
+
+The stretched source patch is superseded by a closed parametric shaft and rounded glans, joined locally to the surface. Unit checks now verify a consistent circular shaft at three sections, the modeled 1.38 head-to-shaft radius ratio, a closed distal pole, unchanged neutral head/legs, source hashes and absence of photographic or identifying payloads. The generator asserts closure of the new surface before union. TypeScript and all 48 source tests pass. Front and oblique neutral clay renders were inspected. This is an illustrative mesh, not a measurement or validated personal anatomy. No scientific records or internal source meshes were changed.
+
+Desktop and mobile preview checks for this revision both passed: exact served-asset SHA matched the manifest, the new model rendered, orbit changed the rendered view, Contour/Reference switching worked, and an original FDA source link remained available. No page errors occurred. The full application build, ingestion and dossier suites were not repeated for this asset-only change; their prior results remain recorded above.
+
+### Glans girth refinement
+
+The rounded glans profile and coronal rim were reduced radially by 7%; shaft and length parameters are unchanged. The new modeled glans-to-shaft radius ratio is 1.2834. All 48 source tests pass, including the circular shaft and length checks. Desktop/mobile browser checks confirm rendering, rotation, reference switching, exact served-asset hash and original evidence access with no page errors. No application rebuild or ingestion rerun was needed for this asset-only adjustment. Anatomical fit remains illustrative.

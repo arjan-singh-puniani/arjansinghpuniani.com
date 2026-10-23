@@ -472,3 +472,52 @@ test("disease origin, co-procedures and access routes cannot become the explaine
  ]) assert.equal(matchesRegion(familyById(id)!,rejected),false,id);
  assert.ok(!humanRegionLocators['BODY:uterus']);assert.ok(!humanRegionLocators['BODY:vagina']);
 });
+
+test("body contour is a bounded 3D derivative without photograph payloads", async () => {
+ const raw=readFileSync('public/anatomy/contour.glb');
+ assert.throws(()=>readFileSync('public/anatomy/owner.glb'),{code:'ENOENT'});
+ assert.throws(()=>readFileSync('public/anatomy/owner-manifest.json'),{code:'ENOENT'});
+ const manifest=JSON.parse(readFileSync('public/anatomy/contour-manifest.json','utf8'));
+ assert.equal(raw.readUInt32LE(0),0x46546c67);assert.equal(raw.readUInt32LE(8),raw.length);
+ assert.equal(createHash('sha256').update(raw).digest('hex'),manifest.sha256);
+ assert.equal(raw.length,manifest.bytes);assert.ok(raw.length<6_000_000);
+ assert.equal(manifest.personalAnatomicalScan,false);assert.equal(manifest.photographsIncluded,false);
+ assert.equal(manifest.texturesIncluded,false);assert.match(manifest.license,/CC BY 4.0/);
+ assert.equal(createHash('sha256').update(readFileSync('public/anatomy/body.glb')).digest('hex'),manifest.sourceSha256);
+ const gltf=JSON.parse(raw.subarray(20,20+raw.readUInt32LE(12)).toString());
+ for(const field of ['images','textures','cameras','animations'])assert.ok(!gltf[field]?.length,field);
+ assert.equal(gltf.buffers.length,1);assert.ok(!gltf.buffers[0].uri);
+ assert.ok(gltf.nodes.every((n:{extras?:unknown})=>!n.extras));
+ assert.deepEqual(gltf.nodes.map((n:{name:string})=>n.name).sort(),['Body_Contour']);
+ assert.equal(gltf.meshes.reduce((sum:number,m:{primitives:{indices:number}[]})=>sum+m.primitives.reduce((n,p)=>n+gltf.accessors[p.indices].count/3,0),0),manifest.triangles);
+ const {GLTFLoader}=await import('three/examples/jsm/loaders/GLTFLoader.js');
+ const {Box3,Mesh}=await import('three');
+ const parse=(bytes:Buffer)=>new GLTFLoader().parseAsync(new Uint8Array(bytes).buffer,'');
+ const scene=(await parse(raw)).scene;
+ const reference=(await parse(readFileSync('public/anatomy/body.glb'))).scene;
+ const positions=(root:typeof scene)=>{
+  const points:number[][]=[];
+  root.traverse(o=>{if(o instanceof Mesh){const p=o.geometry.getAttribute('position');for(let i=0;i<p.count;i++)points.push([p.getX(i),p.getY(i),p.getZ(i)]);}});
+  return points;
+ };
+ const original=positions(reference),contour=positions(scene);
+ const unchanged=(points:number[][])=>[...new Set(points.filter(p=>p[1]>=.67||p[1]<=-.18||(p[1]<=.02&&Math.abs(p[0])>=.06)).map(p=>p.map(v=>v.toFixed(5)).join(',')))].sort();
+ assert.deepEqual(unchanged(contour),unchanged(original),'Neutral head, legs and unaffected pelvis retain the source coordinates');
+ const width=(points:number[][],low:number,high:number,limit:number)=>Math.max(...points.filter(p=>p[1]>low&&p[1]<high&&Math.abs(p[0])<limit).map(p=>Math.abs(p[0])));
+ assert.ok(width(contour,.21,.25,.20)<width(original,.21,.25,.20)*.95,'Waist is tapered');
+ assert.ok(width(contour,.49,.54,.30)>width(original,.49,.54,.30),'Shoulder contour is broader');
+ assert.ok(gltf.meshes.every((m:{primitives:{attributes:Record<string,number>}[]})=>m.primitives.every(p=>!('COLOR_0' in p.attributes))));
+ assert.equal(manifest.facialAppearanceIncluded,false);assert.equal(manifest.contourOnly,true);
+ const tip=(points:number[][])=>Math.min(...points.filter(p=>Math.abs(p[0])<.025&&p[2]>.105&&p[1]<-.05).map(p=>p[1]));
+ assert.ok(tip(contour)<tip(original)-.015,'External pelvic contour is elongated locally');
+ const frontRadius=(distance:number)=>{
+  const ring=contour.filter(p=>Math.abs(p[1]-(-.020-distance))<.000001&&Math.abs(p[0]-.004)<.000001);
+  assert.ok(ring.length>=1,'Modeled ring exists');
+  return Math.max(...ring.map(p=>p[2]))-(.102+.008*Math.min(1,distance/.098));
+ };
+ for(const distance of [.040,.050,.060])assert.ok(Math.abs(frontRadius(distance)-.0185)<.00001,'Shaft has a consistent circular profile');
+ assert.ok(Math.abs(frontRadius(.098)/frontRadius(.050)-1.2834)<.001,'Rounded glans remains broader than shaft');
+ assert.ok(contour.some(p=>Math.abs(p[0]-.004)<.000001&&Math.abs(p[1]+.148)<.000001&&Math.abs(p[2]-.110)<.000001),'Rounded distal pole exists');
+ assert.equal(manifest.glansToShaftRadiusRatio,1.2834);assert.equal(manifest.subjectIdentified,false);assert.doesNotMatch(JSON.stringify(manifest),/Arjan|owner|likeness/i);
+ const box=new Box3().setFromObject(scene);assert.ok(box.min.y<-.91&&box.max.y>.90);
+});

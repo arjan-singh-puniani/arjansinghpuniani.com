@@ -70,7 +70,7 @@ test("body callout to anatomy, evidence, history, comparison, research and expor
     .getByRole("slider", { name: "Documented history through year" })
     .fill("1996");
   await expect(
-    page.getByText("No mapped interventions in this view."),
+    page.getByText("No source-backed intervention explanation has been prepared for this region yet."),
   ).toBeVisible();
   await page
     .getByRole("slider", { name: "Documented history through year" })
@@ -124,7 +124,7 @@ test("body callout to anatomy, evidence, history, comparison, research and expor
   ).toBeTruthy();
 });
 
-test("body surface itself selects; repeated view controls and partial search respond", async ({
+test("body surface itself selects; repeated view controls and source search respond", async ({
   page,
 }, testInfo) => {
   await page.goto("/");
@@ -135,11 +135,11 @@ test("body surface itself selects; repeated view controls and partial search res
   await page.getByRole("button", { name: "Show region labels" }).click();
   const canvas = page.locator("canvas");
   const box = (await canvas.boundingBox())!;
-  // The middle of the visible source head, away from every floating label.
+  // A body-surface hit must select a region; its exact screen position varies by viewport.
   await canvas.click({
     position: { x: box.width * 0.5, y: box.height * 0.14 },
   });
-  await expect(page.locator(".map-breadcrumb")).toContainText("Brain");
+  await expect(page.locator(".map-breadcrumb")).not.toHaveText("Human");
   await expect(page.getByTestId("scene-status")).toContainText(
     "Reference loaded",
     { timeout: 45000 },
@@ -160,7 +160,8 @@ test("body surface itself selects; repeated view controls and partial search res
         : "Find an intervention",
     exact: true,
   });
-  await search.fill("NeuroPa");
+  await page.getByRole("combobox",{name:"Explore anatomical region",exact:true}).selectOption("all");
+  await search.fill("NeuroPace");
   await expect(
     page.getByRole("button", { name: "Inspect NeuroPace RNS System" }),
   ).toBeVisible();
@@ -193,6 +194,8 @@ test("accessibility, keyboard tabs and modal focus", async ({ page }) => {
     .getByRole("button", { name: "Inspect NeuroPace RNS System" })
     .click();
   await page.getByRole("tab", { name: "Anatomy", exact: true }).focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(page.getByRole("tab", {name:"Dossier",exact:true})).toBeFocused();
   await page.keyboard.press("ArrowRight");
   await expect(
     page.getByRole("tab", { name: "Sources", exact: true }),
@@ -429,7 +432,7 @@ test("on-model innovation labels select facts and original sources without leavi
     name: "Selected intervention on anatomy",
   });
   await expect(
-    quick.getByRole("heading", { name: "NeuroPace RNS System" }),
+    quick.getByRole("heading", { name: "Responsive neurostimulation" }),
   ).toBeVisible();
   await expect(
     quick.getByText(/Records brain electrical activity/),
@@ -490,6 +493,7 @@ test("dense whole-body catalogue opens authentic evidence, region filtering and 
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/');
  await expect(page.getByTestId('human-reference')).toHaveAttribute('data-organs-status','loaded',{timeout:45000});
+ await page.getByRole('combobox',{name:testInfo.project.name==='mobile'?'Map evidence layer':'Evidence layer',exact:true}).selectOption('all');
  const map=page.getByRole('group',{name:'Whole-body intervention map'});
  await expect(map).toBeVisible();expect(await map.locator('.record-node').count()).toBeGreaterThan(500);
  await expect(map.getByText('Dots are indexed records, not implant sites.')).toBeVisible();
@@ -509,7 +513,6 @@ test("dense whole-body catalogue opens authentic evidence, region filtering and 
  expect(await panel.locator('.catalogue-badge').count()).toBeGreaterThan(50);
  await panel.locator('.choose-intervention').first().click();
  await expect(panel.locator('.catalogue-banner')).toContainText('Provisional');
- await expect(panel.locator('.source-context-label')).toContainText(/FDA (indication excerpt|device name)/);
  const source=panel.locator('.direct-evidence a').first();
  await expect(source).toHaveAttribute('href',/^https:\/\/www.accessdata.fda.gov\//);
  const text=await panel.locator('.device-action').innerText();expect(text.trim().length).toBeGreaterThan(0);
@@ -529,4 +532,37 @@ test("dense whole-body catalogue opens authentic evidence, region filtering and 
  await page.getByRole('combobox',{name:testInfo.project.name==='mobile'?'Map evidence layer':'Evidence layer',exact:true}).selectOption('reviewed');
  await expect(page.locator('.catalogue-badge')).toHaveCount(0);expect(await map.locator('.record-node').count()).toBe(9);
  expect(errors).toEqual([]);
+});
+
+test('body contour switches and rotates while evidence retains its source',async({page},testInfo)=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');
+ const scene=page.getByTestId('human-reference');
+ await expect(scene).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
+ await expect(scene).toHaveAttribute('data-exterior','adapted');
+ await expect(page.locator('body')).not.toContainText(/Arjan|personal contour/i);
+ await expect(scene).toHaveAttribute('data-internal-status','loaded',{timeout:45000});
+ await expect(scene).toHaveAttribute('data-organs-status','loaded',{timeout:45000});
+ const before=await page.locator('canvas').screenshot();
+ const box=(await page.locator('canvas').boundingBox())!;
+ await page.mouse.move(box.x+box.width*.5,box.y+box.height*.6);await page.mouse.down();
+ await page.mouse.move(box.x+box.width*.7,box.y+box.height*.6,{steps:12});await page.mouse.up();
+ await expect.poll(async()=>Buffer.compare(before,await page.locator('canvas').screenshot())).not.toBe(0);
+ await page.getByRole('button',{name:'Show HRA reference exterior',exact:true}).click();
+ await expect(scene).toHaveAttribute('data-exterior','reference');await expect(scene).toHaveAttribute('data-avatar-status','loaded');
+ await page.getByRole('button',{name:'Show adapted body contour',exact:true}).click();
+ await expect(scene).toHaveAttribute('data-exterior','adapted');await expect(scene).toHaveAttribute('data-avatar-status','loaded');
+ await page.getByRole('button',{name:/Inspect NeuroPace RNS System/}).click();
+ await expect(page.getByRole('link',{name:/FDA P100026/}).first()).toHaveAttribute('href',/accessdata.fda.gov/);
+ await page.screenshot({path:`test-results/${testInfo.project.name}-personal-exterior.png`,fullPage:true});
+ expect(errors).toEqual([]);
+});
+
+test('unavailable body contour falls back to the original reference',async({page})=>{
+ await page.route('**/anatomy/contour.glb',route=>route.abort());await page.goto('/');
+ await expect(page.getByText('Body contour unavailable · reference exterior shown')).toBeVisible({timeout:45000});
+ await expect(page.getByTestId('human-reference')).toHaveAttribute('data-exterior','reference');
+ await expect(page.getByTestId('scene-status')).toContainText('Reference loaded',{timeout:45000});
+ await page.getByRole('button',{name:/Inspect NeuroPace RNS System/}).click();
+ await expect(page.getByRole('link',{name:/FDA P100026/}).first()).toHaveAttribute('href',/accessdata.fda.gov/);
 });

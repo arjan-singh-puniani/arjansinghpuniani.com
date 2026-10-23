@@ -73,3 +73,9 @@ Positive/negative cases distinguish liver metastasis treatment from the colorect
 ## Dossier milestone — 2026-10-22
 
 Dossier completion does not upgrade any anatomical relationship. FDA application/supplement and recall joins concern regulatory identity, not implantation coordinates or confirmed affected models. Existing Provisional contexts and unknown placements remain unchanged.
+
+## Body contour — 2026-10-23
+
+The adapted contour alters shoulder, chest, upper-arm, waist and localized external pelvic geometry. Head, legs and unaffected regions retain source coordinates. Both surfaces use the original HRA bounds for centering and scale; organs, nerves and intervention anchors are unchanged. The contours do not establish personal anatomical coordinates or body measurements. See [BODY_CONTOUR.md](BODY_CONTOUR.md).
+
+The external pelvic contour now uses a closed, smooth parametric surface joined locally to the exterior. This is illustrative geometry, not a sourced anatomical specimen, clinical assertion or device coordinate. Reference organs and intervention anchors remain unchanged.

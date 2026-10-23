@@ -77,3 +77,7 @@ Supersedes the earlier blanket pending status: all 91 entries have model-scoped 
 ### Original-label trace and warning clarity — 2026-10-22
 
 A deeper trace added Hudi’s exact condom restriction, Advanced Glenoid cemented/compatibility distinctions and archival Braun-Cutter/Avanta CMC manufacturer-insert excerpts with an explicit PMA identity crosswalk. No complete revision-controlled IFU was recovered; all three full-label gaps remain open. Historical excerpts are not certified as the original approved or current label. Review meanings, compared models, unknown revisions and the leading entry-specific limit are visible and included in briefs. See [LABELING_SAFETY_REVIEW.md](LABELING_SAFETY_REVIEW.md) and the linked source-trace ledger. Requests remain unsent.
+
+## Body contour — 2026-10-23
+
+`public/anatomy/contour.glb` is a photo-guided body-contour derivative of the attributed CC BY 4.0 HRA male v1.5 skin. Modifications concern shoulder, chest, upper-arm, waist and localized external pelvic shape. Neutral head and source topology remain. No personal facial appearance, photo files, textures or vertex colors are included. This contributes no biomedical evidence or measured personal anatomy. See [BODY_CONTOUR.md](BODY_CONTOUR.md).

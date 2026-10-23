@@ -2598,3 +2598,7 @@
 
 .dossier-models strong, .dossier-models span {display:block;line-height:1.6}
 .dossier-models strong {font-size:11px;color:var(--muted);font-weight:normal}
+
+@media (max-width: 650px) {
+  .with-intervention-labels .annotation-pages { left: 4px; gap: 2px; }
+}

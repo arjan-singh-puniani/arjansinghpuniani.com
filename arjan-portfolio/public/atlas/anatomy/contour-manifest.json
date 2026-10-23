@@ -1,0 +1,22 @@
+{
+  "asset": "adapted body contour",
+  "source": "HRA male v1.5 skin surface",
+  "sourceSha256": "7260cde916540b160c28bdc552f34706f5de70b1e27a6b6689f9428abf2e64e3",
+  "license": "CC BY 4.0; HRA geometry attribution retained. No personality rights are granted.",
+  "creators": [
+    "Kristen Browne",
+    "Heidi Schlehlein"
+  ],
+  "adaptations": "Photograph-guided shoulder breadth, chest volume, upper-arm contour and waist taper. Neutral reference head retained; local external contour rebuilt with a smooth shaft, rounded glans and blended root. Internal reference anatomy unchanged. Artistic proportions, not measured dimensions.",
+  "contourOnly": true,
+  "personalAnatomicalScan": false,
+  "photographsIncluded": false,
+  "texturesIncluded": false,
+  "facialAppearanceIncluded": false,
+  "subjectIdentified": false,
+  "glansToShaftRadiusRatio": 1.2834,
+  "externalContourMethod": "closed parametric surface with local Boolean union",
+  "sha256": "5bd1dedc0cfc0b29b1ab82adcf71459b1ca9b394118b47b156583319cb4cd32b",
+  "bytes": 4602536,
+  "triangles": 191726
+}

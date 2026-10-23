@@ -73,3 +73,7 @@ The bounded acquisition scope adds original PMA approvals and cross-panel submis
 ## Dossier milestone — 2026-10-22
 
 Dossiers reuse the existing SQLite jobs/artifacts/checkpoint transport, with a separate ignored `data/dossiers.sqlite`. A compact source manifest and immutable hashed public artifacts rebuild 91 per-entry JSON files plus a lightweight summary. Only summaries enter the initial client bundle; detailed histories/recalls load on demand. The static exporter includes the summary and public dossiers without introducing a server, credentials or database requirement for visitors. See [DOSSIERS.md](DOSSIERS.md).
+
+## Body contour
+
+`HumanScene` loads `contour.glb` or the original HRA skin with the same neutral shader. Both use the original HRA bounds for the common reference transform. The adapted asset is geometry only: no portrait colors, hair or photographic materials. Its failure falls back to the reference surface. Internal anatomy, source retrieval and intervention anchors are unchanged. The Blender generator reads only the licensed source mesh. See [BODY_CONTOUR.md](BODY_CONTOUR.md).
