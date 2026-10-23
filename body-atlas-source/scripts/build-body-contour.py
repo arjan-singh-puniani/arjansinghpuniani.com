@@ -30,8 +30,8 @@ for v in body.data.vertices:
   assert abs(next_x-x)<.05 and abs(next_z-z)<.05
   v.co=(next_x,-next_z,y)
 # A local, closed surface replaces the stretched scan contour; reference organs are untouched.
-shaft_radius=.0185;glans_radius=shaft_radius*1.38
-profile=[(0,.023),(.018,.019),(.035,shaft_radius),(.065,shaft_radius),(.080,.0175),(.085,.0175),(.091,.024),(.098,glans_radius)]
+shaft_radius=.0185;glans_radius=shaft_radius*1.38*.93
+profile=[(0,.023),(.018,.019),(.035,shaft_radius),(.065,shaft_radius),(.080,.0175),(.085,.0175),(.091,.024*.93),(.098,glans_radius)]
 def radius_at(d):
  if d>=.098:return glans_radius*math.sqrt(max(0,1-((d-.098)/.030)**2))
  for (a,ra),(b,rb) in zip(profile,profile[1:]):
@@ -66,7 +66,7 @@ bpy.context.view_layer.objects.active=body
 union=body.modifiers.new('Local smooth external contour','BOOLEAN');union.operation='UNION';union.solver='EXACT';union.object=part
 bpy.ops.object.modifier_apply(modifier=union.name);bpy.data.objects.remove(part,do_unlink=True)
 assert all(math.isfinite(value) for v in body.data.vertices for value in v.co)
-assert math.isclose(glans_radius/shaft_radius,1.38)
+assert math.isclose(glans_radius/shaft_radius,1.2834)
 # Preserve the neutral reference head; export no photographic appearance.
 for attr in list(body.data.color_attributes):body.data.color_attributes.remove(attr)
 body.data.materials.clear()
@@ -78,6 +78,6 @@ bpy.ops.export_scene.gltf(filepath=str(out),export_format='GLB',use_selection=Tr
 raw=out.read_bytes();gltf=json.loads(raw[20:20+int.from_bytes(raw[12:16],'little')])
 assert len(gltf['meshes'])==1 and not gltf.get('images') and not gltf.get('textures')
 assert all('COLOR_0' not in p['attributes'] for m in gltf['meshes'] for p in m['primitives'])
-manifest={'asset':'adapted body contour','source':'HRA male v1.5 skin surface','sourceSha256':source_sha,'license':'CC BY 4.0; HRA geometry attribution retained. No personality rights are granted.','creators':['Kristen Browne','Heidi Schlehlein'],'adaptations':'Photograph-guided shoulder breadth, chest volume, upper-arm contour and waist taper. Neutral reference head retained; local external contour rebuilt with a smooth shaft, rounded glans and blended root. Internal reference anatomy unchanged. Artistic proportions, not measured dimensions.','contourOnly':True,'personalAnatomicalScan':False,'photographsIncluded':False,'texturesIncluded':False,'facialAppearanceIncluded':False,'subjectIdentified':False,'glansToShaftRadiusRatio':1.38,'externalContourMethod':'closed parametric surface with local Boolean union','sha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw),'triangles':sum(len(p.vertices)-2 for p in body.data.polygons)}
+manifest={'asset':'adapted body contour','source':'HRA male v1.5 skin surface','sourceSha256':source_sha,'license':'CC BY 4.0; HRA geometry attribution retained. No personality rights are granted.','creators':['Kristen Browne','Heidi Schlehlein'],'adaptations':'Photograph-guided shoulder breadth, chest volume, upper-arm contour and waist taper. Neutral reference head retained; local external contour rebuilt with a smooth shaft, rounded glans and blended root. Internal reference anatomy unchanged. Artistic proportions, not measured dimensions.','contourOnly':True,'personalAnatomicalScan':False,'photographsIncluded':False,'texturesIncluded':False,'facialAppearanceIncluded':False,'subjectIdentified':False,'glansToShaftRadiusRatio':1.2834,'externalContourMethod':'closed parametric surface with local Boolean union','sha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw),'triangles':sum(len(p.vertices)-2 for p in body.data.polygons)}
 out.with_name('contour-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print('BODY_CONTOUR',json.dumps(manifest))

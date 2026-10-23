@@ -516,8 +516,8 @@ test("body contour is a bounded 3D derivative without photograph payloads", asyn
   return Math.max(...ring.map(p=>p[2]))-(.102+.008*Math.min(1,distance/.098));
  };
  for(const distance of [.040,.050,.060])assert.ok(Math.abs(frontRadius(distance)-.0185)<.00001,'Shaft has a consistent circular profile');
- assert.ok(Math.abs(frontRadius(.098)/frontRadius(.050)-1.38)<.001,'Rounded glans remains broader than shaft');
+ assert.ok(Math.abs(frontRadius(.098)/frontRadius(.050)-1.2834)<.001,'Rounded glans remains broader than shaft');
  assert.ok(contour.some(p=>Math.abs(p[0]-.004)<.000001&&Math.abs(p[1]+.148)<.000001&&Math.abs(p[2]-.110)<.000001),'Rounded distal pole exists');
- assert.equal(manifest.glansToShaftRadiusRatio,1.38);assert.equal(manifest.subjectIdentified,false);assert.doesNotMatch(JSON.stringify(manifest),/Arjan|owner|likeness/i);
+ assert.equal(manifest.glansToShaftRadiusRatio,1.2834);assert.equal(manifest.subjectIdentified,false);assert.doesNotMatch(JSON.stringify(manifest),/Arjan|owner|likeness/i);
  const box=new Box3().setFromObject(scene);assert.ok(box.min.y<-.91&&box.max.y>.90);
 });

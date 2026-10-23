@@ -14,9 +14,9 @@
   "texturesIncluded": false,
   "facialAppearanceIncluded": false,
   "subjectIdentified": false,
-  "glansToShaftRadiusRatio": 1.38,
+  "glansToShaftRadiusRatio": 1.2834,
   "externalContourMethod": "closed parametric surface with local Boolean union",
-  "sha256": "a4f6cdd4bcc8a5e69ddf7c1ccf0df939aa967cb38313419f0770800c9aa92c5f",
+  "sha256": "5bd1dedc0cfc0b29b1ab82adcf71459b1ca9b394118b47b156583319cb4cd32b",
   "bytes": 4602536,
   "triangles": 191726
 }
