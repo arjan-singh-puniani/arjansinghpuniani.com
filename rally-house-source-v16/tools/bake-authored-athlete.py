@@ -218,9 +218,9 @@ for side in ['L','R']:
 top_index=next(i for i,p in enumerate(parts) if p[0]=='top');top=parts[top_index];blend=1-np.clip((jw[:,arm_bones].sum(1)-.02)/.33,0,1);blend=.9*blend*blend*(3-2*blend)
 import subprocess
 with tempfile.TemporaryDirectory(prefix='rally-jersey-') as directory:
- fitting=Path(directory)/'jersey.json';fitting.write_text(json.dumps({'garment':'jersey','body':shape[:13380].tolist(),'faces':[[v[0] for v in face] for _,face in body_faces],'kit':jp.tolist(),'weights':W[:13380].tolist(),'reference':{'positions':top[1].tolist(),'faces':[[v[0] for v in face] for _,face in top[3]]},'blend':blend.tolist()}))
+ fitting=Path(directory)/'jersey.json';fitting.write_text(json.dumps({'garment':'jersey','kitFaces':[[v for v,_ in face] for _,face in jf],'kitWeights':jw.tolist(),'body':shape[:13380].tolist(),'faces':[[v[0] for v in face] for _,face in body_faces],'kit':jp.tolist(),'weights':W[:13380].tolist(),'reference':{'positions':top[1].tolist(),'faces':[[v[0] for v in face] for _,face in top[3]]},'blend':blend.tolist()}))
  subprocess.run(['/Applications/Blender.app/Contents/MacOS/Blender','--background','--factory-startup','--python',str(Path(__file__).with_name('fit-athlete-kit.py')),'--',str(fitting)],check=True,stdout=subprocess.DEVNULL)
- jp=np.array(json.loads(fitting.with_suffix('.fitted.json').read_text())['positions'])
+ fitted_data=json.loads(fitting.with_suffix('.fitted.json').read_text());jp=np.array(fitted_data['positions']);jw=np.array(fitted_data['weights']);jf=[('',[(i,i) for i in face]) for face in fitted_data['faces']]
 ju=np.column_stack([np.clip(.5+jp[:,0]/4,0,1),.02+.46*np.clip((jp[:,1]-2.5)/(5.15-2.5),0,1)])
 collar=np.clip((4.95-jp[:,1])/.15,0,1);collar=collar*collar*(3-2*collar)
 for side in ['L','R']:

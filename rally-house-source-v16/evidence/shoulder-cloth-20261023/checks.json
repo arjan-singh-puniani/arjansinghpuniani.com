@@ -1,0 +1,189 @@
+{
+  "facetingBefore": [
+    {
+      "state": "idle",
+      "triangles": 1723,
+      "inverted": 0,
+      "crease95": 29.472710453675774,
+      "crease99": 42.68390465948876,
+      "stretch99": 1.4657132255317167,
+      "area01": 0.5761242375628263,
+      "minArea": 0.38948739492486695
+    },
+    {
+      "state": "swingBackhand",
+      "triangles": 1723,
+      "inverted": 20,
+      "crease95": 33.500833666188456,
+      "crease99": 68.4218599766084,
+      "stretch99": 1.7233188926334762,
+      "area01": 0.4510415256054568,
+      "minArea": 0.14498834812016378
+    },
+    {
+      "state": "serve",
+      "triangles": 1723,
+      "inverted": 21,
+      "crease95": 32.96376638424395,
+      "crease99": 63.135955916262986,
+      "stretch99": 1.637086864639697,
+      "area01": 0.5173386138153089,
+      "minArea": 0.09574383052158962
+    }
+  ],
+  "facetingAfter": [
+    {
+      "state": "idle",
+      "triangles": 6246,
+      "inverted": 0,
+      "crease95": 13.792249281772841,
+      "crease99": 20.93170360971705,
+      "stretch99": 1.5873747994905005,
+      "area01": 0.5755916208661322,
+      "minArea": 0.34222329615333635
+    },
+    {
+      "state": "swingBackhand",
+      "triangles": 6246,
+      "inverted": 84,
+      "crease95": 16.91904619081354,
+      "crease99": 40.80357288505621,
+      "stretch99": 1.8868439768713754,
+      "area01": 0.43152668723140697,
+      "minArea": 0.043240045279571204
+    },
+    {
+      "state": "serve",
+      "triangles": 6246,
+      "inverted": 86,
+      "crease95": 15.504384072233691,
+      "crease99": 35.468117344386705,
+      "stretch99": 1.688232491206703,
+      "area01": 0.48973102449551414,
+      "minArea": 0.03208483582702394
+    }
+  ],
+  "frameTiming": [
+    {
+      "label": "before",
+      "median": 16.69999999999891,
+      "p95": 16.799999999999272,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 332296,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 372240,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 372240,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "before",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 332296,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    }
+  ],
+  "taylor": {
+    "checks": 1034,
+    "failures": 0,
+    "errors": [],
+    "scope": "full travel/strokes/recovery/replay, color and shadow"
+  },
+  "coach": {
+    "checks": 142,
+    "failures": 0,
+    "errors": [],
+    "scope": "representative idle/walk/backhand/serve, color and shadow"
+  },
+  "mika": {
+    "checks": 150,
+    "failures": 0,
+    "errors": [],
+    "scope": "representative idle/walk/backhand/serve, color and shadow"
+  },
+  "nia": {
+    "checks": 150,
+    "failures": 0,
+    "errors": [],
+    "scope": "representative idle/walk/backhand/serve, color and shadow"
+  },
+  "preserved": [
+    "All bind landmarks",
+    "All textures",
+    "All non-jersey geometry, normals, weights, UVs and morphs",
+    "All animation and runtime TypeScript",
+    "Approved walk and hands-on-hips targets"
+  ],
+  "verificationLimits": [
+    "No new full-suite or cross-device run",
+    "Human perceptual evaluation pending",
+    "The browser tool URL policy blocked inspecting the live Codex browser panel; no workaround attempted",
+    "Tight folds in extreme arm positions remain possible with the existing skinning model"
+  ]
+}
