@@ -65,3 +65,7 @@ A deeper trace added Hudi’s exact condom restriction, Advanced Glenoid cemente
 ### Original-label follow-up checks — 2026-10-22
 
 `npm test`: 47 atlas checks passed. `npm run test:ingestion`: 36 passed; TypeScript passed. Portfolio `npm test`: 95 passed; typecheck, full portfolio production build, standalone production build and static webpack export passed. Desktop and mobile Chrome tested all 91 dossier review boundaries, first limitations and original finding links, model/lot search, model context, exports and recovery. Zero Axe violations or browser errors. The broader anatomy/region/retrieval/brief workflow and 12 portfolio routes also passed. Mobile is viewport/touch emulation, not a physical device or Safari. All three complete-label gaps remain open; partial excerpts and decisions are not upgraded into complete IFUs.
+
+## Body contour preview — 2026-10-23
+
+The local preview now uses body contours only, with a neutral reference head and no portrait colors or hair mesh. Reference anatomy, source records, original evidence links and labeling gaps remain unchanged. The preview is an artistic interpretation of visible upper-body proportions, not a calibrated body scan. See [BODY_CONTOUR.md](BODY_CONTOUR.md) and [VALIDATION.md](VALIDATION.md).

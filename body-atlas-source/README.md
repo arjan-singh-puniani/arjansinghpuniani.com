@@ -107,3 +107,7 @@ Supersedes the earlier blanket pending status: all 91 entries have model-scoped 
 ### Original-label trace and warning clarity — 2026-10-22
 
 A deeper trace added Hudi’s exact condom restriction, Advanced Glenoid cemented/compatibility distinctions and archival Braun-Cutter/Avanta CMC manufacturer-insert excerpts with an explicit PMA identity crosswalk. No complete revision-controlled IFU was recovered; all three full-label gaps remain open. Historical excerpts are not certified as the original approved or current label. Review meanings, compared models, unknown revisions and the leading entry-specific limit are visible and included in briefs. See [LABELING_SAFETY_REVIEW.md](LABELING_SAFETY_REVIEW.md) and the linked source-trace ledger. Requests remain unsent.
+
+## Body contour
+
+The **Contour** exterior uses an adapted shoulder, chest, upper-arm and waist silhouette in the neutral atlas style. **Contour / Reference** restores the unmodified HRA surface. The head stays neutral; no personal face, hair or photographic appearance is included. Organs and intervention anchors retain their original HRA frame. Proportions are artistic approximations. Original photos remain private. See [BODY_CONTOUR.md](BODY_CONTOUR.md).

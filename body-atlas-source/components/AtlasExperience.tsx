@@ -173,6 +173,7 @@ export default function AtlasExperience() {
   const [showInterventions, setShowInterventions] = useState(true);
   const [densityMap,setDensityMap]=useState(true),[collection,setCollection]=useState('explained'),[resultsLimit,setResultsLimit]=useState(60),[libraryLimit,setLibraryLimit]=useState(100);
   const [showOrgans,setShowOrgans]=useState(true);
+  const [adaptedContour,setAdaptedContour]=useState(true);
   const [anatomyExpanded, setAnatomyExpanded] = useState(false);
   const resultsRef = useRef<HTMLElement>(null);
   const [region, setRegion] = useState("all"),
@@ -549,6 +550,7 @@ export default function AtlasExperience() {
               {mode === "human" ? (
                 <Human
                   key={`human-${sceneKey}`}
+                  adapted={adaptedContour}
                   onProjection={projectHuman}
                   showLabels={showInterventions}
                   showOrgans={showOrgans}
@@ -674,6 +676,7 @@ export default function AtlasExperience() {
             </div>
             <div className="figure-actions">
               {mode==='human'&&<button aria-label="Toggle internal organs" aria-pressed={showOrgans} onClick={()=>setShowOrgans(v=>!v)}>Organs</button>}
+              {mode==='human'&&<button aria-label={adaptedContour?'Show HRA reference exterior':'Show adapted body contour'} aria-pressed={adaptedContour} onClick={()=>setAdaptedContour(v=>!v)}>{adaptedContour?'Contour':'Reference'}</button>}
               <button
                 aria-label={
                   anatomyExpanded
@@ -727,7 +730,7 @@ export default function AtlasExperience() {
             <div className="reference-credit">
               <span data-testid="scene-status">{sceneStatus}</span>
               <button onClick={() => setDialog("about")}>
-                HRA · CC BY 4.0 <ArrowUpRight size={10} />
+                {mode==='human'&&adaptedContour?'Contour · HRA anatomy':'HRA · CC BY 4.0'} <ArrowUpRight size={10} />
               </button>
             </div>
           </div>
@@ -1460,6 +1463,8 @@ export default function AtlasExperience() {
           )}
           {dialog === "about" && (
             <div className="atlas-methods">
+              <h3>Exterior contour, reference anatomy</h3>
+              <p>The contour is an artistic exterior with a neutral reference head. Organs, nerves and intervention anchors remain in the original HRA reference frame. Use Contour / Reference to compare surfaces.</p>
               <h3>Reference anatomy</h3>
               <p>
                 Human surface, registered brain and spinal cord, and detailed

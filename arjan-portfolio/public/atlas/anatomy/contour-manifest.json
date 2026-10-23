@@ -1,0 +1,21 @@
+{
+  "asset": "adapted body contour",
+  "source": "HRA male v1.5 skin surface",
+  "sourceSha256": "7260cde916540b160c28bdc552f34706f5de70b1e27a6b6689f9428abf2e64e3",
+  "license": "CC BY 4.0; HRA geometry attribution retained. No personality rights are granted.",
+  "creators": [
+    "Kristen Browne",
+    "Heidi Schlehlein"
+  ],
+  "adaptations": "Photograph-guided shoulder breadth, chest volume, upper-arm contour and waist taper. Neutral reference head retained; external pelvic contour adjusted with a 1.38 glans radial scale and blended attachment. Internal reference anatomy unchanged. Artistic proportions, not measured dimensions.",
+  "contourOnly": true,
+  "personalAnatomicalScan": false,
+  "photographsIncluded": false,
+  "texturesIncluded": false,
+  "facialAppearanceIncluded": false,
+  "subjectIdentified": false,
+  "glansRadialScale": 1.38,
+  "sha256": "efd2d2a452202d80ee615584249cb39cbb5de4b431ba8ca72fc2675c96282dba",
+  "bytes": 4448648,
+  "triangles": 185314
+}

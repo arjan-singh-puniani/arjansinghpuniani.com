@@ -27,7 +27,7 @@ import AnnotationProjection from "./AnnotationProjection";
 import { humanRegionLocators, type LabelProjection } from "@/lib/annotations";
 
 const vertex = `varying vec3 p; varying vec3 n; varying vec3 eye;
-void main(){p=position; n=normalize(normalMatrix*normal); vec4 mv=modelViewMatrix*vec4(position,1.); eye=-mv.xyz; gl_Position=projectionMatrix*mv;}`;
+void main(){p=position;  n=normalize(normalMatrix*normal); vec4 mv=modelViewMatrix*vec4(position,1.); eye=-mv.xyz; gl_Position=projectionMatrix*mv;}`;
 const fragment = `varying vec3 p; varying vec3 n; varying vec3 eye;
 uniform float surface; uniform float band; uniform float centerY; uniform float halfHeight;
 uniform vec4 regions;
@@ -94,6 +94,7 @@ class Boundary extends Component<
   }
 }
 function Body({
+  adapted,
   region,
   activeRegions,
   surface,
@@ -101,6 +102,7 @@ function Body({
   onHover,
   onReady,
 }: {
+  adapted: boolean;
   region: string;
   activeRegions: string[];
   surface: boolean;
@@ -109,11 +111,12 @@ function Body({
   onReady: () => void;
 }) {
   const invalidate = useThree((state) => state.invalidate);
-  const gltf = useGLTF(atlasPath("/anatomy/body.glb"));
+  const gltf = useGLTF(atlasPath(adapted ? "/anatomy/contour.glb" : "/anatomy/body.glb"));
+  const reference = useGLTF(atlasPath("/anatomy/body.glb"));
   const { model, material, bounds } = useMemo(() => {
     const model = new Group(),
       root = gltf.scene.clone(true),
-      box = new Box3().setFromObject(root),
+      box = new Box3().setFromObject(reference.scene),
       size = box.getSize(new Vector3()),
       center = box.getCenter(new Vector3());
     root.position.sub(center);
@@ -136,7 +139,7 @@ function Body({
       if (o instanceof Mesh) o.material = material;
     });
     return { model, material, bounds: box };
-  }, [gltf.scene]);
+  }, [gltf.scene, reference.scene, adapted]);
   useEffect(() => {
     material.uniforms.surface.value = surface ? 1 : 0;
     const bandId=region==='all'?activeRegions.find(id=>humanRegionLocators[id]):region;
@@ -171,7 +174,7 @@ function Body({
   }, [region, activeRegions, surface, material, onReady, invalidate, model, bounds]);
   useEffect(() => () => material.dispose(), [material]);
   function zone(e: ThreeEvent<MouseEvent | PointerEvent>) {
-    const local = e.object.worldToLocal(e.point.clone());
+    const local = model.worldToLocal(e.point.clone()).add(bounds.getCenter(new Vector3()));
     const fraction = (local.y - bounds.min.y) / (bounds.max.y - bounds.min.y);
     const world=e.point;
     if(Math.abs(world.x)>.65&&world.y<1.8&&world.y>-.8)return [world.y>1.25?'BODY:shoulder':world.y>.55?'BODY:elbow':world.y>0?'BODY:wrist':'BODY:hand','Limb region'];
@@ -294,6 +297,7 @@ function FocusRegion({region}:{region:string}){
  useEffect(()=>{if(!controls)return;const p=region==='all'?null:humanRegionLocators[region];if(region==='all'){camera.position.set(0,.1,10.8);controls.target.set(0,0,0);}else if(p){camera.position.set(p[0],p[1],p[2]+3.4);controls.target.set(...p);}else return;controls.update();invalidate();},[region,camera,controls,invalidate]);return null;
 }
 export default function HumanScene({
+  adapted = true,
   onProjection,
   showLabels = false,
   showOrgans = true,
@@ -306,6 +310,7 @@ export default function HumanScene({
   onReady,
   onUnavailable,
 }: {
+  adapted?: boolean;
   onProjection?: (projection: LabelProjection) => void;
   showLabels?: boolean;
   showOrgans?: boolean;
@@ -319,6 +324,9 @@ export default function HumanScene({
   onUnavailable: () => void;
 }) {
   const [failed, setFailed] = useState(false);
+  const [avatarFailed,setAvatarFailed]=useState(false),[loadedExterior,setLoadedExterior]=useState('');
+  const exterior=adapted&&!avatarFailed?'adapted':'reference';
+  const exteriorReady=useCallback(()=>{setLoadedExterior(exterior);onReady();},[exterior,onReady]);
   const [organsReady,setOrgansReady]=useState(false),[organsFailed,setOrgansFailed]=useState(false);
   const organsLoaded=useCallback(()=>setOrgansReady(true),[]);
   const [internalReady, setInternalReady] = useState(false),
@@ -342,12 +350,15 @@ export default function HumanScene({
     <div
       className="human-reference"
       data-testid="human-reference"
+      data-exterior={exterior}
+      data-avatar-status={avatarFailed?'unavailable':loadedExterior===exterior?'loaded':'loading'}
       data-organs-status={!showOrgans?'hidden':organsFailed?'unavailable':organsReady?'loaded':'loading'}
       data-internal-status={
         internalFailed ? "unavailable" : internalReady ? "loaded" : "loading"
       }
     >
       {organsFailed && <span className="internal-unavailable">Organ geometry unavailable · region list remains available</span>}
+      {avatarFailed && <span className="internal-unavailable">Body contour unavailable · reference exterior shown</span>}
       {internalFailed && (
         <span className="internal-unavailable">
           Brain / spinal geometry unavailable
@@ -384,14 +395,15 @@ export default function HumanScene({
               />
             </Suspense>
           </Boundary>
-          <Suspense fallback={null}>
+          <Boundary key={exterior} fail={()=>exterior==='adapted'?setAvatarFailed(true):setFailed(true)}><Suspense fallback={null}>
             <Body
+              adapted={exterior==='adapted'}
               region={region}
               activeRegions={activeRegions}
               surface={surface}
               onSelect={onSelect}
               onHover={onHover}
-              onReady={onReady}
+              onReady={exteriorReady}
             />
             {!showLabels &&
               pins.map((pin) => (
@@ -419,7 +431,7 @@ export default function HumanScene({
                   </button>
                 </Html>
               ))}
-          </Suspense>
+          </Suspense></Boundary>
           <AnnotationProjection
             anchors={humanRegionLocators}
             onProjection={onProjection}

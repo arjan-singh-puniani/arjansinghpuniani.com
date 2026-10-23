@@ -20,3 +20,7 @@ The whole-body index contains authentic public source text only. Catalogue gener
 ## Dossier milestone — 2026-10-22
 
 Dossier fetching uses HTTPS with explicit FDA host allowlists checked before and after redirects, OS CA verification, bounded responses/pages, bounded retry and atomic source writes. Provider HTML is served as `.txt`; the UI renders text through React and links only approved HTTPS hosts without embedded credentials/ports. No new public ingestion endpoint or private workspace exists. Raw FDA public records include public firm information; no private owner documents are imported.
+
+## Body contour
+
+The contour derivative contains geometry only, with the original neutral reference head. No personal face, hair, color attributes, photographs, textures, EXIF or private input paths are exported. Asset tests enforce this boundary. There is no upload endpoint or external image-processing service. Original photographs remain outside the repository. See [BODY_CONTOUR.md](BODY_CONTOUR.md).
