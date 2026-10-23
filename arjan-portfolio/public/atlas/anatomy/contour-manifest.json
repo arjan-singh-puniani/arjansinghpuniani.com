@@ -7,16 +7,17 @@
     "Kristen Browne",
     "Heidi Schlehlein"
   ],
-  "adaptations": "Photograph-guided shoulder breadth, chest volume, upper-arm contour and waist taper. Neutral reference head retained; local external contour rebuilt with a smooth shaft, rounded glans and blended root. Internal reference anatomy unchanged. Artistic proportions, not measured dimensions.",
+  "adaptations": "Authored shoulder, chest, arm and waist contours with paired abdominal and oblique relief. Sculpted jaw, chin, cheeks, nose, brows and lips. Existing external pelvic contour preserved. Internal reference anatomy unchanged. Artistic approximation from visual references, not measured dimensions.",
   "contourOnly": true,
   "personalAnatomicalScan": false,
   "photographsIncluded": false,
   "texturesIncluded": false,
-  "facialAppearanceIncluded": false,
+  "facialGeometryAdapted": true,
+  "photographicAppearanceIncluded": false,
   "subjectIdentified": false,
   "glansToShaftRadiusRatio": 1.2834,
   "externalContourMethod": "closed parametric surface with local Boolean union",
-  "sha256": "5bd1dedc0cfc0b29b1ab82adcf71459b1ca9b394118b47b156583319cb4cd32b",
-  "bytes": 4602536,
+  "sha256": "2d9f971ce471a41ab9b03b460b1cb7f35c3725a7066ddd8462a244ff9a77a9ca",
+  "bytes": 4602524,
   "triangles": 191726
 }

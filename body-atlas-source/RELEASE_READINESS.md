@@ -68,4 +68,4 @@ A deeper trace added Hudi’s exact condom restriction, Advanced Glenoid cemente
 
 ## Body contour — 2026-10-23
 
-The atlas uses adapted body contours, with a neutral reference head and no portrait colors or hair mesh. Reference anatomy, source records, original evidence links and labeling gaps remain unchanged. The exterior is an artistic interpretation of visible upper-body proportions, not a calibrated body scan. See [BODY_CONTOUR.md](BODY_CONTOUR.md) and [VALIDATION.md](VALIDATION.md).
+The atlas uses adapted body and facial contours with muscle relief; no photographic textures, portrait colors or identifying subject labels are included. Reference anatomy, source records, original evidence links and labeling gaps remain unchanged. The exterior is an artistic interpretation of visible exterior proportions and facial contours, not a calibrated body scan. See [BODY_CONTOUR.md](BODY_CONTOUR.md) and [VALIDATION.md](VALIDATION.md).
