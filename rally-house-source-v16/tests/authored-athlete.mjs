@@ -322,6 +322,20 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
  console.log('Loaded backhand: front sleeve and shoulder panels remain separated at 30/60/120 Hz.');
 }
 
+// Hip contact is checked against emitted skin, so skirt clearance cannot leave floating hands again.
+for(const spec of [playerSpec('taylor'),...memberData.filter(c=>c.presentation==='feminine')]){
+ const actor=new Character(spec,new Vec3(),new Navigation([]),{});actor.racketStowed=true;for(let i=0;i<180;i++)actor.update(1/60);
+ const p=actor.analysisPose(),mesh=actor.meshes().find(m=>m.rig&&m.material==='humanSkin'),g=mesh.skin,waist=[],hands={L:[],R:[]};
+ for(let v=0;v<g.positions.length/3;v++){
+  let arm=0;const hand={L:0,R:0};for(let j=0;j<4;j++){const b=g.boneIndices[v*4+j],w=g.boneWeights[v*4+j];if([5,6,7,8,9,10,17,18].includes(b))arm+=w;for(const side of ['L','R'])if(b===BONE['hand'+side])hand[side]+=w;}
+  if(arm>=.05&&hand.L<=.5&&hand.R<=.5)continue;const point=new Vec3(...g.positions.slice(v*3,v*3+3)),out=new Vec3();
+  for(let j=0;j<4;j++){const w=g.boneWeights[v*4+j];if(w){const q=transformPoint(mesh.boneMatrices.slice(g.boneIndices[v*4+j]*16,g.boneIndices[v*4+j]*16+16),point);out.add(new Vec3(q.x,q.y,q.z).scale(w));}}
+  if(arm<.05&&out.y>p.pelvisCenter.y+.10&&out.y<p.pelvisCenter.y+.36)waist.push(out);for(const side of ['L','R'])if(hand[side]>.5)hands[side].push(out);
+ }
+ assert(waist.length>100&&hands.L.length>100&&hands.R.length>100,'Hip contact must use actual authored surfaces');
+ for(const side of ['L','R']){let distance=Infinity;for(const h of hands[side])for(const w of waist)distance=Math.min(distance,(h.x-w.x)**2+(h.y-w.y)**2+(h.z-w.z)**2);assert(Math.sqrt(distance)<.05,`${spec.id}/${side}: resting hand floats away from the hip`);}
+}
+
 // Use the loaded athlete: fallback arm lengths hid the locked-elbow walk.
 {
  let minWalkFlex=Infinity,maxWalkFlex=0,maxHeadBob=0,walkSamples=0;

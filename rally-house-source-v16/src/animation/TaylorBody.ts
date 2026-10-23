@@ -112,14 +112,17 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
   if(walk){const sign=side==='L'?-1:1,swing=Math.cos(walk.phase)*walk.swing,goal=p[`shoulder${side}`].clone().add(torsoRight.clone().scale(sign*.015)).add(new Vec3(0,-(arms.upperArm+arms.forearm-.05)+Math.abs(swing)*.035,0)).add(torsoForward.clone().scale(sign*swing));p[`hand${side}`]=Vec3.lerp(p[`hand${side}`],goal,walk.weight);}
   const world=side==='L'?constraints.leftWorld:constraints.rightWorld;
   if(constraints.human&&seat>0&&!affection){const goal=Vec3.lerp(p[`hip${side}`],p[`knee${side}`],.60).add(new Vec3(0,.23,0));p[`hand${side}`]=Vec3.lerp(p[`hand${side}`],goal,seat*(1-world));}
-  if(constraints.human&&constraints.restWeight){const fitted=!!constraints.armLengths,goal=p.pelvisCenter.clone().add(torsoRight.clone().scale((side==='L'?-1:1)*(fitted?.23:.278))).add(torsoForward.clone().scale(.10)).add(new Vec3(0,fitted?.29:.18,0));p[`hand${side}`]=Vec3.lerp(p[`hand${side}`],goal,constraints.restWeight*(1-world));}
+  if(constraints.human&&constraints.restWeight){
+   const fitted=!!constraints.armLengths,waist=Vec3.lerp(p.pelvisCenter,Vec3.lerp(p.shoulderL,p.shoulderR,.5),fitted?.3:0);waist.y=p.pelvisCenter.y;
+   const goal=waist.add(torsoRight.clone().scale((side==='L'?-1:1)*(fitted?.225:.278))).add(torsoForward.clone().scale(fitted?.02:.10)).add(new Vec3(0,fitted?.29:.18,0));p[`hand${side}`]=Vec3.lerp(p[`hand${side}`],goal,constraints.restWeight*(1-world));
+  }
   const shoulder=p[`shoulder${side}`],hand=p[`hand${side}`];
   // Reserve the fingers' width and length when routing free stroke hands around the chest.
   if(constraints.human&&world<.999&&!affection){
    const t=clamp((hand.y-p.pelvisCenter.y)/(shoulder.y-p.pelvisCenter.y),0,1),center=Vec3.lerp(p.pelvisCenter,Vec3.lerp(p.shoulderL,p.shoulderR,.5),t),d=Vec3.sub(hand,center),x=Vec3.dot(d,torsoRight),z=Vec3.dot(d,torsoForward),rx=stroke>0?.40:t<.4?.27:.30,rz=.265,inside=x*x/(rx*rx)+z*z/(rz*rz);
    const normal=!constraints.posture&&hand.y>p.pelvisCenter.y+.08&&hand.y<shoulder.y-.12&&inside<1?1:0;
    const route=stroke>0?smooth((hand.y-p.pelvisCenter.y+.18)/.12)*(1-smooth((hand.y-shoulder.y-.02)/.16))*smooth((rx+.12-Math.abs(x))/.10):0;
-   const edge=Math.sqrt(Math.max(0,1-x*x/(rx*rx)))*rz,across=stroke>0?smooth((.10-x*(side==='L'?-1:1))/.30):0,front=edge+(rz-edge)*across+.17*route,weight=Math.max(normal,route);
+   const edge=Math.sqrt(Math.max(0,1-x*x/(rx*rx)))*rz,across=stroke>0?smooth((.10-x*(side==='L'?-1:1))/.30):0,front=edge+(rz-edge)*across+.17*route,weight=Math.max(normal*(1-smooth(((constraints.restWeight??0)-.8)/.2)),route);
    if(weight>0)hand.add(torsoForward.clone().scale(Math.max(0,front-z)*weight*(1-world)));
   }
   if(world<.999){const d=Vec3.sub(hand,shoulder),distance=d.len(),reach=arms.upperArm+arms.forearm-.003;
@@ -130,14 +133,14 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
   }
   // Supporting hands follow the final grip, through both retargeting and state blends.
   if(side==='L'&&constraints.human&&(constraints.readyWeight||constraints.backhandWeight)){
-   const ready=(constraints.readyWeight??0)*(1-world),backhand=constraints.backhandWeight??0;
+   const ready=(constraints.readyWeight??0)*(1-world)*(1-(constraints.restWeight??0)),backhand=constraints.backhandWeight??0;
    const throat=Vec3.sub(Vec3.lerp(source.racketHandleTop,source.racketCenter,.20),source.racketGrip),stack=secondRacketHand(p.handR,Vec3.sub(source.racketHandleTop,source.racketGrip));
    p.handL.scale(Math.max(0,1-ready-backhand)).add(p.handR.clone().add(throat).scale(ready)).add(stack.scale(backhand));
   }
-  // Clear the final free-hand target after a fading racket support can pull it inward.
+  // Keep clearance while settling, then let resting hands contact the hips.
   // shortcut: fitted to this authored skirt; derive per-garment bounds if its silhouette changes.
   if(constraints.armLengths&&!stroke&&!seat&&!affection&&world<.999&&(walk||constraints.restWeight)){
-   const hand=p[`hand${side}`],sign=side==='L'?-1:1,height=hand.y-p.pelvisCenter.y,clearance=.53*smooth((.38-height)/.16),outside=Vec3.dot(Vec3.sub(hand,p.pelvisCenter),torsoRight)*sign;
+   const hand=p[`hand${side}`],sign=side==='L'?-1:1,height=hand.y-p.pelvisCenter.y,clearance=.53*smooth((.38-height)/.16)*(1-smooth(((constraints.restWeight??0)-.8)/.2)),outside=Vec3.dot(Vec3.sub(hand,p.pelvisCenter),torsoRight)*sign;
    if(outside<clearance)hand.add(torsoRight.clone().scale(sign*(clearance-outside)*(1-world)));
   }
   // Garment clearance widens the hand path; retain a soft elbow instead of stretching it straight.

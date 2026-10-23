@@ -1,0 +1,147 @@
+{
+  "scope": "Hip-contact rest; approved walking preserved",
+  "nativeTaylor": {
+    "checks": 1034,
+    "failures": [],
+    "restingFabricContactSamples": 162
+  },
+  "otherWomen": {
+    "coach": {
+      "checks": 98,
+      "failures": [],
+      "failureCount": 0
+    },
+    "mika": {
+      "checks": 98,
+      "failures": [],
+      "failureCount": 0
+    },
+    "nia": {
+      "checks": 98,
+      "failures": [],
+      "failureCount": 0
+    }
+  },
+  "surfaceProximity": [
+    {
+      "id": "player",
+      "gapL": 0.01926547600500801,
+      "gapR": 0.020104891890092628,
+      "handL": {
+        "x": -0.2453136802852316,
+        "y": 0.28999999964893286,
+        "z": 0.022378849665044883
+      },
+      "handR": {
+        "x": 0.20466590866554338,
+        "y": 0.28999999964893286,
+        "z": 0.026664842149716
+      },
+      "samples": [
+        2183,
+        9570
+      ]
+    },
+    {
+      "id": "coach",
+      "gapL": 0.015091363873448475,
+      "gapR": 0.015423822052485148,
+      "handL": {
+        "x": -0.24545189746432777,
+        "y": 0.28999999967085066,
+        "z": 0.02137465400312119
+      },
+      "handR": {
+        "x": 0.20448503333727341,
+        "y": 0.28999999967085066,
+        "z": 0.028908478043653964
+      },
+      "samples": [
+        2315,
+        9570
+      ]
+    },
+    {
+      "id": "mika",
+      "gapL": 0.016926723006341602,
+      "gapR": 0.02185179095708345,
+      "handL": {
+        "x": -0.24497904291450553,
+        "y": 0.289999999664905,
+        "z": 0.026633609619430256
+      },
+      "handR": {
+        "x": 0.2050110907639786,
+        "y": 0.289999999664905,
+        "z": 0.023653710977030114
+      },
+      "samples": [
+        2290,
+        9570
+      ]
+    },
+    {
+      "id": "nia",
+      "gapL": 0.017462717059556015,
+      "gapR": 0.017715530169746266,
+      "handL": {
+        "x": -0.24538518905964593,
+        "y": 0.28999999965459966,
+        "z": 0.022208602240711292
+      },
+      "handR": {
+        "x": 0.20457654342713996,
+        "y": 0.28999999965459966,
+        "z": 0.02807712005672538
+      },
+      "samples": [
+        2189,
+        9570
+      ]
+    }
+  ],
+  "clubWalkStop": {
+    "before": {
+      "label": "before",
+      "baseline": "/tmp/rh-hip-rest-before-20261022/dist",
+      "errors": [],
+      "http": [],
+      "final": {
+        "position": {
+          "x": -2.5,
+          "y": 0,
+          "z": -2.5
+        },
+        "state": "idle",
+        "gl": 0,
+        "members": 4
+      },
+      "passed": true
+    },
+    "after": {
+      "label": "after",
+      "baseline": null,
+      "errors": [],
+      "http": [],
+      "final": {
+        "position": {
+          "x": -2.5,
+          "y": 0,
+          "z": -2.5
+        },
+        "state": "idle",
+        "gl": 0,
+        "members": 4
+      },
+      "passed": true
+    }
+  },
+  "focusedTests": [
+    "authored-athlete including loaded walking and resting surface proximity",
+    "body-clearance",
+    "confident-gait",
+    "replay-smoothness"
+  ],
+  "release": "111 artifacts match",
+  "limits": "No new full-suite run or cross-device/performance audit; existing bare-skin contact in backhand recovery remains outside this rest-pose fix."
+}
