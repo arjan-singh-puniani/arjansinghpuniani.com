@@ -1,0 +1,34 @@
+{
+  "scope": "supporting ready elbow only",
+  "liveVisualVerification": false,
+  "offlineImagesOnly": true,
+  "baselineRegression": {
+    "passed": false,
+    "taylor30HzDistantCrossings": 141
+  },
+  "candidateRegression": {
+    "passed": true,
+    "readyPoses": 12,
+    "rates": [
+      30,
+      60,
+      120
+    ],
+    "women": 4
+  },
+  "approvedClubRestWalkTrace": "byte-identical",
+  "readyHandRacketFootTargets": "unchanged",
+  "passed": [
+    "build",
+    "authored-athlete",
+    "replay-smoothness",
+    "phone-capture",
+    "confident-gait",
+    "garment-deformation"
+  ],
+  "unresolved": [
+    "stroke sleeve/torso intersections",
+    "shoulder creasing",
+    "human runtime naturalness evaluation"
+  ]
+}
