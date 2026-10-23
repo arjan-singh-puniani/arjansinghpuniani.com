@@ -199,7 +199,7 @@
   },
   "labeling": {
     "state": "located",
-    "detail": "2 original labeling document link(s) located; 3 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "detail": "2 original labeling link(s); 3 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
     "documents": 2,
     "changes": 3,
     "rows": [
@@ -272,15 +272,15 @@
       "P100006S001"
     ],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
   },
   "safety": {
     "state": "checked",
-    "detail": "1 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "detail": "1 application-linked recall record(s): source fields audited, exact FDA model/lot text preserved. Individual unit applicability is not determined.",
     "recalls": 1,
     "rows": [
       {
@@ -300,7 +300,15 @@
           "P100006"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=188567",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "f553087eadd9c7ca199828c913d09647ee5d9bee41513f6de6a84603067bd100",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       }
     ],
     "sources": [
@@ -338,6 +346,7 @@
       }
     ],
     "noticeCandidates": [],
+    "noticeReviews": [],
     "unresolvedReferences": [],
     "screenedTerms": [],
     "indexes": [
@@ -412,28 +421,63 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
-  "modelLotReview": "pending",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "current-safety-source-reviewed",
+    "scope": "Augment Bone Graft; injectable variant separately identified",
+    "revision": null,
+    "models": [],
+    "findings": [
+      {
+        "text": "Active cancer, pregnancy, skeletal immaturity, local infection, component sensitivity and certain skeletal metabolic disorders are exclusions; it does not replace structural graft.",
+        "sourceUrl": "https://www.stryker.com/us/en/foot-and-ankle/products/augment.html",
+        "locator": "Contraindications; Warnings"
+      },
+      {
+        "text": "An immune response to rhPDGF-BB is possible. The manufacturer advises avoiding pregnancy for one year; safety at anatomical sites beyond ankle/hindfoot is not established.",
+        "sourceUrl": "https://www.stryker.com/us/en/foot-and-ankle/products/augment.html",
+        "locator": "Contraindications; Warnings"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.stryker.com/us/en/foot-and-ankle/products/augment.html",
+        "title": "Stryker Augment safety information",
+        "locator": "Contraindications; Warnings",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "Bovine-collagen allergy concerns the injectable formulation specifically. The package-specific IFU remains necessary."
+    ]
+  },
+  "currentLabelReview": "current-safety-source-reviewed",
+  "noticeReview": "screened-candidates-reviewed",
+  "modelLotReview": "source-fields-audited",
   "sourceLinks": [
     {
-      "title": "Original FDA decision",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100006"
-    },
-    {
-      "title": "Original labeling",
-      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100006C.pdf"
+      "title": "Application-linked recall (FDA-reported scope)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=188567"
     },
     {
       "title": "Original labeling",
       "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100006D.pdf"
     },
     {
-      "title": "Application-linked recall (applicability pending)",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=188567"
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100006C.pdf"
+    },
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100006"
+    },
+    {
+      "title": "Stryker Augment safety information",
+      "url": "https://www.stryker.com/us/en/foot-and-ankle/products/augment.html"
     }
   ],
   "path": "/dossiers/source-fda-p100006.json",
@@ -442,13 +486,10 @@
   ],
   "researchEvidence": [],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "Bovine-collagen allergy concerns the injectable formulation specifically. The package-specific IFU remains necessary.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

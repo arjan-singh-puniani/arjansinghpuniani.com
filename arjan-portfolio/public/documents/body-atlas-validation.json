@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T18:21:31.968367+00:00",
+  "generatedAt": "2026-10-23T04:13:22.710978+00:00",
   "snapshotExportedAt": "2026-10-19T11:12:05.379339+00:00",
   "recordCounts": {
     "de_novo": 37,
@@ -62,8 +62,8 @@
     "marketingApplicationsChecked": 89,
     "pmaApplications": 85,
     "pmaDecisionRecords": 6505,
-    "originalLabelDocumentsLinked": 100,
-    "entriesWithOriginalLabels": 71,
+    "originalLabelDocumentsLinked": 105,
+    "entriesWithOriginalLabels": 76,
     "locatedLabelSectionHeadings": 61,
     "readableDocumentsWithSectionLocators": 19,
     "recallQueryRecords": 351,
@@ -71,7 +71,7 @@
     "malformedRecallReferencesHeldForReview": 2,
     "noticeIndexPages": 6,
     "uniqueNoticeUrlsScreened": 410,
-    "domainChecksPassed": 41,
+    "domainChecksPassed": 45,
     "ingestionChecksPassed": 36,
     "portfolioChecksPassed": 95,
     "browserDossiersCheckedPerViewport": 91,
@@ -79,9 +79,41 @@
       "desktop Chrome",
       "mobile Chrome viewport/touch emulation"
     ],
-    "currentLabelContentAndRevisionReview": "pending",
-    "affectedModelLotApplicabilityReview": "pending",
+    "currentLabelContentAndRevisionReview": "91 individual source assessments; 3 product-specific gaps; historical/model-limited sources retained",
+    "affectedModelLotApplicabilityReview": "349 source-field audits; patient/unit applicability not determined",
     "completeManufacturerAndPre2023NoticeReview": "pending",
     "scope": "Source inventory and original decision identity/date reconciliation. Label discovery/section headings do not certify current labeling; direct application recall links do not establish model/lot applicability. No independent clinical or anatomical precision claim."
+  },
+  "labelSafetyReview": {
+    "recordedDate": "2026-10-22",
+    "entriesAssessed": 91,
+    "adequateProductSpecificLabelStillMissing": 3,
+    "publishedIfuReviews": 8,
+    "publicManufacturerSafetyReviews": 30,
+    "historicalLabelReviews": 29,
+    "modelLimitedSourceReviews": 15,
+    "otherHistoricalSourceReviews": 3,
+    "modelSourceReviews": 1,
+    "investigationalEntries": 2,
+    "recallSourceFieldAudits": 349,
+    "recallSourceRecordsWithFlags": 24,
+    "noticeScopeDecisions": 15,
+    "uniqueNoticesReviewed": 14,
+    "unitApplicability": "not determined",
+    "completeLatestIfuCertification": false,
+    "method": "Agent-assisted editorial primary-source text/excerpt assessment; exact source/revision/model scope and open limits are visible. Field audits are not independent clinical signoff.",
+    "localVerification": {
+      "atlasTests": 45,
+      "ingestionTests": 36,
+      "portfolioTests": 95,
+      "browserDossiersPerViewport": 91,
+      "axeViolations": 0,
+      "browserErrors": 0,
+      "p95SelectionToDossierMs": {
+        "desktop": 228,
+        "mobile": 117
+      },
+      "scope": "Local Chrome; mobile touch/viewport emulation. Not independent clinical validation."
+    }
   }
 }

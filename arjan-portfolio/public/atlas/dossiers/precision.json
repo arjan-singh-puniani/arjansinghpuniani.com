@@ -4916,7 +4916,7 @@
   },
   "labeling": {
     "state": "located",
-    "detail": "2 original labeling document link(s) located; 24 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "detail": "2 original labeling link(s); 24 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
     "documents": 2,
     "changes": 24,
     "rows": [
@@ -4983,15 +4983,15 @@
       "P030017S004"
     ],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
   },
   "safety": {
     "state": "checked",
-    "detail": "17 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "detail": "17 application-linked recall record(s): source fields audited, exact FDA model/lot text preserved. Individual unit applicability is not determined.",
     "recalls": 17,
     "rows": [
       {
@@ -5011,7 +5011,15 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=220311",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "73e17e79b3fa3783e24b12e7528bbb9cbba12a95737eb81dd23a5493932ad509",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "220250",
@@ -5030,7 +5038,15 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=220250",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "9acb35980a51b3e36d67ad66b6b3eb2a3f31fd739e32d0906ba3ed839d1a7ea0",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "209084",
@@ -5049,7 +5065,15 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=209084",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "86a797de6d8ee02f2f5619f4f6b24cbafb76f4a742b9612c65fbd17b5011aa6b",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "range-or-condition",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "72662",
@@ -5068,7 +5092,15 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=72662",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "264a8c927f967c23cb4b5ed6030498ff5b88da6ff08e12ab1ffbfe43bb64e421",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "90268",
@@ -5087,7 +5119,15 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=90268",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "d8fd0a4edff164f4279aad1d7893fafeaf21c2b2af19bf66a718290bf9182555",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "73737",
@@ -5106,7 +5146,17 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=73737",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "842101ad5c57403f5236e8b900824d3832ebb699f10dae105cf34fb9aa0ea51e",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+          ]
+        }
       },
       {
         "cfres_id": "66266",
@@ -5125,7 +5175,17 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=66266",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "405ce7bfe3ef1c8dd01810b9776b453fa1207017485142a67ae02878fd7f229b",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+          ]
+        }
       },
       {
         "cfres_id": "55506",
@@ -5144,7 +5204,17 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=55506",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "0218388c9a57bf29e397cd3d5dadf3d11e5ce252decaeb32077567f2c585649d",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "FDA product description says SC-110 while code_info says SC-1110. Preserve both; exact model requires confirmation."
+          ]
+        }
       },
       {
         "cfres_id": "50595",
@@ -5163,7 +5233,15 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=50595",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "2c31aa1e8ab54c58f45d5f1c0cef84c6ce5b94390f9bac07d28a6caee34914a8",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "49022",
@@ -5182,7 +5260,15 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=49022",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "787d5e3794d178bb0697cc2408c023e8e7ca82b4938cccbf7ec678f870be8960",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "36004",
@@ -5201,7 +5287,15 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=36004",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "72e4221589d78056823a85755929a393a78a09c823232b008d8cfc7e2a860a53",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "179769",
@@ -5220,7 +5314,15 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=179769",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "ee54af3e0100af6264e6bcc215ffa46b7327b5bf6997ef30517c1fcefeee4035",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "179899",
@@ -5239,7 +5341,15 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=179899",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "a72732a5aaf1dfed35ccd66e2b7003588a307b6d2d6407e1c4a8da195703da0f",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "179903",
@@ -5258,7 +5368,15 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=179903",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "38eaa16ec115c246d35677f02204ab5842c456d182a05e56f9401f4ddcb96a5e",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "179904",
@@ -5277,7 +5395,15 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=179904",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "4ce868da3d0c2d2b1dd8d020db3a555ac6ceea7a6aef836a74463a0b092cc8da",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "179905",
@@ -5296,7 +5422,15 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=179905",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "0184dd058d861152e8a57b814a14bdd9ee6433871f4c249691656223f8da0183",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "179906",
@@ -5315,7 +5449,15 @@
           "P030017"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=179906",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "7e3ec9242565dfa2ef0767419c5c509a524fde826f59bd10b989197bb7933ea6",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       }
     ],
     "sources": [
@@ -5362,7 +5504,21 @@
         "matchedTerms": [
           "spinal cord stimulat"
         ],
-        "review": "Candidate: title or class context only; model/application applicability not established"
+        "review": "component-specific: Unused Infinion CX lead kits SC-2317-50 and SC-2317-70; all lots of those named kits. Does not establish a recall of every Precision pulse generator or other lead model."
+      }
+    ],
+    "noticeReviews": [
+      {
+        "familyIds": [
+          "precision"
+        ],
+        "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/spinal-cord-stimulator-recall-boston-scientific-removes-infinion-cx-lead",
+        "status": "component-specific",
+        "scope": "Unused Infinion CX lead kits SC-2317-50 and SC-2317-70; all lots of those named kits.",
+        "finding": "Anchor-site mechanical stress can cause high impedance or fracture. The removal concerns unused leads; FDA says no monitoring beyond routine follow-up for already implanted devices.",
+        "limitation": "Does not establish a recall of every Precision pulse generator or other lead model.",
+        "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+        "reviewedAt": "2026-10-22"
       }
     ],
     "unresolvedReferences": [],
@@ -5441,28 +5597,76 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
-  "modelLotReview": "pending",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "current-safety-source-reviewed",
+    "scope": "US Boston Scientific model-specific safety page; Precision Plus is not interchangeable with later ImageReady systems.",
+    "revision": null,
+    "models": [
+      "Precision Plus",
+      "Precision Novi",
+      "Later ImageReady systems: separate labeling"
+    ],
+    "findings": [
+      {
+        "text": "The US table lists Precision Plus and Precision Novi as not MRI compatible; newer systems have different conditional restrictions.",
+        "sourceUrl": "https://www.bostonscientific.com/en-US/patients-caregivers/device-support/scs/medical-procedure-safety.html",
+        "locator": "SCS system MRI compatibility; Contraindications and Warnings"
+      },
+      {
+        "text": "Contraindications include failed trial stimulation, inability to operate the system, poor surgical candidacy and pregnancy.",
+        "sourceUrl": "https://www.bostonscientific.com/en-US/patients-caregivers/device-support/scs/medical-procedure-safety.html",
+        "locator": "SCS system MRI compatibility; Contraindications and Warnings"
+      },
+      {
+        "text": "Diathermy and strong electromagnetic fields can cause injury or device malfunction; the manufacturer warns against charging while asleep.",
+        "sourceUrl": "https://www.bostonscientific.com/en-US/patients-caregivers/device-support/scs/medical-procedure-safety.html",
+        "locator": "SCS system MRI compatibility; Contraindications and Warnings"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.bostonscientific.com/en-US/patients-caregivers/device-support/scs/medical-procedure-safety.html",
+        "title": "Boston Scientific SCS MRI and medical procedure safety",
+        "locator": "SCS system MRI compatibility; Contraindications and Warnings",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "An outside-US head-only MRI document was rejected for US eligibility. The original P030017 configuration requires exact component identification."
+    ]
+  },
+  "currentLabelReview": "current-safety-source-reviewed",
+  "noticeReview": "screened-candidates-reviewed",
+  "modelLotReview": "source-fields-audited",
   "sourceLinks": [
     {
-      "title": "Original FDA decision",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030017"
-    },
-    {
-      "title": "Original labeling",
-      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030017C.pdf"
+      "title": "Application-linked recall (FDA-reported scope)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=220311"
     },
     {
       "title": "Original labeling",
       "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030017D.pdf"
     },
     {
-      "title": "Application-linked recall (applicability pending)",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=220311"
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030017C.pdf"
+    },
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030017"
+    },
+    {
+      "title": "Reviewed FDA safety notice",
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/spinal-cord-stimulator-recall-boston-scientific-removes-infinion-cx-lead"
+    },
+    {
+      "title": "Boston Scientific SCS MRI and medical procedure safety",
+      "url": "https://www.bostonscientific.com/en-US/patients-caregivers/device-support/scs/medical-procedure-safety.html"
     }
   ],
   "path": "/dossiers/precision.json",
@@ -5471,13 +5675,10 @@
   ],
   "researchEvidence": [],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "An outside-US head-only MRI document was rejected for US eligibility. The original P030017 configuration requires exact component identification.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

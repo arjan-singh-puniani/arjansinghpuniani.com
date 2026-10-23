@@ -7,33 +7,33 @@
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000006",
       "discovery": "[wordlim: 200] Crawled: 4 days ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000006\",\"lineno\":null}); Total lines: 107",
       "pageUpdatedAt": "10/12/2026",
-      "locator": "L57: Labeling 【39†Labeling】"
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P000008",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008",
       "discovery": "[wordlim: 200] Crawled: yesterday; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008\",\"lineno\":null}); Total lines: 106",
-      "locator": "L58: Labeling 【38†Labeling】"
+      "locator": "L58: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P000009",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000009",
       "discovery": "[wordlim: 200] Crawled: 2 months ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000009\",\"lineno\":null}); Total lines: 111",
-      "locator": "L57: Labeling 【37†Labeling】"
+      "locator": "L57: Labeling \u301037\u2020Labeling\u3011"
     },
     {
       "application": "P000013",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013",
       "discovery": "[wordlim: 200] Crawled: 5 months ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013\",\"lineno\":null}); Total lines: 122",
       "pageUpdatedAt": "05/04/2026",
-      "locator": "L63: Labeling【35†Labeling】"
+      "locator": "L63: Labeling\u301035\u2020Labeling\u3011"
     },
     {
       "application": "P000023",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000023",
       "discovery": "[wordlim: 200] Crawled: last week; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000023\",\"lineno\":null}); Total lines: 104",
       "pageUpdatedAt": "10/05/2026",
-      "locator": "L58: Labeling 【38†Labeling】"
+      "locator": "L58: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P000025",
@@ -46,74 +46,74 @@
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000030",
       "discovery": "[wordlim: 200] Crawled: last week; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000030\",\"lineno\":null}); Total lines: 101",
       "pageUpdatedAt": "10/12/2026",
-      "locator": "L57: Labeling 【38†Labeling】"
+      "locator": "L57: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P000037",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037\",\"lineno\":null}); Total lines: 106",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L56: Labeling 【38†Labeling】"
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P000040",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040",
       "discovery": "[wordlim: 200] Crawled: 3 months ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040\",\"lineno\":null}); Total lines: 122",
       "pageUpdatedAt": "07/20/2026",
-      "locator": "L63: Labeling【35†Labeling】"
+      "locator": "L63: Labeling\u301035\u2020Labeling\u3011"
     },
     {
       "application": "P000046",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046",
       "discovery": "[wordlim: 200] Crawled: last month; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046\",\"lineno\":null}); Total lines: 104",
       "pageUpdatedAt": "08/24/2026",
-      "locator": "L58: Labeling 【39†Labeling】"
+      "locator": "L58: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P000057",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000057",
       "discovery": "[wordlim: 200] Crawled: last week; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000057\",\"lineno\":null}); Total lines: 103",
       "pageUpdatedAt": "10/12/2026",
-      "locator": "L56: Labeling 【38†Labeling】"
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P000058",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000058",
       "discovery": "[wordlim: 200] Crawled: yesterday; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000058\",\"lineno\":null}); Total lines: 108",
-      "locator": "L57: Labeling 【39†Labeling】"
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P010003",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003\",\"lineno\":null}); Total lines: 103",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L56: Labeling 【38†Labeling】"
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P010014",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010014",
       "discovery": "[wordlim: 200] Crawled: 2 months ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010014\",\"lineno\":null}); Total lines: 110",
-      "locator": "L57: Labeling 【38†Labeling】"
+      "locator": "L57: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P010015",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010015",
       "discovery": "[wordlim: 200] Crawled: 5 days ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010015\",\"lineno\":null}); Total lines: 151",
-      "locator": "L59: Labeling 【38†Labeling】"
+      "locator": "L59: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P010018",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010018",
       "discovery": "[wordlim: 200] Crawled: 3 weeks ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010018\",\"lineno\":null}); Total lines: 102",
       "pageUpdatedAt": "09/21/2026",
-      "locator": "L57: Labeling 【37†Labeling】"
+      "locator": "L57: Labeling \u301037\u2020Labeling\u3011"
     },
     {
       "application": "P010029",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029\",\"lineno\":null}); Total lines: 104",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L56: Labeling 【38†Labeling】"
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P010030",
@@ -126,86 +126,86 @@
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047\",\"lineno\":null}); Total lines: 106",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L56: Labeling 【39†Labeling】"
+      "locator": "L56: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P010055",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010055",
       "discovery": "[wordlim: 200] Crawled: 2 days ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010055\",\"lineno\":null}); Total lines: 99",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L55: Labeling 【37†Labeling】"
+      "locator": "L55: Labeling \u301037\u2020Labeling\u3011"
     },
     {
       "application": "P010059",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010059",
       "discovery": "[wordlim: 200] Crawled: 5 days ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010059\",\"lineno\":null}); Total lines: 100",
       "pageUpdatedAt": "10/12/2026",
-      "locator": "L56: Labeling 【37†Labeling】"
+      "locator": "L56: Labeling \u301037\u2020Labeling\u3011"
     },
     {
       "application": "P020004",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020004",
       "discovery": "[wordlim: 200] Crawled: 4 days ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020004\",\"lineno\":null}); Total lines: 120",
-      "locator": "L58: Labeling 【38†Labeling】"
+      "locator": "L58: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P020023",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020023",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020023\",\"lineno\":null}); Total lines: 101",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L56: Labeling 【37†Labeling】"
+      "locator": "L56: Labeling \u301037\u2020Labeling\u3011"
     },
     {
       "application": "P020047",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047",
       "discovery": "[wordlim: 200] Crawled: last month; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047\",\"lineno\":null}); Total lines: 109",
-      "locator": "L58: Labeling 【38†Labeling】"
+      "locator": "L58: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P020056",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020056",
       "discovery": "[wordlim: 200] Crawled: 2 days ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020056\",\"lineno\":null}); Total lines: 108",
-      "locator": "L58: Labeling 【39†Labeling】"
+      "locator": "L58: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P030002",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002",
       "discovery": "[wordlim: 200] Crawled: yesterday; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002\",\"lineno\":null}); Total lines: 105",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L57: Labeling 【39†Labeling】"
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P030004",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004\",\"lineno\":null}); Total lines: 104",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L55: Labeling 【37†Labeling】"
+      "locator": "L55: Labeling \u301037\u2020Labeling\u3011"
     },
     {
       "application": "P030017",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030017",
       "discovery": "[wordlim: 200] Crawled: yesterday; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030017\",\"lineno\":null}); Total lines: 132",
-      "locator": "L56: Labeling 【38†Labeling】"
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P030047",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047",
       "discovery": "[wordlim: 200] Crawled: 2 weeks ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047\",\"lineno\":null}); Total lines: 108",
-      "locator": "L58: Labeling 【38†Labeling】"
+      "locator": "L58: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P040003",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040003",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040003\",\"lineno\":null}); Total lines: 103",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L56: Labeling 【37†Labeling】"
+      "locator": "L56: Labeling \u301037\u2020Labeling\u3011"
     },
     {
       "application": "P040013",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040013",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040013\",\"lineno\":null}); Total lines: 102",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L56: Labeling 【39†Labeling】"
+      "locator": "L56: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P040026",
@@ -218,28 +218,28 @@
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040027",
       "discovery": "[wordlim: 200] Crawled: 2 days ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040027\",\"lineno\":null}); Total lines: 107",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L55: Labeling 【37†Labeling】"
+      "locator": "L55: Labeling \u301037\u2020Labeling\u3011"
     },
     {
       "application": "P040033",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033",
       "discovery": "[wordlim: 200] Crawled: yesterday; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033\",\"lineno\":null}); Total lines: 106",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L58: Labeling 【38†Labeling】"
+      "locator": "L58: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P050027",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P050027",
       "discovery": "[wordlim: 200] Crawled: 2 days ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P050027\",\"lineno\":null}); Total lines: 101",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L55: Labeling 【37†Labeling】"
+      "locator": "L55: Labeling \u301037\u2020Labeling\u3011"
     },
     {
       "application": "P050050",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P050050",
       "discovery": "[wordlim: 200] Crawled: 2 weeks ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P050050\",\"lineno\":null}); Total lines: 101",
       "pageUpdatedAt": "10/05/2026",
-      "locator": "L55: Labeling 【37†Labeling】"
+      "locator": "L55: Labeling \u301037\u2020Labeling\u3011"
     },
     {
       "application": "P050052",
@@ -252,7 +252,7 @@
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060006",
       "discovery": "[wordlim: 200] Crawled: 3 weeks ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060006\",\"lineno\":null}); Total lines: 109",
       "pageUpdatedAt": "09/28/2026",
-      "locator": "L55: Labeling 【37†Labeling】"
+      "locator": "L55: Labeling \u301037\u2020Labeling\u3011"
     },
     {
       "application": "P060010",
@@ -271,27 +271,27 @@
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060037",
       "discovery": "[wordlim: 200] Crawled: 6 months ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060037\",\"lineno\":null}); Total lines: 126",
       "pageUpdatedAt": "04/13/2026",
-      "locator": "L63: Labeling【35†Labeling】"
+      "locator": "L63: Labeling\u301035\u2020Labeling\u3011"
     },
     {
       "application": "P060040",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060040",
       "discovery": "[wordlim: 200] Crawled: yesterday; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060040\",\"lineno\":null}); Total lines: 111",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L56: Labeling 【38†Labeling】"
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P080003",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003\",\"lineno\":null}); Total lines: 101",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L57: Labeling 【38†Labeling】"
+      "locator": "L57: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P080025",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080025",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080025\",\"lineno\":null}); Total lines: 132",
-      "locator": "L58: Labeling 【39†Labeling】"
+      "locator": "L58: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P080030",
@@ -310,75 +310,75 @@
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018\",\"lineno\":null}); Total lines: 105",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L57: Labeling 【38†Labeling】"
+      "locator": "L57: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P100006",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100006",
       "discovery": "[wordlim: 200] Crawled: 2 days ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100006\",\"lineno\":null}); Total lines: 104",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L57: Labeling 【39†Labeling】"
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P100009",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100009",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100009\",\"lineno\":null}); Total lines: 109",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L58: Labeling 【39†Labeling】"
+      "locator": "L58: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P100014",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100014",
       "discovery": "[wordlim: 200] Crawled: 4 days ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100014\",\"lineno\":null}); Total lines: 104",
       "pageUpdatedAt": "10/12/2026",
-      "locator": "L57: Labeling 【38†Labeling】"
+      "locator": "L57: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P100018",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018",
       "discovery": "[wordlim: 200] Crawled: 4 days ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018\",\"lineno\":null}); Total lines: 106",
       "pageUpdatedAt": "10/12/2026",
-      "locator": "L57: Labeling 【39†Labeling】"
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P100022",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100022",
       "discovery": "[wordlim: 200] Crawled: 3 days ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100022\",\"lineno\":null}); Total lines: 104",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L56: Labeling 【39†Labeling】"
+      "locator": "L56: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P100026",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026\",\"lineno\":null}); Total lines: 110",
-      "locator": "L57: Labeling 【38†Labeling】"
+      "locator": "L57: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P100034",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034\",\"lineno\":null}); Total lines: 104",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L56: Labeling 【38†Labeling】"
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P100040",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100040",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100040\",\"lineno\":null}); Total lines: 108",
-      "locator": "L58: Labeling 【39†Labeling】"
+      "locator": "L58: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P100045",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100045",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100045\",\"lineno\":null}); Total lines: 112",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L59: Labeling 【39†Labeling】"
+      "locator": "L59: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P100049",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049",
       "discovery": "[wordlim: 200] Crawled: yesterday; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049\",\"lineno\":null}); Total lines: 105",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L57: Labeling 【39†Labeling】"
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P110006",
@@ -397,58 +397,58 @@
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P110015",
       "discovery": "[wordlim: 200] Crawled: last week; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P110015\",\"lineno\":null}); Total lines: 100",
       "pageUpdatedAt": "10/12/2026",
-      "locator": "L56: Labeling 【38†Labeling】"
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P130008",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130008",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130008\",\"lineno\":null}); Total lines: 116",
-      "locator": "L59: Labeling 【39†Labeling】"
+      "locator": "L59: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P130013",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130013",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130013\",\"lineno\":null}); Total lines: 111",
-      "locator": "L58: Labeling 【39†Labeling】"
+      "locator": "L58: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P130028",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028",
       "discovery": "[wordlim: 200] Crawled: yesterday; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028\",\"lineno\":null}); Total lines: 103",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L56: Labeling 【38†Labeling】"
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P140009",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140009",
       "discovery": "[wordlim: 200] Crawled: 4 days ago; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140009\",\"lineno\":null}); Total lines: 113",
-      "locator": "L58: Labeling 【41†Labeling】"
+      "locator": "L58: Labeling \u301041\u2020Labeling\u3011"
     },
     {
       "application": "P140019",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140019",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140019\",\"lineno\":null}); Total lines: 106",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L59: Labeling 【40†Labeling】"
+      "locator": "L59: Labeling \u301040\u2020Labeling\u3011"
     },
     {
       "application": "P140031",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140031",
       "discovery": "[wordlim: 200] Crawled: yesterday; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140031\",\"lineno\":null}); Total lines: 119",
-      "locator": "L57: Labeling 【39†Labeling】"
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P150033",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150033",
       "discovery": "[wordlim: 200] Crawled: yesterday; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150033\",\"lineno\":null}); Total lines: 124",
-      "locator": "L60: Labeling 【41†Labeling】"
+      "locator": "L60: Labeling \u301041\u2020Labeling\u3011"
     },
     {
       "application": "P150038",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038\",\"lineno\":null}); Total lines: 104",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L56: Labeling 【38†Labeling】"
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P160013",
@@ -461,63 +461,63 @@
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170001",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170001\",\"lineno\":null}); Total lines: 96",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L53: Labeling 【38†Labeling】"
+      "locator": "L53: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P170023",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170023",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170023\",\"lineno\":null}); Total lines: 103",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L57: Labeling 【39†Labeling】"
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P170029",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170029",
       "discovery": "[wordlim: 200] Crawled: yesterday; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170029\",\"lineno\":null}); Total lines: 100",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L55: Labeling 【38†Labeling】"
+      "locator": "L55: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P180002",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002\",\"lineno\":null}); Total lines: 104",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L57: Labeling 【39†Labeling】"
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P200029",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P200029",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P200029\",\"lineno\":null}); Total lines: 101",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L54: Labeling 【38†Labeling】"
+      "locator": "L54: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P200031",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P200031",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P200031\",\"lineno\":null}); Total lines: 102",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L55: Labeling 【38†Labeling】"
+      "locator": "L55: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P210007",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P210007",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P210007\",\"lineno\":null}); Total lines: 101",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L56: Labeling 【38†Labeling】"
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011"
     },
     {
       "application": "P210020",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P210020",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P210020\",\"lineno\":null}); Total lines: 101",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L56: Labeling 【39†Labeling】"
+      "locator": "L56: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P220023",
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023\",\"lineno\":null}); Total lines: 102",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L57: Labeling 【39†Labeling】"
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011"
     },
     {
       "application": "P240015",
@@ -564,7 +564,7 @@
       "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P990065",
       "discovery": "[wordlim: 200] Crawled: today; Content type: text/html; Source: open({\"ref_id\":\"https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P990065\",\"lineno\":null}); Total lines: 101",
       "pageUpdatedAt": "10/19/2026",
-      "locator": "L56: Labeling 【38†Labeling】"
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011"
     }
   ],
   "documents": [
@@ -574,7 +574,7 @@
       "pages": 29,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000006",
-      "locator": "L57: Labeling 【39†Labeling】",
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011",
       "pageUpdatedAt": "10/12/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -588,7 +588,7 @@
       "pages": 56,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000008",
-      "locator": "L58: Labeling 【38†Labeling】",
+      "locator": "L58: Labeling \u301038\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -601,7 +601,7 @@
       "pages": null,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000009",
-      "locator": "L57: Labeling 【37†Labeling】",
+      "locator": "L57: Labeling \u301037\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "link-located-content-unavailable",
@@ -615,7 +615,7 @@
       "pages": 27,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000013",
-      "locator": "L63: Labeling【35†Labeling】",
+      "locator": "L63: Labeling\u301035\u2020Labeling\u3011",
       "pageUpdatedAt": "05/04/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -648,7 +648,7 @@
       "pages": 18,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000023",
-      "locator": "L58: Labeling 【38†Labeling】",
+      "locator": "L58: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/05/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -662,7 +662,7 @@
       "pages": 64,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000030",
-      "locator": "L57: Labeling 【38†Labeling】",
+      "locator": "L57: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/12/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -676,7 +676,7 @@
       "pages": 20,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -690,7 +690,7 @@
       "pages": 12,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040",
-      "locator": "L63: Labeling【35†Labeling】",
+      "locator": "L63: Labeling\u301035\u2020Labeling\u3011",
       "pageUpdatedAt": "07/20/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -704,7 +704,7 @@
       "pages": null,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000046",
-      "locator": "L58: Labeling 【39†Labeling】",
+      "locator": "L58: Labeling \u301039\u2020Labeling\u3011",
       "pageUpdatedAt": "08/24/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -719,7 +719,7 @@
       "pages": 20,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000057",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/12/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -733,7 +733,7 @@
       "pages": 16,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000058",
-      "locator": "L57: Labeling 【39†Labeling】",
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -746,7 +746,7 @@
       "pages": 14,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010003",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -760,7 +760,7 @@
       "pages": 18,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010014",
-      "locator": "L57: Labeling 【38†Labeling】",
+      "locator": "L57: Labeling \u301038\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -798,7 +798,7 @@
       "pages": null,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010015",
-      "locator": "L59: Labeling 【38†Labeling】",
+      "locator": "L59: Labeling \u301038\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "unavailable",
@@ -811,7 +811,7 @@
       "pages": 42,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010018",
-      "locator": "L57: Labeling 【37†Labeling】",
+      "locator": "L57: Labeling \u301037\u2020Labeling\u3011",
       "pageUpdatedAt": "09/21/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -825,7 +825,7 @@
       "pages": 12,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -839,7 +839,7 @@
       "pages": 23,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010047",
-      "locator": "L56: Labeling 【39†Labeling】",
+      "locator": "L56: Labeling \u301039\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -878,7 +878,7 @@
       "pages": 40,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010055",
-      "locator": "L55: Labeling 【37†Labeling】",
+      "locator": "L55: Labeling \u301037\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -892,7 +892,7 @@
       "pages": 7,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010059",
-      "locator": "L56: Labeling 【37†Labeling】",
+      "locator": "L56: Labeling \u301037\u2020Labeling\u3011",
       "pageUpdatedAt": "10/12/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -906,7 +906,7 @@
       "pages": 34,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020004",
-      "locator": "L58: Labeling 【38†Labeling】",
+      "locator": "L58: Labeling \u301038\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -919,7 +919,7 @@
       "pages": 8,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020023",
-      "locator": "L56: Labeling 【37†Labeling】",
+      "locator": "L56: Labeling \u301037\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -958,7 +958,7 @@
       "pages": 28,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047",
-      "locator": "L58: Labeling 【38†Labeling】",
+      "locator": "L58: Labeling \u301038\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -990,7 +990,7 @@
       "pages": 39,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020056",
-      "locator": "L58: Labeling 【39†Labeling】",
+      "locator": "L58: Labeling \u301039\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1003,7 +1003,7 @@
       "pages": 12,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002",
-      "locator": "L57: Labeling 【39†Labeling】",
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1017,7 +1017,7 @@
       "pages": 15,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004",
-      "locator": "L55: Labeling 【37†Labeling】",
+      "locator": "L55: Labeling \u301037\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1056,7 +1056,7 @@
       "pages": 21,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030017",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1069,7 +1069,7 @@
       "pages": 16,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047",
-      "locator": "L58: Labeling 【38†Labeling】",
+      "locator": "L58: Labeling \u301038\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1082,7 +1082,7 @@
       "pages": 29,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040003",
-      "locator": "L56: Labeling 【37†Labeling】",
+      "locator": "L56: Labeling \u301037\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1096,7 +1096,7 @@
       "pages": 8,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040013",
-      "locator": "L56: Labeling 【39†Labeling】",
+      "locator": "L56: Labeling \u301039\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1110,7 +1110,7 @@
       "pages": 27,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040027",
-      "locator": "L55: Labeling 【37†Labeling】",
+      "locator": "L55: Labeling \u301037\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1137,7 +1137,7 @@
       "pages": 33,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040033",
-      "locator": "L58: Labeling 【38†Labeling】",
+      "locator": "L58: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1151,7 +1151,7 @@
       "pages": 18,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P050027",
-      "locator": "L55: Labeling 【37†Labeling】",
+      "locator": "L55: Labeling \u301037\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1165,7 +1165,7 @@
       "pages": 32,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P050050",
-      "locator": "L55: Labeling 【37†Labeling】",
+      "locator": "L55: Labeling \u301037\u2020Labeling\u3011",
       "pageUpdatedAt": "10/05/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1179,7 +1179,7 @@
       "pages": 8,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060006",
-      "locator": "L55: Labeling 【37†Labeling】",
+      "locator": "L55: Labeling \u301037\u2020Labeling\u3011",
       "pageUpdatedAt": "09/28/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1189,17 +1189,18 @@
     },
     {
       "application": "P060037",
-      "url": null,
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf6/P060037c.pdf",
       "pages": null,
-      "textAvailable": false,
+      "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060037",
-      "locator": "L63: Labeling【35†Labeling】",
+      "locator": "Patient guide; contraindications/warnings; printed p.4",
       "pageUpdatedAt": "04/13/2026",
-      "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
+      "method": "FDA-posted document text/excerpts inspected through public web retrieval; current revision not certified",
       "checkedAt": "2026-10-22",
-      "state": "unavailable",
+      "state": "located",
       "retrievalNote": "[wordlim: 200]",
-      "sections": []
+      "sections": [],
+      "title": "Original FDA-posted labeling"
     },
     {
       "application": "P060040",
@@ -1207,7 +1208,7 @@
       "pages": 113,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060040",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1221,7 +1222,7 @@
       "pages": 9,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080003",
-      "locator": "L57: Labeling 【38†Labeling】",
+      "locator": "L57: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1235,7 +1236,7 @@
       "pages": 207,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P080025",
-      "locator": "L58: Labeling 【39†Labeling】",
+      "locator": "L58: Labeling \u301039\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1267,7 +1268,7 @@
       "pages": 73,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018",
-      "locator": "L57: Labeling 【38†Labeling】",
+      "locator": "L57: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1281,7 +1282,7 @@
       "pages": 17,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100006",
-      "locator": "L57: Labeling 【39†Labeling】",
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1295,7 +1296,7 @@
       "pages": 54,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100009",
-      "locator": "L58: Labeling 【39†Labeling】",
+      "locator": "L58: Labeling \u301039\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1328,7 +1329,7 @@
       "pages": 26,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100014",
-      "locator": "L57: Labeling 【38†Labeling】",
+      "locator": "L57: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/12/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1342,7 +1343,7 @@
       "pages": 12,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018",
-      "locator": "L57: Labeling 【39†Labeling】",
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011",
       "pageUpdatedAt": "10/12/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1356,7 +1357,7 @@
       "pages": 66,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100022",
-      "locator": "L56: Labeling 【39†Labeling】",
+      "locator": "L56: Labeling \u301039\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1370,7 +1371,7 @@
       "pages": 40,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026",
-      "locator": "L57: Labeling 【38†Labeling】",
+      "locator": "L57: Labeling \u301038\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1396,7 +1397,7 @@
       "pages": 74,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100034",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1410,7 +1411,7 @@
       "pages": 45,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100040",
-      "locator": "L58: Labeling 【39†Labeling】",
+      "locator": "L58: Labeling \u301039\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1423,7 +1424,7 @@
       "pages": 52,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100045",
-      "locator": "L59: Labeling 【39†Labeling】",
+      "locator": "L59: Labeling \u301039\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1437,7 +1438,7 @@
       "pages": 36,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100049",
-      "locator": "L57: Labeling 【39†Labeling】",
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1470,7 +1471,7 @@
       "pages": 20,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P110015",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/12/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1484,7 +1485,7 @@
       "pages": 42,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130008",
-      "locator": "L59: Labeling 【39†Labeling】",
+      "locator": "L59: Labeling \u301039\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1497,7 +1498,7 @@
       "pages": 12,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130013",
-      "locator": "L58: Labeling 【39†Labeling】",
+      "locator": "L58: Labeling \u301039\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1510,7 +1511,7 @@
       "pages": null,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1525,7 +1526,7 @@
       "pages": 44,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140009",
-      "locator": "L58: Labeling 【41†Labeling】",
+      "locator": "L58: Labeling \u301041\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1563,7 +1564,7 @@
       "pages": 12,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140019",
-      "locator": "L59: Labeling 【40†Labeling】",
+      "locator": "L59: Labeling \u301040\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1577,7 +1578,7 @@
       "pages": 30,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140031",
-      "locator": "L57: Labeling 【39†Labeling】",
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1590,7 +1591,7 @@
       "pages": 104,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150033",
-      "locator": "L60: Labeling 【41†Labeling】",
+      "locator": "L60: Labeling \u301041\u2020Labeling\u3011",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1603,7 +1604,7 @@
       "pages": 278,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1617,7 +1618,7 @@
       "pages": 115,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170001",
-      "locator": "L53: Labeling 【38†Labeling】",
+      "locator": "L53: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1631,7 +1632,7 @@
       "pages": 9,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170023",
-      "locator": "L57: Labeling 【39†Labeling】",
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1645,7 +1646,7 @@
       "pages": null,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170029",
-      "locator": "L55: Labeling 【38†Labeling】",
+      "locator": "L55: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1660,7 +1661,7 @@
       "pages": 52,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P180002",
-      "locator": "L57: Labeling 【39†Labeling】",
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1705,7 +1706,7 @@
       "pages": 21,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P200029",
-      "locator": "L54: Labeling 【38†Labeling】",
+      "locator": "L54: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1719,7 +1720,7 @@
       "pages": 11,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P200031",
-      "locator": "L55: Labeling 【38†Labeling】",
+      "locator": "L55: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1733,7 +1734,7 @@
       "pages": 145,
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P210007",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1747,7 +1748,7 @@
       "pages": 32,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P210020",
-      "locator": "L56: Labeling 【39†Labeling】",
+      "locator": "L56: Labeling \u301039\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1761,7 +1762,7 @@
       "pages": 56,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P220023",
-      "locator": "L57: Labeling 【39†Labeling】",
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1775,7 +1776,7 @@
       "pages": 12,
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P990065",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "pageUpdatedAt": "10/19/2026",
       "method": "Original PMA page Labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
@@ -1791,7 +1792,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: today; Content type: application/pdf; Number of pages: 8;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000023",
-      "locator": "L58: Labeling 【38†Labeling】",
+      "locator": "L58: Labeling \u301038\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1805,7 +1806,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: 2 weeks ago; Content type: application/pdf; Number of pages: 16;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000037",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1819,7 +1820,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: 3 days ago; Content type: application/pdf; Number of pages: 11;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000040",
-      "locator": "L63: Labeling【35†Labeling】",
+      "locator": "L63: Labeling\u301035\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1833,7 +1834,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: last month; Content type: application/pdf; Number of pages: 6;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P000057",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1847,7 +1848,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: 4 months ago; Content type: application/pdf; Number of pages: 31;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010018",
-      "locator": "L57: Labeling 【37†Labeling】",
+      "locator": "L57: Labeling \u301037\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1861,7 +1862,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: last week; Content type: application/pdf; Number of pages: 3;",
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010029",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1875,7 +1876,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: yesterday; Content type: application/pdf; Number of pages: 46;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020004",
-      "locator": "L58: Labeling 【38†Labeling】",
+      "locator": "L58: Labeling \u301038\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1889,7 +1890,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: last week; Content type: application/pdf; Number of pages: 18;",
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047",
-      "locator": "L58: Labeling 【38†Labeling】",
+      "locator": "L58: Labeling \u301038\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1903,7 +1904,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: last month; Content type: application/pdf; Number of pages: 37;",
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020056",
-      "locator": "L58: Labeling 【39†Labeling】",
+      "locator": "L58: Labeling \u301039\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1924,7 +1925,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: 6 days ago; Content type: application/pdf; Number of pages: 17;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030002",
-      "locator": "L57: Labeling 【39†Labeling】",
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1938,7 +1939,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: 3 weeks ago; Content type: application/pdf; Number of pages: 10;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030004",
-      "locator": "L55: Labeling 【37†Labeling】",
+      "locator": "L55: Labeling \u301037\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1952,7 +1953,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: last week; Content type: application/pdf; Number of pages: 88;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030017",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1966,7 +1967,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: 2 weeks ago; Content type: application/pdf; Number of pages: 13;",
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P030047",
-      "locator": "L58: Labeling 【38†Labeling】",
+      "locator": "L58: Labeling \u301038\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1980,7 +1981,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: 2 weeks ago; Content type: application/pdf; Number of pages: 11;",
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040003",
-      "locator": "L56: Labeling 【37†Labeling】",
+      "locator": "L56: Labeling \u301037\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -1994,7 +1995,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: 3 weeks ago; Content type: application/pdf; Number of pages: 21;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P040027",
-      "locator": "L55: Labeling 【37†Labeling】",
+      "locator": "L55: Labeling \u301037\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -2008,7 +2009,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: 2 months ago; Content type: application/pdf; Number of pages: 16;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060006",
-      "locator": "L55: Labeling 【37†Labeling】",
+      "locator": "L55: Labeling \u301037\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -2022,7 +2023,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: 2 days ago; Content type: application/pdf; Number of pages: 22;",
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100006",
-      "locator": "L57: Labeling 【39†Labeling】",
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -2061,7 +2062,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: today; Content type: application/pdf; Number of pages: 54;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100045",
-      "locator": "L59: Labeling 【39†Labeling】",
+      "locator": "L59: Labeling \u301039\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -2075,7 +2076,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: 3 days ago; Content type: application/pdf; Number of pages: 50;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130008",
-      "locator": "L59: Labeling 【39†Labeling】",
+      "locator": "L59: Labeling \u301039\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -2089,7 +2090,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: 2 weeks ago; Content type: application/pdf; Number of pages: 43;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130013",
-      "locator": "L58: Labeling 【39†Labeling】",
+      "locator": "L58: Labeling \u301039\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -2103,7 +2104,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: last month; Content type: application/pdf; Number of pages: 34;",
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130028",
-      "locator": "L56: Labeling 【38†Labeling】",
+      "locator": "L56: Labeling \u301038\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -2142,7 +2143,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: 2 days ago; Content type: application/pdf; Number of pages: 22;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140019",
-      "locator": "L59: Labeling 【40†Labeling】",
+      "locator": "L59: Labeling \u301040\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -2156,7 +2157,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: 2 days ago; Content type: application/pdf; Number of pages: 22;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140031",
-      "locator": "L57: Labeling 【39†Labeling】",
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -2170,7 +2171,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: today; Content type: application/pdf; Number of pages: 241;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150033",
-      "locator": "L60: Labeling 【41†Labeling】",
+      "locator": "L60: Labeling \u301041\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -2184,7 +2185,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: today; Content type: application/pdf; Number of pages: 16;",
       "textAvailable": true,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170023",
-      "locator": "L57: Labeling 【39†Labeling】",
+      "locator": "L57: Labeling \u301039\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -2217,7 +2218,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: last week; Content type: application/pdf; Number of pages: 26;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P170029",
-      "locator": "L55: Labeling 【38†Labeling】",
+      "locator": "L55: Labeling \u301038\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -2231,7 +2232,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: today; Content type: application/pdf; Number of pages: 16;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P200029",
-      "locator": "L54: Labeling 【38†Labeling】",
+      "locator": "L54: Labeling \u301038\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -2245,7 +2246,7 @@
       "retrievalNote": "[wordlim: 200] Crawled: yesterday; Content type: application/pdf; Number of pages: 157;",
       "textAvailable": false,
       "sourcePage": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P200031",
-      "locator": "L55: Labeling 【38†Labeling】",
+      "locator": "L55: Labeling \u301038\u2020Labeling\u3011",
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
@@ -2379,6 +2380,54 @@
       "method": "FDA original application index labeling link followed through public web retrieval; cached discovery, not a current-label certification",
       "checkedAt": "2026-10-22",
       "state": "located",
+      "sections": []
+    },
+    {
+      "application": "P110006",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf11/P110006C.pdf",
+      "state": "located",
+      "title": "Original FDA-posted labeling",
+      "pages": null,
+      "textAvailable": true,
+      "locator": "Physician labeling; section 4",
+      "method": "FDA-posted document text/excerpts inspected through public web retrieval; current revision not certified",
+      "checkedAt": "2026-10-22",
+      "sections": []
+    },
+    {
+      "application": "P110010",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf11/P110010c.pdf",
+      "state": "located",
+      "title": "Original FDA-posted labeling",
+      "pages": null,
+      "textAvailable": true,
+      "locator": "Directions; sections 3\u20134",
+      "method": "FDA-posted document text/excerpts inspected through public web retrieval; current revision not certified",
+      "checkedAt": "2026-10-22",
+      "sections": []
+    },
+    {
+      "application": "P160013",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf16/P160013C.pdf",
+      "state": "located",
+      "title": "Original FDA-posted labeling",
+      "pages": null,
+      "textAvailable": true,
+      "locator": "Clinical guide; section 1.6; printed p.11",
+      "method": "FDA-posted document text/excerpts inspected through public web retrieval; current revision not certified",
+      "checkedAt": "2026-10-22",
+      "sections": []
+    },
+    {
+      "application": "P950035",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/p950035.pdf",
+      "state": "located",
+      "title": "Original FDA-posted labeling",
+      "pages": null,
+      "textAvailable": true,
+      "locator": "Original FDA combined document; sections 3\u20135",
+      "method": "FDA-posted document text/excerpts inspected through public web retrieval; current revision not certified",
+      "checkedAt": "2026-10-22",
       "sections": []
     }
   ]

@@ -602,7 +602,7 @@
   },
   "labeling": {
     "state": "located",
-    "detail": "1 original labeling document link(s) located; 7 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "detail": "1 original labeling link(s); 7 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
     "documents": 1,
     "changes": 7,
     "rows": [
@@ -640,15 +640,15 @@
       "P100022S006"
     ],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
   },
   "safety": {
     "state": "checked",
-    "detail": "2 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "detail": "2 application-linked recall record(s): source fields audited, exact FDA model/lot text preserved. Individual unit applicability is not determined.",
     "recalls": 2,
     "rows": [
       {
@@ -668,7 +668,15 @@
           "P100022"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=117571",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "0f85ec6d325798981d6a22be07e5b7b73100027e374882fca074ebe8a44fb3a0",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "range-or-condition",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "117653",
@@ -687,7 +695,15 @@
           "P100022"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=117653",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "1a485f6357b044989cf82422cf40f4050adb71a95fe5c192057686a16dfb9311",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "range-or-condition",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       }
     ],
     "sources": [
@@ -725,6 +741,20 @@
       }
     ],
     "noticeCandidates": [],
+    "noticeReviews": [
+      {
+        "familyIds": [
+          "source-fda-p100022"
+        ],
+        "url": "https://www.fda.gov/medical-devices/letters-health-care-providers/update-paclitaxel-coated-devices-treat-peripheral-arterial-disease-unlikely-increase-risk-mortality",
+        "status": "class-context",
+        "scope": "Paclitaxel-coated peripheral arterial devices; FDA July 11, 2023 update.",
+        "finding": "FDA’s updated review does not support excess late mortality. The 2019 concern is historical context, not an unchanged current conclusion.",
+        "limitation": "Does not exclude bleeding, thrombosis, device-specific recall risks or future evidence changes.",
+        "locator": "Recommendations; Additional Clinical Evidence",
+        "reviewedAt": "2026-10-22"
+      }
+    ],
     "unresolvedReferences": [],
     "screenedTerms": [],
     "indexes": [
@@ -799,24 +829,70 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
-  "modelLotReview": "pending",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "historical-label-reviewed",
+    "scope": "Zilver PTX peripheral paclitaxel stent; historical device label plus updated FDA class assessment",
+    "revision": null,
+    "models": [],
+    "findings": [
+      {
+        "text": "The device label excludes inability to receive antiplatelet/anticoagulant therapy and unsuitable lesions; nitinol/paclitaxel sensitivity, bleeding and vascular injury require assessment.",
+        "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100022S020D.pdf",
+        "locator": "Contraindications; Warnings"
+      },
+      {
+        "text": "Pregnancy/breastfeeding and planned pregnancy are restricted in this historical label; exact current wording requires the latest package revision.",
+        "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100022S020D.pdf",
+        "locator": "Contraindications; Warnings"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100022S020D.pdf",
+        "title": "FDA Zilver PTX S020 labeling",
+        "locator": "Contraindications; Warnings",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      },
+      {
+        "url": "https://www.fda.gov/medical-devices/letters-health-care-providers/update-paclitaxel-coated-devices-treat-peripheral-arterial-disease-unlikely-increase-risk-mortality",
+        "title": "FDA July 11, 2023 paclitaxel-device mortality update",
+        "locator": "Recommendations; Additional Clinical Evidence",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "The 2019 class mortality concern must not be presented without FDA’s July 2023 update: the newer assessment does not support excess mortality. This does not remove other stent risks."
+    ]
+  },
+  "currentLabelReview": "historical-label-reviewed",
+  "noticeReview": "screened-candidates-reviewed",
+  "modelLotReview": "source-fields-audited",
   "sourceLinks": [
     {
-      "title": "Original FDA decision",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100022"
+      "title": "Application-linked recall (FDA-reported scope)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=117571"
     },
     {
       "title": "Original labeling",
       "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100022C.pdf"
     },
     {
-      "title": "Application-linked recall (applicability pending)",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=117571"
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100022"
+    },
+    {
+      "title": "FDA July 11, 2023 paclitaxel-device mortality update",
+      "url": "https://www.fda.gov/medical-devices/letters-health-care-providers/update-paclitaxel-coated-devices-treat-peripheral-arterial-disease-unlikely-increase-risk-mortality"
+    },
+    {
+      "title": "FDA Zilver PTX S020 labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100022S020D.pdf"
     }
   ],
   "path": "/dossiers/source-fda-p100022.json",
@@ -825,13 +901,10 @@
   ],
   "researchEvidence": [],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "The 2019 class mortality concern must not be presented without FDA’s July 2023 update: the newer assessment does not support excess mortality. This does not remove other stent risks.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

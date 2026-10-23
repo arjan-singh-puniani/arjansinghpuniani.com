@@ -581,7 +581,7 @@
   },
   "labeling": {
     "state": "located",
-    "detail": "1 original labeling document link(s) located; 9 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "detail": "1 original labeling link(s); 9 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
     "documents": 1,
     "changes": 9,
     "rows": [
@@ -621,8 +621,8 @@
       "P150038S008"
     ],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
@@ -667,6 +667,7 @@
       }
     ],
     "noticeCandidates": [],
+    "noticeReviews": [],
     "unresolvedReferences": [],
     "screenedTerms": [],
     "indexes": [
@@ -741,20 +742,62 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "published-ifu-reviewed",
+    "scope": "US Exablate Neuro prescriber information; indication-specific criteria differ from the original unilateral essential-tremor approval.",
+    "revision": "PUB41002923 Rev. 12",
+    "models": [
+      "Exablate Neuro / Exablate 4000"
+    ],
+    "findings": [
+      {
+        "text": "Contraindications include MR incompatibility, pregnancy, specified bleeding/coagulation risks and inadequate skull-density criteria.",
+        "sourceUrl": "https://documentation.insightec.com/media/PUB41002923_Exablate-Neuro-IFP-USA_Rev12_FINAL2.pdf",
+        "locator": "Sections 2.2 Contraindications and 2.3 Warnings"
+      },
+      {
+        "text": "Prolonged immobilization can increase thrombosis risk; air-free water coupling and a functioning patient stop control are safety-critical.",
+        "sourceUrl": "https://documentation.insightec.com/media/PUB41002923_Exablate-Neuro-IFP-USA_Rev12_FINAL2.pdf",
+        "locator": "Sections 2.2 Contraindications and 2.3 Warnings"
+      },
+      {
+        "text": "The staged bilateral essential-tremor indication adds restrictions for persistent swallowing, speech or gait impairment after the first treatment.",
+        "sourceUrl": "https://documentation.insightec.com/media/PUB41002923_Exablate-Neuro-IFP-USA_Rev12_FINAL2.pdf",
+        "locator": "Sections 2.2 Contraindications and 2.3 Warnings"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://documentation.insightec.com/media/PUB41002923_Exablate-Neuro-IFP-USA_Rev12_FINAL2.pdf",
+        "title": "Exablate Neuro US information for prescribers",
+        "locator": "Sections 2.2 Contraindications and 2.3 Warnings",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "This is the located US Rev. 12 document, not a certification that no later revision exists. Non-US documents explicitly excluding US use were not substituted."
+    ]
+  },
+  "currentLabelReview": "published-ifu-reviewed",
+  "noticeReview": "screened-candidates-reviewed",
   "modelLotReview": "not-established",
   "sourceLinks": [
+    {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf15/P150038C.pdf"
+    },
     {
       "title": "Original FDA decision",
       "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150038"
     },
     {
-      "title": "Original labeling",
-      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf15/P150038C.pdf"
+      "title": "Exablate Neuro US information for prescribers",
+      "url": "https://documentation.insightec.com/media/PUB41002923_Exablate-Neuro-IFP-USA_Rev12_FINAL2.pdf"
     }
   ],
   "path": "/dossiers/exablate.json",
@@ -763,13 +806,10 @@
   ],
   "researchEvidence": [],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "This is the located US Rev. 12 document, not a certification that no later revision exists. Non-US documents explicitly excluding US use were not substituted.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

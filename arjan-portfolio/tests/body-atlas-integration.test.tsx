@@ -36,8 +36,12 @@ describe("BODY//ATLAS portfolio integration", () => {
     expect(report.explanationExpansion.explainedEntries).toBe(91);
     expect(report.dossierMilestone.explainedEntriesWithDossiers).toBe(91);
     expect(report.dossierMilestone.marketingApplicationsChecked).toBe(89);
-    expect(report.dossierMilestone.currentLabelContentAndRevisionReview).toBe("pending");
-    expect(report.dossierMilestone.affectedModelLotApplicabilityReview).toBe("pending");
+    expect(report.dossierMilestone.currentLabelContentAndRevisionReview).toContain("91 individual source assessments");
+    expect(report.dossierMilestone.affectedModelLotApplicabilityReview).toContain("patient/unit applicability not determined");
+    expect(report.labelSafetyReview.entriesAssessed).toBe(91);
+    expect(report.labelSafetyReview.adequateProductSpecificLabelStillMissing).toBe(3);
+    expect(report.labelSafetyReview.recallSourceFieldAudits).toBe(349);
+    expect(report.labelSafetyReview.completeLatestIfuCertification).toBe(false);
     expect(report.explanationExpansion.directlyAssociatedStructuresAndRegions).toBe(44);
     expect(project.status).toBe("Prototype");
     expect(project.limitations?.join(" ")).toContain("Provisional source-text contexts");

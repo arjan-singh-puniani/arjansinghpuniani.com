@@ -98,3 +98,7 @@ The catalogue contains 652 applications and 712 contextual assertions after the 
 ## Dossier milestone — 2026-10-22
 
 All 91 explained entries now have a **Dossier** tab: regulatory history, original labeling, reported recalls, original-source links, source dates and explicit review status. See [DOSSIERS.md](DOSSIERS.md) for counts, reproducible commands and remaining review. The dossier snapshot is cached, not a live safety-alert feed.
+
+## Labeling and safety follow-up — 2026-10-22
+
+Supersedes the earlier blanket pending status: all 91 entries have model-scoped source assessments; 349 recall source-field audits and 15 notice-scope decisions are recorded. Five original-label gaps were closed (105 links / 76 entries). Three product-specific label gaps remain, and historical or model-limited sources are not certified as complete current IFUs. Individual unit applicability remains undetermined. Full methodology, original links, exceptions and the 91-entry ledger: [LABELING_SAFETY_REVIEW.md](LABELING_SAFETY_REVIEW.md).

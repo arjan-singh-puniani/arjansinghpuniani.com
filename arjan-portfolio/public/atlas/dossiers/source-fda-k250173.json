@@ -34,7 +34,7 @@
   },
   "labeling": {
     "state": "summary-only",
-    "detail": "Clearance summary available; complete current instructions, contraindications and warnings remain unreviewed.",
+    "detail": "0 original labeling link(s); 0 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
     "documents": 0,
     "changes": 0,
     "rows": [
@@ -49,8 +49,8 @@
     "pages": [],
     "changeIds": [],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
@@ -104,7 +104,21 @@
         "matchedTerms": [
           "shiley"
         ],
-        "review": "Candidate: title or class context only; model/application applicability not established"
+        "review": "different-product: Shiley adult flexible tracheostomy 7CN80R, lot 202405258X. This tracheostomy product is different from K250173 oral/nasal RAE endotracheal tubes; rejected as a direct model match."
+      }
+    ],
+    "noticeReviews": [
+      {
+        "familyIds": [
+          "source-fda-k250173"
+        ],
+        "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/flexible-tracheostomy-tube-recall-medtronic-removes-shiley-adult-flexible-tracheostomy-tube",
+        "status": "different-product",
+        "scope": "Shiley adult flexible tracheostomy 7CN80R, lot 202405258X.",
+        "finding": "A flange/cannula disconnection can obstruct breathing. FDA reports no affected units distributed in the US.",
+        "limitation": "This tracheostomy product is different from K250173 oral/nasal RAE endotracheal tubes; rejected as a direct model match.",
+        "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+        "reviewedAt": "2026-10-22"
       }
     ],
     "unresolvedReferences": [],
@@ -183,16 +197,58 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "current-safety-source-reviewed",
+    "scope": "Manufacturer US Shiley airway-management statement; individual RAE catalog/model IFUs remain distinct.",
+    "revision": null,
+    "models": [
+      "Shiley cuffless oral/nasal tubes",
+      "K250173 RAE variants: exact catalog IFU unresolved"
+    ],
+    "findings": [
+      {
+        "text": "The devices are sterile and single-patient use; reprocessing for another patient is not intended.",
+        "sourceUrl": "https://www.medtronic.com/en-us/healthcare-professionals/products/respiratory/intubation/endotracheal-tubes/shiley-oral-nasal-endotracheal-tube.html",
+        "locator": "Indications, Safety, and Warnings"
+      },
+      {
+        "text": "Tube type and size require patient-specific clinical selection; the manufacturer directs users to the product IFU for detailed precautions.",
+        "sourceUrl": "https://www.medtronic.com/en-us/healthcare-professionals/products/respiratory/intubation/endotracheal-tubes/shiley-oral-nasal-endotracheal-tube.html",
+        "locator": "Indications, Safety, and Warnings"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.medtronic.com/en-us/healthcare-professionals/products/respiratory/intubation/endotracheal-tubes/shiley-oral-nasal-endotracheal-tube.html",
+        "title": "Shiley cuffless oral-nasal tube safety information",
+        "locator": "Indications, Safety, and Warnings",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "A full current IFU specifically reconciled to all K250173 RAE catalog variants was not publicly established. A general product page is not substituted for that document."
+    ]
+  },
+  "currentLabelReview": "current-safety-source-reviewed",
+  "noticeReview": "screened-candidates-reviewed",
   "modelLotReview": "not-established",
   "sourceLinks": [
     {
       "title": "Original FDA decision",
       "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K250173"
+    },
+    {
+      "title": "Reviewed FDA safety notice",
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/flexible-tracheostomy-tube-recall-medtronic-removes-shiley-adult-flexible-tracheostomy-tube"
+    },
+    {
+      "title": "Shiley cuffless oral-nasal tube safety information",
+      "url": "https://www.medtronic.com/en-us/healthcare-professionals/products/respiratory/intubation/endotracheal-tubes/shiley-oral-nasal-endotracheal-tube.html"
     }
   ],
   "path": "/dossiers/source-fda-k250173.json",
@@ -201,13 +257,10 @@
   ],
   "researchEvidence": [],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "A full current IFU specifically reconciled to all K250173 RAE catalog variants was not publicly established. A general product page is not substituted for that document.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

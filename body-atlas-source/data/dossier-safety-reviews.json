@@ -1,0 +1,3048 @@
+{
+  "reviewedAt": "2026-10-22",
+  "method": "Editorial review of original FDA notice text and product tables. Recall fields are audited separately against immutable API records; no patient/unit safety certification.",
+  "notices": [
+    {
+      "familyIds": [
+        "precision"
+      ],
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/spinal-cord-stimulator-recall-boston-scientific-removes-infinion-cx-lead",
+      "status": "component-specific",
+      "scope": "Unused Infinion CX lead kits SC-2317-50 and SC-2317-70; all lots of those named kits.",
+      "finding": "Anchor-site mechanical stress can cause high impedance or fracture. The removal concerns unused leads; FDA says no monitoring beyond routine follow-up for already implanted devices.",
+      "limitation": "Does not establish a recall of every Precision pulse generator or other lead model.",
+      "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "familyIds": [
+        "source-fda-k250173"
+      ],
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/flexible-tracheostomy-tube-recall-medtronic-removes-shiley-adult-flexible-tracheostomy-tube",
+      "status": "different-product",
+      "scope": "Shiley adult flexible tracheostomy 7CN80R, lot 202405258X.",
+      "finding": "A flange/cannula disconnection can obstruct breathing. FDA reports no affected units distributed in the US.",
+      "limitation": "This tracheostomy product is different from K250173 oral/nasal RAE endotracheal tubes; rejected as a direct model match.",
+      "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "familyIds": [
+        "source-fda-p020056"
+      ],
+      "url": "https://www.fda.gov/medical-devices/safety-communications/update-reports-squamous-cell-carcinoma-scc-capsule-around-breast-implants-fda-safety-communication",
+      "status": "class-context",
+      "scope": "Breast-implant capsule cancers; no model/lot-specific recall is established by this communication.",
+      "finding": "FDA describes rare SCC reports with unknown incidence, cause and risk factors, distinct from BIA-ALCL; asymptomatic removal solely for this concern is not recommended.",
+      "limitation": "This is class-level surveillance information, not proof that a particular Natrelle style caused SCC.",
+      "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "familyIds": [
+        "source-fda-p060040"
+      ],
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/mobile-power-unit-ac-power-cord-recall-abbott-medical-removes-ac-power-cord-associated-heartmate",
+      "status": "component-specific",
+      "scope": "AC cord 107760 for MPU 107754; fifteen listed lots from 10763925 through 10831828 (not a continuous range).",
+      "finding": "A defective locking feature can permit power disconnection. The notice removes affected cords, not every MPU or implanted pump.",
+      "limitation": "Compare the exact lot list in the source; intermediate numbers are not presumed included.",
+      "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "familyIds": [
+        "source-fda-p060040"
+      ],
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/heart-pump-accessory-removal-abbott-removes-heartmate-mobile-power-unit-due-instances-sudden-power",
+      "status": "component-specific",
+      "scope": "HeartMate MPU 107754 and listed regional references/serials, UDI-DI 05415067038234.",
+      "finding": "Certain electrical components can cause sudden power loss. FDA links the actual serial list and manufacturer lookup; the accessory serves HeartMate II and 3.",
+      "limitation": "The referenced manufacturer serial list, rather than family name alone, governs applicability.",
+      "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "familyIds": [
+        "source-fda-p060040"
+      ],
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/left-ventricular-assist-system-lvas-monitor-correction-abbott-medical-issues-correction-heartmate",
+      "status": "component-specific",
+      "scope": "HeartMate System Monitor, listed references; all serial numbers; UDI-DI 00813024010142 and 00813024010852.",
+      "finding": "Display faults can cause unintended setting changes or pump-stop commands; the communication concerns the clinical monitor, not removal of every implanted pump.",
+      "limitation": "Follow the original correction and current manufacturer instructions; no patient-specific action is determined here.",
+      "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "familyIds": [
+        "source-fda-p060040"
+      ],
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/abbott-recalls-heartmate-3-left-ventricular-assist-system-lvas-implant-kit-risk-blood-leakage-or-air",
+      "status": "different-product",
+      "scope": "HeartMate 3 implant kit inflow-cannula/apical-cuff interface.",
+      "finding": "The correction addresses leakage or air entry observed during implantation and keeps unused product in the field under updated precautions.",
+      "limitation": "HeartMate 3-specific notice; rejected as a direct HeartMate II model match.",
+      "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "familyIds": [
+        "source-fda-p060040"
+      ],
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/abbottthoratec-corp-recalls-heartmate-ii-and-heartmate-3-left-ventricular-assist-system-lvas-due",
+      "status": "family-specific",
+      "scope": "Listed HeartMate II and HeartMate 3 graft/implant-kit references; see source\u2019s complete model table.",
+      "finding": "Biological-material buildup can obstruct the outflow graft, often after prolonged support. This is a correction with low-flow-alarm assessment guidance.",
+      "limitation": "The exact graft/kit configuration matters; a recall record does not mean preventive removal is recommended.",
+      "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "familyIds": [
+        "source-fda-p060040"
+      ],
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/abbott-recalls-heartmate-touch-communication-system-unintentional-pump-start-and-stop",
+      "status": "different-product",
+      "scope": "HeartMate Touch communication software v1.0.32 used with HeartMate 3.",
+      "finding": "Disconnecting/reconnecting with a queued stop command can unexpectedly stop or start the pump; the notice updates the command-completion procedure.",
+      "limitation": "The source identifies HeartMate 3 support; rejected as an established HeartMate II-specific notice.",
+      "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "familyIds": [
+        "source-fda-p100018"
+      ],
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/embolization-device-recall-and-correction-medtronic-removes-unused-027-compatible-pipeline-vantage",
+      "status": "model-specific",
+      "scope": "Pipeline Vantage 027 removal versus Vantage 021 IFU correction; listed catalogs/lots B317266 through B817292.",
+      "finding": "Incomplete wall apposition or braid deformation prompted removal of unused 027 devices and updated 021 deployment instructions. The two actions are distinct.",
+      "limitation": "This is not a blanket recall of Pipeline Classic, Flex or every Shield device. Exact catalog, lot and updated IFU are required.",
+      "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "familyIds": [
+        "source-fda-p130008"
+      ],
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/implantable-hypoglossal-nerve-stimulator-device-removal-inspire-medical-systems-inc-removes-inspire",
+      "status": "model-specific",
+      "scope": "Inspire IV generator 3028; only the affected serials identified by FDA.",
+      "finding": "A manufacturing defect can cause sensing-circuit leakage and loss/inappropriate delivery of therapy; the notice directs noninvasive follow-up and clinician assessment.",
+      "limitation": "Not a blanket recall of Inspire II/3024 or all 3028 units. The page\u2019s stated device count and displayed serial list should be reconciled with the recall database/manufacturer.",
+      "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "familyIds": [
+        "source-fda-p130013"
+      ],
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/vascular-access-systems-correction-boston-scientific-updates-use-instructions-watchman-access",
+      "status": "component-specific",
+      "scope": "Listed WATCHMAN TruSeal, fixed-curve and TruSteer access systems; all lots of listed material numbers.",
+      "finding": "The IFU correction addresses air ingress/embolism during transseptal procedures, especially without positive-pressure ventilation. FDA says already implanted patients need no extra management for this issue.",
+      "limitation": "Procedure/access-system warning, not evidence that every implanted WATCHMAN closure device should be removed.",
+      "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "familyIds": [
+        "source-fda-p100022"
+      ],
+      "url": "https://www.fda.gov/medical-devices/letters-health-care-providers/update-paclitaxel-coated-devices-treat-peripheral-arterial-disease-unlikely-increase-risk-mortality",
+      "status": "class-context",
+      "scope": "Paclitaxel-coated peripheral arterial devices; FDA July 11, 2023 update.",
+      "finding": "FDA\u2019s updated review does not support excess late mortality. The 2019 concern is historical context, not an unchanged current conclusion.",
+      "limitation": "Does not exclude bleeding, thrombosis, device-specific recall risks or future evidence changes.",
+      "locator": "Recommendations; Additional Clinical Evidence",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "familyIds": [
+        "source-fda-p020056"
+      ],
+      "url": "https://www.fda.gov/news-events/press-announcements/fda-takes-action-protect-patients-risk-certain-textured-breast-implants-requests-allergan",
+      "status": "model-specific",
+      "scope": "Allergan BIOCELL textured implant and tissue-expander products identified in July 2019.",
+      "finding": "The recall addresses BIA-ALCL risk associated with the named textured products. It is not a recall of every smooth Natrelle implant; FDA did not recommend removal in asymptomatic patients.",
+      "limitation": "Use the implant card and full product table; individual risk and symptoms require clinical assessment.",
+      "locator": "July 24, 2019 FDA announcement",
+      "reviewedAt": "2026-10-22"
+    },
+    {
+      "familyIds": [
+        "source-fda-p130028"
+      ],
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/spinal-cord-stimulator-recall-boston-scientific-removes-infinion-cx-lead",
+      "status": "different-product",
+      "scope": "Boston Scientific Infinion CX leads SC-2317-50 / SC-2317-70.",
+      "finding": "The notice concerns Boston Scientific lead kits, not Nuvectra Algovita components.",
+      "limitation": "Rejected as an Algovita-specific recall. A shared spinal-cord-stimulation class does not establish component compatibility or applicability.",
+      "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+      "reviewedAt": "2026-10-22"
+    }
+  ],
+  "recalls": {
+    "220167": {
+      "digest": "971b9bbf740f8e51de4d9be1ecb86f18273aeefd3c9a1925346827f9b982217e",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "220169": {
+      "digest": "e8e62d928c1904f4d723f21d26da951a46991470f4acbb068aa1e0f75961389f",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "210340": {
+      "digest": "dd28b1ff44e0599394438aa74dbd55f7a01d78ca486f9b3bf71885e22ace35be",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "210373": {
+      "digest": "36bdaf3f5d09a8dd598a3d683105547a1d8f2d58b610196b2c7e6ec6026b36b1",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "203595": {
+      "digest": "2912640134e7ac752ec4758982f4bdce5a6edacbaf5b368224d749fffa38d7ec",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "203403": {
+      "digest": "7526d4d067f8aa945b09bbc10f82a7ffebd411a3f2a312b10238782a5fa40c8b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "199300": {
+      "digest": "acdb687797d3973817866758d5685e214f4a19f8e97f80df505108908da38f06",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "135848": {
+      "digest": "02453771f5be1331fe1c6ae11deae9ef4e00e776a10901f8e3a396db66425f0e",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "129036": {
+      "digest": "6650b3aac494270b531a833b6c7b555d3eb530bfc6fe583fd40f996dc965c9d8",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "123722": {
+      "digest": "2d520780e6f6278b59675be83c07db72a2304d75e4f9df0d0392d43d35a0a217",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "document-or-model-scope",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "Scope supplies a first-market date rather than exact affected units; firmware/programming conditions must be checked in the original action."
+      ]
+    },
+    "126207": {
+      "digest": "31bb4a355d4d9e3a3bee45c9612d73539eb15d1822b963063522fc7a09b38fef",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "document-or-model-scope",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "Scope supplies a first-market date rather than exact affected units; firmware/programming conditions must be checked in the original action."
+      ]
+    },
+    "122514": {
+      "digest": "f0efb3242bfc0493d4cb2d8c264f5e076ca049bc59d211362fca22dcb28f7421",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "122449": {
+      "digest": "f9712cbf30c5f7a6a83058df74536ea15cb7d62debcf168ec9bb1afaa0b69f49",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "116147": {
+      "digest": "c1204d022d1b52c32592482d71ed5af88919b39e900b2024e27250fef83334c3",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+      ]
+    },
+    "114756": {
+      "digest": "ee55d7667544e253ceb0faa06ca285d984bb4e3090a02d05a27256a3652c198a",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "73342": {
+      "digest": "021d7b625434e83a03bfe6863274bcdf20c89ed7e1897e1787feca94f8700014",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+      ]
+    },
+    "73447": {
+      "digest": "37a544d771179a4bdb36192fb1d1a382b73668d20d221bc55313dd29eb4c75b2",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+      ]
+    },
+    "73448": {
+      "digest": "c702e0ceebbaee8d642cb071c3381cccb2c040cf6dd3b9dfe565641fcafa3701",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+      ]
+    },
+    "73449": {
+      "digest": "60e16376547a333fbd75c874b2021607b965d32957d18ab35e871d19be4b3492",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+      ]
+    },
+    "66257": {
+      "digest": "b9db51905ee9f6a4c0a7694adb8ec8982dc90e78610cd783900802db3b98f359",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "51935": {
+      "digest": "da9ca5bd6c5ea638ea82cbdabe49038e9aa5bdee1b296630e985cfc6866cd079",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "47276": {
+      "digest": "eb4b0dfe2504dee7dffba80f1d3fec57f93991b1ec8c50ecc86801753bb61579",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "43204": {
+      "digest": "cf6d4622c8f81390db3ca93d5732afc9aee9c6fca07b1b0d90e3a86977ad490f",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "189466": {
+      "digest": "1053e9298fe12e0c032d1600cdafc9af98a0ab0cb34ad11cbbd27e11b645d9d5",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "190096": {
+      "digest": "f3c2bed84107523ac010fadcb1f02cbcca79eb11d27a368e00d9e7f403558b15",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "document-or-model-scope",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "189948": {
+      "digest": "a0af816d07af1ae51866f82c23a1d0d72d20c29e2da23b8715e2d8d2ca3f9e55",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "150430": {
+      "digest": "d7adcaeb074a86ce2130bb0a289bf442d41dd881cfb15502a1fb87c69cdd2b66",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "193095": {
+      "digest": "7deb47ff3d76412079a47571f2d4be5ebee4cdf733992455dd36ca07c3085156",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "186320": {
+      "digest": "83f54e883c2cb7f30e7f81ce19f4f68163f1df1b6578af7d1fda884679996da9",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "147876": {
+      "digest": "b0d56cdf78638c2b5713daa9912f026e952e33dfcd76944deace95bf3be043d8",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "147891": {
+      "digest": "852ffcfbc06f7e960f388b195bb95a0c8f804c222312c911a719e3f697556e41",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "158021": {
+      "digest": "12237cf7614ceb3bffb0f178ade212241cc83fb5a7bf71b968bb9a6036a365c6",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "216515": {
+      "digest": "794b4083d13d1f15014bbe8c513b2f0ae1c20bcec7cea7f52d4307c8d5c4cb34",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "208166": {
+      "digest": "c61ac2a00d15719e8747230ee18c47bc76ce714f5334d6ad3c0d9a8c16b149ce",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "158846": {
+      "digest": "ee9ce70ecaad47edceaadf259fade78cc12a679d3a19ac77deb62819d72a1fca",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "168771": {
+      "digest": "3652f36b1d2a476a1b35f2e4ae60946671b4781fe43551964a7d580178978ce1",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "156179": {
+      "digest": "63b8993ce5fd8be73eb35fc665babbb2b28ffd16aeaae7c15c51ed77f055960a",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "156180": {
+      "digest": "59a9452283e5054a5f28b26fe95bf0da6f056c1233a279775d0f8e7ba3b8aa7c",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "156181": {
+      "digest": "eaf700288e20af6ce6d331e93fed280822ca032908c1a3ed1c70ed046a71f858",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "156182": {
+      "digest": "31dfb5d9c47bbae97c9a2f6af7b1cc9b6ef81d477e0a8ba8c2658d2e226573e8",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "220311": {
+      "digest": "73e17e79b3fa3783e24b12e7528bbb9cbba12a95737eb81dd23a5493932ad509",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "220250": {
+      "digest": "9acb35980a51b3e36d67ad66b6b3eb2a3f31fd739e32d0906ba3ed839d1a7ea0",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "209084": {
+      "digest": "86a797de6d8ee02f2f5619f4f6b24cbafb76f4a742b9612c65fbd17b5011aa6b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "72662": {
+      "digest": "264a8c927f967c23cb4b5ed6030498ff5b88da6ff08e12ab1ffbfe43bb64e421",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "90268": {
+      "digest": "d8fd0a4edff164f4279aad1d7893fafeaf21c2b2af19bf66a718290bf9182555",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "73737": {
+      "digest": "842101ad5c57403f5236e8b900824d3832ebb699f10dae105cf34fb9aa0ea51e",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+      ]
+    },
+    "66266": {
+      "digest": "405ce7bfe3ef1c8dd01810b9776b453fa1207017485142a67ae02878fd7f229b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+      ]
+    },
+    "55506": {
+      "digest": "0218388c9a57bf29e397cd3d5dadf3d11e5ce252decaeb32077567f2c585649d",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA product description says SC-110 while code_info says SC-1110. Preserve both; exact model requires confirmation."
+      ]
+    },
+    "50595": {
+      "digest": "2c31aa1e8ab54c58f45d5f1c0cef84c6ce5b94390f9bac07d28a6caee34914a8",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "49022": {
+      "digest": "787d5e3794d178bb0697cc2408c023e8e7ca82b4938cccbf7ec678f870be8960",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "36004": {
+      "digest": "72e4221589d78056823a85755929a393a78a09c823232b008d8cfc7e2a860a53",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "179769": {
+      "digest": "ee54af3e0100af6264e6bcc215ffa46b7327b5bf6997ef30517c1fcefeee4035",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "179899": {
+      "digest": "a72732a5aaf1dfed35ccd66e2b7003588a307b6d2d6407e1c4a8da195703da0f",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "179903": {
+      "digest": "38eaa16ec115c246d35677f02204ab5842c456d182a05e56f9401f4ddcb96a5e",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "179904": {
+      "digest": "4ce868da3d0c2d2b1dd8d020db3a555ac6ceea7a6aef836a74463a0b092cc8da",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "179905": {
+      "digest": "0184dd058d861152e8a57b814a14bdd9ee6433871f4c249691656223f8da0183",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "179906": {
+      "digest": "7e3ec9242565dfa2ef0767419c5c509a524fde826f59bd10b989197bb7933ea6",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198898": {
+      "digest": "e72aeae9545666162085055bd58cea1a0a98cce1c0c84ffed2358c77b9f38548",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198899": {
+      "digest": "5b8bea63a4e857f5c095308875c49883dfc2bbc1e1e97611d147c78e81e934a3",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198900": {
+      "digest": "250d8cde226669bd9487809430ae30d3cadbe45d0935d9bb8078443c9a6d85ed",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198901": {
+      "digest": "eeddcc1c7b2d4e8107a050072e4c661509905989dca5ca29b6ba00411ffdbd42",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198902": {
+      "digest": "4f4cf06abe63435c16edfb492e95d210f364d936d0d047acdcd7d2c47e1ec993",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198903": {
+      "digest": "af4c6d172ece4123c2bef62be5fee72d4731ac5a9264adf29c9113315518366c",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198904": {
+      "digest": "141eadc31ec03d125d44dba877422e2f5417cf8ade69c2a1735c180024185d8e",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198905": {
+      "digest": "a9cfc97c4ac387d1a215a85172ce90ca484f31d0be3a017500e38d3f0e2d5411",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198906": {
+      "digest": "a39fc8b4fd676d4d8c223143f2076d13cbd724178806ae0921bf1ae26173d707",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198907": {
+      "digest": "37bdca498e7f0623a3804da816be0e9530a99e2fd4a6b9fe4d8a9da1fcad9b78",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198908": {
+      "digest": "33dcf1616f0f48b9f0c65b6eb1f8e009637c3471d4070a16b4cfba0c51b05b23",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198909": {
+      "digest": "9527a77339298334266762e3cf941baac58677a60c0a06ac989fd322726e42e3",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198910": {
+      "digest": "1bbc2b728312aede076498dcf8256c5d10d03b3bd4b9811fd50928cb5e8d9cca",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198911": {
+      "digest": "2994c52766086174751b486250bfc20950882008d0694bf225f41ad6519fcc0f",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198912": {
+      "digest": "0245643a83cc2a788d48458001302823928c6289c23e754e4bb1e01b19557f0a",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198913": {
+      "digest": "fa84f9d7cac1f7490f627e707b2f3285025f0b11b9c7f91daa0a4cfd370c5578",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA reason field contains only XXX; the original FDA detail page also has this placeholder. Do not infer the missing reason from neighboring records."
+      ]
+    },
+    "198914": {
+      "digest": "bebfd4c21f43ecc5fed44e53afb03bd27835dc6683100aa1a2d55825c7c047e3",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "85729": {
+      "digest": "ea738614c2467eeb1b33132262a9fba798db8f397fe9b96c4c30205c1685dec9",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "99617": {
+      "digest": "c5a77ea730f29299bcf6f341c0349f48305f6e6bdabc9d909c0c3ed05d8a0ac4",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "95382": {
+      "digest": "f7e146c08ae321f53a958966aad7ad79ab601dc0952193141444c937e091c789",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+      ]
+    },
+    "164436": {
+      "digest": "2852875cb6ce8e822c1cc25489f5dc25edf40aaa150806c02d86274999dc4572",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "32910": {
+      "digest": "739656f22f290ca0f13e70e99977bd9b0bbc1d7916c267c19bc186b9df643931",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "29844": {
+      "digest": "aa41e5597908f851ec0f2fcd702f9e791133c121ce9551d4033f73dca8198d40",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "29845": {
+      "digest": "2a82d91cb08a6aeaa3f6736dfb2cecd9a56a5edbcf2fed588a16524a63fbd018",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "26176": {
+      "digest": "9ae634b136bdb14c7212b32abc41efa6cdc775f457c5661844c79c0af593a45c",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "26179": {
+      "digest": "0cff9714cb3a217dfc42defe9494105a507bb59e4729685f3443d3a6f81a2d5f",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "82672": {
+      "digest": "3a387fa31398420bcd4bc543f3cf07bef98fd43facac9d0562725f148f0eadee",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "207499": {
+      "digest": "46804065506674d6f0d4b6a40f45ca9eee34332ee52670a127d7e3ebf00d42ef",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "153386": {
+      "digest": "3429119fab3ca57f5f83479be2761239588ba0bd43b573a95c1c16ef98b3713d",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "169504": {
+      "digest": "69b0e4174bf60a177897b14d905087cdaa6d3932f756c2f35a7442674022c9df",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "169505": {
+      "digest": "09e74365d1c8b6219a4f993c3b6789f3c8ab5e67c8b44fd92e0e6385cc430506",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "169506": {
+      "digest": "5ac4121700e3a70a3ff7edefcd181e5d9b0408931b13c7dbcad0aa5ae281a05e",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "219053": {
+      "digest": "a5f1aed724bb08605d26c87fff7b87a1dba26301cd0664b38f11f6a288994320",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "170731": {
+      "digest": "51e833d67d05a9be0acb7c9b998d68895f9b1fb7332df17d17169a0ba9a29583",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "156532": {
+      "digest": "76241d08b1c35fe92018c996a407dd7b0d63628c143de36820ba396fd3a645a6",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "157776": {
+      "digest": "484469db3df39c3c86b407531d8a662b6be2d09ae4b425bdb95fbfd207d8a594",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "83989": {
+      "digest": "5e74403f896f4cd7612c8fdaf3b04758047ea71a9a91eae20c6942d96b66f9bf",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "83991": {
+      "digest": "ca7a18b47abb9423fb9dcb600fecc8f23e0021f347891ec1f306d8acea6cfd0c",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "50292": {
+      "digest": "0ac890cec8ebc0731a16e91580c120a838888b445c6fdc371a2f109fecff0f9e",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "50293": {
+      "digest": "d3f91c3fc4e9676cfca30df1e083e0fd35869e3ce0868a86367ebc19c5b40828",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "50295": {
+      "digest": "fecd8d769735e9ace5d7a0be2d332bcee5c0e337d29088d662e30c602b92be7d",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "50296": {
+      "digest": "d988520edf3fd3071804abfdab963846392f6e9d6e6d3ffeeacd169083adbb03",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "50297": {
+      "digest": "7f619c83855287ac61ceb1a17a2015df70d88165f6a6b6a145b7f306a2adeebe",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "40419": {
+      "digest": "76d8a0538fbb4774da9f1aa8534a0ce93360e7bdd37fbaf289e531fc7fdd4358",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "40651": {
+      "digest": "5f3d5b54bc3ba332c789cbec93023d4cb026fb7b7b0fea76598d0b8600babe3a",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "40652": {
+      "digest": "211d3b157aeac3b5dac3a246491deee59923b2b08d91c409cdf7d288b3d79443",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "40838": {
+      "digest": "a4708fcfc7337ba8695e3287a6e61fe3c62d9f30d19c3380cfa200e561316f19",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "29907": {
+      "digest": "c611e8ceac9297d3f257c4bbbc8b59bf8de14934083756998d9b5d820e6a41be",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "25089": {
+      "digest": "f77865d34b5835e47052256c399f46a8b7467b4c78f76f257c99079ad5d911a6",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "document-or-model-scope",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "118497": {
+      "digest": "8d33a6f94cbbe36472130465d649a2d20df722de5edf2e73caab19942614eeff",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "118498": {
+      "digest": "e8ce5f7534547331ded8b3db4399e56266d22ff6b911ba4e8f4cd8f551fc6c66",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "118499": {
+      "digest": "901a83fbe2c63ccaf60f18b441b80595c19a0a642758a9e5f98065220e99e3c3",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "118500": {
+      "digest": "08a5de64f0272c22b4218aff825ea2b5828a700e942c1c8fd32c7c7f7ab065c6",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "118501": {
+      "digest": "50b84f9c5fa775025eb5aa889f2f6d0c6ff2dd773aa7c3c33600ee629fad0915",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "118502": {
+      "digest": "f2c271d1ef6503c5b8c0bd266fa5a637fa832bc68e9e05e85fa6b08a12504abd",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "118503": {
+      "digest": "5b0f18122bfe0cab95c5b5e12ae4c423a0d9ab65139199407e2d1c270be3200f",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "167644": {
+      "digest": "0cf0501ebf3396c7c076c7029b3c30a662683e82043daa9ec473cd1cb1a3e2b1",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "127033": {
+      "digest": "ab35203e17f77c7fd40d653a076b64f19346d731aa285ab0f1939f662ec06523",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "190050": {
+      "digest": "d3a10c4d5964d77a3f637a9ad2083bf228b913b9fc79af1475162007e8880091",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "165020": {
+      "digest": "fad04990ca4b920d161acd622de3185e825819d8c804d1496bbbbbb974ec0861",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "155852": {
+      "digest": "6caea98788f2d8e4d7c6697b4bc5a89c094fb8906ceace8b7b2150d255d9b8a5",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "100122": {
+      "digest": "e9778a20830c4d6076c2d1d17e2babc549f3aa735e58d36ec624e72fb72a2e50",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "76222": {
+      "digest": "26f5b75471dc2e1ac98d4d677e272ce6aac461796acdfb807d205470f43a5e78",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152453": {
+      "digest": "29dde8cec0823409ed2b723e59e1824749c0e0e14d4f845f4262fdc5d0186fc0",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152454": {
+      "digest": "c47dbf6b567265ede703c3ce9afcb7a0f968fb06ecd841351360ea7343315562",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "document-or-model-scope",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "The FDA scope says Lots: but supplies no lot values. A specific affected lot cannot be established."
+      ]
+    },
+    "152455": {
+      "digest": "dbff3943a5702f1b6423e53289ca625a2696d824ede5e0311232457a2fa61897",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152456": {
+      "digest": "2abe466c6d4832c503d347af5c2ece4134d68feab2de862b4cfd6d8f12a43135",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152457": {
+      "digest": "c5352a5d96e7fe663c137984d59a4be0051245830603f402ddf87dfaf7f3fb8a",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152458": {
+      "digest": "9ffae4a8ca325856e61f7761d6ad2b7a717a0ad7ae28eee5a0fc47aa0fc0e385",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152460": {
+      "digest": "eed7a51745cf5de3aed822923de8dca9977d7e81cde21abfe5f61081e84d2868",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152461": {
+      "digest": "e4ba80221938b25eb42db2ba22c9434dda9839e9377f2c77b4007f7cdc0d6368",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152462": {
+      "digest": "aeb4823dc210f2b079ff2da1ffddffb11336bbff50956d649298122f43cc642d",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152463": {
+      "digest": "bea159659bbe0dac924fa3017f0b0b93d1b8b5bc4ba02e5faefde26f1dcbb627",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152465": {
+      "digest": "1e9b3e9f44b556498f48532f3ef5d04975a3406697c3cbd81fb29d12fe9b8efd",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152466": {
+      "digest": "d1465a3d63854cc076e1d3af56dac87099b0605bde0c63868d18e2c3908f7b83",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152467": {
+      "digest": "408bb1c90910dc54422f9ddd47fb12f440744f33dfbfef937ec5b6cb24489825",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152468": {
+      "digest": "8a361fcf99f3a5bea8e2c03e21d851747c225b078cf3992e5f3726e9190af34b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152476": {
+      "digest": "ebada42e2aef60e0070c84fb964704f8e00e7da5b23040fccc629f20f2c43a83",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152477": {
+      "digest": "5189add4a056564dc68868dc90121510b2eefa34044b025b9ab1e54be4b42f8c",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152478": {
+      "digest": "98c68ece21ab5907d006978cfec4217d2744d624e3c53d4ecad05715e6bd0a3a",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152479": {
+      "digest": "617d76bd5cf64e2278758eed7e61b73b4f79afb7ddf79caea246c8d926638054",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152480": {
+      "digest": "74d6970548af6cb22b218ccdfc6ee26e072240270a73a769cc13127ea3952da5",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "152481": {
+      "digest": "bba1f73ceda81890dbd65249c921f4cfc5541e65a0069c727806884ce2e74a00",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "214616": {
+      "digest": "f0b33c8fc5a899006baad667615cd6d0a4a07fb19c3ec95566c1e0ebd79d2c4b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "214620": {
+      "digest": "24033330972890a536610a8c6dc697a2c9d81c57b4a43b459fca79434fe43e43",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "181827": {
+      "digest": "5ca52f7bd0061f8457a5c01becd9d1b108980dcb1d179d89c936ee8fcab95820",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "181828": {
+      "digest": "eab463d1e13a2be972cd4799199df1ba220a3d33a741d48b1a4947355b8561d7",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "181829": {
+      "digest": "1054748520ae6051369cb5a0ee0badc2ca82d3edf49102d8b9fe81b6a2c52048",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "165486": {
+      "digest": "b9645e4b9bd5e32ad6e456e4d9f67c7901a91dc07842cb19665259790b74add4",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "165487": {
+      "digest": "a4520f227dc2aed3be92df6d009a2e0b93c59e5515b0eaad8c6fab6b07e258de",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "165488": {
+      "digest": "22cc9ac5dd405867836452c5000192bd5daca0d3561877f951a0912864efd946",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "165489": {
+      "digest": "52ec5e019d1fee6bcb0e41f8d6d2a1235bd25d05e45883f1946553e45204fe7d",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "141673": {
+      "digest": "30233b4cf92be18e133b07be95d5e98f1c0b1fae489271ee318bed802b81ec2d",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "118886": {
+      "digest": "89c19c769fcb53f5d3edfecd87f6b020ecc8467b986e3fe112032d7a0ea44f81",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "90770": {
+      "digest": "3ddf9623cf6af3a4579bb8dbee2b7ce31685eef77477be75bad700f853e4a7c9",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "160876": {
+      "digest": "bd85ffca0cd6dd102f2f917a038f4806cf18ec21250d9104a871765e8b9f4122",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "95038": {
+      "digest": "8e88033936e39f6a80fb6c0b89208cf713e016b916b4b8ad61ff9e828ea81d57",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "74773": {
+      "digest": "c4c91d7b0578d544d7d976c585d4c0bad9e736987e31117b28b4f121539f829c",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "document-or-model-scope",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "64559": {
+      "digest": "490ed16dfa7fefb2a8d1a321abba2070fd18f6d6e211b91f0a55e949a0eb084f",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "52009": {
+      "digest": "df0cc2d0142c969d092c2113c1c8e39347cc4aa19acb84a7887516096795c767",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "25718": {
+      "digest": "d2576d37577f82397729bd0b8257e34778f6f6b62a89507315b3b31f36763ca4",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "document-or-model-scope",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "112705": {
+      "digest": "cdc0026113f5aa8bc533362b56c5f88b626cd58a3fa276fcd940e41d92047e7d",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "178536": {
+      "digest": "62182fe295e5bc782b096aeef0ec5666412a2520ff938580868190c1d5f5d63e",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "178537": {
+      "digest": "d006ada64010b158e779421f6b56c0dc959ed29a7edb329b7c7f438e86209a08",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "54962": {
+      "digest": "f4bc12aa24331d439ff2ca815f840c81c07dc61af1aea620f8cea77b82cab196",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "26752": {
+      "digest": "ace58834c420a9346ee0a9d9ce3831b91ef2a485b5f0e369f53a8aed5a290b41",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "175502": {
+      "digest": "f14f139281fc1bc38b65a1ed46fdd586b101417754e0e82ce8e338073f02f3a4",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "175504": {
+      "digest": "d8dec0b01d4d82a4ee1f3308db0ba3141bd35fb0ac36cd2886776f7ccd80c6f7",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "178036": {
+      "digest": "ea9256423195bff211676c8db10a2f3d8eae34058ff4a66b2275e8aeb61d99aa",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "178037": {
+      "digest": "bebb86fdb0c88afcc20401c04a7dc6e90bb5532ca919e1bd739f17cc53525950",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "105816": {
+      "digest": "59b0b8eb18698e230a7db5445dc050129bbde4019c5db1275be702d5559a5f3f",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "178071": {
+      "digest": "f2bdc14bff9e8ace81fa8365e4ca49d88080acb0a54ed9c367ac667b344d012a",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "185850": {
+      "digest": "0131b11deb6ca906491290efe8c8becfa6ea2916c6da2970370ea446678dbe84",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "146277": {
+      "digest": "0469ba3f89899c2df5439721b6b9cbc0fd15154341b2a1d7933b10b062491b32",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "146282": {
+      "digest": "5f6a29bba26716f2c8a1d8b4289127dca96a9cb0dc128721da622fc1558643fe",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "164624": {
+      "digest": "187d97564bcb7d00b2e312f7289a3a4b086459e003d3299597e013df0bbdaab7",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "164626": {
+      "digest": "806047f6756a422d8dd27dc80e9d48b307211014fe029f5919ef1babb2ec8bae",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "139519": {
+      "digest": "49403e893a4ec91d9b6c30e562e523de1142e88f616e34361e47217c581f4799",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "139520": {
+      "digest": "62d3b40d4f4dd7236477a9af778a4c77b145743a727b0ffe41d7ff7fbfe1b62a",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "139521": {
+      "digest": "ba960fd63561b65c090a68189a85713889ac39ee82c2b7cd12b5fe96ef41984b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55398": {
+      "digest": "191e5f78481073f274aec65254947a95c2070745e8518938f09a8bb786d09901",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55399": {
+      "digest": "8d36ccc183072544b9a9e542baa348b57bb443e4f7de38cb7dc0dd8bebe7df9b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55400": {
+      "digest": "adb14081e8c4bc8544e1fb327f06b808cfdeba3a38e0e40b3d3ca6dab783a2ce",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55401": {
+      "digest": "7d3b0b4fb13960b00bcf34483d060ddfd3444edf50c22eb81ed91cd0963f1e1d",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55402": {
+      "digest": "c87933a69514c71e79956b1f3a2673dfddf63a2d74a96e95189367421e852bd4",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55403": {
+      "digest": "f32a985147c0ae7bbe5a251546d5dd04c71d583316035ab732e1e6408e9ce79f",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55404": {
+      "digest": "9e3ea61ba8c9e0632724abae0a23065b72d4793a46dfb0c3a94ba869ffd179c5",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55406": {
+      "digest": "904256973e96e5b5f97113cdcbaaeb3329fd1b1b35e7a5431393eaa36fe5191c",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55408": {
+      "digest": "03776d50d55165e468f81221a1ebeaf5f8119e0635b2b12147eeaa9758117eb2",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55409": {
+      "digest": "db5d11c6554694ef95c6b22ee81c6c200043fc7c6df65e091f2997bcd679c59d",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55410": {
+      "digest": "fd2fc6d349d9ab4c061ddc0502faabc6d49103ed293ea28d22762165747ac668",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55411": {
+      "digest": "2b554e4ef1e01b57003397fe9e6ac68ad73a8ad00f6d589877700da599a0fa65",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55412": {
+      "digest": "fcea610de162e548540c638a4b08a627334ea803fcbd21101daeef9b935b72f3",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55413": {
+      "digest": "7eced494137df4f93e28bc307a03129e7992c1e4730b5c85421093b48a1f2c8c",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55414": {
+      "digest": "88f1293ae7ee03e38ec21af5efd6126c82e681bd2b5dbf55d81ebaa958e71fb6",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55415": {
+      "digest": "d5907a10771d6291b18642ff525a94e236f538165344e2a8c5affdd1f39ce578",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55416": {
+      "digest": "5ac7ab12565c9ee727c6c883b23fc0d6577bb1f85dbdcf60bd24cb27095129c7",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "55417": {
+      "digest": "34193055d475808da5959aa5e5482ffd52adfc465e22a18726cf8972f81da281",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "51517": {
+      "digest": "48ed3c0265584bc73c24f4394cce7e2cd90ef13ddf94a7d47b87c4e685b1bdc1",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "51518": {
+      "digest": "bd3c2481446320081348c372eb2897ea3ebd2480e321cf25aedc8769734992fd",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "51519": {
+      "digest": "4fb9a257ec2e510ed826b6620a2f71f6556467108a88fc58ec24d90210804814",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "51520": {
+      "digest": "4a41f901c5d9a7a0aeebd7edc2feef6d76e85c1c3879c14f04b6eb9f2eb4934f",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "51521": {
+      "digest": "0c05937e5ba03c111daadf2437609418a7a0279872b52e5279ed6b157ce571ce",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "188414": {
+      "digest": "78955be1f250754d89b30c41e0efe5ba331606b4fcf06cd18b16eb261eb95508",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "146973": {
+      "digest": "52696f37555f93abb93b8a963a7784bcaf893bb55b7a6baf078daab4bf876e6e",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "104304": {
+      "digest": "9b895d25644d7c72fa9023cf6a5f938d066b420eb641dd1c74da6354cbff32fe",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+      ]
+    },
+    "99710": {
+      "digest": "1d8eacfedc7d7732619b4c962246d9018b3c1d60e28d44a0379ca27028f95a47",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA code/product fields say lot 1024417 but the reason says 1034417. Original detail page confirms the conflict; manufacturer confirmation is required."
+      ]
+    },
+    "143368": {
+      "digest": "189ed57e74c6889a4ff5638198763c925c032eed874eb0b48ff5e20609e6f4b1",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "121770": {
+      "digest": "b75750c82c96a94413fb7bf041959f1dc54806919680d026000e0d1c47b5bf06",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "81874": {
+      "digest": "f59096322b8c113b8d41e046ac538458ff967065f3291deb1f7b0dd126bbc95b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "81875": {
+      "digest": "c14a6abcaddcd47621f910cddb0c3cff1a370b5460eb813e645b0cdb1feaf8ef",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "81876": {
+      "digest": "68d36274dc1af4dada28aed4927dbcf0eb4032a4a348c8fc570c740099f483c5",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "81877": {
+      "digest": "a6d477c2ec840e16cc7637d676d50ad22ef9fd1c7cf8bc10708db380dcdcfbe9",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "176870": {
+      "digest": "e10c2c3a859f52902055264e68dd50b40a74475e6ba7878783b63bc8518a0dcb",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "160970": {
+      "digest": "bfa9b033839fbb1057ae7bdb8400dc4164518184d8593f87ecee7b1d0b16e8e6",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "160194": {
+      "digest": "5181519537864de4d07b0032dd5cb2fb860932f2aa90c5a5f6f7efed14fe6707",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "160195": {
+      "digest": "957d72f35a6916e273600b65e86a30ce6c9c8c9606e509ce2f83ec8a4b72f445",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "162396": {
+      "digest": "b9f9be84dd5169e7acf2f8b8344a030fd98a4f035b914328e8fa70d197b1e1aa",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "162398": {
+      "digest": "d8159b4600c82f708ea10a7d99bb2fdd21c50e80ad96c7065829fd7592a7efcd",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "162401": {
+      "digest": "f3697e6a59a876d68ca04565d8c28acf0c7db5e2decfc17113fafba4d9838644",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "162402": {
+      "digest": "d2d895a590b7e70b3f6f06e02eb15f700e665dfc26841980c2f9e92c303f86e2",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "162403": {
+      "digest": "07d3d967f903b6e56e5e924bf5900daaa096a3201be520a83d55c8028d8c00c9",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "216562": {
+      "digest": "f0b72b178172a742c46479c93d9ef395cf114c7bcc791c026bbbb16a87a20437",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "216563": {
+      "digest": "c4a1d5ce72ccd3c445322517b13ad64e818a732a7abce0c0844424f9280856a5",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "214976": {
+      "digest": "cc09f18b4176dbe3c903db3063e1240568222948f3310326aeaaec2bf7c0a72b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "document-or-model-scope",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "The API refers to Attachment F. The reviewed FDA notice supplies fifteen cord lots; use that exact list, not a continuous range."
+      ]
+    },
+    "214977": {
+      "digest": "0a67bbabc5ae8c28ee8fbe254d7ca6cc7b180aa0060bd405016a308d4b2f264a",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "document-or-model-scope",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "The API refers to Attachment F; this is a power-cord locking action, not a blanket removal of the MPU itself."
+      ]
+    },
+    "212942": {
+      "digest": "4df4d9899d909afcb298e4650e1316a5972e19650cbe2d15e5d67108afb248a9",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "207286": {
+      "digest": "50e55831eab0c890774e5c772723d48ee4883889611a03b3e12333ff57bae21d",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "206012": {
+      "digest": "260b5a04e4d0bd92ad92582dbc023bd3973ed10f97683cdee4c8c070c1d28ef2",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "154745": {
+      "digest": "37b97f1ccbde461070d4b1baf0170eb5f290918abf534511d7df3e13d3bdda72",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "154756": {
+      "digest": "852d9299bd2abe25337f99ec4af3790c1380183dfc4483cbcb1396bfc353d805",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "154757": {
+      "digest": "b42d6dd56569065c465109640438de8e84db86028e93fb1f2dd46aa488a0e3ce",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "125886": {
+      "digest": "e730882f86dcdbfa60684aa2e947d4e456267f5769f6565102cb2781fa7e5900",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "125888": {
+      "digest": "c601219d810d11818bd6659f62e2ea5d7dfb77f073bec23a80381f8b1575c674",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "125890": {
+      "digest": "ca4c0c9a4d3becebbbfc40d5a14b789a2d6f3dd350fc6888fd8c8c9ae73eec39",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "125889": {
+      "digest": "4e718e9e437a7f9748bcd1b1431dc3d2847195c0cb6972f8c422d2dc459bc326",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "107693": {
+      "digest": "744e5e94c06f5d31cb833eeb64ec7577891ca1c3a52da11bfc573b8d0ebfdd13",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "94299": {
+      "digest": "686cb77f42c77c6f9ea1becae0a541f42b214458f598c5fada77b47ebc27f76a",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "85865": {
+      "digest": "efacc9bae59c28a55a40d0b4c1e9f688bdeca33db4313e719db28558d85f6cc4",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+      ]
+    },
+    "74710": {
+      "digest": "9620ad21c43042b8d0f4b2086522d26f52483c5392aa06a2b31023e280a55e39",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "219089": {
+      "digest": "59f7e3f31669df9c426d2c0c5e53b53c2f217d922b32a997776fe7c94a545dde",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "209902": {
+      "digest": "a9f880506886fdf3b9b5afeef3c4319e373fc264e842ae221fbfb2538e04aec9",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "197684": {
+      "digest": "2b8d1f51643aafbdf00f4d7e8c61a2d178234b022c75ab83698411ec77eb9045",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "179604": {
+      "digest": "7ea9dde1195200c3f350ae4d5d2683a6e343f84d6117d099b76e5b7ea627647f",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "213404": {
+      "digest": "79e52765ae3371a6c48b183511baec6b226e36628170c5ca9d534b9343602314",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "209554": {
+      "digest": "3b775885cc13bb35f128b0c455db69643b866ca546de617ef376d8a7f2ae1683",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "202208": {
+      "digest": "cd705a8ab4a0882852d5ef65c9af7a39f00762102cc10cb927e558e9cdbf2960",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "192467": {
+      "digest": "dc4c7793931d61a53b1c8b4908157be08df5aae68cc72218e1d51985daad9004",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "172112": {
+      "digest": "a576e5efc119d0dcdaff6197def8116aa2b3a48e9ba7690c580c7452476d7c3c",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "132742": {
+      "digest": "7abbc6109aabe4596ceccd1447fa9759f439c7c36402308a9b8e4279d5c314ed",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "118510": {
+      "digest": "818a57d7a341bb294538daa3f763f5779e781c4050be733ae8353179aedef3c8",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "114942": {
+      "digest": "20c55ce10e39ee68d239307d479ccf3f9db309f86a9f75b35247aa53ab5d962d",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "165600": {
+      "digest": "be458397853852bed5fd826299b6d8f1a2b3f3914e28726b500eed5cf3bd56f5",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "188567": {
+      "digest": "f553087eadd9c7ca199828c913d09647ee5d9bee41513f6de6a84603067bd100",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "143617": {
+      "digest": "70a623a037e6d10be09ae53b22c203a3bbd262c37c966417a20795a3c3ece15e",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "172622": {
+      "digest": "b05bad21cac0395d9dc08bc2f9a499605a53bc2a171841f94eba9b0160311459",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "222202": {
+      "digest": "a378f99616286532b952a699f893828c73f79e3a770591849a77f58f2b01690b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "221301": {
+      "digest": "d4dbfe0413154f75692cfb0153df46a3a5e6837ccc7fe806b6823517e1cf20ad",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "221302": {
+      "digest": "70c5705befa1deee53d5d490ccd24eaa43d6739614bf5765e3c959861b7d7345",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "212204": {
+      "digest": "5bfc1f69e70ad290a29444e5bc5d428ccb21093c59bf50a701c4298ab2d1ac38",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+      ]
+    },
+    "212391": {
+      "digest": "1b1989429b9ab60e3f8afbb27c751b543653bb436e27853a66e7719a185a1851",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+      ]
+    },
+    "180023": {
+      "digest": "3fb202c63451d8e421df65f5f2cf76f233546b40cda51b7e91b1e7318c1169ec",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "150126": {
+      "digest": "881402725fa77d9ee37b27e3bde9b7f82128ef726e140dba71a124efeb419530",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "150201": {
+      "digest": "373291b82b0945ae42f88fccc6354801ae4e77988afec63831cf866897e6ddd6",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "150202": {
+      "digest": "287157c7a4f4d1f505f8efc8f4f2aae4084e514af258aef9b8387300e195cd66",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "150203": {
+      "digest": "1333ce51984adabb65557a90481aa22d94e38d0947ad0717a479c4ebbb8b6872",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "140075": {
+      "digest": "40997ee7859f872ae9c495e5f2d567b44747f7f8cd2087c2b37a20875a4a346a",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "126573": {
+      "digest": "5bece66fb9ccb8d1107650084b3cc8c3ea8e28b06cff2db9a929644a0bdd361a",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "120283": {
+      "digest": "0a2d422d3d5bbadb5c8ec7ed1d8540b9c9f9aedbd26e93b980b3e06eec27b023",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+      ]
+    },
+    "188691": {
+      "digest": "3980114e7c7a0397cfe8156cc325b70c4faabc33ccda289f355f831e5f550379",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "188730": {
+      "digest": "38c3899d63aaaaef003d693de39248a61ddf7989aa544761b0668e543b32c50a",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "117571": {
+      "digest": "0f85ec6d325798981d6a22be07e5b7b73100027e374882fca074ebe8a44fb3a0",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "117653": {
+      "digest": "1a485f6357b044989cf82422cf40f4050adb71a95fe5c192057686a16dfb9311",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "185929": {
+      "digest": "118c4c8c636ec95c331b2ab326162782f485e44ddef466770711449db36ff4e5",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "212553": {
+      "digest": "42f818db505fd443f90f9dd4edf950b7df436253abb0ded19479228b547e8eaf",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "210981": {
+      "digest": "4abc1ec1a6a11581599e4404a215c7a38af71b42d2655d664e6ae3692fbaf39b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "210751": {
+      "digest": "79b2747df737f4120b80cb9006692bac96f67b604d4cf79dad383d1888ba265c",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "210752": {
+      "digest": "2e52458b3682f582a48c033a5aa5207c60c9afd4ab483b5387e38df78e045c1e",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "203531": {
+      "digest": "3a6ca5ec79465518a5155b6a68d27fbe906ae68799be330ebc5f43a8108bdc9d",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198323": {
+      "digest": "f902b1e2dcaac1f252ead4457624561b73d4427f930afdefa8ef50f180c3ffa6",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198324": {
+      "digest": "4d1c7483136114dea35f4a3577ced5b5c6e2f20b76f53d2f2bf1bd02074bb253",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198325": {
+      "digest": "e0655527bbaaa189e060511dc14531e4099b0910bd66aac37dca656a8fd66b7b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198346": {
+      "digest": "fe661b4a64ad28e1e80d12f3f56eea636ed0850c5fa93a73656d25bc83838976",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198347": {
+      "digest": "545293392f7496e86599b9d80d2dc7946fbf20066f0a84b135a7b0fcbfea117c",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198348": {
+      "digest": "5f4703167880c4dd8c5afd439787857f6702d2d4d11db77162c50792f4ab4959",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "198349": {
+      "digest": "fd7d150d83143ac66bc0dded5e36dbdf237a74ed605956582f952bd4aff785c5",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "164914": {
+      "digest": "e9a1f920003384c2cb43c6ba44eca757f901c5396eb4a8dbca6defe2d457c8c3",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "163588": {
+      "digest": "56aefae103842e60b6afa127d2e2fc0b9288929fcd113cc3ea357d8c3a7ae699",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "163589": {
+      "digest": "1ffd18d1d6c67a8dc92ef6b0554bcda7d82454828ad46aff0d6e41c20957cb22",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "163590": {
+      "digest": "5a358630475eece69c5fb4a557323de3d768a6f0bd09da26a9618d020594b089",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "163593": {
+      "digest": "a1de50779673fec395be00c781cf5b3ba7f436b979d15dfe40074e2e7f9d85b9",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "163595": {
+      "digest": "dcecb2fa64960d54eb72bfd09d4a0eb2e47fcc5c5bfa10fbb8fd13eef70915ed",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "118703": {
+      "digest": "dd8dda9f020d4fa7142a99f1f88e1a41061f75f0cd1e5ae807444180cc2e158a",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "220369": {
+      "digest": "d72665ba1eb90711751e68c38785f7082fa09024c79109ce6199295249f1312e",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "220607": {
+      "digest": "a71b9c957a8c635c9a7fa2daf9e1ad15af5e088556cedbd7768b6e22ec5c2662",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "207939": {
+      "digest": "8e5a38a967b2521b4195114b9fb9d0e65096e2125a0d99afd80ca966eaf48e47",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "165291": {
+      "digest": "4fb893daba70646623993c5e87c217e852a5ccef55818b9f6a6e80db2bb9faf1",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "139666": {
+      "digest": "c8bb8b4aeda4091feedd7297c625b9be57da47d3e6ce22a1098379efaa4cab7e",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "139706": {
+      "digest": "57f4482e5bd86a08c464a2755697b418845061268d24daec95325ece4ee17e23",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "150431": {
+      "digest": "24bd7a92445a12a3aff50c80c54d7d499ee581c6eb06dec5535de37c776c8048",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "145307": {
+      "digest": "795193f6bf399e2fb8971f381e1a41b0953714a0487704236f6b0bfe59c81e35",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "143221": {
+      "digest": "71974d6816649c9467dcd29fe1b23d992c265e1a969dceb3182e42ba0dfa7d49",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+      ]
+    },
+    "143228": {
+      "digest": "baad9784b6531c235f4f19bb76a317446ee7e86c09b61fc926e54b414750c157",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "The product field identifies IPG 2412, while the reason repeats model 2408. Do not resolve this inconsistency by name matching.",
+        "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+      ]
+    },
+    "143234": {
+      "digest": "a008fdc26e2224c61d6279a0b8207db58dba4d16dcfa63141ac9e2ce209da27b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": [
+        "The product is the external trial stimulator 3400 while the reason repeats implanted IPG 2408; assess the named product and original action separately.",
+        "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+      ]
+    },
+    "193161": {
+      "digest": "f4a96aba973509e0468ce726ef4b22ade74ac3757426ef79478a45551e61d8fb",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "174651": {
+      "digest": "982686834e962551c13185e29086ecc9e46b423fe115ed55eee4c61f0dac0ae8",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "174653": {
+      "digest": "79605455d9f8cd80290adb85aeab7ad3d8049fa6af81b9816a0cb78998772153",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "174655": {
+      "digest": "d066c2d5dd61f5520ec85e6154d16e689362daccf108c1bf5af63b1e44a1ff2b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "174656": {
+      "digest": "dfda90f90b3d46c23a9d98302a3bd0e168f97b176b3c514ce9953b1cbc5cf456",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "160257": {
+      "digest": "d987118e460d59a81c2583fc075a4e18288dc59694667a7bee9a1bd91faa94fb",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "170314": {
+      "digest": "cff5ee1236e43d2654afe66a6e84d2f835f01221eeeeaa2f32a9407527d067bb",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "165357": {
+      "digest": "36e6897196be471b9dbe3d36828d40e01b72688d5fec663f0b355bfd051c4a45",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "175692": {
+      "digest": "436f662a3a5580f3ecb16295c69eb88a5a641eed8b1ed1d1943f751307388d38",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "175735": {
+      "digest": "ee23c7e6fbe86753d57999820592a9101c8f4a37f5423aebf8af512fa4e2b190",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "187970": {
+      "digest": "f26e5d983e0ca8a0e5a8af1899f015f336b39948720547e87eedf33bbb06c04b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "203609": {
+      "digest": "d837f21d2948f41122c8cf7af59e65d5b9db37a31a08580e1941cf9892628411",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "188522": {
+      "digest": "71e911c3e2a48ad2806ea6d618d79841ad20f06352a8c0b94b8205094e781af9",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "188523": {
+      "digest": "c16994405916ead6872f2ec1d3e8d72df2cfe9f4c4326691c2042d475bbb4cfd",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "218620": {
+      "digest": "fdde1b781427e66351ce53c707ebe16c1407df91be4b98be0ee83190bb3da029",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "218970": {
+      "digest": "0ed9f014372415d2f31567525cfd7fb250cb20ecc91d66351132364f69e7f30c",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "210265": {
+      "digest": "36683219a65a7a04490f9e435b2d006112f7a5f22c6421dde1b479a893765b78",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "212010": {
+      "digest": "f6731181a410cd1f447ba4012d0784935c5368e1add870803371538e92206226",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "212012": {
+      "digest": "5cf8f76552845212fb74f8dfdc9aacede71ec86094476a258101c965c8fa8d70",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "176637": {
+      "digest": "61b44563e6796bc57ef2e4110b01ff38273ffe0e58c5b1203a9913fc8b726580",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "142446": {
+      "digest": "4c90bfb1b96ad43d3318ae484f38b4f38baff1ba6c4c3b6b915588925926c58b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "141995": {
+      "digest": "7a5f70c1495ca1e8547c68f78eaad4995c4d492be56920535d28e2becf4d05dd",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "140876": {
+      "digest": "c7b4b93e3db37c83270bc9c69af28d0d42956072c1920b6ac29e3ec1ad462767",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "131684": {
+      "digest": "b7b8c4bd70938e8bf2d66548d5176935af754c7fa4f78250bc9db10ecf4a4eb9",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "103797": {
+      "digest": "b2358863786a304c89e30eedb8eafa5a587ab4a349bb8b4ea8d329a871d71eba",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "document-or-model-scope",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "101351": {
+      "digest": "ed98293c2f09d81801ad800f68971c8db6612ebb61ecb141c1e8f236968dfded",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "101368": {
+      "digest": "d8d4455db5b9ea2e8e99821f317ac1283e49dffad606dff6e2bd15fec6101927",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "90873": {
+      "digest": "c795bfd51dce88ee6c619d89e4cefc25820108ec70e8244a11ebe83866578ca4",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "69505": {
+      "digest": "7b2058898b647d463b6756f031d0838e62dacf11ca98d2c7ea59b62cc006d3d7",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "69509": {
+      "digest": "de1cca6637f66f198205088d48f8c2321bc40d0a3d094ef9e15077c62841b06e",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "52217": {
+      "digest": "1ddad59a5bacde37c8a487aeb47e5ffe1388b38a99a0213b7c0a445e9710fc6b",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "52219": {
+      "digest": "e4e4d33f10e0d060c46038fde4dde93e3c71a23f2cb7438de46ec0cf8106d71f",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "52220": {
+      "digest": "ff5dde4e1888ec041465a37848d8508742918610853c8907cc04708d60fa942c",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "broad-scope-within-named-product",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "49143": {
+      "digest": "f2e6c23f1487468e20843cf9280347b974582c0a403069af1629b46c4af4aad1",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "49144": {
+      "digest": "c541d4d6cc317dd46a466c4ed0ef4bc540dd90c30c5cb90fd3203ad6e4b884ed",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "171848": {
+      "digest": "52ca421fbdfd7f5c2a7d3c5cf8c12c9eeaff1eaedf8731ec4f5f05531bb86355",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "184052": {
+      "digest": "ac03a1bf5964b1425ae1f474bb9498ce1944162c48f73f6e693f5e8ad09ac885",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "191291": {
+      "digest": "9fb1bf1e8e3be1f0ae1a05674b2b3c6afb2b77e045082be4f33d56dd89f99eb8",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "160846": {
+      "digest": "564f835e96ea9e51eb2e9a457219e1ca03b8a52aa034c4e2a690c9b68f765955",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "177461": {
+      "digest": "e914030c9b61c50e3f3b0e52132041c2cc91e23aad5b95223df84b44626da814",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "177027": {
+      "digest": "69a93ad9f29df2f4de8aa494561c83096d601dd75ab38e0fad06ccd56774570e",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "177028": {
+      "digest": "a63282af8367d3ebae89490f51d515b3a14ed7de89a11e2c5e98f88de3b764fe",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "range-or-condition",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "179092": {
+      "digest": "274cd1608eff65c88a0c2772eb27bb53edd9adc6473a2250a37b17fe1e9edb6e",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "179188": {
+      "digest": "085280d8c41e3b1df32d0b88a56868da633ceb549f9494feb51b381d02cb9180",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "164316": {
+      "digest": "77971adcf7aa37979b5a3257ea19f2f3bfcc219a8d714c4cff2be8f8ca369943",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "165408": {
+      "digest": "67ebaae2f8f083d02e99978ea328e3b60f351c6c9657ea4de49d29950d6f912a",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "157560": {
+      "digest": "6f6531900f0ca66f9d83699015570abd67917b724ef12e93beaf520f7d806ab4",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    },
+    "157567": {
+      "digest": "023e58b137bbfabe1c6bfe6b928cf8caff7cb4206f23c3b379e5b4f00023d71d",
+      "reviewedAt": "2026-10-22",
+      "state": "source-fields-audited",
+      "scopeKind": "listed-identifiers",
+      "unitApplicability": "not-determined",
+      "flags": []
+    }
+  },
+  "unresolvedReferences": {
+    "141612": {
+      "reviewedAt": "2026-10-22",
+      "status": "identifier-unresolved",
+      "scope": "RADIESSE+ lidocaine 1.5cc, P/N 8063M0K1, lot 100083189. Incorrect encoded UDI expiry; source action refers to the printed USE BEFORE date.",
+      "finding": "The original FDA page also says P050052/SO52 (letter O). Product context is documented, but the malformed identifier is not silently repaired.",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=141612",
+      "digest": "91909201231d6a3d6ad6b56a3b461b9df9526fffd625bf10fd52a7c303a08c5e"
+    },
+    "122048": {
+      "reviewedAt": "2026-10-22",
+      "status": "identifier-unresolved",
+      "scope": "Valiant/Talent with Captivia; source lists TB/TF/TW/TA/VAM catalog patterns and international distribution. Flushing difficulty prompted an information letter.",
+      "finding": "The original FDA page also says P100040/P070. Product context is documented, but the malformed application suffix remains excluded from accepted joins.",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=122048",
+      "digest": "8b8ebf41a4456cb20b6a5081fc612766a3a3ee04a40797c76a6006249751130d"
+    }
+  }
+}

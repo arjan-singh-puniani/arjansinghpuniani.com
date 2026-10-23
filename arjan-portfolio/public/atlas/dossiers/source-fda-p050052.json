@@ -2240,7 +2240,7 @@
   },
   "labeling": {
     "state": "unavailable",
-    "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+    "detail": "0 original labeling link(s); 17 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
     "documents": 0,
     "changes": 17,
     "rows": [],
@@ -2272,15 +2272,15 @@
       "P050052S006"
     ],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
   },
   "safety": {
     "state": "checked",
-    "detail": "3 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "detail": "3 application-linked recall record(s): source fields audited, exact FDA model/lot text preserved. Individual unit applicability is not determined.",
     "recalls": 3,
     "rows": [
       {
@@ -2300,7 +2300,15 @@
           "P050052"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=146973",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "52696f37555f93abb93b8a963a7784bcaf893bb55b7a6baf078daab4bf876e6e",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "104304",
@@ -2319,7 +2327,17 @@
           "P050052"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=104304",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "9b895d25644d7c72fa9023cf6a5f938d066b420eb641dd1c74da6354cbff32fe",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+          ]
+        }
       },
       {
         "cfres_id": "99710",
@@ -2338,7 +2356,17 @@
           "P050052"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=99710",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "1d8eacfedc7d7732619b4c962246d9018b3c1d60e28d44a0379ca27028f95a47",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "FDA code/product fields say lot 1024417 but the reason says 1034417. Original detail page confirms the conflict; manufacturer confirmation is required."
+          ]
+        }
       }
     ],
     "sources": [
@@ -2376,12 +2404,21 @@
       }
     ],
     "noticeCandidates": [],
+    "noticeReviews": [],
     "unresolvedReferences": [
       {
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=141612",
         "identifiers": [
           "P050052/SO52"
-        ]
+        ],
+        "assessment": {
+          "reviewedAt": "2026-10-22",
+          "status": "identifier-unresolved",
+          "scope": "RADIESSE+ lidocaine 1.5cc, P/N 8063M0K1, lot 100083189. Incorrect encoded UDI expiry; source action refers to the printed USE BEFORE date.",
+          "finding": "The original FDA page also says P050052/SO52 (letter O). Product context is documented, but the malformed identifier is not silently repaired.",
+          "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=141612",
+          "digest": "91909201231d6a3d6ad6b56a3b461b9df9526fffd625bf10fd52a7c303a08c5e"
+        }
       }
     ],
     "screenedTerms": [],
@@ -2457,20 +2494,55 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
-  "modelLotReview": "pending",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "published-ifu-reviewed",
+    "scope": "RADIESSE without lidocaine; face/décolleté document separate from hand and RADIESSE+",
+    "revision": "Manufacturer PDF published April 2026",
+    "models": [],
+    "findings": [
+      {
+        "text": "Intravascular injection can cause blindness, stroke or tissue necrosis. Severe allergies, component sensitivity and bleeding disorders exclude use.",
+        "sourceUrl": "https://radiesse.com/wp-content/uploads/2026/04/instructions-for-use-radiesse-decollete.pdf",
+        "locator": "Sections 3–4; PDF p.2"
+      },
+      {
+        "text": "Active local infection/inflammation requires deferral. Lip injection safety is not established and nodules have been reported; CaHA can be visible on imaging.",
+        "sourceUrl": "https://radiesse.com/wp-content/uploads/2026/04/instructions-for-use-radiesse-decollete.pdf",
+        "locator": "Sections 3–4; PDF p.2"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://radiesse.com/wp-content/uploads/2026/04/instructions-for-use-radiesse-decollete.pdf",
+        "title": "RADIESSE manufacturer published IFU",
+        "locator": "Sections 3–4; PDF p.2",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "The published document includes a specific diluted décolleté indication. Hand use has a dedicated IFU and RADIESSE+ adds lidocaine; neither should inherit all instructions from this document."
+    ]
+  },
+  "currentLabelReview": "published-ifu-reviewed",
+  "noticeReview": "screened-candidates-reviewed",
+  "modelLotReview": "source-fields-audited",
   "sourceLinks": [
+    {
+      "title": "Application-linked recall (FDA-reported scope)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=146973"
+    },
     {
       "title": "Original FDA decision",
       "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P050052"
     },
     {
-      "title": "Application-linked recall (applicability pending)",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=146973"
+      "title": "RADIESSE manufacturer published IFU",
+      "url": "https://radiesse.com/wp-content/uploads/2026/04/instructions-for-use-radiesse-decollete.pdf"
     }
   ],
   "path": "/dossiers/source-fda-p050052.json",
@@ -2479,13 +2551,10 @@
   ],
   "researchEvidence": [],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "The published document includes a specific diluted décolleté indication. Hand use has a dedicated IFU and RADIESSE+ adds lidocaine; neither should inherit all instructions from this document.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

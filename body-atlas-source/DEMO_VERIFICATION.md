@@ -72,3 +72,16 @@ From `arjan-portfolio`, both `node tests/body-atlas-dossiers.browser.mjs http://
 Results: `validation/dossier-dossiers-local-2026-10-22.json` and `validation/dossier-workflow-local-2026-10-22.json`. Browser screenshots remain generated artifacts. Physical phones/Safari and comprehensive current-label/model-lot clinical review remain unverified. See [DOSSIERS.md](DOSSIERS.md) for exact scientific coverage.
 
 Portfolio CLI lint passes with **0 errors and 14 existing warnings** in generated Rally House files. Generated `public/atlas/_next/` bundles are excluded from source lint; the maintained atlas TypeScript, unit checks and build are verified separately. The dossier branch incorporates the already merged Rally House update without editing its files.
+
+## Labeling and safety follow-up — 2026-10-22
+
+Supersedes the earlier blanket pending status: all 91 entries have model-scoped source assessments; 349 recall source-field audits and 15 notice-scope decisions are recorded. Five original-label gaps were closed (105 links / 76 entries). Three product-specific label gaps remain, and historical or model-limited sources are not certified as complete current IFUs. Individual unit applicability remains undetermined. Full methodology, original links, exceptions and the 91-entry ledger: [LABELING_SAFETY_REVIEW.md](LABELING_SAFETY_REVIEW.md).
+
+
+## Final local verification — 2026-10-22
+
+- Atlas `npm test`: 45 passed; `npm run test:ingestion`: 36 passed; typecheck passed.
+- Portfolio `npm test`: 95 passed; typecheck and production build passed. Static atlas webpack export passed. Original standalone default production build passed. The maintained-source checkout uses external symlinked dependencies locally; its default Turbopack build cannot resolve that workspace root, so the documented static exporter is the verified build path there.
+- `node tests/body-atlas-dossiers.browser.mjs http://127.0.0.1:3210`: all 91 dossiers on desktop and mobile, 91 source-linked findings/status checks per viewport, full-text model/lot search, stable entry links, brief citations, keyboard tabs and simulated outage/retry recovery passed. Zero Axe violations or browser errors. Local selection-to-dossier p95: desktop 228 ms; mobile 117 ms. These are local measurements, not a production SLA.
+- `node tests/body-atlas.browser.mjs http://127.0.0.1:3210`: 75 expanded explanations/region cases per viewport, anatomical model, source hash checks, retrieval, brief export and existing portfolio routes passed. Mobile testing is Chrome viewport/touch emulation, not a physical device or Safari.
+- No independent clinical signoff, complete latest-IFU certification or individual-unit safety determination was performed. Three product-specific label gaps and historical/model-limited sources remain visible.

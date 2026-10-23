@@ -1135,7 +1135,7 @@
   },
   "labeling": {
     "state": "located",
-    "detail": "2 original labeling document link(s) located; 9 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "detail": "2 original labeling link(s); 9 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
     "documents": 2,
     "changes": 9,
     "rows": [
@@ -1187,15 +1187,15 @@
       "P130013S005"
     ],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
   },
   "safety": {
     "state": "checked",
-    "detail": "2 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "detail": "2 application-linked recall record(s): source fields audited, exact FDA model/lot text preserved. Individual unit applicability is not determined.",
     "recalls": 2,
     "rows": [
       {
@@ -1215,7 +1215,15 @@
           "P130013"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=139666",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "c8bb8b4aeda4091feedd7297c625b9be57da47d3e6ce22a1098379efaa4cab7e",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "139706",
@@ -1234,7 +1242,15 @@
           "P130013"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=139706",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "57f4482e5bd86a08c464a2755697b418845061268d24daec95325ece4ee17e23",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       }
     ],
     "sources": [
@@ -1281,7 +1297,21 @@
         "matchedTerms": [
           "watchman"
         ],
-        "review": "Candidate: title or class context only; model/application applicability not established"
+        "review": "component-specific: Listed WATCHMAN TruSeal, fixed-curve and TruSteer access systems; all lots of listed material numbers. Procedure/access-system warning, not evidence that every implanted WATCHMAN closure device should be removed."
+      }
+    ],
+    "noticeReviews": [
+      {
+        "familyIds": [
+          "source-fda-p130013"
+        ],
+        "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/vascular-access-systems-correction-boston-scientific-updates-use-instructions-watchman-access",
+        "status": "component-specific",
+        "scope": "Listed WATCHMAN TruSeal, fixed-curve and TruSteer access systems; all lots of listed material numbers.",
+        "finding": "The IFU correction addresses air ingress/embolism during transseptal procedures, especially without positive-pressure ventilation. FDA says already implanted patients need no extra management for this issue.",
+        "limitation": "Procedure/access-system warning, not evidence that every implanted WATCHMAN closure device should be removed.",
+        "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+        "reviewedAt": "2026-10-22"
       }
     ],
     "unresolvedReferences": [],
@@ -1360,28 +1390,67 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
-  "modelLotReview": "pending",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "model-limited-source-review",
+    "scope": "WATCHMAN FLX brief safety summary; original WATCHMAN and FLX Pro distinguished",
+    "revision": null,
+    "models": [],
+    "findings": [
+      {
+        "text": "Intracardiac thrombus, unsuitable appendage anatomy, specified septal closure devices, material sensitivity and contraindicated postprocedure antithrombotic treatment can exclude FLX use.",
+        "sourceUrl": "https://www.watchman.com/content/dam/watchman/downloads/download-center/watchman-flx/WATCHMAN_FLX_Product_Brochure.pdf",
+        "locator": "Contraindications; warnings; precautions"
+      },
+      {
+        "text": "Thin appendage tissue can be injured during access/deployment. Appropriate sizing, imaging, training and postimplant drug treatment are required.",
+        "sourceUrl": "https://www.watchman.com/content/dam/watchman/downloads/download-center/watchman-flx/WATCHMAN_FLX_Product_Brochure.pdf",
+        "locator": "Contraindications; warnings; precautions"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.watchman.com/content/dam/watchman/downloads/download-center/watchman-flx/WATCHMAN_FLX_Product_Brochure.pdf",
+        "title": "WATCHMAN FLX manufacturer brief summary",
+        "locator": "Contraindications; warnings; precautions",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "The brief summary is for FLX, not a complete current IFU for every WATCHMAN generation or a guarantee that anticoagulation is unnecessary."
+    ]
+  },
+  "currentLabelReview": "model-limited-source-review",
+  "noticeReview": "screened-candidates-reviewed",
+  "modelLotReview": "source-fields-audited",
   "sourceLinks": [
     {
-      "title": "Original FDA decision",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130013"
-    },
-    {
-      "title": "Original labeling",
-      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf13/P130013C.pdf"
+      "title": "Application-linked recall (FDA-reported scope)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=139666"
     },
     {
       "title": "Original labeling",
       "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf13/P130013D.pdf"
     },
     {
-      "title": "Application-linked recall (applicability pending)",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=139666"
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf13/P130013C.pdf"
+    },
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P130013"
+    },
+    {
+      "title": "Reviewed FDA safety notice",
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/vascular-access-systems-correction-boston-scientific-updates-use-instructions-watchman-access"
+    },
+    {
+      "title": "WATCHMAN FLX manufacturer brief summary",
+      "url": "https://www.watchman.com/content/dam/watchman/downloads/download-center/watchman-flx/WATCHMAN_FLX_Product_Brochure.pdf"
     }
   ],
   "path": "/dossiers/source-fda-p130013.json",
@@ -1390,13 +1459,10 @@
   ],
   "researchEvidence": [],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "The brief summary is for FLX, not a complete current IFU for every WATCHMAN generation or a guarantee that anticoagulation is unnecessary.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }
