@@ -33,10 +33,11 @@ const asset=inspectCharacterAsset(bytes.buffer.slice(bytes.byteOffset,bytes.byte
 }
 assert.deepEqual(asset.primitives.map(p=>p.materialSlot),['skin','kit','skirt','shoes','eyes','hair']);const body=asset.primitives[0].geometry;assert(asset.primitives.reduce((n,p)=>n+p.geometry.positions.length/9,0)<40000);
 for(const p of asset.primitives){assert(p.geometry.uvs?.every(Number.isFinite));assert(p.albedo);if(['eyes','hair','brows','lashes'].includes(p.materialSlot))assert.equal(p.alphaCutoff,.35);if(['skin','eyes','hair','skirt'].includes(p.materialSlot)){assert.equal(p.geometry.morphs.length,5);assert(p.geometry.morphs.every(d=>d.length===p.geometry.positions.length&&d.every(Number.isFinite)));assert.equal(p.geometry.morphNormals.length,5);assert(p.geometry.morphNormals.every(d=>d.length===p.geometry.positions.length&&d.every(n=>Number.isFinite(n)&&Math.abs(n)<=2.01)));}}
+// The refined jersey hem curves; its duplicated vertices must still share normals.
 for(const slot of ['kit','skirt']){
  const g=asset.primitives.find(p=>p.materialSlot===slot).geometry,vertices=[];for(let i=0;i<g.positions.length/3;i++)if(slot==='skirt'||(g.uvs[i*2+1]>.55&&[0,1,2,3].reduce((sum,j)=>sum+([BONE.pelvis,BONE.spine,BONE.chest,BONE.neck].includes(g.boneIndices[i*4+j])?g.boneWeights[i*4+j]:0),0)>.95))vertices.push(i);
  const hem=Math.min(...vertices.map(i=>g.positions[i*3+1])),seen=new Map();let pairs=0;
- for(const i of vertices){if(Math.abs(g.positions[i*3+1]-hem)>1e-5)continue;const key=[...g.positions.slice(i*3,i*3+3)].map(n=>n.toFixed(6)).join(','),previous=seen.get(key);if(previous===undefined){seen.set(key,i);continue;}for(const normals of [g.normals,...(g.morphNormals??[])])assert(Math.hypot(...normals.slice(i*3,i*3+3).map((n,j)=>n-normals[previous*3+j]))<1e-5,'trimmed cloth hem must shade continuously, including its corrective');pairs++;}
+ for(const i of vertices){if(Math.abs(g.positions[i*3+1]-hem)>(slot==='kit'?.035:1e-5))continue;const key=[...g.positions.slice(i*3,i*3+3)].map(n=>n.toFixed(6)).join(','),previous=seen.get(key);if(previous===undefined){seen.set(key,i);continue;}for(const normals of [g.normals,...(g.morphNormals??[])])assert(Math.hypot(...normals.slice(i*3,i*3+3).map((n,j)=>n-normals[previous*3+j]))<1e-5,'trimmed cloth hem must shade continuously, including its corrective');pairs++;}
  assert(pairs>50,'inspect actual shared hem vertices');
 }
 const rest=Object.fromEntries(Object.entries(meta.bind).map(([key,p])=>[key,new Vec3(...p)]));rest.headUp=new Vec3(0,1,0);
@@ -311,13 +312,15 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
  for(const hz of [30,60,120]){
   const actor=new Character(playerSpec('taylor'),new Vec3(),new Navigation([]),{});actor.matchCompetitor=true;actor.racketStowed=false;actor.setAnimation('ready');actor.update(.3);actor.setIncomingContact(new Vec3(-.6,1.02,.9));actor.triggerShot('swingBackhand',new Vec3(0,.09,5));for(let i=0;i<hz*.2;i++)actor.update(1/hz);
   const m=actor.meshes().find(m=>m.rig&&m.material==='performanceKnit'&&!m.skirt),g=m.skin;
-  assert(Math.abs(g.positions[1677*3]-.259878367)<1e-6,'Jersey topology changed: review the shoulder regression panels');
-  const panels=[1677,1824].map(start=>[0,1,2].map(offset=>{
+  // Locate the same physical sleeve/chest panels after the jersey surface was refined.
+  const centers=[new Vec3(.260604,1.823410,.086454),new Vec3(.180130,1.855895,.149114)];
+  const patches=centers.map(center=>{const starts=[];for(let v=0;v<g.positions.length/3;v+=3){const midpoint=[0,1,2].reduce((p,k)=>p.add(new Vec3(...g.positions.slice((v+k)*3,(v+k+1)*3))),new Vec3()).scale(1/3);if(Vec3.sub(midpoint,center).len()<.018)starts.push(v);}assert(starts.length,'Inspect the emitted shoulder regression patch');return starts;});
+  const panels=patches.map(starts=>starts.map(start=>[0,1,2].map(offset=>{
    const v=start+offset,point=new Vec3(...g.positions.slice(v*3,v*3+3)),out=new Vec3();
    for(let j=0;j<4;j++){const weight=g.boneWeights[v*4+j];if(weight){const q=transformPoint(m.boneMatrices.slice(g.boneIndices[v*4+j]*16,g.boneIndices[v*4+j]*16+16),point);out.add(new Vec3(q.x,q.y,q.z).scale(weight));}}
    return out;
-  }));
-  assert(!panels.some((tri,i)=>tri.some((from,j)=>segmentHits(panels[1-i],from,tri[(j+1)%3]))),'Loaded backhand sleeve must not pass through the front shoulder panel');
+  })));
+  assert(!panels[0].some(a=>panels[1].some(b=>[a,b].some((tri,i)=>tri.some((from,j)=>segmentHits(i?a:b,from,tri[(j+1)%3]))))),'Loaded backhand sleeve must not pass through the front shoulder panel');
  }
  console.log('Loaded backhand: front sleeve and shoulder panels remain separated at 30/60/120 Hz.');
 }
