@@ -254,7 +254,7 @@ test("brief preserves citations, anatomical distinctions, and uncertainty", () =
   assert.match(text, /P960009/);
   assert.match(text, /P150038/);
   assert.match(text, /SHA-256/);
-  assert.match(text, /current labeling review pending/);
+  assert.match(text, /Model scope limited/);
   assert.match(text, /not.*clinical recommendation/);
   assert.ok(!brief(["not-a-family"]).includes("undefined"));
 });

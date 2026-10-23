@@ -19,8 +19,8 @@
     "pages": [],
     "changeIds": [],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
@@ -32,6 +32,7 @@
     "rows": [],
     "sources": [],
     "noticeCandidates": [],
+    "noticeReviews": [],
     "unresolvedReferences": [],
     "screenedTerms": [],
     "indexes": [
@@ -106,28 +107,59 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "not-applicable",
-  "noticeReview": "partial",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "investigational",
+    "scope": "Focal cortical cooling research; intraoperative mapping evidence distinguished from chronic therapy",
+    "revision": null,
+    "models": [],
+    "findings": [
+      {
+        "text": "A retrospective study evaluated intraoperative cooling in 40 surgical patients and reported comparisons with other surgical cohorts.",
+        "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/33307258/",
+        "locator": "Abstract; methods and results"
+      },
+      {
+        "text": "This limited mapping evidence does not establish chronic implanted cooling safety, long-term epilepsy efficacy or authorization of the owner’s SeizeFreeze concept.",
+        "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/33307258/",
+        "locator": "Abstract; methods and results"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33307258/",
+        "title": "Ibayashi et al., focal cortical cooling mapping study",
+        "locator": "Abstract; methods and results",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "No commercial labeling or established marketing application is assigned. The registered mechanistic study and the older publication are separate evidence, not presumed results of one trial."
+    ]
+  },
+  "currentLabelReview": "investigational",
+  "noticeReview": "screened-candidates-reviewed",
   "modelLotReview": "not-established",
   "sourceLinks": [
     {
-      "title": "Research evidence: NCT06391294",
-      "url": "https://clinicaltrials.gov/study/NCT06391294"
+      "title": "Research evidence: PMID:38735427",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38735427/"
+    },
+    {
+      "title": "Ibayashi et al., focal cortical cooling mapping study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33307258/"
     },
     {
       "title": "Research evidence: PMID:25902001",
       "url": "https://pubmed.ncbi.nlm.nih.gov/25902001/"
     },
     {
-      "title": "Research evidence: PMID:33307258",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/33307258/"
-    },
-    {
-      "title": "Research evidence: PMID:38735427",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/38735427/"
+      "title": "Research evidence: NCT06391294",
+      "url": "https://clinicaltrials.gov/study/NCT06391294"
     }
   ],
   "path": "/dossiers/cooling.json",
@@ -292,13 +324,10 @@
     }
   ],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "No commercial labeling or established marketing application is assigned. The registered mechanistic study and the older publication are separate evidence, not presumed results of one trial.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

@@ -6939,7 +6939,7 @@
   },
   "labeling": {
     "state": "unavailable",
-    "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+    "detail": "0 original labeling link(s); 49 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
     "documents": 0,
     "changes": 49,
     "rows": [],
@@ -7003,15 +7003,15 @@
       "P960009S004"
     ],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
   },
   "safety": {
     "state": "checked",
-    "detail": "32 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "detail": "32 application-linked recall record(s): source fields audited, exact FDA model/lot text preserved. Individual unit applicability is not determined.",
     "recalls": 32,
     "rows": [
       {
@@ -7031,7 +7031,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=220167",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "971b9bbf740f8e51de4d9be1ecb86f18273aeefd3c9a1925346827f9b982217e",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "220169",
@@ -7050,7 +7058,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=220169",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "e8e62d928c1904f4d723f21d26da951a46991470f4acbb068aa1e0f75961389f",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "210340",
@@ -7069,7 +7085,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=210340",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "dd28b1ff44e0599394438aa74dbd55f7a01d78ca486f9b3bf71885e22ace35be",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "210373",
@@ -7088,7 +7112,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=210373",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "36bdaf3f5d09a8dd598a3d683105547a1d8f2d58b610196b2c7e6ec6026b36b1",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "203595",
@@ -7107,7 +7139,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=203595",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "2912640134e7ac752ec4758982f4bdce5a6edacbaf5b368224d749fffa38d7ec",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "203403",
@@ -7126,7 +7166,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=203403",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "7526d4d067f8aa945b09bbc10f82a7ffebd411a3f2a312b10238782a5fa40c8b",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "199300",
@@ -7145,7 +7193,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=199300",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "acdb687797d3973817866758d5685e214f4a19f8e97f80df505108908da38f06",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "135848",
@@ -7164,7 +7220,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=135848",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "02453771f5be1331fe1c6ae11deae9ef4e00e776a10901f8e3a396db66425f0e",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "129036",
@@ -7183,7 +7247,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=129036",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "6650b3aac494270b531a833b6c7b555d3eb530bfc6fe583fd40f996dc965c9d8",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "123722",
@@ -7202,7 +7274,17 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=123722",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "2d520780e6f6278b59675be83c07db72a2304d75e4f9df0d0392d43d35a0a217",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "document-or-model-scope",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "Scope supplies a first-market date rather than exact affected units; firmware/programming conditions must be checked in the original action."
+          ]
+        }
       },
       {
         "cfres_id": "126207",
@@ -7221,7 +7303,17 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=126207",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "31bb4a355d4d9e3a3bee45c9612d73539eb15d1822b963063522fc7a09b38fef",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "document-or-model-scope",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "Scope supplies a first-market date rather than exact affected units; firmware/programming conditions must be checked in the original action."
+          ]
+        }
       },
       {
         "cfres_id": "122514",
@@ -7240,7 +7332,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=122514",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "f0efb3242bfc0493d4cb2d8c264f5e076ca049bc59d211362fca22dcb28f7421",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "122449",
@@ -7259,7 +7359,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=122449",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "f9712cbf30c5f7a6a83058df74536ea15cb7d62debcf168ec9bb1afaa0b69f49",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "116147",
@@ -7278,7 +7386,17 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=116147",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "c1204d022d1b52c32592482d71ed5af88919b39e900b2024e27250fef83334c3",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+          ]
+        }
       },
       {
         "cfres_id": "114756",
@@ -7297,7 +7415,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=114756",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "ee55d7667544e253ceb0faa06ca285d984bb4e3090a02d05a27256a3652c198a",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "73342",
@@ -7316,7 +7442,17 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=73342",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "021d7b625434e83a03bfe6863274bcdf20c89ed7e1897e1787feca94f8700014",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+          ]
+        }
       },
       {
         "cfres_id": "73447",
@@ -7335,7 +7471,17 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=73447",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "37a544d771179a4bdb36192fb1d1a382b73668d20d221bc55313dd29eb4c75b2",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+          ]
+        }
       },
       {
         "cfres_id": "73448",
@@ -7354,7 +7500,17 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=73448",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "c702e0ceebbaee8d642cb071c3381cccb2c040cf6dd3b9dfe565641fcafa3701",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+          ]
+        }
       },
       {
         "cfres_id": "73449",
@@ -7373,7 +7529,17 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=73449",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "60e16376547a333fbd75c874b2021607b965d32957d18ab35e871d19be4b3492",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+          ]
+        }
       },
       {
         "cfres_id": "66257",
@@ -7392,7 +7558,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=66257",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "b9db51905ee9f6a4c0a7694adb8ec8982dc90e78610cd783900802db3b98f359",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "51935",
@@ -7411,7 +7585,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=51935",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "da9ca5bd6c5ea638ea82cbdabe49038e9aa5bdee1b296630e985cfc6866cd079",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "47276",
@@ -7430,7 +7612,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=47276",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "eb4b0dfe2504dee7dffba80f1d3fec57f93991b1ec8c50ecc86801753bb61579",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "range-or-condition",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "43204",
@@ -7449,7 +7639,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=43204",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "cf6d4622c8f81390db3ca93d5732afc9aee9c6fca07b1b0d90e3a86977ad490f",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "189466",
@@ -7468,7 +7666,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=189466",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "1053e9298fe12e0c032d1600cdafc9af98a0ab0cb34ad11cbbd27e11b645d9d5",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "190096",
@@ -7487,7 +7693,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=190096",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "f3c2bed84107523ac010fadcb1f02cbcca79eb11d27a368e00d9e7f403558b15",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "document-or-model-scope",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "189948",
@@ -7506,7 +7720,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=189948",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "a0af816d07af1ae51866f82c23a1d0d72d20c29e2da23b8715e2d8d2ca3f9e55",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "150430",
@@ -7525,7 +7747,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=150430",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "d7adcaeb074a86ce2130bb0a289bf442d41dd881cfb15502a1fb87c69cdd2b66",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "range-or-condition",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "193095",
@@ -7544,7 +7774,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=193095",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "7deb47ff3d76412079a47571f2d4be5ebee4cdf733992455dd36ca07c3085156",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "range-or-condition",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "186320",
@@ -7563,7 +7801,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=186320",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "83f54e883c2cb7f30e7f81ce19f4f68163f1df1b6578af7d1fda884679996da9",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "147876",
@@ -7582,7 +7828,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=147876",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "b0d56cdf78638c2b5713daa9912f026e952e33dfcd76944deace95bf3be043d8",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "147891",
@@ -7601,7 +7855,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=147891",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "852ffcfbc06f7e960f388b195bb95a0c8f804c222312c911a719e3f697556e41",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "158021",
@@ -7620,7 +7882,15 @@
           "P960009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=158021",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "12237cf7614ceb3bffb0f178ade212241cc83fb5a7bf71b968bb9a6036a365c6",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       }
     ],
     "sources": [
@@ -7658,6 +7928,7 @@
       }
     ],
     "noticeCandidates": [],
+    "noticeReviews": [],
     "unresolvedReferences": [],
     "screenedTerms": [
       "activa",
@@ -7735,20 +8006,60 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
-  "modelLotReview": "pending",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "model-limited-source-review",
+    "scope": "Original entry is Model 7424 / thalamic VIM; newer Activa, Soletra and Kinetra components have different MRI conditions.",
+    "revision": "US fact sheet 08/2024; safety text Rev 02/20",
+    "models": [
+      "Original Model 7424",
+      "Soletra 7426",
+      "Kinetra 7428",
+      "Activa SC 37602"
+    ],
+    "findings": [
+      {
+        "text": "Unapproved MRI conditions, broken conductors or abandoned components can produce lead heating and serious injury.",
+        "sourceUrl": "https://www.medtronic.com/content/dam/medtronic-wide/public/united-states/medical-specialties/pain-management/dbs-fact-sheet-mri-comparison.pdf",
+        "locator": "MRI contraindications, warnings and precautions"
+      },
+      {
+        "text": "MRI restrictions are component-specific; the statement names Soletra 7426, Kinetra 7428, Activa SC 37602 and pocket adapters 64001/64002.",
+        "sourceUrl": "https://www.medtronic.com/content/dam/medtronic-wide/public/united-states/medical-specialties/pain-management/dbs-fact-sheet-mri-comparison.pdf",
+        "locator": "MRI contraindications, warnings and precautions"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.medtronic.com/content/dam/medtronic-wide/public/united-states/medical-specialties/pain-management/dbs-fact-sheet-mri-comparison.pdf",
+        "title": "Medtronic DBS MRI safety statement",
+        "locator": "MRI contraindications, warnings and precautions",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "A current Model 7424-specific IFU was not established. Later-model MRI eligibility must not be inherited by the original entry."
+    ]
+  },
+  "currentLabelReview": "model-limited-source-review",
+  "noticeReview": "screened-candidates-reviewed",
+  "modelLotReview": "source-fields-audited",
   "sourceLinks": [
+    {
+      "title": "Application-linked recall (FDA-reported scope)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=220167"
+    },
     {
       "title": "Original FDA decision",
       "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P960009"
     },
     {
-      "title": "Application-linked recall (applicability pending)",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=220167"
+      "title": "Medtronic DBS MRI safety statement",
+      "url": "https://www.medtronic.com/content/dam/medtronic-wide/public/united-states/medical-specialties/pain-management/dbs-fact-sheet-mri-comparison.pdf"
     }
   ],
   "path": "/dossiers/activa.json",
@@ -7757,13 +8068,10 @@
   ],
   "researchEvidence": [],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "A current Model 7424-specific IFU was not established. Later-model MRI eligibility must not be inherited by the original entry.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

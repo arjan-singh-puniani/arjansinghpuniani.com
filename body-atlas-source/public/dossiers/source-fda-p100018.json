@@ -698,7 +698,7 @@
   },
   "labeling": {
     "state": "located",
-    "detail": "1 original labeling document link(s) located; 10 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "detail": "1 original labeling link(s); 10 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
     "documents": 1,
     "changes": 10,
     "rows": [
@@ -739,15 +739,15 @@
       "P100018S005"
     ],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
   },
   "safety": {
     "state": "checked",
-    "detail": "15 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "detail": "15 application-linked recall record(s): source fields audited, exact FDA model/lot text preserved. Individual unit applicability is not determined.",
     "recalls": 15,
     "rows": [
       {
@@ -767,7 +767,15 @@
           "P100018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=222202",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "a378f99616286532b952a699f893828c73f79e3a770591849a77f58f2b01690b",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "221301",
@@ -786,7 +794,15 @@
           "P100018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=221301",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "d4dbfe0413154f75692cfb0153df46a3a5e6837ccc7fe806b6823517e1cf20ad",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "221302",
@@ -805,7 +821,15 @@
           "P100018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=221302",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "70c5705befa1deee53d5d490ccd24eaa43d6739614bf5765e3c959861b7d7345",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "212204",
@@ -824,7 +848,17 @@
           "P100018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=212204",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "5bfc1f69e70ad290a29444e5bc5d428ccb21093c59bf50a701c4298ab2d1ac38",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+          ]
+        }
       },
       {
         "cfres_id": "212391",
@@ -843,7 +877,17 @@
           "P100018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=212391",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "1b1989429b9ab60e3f8afbb27c751b543653bb436e27853a66e7719a185a1851",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+          ]
+        }
       },
       {
         "cfres_id": "180023",
@@ -862,7 +906,15 @@
           "P100018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=180023",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "3fb202c63451d8e421df65f5f2cf76f233546b40cda51b7e91b1e7318c1169ec",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "150126",
@@ -881,7 +933,15 @@
           "P100018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=150126",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "881402725fa77d9ee37b27e3bde9b7f82128ef726e140dba71a124efeb419530",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "150201",
@@ -900,7 +960,15 @@
           "P100018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=150201",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "373291b82b0945ae42f88fccc6354801ae4e77988afec63831cf866897e6ddd6",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "150202",
@@ -919,7 +987,15 @@
           "P100018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=150202",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "287157c7a4f4d1f505f8efc8f4f2aae4084e514af258aef9b8387300e195cd66",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "150203",
@@ -938,7 +1014,15 @@
           "P100018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=150203",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "1333ce51984adabb65557a90481aa22d94e38d0947ad0717a479c4ebbb8b6872",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "140075",
@@ -957,7 +1041,15 @@
           "P100018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=140075",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "40997ee7859f872ae9c495e5f2d567b44747f7f8cd2087c2b37a20875a4a346a",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "126573",
@@ -976,7 +1068,15 @@
           "P100018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=126573",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "5bece66fb9ccb8d1107650084b3cc8c3ea8e28b06cff2db9a929644a0bdd361a",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "120283",
@@ -995,7 +1095,17 @@
           "P100018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=120283",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "0a2d422d3d5bbadb5c8ec7ed1d8540b9c9f9aedbd26e93b980b3e06eec27b023",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+          ]
+        }
       },
       {
         "cfres_id": "188691",
@@ -1014,7 +1124,15 @@
           "P100018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=188691",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "3980114e7c7a0397cfe8156cc325b70c4faabc33ccda289f355f831e5f550379",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "188730",
@@ -1033,7 +1151,15 @@
           "P100018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=188730",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "38c3899d63aaaaef003d693de39248a61ddf7989aa544761b0668e543b32c50a",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       }
     ],
     "sources": [
@@ -1080,7 +1206,21 @@
         "matchedTerms": [
           "pipeline"
         ],
-        "review": "Candidate: title or class context only; model/application applicability not established"
+        "review": "model-specific: Pipeline Vantage 027 removal versus Vantage 021 IFU correction; listed catalogs/lots B317266 through B817292. This is not a blanket recall of Pipeline Classic, Flex or every Shield device. Exact catalog, lot and updated IFU are required."
+      }
+    ],
+    "noticeReviews": [
+      {
+        "familyIds": [
+          "source-fda-p100018"
+        ],
+        "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/embolization-device-recall-and-correction-medtronic-removes-unused-027-compatible-pipeline-vantage",
+        "status": "model-specific",
+        "scope": "Pipeline Vantage 027 removal versus Vantage 021 IFU correction; listed catalogs/lots B317266 through B817292.",
+        "finding": "Incomplete wall apposition or braid deformation prompted removal of unused 027 devices and updated 021 deployment instructions. The two actions are distinct.",
+        "limitation": "This is not a blanket recall of Pipeline Classic, Flex or every Shield device. Exact catalog, lot and updated IFU are required.",
+        "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+        "reviewedAt": "2026-10-22"
       }
     ],
     "unresolvedReferences": [],
@@ -1159,24 +1299,63 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
-  "modelLotReview": "pending",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "model-limited-source-review",
+    "scope": "Pipeline Flex published US essential prescribing information; original and Shield variants separate",
+    "revision": null,
+    "models": [],
+    "findings": [
+      {
+        "text": "Active bacterial infection, absent/inappropriate dual-antiplatelet treatment, a pre-existing target parent-artery stent and vessel size outside the stated range are exclusions.",
+        "sourceUrl": "https://www.medtronic.com/content/dam/medtronic-wide/public/united-states/products/neurological/neurovascular/pipeline-clinical-data-summary.pdf",
+        "locator": "Contraindications; Warnings; Potential Complications"
+      },
+      {
+        "text": "Material hypersensitivity, stroke, intracranial hemorrhage, vessel injury and device migration are important risks.",
+        "sourceUrl": "https://www.medtronic.com/content/dam/medtronic-wide/public/united-states/products/neurological/neurovascular/pipeline-clinical-data-summary.pdf",
+        "locator": "Contraindications; Warnings; Potential Complications"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.medtronic.com/content/dam/medtronic-wide/public/united-states/products/neurological/neurovascular/pipeline-clinical-data-summary.pdf",
+        "title": "Medtronic Pipeline Flex essential prescribing information",
+        "locator": "Contraindications; Warnings; Potential Complications",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "This is a Flex brief statement. Original Pipeline, Flex with Shield and later configurations require their own device-supplied labels."
+    ]
+  },
+  "currentLabelReview": "model-limited-source-review",
+  "noticeReview": "screened-candidates-reviewed",
+  "modelLotReview": "source-fields-audited",
   "sourceLinks": [
     {
-      "title": "Original FDA decision",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018"
+      "title": "Application-linked recall (FDA-reported scope)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=222202"
     },
     {
       "title": "Original labeling",
       "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100018C.pdf"
     },
     {
-      "title": "Application-linked recall (applicability pending)",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=222202"
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100018"
+    },
+    {
+      "title": "Reviewed FDA safety notice",
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/embolization-device-recall-and-correction-medtronic-removes-unused-027-compatible-pipeline-vantage"
+    },
+    {
+      "title": "Medtronic Pipeline Flex essential prescribing information",
+      "url": "https://www.medtronic.com/content/dam/medtronic-wide/public/united-states/products/neurological/neurovascular/pipeline-clinical-data-summary.pdf"
     }
   ],
   "path": "/dossiers/source-fda-p100018.json",
@@ -1185,13 +1364,10 @@
   ],
   "researchEvidence": [],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "This is a Flex brief statement. Original Pipeline, Flex with Shield and later configurations require their own device-supplied labels.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

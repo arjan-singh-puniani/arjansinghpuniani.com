@@ -1798,7 +1798,7 @@
   },
   "labeling": {
     "state": "located",
-    "detail": "1 original labeling document link(s) located; 11 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "detail": "1 original labeling link(s); 11 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
     "documents": 1,
     "changes": 11,
     "rows": [
@@ -1863,15 +1863,15 @@
       "P140009S020"
     ],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
   },
   "safety": {
     "state": "checked",
-    "detail": "8 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "detail": "8 application-linked recall record(s): source fields audited, exact FDA model/lot text preserved. Individual unit applicability is not determined.",
     "recalls": 8,
     "rows": [
       {
@@ -1891,7 +1891,15 @@
           "P140009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=216515",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "794b4083d13d1f15014bbe8c513b2f0ae1c20bcec7cea7f52d4307c8d5c4cb34",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "208166",
@@ -1910,7 +1918,15 @@
           "P140009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=208166",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "c61ac2a00d15719e8747230ee18c47bc76ce714f5334d6ad3c0d9a8c16b149ce",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "158846",
@@ -1929,7 +1945,15 @@
           "P140009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=158846",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "ee9ce70ecaad47edceaadf259fade78cc12a679d3a19ac77deb62819d72a1fca",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "range-or-condition",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "168771",
@@ -1948,7 +1972,15 @@
           "P140009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=168771",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "3652f36b1d2a476a1b35f2e4ae60946671b4781fe43551964a7d580178978ce1",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "156179",
@@ -1967,7 +1999,15 @@
           "P140009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=156179",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "63b8993ce5fd8be73eb35fc665babbb2b28ffd16aeaae7c15c51ed77f055960a",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "156180",
@@ -1986,7 +2026,15 @@
           "P140009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=156180",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "59a9452283e5054a5f28b26fe95bf0da6f056c1233a279775d0f8e7ba3b8aa7c",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "156181",
@@ -2005,7 +2053,15 @@
           "P140009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=156181",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "eaf700288e20af6ce6d331e93fed280822ca032908c1a3ed1c70ed046a71f858",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "156182",
@@ -2024,7 +2080,15 @@
           "P140009"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=156182",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "31dfb5d9c47bbae97c9a2f6af7b1cc9b6ef81d477e0a8ba8c2658d2e226573e8",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       }
     ],
     "sources": [
@@ -2062,6 +2126,7 @@
       }
     ],
     "noticeCandidates": [],
+    "noticeReviews": [],
     "unresolvedReferences": [],
     "screenedTerms": [
       "brio",
@@ -2139,24 +2204,62 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
-  "modelLotReview": "pending",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "historical-label-reviewed",
+    "scope": "Original Brio labeling; newer Abbott MR Conditional DBS systems are not substituted for Brio.",
+    "revision": "Original PMA labeling, 2015",
+    "models": [
+      "Brio"
+    ],
+    "findings": [
+      {
+        "text": "Original Brio labeling prohibits MRI with an implanted Brio generator or any retained lead portion.",
+        "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf14/P140009C.pdf",
+        "locator": "Prescription and Safety Information; Contraindications and Warnings"
+      },
+      {
+        "text": "Diathermy, electroshock treatment and TMS are contraindicated; unsuccessful trial stimulation and inability to operate the system are also listed.",
+        "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf14/P140009C.pdf",
+        "locator": "Prescription and Safety Information; Contraindications and Warnings"
+      },
+      {
+        "text": "The label warns against use during pregnancy or nursing.",
+        "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf14/P140009C.pdf",
+        "locator": "Prescription and Safety Information; Contraindications and Warnings"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf14/P140009C.pdf",
+        "title": "Brio patient programmer user guide",
+        "locator": "Prescription and Safety Information; Contraindications and Warnings",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "No current Brio-specific replacement labeling was established; current Infinity/Liberta MRI conditions are not evidence for Brio."
+    ]
+  },
+  "currentLabelReview": "historical-label-reviewed",
+  "noticeReview": "screened-candidates-reviewed",
+  "modelLotReview": "source-fields-audited",
   "sourceLinks": [
     {
-      "title": "Original FDA decision",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140009"
+      "title": "Application-linked recall (FDA-reported scope)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=216515"
     },
     {
-      "title": "Original labeling",
+      "title": "Brio patient programmer user guide",
       "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf14/P140009C.pdf"
     },
     {
-      "title": "Application-linked recall (applicability pending)",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=216515"
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P140009"
     }
   ],
   "path": "/dossiers/brio.json",
@@ -2165,13 +2268,10 @@
   ],
   "researchEvidence": [],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "No current Brio-specific replacement labeling was established; current Infinity/Liberta MRI conditions are not evidence for Brio.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

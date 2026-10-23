@@ -2625,7 +2625,7 @@
   },
   "labeling": {
     "state": "unavailable",
-    "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
+    "detail": "0 original labeling link(s); 13 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
     "documents": 0,
     "changes": 13,
     "rows": [],
@@ -2653,15 +2653,15 @@
       "P010030S002"
     ],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
   },
   "safety": {
     "state": "checked",
-    "detail": "6 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "detail": "6 application-linked recall record(s): source fields audited, exact FDA model/lot text preserved. Individual unit applicability is not determined.",
     "recalls": 6,
     "rows": [
       {
@@ -2681,7 +2681,15 @@
           "P010030"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=160876",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "bd85ffca0cd6dd102f2f917a038f4806cf18ec21250d9104a871765e8b9f4122",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "95038",
@@ -2700,7 +2708,15 @@
           "P010030"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=95038",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "8e88033936e39f6a80fb6c0b89208cf713e016b916b4b8ad61ff9e828ea81d57",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "74773",
@@ -2719,7 +2735,15 @@
           "P010030"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=74773",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "c4c91d7b0578d544d7d976c585d4c0bad9e736987e31117b28b4f121539f829c",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "document-or-model-scope",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "64559",
@@ -2738,7 +2762,15 @@
           "P010030"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=64559",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "490ed16dfa7fefb2a8d1a321abba2070fd18f6d6e211b91f0a55e949a0eb084f",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "range-or-condition",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "52009",
@@ -2757,7 +2789,15 @@
           "P010030"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=52009",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "df0cc2d0142c969d092c2113c1c8e39347cc4aa19acb84a7887516096795c767",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "25718",
@@ -2776,7 +2816,15 @@
           "P010030"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=25718",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "d2576d37577f82397729bd0b8257e34778f6f6b62a89507315b3b31f36763ca4",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "document-or-model-scope",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       }
     ],
     "sources": [
@@ -2814,6 +2862,7 @@
       }
     ],
     "noticeCandidates": [],
+    "noticeReviews": [],
     "unresolvedReferences": [],
     "screenedTerms": [],
     "indexes": [
@@ -2888,20 +2937,63 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
-  "modelLotReview": "pending",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "model-limited-source-review",
+    "scope": "Current LifeVest family patient safety information; original entry is WCD 2000.",
+    "revision": null,
+    "models": [
+      "Original WCD 2000",
+      "Current LifeVest family: model-specific"
+    ],
+    "findings": [
+      {
+        "text": "The manufacturer states that only the patient should use the response buttons; another person can interfere with intended treatment response.",
+        "sourceUrl": "https://cardiac.zoll.com/patients/lifevest/faq",
+        "locator": "Alerts, response buttons and remote monitoring"
+      },
+      {
+        "text": "The system does not provide real-time human review or automatically notify emergency personnel when treatment occurs.",
+        "sourceUrl": "https://cardiac.zoll.com/patients/lifevest/faq",
+        "locator": "Alerts, response buttons and remote monitoring"
+      },
+      {
+        "text": "Noise and vibration can interfere with recognizing alerts and can contribute to inappropriate treatment.",
+        "sourceUrl": "https://cardiac.zoll.com/patients/lifevest/faq",
+        "locator": "Alerts, response buttons and remote monitoring"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://cardiac.zoll.com/patients/lifevest/faq",
+        "title": "ZOLL LifeVest patient FAQ",
+        "locator": "Alerts, response buttons and remote monitoring",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "The current FAQ is not a version-specific WCD 2000 IFU. Later WCD models and their recalled accessories remain separately named."
+    ]
+  },
+  "currentLabelReview": "model-limited-source-review",
+  "noticeReview": "screened-candidates-reviewed",
+  "modelLotReview": "source-fields-audited",
   "sourceLinks": [
+    {
+      "title": "Application-linked recall (FDA-reported scope)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=160876"
+    },
     {
       "title": "Original FDA decision",
       "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P010030"
     },
     {
-      "title": "Application-linked recall (applicability pending)",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=160876"
+      "title": "ZOLL LifeVest patient FAQ",
+      "url": "https://cardiac.zoll.com/patients/lifevest/faq"
     }
   ],
   "path": "/dossiers/source-fda-p010030.json",
@@ -2910,13 +3002,10 @@
   ],
   "researchEvidence": [],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "The current FAQ is not a version-specific WCD 2000 IFU. Later WCD models and their recalled accessories remain separately named.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

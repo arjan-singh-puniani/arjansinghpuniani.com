@@ -59,7 +59,7 @@ import {
 import { frontier } from "@/lib/curation";
 import { External, SourceRecord, State } from "./Evidence";
 import BriefPreview from "./BriefPreview";
-import { dossiers, dossierCoverage } from "@/lib/dossiers";
+import { dossiers, dossierCoverage, reviewLabels } from "@/lib/dossiers";
 const Dossier = dynamic(() => import("./Dossier"));
 import type { AtlasRecord, Family, Mapping } from "@/lib/types";
 import "./atlas.css";
@@ -194,6 +194,12 @@ export default function AtlasExperience() {
     [tab, setTab] = useState<"components" | "dossier" | "sources" | "studies">(
       "components",
     );
+  useEffect(() => {
+    const entry = new URLSearchParams(window.location.search).get("entry");
+    if (entry && dossiers[entry] && familyById(entry)) {
+      setSelected(entry);setRegion("all");setTab("dossier");
+    }
+  }, []);
   const [libraryQuery, setLibraryQuery] = useState(""),
     [sourceKind, setSourceKind] = useState("all"),
     [recordSelection, setRecordSelection] = useState<string | null>(null),
@@ -1017,7 +1023,7 @@ export default function AtlasExperience() {
                 {dossiers[f.id] && <button className="dossier-entry" onClick={() => { setTab("dossier");document.getElementById("device-dossier")?.focus(); }}>
                   <strong>Regulatory, labeling & safety dossier <ArrowUpRight size={13} /></strong>
                   <span>{dossiers[f.id].regulatory.state === "checked" ? "Regulatory checked" : "Marketing authorization not established"} · {dossiers[f.id].safety.state === "checked" ? `${dossiers[f.id].safety.recalls} application-linked recalls` : "Safety applicability unreviewed"}</span>
-                  <small>{dossiers[f.id].currentLabelReview === "not-applicable" ? "Commercial labeling not applicable" : dossiers[f.id].labeling.documents ? "Original label linked" : "Original label pending"} · current labeling review {dossiers[f.id].currentLabelReview}</small>
+                  <small>{reviewLabels[dossiers[f.id].currentLabelReview]} · assessed {dossiers[f.id].labelReview.reviewedAt}</small>
                 </button>}
               </div>
               <div
@@ -1486,7 +1492,7 @@ export default function AtlasExperience() {
                 select its available regional group. Unmapped structures do not
                 acquire inferred device relationships.
               </p>
-              <h3>Dossier coverage</h3><p>{dossierCoverage.entries} explained entries have dossiers. {dossierCoverage.regulatory} original marketing decisions and {dossierCoverage.recalls} application-based recall searches checked; {dossierCoverage.labels} entries have original labeling links. Current-label content and model/lot applicability review remain pending. The two investigational entries have no established public marketing application.</p>
+              <h3>Dossier coverage</h3><p>{dossierCoverage.entries} explained entries have dossiers. {dossierCoverage.regulatory} original marketing decisions and {dossierCoverage.recalls} application-based recall searches checked; {dossierCoverage.labels} entries have original labeling links. All {dossierCoverage.assessed} have individual source assessments; {dossierCoverage.labelGaps} still lack an adequate product-specific label. Published IFUs, public safety summaries and historical sources are distinguished. Recall fields are audited; individual unit applicability is not determined. The two investigational entries have no established public marketing application.</p>
               <h3>Source coverage</h3>
               <p>
                 {records.length} authentic API records; {families.filter(f=>f.collection!=='catalogue').length} reviewed entries and {catalogueCoverage.catalogueEntries} source-indexed applications. Anatomical text matches are Provisional, not reviewed physical placements. Snapshot exported {coverage.exportedAt} UTC.

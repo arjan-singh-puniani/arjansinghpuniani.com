@@ -164,11 +164,24 @@
     ]
   },
   "labeling": {
-    "state": "unavailable",
-    "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
-    "documents": 0,
+    "state": "located",
+    "detail": "1 original labeling link(s); 7 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
+    "documents": 1,
     "changes": 7,
-    "rows": [],
+    "rows": [
+      {
+        "application": "P950035",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/p950035.pdf",
+        "state": "located",
+        "title": "Original FDA-posted labeling",
+        "pages": null,
+        "textAvailable": true,
+        "locator": "Original FDA combined document; sections 3–5",
+        "method": "FDA-posted document text/excerpts inspected through public web retrieval; current revision not certified",
+        "checkedAt": "2026-10-22",
+        "sections": []
+      }
+    ],
     "pages": [
       {
         "application": "P950035",
@@ -188,8 +201,8 @@
       "P950035S002"
     ],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
@@ -234,6 +247,7 @@
       }
     ],
     "noticeCandidates": [],
+    "noticeReviews": [],
     "unresolvedReferences": [],
     "screenedTerms": [],
     "indexes": [
@@ -308,16 +322,66 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "model-limited-source-review",
+    "scope": "NeuroControl Freehand original implant and later FDA MRI amendment",
+    "revision": "Original P950035 v5; MRI change S005",
+    "models": [
+      "202-1 receiver-stimulator",
+      "203-1 electrode set",
+      "204-1 external system"
+    ],
+    "findings": [
+      {
+        "text": "Uncontrolled upper-limb spasticity, active/recurrent sepsis and an implanted cardiac pacemaker are contraindications in the original label.",
+        "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf/p950035.pdf",
+        "locator": "Sections 3–5; printed p.3"
+      },
+      {
+        "text": "Surface electrical stimulation or therapeutic ultrasound near implanted components can damage the system; trained/certified clinicians are required.",
+        "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf/p950035.pdf",
+        "locator": "Sections 3–5; printed p.3"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/p950035.pdf",
+        "title": "FDA Freehand original label",
+        "locator": "Sections 3–5; printed p.3",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      },
+      {
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?ID=P950035S005",
+        "title": "FDA Freehand MRI-label amendment",
+        "locator": "Approval order statement; January 13, 2000",
+        "accessedAt": "2026-10-22",
+        "method": "Original FDA decision text inspected"
+      }
+    ],
+    "limitations": [
+      "The original MRI prohibition was replaced by a precaution in S005 on 2000-01-13, with an MRI information sheet supplied on request. That sheet/current conditions were not obtained; scanning eligibility remains unresolved."
+    ]
+  },
+  "currentLabelReview": "model-limited-source-review",
+  "noticeReview": "screened-candidates-reviewed",
   "modelLotReview": "not-established",
   "sourceLinks": [
     {
+      "title": "FDA Freehand original label",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/p950035.pdf"
+    },
+    {
       "title": "Original FDA decision",
       "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P950035"
+    },
+    {
+      "title": "FDA Freehand MRI-label amendment",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?ID=P950035S005"
     }
   ],
   "path": "/dossiers/source-fda-p950035.json",
@@ -326,13 +390,10 @@
   ],
   "researchEvidence": [],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "The original MRI prohibition was replaced by a precaution in S005 on 2000-01-13, with an MRI information sheet supplied on request. That sheet/current conditions were not obtained; scanning eligibility remains unresolved.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

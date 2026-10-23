@@ -1668,7 +1668,7 @@
   },
   "labeling": {
     "state": "located",
-    "detail": "1 original labeling document link(s) located; 22 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "detail": "1 original labeling link(s); 22 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
     "documents": 1,
     "changes": 22,
     "rows": [
@@ -1721,15 +1721,15 @@
       "P060040S002"
     ],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
   },
   "safety": {
     "state": "checked",
-    "detail": "18 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "detail": "18 application-linked recall record(s): source fields audited, exact FDA model/lot text preserved. Individual unit applicability is not determined.",
     "recalls": 18,
     "rows": [
       {
@@ -1749,7 +1749,15 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=216562",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "f0b72b178172a742c46479c93d9ef395cf114c7bcc791c026bbbb16a87a20437",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "216563",
@@ -1768,7 +1776,15 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=216563",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "c4a1d5ce72ccd3c445322517b13ad64e818a732a7abce0c0844424f9280856a5",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "214976",
@@ -1787,7 +1803,17 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=214976",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "cc09f18b4176dbe3c903db3063e1240568222948f3310326aeaaec2bf7c0a72b",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "document-or-model-scope",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "The API refers to Attachment F. The reviewed FDA notice supplies fifteen cord lots; use that exact list, not a continuous range."
+          ]
+        }
       },
       {
         "cfres_id": "214977",
@@ -1806,7 +1832,17 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=214977",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "0a67bbabc5ae8c28ee8fbe254d7ca6cc7b180aa0060bd405016a308d4b2f264a",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "document-or-model-scope",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "The API refers to Attachment F; this is a power-cord locking action, not a blanket removal of the MPU itself."
+          ]
+        }
       },
       {
         "cfres_id": "212942",
@@ -1825,7 +1861,15 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=212942",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "4df4d9899d909afcb298e4650e1316a5972e19650cbe2d15e5d67108afb248a9",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "207286",
@@ -1844,7 +1888,15 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=207286",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "50e55831eab0c890774e5c772723d48ee4883889611a03b3e12333ff57bae21d",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "206012",
@@ -1863,7 +1915,15 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=206012",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "260b5a04e4d0bd92ad92582dbc023bd3973ed10f97683cdee4c8c070c1d28ef2",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "154745",
@@ -1882,7 +1942,15 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=154745",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "37b97f1ccbde461070d4b1baf0170eb5f290918abf534511d7df3e13d3bdda72",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "154756",
@@ -1901,7 +1969,15 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=154756",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "852d9299bd2abe25337f99ec4af3790c1380183dfc4483cbcb1396bfc353d805",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "154757",
@@ -1920,7 +1996,15 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=154757",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "b42d6dd56569065c465109640438de8e84db86028e93fb1f2dd46aa488a0e3ce",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "125886",
@@ -1939,7 +2023,15 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=125886",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "e730882f86dcdbfa60684aa2e947d4e456267f5769f6565102cb2781fa7e5900",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "125888",
@@ -1958,7 +2050,15 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=125888",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "c601219d810d11818bd6659f62e2ea5d7dfb77f073bec23a80381f8b1575c674",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "125890",
@@ -1977,7 +2077,15 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=125890",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "ca4c0c9a4d3becebbbfc40d5a14b789a2d6f3dd350fc6888fd8c8c9ae73eec39",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "125889",
@@ -1996,7 +2104,15 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=125889",
-        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5"
+        "sourceSha": "21172e6f8970b5cfa8b2e94a80a846abf9c9b8f7429760e57a41d3c8c92c19c5",
+        "scopeAudit": {
+          "digest": "4e718e9e437a7f9748bcd1b1431dc3d2847195c0cb6972f8c422d2dc459bc326",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "107693",
@@ -2015,7 +2131,15 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=107693",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "744e5e94c06f5d31cb833eeb64ec7577891ca1c3a52da11bfc573b8d0ebfdd13",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "94299",
@@ -2034,7 +2158,15 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=94299",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "686cb77f42c77c6f9ea1becae0a541f42b214458f598c5fada77b47ebc27f76a",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "85865",
@@ -2053,7 +2185,17 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=85865",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "efacc9bae59c28a55a40d0b4c1e9f688bdeca33db4313e719db28558d85f6cc4",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": [
+            "FDA API reason is exactly 400 characters and may be truncated; consult the original recall action for complete context."
+          ]
+        }
       },
       {
         "cfres_id": "74710",
@@ -2072,7 +2214,15 @@
           "P060040"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=74710",
-        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c"
+        "sourceSha": "708d2481eb28b3e4d280a656135efb7964bb7b3e56ecda7fe8ffbac8df2ed51c",
+        "scopeAudit": {
+          "digest": "9620ad21c43042b8d0f4b2086522d26f52483c5392aa06a2b31023e280a55e39",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       }
     ],
     "sources": [
@@ -2119,7 +2269,7 @@
         "matchedTerms": [
           "heartmate"
         ],
-        "review": "Candidate: title or class context only; model/application applicability not established"
+        "review": "component-specific: AC cord 107760 for MPU 107754; fifteen listed lots from 10763925 through 10831828 (not a continuous range). Compare the exact lot list in the source; intermediate numbers are not presumed included."
       },
       {
         "date": "04/24/2025",
@@ -2130,7 +2280,7 @@
         "matchedTerms": [
           "heartmate"
         ],
-        "review": "Candidate: title or class context only; model/application applicability not established"
+        "review": "component-specific: HeartMate MPU 107754 and listed regional references/serials, UDI-DI 05415067038234. The referenced manufacturer serial list, rather than family name alone, governs applicability."
       },
       {
         "date": "06/28/2024",
@@ -2141,7 +2291,7 @@
         "matchedTerms": [
           "heartmate"
         ],
-        "review": "Candidate: title or class context only; model/application applicability not established"
+        "review": "component-specific: HeartMate System Monitor, listed references; all serial numbers; UDI-DI 00813024010142 and 00813024010852. Follow the original correction and current manufacturer instructions; no patient-specific action is determined here."
       },
       {
         "date": "05/15/2024",
@@ -2152,7 +2302,7 @@
         "matchedTerms": [
           "heartmate"
         ],
-        "review": "Candidate: title or class context only; model/application applicability not established"
+        "review": "different-product: HeartMate 3 implant kit inflow-cannula/apical-cuff interface. HeartMate 3-specific notice; rejected as a direct HeartMate II model match."
       },
       {
         "date": "04/14/2024",
@@ -2163,7 +2313,7 @@
         "matchedTerms": [
           "heartmate"
         ],
-        "review": "Candidate: title or class context only; model/application applicability not established"
+        "review": "family-specific: Listed HeartMate II and HeartMate 3 graft/implant-kit references; see source’s complete model table. The exact graft/kit configuration matters; a recall record does not mean preventive removal is recommended."
       },
       {
         "date": "03/11/2024",
@@ -2174,7 +2324,81 @@
         "matchedTerms": [
           "heartmate"
         ],
-        "review": "Candidate: title or class context only; model/application applicability not established"
+        "review": "different-product: HeartMate Touch communication software v1.0.32 used with HeartMate 3. The source identifies HeartMate 3 support; rejected as an established HeartMate II-specific notice."
+      }
+    ],
+    "noticeReviews": [
+      {
+        "familyIds": [
+          "source-fda-p060040"
+        ],
+        "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/mobile-power-unit-ac-power-cord-recall-abbott-medical-removes-ac-power-cord-associated-heartmate",
+        "status": "component-specific",
+        "scope": "AC cord 107760 for MPU 107754; fifteen listed lots from 10763925 through 10831828 (not a continuous range).",
+        "finding": "A defective locking feature can permit power disconnection. The notice removes affected cords, not every MPU or implanted pump.",
+        "limitation": "Compare the exact lot list in the source; intermediate numbers are not presumed included.",
+        "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+        "reviewedAt": "2026-10-22"
+      },
+      {
+        "familyIds": [
+          "source-fda-p060040"
+        ],
+        "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/heart-pump-accessory-removal-abbott-removes-heartmate-mobile-power-unit-due-instances-sudden-power",
+        "status": "component-specific",
+        "scope": "HeartMate MPU 107754 and listed regional references/serials, UDI-DI 05415067038234.",
+        "finding": "Certain electrical components can cause sudden power loss. FDA links the actual serial list and manufacturer lookup; the accessory serves HeartMate II and 3.",
+        "limitation": "The referenced manufacturer serial list, rather than family name alone, governs applicability.",
+        "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+        "reviewedAt": "2026-10-22"
+      },
+      {
+        "familyIds": [
+          "source-fda-p060040"
+        ],
+        "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/left-ventricular-assist-system-lvas-monitor-correction-abbott-medical-issues-correction-heartmate",
+        "status": "component-specific",
+        "scope": "HeartMate System Monitor, listed references; all serial numbers; UDI-DI 00813024010142 and 00813024010852.",
+        "finding": "Display faults can cause unintended setting changes or pump-stop commands; the communication concerns the clinical monitor, not removal of every implanted pump.",
+        "limitation": "Follow the original correction and current manufacturer instructions; no patient-specific action is determined here.",
+        "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+        "reviewedAt": "2026-10-22"
+      },
+      {
+        "familyIds": [
+          "source-fda-p060040"
+        ],
+        "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/abbott-recalls-heartmate-3-left-ventricular-assist-system-lvas-implant-kit-risk-blood-leakage-or-air",
+        "status": "different-product",
+        "scope": "HeartMate 3 implant kit inflow-cannula/apical-cuff interface.",
+        "finding": "The correction addresses leakage or air entry observed during implantation and keeps unused product in the field under updated precautions.",
+        "limitation": "HeartMate 3-specific notice; rejected as a direct HeartMate II model match.",
+        "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+        "reviewedAt": "2026-10-22"
+      },
+      {
+        "familyIds": [
+          "source-fda-p060040"
+        ],
+        "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/abbottthoratec-corp-recalls-heartmate-ii-and-heartmate-3-left-ventricular-assist-system-lvas-due",
+        "status": "family-specific",
+        "scope": "Listed HeartMate II and HeartMate 3 graft/implant-kit references; see source’s complete model table.",
+        "finding": "Biological-material buildup can obstruct the outflow graft, often after prolonged support. This is a correction with low-flow-alarm assessment guidance.",
+        "limitation": "The exact graft/kit configuration matters; a recall record does not mean preventive removal is recommended.",
+        "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+        "reviewedAt": "2026-10-22"
+      },
+      {
+        "familyIds": [
+          "source-fda-p060040"
+        ],
+        "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/abbott-recalls-heartmate-touch-communication-system-unintentional-pump-start-and-stop",
+        "status": "different-product",
+        "scope": "HeartMate Touch communication software v1.0.32 used with HeartMate 3.",
+        "finding": "Disconnecting/reconnecting with a queued stop command can unexpectedly stop or start the pump; the notice updates the command-completion procedure.",
+        "limitation": "The source identifies HeartMate 3 support; rejected as an established HeartMate II-specific notice.",
+        "locator": "Affected Product; What to Do; Reason for Recall/Correction",
+        "reviewedAt": "2026-10-22"
       }
     ],
     "unresolvedReferences": [],
@@ -2253,24 +2477,83 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
-  "modelLotReview": "pending",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "current-safety-source-reviewed",
+    "scope": "HeartMate II LVAS current US manufacturer brief safety information",
+    "revision": null,
+    "models": [],
+    "findings": [
+      {
+        "text": "Inability to tolerate or allergy to anticoagulation excludes HeartMate II use.",
+        "sourceUrl": "https://www.cardiovascular.abbott/us/en/hcp/products/heart-failure/left-ventricular-assist-devices/heartmate-2/indications-safety-warnings.html",
+        "locator": "Contraindications; Adverse Events"
+      },
+      {
+        "text": "Important reported risks include bleeding, infection, stroke, hemolysis, device thrombosis and malfunction; pump, controller, power and graft recalls require component-specific assessment.",
+        "sourceUrl": "https://www.cardiovascular.abbott/us/en/hcp/products/heart-failure/left-ventricular-assist-devices/heartmate-2/indications-safety-warnings.html",
+        "locator": "Contraindications; Adverse Events"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.cardiovascular.abbott/us/en/hcp/products/heart-failure/left-ventricular-assist-devices/heartmate-2/indications-safety-warnings.html",
+        "title": "Abbott HeartMate II indications, safety and warnings",
+        "locator": "Contraindications; Adverse Events",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "This is a brief safety summary, not the complete current IFU. HeartMate 3 and HeartMate II components and indications are not interchangeable."
+    ]
+  },
+  "currentLabelReview": "current-safety-source-reviewed",
+  "noticeReview": "screened-candidates-reviewed",
+  "modelLotReview": "source-fields-audited",
   "sourceLinks": [
     {
-      "title": "Original FDA decision",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060040"
+      "title": "Application-linked recall (FDA-reported scope)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=216562"
     },
     {
       "title": "Original labeling",
       "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf6/P060040C.pdf"
     },
     {
-      "title": "Application-linked recall (applicability pending)",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=216562"
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P060040"
+    },
+    {
+      "title": "Reviewed FDA safety notice",
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/abbott-recalls-heartmate-touch-communication-system-unintentional-pump-start-and-stop"
+    },
+    {
+      "title": "Reviewed FDA safety notice",
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/abbottthoratec-corp-recalls-heartmate-ii-and-heartmate-3-left-ventricular-assist-system-lvas-due"
+    },
+    {
+      "title": "Reviewed FDA safety notice",
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/abbott-recalls-heartmate-3-left-ventricular-assist-system-lvas-implant-kit-risk-blood-leakage-or-air"
+    },
+    {
+      "title": "Reviewed FDA safety notice",
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/left-ventricular-assist-system-lvas-monitor-correction-abbott-medical-issues-correction-heartmate"
+    },
+    {
+      "title": "Reviewed FDA safety notice",
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/heart-pump-accessory-removal-abbott-removes-heartmate-mobile-power-unit-due-instances-sudden-power"
+    },
+    {
+      "title": "Reviewed FDA safety notice",
+      "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/mobile-power-unit-ac-power-cord-recall-abbott-medical-removes-ac-power-cord-associated-heartmate"
+    },
+    {
+      "title": "Abbott HeartMate II indications, safety and warnings",
+      "url": "https://www.cardiovascular.abbott/us/en/hcp/products/heart-failure/left-ventricular-assist-devices/heartmate-2/indications-safety-warnings.html"
     }
   ],
   "path": "/dossiers/source-fda-p060040.json",
@@ -2279,13 +2562,10 @@
   ],
   "researchEvidence": [],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "This is a brief safety summary, not the complete current IFU. HeartMate 3 and HeartMate II components and indications are not interchangeable.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

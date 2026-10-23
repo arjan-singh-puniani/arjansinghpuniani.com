@@ -542,7 +542,7 @@
   },
   "labeling": {
     "state": "located",
-    "detail": "1 original labeling document link(s) located; 5 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "detail": "1 original labeling link(s); 5 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
     "documents": 1,
     "changes": 5,
     "rows": [
@@ -578,15 +578,15 @@
       "P090018S019"
     ],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
   },
   "safety": {
     "state": "checked",
-    "detail": "2 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "detail": "2 application-linked recall record(s): source fields audited, exact FDA model/lot text preserved. Individual unit applicability is not determined.",
     "recalls": 2,
     "rows": [
       {
@@ -606,7 +606,15 @@
           "P090018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=114942",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "20c55ce10e39ee68d239307d479ccf3f9db309f86a9f75b35247aa53ab5d962d",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "165600",
@@ -625,7 +633,15 @@
           "P090018"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=165600",
-        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369"
+        "sourceSha": "0e7f116b4d4539c182603d3658aaaebd57e4ad709391e8b0add466b53c5af369",
+        "scopeAudit": {
+          "digest": "be458397853852bed5fd826299b6d8f1a2b3f3914e28726b500eed5cf3bd56f5",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       }
     ],
     "sources": [
@@ -663,6 +679,7 @@
       }
     ],
     "noticeCandidates": [],
+    "noticeReviews": [],
     "unresolvedReferences": [],
     "screenedTerms": [],
     "indexes": [
@@ -737,24 +754,63 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
-  "modelLotReview": "pending",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "current-safety-source-reviewed",
+    "scope": "Esteem Model 2001 and explicitly listed sensor/driver combinations",
+    "revision": null,
+    "models": [
+      "2001",
+      "7002/7004/7010 sensors",
+      "7502/7504/7510 drivers"
+    ],
+    "findings": [
+      {
+        "text": "Ear disease, fluctuating hearing, material sensitivity, impaired healing and pregnancy are among the exclusions. Implant surgery or removal can injure ossicles/cochlea and worsen hearing.",
+        "sourceUrl": "https://www.envoymedical.com/safety-information",
+        "locator": "Contraindications; Warnings; MRI Conditional Safety Information"
+      },
+      {
+        "text": "ECT must not be used. Model 2001 with the listed sensor/driver combinations is MR Conditional only under its separate MRI document; this is not unrestricted MRI compatibility.",
+        "sourceUrl": "https://www.envoymedical.com/safety-information",
+        "locator": "Contraindications; Warnings; MRI Conditional Safety Information"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.envoymedical.com/safety-information",
+        "title": "Envoy Medical Esteem important safety information",
+        "locator": "Contraindications; Warnings; MRI Conditional Safety Information",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "The separate MRI conditions must be read before scanning; this public summary is not a full device manual."
+    ]
+  },
+  "currentLabelReview": "current-safety-source-reviewed",
+  "noticeReview": "screened-candidates-reviewed",
+  "modelLotReview": "source-fields-audited",
   "sourceLinks": [
     {
-      "title": "Original FDA decision",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018"
+      "title": "Application-linked recall (FDA-reported scope)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=114942"
     },
     {
       "title": "Original labeling",
       "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf9/P090018C.pdf"
     },
     {
-      "title": "Application-linked recall (applicability pending)",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=114942"
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P090018"
+    },
+    {
+      "title": "Envoy Medical Esteem important safety information",
+      "url": "https://www.envoymedical.com/safety-information"
     }
   ],
   "path": "/dossiers/source-fda-p090018.json",
@@ -763,13 +819,10 @@
   ],
   "researchEvidence": [],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "The separate MRI conditions must be read before scanning; this public summary is not a full device manual.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

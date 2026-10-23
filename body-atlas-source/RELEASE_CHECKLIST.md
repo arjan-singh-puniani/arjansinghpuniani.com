@@ -34,3 +34,7 @@ Final build/browser/security outcomes and their scope are in RELEASE_READINESS.m
 ## Dossier milestone — 2026-10-22
 
 Dossier release gates: all 91 explained entries resolve; 89 commercial decision/recall inventories checked; investigational entries retain non-authorization status; originals/supplements remain distinct; checksum and offline reproduction tests pass; incomplete refresh retains published artifacts; lazy dossier navigation, original links, cited brief export, error/retry and keyboard/accessibility checks required in desktop/mobile emulation. Current-label content and model/lot review cannot be marked complete by document discovery alone. See [DOSSIERS.md](DOSSIERS.md).
+
+## Labeling and safety follow-up — 2026-10-22
+
+Supersedes the earlier blanket pending status: all 91 entries have model-scoped source assessments; 349 recall source-field audits and 15 notice-scope decisions are recorded. Five original-label gaps were closed (105 links / 76 entries). Three product-specific label gaps remain, and historical or model-limited sources are not certified as complete current IFUs. Individual unit applicability remains undetermined. Full methodology, original links, exceptions and the 91-entry ledger: [LABELING_SAFETY_REVIEW.md](LABELING_SAFETY_REVIEW.md).

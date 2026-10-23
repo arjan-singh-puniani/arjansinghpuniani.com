@@ -2741,11 +2741,24 @@
     ]
   },
   "labeling": {
-    "state": "unavailable",
-    "detail": "Original label not retrieved; current instructions, contraindications and warnings remain unreviewed.",
-    "documents": 0,
+    "state": "located",
+    "detail": "1 original labeling link(s); 10 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
+    "documents": 1,
     "changes": 10,
-    "rows": [],
+    "rows": [
+      {
+        "application": "P110010",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf11/P110010c.pdf",
+        "state": "located",
+        "title": "Original FDA-posted labeling",
+        "pages": null,
+        "textAvailable": true,
+        "locator": "Directions; sections 3–4",
+        "method": "FDA-posted document text/excerpts inspected through public web retrieval; current revision not certified",
+        "checkedAt": "2026-10-22",
+        "sections": []
+      }
+    ],
     "pages": [
       {
         "application": "P110010",
@@ -2767,8 +2780,8 @@
       "P110010S035"
     ],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
@@ -2813,6 +2826,7 @@
       }
     ],
     "noticeCandidates": [],
+    "noticeReviews": [],
     "unresolvedReferences": [],
     "screenedTerms": [],
     "indexes": [
@@ -2887,16 +2901,55 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "historical-label-reviewed",
+    "scope": "PROMUS Element Plus original and S096 revised coronary-stent labeling",
+    "revision": null,
+    "models": [],
+    "findings": [
+      {
+        "text": "Relevant metal, everolimus or polymer sensitivity, inability to receive recommended antiplatelet/anticoagulant treatment and unsuitable lesions are exclusions.",
+        "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf11/P110010S096D.pdf",
+        "locator": "Sections 4–5"
+      },
+      {
+        "text": "Stent thrombosis, bleeding and vascular complications are explicit risks; the label warns against use when adherence to antiplatelet treatment is unlikely.",
+        "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf11/P110010S096D.pdf",
+        "locator": "Sections 4–5"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf11/P110010S096D.pdf",
+        "title": "FDA PROMUS Element Plus S096 directions",
+        "locator": "Sections 4–5",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "This 2015 FDA-posted revised DFU is not certified as the latest manufacturer revision; later PROMUS product lines are separate."
+    ]
+  },
+  "currentLabelReview": "historical-label-reviewed",
+  "noticeReview": "screened-candidates-reviewed",
   "modelLotReview": "not-established",
   "sourceLinks": [
     {
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf11/P110010c.pdf"
+    },
+    {
       "title": "Original FDA decision",
       "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P110010"
+    },
+    {
+      "title": "FDA PROMUS Element Plus S096 directions",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf11/P110010S096D.pdf"
     }
   ],
   "path": "/dossiers/source-fda-p110010.json",
@@ -2905,13 +2958,10 @@
   ],
   "researchEvidence": [],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "This 2015 FDA-posted revised DFU is not certified as the latest manufacturer revision; later PROMUS product lines are separate.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

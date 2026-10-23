@@ -1005,7 +1005,7 @@
   },
   "labeling": {
     "state": "located",
-    "detail": "2 original labeling document link(s) located; 4 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "detail": "2 original labeling link(s); 4 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
     "documents": 2,
     "changes": 4,
     "rows": [
@@ -1071,15 +1071,15 @@
       "P020047S006"
     ],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
   },
   "safety": {
     "state": "checked",
-    "detail": "2 application-linked recall record(s) in the checked FDA snapshot. Affected model/lot applicability requires review.",
+    "detail": "2 application-linked recall record(s): source fields audited, exact FDA model/lot text preserved. Individual unit applicability is not determined.",
     "recalls": 2,
     "rows": [
       {
@@ -1099,7 +1099,15 @@
           "P020047"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=54962",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "f4bc12aa24331d439ff2ca815f840c81c07dc61af1aea620f8cea77b82cab196",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "listed-identifiers",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       },
       {
         "cfres_id": "26752",
@@ -1118,7 +1126,15 @@
           "P020047"
         ],
         "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=26752",
-        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a"
+        "sourceSha": "3d4e28be47f7241a67b9cd04a788f0cac107e648d92b3500efa29073bb8db10a",
+        "scopeAudit": {
+          "digest": "ace58834c420a9346ee0a9d9ce3831b91ef2a485b5f0e369f53a8aed5a290b41",
+          "reviewedAt": "2026-10-22",
+          "state": "source-fields-audited",
+          "scopeKind": "broad-scope-within-named-product",
+          "unitApplicability": "not-determined",
+          "flags": []
+        }
       }
     ],
     "sources": [
@@ -1156,6 +1172,7 @@
       }
     ],
     "noticeCandidates": [],
+    "noticeReviews": [],
     "unresolvedReferences": [],
     "screenedTerms": [],
     "indexes": [
@@ -1230,28 +1247,62 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
-  "modelLotReview": "pending",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "historical-label-reviewed",
+    "scope": "MULTI-LINK VISION RX and OTW bare-metal coronary stents, original US label",
+    "revision": "PPL2040375 Rev A",
+    "models": [
+      "VISION RX",
+      "VISION OTW"
+    ],
+    "findings": [
+      {
+        "text": "Patients unable to receive antiplatelet/anticoagulant therapy, or with a lesion preventing full balloon inflation, are excluded.",
+        "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020047C.pdf",
+        "locator": "Sections 4–5; printed p.4"
+      },
+      {
+        "text": "Warnings include stent thrombosis, vascular injury and bleeding; cobalt-chromium sensitivity and correct stent sizing/material compatibility require assessment.",
+        "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020047C.pdf",
+        "locator": "Sections 4–5; printed p.4"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020047C.pdf",
+        "title": "FDA MULTI-LINK VISION US IFU",
+        "locator": "Sections 4–5; printed p.4",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "The original label’s follow-up limits describe evidence available at approval, not the present-day literature. Current revision and later stent generations are separate."
+    ]
+  },
+  "currentLabelReview": "historical-label-reviewed",
+  "noticeReview": "screened-candidates-reviewed",
+  "modelLotReview": "source-fields-audited",
   "sourceLinks": [
     {
-      "title": "Original FDA decision",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047"
-    },
-    {
-      "title": "Original labeling",
-      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020047C.pdf"
+      "title": "Application-linked recall (FDA-reported scope)",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=54962"
     },
     {
       "title": "Original labeling",
       "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020047D.pdf"
     },
     {
-      "title": "Application-linked recall (applicability pending)",
-      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=54962"
+      "title": "FDA MULTI-LINK VISION US IFU",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020047C.pdf"
+    },
+    {
+      "title": "Original FDA decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P020047"
     }
   ],
   "path": "/dossiers/source-fda-p020047.json",
@@ -1260,13 +1311,10 @@
   ],
   "researchEvidence": [],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "The original label’s follow-up limits describe evidence available at approval, not the present-day literature. Current revision and later stent generations are separate.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

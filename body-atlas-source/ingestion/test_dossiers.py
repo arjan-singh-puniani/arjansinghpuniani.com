@@ -10,13 +10,20 @@ class DossierTests(unittest.TestCase):
     def test_offline_rebuild_is_identical_and_incomplete_refresh_cannot_erase_it(self):
         with tempfile.TemporaryDirectory() as t,contextlib.redirect_stdout(io.StringIO()):
             root=Path(t);(root/'data').mkdir()
-            for file in ['dossier-scope.json','dossier-acquisition-index.json','dossier-label-inventory.json','dossier-description-documents.json']:
+            for file in ['dossier-scope.json','dossier-acquisition-index.json','dossier-label-inventory.json','dossier-description-documents.json','dossier-reviews.json','dossier-safety-reviews.json','source-hosts.json']:
                 shutil.copyfile(ROOT/'data'/file,root/'data'/file)
             shutil.copytree(ROOT/'public/dossier-sources',root/'public/dossier-sources')
             with patch('dossiers.fetch',side_effect=AssertionError('Offline rebuild must not use network')):build(root)
             for file in (ROOT/'public/dossiers').glob('*.json'):
                 self.assertEqual(file.read_bytes(),(root/'public/dossiers'/file.name).read_bytes())
             self.assertEqual((ROOT/'data/dossier-summary.json').read_bytes(),(root/'data/dossier-summary.json').read_bytes())
+            ledger=root/'data/dossier-reviews.json';reviewed=ledger.read_text();value=json.loads(reviewed);value['entries'].pop('rns');ledger.write_text(json.dumps(value))
+            before=(root/'public/dossiers/activa.json').read_bytes()
+            with self.assertRaisesRegex(ValueError,'Every explained entry'):build(root)
+            self.assertEqual(before,(root/'public/dossiers/activa.json').read_bytes());ledger.write_text(reviewed)
+            audit=root/'data/dossier-safety-reviews.json';reviewed=audit.read_text();value=json.loads(reviewed);value['recalls']['220167']['digest']='0'*64;audit.write_text(json.dumps(value))
+            with self.assertRaisesRegex(ValueError,'Recall content changed'):build(root)
+            self.assertEqual(before,(root/'public/dossiers/activa.json').read_bytes());audit.write_text(reviewed)
             index=root/'data/dossier-acquisition-index.json';value=json.loads(index.read_text());value['history']['complete']=False;index.write_text(json.dumps(value))
             before=(root/'public/dossiers/activa.json').read_bytes()
             with self.assertRaisesRegex(ValueError,'Incomplete refresh'):build(root)

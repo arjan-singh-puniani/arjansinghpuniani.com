@@ -1317,7 +1317,7 @@
   },
   "labeling": {
     "state": "located",
-    "detail": "1 original labeling document link(s) located; 7 history records mention labeling. Current revision, contraindications and warnings review pending.",
+    "detail": "1 original labeling link(s); 7 labeling-related FDA decisions. Findings and remaining revision gaps are documented in the model-scoped review.",
     "documents": 1,
     "changes": 7,
     "rows": [
@@ -1366,8 +1366,8 @@
       "P100026S028"
     ],
     "inventory": {
-      "file": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2.json",
-      "sha": "9060179a97e071b03bdc3ef9d8c047cc315b412d9861897029550f00259d46b2",
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
       "retrievedAt": "2026-10-22",
       "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
     }
@@ -1412,6 +1412,7 @@
       }
     ],
     "noticeCandidates": [],
+    "noticeReviews": [],
     "unresolvedReferences": [],
     "screenedTerms": [
       "neuropace",
@@ -1489,36 +1490,79 @@
       "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
       "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
       "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
-      "Index title candidates are not confirmed product recalls. Model, lot, revision and current applicability remain unreviewed. FDA recall status is reported as supplied, not a verified current lifecycle. MAUDE and enforcement classification reconciliation are outside this inventory."
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
     ]
   },
-  "currentLabelReview": "pending",
-  "noticeReview": "partial",
+  "labelReview": {
+    "reviewedAt": "2026-10-22",
+    "status": "current-model-source-reviewed",
+    "scope": "Current manufacturer manual explicitly separates RNS-320 from the original RNS-300M configuration.",
+    "revision": "DN 1019727 Rev. 3; 2024-11",
+    "models": [
+      "RNS-300M",
+      "RNS-320"
+    ],
+    "findings": [
+      {
+        "text": "RNS-300M is MR Unsafe. RNS-320 is MR Conditional only under its dedicated MRI guidelines; the two models are not interchangeable.",
+        "sourceUrl": "https://www.neuropace.com/wp-content/themes/salient/2026-assets/pdfs/neuropace-rns-system-manual-320.pdf",
+        "locator": "Printed pp. 2–7; PDF pp. 10–15"
+      },
+      {
+        "text": "Contraindications include elevated surgical-complication risk, another implanted device delivering electrical energy to the brain, and inability to operate the required monitor or magnet.",
+        "sourceUrl": "https://www.neuropace.com/wp-content/themes/salient/2026-assets/pdfs/neuropace-rns-system-manual-320.pdf",
+        "locator": "Printed pp. 2–7; PDF pp. 10–15"
+      },
+      {
+        "text": "Warnings include infection, intracranial bleeding, lead migration, device failure and electromagnetic interference.",
+        "sourceUrl": "https://www.neuropace.com/wp-content/themes/salient/2026-assets/pdfs/neuropace-rns-system-manual-320.pdf",
+        "locator": "Printed pp. 2–7; PDF pp. 10–15"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.neuropace.com/wp-content/themes/salient/2026-assets/pdfs/neuropace-rns-system-manual-320.pdf",
+        "title": "RNS-320 physician manual",
+        "locator": "Printed pp. 2–7; PDF pp. 10–15",
+        "accessedAt": "2026-10-22",
+        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      }
+    ],
+    "limitations": [
+      "MRI eligibility also depends on leads, retained components and the full MRI protocol. This summary does not authorize a scan."
+    ]
+  },
+  "currentLabelReview": "current-model-source-reviewed",
+  "noticeReview": "screened-candidates-reviewed",
   "modelLotReview": "not-established",
   "sourceLinks": [
     {
-      "title": "Research evidence: NCT00264810",
-      "url": "https://clinicaltrials.gov/study/NCT00264810"
-    },
-    {
-      "title": "Research evidence: NCT04839601",
-      "url": "https://clinicaltrials.gov/study/NCT04839601"
-    },
-    {
-      "title": "Research evidence: PMID:21917777",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/21917777/"
-    },
-    {
-      "title": "Research evidence: PMID:25141960",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/25141960/"
+      "title": "Original labeling",
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100026C.pdf"
     },
     {
       "title": "Original FDA decision",
       "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P100026"
     },
     {
-      "title": "Original labeling",
-      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf10/P100026C.pdf"
+      "title": "Research evidence: PMID:25141960",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25141960/"
+    },
+    {
+      "title": "Research evidence: PMID:21917777",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21917777/"
+    },
+    {
+      "title": "Research evidence: NCT04839601",
+      "url": "https://clinicaltrials.gov/study/NCT04839601"
+    },
+    {
+      "title": "Research evidence: NCT00264810",
+      "url": "https://clinicaltrials.gov/study/NCT00264810"
+    },
+    {
+      "title": "RNS-320 physician manual",
+      "url": "https://www.neuropace.com/wp-content/themes/salient/2026-assets/pdfs/neuropace-rns-system-manual-320.pdf"
     }
   ],
   "path": "/dossiers/rns.json",
@@ -1646,13 +1690,10 @@
     }
   ],
   "review": {
-    "method": "Deterministic source inventory, identifier/date reconciliation, and explicit title screening; no clinical safety certification.",
-    "labeling": "Original labeling link inventory completed where accessible; full text and current revision reconciliation pending.",
-    "safety": "Application reference checked; individual affected model/lot adjudication pending.",
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Reconcile latest instructions and labeling supplements by model/revision.",
-      "Review indications, contraindications, warnings, precautions, MRI/interaction restrictions and reported adverse effects with page citations.",
-      "Review recall actions against affected model/lot and reconcile applicable manufacturer notices."
+      "MRI eligibility also depends on leads, retained components and the full MRI protocol. This summary does not authorize a scan.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }
 }

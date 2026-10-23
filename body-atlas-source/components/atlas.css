@@ -33,6 +33,25 @@
 .dossier-filter {display:flex;align-items:center;gap:10px;color:var(--quiet);min-height:44px;line-height:1.5}
 .dossier-filter input {width:18px;height:18px;flex-shrink:0;accent-color:var(--blue)}
 .dossier li {color:var(--quiet);line-height:1.75;margin:8px 0}
+.dossier .dossier-essentials {padding-top:4px}
+.dossier-review-line {display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.review-status {display:inline-block;padding:5px 9px;border:1px solid var(--rule);border-left:2px solid var(--gold);color:var(--gold);font-size:11px;line-height:1.5}
+.review-status[data-review-status="published-ifu-reviewed"],.review-status[data-review-status="current-safety-source-reviewed"],.review-status[data-review-status="current-model-source-reviewed"] {border-left-color:var(--blue);color:var(--blue)}
+.dossier-review-line time {color:var(--quiet);font:10px var(--mono);white-space:nowrap}
+.dossier .dossier-model-scope {color:var(--ink);font-size:13px;line-height:1.7}
+.dossier-findings {list-style:none;counter-reset:findings;padding:0;margin:18px 0}
+.dossier .dossier-findings li {counter-increment:findings;position:relative;padding:0 0 18px 29px;border-bottom:1px solid var(--rule);margin:18px 0;color:var(--ink)}
+.dossier-findings li::before {content:counter(findings,decimal-leading-zero);position:absolute;left:0;top:2px;color:var(--gold);font:11px var(--mono)}
+.dossier-findings p {font-size:14px;line-height:1.75;margin:0 0 8px}
+.dossier-findings a {font-size:11px}
+.dossier .dossier-findings small {font-size:10px}
+.notice-disposition {display:block;color:var(--gold);font:10px var(--mono);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px}
+.dossier .dossier-caution,.dossier .dossier-caution li {color:var(--gold);font-size:11px;line-height:1.7}
+.dossier-scope-search {display:grid;gap:9px;margin:18px 0 9px;color:var(--ink);font-size:12px}
+.dossier-scope-search input {width:100%;min-height:44px;padding:11px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);font:12px var(--mono);border-radius:0}
+.dossier-lot {font-family:var(--mono);font-size:11px;white-space:pre-wrap;overflow-wrap:anywhere}
+.dossier .dossier-archive {border-bottom:1px solid var(--rule);padding:7px 0}
+.dossier-footer {display:grid;gap:16px;padding:22px 0;font-size:12px}
 .human-atlas button {
   font-size: 12px;
   border-radius: 0;

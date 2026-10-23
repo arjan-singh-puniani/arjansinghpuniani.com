@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { atlasBasePath, atlasPath } from "@/lib/deployment";
 import { recordById } from "@/lib/atlas";
 import type { AtlasRecord, EvidenceState } from "@/lib/types";
+import { isSourceUrl } from "@/lib/source-url";
 export function External({
   href,
   children,
@@ -12,26 +13,7 @@ export function External({
   children: React.ReactNode;
   className?: string;
 }) {
-  let valid = false;
-  try {
-    const u = new URL(href);
-    valid =
-      u.protocol === "https:" && !u.username && !u.password && !u.port &&
-      [
-        "www.accessdata.fda.gov",
-        "api.fda.gov",
-        "www.fda.gov",
-        "clinicaltrials.gov",
-        "pubmed.ncbi.nlm.nih.gov",
-        "www.ncbi.nlm.nih.gov",
-        "reporter.nih.gov",
-        "doi.org",
-        "humanatlas.io",
-        "creativecommons.org",
-        "obophenotype.github.io",
-      ].includes(u.hostname);
-  } catch {}
-  return valid ? (
+  return isSourceUrl(href) ? (
     <a
       className={className}
       href={href}
