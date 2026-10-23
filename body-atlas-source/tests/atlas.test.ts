@@ -510,14 +510,14 @@ test("body contour is a bounded 3D derivative without photograph payloads", asyn
  assert.equal(manifest.facialAppearanceIncluded,false);assert.equal(manifest.contourOnly,true);
  const tip=(points:number[][])=>Math.min(...points.filter(p=>Math.abs(p[0])<.025&&p[2]>.105&&p[1]<-.05).map(p=>p[1]));
  assert.ok(tip(contour)<tip(original)-.015,'External pelvic contour is elongated locally');
- const originalCap=original.filter(p=>p[1]>-.105&&p[1]<-.095&&p[2]>.105&&Math.abs(p[0])<.02);
- assert.ok(originalCap.length>5);
- const actual=new Set(contour.map(p=>p.map(v=>v.toFixed(5)).join(',')));
- for(const [x,y,z] of originalCap){
-  const expected=[x*1.18*1.38,y-.025,.107+(z+.012-.107)*1.38];
-  assert.ok(actual.has(expected.map(v=>v.toFixed(5)).join(',')),'Glans cross-section scales by 1.38 in both radial axes');
- }
-
- assert.equal(manifest.glansRadialScale,1.38);assert.equal(manifest.subjectIdentified,false);assert.doesNotMatch(JSON.stringify(manifest),/Arjan|owner|likeness/i);
+ const frontRadius=(distance:number)=>{
+  const ring=contour.filter(p=>Math.abs(p[1]-(-.020-distance))<.000001&&Math.abs(p[0]-.004)<.000001);
+  assert.ok(ring.length>=1,'Modeled ring exists');
+  return Math.max(...ring.map(p=>p[2]))-(.102+.008*Math.min(1,distance/.098));
+ };
+ for(const distance of [.040,.050,.060])assert.ok(Math.abs(frontRadius(distance)-.0185)<.00001,'Shaft has a consistent circular profile');
+ assert.ok(Math.abs(frontRadius(.098)/frontRadius(.050)-1.38)<.001,'Rounded glans remains broader than shaft');
+ assert.ok(contour.some(p=>Math.abs(p[0]-.004)<.000001&&Math.abs(p[1]+.148)<.000001&&Math.abs(p[2]-.110)<.000001),'Rounded distal pole exists');
+ assert.equal(manifest.glansToShaftRadiusRatio,1.38);assert.equal(manifest.subjectIdentified,false);assert.doesNotMatch(JSON.stringify(manifest),/Arjan|owner|likeness/i);
  const box=new Box3().setFromObject(scene);assert.ok(box.min.y<-.91&&box.max.y>.90);
 });
