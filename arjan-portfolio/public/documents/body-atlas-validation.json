@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-23T04:13:22.710978+00:00",
+  "generatedAt": "2026-10-23T04:39:45.379595+00:00",
   "snapshotExportedAt": "2026-10-19T11:12:05.379339+00:00",
   "recordCounts": {
     "de_novo": 37,
@@ -71,7 +71,7 @@
     "malformedRecallReferencesHeldForReview": 2,
     "noticeIndexPages": 6,
     "uniqueNoticeUrlsScreened": 410,
-    "domainChecksPassed": 45,
+    "domainChecksPassed": 47,
     "ingestionChecksPassed": 36,
     "portfolioChecksPassed": 95,
     "browserDossiersCheckedPerViewport": 91,
@@ -103,7 +103,7 @@
     "completeLatestIfuCertification": false,
     "method": "Agent-assisted editorial primary-source text/excerpt assessment; exact source/revision/model scope and open limits are visible. Field audits are not independent clinical signoff.",
     "localVerification": {
-      "atlasTests": 45,
+      "atlasTests": 47,
       "ingestionTests": 36,
       "portfolioTests": 95,
       "browserDossiersPerViewport": 91,
@@ -114,6 +114,18 @@
         "mobile": 117
       },
       "scope": "Local Chrome; mobile touch/viewport emulation. Not independent clinical validation."
+    },
+    "documentTraceFollowup": {
+      "recordedDate": "2026-10-22",
+      "completeIfusRecovered": 0,
+      "fullLabelGapsRemaining": 3,
+      "historicalManufacturerExcerptLead": "Braun-Cutter / Avanta CMC identity crosswalk and product insert indexed in FDA K931588 archive; full revision and PDF unavailable",
+      "knownRestrictionsAdded": [
+        "Hudi K260007 condom incompatibility",
+        "Advanced Glenoid cemented socket versus humeral fixation permissions"
+      ],
+      "outreach": "Document requests retained as drafts; not sent",
+      "warningClarity": "Review meanings, compared models, revision limits and first entry-specific limitation visible; same context preserved in briefs."
     }
   }
 }

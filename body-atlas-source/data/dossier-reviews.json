@@ -47,24 +47,24 @@
         {
           "text": "RNS-300M is MR Unsafe. RNS-320 is MR Conditional only under its dedicated MRI guidelines; the two models are not interchangeable.",
           "sourceUrl": "https://www.neuropace.com/wp-content/themes/salient/2026-assets/pdfs/neuropace-rns-system-manual-320.pdf",
-          "locator": "Printed pp. 2\u20137; PDF pp. 10\u201315"
+          "locator": "Printed pp. 2–7; PDF pp. 10–15"
         },
         {
           "text": "Contraindications include elevated surgical-complication risk, another implanted device delivering electrical energy to the brain, and inability to operate the required monitor or magnet.",
           "sourceUrl": "https://www.neuropace.com/wp-content/themes/salient/2026-assets/pdfs/neuropace-rns-system-manual-320.pdf",
-          "locator": "Printed pp. 2\u20137; PDF pp. 10\u201315"
+          "locator": "Printed pp. 2–7; PDF pp. 10–15"
         },
         {
           "text": "Warnings include infection, intracranial bleeding, lead migration, device failure and electromagnetic interference.",
           "sourceUrl": "https://www.neuropace.com/wp-content/themes/salient/2026-assets/pdfs/neuropace-rns-system-manual-320.pdf",
-          "locator": "Printed pp. 2\u20137; PDF pp. 10\u201315"
+          "locator": "Printed pp. 2–7; PDF pp. 10–15"
         }
       ],
       "sources": [
         {
           "url": "https://www.neuropace.com/wp-content/themes/salient/2026-assets/pdfs/neuropace-rns-system-manual-320.pdf",
           "title": "RNS-320 physician manual",
-          "locator": "Printed pp. 2\u20137; PDF pp. 10\u201315",
+          "locator": "Printed pp. 2–7; PDF pp. 10–15",
           "accessedAt": "2026-10-22",
           "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
         }
@@ -340,22 +340,27 @@
     "source-fda-k260007": {
       "reviewedAt": "2026-10-22",
       "status": "current-label-not-established",
-      "scope": "K260007 HA 5 mg / 10 mg vaginal suppositories; no verified current product-specific IFU located.",
-      "revision": "FDA clearance 2026-04-01",
+      "scope": "K260007, Hudi HA 5 mg / HA 10 mg vaginal suppositories. Clearance restrictions are known; the complete package-specific manufacturer IFU remains missing.",
+      "revision": null,
       "models": [
         "HA 5 mg",
         "HA 10 mg"
       ],
       "findings": [
         {
-          "text": "The public record establishes clearance identity, not a complete current warning or contraindication set.",
+          "text": "The manufacturer’s cleared indications explicitly state that these suppositories are not compatible with condoms. No condom-material exception is established for K260007.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260007.pdf",
-          "locator": "Clearance letter and device summary"
+          "locator": "Manufacturer 510(k) summary §4; PDF p.5; comparison table PDF p.7"
         },
         {
-          "text": "The manufacturer's educational article does not supply a verified package-specific IFU; no safety claims are inferred from its marketing discussion.",
+          "text": "This clearance covers 5 mg and 10 mg HA formulations containing vitamin E, cocoa butter and semi-synthetic glycerides. The Revaree Plus predicate has different excipients; its package warnings cannot be transferred merely because both contain HA.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260007.pdf",
-          "locator": "Clearance letter and device summary"
+          "locator": "Manufacturer 510(k) summary §§5–6; PDF pp.5–7"
+        },
+        {
+          "text": "Hudi offers custom private-label formulas. Its public product page does not identify a complete US package insert and revision for these two cleared configurations.",
+          "sourceUrl": "https://www.hudipharma.com/vaginal-suppository/",
+          "locator": "Vaginal Suppository — Custom Formulas; Hyaluronic Acid Vaginal Suppository"
         }
       ],
       "sources": [
@@ -365,30 +370,43 @@
           "locator": "Clearance letter and device summary",
           "accessedAt": "2026-10-22",
           "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+        },
+        {
+          "url": "https://www.hudipharma.com/vaginal-suppository/",
+          "title": "Hudi manufacturer private-label product page",
+          "locator": "Custom Formulas; Hyaluronic Acid Vaginal Suppository",
+          "accessedAt": "2026-10-22",
+          "method": "Direct public manufacturer-page inspection; product description is not a package IFU."
         }
       ],
       "limitations": [
-        "Current instructions, contraindications, packaging brand and revision require an authoritative manufacturer IFU. No generic vaginal-product warnings were invented."
+        "Complete US package instructions, warnings/contraindications, revision, marketed brand and catalog/UDI linkage are still unverified. The known condom restriction remains visible while this gap is open.",
+        "A generic HA-product label, a predicate label or an OTC-drug listing with similar ingredients is not accepted as K260007 labeling. Manufacturer document requests remain unsent."
       ]
     },
     "source-fda-k260721": {
       "reviewedAt": "2026-10-22",
       "status": "current-label-not-established",
-      "scope": "K260721 Tornier Perform Advanced Glenoid, cleared 2026-07-22.",
-      "revision": "FDA clearance 2026-07-22",
+      "scope": "K260721 Tornier Perform Advanced Glenoid. Cemented socket use and named humeral-system compatibility are documented; the complete Advanced-specific US IFU remains missing.",
+      "revision": null,
       "models": [
         "Tornier Perform Advanced Glenoid"
       ],
       "findings": [
         {
-          "text": "The public clearance summary does not establish a complete current warning set.",
+          "text": "The Advanced Glenoid implant is for cemented use only. Press-fit permission for named stemless humeral components does not apply to the glenoid socket.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260721.pdf",
-          "locator": "Device identity and indications"
+          "locator": "Manufacturer indications for use; PDF p.4"
         },
         {
-          "text": "Located Tornier Perform Anatomic Glenoid operative guides describe a different named configuration and were rejected as substitutes for Advanced Glenoid.",
+          "text": "The clearance lists compatible humeral systems: Perform Stem, Stemless and Fracture; HRS and HRS Max; Flex; Simpliciti; and ReUnion. The exact component/catalog compatibility still requires the matched IFU.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260721.pdf",
-          "locator": "Device identity and indications"
+          "locator": "Manufacturer indications for use; PDF p.4"
+        },
+        {
+          "text": "Clearance does not supply the complete contraindication or warning set. Earlier Perform Anatomic or Reversed Glenoid documents are not verified substitutes for the Advanced configuration.",
+          "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260721.pdf",
+          "locator": "K260721 device identity and manufacturer indications for use; PDF pp.1,4"
         }
       ],
       "sources": [
@@ -401,7 +419,8 @@
         }
       ],
       "limitations": [
-        "Exact Advanced Glenoid IFU revision, catalog references and compatibility restrictions still require a matching primary document."
+        "The exact Advanced Glenoid US IFU, document revision, implant catalog/UDI references and complete compatibility table remain unverified. No generic shoulder warning set is presented as its manufacturer labeling.",
+        "Stryker’s US portal requires an exact REF, EAN/GTIN or KeyCode. No verified Advanced implant identifier was established; an instrument identifier must not be substituted. A document request remains unsent."
       ]
     },
     "source-fda-p000006": {
@@ -634,19 +653,19 @@
         {
           "text": "Endometrial ablation is not contraception; subsequent pregnancy can be dangerous.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000040D.pdf",
-          "locator": "Questions 8\u20139"
+          "locator": "Questions 8–9"
         },
         {
           "text": "The patient label identifies uterine perforation, escaping hot fluid and internal-organ/cervical/vaginal burns as risks.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000040D.pdf",
-          "locator": "Questions 8\u20139"
+          "locator": "Questions 8–9"
         }
       ],
       "sources": [
         {
           "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000040D.pdf",
           "title": "Hydro ThermAblator patient information",
-          "locator": "Questions 8\u20139",
+          "locator": "Questions 8–9",
           "accessedAt": "2026-10-22",
           "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
         }
@@ -816,7 +835,7 @@
         {
           "text": "The cementless S105 label excludes infection, osteoporosis, lateral-compartment disease, inflammatory arthritis and inadequate ligament stability; it specifically prohibits bone cement. These restrictions must not be substituted for the original cemented system IFU.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P010014S105C.pdf",
-          "locator": "Contraindications and Warnings; PDF pp.3\u20134"
+          "locator": "Contraindications and Warnings; PDF pp.3–4"
         }
       ],
       "sources": [
@@ -1156,7 +1175,7 @@
           "locator": "Prior to Surgery; Warning; printed p.13"
         },
         {
-          "text": "The condylar component is intended to be paired with this manufacturer\u2019s fossa-eminence component. Abnormal joint forces and suboptimal positioning require specific surgical assessment.",
+          "text": "The condylar component is intended to be paired with this manufacturer’s fossa-eminence component. Abnormal joint forces and suboptimal positioning require specific surgical assessment.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf/P000023c.pdf",
           "locator": "Prior to Surgery; Warning; printed p.13"
         }
@@ -1204,7 +1223,7 @@
         }
       ],
       "limitations": [
-        "The manufacturer\u2019s current portal lists ONXM, ONXMC, ONXAE, ONXACE and ONXANE. This published IFU has not been reconciled to an implanted original ONXA or certified as the latest revision."
+        "The manufacturer’s current portal lists ONXM, ONXMC, ONXAE, ONXACE and ONXANE. This published IFU has not been reconciled to an implanted original ONXA or certified as the latest revision."
       ]
     },
     "source-fda-p020023": {
@@ -1220,7 +1239,7 @@
           "locator": "Contraindications; Warnings; Precautions"
         },
         {
-          "text": "Severe allergy and sensitivity to bacterial proteins are exclusions in this label. The original indication concerns nasolabial folds; it does not establish every later formulation\u2019s anatomical indication.",
+          "text": "Severe allergy and sensitivity to bacterial proteins are exclusions in this label. The original indication concerns nasolabial folds; it does not establish every later formulation’s anatomical indication.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020023c.pdf",
           "locator": "Contraindications; Warnings; Precautions"
         }
@@ -1251,25 +1270,25 @@
         {
           "text": "Patients unable to receive antiplatelet/anticoagulant therapy, or with a lesion preventing full balloon inflation, are excluded.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020047C.pdf",
-          "locator": "Sections 4\u20135; printed p.4"
+          "locator": "Sections 4–5; printed p.4"
         },
         {
           "text": "Warnings include stent thrombosis, vascular injury and bleeding; cobalt-chromium sensitivity and correct stent sizing/material compatibility require assessment.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020047C.pdf",
-          "locator": "Sections 4\u20135; printed p.4"
+          "locator": "Sections 4–5; printed p.4"
         }
       ],
       "sources": [
         {
           "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf2/P020047C.pdf",
           "title": "FDA MULTI-LINK VISION US IFU",
-          "locator": "Sections 4\u20135; printed p.4",
+          "locator": "Sections 4–5; printed p.4",
           "accessedAt": "2026-10-22",
           "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
         }
       ],
       "limitations": [
-        "The original label\u2019s follow-up limits describe evidence available at approval, not the present-day literature. Current revision and later stent generations are separate."
+        "The original label’s follow-up limits describe evidence available at approval, not the present-day literature. Current revision and later stent generations are separate."
       ]
     },
     "source-fda-p020056": {
@@ -1285,7 +1304,7 @@
           "locator": "Boxed Warning; BIA-ALCL; rupture screening; complications"
         },
         {
-          "text": "For asymptomatic silicone implants the manufacturer recommends initial ultrasound or MRI at 5\u20136 years, then every 2\u20133 years; symptoms or uncertain ultrasound findings require separate evaluation.",
+          "text": "For asymptomatic silicone implants the manufacturer recommends initial ultrasound or MRI at 5–6 years, then every 2–3 years; symptoms or uncertain ultrasound findings require separate evaluation.",
           "sourceUrl": "https://www.natrelle.com/safety",
           "locator": "Boxed Warning; BIA-ALCL; rupture screening; complications"
         }
@@ -1313,19 +1332,19 @@
         {
           "text": "The lens requires an intact capsular bag and zonules; sulcus placement is not supported by this label.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030002C.pdf",
-          "locator": "Warnings 1\u20138; PDF p.1"
+          "locator": "Warnings 1–8; PDF p.1"
         },
         {
           "text": "Glasses may still be needed. Small-optic decentration can produce glare; early or large YAG capsulotomy increases dislocation or further-surgery risk.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030002C.pdf",
-          "locator": "Warnings 1\u20138; PDF p.1"
+          "locator": "Warnings 1–8; PDF p.1"
         }
       ],
       "sources": [
         {
           "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030002C.pdf",
           "title": "FDA Crystalens AT-45 physician labeling",
-          "locator": "Warnings 1\u20138; PDF p.1",
+          "locator": "Warnings 1–8; PDF p.1",
           "accessedAt": "2026-10-22",
           "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
         }
@@ -1375,19 +1394,19 @@
         {
           "text": "Contraindications include inability to receive antiplatelet/anticoagulant therapy, uncorrected bleeding disorders, nitinol allergy and a common-carotid ostial lesion.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030047C.pdf",
-          "locator": "Sections 3\u20135; printed p.3"
+          "locator": "Sections 3–5; printed p.3"
         },
         {
           "text": "The label warns about stroke-producing distal embolization, thrombosis, migration and arterial rupture; embolic-protection compatibility and anatomical sizing matter.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030047C.pdf",
-          "locator": "Sections 3\u20135; printed p.3"
+          "locator": "Sections 3–5; printed p.3"
         }
       ],
       "sources": [
         {
           "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf3/P030047C.pdf",
           "title": "FDA Cordis PRECISE instructions",
-          "locator": "Sections 3\u20135; printed p.3",
+          "locator": "Sections 3–5; printed p.3",
           "accessedAt": "2026-10-22",
           "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
         }
@@ -1616,32 +1635,32 @@
     "source-fda-p050052": {
       "reviewedAt": "2026-10-22",
       "status": "published-ifu-reviewed",
-      "scope": "RADIESSE without lidocaine; face/d\u00e9collet\u00e9 document separate from hand and RADIESSE+",
+      "scope": "RADIESSE without lidocaine; face/décolleté document separate from hand and RADIESSE+",
       "revision": "Manufacturer PDF published April 2026",
       "models": [],
       "findings": [
         {
           "text": "Intravascular injection can cause blindness, stroke or tissue necrosis. Severe allergies, component sensitivity and bleeding disorders exclude use.",
           "sourceUrl": "https://radiesse.com/wp-content/uploads/2026/04/instructions-for-use-radiesse-decollete.pdf",
-          "locator": "Sections 3\u20134; PDF p.2"
+          "locator": "Sections 3–4; PDF p.2"
         },
         {
           "text": "Active local infection/inflammation requires deferral. Lip injection safety is not established and nodules have been reported; CaHA can be visible on imaging.",
           "sourceUrl": "https://radiesse.com/wp-content/uploads/2026/04/instructions-for-use-radiesse-decollete.pdf",
-          "locator": "Sections 3\u20134; PDF p.2"
+          "locator": "Sections 3–4; PDF p.2"
         }
       ],
       "sources": [
         {
           "url": "https://radiesse.com/wp-content/uploads/2026/04/instructions-for-use-radiesse-decollete.pdf",
           "title": "RADIESSE manufacturer published IFU",
-          "locator": "Sections 3\u20134; PDF p.2",
+          "locator": "Sections 3–4; PDF p.2",
           "accessedAt": "2026-10-22",
           "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
         }
       ],
       "limitations": [
-        "The published document includes a specific diluted d\u00e9collet\u00e9 indication. Hand use has a dedicated IFU and RADIESSE+ adds lidocaine; neither should inherit all instructions from this document."
+        "The published document includes a specific diluted décolleté indication. Hand use has a dedicated IFU and RADIESSE+ adds lidocaine; neither should inherit all instructions from this document."
       ]
     },
     "source-fda-p060006": {
@@ -1681,7 +1700,7 @@
       "scope": "Spanner temporary prostatic stent with Surveyor measurement device",
       "revision": null,
       "models": [
-        "Spanner 20F sizes 4\u20139 cm"
+        "Spanner 20F sizes 4–9 cm"
       ],
       "findings": [
         {
@@ -1690,7 +1709,7 @@
           "locator": "Indications; Contraindications; printed p.2"
         },
         {
-          "text": "Positive urine culture, active UTI, relevant urethral disease/altered anatomy and a measured prostatic urethra outside 4\u20139 cm exclude use.",
+          "text": "Positive urine culture, active UTI, relevant urethral disease/altered anatomy and a measured prostatic urethra outside 4–9 cm exclude use.",
           "sourceUrl": "https://www.srsmedical.com/products/downloads/Spanner-Physician/Physicians-IFU-for-The-Spanner-and-Surveyor.pdf",
           "locator": "Indications; Contraindications; printed p.2"
         }
@@ -1705,13 +1724,13 @@
         }
       ],
       "limitations": [
-        "The manufacturer-published document reflects an expanded indication; it must not be presented as the original approval\u2019s wording. The exact package revision must be checked before use."
+        "The manufacturer-published document reflects an expanded indication; it must not be presented as the original approval’s wording. The exact package revision must be checked before use."
       ]
     },
     "source-fda-p060023": {
       "reviewedAt": "2026-10-22",
       "status": "historical-label-reviewed",
-      "scope": "BRYAN single-level C3\u2013C7 cervical disc; original FDA labeling",
+      "scope": "BRYAN single-level C3–C7 cervical disc; original FDA labeling",
       "revision": null,
       "models": [],
       "findings": [
@@ -1811,7 +1830,7 @@
         {
           "text": "Excess breast compression, X-ray exposure, electrical injury and motorized C-arm entrapment are identified hazards. Exposure settings trade dose against image quality.",
           "sourceUrl": "https://www.hologic.com/file/556641/download?token=SrGUQYfy",
-          "locator": "Sections 1.5\u20131.6; PDF pp.3\u20135"
+          "locator": "Sections 1.5–1.6; PDF pp.3–5"
         },
         {
           "text": "Only approved accessories/software changes are permitted. The user is responsible for network protection; the physician label directs readers to the configuration-specific user guide for additional precautions.",
@@ -1823,7 +1842,7 @@
         {
           "url": "https://www.hologic.com/file/556641/download?token=SrGUQYfy",
           "title": "Hologic breast-tomosynthesis physician labeling",
-          "locator": "Sections 1.5\u20131.6; PDF pp.3\u20135",
+          "locator": "Sections 1.5–1.6; PDF pp.3–5",
           "accessedAt": "2026-10-22",
           "method": "Manufacturer PDF text inspected; document linked by its official labeling portal"
         }
@@ -2122,7 +2141,7 @@
         }
       ],
       "limitations": [
-        "The 2019 class mortality concern must not be presented without FDA\u2019s July 2023 update: the newer assessment does not support excess mortality. This does not remove other stent risks."
+        "The 2019 class mortality concern must not be presented without FDA’s July 2023 update: the newer assessment does not support excess mortality. This does not remove other stent risks."
       ]
     },
     "source-fda-p100034": {
@@ -2184,7 +2203,7 @@
         }
       ],
       "limitations": [
-        "Navion\u2019s 2021 recall concerns a distinct system and cannot establish a recall of every Captivia graft. The exact implant/delivery model and package IFU remain necessary."
+        "Navion’s 2021 recall concerns a distinct system and cannot establish a recall of every Captivia graft. The exact implant/delivery model and package IFU remain necessary."
       ]
     },
     "source-fda-p100045": {
@@ -2290,19 +2309,19 @@
         {
           "text": "Relevant metal, everolimus or polymer sensitivity, inability to receive recommended antiplatelet/anticoagulant treatment and unsuitable lesions are exclusions.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf11/P110010S096D.pdf",
-          "locator": "Sections 4\u20135"
+          "locator": "Sections 4–5"
         },
         {
           "text": "Stent thrombosis, bleeding and vascular complications are explicit risks; the label warns against use when adherence to antiplatelet treatment is unlikely.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf11/P110010S096D.pdf",
-          "locator": "Sections 4\u20135"
+          "locator": "Sections 4–5"
         }
       ],
       "sources": [
         {
           "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf11/P110010S096D.pdf",
           "title": "FDA PROMUS Element Plus S096 directions",
-          "locator": "Sections 4\u20135",
+          "locator": "Sections 4–5",
           "accessedAt": "2026-10-22",
           "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
         }
@@ -2339,7 +2358,7 @@
         }
       ],
       "limitations": [
-        "The manufacturer\u2019s public summary directs users to the package insert for complete warnings. No complete current package-insert revision was established."
+        "The manufacturer’s public summary directs users to the package insert for complete warnings. No complete current package-insert revision was established."
       ]
     },
     "source-fda-p130008": {
@@ -2544,19 +2563,19 @@
         {
           "text": "Moderate/severe traumatic donor-lung injury with air leak is contraindicated in this guide because perfusate leakage and failure to recruit the lung may occur.",
           "sourceUrl": "https://www.transmedics.com/wp-content/uploads/2019/03/100004071_REV5_OCS_Lung_System_-_Clinical_User_GuideSmall.pdf",
-          "locator": "Sections 1.1\u20131.6; printed pp.9\u201311"
+          "locator": "Sections 1.1–1.6; printed pp.9–11"
         },
         {
           "text": "Trained transplant teams must review both clinical and technical guides; user error or malfunction can result in loss of a donor organ.",
           "sourceUrl": "https://www.transmedics.com/wp-content/uploads/2019/03/100004071_REV5_OCS_Lung_System_-_Clinical_User_GuideSmall.pdf",
-          "locator": "Sections 1.1\u20131.6; printed pp.9\u201311"
+          "locator": "Sections 1.1–1.6; printed pp.9–11"
         }
       ],
       "sources": [
         {
           "url": "https://www.transmedics.com/wp-content/uploads/2019/03/100004071_REV5_OCS_Lung_System_-_Clinical_User_GuideSmall.pdf",
           "title": "TransMedics OCS Lung clinical user guide",
-          "locator": "Sections 1.1\u20131.6; printed pp.9\u201311",
+          "locator": "Sections 1.1–1.6; printed pp.9–11",
           "accessedAt": "2026-10-22",
           "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
         }
@@ -2606,19 +2625,19 @@
         {
           "text": "Do not use with known photoprotein sensitivity/allergy. Recent bleaching may degrade images.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf17/P170029C.pdf",
-          "locator": "Sections 1.7\u20131.9; printed p.7"
+          "locator": "Sections 1.7–1.9; printed p.7"
         },
         {
           "text": "The system is an adjunct to other caries assessments, not a standalone determination of treatment; it is intended for accessible coronal surfaces in patients aged six or older.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf17/P170029C.pdf",
-          "locator": "Sections 1.7\u20131.9; printed p.7"
+          "locator": "Sections 1.7–1.9; printed p.7"
         }
       ],
       "sources": [
         {
           "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf17/P170029C.pdf",
           "title": "FDA CALCIVIS US instructions",
-          "locator": "Sections 1.7\u20131.9; printed p.7",
+          "locator": "Sections 1.7–1.9; printed p.7",
           "accessedAt": "2026-10-22",
           "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
         }
@@ -2730,19 +2749,19 @@
         {
           "text": "Moderate/severe trauma, active bleeding, split livers and specified accessory-artery reconstruction are exclusions in this guide.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf20/P200031D.pdf",
-          "locator": "Sections 1.3\u20131.5; printed p.9"
+          "locator": "Sections 1.3–1.5; printed p.9"
         },
         {
           "text": "Malfunction or user error can cause donor-organ loss. Use is restricted to trained professionals; the donor-selection and preservation indication is specific.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf20/P200031D.pdf",
-          "locator": "Sections 1.3\u20131.5; printed p.9"
+          "locator": "Sections 1.3–1.5; printed p.9"
         }
       ],
       "sources": [
         {
           "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf20/P200031D.pdf",
           "title": "FDA OCS Liver user guide",
-          "locator": "Sections 1.3\u20131.5; printed p.9",
+          "locator": "Sections 1.3–1.5; printed p.9",
           "accessedAt": "2026-10-22",
           "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
         }
@@ -2889,19 +2908,19 @@
         {
           "text": "Uncontrolled upper-limb spasticity, active/recurrent sepsis and an implanted cardiac pacemaker are contraindications in the original label.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf/p950035.pdf",
-          "locator": "Sections 3\u20135; printed p.3"
+          "locator": "Sections 3–5; printed p.3"
         },
         {
           "text": "Surface electrical stimulation or therapeutic ultrasound near implanted components can damage the system; trained/certified clinicians are required.",
           "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf/p950035.pdf",
-          "locator": "Sections 3\u20135; printed p.3"
+          "locator": "Sections 3–5; printed p.3"
         }
       ],
       "sources": [
         {
           "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf/p950035.pdf",
           "title": "FDA Freehand original label",
-          "locator": "Sections 3\u20135; printed p.3",
+          "locator": "Sections 3–5; printed p.3",
           "accessedAt": "2026-10-22",
           "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
         },
@@ -2920,32 +2939,49 @@
     "source-fda-p960053": {
       "reviewedAt": "2026-10-22",
       "status": "current-label-not-established",
-      "scope": "Braun-Cutter trapezometacarpal total joint prosthesis",
+      "scope": "Braun-Cutter / Avanta CMC total thumb-base prosthesis, P960053. Historical manufacturer-insert excerpts and an explicit identity crosswalk were located; the complete revision-controlled label remains unverified.",
       "revision": null,
-      "models": [],
+      "models": [
+        "Braun-Cutter CMC / Avanta CMC — P960053",
+        "Avanta CMC instrument sets — separate products"
+      ],
       "findings": [
         {
-          "text": "The application concerns total thumb-base joint replacement in skeletally mature patients, rather than every modern thumb implant.",
-          "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P960053",
-          "locator": "Approval order; supplement list"
+          "text": "A 2005 manufacturer ownership-transfer record explicitly links Braun-Cutter CMC (Avanta CMC) to P960053. The surrounding FDA file is indexed under K931588, a separate silicone trapezial implant; its submission number is not reassigned to this prosthesis.",
+          "sourceUrl": "https://www.accessdata.fda.gov/CDRH510K/K931588.pdf",
+          "locator": "Avanta ownership-transfer attachment, January 20, 2005; Braun-Cutter CMC / P960053 table row"
         },
         {
-          "text": "S005 (2016) records a labeling change, but its decision statement does not disclose the full warning text.",
-          "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P960053",
-          "locator": "Approval order; supplement list"
+          "text": "Historical Avanta CMC insert excerpts specify cemented use only and exclude active infection, inadequate supporting tissue/bone and skeletal immaturity. They warn of loosening, fracture or dislocation with excessive loading, and metal sensitivity.",
+          "sourceUrl": "https://www.accessdata.fda.gov/CDRH510K/K931588.pdf",
+          "locator": "Avanta Orthopaedics PRODUCT INSERT — Avanta CMC Prosthesis; English CONTRAINDICATIONS and WARNINGS; indexed excerpts only"
+        },
+        {
+          "text": "These archival warnings are not certified as current. S005 records a labeling change on August 9, 2016 without publishing the changed warning text in its decision statement.",
+          "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?ID=P960053S005",
+          "locator": "S005 decision date, supplement reason and approval-order statement"
         }
       ],
       "sources": [
         {
-          "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P960053",
-          "title": "FDA Braun-Cutter original application",
-          "locator": "Approval order; supplement list",
+          "url": "https://www.accessdata.fda.gov/CDRH510K/K931588.pdf",
+          "title": "FDA archival file containing Avanta CMC manufacturer insert and identity transfer",
+          "locator": "Avanta CMC product insert; January 20, 2005 ownership-transfer attachment",
           "accessedAt": "2026-10-22",
-          "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+          "method": "FDA-indexed primary-document excerpts (indexed March 2023). Full PDF retrieval was unavailable: web retrieval exceeds its size limit and direct download returned HTTP 404. Page, document revision and completeness were not verified."
+        },
+        {
+          "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?ID=P960053S005",
+          "title": "FDA P960053 S005 labeling-change decision",
+          "locator": "Decision date and approval-order statement",
+          "accessedAt": "2026-10-22",
+          "method": "Public primary FDA decision-text inspection; the decision statement is not the revised IFU."
         }
       ],
       "limitations": [
-        "Neither complete original nor current model-specific IFU was located. No generic orthopedic warning is substituted as a reviewed Braun-Cutter warning."
+        "Only FDA-indexed archival manufacturer-insert excerpts were obtained; full PDF retrieval was unavailable. The complete original insert, revision/date and S005 replacement label are still missing; this remains a label gap.",
+        "The March 31, 2023 FDA processing/index stamp is not a labeling revision or original approval date. The insert is not certified as the June 1997 original.",
+        "Avanta-branded instrument-set labeling and current generic Stryker hand-implant instructions cannot establish warnings for the implanted Braun-Cutter prosthesis. A manufacturer request remains unsent."
       ]
     },
     "source-fda-p990065": {
@@ -3023,7 +3059,7 @@
           "locator": "Abstract; methods and results"
         },
         {
-          "text": "This limited mapping evidence does not establish chronic implanted cooling safety, long-term epilepsy efficacy or authorization of the owner\u2019s SeizeFreeze concept.",
+          "text": "This limited mapping evidence does not establish chronic implanted cooling safety, long-term epilepsy efficacy or authorization of the owner’s SeizeFreeze concept.",
           "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/33307258/",
           "locator": "Abstract; methods and results"
         }

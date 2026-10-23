@@ -8,7 +8,7 @@ import {
 } from "@/lib/atlas";
 import { interventionActions, interventionSummaries, productName } from "@/lib/intervention-view";
 import { frontier } from "@/lib/curation";
-import { dossiers, reviewLabels } from "@/lib/dossiers";
+import { dossiers, reviewLabels, reviewMeanings } from "@/lib/dossiers";
 import { atlasPath } from "@/lib/deployment";
 import type { Family } from "@/lib/types";
 export default function BriefPreview({
@@ -49,7 +49,7 @@ export default function BriefPreview({
           <p>Limit: {m.limitations}</p>
         </section>
       ))}
-      {dossiers[f.id] && <section className="brief-dossier"><h3>Regulatory, labeling & safety dossier</h3><p>Snapshot {dossiers[f.id].reviewedAt}. Source assessment: {reviewLabels[dossiers[f.id].currentLabelReview]} · {dossiers[f.id].labelReview.reviewedAt}.</p><p>{dossiers[f.id].regulatory.detail}</p><p>{dossiers[f.id].labeling.detail}</p><p>{dossiers[f.id].safety.detail}</p><p>Safety notice review: {dossiers[f.id].noticeReview}; affected model/lot review: {dossiers[f.id].modelLotReview}.</p><p>{dossiers[f.id].labelReview.scope}</p>{dossiers[f.id].labelReview.findings.map((finding,i)=><p key={i}>{finding.text} <a href={finding.sourceUrl} target="_blank" rel="noopener noreferrer">Original source</a> · {finding.locator}</p>)}{dossiers[f.id].labelReview.limitations.map(limit=><p key={limit}>Open limit: {limit}</p>)}{dossiers[f.id].sourceLinks.map(s=><p key={s.url}><a href={s.url} target="_blank" rel="noopener noreferrer">{s.title}</a></p>)}<a href={atlasPath(dossiers[f.id].path)} target="_blank" rel="noopener noreferrer">Complete dossier, coverage and original source links</a></section>}
+      {dossiers[f.id] && <section className="brief-dossier"><h3>Regulatory, labeling & safety dossier</h3><p>Snapshot {dossiers[f.id].reviewedAt}. Source assessment: {reviewLabels[dossiers[f.id].currentLabelReview]} · {dossiers[f.id].labelReview.reviewedAt}.</p><p>{reviewMeanings[dossiers[f.id].currentLabelReview]}</p><p>Document: {dossiers[f.id].labelReview.revision || "Revision not established"}.</p>{!!dossiers[f.id].labelReview.models.length && <p>Models compared — not interchangeable: {dossiers[f.id].labelReview.models.join("; ")}</p>}<p>{dossiers[f.id].regulatory.detail}</p><p>{dossiers[f.id].labeling.detail}</p><p>{dossiers[f.id].safety.detail}</p><p>Safety notice review: {dossiers[f.id].noticeReview}; affected model/lot review: {dossiers[f.id].modelLotReview}.</p><p>{dossiers[f.id].labelReview.scope}</p>{dossiers[f.id].labelReview.findings.map((finding,i)=><p key={i}>{finding.text} <a href={finding.sourceUrl} target="_blank" rel="noopener noreferrer">Original source</a> · {finding.locator}</p>)}{dossiers[f.id].labelReview.limitations.map(limit=><p key={limit}>Open limit: {limit}</p>)}{dossiers[f.id].sourceLinks.map(s=><p key={s.url}><a href={s.url} target="_blank" rel="noopener noreferrer">{s.title}</a></p>)}<a href={atlasPath(dossiers[f.id].path)} target="_blank" rel="noopener noreferrer">Complete dossier, coverage and original source links</a></section>}
       <h3>Indexed source records</h3>
       {[...f.regulatoryIds, ...f.studyIds, ...f.publicationIds].map((id) => {
         const r = recordById(id);

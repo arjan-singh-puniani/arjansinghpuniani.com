@@ -176,21 +176,26 @@
   "labelReview": {
     "reviewedAt": "2026-10-22",
     "status": "current-label-not-established",
-    "scope": "K260721 Tornier Perform Advanced Glenoid, cleared 2026-07-22.",
-    "revision": "FDA clearance 2026-07-22",
+    "scope": "K260721 Tornier Perform Advanced Glenoid. Cemented socket use and named humeral-system compatibility are documented; the complete Advanced-specific US IFU remains missing.",
+    "revision": null,
     "models": [
       "Tornier Perform Advanced Glenoid"
     ],
     "findings": [
       {
-        "text": "The public clearance summary does not establish a complete current warning set.",
+        "text": "The Advanced Glenoid implant is for cemented use only. Press-fit permission for named stemless humeral components does not apply to the glenoid socket.",
         "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260721.pdf",
-        "locator": "Device identity and indications"
+        "locator": "Manufacturer indications for use; PDF p.4"
       },
       {
-        "text": "Located Tornier Perform Anatomic Glenoid operative guides describe a different named configuration and were rejected as substitutes for Advanced Glenoid.",
+        "text": "The clearance lists compatible humeral systems: Perform Stem, Stemless and Fracture; HRS and HRS Max; Flex; Simpliciti; and ReUnion. The exact component/catalog compatibility still requires the matched IFU.",
         "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260721.pdf",
-        "locator": "Device identity and indications"
+        "locator": "Manufacturer indications for use; PDF p.4"
+      },
+      {
+        "text": "Clearance does not supply the complete contraindication or warning set. Earlier Perform Anatomic or Reversed Glenoid documents are not verified substitutes for the Advanced configuration.",
+        "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260721.pdf",
+        "locator": "K260721 device identity and manufacturer indications for use; PDF pp.1,4"
       }
     ],
     "sources": [
@@ -203,7 +208,8 @@
       }
     ],
     "limitations": [
-      "Exact Advanced Glenoid IFU revision, catalog references and compatibility restrictions still require a matching primary document."
+      "The exact Advanced Glenoid US IFU, document revision, implant catalog/UDI references and complete compatibility table remain unverified. No generic shoulder warning set is presented as its manufacturer labeling.",
+      "Stryker’s US portal requires an exact REF, EAN/GTIN or KeyCode. No verified Advanced implant identifier was established; an instrument identifier must not be substituted. A document request remains unsent."
     ]
   },
   "currentLabelReview": "current-label-not-established",
@@ -227,7 +233,8 @@
   "review": {
     "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Exact Advanced Glenoid IFU revision, catalog references and compatibility restrictions still require a matching primary document.",
+      "The exact Advanced Glenoid US IFU, document revision, implant catalog/UDI references and complete compatibility table remain unverified. No generic shoulder warning set is presented as its manufacturer labeling.",
+      "Stryker’s US portal requires an exact REF, EAN/GTIN or KeyCode. No verified Advanced implant identifier was established; an instrument identifier must not be substituted. A document request remains unsent.",
       "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }

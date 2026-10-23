@@ -176,22 +176,27 @@
   "labelReview": {
     "reviewedAt": "2026-10-22",
     "status": "current-label-not-established",
-    "scope": "K260007 HA 5 mg / 10 mg vaginal suppositories; no verified current product-specific IFU located.",
-    "revision": "FDA clearance 2026-04-01",
+    "scope": "K260007, Hudi HA 5 mg / HA 10 mg vaginal suppositories. Clearance restrictions are known; the complete package-specific manufacturer IFU remains missing.",
+    "revision": null,
     "models": [
       "HA 5 mg",
       "HA 10 mg"
     ],
     "findings": [
       {
-        "text": "The public record establishes clearance identity, not a complete current warning or contraindication set.",
+        "text": "The manufacturer’s cleared indications explicitly state that these suppositories are not compatible with condoms. No condom-material exception is established for K260007.",
         "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260007.pdf",
-        "locator": "Clearance letter and device summary"
+        "locator": "Manufacturer 510(k) summary §4; PDF p.5; comparison table PDF p.7"
       },
       {
-        "text": "The manufacturer's educational article does not supply a verified package-specific IFU; no safety claims are inferred from its marketing discussion.",
+        "text": "This clearance covers 5 mg and 10 mg HA formulations containing vitamin E, cocoa butter and semi-synthetic glycerides. The Revaree Plus predicate has different excipients; its package warnings cannot be transferred merely because both contain HA.",
         "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260007.pdf",
-        "locator": "Clearance letter and device summary"
+        "locator": "Manufacturer 510(k) summary §§5–6; PDF pp.5–7"
+      },
+      {
+        "text": "Hudi offers custom private-label formulas. Its public product page does not identify a complete US package insert and revision for these two cleared configurations.",
+        "sourceUrl": "https://www.hudipharma.com/vaginal-suppository/",
+        "locator": "Vaginal Suppository — Custom Formulas; Hyaluronic Acid Vaginal Suppository"
       }
     ],
     "sources": [
@@ -201,10 +206,18 @@
         "locator": "Clearance letter and device summary",
         "accessedAt": "2026-10-22",
         "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+      },
+      {
+        "url": "https://www.hudipharma.com/vaginal-suppository/",
+        "title": "Hudi manufacturer private-label product page",
+        "locator": "Custom Formulas; Hyaluronic Acid Vaginal Suppository",
+        "accessedAt": "2026-10-22",
+        "method": "Direct public manufacturer-page inspection; product description is not a package IFU."
       }
     ],
     "limitations": [
-      "Current instructions, contraindications, packaging brand and revision require an authoritative manufacturer IFU. No generic vaginal-product warnings were invented."
+      "Complete US package instructions, warnings/contraindications, revision, marketed brand and catalog/UDI linkage are still unverified. The known condom restriction remains visible while this gap is open.",
+      "A generic HA-product label, a predicate label or an OTC-drug listing with similar ingredients is not accepted as K260007 labeling. Manufacturer document requests remain unsent."
     ]
   },
   "currentLabelReview": "current-label-not-established",
@@ -214,6 +227,10 @@
     {
       "title": "Original FDA decision",
       "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K260007"
+    },
+    {
+      "title": "Hudi manufacturer private-label product page",
+      "url": "https://www.hudipharma.com/vaginal-suppository/"
     },
     {
       "title": "FDA K260007 clearance and summary",
@@ -228,7 +245,8 @@
   "review": {
     "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Current instructions, contraindications, packaging brand and revision require an authoritative manufacturer IFU. No generic vaginal-product warnings were invented.",
+      "Complete US package instructions, warnings/contraindications, revision, marketed brand and catalog/UDI linkage are still unverified. The known condom restriction remains visible while this gap is open.",
+      "A generic HA-product label, a predicate label or an OTC-drug listing with similar ingredients is not accepted as K260007 labeling. Manufacturer document requests remain unsent.",
       "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }

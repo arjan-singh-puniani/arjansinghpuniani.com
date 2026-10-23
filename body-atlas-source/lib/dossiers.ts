@@ -18,6 +18,16 @@ export const reviewLabels: Record<string, string> = {
   "current-label-not-established": "Label gap",
   investigational: "Research only",
 };
+export const reviewMeanings: Record<string, string> = {
+  "current-safety-source-reviewed": "Public manufacturer safety summary; the complete package IFU and latest revision are not certified.",
+  "current-model-source-reviewed": "Warnings depend on the exact model and components. Permissions for one version do not extend to another.",
+  "published-ifu-reviewed": "A published IFU was reviewed. Its document revision is identified where known; a newer revision may exist.",
+  "model-limited-source-review": "Model or configuration coverage is limited. Only explicitly supported warnings and permissions can be assigned to the indexed device.",
+  "historical-label-reviewed": "These warnings come from historical labeling. Later revisions may change restrictions or permissions.",
+  "historical-source-reviewed": "Historical regulatory evidence supplies limited safety context; it is not a current package IFU.",
+  "current-label-not-established": "The complete product-specific label is missing. Known restrictions are shown; the gap remains open.",
+  investigational: "Research evidence is shown. No commercial labeling or marketing authorization is established here.",
+};
 export function matchesRecall(r: { product_description: string; code_info: string; product_res_number: string }, query: string): boolean {
   const q = query.trim().slice(0, 120).toLocaleLowerCase();
   return !q || [r.product_description, r.code_info, r.product_res_number].some(v => v.toLocaleLowerCase().includes(q));
@@ -41,7 +51,9 @@ export function dossierBrief(id: string): string[] {
   return d ? [
     "### Regulatory, labeling and safety dossier",
     `FDA snapshot: ${d.reviewedAt}. Source assessment: ${d.labelReview.reviewedAt} · ${reviewLabels[d.currentLabelReview]}.`,
-    `Scope: ${d.labelReview.scope}${d.labelReview.revision ? ` Revision: ${d.labelReview.revision}.` : ""}`,
+    reviewMeanings[d.currentLabelReview],
+    `Scope: ${d.labelReview.scope} Document: ${d.labelReview.revision || "Revision not established"}.`,
+    ...(d.labelReview.models.length ? [`Models compared (not interchangeable): ${d.labelReview.models.join("; ")}.`] : []),
     ...d.labelReview.findings.map(f => `- ${f.text} [Original source](${f.sourceUrl}) · ${f.locator}.`),
     ...d.labelReview.limitations.map(l => `Open limit: ${l}`),
     `Regulatory (${d.regulatory.state}): ${d.regulatory.detail}`,

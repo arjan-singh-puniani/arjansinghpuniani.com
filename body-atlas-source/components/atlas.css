@@ -2595,3 +2595,6 @@
 .reference-note {max-width:420px;color:var(--quiet);font-size:12px;line-height:1.6}
 
 .dossier-label-sections {display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+
+.dossier-models strong, .dossier-models span {display:block;line-height:1.6}
+.dossier-models strong {font-size:11px;color:var(--muted);font-weight:normal}

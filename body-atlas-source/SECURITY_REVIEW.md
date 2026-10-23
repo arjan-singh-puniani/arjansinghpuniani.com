@@ -32,3 +32,6 @@ Whole-body additions retain the same public-only boundaries. No new remote-fetch
 ## Dossier milestone — 2026-10-22
 
 The dossier path adds no authentication, keys, server mutation endpoint or executable external content. Existing default source allowlists remain intact; the FDA-only override is checked across redirects and final responses. Security regressions cover arbitrary hosts, credentials/ports, source tampering and failure isolation. JSON/HTML response size, page counts and retries are bounded; external HTML is published as `.txt`. Dependencies are unchanged. See [DOSSIERS.md](DOSSIERS.md).
+
+
+The original-label follow-up adds only the exact HTTPS citation host `www.hudipharma.com`; remote-ingestion allowlists, credentials and mutation endpoints are unchanged. Draft document requests are kept outside the public application. No complete archival PDF or fabricated hash is published when retrieval fails.
