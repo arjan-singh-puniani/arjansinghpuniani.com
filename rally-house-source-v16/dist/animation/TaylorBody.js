@@ -230,6 +230,11 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             if (outside < clearance)
                 hand.add(torsoRight.clone().scale(sign * (clearance - outside) * (1 - world)));
         }
+        // Garment clearance widens the hand path; retain a soft elbow instead of stretching it straight.
+        if (walk && world < .999) {
+            const hand = p[`hand${side}`], reach = arms.upperArm + arms.forearm - .05, horizontal = Math.hypot(hand.x - shoulder.x, hand.z - shoulder.z);
+            hand.y = Math.max(hand.y, shoulder.y - Math.sqrt(Math.max(.01, reach * reach - horizontal * horizontal)));
+        }
         // The old compact/feline elbow target can pass through the shoulder/wrist
         // axis after retargeting. A body-relative human pole keeps elbows down and
         // outside the ribcage, with posterior loading rather than a reversed fold.

@@ -3,6 +3,10 @@ import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 const runtime=path.resolve(process.env.QA_RUNTIME??'dist'),load=p=>import(pathToFileURL(path.join(runtime,p)).href);
 const [{Character},{memberData},{playerSpec},{Navigation},{Vec3}]=await Promise.all([load('entities/Character.js'),load('content/content.js'),load('content/PlayerAvatars.js'),load('world/Navigation.js'),load('rendering/Math3D.js')]);
+// Measure the same authored arm lengths and garment clearance as the browser.
+const originalFetch=globalThis.fetch,originalImage=globalThis.Image;
+try{globalThis.fetch=async url=>new Response(fs.readFileSync(new URL(url)));globalThis.Image=class{naturalWidth=1024;naturalHeight=1024;async decode(){}};await (await load('animation/AuthoredAthlete.js')).loadAuthoredAthlete();}
+finally{globalThis.fetch=originalFetch;globalThis.Image=originalImage;}
 const results=[];
 for(const spec of [...memberData,playerSpec('taylor'),playerSpec('arjan')]){
  const c=new Character({...spec},new Vec3(),new Navigation([]),{});c.racketStowed=true;c.goTo(new Vec3(0,0,8));

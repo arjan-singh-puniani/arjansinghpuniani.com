@@ -83,7 +83,7 @@ export class Character {
     walkCycle = new WalkCycle();
     exitWalkPose = null;
     walkingStride() { return (this.spec.appearance === 'human' ? 1.7 + clamp((this.travelSpeed - 2.2) / 3.3, 0, 1) * .7 : 1.02) * locomotionStyleFor(this.spec.id).stride; }
-    walkingShape() { const jog = clamp((this.travelSpeed - 2.2) / 3.3, 0, 1); return this.spec.appearance === 'human' ? { halfWidth: .135, lift: .045 + jog * .155, stance: .60 - jog * .20 } : undefined; }
+    walkingShape() { const jog = clamp((this.travelSpeed - 2.2) / 3.3, 0, 1); return this.spec.appearance === 'human' ? { halfWidth: .135, lift: .045 + jog * .155, stance: .52 - jog * .12 } : undefined; }
     targetYaw = 0;
     locomotion = 0;
     horizontalSpeed = 0;
@@ -639,7 +639,7 @@ export class Character {
         const sit = state === 'sit';
         const clip = sampleClip(clipForState(state, this.seed()), this.clipPhase(state, time));
         let baseY = (sit ? (this.seatHeight + .10 - .79) : 0) + clip.pelvisY;
-        const breathe = Math.sin(time * 2.05 + this.seed() * .01) * .014;
+        const breathe = Math.sin(time * 2.05 + this.seed() * .01) * (state === 'walk' || state === 'jog' ? .004 : .014);
         const shot = isShot(state), sp = shot ? this.shotProgress(state, time) : 0;
         const contact = shot ? this.shotContactTime(state) / this.shotDuration(state) : .45;
         const style = this.strokeStyle();
@@ -691,8 +691,8 @@ export class Character {
             baseY += Math.sin(phase * 1.7) * amp * .13;
         }
         if (moving) {
-            coil = gait * gaitStyle.torsoCounter * .45;
-            hipCoil = -gait * gaitStyle.hipSwing * .45;
+            coil = -gait * gaitStyle.torsoCounter * .45;
+            hipCoil = gait * gaitStyle.hipSwing * .45;
             baseY = this.spec.appearance === 'human' ? -.025 + Math.cos(this.gaitPhase * 2) * .003 : .008 + Math.sin(this.gaitPhase * 2) * .012;
             lean = 0;
             knee = 0;

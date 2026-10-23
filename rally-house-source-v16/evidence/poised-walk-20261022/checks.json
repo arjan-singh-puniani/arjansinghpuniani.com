@@ -1,0 +1,339 @@
+{
+  "before": [
+    {
+      "id": "coach",
+      "name": "Coach Contessa",
+      "cadence": 160,
+      "headVerticalRange": 0.12061303332906892,
+      "pelvisVerticalRange": 0.09017297093056365,
+      "meanElbowOutward": 0.12795464111673535,
+      "meanElbowFlexion": 6.349143695949998,
+      "peakFootLift": 0.044946327932066196,
+      "maxSlide": 0,
+      "plantedPairs": 207
+    },
+    {
+      "id": "mika",
+      "name": "Lucresia",
+      "cadence": 160,
+      "headVerticalRange": 0.11858051759581612,
+      "pelvisVerticalRange": 0.0959402379464267,
+      "meanElbowOutward": 0.13396683778263252,
+      "meanElbowFlexion": 6.794114556018917,
+      "peakFootLift": 0.04499985012288581,
+      "maxSlide": 0,
+      "plantedPairs": 208
+    },
+    {
+      "id": "leo",
+      "name": "Leo",
+      "cadence": 140,
+      "headVerticalRange": 0.14605266613290757,
+      "pelvisVerticalRange": 0.12116203974951478,
+      "meanElbowOutward": 0.02678967457880684,
+      "meanElbowFlexion": 37.403101533851626,
+      "peakFootLift": 0.044951260544352875,
+      "maxSlide": 0,
+      "plantedPairs": 206
+    },
+    {
+      "id": "nia",
+      "name": "Barbara",
+      "cadence": 160,
+      "headVerticalRange": 0.10942233710965033,
+      "pelvisVerticalRange": 0.07916120067645704,
+      "meanElbowOutward": 0.1312707099434853,
+      "meanElbowFlexion": 6.73459675730801,
+      "peakFootLift": 0.0449264291261217,
+      "maxSlide": 0,
+      "plantedPairs": 205
+    },
+    {
+      "id": "taylor",
+      "name": "Taylor",
+      "cadence": 140,
+      "headVerticalRange": 0.1358932305487266,
+      "pelvisVerticalRange": 0.10519021574053711,
+      "meanElbowOutward": 0.13418585253746074,
+      "meanElbowFlexion": 6.698126536857266,
+      "peakFootLift": 0.04499262199527758,
+      "maxSlide": 0,
+      "plantedPairs": 202
+    },
+    {
+      "id": "arjan",
+      "name": "Arjan",
+      "cadence": 140,
+      "headVerticalRange": 0.13574894481288524,
+      "pelvisVerticalRange": 0.10504658626722918,
+      "meanElbowOutward": 0.02741888987099764,
+      "meanElbowFlexion": 38.67559595036562,
+      "peakFootLift": 0.04499262199527758,
+      "maxSlide": 0,
+      "plantedPairs": 202
+    }
+  ],
+  "after": [
+    {
+      "id": "coach",
+      "name": "Coach Contessa",
+      "cadence": 160,
+      "headVerticalRange": 0.06080319972062487,
+      "pelvisVerticalRange": 0.059129599533506605,
+      "meanElbowOutward": 0.11052516131283849,
+      "meanElbowFlexion": 41.144790032748894,
+      "peakFootLift": 0.044961989531295835,
+      "maxSlide": 0,
+      "plantedPairs": 176
+    },
+    {
+      "id": "mika",
+      "name": "Lucresia",
+      "cadence": 160,
+      "headVerticalRange": 0.0714463809974033,
+      "pelvisVerticalRange": 0.0645404193220116,
+      "meanElbowOutward": 0.11325789490128169,
+      "meanElbowFlexion": 41.23441367711688,
+      "peakFootLift": 0.04497699969892659,
+      "maxSlide": 0,
+      "plantedPairs": 177
+    },
+    {
+      "id": "leo",
+      "name": "Leo",
+      "cadence": 140,
+      "headVerticalRange": 0.08158456418376359,
+      "pelvisVerticalRange": 0.07945385176858433,
+      "meanElbowOutward": 0.024646233450070967,
+      "meanElbowFlexion": 40.27928983596678,
+      "peakFootLift": 0.04499632371174077,
+      "maxSlide": 0,
+      "plantedPairs": 177
+    },
+    {
+      "id": "nia",
+      "name": "Barbara",
+      "cadence": 160,
+      "headVerticalRange": 0.05385261112290651,
+      "pelvisVerticalRange": 0.04871136092234196,
+      "meanElbowOutward": 0.11245913802370998,
+      "meanElbowFlexion": 41.35687180623649,
+      "peakFootLift": 0.044999999999897164,
+      "maxSlide": 0,
+      "plantedPairs": 176
+    },
+    {
+      "id": "taylor",
+      "name": "Taylor",
+      "cadence": 140,
+      "headVerticalRange": 0.07908108659685897,
+      "pelvisVerticalRange": 0.07109781853410535,
+      "meanElbowOutward": 0.11432739166686766,
+      "meanElbowFlexion": 41.40546596409698,
+      "peakFootLift": 0.044999948604680276,
+      "maxSlide": 0,
+      "plantedPairs": 177
+    },
+    {
+      "id": "arjan",
+      "name": "Arjan",
+      "cadence": 140,
+      "headVerticalRange": 0.07908085842184365,
+      "pelvisVerticalRange": 0.0711099817902956,
+      "meanElbowOutward": 0.02579890087494061,
+      "meanElbowFlexion": 40.429245700364405,
+      "peakFootLift": 0.044999948604680276,
+      "maxSlide": 0,
+      "plantedPairs": 177
+    }
+  ],
+  "clearance": {
+    "taylor": {
+      "samples": 934,
+      "failures": [],
+      "errors": []
+    },
+    "coach": {
+      "samples": 920,
+      "failures": [],
+      "errors": []
+    },
+    "mika": {
+      "samples": 942,
+      "failures": [],
+      "errors": []
+    },
+    "nia": {
+      "samples": 962,
+      "failures": [],
+      "errors": []
+    }
+  },
+  "nativeWalk": {
+    "label": "after",
+    "baseline": null,
+    "errors": [],
+    "http": [],
+    "final": {
+      "position": {
+        "x": -2.5,
+        "y": 0,
+        "z": -2.5
+      },
+      "state": "idle",
+      "gl": 0,
+      "members": 4
+    },
+    "passed": true
+  },
+  "touch": [
+    {
+      "engine": "chromium",
+      "profile": "phone",
+      "errors": [],
+      "requests": [],
+      "arrival": {
+        "paused": true,
+        "court": false
+      },
+      "avatar": "Taylor",
+      "playButton": {
+        "x": 39,
+        "y": 634,
+        "width": 312,
+        "height": 56
+      },
+      "accepted": {
+        "phase": "challenge",
+        "paused": false,
+        "active": [
+          {
+            "id": "activity-1",
+            "kind": "championship",
+            "participants": [
+              "player",
+              "leo"
+            ],
+            "resource": "court",
+            "phase": "traveling",
+            "elapsed": 0.11666666666666665,
+            "phaseTime": 0.11666666666666665,
+            "detail": "Championship vs Leo"
+          }
+        ],
+        "player": {
+          "x": -11.839409212827551,
+          "y": 0,
+          "z": 8.236329271138011
+        },
+        "blocked": false,
+        "toast": "Leo accepts. Championship court."
+      },
+      "focusResumes": 0,
+      "secondsToServe": 6.177,
+      "realRally": {
+        "phase": "rally",
+        "rally": 3,
+        "paused": false,
+        "cue": "nice"
+      },
+      "returned": {
+        "court": false,
+        "avatar": "Taylor",
+        "actors": 4,
+        "paused": false
+      }
+    }
+  ],
+  "performance": [
+    {
+      "label": "before",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 332296,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "median": 16.69999999999891,
+      "p95": 16.799999999999272,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 332296,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "median": 16.69999999999891,
+      "p95": 16.799999999999272,
+      "p99": 16.80000000000109,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 332296,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    },
+    {
+      "label": "before",
+      "median": 16.69999999999891,
+      "p95": 16.700000000000728,
+      "p99": 16.799999999999272,
+      "phases": {
+        "rally": 177,
+        "pointResult": 63,
+        "serving": 1
+      },
+      "paused": false,
+      "gl": 0,
+      "drawCalls": 767,
+      "triangles": 332296,
+      "authoredParts": 6,
+      "canvas": [
+        2112,
+        1320
+      ],
+      "errors": []
+    }
+  ],
+  "tests": {
+    "suite": "npm test passed; final counter-rotation additionally covered by authored-athlete, confident-gait, walking, arm-anatomy, body-clearance and replay-smoothness",
+    "baselineRegression": "Original gait fails the loaded-athlete elbow check at 5.78 degrees",
+    "release": "111 source/served artifacts match"
+  }
+}
