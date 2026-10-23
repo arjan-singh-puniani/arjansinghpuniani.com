@@ -501,13 +501,22 @@ test("body contour is a bounded 3D derivative without photograph payloads", asyn
   return points;
  };
  const original=positions(reference),contour=positions(scene);
- const unchanged=(points:number[][])=>[...new Set(points.filter(p=>p[1]>=.67||p[1]<=-.18||(p[1]<=.02&&Math.abs(p[0])>=.06)).map(p=>p.map(v=>v.toFixed(5)).join(',')))].sort();
- assert.deepEqual(unchanged(contour),unchanged(original),'Neutral head, legs and unaffected pelvis retain the source coordinates');
+ const unchanged=(points:number[][])=>[...new Set(points.filter(p=>p[1]<=-.18||(p[1]<=.02&&Math.abs(p[0])>=.06)).map(p=>p.map(v=>v.toFixed(5)).join(',')))].sort();
+ assert.deepEqual(unchanged(contour),unchanged(original),'Legs and unaffected pelvis retain the source coordinates');
  const width=(points:number[][],low:number,high:number,limit:number)=>Math.max(...points.filter(p=>p[1]>low&&p[1]<high&&Math.abs(p[0])<limit).map(p=>Math.abs(p[0])));
  assert.ok(width(contour,.21,.25,.20)<width(original,.21,.25,.20)*.95,'Waist is tapered');
  assert.ok(width(contour,.49,.54,.30)>width(original,.49,.54,.30),'Shoulder contour is broader');
  assert.ok(gltf.meshes.every((m:{primitives:{attributes:Record<string,number>}[]})=>m.primitives.every(p=>!('COLOR_0' in p.attributes))));
- assert.equal(manifest.facialAppearanceIncluded,false);assert.equal(manifest.contourOnly,true);
+ assert.equal(manifest.facialGeometryAdapted,true);assert.equal(manifest.photographicAppearanceIncluded,false);assert.equal(manifest.contourOnly,true);
+ const lower=[...new Set(contour.filter(p=>p[1]<=.02).map(p=>p.map(v=>v.toFixed(5)).join(',')))].sort();
+ assert.equal(lower.length,47447);
+ assert.equal(createHash('sha256').update(lower.join('\n')).digest('hex'),'e86d1a21ce7a86f7fa490b2cf2133151d7d37205b8346f77d33e04e6b40d6caf','Entire approved lower-body surface is preserved');
+ const front=(points:number[][],x:number,y:number)=>Math.max(...points.filter(p=>Math.abs(p[0]-x)<.006&&Math.abs(p[1]-y)<.006).map(p=>p[2]));
+ // Published contour landmark depths before adding abdominal relief.
+ const priorDepths=[[.224,.13719885],[.294,.13731650],[.364,.14263377],[.427,.14545496]];
+ for(const [y,depth] of priorDepths)assert.ok(front(contour,.036,y)>depth+.004,'Abdominal relief is sculpted into geometry');
+ assert.ok(front(contour,0,.697)>front(original,0,.697)+.003,'Chin projects forward');
+ assert.ok(front(contour,0,.791)>front(original,0,.791)+.003,'Nose bridge has a defined profile');
  const tip=(points:number[][])=>Math.min(...points.filter(p=>Math.abs(p[0])<.025&&p[2]>.105&&p[1]<-.05).map(p=>p[1]));
  assert.ok(tip(contour)<tip(original)-.015,'External pelvic contour is elongated locally');
  const frontRadius=(distance:number)=>{

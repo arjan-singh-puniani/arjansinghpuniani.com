@@ -740,7 +740,7 @@ export default function AtlasExperience() {
                 aria-label={playing ? "Pause history" : "Play history"}
                 className="history-play"
                 onClick={() => {
-                  if (!playing && year === 2026) setYear(1970);
+                  if (!playing && year === 2026) setYear(1999);
                   setPlaying((v) => !v);
                 }}
               >
@@ -758,7 +758,7 @@ export default function AtlasExperience() {
             <input
               id="atlas-year"
               type="range"
-              min="1970"
+              min="1999"
               max="2026"
               value={year}
               onChange={(e) => {
@@ -767,10 +767,9 @@ export default function AtlasExperience() {
               }}
             />
             <div className="atlas-years">
-              <span>1970</span>
-              <span>1990</span>
-              <span>2000</span>
-              <span>2010</span>
+              <span>1999</span>
+              <span>2008</span>
+              <span>2017</span>
               <span>2026</span>
             </div>
             <div className="atlas-events">
@@ -1464,7 +1463,7 @@ export default function AtlasExperience() {
           {dialog === "about" && (
             <div className="atlas-methods">
               <h3>Exterior contour, reference anatomy</h3>
-              <p>The contour is an artistic exterior with a neutral reference head. Organs, nerves and intervention anchors remain in the original HRA reference frame. Use Contour / Reference to compare surfaces.</p>
+              <p>The contour is an artistic exterior with sculpted facial features and muscle definition, without photographic textures. It is an approximation, not a measured body scan. Organs, nerves and intervention anchors remain in the original HRA reference frame. Use Contour / Reference to compare surfaces.</p>
               <h3>Reference anatomy</h3>
               <p>
                 Human surface, registered brain and spinal cord, and detailed

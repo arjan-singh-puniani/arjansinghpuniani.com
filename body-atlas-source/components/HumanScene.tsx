@@ -36,14 +36,16 @@ void main(){
  vec3 line=abs(fract(cell-.5)-.5)/d;
  float grid=1.-min(min(line.x,line.y),line.z); grid=clamp(grid,0.,1.);
  float rim=pow(1.-abs(dot(normalize(n),normalize(eye))),2.);
+ float light=.28+.72*max(dot(normalize(n),normalize(vec3(-.8,.8,.65))),0.);
  float area=band*exp(-pow((p.y-centerY)/halfHeight,4.));
  area=max(area,regions.x*exp(-pow((p.y-.78)/.16,4.)));
  area=max(area,regions.y*exp(-pow((p.y-.60)/.10,4.)));
  area=max(area,regions.z*exp(-pow((p.y-.32)/.20,4.)));
  area=max(area,regions.w*exp(-pow((p.y-.08)/.40,4.)));
  vec3 ink=mix(vec3(.42,.68,.72),vec3(.93,.65,.38),area*.8);
- float alpha=.025+grid*.23+rim*.45+area*.12;
- alpha=mix(alpha,.30+rim*.45+area*.15,surface);
+ ink*=.35+.85*light;
+ float alpha=.025+grid*.23+rim*.45+area*.12+light*.055;
+ alpha=mix(alpha,min(.96,.40+light*.45+rim*.15+area*.07),surface);
  gl_FragColor=vec4(ink,alpha);
 }`;
 const pins = [
@@ -354,7 +356,7 @@ export default function HumanScene({
       data-avatar-status={avatarFailed?'unavailable':loadedExterior===exterior?'loaded':'loading'}
       data-organs-status={!showOrgans?'hidden':organsFailed?'unavailable':organsReady?'loaded':'loading'}
       data-internal-status={
-        internalFailed ? "unavailable" : internalReady ? "loaded" : "loading"
+        !showOrgans ? "hidden" : internalFailed ? "unavailable" : internalReady ? "loaded" : "loading"
       }
     >
       {organsFailed && <span className="internal-unavailable">Organ geometry unavailable · region list remains available</span>}
@@ -384,7 +386,7 @@ export default function HumanScene({
           <FocusRegion region={region}/>
           <ambientLight intensity={1.7} />
           <directionalLight position={[3, 5, 6]} intensity={2.5} />
-          <Boundary fail={() => setInternalFailed(true)}>
+          <group visible={showOrgans}><Boundary fail={() => setInternalFailed(true)}>
             <Suspense fallback={null}>
               <RegisteredAnatomy
                 region={region}
@@ -394,7 +396,7 @@ export default function HumanScene({
                 onReady={internalLoaded}
               />
             </Suspense>
-          </Boundary>
+          </Boundary></group>
           <Boundary key={exterior} fail={()=>exterior==='adapted'?setAvatarFailed(true):setFailed(true)}><Suspense fallback={null}>
             <Body
               adapted={exterior==='adapted'}

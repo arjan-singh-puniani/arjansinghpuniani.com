@@ -68,10 +68,9 @@ test("body callout to anatomy, evidence, history, comparison, research and expor
     .click();
   await page
     .getByRole("slider", { name: "Documented history through year" })
-    .fill("1996");
-  await expect(
-    page.getByText("No source-backed intervention explanation has been prepared for this region yet."),
-  ).toBeVisible();
+    .fill("1999");
+  await expect(page.getByRole("slider", { name: "Documented history through year" })).toHaveAttribute("min", "1999");
+  await expect(page.locator(".atlas-events")).toContainText("1997");
   await page
     .getByRole("slider", { name: "Documented history through year" })
     .fill("2026");
@@ -348,8 +347,8 @@ test("region results and original links stay visible in the compact split previe
   ).toHaveAttribute("href", /P960009/);
   await page
     .getByRole("slider", { name: "Documented history through year" })
-    .fill("1997");
-  await expect(panel.getByText("Through 1997")).toBeVisible();
+    .fill("1999");
+  await expect(panel.getByText("Through 1999")).toBeVisible();
   await panel.getByRole("button", { name: "Show all years" }).click();
   await expect(page.getByRole("slider")).toHaveValue("2026");
   await page.getByRole("button", { name: "Expand 3D anatomy" }).click();
@@ -480,12 +479,13 @@ test("on-model innovation labels select facts and original sources without leavi
   expect(axe.violations).toEqual([]);
   await page
     .getByRole("slider", { name: "Documented history through year" })
-    .fill("1996");
-  await expect(
-    page.getByRole("button", {
-      name: "Select Activa Tremor Control System on anatomy",
-    }),
-  ).toHaveCount(0);
+    .fill("1999");
+  await expect(brainActiva).toBeVisible();
+  await expect(page.getByRole("button", { name: "Select NeuroPace RNS System on anatomy" })).toHaveCount(0);
+  await page.getByRole("slider", { name: "Documented history through year" }).fill("2026");
+  await page.getByRole("button", { name: "Play history" }).click();
+  await expect.poll(async () => Number(await page.locator("#atlas-year").inputValue())).toBeLessThan(2004);
+  await page.getByRole("button", { name: "Pause history" }).click();
 });
 
 
@@ -543,6 +543,14 @@ test('body contour switches and rotates while evidence retains its source',async
  await expect(page.locator('body')).not.toContainText(/Arjan|personal contour/i);
  await expect(scene).toHaveAttribute('data-internal-status','loaded',{timeout:45000});
  await expect(scene).toHaveAttribute('data-organs-status','loaded',{timeout:45000});
+ await page.getByRole('button',{name:'Toggle internal organs',exact:true}).click();
+ await expect(scene).toHaveAttribute('data-internal-status','hidden');
+ await expect(scene).toHaveAttribute('data-organs-status','hidden');
+ await page.getByRole('button',{name:'Toggle body surface',exact:true}).click();
+ await expect(page.getByRole('button',{name:'Toggle body surface',exact:true})).toHaveAttribute('aria-pressed','true');
+ await page.screenshot({path:`test-results/${testInfo.project.name}-surface-contours.png`});
+ await page.getByRole('button',{name:'Toggle internal organs',exact:true}).click();
+ await expect(scene).toHaveAttribute('data-internal-status','loaded');
  const before=await page.locator('canvas').screenshot();
  const box=(await page.locator('canvas').boundingBox())!;
  await page.mouse.move(box.x+box.width*.5,box.y+box.height*.6);await page.mouse.down();

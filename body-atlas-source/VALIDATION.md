@@ -104,3 +104,15 @@ Desktop and mobile preview checks for this revision both passed: exact served-as
 ### Glans girth refinement
 
 The rounded glans profile and coronal rim were reduced radially by 7%; shaft and length parameters are unchanged. The new modeled glans-to-shaft radius ratio is 1.2834. All 48 source tests pass, including the circular shaft and length checks. Desktop/mobile browser checks confirm rendering, rotation, reference switching, exact served-asset hash and original evidence access with no page errors. No application rebuild or ingestion rerun was needed for this asset-only adjustment. Anatomical fit remains illustrative.
+
+### Holographic face, muscle relief and 1999 history window
+
+Authored jaw angles, chin, cheek contours, nose bridge, brows and lips adapt the reference head without photos, textures or vertex colors. Paired abdominal and oblique relief is part of the mesh, with normal-based shading in grid/surface modes. Surface mode reveals the contour; the Organs control now also hides the reference brain and spinal cord. Internal geometry and intervention anchors retain the original reference frame.
+
+A regression fingerprint verifies all 47,447 unique coordinates at or below reference y=0.02 match the approved published contour, including the entire lower-body surface. Facial projection and abdominal relief have geometry assertions; the asset remains 4.60 MB with 191,726 triangles. The slider/playback begin at 1999. Earlier genuine dates remain in source records, event buttons and exports. No scientific or regulatory data changed.
+
+This is an authored artistic approximation from visual references. Facial identity, body-fit accuracy, unseen surfaces and physical-device Safari/GPU behavior are unverified. No calibrated reconstruction or exact anatomical correspondence is claimed.
+
+Verification on 2026-10-23: `npm test` passes 48/48 source tests; `npm run typecheck` and `npm run build -- --webpack` pass. `npx playwright test --config playwright.contour.config.ts` passes 20/20 desktop/mobile workflow tests (temporary local config pointed at port 3101). The first run found two stale 1997 slider expectations; these were corrected to 1999, and the complete suite passed on rerun. `node scripts/export-static.mjs ../arjan-portfolio/public/atlas` succeeds. Portfolio `npm test` passes 95/95; portfolio production build and typecheck pass. Front/oblique clay renders and actual holographic surface views were inspected. Ingestion and source-data acquisition were not rerun because this change does not modify those paths or any source records.
+
+The exported portfolio workflow also passes on desktop/mobile: homepage/work links, original cached-source checksums, retrieval, Markdown brief export, all 75 expanded explanations, 12 existing routes and sitemap. Additional preview checks verify the served contour SHA, 1999 minimum, hidden internal anatomy, surface/reference switching, rotation and original FDA link access, with zero page errors.
