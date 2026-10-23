@@ -29,6 +29,8 @@ try{
    await page.getByRole('article',{name:`${s.name} regulatory, labeling and safety dossier`,exact:true}).waitFor();
    const text=await page.locator('.dossier').textContent();assert.ok(text.includes(s.regulatory.detail),id);assert.ok(text.includes(s.labeling.detail),id);assert.ok(text.includes(s.safety.detail),id);
    assert.equal(await page.locator('[data-review-status]').getAttribute('data-review-status'),s.currentLabelReview);assert.equal(await page.locator('.dossier-findings li').count(),s.labelReview.findings.length);assert.equal(await page.locator('.dossier-findings a').first().getAttribute('href'),s.labelReview.findings[0].sourceUrl);
+   assert.equal(await page.getByLabel('Key review limitation',{exact:true}).innerText(),s.labelReview.limitations[0]);assert.equal(await page.getByLabel('What this review establishes',{exact:true}).isVisible(),true);
+   assert.deepEqual(await page.locator('.dossier-findings a').evaluateAll(links=>links.map(a=>a.getAttribute('href'))),s.labelReview.findings.map(f=>f.sourceUrl));
    assert.equal(await page.getByRole('link',{name:'Download dossier with source references (JSON)'}).getAttribute('href'),'/atlas'+s.path);
    loadTimes.push(Date.now()-start);checked++;
   }
@@ -50,11 +52,11 @@ try{
   const failed=base+'/atlas/dossiers/source-fda-k260007.json';await page.route(failed,r=>r.fulfill({status:503,body:'Unavailable'}));
   await page.getByRole('combobox',{name:'Choose another intervention in this region',exact:true}).selectOption('source-fda-k260007');await page.getByRole('alert').filter({hasText:'Dossier could not be loaded'}).waitFor();assert.match(await page.getByRole('alert').filter({hasText:'Dossier could not be loaded'}).innerText(),/Coverage has not been reset/);await page.unroute(failed);await page.getByRole('button',{name:'Retry dossier'}).click();await page.getByRole('article',{name:'Hudi hyaluronic-acid vaginal suppositories regulatory, labeling and safety dossier',exact:true}).waitFor();
   await page.goto(base+'/atlas/?entry=rns');await page.getByRole('article',{name:'NeuroPace RNS System regulatory, labeling and safety dossier',exact:true}).waitFor();
-  assert.match(await page.locator('.dossier-findings').innerText(),/RNS-300M is MR Unsafe/);assert.equal(await page.getByRole('link',{name:'Link to this entry',exact:true}).getAttribute('href'),'/atlas/?entry=rns');
+  assert.match(await page.locator('.dossier-findings').innerText(),/RNS-300M is MR Unsafe/);assert.match(await page.locator('.dossier-models').innerText(),/not interchangeable.*RNS-300M.*RNS-320/s);assert.equal(await page.getByRole('link',{name:'Link to this entry',exact:true}).getAttribute('href'),'/atlas/?entry=rns');
   await page.waitForSelector('[data-organs-status="loaded"]',{timeout:90000});
   await page.screenshot({path:`${out}/review-${name}.png`});
   if(name==='mobile'){await page.locator('.dossier-essentials').scrollIntoViewIfNeeded();await page.screenshot({path:`${out}/review-detail-mobile.png`});}
-  assert.deepEqual(errors,[]);loadTimes.sort((a,b)=>a-b);results.push({viewport:name,dossiers:checked,initialDossierRequests:0,sourceAndModelLot:true,labelScope:true,reviewFindingsAndOriginalLinks:91,modelLotFullTextSearch:true,permanentEntryLink:true,briefCitations:true,keyboardTabs:true,retryRecovery:true,axeViolations:0,pageErrors:errors,p95SelectionToDossierMs:loadTimes[Math.floor(loadTimes.length*.95)]});await context.close();
+  assert.deepEqual(errors,[]);loadTimes.sort((a,b)=>a-b);results.push({viewport:name,dossiers:checked,initialDossierRequests:0,sourceAndModelLot:true,labelScope:true,reviewFindingsAndOriginalLinks:91,reviewBoundariesAndVisibleLimits:91,modelLotFullTextSearch:true,permanentEntryLink:true,briefCitations:true,keyboardTabs:true,retryRecovery:true,axeViolations:0,pageErrors:errors,p95SelectionToDossierMs:loadTimes[Math.floor(loadTimes.length*.95)]});await context.close();
  }
  await writeFile(`${out}/results.json`,JSON.stringify({site:base,results,environment:'Installed Chrome; mobile is touch/viewport emulation, not a physical phone.'},null,2)+'\n');console.log(JSON.stringify(results,null,2));
 }finally{await browser.close();}

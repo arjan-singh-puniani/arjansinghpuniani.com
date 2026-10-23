@@ -1,0 +1,152 @@
+{
+  "reviewedAt": "2026-10-22",
+  "method": "Bounded primary-source search, manufacturer portal inspection, clearance/decision text and indexed archival manufacturer excerpts. No outbound document requests sent.",
+  "completeLabelsRecovered": 0,
+  "fullLabelGapsRemaining": 3,
+  "entries": {
+    "source-fda-k260007": {
+      "reviewedAt": "2026-10-22",
+      "status": "current-label-not-established",
+      "scope": "K260007, Hudi HA 5 mg / HA 10 mg vaginal suppositories. Clearance restrictions are known; the complete package-specific manufacturer IFU remains missing.",
+      "revision": null,
+      "models": [
+        "HA 5 mg",
+        "HA 10 mg"
+      ],
+      "findings": [
+        {
+          "text": "The manufacturer’s cleared indications explicitly state that these suppositories are not compatible with condoms. No condom-material exception is established for K260007.",
+          "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260007.pdf",
+          "locator": "Manufacturer 510(k) summary §4; PDF p.5; comparison table PDF p.7"
+        },
+        {
+          "text": "This clearance covers 5 mg and 10 mg HA formulations containing vitamin E, cocoa butter and semi-synthetic glycerides. The Revaree Plus predicate has different excipients; its package warnings cannot be transferred merely because both contain HA.",
+          "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260007.pdf",
+          "locator": "Manufacturer 510(k) summary §§5–6; PDF pp.5–7"
+        },
+        {
+          "text": "Hudi offers custom private-label formulas. Its public product page does not identify a complete US package insert and revision for these two cleared configurations.",
+          "sourceUrl": "https://www.hudipharma.com/vaginal-suppository/",
+          "locator": "Vaginal Suppository — Custom Formulas; Hyaluronic Acid Vaginal Suppository"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260007.pdf",
+          "title": "FDA K260007 clearance and summary",
+          "locator": "Clearance letter and device summary",
+          "accessedAt": "2026-10-22",
+          "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+        },
+        {
+          "url": "https://www.hudipharma.com/vaginal-suppository/",
+          "title": "Hudi manufacturer private-label product page",
+          "locator": "Custom Formulas; Hyaluronic Acid Vaginal Suppository",
+          "accessedAt": "2026-10-22",
+          "method": "Direct public manufacturer-page inspection; product description is not a package IFU."
+        }
+      ],
+      "limitations": [
+        "Complete US package instructions, warnings/contraindications, revision, marketed brand and catalog/UDI linkage are still unverified. The known condom restriction remains visible while this gap is open.",
+        "A generic HA-product label, a predicate label or an OTC-drug listing with similar ingredients is not accepted as K260007 labeling. Manufacturer document requests remain unsent."
+      ]
+    },
+    "source-fda-k260721": {
+      "reviewedAt": "2026-10-22",
+      "status": "current-label-not-established",
+      "scope": "K260721 Tornier Perform Advanced Glenoid. Cemented socket use and named humeral-system compatibility are documented; the complete Advanced-specific US IFU remains missing.",
+      "revision": null,
+      "models": [
+        "Tornier Perform Advanced Glenoid"
+      ],
+      "findings": [
+        {
+          "text": "The Advanced Glenoid implant is for cemented use only. Press-fit permission for named stemless humeral components does not apply to the glenoid socket.",
+          "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260721.pdf",
+          "locator": "Manufacturer indications for use; PDF p.4"
+        },
+        {
+          "text": "The clearance lists compatible humeral systems: Perform Stem, Stemless and Fracture; HRS and HRS Max; Flex; Simpliciti; and ReUnion. The exact component/catalog compatibility still requires the matched IFU.",
+          "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260721.pdf",
+          "locator": "Manufacturer indications for use; PDF p.4"
+        },
+        {
+          "text": "Clearance does not supply the complete contraindication or warning set. Earlier Perform Anatomic or Reversed Glenoid documents are not verified substitutes for the Advanced configuration.",
+          "sourceUrl": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260721.pdf",
+          "locator": "K260721 device identity and manufacturer indications for use; PDF pp.1,4"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K260721.pdf",
+          "title": "FDA K260721 clearance and summary",
+          "locator": "Device identity and indications",
+          "accessedAt": "2026-10-22",
+          "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+        }
+      ],
+      "limitations": [
+        "The exact Advanced Glenoid US IFU, document revision, implant catalog/UDI references and complete compatibility table remain unverified. No generic shoulder warning set is presented as its manufacturer labeling.",
+        "Stryker’s US portal requires an exact REF, EAN/GTIN or KeyCode. No verified Advanced implant identifier was established; an instrument identifier must not be substituted. A document request remains unsent."
+      ]
+    },
+    "source-fda-p960053": {
+      "reviewedAt": "2026-10-22",
+      "status": "current-label-not-established",
+      "scope": "Braun-Cutter / Avanta CMC total thumb-base prosthesis, P960053. Historical manufacturer-insert excerpts and an explicit identity crosswalk were located; the complete revision-controlled label remains unverified.",
+      "revision": null,
+      "models": [
+        "Braun-Cutter CMC / Avanta CMC — P960053",
+        "Avanta CMC instrument sets — separate products"
+      ],
+      "findings": [
+        {
+          "text": "A 2005 manufacturer ownership-transfer record explicitly links Braun-Cutter CMC (Avanta CMC) to P960053. The surrounding FDA file is indexed under K931588, a separate silicone trapezial implant; its submission number is not reassigned to this prosthesis.",
+          "sourceUrl": "https://www.accessdata.fda.gov/CDRH510K/K931588.pdf",
+          "locator": "Avanta ownership-transfer attachment, January 20, 2005; Braun-Cutter CMC / P960053 table row"
+        },
+        {
+          "text": "Historical Avanta CMC insert excerpts specify cemented use only and exclude active infection, inadequate supporting tissue/bone and skeletal immaturity. They warn of loosening, fracture or dislocation with excessive loading, and metal sensitivity.",
+          "sourceUrl": "https://www.accessdata.fda.gov/CDRH510K/K931588.pdf",
+          "locator": "Avanta Orthopaedics PRODUCT INSERT — Avanta CMC Prosthesis; English CONTRAINDICATIONS and WARNINGS; indexed excerpts only"
+        },
+        {
+          "text": "These archival warnings are not certified as current. S005 records a labeling change on August 9, 2016 without publishing the changed warning text in its decision statement.",
+          "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?ID=P960053S005",
+          "locator": "S005 decision date, supplement reason and approval-order statement"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.accessdata.fda.gov/CDRH510K/K931588.pdf",
+          "title": "FDA archival file containing Avanta CMC manufacturer insert and identity transfer",
+          "locator": "Avanta CMC product insert; January 20, 2005 ownership-transfer attachment",
+          "accessedAt": "2026-10-22",
+          "method": "FDA-indexed primary-document excerpts (indexed March 2023). Full PDF retrieval was unavailable: web retrieval exceeds its size limit and direct download returned HTTP 404. Page, document revision and completeness were not verified."
+        },
+        {
+          "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?ID=P960053S005",
+          "title": "FDA P960053 S005 labeling-change decision",
+          "locator": "Decision date and approval-order statement",
+          "accessedAt": "2026-10-22",
+          "method": "Public primary FDA decision-text inspection; the decision statement is not the revised IFU."
+        }
+      ],
+      "limitations": [
+        "Only FDA-indexed archival manufacturer-insert excerpts were obtained; full PDF retrieval was unavailable. The complete original insert, revision/date and S005 replacement label are still missing; this remains a label gap.",
+        "The March 31, 2023 FDA processing/index stamp is not a labeling revision or original approval date. The insert is not certified as the June 1997 original.",
+        "Avanta-branded instrument-set labeling and current generic Stryker hand-implant instructions cannot establish warnings for the implanted Braun-Cutter prosthesis. A manufacturer request remains unsent."
+      ]
+    }
+  },
+  "portal": {
+    "url": "https://labeling.stryker.com/hcp/US",
+    "observedRequirement": "Exact REF, EAN/GTIN or KeyCode; no verified Advanced implant REF was established.",
+    "rejectedSubstitution": "Avanta CMC DI 00886385025780 is instrument set CMC-S, not implant labeling.",
+    "identitySource": "https://accessgudid.nlm.nih.gov/devices/00886385025780"
+  },
+  "retrievalLimits": {
+    "braunArchive": "FDA primary indexed excerpts located. Full PDF > web size limit; direct curl download HTTP 404; browser did not render the document. No PDF-page locator, insert revision or full-document completeness claim.",
+    "gudid": "Exact premarket-submission-field searches did not identify implant records for P960053/K260721. Optional fields/search absence do not prove absence from market or absence of labeling."
+  }
+}

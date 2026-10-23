@@ -245,32 +245,49 @@
   "labelReview": {
     "reviewedAt": "2026-10-22",
     "status": "current-label-not-established",
-    "scope": "Braun-Cutter trapezometacarpal total joint prosthesis",
+    "scope": "Braun-Cutter / Avanta CMC total thumb-base prosthesis, P960053. Historical manufacturer-insert excerpts and an explicit identity crosswalk were located; the complete revision-controlled label remains unverified.",
     "revision": null,
-    "models": [],
+    "models": [
+      "Braun-Cutter CMC / Avanta CMC — P960053",
+      "Avanta CMC instrument sets — separate products"
+    ],
     "findings": [
       {
-        "text": "The application concerns total thumb-base joint replacement in skeletally mature patients, rather than every modern thumb implant.",
-        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P960053",
-        "locator": "Approval order; supplement list"
+        "text": "A 2005 manufacturer ownership-transfer record explicitly links Braun-Cutter CMC (Avanta CMC) to P960053. The surrounding FDA file is indexed under K931588, a separate silicone trapezial implant; its submission number is not reassigned to this prosthesis.",
+        "sourceUrl": "https://www.accessdata.fda.gov/CDRH510K/K931588.pdf",
+        "locator": "Avanta ownership-transfer attachment, January 20, 2005; Braun-Cutter CMC / P960053 table row"
       },
       {
-        "text": "S005 (2016) records a labeling change, but its decision statement does not disclose the full warning text.",
-        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P960053",
-        "locator": "Approval order; supplement list"
+        "text": "Historical Avanta CMC insert excerpts specify cemented use only and exclude active infection, inadequate supporting tissue/bone and skeletal immaturity. They warn of loosening, fracture or dislocation with excessive loading, and metal sensitivity.",
+        "sourceUrl": "https://www.accessdata.fda.gov/CDRH510K/K931588.pdf",
+        "locator": "Avanta Orthopaedics PRODUCT INSERT — Avanta CMC Prosthesis; English CONTRAINDICATIONS and WARNINGS; indexed excerpts only"
+      },
+      {
+        "text": "These archival warnings are not certified as current. S005 records a labeling change on August 9, 2016 without publishing the changed warning text in its decision statement.",
+        "sourceUrl": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?ID=P960053S005",
+        "locator": "S005 decision date, supplement reason and approval-order statement"
       }
     ],
     "sources": [
       {
-        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P960053",
-        "title": "FDA Braun-Cutter original application",
-        "locator": "Approval order; supplement list",
+        "url": "https://www.accessdata.fda.gov/CDRH510K/K931588.pdf",
+        "title": "FDA archival file containing Avanta CMC manufacturer insert and identity transfer",
+        "locator": "Avanta CMC product insert; January 20, 2005 ownership-transfer attachment",
         "accessedAt": "2026-10-22",
-        "method": "Editorial inspection of publicly retrieved primary-source text/excerpts; indexed age can differ from access date. Full current IFU certification is separate."
+        "method": "FDA-indexed primary-document excerpts (indexed March 2023). Full PDF retrieval was unavailable: web retrieval exceeds its size limit and direct download returned HTTP 404. Page, document revision and completeness were not verified."
+      },
+      {
+        "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?ID=P960053S005",
+        "title": "FDA P960053 S005 labeling-change decision",
+        "locator": "Decision date and approval-order statement",
+        "accessedAt": "2026-10-22",
+        "method": "Public primary FDA decision-text inspection; the decision statement is not the revised IFU."
       }
     ],
     "limitations": [
-      "Neither complete original nor current model-specific IFU was located. No generic orthopedic warning is substituted as a reviewed Braun-Cutter warning."
+      "Only FDA-indexed archival manufacturer-insert excerpts were obtained; full PDF retrieval was unavailable. The complete original insert, revision/date and S005 replacement label are still missing; this remains a label gap.",
+      "The March 31, 2023 FDA processing/index stamp is not a labeling revision or original approval date. The insert is not certified as the June 1997 original.",
+      "Avanta-branded instrument-set labeling and current generic Stryker hand-implant instructions cannot establish warnings for the implanted Braun-Cutter prosthesis. A manufacturer request remains unsent."
     ]
   },
   "currentLabelReview": "current-label-not-established",
@@ -278,8 +295,16 @@
   "modelLotReview": "not-established",
   "sourceLinks": [
     {
-      "title": "FDA Braun-Cutter original application",
+      "title": "Original FDA decision",
       "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P960053"
+    },
+    {
+      "title": "FDA P960053 S005 labeling-change decision",
+      "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?ID=P960053S005"
+    },
+    {
+      "title": "FDA archival file containing Avanta CMC manufacturer insert and identity transfer",
+      "url": "https://www.accessdata.fda.gov/CDRH510K/K931588.pdf"
     }
   ],
   "path": "/dossiers/source-fda-p960053.json",
@@ -290,7 +315,9 @@
   "review": {
     "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
     "next": [
-      "Neither complete original nor current model-specific IFU was located. No generic orthopedic warning is substituted as a reviewed Braun-Cutter warning.",
+      "Only FDA-indexed archival manufacturer-insert excerpts were obtained; full PDF retrieval was unavailable. The complete original insert, revision/date and S005 replacement label are still missing; this remains a label gap.",
+      "The March 31, 2023 FDA processing/index stamp is not a labeling revision or original approval date. The insert is not certified as the June 1997 original.",
+      "Avanta-branded instrument-set labeling and current generic Stryker hand-implant instructions cannot establish warnings for the implanted Braun-Cutter prosthesis. A manufacturer request remains unsent.",
       "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
     ]
   }

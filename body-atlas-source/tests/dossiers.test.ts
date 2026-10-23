@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-import {dossiers,dossierBrief,dossierCoverage,matchesRecall,scopeExcerpt,reviewLabels} from '../lib/dossiers';
+import {dossiers,dossierBrief,dossierCoverage,matchesRecall,scopeExcerpt,reviewLabels,reviewMeanings} from '../lib/dossiers';
 import {isSourceUrl} from '../lib/source-url';
 import {families,brief} from '../lib/atlas';
 import {hasExplanation} from '../lib/intervention-view';
@@ -66,4 +66,23 @@ test('source anomalies and rejected notice matches are preserved rather than sil
 test('manufacturer citations remain usable without expanding the URL trust boundary',()=>{
  assert.equal(isSourceUrl('https://www.neuropace.com/manual.pdf#page=14'),true);
  for(const url of ['https://www.neuropace.com.evil.example/manual','https://user:password@www.neuropace.com/manual','https://www.neuropace.com:444/manual','http://www.neuropace.com/manual','javascript:alert(1)','https://localhost/'])assert.equal(isSourceUrl(url),false,url);
+});
+
+test('missing labels retain their gaps while exact known restrictions and archive limits are explained',()=>{
+ const ha=read('source-fda-k260007'),shoulder=read('source-fda-k260721'),thumb=read('source-fda-p960053');
+ for(const d of [ha,shoulder,thumb])assert.equal(d.currentLabelReview,'current-label-not-established');
+ assert.match(ha.labelReview.findings[0].text,/not compatible with condoms/);
+ assert.match(ha.labelReview.findings[1].text,/different excipients/);
+ assert.match(shoulder.labelReview.findings[0].text,/cemented use only.*Press-fit.*does not apply/s);
+ assert.match(thumb.labelReview.findings[0].text,/P960053.*K931588.*separate/s);
+ assert.match(thumb.labelReview.findings[1].text,/Historical.*cemented use only/);
+ assert.match(thumb.labelReview.findings[2].text,/2016.*without publishing/s);
+ assert.equal(thumb.labelReview.revision,null);assert.match(thumb.labelReview.limitations.join(' '),/2023.*not a labeling revision/s);
+ assert.equal(dossierCoverage.labelGaps,3);
+});
+test('every review class explains its boundary and briefs preserve model and revision context',()=>{
+ for(const d of Object.values(dossiers))assert.ok(reviewMeanings[d.currentLabelReview]);
+ const historical=dossierBrief('source-fda-p040033').join('\n');assert.match(historical,/historical labeling.*Later revisions/s);
+ const rns=dossierBrief('rns').join('\n');assert.match(rns,/Models compared \(not interchangeable\): RNS-300M; RNS-320/);
+ const thumb=dossierBrief('source-fda-p960053').join('\n');assert.match(thumb,/Revision not established/);assert.match(thumb,/complete product-specific label is missing/);
 });

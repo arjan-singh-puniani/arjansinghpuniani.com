@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { atlasPath } from "@/lib/deployment";
-import { dossiers, matchesRecall, reviewLabels, scopeExcerpt, type LabelReview } from "@/lib/dossiers";
+import { dossiers, matchesRecall, reviewLabels, reviewMeanings, scopeExcerpt, type LabelReview } from "@/lib/dossiers";
 import { External, SourceRecord } from "./Evidence";
 import type { AtlasRecord } from "@/lib/types";
 
@@ -53,7 +53,10 @@ export default function Dossier({ familyId }: { familyId: string }) {
     <h3>Regulatory, labeling & safety</h3>
     <section className="dossier-essentials" aria-label="Safety essentials">
       <div className="dossier-review-line"><span className="review-status" data-review-status={data.labelReview.status}>{reviewLabels[data.labelReview.status]}</span><time dateTime={data.labelReview.reviewedAt}>{data.labelReview.reviewedAt}</time></div>
-      <p className="dossier-model-scope">{data.labelReview.scope}</p>{data.labelReview.revision && <small>Document: {data.labelReview.revision}</small>}
+      <p className="dossier-caution" aria-label="What this review establishes">{reviewMeanings[data.labelReview.status]}</p>
+      <p className="dossier-model-scope">{data.labelReview.scope}</p><small>Document: {data.labelReview.revision || "Revision not established"}</small>
+      {!!data.labelReview.models.length && <p className="dossier-models"><strong>Models compared — not interchangeable</strong><span>{data.labelReview.models.join(" · ")}</span></p>}
+      <p className="dossier-caution" aria-label="Key review limitation">{data.labelReview.limitations[0]}</p>
       <ol className="dossier-findings">{data.labelReview.findings.map((f, i) => <li key={i}><p>{f.text}</p><External href={f.sourceUrl}>Original source</External><small>{f.locator}</small></li>)}</ol>
       <details className="dossier-open-limits" open={data.labelReview.status === "current-label-not-established"}><summary>What remains unresolved</summary><ul>{data.labelReview.limitations.map(l => <li key={l}>{l}</li>)}</ul></details>
       <details><summary>Review sources & method</summary>{data.labelReview.sources.map(s => <div className="dossier-source" key={s.url}><External href={s.url}>{s.title}</External><small>{s.locator} · accessed {s.accessedAt}</small><small>{s.method}</small></div>)}<p>{data.review.method}</p></details>
