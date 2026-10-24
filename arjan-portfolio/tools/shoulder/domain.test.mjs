@@ -339,3 +339,23 @@ test("Blender shading candidate preserves every source triangle and position", a
   }
   assert.deepEqual(triangles(newData), triangles(oldData));
 });
+
+
+test("quiz covers every muscle per round without adjacent repeats or later camera clues", () => {
+  const decks = new Set();
+  for (let session = 0; session < 100; session++) {
+    const state = createState();
+    const order = state.quiz.order;
+    decks.add(order.join(","));
+    assert.equal(order.length, 12);
+    for (let round = 0; round < 3; round++)
+      assert.deepEqual([...order.slice(round * 4, round * 4 + 4)].sort(), [...SITS].sort());
+    for (let i = 0; i < 12; i++) {
+      if (i) assert.notEqual(order[i], order[i - 1]);
+      state.quiz.index = i;
+      assert.equal(question(state).id, order[i]);
+      if (i >= 4) assert.equal(question(state).view, "lateral");
+    }
+  }
+  assert.ok(decks.size > 1);
+});

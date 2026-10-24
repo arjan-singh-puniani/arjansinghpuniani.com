@@ -342,6 +342,16 @@ export const SOURCES = [
   },
 ];
 export function createState() {
+  const order = [];
+  for (let round = 0; round < 3; round++) {
+    const remaining = [...SITS];
+    while (remaining.length) {
+      const candidates = remaining.filter((id) => id !== order.at(-1));
+      const id = candidates[Math.floor(Math.random() * candidates.length)];
+      order.push(id);
+      remaining.splice(remaining.indexOf(id), 1);
+    }
+  }
   return {
     mode: "explore",
     presenting: false,
@@ -355,6 +365,7 @@ export function createState() {
     undo: [],
     lesson: 0,
     quiz: {
+      order,
       index: 0,
       score: 0,
       answered: false,
@@ -415,8 +426,7 @@ export function reassemble(state) {
 }
 export function question(state) {
   if (quizComplete(state)) return null;
-  const order = ["FJ1506", "FJ1504", "FJ1500", "FJ1508"];
-  const id = order[state.quiz.index % 4],
+  const id = state.quiz.order[state.quiz.index],
     level = Math.floor(state.quiz.index / 4);
   const relation = {
     FJ1506: "Select the cuff muscle above the scapular spine.",
@@ -441,7 +451,7 @@ export function question(state) {
         : level
           ? relation[id]
           : `Identify ${CURRICULUM[id].name.toLowerCase()}.`,
-    view: id === "FJ1504" ? "anterior" : "posterior",
+    view: level === 0 ? (id === "FJ1504" ? "anterior" : "posterior") : "lateral",
     level: level >= 2 ? "Function" : level ? "Relationships" : "Identification",
   };
 }

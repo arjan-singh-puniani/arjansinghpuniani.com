@@ -123,9 +123,7 @@ try {
   await capture(page, "quiz");
   const target = await page.evaluate(
     () =>
-      ["FJ1506", "FJ1504", "FJ1500", "FJ1508"][
-        shoulderStudio.state.quiz.index % 4
-      ],
+      shoulderStudio.state.quiz.order[shoulderStudio.state.quiz.index],
   );
   const hit = await pointFor(page, target);
   if (!hit) throw Error("Quiz target is not pickable");

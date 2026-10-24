@@ -33,7 +33,7 @@ The source surfaces still have the previously audited 878 / 866 / 506 / 2,092 tr
 - [Existing browser regression](shoulder-conference-qa/regression/browser-results.json)
 - [Production portfolio smoke](shoulder-conference-qa/portfolio-smoke.json)
 
-Validation: 95 portfolio tests, 17 shoulder tests, typecheck, production build and changed-JavaScript lint passed. Chrome verifies presentation entry/exit, keyboard chapter control, grouped visibility, twelve-question completion, retry scoring, review links, reset and narrow layout. Axe reports zero violations in the tested desktop and mobile function-study states. The prior shoulder suite passes camera/picking/touch/Peel/lesson/quiz/OBJ/LOD checks. Fourteen production routes, embedded studio, legacy viewer and sitemap pass smoke checks.
+Validation: 95 portfolio tests, 18 shoulder tests, typecheck, production build and changed-JavaScript lint passed. Chrome verifies presentation entry/exit, keyboard chapter control, grouped visibility, twelve-question completion, retry scoring, review links, reset and narrow layout. Axe reports zero violations in the tested desktop and mobile function-study states. The prior shoulder suite passes camera/picking/touch/Peel/lesson/quiz/OBJ/LOD checks. Fourteen production routes, embedded studio, legacy viewer and sitemap pass smoke checks.
 
 These results are not a fresh physical-iPhone test, Safari certification, clinician review or educational-effectiveness study. Existing frame-time figures from September must not be presented as a new hardware measurement.
 
@@ -74,3 +74,9 @@ The AO experiment is rejected for default use: it adds four textures (approximat
 - [Geometry hashes and bake record](shoulder-conference-qa/blender/bake-report.json)
 
 Regenerate candidates with Blender `--background --factory-startup --python tools/blender/bake_shoulder_study.py`. After visual review, append `-- --publish` to copy the normals-only export to the local public assets and update provenance. Here “publish” only means local asset promotion, never deployment. LOD1/2 and OBJ fallback retain the original normals. The provenance panel distinguishes derived runtime shading from source normals. `node tools/shoulder/blender-qa.mjs` compares the frozen source, AO experiment and accepted variant in Chrome.
+
+## Assessment integrity increment
+
+The original session repeated the same four targets in the same order. Each of the three rounds now shuffles all four muscles exactly once and prevents repetition across round boundaries. Identification retains helpful framing; relationship/function rounds all start laterally, so camera choice does not identify the answer. The user-facing instructions explain that rotation is required. Keyboard answer controls remain available.
+
+The domain suite checks coverage, boundaries and shared later-round framing over 100 sessions. Browser tests read the generated deck instead of assuming a hardcoded answer sequence. These checks validate mechanics, not learning efficacy. See [educator review protocol](SHOULDER-EDUCATOR-REVIEW.md) for the outstanding independent review, formative pilot and a concise conference demonstration.

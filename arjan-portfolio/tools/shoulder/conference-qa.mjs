@@ -47,14 +47,16 @@ try {
     "false",
   );
   await page.locator('[data-mode="quiz"]').click();
-  const order = ["FJ1506", "FJ1504", "FJ1500", "FJ1508"];
+  const order = await page.evaluate(() => shoulderStudio.state.quiz.order);
   for (let i = 0; i < 12; i++) {
+    if (i >= 4)
+      expect(await page.evaluate(() => shoulderStudio.state.view)).toBe("lateral");
     await page.getByText("Keyboard answer controls", { exact: true }).click();
-    if (i === 0) await page.locator('#context [data-select="FJ1504"]').click();
+    if (i === 0) await page.locator(`#context [data-select="${order[1]}"]`).click();
     // Rendering a response recreates the disclosure; reopen it after a retry.
     if (i === 0)
       await page.getByText("Keyboard answer controls", { exact: true }).click();
-    await page.locator(`#context [data-select="${order[i % 4]}"]`).click();
+    await page.locator(`#context [data-select="${order[i]}"]`).click();
     await page.locator('[data-action="quiz-next"]').click();
   }
   await expect(
