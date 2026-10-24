@@ -238,8 +238,8 @@ export default function AtlasExperience() {
   const counts = useMemo(() => Object.fromEntries(
     structures.map(s => [s.id, allAvailable.filter(f => matchesRegion(f,s.id)).length]),
   ), [allAvailable]);
-  const events = useMemo(() => timeline(visible.map(f => f.id))
-    .filter(e => Number(e.date.slice(0,4)) <= year), [visible,year]);
+  const events = useMemo(() => timeline(f ? [f.id] : visible.map(f => f.id))
+    .filter(e => Number(e.date.slice(0,4)) <= year), [f,visible,year]);
   const library = useMemo(
     () =>
       records.filter(
@@ -594,7 +594,7 @@ export default function AtlasExperience() {
                   onHover={setHovered}
                 />
               )}
-              {showInterventions && projection?.mode===mode && densityMap && <InterventionConstellation entries={annotations} projection={projection} selected={selected} onSelect={onInnovation} onRegion={id=>chooseRegion(id)}/>}
+              {showInterventions && projection?.mode===mode && densityMap && <InterventionConstellation named={collection==='explained'} entries={annotations} projection={projection} selected={selected} onSelect={onInnovation} onRegion={id=>chooseRegion(id)}/>}
               {showInterventions && !densityMap && projection?.mode === mode && (
                 <InterventionLabels
                   entries={annotations}
@@ -766,7 +766,7 @@ export default function AtlasExperience() {
               <span>History</span>
               <output htmlFor="atlas-year">{year}</output>
               <span className="time-event-count">
-                {events.length} dated events
+                {events.length} dated {events.length===1?"event":"events"}
               </span>
             </div>
             <label className="sr-only" htmlFor="atlas-year">
@@ -793,6 +793,7 @@ export default function AtlasExperience() {
               {events.slice(-2).map((e) => (
                 <button
                   key={e.id}
+                  data-family={e.familyId}
                   onClick={() => {
                     chooseFamily(e.familyId);
                     source(e.recordId);

@@ -79,3 +79,7 @@ Dossier completion does not upgrade any anatomical relationship. FDA application
 The adapted contour alters shoulder, chest, upper-arm, waist and localized external pelvic geometry. Head, legs and unaffected regions retain source coordinates. Both surfaces use the original HRA bounds for centering and scale; organs, nerves and intervention anchors are unchanged. The contours do not establish personal anatomical coordinates or body measurements. See [BODY_CONTOUR.md](BODY_CONTOUR.md).
 
 The external pelvic contour now uses a closed, smooth parametric surface joined locally to the exterior. This is illustrative geometry, not a sourced anatomical specimen, clinical assertion or device coordinate. Reference organs and intervention anchors remain unchanged.
+
+### Named map callouts
+
+Explained entries are now named on the default map. Overview labels represent approaches within broad regions; focusing a region exposes individual indexed approaches. Leader lines and marker spirals are diagrammatic regional associations, never new implant coordinates. Each callout retains its relationship role and original source, and the existing reviewed/provisional distinction remains visible. Where the reference has no applicable structure or locator, the entry stays discoverable through the index without a fabricated marker.
