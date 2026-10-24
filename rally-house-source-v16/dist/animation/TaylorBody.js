@@ -245,7 +245,9 @@ export function adultTaylorPose(source, root, yaw, constraints) {
         if (constraints.human) {
             const ready = clamp(constraints.readyWeight ?? 0, 0, 1), mixed = pole.clone().scale(Math.max(0, 1 - ready - stroke));
             if (ready) {
-                const readyPole = shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.24 : .24)).add(new Vec3(0, -.55, 0)).add(torsoForward.clone().scale(.24));
+                const support = side === 'L' && constraints.armLengths ? (source.handRacketWeight ?? 0) : 0;
+                // Lift the supporting elbow toward the throat grip to clear the jersey.
+                const readyPole = shoulder.clone().add(torsoRight.clone().scale((side === 'L' ? -1 : 1) * (.24 - .19 * support))).add(new Vec3(0, -.55 + .43 * support, 0)).add(torsoForward.clone().scale(.24 + .09 * support));
                 mixed.add(readyPole.scale(ready));
             }
             if (stroke) {
