@@ -8,6 +8,7 @@ import {
   ArrowUpRight,
   BookOpen,
   Check,
+  Copy,
   ChevronRight,
   CircleHelp,
   Columns2,
@@ -172,6 +173,9 @@ export default function AtlasExperience() {
   );
   const [showInterventions, setShowInterventions] = useState(true);
   const [densityMap,setDensityMap]=useState(true),[collection,setCollection]=useState('explained'),[resultsLimit,setResultsLimit]=useState(60),[libraryLimit,setLibraryLimit]=useState(100);
+  const [portrait,setPortrait]=useState<boolean|null>(null);
+  const [copyState,setCopyState]=useState<"idle"|"copied"|"manual">("idle");
+  const [shareUrl,setShareUrl]=useState("");
   const [showOrgans,setShowOrgans]=useState(true);
   const [adaptedContour,setAdaptedContour]=useState(true);
   const [anatomyExpanded, setAnatomyExpanded] = useState(false);
@@ -196,8 +200,11 @@ export default function AtlasExperience() {
       "components",
     );
   useEffect(() => {
-    const entry = new URLSearchParams(window.location.search).get("entry");
-    if (entry && dossiers[entry] && familyById(entry)) {
+    const params=new URLSearchParams(window.location.search);
+    const isPortrait=params.get("view")==="portrait";setPortrait(isPortrait);
+    if(isPortrait){setShowOrgans(false);setSurface(true);setShowInterventions(false);}
+    const entry = params.get("entry");
+    if (!isPortrait && entry && dossiers[entry] && familyById(entry)) {
       setSelected(entry);setRegion("all");setTab("dossier");
     }
   }, []);
@@ -339,9 +346,15 @@ export default function AtlasExperience() {
   }, []);
   const selectedAnnotation = annotations.find((a) => a.familyId === selected);
   const showDetail = !!f;
+  async function copyPortraitLink(){
+    const url=new URL(window.location.href);url.search="";url.hash="";url.searchParams.set("view","portrait");
+    setShareUrl(url.href);
+    try{await navigator.clipboard.writeText(url.href);setCopyState("copied");}
+    catch{setCopyState("manual");}
+  }
   return (
     <div
-      className={`human-atlas ${anatomyExpanded ? "anatomy-expanded" : ""} ${showInterventions ? "with-intervention-labels" : ""} ${densityMap && showInterventions ? "with-density-map" : ""}`}
+      className={`human-atlas ${portrait ? "portrait-view" : ""} ${anatomyExpanded ? "anatomy-expanded" : ""} ${showInterventions ? "with-intervention-labels" : ""} ${densityMap && showInterventions ? "with-density-map" : ""}`}
     >
       <a className="skip-link" href="#body-map">
         Skip to body map
@@ -352,6 +365,7 @@ export default function AtlasExperience() {
         </a>
         <span className="atlas-tagline preview-status">Research preview</span>
         <nav aria-label="Atlas tools">
+          {portrait ? <><a href={atlasPath("/")}>Explore atlas</a><button aria-label="Copy share link" onClick={copyPortraitLink}>{copyState==="copied"?<Check size={15}/>:<Copy size={15}/>} {copyState==="copied"?"Copied":"Copy link"}</button></> : <>
           <button
             className="tool-active"
             onClick={() => {
@@ -373,6 +387,7 @@ export default function AtlasExperience() {
             Compare <small>{comparison.length}</small>
           </button>
           <button onClick={() => setDialog("questions")}>Questions</button>
+          </>}
         </nav>
         <button
           className="atlas-source-button"
@@ -547,12 +562,13 @@ export default function AtlasExperience() {
               <div className="guide-vertical" />
             </div>
             <div className="figure-canvas">
-              {mode === "human" ? (
+              {portrait===null ? null : mode === "human" ? (
                 <Human
                   key={`human-${sceneKey}`}
+                  portrait={!!portrait}
                   adapted={adaptedContour}
                   onProjection={projectHuman}
-                  showLabels={showInterventions}
+                  showLabels={!!portrait || showInterventions}
                   showOrgans={showOrgans}
                   region={region}
                   activeRegions={activeRegions}
@@ -734,6 +750,7 @@ export default function AtlasExperience() {
               </button>
             </div>
           </div>
+          {portrait&&<div className="portrait-caption"><h1>Holographic contour</h1><p>Drag to rotate · Scroll or pinch to zoom</p><button onClick={()=>setSceneKey(k=>k+1)}>Reset view</button><span role="status">{copyState==="copied"?"Share link copied":""}</span>{copyState==="manual"&&<label>Copy this link<input aria-label="Share link" readOnly value={shareUrl} onFocus={e=>e.currentTarget.select()}/></label>}</div>}
           <section className="atlas-time" aria-label="Intervention history">
             <div className="time-top">
               <button
@@ -1463,6 +1480,7 @@ export default function AtlasExperience() {
           {dialog === "about" && (
             <div className="atlas-methods">
               <h3>Exterior contour, reference anatomy</h3>
+              <p><a href={atlasPath("/?view=portrait")}>Open shareable contour view <ArrowUpRight size={12}/></a></p>
               <p>The contour is an artistic exterior with sculpted facial features and muscle definition, without photographic textures. It is an approximation, not a measured body scan. Organs, nerves and intervention anchors remain in the original HRA reference frame. Use Contour / Reference to compare surfaces.</p>
               <h3>Reference anatomy</h3>
               <p>

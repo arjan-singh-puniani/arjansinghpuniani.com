@@ -31,23 +31,33 @@ for v in body.data.vertices:
   midline=math.exp(-(x/.010)**2-((y-.34)/.14)**4)
   oblique=math.exp(-((abs(x)-(.10+.12*(y-.28)))/.024)**2-((y-.31)/.13)**4)
   pec_edge=math.exp(-((y-.463)/.014)**2-((abs(x)-.083)/.085)**4)
-  next_z+=fade*front*(.0055*abs_volume-.002*midline+.0045*oblique-.003*pec_edge+.004*shoulder)
+  clavicle=math.exp(-((y-(.604-.14*abs(x)))/.011)**2-((abs(x)-.10)/.10)**4)
+  next_z+=fade*front*(.0055*abs_volume-.002*midline+.0045*oblique-.003*pec_edge+.004*shoulder+.003*clavicle)
   assert math.isfinite(next_x) and math.isfinite(next_z)
   assert abs(next_x-x)<.05 and abs(next_z-z)<.05
   v.co=(next_x,-next_z,y)
  elif y>=.67:
   def bump(cx,cy,sx,sy):return math.exp(-((abs(x)-cx)/sx)**2-((y-cy)/sy)**2)
   front=max(0,min(1,(z-.015)/.045))
-  jaw=bump(.065,.723,.025,.024);chin=bump(0,.697,.042,.019)
+  jaw=bump(.070,.730,.022,.019);chin=bump(0,.697,.047,.019)
   cheek=bump(.058,.778,.028,.025)
-  next_x=x+front*math.copysign(.0065*jaw-.0035*chin-.003*cheek,x)
+  next_x=x+front*x/math.sqrt(x*x+.025**2)*(.0055*jaw-.006*chin-.004*cheek)
+  assert next_x*x>=-1e-12, "Facial taper must not fold across the centerline"
   next_y=y-.0035*front*chin
   bridge=bump(0,.791,.012,.032);nose=bump(0,.765,.017,.013)
   brow=bump(.039,.824,.029,.009);socket=bump(.041,.810,.022,.010)
   upper_lip=bump(0,.735,.030,.004);lower_lip=bump(0,.725,.027,.004)
   mouth=bump(0,.730,.030,.0025)
-  next_z=z+front*(.007*chin-.0035*cheek+.005*bridge+.006*nose+.004*brow-.004*socket+.0025*upper_lip+.003*lower_lip-.0025*mouth)
-  assert max(abs(next_x-x),abs(next_y-y),abs(next_z-z))<.025
+  eyelid=bump(.041,.809,.014,.005)
+  next_z=z+front*(.0025*eyelid+.007*chin-.0035*cheek+.005*bridge+.006*nose+.0045*brow-.003*socket+.0025*upper_lip+.003*lower_lip-.0025*mouth)
+  # A continuous swept scalp silhouette keeps the monochrome mesh free of photo textures.
+  hairline=.805+front*(.058-.006*math.exp(-(x/.025)**2))
+  hair=max(0,min(1,(y-hairline)/.035));hair=hair*hair*(3-2*hair)
+  quiff=math.exp(-((x+.025)/.065)**2-((y-.89)/.06)**2)
+  next_y+=hair*(.010+.007*front+.006*quiff)
+  next_x+=hair*(.07*x-.003)
+  next_z+=hair*front*(.003+.0015*math.cos((x+.45*(y-.85))/.010))
+  assert max(abs(next_x-x),abs(next_y-y),abs(next_z-z))<.03
   v.co=(next_x,-next_z,next_y)
 # A local, closed surface replaces the stretched scan contour; reference organs are untouched.
 shaft_radius=.0185;glans_radius=shaft_radius*1.38*.93
@@ -98,6 +108,6 @@ bpy.ops.export_scene.gltf(filepath=str(out),export_format='GLB',use_selection=Tr
 raw=out.read_bytes();gltf=json.loads(raw[20:20+int.from_bytes(raw[12:16],'little')])
 assert len(gltf['meshes'])==1 and not gltf.get('images') and not gltf.get('textures')
 assert all('COLOR_0' not in p['attributes'] for m in gltf['meshes'] for p in m['primitives'])
-manifest={'asset':'adapted body contour','source':'HRA male v1.5 skin surface','sourceSha256':source_sha,'license':'CC BY 4.0; HRA geometry attribution retained. No personality rights are granted.','creators':['Kristen Browne','Heidi Schlehlein'],'adaptations':'Authored shoulder, chest, arm and waist contours with paired abdominal and oblique relief. Sculpted jaw, chin, cheeks, nose, brows and lips. Existing external pelvic contour preserved. Internal reference anatomy unchanged. Artistic approximation from visual references, not measured dimensions.','contourOnly':True,'personalAnatomicalScan':False,'photographsIncluded':False,'texturesIncluded':False,'facialGeometryAdapted':True,'photographicAppearanceIncluded':False,'subjectIdentified':False,'glansToShaftRadiusRatio':1.2834,'externalContourMethod':'closed parametric surface with local Boolean union','sha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw),'triangles':sum(len(p.vertices)-2 for p in body.data.polygons)}
+manifest={'asset':'adapted body contour','source':'HRA male v1.5 skin surface','sourceSha256':source_sha,'license':'CC BY 4.0; HRA geometry attribution retained. No personality rights are granted.','creators':['Kristen Browne','Heidi Schlehlein'],'adaptations':'Authored shoulder, chest, arm and waist contours with paired abdominal and oblique relief. Tapered chin and cheeks, angular jaw, shaped eyelids, nose, brows and lips, and a swept scalp silhouette. Existing external pelvic contour preserved. Internal reference anatomy unchanged. Artistic approximation from visual references, not measured dimensions.','contourOnly':True,'personalAnatomicalScan':False,'photographsIncluded':False,'texturesIncluded':False,'facialGeometryAdapted':True,'scalpGeometryAdapted':True,'photographicAppearanceIncluded':False,'subjectIdentified':False,'glansToShaftRadiusRatio':1.2834,'externalContourMethod':'closed parametric surface with local Boolean union','sha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw),'triangles':sum(len(p.vertices)-2 for p in body.data.polygons)}
 out.with_name('contour-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print('BODY_CONTOUR',json.dumps(manifest))

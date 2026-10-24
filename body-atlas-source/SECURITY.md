@@ -24,3 +24,5 @@ Dossier fetching uses HTTPS with explicit FDA host allowlists checked before and
 ## Body contour
 
 The contour derivative contains geometry only, including authored facial contours and muscle relief. No color attributes, photographs, textures, EXIF, identifying subject labels or private input paths are exported. Asset tests enforce this boundary. There is no upload endpoint or external image-processing service. Original photographs remain outside the repository. See [BODY_CONTOUR.md](BODY_CONTOUR.md).
+
+The upper-body share view copies a same-page URL containing only `view=portrait`; other query parameters and fragments are removed. Copying is explicit, with a manual selectable-link fallback if clipboard access is denied. It sends no messages and uploads no photos. Its presentation crop is not access control: the existing atlas geometry remains a public asset.

@@ -507,7 +507,7 @@ test("body contour is a bounded 3D derivative without photograph payloads", asyn
  assert.ok(width(contour,.21,.25,.20)<width(original,.21,.25,.20)*.95,'Waist is tapered');
  assert.ok(width(contour,.49,.54,.30)>width(original,.49,.54,.30),'Shoulder contour is broader');
  assert.ok(gltf.meshes.every((m:{primitives:{attributes:Record<string,number>}[]})=>m.primitives.every(p=>!('COLOR_0' in p.attributes))));
- assert.equal(manifest.facialGeometryAdapted,true);assert.equal(manifest.photographicAppearanceIncluded,false);assert.equal(manifest.contourOnly,true);
+ assert.equal(manifest.scalpGeometryAdapted,true);assert.equal(manifest.facialGeometryAdapted,true);assert.equal(manifest.photographicAppearanceIncluded,false);assert.equal(manifest.contourOnly,true);
  const lower=[...new Set(contour.filter(p=>p[1]<=.02).map(p=>p.map(v=>v.toFixed(5)).join(',')))].sort();
  assert.equal(lower.length,47447);
  assert.equal(createHash('sha256').update(lower.join('\n')).digest('hex'),'e86d1a21ce7a86f7fa490b2cf2133151d7d37205b8346f77d33e04e6b40d6caf','Entire approved lower-body surface is preserved');
@@ -517,6 +517,9 @@ test("body contour is a bounded 3D derivative without photograph payloads", asyn
  for(const [y,depth] of priorDepths)assert.ok(front(contour,.036,y)>depth+.004,'Abdominal relief is sculpted into geometry');
  assert.ok(front(contour,0,.697)>front(original,0,.697)+.003,'Chin projects forward');
  assert.ok(front(contour,0,.791)>front(original,0,.791)+.003,'Nose bridge has a defined profile');
+ const chinHalfWidth=Math.max(...contour.filter(p=>p[1]>.697&&p[1]<.710&&p[2]>.09).map(p=>Math.abs(p[0])));
+ assert.ok(chinHalfWidth<.0365,'Lower chin tapers inward instead of widening');
+ assert.ok(Math.max(...contour.map(p=>p[1]))>.925,'Swept scalp geometry changes the head silhouette');
  const tip=(points:number[][])=>Math.min(...points.filter(p=>Math.abs(p[0])<.025&&p[2]>.105&&p[1]<-.05).map(p=>p[1]));
  assert.ok(tip(contour)<tip(original)-.015,'External pelvic contour is elongated locally');
  const frontRadius=(distance:number)=>{

@@ -4,6 +4,8 @@ import { Canvas, ThreeEvent, useThree } from "@react-three/fiber";
 import { Html, OrbitControls, useGLTF } from "@react-three/drei";
 import {
   Box3,
+  DoubleSide,
+  FrontSide,
   Group,
   Mesh,
   MeshStandardMaterial,
@@ -30,13 +32,15 @@ const vertex = `varying vec3 p; varying vec3 n; varying vec3 eye;
 void main(){p=position;  n=normalize(normalMatrix*normal); vec4 mv=modelViewMatrix*vec4(position,1.); eye=-mv.xyz; gl_Position=projectionMatrix*mv;}`;
 const fragment = `varying vec3 p; varying vec3 n; varying vec3 eye;
 uniform float surface; uniform float band; uniform float centerY; uniform float halfHeight;
-uniform vec4 regions;
+uniform vec4 regions; uniform float portrait;
 void main(){
+ if(portrait>.5 && p.y<.14) discard;
  vec3 cell=p*vec3(35.,38.,28.); vec3 d=max(fwidth(cell),vec3(.001));
  vec3 line=abs(fract(cell-.5)-.5)/d;
  float grid=1.-min(min(line.x,line.y),line.z); grid=clamp(grid,0.,1.);
  float rim=pow(1.-abs(dot(normalize(n),normalize(eye))),2.);
- float light=.28+.72*max(dot(normalize(n),normalize(vec3(-.8,.8,.65))),0.);
+ vec3 normal=gl_FrontFacing?normalize(n):-normalize(n);
+ float light=.28+.72*max(dot(normal,normalize(vec3(-.8,.8,.65))),0.);
  float area=band*exp(-pow((p.y-centerY)/halfHeight,4.));
  area=max(area,regions.x*exp(-pow((p.y-.78)/.16,4.)));
  area=max(area,regions.y*exp(-pow((p.y-.60)/.10,4.)));
@@ -46,7 +50,7 @@ void main(){
  ink*=.35+.85*light;
  float alpha=.025+grid*.23+rim*.45+area*.12+light*.055;
  alpha=mix(alpha,min(.96,.40+light*.45+rim*.15+area*.07),surface);
- gl_FragColor=vec4(ink,alpha);
+ gl_FragColor=vec4(ink+portrait*grid*.025,portrait>.5?1.:alpha);
 }`;
 const pins = [
   {
@@ -96,6 +100,7 @@ class Boundary extends Component<
   }
 }
 function Body({
+  portrait,
   adapted,
   region,
   activeRegions,
@@ -104,6 +109,7 @@ function Body({
   onHover,
   onReady,
 }: {
+  portrait: boolean;
   adapted: boolean;
   region: string;
   activeRegions: string[];
@@ -127,9 +133,11 @@ function Body({
     const material = new ShaderMaterial({
       vertexShader: vertex,
       fragmentShader: fragment,
-      transparent: true,
-      depthWrite: false,
+      side: portrait ? DoubleSide : FrontSide,
+      transparent: !portrait,
+      depthWrite: portrait,
       uniforms: {
+        portrait: { value: portrait ? 1 : 0 },
         surface: { value: 0 },
         band: { value: 0 },
         centerY: { value: 0 },
@@ -141,7 +149,7 @@ function Body({
       if (o instanceof Mesh) o.material = material;
     });
     return { model, material, bounds: box };
-  }, [gltf.scene, reference.scene, adapted]);
+  }, [gltf.scene, reference.scene, adapted, portrait]);
   useEffect(() => {
     material.uniforms.surface.value = surface ? 1 : 0;
     const bandId=region==='all'?activeRegions.find(id=>humanRegionLocators[id]):region;
@@ -195,7 +203,7 @@ function Body({
     <primitive
       object={model}
       onClick={(e: ThreeEvent<MouseEvent>) => {
-        if (e.delta > 4) return;
+        if (e.delta > 4 || portrait) return;
         e.stopPropagation();
         const hit=e.intersections.find(i=>i.object.userData.atlasRegion);
         onSelect(hit?.object.userData.atlasRegion||zone(e)[0]);
@@ -294,11 +302,12 @@ function RegisteredAnatomy({
     />
   );
 }
-function FocusRegion({region}:{region:string}){
+function FocusRegion({region,portrait}:{region:string;portrait:boolean}){
  const camera=useThree(s=>s.camera),controls=useThree(s=>s.controls) as unknown as {target:Vector3;update:()=>void}|undefined,invalidate=useThree(s=>s.invalidate);
- useEffect(()=>{if(!controls)return;const p=region==='all'?null:humanRegionLocators[region];if(region==='all'){camera.position.set(0,.1,10.8);controls.target.set(0,0,0);}else if(p){camera.position.set(p[0],p[1],p[2]+3.4);controls.target.set(...p);}else return;controls.update();invalidate();},[region,camera,controls,invalidate]);return null;
+ useEffect(()=>{if(!controls)return;const p=region==='all'?null:humanRegionLocators[region];if(portrait){camera.position.set(0,1.75,5.8);controls.target.set(0,1.75,0);}else if(region==='all'){camera.position.set(0,.1,10.8);controls.target.set(0,0,0);}else if(p){camera.position.set(p[0],p[1],p[2]+3.4);controls.target.set(...p);}else return;controls.update();invalidate();},[region,portrait,camera,controls,invalidate]);return null;
 }
 export default function HumanScene({
+  portrait = false,
   adapted = true,
   onProjection,
   showLabels = false,
@@ -312,6 +321,7 @@ export default function HumanScene({
   onReady,
   onUnavailable,
 }: {
+  portrait?: boolean;
   adapted?: boolean;
   onProjection?: (projection: LabelProjection) => void;
   showLabels?: boolean;
@@ -352,6 +362,7 @@ export default function HumanScene({
     <div
       className="human-reference"
       data-testid="human-reference"
+      data-presentation={portrait?"portrait":"atlas"}
       data-exterior={exterior}
       data-avatar-status={avatarFailed?'unavailable':loadedExterior===exterior?'loaded':'loading'}
       data-organs-status={!showOrgans?'hidden':organsFailed?'unavailable':organsReady?'loaded':'loading'}
@@ -383,7 +394,7 @@ export default function HumanScene({
           }
         >
           {showOrgans&&<Boundary fail={()=>setOrgansFailed(true)}><Suspense fallback={null}><WholeBodyOrgans region={region} activeRegions={activeRegions} onSelect={onSelect} onHover={onHover} onReady={organsLoaded}/></Suspense></Boundary>}
-          <FocusRegion region={region}/>
+          <FocusRegion region={region} portrait={portrait}/>
           <ambientLight intensity={1.7} />
           <directionalLight position={[3, 5, 6]} intensity={2.5} />
           <group visible={showOrgans}><Boundary fail={() => setInternalFailed(true)}>
@@ -399,6 +410,7 @@ export default function HumanScene({
           </Boundary></group>
           <Boundary key={exterior} fail={()=>exterior==='adapted'?setAvatarFailed(true):setFailed(true)}><Suspense fallback={null}>
             <Body
+              portrait={portrait}
               adapted={exterior==='adapted'}
               region={region}
               activeRegions={activeRegions}
@@ -442,10 +454,10 @@ export default function HumanScene({
             makeDefault
             enablePan={false}
             enableZoom
-            minDistance={1.2}
-            maxDistance={14}
-            minPolarAngle={0.15}
-            maxPolarAngle={3.0}
+            minDistance={portrait?2.8:1.2}
+            maxDistance={portrait?8:14}
+            minPolarAngle={portrait?0.55:0.15}
+            maxPolarAngle={portrait?1.95:3.0}
             enableDamping={false}
           />
         </Canvas>

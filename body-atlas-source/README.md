@@ -111,3 +111,5 @@ A deeper trace added Hudi’s exact condom restriction, Advanced Glenoid cemente
 ## Body contour
 
 The **Contour** exterior uses an adapted shoulder, chest, upper-arm and waist silhouette in the neutral atlas style. **Contour / Reference** restores the unmodified HRA surface. Sculpted facial contours and muscle relief share the holographic material; no photographic textures or identifying subject labels are included. Organs and intervention anchors retain their original HRA frame. Proportions are artistic approximations. Original photos remain private. History playback begins at 1999 while earlier cited dates remain available in source records. See [BODY_CONTOUR.md](BODY_CONTOUR.md).
+
+For a focused, shareable upper-body presentation, open `/atlas?view=portrait` on the portfolio (or `/?view=portrait` in the standalone app). Use **Copy link**; **Explore atlas** restores the research workflow. This remains an artistic approximation, not validated personal anthropometry.
