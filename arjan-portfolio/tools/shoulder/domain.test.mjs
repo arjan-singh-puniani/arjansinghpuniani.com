@@ -3,6 +3,10 @@ import assert from "node:assert/strict";
 import { readFile, access } from "node:fs/promises";
 import {
   SITS,
+  FUNCTION_STUDIES,
+  QUIZ_LENGTH,
+  quizComplete,
+  quizSummary,
   ALL,
   TISSUES,
   PRESETS,
@@ -221,4 +225,53 @@ test("production entry is self-contained and references vendored runtime", async
   assert.match(html, /\.\/vendor\/three.module.min.js/);
   assert.match(html, /\.\/app.js/);
   assert.doesNotMatch(html, /https:\/\/.*\.js/);
+});
+
+test("function studies highlight source groups and preserve bone context", () => {
+  const state = createState();
+  state.mode = "learn";
+  for (const [id, study] of Object.entries(FUNCTION_STUDIES)) {
+    state.study = id;
+    state.view = study.view;
+    assert.ok(PRESETS[study.view]);
+    assert.ok(study.boundary);
+    assert.equal(visibility(state, "FJ3384"), "visible");
+    for (const muscle of SITS)
+      assert.equal(
+        visibility(state, muscle),
+        study.ids.includes(muscle) ? "visible" : "ghost",
+      );
+    assert.equal(visibility(state, "FJ3579"), "hidden");
+  }
+});
+test("assessment ends at twelve, records retries once and cannot inflate a completed score", () => {
+  const state = createState();
+  let previous;
+  for (let i = 0; i < QUIZ_LENGTH; i++) {
+    const q = question(state);
+    assert.notEqual(q.id, previous);
+    assert.equal(
+      q.level,
+      ["Identification", "Relationships", "Function"][Math.floor(i / 4)],
+    );
+    if (i % 2 === 0) assert.equal(answer(state, "FJ3384"), "retry");
+    assert.equal(answer(state, q.id), "correct");
+    assert.equal(answer(state, q.id), "answered");
+    assert.equal(state.quiz.history.length, i + 1);
+    previous = q.id;
+    assert.equal(nextQuestion(state), true);
+  }
+  assert.equal(quizComplete(state), true);
+  assert.equal(question(state), null);
+  assert.equal(state.quiz.score, 6);
+  assert.equal(nextQuestion(state), false);
+  assert.equal(answer(state, SITS[0]), "answered");
+  assert.deepEqual(
+    quizSummary(state).map((row) => [row.correct, row.total]),
+    [
+      [2, 4],
+      [2, 4],
+      [2, 4],
+    ],
+  );
 });

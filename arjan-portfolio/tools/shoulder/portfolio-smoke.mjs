@@ -1,7 +1,7 @@
 import { chromium, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 const browser = await chromium.launch({ channel: "chrome", headless: true });
-const root = "http://127.0.0.1:4192";
+const root = process.env.PORTFOLIO_URL || "http://127.0.0.1:4192";
 const results = [];
 try {
   const page = await browser.newPage({
@@ -45,7 +45,7 @@ try {
   await frame.locator("[data-mode=learn]").click();
   await expect(frame.locator("#context")).toContainText("A mobile joint");
   await page.screenshot({
-    path: "Documentation/shoulder-qa/portfolio-integration.png",
+    path: `${process.env.QA_OUT || "Documentation/shoulder-qa"}/portfolio-integration.png`,
   });
   results.push({
     route: "/playground/holoanatomy",
@@ -65,7 +65,7 @@ try {
   );
 } finally {
   await writeFile(
-    "Documentation/shoulder-qa/portfolio-smoke.json",
+    `${process.env.QA_OUT || "Documentation/shoulder-qa"}/portfolio-smoke.json`,
     JSON.stringify(results, null, 2),
   );
   await browser.close();

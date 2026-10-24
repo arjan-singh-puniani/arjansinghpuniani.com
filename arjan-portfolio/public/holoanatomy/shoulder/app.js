@@ -9,6 +9,10 @@ import {
   CUFF_COLORS,
   LESSON,
   SOURCES,
+  FUNCTION_STUDIES,
+  QUIZ_LENGTH,
+  quizComplete,
+  quizSummary,
   stage,
   undoStage,
   reassemble,
@@ -51,6 +55,15 @@ function initialize() {
     .querySelectorAll("#mode-controls [data-mode]")
     .forEach((b) => (b.onclick = () => setMode(b.dataset.mode)));
   $("reset").onclick = reset;
+  $("present").onclick = () => {
+    state.presenting = !state.presenting;
+    if (state.presenting) {
+      state.lesson = 0;
+      state.study = null;
+      setMode("learn");
+    } else sync();
+    scene.resize();
+  };
   $("atlas-toggle").onclick = () => {
     state.atlas = !state.atlas;
     sync();
@@ -127,7 +140,24 @@ function initialize() {
       e.key !== "Escape"
     )
       return;
-    if (e.key === "ArrowLeft") scene.orbit(-12, 0);
+    if (state.presenting && e.key === "Escape") {
+      state.presenting = false;
+      sync();
+      scene.resize();
+    } else if (
+      state.presenting &&
+      state.mode === "learn" &&
+      e.key === "PageDown"
+    ) {
+      if (LESSON[state.lesson].quiz) setMode("quiz");
+      else lessonStep(state.lesson + 1);
+    } else if (
+      state.presenting &&
+      state.mode === "learn" &&
+      e.key === "PageUp"
+    ) {
+      lessonStep(state.lesson - 1);
+    } else if (e.key === "ArrowLeft") scene.orbit(-12, 0);
     else if (e.key === "ArrowRight") scene.orbit(12, 0);
     else if (e.key === "ArrowUp") scene.orbit(0, 12);
     else if (e.key === "ArrowDown") scene.orbit(0, -12);
@@ -167,6 +197,7 @@ function initialize() {
 function setMode(mode) {
   if (!["explore", "peel", "learn", "quiz"].includes(mode)) return;
   state.mode = mode;
+  state.study = null;
   state.selected = null;
   state.isolated = false;
   reassemble(state);
@@ -175,13 +206,7 @@ function setMode(mode) {
   $("feedback").textContent = "";
   if (mode === "learn") lessonStep(state.lesson);
   else if (mode === "quiz") {
-    state.quiz = {
-      index: 0,
-      score: 0,
-      answered: false,
-      retried: false,
-      previous: null,
-    };
+    state.quiz = createState().quiz;
     scene.applyView(question(state).view);
   } else if (mode === "peel") {
     state.peel = 0;
@@ -189,6 +214,7 @@ function setMode(mode) {
   } else scene.applyView("posterior");
   scene.refresh();
   sync();
+  scene.resize();
   renderPanel();
 }
 function reset() {
@@ -229,19 +255,34 @@ function select(id) {
 }
 function sync() {
   document.body.dataset.mode = state.mode;
+  document.body.dataset.presenting = String(state.presenting);
+  $("present").setAttribute("aria-pressed", String(state.presenting));
+  $("present").setAttribute(
+    "aria-label",
+    state.presenting ? "Exit presentation" : "Start guided presentation",
+  );
+  $("present").innerHTML = state.presenting
+    ? "× <span>Exit presentation</span>"
+    : "▶ <span>Present</span>";
   document
     .querySelectorAll("#mode-controls [data-mode]")
     .forEach((b) =>
       b.setAttribute("aria-pressed", String(state.mode === b.dataset.mode)),
     );
   $("view-select").value = state.view;
-  $("view-purpose").textContent = PRESETS[state.view].purpose;
+  $("view-purpose").textContent =
+    state.mode === "learn" && state.study
+      ? FUNCTION_STUDIES[state.study].title
+      : PRESETS[state.view].purpose;
   $("crop-note").textContent =
     state.view === "vascular"
       ? "Regional vessels · incomplete source coverage"
       : "Proximal view · distal shaft cropped";
   $("atlas-toggle").setAttribute("aria-pressed", String(state.atlas));
   $("atlas-toggle").disabled = state.mode === "quiz";
+  document.querySelector(".gesture-help").textContent = state.presenting
+    ? "Page Up / Down · Tour chapters    Esc · Exit presentation"
+    : "Drag to orbit · Two-finger scroll to pan · Pinch to zoom";
   $("structures-toggle").hidden = state.mode === "quiz";
   if (state.mode === "quiz") $("structure-list").hidden = true;
   scene.invalidate();
@@ -268,6 +309,9 @@ function detail(id) {
   }`;
 }
 function renderPanel() {
+  const focusedAction = $("context").contains(document.activeElement)
+    ? document.activeElement?.dataset.action
+    : null;
   sync();
   let html = "";
   if (state.mode === "explore")
@@ -285,16 +329,57 @@ function renderPanel() {
     html = `<p class="kicker">PEEL · STAGE ${state.peel + 1} OF 5</p><h2>${titles[state.peel]}</h2><label class="field-label" for="peel-range">EXPOSURE DEPTH</label><input id="peel-range" aria-label="Anatomy exposure stage" type="range" min="0" max="4" step="1" value="${state.peel}"><p class="peel-stages">${state.peel < 2 ? "Move the slider to ghost, then remove the three supplied deltoid parts." : state.peel === 4 ? "Context is ghosted around your selected cuff muscle. The model does not map a separate tendon footprint." : "Select a cuff muscle and use Separate, or drag it deliberately to the staging area. Its source shape stays unchanged."}</p><select id="peel-muscle" aria-label="Cuff muscle to separate">${SITS.map((id) => `<option value="${id}" ${id === state.selected ? "selected" : ""}>${name(id)}</option>`).join("")}</select><div class="action-row"><button data-action="separate" ${state.peel < 2 ? "disabled" : ""}>Separate</button><button data-action="undo" ${!state.undo.length ? "disabled" : ""}>Undo</button></div><button data-action="reassemble" ${!state.staged.length ? "disabled" : ""}>Reassemble all</button><div class="stage-list">${state.staged.map((id) => `<button data-return="${id}">↶ Return ${name(id)}</button>`).join("")}</div><p class="integrity">Staging moves whole source meshes for study. It does not simulate cutting, tissue deformation, or surgical planes.</p>`;
   }
   if (state.mode === "learn") {
-    const s = LESSON[state.lesson];
-    html = `<p class="kicker">GUIDED LESSON · ${state.lesson + 1} / ${LESSON.length}</p><h2>${s.title}</h2><p>${s.text}</p><div class="steps"><span style="width:${((state.lesson + 1) / LESSON.length) * 100}%"></span></div><div class="lesson-nav"><button data-action="previous" ${state.lesson === 0 ? "disabled" : ""}>← Back</button><button class="primary" data-action="next">${s.quiz ? "Start quiz" : "Continue →"}</button></div>${state.selected ? `<details><summary>Structure notes · ${name(state.selected)}</summary>${detail(state.selected)}</details>` : ""}`;
+    const step = LESSON[state.lesson],
+      study = FUNCTION_STUDIES[state.study];
+    const tabs = `<div class="study-tabs" role="group" aria-label="Learning pathway"><button data-study="tour" aria-pressed="${!study}">Spatial tour</button>${Object.entries(
+      FUNCTION_STUDIES,
+    )
+      .map(
+        ([id, f]) =>
+          `<button data-study="${id}" aria-pressed="${id === state.study}">${f.label}</button>`,
+      )
+      .join("")}</div>`;
+    html =
+      tabs +
+      (study
+        ? `<p class="kicker">FUNCTION STUDY · CURRICULUM</p><h2>${study.title}</h2><p>${study.text}</p><div class="observation"><span class="edition">TRY IT IN 3D</span><p>${study.task}</p></div><ul class="muscle-list">${study.ids.map((id) => `<li><button data-select="${id}"><span class="dot" style="--swatch:${CUFF_COLORS[id]}"></span>${name(id)}</button></li>`).join("")}</ul><p class="integrity">${study.boundary}</p><button data-action="sources">Read curriculum sources ↗</button>`
+        : `<p class="kicker">SPATIAL TOUR · ${state.lesson + 1} / ${LESSON.length}</p><h2>${step.title}</h2><p>${step.text}</p><div class="steps"><span style="width:${((state.lesson + 1) / LESSON.length) * 100}%"></span></div><div class="lesson-nav"><button data-action="previous" ${state.lesson === 0 ? "disabled" : ""}>← Back</button><button class="primary" data-action="next">${step.quiz ? "Start quiz" : "Continue →"}</button></div><nav class="chapter-list" aria-label="Lesson chapters">${LESSON.map((chapter, i) => `<button data-chapter="${i}" ${i === state.lesson ? 'aria-current="step"' : ""}><span>${String(i + 1).padStart(2, "0")}</span>${chapter.title}</button>`).join("")}</nav>`);
+    html += state.selected
+      ? `<details><summary>Structure notes · ${name(state.selected)}</summary>${detail(state.selected)}</details>`
+      : "";
   }
   if (state.mode === "quiz") {
-    const q = question(state);
-    html = `<p class="kicker">ACTIVE RECALL · ${q.level}</p><h2>${q.prompt}</h2><p>Select the structure on the specimen. Orbit to inspect it from another angle.</p><p><span class="quiz-score">${state.quiz.score}</span> <small>first-attempt points / ${state.quiz.index + 1} questions</small></p><button class="primary" data-action="quiz-next" ${!state.quiz.answered ? "disabled" : ""}>Next question →</button><details><summary>Keyboard answer controls</summary><p>Choose the structure you would select in the model.</p>${SITS.map((id) => `<button data-select="${id}">${name(id)}</button>`).join("")}</details><p class="integrity">Retries explain the anatomy but do not add points. Questions progress from names to spatial relationships.</p>`;
+    if (quizComplete(state)) {
+      html = `<p class="kicker">SESSION REVIEW · 12 QUESTIONS</p><h2>What can you find now?</h2><p><span class="quiz-score">${state.quiz.score}</span> / ${QUIZ_LENGTH} correct on the first attempt</p><div class="score-breakdown">${quizSummary(
+        state,
+      )
+        .map(
+          (r) =>
+            `<p><span>${r.level}</span><strong>${r.correct} / ${r.total}</strong></p>`,
+        )
+        .join(
+          "",
+        )}</div><h3>Revisit the anatomy</h3><p>Choose a structure to review its position and function.</p><ul class="muscle-list">${SITS.map((id) => `<li><button data-review="${id}">${name(id)}<small>${state.quiz.history.filter((r) => r.id === id && r.firstAttempt).length}/3 first try</small></button></li>`).join("")}</ul><button class="primary" data-action="quiz-restart">Practice again</button><p class="integrity">A practice-session result, not a validated measure of clinical competence. Results stay in this tab and reset when you reload.</p>`;
+    } else {
+      const q = question(state);
+      html = `<p class="kicker">ACTIVE RECALL · ${q.level} · ${state.quiz.index + 1} / ${QUIZ_LENGTH}</p><h2>${q.prompt}</h2><p>Select the structure on the specimen. Orbit to inspect it from another angle.</p><div class="steps"><span style="width:${(state.quiz.index / QUIZ_LENGTH) * 100}%"></span></div><p><span class="quiz-score">${state.quiz.score}</span> <small>first-attempt points</small></p><button class="primary" data-action="quiz-next" ${!state.quiz.answered ? "disabled" : ""}>${state.quiz.index === QUIZ_LENGTH - 1 ? "Review session →" : "Next question →"}</button><details><summary>Keyboard answer controls</summary><p>Choose the structure you would select in the model.</p>${SITS.map((id) => `<button data-select="${id}">${name(id)}</button>`).join("")}</details><p class="integrity">Names → spatial relationships → function. Retries support practice without adding points.</p>`;
+    }
   }
   $("context").innerHTML = html;
+  if (focusedAction) {
+    const next = $("context").querySelector(
+      `[data-action="${focusedAction}"]:not(:disabled)`,
+    );
+    if (next) next.focus({ preventScroll: true });
+    else {
+      const heading = $("context").querySelector("h2");
+      heading.tabIndex = -1;
+      heading.focus({ preventScroll: true });
+    }
+  }
 }
 function lessonStep(n) {
+  state.study = null;
   state.lesson = Math.max(0, Math.min(LESSON.length - 1, n));
   const s = LESSON[state.lesson];
   state.selected = s.id || null;
@@ -304,6 +389,39 @@ function lessonStep(n) {
   renderPanel();
 }
 function contextClick(e) {
+  const studyButton = e.target.closest("[data-study]");
+  if (studyButton) {
+    const id = studyButton.dataset.study;
+    if (id === "tour") lessonStep(state.lesson);
+    else if (FUNCTION_STUDIES[id]) {
+      state.study = id;
+      state.selected = null;
+      state.isolated = false;
+      scene.applyView(FUNCTION_STUDIES[id].view);
+      scene.refresh();
+      renderPanel();
+    }
+    $("context")
+      .querySelector(`[data-study="${id}"]`)
+      ?.focus({ preventScroll: true });
+    return;
+  }
+  const chapter = e.target.closest("[data-chapter]");
+  if (chapter) {
+    lessonStep(Number(chapter.dataset.chapter));
+    $("context")
+      .querySelector(`[data-chapter="${state.lesson}"]`)
+      ?.focus({ preventScroll: true });
+    return;
+  }
+  const review = e.target.closest("[data-review]");
+  if (review) {
+    setMode("explore");
+    if (review.dataset.review === "FJ1504") scene.applyView("anterior");
+    select(review.dataset.review);
+    return;
+  }
+
   const selectButton = e.target.closest("[data-select]");
   if (selectButton) {
     const id = selectButton.dataset.select;
@@ -352,10 +470,11 @@ function contextClick(e) {
   }
   if (action === "quiz-next" && nextQuestion(state)) {
     state.selected = null;
-    scene.applyView(question(state).view);
+    if (!quizComplete(state)) scene.applyView(question(state).view);
     $("feedback").textContent = "";
     renderPanel();
   }
+  if (action === "quiz-restart") setMode("quiz");
   if (action === "sources") openInformation();
 }
 let labelSignature = "";
@@ -368,7 +487,9 @@ function updateOverlays() {
         ? state.staged
         : state.selected
           ? [state.selected]
-          : PRESETS[state.view].labels
+          : state.mode === "learn" && state.study
+            ? FUNCTION_STUDIES[state.study].ids
+            : PRESETS[state.view].labels
       : [];
   const signature = ids.join() + ":" + state.selected;
   if (signature !== labelSignature) {

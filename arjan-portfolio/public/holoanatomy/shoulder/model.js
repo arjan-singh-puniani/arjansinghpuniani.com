@@ -270,6 +270,63 @@ export const CURRICULUM = {
       "Subscapularis dysfunction may reduce internal-rotation strength.",
   },
 };
+// Functional groups are curriculum annotations on static source surfaces, not activation data.
+export const FUNCTION_STUDIES = {
+  elevation: {
+    title: "Help lift the arm",
+    label: "Elevation",
+    view: "superior",
+    ids: ["FJ1506"],
+    text: "Supraspinatus contributes to abduction. Look above the scapular spine, then follow the supplied surface toward the humerus.",
+    task: "Orbit beneath the acromion. Which parts of the muscle become hidden?",
+    boundary:
+      "The model shows a muscle surface, not a separately segmented tendon or a moving subacromial space.",
+  },
+  external: {
+    title: "Two posterior rotators",
+    label: "External rotation",
+    view: "posterior",
+    ids: ["FJ1500", "FJ1508"],
+    text: "Infraspinatus and teres minor contribute to external rotation. Compare the broad posterior muscle with its smaller, inferior neighbor.",
+    task: "Select each muscle. Compare their position and innervation in the structure notes.",
+    boundary:
+      "Highlighting identifies a functional group; brightness does not represent force or muscle activation.",
+  },
+  internal: {
+    title: "Find the anterior rotator",
+    label: "Internal rotation",
+    view: "anterior",
+    ids: ["FJ1504"],
+    text: "Subscapularis contributes to internal rotation. Turn toward the rib-facing surface to find the anterior member of the cuff.",
+    task: "Orbit from anterior to posterior. Notice why one view cannot show the entire cuff.",
+    boundary:
+      "The lesser-tubercle insertion is described in the curriculum. Its footprint is not segmented on this surface.",
+  },
+  stability: {
+    title: "A cuff around a mobile joint",
+    label: "Stability",
+    view: "lateral",
+    ids: [...SITS],
+    text: "The four cuff muscles help stabilize the glenohumeral joint. Inspect how their surfaces are distributed around the proximal humerus.",
+    task: "Compare anterior and posterior perspectives with the orientation cube. Locate all four muscles without separating them.",
+    boundary:
+      "This is a static anatomical study. Joint forces, tissue deformation and scapulohumeral rhythm are not simulated.",
+  },
+};
+export const QUIZ_LENGTH = 12;
+export function quizComplete(state) {
+  return state.quiz.index >= QUIZ_LENGTH;
+}
+export function quizSummary(state) {
+  return ["Identification", "Relationships", "Function"].map((level) => {
+    const rows = state.quiz.history.filter((r) => r.level === level);
+    return {
+      level,
+      correct: rows.filter((r) => r.firstAttempt).length,
+      total: rows.length,
+    };
+  });
+}
 export const SOURCES = [
   {
     title: "Anatomy, Rotator Cuff · StatPearls / NCBI",
@@ -287,6 +344,8 @@ export const SOURCES = [
 export function createState() {
   return {
     mode: "explore",
+    presenting: false,
+    study: null,
     view: "posterior",
     selected: null,
     isolated: false,
@@ -301,6 +360,7 @@ export function createState() {
       answered: false,
       retried: false,
       previous: null,
+      history: [],
     },
     section: false,
   };
@@ -319,6 +379,15 @@ export function visibility(state, id) {
         state.peel === 0 ? "visible" : state.peel === 1 ? "ghost" : "hidden";
     if (state.peel === 4 && SITS.includes(id) && id !== state.selected)
       value = "ghost";
+  }
+  if (state.mode === "learn" && FUNCTION_STUDIES[state.study]) {
+    const group = FUNCTION_STUDIES[state.study].ids;
+    value =
+      BONES.includes(id) || group.includes(id)
+        ? "visible"
+        : SITS.includes(id)
+          ? "ghost"
+          : "hidden";
   }
   if (state.selected === id && state.mode !== "quiz") value = "visible";
   if (state.mode === "quiz" && SITS.includes(id)) value = "visible";
@@ -345,6 +414,7 @@ export function reassemble(state) {
   state.staged = [];
 }
 export function question(state) {
+  if (quizComplete(state)) return null;
   const order = ["FJ1506", "FJ1504", "FJ1500", "FJ1508"];
   const id = order[state.quiz.index % 4],
     level = Math.floor(state.quiz.index / 4);
@@ -356,26 +426,43 @@ export function question(state) {
   };
   return {
     id,
-    prompt: level
-      ? relation[id]
-      : `Identify ${CURRICULUM[id].name.toLowerCase()}.`,
+    prompt:
+      level >= 2
+        ? {
+            FJ1506:
+              "Which cuff muscle above the scapular spine contributes to arm abduction?",
+            FJ1504:
+              "Select the cuff muscle that contributes to internal rotation.",
+            FJ1500:
+              "Select the broad posterior external rotator supplied by the suprascapular nerve.",
+            FJ1508:
+              "Select the smaller posterior external rotator supplied by the axillary nerve.",
+          }[id]
+        : level
+          ? relation[id]
+          : `Identify ${CURRICULUM[id].name.toLowerCase()}.`,
     view: id === "FJ1504" ? "anterior" : "posterior",
-    level: level ? "Relationships" : "Identification",
+    level: level >= 2 ? "Function" : level ? "Relationships" : "Identification",
   };
 }
 export function answer(state, id) {
-  if (state.quiz.answered) return "answered";
+  if (quizComplete(state) || state.quiz.answered) return "answered";
   const correct = id === question(state).id;
   if (correct) {
     state.quiz.answered = true;
     if (!state.quiz.retried) state.quiz.score++;
+    state.quiz.history.push({
+      id,
+      level: question(state).level,
+      firstAttempt: !state.quiz.retried,
+    });
     return "correct";
   }
   state.quiz.retried = true;
   return "retry";
 }
 export function nextQuestion(state) {
-  if (!state.quiz.answered) return false;
+  if (quizComplete(state) || !state.quiz.answered) return false;
   state.quiz.previous = question(state).id;
   state.quiz.index++;
   state.quiz.answered = false;
