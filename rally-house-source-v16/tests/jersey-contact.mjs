@@ -13,8 +13,9 @@ const intersects=(a,b)=>![0,1,2].some(k=>a.min[k]>b.max[k]||b.min[k]>a.max[k])&&
 try{
  globalThis.fetch=async url=>new Response(fs.readFileSync(new URL(url)));globalThis.Image=class{naturalWidth=1024;naturalHeight=1024;async decode(){}};await loadAuthoredAthlete();
  let checked=0;
- for(const spec of [playerSpec('taylor'),...memberData.filter(c=>c.presentation==='feminine')])for(const hz of [30,60,120]){
+ for(const spec of [playerSpec('taylor'),...memberData.filter(c=>c.presentation==='feminine')])for(const hz of [30,60,120])for(const state of ['ready','swingForehand']){
   const c=new Character(spec,new Vec3(),new Navigation([]),{});c.matchCompetitor=true;c.setAnimation('ready');for(let i=0;i<hz;i++)c.update(1/hz);
+  if(state==='swingForehand'){c.setIncomingContact(new Vec3(.6,1.02,.9));c.triggerShot(state,new Vec3(0,.09,5));for(let i=0;i<Math.round(.35*hz);i++)c.update(1/hz);}
   const mesh=c.meshes().find(m=>m.rig&&m.material==='performanceKnit'&&!m.skirt),g=mesh.skin,vertices=[],body=[],arms=[];assert(g.id.startsWith('asset-'),'Inspect the loaded jersey');
   const bones=Array.from({length:19},(_,i)=>mesh.boneMatrices.subarray(i*16,(i+1)*16));
   for(let v=0;v<g.positions.length/3;v++){const p=new Vec3(...g.positions.slice(v*3,v*3+3)),out=new Vec3();for(let j=0;j<4;j++){const w=g.boneWeights[v*4+j];if(w){const q=transformPoint(bones[g.boneIndices[v*4+j]],p);out.add(new Vec3(q.x,q.y,q.z).scale(w));}}vertices.push([out.x,out.y,out.z]);}
@@ -29,7 +30,7 @@ try{
     // Adjacent shoulder folds are separate from distant sleeve panels entering the torso.
     if(Math.hypot(...sub(arm.source,face.source))>.10&&intersects(arm,face))crossings++;
   }}
-  assert(body.length>100&&arms.length>100,'Inspect real torso and sleeve surfaces');assert.equal(crossings,0,`${spec.id}/${hz}: sleeve crosses the jersey during ready stance`);checked++;
+  assert(body.length>100&&arms.length>100,'Inspect real torso and sleeve surfaces');assert.equal(crossings,0,`${spec.id}/${state}/${hz}: sleeve crosses the jersey`);checked++;
  }
- console.log(JSON.stringify({readyPoses:checked}));
+ console.log(JSON.stringify({readyAndForehandPoses:checked}));
 }finally{globalThis.fetch=previousFetch;globalThis.Image=previousImage;}

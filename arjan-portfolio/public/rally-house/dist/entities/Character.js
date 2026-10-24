@@ -673,6 +673,11 @@ export class Character {
             knee += .055;
             weightShift = smoothstep(.18, .66, sp);
         }
+        // The hitting shoulder loads back for a forehand and forward for a backhand.
+        if (this.spec.appearance === 'human' && (state === 'swingForehand' || state === 'swingBackhand')) {
+            coil = -coil;
+            hipCoil = -hipCoil;
+        }
         const moving = state === 'walk' || state === 'jog';
         const shuffle = state === 'shuffle';
         const gait = moving ? Math.cos(this.gaitPhase) : 0;
@@ -798,6 +803,8 @@ export class Character {
         if (state === 'serve') {
             const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1), toss = smoothstep(0, .70, pre) * (1 - smoothstep(.78, 1.55, sp / contact)), reach = smoothstep(.35, 1, pre), finish = smoothstep(0, .80, post);
             handL = this.worldLocal(-.26 - .20 * Math.sin(post * Math.PI) + finish * .10, 1.25 + baseY + toss * .92 - finish * .10, .23 + finish * .08);
+            if (this.spec.appearance === 'human')
+                handL = Vec3.lerp(handL, neutralL, finish);
             handR = this.worldLocal(.31 + .28 * Math.sin(finish * Math.PI) - smoothstep(.55, 1, finish) * .62, 1.20 + baseY + reach * 1.02 - finish * 1.18, -.12 + reach * .14 + finish * .46, torsoYaw);
         }
         if (state === 'volley') {

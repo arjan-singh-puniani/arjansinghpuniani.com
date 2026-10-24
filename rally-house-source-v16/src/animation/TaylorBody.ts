@@ -1,9 +1,9 @@
-import {Vec3,clamp} from '../rendering/Math3D.js';
+import {Vec3,clamp,rigidFrame,transformPoint} from '../rendering/Math3D.js';
 import {secondRacketHand} from './RacketGeometry.js';
 import type {CharacterPose} from '../entities/Character.js';
 
 export const TAYLOR_BODY={pelvisHeight:1.245,strokePelvisFloor:.86,torsoScale:1.20,headScale:.62,upperArm:.425,forearm:.415,thigh:.56,shin:.55} as const;
-interface Constraints {armLengths?:{upperArm:number;forearm:number};sitting:boolean;seatWeight?:number;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;affection?:{kind:'hug'|'kiss';target:Vec3;weight:number;upper:boolean};shoulderScale?:number;restWeight?:number;readyWeight?:number;backhandWeight?:number;strokeWeight?:number;walk?:{phase:number;weight:number;swing:number;stance:number;planted?:[boolean,boolean]};posture?:{weight:number;right:Vec3;left?:Vec3};}
+interface Constraints {armLengths?:{upperArm:number;forearm:number;wristForearm?:number;wristOffsets?:{L:Vec3;R:Vec3}};sitting:boolean;seatWeight?:number;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;affection?:{kind:'hug'|'kiss';target:Vec3;weight:number;upper:boolean};shoulderScale?:number;restWeight?:number;readyWeight?:number;backhandWeight?:number;strokeWeight?:number;walk?:{phase:number;weight:number;swing:number;stance:number;planted?:[boolean,boolean]};posture?:{weight:number;right:Vec3;left?:Vec3};}
 const smooth=(t:number)=>{const u=clamp(t,0,1);return u*u*(3-2*u);};
 function joint(a:Vec3,b:Vec3,first:number,second:number,pole:Vec3,fallback:Vec3){
  const delta=Vec3.sub(b,a),d=Math.max(.0001,delta.len()),axis=delta.scale(1/d),stretch=Math.max(1,d/(first+second-.001));
@@ -18,6 +18,15 @@ function joint(a:Vec3,b:Vec3,first:number,second:number,pole:Vec3,fallback:Vec3)
  * The existing bind mesh is deformed by this same pose in live play and replay. */
 export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constraints:Constraints):CharacterPose{
  const arms=constraints.armLengths??TAYLOR_BODY,stroke=clamp(constraints.strokeWeight??0,0,1);
+ const wristOffset={L:new Vec3(),R:new Vec3()},fullWristOffset={L:new Vec3(),R:new Vec3()};let forearm=arms.forearm,hasWrist=false;
+ const fitted=constraints.armLengths;
+ if(fitted?.wristOffsets&&fitted.wristForearm&&source.handDirectionL&&source.handDirectionR&&source.handForwardL&&source.handForwardR){
+  // Reach, clearance and IK must agree on the wrist while the palm owns the grip.
+  const c=Math.cos(yaw),s=Math.sin(yaw);
+  for(const side of ['L','R'] as const){const offset=transformPoint(rigidFrame(new Vec3(),source[`handDirection${side}`]!,source[`handForward${side}`]!),fitted.wristOffsets[side]);fullWristOffset[side]=new Vec3(c*offset.x+s*offset.z,offset.y,-s*offset.x+c*offset.z);wristOffset[side]=fullWristOffset[side].clone().scale(stroke);}
+  forearm+=(fitted.wristForearm-forearm)*stroke;hasWrist=true;
+ }
+ const armEnd=(side:'L'|'R',palm:Vec3)=>Vec3.add(palm,wristOffset[side]);
  const p={...source,face:{...source.face}};for(const [key,v] of Object.entries(source))if(v instanceof Vec3)(p as unknown as Record<string,unknown>)[key]=v.clone();
  const oldShoulder=Vec3.lerp(source.shoulderL,source.shoulderR,.5),seat=constraints.seatWeight??(constraints.sitting?1:0),standingY=TAYLOR_BODY.pelvisHeight+(source.pelvisCenter.y-.79)*1.5,pelvisY=standingY+(source.pelvisCenter.y-standingY)*seat;
  p.seatedWeight=seat;
@@ -59,7 +68,7 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
  // solve's full drop independently could seat a standing player on the floor.
  const lower=(dy:number)=>{
   const available=constraints.human&&constraints.posture&&!constraints.sitting?Math.max(0,p.pelvisCenter.y-root.y-TAYLOR_BODY.strokePelvisFloor):Infinity;
-  for(const key of bodyKeys)p[key].y-=Math.min(dy,available);
+  for(const key of bodyKeys)p[key].y-=Math.min(dy,available);if(p.chest)p.chest.y-=Math.min(dy,available);
  };
  // A long step lowers the pelvis to respect leg length while a planted foot
  // remains a world-space anchor. Sitting uses the actual seat height.
@@ -75,8 +84,8 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
  // both a one-frame crouch and hands floating above the descending body.
  if(constraints.human&&constraints.posture&&constraints.posture.weight>0){
   const load=constraints.posture,weight=load.weight,originalL=p.shoulderL.clone(),originalR=p.shoulderR.clone(),offsetL=Vec3.sub(arm(source.handL),originalL),offsetR=Vec3.sub(arm(source.handR),originalR);
-  const target=load.left?Vec3.lerp(load.right,load.left,.5):load.right,centre=Vec3.lerp(originalL,originalR,.5),toward=Vec3.sub(target,centre);toward.y=0;const distance=toward.len(),lean=distance>.34?toward.scale(Math.min(.24,distance-.34)/distance):new Vec3();
-  let drop=0;for(const [start,end] of [[originalR,load.right],...(load.left?[[originalL,load.left]]:[])] as [Vec3,Vec3][]){const shifted=start.clone().add(lean),horizontal=Math.hypot(end.x-shifted.x,end.z-shifted.z),vertical=Math.sqrt(Math.max(.04,(arms.upperArm+arms.forearm-.003)**2-horizontal*horizontal));drop=Math.max(drop,shifted.y-end.y-vertical);}
+  const target=load.left?Vec3.lerp(armEnd('R',load.right),armEnd('L',load.left),.5):armEnd('R',load.right),centre=Vec3.lerp(originalL,originalR,.5),toward=Vec3.sub(target,centre);toward.y=0;const distance=toward.len(),lean=distance>.34?toward.scale(Math.min(.24,distance-.34)/distance):new Vec3();
+  let drop=0;for(const [start,end] of [[originalR,armEnd('R',load.right)],...(load.left?[[originalL,armEnd('L',load.left)]]:[])] as [Vec3,Vec3][]){const shifted=start.clone().add(lean),horizontal=Math.hypot(end.x-shifted.x,end.z-shifted.z),vertical=Math.sqrt(Math.max(.04,(arms.upperArm+forearm-.003)**2-horizontal*horizontal));drop=Math.max(drop,shifted.y-end.y-vertical);}
   lower(clamp(drop,0,.65)*weight);
   for(const key of ['shoulderL','shoulderR','head'] as const)p[key].add(lean.clone().scale(weight));p.torsoCenter.add(lean.clone().scale(weight*.6));
   p.handL=Vec3.lerp(p.shoulderL.clone().add(offsetL),source.handL,constraints.leftWorld);p.handR=Vec3.lerp(p.shoulderR.clone().add(offsetR),source.handR,constraints.rightWorld);
@@ -91,17 +100,19 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
   p.face.smile=Math.max(p.face.smile,.45*w);
  }
  const forward=new Vec3(Math.sin(yaw),0,Math.cos(yaw)),torsoForward=new Vec3(Math.sin(p.torsoYaw),0,Math.cos(p.torsoYaw)),torsoRight=new Vec3(Math.cos(p.torsoYaw),0,-Math.sin(p.torsoYaw));
+ // Reaching shoulder blades must not drag the sternum and jersey after them.
+ if(constraints.armLengths)p.chest=Vec3.lerp(p.shoulderL,p.shoulderR,.5);
  // The shoulder blade advances when an arm reaches across the chest.
  if(constraints.human&&stroke){const center=Vec3.lerp(p.shoulderL,p.shoulderR,.5);for(const side of ['L','R'] as const){const x=Vec3.dot(Vec3.sub(p[`hand${side}`],center),torsoRight)*(side==='L'?-1:1);p[`shoulder${side}`].add(torsoForward.clone().scale(.12*stroke*smooth((.10-x)/.30)));}}
  // A constrained low ball or prop is reached with the body, rather than by
  // stretching a forearm through the floor. The hand keeps ownership of contact.
  for(const [side,weight] of [['R',constraints.rightWorld],['L',constraints.leftWorld]] as const){
-  if(weight<.001)continue;const hand=p[`hand${side}`],start=p[`shoulder${side}`],reach=arms.upperArm+arms.forearm-.003,delta=Vec3.sub(hand,start);
+  if(weight<.001)continue;const hand=armEnd(side,p[`hand${side}`]),start=p[`shoulder${side}`],reach=arms.upperArm+forearm-.003,delta=Vec3.sub(hand,start);
   if(delta.len()<=reach)continue;
   const horizontalLength=Math.hypot(delta.x,delta.z),vertical=Math.sqrt(Math.max(.04,reach*reach-horizontalLength*horizontalLength));
   const drop=clamp(start.y-hand.y-vertical,0,.76);lower(drop);
   const remaining=Vec3.sub(hand,p[`shoulder${side}`]),distance=remaining.len();
-  if(distance>reach){const hinge=remaining.scale(Math.min(.65,(distance-reach+.008))/distance);p.shoulderL.add(hinge);p.shoulderR.add(hinge);p.head.add(hinge);p.torsoCenter.add(hinge.clone().scale(.6));}
+  if(distance>reach){const hinge=remaining.scale(Math.min(.65,(distance-reach+.008))/distance);p.shoulderL.add(hinge);p.shoulderR.add(hinge);p.head.add(hinge);p.chest?.add(hinge);p.torsoCenter.add(hinge.clone().scale(.6));}
  }
  for(const side of ['R','L'] as const){
   const walk=constraints.human?constraints.walk:undefined;
@@ -119,17 +130,17 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
   const shoulder=p[`shoulder${side}`],hand=p[`hand${side}`];
   // Reserve the fingers' width and length when routing free stroke hands around the chest.
   if(constraints.human&&world<.999&&!affection){
-   const t=clamp((hand.y-p.pelvisCenter.y)/(shoulder.y-p.pelvisCenter.y),0,1),center=Vec3.lerp(p.pelvisCenter,Vec3.lerp(p.shoulderL,p.shoulderR,.5),t),d=Vec3.sub(hand,center),x=Vec3.dot(d,torsoRight),z=Vec3.dot(d,torsoForward),rx=stroke>0?.40:t<.4?.27:.30,rz=.265,inside=x*x/(rx*rx)+z*z/(rz*rz);
+   const endpoint=armEnd(side,hand),t=clamp((endpoint.y-p.pelvisCenter.y)/(shoulder.y-p.pelvisCenter.y),0,1),center=Vec3.lerp(p.pelvisCenter,Vec3.lerp(p.shoulderL,p.shoulderR,.5),t),d=Vec3.sub(endpoint,center),x=Vec3.dot(d,torsoRight),z=Vec3.dot(d,torsoForward),rx=stroke>0?.40:t<.4?.27:.30,rz=.265,inside=x*x/(rx*rx)+z*z/(rz*rz);
    const normal=!constraints.posture&&hand.y>p.pelvisCenter.y+.08&&hand.y<shoulder.y-.12&&inside<1?1:0;
    const route=stroke>0?smooth((hand.y-p.pelvisCenter.y+.18)/.12)*(1-smooth((hand.y-shoulder.y-.02)/.16))*smooth((rx+.12-Math.abs(x))/.10):0;
    const edge=Math.sqrt(Math.max(0,1-x*x/(rx*rx)))*rz,across=stroke>0?smooth((.10-x*(side==='L'?-1:1))/.30):0,front=edge+(rz-edge)*across+.17*route,weight=Math.max(normal*(1-smooth(((constraints.restWeight??0)-.8)/.2)),route);
    if(weight>0)hand.add(torsoForward.clone().scale(Math.max(0,front-z)*weight*(1-world)));
   }
-  if(world<.999){const d=Vec3.sub(hand,shoulder),distance=d.len(),reach=arms.upperArm+arms.forearm-.003;
-   if(distance>reach)p[`hand${side}`]=shoulder.clone().add(d.normalize().scale(reach));
+  if(world<.999){const d=Vec3.sub(armEnd(side,hand),shoulder),distance=d.len(),reach=arms.upperArm+forearm-.003;
+   if(distance>reach)p[`hand${side}`]=shoulder.clone().add(d.normalize().scale(reach)).sub(wristOffset[side]);
    // The compact serve wind-up can place a hand almost on its shoulder,
    // folding a full-length adult forearm back through the upper arm.
-   if(constraints.human&&distance<.19)p[`hand${side}`]=shoulder.clone().add((distance>.001?d.normalize():torsoForward.clone()).scale(.19));
+   if(constraints.human&&distance<.19)p[`hand${side}`]=shoulder.clone().add((distance>.001?d.normalize():torsoForward.clone()).scale(.19)).sub(wristOffset[side]);
   }
   // Supporting hands follow the final grip, through both retargeting and state blends.
   if(side==='L'&&constraints.human&&(constraints.readyWeight||constraints.backhandWeight)){
@@ -162,9 +173,15 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
     const outside=shoulder.clone().add(torsoRight.clone().scale(side==='L'?-.24:.24)).add(new Vec3(0,-.28-.27*low,0)).add(torsoForward.clone().scale(-.16)),front=shoulder.clone().add(torsoForward.clone().scale(.85)).add(torsoRight.clone().scale((side==='L'?-.22:.22)*low)).add(new Vec3(0,-.42*low,0));mixed.add(Vec3.lerp(outside,front,across).scale(stroke));}
    pole=mixed;
   }
-  p[`elbow${side}`]=joint(shoulder,p[`hand${side}`],arms.upperArm,arms.forearm,pole,forward);
+  const endpoint=armEnd(side,p[`hand${side}`]),reach=arms.upperArm+forearm-.001,delta=Vec3.sub(endpoint,shoulder),excess=delta.len()-reach;
+  if(stroke&&fitted?.wristOffsets&&excess>0){
+   // A small shoulder reach preserves the wrist endpoint without stretching the sleeve.
+   const shift=delta.normalize().scale(Math.min(excess,.06*stroke));shoulder.add(shift);pole.add(shift);
+  }
+  p[`elbow${side}`]=joint(shoulder,endpoint,arms.upperArm,forearm,pole,forward);
 
  }
+ if(hasWrist)for(const side of ['L','R'] as const)p[`wrist${side}`]=Vec3.add(p[`hand${side}`],fullWristOffset[side]);
  p.racketGrip=p.handR.clone();p.racketCenter=p.handR.clone().add(Vec3.sub(source.racketCenter,source.racketGrip));p.racketHandleTop=p.handR.clone().add(Vec3.sub(source.racketHandleTop,source.racketGrip));
  return p;
 }

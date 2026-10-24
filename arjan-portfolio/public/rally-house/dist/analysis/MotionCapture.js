@@ -1,6 +1,6 @@
 import { secondRacketHand } from '../animation/RacketGeometry.js';
-import { Vec3, clamp, rigidFrame, interpolateRigidFrame } from '../rendering/Math3D.js';
-import { rigFromPose, skinMatrices } from '../animation/CharacterSkin.js';
+import { Vec3, clamp, rigidFrame, interpolateRigidFrame, compose, transformPoint } from '../rendering/Math3D.js';
+import { BONE, rigFromPose, skinMatrices } from '../animation/CharacterSkin.js';
 export const LIMBS = [['shoulderL', 'elbowL'], ['elbowL', 'handL'], ['shoulderR', 'elbowR'], ['elbowR', 'handR'], ['shoulderL', 'shoulderR'], ['shoulderL', 'hipL'], ['shoulderR', 'hipR'], ['hipL', 'hipR'], ['hipL', 'kneeL'], ['kneeL', 'footL'], ['hipR', 'kneeR'], ['kneeR', 'footR']];
 export const JOINT_KEYS = ['shoulderL', 'shoulderR', 'elbowL', 'elbowR', 'handL', 'handR', 'hipL', 'hipR', 'kneeL', 'kneeR', 'footL', 'footR', 'pelvisCenter'];
 export const FOCUS_KEYS = { knee: 'kneeR', hip: 'hipR', ankle: 'footR', shoulder: 'shoulderR', elbow: 'elbowR' };
@@ -15,7 +15,7 @@ export function jointTriplet(p, j) {
     if (j === 'knee')
         return [p.hipR, p.kneeR, p.footR];
     if (j === 'elbow')
-        return [p.shoulderR, p.elbowR, p.handR];
+        return [p.shoulderR, p.elbowR, p.wristR ?? p.handR];
     if (j === 'hip')
         return [p.shoulderR, p.hipR, p.kneeR];
     if (j === 'shoulder')
@@ -118,6 +118,13 @@ export function interpolateFrame(a, b, time) {
                     }
                     source = { bind: part.rig.bind, pose: local, matrices: skinMatrices(local, part.rig.bind) };
                     authored.set(part.rig.bind, source);
+                    for (const side of ['L', 'R']) {
+                        const bind = source.bind[`wrist${side}`];
+                        if (bind) {
+                            const wrist = transformPoint(source.matrices.subarray(BONE[`hand${side}`] * 16, BONE[`hand${side}`] * 16 + 16), bind), scale = part.scale && other.scale ? Vec3.lerp(part.scale, other.scale, t) : part.scale, world = transformPoint(compose(position, rotation, scale), new Vec3(wrist.x, wrist.y, wrist.z));
+                            pose[`wrist${side}`] = new Vec3(world.x, world.y, world.z);
+                        }
+                    }
                 }
                 rig = { bind: source.bind, pose: source.pose };
                 palette = source.matrices;

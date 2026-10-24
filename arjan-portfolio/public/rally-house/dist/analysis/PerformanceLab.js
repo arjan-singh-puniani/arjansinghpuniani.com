@@ -533,7 +533,7 @@ export class PerformanceLab {
         // Opaque surfaces preserve the silhouette. An annotation pass makes the
         // captured joint centres visible through clothing without displacing them.
         if (t.mode !== 'court') {
-            const p = f.pose;
+            const p = { ...f.pose, handL: f.pose.wristL ?? f.pose.handL, handR: f.pose.wristR ?? f.pose.handR };
             for (const [a, b] of LIMBS)
                 m.push({ ...rod(p[a].clone().add(offset), p[b].clone().add(offset), '#a4ded0', .022, 1), overlay: true });
             for (const j of JOINT_KEYS) {

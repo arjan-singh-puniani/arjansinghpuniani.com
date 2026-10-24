@@ -20,7 +20,7 @@ export interface RigPoseLocal {
 export function rigFromPose(p:CharacterPose,root:Vec3,yaw:number,relax=0):RigPoseLocal{
  const local=(v:Vec3)=>{const dx=v.x-root.x,dz=v.z-root.z,s=Math.sin(yaw),c=Math.cos(yaw);return new Vec3(c*dx-s*dz,v.y,s*dx+c*dz);};
  const arm=(v:Vec3,x:number,y:number)=>Vec3.lerp(local(v),new Vec3(x,y+p.baseY-p.knee,-.015),relax);
- const chest=Vec3.lerp(p.shoulderL,p.shoulderR,.5);
+ const chest=p.chest??Vec3.lerp(p.shoulderL,p.shoulderR,.5);
  return {pelvis:local(p.pelvisCenter),spine:local(Vec3.lerp(p.pelvisCenter,p.torsoCenter,.62)),chest:local(chest),neck:local(Vec3.lerp(chest,p.head,.58)),head:local(p.head),upperArmL:local(p.shoulderL),foreArmL:arm(p.elbowL,-.397,1.095),handL:arm(p.handL,-.36,.89),upperArmR:local(p.shoulderR),foreArmR:arm(p.elbowR,.397,1.095),handR:arm(p.handR,.36,.89),thighL:local(p.hipL),shinL:local(p.kneeL),footL:local(p.footL),thighR:local(p.hipR),shinR:local(p.kneeR),footR:local(p.footR),forward:new Vec3(Math.sin(p.torsoYaw-yaw),0,Math.cos(p.torsoYaw-yaw))};
 }
 

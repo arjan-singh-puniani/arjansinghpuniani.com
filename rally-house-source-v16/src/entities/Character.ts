@@ -39,8 +39,8 @@ const MOVING=new Set<AnimState>(['walk','jog','shuffle']);
 interface FacePose {smile:number;mouthOpen:number;browRaise:number;squint:number;focus:number;}
 export interface CharacterPose extends Partial<AuthoredHandPose> {
   baseY:number;breathe:number;walking:boolean;gait:number;torsoYaw:number;hipYaw:number;headYaw:number;eyeYaw?:number;seatedWeight?:number;right:Vec3;forward:Vec3;
-  shoulderL:Vec3;shoulderR:Vec3;elbowL:Vec3;elbowR:Vec3;handL:Vec3;handR:Vec3;hipL:Vec3;hipR:Vec3;kneeL:Vec3;kneeR:Vec3;footL:Vec3;footR:Vec3;
-  torsoCenter:Vec3;pelvisCenter:Vec3;head:Vec3;racketGrip:Vec3;racketHandleTop:Vec3;racketCenter:Vec3;racketRot:Vec3;
+  shoulderL:Vec3;shoulderR:Vec3;elbowL:Vec3;elbowR:Vec3;handL:Vec3;handR:Vec3;wristL?:Vec3;wristR?:Vec3;hipL:Vec3;hipR:Vec3;kneeL:Vec3;kneeR:Vec3;footL:Vec3;footR:Vec3;
+  torsoCenter:Vec3;pelvisCenter:Vec3;chest?:Vec3;head:Vec3;racketGrip:Vec3;racketHandleTop:Vec3;racketCenter:Vec3;racketRot:Vec3;
   lean:number;knee:number;shot:boolean;sp:number;face:FacePose;weightShift:number;
   handRestWeight:number;handLapWeight:number;handGripL:number;handGripR:number;handRacketWeight:number;
 }
@@ -362,6 +362,8 @@ export class Character {
     if(state==='swingBackhand'){const pre=clamp(sp/contact,0,1),post=clamp((sp-contact)/(1-contact),0,1);coil+=(.58*(1-smoothstep(0,.82,pre))-.68*style.follow*smoothstep(0,1,post))*style.coil;hipCoil+=coil*.56;lean+=.04;knee+=.10*Math.sin(Math.min(1,sp/contact)*Math.PI);weightShift=smoothstep(.20,.78,sp);}
     if(state==='serve'){coil+=(-.36+sp*.72)*style.coil;hipCoil+=(-.18+sp*.34)*style.coil;lean+=-.045+sp*.12;knee+=.15*Math.sin(Math.min(1,sp/.57)*Math.PI);weightShift=smoothstep(.34,.82,sp);}
     if(state==='volley'){coil+=(sp<contact?-.14:.20);hipCoil+=coil*.35;knee+=.055;weightShift=smoothstep(.18,.66,sp);}
+    // The hitting shoulder loads back for a forehand and forward for a backhand.
+    if(this.spec.appearance==='human'&&(state==='swingForehand'||state==='swingBackhand')){coil=-coil;hipCoil=-hipCoil;}
     const moving=state==='walk'||state==='jog';const shuffle=state==='shuffle';const gait=moving?Math.cos(this.gaitPhase):0;const gaitStyle=locomotionStyleFor(this.spec.id);const stepLift=moving?Math.pow(Math.abs(Math.sin(this.gaitPhase)),1.7)*gaitStyle.bounce*(this.spec.appearance==='human'?.25:1):0;const gaitCounter=moving?Math.sin(this.gaitPhase)*gaitStyle.torsoCounter:0;const splitHop=this.courtPhase==='split'?Math.sin(Math.min(1,this.courtPhaseAge/.10)*Math.PI)*.055:0;
     if(!shot&&!moving&&this.socialGesture==='think'){lean+=.055;}
     if(state==='idle'){const phase=time*this.acting.values.idleFidgetRate*(this.spec.id==='mika'?.92:this.spec.id==='nia'?.68:.58)+this.seed()*.037;const amp=this.spec.id==='coach'?.010:this.spec.id==='mika'?.024:this.spec.id==='nia'?.018:.015;hipCoil+=Math.sin(phase)*amp;coil-=Math.sin(phase)*amp*.72;baseY+=Math.sin(phase*1.7)*amp*.13;}
@@ -413,6 +415,7 @@ export class Character {
     if(state==='serve'){
       const pre=clamp(sp/contact,0,1),post=clamp((sp-contact)/(1-contact),0,1),toss=smoothstep(0,.70,pre)*(1-smoothstep(.78,1.55,sp/contact)),reach=smoothstep(.35,1,pre),finish=smoothstep(0,.80,post);
       handL=this.worldLocal(-.26-.20*Math.sin(post*Math.PI)+finish*.10,1.25+baseY+toss*.92-finish*.10,.23+finish*.08);
+      if(this.spec.appearance==='human')handL=Vec3.lerp(handL,neutralL,finish);
       handR=this.worldLocal(.31+.28*Math.sin(finish*Math.PI)-smoothstep(.55,1,finish)*.62,1.20+baseY+reach*1.02-finish*1.18,-.12+reach*.14+finish*.46,torsoYaw);
     }
     if(state==='volley'){const punch=smoothstep(0,.64,sp);handR=this.worldLocal(.34,1.18+baseY,.15+punch*.39,torsoYaw);handL=this.worldLocal(-.22,1.20+baseY,.18,torsoYaw);}

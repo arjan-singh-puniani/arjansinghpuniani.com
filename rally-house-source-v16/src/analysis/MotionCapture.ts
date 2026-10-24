@@ -1,8 +1,8 @@
 import {secondRacketHand} from '../animation/RacketGeometry.js';
-import {Vec3,clamp,rigidFrame,interpolateRigidFrame} from '../rendering/Math3D.js';
+import {Vec3,clamp,rigidFrame,interpolateRigidFrame,compose,transformPoint} from '../rendering/Math3D.js';
 import type {RenderItem} from '../rendering/Renderer.js';
 import type {Character,CharacterPose} from '../entities/Character.js';
-import {rigFromPose,skinMatrices,type RigPoseLocal} from '../animation/CharacterSkin.js';
+import {BONE,rigFromPose,skinMatrices,type RigPoseLocal} from '../animation/CharacterSkin.js';
 
 export type Joint='knee'|'hip'|'ankle'|'shoulder'|'elbow';
 export type LabMode='combined'|'court'|'body';
@@ -25,7 +25,7 @@ export function angle(a:Vec3,v:Vec3,b:Vec3):number|null{
 }
 export function jointTriplet(p:CharacterPose,j:Joint):[Vec3,Vec3,Vec3]|null{
   if(j==='knee')return [p.hipR,p.kneeR,p.footR];
-  if(j==='elbow')return [p.shoulderR,p.elbowR,p.handR];
+  if(j==='elbow')return [p.shoulderR,p.elbowR,p.wristR??p.handR];
   if(j==='hip')return [p.shoulderR,p.hipR,p.kneeR];
   if(j==='shoulder')return [p.shoulderR.clone().add(Vec3.sub(Vec3.lerp(p.hipL,p.hipR,.5),Vec3.lerp(p.shoulderL,p.shoulderR,.5))),p.shoulderR,p.elbowR];
   // The stylized rig has no independent heel/toe landmark. Do not invent ankle angles.
@@ -95,7 +95,9 @@ export function interpolateFrame(a:MotionFrame,b:MotionFrame,time:number):Motion
     let source=authored.get(part.rig.bind);
     if(!source){const local=rigFromPose(pose,root,rotation.y);for(const key of ['spine','neck','headUp','headForward','handDirectionL','handDirectionR','handForwardL','handForwardR','foreArmForwardL','foreArmForwardR','footForwardL','footForwardR','footUpL','footUpR'] as const){const x=part.rig.pose[key],y=other.rig.pose[key];if(x&&y)local[key]=Vec3.lerp(x,y,t);}
      for(const side of ['L','R'] as const){const x=part.rig.pose,y=other.rig.pose,dx=x[`handDirection${side}`],dy=y[`handDirection${side}`],fx=x[`handForward${side}`],fy=y[`handForward${side}`];if(dx&&dy&&fx&&fy){const origin=new Vec3(),frame=interpolateRigidFrame(rigidFrame(origin,dx,fx),rigidFrame(origin,dy,fy),t);local[`handDirection${side}`]=new Vec3(frame[4],frame[5],frame[6]);local[`handForward${side}`]=new Vec3(frame[8],frame[9],frame[10]);local[`foreArmForward${side}`]=local[`handForward${side}`];}}
-     source={bind:part.rig.bind,pose:local,matrices:skinMatrices(local,part.rig.bind)};authored.set(part.rig.bind,source);}
+     source={bind:part.rig.bind,pose:local,matrices:skinMatrices(local,part.rig.bind)};authored.set(part.rig.bind,source);
+     for(const side of ['L','R'] as const){const bind=source.bind[`wrist${side}`];if(bind){const wrist=transformPoint(source.matrices.subarray(BONE[`hand${side}`]*16,BONE[`hand${side}`]*16+16),bind),scale=part.scale&&other.scale?Vec3.lerp(part.scale,other.scale,t):part.scale,world=transformPoint(compose(position,rotation,scale),new Vec3(wrist.x,wrist.y,wrist.z));pose[`wrist${side}`]=new Vec3(world.x,world.y,world.z);}}
+    }
     rig={bind:source.bind,pose:source.pose};palette=source.matrices;
    }else if(part.poseRig){bones??=skinMatrices(rigFromPose(pose,root,rotation.y));palette=bones;}
    const expression=part.expression&&other.expression?part.expression.map((n,j)=>n+(other.expression![j]-n)*t) as [number,number,number,number]:part.expression;
