@@ -1,0 +1,170 @@
+{
+  "baselineCommit": "4d8e57f6feb1194d6ab5a5b8e67cb54f4cae017d",
+  "humanRuntimeFeedback": "More natural and athletic",
+  "settledHandsOnHips": "Landmarks and skin palettes identical to baseline",
+  "before": [
+    {
+      "id": "coach",
+      "name": "Coach Contessa",
+      "cadence": 160,
+      "headVerticalRange": 0.06080319972062487,
+      "pelvisVerticalRange": 0.059129599533506605,
+      "meanElbowOutward": 0.11055042428364296,
+      "meanElbowFlexion": 41.14403693646414,
+      "peakFootLift": 0.044961989531295835,
+      "maxSlide": 0,
+      "plantedPairs": 176
+    },
+    {
+      "id": "mika",
+      "name": "Lucresia",
+      "cadence": 160,
+      "headVerticalRange": 0.0714463809974033,
+      "pelvisVerticalRange": 0.0645404193220116,
+      "meanElbowOutward": 0.11324366560344978,
+      "meanElbowFlexion": 41.23382884656636,
+      "peakFootLift": 0.04497699969892659,
+      "maxSlide": 0,
+      "plantedPairs": 177
+    },
+    {
+      "id": "leo",
+      "name": "Leo",
+      "cadence": 140,
+      "headVerticalRange": 0.08158456418376359,
+      "pelvisVerticalRange": 0.07945385176858433,
+      "meanElbowOutward": 0.024646233450070967,
+      "meanElbowFlexion": 40.27928983596678,
+      "peakFootLift": 0.04499632371174077,
+      "maxSlide": 0,
+      "plantedPairs": 177
+    },
+    {
+      "id": "nia",
+      "name": "Barbara",
+      "cadence": 160,
+      "headVerticalRange": 0.05385261112290651,
+      "pelvisVerticalRange": 0.04871136092234196,
+      "meanElbowOutward": 0.11239738331892393,
+      "meanElbowFlexion": 41.35641796058252,
+      "peakFootLift": 0.044999999999897164,
+      "maxSlide": 0,
+      "plantedPairs": 176
+    },
+    {
+      "id": "taylor",
+      "name": "Taylor",
+      "cadence": 140,
+      "headVerticalRange": 0.07908108659685897,
+      "pelvisVerticalRange": 0.07109781853410535,
+      "meanElbowOutward": 0.1142095975667816,
+      "meanElbowFlexion": 41.4052155784941,
+      "peakFootLift": 0.044999948604680276,
+      "maxSlide": 0,
+      "plantedPairs": 177
+    },
+    {
+      "id": "arjan",
+      "name": "Arjan",
+      "cadence": 140,
+      "headVerticalRange": 0.07908085842184365,
+      "pelvisVerticalRange": 0.0711099817902956,
+      "meanElbowOutward": 0.02579890087494061,
+      "meanElbowFlexion": 40.429245700364405,
+      "peakFootLift": 0.044999948604680276,
+      "maxSlide": 0,
+      "plantedPairs": 177
+    }
+  ],
+  "after": [
+    {
+      "id": "coach",
+      "name": "Coach Contessa",
+      "cadence": 160,
+      "headVerticalRange": 0.049684864738456014,
+      "pelvisVerticalRange": 0.04247335093989446,
+      "meanElbowOutward": 0.07002406114931116,
+      "meanElbowFlexion": 26.44668890495848,
+      "peakFootLift": 0.044961989531295835,
+      "maxSlide": 0,
+      "plantedPairs": 176
+    },
+    {
+      "id": "mika",
+      "name": "Lucresia",
+      "cadence": 160,
+      "headVerticalRange": 0.055425561378806165,
+      "pelvisVerticalRange": 0.04668664425576852,
+      "meanElbowOutward": 0.07199786034241366,
+      "meanElbowFlexion": 26.518169495968888,
+      "peakFootLift": 0.04497699969892659,
+      "maxSlide": 0,
+      "plantedPairs": 177
+    },
+    {
+      "id": "leo",
+      "name": "Leo",
+      "cadence": 140,
+      "headVerticalRange": 0.06744228173423439,
+      "pelvisVerticalRange": 0.061174049375067874,
+      "meanElbowOutward": 0.027246292466030914,
+      "meanElbowFlexion": 26.081948638331127,
+      "peakFootLift": 0.04499632371174077,
+      "maxSlide": 0,
+      "plantedPairs": 177
+    },
+    {
+      "id": "nia",
+      "name": "Barbara",
+      "cadence": 160,
+      "headVerticalRange": 0.04383496356317362,
+      "pelvisVerticalRange": 0.036166337602875576,
+      "meanElbowOutward": 0.07149747018367135,
+      "meanElbowFlexion": 26.6610891479912,
+      "peakFootLift": 0.044999999999897164,
+      "maxSlide": 0,
+      "plantedPairs": 176
+    },
+    {
+      "id": "taylor",
+      "name": "Taylor",
+      "cadence": 140,
+      "headVerticalRange": 0.0628912248574971,
+      "pelvisVerticalRange": 0.05348509997225892,
+      "meanElbowOutward": 0.07294881444687112,
+      "meanElbowFlexion": 26.70067736871543,
+      "peakFootLift": 0.044999948604680276,
+      "maxSlide": 0,
+      "plantedPairs": 177
+    },
+    {
+      "id": "arjan",
+      "name": "Arjan",
+      "cadence": 140,
+      "headVerticalRange": 0.06287329834813749,
+      "pelvisVerticalRange": 0.05346767799375818,
+      "meanElbowOutward": 0.0280809006902839,
+      "meanElbowFlexion": 26.221934346184824,
+      "peakFootLift": 0.044999948604680276,
+      "maxSlide": 0,
+      "plantedPairs": 177
+    }
+  ],
+  "loadedWalkAtThreeRates": {
+    "elbowFlexDegrees": [
+      20.034359379560076,
+      31.741090086377127
+    ],
+    "maxHeadBobWorldUnits": 0.06305241416925256
+  },
+  "limits": [
+    "Offline CPU-skinned views omit textures, runtime lighting and GPU skirt correction",
+    "No fresh agent live-browser visual inspection or device frame-time measurement",
+    "Existing loaded-stroke sleeve intersections remain"
+  ],
+  "cpuHandSkirtSamples": {
+    "poses": 32,
+    "triangleCrossings": 0,
+    "scope": "CPU skinning plus morphs; excludes GPU skirt projection"
+  }
+}

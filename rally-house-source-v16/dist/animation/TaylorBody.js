@@ -196,18 +196,20 @@ export function adultTaylorPose(source, root, yaw, constraints) {
         }
     }
     for (const side of ['R', 'L']) {
-        const walk = constraints.human ? constraints.walk : undefined;
+        const walk = constraints.human ? constraints.walk : undefined, walkingSoft = walk ? .012 + .018 * smooth(((side === 'L' ? -1 : 1) * Math.cos(walk.phase) + 1) / 2) : 0;
         const hip = p[`hip${side}`];
         // An airborne leg recovers toward the body; it cannot drag the planted body down.
         if (walk?.planted && !walk.planted[side === 'L' ? 0 : 1]) {
-            const delta = Vec3.sub(p[`foot${side}`], hip), reach = TAYLOR_BODY.thigh + TAYLOR_BODY.shin - .001;
-            if (delta.len() > reach)
-                p[`foot${side}`] = hip.clone().add(delta.normalize().scale(reach));
+            const foot = p[`foot${side}`], delta = Vec3.sub(foot, hip), reach = TAYLOR_BODY.thigh + TAYLOR_BODY.shin - .001, horizontal = Math.hypot(delta.x, delta.z), limit = Math.sqrt(Math.max(0, reach * reach - delta.y * delta.y));
+            if (horizontal > limit) {
+                foot.x = hip.x + delta.x * limit / horizontal;
+                foot.z = hip.z + delta.z * limit / horizontal;
+            }
         }
         const foot = p[`foot${side}`], kneePole = Vec3.lerp(hip, foot, .5).add(forward.clone().scale(.5));
         p[`knee${side}`] = joint(hip, foot, TAYLOR_BODY.thigh, TAYLOR_BODY.shin, kneePole, forward);
         if (walk) {
-            const sign = side === 'L' ? -1 : 1, swing = Math.cos(walk.phase) * walk.swing, goal = p[`shoulder${side}`].clone().add(torsoRight.clone().scale(sign * .015)).add(new Vec3(0, -(arms.upperArm + arms.forearm - .05) + Math.abs(swing) * .035, 0)).add(torsoForward.clone().scale(sign * swing));
+            const sign = side === 'L' ? -1 : 1, swing = Math.cos(walk.phase) * walk.swing, goal = p[`shoulder${side}`].clone().add(torsoRight.clone().scale(sign * .015)).add(new Vec3(0, -(arms.upperArm + arms.forearm - walkingSoft) + Math.abs(swing) * .035, 0)).add(torsoForward.clone().scale(sign * swing));
             p[`hand${side}`] = Vec3.lerp(p[`hand${side}`], goal, walk.weight);
         }
         const world = side === 'L' ? constraints.leftWorld : constraints.rightWorld;
@@ -249,19 +251,19 @@ export function adultTaylorPose(source, root, yaw, constraints) {
         // Keep clearance while settling, then let resting hands contact the hips.
         // shortcut: fitted to this authored skirt; derive per-garment bounds if its silhouette changes.
         if (constraints.armLengths && !stroke && !seat && !affection && world < .999 && (walk || constraints.restWeight)) {
-            const hand = p[`hand${side}`], sign = side === 'L' ? -1 : 1, height = hand.y - p.pelvisCenter.y, clearance = .53 * smooth((.38 - height) / .16) * (1 - smooth(((constraints.restWeight ?? 0) - .8) / .2)), outside = Vec3.dot(Vec3.sub(hand, p.pelvisCenter), torsoRight) * sign;
+            const hand = p[`hand${side}`], sign = side === 'L' ? -1 : 1, height = hand.y - p.pelvisCenter.y, clearance = (walk ? .44 : .53) * smooth((.38 - height) / .16) * (1 - smooth(((constraints.restWeight ?? 0) - .8) / .2)), outside = Vec3.dot(Vec3.sub(hand, p.pelvisCenter), torsoRight) * sign;
             if (outside < clearance)
                 hand.add(torsoRight.clone().scale(sign * (clearance - outside) * (1 - world)));
         }
         // Garment clearance widens the hand path; retain a soft elbow instead of stretching it straight.
         if (walk && world < .999) {
-            const hand = p[`hand${side}`], reach = arms.upperArm + arms.forearm - .05, horizontal = Math.hypot(hand.x - shoulder.x, hand.z - shoulder.z);
+            const hand = p[`hand${side}`], reach = arms.upperArm + arms.forearm - walkingSoft, horizontal = Math.hypot(hand.x - shoulder.x, hand.z - shoulder.z);
             hand.y = Math.max(hand.y, shoulder.y - Math.sqrt(Math.max(.01, reach * reach - horizontal * horizontal)));
         }
         // The old compact/feline elbow target can pass through the shoulder/wrist
         // axis after retargeting. A body-relative human pole keeps elbows down and
         // outside the ribcage, with posterior loading rather than a reversed fold.
-        let pole = walk ? shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.035 : .035)).add(new Vec3(0, -.18, 0)).add(torsoForward.clone().scale(-.30)) : constraints.human ? shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.24 : .24)).add(new Vec3(0, -.28, 0)).add(torsoForward.clone().scale(constraints.posture ? -.16 : -.16 + .34 * smooth((Vec3.dot(Vec3.sub(p[`hand${side}`], shoulder), torsoForward) - .04) / .16))) : arm(source[`elbow${side}`]).add(forward.clone().scale(.04));
+        let pole = walk ? shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.035 : .035)).add(new Vec3(0, -.28, 0)).add(torsoForward.clone().scale(-.16)) : constraints.human ? shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.24 : .24)).add(new Vec3(0, -.28, 0)).add(torsoForward.clone().scale(constraints.posture ? -.16 : -.16 + .34 * smooth((Vec3.dot(Vec3.sub(p[`hand${side}`], shoulder), torsoForward) - .04) / .16))) : arm(source[`elbow${side}`]).add(forward.clone().scale(.04));
         // Competing ready/stroke guides share one blend instead of attenuating twice.
         if (constraints.human) {
             const ready = clamp(constraints.readyWeight ?? 0, 0, 1), mixed = pole.clone().scale(Math.max(0, 1 - ready - stroke));

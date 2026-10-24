@@ -379,12 +379,13 @@ for(const spec of [playerSpec('taylor'),...memberData.filter(c=>c.presentation==
    for(const side of ['L','R']){
     const upper=Vec3.sub(p[`elbow${side}`],p[`shoulder${side}`]),lower=Vec3.sub(p[`hand${side}`],p[`elbow${side}`]),flex=Math.acos(Math.max(-1,Math.min(1,Vec3.dot(upper.clone().normalize(),lower.clone().normalize()))));
     minWalkFlex=Math.min(minWalkFlex,flex);maxWalkFlex=Math.max(maxWalkFlex,flex);
-    assert(flex>.20&&flex<1,`${spec.id}/${hz}/${frame}: walking elbow ${(flex*180/Math.PI).toFixed(2)}° in ${actor.state}`);
+    assert(flex>.20&&flex<.65,`${spec.id}/${hz}/${frame}: walking elbow ${(flex*180/Math.PI).toFixed(2)}° in ${actor.state}`);
     assert(Math.abs(upper.len()-Vec3.sub(rest[`upperArm${side}`],rest[`foreArm${side}`]).len())<.001,'Walking must not stretch the authored upper arm');
     assert(Math.abs(lower.len()-Vec3.sub(rest[`foreArm${side}`],rest[`hand${side}`]).len())<.001,'Walking must not stretch the authored forearm');walkSamples++;
    }
   }
-  const bob=Math.max(...heads)-Math.min(...heads);maxHeadBob=Math.max(maxHeadBob,bob);assert(bob<.105,'Walking support must avoid the deep repeated body dip');
+  const bob=Math.max(...heads)-Math.min(...heads);maxHeadBob=Math.max(maxHeadBob,bob);assert(bob<.075,'Walking support must avoid the deep repeated body dip');
  }
+ assert(maxWalkFlex-minWalkFlex>.12,'Walking elbows flex through the stride instead of holding one fixed bend');
  console.log(JSON.stringify({walkSamples,minWalkFlex,maxWalkFlex,maxHeadBob}));
 }
