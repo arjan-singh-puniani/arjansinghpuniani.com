@@ -81,7 +81,7 @@ try {
     assert.equal(await panel.getByRole('link',{name:'Read the supporting FDA source'}).getAttribute('href'),'https://www.accessdata.fda.gov/cdrh_docs/pdf25/K250173.pdf');
     assert.ok((await panel.locator('.device-intro').innerText()).length<1600,'Summary must stay concise');
     await page.waitForSelector('[data-organs-status="loaded"]',{timeout:90000});
-    assert.equal(await page.getByText('2 dated events',{exact:true}).isVisible(),true);
+    assert.equal(await page.getByText('1 dated event',{exact:true}).isVisible(),true);
     await page.screenshot({path:`${out}/airway-${name}.png`});
     await page.getByRole('button',{name:'Interventions',exact:true}).last().click();
     await page.getByRole('combobox',{name:'Explore anatomical region',exact:true}).selectOption('BODY:eye');

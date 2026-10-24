@@ -608,3 +608,40 @@ test('shareable contour is an upper-body view with working copy and atlas naviga
  await page.getByRole('button',{name:'Sources and model',exact:true}).click();await expect(page.getByRole('link',{name:/Open shareable contour view/})).toHaveAttribute('href','/?view=portrait');
  expect(errors).toEqual([]);
 });
+
+
+test('overview names interventions on the body and opens their original evidence',async({page},testInfo)=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/');
+ const map=page.getByRole('group',{name:'Whole-body intervention map'});
+ await expect(page.getByTestId('human-reference')).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
+ await expect(map.locator('.constellation-intervention').first()).toBeVisible({timeout:45000});
+ const labels=map.locator('.constellation-intervention');expect(await labels.count()).toBeGreaterThanOrEqual(testInfo.project.name==='desktop'?10:4);
+ await expect(map.getByRole('button',{name:'Select NeuroPace RNS System from body map',exact:true})).toBeVisible();
+ expect(await map.locator('.record-node').count()).toBeGreaterThan(50);
+ const first=labels.first(),id=await first.getAttribute('data-family');
+ await expect(first.getByRole('link',{name:/Original source for/})).toHaveAttribute('href',/^https:\/\//);
+ await first.getByRole('button',{name:/Select .* from body map/}).click();
+ await expect(page.locator('.device-intro h2')).toBeVisible();
+ await expect(page.locator('.atlas-events button').first()).toHaveAttribute('data-family',id!);
+ expect(await page.locator('.atlas-events button').evaluateAll(nodes=>nodes.every(n=>n.getAttribute('data-family')===nodes[0].getAttribute('data-family')))).toBe(true);
+ await expect(page.locator('.atlas-events button').first()).toHaveAttribute('data-family',id!);
+ await expect(map.locator(`.constellation-intervention[data-family="${id}"] .constellation-select`)).toHaveAttribute('aria-pressed','true');
+ await expect(page.locator('.direct-evidence a').first()).toHaveAttribute('href',/^https:\/\//);
+ await page.screenshot({path:`test-results/${testInfo.project.name}-named-map.png`});
+ const more=map.getByRole('button',{name:/Explore all .* interventions in/});
+ if(await more.count()){
+  await more.first().click();await expect(page.locator('.map-breadcrumb')).not.toHaveText('Human');
+  await expect(map.locator('.constellation-intervention').first()).toBeVisible();
+ }
+ await page.getByRole('combobox',{name:'Explore anatomical region',exact:true}).selectOption('BODY:heart');
+ await expect(map.locator('.constellation-intervention').first()).toBeVisible();
+ const seen=new Set<string>();let next=map.getByRole('button',{name:'Next mapped interventions',exact:true});
+ for(let i=0;i<20;i++){
+  for(const x of await map.locator('.constellation-intervention').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('data-family')!)))seen.add(x);
+  if(!await next.count()||await next.isDisabled())break;
+  await next.click();
+ }
+ expect(seen.size).toBe(12);
+ const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations).toEqual([]);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect(errors).toEqual([]);
+});
