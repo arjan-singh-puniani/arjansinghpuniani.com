@@ -574,3 +574,37 @@ test('unavailable body contour falls back to the original reference',async({page
  await page.getByRole('button',{name:/Inspect NeuroPace RNS System/}).click();
  await expect(page.getByRole('link',{name:/FDA P100026/}).first()).toHaveAttribute('href',/accessdata.fda.gov/);
 });
+
+
+test('shareable contour is an upper-body view with working copy and atlas navigation',async({page,context},testInfo)=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('/?view=portrait&entry=rns&unused=discard#discard');
+ const scene=page.getByTestId('human-reference');
+ await expect(scene).toHaveAttribute('data-presentation','portrait');
+ await expect(scene).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
+ await expect(scene).toHaveAttribute('data-internal-status','hidden');
+ await expect(scene).toHaveAttribute('data-organs-status','hidden');
+ await expect(page.getByRole('heading',{name:'Holographic contour',exact:true})).toBeVisible();
+ await expect(page.getByRole('slider')).toHaveCount(0);
+ await expect(page.getByRole('complementary',{name:'Interventions and evidence'})).toHaveCount(0);
+ await expect(page.getByRole('button',{name:'Inspect NeuroPace RNS System',exact:true})).toHaveCount(0);
+ await expect(page.locator('body')).not.toContainText(/Arjan|personal contour/i);
+ const canvas=page.locator('canvas'),before=await canvas.screenshot(),box=(await canvas.boundingBox())!;
+ expect(box.height).toBeGreaterThan(page.viewportSize()!.height*.5);
+ await page.screenshot({path:`test-results/${testInfo.project.name}-share-front.png`});
+ await page.mouse.move(box.x+box.width*.5,box.y+box.height*.5);await page.mouse.down();await page.mouse.move(box.x+box.width*.7,box.y+box.height*.5,{steps:12});await page.mouse.up();
+ await expect.poll(async()=>Buffer.compare(before,await canvas.screenshot())).not.toBe(0);
+ await context.grantPermissions(['clipboard-read','clipboard-write']);
+ await page.getByRole('button',{name:'Copy share link',exact:true}).click();
+ await expect(page.getByRole('status')).toHaveText('Share link copied');
+ const copied=await page.evaluate(()=>navigator.clipboard.readText());expect(new URL(copied).search).toBe('?view=portrait');expect(new URL(copied).hash).toBe('');
+ await page.screenshot({path:`test-results/${testInfo.project.name}-share-contour.png`});
+ const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations).toEqual([]);
+ await page.getByRole('button',{name:'Reset view',exact:true}).click();await expect(scene).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
+ await page.addInitScript(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw new Error('Clipboard denied')}}}));await page.reload();
+ await page.getByRole('button',{name:'Copy share link',exact:true}).click();await expect(page.getByRole('textbox',{name:'Share link',exact:true})).toHaveValue(copied);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth&&document.documentElement.scrollHeight<=innerHeight+1)).toBe(true);
+ await page.getByRole('link',{name:'Explore atlas',exact:true}).click();await expect(page.getByRole('slider')).toHaveAttribute('min','1999');
+ await page.getByRole('button',{name:'Sources and model',exact:true}).click();await expect(page.getByRole('link',{name:/Open shareable contour view/})).toHaveAttribute('href','/?view=portrait');
+ expect(errors).toEqual([]);
+});

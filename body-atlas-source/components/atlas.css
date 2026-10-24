@@ -2602,3 +2602,20 @@
 @media (max-width: 650px) {
   .with-intervention-labels .annotation-pages { left: 4px; gap: 2px; }
 }
+
+.portrait-view {height:100dvh;min-height:0;overflow:hidden}
+.portrait-view .atlas-layout {display:flex;flex-direction:column;height:calc(100dvh - 66px)}
+.portrait-view .atlas-index,.portrait-view .atlas-results,.portrait-view .map-heading,.portrait-view .figure-caption,.portrait-view .figure-actions,.portrait-view .atlas-time {display:none}
+.portrait-view .body-map {position:relative;flex:1 1 auto;height:100%;min-height:0;display:flex;flex-direction:column}
+.portrait-view .atlas-figure {flex:1 1 0;min-height:0}
+.portrait-view .figure-canvas {inset:0}
+.portrait-view .atlas-header nav {gap:20px;align-items:center}
+.portrait-view .atlas-header nav a,.portrait-view .atlas-header nav button {display:inline-flex;align-items:center;min-height:44px;color:var(--ink)}
+.portrait-caption {display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;padding:12px 20px 22px;border-top:1px solid var(--rule)}
+.portrait-caption h1 {font-size:16px;font-weight:400;margin:0}
+.portrait-caption p {margin:0}
+.portrait-caption button {min-height:44px;padding:8px 12px;border:1px solid var(--rule);color:var(--blue)}
+.portrait-caption [role=status] {color:var(--blue)}
+.portrait-caption label {display:grid;gap:8px;width:min(100%,500px)}
+.portrait-caption input {width:100%;padding:12px;background:var(--paper);border:1px solid var(--rule);color:var(--ink)}
+@media(max-width:650px){.portrait-view .atlas-header {height:110px;min-height:110px}.portrait-view .atlas-layout {height:calc(100dvh - 110px);grid-template-columns:1fr;grid-template-rows:1fr}.portrait-view .atlas-header nav {gap:24px}.portrait-caption {gap:8px;padding-bottom:12px}.portrait-caption h1 {width:100%;text-align:center}.portrait-caption p {font-size:11px}}
