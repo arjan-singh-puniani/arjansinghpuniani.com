@@ -1,0 +1,3589 @@
+{
+  "sourceSHA256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+  "sourceURL": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+  "attribution": [
+    "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan",
+    "Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0"
+  ],
+  "scope": "Named candidates, including curves. Raw face counts precede modifiers; no clinical validation or production promotion.",
+  "objects": [
+    {
+      "name": "Tuberosity for coracoclavicular ligament.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Tuberosity for coracoclavicular ligament.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Tuberosity for coracoclavicular ligament.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Tuberosity for coracoclavicular ligament.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Trochlea of humerus.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Trochlea of humerus.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Trochlea of humerus.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Trochlea of humerus.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Teres minor muscle.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 763,
+      "faces": 1522,
+      "triangles": 1522,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "External rotation",
+          "assignedFaces": 1522
+        },
+        {
+          "name": "Tendon",
+          "assignedFaces": 0
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Teres minor muscle.or",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 252,
+      "faces": 408,
+      "triangles": 408,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Origin-External rotation",
+          "assignedFaces": 408
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Teres minor muscle.ol",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 252,
+      "faces": 408,
+      "triangles": 408,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Origin-External rotation",
+          "assignedFaces": 408
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Teres minor muscle.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 763,
+      "faces": 1522,
+      "triangles": 1522,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "External rotation",
+          "assignedFaces": 1522
+        },
+        {
+          "name": "Tendon",
+          "assignedFaces": 0
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Teres minor muscle.er",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 83,
+      "faces": 127,
+      "triangles": 127,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "End-External rotation",
+          "assignedFaces": 127
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Teres minor muscle.el",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 83,
+      "faces": 127,
+      "triangles": 127,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "End-External rotation",
+          "assignedFaces": 127
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Surgical neck of humerus.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Surgical neck of humerus.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Surgical neck of humerus.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Surgical neck of humerus.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Supraspinous ligament",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 67,
+      "faces": 42,
+      "triangles": 84,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 42
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Supraspinous fossa.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Supraspinous fossa.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Supraspinous fossa.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Supraspinous fossa.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Supraspinatus muscle.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 717,
+      "faces": 1430,
+      "triangles": 1430,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Abductor",
+          "assignedFaces": 1430
+        },
+        {
+          "name": "Tendon",
+          "assignedFaces": 0
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Supraspinatus muscle.or",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 351,
+      "faces": 598,
+      "triangles": 598,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Origin-Abduction",
+          "assignedFaces": 598
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Supraspinatus muscle.ol",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 351,
+      "faces": 598,
+      "triangles": 598,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Origin-Abduction",
+          "assignedFaces": 598
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Supraspinatus muscle.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 717,
+      "faces": 1430,
+      "triangles": 1430,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Abductor",
+          "assignedFaces": 1430
+        },
+        {
+          "name": "Tendon",
+          "assignedFaces": 0
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Supraspinatus muscle.er",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 63,
+      "faces": 89,
+      "triangles": 89,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "End-Abduction",
+          "assignedFaces": 89
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Supraspinatus muscle.el",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 63,
+      "faces": 89,
+      "triangles": 89,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "End-Abduction",
+          "assignedFaces": 89
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Suprascapular vein.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Suprascapular vein.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Suprascapular nerve.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 5,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Suprascapular nerve.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 5,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Suprascapular artery.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 2,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Suprascapular artery.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 2,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Superior transverse scapular ligament.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 4,
+      "faces": 1,
+      "triangles": 2,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 1
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Superior transverse scapular ligament.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 4,
+      "faces": 1,
+      "triangles": 2,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 1
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Superior subscapular nerve.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Superior subscapular nerve.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Superior glenohumeral ligament.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 17,
+      "faces": 9,
+      "triangles": 15,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 9
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Superior glenohumeral ligament.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 17,
+      "faces": 9,
+      "triangles": 15,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 9
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Superior border of scapula.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Superior border of scapula.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Superior border of scapula.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Superior border of scapula.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Superior angle of scapula.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Superior angle of scapula.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Superior angle of scapula.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Superior angle of scapula.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Subtendinous bursa of infraspinatus muscle.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 178,
+      "faces": 192,
+      "triangles": 352,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Bursa",
+          "assignedFaces": 192
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Subtendinous bursa of infraspinatus muscle.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 178,
+      "faces": 192,
+      "triangles": 352,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Bursa",
+          "assignedFaces": 192
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Subscapularis muscle.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 1471,
+      "faces": 2954,
+      "triangles": 2954,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Internal rotator",
+          "assignedFaces": 2954
+        },
+        {
+          "name": "Tendon",
+          "assignedFaces": 0
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Subscapularis muscle.or",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 735,
+      "faces": 1319,
+      "triangles": 1319,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Origin-Internal rotation",
+          "assignedFaces": 1319
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Subscapularis muscle.ol",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 735,
+      "faces": 1319,
+      "triangles": 1319,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Origin-Internal rotation",
+          "assignedFaces": 1319
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Subscapularis muscle.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 1471,
+      "faces": 2954,
+      "triangles": 2954,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Internal rotator",
+          "assignedFaces": 2954
+        },
+        {
+          "name": "Tendon",
+          "assignedFaces": 0
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Subscapularis muscle.er",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 25,
+      "faces": 28,
+      "triangles": 28,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "End-Internal rotation",
+          "assignedFaces": 28
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Subscapularis muscle.el",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 25,
+      "faces": 28,
+      "triangles": 28,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "End-Internal rotation",
+          "assignedFaces": 28
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Subscapular vein.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 2,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Subscapular vein.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 2,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Subscapular fossa.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Subscapular fossa.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Subscapular fossa.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Subscapular fossa.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Subscapular artery.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Subscapular artery.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Subdeltoid bursa.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 178,
+      "faces": 192,
+      "triangles": 352,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Bursa",
+          "assignedFaces": 192
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Subdeltoid bursa.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 178,
+      "faces": 192,
+      "triangles": 352,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Bursa",
+          "assignedFaces": 192
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Subacromial bursa.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 178,
+      "faces": 192,
+      "triangles": 352,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Bursa",
+          "assignedFaces": 192
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Subacromial bursa.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 178,
+      "faces": 192,
+      "triangles": 352,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Bursa",
+          "assignedFaces": 192
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Spine of scapula.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Spine of scapula.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Spine of scapula.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Spine of scapula.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Scapular spinal part of deltoid muscle.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2189,
+      "faces": 4378,
+      "triangles": 4378,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Abductor",
+          "assignedFaces": 3293
+        },
+        {
+          "name": "Tendon",
+          "assignedFaces": 1085
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Scapular spinal part of deltoid muscle.or",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 516,
+      "faces": 872,
+      "triangles": 872,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Origin-Abduction",
+          "assignedFaces": 872
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Scapular spinal part of deltoid muscle.ol",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 516,
+      "faces": 872,
+      "triangles": 872,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Origin-Abduction",
+          "assignedFaces": 872
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Scapular spinal part of deltoid muscle.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2189,
+      "faces": 4378,
+      "triangles": 4378,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Abductor",
+          "assignedFaces": 3293
+        },
+        {
+          "name": "Tendon",
+          "assignedFaces": 1085
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Scapular region.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 172,
+      "faces": 154,
+      "triangles": 292,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Skin-3",
+          "assignedFaces": 29
+        },
+        {
+          "name": "Skin-4",
+          "assignedFaces": 1
+        },
+        {
+          "name": "Skin-7",
+          "assignedFaces": 117
+        },
+        {
+          "name": "Skin-8",
+          "assignedFaces": 7
+        },
+        {
+          "name": "Skin-in",
+          "assignedFaces": 0
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Scapular region.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 172,
+      "faces": 154,
+      "triangles": 292,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Skin-3",
+          "assignedFaces": 29
+        },
+        {
+          "name": "Skin-4",
+          "assignedFaces": 1
+        },
+        {
+          "name": "Skin-7",
+          "assignedFaces": 117
+        },
+        {
+          "name": "Skin-8",
+          "assignedFaces": 7
+        },
+        {
+          "name": "Skin-in",
+          "assignedFaces": 0
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Scapular notch.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Scapular notch.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Scapula.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Scapula.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Scapula.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 12690,
+      "faces": 25255,
+      "triangles": 25326,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Bone",
+          "assignedFaces": 24524
+        },
+        {
+          "name": "Cartilage",
+          "assignedFaces": 731
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Scapula.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 12690,
+      "faces": 25255,
+      "triangles": 25326,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Bone",
+          "assignedFaces": 24524
+        },
+        {
+          "name": "Cartilage",
+          "assignedFaces": 731
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Scapula.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Scapula.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Posterior surface of humerus.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Posterior surface of humerus.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Medial border of scapula.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Medial border of scapula.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Medial border of humerus.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Medial border of humerus.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Scapular notch.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Scapular notch.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Scapular line.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 44,
+      "faces": 21,
+      "triangles": 42,
+      "hasUV": true,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Scapular line.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 44,
+      "faces": 21,
+      "triangles": 42,
+      "hasUV": true,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Posterior circumflex humeral vein.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Posterior circumflex humeral vein.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Posterior surface of scapula.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Posterior surface of scapula.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Posterior surface of scapula.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Posterior surface of scapula.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Posterior surface of humerus.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Posterior surface of humerus.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Posterior circumflex humeral artery.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Posterior circumflex humeral artery.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Neck of scapula.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Neck of scapula.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Neck of scapula.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Neck of scapula.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Muscular branches of axillary nerve.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Muscular branches of axillary nerve.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Middle glenohumeral ligament.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 24,
+      "faces": 13,
+      "triangles": 25,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 13
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Middle glenohumeral ligament.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 24,
+      "faces": 13,
+      "triangles": 25,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 13
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Meningeal branch of maxillary nerve.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 3,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Meningeal branch of maxillary nerve.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 3,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Medial epicondyle of humerus.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Medial epicondyle of humerus.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Medial epicondyle of humerus.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Medial epicondyle of humerus.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Medial border of scapula.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Medial border of scapula.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Medial border of humerus.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Medial border of humerus.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Maxillary nerve.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 5,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Maxillary nerve.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 5,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Levator scapulae.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 1543,
+      "faces": 3082,
+      "triangles": 3082,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Levator",
+          "assignedFaces": 1678
+        },
+        {
+          "name": "Tendon",
+          "assignedFaces": 1404
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Levator scapulae.or",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 15,
+      "faces": 11,
+      "triangles": 14,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Origin-Levator",
+          "assignedFaces": 11
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Levator scapulae.ol",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 15,
+      "faces": 11,
+      "triangles": 14,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Origin-Levator",
+          "assignedFaces": 11
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Levator scapulae.o3r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 25,
+      "faces": 25,
+      "triangles": 31,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Origin-Levator",
+          "assignedFaces": 25
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Levator scapulae.o3l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 25,
+      "faces": 25,
+      "triangles": 31,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Origin-Levator",
+          "assignedFaces": 25
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Levator scapulae.o2r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 24,
+      "faces": 26,
+      "triangles": 30,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Origin-Levator",
+          "assignedFaces": 26
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Levator scapulae.o2l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 24,
+      "faces": 26,
+      "triangles": 30,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Origin-Levator",
+          "assignedFaces": 26
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Levator scapulae.o1r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 10,
+      "faces": 5,
+      "triangles": 8,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Origin-Levator",
+          "assignedFaces": 5
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Levator scapulae.o1l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 10,
+      "faces": 5,
+      "triangles": 8,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Origin-Levator",
+          "assignedFaces": 5
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Levator scapulae.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 1543,
+      "faces": 3082,
+      "triangles": 3082,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Levator",
+          "assignedFaces": 1678
+        },
+        {
+          "name": "Tendon",
+          "assignedFaces": 1404
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Levator scapulae.er",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 485,
+      "faces": 897,
+      "triangles": 897,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "End-Levator",
+          "assignedFaces": 897
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Levator scapulae.el",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 485,
+      "faces": 897,
+      "triangles": 897,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "End-Levator",
+          "assignedFaces": 897
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Lateral epicondyle of humerus.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Lateral epicondyle of humerus.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Lateral epicondyle of humerus.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Lateral epicondyle of humerus.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Lateral border of scapula.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Lateral border of scapula.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Lateral border of scapula.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Lateral border of scapula.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Lateral border of humerus.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Lateral border of humerus.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Lateral border of humerus.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Lateral border of humerus.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Lateral angle of scapula.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Lateral angle of scapula.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Lateral angle of scapula.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Lateral angle of scapula.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Interscapular region.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 68,
+      "faces": 48,
+      "triangles": 96,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Skin-7",
+          "assignedFaces": 48
+        },
+        {
+          "name": "Skin-in",
+          "assignedFaces": 0
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Interscapular region.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 68,
+      "faces": 48,
+      "triangles": 96,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Skin-7",
+          "assignedFaces": 48
+        },
+        {
+          "name": "Skin-in",
+          "assignedFaces": 0
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Infraspinous fossa.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Infraspinous fossa.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Infraspinous fossa.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Infraspinous fossa.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Infraspinatus muscle.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 1585,
+      "faces": 3166,
+      "triangles": 3166,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "External rotation",
+          "assignedFaces": 2645
+        },
+        {
+          "name": "Tendon",
+          "assignedFaces": 521
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Infraspinatus muscle.or",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 585,
+      "faces": 1027,
+      "triangles": 1027,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Origin-External rotation",
+          "assignedFaces": 1027
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Infraspinatus muscle.ol",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 585,
+      "faces": 1027,
+      "triangles": 1027,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Origin-External rotation",
+          "assignedFaces": 1027
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Infraspinatus muscle.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 1585,
+      "faces": 3166,
+      "triangles": 3166,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "External rotation",
+          "assignedFaces": 2645
+        },
+        {
+          "name": "Tendon",
+          "assignedFaces": 521
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Infraspinatus muscle.er",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 59,
+      "faces": 79,
+      "triangles": 79,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "End-External rotation",
+          "assignedFaces": 79
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Infraspinatus muscle.el",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 59,
+      "faces": 79,
+      "triangles": 79,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "End-External rotation",
+          "assignedFaces": 79
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Infrascapular region.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 121,
+      "faces": 99,
+      "triangles": 196,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Skin-7",
+          "assignedFaces": 91
+        },
+        {
+          "name": "Skin-8",
+          "assignedFaces": 8
+        },
+        {
+          "name": "Skin-in",
+          "assignedFaces": 0
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Infrascapular region.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 121,
+      "faces": 99,
+      "triangles": 196,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Skin-7",
+          "assignedFaces": 91
+        },
+        {
+          "name": "Skin-8",
+          "assignedFaces": 8
+        },
+        {
+          "name": "Skin-in",
+          "assignedFaces": 0
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Inferior transverse scapular ligament.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 4,
+      "faces": 1,
+      "triangles": 2,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 1
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Inferior transverse scapular ligament.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 4,
+      "faces": 1,
+      "triangles": 2,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 1
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Inferior subscapular nerve.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 2,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Inferior subscapular nerve.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 2,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Inferior glenohumeral ligament.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 25,
+      "faces": 16,
+      "triangles": 29,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 16
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Inferior glenohumeral ligament.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 25,
+      "faces": 16,
+      "triangles": 29,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 16
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Inferior angle of scapula.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Inferior angle of scapula.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Inferior angle of scapula.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Inferior angle of scapula.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Humerus.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Humerus.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Humerus.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2143,
+      "faces": 4280,
+      "triangles": 4280,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Bone",
+          "assignedFaces": 3477
+        },
+        {
+          "name": "Cartilage",
+          "assignedFaces": 803
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Humerus.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2143,
+      "faces": 4280,
+      "triangles": 4280,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Bone",
+          "assignedFaces": 3477
+        },
+        {
+          "name": "Cartilage",
+          "assignedFaces": 803
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Humerus.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Humerus.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Head of humerus.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Head of humerus.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Head of humerus.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Head of humerus.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Glenoid process of scapula.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Glenoid process of scapula.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Glenoid process of scapula.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Glenoid process of scapula.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Glenoid labrum.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 107,
+      "faces": 105,
+      "triangles": 214,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Cartilage",
+          "assignedFaces": 105
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Glenoid labrum.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 107,
+      "faces": 105,
+      "triangles": 214,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Cartilage",
+          "assignedFaces": 105
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ]
+    },
+    {
+      "name": "Glenohumeral joint.g",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Dorsal scapular nerve.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Dorsal scapular nerve.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Costal surface of scapula.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Costal surface of scapula.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Costal surface of scapula.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Costal surface of scapula.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Scapula.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Coracohumeral ligament.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 18,
+      "faces": 8,
+      "triangles": 16,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 8
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Coracohumeral ligament.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 18,
+      "faces": 8,
+      "triangles": 16,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 8
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Coraco-acromial ligament.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 4,
+      "faces": 1,
+      "triangles": 2,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 1
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Coraco-acromial ligament.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 4,
+      "faces": 1,
+      "triangles": 2,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 1
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Condyle of humerus.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Condyle of humerus.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Condyle of humerus.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Condyle of humerus.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Clavicle.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 789,
+      "faces": 1548,
+      "triangles": 1550,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Bone",
+          "assignedFaces": 1308
+        },
+        {
+          "name": "Cartilage",
+          "assignedFaces": 240
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Clavicle.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 789,
+      "faces": 1548,
+      "triangles": 1550,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Bone",
+          "assignedFaces": 1308
+        },
+        {
+          "name": "Cartilage",
+          "assignedFaces": 240
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Circumflex scapular vein.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Circumflex scapular vein.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Circumflex scapular artery.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Circumflex scapular artery.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Capitulum of humerus.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Capitulum of humerus.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Capitulum of humerus.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Capitulum of humerus.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Body of humerus.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Body of humerus.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Body of humerus.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Body of humerus.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Body of clavicle.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Body of clavicle.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Body of clavicle.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Body of clavicle.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Axillary nerve.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Axillary nerve.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 1,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Articular capsule of glenohumeral joint.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 219,
+      "faces": 185,
+      "triangles": 367,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Articular capsule",
+          "assignedFaces": 185
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Articular capsule of glenohumeral joint.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 219,
+      "faces": 185,
+      "triangles": 367,
+      "hasUV": false,
+      "materials": [
+        {
+          "name": "Articular capsule",
+          "assignedFaces": 185
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Anteromedial surface of humerus.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Anteromedial surface of humerus.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Anteromedial surface of humerus.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Anteromedial surface of humerus.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Anterolateral surface of humerus.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Anterolateral surface of humerus.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Anterolateral surface of humerus.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Anterolateral surface of humerus.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Anterior circumflex humeral vein.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 2,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Anterior circumflex humeral vein.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 2,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Anterior circumflex humeral artery.r",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 2,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Anterior circumflex humeral artery.l",
+      "type": "CURVE",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "splines": 2,
+      "bevelDepth": 0.0005000000237487257
+    },
+    {
+      "name": "Anterior border of humerus.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Anterior border of humerus.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Anterior border of humerus.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Anterior border of humerus.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Anatomical neck of humerus.t",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Anatomical neck of humerus.s",
+      "type": "FONT",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified"
+    },
+    {
+      "name": "Anatomical neck of humerus.j",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Anatomical neck of humerus.i",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 2,
+      "faces": 0,
+      "triangles": 0,
+      "hasUV": false,
+      "materials": [],
+      "modifiers": [
+        {
+          "name": "Hook-Humerus.r",
+          "type": "HOOK"
+        }
+      ]
+    },
+    {
+      "name": "Acromioclavicular ligament.r",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 9,
+      "faces": 4,
+      "triangles": 8,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 4
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    },
+    {
+      "name": "Acromioclavicular ligament.l",
+      "type": "MESH",
+      "reviewStatus": "candidate; anatomical fidelity and registration unverified",
+      "vertices": 9,
+      "faces": 4,
+      "triangles": 8,
+      "hasUV": true,
+      "materials": [
+        {
+          "name": "Ligament",
+          "assignedFaces": 4
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ]
+    }
+  ]
+}
