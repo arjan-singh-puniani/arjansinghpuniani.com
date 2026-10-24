@@ -12,7 +12,7 @@ The flagship remains the right shoulder: anatomy, function and spatial learning.
 - Learn includes elevation, external rotation, internal rotation and stability studies. These highlight relevant source muscles and ghost other cuff surfaces, preserve bone context, and provide a spatial observation task. Highlighting is not force, activation or fiber-orientation data.
 - Quiz now ends after twelve questions: four identification, four relationships and four function. Each correct first attempt scores once; retries never add points. Completed sessions cannot accept more answers. Review includes a three-part breakdown and per-muscle links back to the specimen. Results are in-memory only; reload resets them.
 - Keyboard focus survives lesson/quiz navigation. Mobile panels retain independent scrolling, source disclosures and the visible specimen.
-- No new package, renderer, anatomy mesh, remote service or analytics event was added. Existing portfolio routes, other projects and legacy anatomy viewer remain in place.
+- No new package, anatomical structure, remote service or analytics event was added. The existing renderer now uses a camera-relative studio light rig. The default GLB was rebuilt with shading-only changes. Existing portfolio routes, other projects and legacy anatomy viewer remain in place.
 
 The changed surface is the standalone shoulder app, domain model, local CSS/HTML and its tests. The existing portfolio iframe consumes the change directly. The smoke-test script accepts an explicit preview URL and output directory to keep this release's evidence separate.
 
@@ -33,7 +33,7 @@ The source surfaces still have the previously audited 878 / 866 / 506 / 2,092 tr
 - [Existing browser regression](shoulder-conference-qa/regression/browser-results.json)
 - [Production portfolio smoke](shoulder-conference-qa/portfolio-smoke.json)
 
-Validation: 95 portfolio tests, 16 shoulder tests, typecheck, production build and changed-JavaScript lint passed. Chrome verifies presentation entry/exit, keyboard chapter control, grouped visibility, twelve-question completion, retry scoring, review links, reset and narrow layout. Axe reports zero violations in the tested desktop and mobile function-study states. The prior shoulder suite passes camera/picking/touch/Peel/lesson/quiz/OBJ/LOD checks. Fourteen production routes, embedded studio, legacy viewer and sitemap pass smoke checks.
+Validation: 95 portfolio tests, 17 shoulder tests, typecheck, production build and changed-JavaScript lint passed. Chrome verifies presentation entry/exit, keyboard chapter control, grouped visibility, twelve-question completion, retry scoring, review links, reset and narrow layout. Axe reports zero violations in the tested desktop and mobile function-study states. The prior shoulder suite passes camera/picking/touch/Peel/lesson/quiz/OBJ/LOD checks. Fourteen production routes, embedded studio, legacy viewer and sitemap pass smoke checks.
 
 These results are not a fresh physical-iPhone test, Safari certification, clinician review or educational-effectiveness study. Existing frame-time figures from September must not be presented as a new hardware measurement.
 
@@ -56,3 +56,21 @@ Before claiming improved learning, have an anatomy educator review the content a
 ## Run locally
 
 From arjan-portfolio: `node tools/shoulder/serve.mjs` serves port 4190. Run `node tools/shoulder/conference-qa.mjs` for the new browser checks. `npm run test:shoulder` includes the finite-session and functional-group tests. Build normally with `npm run build`; the portfolio iframe remains `/holoanatomy/shoulder/index.html`.
+
+## Blender visual increment
+
+Blender 4.0.2 was used, not just proposed. `tools/blender/bake_shoulder_study.py` loads the original normalized master, compares source shading with derived shading, bakes four 512×512 self-occlusion maps as an experiment, exports both textured and normals-only GLBs, and verifies all original vertex coordinates and polygon connectivity by hash.
+
+The underlying OBJ meshes contain repeated positions: supraspinatus 843 vertices / 445 unique positions; infraspinatus 743 / 435; teres minor 392 / 255; subscapularis 2,775 / 990. The accepted variant shares area-weighted shading normals across exact coincident positions. It does not weld vertices, remesh, subdivide, displace or invent tissue. A domain test compares the complete triangle-position multiset of all twenty deployed structures against the frozen original GLB, exactly at exported float precision. Source artifacts and low-poly silhouettes remain visible; this is a rendering improvement, not an accuracy upgrade.
+
+The web renderer's key/fill/rim rig follows camera orientation around the specimen target. This makes anterior and posterior surfaces more consistently readable. Muscle roughness/specular parameters are illustrative material choices. Bone and all anatomical source identities stay intact.
+
+The AO experiment is rejected for default use: it adds four textures (approximately 5.3 MiB of estimated RGBA+mipmap memory) and UV seam overhead for insufficient visible benefit. Those textures remain in Documentation, outside public assets. The accepted GLB adds no texture memory. All three tested variants ran at approximately 16.7 ms average rAF interval in the local desktop orbit comparison; these are not physical-phone or universal performance results. See [comparison measurements](shoulder-conference-qa/blender/web-comparison.json).
+
+- [Blender source posterior](shoulder-conference-qa/blender/source-normals-posterior.png)
+- [Blender derived posterior](shoulder-conference-qa/blender/derived-shading-posterior.png)
+- [Accepted web posterior](shoulder-conference-qa/blender/web-smooth-posterior.png)
+- [Accepted web anterior](shoulder-conference-qa/blender/web-smooth-anterior.png)
+- [Geometry hashes and bake record](shoulder-conference-qa/blender/bake-report.json)
+
+Regenerate candidates with Blender `--background --factory-startup --python tools/blender/bake_shoulder_study.py`. After visual review, append `-- --publish` to copy the normals-only export to the local public assets and update provenance. Here “publish” only means local asset promotion, never deployment. LOD1/2 and OBJ fallback retain the original normals. The provenance panel distinguishes derived runtime shading from source normals. `node tools/shoulder/blender-qa.mjs` compares the frozen source, AO experiment and accepted variant in Chrome.

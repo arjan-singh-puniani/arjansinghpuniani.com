@@ -258,7 +258,8 @@
       "derivedOperations": [
         "Rigid translation by -(-130,-45,1275), uniform scale 0.01",
         "Standard Blender glTF axis conversion: (x,y,z) -> (x,z,-y)",
-        "Preserve polygon topology and source split normals; no smoothing modifier, remesh or subdivision"
+        "Preserve polygon topology and source split normals; no smoothing modifier, remesh or subdivision",
+        "LOD0: Blender area-weighted shading normals shared across exact coincident positions; no vertex/face changes. No derived textures shipped."
       ],
       "reviewStatus": "Official FMA-to-mesh mapping verified; topology checked; no independent clinical review",
       "normalizedBounds": {
@@ -275,7 +276,12 @@
       },
       "nonManifoldEdges": 638,
       "zeroNormals": 0,
-      "sourceSha256": "793771eceb64385269ddeeb09245e8c53b67499194f6fa98049b5e17aafa8e0c"
+      "sourceSha256": "793771eceb64385269ddeeb09245e8c53b67499194f6fa98049b5e17aafa8e0c",
+      "runtimeShading": {
+        "lod0": "Derived area-weighted normals; source geometry unchanged",
+        "lod1And2": "Original source normals",
+        "textures": []
+      }
     },
     {
       "id": "FJ1500",
@@ -325,7 +331,8 @@
       "derivedOperations": [
         "Rigid translation by -(-130,-45,1275), uniform scale 0.01",
         "Standard Blender glTF axis conversion: (x,y,z) -> (x,z,-y)",
-        "Preserve polygon topology and source split normals; no smoothing modifier, remesh or subdivision"
+        "Preserve polygon topology and source split normals; no smoothing modifier, remesh or subdivision",
+        "LOD0: Blender area-weighted shading normals shared across exact coincident positions; no vertex/face changes. No derived textures shipped."
       ],
       "reviewStatus": "Official FMA-to-mesh mapping verified; topology checked; no independent clinical review",
       "normalizedBounds": {
@@ -342,7 +349,12 @@
       },
       "nonManifoldEdges": 526,
       "zeroNormals": 0,
-      "sourceSha256": "28f61376a3a88a28d14c44e1c20e9b7a34129772c130afa003daceac801455b1"
+      "sourceSha256": "28f61376a3a88a28d14c44e1c20e9b7a34129772c130afa003daceac801455b1",
+      "runtimeShading": {
+        "lod0": "Derived area-weighted normals; source geometry unchanged",
+        "lod1And2": "Original source normals",
+        "textures": []
+      }
     },
     {
       "id": "FJ1504",
@@ -392,7 +404,8 @@
       "derivedOperations": [
         "Rigid translation by -(-130,-45,1275), uniform scale 0.01",
         "Standard Blender glTF axis conversion: (x,y,z) -> (x,z,-y)",
-        "Preserve polygon topology and source split normals; no smoothing modifier, remesh or subdivision"
+        "Preserve polygon topology and source split normals; no smoothing modifier, remesh or subdivision",
+        "LOD0: Blender area-weighted shading normals shared across exact coincident positions; no vertex/face changes. No derived textures shipped."
       ],
       "reviewStatus": "Official FMA-to-mesh mapping verified; topology checked; no independent clinical review",
       "normalizedBounds": {
@@ -409,7 +422,12 @@
       },
       "nonManifoldEdges": 2494,
       "zeroNormals": 0,
-      "sourceSha256": "fdcbfd01f93e2d24bd73f5cb259a311c9f9e90de08c41573439844eef5f605dd"
+      "sourceSha256": "fdcbfd01f93e2d24bd73f5cb259a311c9f9e90de08c41573439844eef5f605dd",
+      "runtimeShading": {
+        "lod0": "Derived area-weighted normals; source geometry unchanged",
+        "lod1And2": "Original source normals",
+        "textures": []
+      }
     },
     {
       "id": "FJ1508",
@@ -459,7 +477,8 @@
       "derivedOperations": [
         "Rigid translation by -(-130,-45,1275), uniform scale 0.01",
         "Standard Blender glTF axis conversion: (x,y,z) -> (x,z,-y)",
-        "Preserve polygon topology and source split normals; no smoothing modifier, remesh or subdivision"
+        "Preserve polygon topology and source split normals; no smoothing modifier, remesh or subdivision",
+        "LOD0: Blender area-weighted shading normals shared across exact coincident positions; no vertex/face changes. No derived textures shipped."
       ],
       "reviewStatus": "Official FMA-to-mesh mapping verified; topology checked; no independent clinical review",
       "normalizedBounds": {
@@ -476,7 +495,12 @@
       },
       "nonManifoldEdges": 248,
       "zeroNormals": 0,
-      "sourceSha256": "f56e595b86cea659891664706cd4443acddd8dc69e4e5bb3855445eef302641a"
+      "sourceSha256": "f56e595b86cea659891664706cd4443acddd8dc69e4e5bb3855445eef302641a",
+      "runtimeShading": {
+        "lod0": "Derived area-weighted normals; source geometry unchanged",
+        "lod1And2": "Original source normals",
+        "textures": []
+      }
     },
     {
       "id": "FJ1467",
@@ -1354,7 +1378,7 @@
     {
       "level": 0,
       "url": "shoulder-lod0.glb",
-      "operation": "Original topology"
+      "operation": "Original topology; cuff shading normals derived across coincident positions"
     },
     {
       "level": 1,

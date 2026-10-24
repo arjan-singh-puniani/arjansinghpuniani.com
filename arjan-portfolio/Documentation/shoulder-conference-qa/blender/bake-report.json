@@ -1,0 +1,68 @@
+{
+  "blender": "4.0.2",
+  "method": "Coincident-position area-weighted shading normals and per-object AO from original geometry; no remesh, subdivision, displacement or invented anatomy",
+  "geometryUnchangedForAll20": true,
+  "structures": [
+    {
+      "id": "FJ1506",
+      "geometrySha256Before": "da57463a79c8ea067a62c927c11a34635b7dcdfc8103f8b0ae9f6ad6a14930bc",
+      "geometrySha256After": "da57463a79c8ea067a62c927c11a34635b7dcdfc8103f8b0ae9f6ad6a14930bc",
+      "sourceVertices": 843,
+      "sourceFaces": 878,
+      "uniquePositions": 445,
+      "derivedUV": true,
+      "derivedTexture": "FJ1506-self-occlusion.png",
+      "resolution": [
+        512,
+        512
+      ],
+      "occlusionStrength": 0.35
+    },
+    {
+      "id": "FJ1500",
+      "geometrySha256Before": "d51f7c382a918de9c620f8d989ba2b0e80be107f318e1e44d9f734fb996d28d7",
+      "geometrySha256After": "d51f7c382a918de9c620f8d989ba2b0e80be107f318e1e44d9f734fb996d28d7",
+      "sourceVertices": 743,
+      "sourceFaces": 866,
+      "uniquePositions": 435,
+      "derivedUV": true,
+      "derivedTexture": "FJ1500-self-occlusion.png",
+      "resolution": [
+        512,
+        512
+      ],
+      "occlusionStrength": 0.35
+    },
+    {
+      "id": "FJ1508",
+      "geometrySha256Before": "1364c778707df9a1aa8a40ffa441229b8e1159e7687c05f31e1157ff32bcebfc",
+      "geometrySha256After": "1364c778707df9a1aa8a40ffa441229b8e1159e7687c05f31e1157ff32bcebfc",
+      "sourceVertices": 392,
+      "sourceFaces": 506,
+      "uniquePositions": 255,
+      "derivedUV": true,
+      "derivedTexture": "FJ1508-self-occlusion.png",
+      "resolution": [
+        512,
+        512
+      ],
+      "occlusionStrength": 0.35
+    },
+    {
+      "id": "FJ1504",
+      "geometrySha256Before": "e6daf898e3bd3acb271b840ea21364fb3ea915948fed28231c65f2fc9b2ed041",
+      "geometrySha256After": "e6daf898e3bd3acb271b840ea21364fb3ea915948fed28231c65f2fc9b2ed041",
+      "sourceVertices": 2775,
+      "sourceFaces": 2092,
+      "uniquePositions": 990,
+      "derivedUV": true,
+      "derivedTexture": "FJ1504-self-occlusion.png",
+      "resolution": [
+        512,
+        512
+      ],
+      "occlusionStrength": 0.35
+    }
+  ],
+  "bytes": 1625076
+}

@@ -44,8 +44,11 @@ export class ShoulderScene {
     this.yaw = -2.85;
     this.pitch = 0.17;
     this.distance = 3.6;
-    this.scene.add(new THREE.HemisphereLight(0xfff9ec, 0x767882, 2.0));
-    const key = new THREE.DirectionalLight(0xfff5e6, 3.1);
+    this.scene.add(new THREE.HemisphereLight(0xfff9ec, 0x767882, 1.15));
+    // A camera-relative studio rig keeps form readable on both sides of the specimen.
+    this.lightRig = new THREE.Group();
+    this.scene.add(this.lightRig);
+    const key = new THREE.DirectionalLight(0xfff5e6, 3.4);
     key.position.set(-3, 5, 4);
     key.castShadow = true;
     key.shadow.mapSize.set(1024, 1024);
@@ -59,13 +62,13 @@ export class ShoulderScene {
     });
     key.shadow.bias = -0.0008;
     key.shadow.normalBias = 0.006;
-    this.scene.add(key);
-    const fill = new THREE.DirectionalLight(0xdde5f3, 1.8);
-    fill.position.set(3, 1, -4);
-    this.scene.add(fill);
-    const rim = new THREE.DirectionalLight(0xffe6ca, 0.9);
-    rim.position.set(-3, 2, -3);
-    this.scene.add(rim);
+    this.lightRig.add(key, key.target);
+    const fill = new THREE.DirectionalLight(0xdde5f3, 0.8);
+    fill.position.set(4, 1, 2);
+    this.lightRig.add(fill, fill.target);
+    const rim = new THREE.DirectionalLight(0xffe6ca, 1.2);
+    rim.position.set(-1, 3, -4);
+    this.lightRig.add(rim, rim.target);
     this.ray = new THREE.Raycaster();
     this.crop = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0.95);
     this.sectionPlane = new THREE.Plane(new THREE.Vector3(1, 0, 0), 0);
@@ -461,6 +464,8 @@ export class ShoulderScene {
       .add(this.target);
     this.camera.lookAt(this.target);
     this.camera.updateMatrixWorld();
+    this.lightRig.position.copy(this.target);
+    this.lightRig.quaternion.copy(this.camera.quaternion);
     if (this.state.staged.length) {
       const right = new THREE.Vector3().setFromMatrixColumn(
           this.camera.matrixWorld,

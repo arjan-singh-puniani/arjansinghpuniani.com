@@ -275,3 +275,67 @@ test("assessment ends at twelve, records retries once and cannot inflate a compl
     ],
   );
 });
+
+test("Blender shading candidate preserves every source triangle and position", async () => {
+  const directory = new URL(
+    "../../Documentation/shoulder-conference-qa/blender/",
+    import.meta.url,
+  );
+  const oldData = await readFile(new URL("source-lod0.glb", directory));
+  const newData = await readFile(new URL("shoulder-lod0.glb", base));
+  function triangles(data) {
+    const json = glbJSON(data),
+      binaryStart = 28 + data.readUInt32LE(12);
+    const result = {};
+    function accessor(index) {
+      const a = json.accessors[index],
+        view = json.bufferViews[a.bufferView];
+      const components = a.type === "VEC3" ? 3 : 1;
+      const bytes = a.componentType === 5123 ? 2 : 4;
+      const values = [];
+      for (let i = 0; i < a.count; i++) {
+        const row = [];
+        for (let c = 0; c < components; c++) {
+          const offset =
+            binaryStart +
+            (view.byteOffset || 0) +
+            (a.byteOffset || 0) +
+            i * (view.byteStride || components * bytes) +
+            c * bytes;
+          row.push(
+            a.componentType === 5126
+              ? data.readFloatLE(offset)
+              : bytes === 2
+                ? data.readUInt16LE(offset)
+                : data.readUInt32LE(offset),
+          );
+        }
+        values.push(row);
+      }
+      return values;
+    }
+    for (const node of json.nodes.filter((n) => n.mesh !== undefined)) {
+      const p = json.meshes[node.mesh].primitives[0];
+      const positions = accessor(p.attributes.POSITION),
+        indices = accessor(p.indices).flat();
+      const faces = [];
+      for (let i = 0; i < indices.length; i += 3)
+        faces.push(
+          indices
+            .slice(i, i + 3)
+            .map((index) => positions[index].join(","))
+            .sort()
+            .join(";"),
+        );
+      result[node.name] = faces.sort();
+      assert.equal(
+        p.attributes.TEXCOORD_0,
+        undefined,
+        "No unused baked maps shipped",
+      );
+    }
+    assert.equal((json.textures || []).length, 0);
+    return result;
+  }
+  assert.deepEqual(triangles(newData), triangles(oldData));
+});

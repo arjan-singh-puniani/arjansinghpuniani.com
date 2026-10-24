@@ -88,6 +88,13 @@ try {
   );
   expect(await page.evaluate(() => shoulderStudio.state.study)).toBe(null);
   expect(results.errors).toEqual([]);
+  expect(
+    await page.evaluate(() =>
+      shoulderStudio.scene.lightRig.quaternion.angleTo(
+        shoulderStudio.scene.camera.quaternion,
+      ),
+    ),
+  ).toBeLessThan(0.00001);
   results.status = "PASS";
 } finally {
   await writeFile(`${out}/results.json`, JSON.stringify(results, null, 2));

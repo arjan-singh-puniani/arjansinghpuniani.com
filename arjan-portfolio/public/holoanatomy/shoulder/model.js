@@ -23,8 +23,8 @@ export const TISSUES = {
   },
   SKELETAL_MUSCLE: {
     baseColor: "#974f44",
-    roughness: 0.69,
-    specular: 0.25,
+    roughness: 0.52,
+    specular: 0.32,
     ghostAlpha: 0.09,
   },
   TENDON: {

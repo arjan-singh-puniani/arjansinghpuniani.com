@@ -1,0 +1,194 @@
+{
+  "current": {
+    "metrics": {
+      "transport": "glb",
+      "lod": 0,
+      "loadMs": 93.89999997615814,
+      "drawCalls": 7,
+      "triangles": 35444,
+      "vertices": 20687,
+      "textures": 1,
+      "shadowMapTextureBytes": 4194304,
+      "shadowDepthAttachmentEstimatedBytes": 4194304,
+      "sourceTextureBytes": 0,
+      "dpr": 1,
+      "samples": 2,
+      "meanFrameMs": 66.69999999999999,
+      "p95FrameMs": 66.702
+    },
+    "cuff": [
+      {
+        "id": "FJ1506",
+        "uv": false,
+        "normal": true,
+        "ao": false,
+        "strength": 1
+      },
+      {
+        "id": "FJ1500",
+        "uv": false,
+        "normal": true,
+        "ao": false,
+        "strength": 1
+      },
+      {
+        "id": "FJ1508",
+        "uv": false,
+        "normal": true,
+        "ao": false,
+        "strength": 1
+      },
+      {
+        "id": "FJ1504",
+        "uv": false,
+        "normal": true,
+        "ao": false,
+        "strength": 1
+      }
+    ],
+    "orbitMetrics": {
+      "transport": "glb",
+      "lod": 0,
+      "loadMs": 93.89999997615814,
+      "drawCalls": 7,
+      "triangles": 35444,
+      "vertices": 20687,
+      "textures": 1,
+      "shadowMapTextureBytes": 4194304,
+      "shadowDepthAttachmentEstimatedBytes": 4194304,
+      "sourceTextureBytes": 0,
+      "dpr": 1,
+      "samples": 149,
+      "meanFrameMs": 16.665771812080543,
+      "p95FrameMs": 16.700000000000273
+    }
+  },
+  "occlusion": {
+    "metrics": {
+      "transport": "glb",
+      "lod": 0,
+      "loadMs": 101.5,
+      "drawCalls": 7,
+      "triangles": 35444,
+      "vertices": 21392,
+      "textures": 5,
+      "shadowMapTextureBytes": 4194304,
+      "shadowDepthAttachmentEstimatedBytes": 4194304,
+      "sourceTextureBytes": 5592405.333333333,
+      "dpr": 1,
+      "samples": 2,
+      "meanFrameMs": 75.015,
+      "p95FrameMs": 83.33000000000001
+    },
+    "cuff": [
+      {
+        "id": "FJ1506",
+        "uv": true,
+        "normal": true,
+        "ao": true,
+        "strength": 0.35
+      },
+      {
+        "id": "FJ1500",
+        "uv": true,
+        "normal": true,
+        "ao": true,
+        "strength": 0.35
+      },
+      {
+        "id": "FJ1508",
+        "uv": true,
+        "normal": true,
+        "ao": true,
+        "strength": 0.35
+      },
+      {
+        "id": "FJ1504",
+        "uv": true,
+        "normal": true,
+        "ao": true,
+        "strength": 0.35
+      }
+    ],
+    "orbitMetrics": {
+      "transport": "glb",
+      "lod": 0,
+      "loadMs": 101.5,
+      "drawCalls": 7,
+      "triangles": 35444,
+      "vertices": 21392,
+      "textures": 5,
+      "shadowMapTextureBytes": 4194304,
+      "shadowDepthAttachmentEstimatedBytes": 4194304,
+      "sourceTextureBytes": 5592405.333333333,
+      "dpr": 1,
+      "samples": 149,
+      "meanFrameMs": 16.665771812080536,
+      "p95FrameMs": 16.799999999999727
+    }
+  },
+  "smooth": {
+    "metrics": {
+      "transport": "glb",
+      "lod": 0,
+      "loadMs": 82,
+      "drawCalls": 7,
+      "triangles": 35444,
+      "vertices": 20687,
+      "textures": 1,
+      "shadowMapTextureBytes": 4194304,
+      "shadowDepthAttachmentEstimatedBytes": 4194304,
+      "sourceTextureBytes": 0,
+      "dpr": 1,
+      "samples": 2,
+      "meanFrameMs": 58.33200000000001,
+      "p95FrameMs": 66.66400000000002
+    },
+    "cuff": [
+      {
+        "id": "FJ1506",
+        "uv": false,
+        "normal": true,
+        "ao": false,
+        "strength": 1
+      },
+      {
+        "id": "FJ1500",
+        "uv": false,
+        "normal": true,
+        "ao": false,
+        "strength": 1
+      },
+      {
+        "id": "FJ1508",
+        "uv": false,
+        "normal": true,
+        "ao": false,
+        "strength": 1
+      },
+      {
+        "id": "FJ1504",
+        "uv": false,
+        "normal": true,
+        "ao": false,
+        "strength": 1
+      }
+    ],
+    "orbitMetrics": {
+      "transport": "glb",
+      "lod": 0,
+      "loadMs": 82,
+      "drawCalls": 7,
+      "triangles": 35444,
+      "vertices": 20687,
+      "textures": 1,
+      "shadowMapTextureBytes": 4194304,
+      "shadowDepthAttachmentEstimatedBytes": 4194304,
+      "sourceTextureBytes": 0,
+      "dpr": 1,
+      "samples": 149,
+      "meanFrameMs": 16.665771812080536,
+      "p95FrameMs": 16.700000000000273
+    }
+  }
+}
