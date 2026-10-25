@@ -1,6 +1,6 @@
 {
   "baseline": "0b4c4bcd",
-  "humanRuntimeFeedback": "pending",
+  "humanRuntimeFeedback": "Too much movement or clipping",
   "motionChecks": {
     "coreSamples": 242,
     "strandSamples": 406,
@@ -27,5 +27,7 @@
     "Existing hair-card silhouette/texture quality remains",
     "No fresh live-browser/GPU frame-time observation",
     "Offline image omits runtime lighting"
-  ]
+  ],
+  "decision": "Rejected; experimental runtime removed and prior hair restored from 0b4c4bcd",
+  "checksApplyTo": "Archived rejected candidate, not the restored runtime"
 }

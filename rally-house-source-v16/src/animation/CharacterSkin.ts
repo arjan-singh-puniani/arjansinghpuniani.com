@@ -1,4 +1,4 @@
-import {Mat4, Vec3, identity, scaling, multiply, invertRigid, rigidFrame,transformPoint,interpolateRigidFrame,compose} from '../rendering/Math3D.js';
+import {Mat4, Vec3, identity, scaling, multiply, invertRigid, rigidFrame,transformPoint,interpolateRigidFrame} from '../rendering/Math3D.js';
 import type {SkinGeometry} from '../rendering/Renderer.js';
 import type {CharacterPose} from '../entities/Character.js';
 
@@ -14,7 +14,6 @@ export interface RigPoseLocal {
   headForward?:Vec3;headUp?:Vec3;handDirectionL?:Vec3;handDirectionR?:Vec3;handForwardL?:Vec3;handForwardR?:Vec3;footForwardL?:Vec3;footForwardR?:Vec3;footUpL?:Vec3;footUpR?:Vec3;
   foreArmForwardL?:Vec3;foreArmForwardR?:Vec3;
   wristL?:Vec3;wristR?:Vec3;foreArmTwistL?:Vec3;foreArmTwistR?:Vec3;
-  ponytail?:Vec3;
 }
 
 /** The mesh and continuous replay use the same landmark-to-skin mapping. */
@@ -22,7 +21,7 @@ export function rigFromPose(p:CharacterPose,root:Vec3,yaw:number,relax=0):RigPos
  const local=(v:Vec3)=>{const dx=v.x-root.x,dz=v.z-root.z,s=Math.sin(yaw),c=Math.cos(yaw);return new Vec3(c*dx-s*dz,v.y,s*dx+c*dz);};
  const arm=(v:Vec3,x:number,y:number)=>Vec3.lerp(local(v),new Vec3(x,y+p.baseY-p.knee,-.015),relax);
  const chest=p.chest??Vec3.lerp(p.shoulderL,p.shoulderR,.5);
- return {pelvis:local(p.pelvisCenter),spine:local(Vec3.lerp(p.pelvisCenter,p.torsoCenter,.62)),chest:local(chest),neck:local(Vec3.lerp(chest,p.head,.58)),head:local(p.head),upperArmL:local(p.shoulderL),foreArmL:arm(p.elbowL,-.397,1.095),handL:arm(p.handL,-.36,.89),upperArmR:local(p.shoulderR),foreArmR:arm(p.elbowR,.397,1.095),handR:arm(p.handR,.36,.89),thighL:local(p.hipL),shinL:local(p.kneeL),footL:local(p.footL),thighR:local(p.hipR),shinR:local(p.kneeR),footR:local(p.footR),forward:new Vec3(Math.sin(p.torsoYaw-yaw),0,Math.cos(p.torsoYaw-yaw)),ponytail:p.ponytail?.clone()};
+ return {pelvis:local(p.pelvisCenter),spine:local(Vec3.lerp(p.pelvisCenter,p.torsoCenter,.62)),chest:local(chest),neck:local(Vec3.lerp(chest,p.head,.58)),head:local(p.head),upperArmL:local(p.shoulderL),foreArmL:arm(p.elbowL,-.397,1.095),handL:arm(p.handL,-.36,.89),upperArmR:local(p.shoulderR),foreArmR:arm(p.elbowR,.397,1.095),handR:arm(p.handR,.36,.89),thighL:local(p.hipL),shinL:local(p.kneeL),footL:local(p.footL),thighR:local(p.hipR),shinR:local(p.kneeR),footR:local(p.footR),forward:new Vec3(Math.sin(p.torsoYaw-yaw),0,Math.cos(p.torsoYaw-yaw))};
 }
 
 const bind:RigPoseLocal={
@@ -65,7 +64,7 @@ export function skinMatrices(p:RigPoseLocal,restPose=bind){
  let inverse=bindInv;if(restPose!==bind){inverse=authoredBindInv.get(restPose)??defs.map(d=>invertRigid(frameFor(restPose,d)));authoredBindInv.set(restPose,inverse);}
  // The game anchors the palm/grip; an anatomical forearm ends at the wrist.
  if(restPose.wristL&&restPose.wristR){p={...p};for(const side of ['L','R'] as const){const i=BONE[`hand${side}`],hand=multiply(frameFor(p,defs[i]),inverse[i]),wrist=transformPoint(hand,restPose[`wrist${side}`]!);p[`wrist${side}`]=new Vec3(wrist.x,wrist.y,wrist.z);}}
- const out=new Float32Array((BONE_COUNT+(p.ponytail?1:0))*16),frames:Mat4[]=[];for(let i=0;i<BONE_COUNT;i++){const d=defs[i],length=Vec3.sub(endpoint(p,d),jointPoint(p,d.joint)).len(),rest=Vec3.sub(endpoint(restPose,d),jointPoint(restPose,d.joint)).len(),rigid=d.joint.startsWith('hand')||d.joint.startsWith('foot')||restPose!==bind&&d.joint==='head';let frame=frameFor(p,d);
+ const out=new Float32Array(BONE_COUNT*16),frames:Mat4[]=[];for(let i=0;i<BONE_COUNT;i++){const d=defs[i],length=Vec3.sub(endpoint(p,d),jointPoint(p,d.joint)).len(),rest=Vec3.sub(endpoint(restPose,d),jointPoint(restPose,d.joint)).len(),rigid=d.joint.startsWith('hand')||d.joint.startsWith('foot')||restPose!==bind&&d.joint==='head';let frame=frameFor(p,d);
   if((d.joint.startsWith('upperArm')||d.joint==='foreArmL'||d.joint==='foreArmR')&&restPose.wristL){
    // Forward-axis projection flips the sleeve; carry the authored shoulder roll with the torso.
    const parent=d.joint.startsWith('upperArm')?BONE.chest:BONE[d.joint.endsWith('L')?'upperArmL':'upperArmR'],source=multiply(multiply(frames[parent],inverse[parent]),frameFor(restPose,d));
@@ -83,13 +82,7 @@ export function skinMatrices(p:RigPoseLocal,restPose=bind){
    // Share palm roll across the forearm rather than concentrating it at one skin seam.
    frame=rigidFrame(jointPoint(p,d.joint),endpoint(p,d),new Vec3(half[8],half[9],half[10]));
   }
-  frames[i]=frame;const m=multiply(multiply(frame,scaling(new Vec3(1,rigid?1:length/Math.max(.001,rest),1))),inverse[i]);out.set(m,i*16);}
- if(p.ponytail){
-  // shortcut: one weighted tail joint; author a chain if longer hairstyles need independent bends.
-  const tie=restPose.head.clone().add(new Vec3(0,.05,-.17)),bend=multiply(compose(tie,p.ponytail),compose(tie.clone().scale(-1)));
-  out.set(multiply(out.subarray(BONE.head*16,(BONE.head+1)*16),bend),BONE_COUNT*16);
- }
- return out;
+  frames[i]=frame;const m=multiply(multiply(frame,scaling(new Vec3(1,rigid?1:length/Math.max(.001,rest),1))),inverse[i]);out.set(m,i*16);}return out;
 }
 
 interface Build {p:number[];n:number[];bi:number[];bw:number[]}

@@ -12,7 +12,6 @@ import {humanTaylorHead} from '../animation/TaylorHuman.js';
 import {CHARACTER_SKIN,HUMAN_TENNIS_SKIN,ATHLETE_WARDROBE,skinMatrices,rigFromPose} from '../animation/CharacterSkin.js';
 import {CAST_DESIGN} from '../content/CastDesign.js';
 import {authoredAthleteMeshes,authoredArmLengths,advanceAuthoredHands,type AuthoredHandPose} from '../animation/AuthoredAthlete.js';
-import {PonytailMotion} from '../animation/PonytailMotion.js';
 
 export type AnimState='idle'|'walk'|'jog'|'ready'|'shuffle'|'sit'|'talk'|'drink'|'stretch'|'watch'|'swingForehand'|'swingBackhand'|'serve'|'volley'|'celebrate'|'reactMiss'|'coachFeed'|'coachExplain';
 export type EmotionState='neutral'|'attentive'|'friendly'|'focused'|'amused'|'pleased'|'disappointed'|'tired'|'surprised'|'proud'|'frustrated';
@@ -46,7 +45,6 @@ export interface CharacterPose extends Partial<AuthoredHandPose> {
   footPitchL?:number;footPitchR?:number;footYawL?:number;footYawR?:number;
   footRecoveryL?:number;footRecoveryR?:number;
   footPivotL?:Vec3;footPivotR?:Vec3;
-  ponytail?:Vec3;
   handRestWeight:number;handLapWeight:number;handGripL:number;handGripR:number;handRacketWeight:number;
 }
 type Pose=CharacterPose;
@@ -93,7 +91,6 @@ export class Character {
   private incomingContact:Vec3|null=null;private contactTarget:Vec3|null=null;private outgoingTarget:Vec3|null=null;
   private facePose:FacePose={smile:.08,mouthOpen:0,browRaise:.05,squint:0,focus:.08};
   private authoredHands?:AuthoredHandPose;
-  private ponytail=new PonytailMotion();
   private handPose={handRestWeight:1,handLapWeight:0,handGripL:0,handGripR:0,handRacketWeight:0};
   private lastPose:Pose|null=null;private prevPosition:Vec3;private localVelocity=new Vec3();
   private courtPhase:CourtPhase='neutral';private courtPhaseAge=0;private courtMoveDelay=0;private development=50;
@@ -288,10 +285,7 @@ export class Character {
     const racket=this.holdsRacket(),hands={handRestWeight:this.state==='idle'&&!this.propKind&&!this.interactionTarget&&!this.affection&&this.socialGesture==='none'&&this.interactionWeight<.001?1:0,handLapWeight:this.state==='sit'&&!this.propKind&&!this.affection&&!racket?1:0,handGripL:racket?(this.state==='swingBackhand'?1:this.state==='ready'||this.state==='shuffle'?.45:0):0,handGripR:racket?1:this.state==='drink'||this.propKind==='cup'?.45:0,handRacketWeight:racket?1:0};
     for(const key of Object.keys(hands) as (keyof typeof hands)[])this.handPose[key]=expDamp(this.handPose[key],hands[key],12,dt);
     this.clubIdleRelax=expDamp(this.clubIdleRelax,this.canRelaxClubIdle()?1:0,7,dt);
-    if(this.spec.presentation==='feminine'&&this.spec.appearance==='human'){
-      const pose=this.pose();this.authoredHands=advanceAuthoredHands(pose,this.position,this.yaw,this.authoredHands,dt);
-      if(this.spec.avatar==='taylor')this.ponytail.update(dt,pose.headYaw,this.localVelocity,this.gaitPhase);
-    }
+    if(this.spec.presentation==='feminine'&&this.spec.appearance==='human')this.authoredHands=advanceAuthoredHands(this.pose(),this.position,this.yaw,this.authoredHands,dt);
     this.prevPosition=this.position.clone();
   }
 
@@ -515,7 +509,7 @@ export class Character {
     if(!shot&&!moving&&this.socialGesture==='think'){torsoCenter.add(this.localVector(0,0,.035));shoulderL.add(this.localVector(0,0,.045));shoulderR.add(this.localVector(0,0,.045));}
     const headStabilize=moving?stepLift*gaitStyle.headStabilize:0;const head=this.worldLocal(pelvisShiftX*.25,1.80+baseY+actingLift+breathe-knee+splitHop+clip.headNod-headStabilize+(!shot&&!moving&&(this.socialGesture==='nod'||this.socialGesture==='laugh')?Math.sin(time*6)*.022:0),.01+pelvisShiftZ*.45,headYaw);
     const elbowL=Vec3.lerp(shoulderL,handL,.50).add(forward.clone().scale(.055)).add(right.clone().scale(-.035));const elbowR=Vec3.lerp(shoulderR,handR,.50).add(forward.clone().scale(.055)).add(right.clone().scale(.035));
-    return {baseY,breathe,walking:moving,gait,torsoYaw,hipYaw,headYaw,eyeYaw:clamp(angleDelta(headYaw,this.eyeAim),-.30,.30),right,forward,shoulderL,shoulderR,elbowL,elbowR,handL,handR,hipL,hipR,kneeL,kneeR,footL,footR,footPitchL,footPitchR,footYawL,footYawR,footRecoveryL,footRecoveryR,footPivotL,footPivotR,ponytail:this.spec.avatar==='taylor'&&this.spec.appearance==='human'?this.ponytail.angle.clone():undefined,torsoCenter,pelvisCenter,head,racketGrip,racketHandleTop,racketCenter,racketRot,lean,knee,shot,sp,face:{...this.facePose},weightShift,...this.handPose,...this.authoredHands};
+    return {baseY,breathe,walking:moving,gait,torsoYaw,hipYaw,headYaw,eyeYaw:clamp(angleDelta(headYaw,this.eyeAim),-.30,.30),right,forward,shoulderL,shoulderR,elbowL,elbowR,handL,handR,hipL,hipR,kneeL,kneeR,footL,footR,footPitchL,footPitchR,footYawL,footYawR,footRecoveryL,footRecoveryR,footPivotL,footPivotR,torsoCenter,pelvisCenter,head,racketGrip,racketHandleTop,racketCenter,racketRot,lean,knee,shot,sp,face:{...this.facePose},weightShift,...this.handPose,...this.authoredHands};
   }
 
   private localVector(x:number,y:number,z:number){const s=Math.sin(this.yaw),c=Math.cos(this.yaw);return new Vec3(c*x+s*z,y,-s*x+c*z);}
