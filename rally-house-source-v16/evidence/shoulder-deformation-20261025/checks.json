@@ -100,5 +100,21 @@
     "Sampled poses do not prove continuous motion quality",
     "Offline CPU-skinned geometry is not live browser/GPU evidence",
     "Frozen Blender references use original bone matrices and linear skinning; runtime skirt collision projection is absent"
-  ]
+  ],
+  "additionalRejectedTests": {
+    "correctiveSmooth": {
+      "factor": 0.5,
+      "iterations": 5,
+      "backhandDepth": 0.02633000087951365,
+      "serveDepth": 0.07097979655195327
+    },
+    "exactTorsoContactProjection": {
+      "clearance": 0.003,
+      "backhandDepth": 0.011074800152215347,
+      "serveDepth": 0.032124932737688294,
+      "backhandCrossings": 489,
+      "serveCrossings": 546
+    }
+  },
+  "nextRequiredDeliverable": "Authored shoulder/underarm garment geometry, skin weights and pose correctives on the verified existing rig; acceptance requires continuous shot/transition/replay and runtime visual checks."
 }

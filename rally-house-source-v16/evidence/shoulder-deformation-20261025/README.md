@@ -15,6 +15,14 @@ Human feedback after removing the ponytail experiment: the shoulder/clothing def
 
 Depths are approximate geometric ray measurements, not perceptual quality scores. Full values are in `checks.json`. Shoulder-support classification includes its extra joints; it does not silently count affected sleeve panels as torso.
 
+## Additional surface tests
+
+Blender Corrective Smooth (shoulder/underarm region only, factor .5, five iterations, pinned garment boundaries) softened the visible fold but increased sampled backhand .20 penetration from .0218 to .0263 and serve .70 from .0611 to .0710. Rejected.
+
+An offline contact projection used the measured posed torso triangles, with .003 clearance, and retained the original skeleton. It reduced sampled depth to .0111/.0321, but created additional triangle crossings and a visible contact ridge. Backhand crossings increased 272 → 489 and serve crossings 281 → 546 using the same classifier. Rejected; no proxy collider, renderer expansion or runtime contact system was added.
+
+A capability search found no Blender or Meshy integration. The available image/video generator is not a replacement for an editable, weighted garment mesh. No new plugin was suggested or installed.
+
 ## Next required garment change
 
 Author the shoulder cap and underarm transition as a continuous fitted surface against these actual poses, with appropriate skin weights and pose correctives. Simply increasing reach or removing humeral influence does not preserve the desired silhouette. The fixture makes the failing geometry directly editable; it is not proof that the garment has been repaired.
