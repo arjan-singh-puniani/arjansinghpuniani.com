@@ -179,14 +179,16 @@ export class Character {
             const heading = Vec3.sub(goal ?? target, this.position).normalize();
             const detour = new Vec3(this.position.x + heading.x * .3 + heading.z * 1.05, 0, this.position.z + heading.z * .3 - heading.x * 1.05);
             const dynamic = new Navigation([...this.nav.obstacles, ...blockers.map(c => ({ x: c.position.x, z: c.position.z, w: 1.24, d: 1.24 }))]);
-            const first = dynamic.clubPath(this.position, detour), last = goal ? dynamic.clubPath(detour, goal) : [];
+            dynamic.courtReserved = () => this.nav.courtReserved() && (!goal || !this.nav.onCourt(goal));
+            const outsideCourt = dynamic.courtReserved() && !dynamic.onCourt(this.position);
+            const first = outsideCourt && dynamic.onCourt(detour) ? [] : dynamic.clubPath(this.position, detour), last = goal ? dynamic.clubPath(detour, goal) : [];
             const path = first.length && last.length ? [...first, ...last] : goal ? dynamic.clubPath(this.position, goal) : [];
             if (path.length) {
                 this.path = path;
                 this.pathIndex = 0;
             }
             else {
-                const options = Array.from({ length: 16 }, (_, i) => { const a = i * Math.PI / 8; return new Vec3(this.position.x + Math.cos(a) * .5, 0, this.position.z + Math.sin(a) * .5); }).filter(p => this.nav.clearSegment(this.position, p) && blockers.every(c => Math.hypot(p.x - c.position.x, p.z - c.position.z) > Math.min(.84, Math.hypot(this.position.x - c.position.x, this.position.z - c.position.z)) && ((p.x - this.position.x) * (c.position.x - this.position.x) + (p.z - this.position.z) * (c.position.z - this.position.z) <= 0)));
+                const options = Array.from({ length: 16 }, (_, i) => { const a = i * Math.PI / 8; return new Vec3(this.position.x + Math.cos(a) * .5, 0, this.position.z + Math.sin(a) * .5); }).filter(p => (!outsideCourt || (!dynamic.onCourt(p) && this.nav.clubPath(this.position, p).length === 1)) && this.nav.clearSegment(this.position, p) && blockers.every(c => Math.hypot(p.x - c.position.x, p.z - c.position.z) > Math.min(.84, Math.hypot(this.position.x - c.position.x, this.position.z - c.position.z)) && ((p.x - this.position.x) * (c.position.x - this.position.x) + (p.z - this.position.z) * (c.position.z - this.position.z) <= 0)));
                 const cost = (p) => Vec3.sub(p, goal ?? target).len() + .4 * (heading.x * (p.z - this.position.z) - heading.z * (p.x - this.position.x));
                 options.sort((a, b) => cost(a) - cost(b));
                 for (const escape of options) {

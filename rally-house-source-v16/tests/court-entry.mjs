@@ -4,6 +4,19 @@ import {World} from '../dist/world/World.js';
 import {Vec3} from '../dist/rendering/Math3D.js';
 import {COURT} from '../dist/tennis/CourtGeometry.js';
 import {destinations} from '../dist/content/content.js';
+import {Navigation} from '../dist/world/Navigation.js';
+
+// A passing pedestrian must not turn into the reserved court to avoid a crowd.
+{
+ const g=simulation(),c=g.player,blocker=g.characters[0],nav=new Navigation();nav.courtReserved=()=>true;
+ c.nav=nav;c.crowd=[c,blocker];c.position.set(-3.2,0,2);blocker.position.set(-3.2,0,2.7);
+ c.path=[new Vec3(-3.2,0,5)];c.pathIndex=0;c.crowdCooldown=0;c.crowdStep(c.path[0],.1);
+ assert(c.path.length,'A blocked pedestrian retains an exit route');
+ let prior=c.position;
+ for(const p of c.path){for(let t=0;t<=1;t+=.01)assert(!nav.onCourt(Vec3.lerp(prior,p,t)),'Crowd detour enters reserved court');prior=p;}
+ c.setAnimation('walk');for(let frame=0;frame<900;frame++){c.update(1/60);assert(!nav.onCourt(c.position),'Passing pedestrian steps into a live court');}
+ assert(Vec3.sub(c.position,new Vec3(-3.2,0,5)).len()<.2,'Court-safe crowd avoidance must still arrive');
+}
 
 const world=new World(),nav=world.nav;nav.courtReserved=()=>true;
 for(const sign of [-1,1]){

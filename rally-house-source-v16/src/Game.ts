@@ -69,6 +69,7 @@ export class Game {
   private interactiveMatch: InteractiveMatchSystem | null = null;
   private championshipActivityId: string | null = null;
   private championshipOpponentId: string | null = null;
+  private queuedChampionship:{courtId:string|null;points:number}|null=null;
   private championshipPriorSpeed = 1;
   private championshipPriorPaused = false;
   private championshipRound = 1;
@@ -368,6 +369,8 @@ export class Game {
       return;
     }
 
+    this.queuedChampionship=null;this.ui.setTennisQueued(false);
+
     this.championshipPriorSpeed=this.clock.speed;
     this.championshipPriorPaused=this.clock.paused;
     this.championshipApproachSpeeds=new Map([this.player,opponent].map(c=>[c,c.speed]));
@@ -401,14 +404,20 @@ export class Game {
   private playTennis(){
     if(!this.playerAvatar){this.openAvatarPicker();return;}
     if(this.championship.active||this.performanceLab?.active||this.phoneCapture?.active)return;
-    const opponent=['leo','mika','coach','nia'].map(id=>this.byId(id)).find(c=>c&&championshipOpponentFor(c.id)&&!this.activities.busy(c.id));
-    if(!opponent||this.activities.reserved('court')){
-      this.ui.toast('A rally is already on. The court will be yours when they finish.');
+    if(this.queuedChampionship){this.queuedChampionship=null;this.ui.setTennisQueued(false);this.ui.toast('Match request cancelled.');return;}
+    const opponent=this.availableChampionshipOpponent();
+    if(!opponent||this.activities.reserved('court')||this.activities.busy('player')){
+      const court=this.activities.active.find(a=>a.resource==='court'),rally=court?.kind==='match'?this.socialRally:this.rally;
+      this.queuedChampionship={courtId:court?.id??null,points:court?.phase==='active'&&rally?Object.values(rally.score).reduce((sum,n)=>sum+n,0):0};
+      this.clock.paused=false;this.ui.setTennisQueued(true);
+      this.ui.toast('You’re next. Tap Queued to cancel.');
       this.camera.nudgeFocus(1,0,.6);
       return;
     }
     this.startChampionship(opponent);
   }
+
+  private availableChampionshipOpponent(){return ['leo','mika','coach','nia'].map(id=>this.byId(id)).find(c=>c&&championshipOpponentFor(c.id)&&!this.activities.busy(c.id));}
 
   private createInteractiveMatch(
     opponent:Character,
@@ -1293,7 +1302,8 @@ export class Game {
       if(a.phase==='active'){
         if(a.resource==='court'){
           const r=a.kind==='match'?this.socialRally:this.rally;r.update(step);
-          const finished=a.kind==='lesson'?this.evidence.complete:a.kind==='match'?Math.max(...Object.values(r.score))>=3||r.sessionHits>=60:r.sessionHits>=16;
+          const requested=a.kind!=='lesson'&&this.queuedChampionship?.courtId===a.id&&Object.values(r.score).reduce((sum,n)=>sum+n,0)>this.queuedChampionship.points;
+          const finished=requested||(a.kind==='lesson'?this.evidence.complete:a.kind==='match'?Math.max(...Object.values(r.score))>=3||r.sessionHits>=60:r.sessionHits>=16);
           if(finished){this.activities.transition(a,'resolving');r.enabled=false;this.evidence.practicing=false;people.forEach(c=>c.setAnimation('watch'));}
         }else if(Vec3.sub(people[0].position,people[1].position).len()>1.8){this.cancelActivity(a);continue;}else if(a.phaseTime>=10)this.activities.transition(a,'resolving');
       }
@@ -1303,6 +1313,10 @@ export class Game {
     if(this.activities.active.some(a=>a.kind==='touch'&&a.phase==='active'&&this.touchRuns.get(a.id)?.touch.watchCourt)){
       const ball=this.interactiveMatch?.ball.active?this.interactiveMatch.ball:this.socialRally.enabled?this.socialRally.ball:this.rally.ball;
       this.player.setLook(ball.active?ball.position:new Vec3(1,1,0));
+    }
+    // A human invitation gets the newly free court before autonomous club decisions.
+    if(this.queuedChampionship&&!this.championship?.active&&!this.performanceLab?.active&&!this.phoneCapture?.active&&!this.activities.reserved('court')&&!this.activities.busy('player')){
+      const opponent=this.availableChampionshipOpponent();if(opponent){this.startChampionship(opponent);return;}
     }
     if(this.queuedLesson&&Math.floor(this.everyday.time)%5===0&&Math.floor(this.everyday.time-step)%5!==0)this.traceCoaching('waiting',{key:this.queuedLesson,active:this.activities.active.map(a=>({kind:a.kind,phase:a.phase,people:a.participants}))});
     // Low frequency, state-derived opportunities. No autonomous camera control.

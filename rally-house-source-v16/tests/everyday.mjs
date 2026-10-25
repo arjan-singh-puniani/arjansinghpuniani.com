@@ -22,7 +22,7 @@ test('Invalid everyday state fails visibly instead of propagating NaN',()=>{asse
 test('v13 saves migrate unchanged and newly written envelopes use schema 11',()=>{assert.equal(CURRENT_SAVE_VERSION,11);const s={clock:{minutes:600,day:2,speed:1,paused:false},coins:17,mikaProgress:44,player:{x:0,z:0},relationships:{}};assert.equal(migrateGameSave(5,s).coins,17);assert.equal(new SaveSystem().version,11)});
 test('An everyday caption has no wall-clock expiry while the simulation is paused',()=>{
  const oldWindow=globalThis.window,oldDocument=globalThis.document;let timers=0;
- const elements=new Map();globalThis.document={getElementById:id=>{if(!elements.has(id))elements.set(id,{textContent:'',classList:{add(){},remove(){}}});return elements.get(id)}};globalThis.window={setTimeout:()=>{timers++;return 1}};
+ const elements=new Map();globalThis.document={getElementById:id=>{if(!elements.has(id))elements.set(id,{textContent:'',classList:{add(){},remove(){},toggle(){}}});return elements.get(id)}};globalThis.window={setTimeout:()=>{timers++;return 1}};
  try{HUD.prototype.showSpeech.call({},'Barbara','The tea can wait.',0);assert.equal(timers,0);assert.equal(elements.get('speechText').textContent,'The tea can wait.');HUD.prototype.showSpeech.call({},'Leo','A normal brief comment.',3500);assert.equal(timers,1);}finally{globalThis.window=oldWindow;globalThis.document=oldDocument;}
 });
 test('Cafe-to-bonsai circulation does not cut through a reserved playing area',()=>{

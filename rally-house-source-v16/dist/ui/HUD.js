@@ -99,6 +99,7 @@ export class HUD {
         byId('speedBtn').textContent = `${speed}×`;
     }
     setObjective(title, text) { byId('objectiveTitle').textContent = title; byId('objectiveText').textContent = text; }
+    setTennisQueued(queued) { const button = byId('tennisBtn'); button.textContent = queued ? 'Queued ×' : 'Play tennis ↗'; button.setAttribute('aria-label', queued ? 'Cancel queued tennis match' : 'Play tennis'); button.title = queued ? 'Your match starts when the court and an opponent are free. Tap to cancel.' : ''; }
     showContext(eyebrow, title, text, meta, actions) { this.context.classList.remove('arrival-card'); this.onPanelOpen(); byId('contextEyebrow').textContent = eyebrow.toUpperCase(); byId('contextTitle').textContent = title; byId('contextText').textContent = text; const mb = byId('contextMeta'); mb.innerHTML = ''; for (const x of meta) {
         const s = document.createElement('span');
         s.textContent = x;
