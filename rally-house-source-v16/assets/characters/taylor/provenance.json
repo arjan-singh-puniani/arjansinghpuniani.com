@@ -209,7 +209,7 @@
     "coach-kit.webp": "5e5903978e631c61fa465836f43848c9a310b34c0c1d71ac36064a3ad1bcc76f",
     "coach-skirt.webp": "45ecbb67c6471328682a351e587439c709310b8fcba72e875120424e4cdf6246",
     "hair.webp": "a549fa4b5f121e176e18a2d8fde0f6750b46ca778f93daec700540609ef16df7",
-    "kit.webp": "81e0a7b1b29ea03ff544656b8e20b18d66f5865f38ac69911f6019b9bf7b6b2b",
+    "kit.webp": "7b22adba72984860acb331292cd99941c547f73d72e9d3e08c69f800efd191d0",
     "mika-kit.webp": "7c8a911c59932c96b529a62a2a2a68a6216861494fcb7a626460069d80ed4556",
     "mika-skirt.webp": "67bf2e24d1db65c86be0920aa34f3a7b792ef3928a48e0c777d5a27ce3f0458b",
     "nia-kit.webp": "9b87a1240c6f442005973a2b6b7ccb86786a5964135176e9f538ac37db726470",
@@ -287,7 +287,7 @@
     "https://static.makehumancommunity.org/assets/assetpacks/shirts03.html"
   ],
   "authoringScripts": {
-    "bake-authored-athlete.py": "126e38ae7f1a7acd4cd42c68dd2a7b1bffc8d21f028df12252d375d26094c4b6",
+    "bake-authored-athlete.py": "5727995d5786e04a9a0dd79ab32c7614a41da611a2849b77e6d33b7585643bbb",
     "fit-athlete-kit.py": "45f342144d1c7c32c8db2065adeb40da11ba304884ad6ed1160c2734a0e0c62c",
     "fit-athlete-head.py": "4cc1fcdec5710d4b11e052b39f08bb8443cc715825518a2c785f009864b85c2f"
   }

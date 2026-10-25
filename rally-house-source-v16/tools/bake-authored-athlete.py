@@ -278,10 +278,10 @@ for name,p in textures.items():
  im=Image.open(p);im.thumbnail((2048,2048) if name=='skin.webp' else (1024,1024));im.save(OUT/name,'WEBP',quality=91,method=6)
 atlas=Image.new('RGB',(1024,2048),(40,67,172));atlas.paste(Image.open(textures['kit.webp']).convert('RGB').resize((1024,1024)),(0,0))
 y,x=np.mgrid[1024:2048,0:1024];height=2.5+((1-y/2048)-.02)/.46*(5.15-2.5);width=np.abs((x/1024-.5)*4)
-cloth=np.full((1024,1024,3),(40,67,172),dtype=np.uint8);cloth[(width>.95)&(height<3.6)]=(18,35,68);cloth[height>4.95]=(210,231,89)
+cloth=np.full((1024,1024,3),(40,67,172),dtype=np.uint8);cloth[height>4.95]=(210,231,89)
 # Sleeve strip maps physical wrist distance, giving both cuffs a continuous edge.
 cloth[:,0:42]=(40,67,172);cloth[(y>1971)&(x<42)]=(210,231,89)
-atlas.paste(Image.fromarray(cloth),(0,1024));atlas.save(OUT/'kit.webp','WEBP',quality=91,method=6)
+atlas.paste(Image.fromarray(cloth),(0,1024));atlas.save(OUT/'kit.webp','WEBP',lossless=True,method=6)
 # Match the body’s neutral neck pigment to the authored head without tinting facial detail.
 body_albedo=np.asarray(Image.open(textures['skin.webp']).convert('RGB').resize((2048,1024)),dtype=float)
 body_albedo=Image.fromarray(np.clip(body_albedo*np.array([1.09,1.025,.95]),0,255).astype('uint8'))

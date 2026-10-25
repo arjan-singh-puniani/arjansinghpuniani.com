@@ -1,0 +1,28 @@
+{
+  "baseline": "42c480f68df455ccd228c4baaba44ee2e01b9f5d",
+  "humanRuntimeFeedback": "pending",
+  "texture": {
+    "beforeBytes": 53316,
+    "afterBytes": 224342,
+    "dimensions": [
+      1024,
+      2048
+    ],
+    "upperAtlasDecodedPixels": "identical",
+    "shirt": "continuous blue, lime collar/cuffs preserved"
+  },
+  "geometrySha256": "2fbe4a9887e367978ae2fcf054c7ae0ba8a6325c7b3cc7cb64598b3c0ffde604",
+  "geometryChanged": false,
+  "checks": [
+    "All texture and authoring hashes match provenance",
+    "Native bake syntax",
+    "Source/public release parity",
+    "Matched offline before/after render"
+  ],
+  "rejected": "Lossy re-encode altered retained shorts pixels",
+  "limits": [
+    "One-time texture download increases by 171026 bytes",
+    "Offline render omits GPU skirt projection and runtime lighting",
+    "No fresh live-browser preference or frame-time measurement"
+  ]
+}
