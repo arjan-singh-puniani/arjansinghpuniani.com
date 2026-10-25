@@ -1,0 +1,104 @@
+{
+  "baselineCommit": "994298b3",
+  "humanFeedback": "Both equally \u2014 backhand preparation and serve follow-through",
+  "runtimeChangeKept": false,
+  "fixtureRegistrationError": {
+    "backhand": 1.0782769095385447e-06,
+    "serve": 1.134447188633203e-06
+  },
+  "depthsApproximateGameUnits": [
+    {
+      "state": "idle",
+      "age": 3,
+      "baseline": 0,
+      "staticWeights": 0,
+      "shoulderArc": 0,
+      "shoulderSupport": 0
+    },
+    {
+      "state": "ready",
+      "age": 1,
+      "baseline": 0,
+      "staticWeights": 0.019463966147574896,
+      "shoulderArc": 0,
+      "shoulderSupport": 0.009493661302164363
+    },
+    {
+      "state": "swingBackhand",
+      "age": 0.1,
+      "baseline": 0.012509903776135478,
+      "staticWeights": 0.013569600301007817,
+      "shoulderArc": 0.06872643162927192,
+      "shoulderSupport": 0
+    },
+    {
+      "state": "swingBackhand",
+      "age": 0.2,
+      "baseline": 0.021803399904190335,
+      "staticWeights": 0.018527125391363974,
+      "shoulderArc": 0.07584681488559608,
+      "shoulderSupport": 0
+    },
+    {
+      "state": "swingBackhand",
+      "age": 0.35,
+      "baseline": 0,
+      "staticWeights": 0,
+      "shoulderArc": 0.0646483656028814,
+      "shoulderSupport": 0
+    },
+    {
+      "state": "swingBackhand",
+      "age": 0.5,
+      "baseline": 0.030004922963248748,
+      "staticWeights": 0.03244323226428453,
+      "shoulderArc": 0.059313860578693506,
+      "shoulderSupport": 0
+    },
+    {
+      "state": "swingForehand",
+      "age": 0.2,
+      "baseline": 0,
+      "staticWeights": 0,
+      "shoulderArc": 0,
+      "shoulderSupport": 0
+    },
+    {
+      "state": "swingForehand",
+      "age": 0.35,
+      "baseline": 0,
+      "staticWeights": 0,
+      "shoulderArc": 0,
+      "shoulderSupport": 0
+    },
+    {
+      "state": "serve",
+      "age": 0.5,
+      "baseline": 0,
+      "staticWeights": 0,
+      "shoulderArc": 0,
+      "shoulderSupport": 0
+    },
+    {
+      "state": "serve",
+      "age": 0.7,
+      "baseline": 0.06105388488692076,
+      "staticWeights": 0.03956306827296702,
+      "shoulderArc": 0.11345094618603474,
+      "shoulderSupport": 0.034258195404339
+    },
+    {
+      "state": "volley",
+      "age": 0.4,
+      "baseline": 0,
+      "staticWeights": 0,
+      "shoulderArc": 0,
+      "shoulderSupport": 0
+    }
+  ],
+  "limits": [
+    "Sampled poses do not prove continuous motion quality",
+    "Offline CPU-skinned geometry is not live browser/GPU evidence",
+    "Frozen Blender references use original bone matrices and linear skinning; runtime skirt collision projection is absent"
+  ]
+}
