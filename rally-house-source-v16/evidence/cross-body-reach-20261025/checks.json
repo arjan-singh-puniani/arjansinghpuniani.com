@@ -1,0 +1,146 @@
+{
+  "baseline": "e9385513d9ece7310292ca6333968be8155aab0a",
+  "humanRuntimeFeedback": "pending",
+  "samples": [
+    {
+      "state": "idle",
+      "age": 3,
+      "distantSleeveTorsoPairs": {
+        "before": 0,
+        "after": 0
+      },
+      "approximateMaxRayDepth": {
+        "before": 0,
+        "after": 0
+      }
+    },
+    {
+      "state": "ready",
+      "age": 1,
+      "distantSleeveTorsoPairs": {
+        "before": 0,
+        "after": 0
+      },
+      "approximateMaxRayDepth": {
+        "before": 0,
+        "after": 0
+      }
+    },
+    {
+      "state": "swingBackhand",
+      "age": 0.1,
+      "distantSleeveTorsoPairs": {
+        "before": 156,
+        "after": 79
+      },
+      "approximateMaxRayDepth": {
+        "before": 0.03861330210689837,
+        "after": 0.012509903776135478
+      }
+    },
+    {
+      "state": "swingBackhand",
+      "age": 0.2,
+      "distantSleeveTorsoPairs": {
+        "before": 175,
+        "after": 95
+      },
+      "approximateMaxRayDepth": {
+        "before": 0.049532207092220504,
+        "after": 0.021803399904190335
+      }
+    },
+    {
+      "state": "swingBackhand",
+      "age": 0.35,
+      "distantSleeveTorsoPairs": {
+        "before": 0,
+        "after": 0
+      },
+      "approximateMaxRayDepth": {
+        "before": 0,
+        "after": 0
+      }
+    },
+    {
+      "state": "swingBackhand",
+      "age": 0.5,
+      "distantSleeveTorsoPairs": {
+        "before": 94,
+        "after": 84
+      },
+      "approximateMaxRayDepth": {
+        "before": 0.03792163449771088,
+        "after": 0.030004922963248748
+      }
+    },
+    {
+      "state": "swingForehand",
+      "age": 0.2,
+      "distantSleeveTorsoPairs": {
+        "before": 0,
+        "after": 0
+      },
+      "approximateMaxRayDepth": {
+        "before": 0,
+        "after": 0
+      }
+    },
+    {
+      "state": "swingForehand",
+      "age": 0.35,
+      "distantSleeveTorsoPairs": {
+        "before": 0,
+        "after": 0
+      },
+      "approximateMaxRayDepth": {
+        "before": 0,
+        "after": 0
+      }
+    },
+    {
+      "state": "serve",
+      "age": 0.5,
+      "distantSleeveTorsoPairs": {
+        "before": 0,
+        "after": 0
+      },
+      "approximateMaxRayDepth": {
+        "before": 0,
+        "after": 0
+      }
+    },
+    {
+      "state": "serve",
+      "age": 0.7,
+      "distantSleeveTorsoPairs": {
+        "before": 221,
+        "after": 167
+      },
+      "approximateMaxRayDepth": {
+        "before": 0.07450675715030919,
+        "after": 0.06105388488692076
+      }
+    },
+    {
+      "state": "volley",
+      "age": 0.4,
+      "distantSleeveTorsoPairs": {
+        "before": 0,
+        "after": 0
+      },
+      "approximateMaxRayDepth": {
+        "before": 0,
+        "after": 0
+      }
+    }
+  ],
+  "regression": "Expanded jersey test fails on baseline backhand preparation; all 60 poses pass with the candidate, while ready and forehand still require zero distant sleeve/torso intersections",
+  "rejected": "Larger shoulder reach cleared more intersections but visibly stretched the shoulder; elbow-guide changes worsened serve recovery",
+  "limits": [
+    "Residual jersey intersections remain",
+    "Depth is an approximate torso-ray distance in game-world units, not a physical millimeter measure",
+    "Offline image omits runtime lighting, GPU skirt projection and rigid racket strings/shaft",
+    "No fresh agent live-browser or frame-time measurement"
+  ]
+}

@@ -103,7 +103,7 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
  // Reaching shoulder blades must not drag the sternum and jersey after them.
  if(constraints.armLengths)p.chest=Vec3.lerp(p.shoulderL,p.shoulderR,.5);
  // The shoulder blade advances when an arm reaches across the chest.
- if(constraints.human&&stroke){const center=Vec3.lerp(p.shoulderL,p.shoulderR,.5);for(const side of ['L','R'] as const){const x=Vec3.dot(Vec3.sub(p[`hand${side}`],center),torsoRight)*(side==='L'?-1:1);p[`shoulder${side}`].add(torsoForward.clone().scale(.12*stroke*smooth((.10-x)/.30)));}}
+ if(constraints.human&&stroke){const center=Vec3.lerp(p.shoulderL,p.shoulderR,.5);for(const side of ['L','R'] as const){const x=Vec3.dot(Vec3.sub(p[`hand${side}`],center),torsoRight)*(side==='L'?-1:1);p[`shoulder${side}`].add(torsoForward.clone().scale(.18*stroke*smooth((.10-x)/.30)));}}
  // A constrained low ball or prop is reached with the body, rather than by
  // stretching a forearm through the floor. The hand keeps ownership of contact.
  for(const [side,weight] of [['R',constraints.rightWorld],['L',constraints.leftWorld]] as const){

@@ -171,7 +171,7 @@ export function adultTaylorPose(source, root, yaw, constraints) {
         const center = Vec3.lerp(p.shoulderL, p.shoulderR, .5);
         for (const side of ['L', 'R']) {
             const x = Vec3.dot(Vec3.sub(p[`hand${side}`], center), torsoRight) * (side === 'L' ? -1 : 1);
-            p[`shoulder${side}`].add(torsoForward.clone().scale(.12 * stroke * smooth((.10 - x) / .30)));
+            p[`shoulder${side}`].add(torsoForward.clone().scale(.18 * stroke * smooth((.10 - x) / .30)));
         }
     }
     // A constrained low ball or prop is reached with the body, rather than by
