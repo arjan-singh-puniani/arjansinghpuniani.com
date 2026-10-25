@@ -1,0 +1,9 @@
+{
+  "humanFeedback": "no i like it keep it up",
+  "scope": "The supplied Performance Lab frame at replay 9.02 / 11.90 seconds, AnatomyMotion view, right elbow readout 21 degrees. This is positive visual feedback, not a new clipping report.",
+  "screenshotFilename": "Screenshot 2026-10-25 at 4.05.15\u202fPM.png",
+  "screenshotSha256": "021db46ac8ee5fa2eec629f6b0724edddcdace780905a6721f9d40853c92c24a",
+  "decision": "Preserve the displayed character pose/look and accepted walking, hands-on-hips and stroke footwork. Do not replace them with the rejected deformation candidates.",
+  "limits": "A still-frame approval does not establish natural continuous motion or completion of the full hero/tennis quality gate. The screenshot does not identify the loaded build hash.",
+  "privacy": "Screenshot pixels are retained in the chat attachment only; browser chrome and unrelated personal UI are not copied into the repository."
+}

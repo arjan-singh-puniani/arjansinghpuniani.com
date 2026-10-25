@@ -4,6 +4,10 @@ Human feedback after removing the ponytail experiment: the shoulder/clothing def
 
 `shoulder-deformation.blend` contains the existing licensed game mesh, its original 19-bone rig and packed textures. Its three discrete frames are source bind, actual backhand preparation at .20 seconds, and actual serve recovery at .70 seconds. They are reference poses, not an animation. Blender-evaluated garment vertices match exported CPU-skinned runtime geometry to within 0.00000114 game units. The fixture omits runtime lighting, GPU skirt collision projection and rigid racket parts.
 
+## Subsequent human approval
+
+The user supplied the October 25, 4:05 PM Performance Lab screenshot (replay 9.02 / 11.90 seconds, AnatomyMotion, right elbow 21°), then clarified: **“no i like it keep it up.”** This frame is an approved visual reference, not a new defect report. Preserve its pose/look and the accepted walking, hands-on-hips and stroke footwork. The rejected deformation experiments remain rejected. Do not treat this screenshot as a request to replace the character asset or as proof that the entire quality gate has passed. Screenshot metadata is in `human-frame-approval.json`; private browser chrome is not committed.
+
 ## What failed
 
 | Candidate | Observed failure | Decision |
