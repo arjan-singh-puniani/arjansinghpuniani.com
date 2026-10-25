@@ -11,6 +11,7 @@ import { humanTaylorHead } from '../animation/TaylorHuman.js';
 import { CHARACTER_SKIN, HUMAN_TENNIS_SKIN, ATHLETE_WARDROBE, skinMatrices, rigFromPose } from '../animation/CharacterSkin.js';
 import { CAST_DESIGN } from '../content/CastDesign.js';
 import { authoredAthleteMeshes, authoredArmLengths, advanceAuthoredHands } from '../animation/AuthoredAthlete.js';
+import { PonytailMotion } from '../animation/PonytailMotion.js';
 export function locomotionStyleFor(id) {
     if (id === 'coach')
         return { cadence: 4.22, bounce: .018, armSwing: .155, hipSwing: .042, torsoCounter: .048, stride: .94, headStabilize: .72, turnSharpness: 8.0 };
@@ -98,6 +99,7 @@ export class Character {
     outgoingTarget = null;
     facePose = { smile: .08, mouthOpen: 0, browRaise: .05, squint: 0, focus: .08 };
     authoredHands;
+    ponytail = new PonytailMotion();
     handPose = { handRestWeight: 1, handLapWeight: 0, handGripL: 0, handGripR: 0, handRacketWeight: 0 };
     lastPose = null;
     prevPosition;
@@ -497,8 +499,12 @@ export class Character {
         for (const key of Object.keys(hands))
             this.handPose[key] = expDamp(this.handPose[key], hands[key], 12, dt);
         this.clubIdleRelax = expDamp(this.clubIdleRelax, this.canRelaxClubIdle() ? 1 : 0, 7, dt);
-        if (this.spec.presentation === 'feminine' && this.spec.appearance === 'human')
-            this.authoredHands = advanceAuthoredHands(this.pose(), this.position, this.yaw, this.authoredHands, dt);
+        if (this.spec.presentation === 'feminine' && this.spec.appearance === 'human') {
+            const pose = this.pose();
+            this.authoredHands = advanceAuthoredHands(pose, this.position, this.yaw, this.authoredHands, dt);
+            if (this.spec.avatar === 'taylor')
+                this.ponytail.update(dt, pose.headYaw, this.localVelocity, this.gaitPhase);
+        }
         this.prevPosition = this.position.clone();
     }
     racketContactPoint() { const pose = this.pose(); return pose.racketCenter.clone(); }
@@ -1027,7 +1033,7 @@ export class Character {
         const head = this.worldLocal(pelvisShiftX * .25, 1.80 + baseY + actingLift + breathe - knee + splitHop + clip.headNod - headStabilize + (!shot && !moving && (this.socialGesture === 'nod' || this.socialGesture === 'laugh') ? Math.sin(time * 6) * .022 : 0), .01 + pelvisShiftZ * .45, headYaw);
         const elbowL = Vec3.lerp(shoulderL, handL, .50).add(forward.clone().scale(.055)).add(right.clone().scale(-.035));
         const elbowR = Vec3.lerp(shoulderR, handR, .50).add(forward.clone().scale(.055)).add(right.clone().scale(.035));
-        return { baseY, breathe, walking: moving, gait, torsoYaw, hipYaw, headYaw, eyeYaw: clamp(angleDelta(headYaw, this.eyeAim), -.30, .30), right, forward, shoulderL, shoulderR, elbowL, elbowR, handL, handR, hipL, hipR, kneeL, kneeR, footL, footR, footPitchL, footPitchR, footYawL, footYawR, footRecoveryL, footRecoveryR, footPivotL, footPivotR, torsoCenter, pelvisCenter, head, racketGrip, racketHandleTop, racketCenter, racketRot, lean, knee, shot, sp, face: { ...this.facePose }, weightShift, ...this.handPose, ...this.authoredHands };
+        return { baseY, breathe, walking: moving, gait, torsoYaw, hipYaw, headYaw, eyeYaw: clamp(angleDelta(headYaw, this.eyeAim), -.30, .30), right, forward, shoulderL, shoulderR, elbowL, elbowR, handL, handR, hipL, hipR, kneeL, kneeR, footL, footR, footPitchL, footPitchR, footYawL, footYawR, footRecoveryL, footRecoveryR, footPivotL, footPivotR, ponytail: this.spec.avatar === 'taylor' && this.spec.appearance === 'human' ? this.ponytail.angle.clone() : undefined, torsoCenter, pelvisCenter, head, racketGrip, racketHandleTop, racketCenter, racketRot, lean, knee, shot, sp, face: { ...this.facePose }, weightShift, ...this.handPose, ...this.authoredHands };
     }
     localVector(x, y, z) { const s = Math.sin(this.yaw), c = Math.cos(this.yaw); return new Vec3(c * x + s * z, y, -s * x + c * z); }
     blendPose(a, b, t) {

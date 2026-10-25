@@ -1,0 +1,31 @@
+{
+  "baseline": "0b4c4bcd",
+  "humanRuntimeFeedback": "pending",
+  "motionChecks": {
+    "coreSamples": 242,
+    "strandSamples": 406,
+    "testAngleTipMovement": 0.05992076534451112,
+    "rootMovement": 0,
+    "peakActorAngle": 0.11564310013797939,
+    "peakActorTipMovement": 0.036479941530919095,
+    "maxReplayError": 0
+  },
+  "scope": "Existing core and textured strands share one weighted tail joint; scalp/face/body retain their original bones",
+  "checks": [
+    "Exact spring integration for a constant turn at 30/60/120 Hz",
+    "Pause, yaw wrap and settling",
+    "Pinned face/scalp/body and bounded real Character tip motion",
+    "Captured tail angles and fractional replay reconstruction",
+    "Loaded authored character/contact and wrist lengths",
+    "Approved walking/rest and stroke-footwork",
+    "Phone capture and Performance Lab",
+    "Core simulation and source/public release parity"
+  ],
+  "staleTest": "Lucresia fallback expected the old ponytail mesh; baseline also failed. The expectation now checks her already-rendered wavy style.",
+  "limits": [
+    "One weighted joint, not a multi-strand collision simulation",
+    "Existing hair-card silhouette/texture quality remains",
+    "No fresh live-browser/GPU frame-time observation",
+    "Offline image omits runtime lighting"
+  ]
+}

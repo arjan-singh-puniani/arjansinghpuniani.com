@@ -1,0 +1,11 @@
+{
+  "baseline": "0b4c4bcd",
+  "states": [
+    "walk",
+    "hands-on-hips",
+    "forehand",
+    "backhand",
+    "serve"
+  ],
+  "maxOriginalPoseDelta": 0
+}

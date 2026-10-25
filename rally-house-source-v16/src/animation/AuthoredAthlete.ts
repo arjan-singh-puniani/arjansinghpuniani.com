@@ -1,7 +1,7 @@
 import {Vec3,rigidFrame,invertRigid,interpolateRigidFrame,compose,transformPoint,smoothstep} from '../rendering/Math3D.js';
 import type {SkinnedMesh,RenderItem,SkinGeometry} from '../rendering/Renderer.js';
 import {inspectCharacterAsset,type AssetProvenance,type IntakeResult} from './CharacterAssetIntake.js';
-import {BONE,rigFromPose,skinMatrices,type RigPoseLocal} from './CharacterSkin.js';
+import {BONE,BONE_COUNT,rigFromPose,skinMatrices,type RigPoseLocal} from './CharacterSkin.js';
 import type {CharacterPose} from '../entities/Character.js';
 import {CAST_DESIGN} from '../content/CastDesign.js';
 import {humanHairMeshes} from './TaylorHuman.js';
@@ -80,7 +80,18 @@ export async function loadAuthoredAthlete(){
   for(const side of [0,1])for(let axis=0;axis<3;axis++){let lo=Infinity,hi=-Infinity;for(let i=0;i<eyes.length;i+=3)if((eyes[i]<0?0:1)===side){lo=Math.min(lo,eyes[i+axis]);hi=Math.max(hi,eyes[i+axis]);}centers[side*3+axis]=(lo+hi)/2;}
   looks.set(id,{parts,eyeCenters:centers,skin:id==='coach'?'#fff8ed':id==='mika'?'#f5dfcf':'#d7b6a2'});
  }
- bind.headUp=new Vec3(0,1,0);athlete={looks,parts:result.primitives,bind:bind as unknown as RigPoseLocal,images,gripSign:meta.gripSign,eyeCenters,neckRatio,neckDepth,spineRatio,spineDepth,armLengths:{...armLengths,wristOffsets}};
+ const parts=result.primitives.map(part=>{
+  if(!['skin','hair'].includes(part.materialSlot))return part;
+  const g=part.geometry,boneIndices=g.boneIndices.slice(),boneWeights=g.boneWeights.slice();
+  for(let v=0;v<g.positions.length/3;v++){
+   if(part.materialSlot==='skin'&&!(g.uvs![v*2]>.5&&g.uvs![v*2+1]>.8&&g.positions[v*3+2]<-.075))continue;
+   const flex=smoothstep(bind.head.y+.04,bind.head.y-.33,g.positions[v*3+1])*smoothstep(.12,.20,bind.head.z-g.positions[v*3+2]);
+   if(flex<=0)continue;
+   boneIndices.fill(0,v*4,v*4+4);boneWeights.fill(0,v*4,v*4+4);boneIndices[v*4]=BONE.head;boneIndices[v*4+1]=BONE_COUNT;boneWeights[v*4]=1-flex;boneWeights[v*4+1]=flex;
+  }
+  return {...part,geometry:{...g,id:g.id+':ponytail',boneIndices,boneWeights}};
+ });
+ bind.headUp=new Vec3(0,1,0);athlete={looks,parts,bind:bind as unknown as RigPoseLocal,images,gripSign:meta.gripSign,eyeCenters,neckRatio,neckDepth,spineRatio,spineDepth,armLengths:{...armLengths,wristOffsets}};
 }
 
 export const authoredArmLengths=()=>athlete?.armLengths;
@@ -116,7 +127,7 @@ export function advanceAuthoredHands(p:CharacterPose,position:Vec3,yaw:number,pr
 
 export function authoredAthleteMeshes(p:CharacterPose,position:Vec3,yaw:number,feet:{pitch:number;yaw:number}[],time:number,identity='taylor'):RenderItem[]|undefined{
  if(!athlete)return;
- const rig=rigFromPose(p,position,yaw);
+ const look=athlete.looks.get(identity),rig=rigFromPose(p,position,yaw);if(!look)rig.ponytail??=new Vec3();
  // The compact rig's internal ratios distort this authored torso; retain its source landmarks.
  rig.spine=Vec3.lerp(rig.pelvis,rig.chest,athlete.spineRatio).add(rig.forward.clone().scale(athlete.spineDepth));
  rig.neck=Vec3.lerp(rig.chest,rig.head,athlete.neckRatio).add(rig.forward.clone().scale(athlete.neckDepth));rig.headUp=new Vec3(0,1,0);rig.headForward=new Vec3(Math.sin(p.headYaw-yaw),0,Math.cos(p.headYaw-yaw));
@@ -130,7 +141,7 @@ export function authoredAthleteMeshes(p:CharacterPose,position:Vec3,yaw:number,f
  const seated=p.seatedWeight??0,crouch=(1-seated)*smoothstep(.08,.34,athlete.bind.pelvis.y-rig.pelvis.y);
  const drape:[number,number,number,number]=[seated*smoothstep(.5,.99,(thighPitch('L')+thighPitch('R'))/2),crouch,0,0];
  const sourceRig={bind:athlete.bind,pose:rig};
- const look=athlete.looks.get(identity),parts=look?.parts??athlete.parts;
+ const parts=look?.parts??athlete.parts;
  const meshes:SkinnedMesh[]=parts.map(part=>({poseRig:true,eyeCenters:part.materialSlot==='eyes'?(look?.eyeCenters??athlete!.eyeCenters):undefined,eyeYaw:part.materialSlot==='eyes'?p.eyeYaw??0:0,skirt:part.materialSlot==='skirt',rig:sourceRig,expression:part.materialSlot==='skirt'?drape:expression,handGrip,skin:part.geometry,boneMatrices:bones,position:new Vec3(position.x,0,position.z),rotation:new Vec3(0,yaw,0),color:part.materialSlot==='skin'&&look?look.skin:part.materialSlot==='hair'?'#65584f':'#ffffff',material:part.materialSlot==='skin'?'humanSkin':part.materialSlot==='eyes'?'iris':part.materialSlot==='teeth'?'ceramic':['hair','brows','lashes'].includes(part.materialSlot)?'groomedHair':'performanceKnit',diffuse:part.albedo?athlete!.images.get(look?(part.materialSlot==='skin'||part.materialSlot==='eyes'?'cast-skin.webp':part.materialSlot==='kit'?`${identity}-kit.webp`:part.materialSlot==='skirt'?`${identity}-skirt.webp`:part.albedo):part.albedo):undefined,alphaCutoff:part.alphaCutoff,doubleSided:part.doubleSided}));
  return look?[...meshes,...humanHairMeshes(p.head,p.headYaw,0,CAST_DESIGN[identity].head)]:meshes;
 }

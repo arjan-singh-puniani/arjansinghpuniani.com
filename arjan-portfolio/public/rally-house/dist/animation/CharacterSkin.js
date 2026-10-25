@@ -1,4 +1,4 @@
-import { Vec3, scaling, multiply, invertRigid, rigidFrame, transformPoint, interpolateRigidFrame } from '../rendering/Math3D.js';
+import { Vec3, scaling, multiply, invertRigid, rigidFrame, transformPoint, interpolateRigidFrame, compose } from '../rendering/Math3D.js';
 export const BONE = { pelvis: 0, spine: 1, chest: 2, neck: 3, head: 4, upperArmL: 5, foreArmL: 6, handL: 7, upperArmR: 8, foreArmR: 9, handR: 10, thighL: 11, shinL: 12, thighR: 13, shinR: 14, footL: 15, footR: 16, foreArmTwistL: 17, foreArmTwistR: 18 };
 export const BONE_COUNT = 19;
 /** The mesh and continuous replay use the same landmark-to-skin mapping. */
@@ -6,7 +6,7 @@ export function rigFromPose(p, root, yaw, relax = 0) {
     const local = (v) => { const dx = v.x - root.x, dz = v.z - root.z, s = Math.sin(yaw), c = Math.cos(yaw); return new Vec3(c * dx - s * dz, v.y, s * dx + c * dz); };
     const arm = (v, x, y) => Vec3.lerp(local(v), new Vec3(x, y + p.baseY - p.knee, -.015), relax);
     const chest = p.chest ?? Vec3.lerp(p.shoulderL, p.shoulderR, .5);
-    return { pelvis: local(p.pelvisCenter), spine: local(Vec3.lerp(p.pelvisCenter, p.torsoCenter, .62)), chest: local(chest), neck: local(Vec3.lerp(chest, p.head, .58)), head: local(p.head), upperArmL: local(p.shoulderL), foreArmL: arm(p.elbowL, -.397, 1.095), handL: arm(p.handL, -.36, .89), upperArmR: local(p.shoulderR), foreArmR: arm(p.elbowR, .397, 1.095), handR: arm(p.handR, .36, .89), thighL: local(p.hipL), shinL: local(p.kneeL), footL: local(p.footL), thighR: local(p.hipR), shinR: local(p.kneeR), footR: local(p.footR), forward: new Vec3(Math.sin(p.torsoYaw - yaw), 0, Math.cos(p.torsoYaw - yaw)) };
+    return { pelvis: local(p.pelvisCenter), spine: local(Vec3.lerp(p.pelvisCenter, p.torsoCenter, .62)), chest: local(chest), neck: local(Vec3.lerp(chest, p.head, .58)), head: local(p.head), upperArmL: local(p.shoulderL), foreArmL: arm(p.elbowL, -.397, 1.095), handL: arm(p.handL, -.36, .89), upperArmR: local(p.shoulderR), foreArmR: arm(p.elbowR, .397, 1.095), handR: arm(p.handR, .36, .89), thighL: local(p.hipL), shinL: local(p.kneeL), footL: local(p.footL), thighR: local(p.hipR), shinR: local(p.kneeR), footR: local(p.footR), forward: new Vec3(Math.sin(p.torsoYaw - yaw), 0, Math.cos(p.torsoYaw - yaw)), ponytail: p.ponytail?.clone() };
 }
 const bind = {
     pelvis: new Vec3(0, .79, 0), spine: new Vec3(0, 1.05, .01), chest: new Vec3(0, 1.34, .015), neck: new Vec3(0, 1.56, .01), head: new Vec3(0, 1.78, .01),
@@ -66,7 +66,7 @@ export function skinMatrices(p, restPose = bind) {
             p[`wrist${side}`] = new Vec3(wrist.x, wrist.y, wrist.z);
         }
     }
-    const out = new Float32Array(BONE_COUNT * 16), frames = [];
+    const out = new Float32Array((BONE_COUNT + (p.ponytail ? 1 : 0)) * 16), frames = [];
     for (let i = 0; i < BONE_COUNT; i++) {
         const d = defs[i], length = Vec3.sub(endpoint(p, d), jointPoint(p, d.joint)).len(), rest = Vec3.sub(endpoint(restPose, d), jointPoint(restPose, d.joint)).len(), rigid = d.joint.startsWith('hand') || d.joint.startsWith('foot') || restPose !== bind && d.joint === 'head';
         let frame = frameFor(p, d);
@@ -90,6 +90,11 @@ export function skinMatrices(p, restPose = bind) {
         frames[i] = frame;
         const m = multiply(multiply(frame, scaling(new Vec3(1, rigid ? 1 : length / Math.max(.001, rest), 1))), inverse[i]);
         out.set(m, i * 16);
+    }
+    if (p.ponytail) {
+        // shortcut: one weighted tail joint; author a chain if longer hairstyles need independent bends.
+        const tie = restPose.head.clone().add(new Vec3(0, .05, -.17)), bend = multiply(compose(tie, p.ponytail), compose(tie.clone().scale(-1)));
+        out.set(multiply(out.subarray(BONE.head * 16, (BONE.head + 1) * 16), bend), BONE_COUNT * 16);
     }
     return out;
 }
