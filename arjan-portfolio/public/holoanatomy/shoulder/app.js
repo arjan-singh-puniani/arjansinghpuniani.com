@@ -3,6 +3,10 @@ import { ShoulderScene } from "./scene.js";
 import { bindInteraction } from "./interaction.js";
 import {
   createState,
+  ATLAS_GROUPS,
+  ATLAS_IDS,
+  ATLAS_VIEWS,
+  atlasViewFor,
   PRESETS,
   SITS,
   CURRICULUM,
@@ -42,9 +46,10 @@ window.addEventListener("shoulder-error", (e) => fail(e.detail));
 
 function initialize() {
   $("view-select").innerHTML = Object.entries(PRESETS)
-    .map(([id, p]) => `<option value="${id}">${p.label}</option>`)
+    .map(([id, p]) => `<option value="${id}" ${ATLAS_VIEWS[id] && scene.atlasError ? "disabled" : ""}>${p.label}</option>`)
     .join("");
   $("view-select").onchange = (e) => {
+    if (ATLAS_VIEWS[e.target.value]) { openAtlas(e.target.value); return; }
     state.selected = null;
     state.isolated = false;
     reassemble(state);
@@ -74,7 +79,7 @@ function initialize() {
     $("structures-toggle").setAttribute("aria-expanded", String(show));
   };
   $("structure-list").innerHTML = [...scene.parts.values()]
-    .map((p) => `<button data-select="${p.id}">${escape(p.name)}</button>`)
+    .map((p) => `<button data-select="${p.id}">${escape(p.name)}${ATLAS_IDS.includes(p.id) ? " · joint study" : ""}</button>`)
     .join("");
   $("structure-list").onclick = (e) => {
     const b = e.target.closest("[data-select]");
@@ -229,6 +234,23 @@ function reset() {
   sync();
   renderPanel();
 }
+function openAtlas(view) {
+  if (!ATLAS_VIEWS[view] || scene.atlasError) return;
+  state.mode = "explore";
+  state.presenting = false;
+  state.study = null;
+  state.selected = null;
+  state.isolated = false;
+  reassemble(state);
+  scene.hover(null);
+  scene.applyView(view);
+  renderPanel();
+  document.querySelector(".inspector").scrollTop = 0;
+}
+function atlasNavigation() {
+  if (scene.atlasError) return '<p class="integrity" role="status">The additional joint study could not load. The cuff study remains available. Reload to retry.</p>';
+  return `<nav class="atlas-studies" aria-label="Inside the shoulder"><p class="kicker">INSIDE THE SHOULDER</p>${Object.entries(ATLAS_VIEWS).map(([id,v]) => `<button data-atlas-view="${id}" aria-pressed="${state.view === id}">${v.title}</button>`).join("")}</nav>`;
+}
 function select(id) {
   if (!id) {
     state.selected = null;
@@ -249,6 +271,12 @@ function select(id) {
     renderPanel();
     return;
   }
+  if (ATLAS_IDS.includes(id)) {
+    if (scene.atlasError) return;
+    const preset = PRESETS[state.view];
+    if (state.mode !== "explore" || !ATLAS_VIEWS[state.view] || ![...preset.visible, ...preset.ghost].includes(id))
+      openAtlas(atlasViewFor(id));
+  } else if (ATLAS_VIEWS[state.view]) scene.applyView(id === "FJ1504" ? "anterior" : "posterior");
   state.selected = id;
   scene.refresh();
   renderPanel();
@@ -270,12 +298,18 @@ function sync() {
       b.setAttribute("aria-pressed", String(state.mode === b.dataset.mode)),
     );
   $("view-select").value = state.view;
+  document.querySelector(".view-caption h1").textContent = ATLAS_VIEWS[state.view] ? "Inside the joint." : "Rotator cuff.";
+  document.querySelector(".inspector-top .lede").textContent = ATLAS_VIEWS[state.view] ? "Explore the deeper shoulder." : "Understand the cuff from every side.";
+  $("structures-toggle").querySelector("span").textContent = scene.parts.size;
+  $("source-summary").textContent = ATLAS_VIEWS[state.view] ? "Z-Anatomy · source-aligned joint study" : "BodyParts3D · Release 4.0";
   $("view-purpose").textContent =
     state.mode === "learn" && state.study
       ? FUNCTION_STUDIES[state.study].title
       : PRESETS[state.view].purpose;
   $("crop-note").textContent =
-    state.view === "vascular"
+    ATLAS_VIEWS[state.view]
+      ? "Z-Anatomy specimen · source relationships preserved"
+      : state.view === "vascular"
       ? "Regional vessels · incomplete source coverage"
       : "Proximal view · distal shaft cropped";
   $("atlas-toggle").setAttribute("aria-pressed", String(state.atlas));
@@ -291,7 +325,7 @@ function detail(id) {
   const c = CURRICULUM[id],
     p = scene.parts.get(id);
   if (!p) return "";
-  return `<p class="kicker">SELECTED STRUCTURE · ${p.id}</p><h2>${escape(name(id))}</h2><p class="integrity">SOURCE GEOMETRY · ${escape(p.fma)}<br>${p.faceCount.toLocaleString()} source faces · BodyParts3D 4.0</p><div class="action-row"><button data-action="focus">Focus <small>F</small></button><button data-action="isolate" aria-pressed="${state.isolated}">Isolate</button><button data-action="clear">Clear</button></div>${
+  return `<p class="kicker">SELECTED STRUCTURE · ${p.id}</p><h2>${escape(name(id))}</h2><p class="integrity">SOURCE GEOMETRY · ${escape(p.fma || p.sourceObject)}<br>${p.triangleCount.toLocaleString()} triangles · ${escape(p.source)}</p><div class="action-row"><button data-action="focus">Focus <small>F</small></button><button data-action="isolate" aria-pressed="${state.isolated}">Isolate</button><button data-action="clear">Clear</button></div>${
     c
       ? `<p class="kicker">CURRICULUM TEXT</p><dl>${[
           ["Origin", c.origin],
@@ -305,7 +339,7 @@ function detail(id) {
           .join(
             "",
           )}</dl><p class="integrity">The muscle surface is sourced. Separate tendon and insertion-footprint geometry are not provided. No fiber-direction data is available.</p><button data-action="sources">Curriculum sources ↗</button>`
-      : `<p>${p.layer === "arteries" || p.layer === "veins" ? "A supplied segment of an incomplete regional vascular tree. No connecting vessels have been invented." : "Inspect this source structure in its anatomical context."}</p>`
+      : p.note ? `<p>${escape(p.note)}</p><p class="integrity">${escape(p.reviewStatus)}</p><a href="./assets/atlas/provenance.json" target="_blank" rel="noreferrer">Source identity and processing ↗</a>` : `<p>${p.layer === "arteries" || p.layer === "veins" ? "A supplied segment of an incomplete regional vascular tree. No connecting vessels have been invented." : "Inspect this source structure in its anatomical context."}</p>`
   }`;
 }
 function renderPanel() {
@@ -317,7 +351,14 @@ function renderPanel() {
   if (state.mode === "explore")
     html = state.selected
       ? detail(state.selected)
-      : `<span class="number">04</span><h2>Muscles that hold<br>the joint together.</h2><p>Turn the specimen. Follow a muscle from the scapula toward the humerus. Select one to look closer.</p><ul class="muscle-list">${SITS.map((id, i) => `<li><button data-select="${id}"><span class="dot" style="--swatch:${CUFF_COLORS[id]}"></span>${name(id)}<span class="index">0${i + 1}</span></button></li>`).join("")}</ul><p class="integrity">An atlas of the available source surfaces. Tendons, cartilage and insertion footprints are not separately modeled.</p>`;
+      : `<span class="number">04</span><h2>Muscles that hold<br>the joint together.</h2><p>Turn the specimen. Follow a muscle from the scapula toward the humerus. Select one to look closer.</p><ul class="muscle-list">${SITS.map((id, i) => `<li><button data-select="${id}"><span class="dot" style="--swatch:${CUFF_COLORS[id]}"></span>${name(id)}<span class="index">0${i + 1}</span></button></li>`).join("")}</ul><p class="integrity">The cuff lesson uses the original BodyParts3D specimen. Explore the additional source-matched joint study below for deeper anatomy.</p>`;
+  if (state.mode === "explore") {
+    if (ATLAS_VIEWS[state.view] && !state.selected) {
+      const view = ATLAS_VIEWS[state.view];
+      html = `<p class="kicker">SOURCE ANATOMY · Z-ANATOMY</p><h2>${view.title}</h2><p>${view.text}</p><ul class="muscle-list">${ATLAS_GROUPS[view.group].map(id => `<li><button data-select="${id}">${escape(name(id))}</button></li>`).join("")}</ul><p class="integrity">These structures retain their matching source bones and positions. Ghosted context helps expose deeper surfaces. No cross-specimen fitting or anatomical deformation was applied.</p>`;
+    }
+    html += atlasNavigation();
+  }
   if (state.mode === "peel") {
     const titles = [
       "Surface context",
@@ -389,6 +430,12 @@ function lessonStep(n) {
   renderPanel();
 }
 function contextClick(e) {
+  const atlasButton = e.target.closest("[data-atlas-view]");
+  if (atlasButton) {
+    openAtlas(atlasButton.dataset.atlasView);
+    $("context").querySelector(`[data-atlas-view="${state.view}"]`)?.focus({preventScroll:true});
+    return;
+  }
   const studyButton = e.target.closest("[data-study]");
   if (studyButton) {
     const id = studyButton.dataset.study;
@@ -657,7 +704,7 @@ function updateCube() {
 function openInformation() {
   const metrics = scene.metrics();
   $("information-body").innerHTML =
-    `<p>Twenty source structures form this right-shoulder study. BodyParts3D, © The Database Center for Life Science licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC Attribution 4.0 International</a>.</p><h3>What you are seeing</h3><p>Source polygon surfaces, transformed into an upright coordinate system. Illustrative tissue colors and a camera-relative studio light rig help distinguish forms. The default GLB uses Blender-derived cuff shading normals shared across coincident source positions; every triangle and vertex position is preserved. They are illustrative rendering choices, not measured tissue reflectance or muscle-fiber direction.</p><p>The distal humeral shaft is visually clipped in cuff views to concentrate on the proximal joint. The full source humerus remains available in Regional vessels. Staging separates intact meshes; it does not model tissue mechanics.</p><h3>What is not represented</h3><p>Separate cuff tendons, insertion footprints, labrum, capsule, bursae, cartilage, ligaments and shoulder nerves are not supplied. The vascular tree is incomplete. Small cuff meshes cannot support fine musculotendinous detail. No missing structures have been invented.</p><h3>Curriculum and sources</h3><p>Origin, insertion, action, innervation and clinical notes are curriculum text, not observations extracted from the meshes. This educational reconstruction has not had an independent clinician review.</p><ul>${SOURCES.map((s) => `<li><a href="${s.url}" target="_blank" rel="noreferrer">${s.title}</a></li>`).join("")}</ul><h3>Controls</h3><p>Drag to orbit. Click to select; double-click or F to focus. Two-finger scrolling pans. Pinch zooms. Line-mode mouse wheel or Shift+wheel zooms toward the pointer. Shift/right drag pans. On touch screens, two fingers pan and pinch. Arrow keys orbit; +/− zoom; R resets; Escape clears selection. The orientation cube can be dragged independently of the anatomy.</p><h3>Canonical orientation</h3><div class="action-row">${cubeFaces.map((f, i) => `<button data-info-face="${i}">${f.letter} · ${f.name}</button>`).join("")}</div><h3>Secondary tools</h3><div class="action-row"><button id="section-toggle" aria-pressed="${state.section}">Sagittal section</button><button id="quality-toggle">${scene.renderer.getPixelRatio() > 1 ? "Use 1× DPR" : "Use device DPR"}</button></div><p>Sectioning is an uncapped viewing cut, not a segmented internal anatomical surface. Optional LOD1/LOD2 reduce only scapular context; all cuff topology is preserved. LOD0 is the default.</p><h3>Geometry provenance</h3><a href="./assets/provenance.json" target="_blank">Complete machine-readable provenance ↗</a><details><summary>All 20 structures</summary>${[...scene.parts.values()].map((p) => `<div class="provenance-row"><strong>${escape(p.name)}</strong><br>${p.id} · ${p.fma} · ${p.vertexCount.toLocaleString()} source vertices · ${p.faceCount.toLocaleString()} faces<br>Source UV: ${p.hasUV ? "yes" : "no"} · Source normals: ${p.hasNormals ? "yes" : "no"} · Textures: ${p.textures.length}<br>${escape(p.reviewStatus)}${p.runtimeShading ? `<br>LOD0 shading: ${escape(p.runtimeShading.lod0)}` : ""}</div>`).join("")}</details><details><summary>Renderer diagnostics</summary><pre>${escape(JSON.stringify(metrics, null, 2))}</pre></details>`;
+    `<p>The cuff lesson contains twenty original source structures. BodyParts3D, © The Database Center for Life Science licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC Attribution 4.0 International</a>.</p><p>The additional joint study contains ${scene.atlasProvenance?.structures.length || 0} source-derived parts from Z-Anatomy, under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a>. Attribution: BodyParts3D — The Database Center for Life Science — CC BY-SA 2.1 Japan; Z-Anatomy — The libre 3D atlas of anatomy — CC BY-SA 4.0. <a href="./assets/atlas/LICENSE.txt" target="_blank">Full attribution and derivative license</a>.</p><h3>What you are seeing</h3><p>Source polygon surfaces, transformed into an upright coordinate system. Illustrative tissue colors and a camera-relative studio light rig help distinguish forms. The original cuff GLB uses Blender-derived cuff shading normals shared across coincident source positions; every triangle and vertex position is preserved. They are illustrative rendering choices, not measured tissue reflectance or muscle-fiber direction.</p><p>The distal humeral shaft is visually clipped in cuff views to concentrate on the proximal joint. The full source humerus remains available in Regional vessels. Staging separates intact meshes; it does not model tissue mechanics.</p><h3>Additional anatomy and remaining limits</h3><p>The joint study adds source-authored labrum, capsule, bursae, ligaments, shoulder nerve and vessel segments, cartilage-classified surfaces, four insertion-region overlays and an infraspinatus tendon-classified region. These use their matching Z-Anatomy bones, separately from the original cuff specimen. Four complete cuff tendons, measured footprints, volumetric cartilage thickness and fine fiber detail are still not supplied. Regional nerve and vessel trees remain incomplete. Source-authored shapes are not independently clinically validated.</p><h3>Curriculum and sources</h3><p>Origin, insertion, action, innervation and clinical notes are curriculum text, not observations extracted from the meshes. This educational reconstruction has not had an independent clinician review.</p><ul>${SOURCES.map((s) => `<li><a href="${s.url}" target="_blank" rel="noreferrer">${s.title}</a></li>`).join("")}</ul><h3>Controls</h3><p>Drag to orbit. Click to select; double-click or F to focus. Two-finger scrolling pans. Pinch zooms. Line-mode mouse wheel or Shift+wheel zooms toward the pointer. Shift/right drag pans. On touch screens, two fingers pan and pinch. Arrow keys orbit; +/− zoom; R resets; Escape clears selection. The orientation cube can be dragged independently of the anatomy.</p><h3>Canonical orientation</h3><div class="action-row">${cubeFaces.map((f, i) => `<button data-info-face="${i}">${f.letter} · ${f.name}</button>`).join("")}</div><h3>Secondary tools</h3><div class="action-row"><button id="section-toggle" aria-pressed="${state.section}">Sagittal section</button><button id="quality-toggle">${scene.renderer.getPixelRatio() > 1 ? "Use 1× DPR" : "Use device DPR"}</button></div><p>Sectioning is an uncapped viewing cut, not a segmented internal anatomical surface. Optional LOD1/LOD2 reduce only scapular context; all cuff topology is preserved. LOD0 is the default.</p><h3>Geometry provenance</h3><a href="./assets/provenance.json" target="_blank">Complete machine-readable provenance ↗</a><p><a href="./assets/atlas/provenance.json" target="_blank">Additional joint study provenance ↗</a></p><details><summary>All ${scene.parts.size} loaded structures</summary>${[...scene.parts.values()].map((p) => `<div class="provenance-row"><strong>${escape(p.name)}</strong><br>${p.id} · ${escape(p.fma || p.sourceObject)} · ${p.vertexCount.toLocaleString()} vertices · ${p.faceCount.toLocaleString()} faces<br>${escape(p.source)} · ${escape(p.license)}<br>Asset UV: ${p.hasUV ? "yes" : "no"} · Asset normals: ${p.hasNormals ? "yes" : "no"} · Textures: ${p.textures.length}<br>${escape(p.reviewStatus)}${p.runtimeShading ? `<br>LOD0 shading: ${escape(p.runtimeShading.lod0)}` : ""}</div>`).join("")}</details><details><summary>Renderer diagnostics</summary><pre>${escape(JSON.stringify(metrics, null, 2))}</pre></details>`;
   $("information-body")
     .querySelectorAll("[data-info-face]")
     .forEach(

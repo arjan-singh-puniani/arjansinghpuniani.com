@@ -4,6 +4,7 @@ import { GLTFLoader } from "./vendor/loaders/GLTFLoader.js";
 import { OBJLoader } from "./vendor/loaders/OBJLoader.js";
 import {
   TISSUES,
+  ATLAS_IDS,
   CUFF_COLORS,
   tissueFor,
   visibility,
@@ -126,6 +127,36 @@ export class ShoulderScene {
       );
       this.transport = "obj";
     }
+    try {
+      const response = await fetch("./assets/atlas/provenance.json");
+      if (!response.ok) throw Error("Atlas provenance unavailable");
+      const atlas = await response.json();
+      if (atlas.structures.length !== ATLAS_IDS.length || new Set(atlas.structures.map(p => p.id)).size !== ATLAS_IDS.length || atlas.structures.some(p => !ATLAS_IDS.includes(p.id)))
+        throw Error("Atlas manifest does not match the configured structures");
+      let assembly;
+      try {
+        if (params.get("format") === "obj") throw Error("Requested OBJ compatibility path");
+        assembly = (await new GLTFLoader().loadAsync("./assets/atlas/shoulder-atlas.glb")).scene;
+        this.atlasTransport = "glb";
+      } catch {
+        assembly = new THREE.Group();
+        await Promise.all(atlas.structures.map(async p => {
+          const object = await new OBJLoader().loadAsync(`./assets/atlas/${p.id}.obj`);
+          object.traverse(m => { if (m.isMesh) m.name = p.id; });
+          assembly.add(object);
+        }));
+        this.atlasTransport = "obj";
+      }
+      const found = new Set();
+      assembly.traverse(o => { if (ATLAS_IDS.includes(o.userData.structureId || o.name)) found.add(o.userData.structureId || o.name); });
+      if (found.size !== ATLAS_IDS.length) throw Error("Incomplete joint study asset");
+      for (const part of atlas.structures) this.parts.set(part.id, part);
+      root.add(assembly);
+      this.atlasProvenance = atlas;
+    } catch (error) {
+      // Keep the original cuff usable when the supplemental asset cannot be fetched.
+      this.atlasError = error.message;
+    }
     this.root = root;
     this.scene.add(root);
     root.updateMatrixWorld(true);
@@ -144,7 +175,8 @@ export class ShoulderScene {
         : [mesh.material];
       mesh.material = materials.map((original) => {
         const material = new THREE.MeshPhysicalMaterial({
-          color: CUFF_COLORS[id] || tissue.baseColor,
+          color: CUFF_COLORS[id] || (part.group === "capsule" ? (id === "ZA_capsule" ? "#94aeb9" : "#b3a2b8") : tissue.baseColor),
+          side: ATLAS_IDS.includes(id) ? THREE.DoubleSide : THREE.FrontSide,
           roughness: tissue.roughness,
           metalness: 0,
           specularIntensity: tissue.specular,
@@ -179,8 +211,8 @@ export class ShoulderScene {
       if (!this.fragments.has(id)) this.fragments.set(id, []);
       this.fragments.get(id).push(mesh);
     });
-    if (this.meshes.size !== 20)
-      throw Error(`Incomplete anatomy: ${this.meshes.size}/20 structures.`);
+    if (this.meshes.size !== this.parts.size)
+      throw Error(`Incomplete anatomy: ${this.meshes.size}/${this.parts.size} structures.`);
     this.loadMs = performance.now() - start;
     this.applyView(this.state.view, false);
     this.refresh();
@@ -333,7 +365,7 @@ export class ShoulderScene {
         mat.emissive.setHex(id === this.state.selected ? 0x24140b : 0);
         mat.emissiveIntensity = 0.22;
         mat.clippingPlanes = [
-          ...(id === "FJ3368" && this.state.view !== "vascular"
+          ...(["FJ3368", "ZA_humerus", "ZA_humerus_cartilage"].includes(id) && this.state.view !== "vascular"
             ? [this.crop]
             : []),
           ...(this.state.section ? [this.sectionPlane] : []),
@@ -512,6 +544,8 @@ export class ShoulderScene {
       transport: this.transport,
       lod: this.lod,
       loadMs: this.loadMs,
+      atlasTransport: this.atlasTransport,
+      atlasError: this.atlasError || null,
       drawCalls: this.renderer.info.render.calls,
       triangles: this.renderer.info.render.triangles,
       vertices: this.allMeshes()

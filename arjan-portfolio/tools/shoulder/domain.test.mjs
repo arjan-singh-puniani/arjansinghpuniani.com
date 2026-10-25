@@ -3,6 +3,10 @@ import assert from "node:assert/strict";
 import { readFile, access } from "node:fs/promises";
 import {
   SITS,
+  LEGACY_IDS,
+  ATLAS_IDS,
+  ATLAS_GROUPS,
+  ATLAS_VIEWS,
   FUNCTION_STUDIES,
   QUIZ_LENGTH,
   quizComplete,
@@ -37,11 +41,12 @@ function glbJSON(data) {
   return JSON.parse(data.toString("utf8", 20, 20 + data.readUInt32LE(12)));
 }
 test("all source IDs unique and SITS complete", () => {
-  assert.equal(new Set(ALL).size, 20);
+  assert.equal(new Set(LEGACY_IDS).size, 20);
+  assert.equal(new Set(ALL).size, 54);
   assert.equal(SITS.length, 4);
   assert.deepEqual(
     new Set(provenance.structures.map((p) => p.id)),
-    new Set(ALL),
+    new Set(LEGACY_IDS),
   );
   for (const id of SITS)
     assert.ok(CURRICULUM[id].innervation && CURRICULUM[id].insertion);
@@ -89,14 +94,14 @@ test("provenance is complete, source geometry is untextured, and normals are val
     assert.match(p.reviewStatus, /no independent clinical review/);
   }
 });
-test("six presets explicitly partition every structure and have meaningful purposes", () => {
-  assert.equal(Object.keys(PRESETS).length, 6);
+test("all presets explicitly partition every structure and have meaningful purposes", () => {
+  assert.equal(Object.keys(PRESETS).length, 10);
   for (const p of Object.values(PRESETS)) {
     assert.deepEqual(
       new Set([...p.visible, ...p.ghost, ...p.hidden]),
       new Set(ALL),
     );
-    assert.equal(p.visible.length + p.ghost.length + p.hidden.length, 20);
+    assert.equal(p.visible.length + p.ghost.length + p.hidden.length, ALL.length);
     assert.ok(p.distance >= 1.4 && p.distance <= 7.5);
     assert.ok(Math.abs(p.pitch) < 1.5);
     assert.ok(p.purpose.length > 20);
@@ -358,4 +363,62 @@ test("quiz covers every muscle per round without adjacent repeats or later camer
     }
   }
   assert.ok(decks.size > 1);
+});
+
+
+test("joint study has source-backed geometry, attribution and normalized OBJ fallback for every part", async () => {
+  const { createHash } = await import("node:crypto");
+  const atlas = JSON.parse(await readFile(new URL("atlas/provenance.json", base)));
+  const config = JSON.parse(await readFile(new URL("../blender/shoulder_atlas.json", import.meta.url)));
+  assert.deepEqual(atlas.structures.map(p => p.id).sort(), [...ATLAS_IDS].sort());
+  const glb = glbJSON(await readFile(new URL("atlas/shoulder-atlas.glb", base)));
+  const nodes = glb.nodes.filter(n => n.mesh !== undefined);
+  assert.equal(nodes.length, ATLAS_IDS.length);
+  for (const p of atlas.structures) {
+    const source = config.find(s => s.id === p.id);
+    assert.equal(source.sourceObject, p.sourceObject);
+    assert.equal(tissueFor(p), source.tissue);
+    assert.equal(p.license, "CC BY-SA 4.0");
+    assert.match(p.attribution, /BodyParts3D.*Z-Anatomy/);
+    assert.match(p.reviewStatus, /no independent clinical review/);
+    assert.equal(p.FMA, null, "Do not invent an unverified FMA mapping");
+    assert.ok(p.inverseTransformMaxErrorMetres < 1e-6);
+    const node = nodes.find(n => n.extras.structureId === p.id);
+    assert.ok(node, p.id);
+    const triangles = glb.meshes[node.mesh].primitives.reduce((sum, primitive) => {
+      assert.ok(primitive.attributes.NORMAL !== undefined);
+      return sum + glb.accessors[primitive.indices].count / 3;
+    }, 0);
+    assert.equal(triangles, p.triangleCount, p.id);
+    const obj = await readFile(new URL(`atlas/${p.id}.obj`, base));
+    assert.equal(createHash("sha256").update(obj).digest("hex"), p.objSha256);
+    const parsed = parseOBJ(obj.toString());
+    assert.equal(parsed.triangles, p.triangleCount);
+    assert.ok(parsed.positions.every(Number.isFinite));
+  }
+  assert.equal(atlas.structures.filter(p => p.tissue === "TENDON").length, 1);
+  assert.equal(atlas.structures.find(p => p.id === "ZA_infra_tendon").sourceMaterial, "Tendon");
+  assert.match(await readFile(new URL("atlas/LICENSE.txt", base), "utf8"), /ShareAlike/);
+});
+
+test("joint views preserve source coherence and cannot contaminate cuff lessons or quizzes", () => {
+  const state = createState();
+  for (const view of Object.keys(ATLAS_VIEWS)) {
+    state.view = view;
+    for (const id of LEGACY_IDS) {
+      state.selected = id;
+      assert.equal(visibility(state, id), "hidden");
+    }
+    state.selected = null;
+    for (const id of ATLAS_GROUPS[ATLAS_VIEWS[view].group]) assert.equal(visibility(state, id), "visible");
+    for (const id of ATLAS_GROUPS.bones) assert.equal(visibility(state, id), "ghost");
+  }
+  for (const mode of ["explore", "peel", "learn", "quiz"]) {
+    state.mode = mode;
+    state.view = "posterior";
+    for (const id of ATLAS_IDS) {
+      state.selected = id;
+      assert.equal(visibility(state, id), "hidden");
+    }
+  }
 });

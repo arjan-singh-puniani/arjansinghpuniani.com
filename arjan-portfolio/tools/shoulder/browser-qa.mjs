@@ -1,3 +1,4 @@
+import { ALL } from "../../public/holoanatomy/shoulder/model.js";
 import { chromium, expect } from "@playwright/test";
 import { mkdir, writeFile } from "node:fs/promises";
 const base =
@@ -229,13 +230,13 @@ try {
     "obj",
   );
   expect(await fallback.evaluate(() => shoulderStudio.scene.meshes.size)).toBe(
-    20,
+    ALL.length,
   );
   results.obj = await fallback.evaluate(() => shoulderStudio.metrics());
   await fallback.close();
   const lod = await browser.newPage();
   await load(lod, base + "?lod=2");
-  expect(await lod.evaluate(() => shoulderStudio.scene.meshes.size)).toBe(20);
+  expect(await lod.evaluate(() => shoulderStudio.scene.meshes.size)).toBe(ALL.length);
   results.lod2 = await lod.evaluate(() => shoulderStudio.metrics());
   await lod.close();
   expect(errors).toEqual([]);

@@ -44,6 +44,10 @@ try {
   await expect(frame.locator("h1")).toHaveText("Rotator cuff.");
   await frame.locator("[data-mode=learn]").click();
   await expect(frame.locator("#context")).toContainText("A mobile joint");
+  await frame.locator("#view-select").selectOption("atlas_capsule");
+  await expect(frame.locator("#context h2")).toHaveText("Capsule & bursae");
+  await frame.locator('#context [data-select="ZA_capsule"]').click();
+  await expect(frame.locator("#context h2")).toContainText("articular capsule");
   await page.screenshot({
     path: `${process.env.QA_OUT || "Documentation/shoulder-qa"}/portfolio-integration.png`,
   });

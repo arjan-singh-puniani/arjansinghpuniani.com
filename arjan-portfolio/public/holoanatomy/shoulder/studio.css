@@ -1071,3 +1071,7 @@ body[data-presenting="true"] .gesture-help {
     margin-top: 16px;
   }
 }
+
+.atlas-studies { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--line); display: grid; gap: .5rem; }
+.atlas-studies button { text-align: left; min-height: 44px; }
+.atlas-studies button[aria-pressed="true"] { background: #26342e; color: #fff; }

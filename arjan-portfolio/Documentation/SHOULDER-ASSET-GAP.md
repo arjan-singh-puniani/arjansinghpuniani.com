@@ -71,3 +71,8 @@ Next integration gate: inspect these source assemblies against the current shoul
 
 
 Visual inspection of the three generated renders confirms that the source curves and joint structures render in the candidate bone assembly. The anterior-oblique joint image occludes much of the labrum behind the humeral head; it does not validate all attachments. The capsule/bursae are simple authored surfaces and several nerve/vessel curves end at the selected region boundary. These images do not establish anatomical correctness, complete connectivity, registration to the current production assembly, or improved fine tissue detail.
+
+
+## Integration update — 2026-10-25
+
+The selected Z-Anatomy assembly is now available in the actual shoulder app through four Explore views. See [integration report](SHOULDER-INTEGRATION.md) for the precise 34-part scope, source-preserving conversion, license, browser evidence and remaining gaps. The earlier “candidate only” entries describe the prior investigation, not the current integration status. Four complete cuff tendons remain unavailable; no empty material slot has been promoted into anatomy.

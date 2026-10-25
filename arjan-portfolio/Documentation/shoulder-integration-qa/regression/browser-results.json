@@ -1,0 +1,167 @@
+{
+  "loaded": {
+    "url": "http://127.0.0.1:4190/holoanatomy/shoulder/?lod=2",
+    "title": "HoloAnatomy — Rotator Cuff Studio",
+    "viewControls": 1
+  },
+  "desktop": {
+    "metrics": {
+      "transport": "glb",
+      "lod": 0,
+      "loadMs": 90.80000007152557,
+      "atlasTransport": "glb",
+      "atlasError": null,
+      "drawCalls": 7,
+      "triangles": 35444,
+      "vertices": 20687,
+      "textures": 1,
+      "shadowMapTextureBytes": 4194304,
+      "shadowDepthAttachmentEstimatedBytes": 4194304,
+      "sourceTextureBytes": 0,
+      "dpr": 1,
+      "samples": 133,
+      "meanFrameMs": 16.666165413533836,
+      "p95FrameMs": 16.700000000000728
+    },
+    "resources": [
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/studio.css",
+        "bytes": 19288,
+        "duration": 8
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/app.js",
+        "bytes": 34399,
+        "duration": 8.300000071525574
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/vendor/three.module.min.js",
+        "bytes": 339208,
+        "duration": 8.200000047683716
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/scene.js",
+        "bytes": 20708,
+        "duration": 4.5
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/interaction.js",
+        "bytes": 4156,
+        "duration": 4.799999952316284
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/model.js",
+        "bytes": 17314,
+        "duration": 7.299999952316284
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/vendor/loaders/OBJLoader.js",
+        "bytes": 23222,
+        "duration": 4.5
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/vendor/loaders/GLTFLoader.js",
+        "bytes": 115039,
+        "duration": 4.799999952316284
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/vendor/mesh-bvh.js",
+        "bytes": 193003,
+        "duration": 10.599999904632568
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/atlas.js",
+        "bytes": 1349,
+        "duration": 3.100000023841858
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/vendor/utils/BufferGeometryUtils.js",
+        "bytes": 35839,
+        "duration": 3.700000047683716
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/vendor/three.core.min.js",
+        "bytes": 381424,
+        "duration": 4.100000023841858
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/assets/provenance.json",
+        "bytes": 48623,
+        "duration": 1.5
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/assets/shoulder-lod0.glb",
+        "bytes": 1131256,
+        "duration": 10.700000047683716
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/assets/atlas/provenance.json",
+        "bytes": 78391,
+        "duration": 6.299999952316284
+      },
+      {
+        "url": "http://127.0.0.1:4190/holoanatomy/shoulder/assets/atlas/shoulder-atlas.glb",
+        "bytes": 1423832,
+        "duration": 4.300000071525574
+      }
+    ],
+    "interactive": 260.5
+  },
+  "mobile": {
+    "transport": "glb",
+    "lod": 0,
+    "loadMs": 87.39999997615814,
+    "atlasTransport": "glb",
+    "atlasError": null,
+    "drawCalls": 7,
+    "triangles": 35444,
+    "vertices": 20687,
+    "textures": 1,
+    "shadowMapTextureBytes": 4194304,
+    "shadowDepthAttachmentEstimatedBytes": 4194304,
+    "sourceTextureBytes": 0,
+    "dpr": 1.5,
+    "samples": 129,
+    "meanFrameMs": 17.570806201550386,
+    "p95FrameMs": 16.799999999999955
+  },
+  "obj": {
+    "transport": "obj",
+    "lod": 0,
+    "loadMs": 218.80000007152557,
+    "atlasTransport": "obj",
+    "atlasError": null,
+    "drawCalls": 7,
+    "triangles": 35444,
+    "vertices": 106332,
+    "textures": 1,
+    "shadowMapTextureBytes": 4194304,
+    "shadowDepthAttachmentEstimatedBytes": 4194304,
+    "sourceTextureBytes": 0,
+    "dpr": 1,
+    "samples": 0,
+    "meanFrameMs": null,
+    "p95FrameMs": null
+  },
+  "lod2": {
+    "transport": "glb",
+    "lod": 2,
+    "loadMs": 64.5,
+    "atlasTransport": "glb",
+    "atlasError": null,
+    "drawCalls": 7,
+    "triangles": 18432,
+    "vertices": 12174,
+    "textures": 1,
+    "shadowMapTextureBytes": 4194304,
+    "shadowDepthAttachmentEstimatedBytes": 4194304,
+    "sourceTextureBytes": 0,
+    "dpr": 1,
+    "samples": 1,
+    "meanFrameMs": 49.998000000000005,
+    "p95FrameMs": 49.998000000000005
+  },
+  "status": "PASS",
+  "errors": [],
+  "failures": []
+}

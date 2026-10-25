@@ -1,3 +1,5 @@
+import { ATLAS_GROUPS, ATLAS_IDS } from "./atlas.js";
+export { ATLAS_GROUPS, ATLAS_IDS };
 /** Pure domain state. World +X=left, +Y=superior, +Z=anterior. */
 export const SITS = ["FJ1506", "FJ1500", "FJ1508", "FJ1504"];
 export const BONES = ["FJ3384", "FJ3362", "FJ3368"];
@@ -13,7 +15,8 @@ export const VESSELS = [
   "FJ2299",
   "FJ2274",
 ];
-export const ALL = [...BONES, ...SITS, ...DELTOID, "FJ1478", ...VESSELS];
+export const LEGACY_IDS = [...BONES, ...SITS, ...DELTOID, "FJ1478", ...VESSELS];
+export const ALL = [...LEGACY_IDS, ...ATLAS_IDS];
 export const TISSUES = {
   BONE: {
     baseColor: "#cec2a6",
@@ -34,7 +37,7 @@ export const TISSUES = {
     ghostAlpha: 0.12,
   },
   CARTILAGE: {
-    baseColor: "#dbd6c8",
+    baseColor: "#9bb5b1",
     roughness: 0.54,
     specular: 0.3,
     ghostAlpha: 0.13,
@@ -77,6 +80,7 @@ export const CUFF_COLORS = {
   FJ1504: "#b2664b",
 };
 export function tissueFor(part) {
+  if (TISSUES[part.tissue]) return part.tissue;
   return (
     {
       skeleton: "BONE",
@@ -176,6 +180,23 @@ export const PRESETS = {
     [-0.2, -0.4, 0],
   ),
 };
+export const ATLAS_VIEWS = {
+  atlas_joint: { title: "Joint surfaces & ligaments", group: "joint", text: "Inspect the labrum, source-classified cartilage surfaces and shoulder ligaments. These structures use their matching Z-Anatomy bones." },
+  atlas_capsule: { title: "Capsule & bursae", group: "capsule", text: "Explore the source-authored joint capsule and subacromial and subdeltoid bursae. Their thickness and distension are illustrative." },
+  atlas_neurovascular: { title: "Shoulder nerves & vessels", group: "neurovascular", text: "Follow the supplied axillary, suprascapular and subscapular nerves alongside regional vessels. This is not a complete plexus or vascular tree." },
+  atlas_attachments: { title: "Tendon & insertion regions", group: "attachments", text: "Inspect the infraspinatus tendon-classified region and four authored insertion regions. These are source annotations, not measured footprints or four complete tendons." },
+};
+for (const [id, view] of Object.entries(ATLAS_VIEWS)) {
+  PRESETS[id] = preset(view.title, -0.8, 0.22, view.group === "neurovascular" ? 3.8 : 2.8,
+    [...ATLAS_GROUPS[view.group]],
+    [...ATLAS_GROUPS.bones, ...(view.group === "attachments" ? ATLAS_GROUPS.cuff : [])],
+    view.title + " in their source context.",
+    ATLAS_GROUPS[view.group].filter((id) => !id.endsWith("_vein")).slice(0, 3),
+    [0, 0, 0]);
+}
+export function atlasViewFor(id) {
+  return Object.keys(ATLAS_VIEWS).find((view) => ATLAS_GROUPS[ATLAS_VIEWS[view].group].includes(id)) || "atlas_attachments";
+}
 export const LESSON = [
   {
     title: "A mobile joint. A stabilizing cuff.",
@@ -378,6 +399,9 @@ export function createState() {
 }
 export function visibility(state, id) {
   const p = PRESETS[state.view];
+  const atlasView = Boolean(ATLAS_VIEWS[state.view]);
+  if (ATLAS_IDS.includes(id) && (!atlasView || state.mode !== "explore")) return "hidden";
+  if (atlasView && state.mode === "explore" && !ATLAS_IDS.includes(id)) return "hidden";
   let value = p.visible.includes(id)
     ? "visible"
     : p.ghost.includes(id)
@@ -487,7 +511,7 @@ export function layoutLabels(items, width, height) {
   return sides.flatMap((side, i) => {
     side.sort((a, b) => a.y - b.y);
     const maxY = height - 70;
-    let y = 70;
+    let y = Math.min(220, Math.max(70, maxY - (side.length - 1) * gap));
     return side.map((item, index) => {
       y = Math.max(y, Math.min(item.y, maxY - (side.length - index - 1) * gap));
       const out = { ...item, labelX: i ? width - 180 : margin, labelY: y };
