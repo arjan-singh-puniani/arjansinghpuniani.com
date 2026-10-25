@@ -198,6 +198,15 @@ export function adultTaylorPose(source, root, yaw, constraints) {
     for (const side of ['R', 'L']) {
         const walk = constraints.human ? constraints.walk : undefined, walkingSoft = walk ? .012 + .018 * smooth(((side === 'L' ? -1 : 1) * Math.cos(walk.phase) + 1) / 2) : 0;
         const hip = p[`hip${side}`];
+        // Release the heel after the body-height/contact solve, so shoe roll cannot lift the shoulders.
+        const pitch = p[`footPitch${side}`] ?? 0, recover = p[`footRecovery${side}`] ?? 0;
+        if (pitch > 0 || recover > 0) {
+            const foot = p[`foot${side}`], angle = p[`footYaw${side}`] ?? yaw;
+            // shortcut: toe lever fits the current shoes; refit it when footwear geometry changes.
+            const toe = (p[`footPivot${side}`] ?? foot).clone().add(forward.clone().scale(.28)).add(new Vec3(0, -.11, 0)), depth = .28 * Math.cos(pitch) - .11 * Math.sin(pitch);
+            foot.set(toe.x - Math.sin(angle) * depth, toe.y + .11 * Math.cos(pitch) + .28 * Math.sin(pitch), toe.z - Math.cos(angle) * depth);
+            foot.add(new Vec3(Math.cos(yaw) * (side === 'R' ? -.06 : .06) * recover + Math.sin(yaw) * .16 * recover, .055 * Math.sin(Math.PI * recover) ** 2, -Math.sin(yaw) * (side === 'R' ? -.06 : .06) * recover + Math.cos(yaw) * .16 * recover));
+        }
         // An airborne leg recovers toward the body; it cannot drag the planted body down.
         if (walk?.planted && !walk.planted[side === 'L' ? 0 : 1]) {
             const foot = p[`foot${side}`], delta = Vec3.sub(foot, hip), reach = TAYLOR_BODY.thigh + TAYLOR_BODY.shin - .001, horizontal = Math.hypot(delta.x, delta.z), limit = Math.sqrt(Math.max(0, reach * reach - delta.y * delta.y));

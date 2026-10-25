@@ -1,0 +1,9 @@
+{
+  "checks": 16200,
+  "maxDifference": 0,
+  "states": [
+    "walk and hands-on-hips: all landmarks",
+    "forehand and backhand: torso, head, arms and pelvis"
+  ],
+  "baseline": "0cfe1eb6"
+}

@@ -1,0 +1,20 @@
+{
+  "baseline": "0cfe1eb60e19a02e57321f3e1bc844433c3c1bd0",
+  "runtimeFeedback": "More natural through the shot",
+  "footwork": {
+    "samples": 1477,
+    "maxAnkleLift": 0.10135180029131892,
+    "maxShoeTurnRadians": 0.5,
+    "maxStationaryToeDrift": 6.206335383118183e-17,
+    "minSampledRenderedShoeY": 0.006157136022428827
+  },
+  "baselineRegression": "Fails: Both groundstrokes visibly release and turn the outside heel",
+  "preserved": "Walking/rest landmarks and stroke torso/head/arms/pelvis exactly match baseline; see preserved-motion.json",
+  "limits": [
+    "Procedural motion; no personal reference footage yet",
+    "Toe lever fitted to current shoes",
+    "Existing loaded-stroke clothing intersections",
+    "No fresh device frame-time measurement"
+  ],
+  "rejected": "Applying ankle motion before the body-height solve reintroduced 26 forehand sleeve/jersey crossings; moving foot release after that solve restores the existing jersey regression"
+}

@@ -380,6 +380,8 @@ export class Character {
         this.transitionAge += dt;
         this.courtPhaseAge += strokeDt;
         this.racketVibration = expDamp(this.racketVibration, 0, 18, dt);
+        if (this.spec.appearance === 'human' && (this.state === 'swingForehand' || this.state === 'swingBackhand') && this.animTime - strokeDt < this.shotDuration() && this.animTime >= this.shotDuration())
+            this.stepEvent = true;
         if (this.emotionUntil > 0) {
             this.emotionUntil = Math.max(0, this.emotionUntil - dt);
             if (this.emotionUntil === 0)
@@ -993,6 +995,22 @@ export class Character {
             footL.add(this.localVector(-clip.stance + clip.footL.x, clip.footL.y, clip.footL.z));
         if (!moving && !this.rightFootLock)
             footR.add(this.localVector(clip.stance + clip.footR.x, clip.footR.y, clip.footR.z));
+        let footPitchL = 0, footPitchR = 0, footYawL = this.yaw, footYawR = this.yaw, footRecoveryL = 0, footRecoveryR = 0, footPivotL, footPivotR;
+        if (humanGroundstroke) {
+            const forehand = state === 'swingForehand', drive = smoothstep(contact * 1.30, Math.min(contact + .28, .82), sp), recover = smoothstep(.78, 1, sp), pitch = .32 * drive * (1 - recover), yaw = this.yaw + (forehand ? -.50 : .50) * drive * (1 - recover * .5);
+            if (forehand) {
+                footPitchR = pitch;
+                footYawR = yaw;
+                footRecoveryR = recover;
+                footPivotR = footR.clone().sub(this.localVector(0, baseY, weightShift * .04));
+            }
+            else {
+                footPitchL = pitch;
+                footYawL = yaw;
+                footRecoveryL = recover;
+                footPivotL = footL.clone().sub(this.localVector(0, baseY, weightShift * .05));
+            }
+        }
         const kneePulse = moving ? Math.max(0, -Math.cos(this.gaitPhase * 2)) * .018 : 0;
         const kneeL = Vec3.lerp(hipL, footL, .54).add(this.localVector(-.015, .04 - kneePulse, .10)), kneeR = Vec3.lerp(hipR, footR, .54).add(this.localVector(.015, .04 - kneePulse, .10));
         if (sit) {
@@ -1009,13 +1027,21 @@ export class Character {
         const head = this.worldLocal(pelvisShiftX * .25, 1.80 + baseY + actingLift + breathe - knee + splitHop + clip.headNod - headStabilize + (!shot && !moving && (this.socialGesture === 'nod' || this.socialGesture === 'laugh') ? Math.sin(time * 6) * .022 : 0), .01 + pelvisShiftZ * .45, headYaw);
         const elbowL = Vec3.lerp(shoulderL, handL, .50).add(forward.clone().scale(.055)).add(right.clone().scale(-.035));
         const elbowR = Vec3.lerp(shoulderR, handR, .50).add(forward.clone().scale(.055)).add(right.clone().scale(.035));
-        return { baseY, breathe, walking: moving, gait, torsoYaw, hipYaw, headYaw, eyeYaw: clamp(angleDelta(headYaw, this.eyeAim), -.30, .30), right, forward, shoulderL, shoulderR, elbowL, elbowR, handL, handR, hipL, hipR, kneeL, kneeR, footL, footR, torsoCenter, pelvisCenter, head, racketGrip, racketHandleTop, racketCenter, racketRot, lean, knee, shot, sp, face: { ...this.facePose }, weightShift, ...this.handPose, ...this.authoredHands };
+        return { baseY, breathe, walking: moving, gait, torsoYaw, hipYaw, headYaw, eyeYaw: clamp(angleDelta(headYaw, this.eyeAim), -.30, .30), right, forward, shoulderL, shoulderR, elbowL, elbowR, handL, handR, hipL, hipR, kneeL, kneeR, footL, footR, footPitchL, footPitchR, footYawL, footYawR, footRecoveryL, footRecoveryR, footPivotL, footPivotR, torsoCenter, pelvisCenter, head, racketGrip, racketHandleTop, racketCenter, racketRot, lean, knee, shot, sp, face: { ...this.facePose }, weightShift, ...this.handPose, ...this.authoredHands };
     }
     localVector(x, y, z) { const s = Math.sin(this.yaw), c = Math.cos(this.yaw); return new Vec3(c * x + s * z, y, -s * x + c * z); }
     blendPose(a, b, t) {
         const av = (k) => a[k], bv = (k) => b[k];
         const v = (k) => blendVec(av(k), bv(k), t);
-        return { ...b, baseY: a.baseY + (b.baseY - a.baseY) * t, breathe: a.breathe + (b.breathe - a.breathe) * t, gait: a.gait + (b.gait - a.gait) * t, torsoYaw: a.torsoYaw + angleDelta(a.torsoYaw, b.torsoYaw) * t, hipYaw: a.hipYaw + angleDelta(a.hipYaw, b.hipYaw) * t, headYaw: a.headYaw + angleDelta(a.headYaw, b.headYaw) * t, eyeYaw: (a.eyeYaw ?? 0) + ((b.eyeYaw ?? 0) - (a.eyeYaw ?? 0)) * t, right: v('right'), forward: v('forward'), shoulderL: v('shoulderL'), shoulderR: v('shoulderR'), elbowL: v('elbowL'), elbowR: v('elbowR'), handL: v('handL'), handR: v('handR'), hipL: v('hipL'), hipR: v('hipR'), kneeL: v('kneeL'), kneeR: v('kneeR'), footL: v('footL'), footR: v('footR'), torsoCenter: v('torsoCenter'), pelvisCenter: v('pelvisCenter'), head: v('head'), racketGrip: v('racketGrip'), racketHandleTop: v('racketHandleTop'), racketCenter: v('racketCenter'), racketRot: v('racketRot'), lean: a.lean + (b.lean - a.lean) * t, knee: a.knee + (b.knee - a.knee) * t, sp: a.sp + (b.sp - a.sp) * t, face: blendFace(a.face, b.face, t), weightShift: a.weightShift + (b.weightShift - a.weightShift) * t };
+        const feet = {};
+        for (const side of ['L', 'R']) {
+            for (const field of ['footPitch', 'footRecovery'])
+                feet[`${field}${side}`] = (a[`${field}${side}`] ?? 0) * (1 - t) + (b[`${field}${side}`] ?? 0) * t;
+            const start = a[`footYaw${side}`] ?? this.yaw;
+            feet[`footYaw${side}`] = start + angleDelta(start, b[`footYaw${side}`] ?? this.yaw) * t;
+            feet[`footPivot${side}`] = Vec3.lerp(a[`footPivot${side}`] ?? a[`foot${side}`], b[`footPivot${side}`] ?? b[`foot${side}`], t);
+        }
+        return { ...b, ...feet, baseY: a.baseY + (b.baseY - a.baseY) * t, breathe: a.breathe + (b.breathe - a.breathe) * t, gait: a.gait + (b.gait - a.gait) * t, torsoYaw: a.torsoYaw + angleDelta(a.torsoYaw, b.torsoYaw) * t, hipYaw: a.hipYaw + angleDelta(a.hipYaw, b.hipYaw) * t, headYaw: a.headYaw + angleDelta(a.headYaw, b.headYaw) * t, eyeYaw: (a.eyeYaw ?? 0) + ((b.eyeYaw ?? 0) - (a.eyeYaw ?? 0)) * t, right: v('right'), forward: v('forward'), shoulderL: v('shoulderL'), shoulderR: v('shoulderR'), elbowL: v('elbowL'), elbowR: v('elbowR'), handL: v('handL'), handR: v('handR'), hipL: v('hipL'), hipR: v('hipR'), kneeL: v('kneeL'), kneeR: v('kneeR'), footL: v('footL'), footR: v('footR'), torsoCenter: v('torsoCenter'), pelvisCenter: v('pelvisCenter'), head: v('head'), racketGrip: v('racketGrip'), racketHandleTop: v('racketHandleTop'), racketCenter: v('racketCenter'), racketRot: v('racketRot'), lean: a.lean + (b.lean - a.lean) * t, knee: a.knee + (b.knee - a.knee) * t, sp: a.sp + (b.sp - a.sp) * t, face: blendFace(a.face, b.face, t), weightShift: a.weightShift + (b.weightShift - a.weightShift) * t };
     }
     pose() {
         const target = this.poseFor(this.state, this.animTime);
@@ -1110,8 +1136,8 @@ export class Character {
         m.push({ kind: 'sphere', position: new Vec3(p.x, .028, p.z), scale: new Vec3(.78, .045, .50), color: '#4f5d53', alpha: .16, unlit: true });
         if (selected)
             m.push({ kind: 'torus', position: new Vec3(p.x, .055, p.z), rotation: new Vec3(Math.PI / 2, 0, 0), scale: new Vec3(1.35, 1.35, .55), color: '#e4c967', alpha: .52, unlit: true });
-        const leftShoePitch = pose.walking && !this.leftFootLock ? clamp(-pose.gait * .18, -.18, .18) : 0, rightShoePitch = pose.walking && !this.rightFootLock ? clamp(pose.gait * .18, -.18, .18) : 0;
-        const leftShoeYaw = pose.walking ? this.walkCycle.yaws[0] : this.yaw, rightShoeYaw = pose.walking ? this.walkCycle.yaws[1] : this.yaw;
+        const leftShoePitch = pose.walking && !this.leftFootLock ? clamp(-pose.gait * .18, -.18, .18) : pose.footPitchL ?? 0, rightShoePitch = pose.walking && !this.rightFootLock ? clamp(pose.gait * .18, -.18, .18) : pose.footPitchR ?? 0;
+        const leftShoeYaw = pose.walking ? this.walkCycle.yaws[0] : pose.footYawL ?? this.yaw, rightShoeYaw = pose.walking ? this.walkCycle.yaws[1] : pose.footYawR ?? this.yaw;
         const holdsRacket = this.holdsRacket();
         const authored = feminine && human ? authoredAthleteMeshes(pose, p, this.yaw, [{ pitch: leftShoePitch, yaw: leftShoeYaw }, { pitch: rightShoePitch, yaw: rightShoeYaw }], this.animTime, this.spec.avatar ?? this.spec.id) : undefined;
         if (authored)
