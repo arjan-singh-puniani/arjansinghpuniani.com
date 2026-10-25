@@ -71,7 +71,7 @@ export class HUD {
   clearBuildSelection(){this.build.querySelectorAll<HTMLButtonElement>('button[data-build]').forEach(x=>x.classList.remove('selected'));const controls=byId<HTMLElement>('buildControls'),focused=controls.contains(document.activeElement);controls.hidden=true;if(focused)byId('fundsBtn').focus();}
   toast(msg:string){const t=byId('toast');t.textContent=msg;t.classList.add('show');clearTimeout(this.toastTimer);this.toastTimer=window.setTimeout(()=>t.classList.remove('show'),2300)}
   showMoment(title:string,text:string){byId('momentTitle').textContent=title;byId('momentText').textContent=text;const el=byId('moment');el.classList.add('show');clearTimeout(this.momentTimer);this.momentTimer=window.setTimeout(()=>el.classList.remove('show'),5200);}
-  showSpeech(name:string,text:string,duration=3600){byId('speechName').textContent=name;byId('speechText').textContent=text;const el=byId('speech');el.classList.add('show');clearTimeout(this.speechTimer);if(duration>0)this.speechTimer=window.setTimeout(()=>el.classList.remove('show'),duration);}
+  showSpeech(name:string,text:string,duration=3600,matchReaction=false){byId('speechName').textContent=name;byId('speechText').textContent=text;const el=byId('speech');el.classList.toggle('match-reaction',matchReaction);el.classList.add('show');clearTimeout(this.speechTimer);if(duration>0)this.speechTimer=window.setTimeout(()=>el.classList.remove('show'),duration);}
   hideSpeech(){clearTimeout(this.speechTimer);byId('speech').classList.remove('show')}
   positionSpeech(x:number,y:number){const el=byId('speech');const half=el.getBoundingClientRect().width/2;el.style.left=`${Math.max(half+12,Math.min(innerWidth-half-12,x))}px`;el.style.top=`${Math.max(145,Math.min(innerHeight-100,y))}px`;}
 }

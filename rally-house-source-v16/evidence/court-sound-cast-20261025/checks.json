@@ -1,0 +1,28 @@
+{
+  "baselineCommit": "9915e1d6181e3b221b0ae407620093c28e34f4f8",
+  "footstepsHumanFeedback": "Steps work, voice is silent (first candidate using device speech)",
+  "voiceFirstCandidateFailure": "No caption appeared; the point filter excluded clean winners",
+  "voiceCorrection": "Include any lost opponent point; use bundled CC0 recordings through the same Web Audio context as footsteps",
+  "finalVoiceHumanFeedback": "pending",
+  "castHumanFeedback": "pending",
+  "preserved": "Mika and Nia exported pose landmarks identical before/after; walking and hip-rest targets unchanged",
+  "checks": [
+    "Build",
+    "Real Game player/opponent footfall event timing at 30/60/120 Hz",
+    "Sparse recorded reaction with cooldown, point ownership, mute and late-load cancellation",
+    "Loaded authored body/contact/eyes/expressions",
+    "Garment deformation",
+    "Ready and forehand jersey intersections",
+    "Recording and replay",
+    "Gait and walking approach",
+    "Release source/public mirror",
+    "Final hair geometry within the existing head budget; offline after views refreshed from final compiled geometry",
+    "Recorded voice stops on blur and immediate championship exit"
+  ],
+  "limits": [
+    "Offline textured CPU-skinned comparisons use simplified lighting and omit GPU skirt projection",
+    "No fresh agent live-browser visual inspection or device frame-time measurement",
+    "Loaded backhand/serve sleeve intersections remain",
+    "The masculine recording retains source saturation"
+  ]
+}

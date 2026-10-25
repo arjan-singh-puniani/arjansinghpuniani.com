@@ -289,7 +289,7 @@ skin_atlas=Image.new('RGB',(2048,2048));skin_atlas.paste(body_albedo,(0,0));skin
 Image.new('RGB',(4,4),(210,231,89)).save(OUT/'skirt.webp','WEBP',lossless=True)
 # The other adult women share the verified mesh, with painted faces and individual kit palettes.
 cast_atlas=skin_atlas.copy();cast_atlas.paste(Image.open(Path(__file__).with_name('athlete-textures')/'cast-face-stylized-v1.png').convert('RGB').resize((2048,1024)),(0,1024));cast_atlas.save(OUT/'cast-skin.webp','WEBP',quality=92,method=6)
-for identity,main,side,trim,bottom in [('coach','#4d8f79','#24584b','#fff0d7','#f0ecdb'),('mika','#d77d91','#8d455f','#ffe0bc','#fff0df'),('nia','#9b5a76','#60364f','#ffd9d3','#e6b8bb')]:
+for identity,main,side,trim,bottom in [('coach','#315d4f','#315d4f','#f4e5cb','#f0ecdb'),('mika','#b95069','#b95069','#f8e9d5','#fff0df'),('nia','#344575','#344575','#e5d2d6','#e6b8bb')]:
  color=lambda value:tuple(bytes.fromhex(value.lstrip('#')))
  dyed=np.full_like(cloth,color(main));dyed[(width>.95)&(height<3.6)]=color(side);dyed[height>4.95]=color(trim);dyed[:,0:42]=color(main);dyed[(y>1971)&(x<42)]=color(trim)
  kit_atlas=atlas.copy();kit_atlas.paste(Image.fromarray(dyed),(0,1024));kit_atlas.save(OUT/(identity+'-kit.webp'),'WEBP',quality=91,method=6)

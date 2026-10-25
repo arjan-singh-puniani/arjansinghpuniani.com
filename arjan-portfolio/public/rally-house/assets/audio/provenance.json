@@ -1,0 +1,30 @@
+[
+  {
+    "file": "opponent-error-masculine.wav",
+    "author": "Fabrizio84",
+    "source": "https://freesound.org/people/Fabrizio84/sounds/457964/",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sourcePcmSha256": "7012d65058dabd7878123e426303e61b5f46893227b339c2d4736135590ef312",
+    "sha256": "ffd37cf8c2ca4ced2768b264325189c825d0b34a4381596540a59c0bb080fe88",
+    "excerptSeconds": [
+      0,
+      1.22
+    ],
+    "processing": "Mono, RMS/peak-limited gain and short edge fades; original performance, no voice cloning"
+  },
+  {
+    "file": "opponent-error-feminine.wav",
+    "author": "pyro13djt",
+    "source": "https://freesound.org/people/pyro13djt/sounds/332125/",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sourcePcmSha256": "f1063931ed378f9421c9ad46935d2ba727181ca30834952acd389eb7cb2470a1",
+    "sha256": "f2957cc7bedc355bbe624cfbb3da82f7375a2a0b37c83ad855813c80eb37092a",
+    "excerptSeconds": [
+      0.3,
+      0.54
+    ],
+    "processing": "Mono, RMS/peak-limited gain and short edge fades; original performance, no voice cloning"
+  }
+]

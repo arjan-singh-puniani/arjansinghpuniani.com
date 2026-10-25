@@ -206,13 +206,13 @@
   ],
   "textures": {
     "cast-skin.webp": "0c11a14f25710b8d215d01bd967386a34c853ba0586f5b1ad03f0aef22314f9f",
-    "coach-kit.webp": "633c36742cda14d28f91fbe26255f246ed566afbe558875317f40e02783238e7",
+    "coach-kit.webp": "5e5903978e631c61fa465836f43848c9a310b34c0c1d71ac36064a3ad1bcc76f",
     "coach-skirt.webp": "45ecbb67c6471328682a351e587439c709310b8fcba72e875120424e4cdf6246",
     "hair.webp": "a549fa4b5f121e176e18a2d8fde0f6750b46ca778f93daec700540609ef16df7",
     "kit.webp": "81e0a7b1b29ea03ff544656b8e20b18d66f5865f38ac69911f6019b9bf7b6b2b",
-    "mika-kit.webp": "fb8ccef5e13e18a7dd762c56a9b305fb7ddcceee8a6ba3519a5cbd2a674cd770",
+    "mika-kit.webp": "7c8a911c59932c96b529a62a2a2a68a6216861494fcb7a626460069d80ed4556",
     "mika-skirt.webp": "67bf2e24d1db65c86be0920aa34f3a7b792ef3928a48e0c777d5a27ce3f0458b",
-    "nia-kit.webp": "aed485db35569c9866148a8f9560eb185cc16af797ddf438b9ea45fd41bd8aea",
+    "nia-kit.webp": "9b87a1240c6f442005973a2b6b7ccb86786a5964135176e9f538ac37db726470",
     "nia-skirt.webp": "8e2b936d61510e0a1195e37a580be86bfde058c968a2925a1677e1ae6924be66",
     "shoes.webp": "3af53b14cb45d2e1a5f09cab63d55b534ee8f7e0f2cb54b63c9f9c8e7513d018",
     "skin.webp": "ec769c1543ecb476613019d221950cd0ffb439d5d85679167b6b2b150a9418a4",
@@ -287,7 +287,7 @@
     "https://static.makehumancommunity.org/assets/assetpacks/shirts03.html"
   ],
   "authoringScripts": {
-    "bake-authored-athlete.py": "f281492369365194c1e9162f46df18a82fc8990be70e5053b0795925ef6c379c",
+    "bake-authored-athlete.py": "126e38ae7f1a7acd4cd42c68dd2a7b1bffc8d21f028df12252d375d26094c4b6",
     "fit-athlete-kit.py": "45f342144d1c7c32c8db2065adeb40da11ba304884ad6ed1160c2734a0e0c62c",
     "fit-athlete-head.py": "4cc1fcdec5710d4b11e052b39f08bb8443cc715825518a2c785f009864b85c2f"
   }

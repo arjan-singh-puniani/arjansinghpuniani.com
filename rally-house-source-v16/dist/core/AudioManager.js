@@ -1,9 +1,20 @@
 import { tennisImpactSignal } from './TennisImpactSound.js';
+import { footstepSignal } from './FootstepSound.js';
 export class AudioManager {
     ctx;
     enabled = true;
-    volume = .65;
+    level = .65;
     noise;
+    shoeBuffers = new Map();
+    shoeVariant = 0;
+    missCount = 0;
+    lastMissVoice = -Infinity;
+    voiceGeneration = 0;
+    voiceLoads = new Map();
+    missVoice;
+    get volume() { return this.level; }
+    set volume(value) { this.level = Math.max(0, Math.min(1, value)); if (!this.level)
+        this.stopVoice(); }
     tennisMaterialBuffers = new Map();
     tennisVariant = 0;
     ambienceSource;
@@ -11,8 +22,11 @@ export class AudioManager {
     ambienceFilter;
     ambienceTick = 0;
     ambienceTarget = -1;
-    ensure() { if (!this.ctx)
-        this.ctx = new AudioContext(); if (this.ctx.state === 'suspended')
+    ensure() { if (!this.ctx) {
+        this.ctx = new AudioContext();
+        for (const voice of ['feminine', 'masculine'])
+            void this.prepareVoice(this.ctx, voice);
+    } if (this.ctx.state === 'suspended')
         void this.ctx.resume().catch(() => { }); return this.ctx; }
     getNoise() { const c = this.ensure(); if (this.noise)
         return this.noise; const b = c.createBuffer(1, Math.floor(c.sampleRate * .11), c.sampleRate), d = b.getChannelData(0); for (let i = 0; i < d.length; i++)
@@ -110,10 +124,10 @@ export class AudioManager {
         this.ambienceFilter = undefined;
         this.ambienceTarget = -1;
     }
-    dispose() { this.enabled = false; this.stopAmbience(); if (this.ctx) {
+    dispose() { this.enabled = false; this.stopVoice(); this.stopAmbience(); if (this.ctx) {
         void this.ctx.close().catch(() => { });
         this.ctx = undefined;
-    } this.tennisMaterialBuffers.clear(); this.noise = undefined; }
+    } this.tennisMaterialBuffers.clear(); this.shoeBuffers.clear(); this.voiceLoads.clear(); this.noise = undefined; }
     machine() { this.tone(85, .24, .009, 'triangle'); this.noiseBurst(420, .10, .004, .6); }
     click() { this.tone(520, .055, .010); }
     paper() { this.noiseBurst(1250, .055, .005, 1.6); this.tone(610, .035, .004, 'sine'); }
@@ -183,12 +197,74 @@ export class AudioManager {
         catch { }
     }
     net() { this.noiseBurst(390, .078, .011, .7); this.tone(92, .07, .007, 'triangle'); }
-    shoe(squeak = false) { if (squeak) {
-        this.noiseBurst(1750, .045, .0045, 2.4);
-        this.tone(720, .025, .0028, 'sine');
+    shoe(surface, scuff = false, pan = 0, weight = 1) {
+        if (!this.enabled || this.volume <= 0)
+            return;
+        try {
+            const c = this.ensure(), variant = this.shoeVariant++ % 3, key = `${surface}:${scuff}:${variant}`;
+            let buffer = this.shoeBuffers.get(key);
+            if (!buffer) {
+                const data = footstepSignal(surface, scuff, variant, c.sampleRate);
+                buffer = c.createBuffer(1, data.length, c.sampleRate);
+                buffer.getChannelData(0).set(data);
+                this.shoeBuffers.set(key, buffer);
+            }
+            const source = c.createBufferSource(), gain = c.createGain(), position = c.createStereoPanner();
+            source.buffer = buffer;
+            position.pan.value = Math.max(-.8, Math.min(.8, pan));
+            gain.gain.value = (surface === 'court' ? .050 : .022) * this.volume * Math.max(0, Math.min(1, weight));
+            source.connect(gain).connect(position).connect(c.destination);
+            source.onended = () => { source.disconnect(); gain.disconnect(); position.disconnect(); };
+            source.start();
+        }
+        catch { }
     }
-    else
-        this.noiseBurst(260, .025, .0027, .7); }
+    prepareVoice(c, voice) {
+        let pending = this.voiceLoads.get(voice);
+        if (!pending) {
+            pending = fetch(new URL(`../../assets/audio/opponent-error-${voice}.wav`, import.meta.url)).then(r => { if (!r.ok)
+                throw Error('Voice unavailable'); return r.arrayBuffer(); }).then(data => c.decodeAudioData(data)).catch(() => null);
+            this.voiceLoads.set(voice, pending);
+        }
+        return pending;
+    }
+    /** Occasional recorded reaction; mute, pause and scene changes invalidate late loads. */
+    opponentMiss(presentation = 'masculine') {
+        const now = performance.now();
+        if (++this.missCount % 3 !== 1 || now - this.lastMissVoice < 8000)
+            return false;
+        this.lastMissVoice = now;
+        this.stopVoice();
+        const generation = this.voiceGeneration, c = this.ctx;
+        if (this.enabled && this.volume > 0 && c?.state === 'running')
+            void this.prepareVoice(c, presentation === 'feminine' ? 'feminine' : 'masculine').then(buffer => {
+                if (!buffer || generation !== this.voiceGeneration || this.ctx !== c || !this.enabled || this.volume <= 0 || c.state !== 'running' || performance.now() - now > 650)
+                    return;
+                try {
+                    const source = c.createBufferSource(), gain = c.createGain();
+                    source.buffer = buffer;
+                    gain.gain.value = this.volume * .45;
+                    source.connect(gain).connect(c.destination);
+                    this.missVoice = { source, gain };
+                    source.onended = () => { source.disconnect(); gain.disconnect(); if (this.missVoice?.source === source)
+                        this.missVoice = undefined; };
+                    source.start();
+                }
+                catch { }
+            });
+        return true;
+    }
+    stopVoice() { this.voiceGeneration++; if (this.missVoice) {
+        const { source, gain } = this.missVoice;
+        this.missVoice = undefined;
+        source.onended = null;
+        try {
+            source.stop();
+        }
+        catch { }
+        source.disconnect();
+        gain.disconnect();
+    } }
     cup() { this.tone(1060, .035, .0045, 'sine'); this.tone(790, .028, .0028, 'sine'); }
     deskBell() { this.tone(1240, .055, .0065, 'sine'); this.tone(1860, .075, .0038, 'sine'); setTimeout(() => this.tone(930, .10, .0022, 'sine'), 18); }
     fabric() { this.noiseBurst(340, .075, .0038, .55); this.noiseBurst(980, .032, .0019, .85); }

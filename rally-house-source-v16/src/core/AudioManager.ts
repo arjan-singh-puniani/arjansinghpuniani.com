@@ -1,10 +1,16 @@
 import {tennisImpactSignal} from './TennisImpactSound.js';
+import {footstepSignal} from './FootstepSound.js';
 
 export class AudioManager {
-  private ctx?:AudioContext;enabled=true;volume=.65;private noise?:AudioBuffer;
+  private ctx?:AudioContext;enabled=true;private level=.65;private noise?:AudioBuffer;
+  private shoeBuffers=new Map<string,AudioBuffer>();private shoeVariant=0;
+  private missCount=0;private lastMissVoice=-Infinity;private voiceGeneration=0;
+  private voiceLoads=new Map<string,Promise<AudioBuffer|null>>();private missVoice?:{source:AudioBufferSourceNode;gain:GainNode};
+  get volume(){return this.level;}
+  set volume(value:number){this.level=Math.max(0,Math.min(1,value));if(!this.level)this.stopVoice();}
   private tennisMaterialBuffers=new Map<string,AudioBuffer[]>();private tennisVariant=0;
   private ambienceSource?:AudioBufferSourceNode;private ambienceGain?:GainNode;private ambienceFilter?:BiquadFilterNode;private ambienceTick=0;private ambienceTarget=-1;
-  private ensure(){if(!this.ctx)this.ctx=new AudioContext();if(this.ctx.state==='suspended')void this.ctx.resume().catch(()=>{});return this.ctx;}
+  private ensure(){if(!this.ctx){this.ctx=new AudioContext();for(const voice of ['feminine','masculine'])void this.prepareVoice(this.ctx,voice);}if(this.ctx.state==='suspended')void this.ctx.resume().catch(()=>{});return this.ctx;}
   private getNoise(){const c=this.ensure();if(this.noise)return this.noise;const b=c.createBuffer(1,Math.floor(c.sampleRate*.11),c.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);this.noise=b;return b;}
   tone(freq=440,duration=.08,gain=.018,type:OscillatorType='sine',detune=0){if(!this.enabled||this.volume<=0)return;try{const c=this.ensure(),o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(freq,c.currentTime);o.detune.value=detune;g.gain.setValueAtTime(Math.max(.0001,gain*this.volume),c.currentTime);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+duration);o.connect(g).connect(c.destination);o.onended=()=>{o.disconnect();g.disconnect();};o.start();o.stop(c.currentTime+duration+.02);}catch{}}
   private noiseBurst(freq=900,duration=.045,gain=.018,q=.9){if(!this.enabled||this.volume<=0)return;try{const c=this.ensure(),src=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();src.buffer=this.getNoise();f.type='bandpass';f.frequency.value=freq;f.Q.value=q;g.gain.setValueAtTime(Math.max(.0001,gain*this.volume),c.currentTime);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+duration);src.connect(f).connect(g).connect(c.destination);src.onended=()=>{src.disconnect();f.disconnect();g.disconnect();};src.start();src.stop(c.currentTime+duration+.01);}catch{}}
@@ -49,7 +55,7 @@ export class AudioManager {
     this.ambienceFilter?.disconnect();this.ambienceGain?.disconnect();
     this.ambienceSource=undefined;this.ambienceGain=undefined;this.ambienceFilter=undefined;this.ambienceTarget=-1;
   }
-  dispose(){this.enabled=false;this.stopAmbience();if(this.ctx){void this.ctx.close().catch(()=>{});this.ctx=undefined;}this.tennisMaterialBuffers.clear();this.noise=undefined;}
+  dispose(){this.enabled=false;this.stopVoice();this.stopAmbience();if(this.ctx){void this.ctx.close().catch(()=>{});this.ctx=undefined;}this.tennisMaterialBuffers.clear();this.shoeBuffers.clear();this.voiceLoads.clear();this.noise=undefined;}
   machine(){this.tone(85,.24,.009,'triangle');this.noiseBurst(420,.10,.004,.6);}
   click(){this.tone(520,.055,.010)}
   paper(){this.noiseBurst(1250,.055,.005,1.6);this.tone(610,.035,.004,'sine')}
@@ -109,7 +115,35 @@ export class AudioManager {
     }catch{}
   }
   net(){this.noiseBurst(390,.078,.011,.7);this.tone(92,.07,.007,'triangle')}
-  shoe(squeak=false){if(squeak){this.noiseBurst(1750,.045,.0045,2.4);this.tone(720,.025,.0028,'sine');}else this.noiseBurst(260,.025,.0027,.7)}
+  shoe(surface:'court'|'tile',scuff=false,pan=0,weight=1){
+    if(!this.enabled||this.volume<=0)return;
+    try{
+      const c=this.ensure(),variant=this.shoeVariant++%3,key=`${surface}:${scuff}:${variant}`;
+      let buffer=this.shoeBuffers.get(key);
+      if(!buffer){const data=footstepSignal(surface,scuff,variant,c.sampleRate);buffer=c.createBuffer(1,data.length,c.sampleRate);buffer.getChannelData(0).set(data);this.shoeBuffers.set(key,buffer);}
+      const source=c.createBufferSource(),gain=c.createGain(),position=c.createStereoPanner();source.buffer=buffer;
+      position.pan.value=Math.max(-.8,Math.min(.8,pan));gain.gain.value=(surface==='court'?.050:.022)*this.volume*Math.max(0,Math.min(1,weight));
+      source.connect(gain).connect(position).connect(c.destination);source.onended=()=>{source.disconnect();gain.disconnect();position.disconnect();};source.start();
+    }catch{}
+  }
+  private prepareVoice(c:AudioContext,voice:string){
+    let pending=this.voiceLoads.get(voice);
+    if(!pending){pending=fetch(new URL(`../../assets/audio/opponent-error-${voice}.wav`,import.meta.url)).then(r=>{if(!r.ok)throw Error('Voice unavailable');return r.arrayBuffer();}).then(data=>c.decodeAudioData(data)).catch(()=>null);this.voiceLoads.set(voice,pending);}
+    return pending;
+  }
+  /** Occasional recorded reaction; mute, pause and scene changes invalidate late loads. */
+  opponentMiss(presentation='masculine'){
+    const now=performance.now();if(++this.missCount%3!==1||now-this.lastMissVoice<8000)return false;this.lastMissVoice=now;
+    this.stopVoice();const generation=this.voiceGeneration,c=this.ctx;
+    if(this.enabled&&this.volume>0&&c?.state==='running')void this.prepareVoice(c,presentation==='feminine'?'feminine':'masculine').then(buffer=>{
+      if(!buffer||generation!==this.voiceGeneration||this.ctx!==c||!this.enabled||this.volume<=0||c.state!=='running'||performance.now()-now>650)return;
+      try{const source=c.createBufferSource(),gain=c.createGain();source.buffer=buffer;gain.gain.value=this.volume*.45;source.connect(gain).connect(c.destination);this.missVoice={source,gain};
+        source.onended=()=>{source.disconnect();gain.disconnect();if(this.missVoice?.source===source)this.missVoice=undefined;};source.start();
+      }catch{}
+    });
+    return true;
+  }
+  stopVoice(){this.voiceGeneration++;if(this.missVoice){const {source,gain}=this.missVoice;this.missVoice=undefined;source.onended=null;try{source.stop();}catch{}source.disconnect();gain.disconnect();}}
   cup(){this.tone(1060,.035,.0045,'sine');this.tone(790,.028,.0028,'sine')}
   deskBell(){this.tone(1240,.055,.0065,'sine');this.tone(1860,.075,.0038,'sine');setTimeout(()=>this.tone(930,.10,.0022,'sine'),18)}
   fabric(){this.noiseBurst(340,.075,.0038,.55);this.noiseBurst(980,.032,.0019,.85)}

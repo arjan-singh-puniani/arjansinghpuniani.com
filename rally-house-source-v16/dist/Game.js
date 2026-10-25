@@ -333,12 +333,14 @@ export class Game {
             if (document.hidden) {
                 this.phoneCapture?.cancel();
                 this.setChampionshipPaused(true);
+                this.audio.stopVoice();
                 this.audio.stopAmbience();
             }
         });
         window.addEventListener('blur', () => {
             this.matchInput.reset();
             this.championshipHud.resetTouch();
+            this.audio.stopVoice();
             this.setChampionshipPaused(true);
         });
         document.addEventListener('focusin', e => {
@@ -705,6 +707,13 @@ export class Game {
             onPoint: (winner, reason, rallyLength) => {
                 this.matchInput.setEnabled(false);
                 this.championship.resolvePoint({ winner, reason, rallyLength });
+                const opponent = this.actor(this.championshipOpponentId);
+                if (winner === 'player' && this.audio.opponentMiss(opponent.spec.presentation)) {
+                    opponent.setEmotion('frustrated', 1.3);
+                    this.activeSpeechId = opponent.id;
+                    this.speechUntil = performance.now() + 1300;
+                    this.ui.showSpeech(opponent.spec.name, 'Fuck!', 1300, true);
+                }
                 if (this.championship.phase === 'matchResult')
                     this.audio.success();
             },
@@ -729,6 +738,9 @@ export class Game {
     requestChampionshipExit() {
         if (!this.championship.active)
             return;
+        this.audio.stopVoice();
+        this.ui.hideSpeech();
+        this.activeSpeechId = null;
         this.rememberChampionshipResult();
         this.matchInput.setEnabled(false);
         this.championshipHud.resetTouch();
@@ -750,6 +762,8 @@ export class Game {
             this.championship.phase === 'matchResult')
             return;
         this.clock.paused = paused;
+        if (paused)
+            this.audio.stopVoice();
         this.matchInput.setEnabled(!paused && this.championship.acceptsGameplayInput);
         this.matchInput.reset();
         this.championshipHud.resetTouch();
@@ -764,6 +778,9 @@ export class Game {
         this.championshipApproachSpeeds?.clear();
     }
     cleanupChampionship() {
+        this.audio.stopVoice();
+        this.ui.hideSpeech();
+        this.activeSpeechId = null;
         this.restoreChampionshipApproach();
         this.matchInput.setEnabled(false);
         this.interactiveMatch?.stop();
@@ -838,6 +855,7 @@ export class Game {
             this.championship.update(dt, this.settings.reducedMotion);
             const after = this.championship.phase;
             if (after === 'serving' && before !== 'serving') {
+                this.audio.stopVoice();
                 this.interactiveMatch?.startPoint(this.championship.snapshot().server);
             }
             const acceptsInput = after === 'serving' || after === 'rally';
@@ -2213,11 +2231,15 @@ export class Game {
                 }
             }
             c.update(step);
-            if (c.consumeStepEvent())
-                this.audio.shoe(c.state === 'shuffle');
         }
         if (!phoneOwnsPlayer)
             this.player.update(step);
+        for (const c of crowd)
+            if (c.consumeStepEvent()) {
+                const onCourt = this.world.nav.onCourt(c.position), near = Vec3.sub(c.position, this.player.position).len(), weight = c === this.player ? 1 : this.championship?.active ? (c.id === this.championshipOpponentId ? .85 : .15) : Math.max(.12, 1 - near / 20);
+                const pan = clamp((c.position.x - this.player.position.x) / 10, -.7, .7);
+                this.audio.shoe(onCourt ? 'court' : 'tile', onCourt && c.state === 'shuffle', pan, weight);
+            }
         if (!phoneOwnsPlayer && !this.performanceLab?.active)
             this.updatePlayerWatching();
         this.updateSpectatorAttention();

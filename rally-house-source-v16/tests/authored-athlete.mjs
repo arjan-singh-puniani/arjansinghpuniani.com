@@ -255,7 +255,13 @@ console.log(JSON.stringify({assetTriangles:asset.primitives.reduce((n,p)=>n+p.ge
   assert(!Array.from({length:skin.skin.positions.length/9},(_,t)=>[0,1,2].every(j=>{const v=t*3+j;return skin.skin.uvs[v*2]>.5&&skin.skin.uvs[v*2+1]>.8&&skin.skin.positions[v*3+2]<-.075;})).some(Boolean),'alternate hairstyles must not retain the source ponytail core');
   for(let v=0;v<skin.skin.normals.length;v+=3*29)for(const delta of skin.skin.morphNormals){const n=skin.skin.normals;assert(Math.abs(Math.hypot(n[v]+delta[v],n[v+1]+delta[v+1],n[v+2]+delta[v+2])-1)<1e-5,'shaped expression normals must remain unit length');}
   const eg=eyes.skin;for(const side of [0,1])for(let axis=0;axis<3;axis++){const values=[];for(let v=0;v<eg.positions.length/3;v++)if((eg.positions[v*3]<0?0:1)===side)values.push(eg.positions[v*3+axis]);assert(Math.abs(eyes.eyeCenters[side*3+axis]-(Math.min(...values)+Math.max(...values))/2)<1e-6,'shaped eyes must retain their actual rotation centers');}
-  for(let v=0;v<body.positions.length/3;v+=31)if(![0,1,2,3].some(j=>body.boneIndices[v*4+j]===BONE.head&&body.boneWeights[v*4+j]>.99))for(let axis=0;axis<3;axis++)assert.equal(skin.skin.positions[v*3+axis],body.positions[v*3+axis],'face shaping must preserve the fitted body');
+  let fittedCore=0;
+  for(let v=0;v<body.positions.length/3;v+=31)if(![0,1,2,3].some(j=>body.boneIndices[v*4+j]===BONE.head&&body.boneWeights[v*4+j]>.99)){
+   const source=new Vec3(...body.positions.slice(v*3,v*3+3)),fitted=new Vec3(...skin.skin.positions.slice(v*3,v*3+3));assert(Vec3.sub(source,fitted).len()<.025,'Cast fitting stays close to the verified body');
+   if([0,1,2,3].some(j=>[BONE.handL,BONE.handR,BONE.footL,BONE.footR].includes(body.boneIndices[v*4+j])&&body.boneWeights[v*4+j]>.99))assert.deepEqual(fitted,source,'Cast fitting preserves palms and shoe anchors');
+   if(source.y>1.4&&source.y<1.6&&Math.abs(source.x)>.1&&Math.abs(source.x)<.3){assert(Math.abs(fitted.x)<Math.abs(source.x),'The torso fit must actually narrow the waist');fittedCore++;}
+  }
+  assert(fittedCore>8,'Inspect the fitted torso, not just the face');
   for(const state of ['sit','idle','ready']){actor.trigger(state);for(let i=0;i<90;i++)actor.update(1/60);assert(actor.meshes().filter(m=>m.rig).every(m=>m.boneMatrices.every(Number.isFinite)));}
   actor.matchCompetitor=true;actor.racketStowed=false;actor.setAnimation('ready');actor.update(.3);actor.setIncomingContact(new Vec3(-.6,1.02,.9));actor.triggerShot('swingBackhand',new Vec3(0,.09,5));const contactTime=actor.shotContactTime('swingBackhand');for(let i=0;i<60;i++)actor.update(contactTime/60);assert(Vec3.sub(actor.analysisPose().racketCenter,actor.debugKinematics().contactTarget).len()<1e-6,'cast appearance must preserve the world-owned racket contact');
   const frame=captureFrame(actor,0,null);assert(frame.body.some(m=>m.skin===skin.skin),'capture must retain the selected face geometry');

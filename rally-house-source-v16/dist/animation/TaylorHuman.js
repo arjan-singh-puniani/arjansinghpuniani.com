@@ -151,11 +151,45 @@ function lock(id, points, radii, rows = 40, segments = 20) {
     }, true);
 }
 const ponytail = lock('taylor-human-athletic-ponytail-v2', [[0, .176, -.075], [.018, .125, -.168], [.038, .005, -.209], [.018, -.145, -.224], [.046, -.285, -.246], [.075, -.390, -.270]], [.040, .049, .044, .036, .024, 0]);
-const sweep = lock('taylor-human-side-part-v3', [[-.009, .184, .025], [-.052, .138, .060], [-.095, .076, .050], [-.115, .002, .010], [-.111, -.068, .006]], [0, .023, .018, .010, 0]);
-const fineSweep = lock('taylor-human-temple-strand-v2', [[.079, .095, .055], [.112, .025, .031], [.112, -.045, .018], [.103, -.096, .015]], [0, .006, .005, 0]);
+const sweep = lock('taylor-human-side-part-v3', [[-.009, .184, .025], [-.052, .138, .060], [-.095, .076, .050], [-.115, .002, .010], [-.111, -.068, .006]], [0, .023, .018, .010, 0], 24, 12);
+const fineSweep = lock('taylor-human-temple-strand-v2', [[.079, .095, .055], [.112, .025, .031], [.112, -.045, .018], [.103, -.096, .015]], [0, .006, .005, 0], 24, 12);
 const looseLocks = [-1, 1].map(side => lock(`taylor-human-face-framing-lock-${side}-v1`, [[side * .095, .074, .054], [side * .121, .006, .043], [side * .124, -.082, .031], [side * .112, -.155, .043], [side * .130, -.209, .020]], [0, .008, .007, .004, 0], 24, 12));
-const bob = surface('athlete-sculpted-bob-v1', tri => {
-    const at = (r, i, inside = false) => { const t = r / 12, a = .95 + i / 32 * (Math.PI * 2 - 1.9), rx = .086 + .050 * Math.sin(t * Math.PI / 2), rz = .077 + .029 * Math.sin(t * Math.PI / 2), wall = inside ? .008 : 0; return [Math.sin(a) * (rx - wall), .14 - t * .34, Math.cos(a) * (rz - wall) - .012]; };
+const waves = surface('athlete-shoulder-length-waves-v1', tri => {
+    const at = (r, i, inside = false) => { const t = r / 16, a = 1.02 + i / 32 * (Math.PI * 2 - 2.04), wave = .008 * Math.sin(a * 7 + t * 10) * Math.sin(Math.PI * t), rx = .113 + .053 * Math.sin(t * Math.PI * .75) + wave - (inside ? .008 : 0), rz = .10 + .035 * Math.sin(t * Math.PI * .75) + wave - (inside ? .008 : 0); return [Math.sin(a) * rx, .15 - t * .64 + .012 * Math.sin(a * 3) * t * t, Math.cos(a) * rz - .015]; };
+    for (let r = 0; r < 16; r++)
+        for (let i = 0; i < 32; i++)
+            for (const inside of [false, true]) {
+                const a = at(r, i, inside), b = at(r, i + 1, inside), c = at(r + 1, i + 1, inside), d = at(r + 1, i, inside);
+                if (inside) {
+                    tri(a, b, c);
+                    tri(a, c, d);
+                }
+                else {
+                    tri(a, c, b);
+                    tri(a, d, c);
+                }
+            }
+    for (let i = 0; i < 32; i++) {
+        const a = at(16, i), b = at(16, i + 1), c = at(16, i + 1, true), d = at(16, i, true);
+        tri(a, b, c);
+        tri(a, c, d);
+    }
+    for (const i of [0, 32])
+        for (let r = 0; r < 16; r++) {
+            const a = at(r, i), b = at(r + 1, i), c = at(r + 1, i, true), d = at(r, i, true);
+            if (i === 0) {
+                tri(a, c, b);
+                tri(a, d, c);
+            }
+            else {
+                tri(a, b, c);
+                tri(a, c, d);
+            }
+        }
+});
+const waveLocks = [-1, 1].map(side => lock(`athlete-soft-wave-lock-${side}-v2`, [[side * .079, .145, .052], [side * .117, .045, .056], [side * .132, -.10, .045], [side * .151, -.23, .049], [side * .143, -.34, .018], [side * .155, -.40, -.010]], [.009, .014, .013, .011, .006, 0], 24, 12));
+const bob = surface('athlete-sculpted-bob-v2', tri => {
+    const at = (r, i, inside = false) => { const t = r / 12, a = .95 + i / 32 * (Math.PI * 2 - 1.9), wave = .005 * Math.sin(a * 5 + t * 7) * Math.sin(Math.PI * t), rx = .098 + .063 * Math.sin(t * Math.PI / 2) + wave, rz = .084 + .036 * Math.sin(t * Math.PI / 2) + wave, wall = inside ? .008 : 0; return [Math.sin(a) * (rx - wall), .14 - t * .39 + .012 * Math.sin(a * 3) * t * t, Math.cos(a) * (rz - wall) - .012]; };
     for (let r = 0; r < 12; r++)
         for (let i = 0; i < 32; i++)
             for (const inside of [false, true]) {
@@ -187,7 +221,7 @@ const bob = surface('athlete-sculpted-bob-v1', tri => {
             }
         }
 });
-export const CAST_HAIR_GEOMETRY = { bob };
+export const CAST_HAIR_GEOMETRY = { bob, waves, ...Object.fromEntries(waveLocks.map((g, i) => [`waveLock${i}`, g])) };
 export const HUMAN_TAYLOR_GEOMETRY = { face, eyeWhite, iris, pupil, upperLip, lowerLip, smileUpper, smileLower, seam, smileSeam, nostrils, mouthGap, cap, ponytail, sweep, fineSweep, ...Object.fromEntries(looseLocks.map((g, i) => [`looseLock${i}`, g])), ...Object.fromEntries(lids.map((g, i) => [`lid${i}`, g])), ...Object.fromEntries(lowerLids.map((g, i) => [`lowerLid${i}`, g])), ...Object.fromEntries(brows.map((g, i) => [`brow${i}`, g])), ...Object.fromEntries(lidFolds.map((g, i) => [`lidFold${i}`, g])) };
 export function humanHairMeshes(head, yaw, tilt, options = {}) {
     const out = [], right = new Vec3(Math.cos(yaw), 0, -Math.sin(yaw)), forward = new Vec3(Math.sin(yaw), 0, Math.cos(yaw)), width = options.width ?? 1, height = options.height ?? 1, hair = options.hair ?? '#251e1d', style = options.hairStyle ?? 'ponytail';
@@ -198,8 +232,11 @@ export function humanHairMeshes(head, yaw, tilt, options = {}) {
         part(ponytail, hair, 'groomedHair');
     if (style === 'bob')
         part(bob, hair, 'groomedHair');
+    if (style === 'waves')
+        for (const g of [waves, ...waveLocks])
+            part(g, hair, 'groomedHair');
     if (style !== 'crop')
-        for (const g of [sweep, fineSweep, ...(style === 'ponytail' || style === 'bob' ? looseLocks : [])])
+        for (const g of [sweep, fineSweep, ...(style === 'ponytail' || style === 'bob' || style === 'waves' || style === 'bun' ? looseLocks : [])])
             part(g, options.hair ?? '#382820', 'groomedHair');
     if (style === 'bun')
         out.push({ kind: 'sphere', position: point(.010, .163, -.119), rotation: new Vec3(0, yaw, tilt), scale: new Vec3(.104 * width, .096 * height, .102), color: hair, material: 'groomedHair' });
