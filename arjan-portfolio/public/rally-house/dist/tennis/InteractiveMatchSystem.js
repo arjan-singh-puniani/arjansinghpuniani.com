@@ -49,6 +49,7 @@ export class InteractiveMatchSystem {
     flightHitter = null;
     pending = null;
     pointResolved = false;
+    pointResultAge = 0;
     firstBounceSeen = false;
     shotSequence = 0;
     opponentServeDelay = 0;
@@ -86,6 +87,7 @@ export class InteractiveMatchSystem {
         this.flightHitter = null;
         this.pending = null;
         this.pointResolved = false;
+        this.pointResultAge = 0;
         this.firstBounceSeen = false;
         this.rallyLength = 0;
         this.ball.active = false;
@@ -134,7 +136,18 @@ export class InteractiveMatchSystem {
         this.opponent.setLook(undefined);
     }
     update(dt) {
-        if (!this.enabled || this.pointResolved || !Number.isFinite(dt) || dt <= 0) {
+        if (!this.enabled || !Number.isFinite(dt) || dt <= 0) {
+            return;
+        }
+        if (this.pointResolved) {
+            const before = this.pointResultAge;
+            this.pointResultAge += dt;
+            if (before < CHAMPIONSHIP_TUNING.pointReactionSeconds && this.pointResultAge >= CHAMPIONSHIP_TUNING.pointReactionSeconds) {
+                // A stopped steering input must not turn baseline recovery into a crawl.
+                this.player.setCourtSpeedScale(CHAMPIONSHIP_TUNING.playerMaxCourtSpeedScale);
+                this.player.moveOnCourt(new Vec3(COURT_CENTER_X, 0, PLAYER_BASELINE_Z), this.opponent.position, false);
+                this.opponent.moveOnCourt(new Vec3(COURT_CENTER_X, 0, -this.opponentProfile.courtDepth), this.player.position, false);
+            }
             return;
         }
         this.input.update(dt);
@@ -557,6 +570,7 @@ export class InteractiveMatchSystem {
         if (this.pointResolved)
             return;
         this.pointResolved = true;
+        this.pointResultAge = 0;
         this.impactBurst = 0;
         this.impactAge = 1;
         this.player.clearShotIntent();
@@ -576,8 +590,6 @@ export class InteractiveMatchSystem {
         else {
             loserCharacter.trigger('reactMiss');
         }
-        this.player.moveOnCourt(new Vec3(COURT_CENTER_X, 0, PLAYER_BASELINE_Z), this.opponent.position, false);
-        this.opponent.moveOnCourt(new Vec3(COURT_CENTER_X, 0, -this.opponentProfile.courtDepth), this.player.position, false);
         this.callbacks.onPoint?.(winner, reason, this.rallyLength);
     }
     otherSide(side) {

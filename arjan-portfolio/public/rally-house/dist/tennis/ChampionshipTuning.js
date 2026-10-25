@@ -11,6 +11,7 @@ export const CHAMPIONSHIP_TUNING = {
     introSeconds: .95,
     readySeconds: .28,
     pointResultSeconds: 1.05,
+    pointReactionSeconds: .32,
     exitSeconds: 0.85,
     /** Compact tiebreak-style format: first to 7, win by 2. */
     pointsToWin: 7,

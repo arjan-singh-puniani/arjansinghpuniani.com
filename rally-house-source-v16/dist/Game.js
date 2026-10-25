@@ -860,7 +860,7 @@ export class Game {
             }
             const acceptsInput = after === 'serving' || after === 'rally';
             this.matchInput.setEnabled(acceptsInput);
-            if (acceptsInput) {
+            if (acceptsInput || after === 'pointResult') {
                 this.interactiveMatch?.update(dt);
             }
             // Contact callbacks may change phase during match.update, after `after`

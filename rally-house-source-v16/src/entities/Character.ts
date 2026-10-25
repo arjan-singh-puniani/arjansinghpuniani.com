@@ -209,7 +209,8 @@ export class Character {
 
   consumeStepEvent(){const v=this.stepEvent;this.stepEvent=false;return v;}
   face(target:Vec3){const d=Vec3.sub(target,this.position);this.targetYaw=Math.atan2(d.x,d.z);}
-  trigger(state:AnimState){this.changeState(state,true);if(isShot(state))this.clearCourtMove();}
+  private reactionRacket=false;
+  trigger(state:AnimState){if(state==='celebrate'||state==='reactMiss')this.reactionRacket=this.holdsRacket();this.changeState(state,true);if(isShot(state))this.clearCourtMove();}
   setAnimation(state:AnimState){this.changeState(state,false);}
   setIncomingContact(point:Vec3){this.incomingContact=point.clone();}
   triggerShot(state:ShotState,outgoingTarget:Vec3){this.outgoingTarget=outgoingTarget.clone();this.contactTarget=this.solveContactTarget(state,this.incomingContact);this.incomingContact=null;this.courtPhase='stroke';this.courtPhaseAge=0;this.setEmotion('focused',this.shotDuration(state));this.trigger(state);const foot=state==='swingForehand'?'R':'L',stance=this.poseFor(state,this.shotContactTime(state)*.72),point=stance[`foot${foot}`].clone();point.y=.11;this.strokeAnchor={foot,point,root:this.position.clone()};}
@@ -578,7 +579,10 @@ export class Character {
     return {centre:new Vec3((minX+maxX)/2,(low+high)/2,(minZ+maxZ)/2),size:new Vec3(maxX-minX,high-low,maxZ-minZ)};
   }
 
-  private holdsRacket(){return (this.matchCompetitor||this.spec.id!=='nia')&&(isShot(this.state)||this.state==='ready'||this.state==='shuffle'||this.socialGesture==='inspect')&&!this.racketStowed&&this.state!=='drink'&&!this.propKind;}
+  private holdsRacket(){
+    const retained=this.reactionRacket&&(this.state==='celebrate'||this.state==='reactMiss');
+    return (retained||(this.matchCompetitor||this.spec.id!=='nia')&&(isShot(this.state)||this.state==='ready'||this.state==='shuffle'||this.socialGesture==='inspect'))&&!this.racketStowed&&this.state!=='drink'&&!this.propKind;
+  }
 
   meshes(selected=false):RenderItem[]{
     const m:RenderItem[]=[];const p=this.position;const pose=this.pose();const {baseY,torsoYaw,hipYaw,headYaw,right,forward,shoulderL,shoulderR,elbowL,elbowR,handL,handR,racketGrip,racketHandleTop,racketCenter,racketRot,footL,footR,torsoCenter,pelvisCenter,head}=pose;

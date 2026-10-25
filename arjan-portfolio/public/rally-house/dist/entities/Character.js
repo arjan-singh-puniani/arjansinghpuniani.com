@@ -309,7 +309,9 @@ export class Character {
     }
     consumeStepEvent() { const v = this.stepEvent; this.stepEvent = false; return v; }
     face(target) { const d = Vec3.sub(target, this.position); this.targetYaw = Math.atan2(d.x, d.z); }
-    trigger(state) { this.changeState(state, true); if (isShot(state))
+    reactionRacket = false;
+    trigger(state) { if (state === 'celebrate' || state === 'reactMiss')
+        this.reactionRacket = this.holdsRacket(); this.changeState(state, true); if (isShot(state))
         this.clearCourtMove(); }
     setAnimation(state) { this.changeState(state, false); }
     setIncomingContact(point) { this.incomingContact = point.clone(); }
@@ -1124,7 +1126,10 @@ export class Character {
         const low = Math.max(0, Math.min(p.footL.y, p.footR.y) - .12), high = Math.max(p.head.y + (this.spec.appearance === 'human' ? .23 : .42), p.handL.y + .1, p.handR.y + .1);
         return { centre: new Vec3((minX + maxX) / 2, (low + high) / 2, (minZ + maxZ) / 2), size: new Vec3(maxX - minX, high - low, maxZ - minZ) };
     }
-    holdsRacket() { return (this.matchCompetitor || this.spec.id !== 'nia') && (isShot(this.state) || this.state === 'ready' || this.state === 'shuffle' || this.socialGesture === 'inspect') && !this.racketStowed && this.state !== 'drink' && !this.propKind; }
+    holdsRacket() {
+        const retained = this.reactionRacket && (this.state === 'celebrate' || this.state === 'reactMiss');
+        return (retained || (this.matchCompetitor || this.spec.id !== 'nia') && (isShot(this.state) || this.state === 'ready' || this.state === 'shuffle' || this.socialGesture === 'inspect')) && !this.racketStowed && this.state !== 'drink' && !this.propKind;
+    }
     meshes(selected = false) {
         const m = [];
         const p = this.position;
