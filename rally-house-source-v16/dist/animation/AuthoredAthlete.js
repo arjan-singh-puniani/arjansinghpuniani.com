@@ -1,6 +1,6 @@
 import { Vec3, rigidFrame, invertRigid, interpolateRigidFrame, compose, transformPoint, smoothstep } from '../rendering/Math3D.js';
 import { inspectCharacterAsset } from './CharacterAssetIntake.js';
-import { BONE, rigFromPose, skinMatrices } from './CharacterSkin.js';
+import { BONE, rigFromPose, skinMatrices, transportedFrame } from './CharacterSkin.js';
 import { CAST_DESIGN } from '../content/CastDesign.js';
 import { humanHairMeshes } from './TaylorHuman.js';
 const castIds = ['coach', 'mika', 'nia'];
@@ -159,6 +159,9 @@ export function advanceAuthoredHands(p, position, yaw, previous, dt) {
     for (const [i, side] of ['L', 'R'].entries()) {
         const direction = Vec3.sub(rig[`hand${side}`], rig[`foreArm${side}`]), pole = Vec3.cross(Vec3.sub(rig[`foreArm${side}`], rig[`upperArm${side}`]), direction).scale(side === 'L' ? 1 : -1);
         let frame = rigidFrame(origin, direction, pole.len() > .001 ? pole : rig.forward), weight = Math.max(0, 1 - p.handRestWeight - p.handLapWeight - racketGrip[i]);
+        // Keep a free stroke hand's roll when the elbow plane passes through straight.
+        if (p.shot && racketGrip[i] < .001 && previous)
+            frame = transportedFrame(rigidFrame(origin, previous[`handDirection${side}`], previous[`handForward${side}`]), origin, direction);
         const add = (target, amount) => { if (amount > 0) {
             frame = interpolateRigidFrame(frame, target, amount / (weight + amount));
             weight += amount;
@@ -167,7 +170,7 @@ export function advanceAuthoredHands(p, position, yaw, previous, dt) {
         add(rigidFrame(origin, new Vec3(0, 0, 1), new Vec3(0, 1, 0)), p.handLapWeight);
         if (racketGrip[i] > .0001) {
             // The grip can roll around its shaft to follow the forearm without moving contact.
-            const axis = local(Vec3.sub(p.racketHandleTop, p.racketGrip)).normalize().scale(athlete.gripSign[side]), fingers = direction.clone();
+            const axis = local(Vec3.sub(p.racketHandleTop, p.racketGrip)).normalize().scale(athlete.gripSign[side]), fingers = new Vec3(frame[4], frame[5], frame[6]);
             fingers.sub(axis.clone().scale(Vec3.dot(fingers, axis)));
             if (fingers.len() < .1) {
                 const width = transformPoint(racket, new Vec3((side === 'L' ? 1 : -1) * Math.cos(.8), 0, Math.sin(.8)));
@@ -213,7 +216,7 @@ export function authoredAthleteMeshes(p, position, yaw, feet, time, identity = '
         rig[`footForward${side}`] = new Vec3(Math.sin(angle) * Math.cos(f.pitch), -Math.sin(f.pitch), Math.cos(angle) * Math.cos(f.pitch));
         rig[`footUp${side}`] = new Vec3(Math.sin(angle) * Math.sin(f.pitch), Math.cos(f.pitch), Math.cos(angle) * Math.sin(f.pitch));
     }
-    const bones = skinMatrices(rig, athlete.bind), phase = (time + .47) % 3.75, blink = phase < .05 ? smoothstep(0, .05, phase) : 1 - smoothstep(.05, .18, phase);
+    const bones = skinMatrices(rig, athlete.bind, smoothstep(0, .15, p.sp)), phase = (time + .47) % 3.75, blink = phase < .05 ? smoothstep(0, .05, phase) : 1 - smoothstep(.05, .18, phase);
     const expression = [p.face.smile, p.face.mouthOpen, Math.min(1, blink + p.face.squint * .35), p.face.browRaise];
     // Thigh pitch alone also occurs during a serve; retain the seated transition gate.
     // shortcut: seated/crouched correctives; use cloth simulation for unrestricted contact folds.

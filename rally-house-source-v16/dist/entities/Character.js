@@ -2,7 +2,7 @@ import { RACKET, RACKET_FRAME, RACKET_BONES, secondRacketHand } from '../animati
 import { CHAMPIONSHIP_TUNING } from '../tennis/ChampionshipTuning.js';
 import { ActingState } from '../animation/ActingState.js';
 import { WalkCycle } from '../animation/WalkCycle.js';
-import { Vec3, clamp, smoothstep, rigidFrame, interpolateRigidFrame } from '../rendering/Math3D.js';
+import { Vec3, clamp, smoothstep, rigidFrame, interpolateRigidFrame, compose } from '../rendering/Math3D.js';
 import { Navigation } from '../world/Navigation.js';
 import { clipForState, sampleClip } from '../animation/ClipLibrary.js';
 import { taylorHeadMeshes, taylorTailMeshes, taylorFootMeshes, TAYLOR_PALETTE } from '../animation/TaylorAppearance.js';
@@ -30,6 +30,7 @@ function angleDelta(a, b) { let d = (b - a + Math.PI) % (Math.PI * 2) - Math.PI;
 function dampAngle(current, target, sharpness, dt) { return current + angleDelta(current, target) * (1 - Math.exp(-sharpness * dt)); }
 function bell(x, width) { const q = x / Math.max(.001, width); return Math.exp(-q * q * 3.2); }
 function blendVec(a, b, t) { return Vec3.lerp(a, b, t); }
+function strokeCurve(a, b, c, d, t) { const u = 1 - t; return a.clone().scale(u * u * u).add(b.clone().scale(3 * u * u * t)).add(c.clone().scale(3 * u * t * t)).add(d.clone().scale(t * t * t)); }
 function blendFace(a, b, t) { return { smile: a.smile + (b.smile - a.smile) * t, mouthOpen: a.mouthOpen + (b.mouthOpen - a.mouthOpen) * t, browRaise: a.browRaise + (b.browRaise - a.browRaise) * t, squint: a.squint + (b.squint - a.squint) * t, focus: a.focus + (b.focus - a.focus) * t }; }
 function mixHex(a, b, t) { const parse = (h) => { const s = h.replace('#', ''); return [parseInt(s.slice(0, 2), 16), parseInt(s.slice(2, 4), 16), parseInt(s.slice(4, 6), 16)]; }; const aa = parse(a), bb = parse(b), c = aa.map((v, i) => Math.round(v + (bb[i] - v) * t)); return '#' + c.map(v => v.toString(16).padStart(2, '0')).join(''); }
 /** Rotate a local racket-plane vector by the same Y * X * Z order used by Math3D.compose. */
@@ -681,8 +682,9 @@ export class Character {
         }
         // The hitting shoulder loads back for a forehand and forward for a backhand.
         if (this.spec.appearance === 'human' && (state === 'swingForehand' || state === 'swingBackhand')) {
-            coil = -coil;
-            hipCoil = -hipCoil;
+            const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1), turn = (state === 'swingForehand' ? 1 : -1) * (.90 * Math.sin(pre * Math.PI) - .78 * style.follow * smoothstep(0, 1, post)) * style.coil;
+            coil = -clip.torsoTwist + turn;
+            hipCoil = -clip.hipTwist + turn * .52;
         }
         const moving = state === 'walk' || state === 'jog';
         const shuffle = state === 'shuffle';
@@ -799,6 +801,8 @@ export class Character {
             const pre = clamp(sp / contact, 0, 1), follow = smoothstep(contact + .02, .94, sp);
             handR = Vec3.lerp(this.worldLocal(.54 * Math.cos(a), 1.05 + baseY - knee, .58 * Math.sin(a) + .29, torsoYaw), this.worldLocal(-.32, 1.42 + baseY - knee, .34, torsoYaw), follow);
             handL = this.worldLocal(-.32 - .18 * Math.sin(pre * Math.PI), 1.18 + baseY - knee + .10 * (1 - pre), .42 - .28 * pre + .10 * follow, torsoYaw);
+            if (this.spec.appearance === 'human')
+                handL = Vec3.lerp(this.worldLocal(-.34 - .14 * Math.sin(pre * Math.PI), 1.27 + baseY - knee, .48 - .10 * pre, torsoYaw), this.worldLocal(-.24, 1.40 + baseY - knee, .50, torsoYaw), smoothstep(contact, .82, sp));
         }
         if (state === 'swingBackhand') {
             const a = 1.30 - smoothstep(0, .70, sp / contact) * 1.72 - smoothstep(contact, 1, sp) * .98;
@@ -909,22 +913,33 @@ export class Character {
         if (state === 'volley')
             headOffset = Vec3.add(new Vec3(0, .3875, 0), racketForward.clone().scale(.2625));
         const humanGroundstroke = this.spec.appearance === 'human' && (state === 'swingForehand' || state === 'swingBackhand');
-        let groundRise = 0, groundSide = 0, groundDepth = .14;
         if (humanGroundstroke) {
             // At a low ball the racket head drops beside the wrist. Keeping it
             // upright forced the grip toward the ankle and collapsed the body.
-            groundRise = clamp(((this.contactTarget?.y ?? this.position.y + 1.02) - this.position.y - 1.02) * .5, -.20, .20);
-            groundSide = Math.sqrt(.48 ** 2 - .14 ** 2 - groundRise ** 2) * (state === 'swingForehand' ? 1 : -1);
+            const groundRise = clamp(((this.contactTarget?.y ?? this.position.y + 1.02) - this.position.y - 1.02) * .5, -.20, .20);
+            const groundSide = Math.sqrt(.48 ** 2 - .14 ** 2 - groundRise ** 2) * (state === 'swingForehand' ? 1 : -1);
             headOffset = racketRight.clone().scale(groundSide).add(racketForward.clone().scale(.14)).add(new Vec3(0, groundRise, 0));
             // Rotate into the opposite-shoulder finish; a normalized chord snaps near the half-turn.
             const finish = racketRight.clone().scale(state === 'swingForehand' ? -.38 : .38).add(racketForward.clone().scale(-.14)).add(new Vec3(0, .25, 0));
             const origin = new Vec3(), release = interpolateRigidFrame(rigidFrame(origin, headOffset, racketForward), rigidFrame(origin, finish, racketForward), smoothstep(contact + .08, .94, sp));
             headOffset = new Vec3(release[4], release[5], release[6]).scale(.48);
-            groundRise = headOffset.y;
-            groundSide = Vec3.dot(headOffset, racketRight);
-            groundDepth = Vec3.dot(headOffset, racketForward);
+            if (sp < contact) {
+                const pre = sp / contact, side = state === 'swingForehand' ? 1 : -1;
+                const raised = racketRight.clone().scale(.23 * side).add(racketForward.clone().scale(-.13)).add(new Vec3(0, .40, 0)), dropped = racketRight.clone().scale(.36 * side).add(racketForward.clone().scale(-.14)).add(new Vec3(0, -.28, 0));
+                const from = pre < .60 ? raised : dropped, to = pre < .60 ? dropped : headOffset, t = pre < .60 ? smoothstep(0, .60, pre) : smoothstep(.60, 1, pre);
+                const frame = interpolateRigidFrame(rigidFrame(origin, from, racketForward), rigidFrame(origin, to, racketForward), t);
+                headOffset = new Vec3(frame[4], frame[5], frame[6]).scale(.48);
+            }
         }
-        if (shot && this.contactTarget) {
+        if (humanGroundstroke) {
+            // The adult wrist travels through contact; a brief contact override used to yank the compact arc onto the ball.
+            const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1), side = state === 'swingBackhand' ? -1 : 1, rise = clamp((contactLocal.y - 1.02) * .5, -.20, .20);
+            const impactOffset = racketRight.clone().scale(Math.sqrt(.48 ** 2 - .14 ** 2 - rise ** 2) * side).add(racketForward.clone().scale(.14)).add(new Vec3(0, rise, 0));
+            const impact = Vec3.sub(this.contactTarget ?? this.worldLocal(side * .65, 1.02, .75), impactOffset), start = this.worldLocal(.48 * side, 1.72, -.10), finish = this.worldLocal(state === 'swingBackhand' ? .18 : -.36, 2.02, .40, torsoYaw);
+            const approach = racketForward.clone().scale(.32).add(new Vec3(0, .16, 0)), exit = approach.clone().scale((1 - contact) / contact);
+            handR = sp < contact ? strokeCurve(start, this.worldLocal(.64 * side, 1.55, -.10), impact.clone().sub(approach), impact, pre) : strokeCurve(impact, impact.clone().add(exit), finish.clone().add(racketForward.clone().scale(.24)), finish, post);
+        }
+        if (shot && this.contactTarget && !humanGroundstroke) {
             const w = bell(sp - contact, .11);
             const desiredHand = Vec3.sub(this.contactTarget, headOffset);
             handR = blendVec(handR, desiredHand, w);
@@ -948,8 +963,8 @@ export class Character {
             racketRot = new Vec3(.04, torsoYaw, -.12);
         if (readyRotation)
             racketRot = readyRotation;
-        if (humanGroundstroke)
-            racketRot = new Vec3(Math.atan2(groundDepth, groundRise), Math.atan2(racketForward.x, racketForward.z), Math.atan2(-groundSide, Math.hypot(groundRise, groundDepth)));
+        if (this.spec.appearance === 'human' && shot)
+            racketRot = new Vec3(Math.atan2(Vec3.dot(headOffset, racketForward), headOffset.y), Math.atan2(racketForward.x, racketForward.z), Math.atan2(-Vec3.dot(headOffset, racketRight), Math.hypot(headOffset.y, Vec3.dot(headOffset, racketForward))));
         const vib = this.racketVibration * Math.sin(this.animTime * 62) * .045;
         racketRot.z += vib;
         racketRot.x += vib * .35;
@@ -1037,6 +1052,15 @@ export class Character {
     blendPose(a, b, t) {
         const av = (k) => a[k], bv = (k) => b[k];
         const v = (k) => blendVec(av(k), bv(k), t);
+        let racketGrip = v('racketGrip'), racketCenter = v('racketCenter'), racketHandleTop = v('racketHandleTop'), racketRot = v('racketRot');
+        if (this.spec.appearance === 'human' && (isShot(this.state) || isShot(this.previousState))) {
+            // A rigid racket turns into the stroke; blending its endpoints shortened the shaft and jerked the grip.
+            const frame = interpolateRigidFrame(compose(new Vec3(), a.racketRot), compose(new Vec3(), b.racketRot), t), pole = Math.abs(frame[9]) > .999999;
+            racketRot = new Vec3(Math.asin(-clamp(frame[9], -1, 1)), pole ? Math.atan2(-frame[2], frame[0]) : Math.atan2(frame[8], frame[10]), pole ? 0 : Math.atan2(frame[1], frame[5]));
+            const axis = new Vec3(frame[4], frame[5], frame[6]), length = Vec3.sub(a.racketCenter, a.racketGrip).len() * (1 - t) + Vec3.sub(b.racketCenter, b.racketGrip).len() * t;
+            racketCenter = Vec3.add(racketGrip, axis.clone().scale(length));
+            racketHandleTop = Vec3.add(racketCenter, axis.scale(RACKET.handleTopY));
+        }
         const feet = {};
         for (const side of ['L', 'R']) {
             for (const field of ['footPitch', 'footRecovery'])
@@ -1045,7 +1069,7 @@ export class Character {
             feet[`footYaw${side}`] = start + angleDelta(start, b[`footYaw${side}`] ?? this.yaw) * t;
             feet[`footPivot${side}`] = Vec3.lerp(a[`footPivot${side}`] ?? a[`foot${side}`], b[`footPivot${side}`] ?? b[`foot${side}`], t);
         }
-        return { ...b, ...feet, baseY: a.baseY + (b.baseY - a.baseY) * t, breathe: a.breathe + (b.breathe - a.breathe) * t, gait: a.gait + (b.gait - a.gait) * t, torsoYaw: a.torsoYaw + angleDelta(a.torsoYaw, b.torsoYaw) * t, hipYaw: a.hipYaw + angleDelta(a.hipYaw, b.hipYaw) * t, headYaw: a.headYaw + angleDelta(a.headYaw, b.headYaw) * t, eyeYaw: (a.eyeYaw ?? 0) + ((b.eyeYaw ?? 0) - (a.eyeYaw ?? 0)) * t, right: v('right'), forward: v('forward'), shoulderL: v('shoulderL'), shoulderR: v('shoulderR'), elbowL: v('elbowL'), elbowR: v('elbowR'), handL: v('handL'), handR: v('handR'), hipL: v('hipL'), hipR: v('hipR'), kneeL: v('kneeL'), kneeR: v('kneeR'), footL: v('footL'), footR: v('footR'), torsoCenter: v('torsoCenter'), pelvisCenter: v('pelvisCenter'), head: v('head'), racketGrip: v('racketGrip'), racketHandleTop: v('racketHandleTop'), racketCenter: v('racketCenter'), racketRot: v('racketRot'), lean: a.lean + (b.lean - a.lean) * t, knee: a.knee + (b.knee - a.knee) * t, sp: a.sp + (b.sp - a.sp) * t, face: blendFace(a.face, b.face, t), weightShift: a.weightShift + (b.weightShift - a.weightShift) * t };
+        return { ...b, ...feet, baseY: a.baseY + (b.baseY - a.baseY) * t, breathe: a.breathe + (b.breathe - a.breathe) * t, gait: a.gait + (b.gait - a.gait) * t, torsoYaw: a.torsoYaw + angleDelta(a.torsoYaw, b.torsoYaw) * t, hipYaw: a.hipYaw + angleDelta(a.hipYaw, b.hipYaw) * t, headYaw: a.headYaw + angleDelta(a.headYaw, b.headYaw) * t, eyeYaw: (a.eyeYaw ?? 0) + ((b.eyeYaw ?? 0) - (a.eyeYaw ?? 0)) * t, right: v('right'), forward: v('forward'), shoulderL: v('shoulderL'), shoulderR: v('shoulderR'), elbowL: v('elbowL'), elbowR: v('elbowR'), handL: v('handL'), handR: v('handR'), hipL: v('hipL'), hipR: v('hipR'), kneeL: v('kneeL'), kneeR: v('kneeR'), footL: v('footL'), footR: v('footR'), torsoCenter: v('torsoCenter'), pelvisCenter: v('pelvisCenter'), head: v('head'), racketGrip, racketHandleTop, racketCenter, racketRot, lean: a.lean + (b.lean - a.lean) * t, knee: a.knee + (b.knee - a.knee) * t, sp: a.sp + (b.sp - a.sp) * t, face: blendFace(a.face, b.face, t), weightShift: a.weightShift + (b.weightShift - a.weightShift) * t };
     }
     pose() {
         const target = this.poseFor(this.state, this.animTime);
@@ -1104,15 +1128,15 @@ export class Character {
                     right = Math.max(right, weight);
             }
             let posture;
-            if (isShot(this.state) && this.contactTarget && this.spec.appearance === 'human') {
-                const offset = Vec3.sub(result.racketCenter, result.racketGrip), grip = Vec3.sub(this.contactTarget, offset);
-                posture = { weight: bell(result.sp - this.shotContactTime(this.state) / this.shotDuration(this.state), .34), right: grip, left: this.state === 'swingBackhand' ? secondRacketHand(grip, offset) : undefined };
+            if (isShot(this.state) && this.spec.appearance === 'human' && (this.contactTarget || t > 0 && result.sp < 1 && (this.state === 'swingForehand' || this.state === 'swingBackhand'))) {
+                const offset = Vec3.sub(result.racketCenter, result.racketGrip), grip = this.contactTarget ? Vec3.sub(this.contactTarget, offset) : result.racketGrip.clone(), load = this.contactTarget ? 1 : t * (1 - smoothstep(.8, 1, result.sp));
+                posture = { weight: load * bell(result.sp - this.shotContactTime(this.state) / this.shotDuration(this.state), .34), right: grip, left: this.state === 'swingBackhand' ? secondRacketHand(grip, offset) : undefined };
             }
             if (this.spec.appearance === 'human' && this.canRelaxClubIdle()) {
                 result.face = { ...result.face, smile: Math.max(this.spec.avatar === 'taylor' ? .55 : this.spec.presentation === 'masculine' ? .18 : .32, result.face.smile), squint: Math.max(.08, result.face.squint) };
             }
             const design = CAST_DESIGN[this.spec.avatar ?? this.spec.id] ?? CAST_DESIGN.taylor;
-            return adultTaylorPose(result, this.position, this.yaw, { armLengths: this.spec.presentation === 'feminine' && this.spec.appearance === 'human' ? authoredArmLengths() : undefined, sitting: this.state === 'sit', seatWeight: this.state === 'sit' ? t : this.previousState === 'sit' ? 1 - t : 0, folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.clubIdleRelax, strokeWeight: isShot(this.state) ? t : isShot(this.previousState) ? 1 - t : 0, backhandWeight: this.state === 'swingBackhand' ? t : this.previousState === 'swingBackhand' ? 1 - t : 0, readyWeight: this.state === 'ready' || this.state === 'shuffle' ? t : this.previousState === 'ready' || this.previousState === 'shuffle' ? 1 - t : 0, affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: [!!this.leftFootLock, !!this.rightFootLock], swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
+            return adultTaylorPose(result, this.position, this.yaw, { armLengths: this.spec.presentation === 'feminine' && this.spec.appearance === 'human' ? authoredArmLengths() : undefined, sitting: this.state === 'sit', seatWeight: this.state === 'sit' ? t : this.previousState === 'sit' ? 1 - t : 0, folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.clubIdleRelax, strokeWeight: (isShot(this.state) ? t : 0) + (isShot(this.previousState) ? 1 - t : 0), groundstrokeWeight: (this.state === 'swingForehand' || this.state === 'swingBackhand' ? t : 0) + (this.previousState === 'swingForehand' || this.previousState === 'swingBackhand' ? 1 - t : 0), backhandWeight: (this.state === 'swingBackhand' ? t : 0) + (this.previousState === 'swingBackhand' ? 1 - t : 0), readyWeight: this.state === 'ready' || this.state === 'shuffle' ? t : this.previousState === 'ready' || this.previousState === 'shuffle' ? 1 - t : 0, affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: [!!this.leftFootLock, !!this.rightFootLock], swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
         }
         return result;
     }

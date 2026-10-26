@@ -1,8 +1,9 @@
-# Opponent reaction recordings
+# Opponent reaction
 
-- Masculine: “Screaming Fuck”, performed and uploaded by **Fabrizio84**: https://freesound.org/people/Fabrizio84/sounds/457964/
-- Feminine: first-word excerpt of “Fuck Off.wav”, performed and uploaded by **pyro13djt**: https://freesound.org/people/pyro13djt/sounds/332125/
+The requested one-word “D’oh!” excerpt is from the [Homer Simpson / The Simpsons: Hit & Run soundboard](https://www.101soundboards.com/sounds/3826164-doh), performed as Homer Simpson by Dan Castellaneta. [Source audio](https://hoovers.101soundboards.com/sb/board_sounds_rendered/bjonnrx.mp3).
 
-Both source pages publish the recordings under **CC0 1.0**: https://creativecommons.org/publicdomain/zero/1.0/ . These are the creators’ own performances, not television dialogue or an actor imitation. The source previews were acquired from Freesound’s public CDN. The game excerpts are mixed to mono with restrained gain and short edge fades. Exact ranges and hashes are in provenance.json. The masculine recording retains the source performance’s saturation.
+This is third-party character dialogue, **not CC0**. Production redistribution permission has not been verified. The previous CC0 profanity recordings have been removed.
 
-Rebuild from decoded 16-bit source recordings with `python3 tools/prepare-opponent-voices.py RECORDINGS assets/audio`. Original filenames and ranges are specified in that script. Shoe sounds are original procedural synthesis in src/core/FootstepSound.ts.
+The full utterance is retained after leading silence: .285–1.280 seconds, mono PCM, restrained gain and short edge fades. No pitch shift, voice cloning or added reverb. Exact input/output hashes are in provenance.json.
+
+Rebuild from a decoded 16-bit WAV with `python3 tools/prepare-opponent-voices.py SOURCE.wav assets/audio`. Shoe sounds remain original procedural synthesis in src/core/FootstepSound.ts.

@@ -722,11 +722,11 @@ export class Game {
                 this.matchInput.setEnabled(false);
                 this.championship.resolvePoint({ winner, reason, rallyLength });
                 const opponent = this.actor(this.championshipOpponentId);
-                if (winner === 'player' && this.audio.opponentMiss(opponent.spec.presentation)) {
+                if (winner === 'player' && this.audio.opponentMiss()) {
                     opponent.setEmotion('frustrated', 1.3);
                     this.activeSpeechId = opponent.id;
                     this.speechUntil = performance.now() + 1300;
-                    this.ui.showSpeech(opponent.spec.name, 'Fuck!', 1300, true);
+                    this.ui.showSpeech(opponent.spec.name, "D'oh!", 1300, true);
                 }
                 if (this.championship.phase === 'matchResult')
                     this.audio.success();

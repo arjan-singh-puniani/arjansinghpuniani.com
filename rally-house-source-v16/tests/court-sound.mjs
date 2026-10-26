@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
 import {simulation} from '../qa/sim-harness.mjs';
 import {Vec3} from '../dist/rendering/Math3D.js';
 import {COURT} from '../dist/tennis/CourtGeometry.js';
@@ -6,6 +8,17 @@ import {footstepSignal} from '../dist/core/FootstepSound.js';
 import {AudioManager} from '../dist/core/AudioManager.js';
 import {MatchInput} from '../dist/tennis/MatchInput.js';
 import {CHAMPIONSHIP_OPPONENTS} from '../dist/tennis/ChampionshipOpponents.js';
+
+// The shipped reaction is short, unclipped PCM and matches its recorded source manifest.
+const reaction=fs.readFileSync(new URL('../assets/audio/opponent-doh.wav',import.meta.url)),credit=JSON.parse(fs.readFileSync(new URL('../assets/audio/provenance.json',import.meta.url)))[0];
+assert.equal(reaction.toString('ascii',0,4),'RIFF');assert.equal(reaction.readUInt16LE(20),1);assert.equal(reaction.readUInt16LE(22),1);assert.equal(reaction.readUInt16LE(34),16);
+const samples=new Int16Array(reaction.buffer.slice(reaction.byteOffset+44,reaction.byteOffset+reaction.length)),seconds=samples.length/reaction.readUInt32LE(24);
+assert(seconds>.9&&seconds<1.1,'Retain the complete utterance instead of cutting off its ending');assert(Math.max(...samples.map(Math.abs))<=26214,'The sample keeps headroom');assert.equal(samples[0],0);assert.equal(samples.at(-1),0);assert.equal(createHash('sha256').update(reaction).digest('hex'),credit.sha256);
+{
+ const originalFetch=globalThis.fetch;let requests=0;
+ try{globalThis.fetch=async url=>{assert(new URL(url).pathname.endsWith('/assets/audio/opponent-doh.wav'));requests++;return new Response(reaction);};const audio=new AudioManager(),context={decodeAudioData:async data=>{assert.equal(data.byteLength,reaction.length);return {duration:seconds};}};await Promise.all([audio.prepareVoice(context,'doh'),audio.prepareVoice(context,'doh')]);assert.equal(requests,1,'One decoded reaction is shared by the cast');}
+ finally{globalThis.fetch=originalFetch;}
+}
 
 let playerLandings=0,opponentLandings=0;
 for(const hz of [30,60,120]){
@@ -33,14 +46,14 @@ assert.equal(signatures.size,36,'Floor, scuff and take vary the shoe material at
 {
  const started=[],stopped=[];
  const context={state:'running',close:async()=>{},createGain:()=>({gain:{value:0},connect(){return this;},disconnect(){}}),createBufferSource:()=>{const node={connect(){return this;},disconnect(){},start(){started.push(this);},stop(){stopped.push(this);}};return node;}};
- const a=new AudioManager();a.ctx=context;a.voiceLoads.set('masculine',Promise.resolve({}));
- assert(a.opponentMiss());await Promise.resolve();assert.equal(started.length,1);assert(!a.opponentMiss());assert(!a.opponentMiss());assert(!a.opponentMiss(),'Cooldown prevents rapid repeated outbursts');
+ const a=new AudioManager();a.ctx=context;a.voiceLoads.set('doh',Promise.resolve({}));
+ assert(a.opponentMiss());await Promise.resolve();assert.equal(started.length,1);assert(!a.opponentMiss());assert(!a.opponentMiss());assert(!a.opponentMiss(),'Cooldown prevents rapid repeated reactions');
  a.volume=0;assert.equal(stopped.length,1,'Muting stops an active voice immediately');a.volume=.65;
  a.lastMissVoice=-Infinity;a.opponentMiss();a.opponentMiss();a.opponentMiss();await Promise.resolve();assert.equal(started.length,2);a.stopVoice();assert.equal(stopped.length,2);a.dispose();
- let complete;const pending=new AudioManager();pending.ctx=context;pending.voiceLoads.set('masculine',new Promise(resolve=>complete=resolve));pending.opponentMiss();pending.stopVoice();complete({});await Promise.resolve();assert.equal(started.length,2,'A voice finishing loading after pause cannot play');pending.dispose();
+ let complete;const pending=new AudioManager();pending.ctx=context;pending.voiceLoads.set('doh',new Promise(resolve=>complete=resolve));pending.opponentMiss();pending.stopVoice();complete({});await Promise.resolve();assert.equal(started.length,2,'A voice finishing loading after pause cannot play');pending.dispose();
  const g=simulation(),lines=[];g.championshipOpponentId='mika';g.matchInput=new MatchInput();g.championship={phase:'pointResult',resolvePoint(){}};g.audio={opponentMiss:()=>true,success(){}};g.ui={showSpeech:(...args)=>lines.push(args)};
- const match=g.createInteractiveMatch(g.characters.find(c=>c.id==='mika'),CHAMPIONSHIP_OPPONENTS.mika);match.resolvePoint('player','miss');match.resolvePoint('player','miss');assert.equal(lines.length,1);assert.deepEqual(lines[0].slice(1),['Fuck!',1300,true]);
- match.startPoint('player');match.resolvePoint('opponent','miss');assert.equal(lines.length,1,'The opponent does not curse for the player’s error');
+ const match=g.createInteractiveMatch(g.characters.find(c=>c.id==='mika'),CHAMPIONSHIP_OPPONENTS.mika);match.resolvePoint('player','miss');match.resolvePoint('player','miss');assert.equal(lines.length,1);assert.deepEqual(lines[0].slice(1),["D'oh!",1300,true]);
+ match.startPoint('player');match.resolvePoint('opponent','miss');assert.equal(lines.length,1,'The opponent does not react for the player’s error');
  match.startPoint('player');match.resolvePoint('player','winner');assert.equal(lines.length,2,'Failing to return a clean winner can also trigger the opponent reaction');
 }
 console.log('Court sound PASS: real player/opponent footfalls, floor-specific material, pause/mute, sparse voiced error reactions, caption fallback and point ownership.');

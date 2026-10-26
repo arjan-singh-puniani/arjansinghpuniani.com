@@ -1,5 +1,7 @@
 # Shoulder deformation: rejected shortcuts and editable fixture
 
+Historical pass. Later runtime changes and their remaining limits are recorded in [the October 26 stroke sequence pass](../stroke-sequence-20261026/README.md).
+
 Human feedback after removing the ponytail experiment: the shoulder/clothing defect stands out **equally in backhand preparation and serve follow-through**. The running game remains at `994298b3`; no experiment from this pass was shipped.
 
 `shoulder-deformation.blend` contains the existing licensed game mesh, its original 19-bone rig and packed textures. Its three discrete frames are source bind, actual backhand preparation at .20 seconds, and actual serve recovery at .70 seconds. They are reference poses, not an animation. Blender-evaluated garment vertices match exported CPU-skinned runtime geometry to within 0.00000114 game units. The fixture omits runtime lighting, GPU skirt collision projection and rigid racket parts.

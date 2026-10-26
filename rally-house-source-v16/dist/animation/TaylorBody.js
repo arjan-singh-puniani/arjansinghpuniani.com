@@ -88,8 +88,9 @@ export function adultTaylorPose(source, root, yaw, constraints) {
     }
     // Stroke hands follow the torso scale; resting hands drop toward the waist.
     const arm = (v) => { const out = horizontal(v, .78), dy = v.y - oldShoulder.y, down = constraints.human ? 2.55 + (TAYLOR_BODY.torsoScale - 2.55) * stroke : 2.30, scale = down - (down - 1.20) * smooth((dy + .10) / .25); out.y = shoulder.y + dy * scale; return out; };
-    p.handL = Vec3.lerp(arm(source.handL), source.handL, constraints.leftWorld);
-    p.handR = Vec3.lerp(arm(source.handR), source.handR, constraints.rightWorld);
+    const groundstroke = constraints.human ? constraints.groundstrokeWeight ?? 0 : 0;
+    p.handL = Vec3.lerp(arm(source.handL), source.handL, Math.max(constraints.leftWorld, groundstroke * (constraints.backhandWeight ?? 0)));
+    p.handR = Vec3.lerp(arm(source.handR), source.handR, Math.max(constraints.rightWorld, groundstroke));
     // The skinned body must carry the ready clip's hip hinge, not just its vertical load.
     if (constraints.human && constraints.readyWeight) {
         const angle = source.lean * constraints.readyWeight, c = Math.cos(angle), s = Math.sin(angle), forward = new Vec3(Math.sin(p.torsoYaw), 0, Math.cos(p.torsoYaw));
@@ -142,8 +143,8 @@ export function adultTaylorPose(source, root, yaw, constraints) {
         for (const key of ['shoulderL', 'shoulderR', 'head'])
             p[key].add(lean.clone().scale(weight));
         p.torsoCenter.add(lean.clone().scale(weight * .6));
-        p.handL = Vec3.lerp(p.shoulderL.clone().add(offsetL), source.handL, constraints.leftWorld);
-        p.handR = Vec3.lerp(p.shoulderR.clone().add(offsetR), source.handR, constraints.rightWorld);
+        p.handL = Vec3.lerp(Vec3.lerp(p.shoulderL.clone().add(offsetL), source.handL, constraints.leftWorld), p.handL, groundstroke * (constraints.backhandWeight ?? 0));
+        p.handR = Vec3.lerp(Vec3.lerp(p.shoulderR.clone().add(offsetR), source.handR, constraints.rightWorld), p.handR, groundstroke);
     }
     const affection = constraints.affection;
     if (affection && affection.weight > 0) {
@@ -283,10 +284,11 @@ export function adultTaylorPose(source, root, yaw, constraints) {
                 mixed.add(readyPole.scale(ready));
             }
             if (stroke) {
-                const center = Vec3.lerp(p.shoulderL, p.shoulderR, .5), x = Vec3.dot(Vec3.sub(p[`hand${side}`], center), torsoRight) * (side === 'L' ? -1 : 1), across = smooth((.10 - x) / .30), low = smooth((shoulder.y - p[`hand${side}`].y - .08) / .16);
-                // Lower and open the elbow with a low cross-body grip to clear the chest.
-                const outside = shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.24 : .24)).add(new Vec3(0, -.28 - .27 * low, 0)).add(torsoForward.clone().scale(-.16)), front = shoulder.clone().add(torsoForward.clone().scale(.85)).add(torsoRight.clone().scale((side === 'L' ? -.22 : .22) * low)).add(new Vec3(0, -.42 * low, 0));
-                mixed.add(Vec3.lerp(outside, front, across).scale(stroke));
+                const center = Vec3.lerp(p.shoulderL, p.shoulderR, .5), x = Vec3.dot(Vec3.sub(p[`hand${side}`], center), torsoRight) * (side === 'L' ? -1 : 1), across = Math.max(smooth((.10 - x) / .30), side === 'R' ? groundstroke * (constraints.backhandWeight ?? 0) : 0), low = smooth((shoulder.y - p[`hand${side}`].y - .08) / .16);
+                // Open the elbow during the forward swing before gathering across the chest.
+                const outside = shoulder.clone().add(torsoRight.clone().scale(side === 'L' ? -.24 : .24)).add(new Vec3(0, -.28 - .27 * low, 0)).add(torsoForward.clone().scale(-.16)), front = shoulder.clone().add(torsoForward.clone().scale(.85)).add(torsoRight.clone().scale((side === 'L' ? -.22 : .22) * low)).add(new Vec3(0, -(.42 - .25 * groundstroke * (constraints.backhandWeight ?? 0) * (side === 'R' ? 1 : 0)) * low, 0));
+                const guide = shoulder.clone().add(torsoForward.clone().scale(.60)).add(torsoRight.clone().scale(side === 'L' ? -.20 : .20)).add(new Vec3(0, -.32, 0));
+                mixed.add(Vec3.lerp(Vec3.lerp(outside, front, across), guide, smooth((source.sp - .42) / .25) * groundstroke).scale(stroke));
             }
             pole = mixed;
         }

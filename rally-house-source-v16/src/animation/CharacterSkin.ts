@@ -53,18 +53,20 @@ function frameFor(p:RigPoseLocal,def:BoneDef){
  const leg=def.joint.startsWith('thigh')||def.joint.startsWith('shin'),forward=leg?Vec3.cross(new Vec3(-p.forward.z,0,p.forward.x),Vec3.sub(target,a)):p.forward;
  return rigidFrame(a,target,def.joint==='foreArmTwistL'&&p.foreArmForwardL?p.foreArmForwardL:def.joint==='foreArmTwistR'&&p.foreArmForwardR?p.foreArmForwardR:def.joint==='head'&&p.headForward?p.headForward:forward.len()>.001?forward:p.forward);
 }
-function transportedFrame(source:Mat4,start:Vec3,end:Vec3):Mat4{
+export function transportedFrame(source:Mat4,start:Vec3,end:Vec3):Mat4{
  const from=new Vec3(source[4],source[5],source[6]),to=Vec3.sub(end,start).normalize(),axis=Vec3.cross(from,to),cosine=Vec3.dot(from,to),forward=new Vec3(source[8],source[9],source[10]),turn=Vec3.cross(axis,forward);
  const hint=cosine>-.9999?forward.clone().add(turn).add(Vec3.cross(axis,turn).scale(1/(1+cosine))):forward.clone().scale(-1);
  return rigidFrame(start,end,hint);
 }
 const bindInv:Mat4[]=defs.map(d=>invertRigid(frameFor(bind,d)));
 const authoredBindInv=new WeakMap<RigPoseLocal,Mat4[]>();
-export function skinMatrices(p:RigPoseLocal,restPose=bind){
+export function skinMatrices(p:RigPoseLocal,restPose=bind,stroke=0){
  let inverse=bindInv;if(restPose!==bind){inverse=authoredBindInv.get(restPose)??defs.map(d=>invertRigid(frameFor(restPose,d)));authoredBindInv.set(restPose,inverse);}
  // The game anchors the palm/grip; an anatomical forearm ends at the wrist.
  if(restPose.wristL&&restPose.wristR){p={...p};for(const side of ['L','R'] as const){const i=BONE[`hand${side}`],hand=multiply(frameFor(p,defs[i]),inverse[i]),wrist=transformPoint(hand,restPose[`wrist${side}`]!);p[`wrist${side}`]=new Vec3(wrist.x,wrist.y,wrist.z);}}
  const out=new Float32Array(BONE_COUNT*16),frames:Mat4[]=[];for(let i=0;i<BONE_COUNT;i++){const d=defs[i],length=Vec3.sub(endpoint(p,d),jointPoint(p,d.joint)).len(),rest=Vec3.sub(endpoint(restPose,d),jointPoint(restPose,d.joint)).len(),rigid=d.joint.startsWith('hand')||d.joint.startsWith('foot')||restPose!==bind&&d.joint==='head';let frame=frameFor(p,d);
+  // Reaching shoulders turn the ribcage beyond the earlier torso-yaw guide.
+  if(d.joint==='chest'&&restPose.wristL)frame=rigidFrame(p.chest,endpoint(p,d),Vec3.cross(Vec3.sub(p.upperArmR,p.upperArmL),new Vec3(0,1,0)));
   if((d.joint.startsWith('upperArm')||d.joint==='foreArmL'||d.joint==='foreArmR')&&restPose.wristL){
    // Forward-axis projection flips the sleeve; carry the authored shoulder roll with the torso.
    const parent=d.joint.startsWith('upperArm')?BONE.chest:BONE[d.joint.endsWith('L')?'upperArmL':'upperArmR'],source=multiply(multiply(frames[parent],inverse[parent]),frameFor(restPose,d));
@@ -72,7 +74,7 @@ export function skinMatrices(p:RigPoseLocal,restPose=bind){
    if(d.joint==='foreArmL'||d.joint==='foreArmR'){
     // Start grip roll above the twist seam instead of concentrating it at the wrist.
     const palm=BONE[d.joint.endsWith('L')?'handL':'handR'],palmFrame=multiply(multiply(frameFor(p,defs[palm]),inverse[palm]),frameFor(restPose,d));
-    frame=interpolateRigidFrame(frame,transportedFrame(palmFrame,jointPoint(p,d.joint),endpoint(p,d)),.25);
+    frame=interpolateRigidFrame(frame,transportedFrame(palmFrame,jointPoint(p,d.joint),endpoint(p,d)),.25+.35*stroke);
    }
   }
   if(d.joint.startsWith('foreArmTwist')&&restPose.wristL){

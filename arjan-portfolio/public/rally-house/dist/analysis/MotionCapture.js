@@ -1,5 +1,5 @@
 import { secondRacketHand } from '../animation/RacketGeometry.js';
-import { Vec3, clamp, rigidFrame, interpolateRigidFrame, compose, transformPoint } from '../rendering/Math3D.js';
+import { Vec3, clamp, smoothstep, rigidFrame, interpolateRigidFrame, compose, transformPoint } from '../rendering/Math3D.js';
 import { BONE, rigFromPose, skinMatrices } from '../animation/CharacterSkin.js';
 export const LIMBS = [['shoulderL', 'elbowL'], ['elbowL', 'handL'], ['shoulderR', 'elbowR'], ['elbowR', 'handR'], ['shoulderL', 'shoulderR'], ['shoulderL', 'hipL'], ['shoulderR', 'hipR'], ['hipL', 'hipR'], ['hipL', 'kneeL'], ['kneeL', 'footL'], ['hipR', 'kneeR'], ['kneeR', 'footR']];
 export const JOINT_KEYS = ['shoulderL', 'shoulderR', 'elbowL', 'elbowR', 'handL', 'handR', 'hipL', 'hipR', 'kneeL', 'kneeR', 'footL', 'footR', 'pelvisCenter'];
@@ -116,7 +116,7 @@ export function interpolateFrame(a, b, time) {
                             local[`foreArmForward${side}`] = local[`handForward${side}`];
                         }
                     }
-                    source = { bind: part.rig.bind, pose: local, matrices: skinMatrices(local, part.rig.bind) };
+                    source = { bind: part.rig.bind, pose: local, matrices: skinMatrices(local, part.rig.bind, smoothstep(0, .15, pose.sp)) };
                     authored.set(part.rig.bind, source);
                     for (const side of ['L', 'R']) {
                         const bind = source.bind[`wrist${side}`];

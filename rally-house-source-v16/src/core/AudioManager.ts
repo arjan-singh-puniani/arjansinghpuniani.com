@@ -10,7 +10,7 @@ export class AudioManager {
   set volume(value:number){this.level=Math.max(0,Math.min(1,value));if(!this.level)this.stopVoice();}
   private tennisMaterialBuffers=new Map<string,AudioBuffer[]>();private tennisVariant=0;
   private ambienceSource?:AudioBufferSourceNode;private ambienceGain?:GainNode;private ambienceFilter?:BiquadFilterNode;private ambienceTick=0;private ambienceTarget=-1;
-  private ensure(){if(!this.ctx){this.ctx=new AudioContext();for(const voice of ['feminine','masculine'])void this.prepareVoice(this.ctx,voice);}if(this.ctx.state==='suspended')void this.ctx.resume().catch(()=>{});return this.ctx;}
+  private ensure(){if(!this.ctx){this.ctx=new AudioContext();void this.prepareVoice(this.ctx,'doh');}if(this.ctx.state==='suspended')void this.ctx.resume().catch(()=>{});return this.ctx;}
   private getNoise(){const c=this.ensure();if(this.noise)return this.noise;const b=c.createBuffer(1,Math.floor(c.sampleRate*.11),c.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);this.noise=b;return b;}
   tone(freq=440,duration=.08,gain=.018,type:OscillatorType='sine',detune=0){if(!this.enabled||this.volume<=0)return;try{const c=this.ensure(),o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(freq,c.currentTime);o.detune.value=detune;g.gain.setValueAtTime(Math.max(.0001,gain*this.volume),c.currentTime);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+duration);o.connect(g).connect(c.destination);o.onended=()=>{o.disconnect();g.disconnect();};o.start();o.stop(c.currentTime+duration+.02);}catch{}}
   private noiseBurst(freq=900,duration=.045,gain=.018,q=.9){if(!this.enabled||this.volume<=0)return;try{const c=this.ensure(),src=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain();src.buffer=this.getNoise();f.type='bandpass';f.frequency.value=freq;f.Q.value=q;g.gain.setValueAtTime(Math.max(.0001,gain*this.volume),c.currentTime);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+duration);src.connect(f).connect(g).connect(c.destination);src.onended=()=>{src.disconnect();f.disconnect();g.disconnect();};src.start();src.stop(c.currentTime+duration+.01);}catch{}}
@@ -128,14 +128,14 @@ export class AudioManager {
   }
   private prepareVoice(c:AudioContext,voice:string){
     let pending=this.voiceLoads.get(voice);
-    if(!pending){pending=fetch(new URL(`../../assets/audio/opponent-error-${voice}.wav`,import.meta.url)).then(r=>{if(!r.ok)throw Error('Voice unavailable');return r.arrayBuffer();}).then(data=>c.decodeAudioData(data)).catch(()=>null);this.voiceLoads.set(voice,pending);}
+    if(!pending){pending=fetch(new URL(`../../assets/audio/opponent-${voice}.wav`,import.meta.url)).then(r=>{if(!r.ok)throw Error('Voice unavailable');return r.arrayBuffer();}).then(data=>c.decodeAudioData(data)).catch(()=>null);this.voiceLoads.set(voice,pending);}
     return pending;
   }
   /** Occasional recorded reaction; mute, pause and scene changes invalidate late loads. */
-  opponentMiss(presentation='masculine'){
+  opponentMiss(){
     const now=performance.now();if(++this.missCount%3!==1||now-this.lastMissVoice<8000)return false;this.lastMissVoice=now;
     this.stopVoice();const generation=this.voiceGeneration,c=this.ctx;
-    if(this.enabled&&this.volume>0&&c?.state==='running')void this.prepareVoice(c,presentation==='feminine'?'feminine':'masculine').then(buffer=>{
+    if(this.enabled&&this.volume>0&&c?.state==='running')void this.prepareVoice(c,'doh').then(buffer=>{
       if(!buffer||generation!==this.voiceGeneration||this.ctx!==c||!this.enabled||this.volume<=0||c.state!=='running'||performance.now()-now>650)return;
       try{const source=c.createBufferSource(),gain=c.createGain();source.buffer=buffer;gain.gain.value=this.volume*.45;source.connect(gain).connect(c.destination);this.missVoice={source,gain};
         source.onended=()=>{source.disconnect();gain.disconnect();if(this.missVoice?.source===source)this.missVoice=undefined;};source.start();

@@ -24,8 +24,7 @@ export class AudioManager {
     ambienceTarget = -1;
     ensure() { if (!this.ctx) {
         this.ctx = new AudioContext();
-        for (const voice of ['feminine', 'masculine'])
-            void this.prepareVoice(this.ctx, voice);
+        void this.prepareVoice(this.ctx, 'doh');
     } if (this.ctx.state === 'suspended')
         void this.ctx.resume().catch(() => { }); return this.ctx; }
     getNoise() { const c = this.ensure(); if (this.noise)
@@ -222,14 +221,14 @@ export class AudioManager {
     prepareVoice(c, voice) {
         let pending = this.voiceLoads.get(voice);
         if (!pending) {
-            pending = fetch(new URL(`../../assets/audio/opponent-error-${voice}.wav`, import.meta.url)).then(r => { if (!r.ok)
+            pending = fetch(new URL(`../../assets/audio/opponent-${voice}.wav`, import.meta.url)).then(r => { if (!r.ok)
                 throw Error('Voice unavailable'); return r.arrayBuffer(); }).then(data => c.decodeAudioData(data)).catch(() => null);
             this.voiceLoads.set(voice, pending);
         }
         return pending;
     }
     /** Occasional recorded reaction; mute, pause and scene changes invalidate late loads. */
-    opponentMiss(presentation = 'masculine') {
+    opponentMiss() {
         const now = performance.now();
         if (++this.missCount % 3 !== 1 || now - this.lastMissVoice < 8000)
             return false;
@@ -237,7 +236,7 @@ export class AudioManager {
         this.stopVoice();
         const generation = this.voiceGeneration, c = this.ctx;
         if (this.enabled && this.volume > 0 && c?.state === 'running')
-            void this.prepareVoice(c, presentation === 'feminine' ? 'feminine' : 'masculine').then(buffer => {
+            void this.prepareVoice(c, 'doh').then(buffer => {
                 if (!buffer || generation !== this.voiceGeneration || this.ctx !== c || !this.enabled || this.volume <= 0 || c.state !== 'running' || performance.now() - now > 650)
                     return;
                 try {

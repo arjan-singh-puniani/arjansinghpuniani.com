@@ -102,7 +102,7 @@ for(const side of ['L','R'])assert(Vec3.dot(Vec3.sub(idleRig['hand'+side],idleRi
 let samples=0,maxGripGap=0,minSole=Infinity,minForearmVolume=Infinity;
 for(const state of ['idle','sit','drink','ready','swingForehand','swingBackhand','serve']){
  character.trigger(state);for(let t=0;t<90;t++){character.update(1/120);if(t%15)continue;
-  const observed=character.analysisPose();for(const side of ['L','R']){const ratio=Vec3.sub(observed[`shoulder${side}`],observed[`elbow${side}`]).len()/Vec3.sub(rest[`upperArm${side}`],rest[`foreArm${side}`]).len();assert(ratio>.999&&ratio<1.04,'the authored upper arm must retain its source length through poses');}
+  const observed=character.analysisPose();for(const side of ['L','R']){const ratio=Vec3.sub(observed[`shoulder${side}`],observed[`elbow${side}`]).len()/Vec3.sub(rest[`upperArm${side}`],rest[`foreArm${side}`]).len();assert(ratio>.999&&ratio<1.04,`${state}/${t}/${side}: the authored upper arm must retain its source length through poses`);}
   if(!observed.shot)for(const side of ['L','R']){const ratio=Vec3.sub(observed[`hand${side}`],observed[`elbow${side}`]).len()/Vec3.sub(rest[`hand${side}`],rest[`foreArm${side}`]).len();assert(ratio>.999&&ratio<1.04,'non-stroke palm reach must retain its approved length');}
   const part=character.meshes().find(p=>'skin' in p&&p.rig),rig=part.rig.pose,matrices=part.boneMatrices;assert(matrices.every(Number.isFinite));
   for(const geometry of [body,sleeves])for(const side of ['L','R'])for(let v=0;v<geometry.positions.length/3;v+=3){
