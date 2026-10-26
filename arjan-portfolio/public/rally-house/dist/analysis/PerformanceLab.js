@@ -51,8 +51,11 @@ export class PerformanceLab {
     separateRig = false;
     restoreFocus = null;
     lastAspect = 0;
+    lastWidth = 0;
+    lastHeight = 0;
     priorAspect = 0;
     cameraBodyLift = 0;
+    bodyViewport = null;
     onReturn = () => { };
     onRecord = () => { };
     phone = null;
@@ -395,7 +398,19 @@ export class PerformanceLab {
         this.camera.desiredDistance = t.mode === 'court' ? (portrait ? 48 : 35) : t.clip.kind === 'phone' ? (t.mode === 'body' ? (portrait ? (tall ? 11 : 12) : 8) : (portrait ? (tall ? 13 : 14) : 10)) : t.mode === 'body' ? (portrait ? (tall ? 10 : 14) : 9) : (portrait ? (tall ? 14 : 18) : 13);
         if (t.mode === 'body' && t.clip.kind === 'championship')
             this.camera.desiredDistance = 12;
+        this.bodyViewport = null;
+        // Narrow controls cover the canvas; aim into the exposed space above them.
+        if (this.canvas.clientWidth <= 850 && this.canvas.clientHeight > 0 && t.mode !== 'court') {
+            const height = this.canvas.clientHeight, top = this.layer.querySelector('header').getBoundingClientRect().bottom + 12, bottom = this.panel.getBoundingClientRect().top - 16;
+            if (bottom > top) {
+                this.bodyViewport = { top, bottom, height };
+                const bodyHeight = Math.max(...t.clip.frames.map(f => Math.max(f.pose.head.y + .24, f.pose.handL.y + .1, f.pose.handR.y + .1) - f.root.y));
+                this.camera.desiredDistance = Math.max(this.camera.desiredDistance, bodyHeight / (2 * Math.tan(this.camera.fov / 2) * (bottom - top) / height * .88));
+            }
+        }
         this.lastAspect = this.camera.aspect;
+        this.lastWidth = this.canvas.clientWidth;
+        this.lastHeight = this.canvas.clientHeight;
         this.trackCamera(f);
     }
     trackCamera(f) {
@@ -406,6 +421,12 @@ export class PerformanceLab {
         const review = this.timeline.mode === 'body' && this.timeline.clip.kind === 'championship';
         const shift = wide && !court ? 1.25 : 0;
         this.camera.desiredTarget.set(court ? 1 : f.root.x + Math.cos(this.camera.desiredAzimuth) * shift, court ? 0 : f.root.y + (portrait ? -.05 : 1.15) + (this.cameraBodyLift ?? 0) * (portrait ? .5 : .7) - (review ? (portrait ? .3 : .7) : 0), court ? 0 : f.root.z - Math.sin(this.camera.desiredAzimuth) * shift);
+        if (this.bodyViewport && !court) {
+            const { top, bottom, height } = this.bodyViewport, angle = this.camera.desiredAzimuth, elevation = this.camera.desiredElevation;
+            const offset = (1 - (top + bottom) / height) * this.camera.desiredDistance * Math.tan(this.camera.fov / 2);
+            this.camera.desiredTarget.set(f.root.x, f.root.y + 1.15 + (this.cameraBodyLift ?? 0) * .7, f.root.z)
+                .add(new Vec3(Math.sin(angle) * Math.sin(elevation), -Math.cos(elevation), Math.cos(angle) * Math.sin(elevation)).scale(offset));
+        }
     }
     update(dt, reducedMotion) {
         if (!this.active || !this.timeline)
@@ -416,7 +437,7 @@ export class PerformanceLab {
         }
         else
             this.timeline.update(dt, this.contactLens && !reducedMotion);
-        if (this.lastAspect !== this.camera.aspect)
+        if (this.lastAspect !== this.camera.aspect || this.lastWidth !== this.canvas.clientWidth || this.lastHeight !== this.canvas.clientHeight)
             this.frameCamera();
         if (this.timeline.clip.kind === 'phone' && this.timeline.mode !== 'court')
             this.camera.desiredAzimuth = clamp(this.camera.desiredAzimuth, -.55, 1.9);

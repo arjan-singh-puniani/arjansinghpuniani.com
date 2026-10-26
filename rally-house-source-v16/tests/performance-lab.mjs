@@ -7,12 +7,33 @@ import {angle,metric,value,summary,captureFrame,MotionRecorder,ReplayTimeline} f
 import {demonstration} from '../dist/analysis/LabDemonstrations.js';
 import {PerformanceLab,rod,COURT_OVERLAY} from '../dist/analysis/PerformanceLab.js';
 import {simulation} from '../qa/sim-harness.mjs';
+import {CameraController} from '../dist/rendering/CameraController.js';
+import fs from 'node:fs';
+import {loadAuthoredAthlete} from '../dist/animation/AuthoredAthlete.js';
+import {playerSpec} from '../dist/content/PlayerAvatars.js';
 
 const spec={id:'player',name:'Player',role:'Founder',shirt:'#d89a77',skin:'#d3a17d',hair:'#3e332b',playStyle:'',goal:''};
 const a=new Vec3(1,0,0),v=new Vec3(),b=new Vec3(0,1,0);
 assert.equal(angle(a,v,b),90);assert.equal(angle(a,v,a),0);assert.equal(angle(a,v,new Vec3(-1,0,0)),180);
 assert.equal(angle(v,v,b),null);assert.equal(angle(new Vec3(Infinity,0,0),v,b),null);
 const clips=['gait','forehand','serve'].map(k=>demonstration(k,spec));
+function checkFraming(replays){
+for(const [width,height,panelTop] of [[490,769,388],[390,844,436],[800,600,282]])for(const clip of replays)for(const mode of ['body','combined']){
+ const canvas={clientWidth:width,clientHeight:height,getBoundingClientRect:()=>({left:0,top:0,width,height})},camera=new CameraController(canvas),timeline=new ReplayTimeline(clip);timeline.mode=mode;camera.setAspect(width/height);
+ const lab={timeline,camera,canvas,cameraBodyLift:Math.max(0,Math.min(.7,Math.max(...clip.frames.map(f=>f.pose.head.y-f.root.y))-1.85)),layer:{querySelector:()=>({getBoundingClientRect:()=>({bottom:56})})},panel:{getBoundingClientRect:()=>({top:panelTop})},trackCamera:PerformanceLab.prototype.trackCamera};
+ PerformanceLab.prototype.frameCamera.call(lab);
+ for(const f of clip.frames){PerformanceLab.prototype.trackCamera.call(lab,f);camera.target=camera.desiredTarget.clone();camera.distance=camera.desiredDistance;camera.azimuth=camera.desiredAzimuth;camera.elevation=camera.desiredElevation;camera.update(0);
+  for(const p of [f.pose.head.clone().add(new Vec3(0,.24,0)),f.pose.footL,f.pose.footR,f.pose.handL,f.pose.handR]){const projected=camera.project(p);assert(projected.y>56&&projected.y<panelTop,`${width}×${height}/${mode}/${clip.kind}: body must clear header and controls (y=${projected.y})`);assert(projected.x>12&&projected.x<width-12,'The body must also fit between the viewport sides');}
+ }
+}
+}
+checkFraming(clips);
+{
+ const previousFetch=globalThis.fetch,previousImage=globalThis.Image;
+ try{globalThis.fetch=async url=>new Response(fs.readFileSync(new URL(url)));globalThis.Image=class{naturalWidth=1024;naturalHeight=1024;async decode(){}};await loadAuthoredAthlete();
+  for(const avatar of ['taylor','arjan'])checkFraming(['gait','forehand','serve'].map(kind=>demonstration(kind,playerSpec(avatar))));
+ }finally{globalThis.fetch=previousFetch;globalThis.Image=previousImage;}
+}
 for(const clip of clips){
  const t=new ReplayTimeline(clip),s=summary(clip);assert(s.duration>3);
  assert(clip.frames.every((f,i)=>!i||f.time>clip.frames[i-1].time));
