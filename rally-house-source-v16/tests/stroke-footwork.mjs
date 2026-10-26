@@ -37,3 +37,27 @@ for(const [index,spec] of [...memberData,playerSpec('taylor'),playerSpec('arjan'
 }
 assert(samples>500&&maxLift>.07&&Number.isFinite(minShoeY));console.log(JSON.stringify({samples,maxLift,maxTurn,maxToeDrift,minShoeY}));
 console.log('Stroke footwork PASS: flat loading, toe pivots, heel release, grounded recovery audio, rendered shoes, exact racket contact and ready return across the cast at 30/60/120 Hz.');
+
+// Ready and shuffle share one loaded posture throughout their crossfade.
+let readyTransitions=0,maxReadyJump=0,maxReadySkinJump=0;
+for(const spec of [...memberData,playerSpec('taylor'),playerSpec('arjan')])for(const hz of [30,60,120])for(const [from,to] of [['ready','shuffle'],['shuffle','ready']]){
+ const c=new Character(spec,new Vec3(),new Navigation([]),{});c.matchCompetitor=true;c.setAnimation(from);for(let i=0;i<hz;i++)c.update(1/hz);
+ const before=c.analysisPose(),skin=c.meshes().filter(m=>m.rig).map(m=>m.boneMatrices.slice());if(to==='shuffle')c.steerOnCourt(new Vec3(1,0,0),new Vec3(0,0,5));else c.setAnimation(to);const after=c.analysisPose(),nextSkin=c.meshes().filter(m=>m.rig);
+ for(const key of ['shoulderL','shoulderR','elbowL','elbowR','handL','handR','torsoCenter','head','racketCenter']){const jump=Vec3.sub(before[key],after[key]).len();maxReadyJump=Math.max(maxReadyJump,jump);assert(jump<1e-6,`${spec.id}/${hz}/${from} → ${to}: ${key} snaps by ${jump} before time advances`);}
+ // Stopping may release shoe locks; the upper-body skin must remain continuous.
+ for(let i=0;i<skin.length;i++)for(let j=0;j<skin[i].length;j++){if(Math.floor(j/16)>10&&Math.floor(j/16)<17)continue;const jump=Math.abs(skin[i][j]-nextSkin[i].boneMatrices[j]);maxReadySkinJump=Math.max(maxReadySkinJump,jump);assert(jump<1e-6,`${spec.id}/${hz}/${from} → ${to}: visible mesh ${i} bone ${Math.floor(j/16)} changes by ${jump}`);}
+ readyTransitions++;
+}
+console.log(JSON.stringify({readyTransitions,maxReadyJump,maxReadySkinJump}));
+
+let movingStops=0,maxStopJump=0,maxRestartJump=0;
+for(const spec of [...memberData,playerSpec('taylor'),playerSpec('arjan')])for(const hz of [30,60,120])for(const age of [.1,.2,.35]){
+ const c=new Character(spec,new Vec3(),new Navigation([]),{});c.matchCompetitor=true;c.setAnimation('ready');for(let i=0;i<hz;i++)c.update(1/hz);
+ c.steerOnCourt(new Vec3(2,0,0),new Vec3(0,0,5));for(let i=0;i<Math.round(age*hz);i++)c.update(1/hz);
+ const before=c.analysisPose();c.clearCourtMove();c.setAnimation('ready');const after=c.analysisPose();
+ for(const key of ['shoulderL','shoulderR','elbowL','elbowR','handL','handR','torsoCenter','head','racketCenter']){const jump=Vec3.sub(before[key],after[key]).len();maxStopJump=Math.max(maxStopJump,jump);assert(jump<1e-6,`${spec.id}/${hz}/${age}: ${key} snaps when releasing court movement`);}
+ c.update(1/hz);const stopped=c.analysisPose();c.steerOnCourt(new Vec3(2,0,0),new Vec3(0,0,5));const restarted=c.analysisPose();
+ for(const key of ['shoulderL','shoulderR','elbowL','elbowR','handL','handR','torsoCenter','head','racketCenter']){const jump=Vec3.sub(stopped[key],restarted[key]).len();maxRestartJump=Math.max(maxRestartJump,jump);assert(jump<1e-6,`${spec.id}/${hz}/${age}: ${key} snaps when interrupting the stop transition`);}
+ movingStops++;
+}
+console.log(JSON.stringify({movingStops,maxStopJump,maxRestartJump}));
