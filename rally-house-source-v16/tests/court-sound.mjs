@@ -11,9 +11,10 @@ import {CHAMPIONSHIP_OPPONENTS} from '../dist/tennis/ChampionshipOpponents.js';
 
 // The shipped reaction is short, unclipped PCM and matches its recorded source manifest.
 const reaction=fs.readFileSync(new URL('../assets/audio/opponent-doh.wav',import.meta.url)),credit=JSON.parse(fs.readFileSync(new URL('../assets/audio/provenance.json',import.meta.url)))[0];
+assert(credit.sourceAudio.endsWith('/homer/doh1_y.wav'),'Keep the user-selected TV take A');
 assert.equal(reaction.toString('ascii',0,4),'RIFF');assert.equal(reaction.readUInt16LE(20),1);assert.equal(reaction.readUInt16LE(22),1);assert.equal(reaction.readUInt16LE(34),16);
 const samples=new Int16Array(reaction.buffer.slice(reaction.byteOffset+44,reaction.byteOffset+reaction.length)),seconds=samples.length/reaction.readUInt32LE(24);
-assert(seconds>.9&&seconds<1.1,'Retain the complete utterance instead of cutting off its ending');assert(Math.max(...samples.map(Math.abs))<=26214,'The sample keeps headroom');assert.equal(samples[0],0);assert.equal(samples.at(-1),0);assert.equal(createHash('sha256').update(reaction).digest('hex'),credit.sha256);
+assert(seconds>.65&&seconds<.8,'Retain the complete user-approved TV take A');assert(Math.max(...samples.map(Math.abs))<=26214,'The sample keeps headroom');assert.equal(samples[0],0);assert.equal(samples.at(-1),0);assert.equal(createHash('sha256').update(reaction).digest('hex'),credit.sha256);
 {
  const originalFetch=globalThis.fetch;let requests=0;
  try{globalThis.fetch=async url=>{assert(new URL(url).pathname.endsWith('/assets/audio/opponent-doh.wav'));requests++;return new Response(reaction);};const audio=new AudioManager(),context={decodeAudioData:async data=>{assert.equal(data.byteLength,reaction.length);return {duration:seconds};}};await Promise.all([audio.prepareVoice(context,'doh'),audio.prepareVoice(context,'doh')]);assert.equal(requests,1,'One decoded reaction is shared by the cast');}

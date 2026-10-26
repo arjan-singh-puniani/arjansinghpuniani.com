@@ -1,16 +1,16 @@
 [
   {
     "file": "opponent-doh.wav",
-    "performer": "Homer Simpson / Dan Castellaneta, as identified by the source soundboard",
-    "source": "https://www.101soundboards.com/sounds/3826164-doh",
-    "sourceAudio": "https://hoovers.101soundboards.com/sb/board_sounds_rendered/bjonnrx.mp3",
+    "performer": "Homer Simpson / Dan Castellaneta, as identified by the TV archive",
+    "source": "https://www.wavsource.com/tv/simpsons/homer1.htm",
+    "sourceAudio": "https://www.wavsource.com/snds_2020-10-01_3728627494378403/tv/simpsons/homer/doh1_y.wav",
     "license": "Copyrighted third-party excerpt; redistribution permission not verified",
-    "sourcePcmSha256": "dd62288cf01696046a5076a4cc12755b2ff56a30664cf85176f0993d14312780",
-    "sha256": "1caaa36dd7a849eb6a35eef515c6db5cdd808e696d0c55c0ef5685670e9c4b80",
+    "sourcePcmSha256": "df678fce6454419ec42a0f02b867084d4618d14bcf95e60ad5fc0b4d55bdb9df",
+    "sha256": "606c6517db4d8005c42e7b2d5560f2a8111737ed3ac451fedd96d58bf4af106b",
     "excerptSeconds": [
-      0.285,
-      1.28
+      0,
+      0.7053061224489796
     ],
-    "processing": "Complete utterance after leading silence; mono PCM, restrained RMS/peak gain, 3 ms attack and 8 ms release fades; no pitch shift or reverb"
+    "processing": "Complete user-approved TV take A; mono PCM, peak headroom and 3 ms attack / 8 ms release fades only; original pitch, timing and sample rate"
   }
 ]
