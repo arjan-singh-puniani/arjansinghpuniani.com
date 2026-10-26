@@ -197,6 +197,31 @@ for (const [id, view] of Object.entries(ATLAS_VIEWS)) {
 export function atlasViewFor(id) {
   return Object.keys(ATLAS_VIEWS).find((view) => ATLAS_GROUPS[ATLAS_VIEWS[view].group].includes(id)) || "atlas_attachments";
 }
+// Study stations are teaching exposures, not a surgical approach or depth map.
+export const DISSECTION = [
+  {title: "Uncover the cuff", groups: ["bones", "cuff", "capsule"], target: "ZA_subacromial", task: "Probe the subacromial bursa, then lift it away to compare the underlying cuff surfaces."},
+  {title: "Follow the attachment", groups: ["bones", "cuff", "attachments"], target: "ZA_infra_tendon", task: "Lift individual cuff muscles. Probe the supplied infraspinatus tendon region; compare it with the insertion annotations."},
+  {title: "Open the capsule study", groups: ["bones", "capsule", "joint"], target: "ZA_capsule", task: "Find the joint capsule with the probe. Lift it away and inspect the structures revealed inside."},
+  {title: "Explore the joint rim", groups: ["bones", "joint"], target: "ZA_labrum", task: "Probe the glenoid labrum. Lift individual ligaments or cartilage surfaces to compare the joint rim with its bony context."},
+  {title: "Trace the nerve routes", groups: ["bones", "neurovascular"], target: "ZA_axillary", task: "Find the axillary nerve with the probe. Lift overlapping regional vessels to follow its supplied course."},
+];
+export function dissectionIds(state) {
+  return DISSECTION[state.dissection.step].groups.flatMap(group => ATLAS_GROUPS[group]);
+}
+export function dissect(state, id) {
+  const d = state.dissection;
+  if (!d.active || !dissectionIds(state).includes(id) || d.removed.includes(id)) return false;
+  if (d.tool === "probe") {
+    state.selected = id;
+    if (id === DISSECTION[d.step].target && !d.found.includes(d.step)) d.found.push(d.step);
+    return true;
+  }
+  if (ATLAS_GROUPS.bones.includes(id)) return false;
+  d.undo.push([...d.removed]);
+  d.removed.push(id);
+  state.selected = null;
+  return true;
+}
 export const LESSON = [
   {
     title: "A mobile joint. A stabilizing cuff.",
@@ -374,6 +399,7 @@ export function createState() {
     }
   }
   return {
+    dissection: { active: false, step: 0, tool: "probe", removed: [], undo: [], found: [] },
     mode: "explore",
     presenting: false,
     study: null,
@@ -398,6 +424,10 @@ export function createState() {
   };
 }
 export function visibility(state, id) {
+  if (state.mode === "peel" && state.dissection.active) {
+    if (!dissectionIds(state).includes(id) || state.dissection.removed.includes(id)) return "hidden";
+    return ATLAS_GROUPS.bones.includes(id) && state.selected !== id ? "ghost" : "visible";
+  }
   const p = PRESETS[state.view];
   const atlasView = Boolean(ATLAS_VIEWS[state.view]);
   if (ATLAS_IDS.includes(id) && (!atlasView || state.mode !== "explore")) return "hidden";

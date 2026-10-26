@@ -110,6 +110,7 @@ try {
   );
   await page.click("#reset");
   await page.click("[data-mode=peel]");
+  await page.click('[data-action="surface-lab"]');
   await page.locator("#peel-range").fill("2");
   await page.click("[data-action=separate]");
   expect(await page.evaluate(() => shoulderStudio.state.staged.length)).toBe(1);
@@ -207,6 +208,7 @@ try {
   for (const mode of ["peel", "learn", "quiz"]) {
     await mobile.click(`[data-mode=${mode}]`);
     if (mode === "peel") {
+      await mobile.click('[data-action="surface-lab"]');
       await mobile.locator("#peel-range").fill("2");
       await mobile.click("[data-action=separate]");
     }

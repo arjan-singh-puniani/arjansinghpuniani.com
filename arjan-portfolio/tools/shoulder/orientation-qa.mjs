@@ -34,6 +34,7 @@ try {
   results.keyboard = "PASS: keyboard reset and orbit";
   // All staged structures must remain within the useful viewport after camera rotation.
   await page.click("[data-mode=peel]");
+  await page.click('[data-action="surface-lab"]');
   await page.locator("#peel-range").fill("2");
   for (const id of ["FJ1506", "FJ1500", "FJ1508", "FJ1504"]) {
     await page.selectOption("#peel-muscle", id);

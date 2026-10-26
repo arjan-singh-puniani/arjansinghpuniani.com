@@ -3,6 +3,7 @@ import { ShoulderScene } from "./scene.js";
 import { bindInteraction } from "./interaction.js";
 import {
   createState,
+  DISSECTION, dissectionIds, dissect,
   ATLAS_GROUPS,
   ATLAS_IDS,
   ATLAS_VIEWS,
@@ -50,6 +51,7 @@ function initialize() {
     .join("");
   $("view-select").onchange = (e) => {
     if (ATLAS_VIEWS[e.target.value]) { openAtlas(e.target.value); return; }
+    if (state.dissection.active) setMode("explore");
     state.selected = null;
     state.isolated = false;
     reassemble(state);
@@ -132,7 +134,7 @@ function initialize() {
       scene.refresh();
       renderPanel();
     },
-    canStage: () => state.mode === "peel" && state.peel >= 2,
+    canStage: () => state.mode === "peel" && !state.dissection.active && state.peel >= 2,
   });
   bindInteraction($("orientation"), scene, { widget: true });
   setupCube();
@@ -202,6 +204,7 @@ function initialize() {
 function setMode(mode) {
   if (!["explore", "peel", "learn", "quiz"].includes(mode)) return;
   state.mode = mode;
+  state.dissection = createState().dissection;
   state.study = null;
   state.selected = null;
   state.isolated = false;
@@ -215,7 +218,8 @@ function setMode(mode) {
     scene.applyView(question(state).view);
   } else if (mode === "peel") {
     state.peel = 0;
-    scene.applyView("posterior");
+    state.dissection.active = !scene.atlasError;
+    scene.applyView(state.dissection.active ? "atlas_capsule" : "posterior");
   } else scene.applyView("posterior");
   scene.refresh();
   sync();
@@ -226,7 +230,7 @@ function reset() {
   const mode = state.mode;
   Object.assign(state, createState());
   state.mode = mode;
-  if (mode === "peel") state.peel = 0;
+  if (mode === "peel") { setMode("peel"); return; }
   if (mode === "learn") state.lesson = 0;
   scene.hover(null);
   scene.applyView(mode === "learn" ? "joint" : "posterior");
@@ -237,6 +241,7 @@ function reset() {
 function openAtlas(view) {
   if (!ATLAS_VIEWS[view] || scene.atlasError) return;
   state.mode = "explore";
+  state.dissection.active = false;
   state.presenting = false;
   state.study = null;
   state.selected = null;
@@ -252,6 +257,14 @@ function atlasNavigation() {
   return `<nav class="atlas-studies" aria-label="Inside the shoulder"><p class="kicker">INSIDE THE SHOULDER</p>${Object.entries(ATLAS_VIEWS).map(([id,v]) => `<button data-atlas-view="${id}" aria-pressed="${state.view === id}">${v.title}</button>`).join("")}</nav>`;
 }
 function select(id) {
+  if (id && state.mode === "peel" && state.dissection.active) {
+    const changed = dissect(state, id);
+    $("feedback").textContent = changed
+      ? state.dissection.tool === "lift" ? `${name(id)} moved to the specimen tray.`
+        : id === DISSECTION[state.dissection.step].target ? `Found it: ${name(id)}. Observation recorded.` : `${name(id)}. Keep exploring the target relationship.`
+      : "This structure stays as bone context. Lift a soft-tissue structure instead.";
+    scene.refresh(); renderPanel(); return;
+  }
   if (!id) {
     state.selected = null;
     state.isolated = false;
@@ -302,7 +315,7 @@ function sync() {
   document.querySelector(".inspector-top .lede").textContent = ATLAS_VIEWS[state.view] ? "Explore the deeper shoulder." : "Understand the cuff from every side.";
   $("structures-toggle").querySelector("span").textContent = scene.parts.size;
   $("source-summary").textContent = ATLAS_VIEWS[state.view] ? "Z-Anatomy · source-aligned joint study" : "BodyParts3D · Release 4.0";
-  $("view-purpose").textContent =
+  $("view-purpose").textContent = state.mode === "peel" && state.dissection.active ? `${state.dissection.tool === "probe" ? "◎ Probe" : "↗ Forceps"} · ${DISSECTION[state.dissection.step].title}` :
     state.mode === "learn" && state.study
       ? FUNCTION_STUDIES[state.study].title
       : PRESETS[state.view].purpose;
@@ -369,6 +382,8 @@ function renderPanel() {
     ];
     html = `<p class="kicker">PEEL · STAGE ${state.peel + 1} OF 5</p><h2>${titles[state.peel]}</h2><label class="field-label" for="peel-range">EXPOSURE DEPTH</label><input id="peel-range" aria-label="Anatomy exposure stage" type="range" min="0" max="4" step="1" value="${state.peel}"><p class="peel-stages">${state.peel < 2 ? "Move the slider to ghost, then remove the three supplied deltoid parts." : state.peel === 4 ? "Context is ghosted around your selected cuff muscle. The model does not map a separate tendon footprint." : "Select a cuff muscle and use Separate, or drag it deliberately to the staging area. Its source shape stays unchanged."}</p><select id="peel-muscle" aria-label="Cuff muscle to separate">${SITS.map((id) => `<option value="${id}" ${id === state.selected ? "selected" : ""}>${name(id)}</option>`).join("")}</select><div class="action-row"><button data-action="separate" ${state.peel < 2 ? "disabled" : ""}>Separate</button><button data-action="undo" ${!state.undo.length ? "disabled" : ""}>Undo</button></div><button data-action="reassemble" ${!state.staged.length ? "disabled" : ""}>Reassemble all</button><div class="stage-list">${state.staged.map((id) => `<button data-return="${id}">↶ Return ${name(id)}</button>`).join("")}</div><p class="integrity">Staging moves whole source meshes for study. It does not simulate cutting, tissue deformation, or surgical planes.</p>`;
   }
+  if (state.mode === "peel" && state.dissection.active) html = dissectionPanel();
+  else if (state.mode === "peel" && !scene.atlasError) html = '<button data-action="deep-lab">Open deep dissection lab →</button>' + html;
   if (state.mode === "learn") {
     const step = LESSON[state.lesson],
       study = FUNCTION_STUDIES[state.study];
@@ -419,6 +434,23 @@ function renderPanel() {
     }
   }
 }
+function dissectionPanel() {
+  const d = state.dissection, station = DISSECTION[d.step];
+  const available = dissectionIds(state).filter(id => !d.removed.includes(id));
+  return `<p class="kicker">DISSECTION LAB · ${d.found.length} / ${DISSECTION.length} OBSERVATIONS</p>
+    <h2>${station.title}</h2><p>${station.task}</p>
+    <div class="steps" role="progressbar" aria-label="Dissection observations" aria-valuemin="0" aria-valuemax="5" aria-valuenow="${d.found.length}"><span style="width:${d.found.length / DISSECTION.length * 100}%"></span></div>
+    ${d.found.length === DISSECTION.length ? '<p class="observation">All five targets found. Reassemble the specimen and explore how their positions relate. Use Reset for a fresh session.</p>' : ''}
+    <nav class="study-tabs" aria-label="Dissection stations">${DISSECTION.map((step,i) => `<button data-station="${i}" aria-current="${i === d.step ? 'step' : 'false'}">${d.found.includes(i) ? '✓' : i+1} · ${step.title}</button>`).join('')}</nav>
+    <div class="study-tabs" role="group" aria-label="Dissection tools"><button data-tool="probe" aria-pressed="${d.tool === 'probe'}">◎ Probe · identify</button><button data-tool="lift" aria-pressed="${d.tool === 'lift'}">↗ Forceps · lift away</button></div>
+    <p class="integrity">Click a structure to ${d.tool === 'probe' ? 'identify it' : 'lift its whole source mesh into the tray'}. Drag to orbit. Bones remain as ghosted context.</p>
+    <div class="action-row"><button data-action="lab-undo" ${!d.undo.length ? 'disabled' : ''}>Undo lift</button><button data-action="lab-restore" ${!d.removed.length ? 'disabled' : ''}>Restore all</button></div>
+    ${state.selected ? `<div class="observation"><strong>${escape(name(state.selected))}</strong><button data-action="focus">Focus structure</button><button data-action="sources">Source & provenance</button></div>` : ''}
+    <details><summary>Accessible structure controls · ${available.length}</summary><div class="stage-list">${available.map(id => `<button data-select="${id}">${escape(name(id))}</button>`).join('')}</div></details>
+    <details ${d.removed.length ? 'open' : ''}><summary>Specimen tray · ${d.removed.length}</summary><p>Return a structure to its original position.</p><div class="stage-list">${d.removed.map(id => `<button data-restore="${id}">↶ ${escape(name(id))}</button>`).join('')}</div></details>
+    <p class="integrity">Five teaching exposures in one source-matched specimen. Whole-mesh removal is reversible; this does not simulate incisions, tissue mechanics or a surgical approach. Insertion regions are source annotations.</p>
+    <button data-action="surface-lab">Switch to deltoid & cuff specimen</button>`;
+}
 function lessonStep(n) {
   state.study = null;
   state.lesson = Math.max(0, Math.min(LESSON.length - 1, n));
@@ -430,6 +462,21 @@ function lessonStep(n) {
   renderPanel();
 }
 function contextClick(e) {
+  const station = e.target.closest("[data-station]"), tool = e.target.closest("[data-tool]"), restore = e.target.closest("[data-restore]");
+  const labAction = e.target.closest("[data-action]")?.dataset.action;
+  if (station || tool || restore || ["lab-undo", "lab-restore", "surface-lab", "deep-lab"].includes(labAction)) {
+    const d = state.dissection;
+    if (station) { d.step = Number(station.dataset.station); state.selected = null; scene.applyView(d.step === 4 ? "atlas_neurovascular" : "atlas_capsule"); }
+    if (tool) d.tool = tool.dataset.tool;
+    if (restore || labAction === "lab-restore") { d.undo.push([...d.removed]); d.removed = restore ? d.removed.filter(id => id !== restore.dataset.restore) : []; }
+    if (labAction === "lab-undo" && d.undo.length) { d.removed = d.undo.pop(); state.selected = null; }
+    if (labAction === "deep-lab") { setMode("peel"); return; }
+    if (labAction === "surface-lab") { d.active = false; state.selected = null; state.peel = 0; scene.applyView("posterior"); }
+    scene.refresh(); renderPanel();
+    if (station) $("context").querySelector(`[data-station="${d.step}"]`)?.focus({preventScroll:true});
+    if (tool) $("context").querySelector(`[data-tool="${d.tool}"]`)?.focus({preventScroll:true});
+    return;
+  }
   const atlasButton = e.target.closest("[data-atlas-view]");
   if (atlasButton) {
     openAtlas(atlasButton.dataset.atlasView);
@@ -536,7 +583,7 @@ function updateOverlays() {
           ? [state.selected]
           : state.mode === "learn" && state.study
             ? FUNCTION_STUDIES[state.study].ids
-            : PRESETS[state.view].labels
+            : state.dissection.active && state.mode === "peel" ? [] : PRESETS[state.view].labels
       : [];
   const signature = ids.join() + ":" + state.selected;
   if (signature !== labelSignature) {

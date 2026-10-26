@@ -422,3 +422,22 @@ test("joint views preserve source coherence and cannot contaminate cuff lessons 
     }
   }
 });
+
+test("deep dissection hides lifted anatomy, preserves source context and records probe observations", async () => {
+  const { DISSECTION, dissectionIds, dissect } = await import('../../public/holoanatomy/shoulder/model.js');
+  const s = createState(); s.mode = 'peel'; s.dissection.active = true;
+  for (let step = 0; step < DISSECTION.length; step++) {
+    s.dissection.step = step;
+    const id = DISSECTION[step].target;
+    assert.ok(dissectionIds(s).includes(id));
+    assert.equal(visibility(s, 'FJ1506'), 'hidden');
+    s.dissection.tool = 'probe'; assert.equal(dissect(s, id), true);
+    dissect(s, id); assert.equal(s.dissection.found.filter(i => i === step).length, 1);
+    s.dissection.tool = 'lift'; assert.equal(dissect(s, 'ZA_scapula'), false);
+    assert.equal(dissect(s, 'FJ1506'), false);
+    assert.equal(dissect(s, id), true); assert.equal(visibility(s, id), 'hidden');
+    assert.equal(dissect(s, id), false);
+    s.dissection.removed = s.dissection.undo.pop(); assert.equal(visibility(s, id), 'visible');
+  }
+  assert.equal(s.dissection.found.length, 5);
+});
