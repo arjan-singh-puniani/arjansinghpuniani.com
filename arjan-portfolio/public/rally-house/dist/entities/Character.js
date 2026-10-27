@@ -908,6 +908,7 @@ export class Character {
         if (state === 'volley')
             headOffset = Vec3.add(new Vec3(0, .3875, 0), racketForward.clone().scale(.2625));
         const humanServe = this.spec.appearance === 'human' && state === 'serve';
+        let serveFrame;
         const humanGroundstroke = this.spec.appearance === 'human' && (state === 'swingForehand' || state === 'swingBackhand');
         if (humanGroundstroke) {
             // At a low ball the racket head drops beside the wrist. Keeping it
@@ -936,9 +937,18 @@ export class Character {
             handR = sp < contact ? strokeCurve(start, this.worldLocal(.64 * side, 1.55, -.10), impact.clone().sub(approach), impact, pre) : strokeCurve(impact, impact.clone().add(exit), finish.clone().add(racketForward.clone().scale(.24)), finish, post);
         }
         if (humanServe) {
-            const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1), impact = Vec3.sub(this.contactTarget ?? this.worldLocal(.14, 3.04, .38), headOffset), approach = racketForward.clone().scale(.18).add(new Vec3(0, .30, 0)), exit = approach.clone().scale((1 - contact) / contact);
+            const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1), impactOffset = Vec3.add(new Vec3(0, .525, 0), racketForward.clone().scale(.125)), impact = Vec3.sub(this.contactTarget ?? this.worldLocal(.14, 3.04, .38), impactOffset), approach = racketForward.clone().scale(.18).add(new Vec3(0, .30, 0)), exit = approach.clone().scale((1 - contact) / contact);
             // Carry the wrist through the ball before the arm folds down across the body.
             handR = sp < contact ? strokeCurve(this.worldLocal(.34, 1.55, .24), this.worldLocal(.48, 2.20, -.28), impact.clone().sub(approach), impact, pre) : strokeCurve(impact, impact.clone().add(exit), this.worldLocal(.10, 1.80, .64), this.worldLocal(-.02, 1.50, .72), post);
+            // The racket drops behind the wrist before accelerating up; the face turns through the release.
+            // shortcut: normalized arcade timing; tune to the supplied serve footage.
+            const origin = new Vec3();
+            const trophy = rigidFrame(origin, racketRight.clone().scale(.15).add(new Vec3(0, .49, 0)).add(racketForward.clone().scale(-.14)), racketRight);
+            const drop = rigidFrame(origin, racketRight.clone().scale(.10).add(new Vec3(0, -.42, 0)).add(racketForward.clone().scale(-.31)), racketRight);
+            const hit = rigidFrame(origin, impactOffset, racketForward);
+            const finish = rigidFrame(origin, racketRight.clone().scale(-.15).add(new Vec3(0, -.35, 0)).add(racketForward.clone().scale(.36)), racketRight.clone().scale(-1));
+            serveFrame = sp < contact ? (pre < .70 ? interpolateRigidFrame(trophy, drop, smoothstep(.38, .70, pre)) : interpolateRigidFrame(drop, hit, smoothstep(.70, 1, pre))) : interpolateRigidFrame(interpolateRigidFrame(hit, finish, smoothstep(0, .45, post)), hit, smoothstep(.55, 1, post));
+            headOffset = new Vec3(serveFrame[4], serveFrame[5], serveFrame[6]).scale(impactOffset.len());
         }
         if (shot && this.contactTarget && !humanGroundstroke && !humanServe) {
             const w = bell(sp - contact, .11);
@@ -966,6 +976,10 @@ export class Character {
             racketRot = readyRotation;
         if (this.spec.appearance === 'human' && shot)
             racketRot = new Vec3(Math.atan2(Vec3.dot(headOffset, racketForward), headOffset.y), Math.atan2(racketForward.x, racketForward.z), Math.atan2(-Vec3.dot(headOffset, racketRight), Math.hypot(headOffset.y, Vec3.dot(headOffset, racketForward))));
+        if (serveFrame) {
+            const pole = Math.abs(serveFrame[9]) > .999999;
+            racketRot = new Vec3(Math.asin(-clamp(serveFrame[9], -1, 1)), pole ? Math.atan2(-serveFrame[2], serveFrame[0]) : Math.atan2(serveFrame[8], serveFrame[10]), pole ? 0 : Math.atan2(serveFrame[1], serveFrame[5]));
+        }
         const vib = this.racketVibration * Math.sin(this.animTime * 62) * .045;
         racketRot.z += vib;
         racketRot.x += vib * .35;
