@@ -1118,3 +1118,36 @@ body[data-grasp="true"] #contact-point {background:#704128;border-color:var(--wh
 
 #tool-message {position:absolute;left:30px;bottom:105px;z-index:4;max-width:340px;padding:10px 13px;border-left:2px solid var(--accent);border-radius:3px;background:#faf9f5ed;color:var(--muted);font-size:12px;line-height:1.5;pointer-events:none;}
 @media(max-width:700px){#tool-message{left:15px;right:15px;bottom:94px;max-width:none;font-size:11px;}}
+
+/* Keep contact feedback outside the finger; tissue stays on its source supports. */
+#touch-grip {position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4;overflow:hidden;}
+#touch-grip svg {width:100%;height:100%;}
+#touch-grip line {stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 3;opacity:.7;}
+#touch-grip circle {fill:none;stroke:var(--accent);stroke-width:3;transform-box:fill-box;transform-origin:center;transform:rotate(-90deg);}
+#touch-help {display:none;}
+body[data-grasp="true"] #tool-message {display:none;}
+@media(pointer:coarse) {
+ body[data-discovery="true"] #touch-help {display:block;position:absolute;left:18px;top:96px;max-width:calc(100% - 135px);margin:0;white-space:pre-line;font-size:11px;line-height:1.6;color:var(--muted);pointer-events:none;}
+ #specimen, #orientation {-webkit-touch-callout:none;user-select:none;-webkit-user-select:none;}
+ body[data-grasp="true"] #contact-point {width:16px;height:16px;}
+}
+@media(max-width:700px) {
+ body[data-discovery="true"] .view-bottom {bottom:88px;}
+ body[data-discovery="true"] .zoom-controls {display:flex;gap:4px;}
+ body[data-discovery="true"] .zoom-controls button {width:44px;}
+ #grip-load {left:auto;right:15px;width:85px;bottom:105px;}
+ #tool-message {bottom:143px;}
+ #hover {max-width:calc(100% - 16px);}
+}
+@media(pointer:coarse) and (orientation:landscape) and (max-height:520px) {
+ body[data-discovery="true"] .studio {display:block;height:calc(100svh - 112px - env(safe-area-inset-bottom));}
+ body[data-discovery="true"] .viewport {height:100%;}
+ body[data-discovery="true"] #active-name {top:48px;left:18px;max-width:40%;}
+ body[data-discovery="true"] #touch-help {top:69px;font-size:10px;max-width:40%;}
+ #tool-dock {bottom:10px;}
+ #tool-dock button {padding:8px 11px;}
+ body[data-discovery="true"] .view-bottom {bottom:10px;left:max(12px,env(safe-area-inset-left));}
+ #grip-load {bottom:68px;}
+ #tool-message {bottom:70px;max-width:240px;}
+ .masthead {padding-left:max(15px,env(safe-area-inset-left));padding-right:max(15px,env(safe-area-inset-right));}
+}

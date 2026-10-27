@@ -150,6 +150,7 @@ function initialize() {
         const hit=scene.hit(e.clientX,e.clientY);
         if(!hit || !scene.beginTissuePull(owner,hit.point))return false;
         scene.pull.pointer={x:e.clientX,y:e.clientY};
+        scene.pull.pointerType=e.pointerType;
         $("specimen").style.cursor="grabbing";
         document.body.dataset.grasp="true";
         $("active-name").textContent=name(id);
@@ -159,25 +160,19 @@ function initialize() {
       move: (dx,dy) => {
         scene.moveTissuePull(dx,dy);
         if(!scene.pull)return;
-        const rect=$("specimen").getBoundingClientRect(),badge=$("hover"),load=scene.pull.runtime?.solver.load||0;
-        badge.hidden=false;
-        badge.textContent=`${name(scene.pull.id)} · ${load>.88 ? "Elastic limit" : state.dissection.tool === "retract" ? "Release to hold" : "Release to recover"}`;
-        badge.style.left=Math.max(8,Math.min(rect.width-230,scene.pull.pointer.x+dx-rect.left+18))+"px";
-        badge.style.top=Math.max(8,Math.min(rect.height-45,scene.pull.pointer.y+dy-rect.top-40))+"px";
-        $("grip-load").style.setProperty("--load", Math.min(1,load));
-        $("grip-load").hidden=false;
+        scene.pull.pointerDelta={x:dx,y:dy};
       },
       end: (moved) => {
         const id=scene.pull?.id, hold=moved&&state.dissection.tool==="retract";
         scene.finishTissuePull(hold);
-        document.body.dataset.grasp="false";$("contact-point").hidden=true;$("hover").hidden=true;$("grip-load").hidden=true;
+        document.body.dataset.grasp="false";$("touch-grip").hidden=true;$("contact-point").hidden=true;$("hover").hidden=true;$("grip-load").hidden=true;
         if(hold&&id) {
           dissect(state,id);$("feedback").textContent=`${name(id)} held aside. Probe the exposed anatomy; tap the held piece to restore.`;tactile("hold");
         } else if (id) {state.selected=id;$("feedback").textContent=`${name(id)} released. Its surface is recovering.`;tactile("release");}
         scene.refresh();renderPanel();
       },
       cancel: () => {
-        $("contact-point").hidden=true;$("hover").hidden=true;$("grip-load").hidden=true;document.body.dataset.grasp="false";
+        $("touch-grip").hidden=true;$("contact-point").hidden=true;$("hover").hidden=true;$("grip-load").hidden=true;document.body.dataset.grasp="false";
         scene.finishTissuePull(false,true);scene.refresh();$("feedback").textContent="Grab cancelled; original shape restored.";
       },
     },
@@ -425,6 +420,7 @@ function sync() {
   if(!discovery || detailsOpen)$("tool-message").hidden=true;
   for(const button of $("tool-dock").querySelectorAll('[data-live-tool]'))button.setAttribute('aria-pressed',String(button.dataset.liveTool===state.dissection.tool));
   $("active-name").textContent=state.selected?name(state.selected):"Touch a muscle to explore";
+  $("touch-help").textContent=state.dissection.tool==="probe" ? "Tap to identify · drag to orbit" : `${state.dissection.tool==="retract" ? "Drag tissue · release to hold" : "Drag muscle · release to recover"}\nTwo fingers to pan & pinch`;
   document.body.dataset.mode = state.mode;
   document.body.dataset.presenting = String(state.presenting);
   $("present").setAttribute("aria-pressed", String(state.presenting));
@@ -725,9 +721,28 @@ let labelSignature = "";
 function updateOverlays() {
   if (!scene?.ready) return;
   updateCube();
-  if(scene.pull?.elastic) {
-    const s=scene.pull.runtime.solver,point=new THREE.Vector3().fromArray(s.x,s.grabbed*3).project(scene.camera),contact=$("contact-point");
-    contact.hidden=false;contact.style.left=((point.x*.5+.5)*scene.canvas.clientWidth)+"px";contact.style.top=((-point.y*.5+.5)*scene.canvas.clientHeight)+"px";
+  if(scene.pull) {
+    const p=scene.pull,rect=scene.canvas.getBoundingClientRect(),touch=p.pointerType==="touch",load=p.runtime?.solver.load||0;
+    const x=(p.pointer?.x||0)+(p.pointerDelta?.x||0)-rect.left,y=(p.pointer?.y||0)+(p.pointerDelta?.y||0)-rect.top;
+    let contactX=x,contactY=y;
+    if(p.elastic) {
+      const s=p.runtime.solver,point=new THREE.Vector3().fromArray(s.x,s.grabbed*3).project(scene.camera),contact=$("contact-point");
+      contactX=(point.x*.5+.5)*rect.width;contactY=(-point.y*.5+.5)*rect.height;
+      contact.hidden=false;contact.style.left=contactX+"px";contact.style.top=contactY+"px";
+    }
+    const badge=$("hover"),text=`${name(p.id)} · ${load>.88 ? "Elastic limit" : state.dissection.tool === "retract" ? "Release to hold" : "Release to recover"}`;
+    badge.hidden=false;
+    if(badge.textContent!==text)badge.textContent=text;
+    badge.style.left=Math.max(8,Math.min(rect.width-badge.offsetWidth-8,touch?x-badge.offsetWidth/2:x+18))+"px";
+    badge.style.top=Math.max(8,Math.min(rect.height-badge.offsetHeight-8,y-(touch?85:40)))+"px";
+    $("grip-load").style.setProperty("--load",Math.min(1,load));$("grip-load").hidden=false;
+    const grip=$("touch-grip");grip.hidden=!touch;
+    if(touch) {
+      const line=grip.querySelector("line"),circle=grip.querySelector("circle");
+      for(const [key,value] of Object.entries({x1:contactX,y1:contactY,x2:x,y2:y}))line.setAttribute(key,value);
+      circle.setAttribute("cx",x);circle.setAttribute("cy",y);
+      circle.style.strokeDasharray=`${Math.max(.08,load)*157} 157`;
+    }
   }
   const ids =
     state.atlas && state.mode !== "quiz"
@@ -923,6 +938,8 @@ function openInformation() {
   $("mechanics-auto").onclick=()=>{cancelGrab();scene.setSimulationQuality("auto");openInformation();};
   $("mechanics-quality").onclick=()=>{cancelGrab();scene.setSimulationQuality(scene.simulationQuality==="precision"?"responsive":"precision");openInformation();};
   $("sound-toggle").onclick=()=>{soundEnabled=!soundEnabled;tactile("grab");openInformation();};
+  $("haptics-toggle").disabled=typeof navigator.vibrate!=="function";
+  if($("haptics-toggle").disabled)$("haptics-toggle").textContent="Vibration unavailable";
   $("haptics-toggle").onclick=()=>{hapticsEnabled=!hapticsEnabled;tactile("grab");openInformation();};
   $("section-toggle").onclick = (e) => {
     state.section = !state.section;
