@@ -9,7 +9,7 @@ export type ShotQuality='clean'|'frame'|'net';
 type ShotOutcome='clean'|'frame'|'net'|'long';
 interface PendingShot {
   hitter:Character;receiver:Character;state:Stroke;target:Vec3;flight:number;contactAt:number;duration:number;released:boolean;impactStarted:boolean;latchRemaining:number;outcome:ShotOutcome;
-  evidence:import('../simulation/CoachingEvidence.js').ShotEvidence;incomingStart:Vec3|null;contactTarget:Vec3|null;tossStart:Vec3;
+  evidence:import('../simulation/CoachingEvidence.js').ShotEvidence;incomingStart:Vec3|null;contactTarget:Vec3|null;
 }
 export interface RallyCallbacks {onShot?:(e:import('../simulation/CoachingEvidence.js').ShotEvidence)=>void;onPoint?:(winner:string,loser:string,kind:string)=>void;onHit?:((quality:ShotQuality)=>void);onBounce?:()=>void;onNet?:()=>void;onRally?:((count:number)=>void);onMiss?:((who:string,kind:ShotOutcome)=>void);}
 
@@ -28,8 +28,7 @@ export class RallySystem {
     const t=clamp(p.hitter.animTime/Math.max(.001,p.contactAt),0,1),live=p.hitter.racketContactPoint(),planned=p.contactTarget??live;
     const contact=Vec3.lerp(planned,live,smoothstep(.70,1,t));
     if(p.state==='serve'){
-      const rise=smoothstep(0,.72,t),settle=smoothstep(.72,1,t),q=Vec3.lerp(p.tossStart,contact,rise);
-      q.y+=Math.sin(Math.PI*t)*(.58-.18*settle);return q;
+      return p.hitter.serveBallPoint(planned);
     }
     if(p.incomingStart){const q=Vec3.lerp(p.incomingStart,contact,smoothstep(0,1,t));q.y+=Math.sin(Math.PI*t)*.06;return q;}
     return contact.clone();
@@ -115,7 +114,7 @@ export class RallySystem {
     const target=new Vec3(targetX,.11,targetDepth);
     const receiveX=clamp(targetX+(receiver.practiceCue==='spacing'?.40:(this.shotCount%2?.22:-.18)),COURT_MIN_X+.3,COURT_MAX_X-.3),receiveZ=receiver.position.z<0?-5:5;
     receiver.moveOnCourt(new Vec3(receiveX,0,receiveZ),hitter.position);receiver.setLook(hitter.position);receiver.setEmotion('focused',.8);hitter.face(target);hitter.setLook(receiver.position);hitter.triggerShot(state,target);
-    const kin=hitter.debugKinematics(),contactAt=hitter.shotContactTime(state),duration=hitter.shotDuration(state);const evidence={who:hitter.id,stroke:state,preparation:clamp((contactAt-.24)/.15,0,1),spacing:this.capturedIncoming&&kin.contactTarget?clamp(1-Vec3.sub(this.capturedIncoming,kin.contactTarget).len()/1.5,0,1):.75,recovery:clamp(1-Math.abs(hitter.position.x-1)/2.8,0,1),clean:outcome==='clean'};this.pending={evidence,hitter,receiver,state,target,flight,contactAt,duration,released:false,impactStarted:false,latchRemaining:0,outcome,incomingStart:this.capturedIncoming?.clone()??null,contactTarget:kin.contactTarget?.clone()??null,tossStart:hitter.serveTossPoint()};this.capturedIncoming=null;this.shotCount++;
+    const kin=hitter.debugKinematics(),contactAt=hitter.shotContactTime(state),duration=hitter.shotDuration(state);const evidence={who:hitter.id,stroke:state,preparation:clamp((contactAt-.24)/.15,0,1),spacing:this.capturedIncoming&&kin.contactTarget?clamp(1-Vec3.sub(this.capturedIncoming,kin.contactTarget).len()/1.5,0,1):.75,recovery:clamp(1-Math.abs(hitter.position.x-1)/2.8,0,1),clean:outcome==='clean'};this.pending={evidence,hitter,receiver,state,target,flight,contactAt,duration,released:false,impactStarted:false,latchRemaining:0,outcome,incomingStart:this.capturedIncoming?.clone()??null,contactTarget:kin.contactTarget?.clone()??null};this.capturedIncoming=null;this.shotCount++;
   }
 
   meshes():Mesh[]{

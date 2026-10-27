@@ -372,7 +372,6 @@ export class InteractiveMatchSystem {
             captureAt,
             incomingStart: stroke === 'serve' ? null : this.ball.position.clone(),
             contactTarget,
-            tossStart: hitter.serveTossPoint(),
             captured: stroke === 'serve',
             impactStarted: false,
             released: false,
@@ -468,12 +467,7 @@ export class InteractiveMatchSystem {
         const remaining = Math.max(0.001, pending.contactAt - pending.captureAt);
         const progress = clamp((pending.hitter.animTime - pending.captureAt) / remaining, 0, 1);
         if (pending.stroke === 'serve') {
-            const tossProgress = clamp(pending.hitter.animTime / pending.contactAt, 0, 1);
-            const rise = smoothstep(0, 0.72, tossProgress);
-            const settle = smoothstep(0.72, 1, tossProgress);
-            const ball = Vec3.lerp(pending.tossStart, liveContact, rise);
-            ball.y += Math.sin(Math.PI * tossProgress) * (0.58 - 0.18 * settle);
-            return ball;
+            return pending.hitter.serveBallPoint(plannedContact);
         }
         const incoming = pending.incomingStart ?? plannedContact;
         const ball = Vec3.lerp(incoming, plannedContact, smoothstep(0, 0.78, progress));

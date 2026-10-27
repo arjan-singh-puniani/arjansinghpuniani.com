@@ -42,9 +42,7 @@ export class RallySystem {
         const t = clamp(p.hitter.animTime / Math.max(.001, p.contactAt), 0, 1), live = p.hitter.racketContactPoint(), planned = p.contactTarget ?? live;
         const contact = Vec3.lerp(planned, live, smoothstep(.70, 1, t));
         if (p.state === 'serve') {
-            const rise = smoothstep(0, .72, t), settle = smoothstep(.72, 1, t), q = Vec3.lerp(p.tossStart, contact, rise);
-            q.y += Math.sin(Math.PI * t) * (.58 - .18 * settle);
-            return q;
+            return p.hitter.serveBallPoint(planned);
         }
         if (p.incomingStart) {
             const q = Vec3.lerp(p.incomingStart, contact, smoothstep(0, 1, t));
@@ -228,7 +226,7 @@ export class RallySystem {
         hitter.triggerShot(state, target);
         const kin = hitter.debugKinematics(), contactAt = hitter.shotContactTime(state), duration = hitter.shotDuration(state);
         const evidence = { who: hitter.id, stroke: state, preparation: clamp((contactAt - .24) / .15, 0, 1), spacing: this.capturedIncoming && kin.contactTarget ? clamp(1 - Vec3.sub(this.capturedIncoming, kin.contactTarget).len() / 1.5, 0, 1) : .75, recovery: clamp(1 - Math.abs(hitter.position.x - 1) / 2.8, 0, 1), clean: outcome === 'clean' };
-        this.pending = { evidence, hitter, receiver, state, target, flight, contactAt, duration, released: false, impactStarted: false, latchRemaining: 0, outcome, incomingStart: this.capturedIncoming?.clone() ?? null, contactTarget: kin.contactTarget?.clone() ?? null, tossStart: hitter.serveTossPoint() };
+        this.pending = { evidence, hitter, receiver, state, target, flight, contactAt, duration, released: false, impactStarted: false, latchRemaining: 0, outcome, incomingStart: this.capturedIncoming?.clone() ?? null, contactTarget: kin.contactTarget?.clone() ?? null };
         this.capturedIncoming = null;
         this.shotCount++;
     }

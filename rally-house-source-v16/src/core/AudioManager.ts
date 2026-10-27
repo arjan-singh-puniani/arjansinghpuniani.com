@@ -137,7 +137,7 @@ export class AudioManager {
     this.stopVoice();const generation=this.voiceGeneration,c=this.ctx;
     if(this.enabled&&this.volume>0&&c?.state==='running')void this.prepareVoice(c,'doh').then(buffer=>{
       if(!buffer||generation!==this.voiceGeneration||this.ctx!==c||!this.enabled||this.volume<=0||c.state!=='running'||performance.now()-now>650)return;
-      try{const source=c.createBufferSource(),gain=c.createGain();source.buffer=buffer;gain.gain.value=this.volume*.45;source.connect(gain).connect(c.destination);this.missVoice={source,gain};
+      try{const source=c.createBufferSource(),gain=c.createGain();source.buffer=buffer;gain.gain.value=this.volume*.22;source.connect(gain).connect(c.destination);this.missVoice={source,gain};
         source.onended=()=>{source.disconnect();gain.disconnect();if(this.missVoice?.source===source)this.missVoice=undefined;};source.start();
       }catch{}
     });

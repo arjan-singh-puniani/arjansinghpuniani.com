@@ -121,6 +121,9 @@ export function adultTaylorPose(source, root, yaw, constraints) {
                 const phase = ((walk.phase / (Math.PI * 2) + (side === 'R' ? .5 : 0)) % 1 + 1) % 1, swing = clamp((phase - walk.stance) / (1 - walk.stance), 0, 1);
                 load = 1 - smooth(swing / .20) + smooth((swing - .80) / .20);
             }
+            // An airborne receiving foot must not pull the pelvis down.
+            if (constraints.human && constraints.readyWeight)
+                load *= 1 - constraints.readyWeight * smooth((p[`foot${side}`].y - root.y - .11) / .025);
             const hip = p[`hip${side}`], foot = p[`foot${side}`], h = Math.hypot(hip.x - foot.x, hip.z - foot.z), vertical = Math.sqrt(Math.max(.01, (TAYLOR_BODY.thigh + TAYLOR_BODY.shin - .001) ** 2 - h * h));
             drop = Math.max(drop, (hip.y - foot.y - vertical) * load);
         }
@@ -209,7 +212,7 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             foot.add(new Vec3(Math.cos(yaw) * (side === 'R' ? -.06 : .06) * recover + Math.sin(yaw) * .16 * recover, .055 * Math.sin(Math.PI * recover) ** 2, -Math.sin(yaw) * (side === 'R' ? -.06 : .06) * recover + Math.cos(yaw) * .16 * recover));
         }
         // An airborne leg recovers toward the body; it cannot drag the planted body down.
-        if (walk?.planted && !walk.planted[side === 'L' ? 0 : 1]) {
+        if (walk?.planted && !walk.planted[side === 'L' ? 0 : 1] || constraints.human && constraints.readyWeight && p[`foot${side}`].y > root.y + .115) {
             const foot = p[`foot${side}`], delta = Vec3.sub(foot, hip), reach = TAYLOR_BODY.thigh + TAYLOR_BODY.shin - .001, horizontal = Math.hypot(delta.x, delta.z), limit = Math.sqrt(Math.max(0, reach * reach - delta.y * delta.y));
             if (horizontal > limit) {
                 foot.x = hip.x + delta.x * limit / horizontal;
@@ -293,7 +296,7 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             pole = mixed;
         }
         const endpoint = armEnd(side, p[`hand${side}`]), reach = arms.upperArm + forearm - .001, delta = Vec3.sub(endpoint, shoulder), excess = delta.len() - reach;
-        if (stroke && fitted?.wristOffsets && excess > 0) {
+        if (stroke && constraints.human && excess > 0) {
             // A small shoulder reach preserves the wrist endpoint without stretching the sleeve.
             const shift = delta.normalize().scale(Math.min(excess, .06 * stroke));
             shoulder.add(shift);

@@ -38,7 +38,6 @@ interface PendingContact {
   captureAt: number;
   incomingStart: Vec3 | null;
   contactTarget: Vec3 | null;
-  tossStart: Vec3;
   captured: boolean;
   impactStarted: boolean;
   released: boolean;
@@ -468,7 +467,6 @@ export class InteractiveMatchSystem {
       captureAt,
       incomingStart: stroke === 'serve' ? null : this.ball.position.clone(),
       contactTarget,
-      tossStart: hitter.serveTossPoint(),
       captured: stroke === 'serve',
       impactStarted: false,
       released: false,
@@ -584,12 +582,7 @@ export class InteractiveMatchSystem {
     );
 
     if (pending.stroke === 'serve') {
-      const tossProgress = clamp(pending.hitter.animTime / pending.contactAt, 0, 1);
-      const rise = smoothstep(0, 0.72, tossProgress);
-      const settle = smoothstep(0.72, 1, tossProgress);
-      const ball = Vec3.lerp(pending.tossStart, liveContact, rise);
-      ball.y += Math.sin(Math.PI * tossProgress) * (0.58 - 0.18 * settle);
-      return ball;
+      return pending.hitter.serveBallPoint(plannedContact);
     }
 
     const incoming = pending.incomingStart ?? plannedContact;

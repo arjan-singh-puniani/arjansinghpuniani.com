@@ -26,8 +26,8 @@ export function demonstration(kind:Exclude<SampleKind,'championship'|'phone'>,sp
     if(started&&!released){
       // Illustrative incoming/toss path, explicitly part of the authored demo.
       const end=c.debugKinematics().contactTarget??c.racketContactPoint();
-      const from=kind==='serve'?c.serveTossPoint():new Vec3(1.5,1.05,2.3);
-      ball.position=Vec3.lerp(from,end,Math.min(1,c.animTime/c.shotContactTime(stroke)));ball.active=true;
+      const progress=Math.min(1,c.animTime/c.shotContactTime(stroke));
+      ball.position=kind==='serve'?c.serveBallPoint(end):Vec3.lerp(new Vec3(1.5,1.05,2.3),end,progress);ball.active=true;
     }
     if(started&&released&&!finished&&c.animTime>=c.shotDuration(stroke)){c.clearShotIntent();c.setAnimation('ready');finished=true;}
     if(i%2===0||contact||bounce){clip.frames.push(captureFrame(c,time,ball.active?ball.position:null,contact,bounce));contact=bounce=false;}

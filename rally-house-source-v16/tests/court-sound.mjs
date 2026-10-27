@@ -45,10 +45,10 @@ for(const rate of [22050,44100,48000])for(const surface of ['court','tile'])for(
 assert.equal(signatures.size,36,'Floor, scuff and take vary the shoe material at each rate');
 
 {
- const started=[],stopped=[];
- const context={state:'running',close:async()=>{},createGain:()=>({gain:{value:0},connect(){return this;},disconnect(){}}),createBufferSource:()=>{const node={connect(){return this;},disconnect(){},start(){started.push(this);},stop(){stopped.push(this);}};return node;}};
+ const started=[],stopped=[],levels=[];
+ const context={state:'running',close:async()=>{},createGain:()=>{const gain={value:0};levels.push(gain);return {gain,connect(){return this;},disconnect(){}}},createBufferSource:()=>{const node={connect(){return this;},disconnect(){},start(){started.push(this);},stop(){stopped.push(this);}};return node;}};
  const a=new AudioManager();a.ctx=context;a.voiceLoads.set('doh',Promise.resolve({}));
- assert(a.opponentMiss());await Promise.resolve();assert.equal(started.length,1);assert(!a.opponentMiss());assert(!a.opponentMiss());assert(!a.opponentMiss(),'Cooldown prevents rapid repeated reactions');
+ assert(a.opponentMiss());await Promise.resolve();assert.equal(started.length,1);assert(Math.abs(levels.at(-1).value-a.volume*.22)<1e-9,'The approved reaction stays at the reduced mix level');assert(!a.opponentMiss());assert(!a.opponentMiss());assert(!a.opponentMiss(),'Cooldown prevents rapid repeated reactions');
  a.volume=0;assert.equal(stopped.length,1,'Muting stops an active voice immediately');a.volume=.65;
  a.lastMissVoice=-Infinity;a.opponentMiss();a.opponentMiss();a.opponentMiss();await Promise.resolve();assert.equal(started.length,2);a.stopVoice();assert.equal(stopped.length,2);a.dispose();
  let complete;const pending=new AudioManager();pending.ctx=context;pending.voiceLoads.set('doh',new Promise(resolve=>complete=resolve));pending.opponentMiss();pending.stopVoice();complete({});await Promise.resolve();assert.equal(started.length,2,'A voice finishing loading after pause cannot play');pending.dispose();

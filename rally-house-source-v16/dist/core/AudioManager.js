@@ -242,7 +242,7 @@ export class AudioManager {
                 try {
                     const source = c.createBufferSource(), gain = c.createGain();
                     source.buffer = buffer;
-                    gain.gain.value = this.volume * .45;
+                    gain.gain.value = this.volume * .22;
                     source.connect(gain).connect(c.destination);
                     this.missVoice = { source, gain };
                     source.onended = () => { source.disconnect(); gain.disconnect(); if (this.missVoice?.source === source)

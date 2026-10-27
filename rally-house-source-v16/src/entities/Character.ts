@@ -1,3 +1,4 @@
+import {serveToss} from '../tennis/ServeToss.js';
 import {RACKET,RACKET_FRAME,RACKET_BONES,secondRacketHand} from '../animation/RacketGeometry.js';
 import {CHAMPIONSHIP_TUNING} from '../tennis/ChampionshipTuning.js';
 import {ActingState,type ReactionName} from '../animation/ActingState.js';
@@ -84,11 +85,11 @@ export class Character {
   private pendingState:AnimState='idle';
   private courtTarget?:Vec3;private courtFacing?:Vec3;private courtSpeed=3.15;private courtSpeedScale=1;matchCompetitor=false;spectating=false;
   private previousState:AnimState='idle';private previousAnimTime=0;private transitionAge=1;private transitionDuration=.20;
-  private walkCycle=new WalkCycle();private exitWalkPose:Pose|null=null;
+  private walkCycle=new WalkCycle();private shuffleCycle=new WalkCycle();private readonly shuffleShape={halfWidth:.29,lift:.06,stance:.32};private exitWalkPose:Pose|null=null;private exitWalkOrigin=new Vec3();
   private walkingStride(){return (this.spec.appearance==='human'?1.7+clamp((this.travelSpeed-2.2)/3.3,0,1)*.7:1.02)*locomotionStyleFor(this.spec.id).stride;}
   private walkingShape(){const jog=clamp((this.travelSpeed-2.2)/3.3,0,1);return this.spec.appearance==='human'?{halfWidth:.135,lift:.045+jog*.155,stance:.52-jog*.12}:undefined;}
   private targetYaw=0;private locomotion=0;private horizontalSpeed=0;private gaitPhase=0;private travelSpeed=0;
-  private leftFootLock:Vec3|null=null;private rightFootLock:Vec3|null=null;private prevLeftStance=false;private prevRightStance=false;
+  private leftFootLock:Vec3|null=null;private rightFootLock:Vec3|null=null;
   private incomingContact:Vec3|null=null;private contactTarget:Vec3|null=null;private outgoingTarget:Vec3|null=null;
   private facePose:FacePose={smile:.08,mouthOpen:0,browRaise:.05,squint:0,focus:.08};
   private authoredHands?:AuthoredHandPose;
@@ -98,9 +99,10 @@ export class Character {
   private emotion:EmotionState='neutral';private emotionUntil=0;private conversationTarget?:Vec3;
   private racketImpactAge=1;
   private contactHoldRemaining=0;
+  private serveReleasePoint:Vec3|null=null;
   private stringImpactStrength=0;
   private stringImpactDirection=1;
-  private racketVibration=0;private stepEvent=false;private lastStanceKey='';
+  private racketVibration=0;private stepEvent=false;
   private clubIdleRelax=0;
   private strokeAnchor:{foot:'L'|'R';point:Vec3;root:Vec3}|null=null;
   private strokeSupport(){
@@ -216,11 +218,15 @@ export class Character {
   trigger(state:AnimState){if(state==='celebrate'||state==='reactMiss')this.reactionRacket=this.holdsRacket();this.changeState(state,true);if(isShot(state))this.clearCourtMove();}
   setAnimation(state:AnimState){this.changeState(state,false);}
   setIncomingContact(point:Vec3){this.incomingContact=point.clone();}
-  triggerShot(state:ShotState,outgoingTarget:Vec3){this.outgoingTarget=outgoingTarget.clone();this.contactTarget=this.solveContactTarget(state,this.incomingContact);this.incomingContact=null;this.courtPhase='stroke';this.courtPhaseAge=0;this.setEmotion('focused',this.shotDuration(state));this.trigger(state);const foot=state==='swingForehand'?'R':'L',stance=this.poseFor(state,this.shotContactTime(state)*.72),point=stance[`foot${foot}`].clone();point.y=.11;this.strokeAnchor={foot,point,root:this.position.clone()};}
+  triggerShot(state:ShotState,outgoingTarget:Vec3){this.serveReleasePoint=null;this.outgoingTarget=outgoingTarget.clone();this.contactTarget=this.solveContactTarget(state,this.incomingContact);this.incomingContact=null;this.courtPhase='stroke';this.courtPhaseAge=0;this.setEmotion('focused',this.shotDuration(state));this.trigger(state);const foot=state==='swingForehand'?'R':'L',stance=this.poseFor(state,this.shotContactTime(state)*.72),point=stance[`foot${foot}`].clone();point.y=.11;this.strokeAnchor={foot,point,root:this.position.clone()};}
   clearShotIntent(){this.strokeAnchor=null;this.contactHoldRemaining=0;this.contactTarget=null;this.outgoingTarget=null;this.incomingContact=null;this.courtPhase='recover';this.courtPhaseAge=0;}
   shotContactTime(state:ShotState=this.state as ShotState){const style=this.strokeStyle();const base=state==='serve'?.48:state==='volley'?.21:state==='swingBackhand'?.35:.33;const dev=this.spec.id==='mika'?(this.development-50)*.0007:0;const tempo=this.matchCompetitor?CHAMPIONSHIP_TUNING.arcadeContactTempo:1;return Math.max(.11,(base*style.timing+dev+this.preparationBonus+(this.practiceCue==='preparation'?.065:0))*tempo);}
   shotDuration(state:ShotState=this.state as ShotState){const style=this.strokeStyle();const base=state==='serve'?.96:state==='volley'?.50:state==='swingBackhand'?.78:.76;return base*style.tempo*(this.matchCompetitor?CHAMPIONSHIP_TUNING.arcadeStrokeTempo:1);}
   serveTossPoint(){const p=this.pose();return p.handL.clone();}
+  serveBallPoint(contact:Vec3){
+    if(!this.serveReleasePoint)return this.serveTossPoint();
+    return serveToss(this.serveReleasePoint,contact,(this.animTime/this.shotContactTime('serve')-.45)/.55);
+  }
 
   private strokeStyle(){
     if(this.spec.id==='coach')return {timing:1.08,tempo:.92,coil:.88,follow:.92,reach:.96};
@@ -231,6 +237,7 @@ export class Character {
   }
 
   update(dt:number){
+    const tossHand=this.state==='serve'&&!this.serveReleasePoint?this.serveTossPoint():null,tossTime=this.animTime;
     const reserved=this.nav.courtReserved();
     if(reserved!==this.courtWasReserved){
       this.courtWasReserved=reserved;const destination=this.path[this.path.length-1];
@@ -282,14 +289,20 @@ export class Character {
     const worldVel=Vec3.sub(this.position,before).scale(dt>0?1/dt:0);const s=Math.sin(this.yaw),c=Math.cos(this.yaw);this.localVelocity.set(c*worldVel.x-s*worldVel.z,0,s*worldVel.x+c*worldVel.z);
     const instantaneous=dt>0?moved/dt:0;this.horizontalSpeed=expDamp(this.horizontalSpeed,instantaneous,14,dt);const targetLoc=MOVING.has(this.state)?.98:0;this.locomotion=expDamp(this.locomotion,targetLoc,10,dt);
     if(this.state==='walk'||this.state==='jog'){const stride=this.walkingStride();this.stepEvent=this.walkCycle.update(this.position,this.yaw,moved,stride,this.walkingShape())||this.stepEvent;this.gaitPhase=this.walkCycle.phase*Math.PI*2;}
-    else if(this.locomotion>.02){const cadence=this.state==='shuffle'?5.8:locomotionStyle.cadence;this.gaitPhase=(this.gaitPhase+Math.max(.25,this.horizontalSpeed)*cadence*dt)%(Math.PI*2);}
+    else if(this.state==='shuffle'){this.stepEvent=this.shuffleCycle.update(this.position,this.yaw,moved,1.4,this.shuffleShape,worldVel.clone().normalize())||this.stepEvent;this.gaitPhase=this.shuffleCycle.phase*Math.PI*2;}
+    else if(this.locomotion>.02)this.gaitPhase=(this.gaitPhase+Math.max(.25,this.horizontalSpeed)*locomotionStyle.cadence*dt)%(Math.PI*2);
     this.updateFootPlanting();
+
     const desired=this.expressionFor(this.state),reaction=this.acting.reaction,w=this.acting.reactionWeight;
     if(!isShot(this.state)){desired.smile=clamp(desired.smile+this.acting.values.smileBias+(reaction?.smile??0)*w,-.5,1);desired.browRaise=clamp(desired.browRaise+this.acting.values.browBias+(reaction?.brow??0)*w,-.25,1);}this.facePose={smile:expDamp(this.facePose.smile,desired.smile,10,dt),mouthOpen:expDamp(this.facePose.mouthOpen,desired.mouthOpen,14,dt),browRaise:expDamp(this.facePose.browRaise,desired.browRaise,10,dt),squint:expDamp(this.facePose.squint,desired.squint,12,dt),focus:expDamp(this.facePose.focus,desired.focus,12,dt)};
     const racket=this.holdsRacket(),hands={handRestWeight:this.state==='idle'&&!this.propKind&&!this.interactionTarget&&!this.affection&&this.socialGesture==='none'&&this.interactionWeight<.001?1:0,handLapWeight:this.state==='sit'&&!this.propKind&&!this.affection&&!racket?1:0,handGripL:racket?(this.state==='swingBackhand'?1:this.state==='ready'||this.state==='shuffle'?.45:0):0,handGripR:racket?1:this.state==='drink'||this.propKind==='cup'?.45:0,handRacketWeight:racket?1:0};
     for(const key of Object.keys(hands) as (keyof typeof hands)[])this.handPose[key]=expDamp(this.handPose[key],hands[key],12,dt);
     this.clubIdleRelax=expDamp(this.clubIdleRelax,this.canRelaxClubIdle()?1:0,7,dt);
     if(this.spec.presentation==='feminine'&&this.spec.appearance==='human')this.authoredHands=advanceAuthoredHands(this.pose(),this.position,this.yaw,this.authoredHands,dt);
+    if(tossHand&&this.state==='serve'&&this.animTime>=this.shotContactTime('serve')*.45){
+      const release=this.shotContactTime('serve')*.45;
+      this.serveReleasePoint=Vec3.lerp(tossHand,this.serveTossPoint(),clamp((release-tossTime)/Math.max(.001,this.animTime-tossTime),0,1));
+    }
     this.prevPosition=this.position.clone();
   }
 
@@ -300,12 +313,17 @@ export class Character {
   private changeState(next:AnimState,resetTime:boolean){
     if(next===this.state){if(resetTime){this.animTime=0;this.contactHoldRemaining=0;}return;}
     this.contactHoldRemaining=0;this.strokeAnchor=null;
+    if(next==='shuffle'&&this.state!=='shuffle'){
+      const pose=this.pose(),direction=this.courtTarget?this.localFromWorld(this.courtTarget):new Vec3();
+      this.shuffleCycle.reset([pose.footL,pose.footR]);this.shuffleCycle.update(this.position,this.yaw,0,1.4,this.shuffleShape);
+      this.shuffleCycle.phase=(Math.abs(direction.x)>Math.abs(direction.z)?direction.x>0:direction.z<0)?.5:0;this.shuffleCycle.planted=[true,true];
+    }
     if((next==='walk'||next==='jog')&&this.state!=='walk'&&this.state!=='jog'){this.walkCycle.reset();this.walkCycle.update(this.position,this.yaw,0,this.walkingStride(),this.walkingShape());}
-    if(MOVING.has(this.state)&&!MOVING.has(next)||this.state==='ready'&&next==='shuffle'||this.state==='sit'){this.pose();this.exitWalkPose=this.lastPose;}else this.exitWalkPose=null;
+    if(MOVING.has(this.state)&&!MOVING.has(next)||this.state==='ready'&&next==='shuffle'||this.state==='sit'){this.pose();this.exitWalkPose=this.lastPose;this.exitWalkOrigin=this.position.clone();}else this.exitWalkPose=null;
     if(!MOVING.has(next))this.walkCycle.reset();
     this.previousState=this.state;this.previousAnimTime=this.animTime;this.state=next;this.animTime=resetTime?0:0;this.transitionAge=0;
     this.transitionDuration=isShot(next)||isShot(this.previousState)?.13:MOVING.has(next)||MOVING.has(this.previousState)?.18:next==='sit'||this.previousState==='sit'?.65:.26;
-    if(!MOVING.has(next)){this.leftFootLock=null;this.rightFootLock=null;this.prevLeftStance=false;this.prevRightStance=false;}
+    if(!MOVING.has(next)){this.leftFootLock=null;this.rightFootLock=null;}
   }
 
   private solveContactTarget(state:ShotState,incoming:Vec3|null){
@@ -323,18 +341,8 @@ export class Character {
   }
 
   private updateFootPlanting(){
-    if(!(this.state==='walk'||this.state==='jog'||this.state==='shuffle')){this.leftFootLock=null;this.rightFootLock=null;this.prevLeftStance=false;this.prevRightStance=false;this.lastStanceKey='';return;}
-    if(this.state==='walk'||this.state==='jog'){this.leftFootLock=this.walkCycle.planted[0]?this.walkCycle.feet[0].clone():null;this.rightFootLock=this.walkCycle.planted[1]?this.walkCycle.feet[1].clone():null;return;}
-    const phase=this.gaitPhase,isShuffle=this.state==='shuffle',wave=Math.sin(phase);
-    const leftStance=isShuffle?wave<.22:Math.cos(phase)>.08,rightStance=isShuffle?wave>-.22:Math.cos(phase+Math.PI)>.08;
-    const speedRef=this.courtSpeed;const speed01=clamp(this.horizontalSpeed/Math.max(.01,speedRef),0,1);
-    const style=locomotionStyleFor(this.spec.id);const stride=(.22)*speed01*style.stride;const side=clamp(this.localVelocity.x/Math.max(.01,this.courtSpeed),-1,1);const fore=clamp(this.localVelocity.z/Math.max(.01,this.courtSpeed),-1,1);
-    const predict=Math.min(.12,this.horizontalSpeed*.035);const future=this.position.clone().add(new Vec3(Math.sin(this.yaw)*fore*predict+Math.cos(this.yaw)*side*predict,0,Math.cos(this.yaw)*fore*predict-Math.sin(this.yaw)*side*predict));
-    const desired=(left:boolean)=>{const lateral=(left?-.29:.29)+(isShuffle?-side*.10:0);const z=isShuffle?(left?.12:-.03)+(left?wave:-wave)*.045:(.04+(left?Math.sin(phase):Math.sin(phase+Math.PI))*stride);const old=this.position;this.position=future;const v=this.worldLocal(lateral,.11,z);this.position=old;return v;};
-    const leftDesired=desired(true),rightDesired=desired(false);
-    if(leftStance&&!this.prevLeftStance){this.leftFootLock=leftDesired.clone();this.stepEvent=true;}if(!leftStance)this.leftFootLock=null;
-    if(rightStance&&!this.prevRightStance){this.rightFootLock=rightDesired.clone();this.stepEvent=true;}if(!rightStance)this.rightFootLock=null;
-    const key=`${leftStance?'L':''}${rightStance?'R':''}`;this.lastStanceKey=key;this.prevLeftStance=leftStance;this.prevRightStance=rightStance;
+    if(!(this.state==='walk'||this.state==='jog'||this.state==='shuffle')){this.leftFootLock=null;this.rightFootLock=null;return;}
+    const cycle=this.state==='shuffle'?this.shuffleCycle:this.walkCycle;this.leftFootLock=cycle.planted[0]?cycle.feet[0].clone():null;this.rightFootLock=cycle.planted[1]?cycle.feet[1].clone():null;
   }
 
   private expressionFor(state:AnimState):FacePose{
@@ -368,11 +376,13 @@ export class Character {
     let coil=clip.torsoTwist,hipCoil=clip.hipTwist,lean=clip.lean,knee=clip.knee,weightShift=0;
     if(state==='swingForehand'){const pre=clamp(sp/contact,0,1),post=clamp((sp-contact)/(1-contact),0,1);coil+=(-.62*(1-smoothstep(0,.82,pre))+.78*style.follow*smoothstep(0,1,post))*style.coil;hipCoil+=coil*.52;lean+=.035+.07*Math.sin(sp*Math.PI);knee+=.11*Math.sin(Math.min(1,sp/contact)*Math.PI);weightShift=smoothstep(.18,.75,sp);}
     if(state==='swingBackhand'){const pre=clamp(sp/contact,0,1),post=clamp((sp-contact)/(1-contact),0,1);coil+=(.58*(1-smoothstep(0,.82,pre))-.68*style.follow*smoothstep(0,1,post))*style.coil;hipCoil+=coil*.56;lean+=.04;knee+=.10*Math.sin(Math.min(1,sp/contact)*Math.PI);weightShift=smoothstep(.20,.78,sp);}
-    if(state==='serve'){coil+=(-.36+sp*.72)*style.coil;hipCoil+=(-.18+sp*.34)*style.coil;lean+=-.045+sp*.12;knee+=.15*Math.sin(Math.min(1,sp/.57)*Math.PI);weightShift=smoothstep(.34,.82,sp);}
+    if(state==='serve'){const pre=clamp(sp/contact,0,1),post=clamp((sp-contact)/(1-contact),0,1),load=Math.sin(pre*Math.PI)**2,drive=smoothstep(.45,1,pre),land=smoothstep(0,.65,post);coil+=(-.36+sp*.72)*style.coil;hipCoil+=(-.18+sp*.34)*style.coil;baseY=-.035*load+.055*drive*(1-land);lean=-.055*load+.12*drive;knee=.12*load+.045*land;weightShift=drive;}
     if(state==='volley'){coil+=(sp<contact?-.14:.20);hipCoil+=coil*.35;knee+=.055;weightShift=smoothstep(.18,.66,sp);}
     // The hitting shoulder loads back for a forehand and forward for a backhand.
     if(this.spec.appearance==='human'&&(state==='swingForehand'||state==='swingBackhand')){const pre=clamp(sp/contact,0,1),post=clamp((sp-contact)/(1-contact),0,1),turn=(state==='swingForehand'?1:-1)*(.90*Math.sin(pre*Math.PI)-.78*style.follow*smoothstep(0,1,post))*style.coil;coil=-clip.torsoTwist+turn;hipCoil=-clip.hipTwist+turn*.52;}
     const moving=state==='walk'||state==='jog';const shuffle=state==='shuffle';const gait=moving?Math.cos(this.gaitPhase):0;const gaitStyle=locomotionStyleFor(this.spec.id);const stepLift=moving?Math.pow(Math.abs(Math.sin(this.gaitPhase)),1.7)*gaitStyle.bounce*(this.spec.appearance==='human'?.25:1):0;const gaitCounter=moving?Math.sin(this.gaitPhase)*gaitStyle.torsoCounter:0;const splitHop=this.courtPhase==='split'?Math.sin(Math.min(1,this.courtPhaseAge/.10)*Math.PI)*.055:0;
+    // Keep the receiving hinge while the legs spring beneath a steady torso.
+    if(shuffle&&this.spec.appearance==='human'){baseY=-.020;knee=.038;lean=.10;}
     if(!shot&&!moving&&this.socialGesture==='think'){lean+=.055;}
     if(state==='idle'){const phase=time*this.acting.values.idleFidgetRate*(this.spec.id==='mika'?.92:this.spec.id==='nia'?.68:.58)+this.seed()*.037;const amp=this.spec.id==='coach'?.010:this.spec.id==='mika'?.024:this.spec.id==='nia'?.018:.015;hipCoil+=Math.sin(phase)*amp;coil-=Math.sin(phase)*amp*.72;baseY+=Math.sin(phase*1.7)*amp*.13;}
     if(moving){coil=-gait*gaitStyle.torsoCounter*.45;hipCoil=gait*gaitStyle.hipSwing*.45;baseY=this.spec.appearance==='human'?-.025+Math.cos(this.gaitPhase*2)*.003:.008+Math.sin(this.gaitPhase*2)*.012;lean=0;knee=0;}const tracking=state==='watch'||this.spectating||state==='ready'||shuffle;const watchDelta=tracking?clamp(angleDelta(this.yaw,this.gazeYaw),-.78,.78):0;const torsoYaw=this.yaw+coil+watchDelta*.30,hipYaw=this.yaw+hipCoil+watchDelta*.07;
@@ -383,7 +393,7 @@ export class Character {
     const contactLocal=this.contactTarget?this.localFromWorld(this.contactTarget):new Vec3(state==='swingBackhand'?-.52:state==='serve'?.14:.56,state==='serve'?2.36:1.02,.5);
     const outside=clamp(contactLocal.x,-.85,.85);
     const readyPhase=time*2.1+this.seed()*.071,readyWeight=state==='ready'?Math.sin(readyPhase):0;
-    const pelvisShiftX=shot?outside*.05*bell(sp-contact,.24):state==='ready'?readyWeight*.035:moving&&this.spec.appearance==='human'?-Math.sin(this.gaitPhase)*.018:0;const pelvisShiftZ=(shot?.08*weightShift:0)+clip.pelvisZ;
+    const pelvisShiftX=shot?outside*.05*bell(sp-contact,.24):state==='ready'?readyWeight*.035:moving&&this.spec.appearance==='human'?-Math.sin(this.gaitPhase)*.018:0;const pelvisShiftZ=(state==='serve'?.24*weightShift:shot?.08*weightShift:0)+clip.pelvisZ;
     const pelvisCenter=this.worldLocal(pelvisShiftX,.79+baseY-knee+splitHop,pelvisShiftZ,hipYaw);const torsoCenter=this.worldLocal(pelvisShiftX*.45,1.14+baseY+breathe-knee+splitHop,.025+pelvisShiftZ*.6,torsoYaw);
     const actingLift=shot?0:this.acting.values.postureLift+(this.acting.reaction?.lift??0)*this.acting.reactionWeight;torsoCenter.y+=actingLift;
     const feminine=this.spec.presentation==='feminine',shoulderHalf=feminine?.355:.38;
@@ -474,6 +484,7 @@ export class Character {
     if(readyRotation)headOffset=rotateEulerVector(new Vec3(0,.48,0),readyRotation);
     if(state==='serve')headOffset=Vec3.add(new Vec3(0,.525,0),racketForward.clone().scale(.125));
     if(state==='volley')headOffset=Vec3.add(new Vec3(0,.3875,0),racketForward.clone().scale(.2625));
+    const humanServe=this.spec.appearance==='human'&&state==='serve';
     const humanGroundstroke=this.spec.appearance==='human'&&(state==='swingForehand'||state==='swingBackhand');
     if(humanGroundstroke){
       // At a low ball the racket head drops beside the wrist. Keeping it
@@ -500,7 +511,12 @@ export class Character {
       const approach=racketForward.clone().scale(.32).add(new Vec3(0,.16,0)),exit=approach.clone().scale((1-contact)/contact);
       handR=sp<contact?strokeCurve(start,this.worldLocal(.64*side,1.55,-.10),impact.clone().sub(approach),impact,pre):strokeCurve(impact,impact.clone().add(exit),finish.clone().add(racketForward.clone().scale(.24)),finish,post);
     }
-    if(shot&&this.contactTarget&&!humanGroundstroke){const w=bell(sp-contact,.11);const desiredHand=Vec3.sub(this.contactTarget,headOffset);handR=blendVec(handR,desiredHand,w);if(state==='swingBackhand'&&!humanGroundstroke){const secondGrip=Vec3.add(handR,racketForward.clone().scale(-.08)).add(new Vec3(0,.04,0));handL=blendVec(handL,secondGrip,clamp(w*.90+.18,0,1));}}
+    if(humanServe){
+      const pre=clamp(sp/contact,0,1),post=clamp((sp-contact)/(1-contact),0,1),impact=Vec3.sub(this.contactTarget??this.worldLocal(.14,3.04,.38),headOffset),approach=racketForward.clone().scale(.18).add(new Vec3(0,.30,0)),exit=approach.clone().scale((1-contact)/contact);
+      // Carry the wrist through the ball before the arm folds down across the body.
+      handR=sp<contact?strokeCurve(this.worldLocal(.34,1.55,.24),this.worldLocal(.48,2.20,-.28),impact.clone().sub(approach),impact,pre):strokeCurve(impact,impact.clone().add(exit),this.worldLocal(.10,1.80,.64),this.worldLocal(-.02,1.50,.72),post);
+    }
+    if(shot&&this.contactTarget&&!humanGroundstroke&&!humanServe){const w=bell(sp-contact,.11);const desiredHand=Vec3.sub(this.contactTarget,headOffset);handR=blendVec(handR,desiredHand,w);if(state==='swingBackhand'&&!humanGroundstroke){const secondGrip=Vec3.add(handR,racketForward.clone().scale(-.08)).add(new Vec3(0,.04,0));handL=blendVec(handL,secondGrip,clamp(w*.90+.18,0,1));}}
     if(humanGroundstroke&&state==='swingBackhand')handL=secondRacketHand(handR,headOffset);
     const racketGrip=handR.clone();const racketCenter=Vec3.add(racketGrip,headOffset);
     let racketRot=new Vec3(.02,Math.atan2(racketForward.x,racketForward.z),0);if(state==='swingForehand')racketRot=new Vec3(.10,torsoYaw,-.32+sp*.68);else if(state==='swingBackhand')racketRot=new Vec3(-.09,torsoYaw,.34-sp*.58);else if(state==='serve')racketRot=new Vec3(.46-sp*.58,torsoYaw,.36-sp*.72);else if(state==='volley')racketRot=new Vec3(.04,torsoYaw,-.12);
@@ -512,10 +528,11 @@ export class Character {
     if((moving||state==='ready')&&this.spec.appearance==='human'){const roll=moving?Math.sin(this.gaitPhase)*.006:readyWeight*.004;hipL.y+=roll;hipR.y-=roll;}
     const walkReach=(state==='jog'?.40:.34)*gaitStyle.stride,footY=.11+(this.affection&&!moving||this.spec.appearance==='human'&&this.canRelaxClubIdle()?0:baseY);let footL=this.worldLocal(-.17,footY,.05+gait*walkReach),footR=this.worldLocal(.17,footY,.05-gait*walkReach);
     if(moving){footL=this.walkCycle.feet[0].clone();footR=this.walkCycle.feet[1].clone();}
-    if(state==='ready'||shuffle){const sideMotion=clamp(this.localVelocity.x/Math.max(.01,this.courtSpeed),-1,1),foreMotion=clamp(this.localVelocity.z/Math.max(.01,this.courtSpeed),-1,1),lateral=shuffle?Math.sin(this.gaitPhase)*.055+sideMotion*.045:0,wide=this.courtPhase==='split'?.07:0;footL=this.leftFootLock&&shuffle?this.leftFootLock.clone():this.worldLocal(-.29-wide-lateral,.11+splitHop,.16+foreMotion*.07);footR=this.rightFootLock&&shuffle?this.rightFootLock.clone():this.worldLocal(.29+wide-lateral,.11+splitHop,-.05+foreMotion*.07);}
-    if(shot){const stance=Math.min(.16,Math.abs(outside)*.13);if(state==='swingForehand'){footL=this.worldLocal(-.25,.11+baseY,.12+weightShift*.08);footR=this.worldLocal(.34+stance,.11+baseY,-.07+weightShift*.04);}else if(state==='swingBackhand'){footL=this.worldLocal(-.34-stance,.11+baseY,-.04+weightShift*.05);footR=this.worldLocal(.25,.11+baseY,.13+weightShift*.08);}else if(state==='serve'){footL=this.worldLocal(-.20,.11+baseY,.14+weightShift*.08);footR=this.worldLocal(.23,.11+baseY,-.14+weightShift*.12);}else{footL=this.worldLocal(-.26,.11+baseY,.12);footR=this.worldLocal(.27,.11+baseY,-.04);}}
+    if(state==='ready'){const foreMotion=clamp(this.localVelocity.z/Math.max(.01,this.courtSpeed),-1,1),wide=this.courtPhase==='split'?.07:0;footL=this.worldLocal(-.29-wide,.11+splitHop,.16+foreMotion*.07);footR=this.worldLocal(.29+wide,.11+splitHop,-.05+foreMotion*.07);}
+    if(shuffle){footL=this.shuffleCycle.feet[0].clone();footR=this.shuffleCycle.feet[1].clone();}
+    if(shot){const stance=Math.min(.16,Math.abs(outside)*.13);if(state==='swingForehand'){footL=this.worldLocal(-.25,.11+baseY,.12+weightShift*.08);footR=this.worldLocal(.34+stance,.11+baseY,-.07+weightShift*.04);}else if(state==='swingBackhand'){footL=this.worldLocal(-.34-stance,.11+baseY,-.04+weightShift*.05);footR=this.worldLocal(.25,.11+baseY,.13+weightShift*.08);}else if(state==='serve'){const post=clamp((sp-contact)/(1-contact),0,1),land=smoothstep(0,.65,post);footL=this.worldLocal(-.20,.11,.14+weightShift*.08+land*.18);footR=this.worldLocal(.23,.11+.08*Math.sin(post*Math.PI)**2,-.14+weightShift*.12+land*.30);}else{footL=this.worldLocal(-.26,.11+baseY,.12);footR=this.worldLocal(.27,.11+baseY,-.04);}}
     if(sit){footL=this.worldLocal(-.22,.11,.48);footR=this.worldLocal(.22,.11,.48);}
-    if(!moving&&!this.leftFootLock)footL.add(this.localVector(-clip.stance+clip.footL.x,clip.footL.y,clip.footL.z));if(!moving&&!this.rightFootLock)footR.add(this.localVector(clip.stance+clip.footR.x,clip.footR.y,clip.footR.z));
+    if(!moving&&!shuffle&&!this.leftFootLock)footL.add(this.localVector(-clip.stance+clip.footL.x,clip.footL.y,clip.footL.z));if(!moving&&!shuffle&&!this.rightFootLock)footR.add(this.localVector(clip.stance+clip.footR.x,clip.footR.y,clip.footR.z));
     let footPitchL=0,footPitchR=0,footYawL=this.yaw,footYawR=this.yaw,footRecoveryL=0,footRecoveryR=0,footPivotL:Vec3|undefined,footPivotR:Vec3|undefined;
     if(humanGroundstroke){
       const forehand=state==='swingForehand',drive=smoothstep(contact*1.30,Math.min(contact+.28,.82),sp),recover=smoothstep(.78,1,sp),pitch=.32*drive*(1-recover),yaw=this.yaw+(forehand?-.50:.50)*drive*(1-recover*.5);
@@ -547,10 +564,15 @@ export class Character {
 
   private pose(){
     const target=this.poseFor(this.state,this.animTime);const t=smoothstep(0,this.transitionDuration,this.transitionAge);let result=target;
-    if(t<.999){const prior=this.exitWalkPose??this.poseFor(this.previousState,this.previousAnimTime+this.transitionAge*.25);result=this.blendPose(prior,target,t);}
+    if(t<.999){let prior=this.exitWalkPose??this.poseFor(this.previousState,this.previousAnimTime+this.transitionAge*.25);
+      // Carry a captured ready body with court travel; support shoes stay in world space.
+      if(this.exitWalkPose&&this.state==='shuffle'){prior={...prior};const delta=Vec3.sub(this.position,this.exitWalkOrigin);for(const key of ['pelvisCenter','torsoCenter','shoulderL','shoulderR','elbowL','elbowR','handL','handR','hipL','hipR','kneeL','kneeR','head','racketGrip','racketCenter','racketHandleTop'] as const)prior[key]=prior[key].clone().add(delta);}
+      result=this.blendPose(prior,target,t);
+    }
     // A planted foot is a world-space constraint, not merely another animation channel.
     // Re-apply it after state blending so transition smoothing cannot make the shoe skate.
     if(this.state==='walk'||this.state==='jog'||this.state==='shuffle'){
+      if(this.state==='shuffle'){result.footL=this.shuffleCycle.feet[0].clone();result.footR=this.shuffleCycle.feet[1].clone();}
       if(this.leftFootLock){result.footL=this.leftFootLock.clone();result.kneeL=Vec3.lerp(result.hipL,result.footL,.54).add(this.localVector(-.015,.04,.10));}
       if(this.rightFootLock){result.footR=this.rightFootLock.clone();result.kneeR=Vec3.lerp(result.hipR,result.footR,.54).add(this.localVector(.015,.04,.10));}
     }
@@ -573,7 +595,8 @@ export class Character {
     this.lastPose=result;
     if(this.spec.avatar==='taylor'||this.spec.appearance==='human'){
       const contact=isShot(this.state)&&this.contactTarget?bell(result.sp-this.shotContactTime(this.state)/this.shotDuration(this.state),.11):0;
-      let right=Math.max(contact,this.interactionWeight),left=this.state==='swingBackhand'?contact:0;
+      const serveWeight=(this.state==='serve'?t:0)+(this.previousState==='serve'?1-t:0);
+      let right=Math.max(contact,this.interactionWeight,this.spec.appearance==='human'?serveWeight:0),left=this.state==='swingBackhand'?contact:0;
       if(this.propKind&&this.propAnchor){const weight=this.propWanted?1-smoothstep(.4,1,this.propAge):smoothstep(0,.65,this.propAge);if(this.propKind==='notebook')left=Math.max(left,weight);else right=Math.max(right,weight);}
       let posture:Parameters<typeof adultTaylorPose>[3]['posture'];
       if(isShot(this.state)&&this.spec.appearance==='human'&&(this.contactTarget||t>0&&result.sp<1&&(this.state==='swingForehand'||this.state==='swingBackhand'))){
