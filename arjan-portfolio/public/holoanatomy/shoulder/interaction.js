@@ -4,12 +4,13 @@ import { isClick } from "./model.js";
 export function bindInteraction(
   element,
   scene,
-  { select, hover, stage, canStage = () => false, widget = false },
+  { select, hover, stage, canStage = () => false, pull, widget = false },
 ) {
   const points = new Map();
   let start = null,
     multi = false,
     dragId = null,
+    pulling = false,
     moved = false;
   const midpoint = () => {
     const p = [...points.values()];
@@ -27,9 +28,13 @@ export function bindInteraction(
       start = { x: e.clientX, y: e.clientY };
       multi = false;
       moved = false;
-      dragId = !widget && canStage() ? scene.pick(e.clientX, e.clientY) : null;
+      const hit = !widget && e.button === 0 && !e.shiftKey ? scene.pick(e.clientX, e.clientY) : null;
+      pulling = Boolean(hit && pull?.begin(hit, e));
+      dragId = pulling ? hit : !widget && canStage() ? scene.pick(e.clientX, e.clientY) : null;
     } else {
       multi = true;
+      if (pulling) pull.cancel();
+      pulling = false;
       dragId = null;
     }
     scene.hover(null);
@@ -59,7 +64,8 @@ export function bindInteraction(
       dy = e.clientY - old.y;
     if (dragId) {
       element.style.cursor = "grabbing";
-      scene.previewPull(dragId, e.clientX - start.x, e.clientY - start.y);
+      if (pulling) pull.move(e.clientX - start.x, e.clientY - start.y);
+      else scene.previewPull(dragId, e.clientX - start.x, e.clientY - start.y);
       return;
     }
     if (e.shiftKey || e.buttons === 2 || e.buttons === 4) scene.pan(dx, dy);
@@ -71,6 +77,12 @@ export function bindInteraction(
       start && isClick(start, { x: e.clientX, y: e.clientY }, multi) && !moved;
     points.delete(e.pointerId);
     element.style.cursor = "";
+    if (pulling) {
+      if (e.type === "pointerup") pull.end(moved && Math.hypot(e.clientX - start.x, e.clientY - start.y) > 35);
+      else pull.cancel();
+      pulling = false; dragId = null; start = null; multi = false;
+      return;
+    }
     if (e.type === "pointerup" && points.size === 0) {
       if (click && !widget) select?.(scene.pick(e.clientX, e.clientY));
       else if (dragId && moved) {
@@ -95,7 +107,7 @@ export function bindInteraction(
     }
   });
   element.addEventListener("dblclick", (e) => {
-    if (widget) return;
+    if (widget || pull?.enabled()) return;
     const id = scene.pick(e.clientX, e.clientY);
     if (id) {
       select?.(id);

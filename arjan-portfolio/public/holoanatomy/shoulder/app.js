@@ -114,6 +114,40 @@ function initialize() {
   };
   $("close-info").onclick = () => $("info-dialog").close();
   bindInteraction($("specimen"), scene, {
+    pull: {
+      enabled: () => state.mode === "peel" && state.dissection.active && state.dissection.tool === "lift",
+      begin: (id, e) => {
+        const d = state.dissection;
+        if (state.mode !== "peel" || !d.active || d.tool !== "lift" || ATLAS_GROUPS.bones.includes(id) || d.removed.includes(id) || !dissectionIds(state).includes(id)) return false;
+        scene.beginTissuePull(id);
+        scene.pull.pointer = {x:e.clientX, y:e.clientY};
+        $("specimen").style.cursor = "grabbing";
+        $("feedback").textContent = `Holding ${name(id)}. Pull away; release a short pull to snap back.`;
+        $("hover").hidden = true;
+        return true;
+      },
+      move: (dx,dy) => {
+        scene.moveTissuePull(dx,dy);
+        if (!scene.pull) return;
+        const rect = $("specimen").getBoundingClientRect(), badge = $("hover");
+        badge.hidden = false;
+        badge.textContent = `${name(scene.pull.id)} · ${Math.hypot(dx,dy) > 35 ? "Release to park" : "Pull farther"}`;
+        badge.style.left = Math.max(8, Math.min(rect.width - 230, scene.pull.pointer.x + dx - rect.left + 18)) + "px";
+        badge.style.top = Math.max(8, Math.min(rect.height - 45, scene.pull.pointer.y + dy - rect.top - 40)) + "px";
+      },
+      end: (commit) => {
+        const id = scene.pull?.id;
+        scene.finishTissuePull(commit);
+        $("hover").hidden = true;
+        if (commit && id) {
+          dissect(state,id);
+          $("feedback").textContent = `${name(id)} retracted. ${DISSECTION[state.dissection.step].task} Tap the lifted piece to return it.`;
+          if (!matchMedia("(prefers-reduced-motion: reduce)").matches) navigator.vibrate?.(12);
+        } else $("feedback").textContent = "Returned to its original position. Pull farther to keep a structure retracted.";
+        scene.refresh(); renderPanel();
+      },
+      cancel: () => { $("hover").hidden = true; scene.finishTissuePull(false); scene.refresh(); $("feedback").textContent = "Pull cancelled; tissue returned."; },
+    },
     select,
     hover: (id, e) => {
       const node = $("hover");
@@ -258,9 +292,16 @@ function atlasNavigation() {
 }
 function select(id) {
   if (id && state.mode === "peel" && state.dissection.active) {
+    if (state.dissection.tool === "lift" && state.dissection.removed.includes(id)) {
+      state.dissection.undo.push([...state.dissection.removed]);
+      state.dissection.removed = state.dissection.removed.filter(part => part !== id);
+      state.selected = null;
+      $("feedback").textContent = `${name(id)} returned to its original position.`;
+      scene.refresh(); renderPanel(); return;
+    }
     const changed = dissect(state, id);
     $("feedback").textContent = changed
-      ? state.dissection.tool === "lift" ? `${name(id)} moved to the specimen tray.`
+      ? state.dissection.tool === "lift" ? `${name(id)} retracted beside the specimen.`
         : id === DISSECTION[state.dissection.step].target ? `Found it: ${name(id)}. Observation recorded.` : `${name(id)}. Keep exploring the target relationship.`
       : "This structure stays as bone context. Lift a soft-tissue structure instead.";
     scene.refresh(); renderPanel(); return;
@@ -442,13 +483,20 @@ function dissectionPanel() {
     <div class="steps" role="progressbar" aria-label="Dissection observations" aria-valuemin="0" aria-valuemax="5" aria-valuenow="${d.found.length}"><span style="width:${d.found.length / DISSECTION.length * 100}%"></span></div>
     ${d.found.length === DISSECTION.length ? '<p class="observation">All five targets found. Reassemble the specimen and explore how their positions relate. Use Reset for a fresh session.</p>' : ''}
     <nav class="study-tabs" aria-label="Dissection stations">${DISSECTION.map((step,i) => `<button data-station="${i}" aria-current="${i === d.step ? 'step' : 'false'}">${d.found.includes(i) ? '✓' : i+1} · ${step.title}</button>`).join('')}</nav>
-    <div class="study-tabs" role="group" aria-label="Dissection tools"><button data-tool="probe" aria-pressed="${d.tool === 'probe'}">◎ Probe · identify</button><button data-tool="lift" aria-pressed="${d.tool === 'lift'}">↗ Forceps · lift away</button></div>
-    <p class="integrity">Click a structure to ${d.tool === 'probe' ? 'identify it' : 'lift its whole source mesh into the tray'}. Drag to orbit. Bones remain as ghosted context.</p>
+    <div class="study-tabs" role="group" aria-label="Dissection tools"><button data-tool="probe" aria-pressed="${d.tool === 'probe'}">◎ Probe · identify</button><button data-tool="lift" aria-pressed="${d.tool === 'lift'}">↗ Forceps · grab & pull</button></div>
+    <p class="integrity"> ${d.tool === 'probe' ? 'Click to identify. Drag to orbit.' : 'Grab tissue and drag to pull it aside. Release to park it; tap a parked piece to return. Drag empty space to orbit.'} Bones remain as ghosted context.</p>
+    ${d.removed.some(id => dissectionIds(state).includes(id)) ? `<div class="observation"><span class="edition">WHAT DID YOU UNCOVER?</span><p>${[
+      "Compare the exposed cuff surfaces with the lifted bursa. Return the piece, then pull it away again to see what it obscures.",
+      "Switch to Probe and find the infraspinatus tendon region. Compare its location with the separate insertion annotations.",
+      "Orbit through the opening you created. Use Probe to distinguish the labrum, cartilage surfaces and ligament structures; restore the capsule to compare.",
+      "Inspect the joint rim from a second angle. Return one lifted structure at a time and observe which surfaces it covers.",
+      "Switch to Probe and trace the supplied axillary nerve. Return the vessels one at a time to compare their spatial relationships."
+    ][d.step]}</p><button data-tool="probe">Probe what is exposed →</button></div>` : ''}
     <div class="action-row"><button data-action="lab-undo" ${!d.undo.length ? 'disabled' : ''}>Undo lift</button><button data-action="lab-restore" ${!d.removed.length ? 'disabled' : ''}>Restore all</button></div>
     ${state.selected ? `<div class="observation"><strong>${escape(name(state.selected))}</strong><button data-action="focus">Focus structure</button><button data-action="sources">Source & provenance</button></div>` : ''}
     <details><summary>Accessible structure controls · ${available.length}</summary><div class="stage-list">${available.map(id => `<button data-select="${id}">${escape(name(id))}</button>`).join('')}</div></details>
-    <details ${d.removed.length ? 'open' : ''}><summary>Specimen tray · ${d.removed.length}</summary><p>Return a structure to its original position.</p><div class="stage-list">${d.removed.map(id => `<button data-restore="${id}">↶ ${escape(name(id))}</button>`).join('')}</div></details>
-    <p class="integrity">Five teaching exposures in one source-matched specimen. Whole-mesh removal is reversible; this does not simulate incisions, tissue mechanics or a surgical approach. Insertion regions are source annotations.</p>
+    <details ${d.removed.length ? 'open' : ''}><summary>Retracted tissue · ${d.removed.length}</summary><p>Pieces remain visible beside the specimen. Return any piece to its original position.</p><div class="stage-list">${d.removed.map(id => `<button data-restore="${id}">↶ ${escape(name(id))}</button>`).join('')}</div></details>
+    <p class="integrity">Five teaching exposures in one source-matched specimen. Whole-mesh retraction is reversible; this does not simulate incisions, tissue mechanics or a surgical approach. Insertion regions are source annotations.</p>
     <button data-action="surface-lab">Switch to deltoid & cuff specimen</button>`;
 }
 function lessonStep(n) {

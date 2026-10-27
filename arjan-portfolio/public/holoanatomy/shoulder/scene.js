@@ -277,6 +277,32 @@ export class ShoulderScene {
     this.pitch = clamp(this.pitch + dy * 0.006, -1.48, 1.48);
     this.invalidate();
   }
+  beginTissuePull(id) {
+    this.transition = null;
+    for (const mesh of this.fragments.get(id)) delete mesh.userData.settle;
+    this.pull = { id, starts: this.fragments.get(id).map(mesh => mesh.position.clone()) };
+    this.hover(id);
+  }
+  moveTissuePull(dx, dy) {
+    if (!this.pull) return;
+    const scale = 2 * this.distance * Math.tan(this.camera.fov * Math.PI / 360) / this.canvas.clientHeight;
+    const limit = this.canvas.clientHeight * 0.32;
+    const delta = new THREE.Vector3().setFromMatrixColumn(this.camera.matrixWorld, 0).multiplyScalar(clamp(dx, -limit, limit) * scale)
+      .addScaledVector(new THREE.Vector3().setFromMatrixColumn(this.camera.matrixWorld, 1), -clamp(dy, -limit, limit) * scale);
+    this.fragments.get(this.pull.id).forEach((mesh,i) => {
+      const inverse = mesh.parent.matrixWorld.clone().invert();
+      const local = delta.clone().applyMatrix4(inverse).sub(new THREE.Vector3().applyMatrix4(inverse));
+      mesh.position.copy(this.pull.starts[i]).add(local);
+    });
+    this.invalidate();
+  }
+  finishTissuePull(commit) {
+    if (!this.pull) return;
+    const id = this.pull.id;
+    if (commit) this.state.dissection.offsets[id] = this.fragments.get(id).map(mesh => mesh.position.clone().sub(mesh.userData.home).toArray());
+    this.pull = null;
+    this.hover(null);
+  }
   previewPull(id, dx, dy) {
     const meshes = this.fragments.get(id);
     if (!meshes) return;
@@ -373,7 +399,15 @@ export class ShoulderScene {
         mat.needsUpdate = true;
       }
       mesh.castShadow = v === "visible";
-      mesh.position.copy(mesh.userData.home);
+      const desired = mesh.userData.home.clone();
+      const d = this.state.dissection;
+      if (d.active && this.state.mode === "peel" && d.removed.includes(id)) {
+        const index = this.fragments.get(id).indexOf(mesh);
+        desired.add(new THREE.Vector3().fromArray(d.offsets[id]?.[index] || [0.65, 0.2, 0]));
+      }
+      if (id.startsWith("ZA_") && !mesh.position.equals(desired) && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        mesh.userData.settle = {from: mesh.position.clone(), to: desired, start: performance.now()};
+      } else { mesh.position.copy(desired); delete mesh.userData.settle; }
     }
     this.invalidate();
   }
@@ -530,13 +564,21 @@ export class ShoulderScene {
         }
       });
     }
+    let settling = false;
+    for (const mesh of this.allMeshes()) {
+      const motion = mesh.userData.settle;
+      if (!motion || this.pull?.id === mesh.userData.structureId) continue;
+      const t = clamp((time - motion.start) / 200, 0, 1);
+      mesh.position.lerpVectors(motion.from, motion.to, 1 - Math.pow(1 - t, 3));
+      if (t === 1) delete mesh.userData.settle; else settling = true;
+    }
     this.renderer.render(this.scene, this.camera);
     if (this.previousFrame && time - this.previousFrame < 150)
       this.frameTimes.push(time - this.previousFrame);
     this.previousFrame = time;
     if (this.frameTimes.length > 600) this.frameTimes.shift();
     this.onFrame?.();
-    if (this.transition || this.profileUntil > time) this.invalidate();
+    if (settling || this.transition || this.profileUntil > time) this.invalidate();
   }
   metrics() {
     const sorted = [...this.frameTimes].sort((a, b) => a - b);

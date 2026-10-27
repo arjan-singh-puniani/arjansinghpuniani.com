@@ -210,13 +210,13 @@ export function dissectionIds(state) {
 }
 export function dissect(state, id) {
   const d = state.dissection;
-  if (!d.active || !dissectionIds(state).includes(id) || d.removed.includes(id)) return false;
+  if (!d.active || !dissectionIds(state).includes(id)) return false;
   if (d.tool === "probe") {
     state.selected = id;
     if (id === DISSECTION[d.step].target && !d.found.includes(d.step)) d.found.push(d.step);
     return true;
   }
-  if (ATLAS_GROUPS.bones.includes(id)) return false;
+  if (ATLAS_GROUPS.bones.includes(id) || d.removed.includes(id)) return false;
   d.undo.push([...d.removed]);
   d.removed.push(id);
   state.selected = null;
@@ -399,7 +399,7 @@ export function createState() {
     }
   }
   return {
-    dissection: { active: false, step: 0, tool: "probe", removed: [], undo: [], found: [] },
+    dissection: { active: false, step: 0, tool: "probe", removed: [], offsets: {}, undo: [], found: [] },
     mode: "explore",
     presenting: false,
     study: null,
@@ -425,7 +425,7 @@ export function createState() {
 }
 export function visibility(state, id) {
   if (state.mode === "peel" && state.dissection.active) {
-    if (!dissectionIds(state).includes(id) || state.dissection.removed.includes(id)) return "hidden";
+    if (!dissectionIds(state).includes(id)) return "hidden";
     return ATLAS_GROUPS.bones.includes(id) && state.selected !== id ? "ghost" : "visible";
   }
   const p = PRESETS[state.view];
