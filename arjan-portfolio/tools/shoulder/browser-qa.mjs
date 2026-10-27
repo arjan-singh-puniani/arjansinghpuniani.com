@@ -19,6 +19,7 @@ async function load(page, url = base) {
   await page.waitForFunction(() => window.shoulderStudio?.ready, {
     timeout: 30000,
   });
+  if (await page.locator("body").getAttribute("data-discovery") === "true") await page.click('[data-mode="explore"]');
   await page.waitForTimeout(600);
   results.loaded = { url: page.url(), title: await page.title(), viewControls: await page.locator("#view-select").count() };
 }
@@ -110,6 +111,7 @@ try {
   );
   await page.click("#reset");
   await page.click("[data-mode=peel]");
+  await page.click("#details-toggle");
   await page.click('[data-action="surface-lab"]');
   await page.locator("#peel-range").fill("2");
   await page.click("[data-action=separate]");
@@ -208,6 +210,7 @@ try {
   for (const mode of ["peel", "learn", "quiz"]) {
     await mobile.click(`[data-mode=${mode}]`);
     if (mode === "peel") {
+      await mobile.click("#details-toggle");
       await mobile.click('[data-action="surface-lab"]');
       await mobile.locator("#peel-range").fill("2");
       await mobile.click("[data-action=separate]");

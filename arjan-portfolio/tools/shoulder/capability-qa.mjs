@@ -50,6 +50,7 @@ try {
   expect(await page.evaluate(() => shoulderStudio.scene.yaw)).toBe(0);
   await page.click("#reset");
   await page.click("[data-mode=peel]");
+  await page.click("#details-toggle");
   await page.click('[data-action="surface-lab"]');
   await page.locator("#peel-range").fill("2");
   await page.click("[data-action=separate]");

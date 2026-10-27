@@ -1,4 +1,6 @@
 import * as THREE from "three";
+import { TissueRuntime } from "./tissue-runtime.js";
+import { MUSCLE_DEFINITIONS } from "./anatomy.js";
 import { computeBoundsTree, acceleratedRaycast } from "./vendor/mesh-bvh.js";
 import { GLTFLoader } from "./vendor/loaders/GLTFLoader.js";
 import { OBJLoader } from "./vendor/loaders/OBJLoader.js";
@@ -21,6 +23,11 @@ export class ShoulderScene {
     this.fragments = new Map();
     this.parts = new Map();
     this.frameTimes = [];
+    this.tissues = new Map();
+    this.solverTimes = [];
+    this.inputSubmitTimes = [];
+    this.simulationQuality="precision";
+    this.simulationAuto=true;
     this.renderer = new THREE.WebGLRenderer({
       canvas,
       antialias: true,
@@ -226,9 +233,12 @@ export class ShoulderScene {
     return Array.isArray(mesh.material) ? mesh.material : [mesh.material];
   }
   resize() {
+    if (this.pull) this.onCancelGrab?.();
     const w = this.canvas.clientWidth,
       h = this.canvas.clientHeight;
     if (!w || !h) return;
+    const previousAspect=this.camera.aspect;
+    if(this.ready && this.state.dissection.active) this.distance *= Math.max(1,.9/(w/h))/Math.max(1,.9/previousAspect);
     this.renderer.setSize(w, h, false);
     this.camera.aspect = w / h;
     this.camera.updateProjectionMatrix();
@@ -266,29 +276,50 @@ export class ShoulderScene {
     this.invalidate();
   }
   orient(yaw, pitch) {
+    if(this.pull)this.onCancelGrab?.();
     this.transition = null;
     this.yaw = yaw;
     this.pitch = clamp(pitch, -1.48, 1.48);
     this.invalidate();
   }
   orbit(dx, dy) {
+    if(this.pull)this.onCancelGrab?.();
     this.transition = null;
     this.yaw -= dx * 0.006;
     this.pitch = clamp(this.pitch + dy * 0.006, -1.48, 1.48);
     this.invalidate();
   }
-  beginTissuePull(id) {
+  prepareTissue(id) {
+    if(!MUSCLE_DEFINITIONS[id] || this.tissues.has(id))return;
+    const began=performance.now(),tissue=new TissueRuntime(this,id);this.tissues.set(id,tissue);tissue.update();
+    tissue.solver.iterations=this.simulationQuality==="responsive"?3:5;
+    this.lastPreparationMs=performance.now()-began;this.invalidate();
+  }
+  beginTissuePull(id, point) {
+    if (MUSCLE_DEFINITIONS[id]) {
+      this.transition = null;
+      const began = performance.now();
+      this.prepareTissue(id);
+      const runtime = this.tissues.get(id);
+      const contact = point || this.meshes.get(id).geometry.boundingBox.getCenter(new THREE.Vector3()).applyMatrix4(this.meshes.get(id).matrixWorld);
+      if (!runtime.solver.grasp(contact.toArray())) return false;
+      this.pull = {id, runtime, elastic:true, depth: Math.max(.2, -contact.clone().applyMatrix4(this.camera.matrixWorldInverse).z)};
+      this.lastGraspSetupMs = performance.now() - began;
+      this.hover(id); this.invalidate(); return true;
+    }
     this.transition = null;
     for (const mesh of this.fragments.get(id)) delete mesh.userData.settle;
     this.pull = { id, starts: this.fragments.get(id).map(mesh => mesh.position.clone()) };
     this.hover(id);
+    return true;
   }
   moveTissuePull(dx, dy) {
     if (!this.pull) return;
-    const scale = 2 * this.distance * Math.tan(this.camera.fov * Math.PI / 360) / this.canvas.clientHeight;
+    const scale = 2 * (this.pull.depth || this.distance) * Math.tan(this.camera.fov * Math.PI / 360) / this.canvas.clientHeight;
     const limit = this.canvas.clientHeight * 0.32;
     const delta = new THREE.Vector3().setFromMatrixColumn(this.camera.matrixWorld, 0).multiplyScalar(clamp(dx, -limit, limit) * scale)
       .addScaledVector(new THREE.Vector3().setFromMatrixColumn(this.camera.matrixWorld, 1), -clamp(dy, -limit, limit) * scale);
+    if (this.pull.elastic) {this.pendingInputAt=performance.now();this.pull.runtime.solver.pull(delta.toArray()); this.invalidate(); return;}
     this.fragments.get(this.pull.id).forEach((mesh,i) => {
       const inverse = mesh.parent.matrixWorld.clone().invert();
       const local = delta.clone().applyMatrix4(inverse).sub(new THREE.Vector3().applyMatrix4(inverse));
@@ -296,12 +327,28 @@ export class ShoulderScene {
     });
     this.invalidate();
   }
-  finishTissuePull(commit) {
+  finishTissuePull(commit, cancel = false) {
+    this.pendingInputAt=null;
     if (!this.pull) return;
     const id = this.pull.id;
+    if (this.pull.elastic) {
+      if (cancel || !commit && matchMedia("(prefers-reduced-motion: reduce)").matches) this.pull.runtime.restore();
+      else this.pull.runtime.solver.release(commit);
+      this.pull = null; this.hover(null); this.invalidate(); return;
+    }
     if (commit) this.state.dissection.offsets[id] = this.fragments.get(id).map(mesh => mesh.position.clone().sub(mesh.userData.home).toArray());
     this.pull = null;
     this.hover(null);
+  }
+  setSimulationQuality(quality, automatic=false) {
+    this.simulationAuto=automatic || quality==="auto";
+    this.simulationQuality=quality==="responsive"?"responsive":"precision";
+    for(const tissue of this.tissues.values())tissue.solver.iterations=this.simulationQuality==="responsive"?3:5;
+  }
+  resetTissues() {
+    this.pull = null;
+    for (const tissue of this.tissues.values()) tissue.restore();
+    this.invalidate();
   }
   previewPull(id, dx, dy) {
     const meshes = this.fragments.get(id);
@@ -322,6 +369,7 @@ export class ShoulderScene {
     this.invalidate();
   }
   pan(dx, dy) {
+    if(this.pull)this.onCancelGrab?.();
     this.transition = null;
     const scale =
       (2 * this.distance * Math.tan((this.camera.fov * Math.PI) / 360)) /
@@ -337,6 +385,7 @@ export class ShoulderScene {
     this.invalidate();
   }
   zoom(delta, x, y) {
+    if(this.pull)this.onCancelGrab?.();
     this.transition = null;
     const old = this.distance;
     this.distance = zoomDistance(old, delta);
@@ -367,6 +416,10 @@ export class ShoulderScene {
     this.invalidate();
   }
   refresh() {
+    for (const [id,tissue] of this.tissues) {
+      if (!this.state.dissection.active || this.state.mode !== "peel") tissue.restore();
+      else if (tissue.solver.held && !this.state.dissection.removed.includes(id)) tissue.solver.release(false);
+    }
     if (this.state.staged.length && !this.stagingOriginal) {
       this.stagingOriginal = this.distance;
       this.distance = Math.max(
@@ -384,6 +437,7 @@ export class ShoulderScene {
       mesh.visible = v !== "hidden";
       for (const mat of this.materials(mesh)) {
         mat.transparent = v === "ghost";
+        mat.forceSinglePass = v === "ghost";
         mat.opacity =
           v === "ghost" ? TISSUES[tissueFor(this.parts.get(id))].ghostAlpha : 1;
         mat.depthWrite = v !== "ghost";
@@ -401,7 +455,7 @@ export class ShoulderScene {
       mesh.castShadow = v === "visible";
       const desired = mesh.userData.home.clone();
       const d = this.state.dissection;
-      if (d.active && this.state.mode === "peel" && d.removed.includes(id)) {
+      if (d.active && this.state.mode === "peel" && d.removed.includes(id) && !MUSCLE_DEFINITIONS[id]) {
         const index = this.fragments.get(id).indexOf(mesh);
         desired.add(new THREE.Vector3().fromArray(d.offsets[id]?.[index] || [0.65, 0.2, 0]));
       }
@@ -411,7 +465,7 @@ export class ShoulderScene {
     }
     this.invalidate();
   }
-  pick(x, y) {
+  hit(x, y) {
     const r = this.canvas.getBoundingClientRect();
     this.ray.setFromCamera(
       new THREE.Vector2(
@@ -426,7 +480,7 @@ export class ShoulderScene {
           this.allMeshes().filter(
             (m) =>
               m.visible &&
-              visibility(this.state, m.userData.structureId) === "visible",
+              (visibility(this.state, m.userData.structureId) === "visible" || this.state.mode === "peel" && this.state.dissection.active && this.state.dissection.tool === "probe"),
           ),
           false,
         )
@@ -434,9 +488,10 @@ export class ShoulderScene {
           this.materials(hit.object)[0].clippingPlanes.every(
             (p) => p.distanceToPoint(hit.point) >= 0,
           ),
-        )?.object.userData.structureId || null
+        ) || null
     );
   }
+  pick(x, y) { return this.hit(x,y)?.object.userData.structureId || null; }
   hover(id) {
     if (this.hoverId === id) return;
     this.hoverId = id;
@@ -446,7 +501,7 @@ export class ShoulderScene {
       this.outline = null;
     }
     const mesh = this.meshes.get(id);
-    if (mesh && this.state.mode !== "quiz") {
+    if (mesh && this.state.mode !== "quiz" && !this.state.dissection.active) {
       const outline = new THREE.Mesh(
         mesh.geometry,
         new THREE.MeshBasicMaterial({
@@ -572,17 +627,37 @@ export class ShoulderScene {
       mesh.position.lerpVectors(motion.from, motion.to, 1 - Math.pow(1 - t, 3));
       if (t === 1) delete mesh.userData.settle; else settling = true;
     }
+    const solverStart = performance.now();
+    let simulating = false, updatedTissue = false;
+    const elapsed = this.lastSimulationTime === undefined ? 1/60 : Math.max(0,(time-this.lastSimulationTime)/1000);
+    this.lastSimulationTime = time;
+    for (const tissue of this.tissues.values()) {
+      if (!tissue.solver.active) continue;
+      if (tissue.solver.advance(elapsed)) {tissue.update();updatedTissue=true;}
+      simulating ||= tissue.solver.active;
+    }
+    if (simulating) {this.solverTimes.push(performance.now()-solverStart);if(this.solverTimes.length>600)this.solverTimes.shift();
+      if(this.simulationAuto && this.simulationQuality==="precision" && this.solverTimes.length>=24 && this.solverTimes.slice(-24).reduce((a,b)=>a+b,0)/24>8) {
+        this.setSimulationQuality("responsive",true);this.qualityReason="Measured mean solver cost exceeded 8 ms over 24 active frames";
+      }
+    }
     this.renderer.render(this.scene, this.camera);
+    if(updatedTissue && this.pendingInputAt!=null){this.inputSubmitTimes.push(performance.now()-this.pendingInputAt);this.pendingInputAt=null;if(this.inputSubmitTimes.length>600)this.inputSubmitTimes.shift();}
     if (this.previousFrame && time - this.previousFrame < 150)
       this.frameTimes.push(time - this.previousFrame);
     this.previousFrame = time;
     if (this.frameTimes.length > 600) this.frameTimes.shift();
     this.onFrame?.();
-    if (settling || this.transition || this.profileUntil > time) this.invalidate();
+    if (simulating || settling || this.transition || this.profileUntil > time) this.invalidate();
   }
   metrics() {
     const sorted = [...this.frameTimes].sort((a, b) => a - b);
     return {
+      inputToSubmitP95Ms:[...this.inputSubmitTimes].sort((a,b)=>a-b)[Math.floor(this.inputSubmitTimes.length*.95)]||0,
+      mechanics: {automatic:this.simulationAuto,qualityReason:this.qualityReason||null,quality:this.simulationQuality,model:'Illustrative XPBD source surface',fixedStep:1/120,setupMs:this.lastGraspSetupMs||0,preparationMs:this.lastPreparationMs||0,
+        averageSolverMs:this.solverTimes.length?this.solverTimes.reduce((a,b)=>a+b,0)/this.solverTimes.length:0,
+        p95SolverMs:[...this.solverTimes].sort((a,b)=>a-b)[Math.floor(this.solverTimes.length*.95)]||0,
+        tissues:Object.fromEntries([...this.tissues].map(([id,t])=>[id,t.diagnostics()]))},
       transport: this.transport,
       lod: this.lod,
       loadMs: this.loadMs,

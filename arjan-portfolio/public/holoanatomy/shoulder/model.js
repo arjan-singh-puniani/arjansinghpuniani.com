@@ -74,6 +74,10 @@ export const TISSUES = {
   },
 };
 export const CUFF_COLORS = {
+  ZA_infra: "#985e56",
+  ZA_supra: "#a7815f",
+  ZA_teres: "#a57770",
+  ZA_subscap: "#b2664b",
   FJ1506: "#a7815f",
   FJ1500: "#985e56",
   FJ1508: "#a57770",
@@ -206,7 +210,9 @@ export const DISSECTION = [
   {title: "Trace the nerve routes", groups: ["bones", "neurovascular"], target: "ZA_axillary", task: "Find the axillary nerve with the probe. Lift overlapping regional vessels to follow its supplied course."},
 ];
 export function dissectionIds(state) {
-  return DISSECTION[state.dissection.step].groups.flatMap(group => ATLAS_GROUPS[group]);
+  const ids=DISSECTION[state.dissection.step].groups.flatMap(group => ATLAS_GROUPS[group]);
+  if(ids.includes("ZA_infra"))ids.push("ZA_infra_tendon");
+  return [...new Set(ids)];
 }
 export function dissect(state, id) {
   const d = state.dissection;
@@ -426,7 +432,7 @@ export function createState() {
 export function visibility(state, id) {
   if (state.mode === "peel" && state.dissection.active) {
     if (!dissectionIds(state).includes(id)) return "hidden";
-    return ATLAS_GROUPS.bones.includes(id) && state.selected !== id ? "ghost" : "visible";
+    return (ATLAS_GROUPS.bones.includes(id) || state.isolated && state.selected && state.selected !== id) && state.selected !== id ? "ghost" : "visible";
   }
   const p = PRESETS[state.view];
   const atlasView = Boolean(ATLAS_VIEWS[state.view]);

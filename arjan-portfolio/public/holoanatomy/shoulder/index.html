@@ -44,6 +44,7 @@
         >
           ▶ <span>Present</span>
         </button>
+        <button id="details-toggle" aria-expanded="false" aria-controls="anatomy-inspector" aria-label="Anatomy details" hidden>☰ <span>Details</span></button>
         <button id="reset" title="Reset (R)">↺ <span>Reset</span></button
         ><button
           id="information"
@@ -77,6 +78,16 @@
           <div id="cube-faces"></div>
           <span class="cube-caption">DRAG TO ORBIT</span>
         </div>
+        <div id="tool-dock" role="group" aria-label="Anatomy tools" hidden>
+          <button data-live-tool="probe" aria-pressed="false">◎ Probe</button>
+          <button data-live-tool="lift" aria-pressed="true">⌁ Forceps</button>
+          <button data-live-tool="retract" aria-pressed="false">↗ Retractor</button>
+          <button data-live-restore aria-label="Restore all tissue">↶ Restore</button>
+        </div>
+        <div id="tool-message" role="status" aria-live="polite" hidden></div>
+        <div id="active-name" aria-live="polite"></div>
+        <div id="contact-point" aria-hidden="true" hidden></div>
+        <div id="grip-load" aria-hidden="true" hidden><span></span></div>
         <div id="hover" hidden aria-hidden="true"></div>
         <div id="loading" role="status">
           <span class="loading-ring"></span
@@ -97,7 +108,7 @@
           </div>
         </div>
       </section>
-      <aside class="inspector" aria-label="Anatomy controls and learning">
+      <aside id="anatomy-inspector" class="inspector" aria-label="Anatomy controls and learning">
         <div class="inspector-top">
           <span class="edition">THE SHOULDER STUDY</span>
           <p class="lede">Understand the cuff<br />from every side.</p>

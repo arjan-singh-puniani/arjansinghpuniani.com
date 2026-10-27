@@ -1,0 +1,20 @@
+# Living anatomy baseline and execution plan — October 26, 2026
+
+Baseline commit: 346de2f6 on codex/holoanatomy-conference-20261024. Working tree clean before baseline capture. No changes to primary portfolio checkout. npm package manager, Next.js 15.5.24 / React 19.1.5; standalone Three.js 0.180 + mesh-bvh viewer embedded by the portfolio. No physics dependency installed.
+
+Entry: public/holoanatomy/shoulder/index.html → app.js → model.js / scene.js / interaction.js. Atlas sources, classifications and licenses: assets/atlas/provenance.json and LICENSE.txt. Original cuff provenance and existing OBJ/GLB fallbacks retained. Test tooling: Vitest, node:test, Playwright/Chrome, axe.
+
+Baseline: 95 portfolio tests and 21 shoulder tests pass; typecheck passes. Production build passes. Screenshots: shoulder-living/baseline/{desktop,peel,mobile}.png. Actual loaded inventory, local bounds, indexed topology and all matrixWorld values in baseline/mesh-audit.json. The four atlas cuff surfaces have 717/1343/763/1471 render vertices and 1430/2645/1522/2954 triangles respectively. Their world transforms are identity. This small topology supports a bounded CPU surface solver; a cage/GPU/worker is unnecessary until profiling indicates otherwise.
+
+Current forceps: pointer capture → camera-plane rigid mesh translation, parked offset, short-pull snap-back. Scene transforms substitute entirely for deformation. Probe names source meshes. Retraction and forceps share one operation. Lab stations filter source-coherent groups; they are not surgical dissection planes. Labels and right-side explanations occupy substantial space. R/escape/arrows/focus, accessible structure controls, reduced-motion and DPR limits already exist.
+
+Asset ceiling: no volumetric muscle mesh, no fiber orientation field, no measured tissue constants or independent clinician review. Infraspinatus has a source-classified tendon region; four insertion annotations are source-authored overlays, not measured footprints. Source origin regions are not segmented. Preserve all source topology and never call geometrically derived pins or axes measured anatomical data. Original BodyParts3D and atlas assemblies are different specimens and must stay separate. Existing license statements remain intact.
+
+Plan:
+1. Implement a bounded fixed-step XPBD surface solver: welded source particles, local grasp, edge stretch, opposite-edge bending, rest-shape recovery/damping, closed-surface volume constraint where valid, and local source-bone contact guards. Frame-rate independence and failure recovery tested on actual source topology. Document exactly which constraints are approximate.
+2. Derive source insertion-adjacent and medial source-surface support regions reproducibly; retain review status and pin indices/derivation metadata. A direction between derived support regions is a form axis, not verified fiber direction. Preserve tendon classification and never invent connections between unrelated meshes.
+3. Separate elastic Forceps from deliberate Retractor. Cancel safely on pointer cancellation, multitouch, tools, mode, reset and resize. Keep existing original specimen flows.
+4. Make a discovery-first opening with a compact tool strip and optional details. Add source-linked curriculum and optional brief exposure cues.
+5. Exercise actual rendered vertex deformation, anchor stability, release/retraction/restoration, rapid input, browser/mobile/keyboard, visual screenshots and measured frame/solver timings. Run portfolio tests/typecheck/build and route smoke. Record limits and remaining review gates candidly.
+
+Choice: XPBD surface constraints (Macklin, Müller & Chentanez, 2016, https://mmacklin.com/xpbd.pdf). Surface assets cannot support a patient-specific FEM claim. Corotational FEM needs volumetric meshing and constitutive data; GPU/cage adds complexity without a measured budget need. All compliance/stiffness/damping values are illustrative and dimensionless in normalized source units. No surgical-validation or true haptic-force claim.

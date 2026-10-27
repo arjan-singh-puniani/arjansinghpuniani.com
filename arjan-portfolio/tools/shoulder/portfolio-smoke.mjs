@@ -41,7 +41,9 @@ try {
   await page.locator("iframe").scrollIntoViewIfNeeded();
   const frame = page.frameLocator("iframe");
   await expect(frame.locator("#loading")).toBeHidden({ timeout: 30000 });
-  await expect(frame.locator("h1")).toHaveText("Rotator cuff.");
+  await expect(frame.locator("#tool-dock")).toBeVisible();
+  await expect(frame.locator(".inspector")).toBeHidden();
+  await expect(frame.locator('[data-live-tool="lift"]')).toHaveAttribute("aria-pressed","true");
   await frame.locator("[data-mode=learn]").click();
   await expect(frame.locator("#context")).toContainText("A mobile joint");
   await frame.locator("#view-select").selectOption("atlas_capsule");

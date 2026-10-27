@@ -12,15 +12,16 @@ try {
   await page.goto('http://127.0.0.1:4195/holoanatomy/shoulder/index.html');
   await page.waitForFunction(()=>window.shoulderStudio?.ready);
   await page.click('[data-mode="peel"]');
+  await page.click('#details-toggle');
   for (let i=0;i<DISSECTION.length;i++) {
     await page.click(`[data-station="${i}"]`);
     await page.click('[data-tool="probe"]');
     const controls = page.locator('details').filter({has:page.locator('summary', {hasText:'Accessible structure controls'})});
-    await controls.locator('summary').click();
+    if(!await controls.evaluate(node=>node.open))await controls.locator('summary').click();
     await controls.locator(`[data-select="${DISSECTION[i].target}"]`).click();
     expect(await page.evaluate(i=>shoulderStudio.state.dissection.found.includes(i),i)).toBe(true);
-    await page.click('[data-tool="lift"]');
-    await controls.locator('summary').click();
+    await page.click('[data-tool="retract"]');
+    if(!await controls.evaluate(node=>node.open))await controls.locator('summary').click();
     await controls.locator(`[data-select="${DISSECTION[i].target}"]`).click();
     expect(await page.evaluate(id=>shoulderStudio.scene.meshes.get(id).visible,DISSECTION[i].target)).toBe(true);
     await page.screenshot({path:`${out}/station-${i+1}.png`});
@@ -28,7 +29,7 @@ try {
     expect(await page.evaluate(id=>shoulderStudio.scene.meshes.get(id).visible,DISSECTION[i].target)).toBe(true);
   }
   await page.click('[data-station="2"]');
-  await page.click('[data-tool="lift"]');
+  await page.click('[data-tool="retract"]');
   const hit = await page.evaluate(() => {
     const s = shoulderStudio.scene, r = s.canvas.getBoundingClientRect();
     for (let y=r.top+100;y<r.bottom-30;y+=12) for(let x=r.left+30;x<r.right-30;x+=12) {
@@ -68,7 +69,7 @@ try {
   await page.click('[data-action="surface-lab"]');
   await expect(page.locator('#peel-range')).toBeVisible();
   await page.click('[data-action="deep-lab"]');
-  await expect(page.locator('[data-tool="lift"]')).toBeVisible();
+  await expect(page.locator('[data-tool="retract"]')).toBeVisible();
   await page.click('#reset');
   expect(await page.evaluate(()=>shoulderStudio.state.dissection.removed.length)).toBe(0);
   await page.click('[data-mode="learn"]');

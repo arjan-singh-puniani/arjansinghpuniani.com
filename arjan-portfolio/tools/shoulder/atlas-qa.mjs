@@ -16,6 +16,7 @@ try {
   expect(await page.evaluate(() => shoulderStudio.scene.parts.size)).toBe(54);
   expect(await page.evaluate(() => shoulderStudio.scene.atlasError)).toBeUndefined();
   await page.screenshot({path:`${out}/default.png`});
+  await page.click('[data-mode="explore"]');
   for (const [view, config] of Object.entries(ATLAS_VIEWS)) {
     await page.selectOption("#view-select", view);
     await page.waitForTimeout(200);

@@ -12,7 +12,7 @@ try {
   });
   const page = await context.newPage();
   page.on("pageerror", (e) => results.errors.push(e.message));
-  await page.goto("http://127.0.0.1:4190/holoanatomy/shoulder/");
+  await page.goto(process.env.SHOULDER_URL || "http://127.0.0.1:4190/holoanatomy/shoulder/");
   await page.waitForFunction(() => window.shoulderStudio?.ready);
   await page.getByRole("button", { name: "Start guided presentation" }).click();
   await expect(page.locator("body")).toHaveAttribute("data-presenting", "true");
