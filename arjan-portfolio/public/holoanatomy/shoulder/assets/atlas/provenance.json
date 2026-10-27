@@ -1,0 +1,1886 @@
+{
+  "license": "CC BY-SA 4.0",
+  "sourceArchiveSHA256": "e029688545627bd0214b269e1063143abb580aad72b2c2445d6d8a9a0d9da736",
+  "sourceSHA256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+  "registration": "Separate source-coherent specimen; not registered to legacy BodyParts3D 4.0",
+  "structures": [
+    {
+      "id": "ZA_scapula",
+      "structureId": "ZA_scapula",
+      "name": "Right scapula",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Scapula.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "BONE",
+      "layer": "bones",
+      "group": "bones",
+      "note": "Matching source bone context.",
+      "sourceFaceCount": 24524,
+      "removedZeroAreaTriangles": 2,
+      "vertexCount": 12338,
+      "faceCount": 24593,
+      "triangleCount": 24593,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": "Cartilage",
+      "materialSelectionInverted": true,
+      "normalizedBounds": {
+        "min": [
+          -0.23575365543365479,
+          -0.41264697909355164,
+          -1.257253885269165
+        ],
+        "max": [
+          0.893888533115387,
+          0.7280736565589905,
+          0.37839770317077637
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.3431725187092979e-08,
+      "objSha256": "42f4d29c558d02ba6b0ee0075e29284f1b521a123dc72273ab44ee5b57594edb"
+    },
+    {
+      "id": "ZA_scapula_cartilage",
+      "structureId": "ZA_scapula_cartilage",
+      "name": "Right scapula \u00b7 cartilage surface",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Scapula.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "CARTILAGE",
+      "layer": "joint",
+      "group": "joint",
+      "note": "Source material-classified articular surface; not a volumetric cartilage layer.",
+      "sourceFaceCount": 731,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 408,
+      "faceCount": 731,
+      "triangleCount": 731,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": "Cartilage",
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.05966842174530029,
+          -0.15267518162727356,
+          -0.18334746360778809
+        ],
+        "max": [
+          0.09818434715270996,
+          0.07904008030891418,
+          0.37003159523010254
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.862645149230957e-09,
+      "objSha256": "099f41c72dc2c345918f771c80057b7fba895bca9a44e67e98e732c67a4d7ee8"
+    },
+    {
+      "id": "ZA_humerus",
+      "structureId": "ZA_humerus",
+      "name": "Right humerus",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Humerus.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "BONE",
+      "layer": "bones",
+      "group": "bones",
+      "note": "Matching source bone context.",
+      "sourceFaceCount": 3477,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 1812,
+      "faceCount": 3477,
+      "triangleCount": 3477,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": "Cartilage",
+      "materialSelectionInverted": true,
+      "normalizedBounds": {
+        "min": [
+          -0.9883277416229248,
+          -0.38740843534469604,
+          -2.9267489910125732
+        ],
+        "max": [
+          0.01647651195526123,
+          0.13626202940940857,
+          0.2350461483001709
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.501712528671799e-08,
+      "objSha256": "2277f82f19316db84815fdba9b6d06aaec84d629be930c67ffadbf64846a21fc"
+    },
+    {
+      "id": "ZA_humerus_cartilage",
+      "structureId": "ZA_humerus_cartilage",
+      "name": "Right humerus \u00b7 cartilage surface",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Humerus.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "CARTILAGE",
+      "layer": "joint",
+      "group": "joint",
+      "note": "Source material-classified articular surface; not a volumetric cartilage layer.",
+      "sourceFaceCount": 803,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 478,
+      "faceCount": 803,
+      "triangleCount": 803,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": "Cartilage",
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.9707894921302795,
+          -0.3169524669647217,
+          -2.9297757148742676
+        ],
+        "max": [
+          0.05393460392951965,
+          0.11392831802368164,
+          0.24604320526123047
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.501712528671799e-08,
+      "objSha256": "64fe523fa8830ac0fe96e977e8051bd17829394391a1ff818aded9a3e89bb84a"
+    },
+    {
+      "id": "ZA_clavicle",
+      "structureId": "ZA_clavicle",
+      "name": "Right clavicle",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Clavicle.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "BONE",
+      "layer": "bones",
+      "group": "bones",
+      "note": "Matching source bone context.",
+      "sourceFaceCount": 1308,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 681,
+      "faceCount": 1310,
+      "triangleCount": 1310,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": "Cartilage",
+      "materialSelectionInverted": true,
+      "normalizedBounds": {
+        "min": [
+          -0.04330635070800781,
+          -0.9050987958908081,
+          0.09112119674682617
+        ],
+        "max": [
+          1.3829460144042969,
+          0.12261759489774704,
+          0.45215368270874023
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 2.356080457693621e-08,
+      "objSha256": "fe296aae93280665a6cdbba300e669f76230f44ab9aed12553792f70d02ff1cb"
+    },
+    {
+      "id": "ZA_labrum",
+      "structureId": "ZA_labrum",
+      "name": "Right glenoid labrum",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Glenoid labrum.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "CARTILAGE",
+      "layer": "joint",
+      "group": "joint",
+      "note": "Source-authored labrum surface; source subdivision retained.",
+      "sourceFaceCount": 424,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 424,
+      "faceCount": 848,
+      "triangleCount": 848,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.0857175886631012,
+          -0.16715221107006073,
+          -0.20011305809020996
+        ],
+        "max": [
+          0.10463833808898926,
+          0.08502770215272903,
+          0.15777826309204102
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.862645149230957e-09,
+      "objSha256": "3f353e8a4f91fdef24873a32b469708002ce0051973a54385ceb1520f9bf9e1c"
+    },
+    {
+      "id": "ZA_sghl",
+      "structureId": "ZA_sghl",
+      "name": "Right superior glenohumeral ligament",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Superior glenohumeral ligament.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "CONNECTIVE_TISSUE",
+      "layer": "joint",
+      "group": "joint",
+      "note": "Source-authored ligament surface with source modifiers retained; attachments are not independently clinically reviewed.",
+      "sourceFaceCount": 100,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 102,
+      "faceCount": 200,
+      "triangleCount": 200,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.19592329859733582,
+          -0.3447680175304413,
+          0.07624983787536621
+        ],
+        "max": [
+          0.09724706411361694,
+          -0.062206946313381195,
+          0.24079561233520508
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 4.6566128730773926e-09,
+      "objSha256": "689af3cc6c7ef1b897bbbc0266b4298659b229e0d6599257bbadf9f38aba62d8"
+    },
+    {
+      "id": "ZA_mghl",
+      "structureId": "ZA_mghl",
+      "name": "Right middle glenohumeral ligament",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Middle glenohumeral ligament.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "CONNECTIVE_TISSUE",
+      "layer": "joint",
+      "group": "joint",
+      "note": "Source-authored ligament surface with source modifiers retained; attachments are not independently clinically reviewed.",
+      "sourceFaceCount": 140,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 142,
+      "faceCount": 280,
+      "triangleCount": 280,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.14607325196266174,
+          -0.3541902005672455,
+          0.016726255416870117
+        ],
+        "max": [
+          0.12324139475822449,
+          -0.12491895258426666,
+          0.1687479019165039
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 4.6566128730773926e-09,
+      "objSha256": "98030d8d22ac2895caff33f9b85678483d408d5144a3c9eb98902e014c471720"
+    },
+    {
+      "id": "ZA_ighl",
+      "structureId": "ZA_ighl",
+      "name": "Right inferior glenohumeral ligament",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Inferior glenohumeral ligament.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "CONNECTIVE_TISSUE",
+      "layer": "joint",
+      "group": "joint",
+      "note": "Source-authored ligament surface with source modifiers retained; attachments are not independently clinically reviewed.",
+      "sourceFaceCount": 160,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 162,
+      "faceCount": 320,
+      "triangleCount": 320,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.1262912154197693,
+          -0.3011680841445923,
+          -0.13675570487976074
+        ],
+        "max": [
+          0.11238574981689453,
+          -0.13973025977611542,
+          0.05573153495788574
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 2.7939677238464355e-09,
+      "objSha256": "885746b323dd58cb52d83f768ac3220ef065b2d31f8ab970183c0dd042ee196b"
+    },
+    {
+      "id": "ZA_chl",
+      "structureId": "ZA_chl",
+      "name": "Right coracohumeral ligament",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Coracohumeral ligament.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "CONNECTIVE_TISSUE",
+      "layer": "joint",
+      "group": "joint",
+      "note": "Source-authored ligament surface with source modifiers retained; attachments are not independently clinically reviewed.",
+      "sourceFaceCount": 100,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 102,
+      "faceCount": 200,
+      "triangleCount": 200,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.34951552748680115,
+          -0.38498756289482117,
+          0.11143088340759277
+        ],
+        "max": [
+          0.11619403958320618,
+          -0.1775771528482437,
+          0.28812289237976074
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 5.587935447692871e-09,
+      "objSha256": "fa6cdc044be9ca431beed2188b52c0ad8335d9a39e9ffc3d55093a61a8372be3"
+    },
+    {
+      "id": "ZA_cal",
+      "structureId": "ZA_cal",
+      "name": "Right coraco-acromial ligament",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Coraco-acromial ligament.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "CONNECTIVE_TISSUE",
+      "layer": "joint",
+      "group": "joint",
+      "note": "Source-authored ligament surface with source modifiers retained; attachments are not independently clinically reviewed.",
+      "sourceFaceCount": 6,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 8,
+      "faceCount": 12,
+      "triangleCount": 12,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.13917669653892517,
+          -0.33524617552757263,
+          0.19513487815856934
+        ],
+        "max": [
+          0.18242895603179932,
+          -0.09092563390731812,
+          0.3532254695892334
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.862645149230957e-09,
+      "objSha256": "6211f3f56c3044c4772e5b0241d634427d35cdb8e169dde8d6a9e62463389096"
+    },
+    {
+      "id": "ZA_acl",
+      "structureId": "ZA_acl",
+      "name": "Right acromioclavicular ligament",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Acromioclavicular ligament.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "CONNECTIVE_TISSUE",
+      "layer": "joint",
+      "group": "joint",
+      "note": "Source-authored ligament surface with source modifiers retained; attachments are not independently clinically reviewed.",
+      "sourceFaceCount": 160,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 162,
+      "faceCount": 320,
+      "triangleCount": 320,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.12717410922050476,
+          -0.0780826061964035,
+          0.35214900970458984
+        ],
+        "max": [
+          0.10918021202087402,
+          0.08533112704753876,
+          0.44692397117614746
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 0.0,
+      "objSha256": "7173792bbcafe5c8b4e90e9c155254b5ab27fc0589dca5b17ce0a528e7371b4d"
+    },
+    {
+      "id": "ZA_capsule",
+      "structureId": "ZA_capsule",
+      "name": "Right articular capsule of glenohumeral joint",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Articular capsule of glenohumeral joint.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "CONNECTIVE_TISSUE",
+      "layer": "capsule",
+      "group": "capsule",
+      "note": "Source-authored capsule; source solidify thickness is illustrative, not measured.",
+      "sourceFaceCount": 1616,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 1616,
+      "faceCount": 3232,
+      "triangleCount": 3232,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        },
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        }
+      ],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.36533936858177185,
+          -0.3500712513923645,
+          -0.30179858207702637
+        ],
+        "max": [
+          0.10695815086364746,
+          0.11648416519165039,
+          0.2816939353942871
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 5.587935447692871e-09,
+      "objSha256": "fab55059a348233d526148b0a18a545f6669aff4b592b721e2da2dc12e8de86f"
+    },
+    {
+      "id": "ZA_subacromial",
+      "structureId": "ZA_subacromial",
+      "name": "Right subacromial bursa",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Subacromial bursa.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "GENERIC_SOFT_TISSUE",
+      "layer": "capsule",
+      "group": "capsule",
+      "note": "Source-authored bursa surface; does not simulate fluid or physiological distension.",
+      "sourceFaceCount": 736,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 738,
+      "faceCount": 1472,
+      "triangleCount": 1472,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.22233888506889343,
+          -0.18382661044597626,
+          0.20938992500305176
+        ],
+        "max": [
+          0.008914768695831299,
+          0.04857301712036133,
+          0.3012430667877197
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.862645149230957e-09,
+      "objSha256": "56bcfdf494fe3c49712ca35a98549923c26324367b281f63c2bd4e7543fa3eaf"
+    },
+    {
+      "id": "ZA_subdeltoid",
+      "structureId": "ZA_subdeltoid",
+      "name": "Right subdeltoid bursa",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Subdeltoid bursa.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "GENERIC_SOFT_TISSUE",
+      "layer": "capsule",
+      "group": "capsule",
+      "note": "Source-authored bursa surface; does not simulate fluid or physiological distension.",
+      "sourceFaceCount": 736,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 738,
+      "faceCount": 1472,
+      "triangleCount": 1472,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.47443002462387085,
+          -0.31044331192970276,
+          -0.021671056747436523
+        ],
+        "max": [
+          -0.3390584886074066,
+          -0.06189785897731781,
+          0.2675759792327881
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 2.7939677238464355e-09,
+      "objSha256": "99cce9b12ae12a9867fd7d5f093fb5f4255c719cd6101bd6ddc4f511b74e4926"
+    },
+    {
+      "id": "ZA_axillary",
+      "structureId": "ZA_axillary",
+      "name": "Right axillary nerve",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Axillary nerve.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored curve converted to surface",
+      "tissue": "NERVE",
+      "layer": "neurovascular",
+      "group": "neurovascular",
+      "note": "Source curve path converted with its existing bevel. Regional segments, not a complete plexus.",
+      "sourceFaceCount": 576,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 588,
+      "faceCount": 1152,
+      "triangleCount": 1152,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.1358962059020996,
+          -0.27379781007766724,
+          -0.2971971035003662
+        ],
+        "max": [
+          0.4011704921722412,
+          -0.023630112409591675,
+          0.20221471786499023
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 7.957223565613414e-09,
+      "objSha256": "8e3118c4f411e91f717d223d7111ce795a4e8547ded33302ea5d99d849bc700e"
+    },
+    {
+      "id": "ZA_suprascapular",
+      "structureId": "ZA_suprascapular",
+      "name": "Right suprascapular nerve",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Suprascapular nerve.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored curve converted to surface",
+      "tissue": "NERVE",
+      "layer": "neurovascular",
+      "group": "neurovascular",
+      "note": "Source curve path converted with its existing bevel. Regional segments, not a complete plexus.",
+      "sourceFaceCount": 2448,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 2508,
+      "faceCount": 4896,
+      "triangleCount": 4896,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          0.06727918982505798,
+          -0.27490541338920593,
+          -0.6378602981567383
+        ],
+        "max": [
+          0.9618995189666748,
+          0.5146219730377197,
+          0.7361376285552979
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.13300281209838e-08,
+      "objSha256": "3527748be335d0c6521f28fbaeaa54d1974289e167900db430605aa3e41d3180"
+    },
+    {
+      "id": "ZA_upper_subscapular",
+      "structureId": "ZA_upper_subscapular",
+      "name": "Right superior subscapular nerve",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Superior subscapular nerve.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored curve converted to surface",
+      "tissue": "NERVE",
+      "layer": "neurovascular",
+      "group": "neurovascular",
+      "note": "Source curve path converted with its existing bevel. Regional segments, not a complete plexus.",
+      "sourceFaceCount": 576,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 588,
+      "faceCount": 1152,
+      "triangleCount": 1152,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          0.3805815577507019,
+          -0.14460860192775726,
+          -0.2789735794067383
+        ],
+        "max": [
+          0.702151358127594,
+          0.4829212427139282,
+          0.09885668754577637
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 8.33000234328132e-09,
+      "objSha256": "eb781211a8eb1eb76745684f4f3c5759d47ea7e4bec9605295660217cc2e82df"
+    },
+    {
+      "id": "ZA_lower_subscapular",
+      "structureId": "ZA_lower_subscapular",
+      "name": "Right inferior subscapular nerve",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Inferior subscapular nerve.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored curve converted to surface",
+      "tissue": "NERVE",
+      "layer": "neurovascular",
+      "group": "neurovascular",
+      "note": "Source curve path converted with its existing bevel. Regional segments, not a complete plexus.",
+      "sourceFaceCount": 1008,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 1032,
+      "faceCount": 2016,
+      "triangleCount": 2016,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          0.31781768798828125,
+          -0.14676956832408905,
+          -0.9083294868469238
+        ],
+        "max": [
+          0.5585254430770874,
+          0.5097787380218506,
+          0.03872513771057129
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.0536712127723509e-08,
+      "objSha256": "03d6507136b517d600e875f0af78994dbfe1adb31013af4b2266660d25cb2a0d"
+    },
+    {
+      "id": "ZA_ant_circumflex_artery",
+      "structureId": "ZA_ant_circumflex_artery",
+      "name": "Right anterior circumflex humeral artery",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Anterior circumflex humeral artery.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored curve converted to surface",
+      "tissue": "ARTERY",
+      "layer": "neurovascular",
+      "group": "neurovascular",
+      "note": "Source curve segment; this regional selection is not a complete or reconstructed vascular tree.",
+      "sourceFaceCount": 1296,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 1320,
+      "faceCount": 2592,
+      "triangleCount": 2592,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.414360910654068,
+          -0.4818139672279358,
+          -0.3588712215423584
+        ],
+        "max": [
+          0.07018715143203735,
+          -0.1361629068851471,
+          0.2749824523925781
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 5.587935447692871e-09,
+      "objSha256": "ee52f930c5524bcc61caf6fb6b9f1305f0efe03bda0a9fbeaa9a5ef26d2bcb51"
+    },
+    {
+      "id": "ZA_ant_circumflex_vein",
+      "structureId": "ZA_ant_circumflex_vein",
+      "name": "Right anterior circumflex humeral vein",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Anterior circumflex humeral vein.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored curve converted to surface",
+      "tissue": "VEIN",
+      "layer": "neurovascular",
+      "group": "neurovascular",
+      "note": "Source curve segment; this regional selection is not a complete or reconstructed vascular tree.",
+      "sourceFaceCount": 1872,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 1896,
+      "faceCount": 3744,
+      "triangleCount": 3744,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.4312208294868469,
+          -0.46699103713035583,
+          -0.39469361305236816
+        ],
+        "max": [
+          0.08449539542198181,
+          -0.13793312013149261,
+          0.25171875953674316
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 5.587935447692871e-09,
+      "objSha256": "6339dc4919d29712898b8c90aedfb5459e5e707e360ddd4af47e7f92b0cc628c"
+    },
+    {
+      "id": "ZA_post_circumflex_artery",
+      "structureId": "ZA_post_circumflex_artery",
+      "name": "Right posterior circumflex humeral artery",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Posterior circumflex humeral artery.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored curve converted to surface",
+      "tissue": "ARTERY",
+      "layer": "neurovascular",
+      "group": "neurovascular",
+      "note": "Source curve segment; this regional selection is not a complete or reconstructed vascular tree.",
+      "sourceFaceCount": 576,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 588,
+      "faceCount": 1152,
+      "triangleCount": 1152,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.41185930371284485,
+          -0.2969828248023987,
+          -0.18019318580627441
+        ],
+        "max": [
+          0.1466730237007141,
+          -0.052595771849155426,
+          -0.08021712303161621
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 2.7939677238464355e-09,
+      "objSha256": "bcfd9d44d82b020cedeab0137dd355180102bed8b296404732e7598f3eaf3644"
+    },
+    {
+      "id": "ZA_post_circumflex_vein",
+      "structureId": "ZA_post_circumflex_vein",
+      "name": "Right posterior circumflex humeral vein",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Posterior circumflex humeral vein.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored curve converted to surface",
+      "tissue": "VEIN",
+      "layer": "neurovascular",
+      "group": "neurovascular",
+      "note": "Source curve segment; this regional selection is not a complete or reconstructed vascular tree.",
+      "sourceFaceCount": 1008,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 1020,
+      "faceCount": 2016,
+      "triangleCount": 2016,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.39068788290023804,
+          -0.4043455421924591,
+          -0.20280122756958008
+        ],
+        "max": [
+          0.12607082724571228,
+          -0.04203371703624725,
+          -0.11154890060424805
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 5.587935447692871e-09,
+      "objSha256": "66763223aee23ede1977831cd86527be5348a652e59337f1a7fa9df8b990de62"
+    },
+    {
+      "id": "ZA_suprascapular_artery",
+      "structureId": "ZA_suprascapular_artery",
+      "name": "Right suprascapular artery",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Suprascapular artery.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored curve converted to surface",
+      "tissue": "ARTERY",
+      "layer": "neurovascular",
+      "group": "neurovascular",
+      "note": "Source curve segment; this regional selection is not a complete or reconstructed vascular tree.",
+      "sourceFaceCount": 1584,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 1608,
+      "faceCount": 3168,
+      "triangleCount": 3168,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          0.060854554176330566,
+          -0.4425516426563263,
+          -0.1606583595275879
+        ],
+        "max": [
+          1.0876078605651855,
+          0.5185134410858154,
+          0.5341660976409912
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.1780402288468106e-08,
+      "objSha256": "0d72f2b51cf09bf59f0b9ccaa2f9dc9d205a73d107c5083a089b0a3da16adb71"
+    },
+    {
+      "id": "ZA_suprascapular_vein",
+      "structureId": "ZA_suprascapular_vein",
+      "name": "Right suprascapular vein",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Suprascapular vein.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored curve converted to surface",
+      "tissue": "VEIN",
+      "layer": "neurovascular",
+      "group": "neurovascular",
+      "note": "Source curve segment; this regional selection is not a complete or reconstructed vascular tree.",
+      "sourceFaceCount": 1296,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 1308,
+      "faceCount": 2592,
+      "triangleCount": 2592,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          0.05193844437599182,
+          -0.5288352966308594,
+          -0.17505288124084473
+        ],
+        "max": [
+          1.0668301582336426,
+          0.14681413769721985,
+          0.4229402542114258
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.249500351492198e-08,
+      "objSha256": "3ec2af9ad2f61629731995f7750b37067de79ecc1789b74455294c7a204c23b6"
+    },
+    {
+      "id": "ZA_supra",
+      "structureId": "ZA_supra",
+      "name": "Right supraspinatus muscle",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Supraspinatus muscle.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "SKELETAL_MUSCLE",
+      "layer": "cuff",
+      "group": "cuff",
+      "note": "Matching atlas muscle context; no source fiber-direction data.",
+      "sourceFaceCount": 1430,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 717,
+      "faceCount": 1430,
+      "triangleCount": 1430,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.44787898659706116,
+          -0.28897809982299805,
+          -0.014785528182983398
+        ],
+        "max": [
+          0.8026658296585083,
+          0.5588186979293823,
+          0.312880277633667
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.0536712127723509e-08,
+      "objSha256": "b824b8befe7e57ab625c3f9047d6a19efa0a15f5694d9220dabd298549038615"
+    },
+    {
+      "id": "ZA_supra_insertion",
+      "structureId": "ZA_supra_insertion",
+      "name": "Right supraspinatus muscle \u00b7 insertion region",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Supraspinatus muscle.er",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "CONNECTIVE_TISSUE",
+      "layer": "attachments",
+      "group": "attachments",
+      "note": "Source-authored insertion-region overlay. Not a measured tendon footprint.",
+      "sourceFaceCount": 674,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 676,
+      "faceCount": 1348,
+      "triangleCount": 1348,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.436214804649353,
+          -0.28968876600265503,
+          0.07995843887329102
+        ],
+        "max": [
+          -0.3289429843425751,
+          -0.12457428872585297,
+          0.231550931930542
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 2.7939677238464355e-09,
+      "objSha256": "8105419b361ddb046c79d7feb7e62f2322f6fd145a24c6100f8c9a8b9f71a17d"
+    },
+    {
+      "id": "ZA_infra",
+      "structureId": "ZA_infra",
+      "name": "Right infraspinatus muscle",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Infraspinatus muscle.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "SKELETAL_MUSCLE",
+      "layer": "cuff",
+      "group": "cuff",
+      "note": "Matching atlas muscle context; no source fiber-direction data.",
+      "sourceFaceCount": 2645,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 1343,
+      "faceCount": 2645,
+      "triangleCount": 2645,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": "Tendon",
+      "materialSelectionInverted": true,
+      "normalizedBounds": {
+        "min": [
+          -0.32428622245788574,
+          0.04595465958118439,
+          -0.9406673908233643
+        ],
+        "max": [
+          0.8701275587081909,
+          0.7704858779907227,
+          0.1890575885772705
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.0536712127723509e-08,
+      "objSha256": "7c221225bb6abf460967e71d0901ac8d954b0afc9e5551e01a2ec349477d0550"
+    },
+    {
+      "id": "ZA_infra_insertion",
+      "structureId": "ZA_infra_insertion",
+      "name": "Right infraspinatus muscle \u00b7 insertion region",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Infraspinatus muscle.er",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "CONNECTIVE_TISSUE",
+      "layer": "attachments",
+      "group": "attachments",
+      "note": "Source-authored insertion-region overlay. Not a measured tendon footprint.",
+      "sourceFaceCount": 622,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 624,
+      "faceCount": 1244,
+      "triangleCount": 1244,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.4492378234863281,
+          -0.15154583752155304,
+          0.036193132400512695
+        ],
+        "max": [
+          -0.34530535340309143,
+          0.028598643839359283,
+          0.18342137336730957
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.862645149230957e-09,
+      "objSha256": "cf7301d36c01f979ca8e979fd279231055f282ee2a5278deb922f5abdbc3c233"
+    },
+    {
+      "id": "ZA_teres",
+      "structureId": "ZA_teres",
+      "name": "Right teres minor muscle",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Teres minor muscle.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "SKELETAL_MUSCLE",
+      "layer": "cuff",
+      "group": "cuff",
+      "note": "Matching atlas muscle context; no source fiber-direction data.",
+      "sourceFaceCount": 1522,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 763,
+      "faceCount": 1522,
+      "triangleCount": 1522,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.4722730815410614,
+          -0.18596462905406952,
+          -0.8528292179107666
+        ],
+        "max": [
+          0.48892974853515625,
+          0.5728660821914673,
+          0.0421595573425293
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.0536712127723509e-08,
+      "objSha256": "ccfac7d84d2440366cf22b1b054eb805c49da35f5ed0243eab6131dab0f6876c"
+    },
+    {
+      "id": "ZA_teres_insertion",
+      "structureId": "ZA_teres_insertion",
+      "name": "Right teres minor muscle \u00b7 insertion region",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Teres minor muscle.er",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "CONNECTIVE_TISSUE",
+      "layer": "attachments",
+      "group": "attachments",
+      "note": "Source-authored insertion-region overlay. Not a measured tendon footprint.",
+      "sourceFaceCount": 910,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 912,
+      "faceCount": 1820,
+      "triangleCount": 1820,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.45530498027801514,
+          -0.19673608243465424,
+          -0.1315617561340332
+        ],
+        "max": [
+          -0.3430144488811493,
+          0.03476090729236603,
+          0.044708251953125
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.862645149230957e-09,
+      "objSha256": "5c46cccfeeb3e3b4b8ac5501ae7496496255218979c51d035347e4ceb0eab0b1"
+    },
+    {
+      "id": "ZA_subscap",
+      "structureId": "ZA_subscap",
+      "name": "Right subscapularis muscle",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Subscapularis muscle.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "SKELETAL_MUSCLE",
+      "layer": "cuff",
+      "group": "cuff",
+      "note": "Matching atlas muscle context; no source fiber-direction data.",
+      "sourceFaceCount": 2954,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 1471,
+      "faceCount": 2954,
+      "triangleCount": 2954,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.20157486200332642,
+          -0.3863348066806793,
+          -1.0248970985412598
+        ],
+        "max": [
+          0.8486695289611816,
+          0.6633049845695496,
+          0.12084364891052246
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 1.0536712127723509e-08,
+      "objSha256": "80348b673ba37b451822554ab30dd19c032d5582c7d089d0fa1da31e460d3765"
+    },
+    {
+      "id": "ZA_subscap_insertion",
+      "structureId": "ZA_subscap_insertion",
+      "name": "Right subscapularis muscle \u00b7 insertion region",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Subscapularis muscle.er",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "CONNECTIVE_TISSUE",
+      "layer": "attachments",
+      "group": "attachments",
+      "note": "Source-authored insertion-region overlay. Not a measured tendon footprint.",
+      "sourceFaceCount": 248,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 250,
+      "faceCount": 496,
+      "triangleCount": 496,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [
+        {
+          "name": "Solidify",
+          "type": "SOLIDIFY"
+        },
+        {
+          "name": "Subdivision",
+          "type": "SUBSURF"
+        }
+      ],
+      "sourceMaterial": null,
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.20381197333335876,
+          -0.38376307487487793,
+          -0.05367159843444824
+        ],
+        "max": [
+          -0.09928151965141296,
+          -0.3297278583049774,
+          0.11538267135620117
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 5.587935447692871e-09,
+      "objSha256": "6ae2d1965d10e20b3ac7a47be97d45718ae3306a04d8d06db64222caf01635a7"
+    },
+    {
+      "id": "ZA_infra_tendon",
+      "structureId": "ZA_infra_tendon",
+      "name": "Right infraspinatus muscle \u00b7 tendon region",
+      "fma": null,
+      "FMA": null,
+      "source": "Z-Anatomy / BodyParts3D",
+      "sourceVersion": "archive e02968854562",
+      "sourceObject": "Infraspinatus muscle.r",
+      "sourceUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "sourceSha256": "9f08a17ea0115fed80b2a73ecdf0a1bc2ab2f6956f37c593ce23d513ea35afcd",
+      "license": "CC BY-SA 4.0",
+      "attribution": "BodyParts3D - The Database Center for Life Science - CC-BY-SA 2.1 Japan; Z-Anatomy - The libre 3D atlas of anatomy - CC-BY-SA 4.0",
+      "geometryType": "Source-authored polygon surface",
+      "tissue": "TENDON",
+      "layer": "attachments",
+      "group": "attachments",
+      "note": "Only faces classified Tendon by the source author. Not a separately segmented scan-derived tendon.",
+      "sourceFaceCount": 521,
+      "removedZeroAreaTriangles": 0,
+      "vertexCount": 281,
+      "faceCount": 521,
+      "triangleCount": 521,
+      "hasUV": false,
+      "hasNormals": true,
+      "hasTangents": false,
+      "textures": [],
+      "sourceModifiers": [],
+      "sourceMaterial": "Tendon",
+      "materialSelectionInverted": false,
+      "normalizedBounds": {
+        "min": [
+          -0.4554915428161621,
+          -0.14746862649917603,
+          -0.08462905883789062
+        ],
+        "max": [
+          -0.16884446144104004,
+          0.23413270711898804,
+          0.1949143409729004
+        ]
+      },
+      "derivedOperations": [
+        "Evaluate existing source modifiers and curve bevel",
+        "Extract source-assigned material region where specified",
+        "Shared translation -(-0.15,0.04,1.38) metres and uniform scale 10; glTF axis conversion",
+        "Triangulate and omit zero-area triangles only; recompute display normals; omit unused UVs; no deformation or cross-specimen registration"
+      ],
+      "reviewStatus": "Source object identity, material assignments and shared transform verified; no independent clinical review",
+      "inverseTransformMaxErrorMetres": 3.725290298461914e-09,
+      "objSha256": "4849befd13d8345b8d34232b04d8fbaa8ab3551ce64acb1573a006894059c8d8"
+    }
+  ]
+}

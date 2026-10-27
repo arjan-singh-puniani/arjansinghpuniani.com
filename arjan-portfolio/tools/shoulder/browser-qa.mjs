@@ -1,3 +1,4 @@
+import { ALL } from "../../public/holoanatomy/shoulder/model.js";
 import { chromium, expect } from "@playwright/test";
 import { mkdir, writeFile } from "node:fs/promises";
 const base =
@@ -18,6 +19,7 @@ async function load(page, url = base) {
   await page.waitForFunction(() => window.shoulderStudio?.ready, {
     timeout: 30000,
   });
+  if (await page.locator("body").getAttribute("data-discovery") === "true") await page.click('[data-mode="explore"]');
   await page.waitForTimeout(600);
   results.loaded = { url: page.url(), title: await page.title(), viewControls: await page.locator("#view-select").count() };
 }
@@ -109,6 +111,8 @@ try {
   );
   await page.click("#reset");
   await page.click("[data-mode=peel]");
+  await page.click("#details-toggle");
+  await page.click('[data-action="surface-lab"]');
   await page.locator("#peel-range").fill("2");
   await page.click("[data-action=separate]");
   expect(await page.evaluate(() => shoulderStudio.state.staged.length)).toBe(1);
@@ -123,9 +127,7 @@ try {
   await capture(page, "quiz");
   const target = await page.evaluate(
     () =>
-      ["FJ1506", "FJ1504", "FJ1500", "FJ1508"][
-        shoulderStudio.state.quiz.index % 4
-      ],
+      shoulderStudio.state.quiz.order[shoulderStudio.state.quiz.index],
   );
   const hit = await pointFor(page, target);
   if (!hit) throw Error("Quiz target is not pickable");
@@ -208,6 +210,8 @@ try {
   for (const mode of ["peel", "learn", "quiz"]) {
     await mobile.click(`[data-mode=${mode}]`);
     if (mode === "peel") {
+      await mobile.click("#details-toggle");
+      await mobile.click('[data-action="surface-lab"]');
       await mobile.locator("#peel-range").fill("2");
       await mobile.click("[data-action=separate]");
     }
@@ -231,13 +235,13 @@ try {
     "obj",
   );
   expect(await fallback.evaluate(() => shoulderStudio.scene.meshes.size)).toBe(
-    20,
+    ALL.length,
   );
   results.obj = await fallback.evaluate(() => shoulderStudio.metrics());
   await fallback.close();
   const lod = await browser.newPage();
   await load(lod, base + "?lod=2");
-  expect(await lod.evaluate(() => shoulderStudio.scene.meshes.size)).toBe(20);
+  expect(await lod.evaluate(() => shoulderStudio.scene.meshes.size)).toBe(ALL.length);
   results.lod2 = await lod.evaluate(() => shoulderStudio.metrics());
   await lod.close();
   expect(errors).toEqual([]);

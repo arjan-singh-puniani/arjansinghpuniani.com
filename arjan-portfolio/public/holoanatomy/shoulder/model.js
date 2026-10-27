@@ -1,3 +1,5 @@
+import { ATLAS_GROUPS, ATLAS_IDS } from "./atlas.js";
+export { ATLAS_GROUPS, ATLAS_IDS };
 /** Pure domain state. World +X=left, +Y=superior, +Z=anterior. */
 export const SITS = ["FJ1506", "FJ1500", "FJ1508", "FJ1504"];
 export const BONES = ["FJ3384", "FJ3362", "FJ3368"];
@@ -13,7 +15,8 @@ export const VESSELS = [
   "FJ2299",
   "FJ2274",
 ];
-export const ALL = [...BONES, ...SITS, ...DELTOID, "FJ1478", ...VESSELS];
+export const LEGACY_IDS = [...BONES, ...SITS, ...DELTOID, "FJ1478", ...VESSELS];
+export const ALL = [...LEGACY_IDS, ...ATLAS_IDS];
 export const TISSUES = {
   BONE: {
     baseColor: "#cec2a6",
@@ -23,8 +26,8 @@ export const TISSUES = {
   },
   SKELETAL_MUSCLE: {
     baseColor: "#974f44",
-    roughness: 0.69,
-    specular: 0.25,
+    roughness: 0.52,
+    specular: 0.32,
     ghostAlpha: 0.09,
   },
   TENDON: {
@@ -34,7 +37,7 @@ export const TISSUES = {
     ghostAlpha: 0.12,
   },
   CARTILAGE: {
-    baseColor: "#dbd6c8",
+    baseColor: "#9bb5b1",
     roughness: 0.54,
     specular: 0.3,
     ghostAlpha: 0.13,
@@ -71,12 +74,17 @@ export const TISSUES = {
   },
 };
 export const CUFF_COLORS = {
+  ZA_infra: "#985e56",
+  ZA_supra: "#a7815f",
+  ZA_teres: "#a57770",
+  ZA_subscap: "#b2664b",
   FJ1506: "#a7815f",
   FJ1500: "#985e56",
   FJ1508: "#a57770",
   FJ1504: "#b2664b",
 };
 export function tissueFor(part) {
+  if (TISSUES[part.tissue]) return part.tissue;
   return (
     {
       skeleton: "BONE",
@@ -176,6 +184,50 @@ export const PRESETS = {
     [-0.2, -0.4, 0],
   ),
 };
+export const ATLAS_VIEWS = {
+  atlas_joint: { title: "Joint surfaces & ligaments", group: "joint", text: "Inspect the labrum, source-classified cartilage surfaces and shoulder ligaments. These structures use their matching Z-Anatomy bones." },
+  atlas_capsule: { title: "Capsule & bursae", group: "capsule", text: "Explore the source-authored joint capsule and subacromial and subdeltoid bursae. Their thickness and distension are illustrative." },
+  atlas_neurovascular: { title: "Shoulder nerves & vessels", group: "neurovascular", text: "Follow the supplied axillary, suprascapular and subscapular nerves alongside regional vessels. This is not a complete plexus or vascular tree." },
+  atlas_attachments: { title: "Tendon & insertion regions", group: "attachments", text: "Inspect the infraspinatus tendon-classified region and four authored insertion regions. These are source annotations, not measured footprints or four complete tendons." },
+};
+for (const [id, view] of Object.entries(ATLAS_VIEWS)) {
+  PRESETS[id] = preset(view.title, -0.8, 0.22, view.group === "neurovascular" ? 3.8 : 2.8,
+    [...ATLAS_GROUPS[view.group]],
+    [...ATLAS_GROUPS.bones, ...(view.group === "attachments" ? ATLAS_GROUPS.cuff : [])],
+    view.title + " in their source context.",
+    ATLAS_GROUPS[view.group].filter((id) => !id.endsWith("_vein")).slice(0, 3),
+    [0, 0, 0]);
+}
+export function atlasViewFor(id) {
+  return Object.keys(ATLAS_VIEWS).find((view) => ATLAS_GROUPS[ATLAS_VIEWS[view].group].includes(id)) || "atlas_attachments";
+}
+// Study stations are teaching exposures, not a surgical approach or depth map.
+export const DISSECTION = [
+  {title: "Uncover the cuff", groups: ["bones", "cuff", "capsule"], target: "ZA_subacromial", task: "Probe the subacromial bursa, then lift it away to compare the underlying cuff surfaces."},
+  {title: "Follow the attachment", groups: ["bones", "cuff", "attachments"], target: "ZA_infra_tendon", task: "Lift individual cuff muscles. Probe the supplied infraspinatus tendon region; compare it with the insertion annotations."},
+  {title: "Open the capsule study", groups: ["bones", "capsule", "joint"], target: "ZA_capsule", task: "Find the joint capsule with the probe. Lift it away and inspect the structures revealed inside."},
+  {title: "Explore the joint rim", groups: ["bones", "joint"], target: "ZA_labrum", task: "Probe the glenoid labrum. Lift individual ligaments or cartilage surfaces to compare the joint rim with its bony context."},
+  {title: "Trace the nerve routes", groups: ["bones", "neurovascular"], target: "ZA_axillary", task: "Find the axillary nerve with the probe. Lift overlapping regional vessels to follow its supplied course."},
+];
+export function dissectionIds(state) {
+  const ids=DISSECTION[state.dissection.step].groups.flatMap(group => ATLAS_GROUPS[group]);
+  if(ids.includes("ZA_infra"))ids.push("ZA_infra_tendon");
+  return [...new Set(ids)];
+}
+export function dissect(state, id) {
+  const d = state.dissection;
+  if (!d.active || !dissectionIds(state).includes(id)) return false;
+  if (d.tool === "probe") {
+    state.selected = id;
+    if (id === DISSECTION[d.step].target && !d.found.includes(d.step)) d.found.push(d.step);
+    return true;
+  }
+  if (ATLAS_GROUPS.bones.includes(id) || d.removed.includes(id)) return false;
+  d.undo.push([...d.removed]);
+  d.removed.push(id);
+  state.selected = null;
+  return true;
+}
 export const LESSON = [
   {
     title: "A mobile joint. A stabilizing cuff.",
@@ -270,6 +322,63 @@ export const CURRICULUM = {
       "Subscapularis dysfunction may reduce internal-rotation strength.",
   },
 };
+// Functional groups are curriculum annotations on static source surfaces, not activation data.
+export const FUNCTION_STUDIES = {
+  elevation: {
+    title: "Help lift the arm",
+    label: "Elevation",
+    view: "superior",
+    ids: ["FJ1506"],
+    text: "Supraspinatus contributes to abduction. Look above the scapular spine, then follow the supplied surface toward the humerus.",
+    task: "Orbit beneath the acromion. Which parts of the muscle become hidden?",
+    boundary:
+      "The model shows a muscle surface, not a separately segmented tendon or a moving subacromial space.",
+  },
+  external: {
+    title: "Two posterior rotators",
+    label: "External rotation",
+    view: "posterior",
+    ids: ["FJ1500", "FJ1508"],
+    text: "Infraspinatus and teres minor contribute to external rotation. Compare the broad posterior muscle with its smaller, inferior neighbor.",
+    task: "Select each muscle. Compare their position and innervation in the structure notes.",
+    boundary:
+      "Highlighting identifies a functional group; brightness does not represent force or muscle activation.",
+  },
+  internal: {
+    title: "Find the anterior rotator",
+    label: "Internal rotation",
+    view: "anterior",
+    ids: ["FJ1504"],
+    text: "Subscapularis contributes to internal rotation. Turn toward the rib-facing surface to find the anterior member of the cuff.",
+    task: "Orbit from anterior to posterior. Notice why one view cannot show the entire cuff.",
+    boundary:
+      "The lesser-tubercle insertion is described in the curriculum. Its footprint is not segmented on this surface.",
+  },
+  stability: {
+    title: "A cuff around a mobile joint",
+    label: "Stability",
+    view: "lateral",
+    ids: [...SITS],
+    text: "The four cuff muscles help stabilize the glenohumeral joint. Inspect how their surfaces are distributed around the proximal humerus.",
+    task: "Compare anterior and posterior perspectives with the orientation cube. Locate all four muscles without separating them.",
+    boundary:
+      "This is a static anatomical study. Joint forces, tissue deformation and scapulohumeral rhythm are not simulated.",
+  },
+};
+export const QUIZ_LENGTH = 12;
+export function quizComplete(state) {
+  return state.quiz.index >= QUIZ_LENGTH;
+}
+export function quizSummary(state) {
+  return ["Identification", "Relationships", "Function"].map((level) => {
+    const rows = state.quiz.history.filter((r) => r.level === level);
+    return {
+      level,
+      correct: rows.filter((r) => r.firstAttempt).length,
+      total: rows.length,
+    };
+  });
+}
 export const SOURCES = [
   {
     title: "Anatomy, Rotator Cuff · StatPearls / NCBI",
@@ -285,8 +394,21 @@ export const SOURCES = [
   },
 ];
 export function createState() {
+  const order = [];
+  for (let round = 0; round < 3; round++) {
+    const remaining = [...SITS];
+    while (remaining.length) {
+      const candidates = remaining.filter((id) => id !== order.at(-1));
+      const id = candidates[Math.floor(Math.random() * candidates.length)];
+      order.push(id);
+      remaining.splice(remaining.indexOf(id), 1);
+    }
+  }
   return {
+    dissection: { active: false, step: 0, tool: "probe", removed: [], offsets: {}, undo: [], found: [] },
     mode: "explore",
+    presenting: false,
+    study: null,
     view: "posterior",
     selected: null,
     isolated: false,
@@ -296,17 +418,26 @@ export function createState() {
     undo: [],
     lesson: 0,
     quiz: {
+      order,
       index: 0,
       score: 0,
       answered: false,
       retried: false,
       previous: null,
+      history: [],
     },
     section: false,
   };
 }
 export function visibility(state, id) {
+  if (state.mode === "peel" && state.dissection.active) {
+    if (!dissectionIds(state).includes(id)) return "hidden";
+    return (ATLAS_GROUPS.bones.includes(id) || state.isolated && state.selected && state.selected !== id) && state.selected !== id ? "ghost" : "visible";
+  }
   const p = PRESETS[state.view];
+  const atlasView = Boolean(ATLAS_VIEWS[state.view]);
+  if (ATLAS_IDS.includes(id) && (!atlasView || state.mode !== "explore")) return "hidden";
+  if (atlasView && state.mode === "explore" && !ATLAS_IDS.includes(id)) return "hidden";
   let value = p.visible.includes(id)
     ? "visible"
     : p.ghost.includes(id)
@@ -319,6 +450,15 @@ export function visibility(state, id) {
         state.peel === 0 ? "visible" : state.peel === 1 ? "ghost" : "hidden";
     if (state.peel === 4 && SITS.includes(id) && id !== state.selected)
       value = "ghost";
+  }
+  if (state.mode === "learn" && FUNCTION_STUDIES[state.study]) {
+    const group = FUNCTION_STUDIES[state.study].ids;
+    value =
+      BONES.includes(id) || group.includes(id)
+        ? "visible"
+        : SITS.includes(id)
+          ? "ghost"
+          : "hidden";
   }
   if (state.selected === id && state.mode !== "quiz") value = "visible";
   if (state.mode === "quiz" && SITS.includes(id)) value = "visible";
@@ -345,8 +485,8 @@ export function reassemble(state) {
   state.staged = [];
 }
 export function question(state) {
-  const order = ["FJ1506", "FJ1504", "FJ1500", "FJ1508"];
-  const id = order[state.quiz.index % 4],
+  if (quizComplete(state)) return null;
+  const id = state.quiz.order[state.quiz.index],
     level = Math.floor(state.quiz.index / 4);
   const relation = {
     FJ1506: "Select the cuff muscle above the scapular spine.",
@@ -356,26 +496,43 @@ export function question(state) {
   };
   return {
     id,
-    prompt: level
-      ? relation[id]
-      : `Identify ${CURRICULUM[id].name.toLowerCase()}.`,
-    view: id === "FJ1504" ? "anterior" : "posterior",
-    level: level ? "Relationships" : "Identification",
+    prompt:
+      level >= 2
+        ? {
+            FJ1506:
+              "Which cuff muscle above the scapular spine contributes to arm abduction?",
+            FJ1504:
+              "Select the cuff muscle that contributes to internal rotation.",
+            FJ1500:
+              "Select the broad posterior external rotator supplied by the suprascapular nerve.",
+            FJ1508:
+              "Select the smaller posterior external rotator supplied by the axillary nerve.",
+          }[id]
+        : level
+          ? relation[id]
+          : `Identify ${CURRICULUM[id].name.toLowerCase()}.`,
+    view: level === 0 ? (id === "FJ1504" ? "anterior" : "posterior") : "lateral",
+    level: level >= 2 ? "Function" : level ? "Relationships" : "Identification",
   };
 }
 export function answer(state, id) {
-  if (state.quiz.answered) return "answered";
+  if (quizComplete(state) || state.quiz.answered) return "answered";
   const correct = id === question(state).id;
   if (correct) {
     state.quiz.answered = true;
     if (!state.quiz.retried) state.quiz.score++;
+    state.quiz.history.push({
+      id,
+      level: question(state).level,
+      firstAttempt: !state.quiz.retried,
+    });
     return "correct";
   }
   state.quiz.retried = true;
   return "retry";
 }
 export function nextQuestion(state) {
-  if (!state.quiz.answered) return false;
+  if (quizComplete(state) || !state.quiz.answered) return false;
   state.quiz.previous = question(state).id;
   state.quiz.index++;
   state.quiz.answered = false;
@@ -390,7 +547,7 @@ export function layoutLabels(items, width, height) {
   return sides.flatMap((side, i) => {
     side.sort((a, b) => a.y - b.y);
     const maxY = height - 70;
-    let y = 70;
+    let y = Math.min(220, Math.max(70, maxY - (side.length - 1) * gap));
     return side.map((item, index) => {
       y = Math.max(y, Math.min(item.y, maxY - (side.length - index - 1) * gap));
       const out = { ...item, labelX: i ? width - 180 : margin, labelY: y };

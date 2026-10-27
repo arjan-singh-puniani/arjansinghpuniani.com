@@ -1,14 +1,24 @@
 import * as THREE from "three";
 import { ShoulderScene } from "./scene.js";
 import { bindInteraction } from "./interaction.js";
+import { MUSCLE_DEFINITIONS, deformationOwner, MECHANICS_NOTICE, anatomicalDefinition } from "./anatomy.js";
 import {
   createState,
+  DISSECTION, dissectionIds, dissect,
+  ATLAS_GROUPS,
+  ATLAS_IDS,
+  ATLAS_VIEWS,
+  atlasViewFor,
   PRESETS,
   SITS,
   CURRICULUM,
   CUFF_COLORS,
   LESSON,
   SOURCES,
+  FUNCTION_STUDIES,
+  QUIZ_LENGTH,
+  quizComplete,
+  quizSummary,
   stage,
   undoStage,
   reassemble,
@@ -19,7 +29,21 @@ import {
 } from "./model.js";
 const $ = (id) => document.getElementById(id),
   state = createState();
-let scene;
+let scene, specimenInput;
+let detailsOpen = false, soundEnabled = false, hapticsEnabled = false, audio;
+function tactile(kind) {
+  if (hapticsEnabled && !matchMedia("(prefers-reduced-motion: reduce)").matches) navigator.vibrate?.(kind === "hold" ? 12 : 6);
+  if (!soundEnabled) return;
+  try {
+    audio ||= new (window.AudioContext || window.webkitAudioContext)();
+    void audio.resume();
+    const tone = audio.createOscillator(), gain = audio.createGain();
+    tone.type="sine";tone.frequency.setValueAtTime(kind === "grab" ? 210 : 145, audio.currentTime);
+    gain.gain.setValueAtTime(.018,audio.currentTime);gain.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+.055);
+    tone.connect(gain).connect(audio.destination);tone.start();tone.stop(audio.currentTime+.06);
+  } catch { /* Sound is optional; visual contact feedback always remains available. */ }
+}
+function cancelGrab() { specimenInput?.cancel(); }
 const escape = (s) =>
   String(s).replace(
     /[&<>"']/g,
@@ -38,9 +62,11 @@ window.addEventListener("shoulder-error", (e) => fail(e.detail));
 
 function initialize() {
   $("view-select").innerHTML = Object.entries(PRESETS)
-    .map(([id, p]) => `<option value="${id}">${p.label}</option>`)
+    .map(([id, p]) => `<option value="${id}" ${ATLAS_VIEWS[id] && scene.atlasError ? "disabled" : ""}>${p.label}</option>`)
     .join("");
   $("view-select").onchange = (e) => {
+    if (ATLAS_VIEWS[e.target.value]) { openAtlas(e.target.value); return; }
+    if (state.dissection.active) setMode("explore");
     state.selected = null;
     state.isolated = false;
     reassemble(state);
@@ -51,6 +77,15 @@ function initialize() {
     .querySelectorAll("#mode-controls [data-mode]")
     .forEach((b) => (b.onclick = () => setMode(b.dataset.mode)));
   $("reset").onclick = reset;
+  $("present").onclick = () => {
+    state.presenting = !state.presenting;
+    if (state.presenting) {
+      state.lesson = 0;
+      state.study = null;
+      setMode("learn");
+    } else sync();
+    scene.resize();
+  };
   $("atlas-toggle").onclick = () => {
     state.atlas = !state.atlas;
     sync();
@@ -61,7 +96,7 @@ function initialize() {
     $("structures-toggle").setAttribute("aria-expanded", String(show));
   };
   $("structure-list").innerHTML = [...scene.parts.values()]
-    .map((p) => `<button data-select="${p.id}">${escape(p.name)}</button>`)
+    .map((p) => `<button data-select="${p.id}">${escape(p.name)}${ATLAS_IDS.includes(p.id) ? " · joint study" : ""}</button>`)
     .join("");
   $("structure-list").onclick = (e) => {
     const b = e.target.closest("[data-select]");
@@ -93,11 +128,66 @@ function initialize() {
     openInformation();
   };
   $("close-info").onclick = () => $("info-dialog").close();
-  bindInteraction($("specimen"), scene, {
+  let messageTimer;
+  new MutationObserver(()=>{
+    const note=$("tool-message");
+    note.hidden=!(state.mode==="peel"&&state.dissection.active&&!detailsOpen) || !$("feedback").textContent;
+    note.textContent=$("feedback").textContent;
+    clearTimeout(messageTimer);messageTimer=setTimeout(()=>{note.hidden=true;},4500);
+  }).observe($("feedback"),{childList:true,characterData:true,subtree:true});
+  specimenInput = bindInteraction($("specimen"), scene, {
+    canOrbit:()=>!(state.mode==="peel"&&state.dissection.active&&["lift","retract"].includes(state.dissection.tool)),
+    pull: {
+      enabled: () => state.mode === "peel" && state.dissection.active && ["lift","retract"].includes(state.dissection.tool),
+      begin: (id, e) => {
+        const d=state.dissection;
+        if(state.mode!=="peel" || !d.active || !["lift","retract"].includes(d.tool) || ATLAS_GROUPS.bones.includes(id) || d.removed.includes(deformationOwner(id)||id) || !dissectionIds(state).includes(id)) return false;
+        const owner=deformationOwner(id)||id;
+        if(d.tool === "lift" && !MUSCLE_DEFINITIONS[owner]) {
+          $("feedback").textContent="Use Probe here, or Retractor to expose this surface. Elastic pulling is available on the cuff muscles.";
+          return false;
+        }
+        const hit=scene.hit(e.clientX,e.clientY);
+        if(!hit || !scene.beginTissuePull(owner,hit.point))return false;
+        scene.pull.pointer={x:e.clientX,y:e.clientY};
+        $("specimen").style.cursor="grabbing";
+        document.body.dataset.grasp="true";
+        $("active-name").textContent=name(id);
+        $("feedback").textContent=`Holding ${name(id)}. ${d.tool === "retract" ? "Release to hold this exposure." : "Release to let the tissue recover."}`;
+        $("hover").hidden=true;tactile("grab");return true;
+      },
+      move: (dx,dy) => {
+        scene.moveTissuePull(dx,dy);
+        if(!scene.pull)return;
+        const rect=$("specimen").getBoundingClientRect(),badge=$("hover"),load=scene.pull.runtime?.solver.load||0;
+        badge.hidden=false;
+        badge.textContent=`${name(scene.pull.id)} · ${load>.88 ? "Elastic limit" : state.dissection.tool === "retract" ? "Release to hold" : "Release to recover"}`;
+        badge.style.left=Math.max(8,Math.min(rect.width-230,scene.pull.pointer.x+dx-rect.left+18))+"px";
+        badge.style.top=Math.max(8,Math.min(rect.height-45,scene.pull.pointer.y+dy-rect.top-40))+"px";
+        $("grip-load").style.setProperty("--load", Math.min(1,load));
+        $("grip-load").hidden=false;
+      },
+      end: (moved) => {
+        const id=scene.pull?.id, hold=moved&&state.dissection.tool==="retract";
+        scene.finishTissuePull(hold);
+        document.body.dataset.grasp="false";$("contact-point").hidden=true;$("hover").hidden=true;$("grip-load").hidden=true;
+        if(hold&&id) {
+          dissect(state,id);$("feedback").textContent=`${name(id)} held aside. Probe the exposed anatomy; tap the held piece to restore.`;tactile("hold");
+        } else if (id) {state.selected=id;$("feedback").textContent=`${name(id)} released. Its surface is recovering.`;tactile("release");}
+        scene.refresh();renderPanel();
+      },
+      cancel: () => {
+        $("contact-point").hidden=true;$("hover").hidden=true;$("grip-load").hidden=true;document.body.dataset.grasp="false";
+        scene.finishTissuePull(false,true);scene.refresh();$("feedback").textContent="Grab cancelled; original shape restored.";
+      },
+    },
     select,
     hover: (id, e) => {
       const node = $("hover");
       node.hidden = !id || state.mode === "quiz";
+      const contact=$("contact-point"),r=$("specimen").getBoundingClientRect();
+      contact.hidden=!id || !state.dissection.active || state.mode!=="peel" || !deformationOwner(id);
+      if(!contact.hidden){contact.style.left=(e.clientX-r.left)+"px";contact.style.top=(e.clientY-r.top)+"px";}
       if (!node.hidden) {
         const rect = $("specimen").getBoundingClientRect();
         node.textContent = name(id);
@@ -114,8 +204,16 @@ function initialize() {
       scene.refresh();
       renderPanel();
     },
-    canStage: () => state.mode === "peel" && state.peel >= 2,
+    canStage: () => state.mode === "peel" && !state.dissection.active && state.peel >= 2,
   });
+  scene.onCancelGrab=cancelGrab;
+  window.addEventListener("blur",cancelGrab);
+  $("details-toggle").onclick=()=>{detailsOpen=!detailsOpen;sync();scene.resize();};
+  $("tool-dock").onclick=e=>{
+    const tool=e.target.closest('[data-live-tool]');
+    if(tool){cancelGrab();state.dissection.tool=tool.dataset.liveTool;renderPanel();return;}
+    if(e.target.closest('[data-live-restore]')){cancelGrab();state.dissection.undo.push([...state.dissection.removed]);state.dissection.removed=[];scene.resetTissues();scene.refresh();renderPanel();}
+  };
   bindInteraction($("orientation"), scene, { widget: true });
   setupCube();
   window.addEventListener("keydown", (e) => {
@@ -127,7 +225,27 @@ function initialize() {
       e.key !== "Escape"
     )
       return;
-    if (e.key === "ArrowLeft") scene.orbit(-12, 0);
+    if (state.mode==="peel" && state.dissection.active && ["1","2","3"].includes(e.key)) {
+      cancelGrab();state.dissection.tool={1:"probe",2:"lift",3:"retract"}[e.key];renderPanel();e.preventDefault();return;
+    }
+    if (state.presenting && e.key === "Escape") {
+      state.presenting = false;
+      sync();
+      scene.resize();
+    } else if (
+      state.presenting &&
+      state.mode === "learn" &&
+      e.key === "PageDown"
+    ) {
+      if (LESSON[state.lesson].quiz) setMode("quiz");
+      else lessonStep(state.lesson + 1);
+    } else if (
+      state.presenting &&
+      state.mode === "learn" &&
+      e.key === "PageUp"
+    ) {
+      lessonStep(state.lesson - 1);
+    } else if (e.key === "ArrowLeft") scene.orbit(-12, 0);
     else if (e.key === "ArrowRight") scene.orbit(12, 0);
     else if (e.key === "ArrowUp") scene.orbit(0, 12);
     else if (e.key === "ArrowDown") scene.orbit(0, -12);
@@ -137,6 +255,8 @@ function initialize() {
       scene.focus(state.selected);
     else if (e.key.toLowerCase() === "r") reset();
     else if (e.key === "Escape") {
+      detailsOpen=false;
+      cancelGrab();
       state.selected = null;
       state.isolated = false;
       scene.hover(null);
@@ -146,6 +266,7 @@ function initialize() {
     } else return;
     e.preventDefault();
   });
+  if (!scene.atlasError && new URLSearchParams(location.search).get("specimen") !== "legacy") setMode("peel");
   sync();
   renderPanel();
   // Read-only inspection surface plus explicit actions used by visual and interaction regression tests.
@@ -160,13 +281,24 @@ function initialize() {
       sync();
     },
     metrics: () => scene.metrics(),
+    inputState: () => specimenInput.state,
+    anatomicalDefinitions: () => [...scene.parts.values()].map(p=>anatomicalDefinition(p,CURRICULUM)),
     ready: true,
   };
   performance.mark("shoulder-interactive");
+  if(!scene.atlasError) {
+    const ids=Object.keys(MUSCLE_DEFINITIONS);
+    const prepare=()=>{const id=ids.shift();if(!id)return;scene.prepareTissue(id);if(ids.length)setTimeout(prepare,80);};
+    if(window.requestIdleCallback)requestIdleCallback(prepare,{timeout:1500});else setTimeout(prepare,100);
+  }
 }
 function setMode(mode) {
+  cancelGrab();
+  scene.resetTissues();
   if (!["explore", "peel", "learn", "quiz"].includes(mode)) return;
   state.mode = mode;
+  state.dissection = createState().dissection;
+  state.study = null;
   state.selected = null;
   state.isolated = false;
   reassemble(state);
@@ -175,27 +307,26 @@ function setMode(mode) {
   $("feedback").textContent = "";
   if (mode === "learn") lessonStep(state.lesson);
   else if (mode === "quiz") {
-    state.quiz = {
-      index: 0,
-      score: 0,
-      answered: false,
-      retried: false,
-      previous: null,
-    };
+    state.quiz = createState().quiz;
     scene.applyView(question(state).view);
   } else if (mode === "peel") {
     state.peel = 0;
-    scene.applyView("posterior");
+    state.dissection.active = !scene.atlasError;
+    scene.applyView(state.dissection.active ? "atlas_capsule" : "posterior", false);
+    if(state.dissection.active){state.dissection.tool="lift";scene.orient(-2.85,.17);scene.target.set(.24,-.28,-.28);scene.distance=3.5*Math.max(1,.9/scene.camera.aspect);}
   } else scene.applyView("posterior");
   scene.refresh();
   sync();
+  scene.resize();
   renderPanel();
 }
 function reset() {
+  detailsOpen=false;
+  cancelGrab(); scene.resetTissues();
   const mode = state.mode;
   Object.assign(state, createState());
   state.mode = mode;
-  if (mode === "peel") state.peel = 0;
+  if (mode === "peel") { setMode("peel"); return; }
   if (mode === "learn") state.lesson = 0;
   scene.hover(null);
   scene.applyView(mode === "learn" ? "joint" : "posterior");
@@ -203,7 +334,58 @@ function reset() {
   sync();
   renderPanel();
 }
+function openAtlas(view) {
+  cancelGrab(); scene.resetTissues();
+  if (!ATLAS_VIEWS[view] || scene.atlasError) return;
+  state.mode = "explore";
+  state.dissection.active = false;
+  state.presenting = false;
+  state.study = null;
+  state.selected = null;
+  state.isolated = false;
+  reassemble(state);
+  scene.hover(null);
+  scene.applyView(view);
+  renderPanel();
+  document.querySelector(".inspector").scrollTop = 0;
+}
+function atlasNavigation() {
+  if (scene.atlasError) return '<p class="integrity" role="status">The additional joint study could not load. The cuff study remains available. Reload to retry.</p>';
+  return `<nav class="atlas-studies" aria-label="Inside the shoulder"><p class="kicker">INSIDE THE SHOULDER</p>${Object.entries(ATLAS_VIEWS).map(([id,v]) => `<button data-atlas-view="${id}" aria-pressed="${state.view === id}">${v.title}</button>`).join("")}</nav>`;
+}
 function select(id) {
+  if (id && state.mode === "peel" && state.dissection.active) {
+    if(!dissectionIds(state).includes(id)) {
+      if(ATLAS_IDS.includes(id))openAtlas(atlasViewFor(id));else setMode("explore");
+      select(id);return;
+    }
+    const owner=deformationOwner(id)||id;
+    if (["lift","retract"].includes(state.dissection.tool) && state.dissection.removed.includes(owner)) {
+      state.dissection.undo.push([...state.dissection.removed]);
+      state.dissection.removed = state.dissection.removed.filter(part => part !== owner);
+      state.selected = null;
+      $("feedback").textContent = `${name(id)} returned to its original position.`;
+      scene.refresh(); renderPanel(); return;
+    }
+    if (state.dissection.tool === "lift") {
+      const owner=deformationOwner(id)||id, def=MUSCLE_DEFINITIONS[owner];
+      if(def) {
+        const mesh=scene.meshes.get(id),point=mesh.geometry.boundingBox.getCenter(new THREE.Vector3()).applyMatrix4(mesh.matrixWorld);
+        if(scene.beginTissuePull(owner,point)){scene.moveTissuePull(0,-90);scene.pull.runtime.solver.advance(1/30);scene.pull.runtime.update();scene.finishTissuePull(false);state.selected=id;$("feedback").textContent=`${name(id)}: illustrative elastic pull, then recovery.`;scene.invalidate();}
+      } else {state.selected=id;$("feedback").textContent="Probe this structure; elastic attachments are unavailable.";}
+      renderPanel();return;
+    }
+    if(state.dissection.tool==="retract" && MUSCLE_DEFINITIONS[id]) {
+      const mesh=scene.meshes.get(id),point=mesh.geometry.boundingBox.getCenter(new THREE.Vector3()).applyMatrix4(mesh.matrixWorld);
+      if(scene.beginTissuePull(id,point)){scene.moveTissuePull(0,-110);scene.pull.runtime.solver.advance(1/30);scene.pull.runtime.update();scene.finishTissuePull(true);}
+    }
+    const changed = dissect(state, id);
+    $("feedback").textContent = changed
+      ? state.dissection.tool === "lift" ? `${name(id)} retracted beside the specimen.`
+        : id === DISSECTION[state.dissection.step].target ? `Found it: ${name(id)}. Observation recorded.` : `${name(id)}. Keep exploring the target relationship.`
+      : "This structure stays as bone context. Lift a soft-tissue structure instead.";
+    scene.refresh(); renderPanel(); return;
+  }
   if (!id) {
     state.selected = null;
     state.isolated = false;
@@ -223,34 +405,70 @@ function select(id) {
     renderPanel();
     return;
   }
+  if (ATLAS_IDS.includes(id)) {
+    if (scene.atlasError) return;
+    const preset = PRESETS[state.view];
+    if (state.mode !== "explore" || !ATLAS_VIEWS[state.view] || ![...preset.visible, ...preset.ghost].includes(id))
+      openAtlas(atlasViewFor(id));
+  } else if (ATLAS_VIEWS[state.view]) scene.applyView(id === "FJ1504" ? "anterior" : "posterior");
   state.selected = id;
   scene.refresh();
   renderPanel();
 }
 function sync() {
+  const discovery=state.mode==="peel"&&state.dissection.active;
+  document.body.dataset.discovery=String(discovery);
+  document.body.dataset.details=String(detailsOpen);
+  $("details-toggle").hidden=!discovery;
+  $("details-toggle").setAttribute("aria-expanded",String(detailsOpen));
+  $("tool-dock").hidden=!discovery;
+  if(!discovery || detailsOpen)$("tool-message").hidden=true;
+  for(const button of $("tool-dock").querySelectorAll('[data-live-tool]'))button.setAttribute('aria-pressed',String(button.dataset.liveTool===state.dissection.tool));
+  $("active-name").textContent=state.selected?name(state.selected):"Touch a muscle to explore";
   document.body.dataset.mode = state.mode;
+  document.body.dataset.presenting = String(state.presenting);
+  $("present").setAttribute("aria-pressed", String(state.presenting));
+  $("present").setAttribute(
+    "aria-label",
+    state.presenting ? "Exit presentation" : "Start guided presentation",
+  );
+  $("present").innerHTML = state.presenting
+    ? "× <span>Exit presentation</span>"
+    : "▶ <span>Present</span>";
   document
     .querySelectorAll("#mode-controls [data-mode]")
     .forEach((b) =>
       b.setAttribute("aria-pressed", String(state.mode === b.dataset.mode)),
     );
   $("view-select").value = state.view;
-  $("view-purpose").textContent = PRESETS[state.view].purpose;
+  document.querySelector(".view-caption h1").textContent = ATLAS_VIEWS[state.view] ? "Inside the joint." : "Rotator cuff.";
+  document.querySelector(".inspector-top .lede").textContent = ATLAS_VIEWS[state.view] ? "Explore the deeper shoulder." : "Understand the cuff from every side.";
+  $("structures-toggle").querySelector("span").textContent = scene.parts.size;
+  $("source-summary").textContent = ATLAS_VIEWS[state.view] ? "Z-Anatomy · source-aligned joint study" : "BodyParts3D · Release 4.0";
+  $("view-purpose").textContent = state.mode === "peel" && state.dissection.active ? `${state.dissection.tool === "probe" ? "◎ Probe" : "↗ Forceps"} · ${DISSECTION[state.dissection.step].title}` :
+    state.mode === "learn" && state.study
+      ? FUNCTION_STUDIES[state.study].title
+      : PRESETS[state.view].purpose;
   $("crop-note").textContent =
-    state.view === "vascular"
+    ATLAS_VIEWS[state.view]
+      ? "Z-Anatomy specimen · source relationships preserved"
+      : state.view === "vascular"
       ? "Regional vessels · incomplete source coverage"
       : "Proximal view · distal shaft cropped";
   $("atlas-toggle").setAttribute("aria-pressed", String(state.atlas));
   $("atlas-toggle").disabled = state.mode === "quiz";
+  document.querySelector(".gesture-help").textContent = state.presenting
+    ? "Page Up / Down · Tour chapters    Esc · Exit presentation"
+    : "Drag to orbit · Two-finger scroll to pan · Pinch to zoom";
   $("structures-toggle").hidden = state.mode === "quiz";
   if (state.mode === "quiz") $("structure-list").hidden = true;
   scene.invalidate();
 }
 function detail(id) {
-  const c = CURRICULUM[id],
+  const c = CURRICULUM[MUSCLE_DEFINITIONS[id]?.curriculum || id],
     p = scene.parts.get(id);
   if (!p) return "";
-  return `<p class="kicker">SELECTED STRUCTURE · ${p.id}</p><h2>${escape(name(id))}</h2><p class="integrity">SOURCE GEOMETRY · ${escape(p.fma)}<br>${p.faceCount.toLocaleString()} source faces · BodyParts3D 4.0</p><div class="action-row"><button data-action="focus">Focus <small>F</small></button><button data-action="isolate" aria-pressed="${state.isolated}">Isolate</button><button data-action="clear">Clear</button></div>${
+  return `<p class="kicker">SELECTED STRUCTURE · ${p.id}</p><h2>${escape(name(id))}</h2><p class="integrity">SOURCE GEOMETRY · ${escape(p.fma || p.sourceObject)}<br>${p.triangleCount.toLocaleString()} triangles · ${escape(p.source)}</p><div class="action-row"><button data-action="focus">Focus <small>F</small></button><button data-action="isolate" aria-pressed="${state.isolated}">Isolate</button><button data-action="clear">Clear</button></div>${
     c
       ? `<p class="kicker">CURRICULUM TEXT</p><dl>${[
           ["Origin", c.origin],
@@ -263,17 +481,32 @@ function detail(id) {
           .map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`)
           .join(
             "",
-          )}</dl><p class="integrity">The muscle surface is sourced. Separate tendon and insertion-footprint geometry are not provided. No fiber-direction data is available.</p><button data-action="sources">Curriculum sources ↗</button>`
-      : `<p>${p.layer === "arteries" || p.layer === "veins" ? "A supplied segment of an incomplete regional vascular tree. No connecting vessels have been invented." : "Inspect this source structure in its anatomical context."}</p>`
+          )}</dl><p class="integrity">The muscle surface is sourced. ${MUSCLE_DEFINITIONS[id] ? "Insertion annotations are source-authored regions, not measured footprints. Only infraspinatus has a source-classified tendon region." : "Separate tendon and insertion-footprint geometry are not provided."} No fiber-direction data is available.</p><button data-action="sources">Curriculum sources ↗</button>`
+      : p.note ? `<p>${escape(p.note)}</p><p class="integrity">${escape(p.reviewStatus)}</p><a href="./assets/atlas/provenance.json" target="_blank" rel="noreferrer">Source identity and processing ↗</a>` : `<p>${p.layer === "arteries" || p.layer === "veins" ? "A supplied segment of an incomplete regional vascular tree. No connecting vessels have been invented." : "Inspect this source structure in its anatomical context."}</p>`
   }`;
 }
 function renderPanel() {
+  const discovery=state.mode==="peel"&&state.dissection.active;
+  const openDisclosures=discovery?[...$("context").querySelectorAll('details[open]')].map(node=>node.querySelector('summary')?.textContent.split(' ·')[0]):[];
+  const focusedControl=discovery && $("context").contains(document.activeElement)?document.activeElement:null;
+  const focusedKey=focusedControl?["select","restore","tool","station"].find(key=>focusedControl.dataset[key]!==undefined):null;
+  const focusedValue=focusedKey?focusedControl.dataset[focusedKey]:null;
+  const focusedAction = $("context").contains(document.activeElement)
+    ? document.activeElement?.dataset.action
+    : null;
   sync();
   let html = "";
   if (state.mode === "explore")
     html = state.selected
       ? detail(state.selected)
-      : `<span class="number">04</span><h2>Muscles that hold<br>the joint together.</h2><p>Turn the specimen. Follow a muscle from the scapula toward the humerus. Select one to look closer.</p><ul class="muscle-list">${SITS.map((id, i) => `<li><button data-select="${id}"><span class="dot" style="--swatch:${CUFF_COLORS[id]}"></span>${name(id)}<span class="index">0${i + 1}</span></button></li>`).join("")}</ul><p class="integrity">An atlas of the available source surfaces. Tendons, cartilage and insertion footprints are not separately modeled.</p>`;
+      : `<span class="number">04</span><h2>Muscles that hold<br>the joint together.</h2><p>Turn the specimen. Follow a muscle from the scapula toward the humerus. Select one to look closer.</p><ul class="muscle-list">${SITS.map((id, i) => `<li><button data-select="${id}"><span class="dot" style="--swatch:${CUFF_COLORS[id]}"></span>${name(id)}<span class="index">0${i + 1}</span></button></li>`).join("")}</ul><p class="integrity">The cuff lesson uses the original BodyParts3D specimen. Explore the additional source-matched joint study below for deeper anatomy.</p>`;
+  if (state.mode === "explore") {
+    if (ATLAS_VIEWS[state.view] && !state.selected) {
+      const view = ATLAS_VIEWS[state.view];
+      html = `<p class="kicker">SOURCE ANATOMY · Z-ANATOMY</p><h2>${view.title}</h2><p>${view.text}</p><ul class="muscle-list">${ATLAS_GROUPS[view.group].map(id => `<li><button data-select="${id}">${escape(name(id))}</button></li>`).join("")}</ul><p class="integrity">These structures retain their matching source bones and positions. Ghosted context helps expose deeper surfaces. No cross-specimen fitting or anatomical deformation was applied.</p>`;
+    }
+    html += atlasNavigation();
+  }
   if (state.mode === "peel") {
     const titles = [
       "Surface context",
@@ -284,17 +517,91 @@ function renderPanel() {
     ];
     html = `<p class="kicker">PEEL · STAGE ${state.peel + 1} OF 5</p><h2>${titles[state.peel]}</h2><label class="field-label" for="peel-range">EXPOSURE DEPTH</label><input id="peel-range" aria-label="Anatomy exposure stage" type="range" min="0" max="4" step="1" value="${state.peel}"><p class="peel-stages">${state.peel < 2 ? "Move the slider to ghost, then remove the three supplied deltoid parts." : state.peel === 4 ? "Context is ghosted around your selected cuff muscle. The model does not map a separate tendon footprint." : "Select a cuff muscle and use Separate, or drag it deliberately to the staging area. Its source shape stays unchanged."}</p><select id="peel-muscle" aria-label="Cuff muscle to separate">${SITS.map((id) => `<option value="${id}" ${id === state.selected ? "selected" : ""}>${name(id)}</option>`).join("")}</select><div class="action-row"><button data-action="separate" ${state.peel < 2 ? "disabled" : ""}>Separate</button><button data-action="undo" ${!state.undo.length ? "disabled" : ""}>Undo</button></div><button data-action="reassemble" ${!state.staged.length ? "disabled" : ""}>Reassemble all</button><div class="stage-list">${state.staged.map((id) => `<button data-return="${id}">↶ Return ${name(id)}</button>`).join("")}</div><p class="integrity">Staging moves whole source meshes for study. It does not simulate cutting, tissue deformation, or surgical planes.</p>`;
   }
+  if (state.mode === "peel" && state.dissection.active) html = dissectionPanel();
+  else if (state.mode === "peel" && !scene.atlasError) html = '<button data-action="deep-lab">Open deep dissection lab →</button>' + html;
   if (state.mode === "learn") {
-    const s = LESSON[state.lesson];
-    html = `<p class="kicker">GUIDED LESSON · ${state.lesson + 1} / ${LESSON.length}</p><h2>${s.title}</h2><p>${s.text}</p><div class="steps"><span style="width:${((state.lesson + 1) / LESSON.length) * 100}%"></span></div><div class="lesson-nav"><button data-action="previous" ${state.lesson === 0 ? "disabled" : ""}>← Back</button><button class="primary" data-action="next">${s.quiz ? "Start quiz" : "Continue →"}</button></div>${state.selected ? `<details><summary>Structure notes · ${name(state.selected)}</summary>${detail(state.selected)}</details>` : ""}`;
+    const step = LESSON[state.lesson],
+      study = FUNCTION_STUDIES[state.study];
+    const tabs = `<div class="study-tabs" role="group" aria-label="Learning pathway"><button data-study="tour" aria-pressed="${!study}">Spatial tour</button>${Object.entries(
+      FUNCTION_STUDIES,
+    )
+      .map(
+        ([id, f]) =>
+          `<button data-study="${id}" aria-pressed="${id === state.study}">${f.label}</button>`,
+      )
+      .join("")}</div>`;
+    html =
+      tabs +
+      (study
+        ? `<p class="kicker">FUNCTION STUDY · CURRICULUM</p><h2>${study.title}</h2><p>${study.text}</p><div class="observation"><span class="edition">TRY IT IN 3D</span><p>${study.task}</p></div><ul class="muscle-list">${study.ids.map((id) => `<li><button data-select="${id}"><span class="dot" style="--swatch:${CUFF_COLORS[id]}"></span>${name(id)}</button></li>`).join("")}</ul><p class="integrity">${study.boundary}</p><button data-action="sources">Read curriculum sources ↗</button>`
+        : `<p class="kicker">SPATIAL TOUR · ${state.lesson + 1} / ${LESSON.length}</p><h2>${step.title}</h2><p>${step.text}</p><div class="steps"><span style="width:${((state.lesson + 1) / LESSON.length) * 100}%"></span></div><div class="lesson-nav"><button data-action="previous" ${state.lesson === 0 ? "disabled" : ""}>← Back</button><button class="primary" data-action="next">${step.quiz ? "Start quiz" : "Continue →"}</button></div><nav class="chapter-list" aria-label="Lesson chapters">${LESSON.map((chapter, i) => `<button data-chapter="${i}" ${i === state.lesson ? 'aria-current="step"' : ""}><span>${String(i + 1).padStart(2, "0")}</span>${chapter.title}</button>`).join("")}</nav>`);
+    html += state.selected
+      ? `<details><summary>Structure notes · ${name(state.selected)}</summary>${detail(state.selected)}</details>`
+      : "";
   }
   if (state.mode === "quiz") {
-    const q = question(state);
-    html = `<p class="kicker">ACTIVE RECALL · ${q.level}</p><h2>${q.prompt}</h2><p>Select the structure on the specimen. Orbit to inspect it from another angle.</p><p><span class="quiz-score">${state.quiz.score}</span> <small>first-attempt points / ${state.quiz.index + 1} questions</small></p><button class="primary" data-action="quiz-next" ${!state.quiz.answered ? "disabled" : ""}>Next question →</button><details><summary>Keyboard answer controls</summary><p>Choose the structure you would select in the model.</p>${SITS.map((id) => `<button data-select="${id}">${name(id)}</button>`).join("")}</details><p class="integrity">Retries explain the anatomy but do not add points. Questions progress from names to spatial relationships.</p>`;
+    if (quizComplete(state)) {
+      html = `<p class="kicker">SESSION REVIEW · 12 QUESTIONS</p><h2>What can you find now?</h2><p><span class="quiz-score">${state.quiz.score}</span> / ${QUIZ_LENGTH} correct on the first attempt</p><div class="score-breakdown">${quizSummary(
+        state,
+      )
+        .map(
+          (r) =>
+            `<p><span>${r.level}</span><strong>${r.correct} / ${r.total}</strong></p>`,
+        )
+        .join(
+          "",
+        )}</div><h3>Revisit the anatomy</h3><p>Choose a structure to review its position and function.</p><ul class="muscle-list">${SITS.map((id) => `<li><button data-review="${id}">${name(id)}<small>${state.quiz.history.filter((r) => r.id === id && r.firstAttempt).length}/3 first try</small></button></li>`).join("")}</ul><button class="primary" data-action="quiz-restart">Practice again</button><p class="integrity">A practice-session result, not a validated measure of clinical competence. Results stay in this tab and reset when you reload.</p>`;
+    } else {
+      const q = question(state);
+      html = `<p class="kicker">ACTIVE RECALL · ${q.level} · ${state.quiz.index + 1} / ${QUIZ_LENGTH}</p><h2>${q.prompt}</h2><p>Select the structure on the specimen. Orbit to inspect it from another angle.</p><div class="steps"><span style="width:${(state.quiz.index / QUIZ_LENGTH) * 100}%"></span></div><p><span class="quiz-score">${state.quiz.score}</span> <small>first-attempt points</small></p><button class="primary" data-action="quiz-next" ${!state.quiz.answered ? "disabled" : ""}>${state.quiz.index === QUIZ_LENGTH - 1 ? "Review session →" : "Next question →"}</button><details><summary>Keyboard answer controls</summary><p>Choose the structure you would select in the model.</p>${SITS.map((id) => `<button data-select="${id}">${name(id)}</button>`).join("")}</details><p class="integrity">Names → spatial relationships → function. Later rounds start from the same lateral view: rotate to find the answer. Retries support practice without adding points.</p>`;
+    }
   }
+  if(state.mode==="peel"&&state.dissection.active&&state.selected) html += `<details class="structure-inquiry"><summary>Structure details · ${escape(name(state.selected))}</summary>${detail(state.selected)}</details>`;
   $("context").innerHTML = html;
+  if(discovery)for(const node of $("context").querySelectorAll('details'))if(openDisclosures.includes(node.querySelector('summary')?.textContent.split(' ·')[0]))node.open=true;
+  if(focusedKey) {
+    const next=$("context").querySelector(`[data-${focusedKey}="${CSS.escape(focusedValue)}"]`);
+    if(next)next.focus({preventScroll:true});
+    else {const heading=$("context").querySelector('h2');if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true});}}
+  }
+  if (focusedAction) {
+    const next = $("context").querySelector(
+      `[data-action="${focusedAction}"]:not(:disabled)`,
+    );
+    if (next) next.focus({ preventScroll: true });
+    else {
+      const heading = $("context").querySelector("h2");
+      heading.tabIndex = -1;
+      heading.focus({ preventScroll: true });
+    }
+  }
+}
+function dissectionPanel() {
+  const d = state.dissection, station = DISSECTION[d.step];
+  const available = dissectionIds(state).filter(id => !d.removed.includes(id));
+  return `<p class="kicker">DISSECTION LAB · ${d.found.length} / ${DISSECTION.length} OBSERVATIONS</p>
+    <h2>${station.title}</h2><p>${station.task}</p>
+    <div class="steps" role="progressbar" aria-label="Dissection observations" aria-valuemin="0" aria-valuemax="5" aria-valuenow="${d.found.length}"><span style="width:${d.found.length / DISSECTION.length * 100}%"></span></div>
+    ${d.found.length === DISSECTION.length ? '<p class="observation">All five targets found. Reassemble the specimen and explore how their positions relate. Use Reset for a fresh session.</p>' : ''}
+    <nav class="study-tabs" aria-label="Dissection stations">${DISSECTION.map((step,i) => `<button data-station="${i}" aria-current="${i === d.step ? 'step' : 'false'}">${d.found.includes(i) ? '✓' : i+1} · ${step.title}</button>`).join('')}</nav>
+    <div class="study-tabs" role="group" aria-label="Dissection tools"><button data-tool="probe" aria-pressed="${d.tool === 'probe'}">◎ Probe · identify</button><button data-tool="lift" aria-pressed="${d.tool === 'lift'}">⌁ Forceps · elastic pull</button><button data-tool="retract" aria-pressed="${d.tool === 'retract'}">↗ Retractor · hold exposure</button></div>
+    <p class="integrity"> ${d.tool === 'probe' ? 'Click to identify. Drag to orbit.' : d.tool === 'lift' ? 'Grab a cuff muscle and pull. Release for elastic recovery. Drag empty space to orbit.' : 'Pull to hold an exposure. Tap a held piece to restore. Drag empty space to orbit.'} Bones remain as ghosted context.</p>
+    ${d.removed.some(id => dissectionIds(state).includes(id)) ? `<div class="observation"><span class="edition">WHAT DID YOU UNCOVER?</span><p>${[
+      "Compare the exposed cuff surfaces with the lifted bursa. Return the piece, then pull it away again to see what it obscures.",
+      "Switch to Probe and find the infraspinatus tendon region. Compare its location with the separate insertion annotations.",
+      "Orbit through the opening you created. Use Probe to distinguish the labrum, cartilage surfaces and ligament structures; restore the capsule to compare.",
+      "Inspect the joint rim from a second angle. Return one lifted structure at a time and observe which surfaces it covers.",
+      "Switch to Probe and trace the supplied axillary nerve. Return the vessels one at a time to compare their spatial relationships."
+    ][d.step]}</p><button data-tool="probe">Probe what is exposed →</button></div>` : ''}
+    <div class="action-row"><button data-action="lab-undo" ${!d.undo.length ? 'disabled' : ''}>Undo lift</button><button data-action="lab-restore" ${!d.removed.length ? 'disabled' : ''}>Restore all</button></div>
+    ${state.selected ? `<div class="observation"><strong>${escape(name(state.selected))}</strong><button data-action="focus">Focus structure</button><button data-action="sources">Source & provenance</button></div>` : ''}
+    <details><summary>Accessible structure controls · ${available.length}</summary><div class="stage-list">${available.map(id => `<button data-select="${id}">${escape(name(id))}</button>`).join('')}</div></details>
+    <details ${d.removed.length ? 'open' : ''}><summary>Retracted tissue · ${d.removed.length}</summary><p>Pieces remain visible beside the specimen. Return any piece to its original position.</p><div class="stage-list">${d.removed.map(id => `<button data-restore="${id}">↶ ${escape(name(id))}</button>`).join('')}</div></details>
+    <p class="integrity">Five teaching exposures in one source-matched specimen. Cuff muscles use illustrative elastic surfaces; other structures use whole-mesh exposures. Neither represents a validated surgical approach. Insertion regions are source annotations.</p>
+    <button data-action="surface-lab">Switch to deltoid & cuff specimen</button>`;
 }
 function lessonStep(n) {
+  state.study = null;
   state.lesson = Math.max(0, Math.min(LESSON.length - 1, n));
   const s = LESSON[state.lesson];
   state.selected = s.id || null;
@@ -304,6 +611,61 @@ function lessonStep(n) {
   renderPanel();
 }
 function contextClick(e) {
+  if(e.target.closest("button"))cancelGrab();
+  const station = e.target.closest("[data-station]"), tool = e.target.closest("[data-tool]"), restore = e.target.closest("[data-restore]");
+  const labAction = e.target.closest("[data-action]")?.dataset.action;
+  if (station || tool || restore || ["lab-undo", "lab-restore", "surface-lab", "deep-lab"].includes(labAction)) {
+    const d = state.dissection;
+    if (station) { d.step = Number(station.dataset.station); state.selected = null; scene.applyView(d.step === 4 ? "atlas_neurovascular" : "atlas_capsule"); }
+    if (tool) d.tool = tool.dataset.tool;
+    if (restore || labAction === "lab-restore") { d.undo.push([...d.removed]); d.removed = restore ? d.removed.filter(id => id !== restore.dataset.restore) : []; }
+    if (labAction === "lab-undo" && d.undo.length) { d.removed = d.undo.pop(); state.selected = null; }
+    if (labAction === "deep-lab") { setMode("peel"); return; }
+    if (labAction === "surface-lab") { scene.resetTissues(); d.active = false; state.selected = null; state.peel = 0; scene.applyView("posterior"); }
+    scene.refresh(); renderPanel();
+    if (station) $("context").querySelector(`[data-station="${d.step}"]`)?.focus({preventScroll:true});
+    if (tool) $("context").querySelector(`[data-tool="${d.tool}"]`)?.focus({preventScroll:true});
+    return;
+  }
+  const atlasButton = e.target.closest("[data-atlas-view]");
+  if (atlasButton) {
+    openAtlas(atlasButton.dataset.atlasView);
+    $("context").querySelector(`[data-atlas-view="${state.view}"]`)?.focus({preventScroll:true});
+    return;
+  }
+  const studyButton = e.target.closest("[data-study]");
+  if (studyButton) {
+    const id = studyButton.dataset.study;
+    if (id === "tour") lessonStep(state.lesson);
+    else if (FUNCTION_STUDIES[id]) {
+      state.study = id;
+      state.selected = null;
+      state.isolated = false;
+      scene.applyView(FUNCTION_STUDIES[id].view);
+      scene.refresh();
+      renderPanel();
+    }
+    $("context")
+      .querySelector(`[data-study="${id}"]`)
+      ?.focus({ preventScroll: true });
+    return;
+  }
+  const chapter = e.target.closest("[data-chapter]");
+  if (chapter) {
+    lessonStep(Number(chapter.dataset.chapter));
+    $("context")
+      .querySelector(`[data-chapter="${state.lesson}"]`)
+      ?.focus({ preventScroll: true });
+    return;
+  }
+  const review = e.target.closest("[data-review]");
+  if (review) {
+    setMode("explore");
+    if (review.dataset.review === "FJ1504") scene.applyView("anterior");
+    select(review.dataset.review);
+    return;
+  }
+
   const selectButton = e.target.closest("[data-select]");
   if (selectButton) {
     const id = selectButton.dataset.select;
@@ -352,23 +714,30 @@ function contextClick(e) {
   }
   if (action === "quiz-next" && nextQuestion(state)) {
     state.selected = null;
-    scene.applyView(question(state).view);
+    if (!quizComplete(state)) scene.applyView(question(state).view);
     $("feedback").textContent = "";
     renderPanel();
   }
+  if (action === "quiz-restart") setMode("quiz");
   if (action === "sources") openInformation();
 }
 let labelSignature = "";
 function updateOverlays() {
   if (!scene?.ready) return;
   updateCube();
+  if(scene.pull?.elastic) {
+    const s=scene.pull.runtime.solver,point=new THREE.Vector3().fromArray(s.x,s.grabbed*3).project(scene.camera),contact=$("contact-point");
+    contact.hidden=false;contact.style.left=((point.x*.5+.5)*scene.canvas.clientWidth)+"px";contact.style.top=((-point.y*.5+.5)*scene.canvas.clientHeight)+"px";
+  }
   const ids =
     state.atlas && state.mode !== "quiz"
       ? state.staged.length
         ? state.staged
         : state.selected
           ? [state.selected]
-          : PRESETS[state.view].labels
+          : state.mode === "learn" && state.study
+            ? FUNCTION_STUDIES[state.study].ids
+            : state.dissection.active && state.mode === "peel" ? [] : PRESETS[state.view].labels
       : [];
   const signature = ids.join() + ":" + state.selected;
   if (signature !== labelSignature) {
@@ -487,7 +856,11 @@ function setupCube() {
     }
   });
 }
+let cubeSignature = "";
 function updateCube() {
+  const signature=scene.camera.quaternion.toArray().map(n=>n.toFixed(5)).join();
+  if(signature===cubeSignature)return;
+  cubeSignature=signature;
   if (!$("cube-faces").children.length) return;
   const inv = scene.camera.quaternion.clone().invert();
   const project = (v) => {
@@ -536,7 +909,7 @@ function updateCube() {
 function openInformation() {
   const metrics = scene.metrics();
   $("information-body").innerHTML =
-    `<p>Twenty source structures form this right-shoulder study. BodyParts3D, © The Database Center for Life Science licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC Attribution 4.0 International</a>.</p><h3>What you are seeing</h3><p>Source polygon surfaces, transformed into an upright coordinate system. Restrained tissue colors and studio lighting help distinguish forms. They are illustrative rendering choices, not measured tissue reflectance or muscle-fiber direction.</p><p>The distal humeral shaft is visually clipped in cuff views to concentrate on the proximal joint. The full source humerus remains available in Regional vessels. Staging separates intact meshes; it does not model tissue mechanics.</p><h3>What is not represented</h3><p>Separate cuff tendons, insertion footprints, labrum, capsule, bursae, cartilage, ligaments and shoulder nerves are not supplied. The vascular tree is incomplete. Small cuff meshes cannot support fine musculotendinous detail. No missing structures have been invented.</p><h3>Curriculum and sources</h3><p>Origin, insertion, action, innervation and clinical notes are curriculum text, not observations extracted from the meshes. This educational reconstruction has not had an independent clinician review.</p><ul>${SOURCES.map((s) => `<li><a href="${s.url}" target="_blank" rel="noreferrer">${s.title}</a></li>`).join("")}</ul><h3>Controls</h3><p>Drag to orbit. Click to select; double-click or F to focus. Two-finger scrolling pans. Pinch zooms. Line-mode mouse wheel or Shift+wheel zooms toward the pointer. Shift/right drag pans. On touch screens, two fingers pan and pinch. Arrow keys orbit; +/− zoom; R resets; Escape clears selection. The orientation cube can be dragged independently of the anatomy.</p><h3>Canonical orientation</h3><div class="action-row">${cubeFaces.map((f, i) => `<button data-info-face="${i}">${f.letter} · ${f.name}</button>`).join("")}</div><h3>Secondary tools</h3><div class="action-row"><button id="section-toggle" aria-pressed="${state.section}">Sagittal section</button><button id="quality-toggle">${scene.renderer.getPixelRatio() > 1 ? "Use 1× DPR" : "Use device DPR"}</button></div><p>Sectioning is an uncapped viewing cut, not a segmented internal anatomical surface. Optional LOD1/LOD2 reduce only scapular context; all cuff topology is preserved. LOD0 is the default.</p><h3>Geometry provenance</h3><a href="./assets/provenance.json" target="_blank">Complete machine-readable provenance ↗</a><details><summary>All 20 structures</summary>${[...scene.parts.values()].map((p) => `<div class="provenance-row"><strong>${escape(p.name)}</strong><br>${p.id} · ${p.fma} · ${p.vertexCount.toLocaleString()} source vertices · ${p.faceCount.toLocaleString()} faces<br>UV: ${p.hasUV ? "yes" : "no"} · Source normals: ${p.hasNormals ? "yes" : "no"} · Textures: ${p.textures.length}<br>${escape(p.reviewStatus)}</div>`).join("")}</details><details><summary>Renderer diagnostics</summary><pre>${escape(JSON.stringify(metrics, null, 2))}</pre></details>`;
+    `<p>The cuff lesson contains twenty original source structures. BodyParts3D, © The Database Center for Life Science licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC Attribution 4.0 International</a>.</p><p>The additional joint study contains ${scene.atlasProvenance?.structures.length || 0} source-derived parts from Z-Anatomy, under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a>. Attribution: BodyParts3D — The Database Center for Life Science — CC BY-SA 2.1 Japan; Z-Anatomy — The libre 3D atlas of anatomy — CC BY-SA 4.0. <a href="./assets/atlas/LICENSE.txt" target="_blank">Full attribution and derivative license</a>.</p><h3>What you are seeing</h3><p>Source polygon surfaces, transformed into an upright coordinate system. Illustrative tissue colors and a camera-relative studio light rig help distinguish forms. The original cuff GLB uses Blender-derived cuff shading normals shared across coincident source positions; every triangle and vertex position is preserved. They are illustrative rendering choices, not measured tissue reflectance or muscle-fiber direction.</p><p>The distal humeral shaft is visually clipped in cuff views to concentrate on the proximal joint. The full source humerus remains available in Regional vessels. Legacy staging separates intact meshes. The atlas cuff additionally supports illustrative elastic surface deformation.</p><h3>Illustrative mechanics</h3><p>${MECHANICS_NOTICE}</p><p>Fixed-step XPBD uses source surface edges, opposite-edge bending distances, closed-surface volume correction and local bone-facing contact planes. Contact guards are local approximations; self-collision and surgical planes are not simulated. Source-classified infraspinatus tendon and muscle share seam particles. The derived longitudinal axis is not a fiber map. Source-classified tendon edges use 0.15× muscle compliance as an illustrative distinction, not measured tendon stiffness.</p><p><a href="https://mmacklin.com/xpbd.pdf" target="_blank" rel="noreferrer">XPBD · Macklin, Müller & Chentanez (2016)</a></p><div class="action-row"><button id="sound-toggle" aria-pressed="${soundEnabled}">Sound ${soundEnabled?'on':'off'}</button><button id="haptics-toggle" aria-pressed="${hapticsEnabled}">Vibration ${hapticsEnabled?'on':'off'}</button></div><p>Sound and vibration are optional and off initially; device support varies. Visual feedback works without either.</p><h3>Additional anatomy and remaining limits</h3><p>The joint study adds source-authored labrum, capsule, bursae, ligaments, shoulder nerve and vessel segments, cartilage-classified surfaces, four insertion-region overlays and an infraspinatus tendon-classified region. These use their matching Z-Anatomy bones, separately from the original cuff specimen. Four complete cuff tendons, measured footprints, volumetric cartilage thickness and fine fiber detail are still not supplied. Regional nerve and vessel trees remain incomplete. Source-authored shapes are not independently clinically validated.</p><h3>Curriculum and sources</h3><p>Origin, insertion, action, innervation and clinical notes are curriculum text, not observations extracted from the meshes. This educational reconstruction has not had an independent clinician review.</p><ul>${SOURCES.map((s) => `<li><a href="${s.url}" target="_blank" rel="noreferrer">${s.title}</a></li>`).join("")}</ul><h3>Controls</h3><p>Drag to orbit. Click to select; double-click or F to focus. Two-finger scrolling pans. Pinch zooms. Line-mode mouse wheel or Shift+wheel zooms toward the pointer. Shift/right drag pans. On touch screens, two fingers pan and pinch. Arrow keys orbit; +/− zoom; R resets; Escape clears selection. The orientation cube can be dragged independently of the anatomy. In the dissection lab, 1/2/3 choose Probe/Forceps/Retractor while the canvas is focused. Details offers structure buttons for equivalent keyboard actions. Responsive mechanics reduces solver iterations while preserving pins, contact guards and the same tools. Automatic mode selects it when measured solver work exceeds its 8 ms budget; manual quality selection overrides this choice.</p><h3>Canonical orientation</h3><div class="action-row">${cubeFaces.map((f, i) => `<button data-info-face="${i}">${f.letter} · ${f.name}</button>`).join("")}</div><h3>Secondary tools</h3><div class="action-row"><button id="mechanics-quality">Mechanics: ${scene.simulationQuality}${scene.simulationAuto?" · auto":""}</button><button id="mechanics-auto">Use automatic mechanics</button><button id="section-toggle" aria-pressed="${state.section}">Sagittal section</button><button id="quality-toggle">${scene.renderer.getPixelRatio() > 1 ? "Use 1× DPR" : "Use device DPR"}</button></div><p>Sectioning is an uncapped viewing cut, not a segmented internal anatomical surface. Optional LOD1/LOD2 reduce only scapular context; all cuff topology is preserved. LOD0 is the default.</p><h3>Geometry provenance</h3><a href="./assets/provenance.json" target="_blank">Complete machine-readable provenance ↗</a><p><a href="./assets/atlas/provenance.json" target="_blank">Additional joint study provenance ↗</a></p><details><summary>All ${scene.parts.size} loaded structures</summary>${[...scene.parts.values()].map((p) => `<div class="provenance-row"><strong>${escape(p.name)}</strong><br>${p.id} · ${escape(p.fma || p.sourceObject)} · ${p.vertexCount.toLocaleString()} vertices · ${p.faceCount.toLocaleString()} faces<br>${escape(p.source)} · ${escape(p.license)}<br>Asset UV: ${p.hasUV ? "yes" : "no"} · Asset normals: ${p.hasNormals ? "yes" : "no"} · Textures: ${p.textures.length}<br>${escape(p.reviewStatus)}${p.runtimeShading ? `<br>LOD0 shading: ${escape(p.runtimeShading.lod0)}` : ""}</div>`).join("")}</details><details><summary>Renderer diagnostics</summary><pre>${escape(JSON.stringify(metrics, null, 2))}</pre></details>`;
   $("information-body")
     .querySelectorAll("[data-info-face]")
     .forEach(
@@ -547,6 +920,10 @@ function openInformation() {
           $("info-dialog").close();
         }),
     );
+  $("mechanics-auto").onclick=()=>{cancelGrab();scene.setSimulationQuality("auto");openInformation();};
+  $("mechanics-quality").onclick=()=>{cancelGrab();scene.setSimulationQuality(scene.simulationQuality==="precision"?"responsive":"precision");openInformation();};
+  $("sound-toggle").onclick=()=>{soundEnabled=!soundEnabled;tactile("grab");openInformation();};
+  $("haptics-toggle").onclick=()=>{hapticsEnabled=!hapticsEnabled;tactile("grab");openInformation();};
   $("section-toggle").onclick = (e) => {
     state.section = !state.section;
     e.target.setAttribute("aria-pressed", String(state.section));

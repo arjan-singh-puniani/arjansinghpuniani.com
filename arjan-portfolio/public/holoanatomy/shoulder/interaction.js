@@ -4,13 +4,20 @@ import { isClick } from "./model.js";
 export function bindInteraction(
   element,
   scene,
-  { select, hover, stage, canStage = () => false, widget = false },
+  { select, hover, stage, canStage = () => false, canOrbit = () => true, pull, widget = false },
 ) {
   const points = new Map();
   let start = null,
     multi = false,
     dragId = null,
+    pulling = false,
+    orbitBlocked = false,
     moved = false;
+  const cancel = () => {
+    if(pulling) pull.cancel();
+    for(const id of points.keys())if(element.hasPointerCapture(id))element.releasePointerCapture(id);
+    points.clear();start=null;dragId=null;pulling=false;multi=false;moved=false;element.style.cursor="";
+  };
   const midpoint = () => {
     const p = [...points.values()];
     return {
@@ -21,15 +28,21 @@ export function bindInteraction(
   };
   element.addEventListener("pointerdown", (e) => {
     if (e.button > 2) return;
+    if(widget) scene.onCancelGrab?.();
     element.setPointerCapture(e.pointerId);
     points.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (points.size === 1) {
       start = { x: e.clientX, y: e.clientY };
       multi = false;
       moved = false;
-      dragId = !widget && canStage() ? scene.pick(e.clientX, e.clientY) : null;
+      const hit = !widget && e.button === 0 && !e.shiftKey ? scene.pick(e.clientX, e.clientY) : null;
+      orbitBlocked=Boolean(hit)&&!canOrbit(hit);
+      pulling = Boolean(hit && pull?.begin(hit, e));
+      dragId = pulling ? hit : !widget && e.button===0 && !e.shiftKey && canStage() ? scene.pick(e.clientX, e.clientY) : null;
     } else {
       multi = true;
+      if (pulling) pull.cancel();
+      pulling = false;
       dragId = null;
     }
     scene.hover(null);
@@ -59,9 +72,11 @@ export function bindInteraction(
       dy = e.clientY - old.y;
     if (dragId) {
       element.style.cursor = "grabbing";
-      scene.previewPull(dragId, e.clientX - start.x, e.clientY - start.y);
+      if (pulling) pull.move(e.clientX - start.x, e.clientY - start.y);
+      else scene.previewPull(dragId, e.clientX - start.x, e.clientY - start.y);
       return;
     }
+    if(orbitBlocked && e.buttons===1 && !e.shiftKey){element.style.cursor="not-allowed";return;}
     if (e.shiftKey || e.buttons === 2 || e.buttons === 4) scene.pan(dx, dy);
     else scene.orbit(dx, dy);
   });
@@ -71,8 +86,14 @@ export function bindInteraction(
       start && isClick(start, { x: e.clientX, y: e.clientY }, multi) && !moved;
     points.delete(e.pointerId);
     element.style.cursor = "";
+    if (pulling) {
+      if (e.type === "pointerup") pull.end(moved && Math.hypot(e.clientX - start.x, e.clientY - start.y) > 35);
+      else pull.cancel();
+      pulling = false; dragId = null; start = null; multi = false;
+      return;
+    }
     if (e.type === "pointerup" && points.size === 0) {
-      if (click && !widget) select?.(scene.pick(e.clientX, e.clientY));
+      if (click && !widget && e.button===0) select?.(scene.pick(e.clientX, e.clientY));
       else if (dragId && moved) {
         if (Math.hypot(e.clientX - start.x, e.clientY - start.y) > 35)
           stage?.(dragId);
@@ -95,7 +116,7 @@ export function bindInteraction(
     }
   });
   element.addEventListener("dblclick", (e) => {
-    if (widget) return;
+    if (widget || pull?.enabled()) return;
     const id = scene.pick(e.clientX, e.clientY);
     if (id) {
       select?.(id);
@@ -106,6 +127,7 @@ export function bindInteraction(
     "wheel",
     (e) => {
       e.preventDefault();
+      if (pulling) cancel();
       if (e.ctrlKey || e.metaKey || e.deltaMode !== 0 || e.shiftKey)
         scene.zoom(
           Math.max(
@@ -121,6 +143,8 @@ export function bindInteraction(
   );
   element.addEventListener("contextmenu", (e) => e.preventDefault());
   return {
+    cancel,
+    get state(){return !points.size?"idle":multi?"camera-multitouch":orbitBlocked&&!pulling?"blocked":pulling?moved?"pulling":"grasped":moved?"camera-drag":"pressed";},
     get active() {
       return points.size > 0;
     },

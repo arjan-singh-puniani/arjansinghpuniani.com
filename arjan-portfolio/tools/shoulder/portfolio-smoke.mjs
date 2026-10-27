@@ -1,7 +1,7 @@
 import { chromium, expect } from "@playwright/test";
 import { writeFile } from "node:fs/promises";
 const browser = await chromium.launch({ channel: "chrome", headless: true });
-const root = "http://127.0.0.1:4192";
+const root = process.env.PORTFOLIO_URL || "http://127.0.0.1:4192";
 const results = [];
 try {
   const page = await browser.newPage({
@@ -41,11 +41,17 @@ try {
   await page.locator("iframe").scrollIntoViewIfNeeded();
   const frame = page.frameLocator("iframe");
   await expect(frame.locator("#loading")).toBeHidden({ timeout: 30000 });
-  await expect(frame.locator("h1")).toHaveText("Rotator cuff.");
+  await expect(frame.locator("#tool-dock")).toBeVisible();
+  await expect(frame.locator(".inspector")).toBeHidden();
+  await expect(frame.locator('[data-live-tool="lift"]')).toHaveAttribute("aria-pressed","true");
   await frame.locator("[data-mode=learn]").click();
   await expect(frame.locator("#context")).toContainText("A mobile joint");
+  await frame.locator("#view-select").selectOption("atlas_capsule");
+  await expect(frame.locator("#context h2")).toHaveText("Capsule & bursae");
+  await frame.locator('#context [data-select="ZA_capsule"]').click();
+  await expect(frame.locator("#context h2")).toContainText("articular capsule");
   await page.screenshot({
-    path: "Documentation/shoulder-qa/portfolio-integration.png",
+    path: `${process.env.QA_OUT || "Documentation/shoulder-qa"}/portfolio-integration.png`,
   });
   results.push({
     route: "/playground/holoanatomy",
@@ -65,7 +71,7 @@ try {
   );
 } finally {
   await writeFile(
-    "Documentation/shoulder-qa/portfolio-smoke.json",
+    `${process.env.QA_OUT || "Documentation/shoulder-qa"}/portfolio-smoke.json`,
     JSON.stringify(results, null, 2),
   );
   await browser.close();

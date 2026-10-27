@@ -17,8 +17,9 @@
     "test:e2e:headed": "playwright test --headed",
     "lighthouse": "lhci autorun",
     "verify": "npm run lint && npm run typecheck && npm run test:coverage && npm run build",
-    "test:shoulder": "node --test tools/shoulder/domain.test.mjs",
-    "test:shoulder:browser": "node tools/shoulder/browser-qa.mjs"
+    "test:shoulder": "node --test tools/shoulder/domain.test.mjs tools/shoulder/deformation.test.mjs",
+    "test:shoulder:browser": "node tools/shoulder/browser-qa.mjs",
+    "test:shoulder:living": "node tools/shoulder/living-qa.mjs"
   },
   "dependencies": {
     "next": "15.5.24",

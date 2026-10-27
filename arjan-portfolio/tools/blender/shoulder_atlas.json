@@ -1,0 +1,308 @@
+[
+  {
+    "id": "ZA_scapula",
+    "sourceObject": "Scapula.r",
+    "tissue": "BONE",
+    "group": "bones",
+    "note": "Matching source bone context.",
+    "material": "Cartilage",
+    "invert": true
+  },
+  {
+    "id": "ZA_scapula_cartilage",
+    "sourceObject": "Scapula.r",
+    "tissue": "CARTILAGE",
+    "group": "joint",
+    "note": "Source material-classified articular surface; not a volumetric cartilage layer.",
+    "material": "Cartilage",
+    "invert": false
+  },
+  {
+    "id": "ZA_humerus",
+    "sourceObject": "Humerus.r",
+    "tissue": "BONE",
+    "group": "bones",
+    "note": "Matching source bone context.",
+    "material": "Cartilage",
+    "invert": true
+  },
+  {
+    "id": "ZA_humerus_cartilage",
+    "sourceObject": "Humerus.r",
+    "tissue": "CARTILAGE",
+    "group": "joint",
+    "note": "Source material-classified articular surface; not a volumetric cartilage layer.",
+    "material": "Cartilage",
+    "invert": false
+  },
+  {
+    "id": "ZA_clavicle",
+    "sourceObject": "Clavicle.r",
+    "tissue": "BONE",
+    "group": "bones",
+    "note": "Matching source bone context.",
+    "material": "Cartilage",
+    "invert": true
+  },
+  {
+    "id": "ZA_labrum",
+    "sourceObject": "Glenoid labrum.r",
+    "tissue": "CARTILAGE",
+    "group": "joint",
+    "note": "Source-authored labrum surface; source subdivision retained.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_sghl",
+    "sourceObject": "Superior glenohumeral ligament.r",
+    "tissue": "CONNECTIVE_TISSUE",
+    "group": "joint",
+    "note": "Source-authored ligament surface with source modifiers retained; attachments are not independently clinically reviewed.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_mghl",
+    "sourceObject": "Middle glenohumeral ligament.r",
+    "tissue": "CONNECTIVE_TISSUE",
+    "group": "joint",
+    "note": "Source-authored ligament surface with source modifiers retained; attachments are not independently clinically reviewed.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_ighl",
+    "sourceObject": "Inferior glenohumeral ligament.r",
+    "tissue": "CONNECTIVE_TISSUE",
+    "group": "joint",
+    "note": "Source-authored ligament surface with source modifiers retained; attachments are not independently clinically reviewed.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_chl",
+    "sourceObject": "Coracohumeral ligament.r",
+    "tissue": "CONNECTIVE_TISSUE",
+    "group": "joint",
+    "note": "Source-authored ligament surface with source modifiers retained; attachments are not independently clinically reviewed.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_cal",
+    "sourceObject": "Coraco-acromial ligament.r",
+    "tissue": "CONNECTIVE_TISSUE",
+    "group": "joint",
+    "note": "Source-authored ligament surface with source modifiers retained; attachments are not independently clinically reviewed.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_acl",
+    "sourceObject": "Acromioclavicular ligament.r",
+    "tissue": "CONNECTIVE_TISSUE",
+    "group": "joint",
+    "note": "Source-authored ligament surface with source modifiers retained; attachments are not independently clinically reviewed.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_capsule",
+    "sourceObject": "Articular capsule of glenohumeral joint.r",
+    "tissue": "CONNECTIVE_TISSUE",
+    "group": "capsule",
+    "note": "Source-authored capsule; source solidify thickness is illustrative, not measured.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_subacromial",
+    "sourceObject": "Subacromial bursa.r",
+    "tissue": "GENERIC_SOFT_TISSUE",
+    "group": "capsule",
+    "note": "Source-authored bursa surface; does not simulate fluid or physiological distension.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_subdeltoid",
+    "sourceObject": "Subdeltoid bursa.r",
+    "tissue": "GENERIC_SOFT_TISSUE",
+    "group": "capsule",
+    "note": "Source-authored bursa surface; does not simulate fluid or physiological distension.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_axillary",
+    "sourceObject": "Axillary nerve.r",
+    "tissue": "NERVE",
+    "group": "neurovascular",
+    "note": "Source curve path converted with its existing bevel. Regional segments, not a complete plexus.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_suprascapular",
+    "sourceObject": "Suprascapular nerve.r",
+    "tissue": "NERVE",
+    "group": "neurovascular",
+    "note": "Source curve path converted with its existing bevel. Regional segments, not a complete plexus.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_upper_subscapular",
+    "sourceObject": "Superior subscapular nerve.r",
+    "tissue": "NERVE",
+    "group": "neurovascular",
+    "note": "Source curve path converted with its existing bevel. Regional segments, not a complete plexus.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_lower_subscapular",
+    "sourceObject": "Inferior subscapular nerve.r",
+    "tissue": "NERVE",
+    "group": "neurovascular",
+    "note": "Source curve path converted with its existing bevel. Regional segments, not a complete plexus.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_ant_circumflex_artery",
+    "sourceObject": "Anterior circumflex humeral artery.r",
+    "tissue": "ARTERY",
+    "group": "neurovascular",
+    "note": "Source curve segment; this regional selection is not a complete or reconstructed vascular tree.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_ant_circumflex_vein",
+    "sourceObject": "Anterior circumflex humeral vein.r",
+    "tissue": "VEIN",
+    "group": "neurovascular",
+    "note": "Source curve segment; this regional selection is not a complete or reconstructed vascular tree.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_post_circumflex_artery",
+    "sourceObject": "Posterior circumflex humeral artery.r",
+    "tissue": "ARTERY",
+    "group": "neurovascular",
+    "note": "Source curve segment; this regional selection is not a complete or reconstructed vascular tree.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_post_circumflex_vein",
+    "sourceObject": "Posterior circumflex humeral vein.r",
+    "tissue": "VEIN",
+    "group": "neurovascular",
+    "note": "Source curve segment; this regional selection is not a complete or reconstructed vascular tree.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_suprascapular_artery",
+    "sourceObject": "Suprascapular artery.r",
+    "tissue": "ARTERY",
+    "group": "neurovascular",
+    "note": "Source curve segment; this regional selection is not a complete or reconstructed vascular tree.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_suprascapular_vein",
+    "sourceObject": "Suprascapular vein.r",
+    "tissue": "VEIN",
+    "group": "neurovascular",
+    "note": "Source curve segment; this regional selection is not a complete or reconstructed vascular tree.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_supra",
+    "sourceObject": "Supraspinatus muscle.r",
+    "tissue": "SKELETAL_MUSCLE",
+    "group": "cuff",
+    "note": "Matching atlas muscle context; no source fiber-direction data.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_supra_insertion",
+    "sourceObject": "Supraspinatus muscle.er",
+    "tissue": "CONNECTIVE_TISSUE",
+    "group": "attachments",
+    "note": "Source-authored insertion-region overlay. Not a measured tendon footprint.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_infra",
+    "sourceObject": "Infraspinatus muscle.r",
+    "tissue": "SKELETAL_MUSCLE",
+    "group": "cuff",
+    "note": "Matching atlas muscle context; no source fiber-direction data.",
+    "material": "Tendon",
+    "invert": true
+  },
+  {
+    "id": "ZA_infra_insertion",
+    "sourceObject": "Infraspinatus muscle.er",
+    "tissue": "CONNECTIVE_TISSUE",
+    "group": "attachments",
+    "note": "Source-authored insertion-region overlay. Not a measured tendon footprint.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_teres",
+    "sourceObject": "Teres minor muscle.r",
+    "tissue": "SKELETAL_MUSCLE",
+    "group": "cuff",
+    "note": "Matching atlas muscle context; no source fiber-direction data.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_teres_insertion",
+    "sourceObject": "Teres minor muscle.er",
+    "tissue": "CONNECTIVE_TISSUE",
+    "group": "attachments",
+    "note": "Source-authored insertion-region overlay. Not a measured tendon footprint.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_subscap",
+    "sourceObject": "Subscapularis muscle.r",
+    "tissue": "SKELETAL_MUSCLE",
+    "group": "cuff",
+    "note": "Matching atlas muscle context; no source fiber-direction data.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_subscap_insertion",
+    "sourceObject": "Subscapularis muscle.er",
+    "tissue": "CONNECTIVE_TISSUE",
+    "group": "attachments",
+    "note": "Source-authored insertion-region overlay. Not a measured tendon footprint.",
+    "material": null,
+    "invert": false
+  },
+  {
+    "id": "ZA_infra_tendon",
+    "sourceObject": "Infraspinatus muscle.r",
+    "tissue": "TENDON",
+    "group": "attachments",
+    "note": "Only faces classified Tendon by the source author. Not a separately segmented scan-derived tendon.",
+    "material": "Tendon",
+    "invert": false
+  }
+]
