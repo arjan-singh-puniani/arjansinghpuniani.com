@@ -1,0 +1,340 @@
+[
+  {
+    "engine": "chrome-touch",
+    "version": "156.0.8078.48",
+    "errors": [],
+    "grasp": {
+      "inputToSubmitP95Ms": 6.2000000001862645,
+      "mechanics": {
+        "automatic": true,
+        "qualityReason": null,
+        "quality": "precision",
+        "model": "Illustrative XPBD source surface",
+        "fixedStep": 0.008333333333333333,
+        "setupMs": 3.1000000000931323,
+        "preparationMs": 30.899999999906868,
+        "averageSolverMs": 3.7064516128902074,
+        "p95SolverMs": 5.7999999998137355,
+        "tissues": {
+          "ZA_infra": {
+            "typedArrayBytes": 293177,
+            "iterations": 5,
+            "maxContactPenetration": 4.3151246464923076e-17,
+            "particles": 1585,
+            "pinned": 287,
+            "edges": 4749,
+            "bends": 4749,
+            "closed": true,
+            "volumeEnabled": true,
+            "volumeRatio": 0.9337300939237706,
+            "pinError": 0,
+            "maxDisplacement": 0.16492929905429965,
+            "maxEdgeRatio": 1.44187017441863,
+            "active": true,
+            "held": false,
+            "failed": false,
+            "steps": 188,
+            "supports": {
+              "method": "Source-insertion-adjacent 3.5% and medial 20% within 0.09 normalized units of source scapula; illustrative supports",
+              "originCount": 231,
+              "insertionCount": 56,
+              "insertionRadius": 0.07476243349607989,
+              "originFallback": false,
+              "reviewStatus": "Derived geometric support regions; independent anatomical landmark review required"
+            },
+            "contactGuards": 1408
+          },
+          "ZA_supra": {
+            "typedArrayBytes": 109653,
+            "iterations": 5,
+            "maxContactPenetration": 4.336808689942018e-19,
+            "particles": 717,
+            "pinned": 160,
+            "edges": 2145,
+            "bends": 2145,
+            "closed": true,
+            "volumeEnabled": true,
+            "volumeRatio": 1,
+            "pinError": 0,
+            "maxDisplacement": 0,
+            "maxEdgeRatio": 1,
+            "active": false,
+            "held": false,
+            "failed": false,
+            "steps": 0,
+            "supports": {
+              "method": "Source-insertion-adjacent 3.5% and medial 20% within 0.09 normalized units of source scapula; illustrative supports",
+              "originCount": 134,
+              "insertionCount": 26,
+              "insertionRadius": 0.04356104772959637,
+              "originFallback": false,
+              "reviewStatus": "Derived geometric support regions; independent anatomical landmark review required"
+            },
+            "contactGuards": 717
+          },
+          "ZA_teres": {
+            "typedArrayBytes": 116691,
+            "iterations": 5,
+            "maxContactPenetration": 4.336808689942018e-19,
+            "particles": 763,
+            "pinned": 156,
+            "edges": 2283,
+            "bends": 2283,
+            "closed": true,
+            "volumeEnabled": true,
+            "volumeRatio": 1,
+            "pinError": 0,
+            "maxDisplacement": 0,
+            "maxEdgeRatio": 1,
+            "active": false,
+            "held": false,
+            "failed": false,
+            "steps": 0,
+            "supports": {
+              "method": "Source-insertion-adjacent 3.5% and medial 20% within 0.09 normalized units of source scapula; illustrative supports",
+              "originCount": 129,
+              "insertionCount": 27,
+              "insertionRadius": 0.05389244085999175,
+              "originFallback": false,
+              "reviewStatus": "Derived geometric support regions; independent anatomical landmark review required"
+            },
+            "contactGuards": 708
+          },
+          "ZA_subscap": {
+            "typedArrayBytes": 225207,
+            "iterations": 5,
+            "maxContactPenetration": 4.336808689942018e-19,
+            "particles": 1471,
+            "pinned": 347,
+            "edges": 4431,
+            "bends": 4431,
+            "closed": true,
+            "volumeEnabled": true,
+            "volumeRatio": 1,
+            "pinError": 0,
+            "maxDisplacement": 0,
+            "maxEdgeRatio": 1,
+            "active": false,
+            "held": false,
+            "failed": false,
+            "steps": 0,
+            "supports": {
+              "method": "Source-insertion-adjacent 3.5% and medial 20% within 0.09 normalized units of source scapula; illustrative supports",
+              "originCount": 295,
+              "insertionCount": 52,
+              "insertionRadius": 0.07034745370152161,
+              "originFallback": false,
+              "reviewStatus": "Derived geometric support regions; independent anatomical landmark review required"
+            },
+            "contactGuards": 1471
+          }
+        }
+      },
+      "transport": "glb",
+      "lod": 0,
+      "loadMs": 131,
+      "atlasTransport": "glb",
+      "atlasError": null,
+      "drawCalls": 11,
+      "triangles": 44628,
+      "vertices": 22498,
+      "textures": 1,
+      "shadowMapTextureBytes": 4194304,
+      "shadowDepthAttachmentEstimatedBytes": 4194304,
+      "sourceTextureBytes": 0,
+      "dpr": 1.5,
+      "samples": 92,
+      "meanFrameMs": 16.667391304347824,
+      "p95FrameMs": 16.700000000000273
+    },
+    "nativeTouch": "pull, release, hold, restore, pinch, remaining-finger lock, cancellation",
+    "layouts": [
+      {
+        "width": 375,
+        "height": 667,
+        "toolsVisible": true
+      },
+      {
+        "width": 430,
+        "height": 932,
+        "toolsVisible": true
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "toolsVisible": true
+      }
+    ],
+    "axe": [],
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "version": "26.6",
+    "errors": [],
+    "grasp": {
+      "inputToSubmitP95Ms": 76,
+      "mechanics": {
+        "automatic": true,
+        "qualityReason": "Measured mean solver cost exceeded 8 ms over 24 active frames",
+        "quality": "responsive",
+        "model": "Illustrative XPBD source surface",
+        "fixedStep": 0.008333333333333333,
+        "setupMs": 3,
+        "preparationMs": 48,
+        "averageSolverMs": 8.822222222222223,
+        "p95SolverMs": 43,
+        "tissues": {
+          "ZA_infra": {
+            "typedArrayBytes": 293177,
+            "iterations": 3,
+            "maxContactPenetration": 4.434386885465713e-17,
+            "particles": 1585,
+            "pinned": 287,
+            "edges": 4749,
+            "bends": 4749,
+            "closed": true,
+            "volumeEnabled": true,
+            "volumeRatio": 0.944165794996477,
+            "pinError": 0,
+            "maxDisplacement": 0.15986770621752433,
+            "maxEdgeRatio": 1.4186520625242003,
+            "active": true,
+            "held": false,
+            "failed": false,
+            "steps": 97,
+            "supports": {
+              "method": "Source-insertion-adjacent 3.5% and medial 20% within 0.09 normalized units of source scapula; illustrative supports",
+              "originCount": 231,
+              "insertionCount": 56,
+              "insertionRadius": 0.0747624334960799,
+              "originFallback": false,
+              "reviewStatus": "Derived geometric support regions; independent anatomical landmark review required"
+            },
+            "contactGuards": 1408
+          },
+          "ZA_supra": {
+            "typedArrayBytes": 109653,
+            "iterations": 3,
+            "maxContactPenetration": 4.336808689942018e-19,
+            "particles": 717,
+            "pinned": 160,
+            "edges": 2145,
+            "bends": 2145,
+            "closed": true,
+            "volumeEnabled": true,
+            "volumeRatio": 1,
+            "pinError": 0,
+            "maxDisplacement": 0,
+            "maxEdgeRatio": 1,
+            "active": false,
+            "held": false,
+            "failed": false,
+            "steps": 0,
+            "supports": {
+              "method": "Source-insertion-adjacent 3.5% and medial 20% within 0.09 normalized units of source scapula; illustrative supports",
+              "originCount": 134,
+              "insertionCount": 26,
+              "insertionRadius": 0.04356104772959637,
+              "originFallback": false,
+              "reviewStatus": "Derived geometric support regions; independent anatomical landmark review required"
+            },
+            "contactGuards": 717
+          },
+          "ZA_teres": {
+            "typedArrayBytes": 116691,
+            "iterations": 3,
+            "maxContactPenetration": 4.336808689942018e-19,
+            "particles": 763,
+            "pinned": 156,
+            "edges": 2283,
+            "bends": 2283,
+            "closed": true,
+            "volumeEnabled": true,
+            "volumeRatio": 1,
+            "pinError": 0,
+            "maxDisplacement": 0,
+            "maxEdgeRatio": 1,
+            "active": false,
+            "held": false,
+            "failed": false,
+            "steps": 0,
+            "supports": {
+              "method": "Source-insertion-adjacent 3.5% and medial 20% within 0.09 normalized units of source scapula; illustrative supports",
+              "originCount": 129,
+              "insertionCount": 27,
+              "insertionRadius": 0.05389244085999175,
+              "originFallback": false,
+              "reviewStatus": "Derived geometric support regions; independent anatomical landmark review required"
+            },
+            "contactGuards": 708
+          },
+          "ZA_subscap": {
+            "typedArrayBytes": 225207,
+            "iterations": 3,
+            "maxContactPenetration": 4.336808689942018e-19,
+            "particles": 1471,
+            "pinned": 347,
+            "edges": 4431,
+            "bends": 4431,
+            "closed": true,
+            "volumeEnabled": true,
+            "volumeRatio": 1,
+            "pinError": 0,
+            "maxDisplacement": 0,
+            "maxEdgeRatio": 1,
+            "active": false,
+            "held": false,
+            "failed": false,
+            "steps": 0,
+            "supports": {
+              "method": "Source-insertion-adjacent 3.5% and medial 20% within 0.09 normalized units of source scapula; illustrative supports",
+              "originCount": 295,
+              "insertionCount": 52,
+              "insertionRadius": 0.0703474537015216,
+              "originFallback": false,
+              "reviewStatus": "Derived geometric support regions; independent anatomical landmark review required"
+            },
+            "contactGuards": 1471
+          }
+        }
+      },
+      "transport": "glb",
+      "lod": 0,
+      "loadMs": 144,
+      "atlasTransport": "glb",
+      "atlasError": null,
+      "drawCalls": 11,
+      "triangles": 44628,
+      "vertices": 22498,
+      "textures": 1,
+      "shadowMapTextureBytes": 4194304,
+      "shadowDepthAttachmentEstimatedBytes": 4194304,
+      "sourceTextureBytes": 0,
+      "dpr": 1.5,
+      "samples": 45,
+      "meanFrameMs": 20.4,
+      "p95FrameMs": 47
+    },
+    "touchCoverage": "native taps; mouse-driven deformation in mobile WebKit; multitouch state covered in unit tests and Chromium native touch",
+    "layouts": [
+      {
+        "width": 375,
+        "height": 667,
+        "toolsVisible": true
+      },
+      {
+        "width": 430,
+        "height": 932,
+        "toolsVisible": true
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "toolsVisible": true
+      }
+    ],
+    "axe": [],
+    "status": "PASS"
+  }
+]

@@ -14,9 +14,10 @@ export function bindInteraction(
     orbitBlocked = false,
     moved = false;
   const cancel = () => {
-    if(pulling) pull.cancel();
-    for(const id of points.keys())if(element.hasPointerCapture(id))element.releasePointerCapture(id);
-    points.clear();start=null;dragId=null;pulling=false;multi=false;moved=false;element.style.cursor="";
+    const wasPulling = pulling, captured = [...points.keys()];
+    points.clear();start=null;dragId=null;pulling=false;multi=false;moved=false;orbitBlocked=false;element.style.cursor="";
+    if(wasPulling) pull.cancel();
+    for(const id of captured)if(element.hasPointerCapture(id))element.releasePointerCapture(id);
   };
   const midpoint = () => {
     const p = [...points.values()];
@@ -31,7 +32,7 @@ export function bindInteraction(
     if(widget) scene.onCancelGrab?.();
     element.setPointerCapture(e.pointerId);
     points.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    if (points.size === 1) {
+    if (points.size === 1 && !multi) {
       start = { x: e.clientX, y: e.clientY };
       multi = false;
       moved = false;
@@ -41,9 +42,10 @@ export function bindInteraction(
       dragId = pulling ? hit : !widget && e.button===0 && !e.shiftKey && canStage() ? scene.pick(e.clientX, e.clientY) : null;
     } else {
       multi = true;
-      if (pulling) pull.cancel();
+      const wasPulling = pulling;
       pulling = false;
       dragId = null;
+      if (wasPulling) pull.cancel();
     }
     scene.hover(null);
   });
@@ -61,10 +63,12 @@ export function bindInteraction(
     points.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (points.size === 2) {
       const now = midpoint();
-      scene.zoom(Math.log(before.d / Math.max(now.d, 1)), now.x, now.y);
+      scene.zoom(Math.log(Math.max(before.d, 1) / Math.max(now.d, 1)), now.x, now.y);
       scene.pan(now.x - before.x, now.y - before.y);
       return;
     }
+    // After a pinch, lift every finger before starting a new grab or orbit.
+    if (multi || points.size > 2) return;
     if (!moved && !isClick(start, { x: e.clientX, y: e.clientY }, multi))
       moved = true;
     if (!moved) return;
@@ -82,6 +86,7 @@ export function bindInteraction(
   });
   const end = (e) => {
     if (!points.has(e.pointerId)) return;
+    if (e.type !== "pointerup") { cancel(); return; }
     const click =
       start && isClick(start, { x: e.clientX, y: e.clientY }, multi) && !moved;
     points.delete(e.pointerId);

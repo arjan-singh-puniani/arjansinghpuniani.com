@@ -17,6 +17,7 @@
   margin-inline: auto;
 }
 .viewer {
+  scroll-margin-top: 84px;
   display: block;
   width: 100%;
   height: min(900px, 92svh);
@@ -44,12 +45,19 @@
     width: calc(100% - 20px);
   }
   .viewer {
-    height: 90svh;
-    min-height: 640px;
+    height: calc(100svh - 96px);
+    min-height: 0;
     border-radius: 8px;
   }
   .basis {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+}
+
+@media (pointer: coarse) and (max-height: 520px) and (orientation: landscape) {
+  .viewer {
+    height: calc(100svh - 96px);
+    min-height: 0;
   }
 }
