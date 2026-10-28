@@ -1,1307 +1,674 @@
-import * as THREE from './vendor/three.module.js';
-import { OrbitControls } from './vendor/OrbitControls.js';
-
-const canvas = document.querySelector('#viewport');
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'default' });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-renderer.outputColorSpace = THREE.SRGBColorSpace;
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.05;
-renderer.localClippingEnabled = true;
-
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x070a0f);
-scene.fog = new THREE.FogExp2(0x070a0f, 0.09);
-
-const camera = new THREE.PerspectiveCamera(38, window.innerWidth / window.innerHeight, 0.025, 50);
-camera.position.set(2.45, 1.48, 2.55);
-
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.target.set(0.35, 0.42, 0);
-controls.enableDamping = true;
-controls.dampingFactor = 0.07;
-controls.minDistance = 0.18;
-controls.maxDistance = 9;
-controls.maxPolarAngle = Math.PI * 0.98;
-controls.zoomToCursor = true;
-
-const clock = new THREE.Clock();
-const TOTAL_SECONDS = 3.05;
-const state = {
-  t: 0,
-  playing: false,
-  speed: 1,
-  cutaway: false,
-  exploded: false,
-  trails: true,
-  follow: false,
-  labels: true,
-  selected: null,
-  cameraTween: null,
-};
-
-const C = {
-  carbon: 0x12161c,
-  carbon2: 0x202630,
-  rubber: 0x141414,
-  rubberEdge: 0x252525,
-  metal: 0xb4bcc5,
-  darkMetal: 0x343a43,
-  brake: 0x9b1b24,
-  red: 0xe3172f,
-  amber: 0xffa227,
-  green: 0x30e59a,
-  blue: 0x4ca5ff,
-};
-
-// Procedural mechanical audio. No external audio files are loaded; every cue is
-// synthesized with the Web Audio API after the visitor's first interaction.
-const pitAudio = (() => {
-  let ctx = null;
-  let master = null;
-  let compressor = null;
-  let enabled = true;
-
-  function ensure() {
-    if (!enabled) return null;
-    if (!ctx) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContext) return null;
-      ctx = new AudioContext();
-      master = ctx.createGain();
-      master.gain.value = 0.72;
-      compressor = ctx.createDynamicsCompressor();
-      compressor.threshold.value = -12;
-      compressor.knee.value = 10;
-      compressor.ratio.value = 8;
-      compressor.attack.value = 0.003;
-      compressor.release.value = 0.12;
-      master.connect(compressor).connect(ctx.destination);
-    }
-    if (ctx.state === 'suspended') ctx.resume().catch(() => {});
-    return ctx;
-  }
-
-  function panNode(pan = 0) {
-    if (!ctx || !master) return null;
-    if (typeof ctx.createStereoPanner === 'function') {
-      const node = ctx.createStereoPanner();
-      node.pan.value = THREE.MathUtils.clamp(pan, -1, 1);
-      node.connect(master);
-      return node;
-    }
-    return master;
-  }
-
-  function noise(duration = 0.1) {
-    const c = ensure();
-    if (!c) return null;
-    const length = Math.max(1, Math.floor(c.sampleRate * duration));
-    const buffer = c.createBuffer(1, length, c.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let i = 0; i < length; i++) data[i] = Math.random() * 2 - 1;
-    const src = c.createBufferSource();
-    src.buffer = buffer;
-    return src;
-  }
-
-  function hiss({ when = 0, duration = 0.16, gain = 0.12, pan = 0, bright = true } = {}) {
-    const c = ensure();
-    if (!c) return;
-    const start = c.currentTime + when;
-    const src = noise(duration + 0.04);
-    if (!src) return;
-    const hp = c.createBiquadFilter();
-    hp.type = 'highpass';
-    hp.frequency.value = bright ? 1800 : 850;
-    const bp = c.createBiquadFilter();
-    bp.type = 'bandpass';
-    bp.frequency.value = bright ? 4600 : 2200;
-    bp.Q.value = 0.55;
-    const amp = c.createGain();
-    amp.gain.setValueAtTime(0.0001, start);
-    amp.gain.exponentialRampToValueAtTime(gain, start + 0.012);
-    amp.gain.setValueAtTime(gain * 0.82, start + duration * 0.45);
-    amp.gain.exponentialRampToValueAtTime(0.0001, start + duration);
-    src.connect(hp).connect(bp).connect(amp).connect(panNode(pan));
-    src.start(start);
-    src.stop(start + duration + 0.03);
-  }
-
-  function metallicClick({ when = 0, gain = 0.16, pan = 0, pitch = 1 } = {}) {
-    const c = ensure();
-    if (!c) return;
-    const start = c.currentTime + when;
-    const out = panNode(pan);
-    [620, 1120, 1860].forEach((base, index) => {
-      const osc = c.createOscillator();
-      const amp = c.createGain();
-      osc.type = index === 0 ? 'triangle' : 'sine';
-      osc.frequency.setValueAtTime(base * pitch, start);
-      osc.frequency.exponentialRampToValueAtTime(Math.max(90, base * pitch * 0.62), start + 0.045);
-      amp.gain.setValueAtTime(gain * (1 - index * 0.22), start);
-      amp.gain.exponentialRampToValueAtTime(0.0001, start + 0.055 + index * 0.018);
-      osc.connect(amp).connect(out);
-      osc.start(start);
-      osc.stop(start + 0.09);
-    });
-    const src = noise(0.045);
-    if (src) {
-      const hp = c.createBiquadFilter();
-      hp.type = 'highpass';
-      hp.frequency.value = 2500;
-      const amp = c.createGain();
-      amp.gain.setValueAtTime(gain * 0.38, start);
-      amp.gain.exponentialRampToValueAtTime(0.0001, start + 0.04);
-      src.connect(hp).connect(amp).connect(out);
-      src.start(start);
-      src.stop(start + 0.05);
-    }
-  }
-
-  function thud({ when = 0, gain = 0.22, pan = 0 } = {}) {
-    const c = ensure();
-    if (!c) return;
-    const start = c.currentTime + when;
-    const out = panNode(pan);
-    const osc = c.createOscillator();
-    const amp = c.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(92, start);
-    osc.frequency.exponentialRampToValueAtTime(46, start + 0.13);
-    amp.gain.setValueAtTime(gain, start);
-    amp.gain.exponentialRampToValueAtTime(0.0001, start + 0.16);
-    osc.connect(amp).connect(out);
-    osc.start(start);
-    osc.stop(start + 0.18);
-  }
-
-  function gunBurst({ tighten = false } = {}) {
-    const c = ensure();
-    if (!c) return;
-    // High-flow air hiss under a rapid train of torque impacts.
-    hiss({ duration: 0.37, gain: 0.10, pan: 0.42, bright: true });
-    const impacts = tighten ? 9 : 8;
-    const spacing = tighten ? 0.038 : 0.043;
-    for (let i = 0; i < impacts; i++) {
-      const when = i * spacing;
-      const punch = 0.16 + (i % 3 === 0 ? 0.045 : 0);
-      metallicClick({ when, gain: punch, pan: 0.43, pitch: tighten ? 1.18 : 0.96 });
-      const osc = c.createOscillator();
-      const amp = c.createGain();
-      const start = c.currentTime + when;
-      osc.type = 'square';
-      osc.frequency.setValueAtTime(tighten ? 132 : 108, start);
-      osc.frequency.exponentialRampToValueAtTime(tighten ? 88 : 72, start + 0.028);
-      amp.gain.setValueAtTime(0.075, start);
-      amp.gain.exponentialRampToValueAtTime(0.0001, start + 0.036);
-      osc.connect(amp).connect(panNode(0.35));
-      osc.start(start);
-      osc.stop(start + 0.04);
-    }
-  }
-
-  function jackRelease() {
-    hiss({ duration: 0.34, gain: 0.15, pan: -0.28, bright: false });
-    metallicClick({ when: 0.06, gain: 0.18, pan: -0.24, pitch: 0.72 });
-    thud({ when: 0.09, gain: 0.24, pan: -0.18 });
-  }
-
-  const cues = [
-    { at: 0.018, play: () => { hiss({ duration: 0.22, gain: 0.11, pan: -0.22, bright: false }); metallicClick({ when: 0.025, gain: 0.11, pan: -0.18, pitch: 0.82 }); } },
-    { at: 0.150, play: () => gunBurst({ tighten: false }) },
-    { at: 0.278, play: () => { metallicClick({ gain: 0.20, pan: 0.12, pitch: 0.88 }); thud({ when: 0.018, gain: 0.16, pan: 0.05 }); } },
-    { at: 0.430, play: () => hiss({ duration: 0.13, gain: 0.055, pan: -0.08, bright: false }) },
-    { at: 0.635, play: () => thud({ gain: 0.12, pan: 0.08 }) },
-    { at: 0.685, play: () => { metallicClick({ gain: 0.18, pan: 0.10, pitch: 1.04 }); thud({ when: 0.012, gain: 0.13, pan: 0.06 }); } },
-    { at: 0.720, play: () => gunBurst({ tighten: true }) },
-    { at: 0.845, play: () => hiss({ duration: 0.18, gain: 0.085, pan: 0.40, bright: true }) },
-    { at: 0.940, play: jackRelease },
-  ];
-
-  function triggerBetween(from, to, active = true) {
-    if (!enabled || !active || to <= from) return;
-    for (const cue of cues) {
-      if (cue.at > from && cue.at <= to) cue.play();
-    }
-  }
-
-  function setEnabled(next) {
-    enabled = Boolean(next);
-    if (enabled) {
-      ensure();
-      metallicClick({ gain: 0.055, pitch: 1.2 });
-    } else if (master && ctx) {
-      master.gain.cancelScheduledValues(ctx.currentTime);
-      master.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.015);
-    }
-    if (enabled && master && ctx) master.gain.setTargetAtTime(0.72, ctx.currentTime, 0.02);
-  }
-
-  return { ensure, triggerBetween, setEnabled, get enabled() { return enabled; } };
-})();
-
-const mats = {
-  carbon: new THREE.MeshPhysicalMaterial({ color: C.carbon, roughness: 0.34, metalness: 0.25, clearcoat: 0.35, clearcoatRoughness: 0.3 }),
-  carbon2: new THREE.MeshStandardMaterial({ color: C.carbon2, roughness: 0.48, metalness: 0.22 }),
-  rubber: new THREE.MeshPhysicalMaterial({ color: C.rubber, roughness: 0.88, metalness: 0.0, clearcoat: 0.03 }),
-  rubberEdge: new THREE.MeshStandardMaterial({ color: C.rubberEdge, roughness: 0.72 }),
-  magnesium: new THREE.MeshPhysicalMaterial({ color: 0x4d535b, roughness: 0.28, metalness: 0.92, clearcoat: 0.22 }),
-  magnesiumDark: new THREE.MeshStandardMaterial({ color: 0x242930, roughness: 0.34, metalness: 0.86 }),
-  steel: new THREE.MeshStandardMaterial({ color: C.metal, roughness: 0.22, metalness: 0.95 }),
-  darkSteel: new THREE.MeshStandardMaterial({ color: C.darkMetal, roughness: 0.3, metalness: 0.9 }),
-  brake: new THREE.MeshPhysicalMaterial({ color: C.brake, roughness: 0.26, metalness: 0.5, clearcoat: 0.5 }),
-  gun: new THREE.MeshPhysicalMaterial({ color: 0x1d232b, roughness: 0.28, metalness: 0.68, clearcoat: 0.2 }),
-  gunAccent: new THREE.MeshStandardMaterial({ color: C.red, roughness: 0.3, metalness: 0.4 }),
-  glove: new THREE.MeshStandardMaterial({ color: 0x171b22, roughness: 0.75, metalness: 0.05 }),
-  suit: new THREE.MeshStandardMaterial({ color: 0x262d37, roughness: 0.72 }),
-  white: new THREE.MeshStandardMaterial({ color: 0xe9edf1, roughness: 0.42 }),
-  floor: new THREE.MeshStandardMaterial({ color: 0x1b2027, roughness: 0.93, metalness: 0.03 }),
-};
-
-function mesh(geometry, material, name = '') {
-  const m = new THREE.Mesh(geometry, material);
-  m.name = name;
-  m.castShadow = true;
-  m.receiveShadow = true;
-  return m;
-}
-
-function axisCylinder(radius, length, material, radialSegments = 32) {
-  const m = mesh(new THREE.CylinderGeometry(radius, radius, length, radialSegments), material);
-  m.rotation.z = Math.PI / 2;
-  return m;
-}
-
-function alignBetween(object, a, b) {
-  const mid = a.clone().add(b).multiplyScalar(0.5);
-  const dir = b.clone().sub(a);
-  object.position.copy(mid);
-  object.scale.set(1, dir.length(), 1);
-  object.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.normalize());
-}
-
-function rodBetween(a, b, radius, material, segments = 18) {
-  const rod = mesh(new THREE.CylinderGeometry(radius, radius, 1, segments), material);
-  alignBetween(rod, a, b);
-  return rod;
-}
-
-function roundedBox(w, h, d, radius, material) {
-  const shape = new THREE.Shape();
-  const x = -w / 2, y = -h / 2;
-  shape.moveTo(x + radius, y);
-  shape.lineTo(x + w - radius, y);
-  shape.quadraticCurveTo(x + w, y, x + w, y + radius);
-  shape.lineTo(x + w, y + h - radius);
-  shape.quadraticCurveTo(x + w, y + h, x + w - radius, y + h);
-  shape.lineTo(x + radius, y + h);
-  shape.quadraticCurveTo(x, y + h, x, y + h - radius);
-  shape.lineTo(x, y + radius);
-  shape.quadraticCurveTo(x, y, x + radius, y);
-  const g = new THREE.ExtrudeGeometry(shape, { depth: d, bevelEnabled: true, bevelSegments: 3, steps: 1, bevelSize: radius * 0.32, bevelThickness: radius * 0.32 });
-  g.center();
-  return mesh(g, material);
-}
-
-function makeCanvasSidewall(color = '#ffd447', text = 'FORMULA RACE') {
-  const cvs = document.createElement('canvas');
-  cvs.width = 1024;
-  cvs.height = 1024;
-  const ctx = cvs.getContext('2d');
-  ctx.clearRect(0, 0, cvs.width, cvs.height);
-  ctx.translate(512, 512);
-  ctx.strokeStyle = color;
-  ctx.lineWidth = 12;
-  ctx.beginPath();
-  ctx.arc(0, 0, 448, 0.20, Math.PI - 0.20);
-  ctx.stroke();
-  ctx.beginPath();
-  ctx.arc(0, 0, 448, Math.PI + 0.20, Math.PI * 2 - 0.20);
-  ctx.stroke();
-  ctx.fillStyle = color;
-  ctx.font = 'bold 44px Arial';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText(text, 0, -420);
-  ctx.fillText('18 IN  RACE', 0, 420);
-  const tex = new THREE.CanvasTexture(cvs);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
-  return tex;
-}
-
-function registerSelectable(root, title, description) {
-  root.userData.inspectTitle = title;
-  root.userData.inspectDescription = description;
-  root.traverse((obj) => {
-    if (obj.isMesh && !obj.userData.selectRoot) obj.userData.selectRoot = root;
-  });
-  return root;
-}
-
-const cutPlane = new THREE.Plane(new THREE.Vector3(0, 0, -1), 0.01);
-
-function makeWheel({ compoundColor = '#ffd447', label = 'MEDIUM', name = 'Wheel' } = {}) {
-  const wheel = new THREE.Group();
-  wheel.name = name;
-
-  const tireWidth = 0.305;
-  const tireRadius = 0.355;
-  const rimRadius = 0.229;
-
-  const profile = [
-    new THREE.Vector2(rimRadius + 0.006, -tireWidth * 0.5),
-    new THREE.Vector2(0.285, -tireWidth * 0.5),
-    new THREE.Vector2(0.335, -tireWidth * 0.42),
-    new THREE.Vector2(tireRadius - 0.004, -tireWidth * 0.22),
-    new THREE.Vector2(tireRadius, 0),
-    new THREE.Vector2(tireRadius - 0.004, tireWidth * 0.22),
-    new THREE.Vector2(0.335, tireWidth * 0.42),
-    new THREE.Vector2(0.285, tireWidth * 0.5),
-    new THREE.Vector2(rimRadius + 0.006, tireWidth * 0.5),
-  ];
-  const tireMaterial = mats.rubber.clone();
-  const tire = mesh(new THREE.LatheGeometry(profile, 128), tireMaterial, `${name} tire`);
-  tire.rotation.z = -Math.PI / 2;
-  wheel.add(tire);
-
-  const tread = new THREE.Group();
-  tread.name = `${name} slick mold lines`;
-  for (const x of [-0.085, 0, 0.085]) {
-    const seam = mesh(new THREE.TorusGeometry(tireRadius + 0.0008, 0.0014, 6, 128), mats.rubberEdge, 'Slick mold line');
-    seam.rotation.y = Math.PI / 2;
-    seam.position.x = x;
-    tread.add(seam);
-  }
-  wheel.add(tread);
-
-  const barrel = axisCylinder(rimRadius, tireWidth * 0.9, mats.magnesium, 96);
-  barrel.material = mats.magnesium.clone();
-  barrel.geometry = new THREE.CylinderGeometry(rimRadius, rimRadius, tireWidth * 0.9, 96, 1, true);
-  barrel.rotation.z = Math.PI / 2;
-  barrel.name = `${name} rim barrel`;
-  wheel.add(barrel);
-
-  const innerBarrel = axisCylinder(rimRadius - 0.025, tireWidth * 0.91, mats.magnesiumDark, 96);
-  innerBarrel.name = `${name} inner barrel`;
-  wheel.add(innerBarrel);
-
-  const flangeIn = mesh(new THREE.TorusGeometry(rimRadius, 0.009, 10, 96), mats.magnesium, 'Inner rim flange');
-  flangeIn.rotation.y = Math.PI / 2;
-  flangeIn.position.x = -tireWidth * 0.46;
-  wheel.add(flangeIn);
-  const flangeOut = flangeIn.clone();
-  flangeOut.position.x = tireWidth * 0.46;
-  flangeOut.name = 'Outer rim flange';
-  wheel.add(flangeOut);
-
-  const spokeGroup = new THREE.Group();
-  spokeGroup.name = `${name} spokes`;
-  const spokeMat = mats.magnesium.clone();
-  for (let i = 0; i < 12; i++) {
-    const a = (i / 12) * Math.PI * 2;
-    const r1 = 0.072;
-    const r2 = 0.205;
-    const p1 = new THREE.Vector3(tireWidth * 0.43, Math.sin(a) * r1, Math.cos(a) * r1);
-    const p2 = new THREE.Vector3(tireWidth * 0.43, Math.sin(a + 0.035) * r2, Math.cos(a + 0.035) * r2);
-    const spoke = rodBetween(p1, p2, 0.009, spokeMat, 10);
-    spoke.scale.x = 0.75;
-    spokeGroup.add(spoke);
-  }
-  wheel.add(spokeGroup);
-
-  const centerBoss = axisCylinder(0.078, 0.054, mats.magnesium, 64);
-  centerBoss.position.x = tireWidth * 0.42;
-  centerBoss.name = `${name} center boss`;
-  wheel.add(centerBoss);
-
-  const splineHole = axisCylinder(0.047, 0.062, mats.darkSteel, 48);
-  splineHole.position.x = tireWidth * 0.445;
-  splineHole.name = `${name} center bore`;
-  wheel.add(splineHole);
-
-  const nut = axisCylinder(0.056, 0.042, mats.steel, 8);
-  nut.position.x = tireWidth * 0.53;
-  nut.rotation.x = Math.PI / 8;
-  nut.name = `${name} retained center nut`;
-  wheel.add(nut);
-
-  const nutCap = axisCylinder(0.032, 0.046, mats.darkSteel, 32);
-  nutCap.position.x = tireWidth * 0.56;
-  nutCap.name = 'Nut drive face';
-  wheel.add(nutCap);
-
-  const retentionCollar = mesh(new THREE.TorusGeometry(0.064, 0.006, 10, 64), mats.gunAccent, 'Nut retention collar');
-  retentionCollar.rotation.y = Math.PI / 2;
-  retentionCollar.position.x = tireWidth * 0.505;
-  wheel.add(retentionCollar);
-
-  const sidewallMat = new THREE.MeshBasicMaterial({ map: makeCanvasSidewall(compoundColor, label), transparent: true, depthWrite: false, side: THREE.DoubleSide });
-  const sidewall = mesh(new THREE.RingGeometry(0.243, 0.35, 128), sidewallMat, `${name} sidewall markings`);
-  sidewall.rotation.y = Math.PI / 2;
-  sidewall.position.x = tireWidth * 0.505;
-  sidewall.renderOrder = 3;
-  wheel.add(sidewall);
-
-  const valve = axisCylinder(0.005, 0.038, mats.darkSteel, 12);
-  valve.position.set(tireWidth * 0.51, 0.185, 0.07);
-  valve.rotation.z = Math.PI / 2;
-  wheel.add(valve);
-
-  tire.userData.basePosition = tire.position.clone();
-  tread.userData.basePosition = tread.position.clone();
-  barrel.userData.basePosition = barrel.position.clone();
-  innerBarrel.userData.basePosition = innerBarrel.position.clone();
-  flangeIn.userData.basePosition = flangeIn.position.clone();
-  flangeOut.userData.basePosition = flangeOut.position.clone();
-  spokeGroup.userData.basePosition = spokeGroup.position.clone();
-  centerBoss.userData.basePosition = centerBoss.position.clone();
-  splineHole.userData.basePosition = splineHole.position.clone();
-  nut.userData.basePosition = nut.position.clone();
-  nutCap.userData.basePosition = nutCap.position.clone();
-  retentionCollar.userData.basePosition = retentionCollar.position.clone();
-  sidewall.userData.basePosition = sidewall.position.clone();
-  valve.userData.basePosition = valve.position.clone();
-
-  wheel.userData.parts = { tire, tread, barrel, innerBarrel, flangeIn, flangeOut, spokeGroup, centerBoss, splineHole, nut, nutCap, retentionCollar, sidewall, valve };
-  wheel.userData.tireWidth = tireWidth;
-
-  registerSelectable(tire, 'Slick racing tire', 'A low-profile 18-inch slick. The rounded shoulders and broad contact surface support high lateral load.');
-  registerSelectable(spokeGroup, 'Magnesium wheel', 'A lightweight center-lock wheel with a deep barrel and radial spokes.');
-  registerSelectable(nut, 'Retained center nut', 'The center nut moves along the axle thread but remains captured by the wheel retention collar.');
-  registerSelectable(sidewall, 'Compound markings', 'The colored ring identifies the tire compound. This simulator uses a generic race-tire marking.');
-  registerSelectable(wheel, `${name}`, 'A complete wheel assembly with slick tire, magnesium rim, center bore, retained nut, valve and sidewall markings.');
-  return wheel;
-}
-
-function makeHubAndBrake() {
-  const group = new THREE.Group();
-  group.name = 'Hub and brake system';
-
-  const upright = roundedBox(0.13, 0.28, 0.18, 0.025, mats.darkSteel);
-  upright.position.set(0.275, 0.43, 0);
-  upright.rotation.y = Math.PI / 2;
-  upright.name = 'Wheel upright';
-  group.add(upright);
-
-  const axle = axisCylinder(0.036, 0.46, mats.steel, 48);
-  axle.position.set(0.48, 0.43, 0);
-  axle.name = 'Threaded axle';
-  group.add(axle);
-
-  const threaded = new THREE.Group();
-  threaded.name = 'Axle thread';
-  for (let i = 0; i < 13; i++) {
-    const ring = mesh(new THREE.TorusGeometry(0.039, 0.0022, 6, 32), mats.darkSteel, 'Thread ridge');
-    ring.rotation.y = Math.PI / 2;
-    ring.position.set(0.60 + i * 0.009, 0.43, 0);
-    threaded.add(ring);
-  }
-  group.add(threaded);
-
-  const hub = axisCylinder(0.095, 0.115, mats.darkSteel, 64);
-  hub.position.set(0.43, 0.43, 0);
-  hub.name = 'Center-lock hub';
-  group.add(hub);
-
-  const splines = new THREE.Group();
-  splines.name = 'Drive splines';
-  for (let i = 0; i < 18; i++) {
-    const a = i / 18 * Math.PI * 2;
-    const tooth = mesh(new THREE.BoxGeometry(0.11, 0.009, 0.018), mats.steel, 'Drive spline');
-    tooth.position.set(0.49, 0.43 + Math.sin(a) * 0.078, Math.cos(a) * 0.078);
-    tooth.rotation.x = a;
-    splines.add(tooth);
-  }
-  group.add(splines);
-
-  const disc = axisCylinder(0.218, 0.026, mats.darkSteel, 96);
-  disc.position.set(0.285, 0.43, 0);
-  disc.name = 'Carbon brake disc';
-  group.add(disc);
-
-  const discFace = mesh(new THREE.TorusGeometry(0.163, 0.051, 16, 96), new THREE.MeshStandardMaterial({ color: 0x2e3339, roughness: 0.55, metalness: 0.52 }), 'Brake friction ring');
-  discFace.rotation.y = Math.PI / 2;
-  discFace.position.set(0.301, 0.43, 0);
-  group.add(discFace);
-
-  const holes = new THREE.Group();
-  holes.name = 'Disc ventilation holes';
-  for (let r = 0; r < 2; r++) {
-    const rr = r ? 0.185 : 0.142;
-    const count = r ? 30 : 22;
-    for (let i = 0; i < count; i++) {
-      const a = i / count * Math.PI * 2 + r * 0.08;
-      const dot = axisCylinder(0.0035, 0.029, new THREE.MeshBasicMaterial({ color: 0x08090a }), 10);
-      dot.position.set(0.304, 0.43 + Math.sin(a) * rr, Math.cos(a) * rr);
-      holes.add(dot);
-    }
-  }
-  group.add(holes);
-
-  const bell = axisCylinder(0.105, 0.034, mats.magnesiumDark, 48);
-  bell.position.set(0.304, 0.43, 0);
-  bell.name = 'Brake bell';
-  group.add(bell);
-
-  const caliper = new THREE.Group();
-  caliper.name = 'Brake caliper';
-  const caliperBody = roundedBox(0.09, 0.19, 0.08, 0.022, mats.brake);
-  caliperBody.position.set(0.285, 0.43, 0.168);
-  caliperBody.rotation.y = Math.PI / 2;
-  caliper.add(caliperBody);
-  const bridge = roundedBox(0.085, 0.055, 0.12, 0.016, mats.brake);
-  bridge.position.set(0.285, 0.43, 0.15);
-  bridge.rotation.y = Math.PI / 2;
-  caliper.add(bridge);
-  group.add(caliper);
-
-  const lowerA = rodBetween(new THREE.Vector3(-0.48, 0.16, -0.32), new THREE.Vector3(0.25, 0.35, -0.08), 0.018, mats.carbon, 18);
-  const lowerB = rodBetween(new THREE.Vector3(-0.48, 0.16, 0.32), new THREE.Vector3(0.25, 0.35, 0.08), 0.018, mats.carbon, 18);
-  const upperA = rodBetween(new THREE.Vector3(-0.42, 0.72, -0.26), new THREE.Vector3(0.25, 0.52, -0.07), 0.015, mats.carbon, 18);
-  const upperB = rodBetween(new THREE.Vector3(-0.42, 0.72, 0.26), new THREE.Vector3(0.25, 0.52, 0.07), 0.015, mats.carbon, 18);
-  const steering = rodBetween(new THREE.Vector3(-0.38, 0.44, -0.34), new THREE.Vector3(0.25, 0.45, -0.10), 0.012, mats.steel, 16);
-  group.add(lowerA, lowerB, upperA, upperB, steering);
-
-  registerSelectable(axle, 'Threaded axle', 'The center-lock nut runs along this single axle thread. Splines transmit drive torque through the hub.');
-  registerSelectable(hub, 'Hub and drive splines', 'The hub centers the wheel and transmits braking and drive loads through its splined interface.');
-  registerSelectable(disc, 'Carbon brake disc', 'A ventilated carbon friction ring sits inboard of the wheel and rotates with the hub.');
-  registerSelectable(caliper, 'Brake caliper', 'The fixed caliper clamps the rotating disc. Its position remains fixed while the wheel and disc rotate.');
-  registerSelectable(group, 'Hub, brake and suspension', 'The corner assembly includes the axle, drive splines, carbon disc, fixed caliper, upright and suspension links.');
-
-  group.userData.axle = axle;
-  group.userData.hub = hub;
-  group.userData.disc = disc;
-  group.userData.caliper = caliper;
-  return group;
-}
-
-function makeCarBody() {
-  const car = new THREE.Group();
-  car.name = 'Car chassis corner';
-
-  const monocoque = roundedBox(1.45, 0.34, 0.64, 0.08, mats.carbon);
-  monocoque.position.set(-0.82, 0.55, 0);
-  monocoque.rotation.y = Math.PI / 2;
-  car.add(monocoque);
-
-  const nose = roundedBox(0.88, 0.16, 0.24, 0.05, mats.carbon2);
-  nose.position.set(-0.82, 0.45, -0.62);
-  car.add(nose);
-
-  const bodyPanel = roundedBox(0.7, 0.23, 0.6, 0.06, mats.gunAccent);
-  bodyPanel.position.set(-0.66, 0.65, 0);
-  bodyPanel.rotation.y = Math.PI / 2;
-  car.add(bodyPanel);
-
-  const floor = mesh(new THREE.BoxGeometry(1.6, 0.035, 0.86), mats.carbon, 'Floor plank');
-  floor.position.set(-0.62, 0.23, 0);
-  car.add(floor);
-
-  const wingMain = mesh(new THREE.BoxGeometry(1.2, 0.035, 0.18), mats.carbon2, 'Front wing plane');
-  wingMain.position.set(-0.85, 0.25, -0.92);
-  car.add(wingMain);
-  const endplateL = mesh(new THREE.BoxGeometry(0.035, 0.25, 0.25), mats.carbon2, 'Wing endplate');
-  endplateL.position.set(-0.25, 0.31, -0.92);
-  car.add(endplateL);
-
-  registerSelectable(car, 'Formula car corner', 'A generic carbon-fiber single-seater chassis corner provides spatial context for the suspension and wheel system.');
-  return car;
-}
-
-function makeJack() {
-  const jack = new THREE.Group();
-  jack.name = 'Side lifting jack';
-  const base = mesh(new THREE.BoxGeometry(0.55, 0.04, 0.34), mats.darkSteel, 'Jack base');
-  base.position.set(-0.18, 0.045, 0);
-  jack.add(base);
-  const arm1 = rodBetween(new THREE.Vector3(-0.32, 0.08, -0.1), new THREE.Vector3(-0.08, 0.34, -0.1), 0.018, mats.steel, 16);
-  const arm2 = rodBetween(new THREE.Vector3(-0.32, 0.08, 0.1), new THREE.Vector3(-0.08, 0.34, 0.1), 0.018, mats.steel, 16);
-  jack.add(arm1, arm2);
-  const pad = roundedBox(0.18, 0.035, 0.18, 0.012, mats.gunAccent);
-  pad.position.set(-0.08, 0.36, 0);
-  jack.add(pad);
-  jack.userData.pad = pad;
-  registerSelectable(jack, 'Lifting jack', 'The car remains raised while the nut is loose and either wheel is off the hub.');
-  return jack;
-}
-
-function makeWheelGun() {
-  const gun = new THREE.Group();
-  gun.name = 'Pneumatic wheel gun';
-
-  const barrel = axisCylinder(0.052, 0.27, mats.gun, 48);
-  barrel.position.x = -0.03;
-  barrel.name = 'Impact barrel';
-  gun.add(barrel);
-
-  const motor = axisCylinder(0.085, 0.18, mats.gun, 48);
-  motor.position.x = 0.17;
-  motor.name = 'Pneumatic motor';
-  gun.add(motor);
-
-  const rotor = new THREE.Group();
-  rotor.name = 'Gun rotor and socket';
-  const socket = axisCylinder(0.061, 0.105, mats.darkSteel, 12);
-  socket.position.x = -0.205;
-  socket.name = 'Center-nut socket';
-  rotor.add(socket);
-  const collar = mesh(new THREE.TorusGeometry(0.067, 0.007, 8, 32), mats.gunAccent, 'Socket collar');
-  collar.rotation.y = Math.PI / 2;
-  collar.position.x = -0.255;
-  rotor.add(collar);
-  gun.add(rotor);
-
-  const handle = roundedBox(0.08, 0.24, 0.09, 0.02, mats.gun);
-  handle.position.set(0.15, -0.16, 0);
-  handle.rotation.z = -0.12;
-  handle.name = 'Wheel-gun handle';
-  gun.add(handle);
-
-  const trigger = roundedBox(0.025, 0.045, 0.05, 0.007, mats.gunAccent);
-  trigger.position.set(0.105, -0.11, 0.045);
-  gun.add(trigger);
-
-  const controller = roundedBox(0.11, 0.075, 0.105, 0.016, mats.gun);
-  controller.position.set(0.21, 0.095, 0);
-  controller.name = 'Gun control module';
-  gun.add(controller);
-  const screen = mesh(new THREE.PlaneGeometry(0.064, 0.034), new THREE.MeshBasicMaterial({ color: 0x18d889, toneMapped: false }), 'Torque-status display');
-  screen.position.set(0.21, 0.10, 0.054);
-  screen.rotation.y = 0;
-  gun.add(screen);
-  const led = mesh(new THREE.SphereGeometry(0.008, 16, 10), new THREE.MeshBasicMaterial({ color: C.green, toneMapped: false }), 'Gun status LED');
-  led.position.set(0.255, 0.13, 0.055);
-  gun.add(led);
-
-  const inlet = axisCylinder(0.02, 0.08, mats.darkSteel, 20);
-  inlet.rotation.z = 0;
-  inlet.position.set(0.17, -0.31, 0);
-  gun.add(inlet);
-
-  gun.userData.rotor = rotor;
-  gun.userData.led = led;
-  gun.userData.screen = screen;
-  registerSelectable(gun, 'Pneumatic wheel gun', 'The socket engages the retained center nut. The gun reverses to loosen, then tightens until its controller confirms lock.');
-  return gun;
-}
-
-function makePitEnvironment() {
-  const env = new THREE.Group();
-  const floor = mesh(new THREE.PlaneGeometry(30, 30), mats.floor, 'Pit-lane floor');
-  floor.rotation.x = -Math.PI / 2;
-  floor.receiveShadow = true;
-  env.add(floor);
-
-  const stripMat = new THREE.MeshStandardMaterial({ color: 0xe8e9ea, roughness: 0.75 });
-  const redMat = new THREE.MeshStandardMaterial({ color: C.red, roughness: 0.7 });
-  for (let i = -7; i <= 7; i++) {
-    const tile = mesh(new THREE.PlaneGeometry(0.28, 0.12), i % 2 === 0 ? stripMat : redMat, 'Pit-box marking');
-    tile.rotation.x = -Math.PI / 2;
-    tile.position.set(i * 0.28, 0.003, -0.75);
-    env.add(tile);
-  }
-  const centerMark = mesh(new THREE.PlaneGeometry(0.055, 4.5), new THREE.MeshStandardMaterial({ color: 0xf2cf28, roughness: 0.7 }), 'Pit center line');
-  centerMark.rotation.x = -Math.PI / 2;
-  centerMark.position.set(-1.3, 0.004, 0);
-  env.add(centerMark);
-
-  const backWall = mesh(new THREE.PlaneGeometry(12, 5), new THREE.MeshStandardMaterial({ color: 0x111720, roughness: 0.86 }), 'Garage wall');
-  backWall.position.set(-3.2, 2.5, -4);
-  env.add(backWall);
-
-  const trussMat = new THREE.MeshStandardMaterial({ color: 0x3e4650, roughness: 0.45, metalness: 0.8 });
-  for (let i = -3; i <= 3; i++) {
-    const post = mesh(new THREE.BoxGeometry(0.06, 3.8, 0.06), trussMat, 'Garage truss');
-    post.position.set(i * 1.4 - 1.5, 1.9, -3.85);
-    env.add(post);
-  }
-
-  return env;
-}
-
-function makeSpareRack() {
-  const rack = new THREE.Group();
-  rack.name = 'Spare wheel rack';
-  const railMat = mats.darkSteel;
-  rack.add(rodBetween(new THREE.Vector3(-1.9, 0.1, 1.3), new THREE.Vector3(-1.9, 1.1, 1.3), 0.025, railMat));
-  rack.add(rodBetween(new THREE.Vector3(-1.9, 0.1, 2.25), new THREE.Vector3(-1.9, 1.1, 2.25), 0.025, railMat));
-  rack.add(rodBetween(new THREE.Vector3(-1.9, 0.45, 1.25), new THREE.Vector3(-1.9, 0.45, 2.3), 0.025, railMat));
-  rack.add(rodBetween(new THREE.Vector3(-1.9, 0.92, 1.25), new THREE.Vector3(-1.9, 0.92, 2.3), 0.025, railMat));
-
-  const spareA = makeWheel({ compoundColor: '#f44336', label: 'SOFT', name: 'Soft spare wheel' });
-  spareA.scale.setScalar(0.7);
-  spareA.position.set(-1.82, 0.39, 1.55);
-  spareA.rotation.y = Math.PI / 2;
-  rack.add(spareA);
-  const spareB = makeWheel({ compoundColor: '#f1f1f1', label: 'HARD', name: 'Hard spare wheel' });
-  spareB.scale.setScalar(0.7);
-  spareB.position.set(-1.82, 0.86, 1.95);
-  spareB.rotation.y = Math.PI / 2;
-  rack.add(spareB);
-  return rack;
-}
-
-const environment = makePitEnvironment();
-scene.add(environment);
-
-const rig = new THREE.Group();
-rig.name = 'Pit wheel rig';
-scene.add(rig);
-
-const car = makeCarBody();
-rig.add(car);
-const hubAssembly = makeHubAndBrake();
-rig.add(hubAssembly);
-const jack = makeJack();
-rig.add(jack);
-
-const oldWheel = makeWheel({ compoundColor: '#ffd447', label: 'USED MEDIUM', name: 'Outgoing wheel' });
-oldWheel.position.set(0.69, 0.43, 0);
-rig.add(oldWheel);
-
-const newWheel = makeWheel({ compoundColor: '#ffd447', label: 'NEW MEDIUM', name: 'Incoming wheel' });
-newWheel.position.set(2.25, 0.43, 0.58);
-newWheel.rotation.x = 0.18;
-rig.add(newWheel);
-
-const gun = makeWheelGun();
-gun.position.set(1.48, 0.48, 0.18);
-gun.rotation.z = 0.03;
-rig.add(gun);
-
-const spareRack = makeSpareRack();
-scene.add(spareRack);
-
-// Pit-crew arms follow the wheel gun.
-const crew = new THREE.Group();
-crew.name = 'Wheel-gun operator';
-scene.add(crew);
-const shoulderA = new THREE.Vector3(1.82, 1.22, 0.28);
-const shoulderB = new THREE.Vector3(1.78, 1.13, -0.08);
-const elbowA = new THREE.Vector3(1.54, 0.88, 0.28);
-const elbowB = new THREE.Vector3(1.5, 0.78, -0.07);
-const upperArmA = mesh(new THREE.CylinderGeometry(0.045, 0.052, 1, 18), mats.suit, 'Operator upper arm');
-const lowerArmA = mesh(new THREE.CylinderGeometry(0.038, 0.045, 1, 18), mats.suit, 'Operator forearm');
-const upperArmB = upperArmA.clone();
-const lowerArmB = lowerArmA.clone();
-const handA = mesh(new THREE.SphereGeometry(0.052, 20, 14), mats.glove, 'Operator glove');
-const handB = handA.clone();
-crew.add(upperArmA, lowerArmA, upperArmB, lowerArmB, handA, handB);
-const head = mesh(new THREE.SphereGeometry(0.12, 28, 20), mats.suit, 'Operator helmet');
-head.position.set(1.92, 1.45, 0.1);
-crew.add(head);
-const visor = mesh(new THREE.SphereGeometry(0.105, 24, 12, 0, Math.PI * 2, 0, Math.PI * 0.47), new THREE.MeshPhysicalMaterial({ color: 0x0a1119, roughness: 0.06, metalness: 0.5, transmission: 0.16, transparent: true, opacity: 0.85 }), 'Helmet visor');
-visor.position.set(1.84, 1.44, 0.1);
-visor.rotation.z = Math.PI / 2;
-crew.add(visor);
-registerSelectable(crew, 'Wheel-gun operator', 'Two articulated arms track the wheel gun while the operator braces against the tool reaction torque.');
-
-// Pneumatic hose as a dynamic polyline.
-const hoseSegments = 36;
-const hosePositions = new Float32Array(hoseSegments * 3);
-const hoseGeometry = new THREE.BufferGeometry();
-hoseGeometry.setAttribute('position', new THREE.BufferAttribute(hosePositions, 3));
-const hose = new THREE.Line(hoseGeometry, new THREE.LineBasicMaterial({ color: 0xe1c42e, linewidth: 2, transparent: true, opacity: 0.9 }));
-hose.name = 'Pneumatic air hose';
-scene.add(hose);
-registerSelectable(hose, 'Pneumatic air hose', 'A flexible high-flow hose supplies the wheel gun. Its curve updates as the tool moves.');
-
-// Motion-path visualizers.
-const gunPathLine = new THREE.Line(new THREE.BufferGeometry(), new THREE.LineDashedMaterial({ color: C.amber, dashSize: 0.05, gapSize: 0.035, transparent: true, opacity: 0.55 }));
-const wheelPathLine = new THREE.Line(new THREE.BufferGeometry(), new THREE.LineDashedMaterial({ color: C.blue, dashSize: 0.05, gapSize: 0.035, transparent: true, opacity: 0.4 }));
-scene.add(gunPathLine, wheelPathLine);
-
-function gunPath(u) {
-  const p0 = new THREE.Vector3(1.68, 0.57, 0.43);
-  const p1 = new THREE.Vector3(1.25, 0.49, 0.18);
-  const p2 = new THREE.Vector3(0.93, 0.43, 0.015);
-  const p3 = new THREE.Vector3(0.84, 0.43, 0);
-  const curve = new THREE.CatmullRomCurve3([p0, p1, p2, p3]);
-  return curve.getPoint(THREE.MathUtils.clamp(u, 0, 1));
-}
-function newWheelPath(u) {
-  const curve = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(2.25, 0.43, 0.58),
-    new THREE.Vector3(1.85, 0.49, 0.38),
-    new THREE.Vector3(1.25, 0.45, 0.12),
-    new THREE.Vector3(0.69, 0.43, 0),
-  ]);
-  return curve.getPoint(THREE.MathUtils.clamp(u, 0, 1));
-}
-const gunPathPoints = Array.from({ length: 80 }, (_, i) => gunPath(i / 79));
-gunPathLine.geometry.setFromPoints(gunPathPoints);
-gunPathLine.computeLineDistances();
-const wheelPathPoints = Array.from({ length: 80 }, (_, i) => newWheelPath(i / 79));
-wheelPathLine.geometry.setFromPoints(wheelPathPoints);
-wheelPathLine.computeLineDistances();
-
-// Lighting rig.
-scene.add(new THREE.HemisphereLight(0x9ec8ff, 0x19120d, 1.35));
-const key = new THREE.DirectionalLight(0xffffff, 4.1);
-key.position.set(3.4, 5.5, 3.2);
-key.castShadow = true;
-key.shadow.mapSize.set(2048, 2048);
-key.shadow.camera.left = -4;
-key.shadow.camera.right = 4;
-key.shadow.camera.top = 4;
-key.shadow.camera.bottom = -4;
-key.shadow.camera.near = 0.5;
-key.shadow.camera.far = 14;
-scene.add(key);
-const rimLight = new THREE.SpotLight(0xff344e, 28, 8, 0.65, 0.65, 1.2);
-rimLight.position.set(-1.8, 2.5, 2.6);
-rimLight.target.position.set(0.3, 0.4, 0);
-scene.add(rimLight, rimLight.target);
-const coolLight = new THREE.SpotLight(0x55a7ff, 22, 7, 0.55, 0.7, 1.2);
-coolLight.position.set(2.7, 2.2, -2.4);
-coolLight.target.position.set(0.4, 0.4, 0);
-scene.add(coolLight, coolLight.target);
-const topLight = new THREE.RectAreaLight(0xffffff, 8, 3.5, 1.2);
-topLight.position.set(0, 3.3, 0.6);
-topLight.rotation.x = -Math.PI / 2;
-scene.add(topLight);
-
-// Component labels.
-const labelLayer = document.querySelector('#labelsLayer');
-const labelDefs = [
-  { text: 'RETAINED NUT', object: oldWheel.userData.parts.nut },
-  { text: 'PNEUMATIC GUN', object: gun },
-  { text: 'CARBON DISC', object: hubAssembly.userData.disc },
-  { text: 'FIXED CALIPER', object: hubAssembly.userData.caliper },
-  { text: 'DRIVE SPLINES', object: hubAssembly.userData.hub },
-  { text: 'INCOMING WHEEL', object: newWheel },
-];
-for (const def of labelDefs) {
-  const el = document.createElement('div');
-  el.className = 'part-label';
-  el.textContent = def.text;
-  labelLayer.appendChild(el);
-  def.el = el;
-}
-
-// Selection helper.
-const selectionBox = new THREE.Box3Helper(new THREE.Box3(), 0xff4354);
-selectionBox.visible = false;
-selectionBox.material.transparent = true;
-selectionBox.material.opacity = 0.88;
-scene.add(selectionBox);
-const raycaster = new THREE.Raycaster();
-const pointer = new THREE.Vector2();
-
-const focusMap = {
-  assembly: { object: rig, title: 'Complete wheel corner', description: 'A mechanically staged center-lock wheel change with hub, brake, nut, wheel gun, jack and crew motion.' },
-  wheel: { object: oldWheel, title: 'Outgoing wheel assembly', description: 'The mounted wheel leaves the splined hub after its retained nut backs off.' },
-  nut: { object: oldWheel.userData.parts.nut, title: 'Retained center nut', description: 'The nut translates only a short distance and remains captured inside the outgoing wheel.' },
-  gun: { object: gun, title: 'Pneumatic wheel gun', description: 'The gun approaches coaxially, reverses for removal, then tightens the replacement wheel.' },
-  brake: { object: hubAssembly.userData.disc, title: 'Brake system', description: 'The brake disc stays on the car. The caliper remains fixed while the disc rotates with the hub.' },
-  hub: { object: hubAssembly.userData.hub, title: 'Hub and axle', description: 'The splines align the wheel rotationally while the axle thread accepts the center nut.' },
-  newWheel: { object: newWheel, title: 'Incoming wheel', description: 'The replacement follows a curved carrier path before translating coaxially onto the hub.' },
-};
-
-const cameraPresets = {
-  hero: { pos: new THREE.Vector3(2.45, 1.48, 2.55), target: new THREE.Vector3(0.36, 0.43, 0) },
-  gun: { pos: new THREE.Vector3(1.70, 0.74, 0.72), target: new THREE.Vector3(0.78, 0.43, 0) },
-  hub: { pos: new THREE.Vector3(1.12, 0.66, 0.42), target: new THREE.Vector3(0.43, 0.43, 0) },
-  brake: { pos: new THREE.Vector3(0.92, 0.78, 0.88), target: new THREE.Vector3(0.29, 0.43, 0.08) },
-  top: { pos: new THREE.Vector3(0.55, 3.25, 0.05), target: new THREE.Vector3(0.38, 0.38, 0) },
-  wide: { pos: new THREE.Vector3(4.2, 2.15, 4.2), target: new THREE.Vector3(-0.2, 0.45, 0.25) },
-};
-
-function setCameraPreset(name, immediate = false) {
-  const preset = cameraPresets[name];
-  if (!preset) return;
-  document.querySelectorAll('[data-camera]').forEach((b) => b.classList.toggle('active', b.dataset.camera === name));
-  if (immediate) {
-    camera.position.copy(preset.pos);
-    controls.target.copy(preset.target);
-    controls.update();
-    state.cameraTween = null;
-    return;
-  }
-  state.cameraTween = {
-    start: performance.now(),
-    duration: 650,
-    fromPos: camera.position.clone(),
-    fromTarget: controls.target.clone(),
-    toPos: preset.pos.clone(),
-    toTarget: preset.target.clone(),
-  };
-}
-
-function frameObject(object) {
-  if (!object) return;
-  object.updateWorldMatrix(true, true);
-  const box = new THREE.Box3().setFromObject(object);
-  if (box.isEmpty()) return;
-  const sphere = box.getBoundingSphere(new THREE.Sphere());
-  const dir = camera.position.clone().sub(controls.target).normalize();
-  const fov = THREE.MathUtils.degToRad(camera.fov);
-  const dist = Math.max(0.22, sphere.radius / Math.sin(fov / 2) * 1.15);
-  state.cameraTween = {
-    start: performance.now(), duration: 550,
-    fromPos: camera.position.clone(), fromTarget: controls.target.clone(),
-    toPos: sphere.center.clone().add(dir.multiplyScalar(dist)), toTarget: sphere.center.clone(),
-  };
-}
-
-function selectObject(object, frame = false) {
-  if (!object) return;
-  state.selected = object;
-  const title = object.userData.inspectTitle || object.name || 'Component';
-  const desc = object.userData.inspectDescription || 'Interactive mechanical component.';
-  document.querySelector('#partName').textContent = title;
-  document.querySelector('#partDesc').textContent = desc;
-  selectionBox.visible = true;
-  selectionBox.box.setFromObject(object);
-  if (frame) frameObject(object);
-}
-
-function easeInOutCubic(x) {
-  return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-}
-function smoothRange(t, a, b) {
-  return THREE.MathUtils.smoothstep(t, a, b);
-}
-function pingPongPulse(t, a, b) {
-  const u = THREE.MathUtils.clamp((t - a) / (b - a), 0, 1);
-  return Math.sin(u * Math.PI);
-}
-
-function applyExploded(wheel, amount) {
-  const p = wheel.userData.parts;
-  const setX = (obj, offset) => obj.position.x = obj.userData.basePosition.x + offset * amount;
-  setX(p.tire, 0.20);
-  setX(p.tread, 0.20);
-  setX(p.barrel, 0.03);
-  setX(p.innerBarrel, 0.01);
-  setX(p.flangeIn, -0.03);
-  setX(p.flangeOut, 0.08);
-  setX(p.spokeGroup, 0.10);
-  setX(p.centerBoss, 0.15);
-  setX(p.splineHole, 0.16);
-  setX(p.nut, 0.28);
-  setX(p.nutCap, 0.28);
-  setX(p.retentionCollar, 0.23);
-  setX(p.sidewall, 0.22);
-  setX(p.valve, 0.22);
-}
-
-function applyCutaway(wheel, enabled) {
-  const p = wheel.userData.parts;
-  [p.tire, p.barrel, p.innerBarrel, p.flangeIn, p.flangeOut].forEach((obj) => {
-    if (!obj.material) return;
-    obj.material.clippingPlanes = enabled ? [cutPlane] : [];
-    obj.material.needsUpdate = true;
-  });
-  p.tread.children.forEach((block) => { block.visible = !enabled || block.position.z <= 0.015; });
-  p.sidewall.visible = !enabled;
-}
-
-function updateCrewAndHose() {
-  const handTargetA = gun.localToWorld(new THREE.Vector3(0.12, -0.14, 0.04));
-  const handTargetB = gun.localToWorld(new THREE.Vector3(0.12, -0.05, -0.055));
-  const dynamicElbowA = elbowA.clone().lerp(handTargetA, 0.12);
-  const dynamicElbowB = elbowB.clone().lerp(handTargetB, 0.12);
-  alignBetween(upperArmA, shoulderA, dynamicElbowA);
-  alignBetween(lowerArmA, dynamicElbowA, handTargetA);
-  alignBetween(upperArmB, shoulderB, dynamicElbowB);
-  alignBetween(lowerArmB, dynamicElbowB, handTargetB);
-  handA.position.copy(handTargetA);
-  handB.position.copy(handTargetB);
-
-  const start = gun.localToWorld(new THREE.Vector3(0.17, -0.35, 0));
-  const end = new THREE.Vector3(2.35, 2.75, -0.65);
-  const pos = hose.geometry.attributes.position.array;
-  for (let i = 0; i < hoseSegments; i++) {
-    const u = i / (hoseSegments - 1);
-    const p = new THREE.Vector3().lerpVectors(start, end, u);
-    p.y += Math.sin(u * Math.PI) * (0.35 + 0.12 * Math.sin(state.t * Math.PI * 3));
-    p.z += Math.sin(u * Math.PI * 2) * 0.10;
-    pos[i * 3] = p.x; pos[i * 3 + 1] = p.y; pos[i * 3 + 2] = p.z;
-  }
-  hose.geometry.attributes.position.needsUpdate = true;
-  hose.geometry.computeBoundingSphere();
-}
-
-function getPhase(t) {
-  if (t < 0.07) return ['CAR RAISED', C.green];
-  if (t < 0.17) return ['GUN APPROACH', C.amber];
-  if (t < 0.28) return ['NUT LOOSENING', C.amber];
-  if (t < 0.43) return ['OUTGOING WHEEL OFF', C.red];
-  if (t < 0.60) return ['WHEEL TRANSFER', C.red];
-  if (t < 0.73) return ['NEW WHEEL ON', C.amber];
-  if (t < 0.84) return ['NUT TIGHTENING', C.amber];
-  if (t < 0.94) return ['GUN CLEAR', C.green];
-  return ['CAR RELEASE', C.green];
-}
-
-function updateSimulation(t) {
-  state.t = THREE.MathUtils.clamp(t, 0, 1);
-  const explode = state.exploded ? 1 : 0;
-  applyExploded(oldWheel, explode);
-  applyExploded(newWheel, explode);
-  applyCutaway(oldWheel, state.cutaway);
-  applyCutaway(newWheel, state.cutaway);
-
-  const oldNut = oldWheel.userData.parts.nut;
-  const oldNutCap = oldWheel.userData.parts.nutCap;
-  const newNut = newWheel.userData.parts.nut;
-  const newNutCap = newWheel.userData.parts.nutCap;
-
-  // Base wheel states.
-  oldWheel.position.set(0.69, 0.43, 0);
-  oldWheel.rotation.set(0, 0, 0);
-  newWheel.position.set(2.25, 0.43, 0.58);
-  newWheel.rotation.set(0.18, 0, 0);
-
-  // Gun approach and retreat.
-  let gunU = 0;
-  if (state.t < 0.14) gunU = smoothRange(state.t, 0.04, 0.14);
-  else if (state.t < 0.28) gunU = 1;
-  else if (state.t < 0.36) gunU = 1 - smoothRange(state.t, 0.28, 0.36);
-  else if (state.t < 0.66) gunU = 0;
-  else if (state.t < 0.72) gunU = smoothRange(state.t, 0.66, 0.72);
-  else if (state.t < 0.84) gunU = 1;
-  else gunU = 1 - smoothRange(state.t, 0.84, 0.94);
-  gun.position.copy(gunPath(gunU));
-  gun.rotation.z = THREE.MathUtils.lerp(0.03, 0, gunU);
-  gun.rotation.y = THREE.MathUtils.lerp(-0.10, 0, gunU);
-
-  // Loosen old retained nut.
-  const loosen = smoothRange(state.t, 0.15, 0.27);
-  const oldBaseNutX = oldNut.userData.basePosition.x + 0.28 * explode;
-  const oldBaseCapX = oldNutCap.userData.basePosition.x + 0.28 * explode;
-  oldNut.position.x = oldBaseNutX + loosen * 0.035;
-  oldNutCap.position.x = oldBaseCapX + loosen * 0.035;
-
-  // Outgoing wheel translates coaxially, then carrier moves it away.
-  const off = smoothRange(state.t, 0.27, 0.43);
-  const clear = smoothRange(state.t, 0.43, 0.59);
-  oldWheel.position.x = THREE.MathUtils.lerp(0.69, 1.34, easeInOutCubic(off));
-  oldWheel.position.z = THREE.MathUtils.lerp(0, -0.62, easeInOutCubic(clear));
-  oldWheel.position.y = 0.43 + 0.10 * Math.sin(clear * Math.PI);
-  oldWheel.rotation.z = -clear * 0.18;
-
-  // Incoming wheel follows a curved path, then slides the final distance onto the hub.
-  const incoming = smoothRange(state.t, 0.42, 0.68);
-  newWheel.position.copy(newWheelPath(easeInOutCubic(incoming)));
-  newWheel.rotation.x = THREE.MathUtils.lerp(0.18, 0, incoming);
-  newWheel.rotation.z = THREE.MathUtils.lerp(0.15, 0, incoming);
-  if (state.t >= 0.68) newWheel.position.set(0.69, 0.43, 0);
-
-  // New retained nut begins backed off, then advances during tightening.
-  const tighten = smoothRange(state.t, 0.72, 0.84);
-  const newBaseNutX = newNut.userData.basePosition.x + 0.28 * explode;
-  const newBaseCapX = newNutCap.userData.basePosition.x + 0.28 * explode;
-  newNut.position.x = newBaseNutX + (1 - tighten) * 0.035;
-  newNutCap.position.x = newBaseCapX + (1 - tighten) * 0.035;
-
-  // Wheel visibility and hub access.
-  oldWheel.visible = state.t < 0.94;
-  newWheel.visible = state.t > 0.39;
-
-  // Gun rotor direction and tool-body torque pulse.
-  const looseningPulse = pingPongPulse(state.t, 0.15, 0.27);
-  const tighteningPulse = pingPongPulse(state.t, 0.72, 0.84);
-  const activeGun = looseningPulse + tighteningPulse;
-  const direction = state.t < 0.5 ? -1 : 1;
-  gun.userData.rotor.rotation.x = direction * state.t * 220;
-  gun.rotation.x = Math.sin(state.t * 430) * 0.005 * activeGun;
-  gun.position.y += Math.sin(state.t * 500) * 0.003 * activeGun;
-  gun.userData.led.material.color.setHex(activeGun > 0.05 ? C.amber : C.green);
-  gun.userData.screen.material.color.setHex(activeGun > 0.05 ? 0xff9f28 : 0x18d889);
-
-  // Axle/disc rotation settles as the car arrives and releases.
-  const spin = (1 - smoothRange(state.t, 0.0, 0.06)) + smoothRange(state.t, 0.95, 1.0);
-  hubAssembly.userData.disc.rotation.x = state.t * 8 * spin;
-  oldWheel.rotation.x += state.t * 4 * spin;
-  newWheel.rotation.x += state.t * 4 * spin;
-
-  // Jack preserves clearance until tightening is confirmed.
-  const jackDrop = smoothRange(state.t, 0.93, 1.0);
-  jack.position.y = -jackDrop * 0.18;
-  car.position.y = -jackDrop * 0.075;
-  hubAssembly.position.y = -jackDrop * 0.075;
-  oldWheel.position.y -= jackDrop * 0.075;
-  newWheel.position.y -= jackDrop * 0.075;
-
-  gunPathLine.visible = state.trails;
-  wheelPathLine.visible = state.trails;
-
-  const [phase, color] = getPhase(state.t);
-  const phaseEl = document.querySelector('#phase');
-  phaseEl.textContent = phase;
-  phaseEl.style.color = `#${color.toString(16).padStart(6, '0')}`;
-  document.querySelector('#clock').textContent = `${(state.t * TOTAL_SECONDS).toFixed(3)} s`;
-  document.querySelector('#timeline').value = state.t;
-  document.querySelector('#timelineOut').textContent = `${Math.round(state.t * 100)}%`;
-  document.querySelector('#playBtn').textContent = state.playing ? 'PAUSE' : (state.t >= 1 ? 'REPLAY' : 'PLAY');
-
-  updateCrewAndHose();
-}
-
-function updateLabels() {
-  const w = window.innerWidth, h = window.innerHeight;
-  labelLayer.style.display = state.labels ? '' : 'none';
-  for (const def of labelDefs) {
-    const p = new THREE.Vector3();
-    def.object.getWorldPosition(p);
-    p.project(camera);
-    const visible = p.z > -1 && p.z < 1;
-    def.el.style.opacity = visible ? '1' : '0';
-    def.el.style.left = `${(p.x * 0.5 + 0.5) * w}px`;
-    def.el.style.top = `${(-p.y * 0.5 + 0.5) * h}px`;
-  }
-}
-
-function updateCameraTween(now) {
-  const tw = state.cameraTween;
-  if (!tw) return;
-  const u = THREE.MathUtils.clamp((now - tw.start) / tw.duration, 0, 1);
-  const e = easeInOutCubic(u);
-  camera.position.lerpVectors(tw.fromPos, tw.toPos, e);
-  controls.target.lerpVectors(tw.fromTarget, tw.toTarget, e);
-  if (u >= 1) state.cameraTween = null;
-}
-
-function updateSelection() {
-  if (state.selected && state.selected.visible !== false) {
-    selectionBox.visible = true;
-    selectionBox.box.setFromObject(state.selected);
-  } else {
-    selectionBox.visible = false;
-  }
-}
-
-let frames = 0;
-let fpsAccum = 0;
-let fpsTime = performance.now();
-function animate(now) {
-  requestAnimationFrame(animate);
-  const dt = Math.min(clock.getDelta(), 0.05);
-  const previousT = state.t;
-  const wasPlaying = state.playing;
-  if (state.playing) {
-    state.t += dt * state.speed / TOTAL_SECONDS;
-    if (state.t >= 1) {
-      state.t = 1;
-      state.playing = false;
-    }
-  }
-  pitAudio.triggerBetween(previousT, state.t, wasPlaying);
-  updateSimulation(state.t);
-  updateCameraTween(now);
-  if (state.follow) {
-    const focus = state.t < 0.42 ? gun : (state.t < 0.73 ? newWheel : gun);
-    const wp = new THREE.Vector3();
-    focus.getWorldPosition(wp);
-    controls.target.lerp(wp, 0.035);
-  }
-  controls.update();
-  updateLabels();
-  updateSelection();
-  renderer.render(scene, camera);
-  window.__SIM_READY__ = true;
-
-  frames++;
-  fpsAccum += dt;
-  if (now - fpsTime > 650) {
-    document.querySelector('#renderStats').textContent = `${Math.round(frames / fpsAccum)} fps`;
-    frames = 0; fpsAccum = 0; fpsTime = now;
-  }
-}
-
-// UI events.
-document.querySelector('#playBtn').addEventListener('click', () => {
-  pitAudio.ensure();
-  if (state.t >= 1) state.t = 0;
-  state.playing = !state.playing;
-});
-document.querySelector('#resetBtn').addEventListener('click', () => { state.playing = false; state.t = 0; });
-document.querySelector('#stepBackBtn').addEventListener('click', () => { state.playing = false; state.t = Math.max(0, state.t - 0.05); });
-document.querySelector('#stepFwdBtn').addEventListener('click', () => {
-  pitAudio.ensure();
-  state.playing = false;
-  const from = state.t;
-  state.t = Math.min(1, state.t + 0.05);
-  pitAudio.triggerBetween(from, state.t, true);
-});
-document.querySelector('#timeline').addEventListener('input', (e) => { state.playing = false; state.t = Number(e.target.value); });
-document.querySelector('#speed').addEventListener('input', (e) => {
-  state.speed = Number(e.target.value);
-  document.querySelector('#speedOut').textContent = `${state.speed.toFixed(2)}×`;
-});
-document.querySelector('#cutaway').addEventListener('change', (e) => state.cutaway = e.target.checked);
-document.querySelector('#exploded').addEventListener('change', (e) => state.exploded = e.target.checked);
-document.querySelector('#trails').addEventListener('change', (e) => state.trails = e.target.checked);
-document.querySelector('#follow').addEventListener('change', (e) => state.follow = e.target.checked);
-document.querySelector('#labels').addEventListener('change', (e) => state.labels = e.target.checked);
-document.querySelector('#sound').addEventListener('change', (e) => pitAudio.setEnabled(e.target.checked));
-document.querySelector('#fov').addEventListener('input', (e) => {
-  camera.fov = Number(e.target.value);
-  camera.updateProjectionMatrix();
-  document.querySelector('#fovOut').textContent = `${camera.fov}°`;
-});
-document.querySelectorAll('[data-camera]').forEach((btn) => btn.addEventListener('click', () => setCameraPreset(btn.dataset.camera)));
-document.querySelector('#focusSelect').addEventListener('change', (e) => {
-  const entry = focusMap[e.target.value];
-  selectObject(entry.object, true);
-  document.querySelector('#partName').textContent = entry.title;
-  document.querySelector('#partDesc').textContent = entry.description;
-});
-
-renderer.domElement.addEventListener('pointerdown', (e) => {
-  if (e.button !== 0) return;
-  const rect = renderer.domElement.getBoundingClientRect();
-  pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-  pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-  raycaster.setFromCamera(pointer, camera);
-  const hits = raycaster.intersectObjects([rig, crew, hose], true);
-  const hit = hits.find((h) => h.object.visible && h.object.userData.selectRoot);
-  if (hit) selectObject(hit.object.userData.selectRoot, false);
-});
-
-window.addEventListener('keydown', (e) => {
-  if (e.target.matches('input,select,button')) return;
-  if (e.code === 'Space') { e.preventDefault(); pitAudio.ensure(); if (state.t >= 1) state.t = 0; state.playing = !state.playing; }
-  if (e.key.toLowerCase() === 'r') { state.playing = false; state.t = 0; }
-  if (e.key.toLowerCase() === 'm') {
-    const soundToggle = document.querySelector('#sound');
-    soundToggle.checked = !soundToggle.checked;
-    pitAudio.setEnabled(soundToggle.checked);
-  }
-  if (e.key.toLowerCase() === 'f') frameObject(state.selected || rig);
-  if (e.key.toLowerCase() === 'c') { state.cutaway = !state.cutaway; document.querySelector('#cutaway').checked = state.cutaway; }
-  if (e.key.toLowerCase() === 'e') { state.exploded = !state.exploded; document.querySelector('#exploded').checked = state.exploded; }
-  const presets = ['hero', 'gun', 'hub', 'brake', 'top', 'wide'];
-  const idx = Number(e.key) - 1;
-  if (idx >= 0 && idx < presets.length) setCameraPreset(presets[idx]);
-});
-
-window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-});
-
-// Screenshot and demo query parameters.
+import { CORNERS, SCENARIOS, PARAMETERS, configuration, simulate, snapshot, telemetry, sensitivity, monteCarlo, strategy, clamp } from './simulation.js';
+import { operations } from './operations.js';
+import { createAudio } from './audio.js';
+import { createIntelligenceUI } from './intelligence-ui.js';
+import { createExperienceUI } from './experience-ui.js';
+import { watchShot } from './experience.js';
+const $ = selector => document.querySelector(selector);
 const params = new URLSearchParams(location.search);
-if (params.get('ui') === '0') document.body.classList.add('hide-ui');
-if (params.has('shot')) state.t = THREE.MathUtils.clamp(Number(params.get('shot')), 0, 1);
-if (params.has('camera')) setCameraPreset(params.get('camera'), true);
-else setCameraPreset('hero', true);
-if (params.get('cutaway') === '1') { state.cutaway = true; document.querySelector('#cutaway').checked = true; }
-if (params.get('explode') === '1') { state.exploded = true; document.querySelector('#exploded').checked = true; }
-if (params.get('sound') === '0') { document.querySelector('#sound').checked = false; pitAudio.setEnabled(false); }
-if (params.get('play') === '1') state.playing = true;
-
-state.selected = null;
-selectionBox.visible = false;
-updateSimulation(state.t);
-requestAnimationFrame(animate);
+let config = configuration({ scenario: Object.hasOwn(SCENARIOS, params.get('scenario')) ? params.get('scenario') : 'coordinated' });
+let sim = simulate(config), time = 0, playing = false, playback = 1, mode = 'world', corner = 'FL', world = null, pinned = null, batchRevision = 0;
+let experienceUI=null;
+let guideStep = 0, strategyPlans = [], selectedAsset = null;
+let watching = false, directing = false, watchCamera = null, watchWait = 0;
+let frame = 0, lastWall = 0, lastUI = 0, fpsStart = 0, frames = 0, visible = true, disposed = false;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const audio = createAudio();
+audio.setEnabled(false);
+const listeners = [];
+function listen(element, event, handler, options) { element.addEventListener(event, handler, options); listeners.push(() => element.removeEventListener(event, handler, options)); }
+const intelligence = createIntelligenceUI(() => sim, listen);
+listen($('#intelligenceOpen'), 'click', () => { stopWatch(); playing = false; updateUI(); });
+listen($('#dataRoomBtn'), 'click', () => { stopWatch(); playing = false; updateUI(); });
+const seconds = value => value === null ? 'HOLD' : `${value.toFixed(3)} s`;
+const safeId = id => id.replace(/[^a-z0-9-]/gi, '-');
+function notice(message) { $('#notice').textContent = message; $('#notice').hidden = false; }
+function setOptions() { document.body.dataset.lighting = $('#lighting').value; world?.setOptions({ cutaway: $('#cutaway').checked, exploded: $('#exploded').checked, labels: $('#labels').checked, trails: $('#trails').checked, fov: Number($('#fov').value), lighting: $('#lighting').value, roof: $('#roof').checked, spatial: $('#spatial').checked, ghost: $('#ghost').checked }); }
+function openInspector() { $('#inspector').hidden = false; $('#inspector').classList.add('mobile-open'); $('#inspectorBtn').setAttribute('aria-expanded', 'true'); }
+function setMode(next) {
+    if(experienceUI&&experienceUI.mode!=='engineer')experienceUI.choose('engineer',false);
+    mode = next;
+    document.body.className = document.body.className.replace(/\bmode-\w+\b/g, '').trim();
+    document.body.classList.add(`mode-${next}`);
+    document.querySelectorAll('[data-mode]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.mode === next)));
+    $('#worldInspector').hidden = next === 'strategy' || next === 'mechanics';
+    $('#mechanicsInspector').hidden = next !== 'mechanics';
+    $('#strategyInspector').hidden = next !== 'strategy';
+    $('#inspectorHeading').textContent = next === 'strategy' ? 'RACE STRATEGY / REDUCED MODEL' : next === 'mechanics' ? `MECHANICAL INSPECTION / ${corner}` : 'PIT BOX / 01';
+    $('.world-caption h1').textContent = next === 'mechanics' ? `Wheel assembly / ${corner}` : next === 'strategy' ? 'Race strategy' : 'Pit box 01';
+    world?.setView(next === 'mechanics' ? 'mechanics' : 'world', corner);
+    if (next !== 'world')
+        openInspector();
+    else {
+        $('#inspector').classList.remove('mobile-open');
+        if (innerWidth < 761)
+            $('#inspectorBtn').setAttribute('aria-expanded', 'false');
+    }
+    if (next === 'timing')
+        setAnalysis(true);
+    updateUI();
+}
+function chooseCorner(next) {
+    corner = next;
+    if (mode === 'mechanics')
+        $('#inspectorHeading').textContent = `MECHANICAL INSPECTION / ${corner}`;
+    $('#corner').value = corner;
+    openInspector();
+    if (mode === 'mechanics')
+        world?.setView('mechanics', corner);
+    updateUI();
+}
+function select(data) {
+    if(Object.hasOwn(data,'hover')){const el=$('#componentHover');el.hidden=!data.hover;el.textContent=data.hover;el.style.left=`${data.x+12}px`;el.style.top=`${data.y-24}px`;return;}
+    if(data.part&&experienceUI?.mode==='explore'){$('#componentNote').textContent=`${data.title} · ${data.description}`;return;}
+    const manualTakeover=watching&&((data.camera&&!directing)||data.corner||data.facility||data.title);
+    if(manualTakeover)stopWatch();
+    if(data.camera){for(const button of document.querySelectorAll('[data-car-camera]'))button.setAttribute('aria-pressed',String(button.dataset.carCamera===data.camera));for(const button of document.querySelectorAll('[data-scene-camera]'))button.setAttribute('aria-pressed',String(button.dataset.sceneCamera===data.camera));if([...$('#camera').options].some(option=>option.value===data.camera))$('#camera').value=data.camera;}
+    if (data.facility) {
+        if (mode !== 'world' && mode !== 'timing')
+            setMode('world');
+        selectedAsset = data.facility;
+        $('#assetPanel').hidden = false;
+        openInspector();
+        updateUI();
+    }
+    if (data.corner) {
+        chooseCorner(data.corner);
+        $('#partName').textContent = `${data.corner} wheel service`;
+        $('#partDesc').textContent = 'Select Mechanics to inspect this corner at the current timestamp. The same events drive both scales.';
+    }
+    if (data.title) {
+        $('#partName').textContent = data.title;
+        $('#partDesc').textContent = data.description;
+        $('#mechanicalDescription').textContent = `${data.title}. ${data.description}`;
+        openInspector();
+    }
+    if(manualTakeover)updateUI();
+}
+for (const [key, scenario] of Object.entries(SCENARIOS)) {
+    const option = document.createElement('option');
+    option.value = key;
+    option.textContent = scenario.name;
+    $('#scenario').append(option);
+}
+$('#scenario').value = config.scenario;
+const groups = new Map();
+for (const [key, [title, , min, max, step, unit, group]] of Object.entries(PARAMETERS)) {
+    if (!groups.has(group)) {
+        const details = document.createElement('details');
+        details.className = 'parameters';
+        details.open = group === 'Wheel service';
+        const summary = document.createElement('summary');
+        summary.textContent = group.toUpperCase();
+        details.append(summary);
+        $('#parameterGroups').append(details);
+        groups.set(group, details);
+    }
+    const label = document.createElement('label');
+    label.className = 'parameter';
+    label.innerHTML = `<span><span>${title}</span><output id="${key}Out"></output></span><input aria-label="${title}" data-parameter="${key}" type="range" min="${min}" max="${max}" step="${step}" value="${config[key]}" />`;
+    groups.get(group).append(label);
+    listen(label.querySelector('input'), 'input', e => rebuild({ ...config, [key]: Number(e.target.value) }));
+    $(`#${key}Out`).textContent = `${config[key].toFixed(step < .1 ? 2 : 1)} ${unit}`;
+}
+function rebuild(next) {
+    stopWatch();
+    try {
+        config = configuration(next);
+        sim = simulate(config);
+    }
+    catch (error) {
+        notice(error.message);
+        return;
+    }
+    time = 0;
+    playing = false;
+    batchRevision++;
+    $('#monteBtn').disabled = false;
+    $('#monteBtn').textContent = 'Run batch';
+    $('#monteResult').textContent = 'Batch results reset when the configuration changes.';
+    $('#histogram').replaceChildren();
+    for (const [key, [, , , , step, unit]] of Object.entries(PARAMETERS)) {
+        const slider = $(`[data-parameter="${key}"]`);
+        slider.value = config[key];
+        $(`#${key}Out`).textContent = `${config[key].toFixed(step < .1 ? 2 : 1)} ${unit}`;
+    }
+    $('#scenario').value = config.scenario;
+    $('#seed').value = config.seed;
+    $('#scenarioNote').textContent = SCENARIOS[config.scenario].note;
+    $('#timeline').max = sim.duration;
+    $('#stationary').textContent = seconds(sim.result.stationary);
+    $('#service').textContent = seconds(sim.result.serviceDuration);
+    $('#total').textContent = seconds(sim.result.total);
+    $('#raceLoss').textContent = seconds(sim.result.raceLoss);
+    $('#critical').textContent = sim.result.status === 'SAFETY HOLD' ? 'RR · HOLD' : `${sim.result.criticalCorner} / limiting`;
+    const stop = sim.stops.at(-1);
+    $('#criticalNote').textContent = stop.held ? 'Unconfirmed retention blocks jack release. No departure is scheduled.' : `Last corner clear at ${(stop.corners[stop.criticalCorner].events.at(-1).end - stop.stopAt).toFixed(3)} s after stopping. ${config.scenario === 'traffic' ? `Traffic wait: ${sim.events.find(e => e.state === 'TRAFFIC HOLD')?.duration.toFixed(3) ?? '0.000'} s.` : config.scenario === 'stack' ? `Car 02 queue: ${sim.result.queueWait.toFixed(3)} s.` : 'Earlier corners wait for this dependency.'}`;
+    if (pinned)
+        $('#comparison').textContent = `Pinned ${pinned.name}: ${seconds(pinned.result.stationary)} → current ${seconds(sim.result.stationary)}. ${sim.result.stationary !== null && pinned.result.stationary !== null ? `Δ ${(sim.result.stationary - pinned.result.stationary).toFixed(3)} s.` : ''}`;
+    buildTracks();
+    buildTelemetry();
+    updateSensitivity();
+    updateStrategy();
+    intelligence.invalidate();
+    const clean = simulate({ ...config, scenario: 'coordinated' });
+    $('#quickDelta').textContent = sim.result.stationary === null ? 'Safety hold · release blocked' : `Stop Δ ${(sim.result.stationary - clean.result.stationary) >= 0 ? '+' : ''}${(sim.result.stationary - clean.result.stationary).toFixed(3)} s · queue ${sim.result.queueWait.toFixed(3)} s`;
+    document.querySelectorAll('[data-quick-scenario]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.quickScenario === config.scenario)));
+    updateUI();
+}
+function buildTracks() {
+    $('#eventTracks').replaceChildren();
+    const critical = new Set(sim.stops.flatMap(stop => stop.criticalIds));
+    for (const track of ['Preparation', 'Arrival', 'Front jack', 'Rear jack', ...CORNERS, 'Safety']) {
+        const row = document.createElement('div');
+        row.className = 'track';
+        const label = document.createElement('span');
+        label.textContent = track;
+        const line = document.createElement('div');
+        line.className = 'track-line';
+        for (const event of sim.events.filter(e => e.track === track)) {
+            const button = document.createElement('button');
+            button.className = `event${critical.has(event.id) ? ' critical' : ''}`;
+            button.id = `event-${safeId(event.id)}`;
+            button.style.left = `${event.start / sim.duration * 100}%`;
+            button.style.width = `${Math.max(.2, event.duration / sim.duration * 100)}%`;
+            const description = `Car ${event.car} · ${track} · ${event.state.replaceAll('_', ' ')} · ${event.start.toFixed(3)}–${event.end.toFixed(3)} s`;
+            button.title = description;
+            button.setAttribute('aria-label', description);
+            button.onclick = () => {
+                playing = false;
+                time = event.start;
+                document.querySelectorAll('.event.selected').forEach(el => el.classList.remove('selected'));
+                button.classList.add('selected');
+                if (CORNERS.includes(track)) {
+                    chooseCorner(track);
+                    if (mode !== 'mechanics')
+                        world?.setCamera(track);
+                }
+                else if (track.includes('jack'))
+                    world?.setCamera('top');
+                $('#eventDescription').textContent = `${description}. ${critical.has(event.id) ? 'On the controlling dependency chain.' : 'This operation has parallel slack.'} Dependencies: ${event.deps.length ? event.deps.map(id => sim.events.find(e => e.id === id).state.replaceAll('_', ' ')).join(', ') : 'pit-entry clock'}.`;
+                updateUI();
+            };
+            line.append(button);
+        }
+        row.append(label, line);
+        $('#eventTracks').append(row);
+    }
+    const cursor = document.createElement('div');
+    cursor.className = 'timeline-cursor';
+    cursor.id = 'trackCursor';
+    $('#eventTracks').append(cursor);
+}
+function buildTelemetry() {
+    const samples = telemetry(sim), w = 930, x0 = 40, y0 = 120;
+    const path = key => samples.map((sample, i) => `${i ? 'L' : 'M'}${(x0 + sample.time / sim.duration * w).toFixed(2)},${(y0 - (key === 'speed' ? sample.speed * 3.6 / config.approachSpeed : sample.lift / .1) * 100).toFixed(2)}`).join(' ');
+    let markup = '';
+    for (const fraction of [0, .5, 1]) {
+        const y = y0 - fraction * 100;
+        markup += `<line x1="40" y1="${y}" x2="970" y2="${y}" stroke="#a5b8b423"/><text x="0" y="${y + 3}">${Math.round(config.approachSpeed * fraction)}</text><text x="975" y="${y + 3}">${fraction * 100}</text>`;
+    }
+    for (let i = 0; i <= 5; i++) {
+        const x = x0 + w * i / 5;
+        markup += `<text x="${x}" y="143">${(sim.duration * i / 5).toFixed(1)} s</text>`;
+    }
+    markup += `<path class="speed-line" d="${path('speed')}"/><path class="lift-line" d="${path('lift')}"/><line id="plotCursor" x1="40" x2="40" y1="10" y2="125" stroke="#f7e5c3"/>`;
+    $('#telemetry').innerHTML = markup;
+}
+function setAnalysis(open) { $('#analysis').hidden = !open; $('#analysisBtn').setAttribute('aria-expanded', String(open)); $('#analysisBtn').textContent = open ? 'Collapse analysis ↓' : 'Expand analysis ↑'; }
+function updateSensitivity() {
+    const key = $('#sensitivityParam').value, delta = key === 'confirmation' ? .1 : key === 'variability' ? -.03 : -.1;
+    const experiment = sensitivity(config, key, delta);
+    $('#sensitivityResult').textContent = experiment.change === null ? 'Safety hold: no completed stop to compare.' : `${seconds(experiment.before.stationary)} → ${seconds(experiment.after.stationary)} · Δ ${experiment.change >= 0 ? '+' : ''}${experiment.change.toFixed(3)} s. Limiting corner: ${experiment.before.criticalCorner} → ${experiment.after.criticalCorner}. Same seed.`;
+}
+function strategyInput() { return { laps: Number($('#laps').value), age: Number($('#tireAge').value), gap: Number($('#rivalGap').value), compound: $('#compound').value, pace: Number($('#pace').value), degradation: Number($('#degradation').value) }; }
+function updateStrategy() {
+    try {
+        for (const id of ['laps', 'tireAge', 'rivalGap', 'pace', 'degradation'])
+            if (!$(`#${id}`).checkValidity())
+                return;
+        const plans = strategy(sim, strategyInput());
+        strategyPlans = plans;
+        $('#strategyResults').replaceChildren();
+        if (!plans.length) {
+            $('#strategyResults').textContent = 'Safety hold: strategy cannot assume a completed stop.';
+            return;
+        }
+        for (const plan of plans) {
+            const row = document.createElement('div');
+            row.className = 'strategy-row';
+            row.innerHTML = `<span>${plan.wait === 0 ? 'Pit now' : `Pit ${plan.wait} lap${plan.wait > 1 ? 's' : ''} later`}</span><b>${plan.exitGap.toFixed(2)} s ${plan.exitGap >= 0 ? 'ahead' : 'behind'}</b>`;
+            $('#strategyResults').append(row);
+        }
+        const explanation = document.createElement('p');
+        explanation.className = 'muted';
+        const change = plans[1].elapsed - plans[0].elapsed;
+        explanation.textContent = `Over ${strategyInput().laps} laps, waiting one lap costs ${change.toFixed(2)} s relative to pitting now. Positive = earlier stop helps (undercut). Includes ${sim.result.raceLoss.toFixed(3)} s modeled pit loss; total transit ${sim.result.transit.toFixed(3)} s.`;
+        $('#strategyResults').append(explanation);
+    }
+    catch (error) {
+        notice(error.message);
+    }
+}
+function updateWorld(state=snapshot(sim,time)){
+    const manual=experienceUI?.frame();
+    if(manual?.explore){const parked=snapshot(sim,manual.time);parked.cars[0].position=0;parked.cars[0].speed=0;world?.update(parked,sim,corner);}
+    else world?.update(manual?.state??state,manual?.sim??sim,corner);
+}
+function updateUI() {
+    document.body.dataset.assetState=world?(world.stats().heroLoaded?'ready':world.stats().heroError?'fallback':'loading'):window.__SIM_READY__?'fallback':'loading';
+    const state = snapshot(sim, time), active = state.cars[state.activeCar - 1], stop = sim.stops[state.activeCar - 1];
+    if(world?.stats().heroError)$('.explore-caption>span').textContent='Teaching geometry · car asset unavailable';
+    updateWorld(state);
+    $('#phase').textContent = playing ? `${active.phase} · CAR 0${active.number}` : time === 0 ? 'READY TO RUN' : `${active.phase} · PAUSED`;
+    $('#clock').innerHTML = `${time.toFixed(3).padStart(6, '0')} <small>s</small>`;
+    $('#playBtn').textContent = playing ? 'Ⅱ PAUSE' : time >= sim.duration ? '↺ REPLAY' : '▶ RUN STOP';
+    $('#timeline').value = time;
+    $('#timelineOut').textContent = `${time.toFixed(2)} / ${sim.duration.toFixed(2)} s`;
+    if (!$('#cornerStates').children.length)
+        $('#cornerStates').innerHTML = CORNERS.map(c => `<button data-corner="${c}" class="${stop.criticalCorner === c ? 'critical ' : ''}${corner === c ? 'selected' : ''}" aria-label="Inspect ${c} wheel, ${active.corners[c].state.replaceAll('_', ' ')}">${c} <small>${active.corners[c].state.replaceAll('_', ' ')}</small></button>`).join('');
+    for (const key of CORNERS) {
+        const button = $(`[data-corner="${key}"]`);
+        button.className = `${stop.criticalCorner === key ? 'critical ' : ''}${corner === key ? 'selected' : ''}`;
+        button.querySelector('small').textContent = active.corners[key].state.replaceAll('_', ' ');
+        button.setAttribute('aria-label', `Inspect ${key} wheel, ${active.corners[key].state.replaceAll('_', ' ')}`);
+        button.title = `Parallel slack: ${stop.slack[key].toFixed(3)} s`;
+    }
+    $('#safety').innerHTML = Object.entries({ wheelsSafe: '4 wheels retained', toolsClear: 'Tools & crew clear', jacksClear: 'Both jacks clear', pathClear: 'Traffic path clear' }).map(([key, label]) => `<div><span>${label}</span><b class="${active.safety[key] ? 'pass' : ''}">${active.safety[key] ? '✓ PASS' : '— HOLD'}</b></div>`).join('');
+    const ops = operations(sim, state);
+    $('#opsStations').textContent = `${ops.activeStations} / 4`;
+    $('#opsCrew').textContent = `${ops.activeCrew} / 14`;
+    $('#opsSecured').textContent = `${ops.secured} / 4`;
+    $('#opsRelease').textContent = ops.status.toLowerCase();
+    $('#opsCar').textContent = `0${ops.car}`;
+    $('#opsBlocking').textContent = ops.blocking ? `${ops.blocking.track} · ${ops.blocking.state.replaceAll('_', ' ')} · ${ops.blocking.remaining.toFixed(2)} s remaining` : ops.status;
+    for (const [i, stage] of ops.pipeline.entries()) {
+        const el = $(`[data-pipeline="${i}"]`);
+        el.dataset.status = stage.status;
+        el.querySelector('i').style.width = `${stage.progress * 100}%`;
+        el.querySelector('b').textContent = stage.name;
+    }
+    const mapPosition = (id, car, x) => { const el = $(id); el.toggleAttribute('hidden', !car); if (car) {
+        el.setAttribute('cx', x);
+        el.setAttribute('cy', clamp(105 + car.position * 4.5, 8, 202));
+    } };
+    mapPosition('#mapCar', state.cars[0], 97 + 45 * (state.cars[0].phase === 'DEPARTURE' ? (() => { const u = clamp((-state.cars[0].position - 7) / 8, 0, 1); return u * u * (3 - 2 * u); })() : 0));
+    mapPosition('#mapSecond', state.cars[1], 97);
+    mapPosition('#mapTraffic', state.traffic.visible ? { position: state.traffic.position } : null, 142);
+    $('#mapStatus').textContent = ops.status;
+    if (selectedAsset) {
+        const descriptions = { garage: ['Race garage / Bay 01', 'Shared tools, independent corner tasks and a single guarded release. The neighboring aero bay is a static assembly display.'], tires: ['Tire preparation / Bay 03', 'Service inventory tracks this scenario’s allocated replacement sets and removed wheels. The compound racks are a separate labeled display stock.'], command: ['Pit-wall command', 'The release controller combines wheel retention, crew and tool clearance, both jacks, and the scheduled traffic window.'] };
+        const [title, description] = descriptions[selectedAsset];
+        $('#assetTitle').textContent = title;
+        $('#assetDescription').textContent = description;
+        const entries = selectedAsset === 'tires' ? { 'Allocated replacements': ops.inventory.allocated, 'Remaining replacements': ops.inventory.replacementsRemaining, 'Fitted replacements': ops.inventory.fitted, 'Removed wheels': ops.inventory.removed } : selectedAsset === 'command' ? { 'Wheels retained': `${ops.secured} / 4`, 'Equipment clear': ops.release.toolsClear ? 'CONFIRMED' : 'WAITING', 'Jacks clear': ops.release.jacksClear ? 'CONFIRMED' : 'WAITING', 'Traffic path': ops.release.pathClear ? 'CLEAR' : 'CONFLICT', 'Release': ops.release.approved ? 'APPROVED' : 'HOLD' } : { 'Active stations': `${ops.activeStations} / 4`, 'Active service crew': `${ops.activeCrew} / 14`, 'Active car': `0${ops.car}`, 'Critical corner': stop.criticalCorner };
+        $('#assetMetrics').innerHTML = Object.entries(entries).map(([key, value]) => `<div><span>${key}</span><b>${value}</b></div>`).join('');
+    }
+    const c = active.corners[corner];
+    $('#mechanicalState').textContent = `CAR 0${active.number} / ${corner} / ${c.state.replaceAll('_', ' ')}. Installed: ${c.installed ? 'yes' : 'no'}. Retention confirmed: ${c.secured ? 'yes' : 'no'}.`;
+    $('#trackCursor').style.left = `calc(80px + (100% - 80px) * ${time / sim.duration})`;
+    $('#plotCursor')?.setAttribute('x1', 40 + 930 * time / sim.duration);
+    $('#plotCursor')?.setAttribute('x2', 40 + 930 * time / sim.duration);
+    const sample = state.cars.at(-1);
+    $('#telemetryCar').textContent = `0${sample.number}`;
+    $('#telemetryReadout').textContent = `t ${time.toFixed(3)} s · v ${(sample.speed * 3.6).toFixed(1)} km/h · a ${sample.acceleration.toFixed(1)} m/s² · position ${sample.position.toFixed(2)} m · lift ${(sample.lift * 1000).toFixed(1)} mm · ${Object.values(sample.corners).filter(c => c.secured).length}/4 wheels secured.`;
+    if (mode === 'strategy') {
+        const path = $('#circuitPath'), length = path.getTotalLength();
+        const input = strategyInput(), plan = strategyPlans[0];
+        const raceTime = time / sim.duration * (plan?.elapsed ?? input.laps * input.pace);
+        let remaining = Math.max(0, raceTime - (sim.result.raceLoss ?? 0)), distance = 0;
+        for (const lapTime of plan?.splits ?? []) {
+            if (remaining >= lapTime) {
+                distance++;
+                remaining -= lapTime;
+            }
+            else {
+                distance += remaining / lapTime;
+                break;
+            }
+        }
+        const fraction = value => ((value % 1) + 1) % 1;
+        const p = path.getPointAtLength(fraction(distance) * length), r = path.getPointAtLength(fraction((raceTime - input.gap) / (input.pace + .15)) * length);
+        $('#strategyCar').setAttribute('cx', p.x);
+        $('#strategyCar').setAttribute('cy', p.y);
+        $('#rivalCar').setAttribute('cx', r.x);
+        $('#rivalCar').setAttribute('cy', r.y);
+    }
+    window.__PIT_LAB_STATE__ = { experience:experienceUI?.debug, operations: ops, time, playing, watching, watchCamera, mode, corner, configuration: config, result: sim.result, snapshot: state, render: world?.stats() ?? null };
+}
+function togglePlay() {
+    stopWatch();
+    audio.ensure();
+    if (time >= sim.duration)
+        time = 0;
+    playing = !playing;
+    lastWall = performance.now();
+    updateUI();
+}
+listen($('#playBtn'), 'click', togglePlay);
+function stopWatch() {
+    watching = false; watchWait = 0; watchCamera = null;
+    document.body.classList.remove('watching-stop');
+    $('#watchBtn').setAttribute('aria-pressed', 'false');
+    $('#watchBtn').textContent = '▶ Watch stop';
+}
+function startWatch() {
+    setMode('world');
+    watching = true; watchCamera = null; watchWait = 0; time = 0; playing = true; playback = .5;
+    $('#speed').value = '.5'; $('#watchBtn').setAttribute('aria-pressed', 'true'); $('#watchBtn').textContent = '■ Stop watching';
+    document.body.classList.add('watching-stop'); lastWall = performance.now(); updateUI();
+}
+listen($('#watchBtn'), 'click', () => { if (watching) { stopWatch(); playing = false; updateUI(); } else startWatch(); });
+listen($('#inspectorBtn'), 'click', stopWatch);
+for (const button of document.querySelectorAll('[data-quick-scenario]')) listen(button, 'click', () => {
+    const reference = simulate({ ...config, scenario: 'coordinated' });
+    pinned = { name: 'Clean stop', result: { ...reference.result }, simulation: reference };
+    rebuild({ ...config, scenario: button.dataset.quickScenario }); world?.setReference(reference); startWatch();
+});
+for (const id of ['resetBtn', 'stepBackBtn', 'stepFwdBtn', 'timeline']) listen($('#'+id), id === 'timeline' ? 'input' : 'click', stopWatch);
+listen($('#resetBtn'), 'click', () => { time = 0; playing = false; updateUI(); });
+listen($('#stepBackBtn'), 'click', () => { time = Math.max(0, time - .05); playing = false; updateUI(); });
+listen($('#stepFwdBtn'), 'click', () => { time = Math.min(sim.duration, time + .05); playing = false; updateUI(); });
+listen($('#timeline'), 'input', e => { time = Number(e.target.value); playing = false; updateUI(); });
+listen($('#speed'), 'change', e => playback = Number(e.target.value));
+listen($('#scenario'), 'change', e => rebuild({ ...config, scenario: e.target.value }));
+listen($('#seed'), 'change', e => {
+    if (e.target.checkValidity())
+        rebuild({ ...config, seed: Number(e.target.value) });
+});
+listen($('#restoreDefaults'), 'click', () => rebuild({ scenario: config.scenario, seed: config.seed }));
+listen($('#controlsBtn'), 'click', () => {
+    const open = $('#controls').hidden;
+    $('#controls').hidden = !open;
+    $('#controlsBtn').setAttribute('aria-expanded', String(open));
+    if (open && innerWidth < 761) {
+        $('#inspector').classList.remove('mobile-open');
+        $('#inspectorBtn').setAttribute('aria-expanded', 'false');
+    }
+});
+listen($('#inspectorBtn'), 'click', () => {
+    const mobile = innerWidth < 761, open = mobile ? !$('#inspector').classList.contains('mobile-open') : $('#inspector').hidden;
+    if (open) {
+        openInspector();
+        if (mobile)
+            $('#controls').hidden = true;
+    }
+    else {
+        $('#inspector').hidden = true;
+        $('#inspector').classList.remove('mobile-open');
+        $('#inspectorBtn').setAttribute('aria-expanded', 'false');
+    }
+});
+for (const button of document.querySelectorAll('[data-close]'))
+    listen(button, 'click', () => { $(`#${button.dataset.close}`).hidden = true; const control = button.dataset.close === 'controls' ? '#controlsBtn' : '#inspectorBtn'; $(control).setAttribute('aria-expanded', 'false'); $(control).focus(); });
+listen($('#cameraReset'), 'click', () => { world?.setCamera(mode === 'mechanics' ? 'hero' : 'overview'); $('#camera').value = 'overview'; });
+listen($('#hideBtn'), 'click', () => { const hidden = document.body.classList.toggle('hide-ui'); $('#hideBtn').setAttribute('aria-pressed', String(hidden)); $('#hideBtn').innerHTML = hidden ? '◉ <span>Show overlays</span>' : '◉ <span>Hide overlays</span>'; });
+listen($('#fullscreenBtn'), 'click', async () => {
+    try {
+        if (document.fullscreenElement)
+            await document.exitFullscreen();
+        else
+            await document.documentElement.requestFullscreen();
+    }
+    catch {
+        notice('Full screen is unavailable in this browser. Open the standalone lab in a new tab.');
+    }
+});
+for (const button of document.querySelectorAll('[data-mode]'))
+    listen(button, 'click', () => setMode(button.dataset.mode));
+for (const button of document.querySelectorAll('[data-detail-camera]'))
+    listen(button, 'click', () => world?.setCamera(button.dataset.detailCamera === 'top' ? 'detailTop' : button.dataset.detailCamera));
+listen($('#camera'), 'change', e => {
+    const camera = e.target.value;
+    if (camera === 'cutaway') {
+        setMode('mechanics');
+        $('#cutaway').checked = true;
+        setOptions();
+    }
+    else {
+        if (mode === 'mechanics')
+            setMode('world');
+        world?.setCamera(camera);
+    }
+});
+listen($('#corner'), 'change', e => chooseCorner(e.target.value));
+listen($('#cornerStates'), 'click', e => {
+    const button = e.target.closest('[data-corner]');
+    if (button)
+        chooseCorner(button.dataset.corner);
+});
+listen($('#focusSelect'), 'change', e => { setMode('mechanics'); world?.focus(e.target.value); });
+for (const id of ['cutaway', 'exploded', 'labels', 'trails', 'spatial', 'roof', 'ghost'])
+    listen($(`#${id}`), 'change', () => {
+        if ((id === 'cutaway' || id === 'exploded') && mode !== 'mechanics')
+            setMode('mechanics');
+        setOptions();
+        updateUI();
+    });
+listen($('#fov'), 'input', setOptions);
+listen($('#lighting'), 'change', setOptions);
+for (const button of document.querySelectorAll('[data-scene-camera]'))
+    listen(button, 'click', () => { world?.setCamera(button.dataset.sceneCamera); for (const other of document.querySelectorAll('[data-scene-camera]'))
+        other.setAttribute('aria-pressed', String(other === button)); });
+listen($('#mapReset'), 'click', () => world?.setCamera('facility'));
+listen($('#dismissGuide'), 'click', () => $('#discovery').hidden = true);
+listen($('#guideBtn'), 'click', () => {
+    if (guideStep === 0) {
+        togglePlay();
+        $('#guideBtn').textContent = '02 / Try a slow wheel gun →';
+        guideStep = 1;
+    }
+    else if (guideStep === 1) {
+        rebuild({ ...config, scenario: 'gun' });
+        togglePlay();
+        $('#guideBtn').textContent = '03 / Follow its critical path →';
+        guideStep = 2;
+    }
+    else {
+        setMode('timing');
+        $('#discovery').hidden = true;
+    }
+});
+listen($('#sound'), 'change', e => audio.setEnabled(e.target.checked));
+listen($('#analysisBtn'), 'click', () => setAnalysis($('#analysis').hidden));
+for (const button of document.querySelectorAll('[data-analysis]'))
+    listen(button, 'click', () => {
+        for (const tab of document.querySelectorAll('[data-analysis]')) {
+            const active = tab === button;
+            tab.setAttribute('aria-selected', String(active));
+            $(`#${tab.dataset.analysis}Panel`).hidden = !active;
+        }
+        updateUI();
+    });
+listen($('#sensitivityParam'), 'change', updateSensitivity);
+listen($('#pinBtn'), 'click', () => { pinned = { name: SCENARIOS[config.scenario].name, result: { ...sim.result }, simulation: sim }; world?.setReference(sim); $('#ghostNote').textContent = `Reference: ${pinned.name}, ${seconds(pinned.result.stationary)}. The translucent car follows this saved schedule.`; $('#comparison').textContent = `Pinned ${pinned.name}: ${seconds(pinned.result.stationary)}. Change a parameter or scenario to compare.`; });
+listen($('#monteBtn'), 'click', async () => {
+    if (!$('#threshold').checkValidity())
+        return;
+    const revision = ++batchRevision;
+    $('#monteBtn').disabled = true;
+    $('#monteBtn').textContent = 'Running…';
+    try {
+        const threshold = Number($('#threshold').value), result = await monteCarlo(config, { runs: Number($('#runs').value), threshold });
+        if (revision !== batchRevision)
+            return;
+        $('#monteResult').textContent = `${result.runs} runs · median ${seconds(result.median)} · P10 ${seconds(result.p10)} · P90 ${seconds(result.p90)} · ${(result.exceeding * 100).toFixed(1)}% exceed ${threshold.toFixed(1)} s (holds count as exceeding). Bottlenecks: ${CORNERS.map(c => `${c} ${result.bottlenecks[c]}`).join(' / ')}. ${result.holds} holds.`;
+        if (result.times.length) {
+            const lo = result.times[0], hi = result.times.at(-1), bins = Array(24).fill(0);
+            for (const value of result.times)
+                bins[Math.min(23, Math.floor((value - lo) / Math.max(.0001, hi - lo) * 24))]++;
+            const max = Math.max(...bins);
+            $('#histogram').innerHTML = bins.map((n, i) => `<rect x="${i * 16}" y="${50 - 45 * n / max}" width="13" height="${45 * n / max}" fill="#9ad3b7"/>`).join('') + `<text x="0" y="65">${lo.toFixed(3)} s</text><text x="320" y="65">${hi.toFixed(3)} s</text>`;
+        }
+    }
+    catch (error) {
+        notice(error.message);
+    }
+    finally {
+        if (revision === batchRevision) {
+            $('#monteBtn').disabled = false;
+            $('#monteBtn').textContent = 'Run batch';
+        }
+    }
+});
+for (const id of ['compound', 'laps', 'tireAge', 'rivalGap', 'pace', 'degradation'])
+    listen($(`#${id}`), 'change', updateStrategy);
+listen($('#exportBtn'), 'click', () => { const blob = new Blob([JSON.stringify({ model: 'Pit Stop Lab 2.0 / illustrative', config, result: sim.result, events: sim.events, telemetry: telemetry(sim, 300) }, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob), link = document.createElement('a'); link.href = url; link.download = `pit-stop-${config.scenario}-seed-${config.seed}.json`; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); });
+listen(window, 'keydown', e => {
+    if ($('#intelligenceDialog').open||experienceUI?.mode!=='engineer') return;
+    if (e.target.matches('input,select,button,summary,a'))
+        return;
+    const key = e.key.toLowerCase();
+    if (e.code === 'Space') {
+        e.preventDefault();
+        togglePlay();
+    }
+    if (key === 'f') {
+        if (mode === 'mechanics')
+            world?.focus($('#focusSelect').value);
+        else
+            world?.setCamera('overview');
+    }
+    if (key === 'r') {
+        $('#resetBtn').click();
+    }
+    if (key === 'h')
+        $('#hideBtn').click();
+    if (key === 'escape') {
+        for (const id of ['controls', 'inspector'])
+            $(`#${id}`).hidden = true;
+    }
+    if (key === 'c') {
+        $('#cutaway').checked = !$('#cutaway').checked;
+        setMode('mechanics');
+        setOptions();
+    }
+    if (key === 'e') {
+        $('#exploded').checked = !$('#exploded').checked;
+        setMode('mechanics');
+        setOptions();
+    }
+    if (key === 'm') {
+        $('#sound').checked = !$('#sound').checked;
+        audio.setEnabled($('#sound').checked);
+    }
+    const cameras = ['overview', 'follow', 'FL', 'FR', 'RL', 'RR', 'top', 'cutaway', 'release'];
+    const index = Number(key) - 1;
+    if (index >= 0 && index < cameras.length) {
+        $('#camera').value = cameras[index];
+        $('#camera').dispatchEvent(new Event('change'));
+    }
+});
+listen(document, 'visibilitychange', () => {
+    lastWall = performance.now();
+    if (document.hidden)
+        audio.setEnabled(false);
+    else if ($('#sound').checked)
+        audio.setEnabled(true);
+});
+const intersection = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; lastWall = performance.now(); });
+intersection.observe($('#stage'));
+function animate(now) {
+    if (disposed)
+        return;
+    frame = requestAnimationFrame(animate);
+    const elapsed = Math.max(0, (now - lastWall) / 1000);
+    lastWall = now;
+    if (!visible || document.hidden)
+        return;
+    experienceUI?.tick();
+    if (watching && !$('#intelligenceDialog').open) {
+        if (time >= sim.duration) {
+            watchWait += elapsed;
+            if ($('#watchLoop').checked && sim.result.stationary !== null && watchWait >= 1.8) { time = 0; watchWait = 0; watchCamera = null; playing = true; }
+        }
+    }
+    const before = time;
+    if (playing) {
+        time = Math.min(sim.duration, time + elapsed * playback);
+        if (time >= sim.duration)
+            playing = false;
+    }
+    if (watching && !$('#intelligenceDialog').open) {
+        const shot = watchShot(sim, time);
+        $('#watchChapter').textContent = shot.label;
+        if (watchCamera !== shot.camera) { watchCamera = shot.camera; directing = true; world?.setCamera(shot.camera); directing = false; }
+    }
+    if (playing && audio.enabled)
+        for (const event of sim.events) {
+            if (event.start > before && event.start <= time) {
+                audio.triggerEvent(event, playback);
+            }
+        }
+    if (now - lastUI > 33) {
+        updateUI();
+        lastUI = now;
+    }else updateWorld();
+    world?.render(now);
+    if(window.__PIT_LAB_STATE__)window.__PIT_LAB_STATE__.render=world?.stats()??null;
+    frames++;
+    if (now - fpsStart > 1200) {
+        const fps = frames * 1000 / (now - fpsStart);
+        $('#renderStats').textContent = world ? `${playing ? `${Math.round(fps)} fps` : 'PAUSED'} · ${world.stats().calls} draws` : '2D ANALYSIS AVAILABLE';
+        if (playing||(experienceUI?.mode==='challenge'&&experienceUI.debug.session?.started))
+            world?.adapt(fps);
+        frames = 0;
+        fpsStart = now;
+    }
+}
+function teardown() { disposed = true; cancelAnimationFrame(frame); intersection.disconnect(); listeners.forEach(remove => remove()); world?.dispose(); audio.dispose(); }
+listen(window, 'pagehide', event => {
+    if (event.persisted) {
+        playing = false;
+        audio.setEnabled(false);
+    }
+    else
+        teardown();
+});
+listen(window, 'pageshow', () => lastWall = performance.now());
+$('#pipeline').innerHTML = Array.from({ length: 5 }, (_, i) => `<div data-pipeline="${i}" data-status="pending"><span><i></i></span><b></b></div>`).join('');
+rebuild(config);
+try {
+    const { createWorld } = await import('./world.js');
+    world = createWorld($('#viewport'), select, notice);
+    setOptions();
+    setMode('world');
+    experienceUI=createExperienceUI({world:()=>world,sim:()=>sim,listen,setMode,pause:()=>{stopWatch();playing=false;},audio});
+    window.__SIM_READY__ = true;
+}
+catch (error) {
+    $('#fallback').hidden = false;
+    $('#viewport').hidden = true;
+    notice(`3D unavailable: ${error.message}. Timing and analysis remain fully usable.`);
+    setAnalysis(true);
+    window.__SIM_READY__ = true;
+}
+if(!experienceUI){experienceUI=createExperienceUI({world:()=>world,sim:()=>sim,listen,setMode,pause:()=>{stopWatch();playing=false;},audio});experienceUI.choose('engineer');setAnalysis(true);}
+if (params.get('ui') === '0')
+    document.body.classList.add('hide-ui');
+if (params.has('shot'))
+    time = clamp(Number(params.get('shot')) || 0, 0, 1) * sim.duration;
+if (params.get('camera')) {
+    const name = params.get('camera');
+    if (['hero', 'gun', 'hub', 'brake', 'wide'].includes(name))
+        setMode('mechanics');
+    world?.setCamera(name, true);
+}
+if (params.get('cutaway') === '1') {
+    $('#cutaway').checked = true;
+    setMode('mechanics');
+    setOptions();
+}
+if (params.get('explode') === '1') {
+    $('#exploded').checked = true;
+    setMode('mechanics');
+    setOptions();
+}
+if (params.get('play') === '1' && !reduced)
+    playing = true;
+if (innerWidth < 761)
+    $('#inspectorBtn').setAttribute('aria-expanded', 'false');
+updateUI();
+lastWall = performance.now();
+fpsStart = lastWall;
+frame = requestAnimationFrame(animate);

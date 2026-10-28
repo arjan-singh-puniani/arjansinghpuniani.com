@@ -1,143 +1,144 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#080a0e" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#17191d" />
+  <link rel="icon" href="data:," />
   <title>Pit Stop Lab | Arjan Singh Puniani</title>
-  <meta name="description" content="Interactive educational visualization of a Formula-style center-lock pit wheel change, including the wheel gun, retained nut, hub, brake, replacement wheel, and jack sequence." />
+  <meta name="description" content="A Formula racing engineering laboratory. Run a deterministic four-corner stop, inspect the mechanics, and investigate timing, safety and strategy." />
   <meta name="robots" content="noindex,follow" />
   <link rel="canonical" href="https://arjansinghpuniani.com/playground/pit-stop" />
   <link rel="stylesheet" href="./style.css" />
-
 </head>
-<body>
+<body data-experience="explore" data-asset-state="loading">
   <div id="app">
-    <canvas id="viewport" aria-label="Interactive Formula-style pit wheel simulation"></canvas>
-
-    <header class="hud topbar">
-      <div>
-        <div class="eyebrow">FORMULA SYSTEMS / MECHANICAL LAB</div>
-        <h1>PIT STOP LAB</h1>
-      </div>
-      <div class="timing">
-        <span id="phase">READY</span>
-        <strong id="clock">0.000 s</strong>
-      </div>
+    <header class="topbar">
+      <a class="brand" href="/playground/pit-stop" target="_top"><span class="brand-mark">P/</span><span>PIT STOP <b>LAB</b><small>REFERENCE STUDY / 2026</small></span></a>
+      <label class="scenario-label"><span class="sr-only">Scenario</span><select id="scenario"></select></label>
+      <div class="session"><span id="phase" role="status">READY TO RUN</span><strong id="clock">00.000 <small>s</small></strong></div>
+      <button id="playBtn" class="primary">▶ RUN STOP</button>
     </header>
-
-    <aside class="hud panel left-panel">
-      <div class="panel-title">SEQUENCE</div>
-      <div class="button-grid">
-        <button id="playBtn" class="primary">PLAY</button>
-        <button id="resetBtn">RESET</button>
-        <button id="stepBackBtn">− STEP</button>
-        <button id="stepFwdBtn">+ STEP</button>
+    <nav class="experience-nav" aria-label="Experience"><button data-experience="explore" aria-pressed="true">Explore</button><button data-experience="challenge" aria-pressed="false">Pit Stop Challenge</button><button data-experience="engineer" aria-pressed="false">Race Engineer</button></nav>
+    <main id="stage">
+      <canvas id="viewport" tabindex="0" aria-label="Formula racing garage. Drag to orbit, scroll to zoom. Use camera buttons and the event timeline for keyboard navigation."></canvas>
+      <div id="labelsLayer" aria-hidden="true"></div><div id="spatialLayer" aria-label="Select a station or facility asset"></div>
+      <span id="componentHover" hidden></span>
+      <div class="explore-tools"><div class="car-cameras" aria-label="Car viewpoints"><button data-car-camera="carHero" aria-label="Hero three-quarter view">¾</button><button data-car-camera="front">Front</button><button data-car-camera="side">Side</button><button data-car-camera="rear">Rear</button><button data-car-camera="ground">Ground</button><button data-car-camera="cockpit">Cockpit</button><button data-car-camera="wing">Wing</button><button data-car-camera="wheel">Wheel</button><button data-car-camera="bay">Garage</button></div><div class="car-options"><label><input id="bodyworkToggle" type="checkbox"/> Hide panels</label><label><input id="isolateToggle" type="checkbox"/> Isolate running gear</label></div></div>
+      <div class="explore-caption"><span>SF-26 / LAUNCH-REFERENCE STUDY</span><p id="componentNote" role="status">Drag to orbit · scroll to inspect · select a component</p><small>Original recreation · estimated geometry · no official team data</small></div>
+      <section id="challengePanel" aria-label="Manual front-left wheel challenge"><div class="challenge-line"><span id="challengeStep">1 / 11</span><output id="challengeTime">0.00 s</output></div><h2 id="challengeTitle" aria-live="polite">Prepare the bay</h2><p id="challengeHint"></p><progress id="challengeProgress" max="1" value="0" aria-label="Current procedure progress"></progress><button id="challengeAction" class="primary">Stage bay & begin</button><div class="challenge-line"><button id="challengeReset">↺ Practice</button><button id="challengeReplay" disabled>Replay your stop</button><label><input id="challengeSound" type="checkbox"/> Sound</label></div><small id="challengeErrors">0 procedure errors</small><small id="challengeStationary"></small><small>Illustrative training · FL manual / other corners automated</small></section>
+      <button id="contactTarget" hidden aria-label="Direct wheel tool interaction">◎ Align gun</button>
+      <div id="modelLoad" role="status">Loading car & materials…</div>
+      <div id="fallback" hidden><strong>3D is unavailable</strong><p>The complete timing model, event tracks and analysis still work.</p></div>
+      <div class="world-caption overlay"><h1>Pit box 01</h1><div class="watch-controls"><button id="watchBtn" class="primary" aria-pressed="false">▶ Watch stop</button><label><input id="watchLoop" type="checkbox" /> Loop</label></div><p id="watchChapter" role="status">Drag to orbit · select a station to inspect</p><div id="discovery"><button id="guideBtn">Run → delay → inspect</button><button id="dismissGuide" aria-label="Dismiss guided discovery">×</button></div></div>
+      <div class="quick-experiments overlay" aria-label="Run a pit-stop experiment"><button data-quick-scenario="coordinated">Clean stop</button><button data-quick-scenario="gun">Gun delay</button><button data-quick-scenario="traffic">Pit traffic</button><button data-quick-scenario="stack">Double stack</button><output id="quickDelta">Same seed · compare with clean stop</output></div>
+      <div class="operations-kpis overlay" aria-label="Current modeled operations"><div><span>WHEEL STATIONS</span><strong id="opsStations">0 / 4</strong><small>working concurrently</small></div><div><span>ACTIVE PIT CREW</span><strong id="opsCrew">0 / 14</strong><small>scheduled service roles</small></div><div><span>WHEELS RETAINED</span><strong id="opsSecured">4 / 4</strong><small id="opsRelease">awaiting arrival</small></div></div>
+      <nav class="mode-nav overlay" aria-label="Lab workspace">
+        <button data-mode="world" aria-pressed="true">01 <span>WORLD</span></button>
+        <button data-mode="mechanics" aria-pressed="false">02 <span>MECHANICS</span></button>
+        <button data-mode="timing" aria-pressed="false">03 <span>TIMING</span></button>
+        <button data-mode="strategy" aria-pressed="false">04 <span>STRATEGY</span></button>
+      </nav>
+      <div class="scene-controls overlay" aria-label="Scene composition"><div class="scene-camera-group"><button data-scene-camera="overview" aria-pressed="true">Overview</button><button data-scene-camera="box" aria-pressed="false">Pit box</button><button data-scene-camera="facility" aria-pressed="false">Full complex</button></div><label><span class="sr-only">Facility lighting</span><select id="lighting"><option value="day">Daylight</option><option value="golden">Golden hour</option><option value="night">Night session</option></select></label><label class="roof-toggle"><input id="roof" type="checkbox"/> Roof section</label></div>
+      <div class="viewport-tools"><button id="dataRoomBtn">⇢ <span>Data → decisions</span></button><button id="controlsBtn" aria-expanded="false" aria-controls="controls">⚙ <span>Parameters</span></button><button id="cameraReset">↗ <span>Reset camera</span></button><button id="inspectorBtn" aria-expanded="true" aria-controls="inspector">ⓘ <span>Inspector</span></button><button id="hideBtn" aria-pressed="false">◉ <span>Hide overlays</span></button><button id="fullscreenBtn" aria-label="Toggle full screen">⛶</button></div>
+      <aside id="controls" class="panel controls" hidden aria-label="Scenario parameters">
+        <div class="panel-heading"><span>EXPERIMENT SETUP</span><button data-close="controls" aria-label="Close parameters">×</button></div>
+        <label class="field">Replay seed <input id="seed" type="number" min="0" max="4294967295" step="1" value="42" /></label>
+        <p class="muted">Changing a parameter rebuilds the same seeded experiment and resets its clock.</p>
+        <div id="parameterGroups"></div>
+        <button id="restoreDefaults">Restore default parameters</button>
+      </aside>
+      <aside id="inspector" class="panel inspector" aria-label="Engineering inspector">
+        <div class="panel-heading"><span id="inspectorHeading">PIT BOX / 01</span><button data-close="inspector" aria-label="Close inspector">×</button></div>
+        <div id="worldInspector">
+          <p id="scenarioNote" class="muted"></p>
+          <p class="eyebrow">WHEEL-SERVICE BOTTLENECK</p><strong id="critical" class="large-number">—</strong><p id="criticalNote" class="muted"></p>
+          <div id="cornerStates" class="corner-states"></div>
+          <div id="safety" class="safety"></div>
+          <div id="assetPanel" class="asset-panel" hidden><span class="eyebrow">SELECTED FACILITY ASSET</span><strong id="assetTitle"></strong><p id="assetDescription"></p><div id="assetMetrics"></div></div><div class="inspection-card"><strong id="partName">Wheel-station inspection</strong><p id="partDesc">Select a wheel station to inspect it. Amber outlines mark the limiting corner. Every motion follows the event schedule.</p></div>
+          <label class="field">Camera<select id="camera"><option value="overview">Complex overview</option><option value="box">Close pit-box view</option><option value="facility">Complete pit complex</option><option value="garage">Race garage interior</option><option value="tires">Tire preparation bay</option><option value="command">Pit-wall command</option><option value="follow">Follow car</option><option value="FL">Front-left wheel</option><option value="FR">Front-right wheel</option><option value="RL">Rear-left wheel</option><option value="RR">Rear-right wheel</option><option value="top">Top-down coordination</option><option value="release">Pit entry & release</option><option value="cutaway">Mechanical cutaway</option></select></label>
+        </div>
+        <div id="mechanicsInspector" hidden>
+          <label class="field">Wheel corner<select id="corner"><option>FL</option><option>FR</option><option>RL</option><option>RR</option></select></label>
+          <label class="field">Component<select id="focusSelect"><option value="assembly">Complete assembly</option><option value="wheel">Outgoing wheel</option><option value="nut">Retained nut</option><option value="gun">Pneumatic wheel gun</option><option value="brake">Carbon brake disc</option><option value="hub">Hub and drive splines</option><option value="newWheel">Incoming wheel</option></select></label>
+          <div class="camera-grid"><button data-detail-camera="hero">Assembly</button><button data-detail-camera="gun">Gun</button><button data-detail-camera="hub">Hub</button><button data-detail-camera="brake">Brake</button><button data-detail-camera="top">Top</button><button data-detail-camera="wide">Wide</button></div>
+          <label class="switch">Cutaway wheel<input id="cutaway" type="checkbox" /></label><label class="switch">Exploded assembly<input id="exploded" type="checkbox" /></label>
+          <p id="mechanicalState" class="muted"></p><p id="mechanicalDescription" class="muted">The nut stays captive in its wheel. The disc and fixed caliper remain on the car. Geometry and timing are generic teaching models.</p>
+        </div>
+        <div id="strategyInspector" hidden>
+          <div class="intel-invite"><button id="intelligenceOpen" class="primary">Sources → model → race replay ↗</button></div>
+          <p class="eyebrow">SYNTHETIC CIRCUIT / FICTIONAL CARS</p>
+          <svg id="circuit" viewBox="0 0 260 140" role="img" aria-label="Illustrative circuit with modeled car positions"><path id="circuitPath" d="M50 110 C-5 80 20 20 70 25 L190 25 C245 25 245 100 200 110 Z" fill="none" stroke="#617975" stroke-width="14"/><path d="M70 110 L80 80 L170 80 L190 110" fill="none" stroke="#eebf70" stroke-width="3"/><text x="91" y="73">PIT ENTRY / EXIT</text><circle id="strategyCar" r="6" fill="#ee6849"/><circle id="rivalCar" r="6" fill="#82c8b0"/></svg>
+          <label class="field">New compound<select id="compound"><option value="soft">Soft</option><option value="medium" selected>Medium</option><option value="hard">Hard</option></select></label>
+          <label class="field">Laps remaining<input id="laps" type="number" min="2" max="30" value="8" /></label>
+          <label class="field">Current tire age · laps<input id="tireAge" type="number" min="0" max="40" value="12" /></label>
+          <label class="field">Rival behind · seconds<input id="rivalGap" type="number" min="-40" max="60" value="22" /></label>
+          <label class="field">Base race pace · s/lap<input id="pace" type="number" min="60" max="150" value="90" /></label>
+          <label class="field">Degradation · s/lap of age<input id="degradation" type="number" min="0" max=".3" step=".01" value=".07" /></label>
+          <div id="strategyResults"></div><p class="muted">Linear tire wear, 0.35 s warm-up cost, constant rival pace. Stop loss comes from this simulation. Circuit playback compresses the race horizon into the session clock.</p>
+        </div>
+        <details class="assumptions"><summary>MODEL ASSUMPTIONS & SOURCES</summary><p>Reduced-order educational simulation. Exact event evaluation; seeded independent triangular timing variation. Constant approach deceleration after driver response, capped constant exit acceleration. The entry-to-exit path is a local segment, not a full circuit pit lane. Generic mechanical teaching dimensions; the car is an original SF-26 launch-reference visual study. No proprietary team data or live telemetry.</p><p>Stationary = complete stop to departure motion. Service = positioning start to final fastening confirmation. Transit = modeled approach and departure. Total = transit + stationary + any queue/transfer. Race loss subtracts a synthetic no-stop reference at 55 m/s over equivalent longitudinal positions. Result cards predict the completed experiment; the clock and inspector show the current timestamp.</p><p>All slider defaults are illustrative. 60 km/h is a teaching choice. The FIA 2026 default limit is 80 km/h and can vary by event. Our departure instant is motion onset, distinct from the FIA regulatory release definition.</p><p><a href="https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_09_-_2026-10-01.pdf" target="_blank" rel="noreferrer">FIA 2026 Sporting · Issue 09 · B1.6</a><br><a href="https://www.mercedesamgf1.com/news/insight-chasing-pit-stop-perfection" target="_blank" rel="noreferrer">Mercedes · Pit-stop roles & indicative timings</a><br><a href="https://www.formula1.com/en/latest/article/f1-quest-perfect-pitstop.1lwNTV7z6MiEA2weCMsS8E" target="_blank" rel="noreferrer">Formula 1 · Timing & captive wheel nuts</a><br><a href="./MODEL.md" target="_blank">Full model, equations & limitations ↗</a></p></details>
+        <label class="field">Field of view · degrees<input id="fov" aria-label="Camera field of view" type="range" min="24" max="65" value="36" /></label><label class="switch">Pinned reference ghost<input id="ghost" type="checkbox" checked /></label><p id="ghostNote" class="muted">Pin a run in Timing → Experiments, change a parameter, and compare both cars at the same session time.</p><label class="switch">Spatial asset labels<input id="spatial" type="checkbox" checked /></label><label class="switch">Motion path<input id="trails" type="checkbox" /></label><label class="switch">Station indicators<input id="labels" type="checkbox" checked /></label><label class="switch">Mechanical audio<input id="sound" type="checkbox" /></label>
+      </aside>
+      <div id="operationRibbon" class="operation-ribbon overlay" aria-label="Scheduled stop progression"><div class="ribbon-title"><span>CAR <b id="opsCar">01</b> / OPERATION TRACE</span><strong id="opsBlocking">Awaiting arrival</strong></div><div id="pipeline"></div></div>
+      <div id="sceneMap" class="scene-map overlay"><div><span>FACILITY PLAN</span><b id="mapStatus">APPROACH</b></div><svg viewBox="0 0 200 210" role="img" aria-label="Pit complex plan with modeled car locations"><rect x="8" y="15" width="65" height="180" rx="3" fill="#a0b6aa"/><path d="M8 75H73M8 135H73" stroke="#e7ecdf"/><rect x="77" y="78" width="40" height="58" fill="#9bac9c" stroke="#d6b06a"/><path d="M142 10V200" stroke="#657b7d" stroke-width="34"/><path d="M142 10V200" stroke="#bec9bd" stroke-width="1" stroke-dasharray="5 4"/><rect x="169" y="15" width="7" height="180" fill="#639589"/><path id="mapTrail" d="M97 200V105L142 20" fill="none" stroke="#e6c88b" stroke-width="1" stroke-dasharray="3 3"/><circle id="mapCar" cx="97" cy="190" r="4" fill="#f07d55"/><circle id="mapSecond" cx="97" cy="200" r="4" fill="#9bcab4" hidden/><circle id="mapTraffic" cx="142" cy="170" r="3" fill="#e4dcbb" hidden/><text x="19" y="48">AERO</text><text x="19" y="109">RACE</text><text x="19" y="169">TIRES</text><text x="84" y="70">BOX 01</text></svg><button id="mapReset">Frame complex ↗</button></div>
+      <div class="world-tag overlay"><i></i><span>DETERMINISTIC SIMULATION</span><span id="renderStats">Starting renderer</span></div>
+      <div id="notice" role="status" hidden></div>
+    </main>
+    <section id="dock" aria-label="Synchronized analysis dock">
+      <div class="measurements">
+        <div><span>STATIONARY <button class="help" title="Complete stop to departure motion onset. Holds have no completed stationary time." aria-label="Stationary time definition">?</button></span><strong id="stationary">—</strong></div>
+        <div><span>SERVICE <button class="help" title="Positioning start to final fastening confirmation." aria-label="Service duration definition">?</button></span><strong id="service">—</strong></div>
+        <div><span>PIT-LANE TOTAL <button class="help" title="Modeled local segment only: approach + 30 m departure + stationary + queue/transfer, if present." aria-label="Total pit-lane time definition">?</button></span><strong id="total">—</strong></div>
+        <div><span>RACE LOSS <button class="help" title="Total minus no-stop equivalent entry-to-exit positions at illustrative 55 m/s race speed." aria-label="Race loss definition">?</button></span><strong id="raceLoss">—</strong></div>
+        <button id="analysisBtn" aria-expanded="false">Expand analysis ↑</button>
       </div>
-
-      <label class="control-row">
-        <span>Timeline</span>
-        <output id="timelineOut">0%</output>
-      </label>
-      <input id="timeline" type="range" min="0" max="1" step="0.001" value="0" />
-
-      <label class="control-row">
-        <span>Playback</span>
-        <output id="speedOut">1.00×</output>
-      </label>
-      <input id="speed" type="range" min="0.05" max="2" step="0.05" value="1" />
-
-      <div class="panel-title gap">MECHANICS</div>
-      <label class="switch-row"><span>Cutaway wheel</span><input id="cutaway" type="checkbox" /></label>
-      <label class="switch-row"><span>Exploded view</span><input id="exploded" type="checkbox" /></label>
-      <label class="switch-row"><span>Motion trails</span><input id="trails" type="checkbox" checked /></label>
-      <label class="switch-row"><span>Auto-follow</span><input id="follow" type="checkbox" /></label>
-      <label class="switch-row"><span>Labels</span><input id="labels" type="checkbox" checked /></label>
-      <label class="switch-row"><span>Mechanical audio</span><input id="sound" type="checkbox" checked /></label>
-
-      <div class="legend">
-        <div><i class="dot green"></i>Locked</div>
-        <div><i class="dot amber"></i>Tool engaged</div>
-        <div><i class="dot red"></i>Wheel unsecured</div>
+      <div class="transport"><button id="resetBtn" aria-label="Reset simulation">↺</button><button id="stepBackBtn" aria-label="Step backward 0.05 seconds">− STEP</button><button id="stepFwdBtn" aria-label="Step forward 0.05 seconds">+ STEP</button><label class="timeline-wrap"><span class="sr-only">Session timeline in seconds</span><input id="timeline" type="range" min="0" max="10" step=".001" value="0" /></label><output id="timelineOut">0.00 / 0.00 s</output><label><span class="sr-only">Playback speed</span><select id="speed"><option value=".25">0.25×</option><option value=".5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label></div>
+      <div id="analysis" hidden>
+        <div class="analysis-tabs" role="tablist" aria-label="Analysis view"><button role="tab" aria-selected="true" data-analysis="events">Event tracks</button><button role="tab" aria-selected="false" data-analysis="telemetry">Telemetry</button><button role="tab" aria-selected="false" data-analysis="experiments">Experiments</button><button id="exportBtn">Export JSON ↗</button></div>
+        <div id="eventsPanel" role="tabpanel"><div id="eventTracks"></div><p id="eventDescription" class="muted">Select an operation to seek to it. Amber = dependency chain that determines release; dimmer tracks have slack. Times are seconds from pit entry.</p></div>
+        <div id="telemetryPanel" role="tabpanel" hidden><div class="plot-heading"><span>DERIVED VEHICLE SPEED · km/h</span><span>Lift · mm ··· / selected car <b id="telemetryCar">01</b></span></div><svg id="telemetry" viewBox="0 0 1000 150" role="img" aria-label="Modeled speed and chassis lift over session time"></svg><p class="muted" id="telemetryReadout"></p></div>
+        <div id="experimentsPanel" role="tabpanel" hidden><div class="experiments-grid"><div><strong>Change one operation</strong><label class="field">Parameter<select id="sensitivityParam"><option value="fastener">Faster fastener · −0.10 s</option><option value="stopError">Better positioning · −0.10 m</option><option value="frontJack">Front jack · −0.10 s</option><option value="variability">Less variability · −0.03</option><option value="confirmation">Slower release check · +0.10 s</option></select></label><p id="sensitivityResult"></p><button id="pinBtn">Pin current scenario + reference ghost</button><p id="comparison" class="muted">Pin a result, then change a scenario or parameter.</p></div><div><strong>Seeded uncertainty experiment</strong><div class="inline-fields"><label>Runs<select id="runs"><option>1000</option><option>3000</option></select></label><label>Threshold · s<input id="threshold" type="number" min="1" max="15" step=".1" value="3" /></label><button id="monteBtn">Run batch</button></div><p id="monteResult" class="muted">Independent triangular task durations, bounded by the variability parameter. Estimates describe this model only.</p><svg id="histogram" viewBox="0 0 400 70" aria-label="Distribution of simulated stationary times" role="img"></svg></div></div></div>
       </div>
-    </aside>
-
-    <aside class="hud panel right-panel">
-      <div class="panel-title">CAMERA</div>
-      <div class="preset-grid">
-        <button data-camera="hero">HERO</button>
-        <button data-camera="gun">WHEEL GUN</button>
-        <button data-camera="hub">HUB</button>
-        <button data-camera="brake">BRAKE</button>
-        <button data-camera="top">TOP</button>
-        <button data-camera="wide">WIDE</button>
-      </div>
-
-      <label class="control-row gap">
-        <span>Focus</span>
-      </label>
-      <select id="focusSelect">
-        <option value="assembly">Complete assembly</option>
-        <option value="wheel">Installed wheel</option>
-        <option value="nut">Retained nut</option>
-        <option value="gun">Wheel gun</option>
-        <option value="brake">Brake system</option>
-        <option value="hub">Hub and axle</option>
-        <option value="newWheel">Incoming wheel</option>
-      </select>
-
-      <label class="control-row gap"><span>Field of view</span><output id="fovOut">38°</output></label>
-      <input id="fov" type="range" min="18" max="70" step="1" value="38" />
-
-      <div class="inspection-card">
-        <div class="panel-title">INSPECTOR</div>
-        <strong id="partName">Complete wheel corner</strong>
-        <p id="partDesc">Drag to orbit. Scroll to zoom. Right-drag to pan. Click a component to inspect it.</p>
-      </div>
-    </aside>
-
-    <div id="labelsLayer" aria-hidden="true"></div>
-
-    <footer class="hud footerbar">
-      <div><kbd>SPACE</kbd> play/pause</div>
-      <div><kbd>R</kbd> reset</div>
-      <div><kbd>F</kbd> frame selection</div>
-      <div><kbd>1–6</kbd> camera presets</div>
-      <div><kbd>C</kbd> cutaway</div>
-      <div><kbd>E</kbd> explode</div>
-      <div><kbd>M</kbd> sound</div>
-      <div class="independent-note">Independent educational simulation</div>
-      <div id="renderStats">0 fps</div>
-    </footer>
+      <footer><span>INDEPENDENT EDUCATIONAL LAB <b> / </b> MODELED DATA</span><span>SPACE play/pause · R reset · 1–9 cameras · H overlays</span></footer>
+    </section>
   </div>
-
-  <script>
-    (() => {
-      const showBootError = (message) => {
-        const text = String(message || "Unknown startup error");
-        const phase = document.getElementById("phase");
-        const stats = document.getElementById("renderStats");
-        const name = document.getElementById("partName");
-        const desc = document.getElementById("partDesc");
-        if (phase) { phase.textContent = "BOOT ERROR"; phase.style.color = "#ff5d64"; }
-        if (stats) stats.textContent = "startup failed";
-        if (name) name.textContent = "Simulation startup failed";
-        if (desc) desc.textContent = text;
-        console.error("Pit Stop Lab startup error:", text);
-      };
-      window.addEventListener("error", (event) => showBootError(event.error?.stack || event.message));
-      window.addEventListener("unhandledrejection", (event) => showBootError(event.reason?.stack || event.reason));
-      window.setTimeout(() => {
-        if (!window.__SIM_READY__) {
-          const phase = document.getElementById("phase");
-          const stats = document.getElementById("renderStats");
-          if (phase && phase.textContent === "READY") phase.textContent = "STARTING…";
-          if (stats && stats.textContent === "0 fps") stats.textContent = "waiting for renderer";
-        }
-      }, 1500);
-    })();
-  </script>
-
+  <dialog id="intelligenceDialog" class="race-dialog" aria-labelledby="intelligenceTitle">
+    <header class="intel-header"><div><span class="eyebrow">PIT STOP LAB / HISTORICAL DATA + SIMULATION</span><h2 id="intelligenceTitle">Data → decisions</h2></div><button id="intelligenceClose" aria-label="Close decision room">Close ×</button></header>
+    <div id="intelligenceStatus" role="status" aria-live="polite">Load the historical example to begin.</div>
+    <section class="flow-workspace" aria-label="Source to decision data flow">
+      <div id="dataFlow" class="data-flow" data-state="empty">
+        <svg id="flowEdges" aria-hidden="true"></svg>
+        <div class="flow-column"><button class="flow-node" data-flow="laps"><small>OPENF1 · HISTORICAL</small><b>Lap timing</b><output>Not loaded</output></button><button class="flow-node" data-flow="stints"><small>OPENF1 · HISTORICAL</small><b>Tire stints</b><output>Not loaded</output></button><button class="flow-node" data-flow="flags"><small>OPENF1 · HISTORICAL</small><b>Race control</b><output>Not loaded</output></button><button class="flow-node" data-flow="weather"><small>OPENF1 · CONTEXT</small><b>Weather</b><output>Not loaded</output></button><button class="flow-node" data-flow="pit"><small>PIT SIMULATION</small><b>Crew + release</b><output>Current experiment</output></button></div>
+        <div class="flow-column"><button class="flow-node" data-flow="filter"><small>JOIN + QUALITY GATE</small><b>Clean race laps</b><output>Awaiting evidence</output></button><button class="flow-node" data-flow="model"><small>TRAIN + VALIDATE</small><b>Learned pace</b><output>Awaiting fit</output></button><button class="flow-node" data-flow="assumptions"><small>YOUR RACE INPUTS</small><b>Rivals + pit + SC</b><output>Explicit assumptions</output></button></div>
+        <div class="flow-column"><button class="flow-node" data-flow="futures"><small>SHARED SEEDED TRIALS</small><b>Race futures</b><output>Awaiting evaluation</output></button><button class="flow-node" data-flow="decision"><small>COMPARE ACTIONS</small><b>Pit call</b><output>Awaiting evaluation</output></button></div>
+      </div>
+      <div id="flowDetail" class="flow-detail" aria-live="polite"><strong id="flowTitle">Select a source or calculation</strong><p id="flowDescription">Inspect the actual records and how they affect the result.</p><pre id="flowSample" hidden></pre><button id="flowWatch" hidden>Watch this pit experiment ↗</button></div>
+    </section>
+    <div class="intel-layout">
+      <aside class="intel-inputs">
+        <section><span class="eyebrow">01 / EVIDENCE</span><h3>Historical calibration</h3><p id="intelSource">OpenF1 · Bahrain 2024 · offline example</p><p id="intelWeather" class="intel-note"></p>
+          <div class="intel-inline"><label>Session key<input id="intelSession" type="number" min="1" max="999999" value="9472" /></label><button id="intelRefresh">Fetch & train</button></div>
+          <div class="intel-inline"><label class="intel-file">Import bundle<input id="intelImport" type="file" accept=".json,application/json" /></label><button id="intelDataExport" disabled>Export data</button></div>
+          <p class="intel-note">Historical dry races only. Refresh contacts api.openf1.org. Imported files stay in this browser tab. No API keys or team credentials.</p>
+        </section>
+        <section><span class="eyebrow">02 / RACE STATE · YOUR ASSUMPTIONS</span><h3>Race inputs</h3>
+          <div class="intel-fields"><label>Your car<select id="intelDriver"></select></label><label>Next race lap<input id="intelLap" type="number" min="2" max="199" value="39" /></label><label>Laps remaining<input id="intelLaps" type="number" min="2" max="40" value="18" /></label><label>Current tire age<input id="intelAge" type="number" min="0" max="60" value="20" /></label><label>Current compound<select id="intelCurrent"></select></label><label>Baseline new tire<select id="intelNext"></select></label></div>
+          <p class="intel-note">All supported compounds are compared. Confirm tire availability and sporting eligibility yourself. This hypothetical state is separate from the historical result.</p>
+          <details><summary>Rival plans · edit the opposition</summary><p class="intel-note">Positive gap = behind you. Pit in 0 = now; −1 = stay out. Rivals use the current compound, then the baseline new tire. Their pace uses their learned car offset.</p><div id="intelRivals"></div></details>
+          <details><summary>Pit loss & neutralisation assumptions</summary><label>Full-lane transit loss · seconds<input id="intelTransit" type="number" min="5" max="60" step=".5" value="20" /></label><label>Rivals' stationary time · seconds<input id="intelRivalService" type="number" min=".5" max="15" step=".1" value="2.6" /></label><label>Rejoin traffic cost per stop · s<input id="intelTraffic" type="number" min="0" max="10" step=".1" value=".5" /></label><label>Chance of a 3-lap neutralisation · %<input id="intelSC" type="number" min="0" max="100" value="15" /></label><p id="intelService" class="intel-note"></p><p class="intel-note">Transit excludes service. Neutralisation lap is uniform; affected lap times ×1.4, transit loss ×0.55. No pack compression, passing, wet tires or multi-stop plans. These factors are assumptions, not learned forecasts.</p></details>
+          <div class="intel-inline"><label>Trials<select id="intelRuns"><option>1500</option><option>3000</option></select></label><label>Seed<input id="intelSeed" type="number" min="0" max="4294967295" value="42" /></label></div>
+          <button id="intelRun" class="primary" disabled>Evaluate race futures →</button>
+        </section>
+      </aside>
+      <div class="intel-output">
+        <section id="raceReplay" class="race-replay" hidden><div class="intel-section-head"><div><span class="eyebrow">NOMINAL DRY PACE · NO NEUTRALISATION</span><h3 id="racePreviewTitle">Race replay</h3></div><button id="racePlay" aria-pressed="false">▶ Play race</button></div><svg id="raceTrack" viewBox="0 0 640 255" role="img" aria-label="Modeled race progress for your selected strategy, baseline and two rivals"><path id="raceTrackPath" d="M170 205 C40 205 30 60 155 50 L480 50 C605 50 605 205 470 205 Z" fill="none" stroke="#304e43" stroke-width="23"/><path d="M170 205 C40 205 30 60 155 50 L480 50 C605 50 605 205 470 205 Z" fill="none" stroke="#819b89" stroke-width="1" stroke-dasharray="4 7"/><path d="M170 205L215 160H420L470 205" stroke="#d1b37a" stroke-width="2" fill="none"/><text x="259" y="148">PIT SERVICE</text><g id="raceCars"></g></svg><div class="race-scrub"><label class="sr-only" for="raceTimeline">Race replay progress</label><input id="raceTimeline" type="range" min="0" max="1000" step="1" value="0" /><output id="raceClock">0:00</output></div><div id="racePositions" class="race-positions"></div><p class="intel-note">Pace-model replay at 120×. Pit holds use the modeled stop loss. Select another action below to compare it against the baseline. This circuit is schematic.</p></section>
+        <section class="intel-recommendation"><span class="eyebrow">03 / DECISION SUPPORT · CONDITIONAL</span><h3 id="intelCall">Train first. Then compare.</h3><p id="intelReason">Recommendations depend on the entered race state and rival plans.</p><div class="intel-scorecards"><div><span>FIRST OF ENTERED CARS</span><strong id="intelProbability">—</strong><small id="intelInterval">Monte Carlo sampling interval</small></div><div><span>VS BASELINE BOX-NOW CALL</span><strong id="intelUplift">—</strong><small id="intelBaseline">same simulated futures</small></div><div><span>GAP TO BEST RIVAL · P10 / P50 / P90</span><strong id="intelMargin">—</strong><small>positive = ahead at horizon</small></div></div><p id="intelWarning" class="intel-warning">No calibrated real-world win probability is available.</p></section>
+        <section><div class="intel-section-head"><div><span class="eyebrow">04 / COMPARE ACTIONS</span><h3>Action comparison</h3></div><button id="intelExport" disabled>Export decision ↗</button></div><div id="intelPlans" class="intel-plan-list"><p>Run an evaluation to compare the supported compounds, four pit windows and staying out.</p></div><p class="intel-note">Bars = simulated chance of finishing ahead of every entered rival. Whiskers = 95% Wilson interval for sampling error only. This is not a full-grid or calibrated race-win forecast.</p></section>
+        <section class="intel-model"><span class="eyebrow">05 / MODEL AUDIT</span><h3>Model audit</h3><div id="intelValidation" class="intel-scorecards"></div><svg id="intelPace" viewBox="0 0 640 180" role="img" aria-label="Learned tire-age pace effect at a fixed race lap for the selected car"></svg><p id="intelPaceNote" class="intel-note"></p><details><summary>Training, uncertainty & limitations</summary><p class="intel-note">Ridge regression learns race-lap trend, compound-specific tire-age slopes, compound offsets and driver offsets. First 80% of race laps train; last 20% validate. No validation outcomes enter the fit. The comparison baseline is each driver's training mean on that compound.</p><p class="intel-note">32 bootstrap fits resample complete stints within each driver. Each trial shares the same model draw and race event across actions; held-out residuals are sampled in 3-lap blocks per car. This represents modeled uncertainty; it has not been calibrated against race-winning outcomes.</p><p class="intel-note">Start/pit laps, flagged incident laps and their successors, neutralised periods, and laps over 107% of the driver's training-period median are removed. Remaining traffic, fuel, tire condition and driver intent can still confound learned associations. Weather is dry-session context, not a predictive feature. One race cannot establish performance at other circuits or in later seasons.</p><p class="intel-note"><a href="https://openf1.org/docs/" target="_blank" rel="noreferrer">OpenF1 API & field definitions ↗</a> · <a href="./MODEL.md" target="_blank">Model equations & limitations ↗</a></p><div id="intelSourceLinks"></div></details></section>
+      </div>
+    </div>
+  </dialog>
   <script type="module" src="./main.js"></script>
 </body>
 </html>
