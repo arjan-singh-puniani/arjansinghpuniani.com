@@ -83,3 +83,9 @@ The external pelvic contour now uses a closed, smooth parametric surface joined 
 ### Named map callouts
 
 Explained entries are now named on the default map. Overview labels represent approaches within broad regions; focusing a region exposes individual indexed approaches. Leader lines and marker spirals are diagrammatic regional associations, never new implant coordinates. Each callout retains its relationship role and original source, and the existing reviewed/provisional distinction remains visible. Where the reference has no applicable structure or locator, the entry stays discoverable through the index without a fabricated marker.
+
+## Reference focus and schematic mechanisms — 2026-10-27
+
+Selection now focuses the available source reference region rather than leaving the camera at the whole-body overview. Organ centers come from the existing HRA geometry manifest. Missing substructures use explicitly broader reference anatomy: heart for the aortic-valve example, whole brain for thalamic/cortical targets in the human view, and spinal cord context for epidural relationships. The dedicated brain view retains its tagged thalamic/cortical meshes. Bilateral kidney bounds do not assign a treatment side. Unlocalized cochlear placement and female-only anatomy in this male reference abstain.
+
+Eleven mechanism descriptions cite existing source assertions or original FDA summaries. Device glyphs are enlarged schematic insets, tethered to reference anatomy; they are not device meshes placed in tissue. Animation shows qualitative operation only, with no dose, waveform, blood-flow, acoustic or thermal model. Existing Provisional indication-context mappings remain Provisional. No new accepted anatomical placements or precision estimate are claimed.

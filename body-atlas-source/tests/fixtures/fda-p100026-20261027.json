@@ -1,0 +1,415 @@
+{
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
+    "terms": "https://open.fda.gov/terms/",
+    "license": "https://open.fda.gov/license/",
+    "last_updated": "2026-10-19",
+    "results": {
+      "skip": 0,
+      "limit": 10,
+      "total": 99
+    }
+  },
+  "results": [
+    {
+      "pma_number": "P100026",
+      "supplement_number": "S104",
+      "applicant": "NeuroPace, Inc.",
+      "street_1": "455 N Bernardo Ave.",
+      "street_2": "",
+      "city": "Mountain View",
+      "state": "CA",
+      "zip": "94043",
+      "zip_ext": "",
+      "generic_name": "Implanted brain stimulator for epilepsy",
+      "trade_name": "NeuroPace® RNS® System",
+      "product_code": "PFN",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2026-07-24",
+      "decision_date": "2026-08-19",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "to remove an in-process screening test used in the manufacture of the RNS-320 Neurostimulators",
+      "openfda": {
+        "registration_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "fei_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "device_name": "Implanted Brain Stimulator For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P100026",
+      "supplement_number": "S100",
+      "applicant": "NeuroPace, Inc.",
+      "street_1": "455 N Bernardo Ave.",
+      "street_2": "",
+      "city": "Mountain View",
+      "state": "CA",
+      "zip": "94043",
+      "zip_ext": "",
+      "generic_name": "Implanted brain stimulator for epilepsy",
+      "trade_name": "NeuroPace® RNS® System",
+      "product_code": "PFN",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2025-07-24",
+      "decision_date": "2026-06-17",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "approval for migration of the Patient Data Management System from on-site server to cloud service",
+      "openfda": {
+        "registration_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "fei_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "device_name": "Implanted Brain Stimulator For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P100026",
+      "supplement_number": "S101",
+      "applicant": "NeuroPace, Inc.",
+      "street_1": "455 N Bernardo Ave.",
+      "street_2": "",
+      "city": "Mountain View",
+      "state": "CA",
+      "zip": "94043",
+      "zip_ext": "",
+      "generic_name": "Implanted brain stimulator for epilepsy",
+      "trade_name": "NeuroPace® RNS® System",
+      "product_code": "PFN",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Normal 180 Day Track",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2025-08-06",
+      "decision_date": "2026-05-28",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "approval for an optional Electrocorticogram (ECoG) Assistant function, which is a clinician tool that highlights ECoG recordings of interest, for the Patient Data Management System.",
+      "openfda": {
+        "registration_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "fei_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "device_name": "Implanted Brain Stimulator For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P100026",
+      "supplement_number": "S103",
+      "applicant": "NeuroPace, Inc.",
+      "street_1": "455 N Bernardo Ave.",
+      "street_2": "",
+      "city": "Mountain View",
+      "state": "CA",
+      "zip": "94043",
+      "zip_ext": "",
+      "generic_name": "Implanted brain stimulator for epilepsy",
+      "trade_name": "NeuroPace® RNS® System",
+      "product_code": "PFN",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2026-01-22",
+      "decision_date": "2026-02-20",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "approval to change a supplier's ultrasonic rinse process for contacts used in the manufacture of the NeuroPace leads",
+      "openfda": {
+        "registration_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "fei_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "device_name": "Implanted Brain Stimulator For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P100026",
+      "supplement_number": "S099",
+      "applicant": "NeuroPace, Inc.",
+      "street_1": "455 N Bernardo Ave.",
+      "street_2": "",
+      "city": "Mountain View",
+      "state": "CA",
+      "zip": "94043",
+      "zip_ext": "",
+      "generic_name": "Implanted brain stimulator for epilepsy",
+      "trade_name": "NeuroPace® RNS® System",
+      "product_code": "PFN",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2025-07-22",
+      "decision_date": "2025-08-18",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "approval for the approved supplier of the RNS-320 Neurostimulator battery to procure a raw material from an alternate supplier",
+      "openfda": {
+        "registration_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "fei_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "device_name": "Implanted Brain Stimulator For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P100026",
+      "supplement_number": "S098",
+      "applicant": "NeuroPace, Inc.",
+      "street_1": "455 N Bernardo Ave.",
+      "street_2": "",
+      "city": "Mountain View",
+      "state": "CA",
+      "zip": "94043",
+      "zip_ext": "",
+      "generic_name": "Implanted brain stimulator for epilepsy",
+      "trade_name": "NEUROPACE RNS SYSTEM",
+      "product_code": "PFN",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "Real-Time Process",
+      "supplement_reason": "Change Design/Components/Specifications/Material",
+      "expedited_review_flag": "N",
+      "date_received": "2025-03-07",
+      "decision_date": "2025-05-12",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "new polyethylene bulk material from new supplier for the battery used within the RNS-320 system",
+      "openfda": {
+        "registration_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "fei_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "device_name": "Implanted Brain Stimulator For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P100026",
+      "supplement_number": "S097",
+      "applicant": "NeuroPace, Inc.",
+      "street_1": "455 N Bernardo Ave.",
+      "street_2": "",
+      "city": "Mountain View",
+      "state": "CA",
+      "zip": "94043",
+      "zip_ext": "",
+      "generic_name": "Implanted brain stimulator for epilepsy",
+      "trade_name": "NeuroPace Remote Monitor",
+      "product_code": "PFN",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2024-12-09",
+      "decision_date": "2024-12-18",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "to utilize an alternate supplier for the Tablet Remote Monitors",
+      "openfda": {
+        "registration_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "fei_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "device_name": "Implanted Brain Stimulator For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P100026",
+      "supplement_number": "S096",
+      "applicant": "NeuroPace, Inc.",
+      "street_1": "455 N Bernardo Ave.",
+      "street_2": "",
+      "city": "Mountain View",
+      "state": "CA",
+      "zip": "94043",
+      "zip_ext": "",
+      "generic_name": "Implanted brain stimulator for epilepsy",
+      "trade_name": "NEUROPACE RNS SYSTEM",
+      "product_code": "PFN",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2024-11-15",
+      "decision_date": "2024-12-11",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "to replace several components for the Wand",
+      "openfda": {
+        "registration_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "fei_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "device_name": "Implanted Brain Stimulator For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P100026",
+      "supplement_number": "S095",
+      "applicant": "NeuroPace, Inc.",
+      "street_1": "455 N Bernardo Ave.",
+      "street_2": "",
+      "city": "Mountain View",
+      "state": "CA",
+      "zip": "94043",
+      "zip_ext": "",
+      "generic_name": "Implanted brain stimulator for epilepsy",
+      "trade_name": "NeuroPace RNS System",
+      "product_code": "PFN",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2024-07-15",
+      "decision_date": "2024-08-13",
+      "docket_number": "",
+      "decision_code": "OK30",
+      "ao_statement": "to implement supplier process changes at the Integer, which include introducing automation for the lubricant application during the initial part-forming step; and bringing in-house the previously outsourced annealing process, which the Integer originally developed, with no changes to the annealing recipe, tooling, materials, or specifications",
+      "openfda": {
+        "registration_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "fei_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "device_name": "Implanted Brain Stimulator For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    },
+    {
+      "pma_number": "P100026",
+      "supplement_number": "S087",
+      "applicant": "NeuroPace, Inc.",
+      "street_1": "455 N Bernardo Ave.",
+      "street_2": "",
+      "city": "Mountain View",
+      "state": "CA",
+      "zip": "94043",
+      "zip_ext": "",
+      "generic_name": "Implanted brain stimulator for epilepsy",
+      "trade_name": "NeuroPace® RNS® System",
+      "product_code": "PFN",
+      "advisory_committee": "NE",
+      "advisory_committee_description": "Neurology",
+      "supplement_type": "135 Review Track For 30-Day Notice",
+      "supplement_reason": "Process Change - Manufacturer/Sterilizer/Packager/Supplier",
+      "expedited_review_flag": "N",
+      "date_received": "2021-10-18",
+      "decision_date": "2023-09-28",
+      "docket_number": "",
+      "decision_code": "APPR",
+      "ao_statement": "Approval to add alternate cleaning equipment and solvent to degrease the Neurostimulator can and Ferrule.",
+      "openfda": {
+        "registration_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "fei_number": [
+          "1721676",
+          "3004426659",
+          "3009183442"
+        ],
+        "device_name": "Implanted Brain Stimulator For Epilepsy",
+        "medical_specialty_description": "Unknown",
+        "regulation_number": "",
+        "device_class": "3"
+      }
+    }
+  ]
+}

@@ -61,6 +61,8 @@ import { frontier } from "@/lib/curation";
 import { External, SourceRecord, State } from "./Evidence";
 import BriefPreview from "./BriefPreview";
 import { dossiers, dossierCoverage, reviewLabels } from "@/lib/dossiers";
+import { anatomyFocus, deviceActions } from '@/lib/device-action';
+import FDAUpdates from './FDAUpdates';
 const Dossier = dynamic(() => import("./Dossier"));
 import type { AtlasRecord, Family, Mapping } from "@/lib/types";
 import "./atlas.css";
@@ -178,6 +180,8 @@ export default function AtlasExperience() {
   const [shareUrl,setShareUrl]=useState("");
   const [showOrgans,setShowOrgans]=useState(true);
   const [adaptedContour,setAdaptedContour]=useState(true);
+  const [showMechanism,setShowMechanism]=useState(true),[actionPlaying,setActionPlaying]=useState(false),[reducedMotion,setReducedMotion]=useState(false);
+  useEffect(()=>{const media=window.matchMedia('(prefers-reduced-motion: reduce)');const change=()=>{setReducedMotion(media.matches);setActionPlaying(false);};change();media.addEventListener('change',change);return()=>media.removeEventListener('change',change);},[]);
   const [anatomyExpanded, setAnatomyExpanded] = useState(false);
   const resultsRef = useRef<HTMLElement>(null);
   const [region, setRegion] = useState("all"),
@@ -205,7 +209,7 @@ export default function AtlasExperience() {
     if(isPortrait){setShowOrgans(false);setSurface(true);setShowInterventions(false);}
     const entry = params.get("entry");
     if (!isPortrait && entry && dossiers[entry] && familyById(entry)) {
-      setSelected(entry);setRegion("all");setTab("dossier");
+      setSelected(entry);setRegion("all");setTab(params.get('panel')==='mechanism'?'components':'dossier');
     }
   }, []);
   const [libraryQuery, setLibraryQuery] = useState(""),
@@ -231,8 +235,11 @@ export default function AtlasExperience() {
       ? [familyById("cochlear")!] : hits;
   }, [allAvailable, region, collection, query, modality, authorization, year]);
   const f = selected ? familyById(selected) : undefined;
+  useEffect(()=>setActionPlaying(false),[selected]);
   const explanation = f ? interventionSummaries[f.id] : undefined;
   const explanationRecord = explanation ? recordById(explanation.recordId) : undefined;
+  const focus = f ? anatomyFocus(f.id) : null;
+  const action = f ? deviceActions[f.id] : undefined;
   useEffect(()=>setResultsLimit(60),[region,query,modality,authorization,year,collection]);
   useEffect(()=>setLibraryLimit(100),[libraryQuery,sourceKind]);
   const counts = useMemo(() => Object.fromEntries(
@@ -567,6 +574,10 @@ export default function AtlasExperience() {
                   key={`human-${sceneKey}`}
                   portrait={!!portrait}
                   adapted={adaptedContour}
+                  focusRegion={focus?.region}
+                  focusKey={selected || undefined}
+                  action={showMechanism ? action : undefined}
+                  actionPlaying={actionPlaying && !reducedMotion}
                   onProjection={projectHuman}
                   showLabels={!!portrait || showInterventions}
                   showOrgans={showOrgans}
@@ -594,7 +605,7 @@ export default function AtlasExperience() {
                   onHover={setHovered}
                 />
               )}
-              {showInterventions && projection?.mode===mode && densityMap && <InterventionConstellation named={collection==='explained'} entries={annotations} projection={projection} selected={selected} onSelect={onInnovation} onRegion={id=>chooseRegion(id)}/>}
+              {showInterventions && projection?.mode===mode && densityMap && <InterventionConstellation named={collection==='explained'} entries={f && showMechanism && action && mode==='human' ? annotations.filter(a=>a.familyId===f.id) : annotations} projection={projection} selected={selected} onSelect={onInnovation} onRegion={id=>chooseRegion(id)}/>}
               {showInterventions && !densityMap && projection?.mode === mode && (
                 <InterventionLabels
                   entries={annotations}
@@ -998,6 +1009,20 @@ export default function AtlasExperience() {
                 <p className="device-action" aria-label="What this intervention does">
                   {interventionActions[f.id] || f.description}
                 </p>
+                <section className="mechanism-panel" aria-label="Anatomy and mechanism">
+                  <div className="mechanism-controls">
+                    {focus && <button onClick={()=>{setMode('human');setShowOrgans(true);setSurface(false);setSceneKey(k=>k+1);}}>Locate on anatomy</button>}
+                    {focus && brainIds.includes(focus.intendedRegion) && <button onClick={()=>chooseRegion(focus.intendedRegion,true)}>Inspect brain target</button>}
+                    {action && <button aria-pressed={showMechanism && mode==='human'} onClick={()=>{setShowMechanism(mode==='human'?!showMechanism:true);setMode('human');setShowOrgans(true);setSurface(false);setActionPlaying(false);}}>Mechanism overlay</button>}
+                    {action && showMechanism && mode==='human' && <button disabled={reducedMotion} aria-pressed={actionPlaying} onClick={()=>setActionPlaying(p=>!p)}>{actionPlaying?'Pause mechanism':'Play mechanism'}</button>}
+                  </div>
+                  <p className="focus-precision">{focus ? `${titleFor(focus.intendedRegion)} · ${focus.geometry ? focus.broaderReference ? 'broader reference organ highlighted' : 'reference anatomy highlighted' : 'regional locator; detailed geometry unavailable'}` : 'Location not established; no placement drawn.'}</p>
+                  {action ? <>
+                    <ol>{action.steps.map(step=><li key={step}>{step}</li>)}</ol>
+                    <External href={action.sourceUrl}>Mechanism source</External><small>{action.locator}</small>
+                    <p className="mechanism-limit">Enlarged schematic inset, not device shape or implant placement. {action.limit}{reducedMotion?' Animation disabled by reduced-motion preference.':''}</p>
+                  </> : <p className="mechanism-limit">A device action overlay has not been reviewed for this entry. The explanation and original evidence remain available.</p>}
+                </section>
                 {explanation && <section className="intervention-relevance" aria-label="Why this region">
                   <h3>Why this region</h3><p>{explanation.relevance}</p>
                   <External href={explanation.sourceUrl || primaryRecords(f)[0].url}>Read the supporting FDA source</External>
@@ -1045,6 +1070,7 @@ export default function AtlasExperience() {
                   <span>{dossiers[f.id].regulatory.state === "checked" ? "Regulatory checked" : "Marketing authorization not established"} · {dossiers[f.id].safety.state === "checked" ? `${dossiers[f.id].safety.recalls} application-linked recalls` : "Safety applicability unreviewed"}</span>
                   <small>{reviewLabels[dossiers[f.id].currentLabelReview]} · assessed {dossiers[f.id].labelReview.reviewedAt}</small>
                 </button>}
+                {f.regulatoryIds.length>0 && <FDAUpdates key={f.id} application={recordById(f.regulatoryIds[0])?.application || ''}/>}
               </div>
               <div
                 className="device-tabs"

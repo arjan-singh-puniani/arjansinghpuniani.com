@@ -107,7 +107,7 @@ def fetch(url, kind, allowed_hosts=ALLOWED):
     payload = None
     if kind == 'grant':
         payload = json.dumps({'criteria':{'advanced_text_search':{'operator':'and','search_field':'projecttitle','search_text':'brain computer interface'}},'offset':0,'limit':5}).encode()
-    req = Request(url, data=payload, headers={'User-Agent':'BodyAtlas/0.1 (bounded public research snapshot)', 'Accept':'text/html' if kind=='html' else 'application/json', 'Content-Type':'application/json'})
+    req = Request(url, data=payload, headers={'User-Agent':'BodyAtlas/0.1 (bounded public research snapshot)', 'Accept':'text/html' if kind=='html' else 'application/pdf' if kind=='pdf' else 'application/json', 'Content-Type':'application/json'})
     # python.org macOS builds may lack their own CA bundle. Keep TLS verification
     # enabled and use the OS CA store if OpenSSL's default bundle is absent.
     cafile = os.environ.get('SSL_CERT_FILE')

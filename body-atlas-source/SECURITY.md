@@ -26,3 +26,9 @@ Dossier fetching uses HTTPS with explicit FDA host allowlists checked before and
 The contour derivative contains geometry only, including authored facial contours and muscle relief. No color attributes, photographs, textures, EXIF, identifying subject labels or private input paths are exported. Asset tests enforce this boundary. There is no upload endpoint or external image-processing service. Original photographs remain outside the repository. See [BODY_CONTOUR.md](BODY_CONTOUR.md).
 
 The upper-body share view copies a same-page URL containing only `view=portrait`; other query parameters and fragments are removed. Copying is explicit, with a manual selectable-link fallback if clipboard access is denied. It sends no messages and uploads no photos. Its presentation crop is not access control: the existing atlas geometry remains a public asset.
+
+## FDA lookup boundary — 2026-10-27
+
+The runtime FDA route accepts only the 89 reviewed application identities, one parameter and no user URLs or search expressions. It uses HTTPS to a fixed host, rejects redirects, limits requests to eight seconds and responses to 1 MiB / ten records, validates identities/dates/codes, coalesces requests and applies a provider-failure cooldown. Original text is escaped by React and downloaded as JSON; source content cannot execute instructions or create tool calls. Successful responses may be cached for one hour. Per-instance limits and CDN caching are not a distributed abuse-control or availability guarantee; load testing remains outstanding.
+
+PDF acquisition runs outside the public request path. Only exact-application FDA PDF links are eligible; PDFs remain untrusted, ignored staging artifacts and are not executed, embedded or automatically incorporated into scientific claims. No private photographs, patient data, owner labels, credentials or outreach were added.

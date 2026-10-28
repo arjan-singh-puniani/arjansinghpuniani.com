@@ -77,3 +77,11 @@ Dossiers reuse the existing SQLite jobs/artifacts/checkpoint transport, with a s
 ## Body contour
 
 `HumanScene` loads `contour.glb` or the original HRA skin with the same neutral shader. Both use the original HRA bounds for the common reference transform. The adapted asset is geometry only: no portrait colors, hair or photographic materials. Its failure falls back to the reference surface. Internal anatomy, source retrieval and intervention anchors are unchanged. The Blender generator reads only the licensed source mesh. See [BODY_CONTOUR.md](BODY_CONTOUR.md).
+
+## Selected anatomy, live decisions and document collection — 2026-10-27
+
+`lib/device-action.ts` owns eleven explicit source-linked mechanism descriptions and reference-region focus selection. Whole-body brain subregions and heart-valve targets resolve to broader available reference geometry with that distinction visible; the dedicated brain view retains source-tagged subregions. Unknown relationships and absent reference anatomy abstain. `DeviceActionOverlay` draws a visibly labeled schematic inset tethered to the reference region. Its qualitative animation runs only on explicit playback and never under reduced motion; geometry coordinates remain display-only. No scientific mappings or reference meshes were changed.
+
+`lib/fda-updates.ts` is shared by the standalone and portfolio server routes. It accepts one exact allowlisted application, constructs an FDA-owned query, validates the entire bounded response, hashes the original bytes and returns separately labeled public decisions. In-flight requests coalesce per instance; successful results cache for one hour, with CDN caching and a 60-second provider-failure cooldown. No API key or database is exposed. The reviewed static index is never overwritten by live output.
+
+`ingestion/filing_documents.py` reuses the existing verified-TLS transport, SQLite job/artifact schema and atomic storage. Official index links are filtered by exact application filename and FDA host. At most three PDFs per application are downloaded, with PDF signature/size limits, source hashes, durable checkpoints, retries and last-good recovery. It collects original application documents; it does not traverse every supplement, infer anatomy or adjudicate current labeling. Artifacts remain in ignored staging for review.

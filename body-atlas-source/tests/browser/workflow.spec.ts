@@ -1,5 +1,8 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { deviceActions, anatomyFocus } from '../../lib/device-action';
+import { parseFDAUpdates } from '../../lib/fda-updates';
+import { readFileSync } from 'node:fs';
 
 test("body callout to anatomy, evidence, history, comparison, research and export", async ({
   page,
@@ -642,6 +645,45 @@ test('overview names interventions on the body and opens their original evidence
   await next.click();
  }
  expect(seen.size).toBe(12);
+ const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations).toEqual([]);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect(errors).toEqual([]);
+});
+
+test('selected intervention focuses reference anatomy with source-grounded mechanism and honest FDA refresh',async({page},testInfo)=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('/?entry=rns&panel=mechanism');
+ const scene=page.getByTestId('human-reference'),panel=page.getByRole('region',{name:'Anatomy and mechanism'});
+ await expect(scene).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
+ await expect(scene).toHaveAttribute('data-focus-region','UBERON:0000955');
+ await expect(scene).toHaveAttribute('data-action-kind','recording');
+ await expect(panel).toContainText('Sense brain electrical activity');
+ await expect(panel.getByRole('link',{name:'Mechanism source',exact:true})).toHaveAttribute('href',/P100026B.pdf/);
+ await panel.getByRole('button',{name:'Play mechanism',exact:true}).click();
+ await expect(panel.getByRole('button',{name:'Pause mechanism',exact:true})).toHaveAttribute('aria-pressed','true');
+ await panel.getByRole('button',{name:'Pause mechanism',exact:true}).click();
+ await page.screenshot({path:`test-results/${testInfo.project.name}-rns-mechanism.png`});
+ const source=parseFDAUpdates('P100026',readFileSync('tests/fixtures/fda-p100026-20261027.json','utf8'),'2026-10-27T23:00:00Z');let calls=0;
+ await page.route('**/api/fda?application=P100026',route=>{calls++;return calls===1?route.fulfill({json:source}):route.fulfill({status:503,json:{error:'Provider unavailable'}});});
+ const updates=page.getByRole('region',{name:'Latest public FDA decisions'});
+ await updates.getByRole('button',{name:'Check FDA updates',exact:true}).click();
+ await expect(updates.getByRole('link',{name:/P100026S104/})).toHaveAttribute('href',/id=P100026S104$/);
+ await expect(updates).toContainText('PMA supplement · OK30');
+ await updates.getByRole('button',{name:'Check again',exact:true}).click();
+ await expect(updates.getByRole('status')).toContainText('unavailable');
+ await expect(updates.getByRole('link',{name:/P100026S104/})).toBeVisible();
+ for(const [id,action] of Object.entries(deviceActions)){
+   await page.getByRole('combobox',{name:'Choose another intervention in this region'}).selectOption(id);
+   await expect(scene).toHaveAttribute('data-focus-region',anatomyFocus(id)!.region);
+   await expect(scene).toHaveAttribute('data-action-kind',action.kind);
+   await expect(panel).toContainText(action.steps[0]);
+   await expect(panel).toContainText('not device shape or implant placement');
+   await expect(panel.getByRole('link',{name:'Mechanism source',exact:true})).toHaveAttribute('href',action.sourceUrl);
+ }
+ await page.screenshot({path:`test-results/${testInfo.project.name}-hip-mechanism.png`});
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await expect(panel.getByRole('button',{name:'Play mechanism',exact:true})).toBeDisabled();
+ await panel.getByRole('button',{name:'Mechanism overlay',exact:true}).click();
+ await expect(scene).toHaveAttribute('data-action-kind','none');
  const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations).toEqual([]);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect(errors).toEqual([]);
 });

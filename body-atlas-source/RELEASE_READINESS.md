@@ -69,3 +69,9 @@ A deeper trace added Hudi’s exact condom restriction, Advanced Glenoid cemente
 ## Body contour — 2026-10-23
 
 The atlas uses adapted body and facial contours with muscle relief; no photographic textures, portrait colors or identifying subject labels are included. Reference anatomy, source records, original evidence links and labeling gaps remain unchanged. The exterior is an artistic interpretation of visible exterior proportions and facial contours, not a calibrated body scan. See [BODY_CONTOUR.md](BODY_CONTOUR.md) and [VALIDATION.md](VALIDATION.md).
+
+## Investor demonstration update — 2026-10-27
+
+The release remains a **public research preview**, now with a live exact-application FDA decision lookup, eleven source-linked mechanism schematics and selected-reference anatomy focus. It is suitable for demonstrating the implemented research workflow; certification as a comprehensive or clinically validated production platform remains withheld.
+
+The existing 91 explanations, 2,490 indexed records, labeling/safety review boundaries and three complete-IFU gaps are unchanged. Live decisions do not constitute current labeling certification or individual-unit safety assessment. The PDF collector is a bounded, durable operator command; no unattended hosted worker, exhaustive historical backfill, distributed ingestion SLA, manufacturer CAD or patient-specific device simulation has been established.

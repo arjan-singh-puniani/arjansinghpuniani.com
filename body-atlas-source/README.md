@@ -117,3 +117,19 @@ For a focused, shareable upper-body presentation, open `/atlas?view=portrait` on
 ## On-body intervention discovery
 
 The default explained-intervention map names technologies directly beside the body. Select a name for its explanation; the arrow opens the original supporting source. The `+` count focuses a region and exposes its other approaches, with paging on smaller screens. Overview labels prioritize broad body coverage and include brain/heart examples; dense FDA catalogue layers retain their separate provisional regional index. The timeline follows a selected intervention. **Reset view** restores the front view. No source records are added by this presentation change.
+
+## Live FDA lookup and mechanism view — October 27, 2026
+
+Select an explained intervention to focus its anatomical reference. Eleven entries have source-linked, enlarged mechanism schematics with explicit play/pause and reduced-motion handling. Use **Inspect brain target** for the dedicated regional brain reference. These are explanatory drawings, not manufacturer CAD, implant placement, dose/field simulation or treatment planning. Unsupported anatomy and mechanisms abstain.
+
+**Check FDA updates** queries the exact selected application through the website's bounded server endpoint. The 89 application identities are code-owned. PMA supplements, notice codes and original decisions remain distinct; original FDA statements, dataset update date, retrieval time and downloadable SHA-256-verifiable responses are available. It shows up to ten decisions per application, with the provider's total. The reviewed collection/dossiers remain a dated snapshot; new results are not automatically accepted as anatomical or labeling evidence.
+
+```sh
+npm run documents:collect -- P100026 P140031
+# Reuse checkpoints by default; --force explicitly checks for revisions.
+# Maximum 20 applications per run, three exact-application PDFs per application.
+```
+
+The durable collector discovers PDF links from official FDA application pages and stores immutable bytes plus job checkpoints in ignored `data/filing-documents*` staging. Failed refreshes retain prior artifacts and report stale/incomplete status. The run report names links omitted by the collection bound. Acquisition is not a completed content review. There is no unattended hosted PDF worker or exhaustive historical crawler.
+
+Hosted API: `/api/atlas/fda?application=P100026`; standalone: `/api/fda?application=P100026`. The portfolio route reuses `lib/fda-updates.ts`. Pure static hosting needs that server route for live checks; offline snapshots still work when it is unavailable. The full website's normal Vercel build deploys the endpoint.

@@ -13,3 +13,5 @@ playwright-report/
 
 data/dossiers.sqlite*
 data/dossier-acquisition.json
+data/filing-documents.sqlite*
+data/filing-documents/
