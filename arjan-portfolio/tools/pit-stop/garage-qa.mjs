@@ -1,0 +1,53 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {chromium} from '@playwright/test';
+const base=process.env.PIT_STOP_URL||'http://127.0.0.1:4173',out=process.env.PIT_GARAGE_EVIDENCE||'/tmp/pit-sf26-evidence';
+await fs.mkdir(out,{recursive:true});
+const report={checks:[],errors:[],screenshots:[],performance:{}},browser=await chromium.launch({headless:true,...(process.env.PIT_CHROME_METAL==='1'?{channel:'chrome',args:['--use-angle=metal','--enable-gpu']}:{})});
+const check=(name,value)=>{assert.ok(value,name);report.checks.push(name);console.log(`PASS ${name}`);};
+const state=p=>p.evaluate(()=>window.__PIT_LAB_STATE__);
+const phase=p=>p.evaluate(()=>window.__PIT_LAB_STATE__.experience.session.phase);
+const expectPhase=async(p,expected)=>{await p.waitForFunction(expected=>window.__PIT_LAB_STATE__.experience.session.phase===expected,expected);return true;};
+const shot=async(p,n)=>{await p.screenshot({path:`${out}/${n}.png`});report.screenshots.push(n);};
+try{
+ const context=await browser.newContext({viewport:{width:1440,height:1000},...(process.env.PIT_RECORD_VIDEO==='1'?{recordVideo:{dir:out,size:{width:1440,height:1000}}}:{})});
+ const page=await context.newPage();page.setDefaultTimeout(60000);page.on('pageerror',e=>{report.errors.push(e.message);console.log('APP_ERROR',e.message);});page.on('requestfailed',r=>console.log('REQUEST_FAILED',r.url(),r.failure()));page.on('response',r=>{if(r.status()>=400)report.errors.push(`${r.status()} ${r.url()}`);});
+ const start=Date.now();await page.goto(`${base}/pit-stop-lab/index.html`);await page.waitForFunction(()=>window.__PIT_LAB_STATE__?.render?.heroLoaded).catch(async error=>{report.readiness=await page.evaluate(()=>({ready:window.__SIM_READY__,notice:document.querySelector('#notice')?.textContent,state:window.__PIT_LAB_STATE__,resources:performance.getEntriesByType('resource').map(r=>r.name)}));await page.screenshot({path:`${out}/readiness-failure.png`});throw error;});report.performance.readyMs=Date.now()-start;
+ check('Original Blender GLB loads as the hero car',(await state(page)).render.heroLoaded);
+ check('Explore is the first experience',(await state(page)).experience.mode==='explore');
+ check('Default viewport has no engineering panel',!await page.locator('#inspector').isVisible()&&!await page.locator('#dock').isVisible());
+ for(const [camera,name] of [['carHero','01-hero'],['front','02-front'],['side','03-side'],['rear','04-rear'],['wheel','05-wheel'],['cockpit','06-cockpit'],['bay','07-garage']]){await page.locator(`[data-car-camera=${camera}]`).click();await page.waitForTimeout(850);await shot(page,name);}
+ await page.locator('#bodyworkToggle').check();await shot(page,'08-panels-hidden');check('Bodywork inspection leaves model ready',(await state(page)).render.heroLoaded);await page.locator('#bodyworkToggle').uncheck();
+ await page.locator('button[data-experience=challenge]').click();await page.waitForTimeout(800);
+ const hold=async(milliseconds=900,target='#challengeAction')=>{const b=await page.locator(target).boundingBox();await page.mouse.move(b.x+b.width/2,b.y+b.height/2);await page.mouse.down();await page.waitForTimeout(milliseconds);await page.mouse.up();await page.waitForTimeout(200);console.log('After hold',target,await phase(page));};
+ await page.locator('#challengeAction').click();check('Preparing begins the manual action clock',await expectPhase(page,'position'));
+ await hold();check('Positioning advances to jack operation',await expectPhase(page,'jack'));await page.waitForTimeout(900);await hold(650);check('Jacks must be raised before gun alignment',await expectPhase(page,'align'));
+ await page.waitForTimeout(1500);const p=(await state(page)).experience.contact,b=await page.locator('#contactTarget').boundingBox(),rect=await page.locator('#stage').boundingBox();
+ await page.mouse.move(b.x+b.width/2,b.y+b.height/2);await page.mouse.down();await page.mouse.move(rect.x+p.x,rect.y+p.y,{steps:10});await page.mouse.up();await page.waitForTimeout(150);
+ check('Dragging the contact marker aligns the real gun',await expectPhase(page,'loosen'));
+ await hold(850,'#contactTarget');check('Holding the gun loosens the captive nut',await expectPhase(page,'remove'));
+ const pull=async(direction)=>{const r=await page.locator('#contactTarget').boundingBox();await page.mouse.move(r.x+r.width/2,r.y+r.height/2);await page.mouse.down();await page.mouse.move(r.x+r.width/2+direction*125,r.y+r.height/2,{steps:15});await page.mouse.up();await page.waitForTimeout(120);console.log('After drag',direction,await phase(page));};
+ await pull(1);check('Axial drag removes the outgoing wheel',await expectPhase(page,'fit'));await shot(page,'09-wheel-removed');await pull(-1);check('Inward drag seats the replacement',await expectPhase(page,'tighten'));
+ await hold(950,'#contactTarget');check('Gun fastening confirms retention',await expectPhase(page,'clear'));await hold(650);check('Tools clear before lowering',await expectPhase(page,'lower'));await hold(650);check('Both jacks lower after team confirmation',await expectPhase(page,'release'));await page.waitForTimeout(1200);await page.locator('#challengeAction').click();
+ check('Visitor completes a safe manual release',await expectPhase(page,'complete'));const done=(await state(page)).experience.session;report.challenge={seconds:done.completedAt,errors:done.errors,actions:done.actions.length};check('Score records actual time and procedure errors',done.completedAt>4&&done.errors===0);check('Result separates stationary time from overall procedure time',(await page.locator('#challengeStationary').innerText()).includes((done.completedAt-done.arrival).toFixed(2)));await shot(page,'10-challenge-result');
+ await page.locator('#challengeReplay').click();await page.waitForFunction(()=>window.__PIT_LAB_STATE__.experience.session.phase==='complete',null,{timeout:60000});check('Recorded inputs reproduce the same completion time',Math.abs((await state(page)).experience.session.completedAt-done.completedAt)<.00001);
+ await page.locator('#challengeReset').click();await page.locator('#challengeAction').focus();await page.keyboard.press('Enter');await page.keyboard.down('Space');await page.waitForTimeout(800);await page.keyboard.up('Space');check('Keyboard completes positioning without precision gestures',await expectPhase(page,'jack'));
+ await page.waitForTimeout(900);const keyHold=async(ms,expected)=>{await page.keyboard.down('Space');await page.waitForTimeout(ms);await page.keyboard.up('Space');await expectPhase(page,expected);};
+ await keyHold(550,'align');await page.keyboard.press('Enter');await expectPhase(page,'loosen');await keyHold(750,'remove');await keyHold(750,'fit');await keyHold(850,'tighten');await keyHold(850,'clear');await keyHold(500,'lower');await keyHold(500,'release');await page.keyboard.press('Enter');await expectPhase(page,'complete');
+ const second=(await state(page)).experience.session;report.practice={first:done.completedAt,second:second.completedAt,errors:second.errors};check('Returning player completes the entire procedure using the keyboard',second.errors===0);check('A quicker clean practice improves the actual personal best',second.completedAt<done.completedAt&&(await page.locator('#challengeErrors').innerText()).includes(second.completedAt.toFixed(2)));
+
+ await page.locator('button[data-experience=engineer]').click();await page.locator('#dataRoomBtn').click();await page.waitForFunction(()=>window.__PIT_INTELLIGENCE__?.state==='ready',null,{timeout:60000});
+ check('Race Engineer still trains and evaluates historical evidence',await page.locator('#flowEdges>path').count()===9);await shot(page,'11-race-engineer');await page.locator('#intelligenceClose').click();
+ await page.locator('button[data-experience=explore]').click();await page.setViewportSize({width:390,height:844});await page.waitForTimeout(1000);await shot(page,'12-mobile-explore');check('Mobile Explore fits the viewport',await page.evaluate(()=>document.documentElement.scrollWidth===innerWidth));
+ await page.locator('button[data-experience=challenge]').click();await page.waitForTimeout(800);await shot(page,'13-mobile-challenge');check('Mobile challenge action stays visible',await page.locator('#challengeAction').evaluate(el=>{const r=el.getBoundingClientRect();return r.top>0&&r.bottom<innerHeight;}));
+ await page.setViewportSize({width:1440,height:1000});await page.locator('button[data-experience=explore]').click();await page.waitForTimeout(1000);
+ await page.locator('button[data-experience=challenge]').click();await page.locator('#challengeAction').click();
+ report.performance.frameSample=await page.evaluate(()=>new Promise(resolve=>{const start=performance.now(),times=[];let count=window.__PIT_LAB_STATE__.render.renderCount,last=start;function sample(now){const c=window.__PIT_LAB_STATE__.render.renderCount;if(c!==count){times.push(now-last);last=now;count=c;}if(now-start<3000)requestAnimationFrame(sample);else{times.sort((a,b)=>a-b);resolve({seconds:(now-start)/1000,frames:times.length,fps:times.length*1000/(now-start),p50:times[Math.floor(times.length*.5)]??null,p95:times[Math.floor(times.length*.95)]??null,max:times.at(-1)??null});}}requestAnimationFrame(sample);}));
+ await page.locator('button[data-experience=explore]').click();await page.waitForTimeout(800);
+ report.performance.renderer=await page.evaluate(()=>{const g=document.querySelector('#viewport').getContext('webgl2'),e=g.getExtension('WEBGL_debug_renderer_info');return e?g.getParameter(e.UNMASKED_RENDERER_WEBGL):g.getParameter(g.RENDERER);});
+ report.performance.browser=browser.version();report.performance.stats=(await state(page)).render;report.performance.resources=await page.evaluate(()=>performance.getEntriesByType('resource').filter(r=>r.name.includes('pit-stop-lab/')).map(r=>({name:r.name.split('/').slice(-2).join('/'),bytes:r.transferSize,ms:Math.round(r.duration)})));
+ const before=(await state(page)).render;for(let i=0;i<12;i++){await page.locator('button[data-experience=challenge]').click();await page.locator('button[data-experience=explore]').click();}await page.waitForTimeout(300);const after=(await state(page)).render;
+ check('Repeated mode changes retain bounded GPU allocations',before.geometries===after.geometries&&before.textures===after.textures);
+ check('No application errors or missing assets',report.errors.length===0);
+ const video=page.video();await context.close();if(video){await video.saveAs(`${out}/garage-challenge.webm`);await video.delete();}
+}finally{await fs.writeFile(`${out}/report.json`,JSON.stringify(report,null,2));await browser.close();console.log(JSON.stringify(report,null,2));}
