@@ -1,0 +1,50 @@
+{
+  "name": "SF-26 launch-reference study",
+  "authoring": "Original geometry and baked materials created in Blender 4.0.2",
+  "official": false,
+  "rights": "No Ferrari shield, sponsor marks, commercial-game meshes or photographic textures included. Ferrari naming/likeness requires publisher review; this is not official CAD.",
+  "reference": "https://www.formula1.com/en/latest/article/gallery-check-out-every-angle-of-ferraris-2026-f1-car.7HdOPtJJwN5VHJ8XAWVtuS.7HdOPtJJwN5VHJ8XAWVtuS",
+  "units": "metres",
+  "estimated_wheelbase": 3.3,
+  "centers": {
+    "FL": [
+      0.8,
+      0.355,
+      -1.65
+    ],
+    "FR": [
+      -0.8,
+      0.355,
+      -1.65
+    ],
+    "RL": [
+      0.7625,
+      0.355,
+      1.65
+    ],
+    "RR": [
+      -0.7625,
+      0.355,
+      1.65
+    ]
+  },
+  "files": {
+    "carbon-normal.png": {
+      "bytes": 189367,
+      "sha256": "ac640129b408363104f8c16759f1d4bbd349b422e541ec790a862a8d9662c290"
+    },
+    "sf26-primary.glb": {
+      "bytes": 6861044,
+      "sha256": "6b58f7307610c0fc2fafdf812c672bfbfb1ed7bdb0d449c8de5ca21ca0e401e9"
+    },
+    "rubber-normal.png": {
+      "bytes": 115602,
+      "sha256": "0837344bb110900db2950263f40f75f332a5b4ec38c44d6c2b42338294373b9f"
+    },
+    "sf26-runtime.glb": {
+      "bytes": 6125076,
+      "sha256": "a1a42ec508a6b38c119e75f17f49b7c27b532e8d78b8842ce52ba822a9f30554"
+    }
+  },
+  "lettering": "Bundled Blender Bfont outlines converted to service/tire mesh lettering. Bitstream Vera / Arev notices in BFONT-LICENSE.txt; DejaVu changes public domain."
+}
