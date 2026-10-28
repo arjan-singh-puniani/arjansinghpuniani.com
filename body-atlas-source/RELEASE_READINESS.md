@@ -69,3 +69,21 @@ A deeper trace added Hudi’s exact condom restriction, Advanced Glenoid cemente
 ## Body contour — 2026-10-23
 
 The atlas uses adapted body and facial contours with muscle relief; no photographic textures, portrait colors or identifying subject labels are included. Reference anatomy, source records, original evidence links and labeling gaps remain unchanged. The exterior is an artistic interpretation of visible exterior proportions and facial contours, not a calibrated body scan. See [BODY_CONTOUR.md](BODY_CONTOUR.md) and [VALIDATION.md](VALIDATION.md).
+
+## Investor demonstration update — 2026-10-27
+
+The release remains a **public research preview**, now with a live exact-application FDA decision lookup, eleven source-linked mechanism schematics and selected-reference anatomy focus. It is suitable for demonstrating the implemented research workflow; certification as a comprehensive or clinically validated production platform remains withheld.
+
+The existing 91 explanations, 2,490 indexed records, labeling/safety review boundaries and three complete-IFU gaps are unchanged. Live decisions do not constitute current labeling certification or individual-unit safety assessment. The PDF collector is a bounded, durable operator command; no unattended hosted worker, exhaustive historical backfill, distributed ingestion SLA, manufacturer CAD or patient-specific device simulation has been established.
+
+## Integrated live FDA and mechanism verification — 2026-10-28
+
+- Atlas `npm test`: **58 passed**; `npm run test:ingestion`: **39 passed**.
+- Atlas `npm run build -- --webpack`, typecheck and `node scripts/export-static.mjs ../arjan-portfolio/public/atlas`: passed.
+- `npm run test:browser`: **26 passed** across desktop and mobile Chrome emulation; all eleven reviewed mechanism descriptions, original links, qualitative playback, reduced motion, unknown-location abstention and outage behavior covered.
+- Website `npm test`: **147 passed** after merging concurrent production changes; production build and TypeScript passed.
+- `node tests/body-atlas.browser.mjs http://127.0.0.1:3211`: 75 expanded explanations per viewport, sources, retrieval, brief download, 12 existing routes and sitemap passed.
+- `node tests/body-atlas-dossiers.browser.mjs http://127.0.0.1:3211`: all 91 dossiers per viewport, review limits, model/lot search, original finding links, citation export and outage/retry recovery passed. Local selection-to-dossier p95 was 56 ms desktop / 62 ms mobile; not a production SLA.
+- Live website verification compared animated canvas frames, checked organ focus, original mechanism links and SHA-256 against original API response text on desktop and mobile; P100026, P140031 and K130233 returned 200 with the FDA dataset update date 2026-10-19. Invalid application/query injection returned 400. Zero Axe violations or browser errors.
+
+Physical iOS/Safari, low-memory GPU testing, slow-network measurements, distributed ingestion/recovery and expert review of schematic mechanisms remain unverified. FDA decisions are publicly available decisions, not exhaustive private/pending filings. The static collection, labeling gaps and source review states are unchanged.

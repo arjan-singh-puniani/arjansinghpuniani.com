@@ -24,7 +24,7 @@ try {
   await cp(path.join(root,name),path.join(temp,name),{recursive:true,dereference:true,filter:source=>source!==path.join(root,'app','api')});
  }
  await mkdir(path.join(temp,'data'));
- for(const name of ['atlas.json','catalogue.json','body-regions.json','dossier-summary.json','source-hosts.json'])await cp(path.join(root,'data',name),path.join(temp,'data',name));
+ for(const name of ['atlas.json','catalogue.json','body-regions.json','dossier-summary.json','source-hosts.json','fda-applications.json'])await cp(path.join(root,'data',name),path.join(temp,'data',name));
  const snapshot=JSON.parse(await readFile(path.join(root,'data','atlas.json'),'utf8'));
  await mkdir(path.join(temp,'public','sources'));
  for(const source of snapshot.sources) {

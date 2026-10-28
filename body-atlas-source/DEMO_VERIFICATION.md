@@ -95,3 +95,15 @@ A deeper trace added Hudi’s exact condom restriction, Advanced Glenoid cemente
 ### Original-label follow-up checks — 2026-10-22
 
 `npm test`: 47 atlas checks passed. `npm run test:ingestion`: 36 passed; TypeScript passed. Portfolio `npm test`: 95 passed; typecheck, full portfolio production build, standalone production build and static webpack export passed. Desktop and mobile Chrome tested all 91 dossier review boundaries, first limitations and original finding links, model/lot search, model context, exports and recovery. Zero Axe violations or browser errors. The broader anatomy/region/retrieval/brief workflow and 12 portfolio routes also passed. Mobile is viewport/touch emulation, not a physical device or Safari. All three complete-label gaps remain open; partial excerpts and decisions are not upgraded into complete IFUs.
+
+## Integrated live FDA and mechanism verification — 2026-10-28
+
+- Atlas `npm test`: **58 passed**; `npm run test:ingestion`: **39 passed**.
+- Atlas `npm run build -- --webpack`, typecheck and `node scripts/export-static.mjs ../arjan-portfolio/public/atlas`: passed.
+- `npm run test:browser`: **26 passed** across desktop and mobile Chrome emulation; all eleven reviewed mechanism descriptions, original links, qualitative playback, reduced motion, unknown-location abstention and outage behavior covered.
+- Website `npm test`: **147 passed** after merging concurrent production changes; production build and TypeScript passed.
+- `node tests/body-atlas.browser.mjs http://127.0.0.1:3211`: 75 expanded explanations per viewport, sources, retrieval, brief download, 12 existing routes and sitemap passed.
+- `node tests/body-atlas-dossiers.browser.mjs http://127.0.0.1:3211`: all 91 dossiers per viewport, review limits, model/lot search, original finding links, citation export and outage/retry recovery passed. Local selection-to-dossier p95 was 56 ms desktop / 62 ms mobile; not a production SLA.
+- Live website verification compared animated canvas frames, checked organ focus, original mechanism links and SHA-256 against original API response text on desktop and mobile; P100026, P140031 and K130233 returned 200 with the FDA dataset update date 2026-10-19. Invalid application/query injection returned 400. Zero Axe violations or browser errors.
+
+Physical iOS/Safari, low-memory GPU testing, slow-network measurements, distributed ingestion/recovery and expert review of schematic mechanisms remain unverified. FDA decisions are publicly available decisions, not exhaustive private/pending filings. The static collection, labeling gaps and source review states are unchanged.
