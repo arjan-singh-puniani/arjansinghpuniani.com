@@ -1547,6 +1547,9 @@ export default function AtlasExperience() {
                 {records.length} authentic API records; {families.filter(f=>f.collection!=='catalogue').length} reviewed entries and {catalogueCoverage.catalogueEntries} source-indexed applications. Anatomical text matches are Provisional, not reviewed physical placements. Snapshot exported {coverage.exportedAt} UTC.
                 This is cached evidence, not a live feed or a complete history.
               </p>
+              <h3>Live FDA checks and mechanism diagrams</h3>
+              <p>Check FDA updates retrieves up to ten public decisions for the selected application, with retrieval time, FDA dataset date and original response hashes. These results are separate from the reviewed snapshot and may be cached for one hour. Public decisions do not include every pending filing or certify current labeling and safety.</p>
+              <p>Eleven entries have source-linked mechanism schematics. Their enlarged device drawings explain qualitative operation; they are not manufacturer CAD, implant coordinates, dose fields or clinical simulations. Available reference organs are highlighted; missing substructures use explicitly broader anatomy or abstain.</p>
               <p>
                 Historical FDA decisions do not establish current labeling.
                 Trial registration is not a successful clinical outcome. PubMed

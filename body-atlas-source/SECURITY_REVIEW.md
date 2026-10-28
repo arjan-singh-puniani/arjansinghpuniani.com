@@ -35,3 +35,9 @@ The dossier path adds no authentication, keys, server mutation endpoint or execu
 
 
 The original-label follow-up adds only the exact HTTPS citation host `www.hudipharma.com`; remote-ingestion allowlists, credentials and mutation endpoints are unchanged. Draft document requests are kept outside the public application. No complete archival PDF or fabricated hash is published when retrieval fails.
+
+## Dependency and live-route review — 2026-10-28
+
+The website runtime was patched to Next 15.5.28, Sharp 0.35.5 and Zod 4.6.7, with compatible PostCSS 8.5.32 resolution. Vitest/coverage 4.1.12 removes the critical test-server advisory; its JSX configuration was migrated to the supported Oxc option. The final `npm audit --omit=dev --json` reports zero vulnerabilities for both website and atlas production dependencies. Full website audit still reports 16 development advisories (13 high, one moderate, two low), primarily optional Lighthouse/CLI dependencies. They are not a claim of an entirely vulnerability-free toolchain. Development servers must stay private; no penetration test or distributed abuse/load audit was performed.
+
+A clean `npm ci --ignore-scripts` under default npm completed from the final lockfile. npm 10's optional-peer resolver crashed while generating the updated tree; npm 11 generated the lockfile successfully, and npm 10 then installed it reproducibly. The application build and tests run against the clean installed packages.

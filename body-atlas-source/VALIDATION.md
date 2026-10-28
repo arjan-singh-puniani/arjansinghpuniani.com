@@ -144,3 +144,15 @@ Atlas domain tests: 58 passed. Python ingestion/recovery tests: 39 passed. Produ
 The API was separately exercised against genuine FDA PMA and 510(k) responses (P100026, P140031, K130233). The browser regression deliberately uses an authentic saved response for deterministic outage/retry tests; it does not claim those stubs are live scientific results. `tests/fixtures/fda-p100026-20261027.json` records the actual response used to catch ISO-date and OK30-code compatibility. `validation/document-acquisition-20261027.json` documents the bounded six-PDF acquisition and an omitted fourth labeling link.
 
 These are engineering and source-traceability checks, not independent anatomical adjudication, clinical validation, full history/current-label coverage, physical mobile/Safari testing, load tests or expert validation of the qualitative device drawings.
+
+## Integrated live FDA and mechanism verification — 2026-10-28
+
+- Atlas `npm test`: **58 passed**; `npm run test:ingestion`: **39 passed**.
+- Atlas `npm run build -- --webpack`, typecheck and `node scripts/export-static.mjs ../arjan-portfolio/public/atlas`: passed.
+- `npm run test:browser`: **26 passed** across desktop and mobile Chrome emulation; all eleven reviewed mechanism descriptions, original links, qualitative playback, reduced motion, unknown-location abstention and outage behavior covered.
+- Website `npm test`: **147 passed** after merging concurrent production changes; production build and TypeScript passed.
+- `node tests/body-atlas.browser.mjs http://127.0.0.1:3211`: 75 expanded explanations per viewport, sources, retrieval, brief download, 12 existing routes and sitemap passed.
+- `node tests/body-atlas-dossiers.browser.mjs http://127.0.0.1:3211`: all 91 dossiers per viewport, review limits, model/lot search, original finding links, citation export and outage/retry recovery passed. Local selection-to-dossier p95 was 56 ms desktop / 62 ms mobile; not a production SLA.
+- Live website verification compared animated canvas frames, checked organ focus, original mechanism links and SHA-256 against original API response text on desktop and mobile; P100026, P140031 and K130233 returned 200 with the FDA dataset update date 2026-10-19. Invalid application/query injection returned 400. Zero Axe violations or browser errors.
+
+Physical iOS/Safari, low-memory GPU testing, slow-network measurements, distributed ingestion/recovery and expert review of schematic mechanisms remain unverified. FDA decisions are publicly available decisions, not exhaustive private/pending filings. The static collection, labeling gaps and source review states are unchanged.
