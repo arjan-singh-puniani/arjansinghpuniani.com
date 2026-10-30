@@ -1,0 +1,897 @@
+{
+  "origin": "http://127.0.0.1:3214",
+  "visualReview": {
+    "status": "pass for bounded Assembly refinement checks",
+    "blocking": false,
+    "browserClosed": true,
+    "inspected": [
+      "anatomy-refined-assembly-1440.png",
+      "anatomy-refined-assembly-390.png",
+      "anatomy-refined-assembly-components-1440.png",
+      "anatomy-refined-assembly-components-390.png"
+    ],
+    "results": [
+      "Opaque local anatomical flaps no longer obstruct device inspection.",
+      "Complete lifted device and each progressively seated component remain inside the scene at both tested widths.",
+      "Labels remain anchored to component positions; every SVG text bound remains inside the host.",
+      "All seven component selections and seating actions update state; final component offsets are all zero.",
+      "No page-level horizontal overflow or browser JavaScript errors.",
+      "Current source picker rejects invisible ancestors and low-opacity surrounding anatomy."
+    ],
+    "limitations": [
+      "This review uses desktop Chromium with software rendering and viewport emulation, not a physical phone.",
+      "The bone-window rim occupies substantial context in close-up. Internal component faces naturally become occluded during assembly.",
+      "Native-GPU performance, other browsers and full accessibility are covered by separate parent checks."
+    ]
+  },
+  "reports": [
+    {
+      "width": 1440,
+      "height": 1050,
+      "renderer": "Chromium headless software renderer; reduced motion",
+      "errors": [],
+      "states": [
+        {
+          "phase": "selected",
+          "selected": "interface",
+          "installed": [],
+          "offsets": {
+            "interface": 0.36,
+            "coldplate": 1.9500000000000002,
+            "tec": 3.84,
+            "heatpath": 5.88,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "CONTACT INTERFACE",
+              "x": 18,
+              "y": 304.7071533203125,
+              "width": 102.015625,
+              "height": 10,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "seated",
+          "selected": "interface",
+          "installed": [
+            "interface"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 1.9500000000000002,
+            "tec": 3.84,
+            "heatpath": 5.88,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "CONTACT INTERFACE",
+              "x": 18,
+              "y": 301.0911560058594,
+              "width": 102.015625,
+              "height": 10,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "selected",
+          "selected": "coldplate",
+          "installed": [
+            "interface"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 1.9500000000000002,
+            "tec": 3.84,
+            "heatpath": 5.88,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "COLD-SIDE SPREADER",
+              "x": 858.4000244140625,
+              "y": 250.62564086914062,
+              "width": 108.03125,
+              "height": 10,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "seated",
+          "selected": "coldplate",
+          "installed": [
+            "interface",
+            "coldplate"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 3.84,
+            "heatpath": 5.88,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "COLD-SIDE SPREADER",
+              "x": 858.4000244140625,
+              "y": 229.91197204589844,
+              "width": 108.03125,
+              "height": 10,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "selected",
+          "selected": "tec",
+          "installed": [
+            "interface",
+            "coldplate"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 3.84,
+            "heatpath": 5.88,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "THERMOELECTRIC COUPLES",
+              "x": 18,
+              "y": 325.50738525390625,
+              "width": 132.03125,
+              "height": 10,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "seated",
+          "selected": "tec",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 5.88,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "THERMOELECTRIC COUPLES",
+              "x": 18,
+              "y": 285.7097473144531,
+              "width": 132.03125,
+              "height": 10,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "selected",
+          "selected": "heatpath",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 5.88,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "HOT-SIDE HEAT PATH",
+              "x": 858.4000244140625,
+              "y": 228.21603393554688,
+              "width": 108.03125,
+              "height": 10,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "seated",
+          "selected": "heatpath",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec",
+            "heatpath"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 0,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "HOT-SIDE HEAT PATH",
+              "x": 858.4000244140625,
+              "y": 164.35833740234375,
+              "width": 108.03125,
+              "height": 10,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "selected",
+          "selected": "sensing",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec",
+            "heatpath"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 0,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "ELECTRODES + SENSORS",
+              "x": 18,
+              "y": 313.852783203125,
+              "width": 120.03125,
+              "height": 10,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "seated",
+          "selected": "sensing",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec",
+            "heatpath",
+            "sensing"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 0,
+            "sensing": 0,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "ELECTRODES + SENSORS",
+              "x": 18,
+              "y": 308.5126647949219,
+              "width": 120.03125,
+              "height": 10,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "selected",
+          "selected": "electronics",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec",
+            "heatpath",
+            "sensing"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 0,
+            "sensing": 0,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "CONTROL + POWER",
+              "x": 870,
+              "y": 340.486572265625,
+              "width": 90.015625,
+              "height": 10,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "seated",
+          "selected": "electronics",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec",
+            "heatpath",
+            "sensing",
+            "electronics"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 0,
+            "sensing": 0,
+            "electronics": 0,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "CONTROL + POWER",
+              "x": 870,
+              "y": 251.19158935546875,
+              "width": 90.015625,
+              "height": 10,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "selected",
+          "selected": "package",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec",
+            "heatpath",
+            "sensing",
+            "electronics"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 0,
+            "sensing": 0,
+            "electronics": 0,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "ENCAPSULATION CONCEPT",
+              "x": 18,
+              "y": 391.5330810546875,
+              "width": 126.03125,
+              "height": 10,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "seated",
+          "selected": "package",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec",
+            "heatpath",
+            "sensing",
+            "electronics",
+            "package"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 0,
+            "sensing": 0,
+            "electronics": 0,
+            "package": 0
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "ENCAPSULATION CONCEPT",
+              "x": 18,
+              "y": 285.9512939453125,
+              "width": 126.03125,
+              "height": 10,
+              "within": true
+            }
+          ],
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "renderer": "Chromium headless software renderer; reduced motion",
+      "errors": [],
+      "states": [
+        {
+          "phase": "selected",
+          "selected": "interface",
+          "installed": [],
+          "offsets": {
+            "interface": 0.36,
+            "coldplate": 1.9500000000000002,
+            "tec": 3.84,
+            "heatpath": 5.88,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "CONTACT INTERFACE",
+              "x": 18.000001907348633,
+              "y": 147.7433624267578,
+              "width": 91.81414031982422,
+              "height": 9.010894775390625,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "seated",
+          "selected": "interface",
+          "installed": [
+            "interface"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 1.9500000000000002,
+            "tec": 3.84,
+            "heatpath": 5.88,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "CONTACT INTERFACE",
+              "x": 18.000001907348633,
+              "y": 146.06651306152344,
+              "width": 91.81414031982422,
+              "height": 9.010894775390625,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "selected",
+          "selected": "coldplate",
+          "installed": [
+            "interface"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 1.9500000000000002,
+            "tec": 3.84,
+            "heatpath": 5.88,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "COLD-SIDE SPREADER",
+              "x": 233,
+              "y": 122.76215362548828,
+              "width": 97.21127319335938,
+              "height": 9.010894775390625,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "seated",
+          "selected": "coldplate",
+          "installed": [
+            "interface",
+            "coldplate"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 3.84,
+            "heatpath": 5.88,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "COLD-SIDE SPREADER",
+              "x": 233,
+              "y": 113.23709869384766,
+              "width": 97.21127319335938,
+              "height": 9.010894775390625,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "selected",
+          "selected": "tec",
+          "installed": [
+            "interface",
+            "coldplate"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 3.84,
+            "heatpath": 5.88,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "THERMOELECTRIC COUPLES",
+              "x": 18.000001907348633,
+              "y": 157.26376342773438,
+              "width": 118.81553649902344,
+              "height": 9.010894775390625,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "seated",
+          "selected": "tec",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 5.88,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "THERMOELECTRIC COUPLES",
+              "x": 18.000001907348633,
+              "y": 138.89471435546875,
+              "width": 118.81553649902344,
+              "height": 9.010894775390625,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "selected",
+          "selected": "heatpath",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 5.88,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "HOT-SIDE HEAT PATH",
+              "x": 233,
+              "y": 112.7847900390625,
+              "width": 97.21127319335938,
+              "height": 9.010894775390625,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "seated",
+          "selected": "heatpath",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec",
+            "heatpath"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 0,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "HOT-SIDE HEAT PATH",
+              "x": 233,
+              "y": 83.5094223022461,
+              "width": 97.21127319335938,
+              "height": 9.010894775390625,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "selected",
+          "selected": "sensing",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec",
+            "heatpath"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 0,
+            "sensing": 0.54,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "ELECTRODES + SENSORS",
+              "x": 18.000001907348633,
+              "y": 152.05709838867188,
+              "width": 108.02123260498047,
+              "height": 9.010894775390625,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "seated",
+          "selected": "sensing",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec",
+            "heatpath",
+            "sensing"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 0,
+            "sensing": 0,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "ELECTRODES + SENSORS",
+              "x": 18.000001907348633,
+              "y": 149.57496643066406,
+              "width": 108.02123260498047,
+              "height": 9.010894775390625,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "selected",
+          "selected": "electronics",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec",
+            "heatpath",
+            "sensing"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 0,
+            "sensing": 0,
+            "electronics": 7.949999999999999,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "CONTROL + POWER",
+              "x": 233,
+              "y": 163.65841674804688,
+              "width": 81.01982116699219,
+              "height": 9.010894775390625,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "seated",
+          "selected": "electronics",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec",
+            "heatpath",
+            "sensing",
+            "electronics"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 0,
+            "sensing": 0,
+            "electronics": 0,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "CONTROL + POWER",
+              "x": 233,
+              "y": 122.96614074707031,
+              "width": 81.01982116699219,
+              "height": 9.010894775390625,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "selected",
+          "selected": "package",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec",
+            "heatpath",
+            "sensing",
+            "electronics"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 0,
+            "sensing": 0,
+            "electronics": 0,
+            "package": 9.75
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "ENCAPSULATION CONCEPT",
+              "x": 18.000001907348633,
+              "y": 187.4210205078125,
+              "width": 113.41838836669922,
+              "height": 9.010894775390625,
+              "within": true
+            }
+          ],
+          "overflow": false
+        },
+        {
+          "phase": "seated",
+          "selected": "package",
+          "installed": [
+            "interface",
+            "coldplate",
+            "tec",
+            "heatpath",
+            "sensing",
+            "electronics",
+            "package"
+          ],
+          "offsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 0,
+            "sensing": 0,
+            "electronics": 0,
+            "package": 0
+          },
+          "view": "system",
+          "labels": [
+            {
+              "text": "ENCAPSULATION CONCEPT",
+              "x": 18.000001907348633,
+              "y": 139.01318359375,
+              "width": 113.41838836669922,
+              "height": 9.010894775390625,
+              "within": true
+            }
+          ],
+          "overflow": false
+        }
+      ]
+    }
+  ]
+}
