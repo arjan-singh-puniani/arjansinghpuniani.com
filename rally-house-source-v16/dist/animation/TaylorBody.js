@@ -1,5 +1,5 @@
 import { Vec3, clamp, rigidFrame, transformPoint } from '../rendering/Math3D.js';
-import { secondRacketHand } from './RacketGeometry.js';
+import { secondRacketHand, supportRacketHand } from './RacketGeometry.js';
 export const TAYLOR_BODY = { pelvisHeight: 1.245, strokePelvisFloor: .86, torsoScale: 1.20, headScale: .62, upperArm: .425, forearm: .415, thigh: .56, shin: .55 };
 const smooth = (t) => { const u = clamp(t, 0, 1); return u * u * (3 - 2 * u); };
 function joint(a, b, first, second, pole, fallback) {
@@ -101,6 +101,14 @@ export function adultTaylorPose(source, root, yaw, constraints) {
             p[`hand${side}`] = Vec3.lerp(hinge(p[`hand${side}`]), p[`hand${side}`], side === 'L' ? constraints.leftWorld : constraints.rightWorld);
     }
     const bodyKeys = ['pelvisCenter', 'torsoCenter', 'shoulderL', 'shoulderR', 'head', 'hipL', 'hipR'];
+    if (groundstroke) {
+        // Balance the longer frame over the support feet instead of folding the wrist into the torso.
+        const balance = .18 * groundstroke * Math.sin(Math.PI * source.sp) ** 2 * (2 * (constraints.backhandWeight ?? 0) - 1), shift = new Vec3(Math.cos(yaw) * balance, 0, -Math.sin(yaw) * balance);
+        for (const key of bodyKeys)
+            p[key].add(shift);
+        if (p.chest)
+            p.chest.add(shift);
+    }
     // Loading and exact hand contact share one vertical budget. Applying each
     // solve's full drop independently could seat a standing player on the floor.
     const lower = (dy) => {
@@ -267,7 +275,7 @@ export function adultTaylorPose(source, root, yaw, constraints) {
         // Supporting hands follow the final grip, through both retargeting and state blends.
         if (side === 'L' && constraints.human && (constraints.readyWeight || constraints.backhandWeight)) {
             const ready = (constraints.readyWeight ?? 0) * (1 - world) * (1 - (constraints.restWeight ?? 0)), backhand = constraints.backhandWeight ?? 0;
-            const throat = Vec3.sub(Vec3.lerp(source.racketHandleTop, source.racketCenter, .20), source.racketGrip), stack = secondRacketHand(p.handR, Vec3.sub(source.racketHandleTop, source.racketGrip));
+            const throat = Vec3.sub(supportRacketHand(source.racketGrip, source.racketCenter), source.racketGrip), stack = secondRacketHand(p.handR, Vec3.sub(source.racketHandleTop, source.racketGrip));
             p.handL.scale(Math.max(0, 1 - ready - backhand)).add(p.handR.clone().add(throat).scale(ready)).add(stack.scale(backhand));
         }
         // Keep clearance while settling, then let resting hands contact the hips.

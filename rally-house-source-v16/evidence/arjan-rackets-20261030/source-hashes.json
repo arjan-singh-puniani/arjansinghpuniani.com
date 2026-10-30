@@ -1,0 +1,11 @@
+{
+  "src/animation/RacketGeometry.ts": "6aa7c700d36ceb7ecf404364dd9e04c4e4bdc0838ab9d9b04043e8487b95b293",
+  "src/animation/RacketWordmark.ts": "9065ff23fc8b08491e380fcf30f7926fcfed6922fdd78e3dd8412fd0a1a6fdb1",
+  "src/animation/TaylorBody.ts": "ba94a72244c50b5093629240ccf617a2c4236ad005793c654b0edfda90ea7d42",
+  "src/entities/Character.ts": "203900b3183c3aed98af3750c4bc5d1f69bd41aa29cacab3dc6b601da51e6086",
+  "src/rendering/Renderer.ts": "f1bcb3b452bfee93ba218c348f79b208e3c86afca7fed2a2a1d05bc91e5d2a4e",
+  "src/analysis/MotionCapture.ts": "f17da1de7a3039e0080b66be5aa0b2f322dfcc129d45526f845c4b3c1079ea04",
+  "src/world/World.ts": "adf9ae08be28a57cf33a61ecd6a30ab18f0231a828148492c4764235cc285fab",
+  "src/world/AuthoredObjects.ts": "ff223ec4188c6806fcf1570ef09d0837b87856238fd60ab76b94ce7051d7f531",
+  "tests/racket-equipment.mjs": "ae9ab1d6d14e4a7fc0d155a0202d1ad094f39e95ef807a995de6bf673589f1e2"
+}

@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import {pathToFileURL} from 'node:url';
 const root=process.env.QA_RUNTIME?pathToFileURL(process.env.QA_RUNTIME+'/'):new URL('../',import.meta.url);
 const [{Character},{playerSpec},{Navigation},{Vec3,compose,transformPoint},{loadAuthoredAthlete},{BONE}]=await Promise.all(['entities/Character','content/PlayerAvatars','world/Navigation','rendering/Math3D','animation/AuthoredAthlete','animation/CharacterSkin'].map(p=>import(new URL('dist/'+p+'.js',root))));
+const {racketHoop}=await import(new URL('dist/animation/RacketGeometry.js',root));
 globalThis.fetch=async u=>new Response(fs.readFileSync(new URL(u)));globalThis.Image=class{async decode(){}};await loadAuthoredAthlete();
 function crosses(a,b,[p,q,r]){
  const d=Vec3.sub(b,a),e1=Vec3.sub(q,p),e2=Vec3.sub(r,p),h=Vec3.cross(d,e2),det=Vec3.dot(e1,h);
@@ -20,7 +21,7 @@ for(const hz of [30,60,120])for(const yaw of [0,Math.PI]){
  for(let pre=.25;pre<=.80001;pre+=.05){
   const time=c.shotContactTime()*pre;while(c.animTime<time-1e-9)c.update(Math.min(1/hz,time-c.animTime));
   const p=c.analysisPose(),frame=compose(new Vec3(),p.racketRot),right=new Vec3(frame[0],frame[1],frame[2]),up=new Vec3(frame[4],frame[5],frame[6]);
-  const lines=[[p.racketGrip,p.racketCenter]],ring=Array.from({length:33},(_,i)=>p.racketCenter.clone().add(right.clone().scale(.178*Math.cos(i*Math.PI/16))).add(up.clone().scale(.245*Math.sin(i*Math.PI/16))));
+  const lines=[[p.racketGrip,p.racketCenter]],ring=Array.from({length:33},(_,i)=>(()=>{const [x,y]=racketHoop(i*Math.PI/16);return p.racketCenter.clone().add(right.clone().scale(x)).add(up.clone().scale(y));})());
   for(let i=1;i<ring.length;i++)lines.push([ring[i-1],ring[i]]);
   for(const m of c.meshes().filter(m=>m.skin&&['humanSkin','groomedHair'].includes(m.material))){
    const g=m.skin,points=[],head=[],model=compose(m.position,m.rotation,m.scale);

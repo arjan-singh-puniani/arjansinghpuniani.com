@@ -1,0 +1,15 @@
+Final replay/analysis checks (terminal exit 0)
+Command: npm run build && node tests/racket-equipment.mjs && node tests/replay-smoothness.mjs && node tests/rig-registration.mjs && node tests/phone-capture.mjs && node tests/performance-lab.mjs && node tests/stroke-sequence.mjs && node tests/serve-sequence.mjs
+
+{"mains":16,"crosses":19,"draws":9,"triangles":9764,"staticRackets":13,"placedRackets":3,"gripSamples":1050,"maxGripError":1.5121831782783326e-7}
+Racket equipment PASS: shared frame/livery, anchored 16×19 bed, impact flex, both render passes, Build previews and live contact ownership.
+{"interpolatedSamples":3800,"maxGPUJointRegistrationError":4.7157848578096946e-7}
+Smooth replay PASS: continuous shared pose, exact observed events, GPU registration for both avatars, source isolation, fractional mesh-cache refresh, shortest rotations, truthful gaps and event history.
+{"surfaceSamples":324,"overlaySamples":1006,"maxJointRegistrationError":3.999154965751639e-7,"maxLimbCentreError":0.018925701423912252}
+Rig registration PASS: actual GPU joint-ring centres between samples and at recorded frames, bounded limb deformation and every default replay annotation registered to an unchanged opaque avatar.
+Phone capture PASS: both selected avatars at three rates, exact hand attachment and anchored lens, detached real pose samples, truthful encoder fallback, cancellation in four phases, late recorder isolation and complete camera restoration.
+Performance Lab PASS: synchronized poses/metrics/events, three real-solver demos, gap abstention, contact authority, bounded capture, snapshot isolation, gait metrics and persistent live simulation.
+{"cases":108,"minContinuity":0.9935054873618114,"maxContactError":1.974409066875915e-8,"replayPaletteError":0}
+
+{"cases":72,"minContinuity":0.999205504733711,"maxContactError":1.1269395900938164e-8,"minTransfer":0.23064633438202298,"minRecovery":0.3,"maxReplayError":2.482534153247273e-16}
+Serve PASS: palm release, independent descending toss, leg drive into exact contact, continuous wrist, recovery step and faithful replay.

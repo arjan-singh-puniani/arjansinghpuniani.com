@@ -43,7 +43,7 @@ for(const id of Object.keys(CHAMPIONSHIP_OPPONENTS)){
   tick();if(m.ball.active&&!released){released=true;assert(Vec3.sub(m.ball.position,p.racketContactFrame().center).len()<.4,'Launch comes from string bed');}
  }
  assert(released&&hits.length>=1,`${id}: animated serve releases`);
- assert(o.meshes().some(v=>v.skin?.id==='adult-tennis-racket-slim-frame-v1'&&v.material==='metal'),'Every competitor has a racket');
+ assert(o.meshes().some(v=>v.skin?.id==='arjan-aero-frame-v1'&&v.material==='metal'),'Every competitor has a racket');
  m.stop();assert.equal(p.matchCompetitor,false);assert.equal(o.matchCompetitor,false);assert.equal(o.getCourtSpeedScale(),1);
 }
 // A broken contact geometry cannot emit a fake strike or launch.
@@ -133,7 +133,7 @@ const {ClubAtmosphere}=await import('../dist/rendering/ClubAtmosphere.js');
    assert.deepEqual(ball.rotation,p.racketContactFrame().rotation,'Compression follows the live face');
    assert(Vec3.sub(ball.position,p.racketContactFrame().center).len()<.12);
    assert(Math.abs(p.racketStringOffset())>.015,'The string bed yields at real impact');
-   assert.equal(p.meshes().filter(mesh=>mesh.id==='racket-string').length,28);
+   assert.equal(p.meshes().filter(mesh=>mesh.id==='racket-string').length,1);
    compressed=true;
   }
   if(m.ball.active){released=true;break;}

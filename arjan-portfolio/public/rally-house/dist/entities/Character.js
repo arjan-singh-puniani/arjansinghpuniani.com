@@ -1,5 +1,5 @@
 import { serveToss } from '../tennis/ServeToss.js';
-import { RACKET, RACKET_FRAME, RACKET_BONES, secondRacketHand } from '../animation/RacketGeometry.js';
+import { RACKET, racketMeshes, secondRacketHand } from '../animation/RacketGeometry.js';
 import { CHAMPIONSHIP_TUNING } from '../tennis/ChampionshipTuning.js';
 import { ActingState } from '../animation/ActingState.js';
 import { WalkCycle } from '../animation/WalkCycle.js';
@@ -911,11 +911,13 @@ export class Character {
         let headOffset = Vec3.add(new Vec3(0, .425, 0), racketForward.clone().scale(.225));
         const readyRotation = humanReady ? new Vec3((authoredReady ? .6 : .12) + (state === 'ready' ? .06 * Math.cos(readyPhase) : 0), torsoYaw, (authoredReady ? -.70 : .35) + .10 * readyWeight) : null;
         if (readyRotation)
-            headOffset = rotateEulerVector(new Vec3(0, .48, 0), readyRotation);
+            headOffset = rotateEulerVector(new Vec3(0, RACKET.gripDistance, 0), readyRotation);
         if (state === 'serve')
-            headOffset = Vec3.add(new Vec3(0, .525, 0), racketForward.clone().scale(.125));
+            headOffset = Vec3.add(new Vec3(0, Math.sqrt(RACKET.gripDistance ** 2 - .125 ** 2), 0), racketForward.clone().scale(.125));
         if (state === 'volley')
             headOffset = Vec3.add(new Vec3(0, .3875, 0), racketForward.clone().scale(.2625));
+        if (this.holdsRacket() || shot || humanReady)
+            headOffset.normalize().scale(RACKET.gripDistance);
         const humanServe = this.spec.appearance === 'human' && state === 'serve';
         let serveFrame;
         const humanGroundstroke = this.spec.appearance === 'human' && (state === 'swingForehand' || state === 'swingBackhand');
@@ -923,30 +925,30 @@ export class Character {
             // At a low ball the racket head drops beside the wrist. Keeping it
             // upright forced the grip toward the ankle and collapsed the body.
             const groundRise = clamp(((this.contactTarget?.y ?? this.position.y + 1.02) - this.position.y - 1.02) * .5, -.20, .20);
-            const groundSide = Math.sqrt(.48 ** 2 - .14 ** 2 - groundRise ** 2) * (state === 'swingForehand' ? 1 : -1);
+            const groundSide = Math.sqrt(RACKET.gripDistance ** 2 - .14 ** 2 - groundRise ** 2) * (state === 'swingForehand' ? 1 : -1);
             headOffset = racketRight.clone().scale(groundSide).add(racketForward.clone().scale(.14)).add(new Vec3(0, groundRise, 0));
             // Rotate into the opposite-shoulder finish; a normalized chord snaps near the half-turn.
             const finish = racketRight.clone().scale(state === 'swingForehand' ? -.38 : .38).add(racketForward.clone().scale(-.14)).add(new Vec3(0, .25, 0));
             const origin = new Vec3(), release = interpolateRigidFrame(rigidFrame(origin, headOffset, racketForward), rigidFrame(origin, finish, racketForward), smoothstep(contact + .08, .94, sp));
-            headOffset = new Vec3(release[4], release[5], release[6]).scale(.48);
+            headOffset = new Vec3(release[4], release[5], release[6]).scale(RACKET.gripDistance);
             if (sp < contact) {
                 const pre = sp / contact, side = state === 'swingForehand' ? 1 : -1;
                 const raised = racketRight.clone().scale(.23 * side).add(racketForward.clone().scale(-.13)).add(new Vec3(0, .40, 0)), dropped = racketRight.clone().scale(.36 * side).add(racketForward.clone().scale(-.14)).add(new Vec3(0, -.28, 0));
                 const from = pre < .60 ? raised : dropped, to = pre < .60 ? dropped : headOffset, t = pre < .60 ? smoothstep(0, .60, pre) : smoothstep(.60, 1, pre);
                 const frame = interpolateRigidFrame(rigidFrame(origin, from, racketForward), rigidFrame(origin, to, racketForward), t);
-                headOffset = new Vec3(frame[4], frame[5], frame[6]).scale(.48);
+                headOffset = new Vec3(frame[4], frame[5], frame[6]).scale(RACKET.gripDistance);
             }
         }
         if (humanGroundstroke) {
             // The adult wrist travels through contact; a brief contact override used to yank the compact arc onto the ball.
             const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1), side = state === 'swingBackhand' ? -1 : 1, rise = clamp((contactLocal.y - 1.02) * .5, -.20, .20);
-            const impactOffset = racketRight.clone().scale(Math.sqrt(.48 ** 2 - .14 ** 2 - rise ** 2) * side).add(racketForward.clone().scale(.14)).add(new Vec3(0, rise, 0));
+            const impactOffset = racketRight.clone().scale(Math.sqrt(RACKET.gripDistance ** 2 - .14 ** 2 - rise ** 2) * side).add(racketForward.clone().scale(.14)).add(new Vec3(0, rise, 0));
             const impact = Vec3.sub(this.contactTarget ?? this.worldLocal(side * .65, 1.02, .75), impactOffset), start = this.worldLocal(.48 * side, 1.72, -.10), finish = this.worldLocal(state === 'swingBackhand' ? .18 : -.36, 2.02, .40, torsoYaw);
             const approach = racketForward.clone().scale(.32).add(new Vec3(0, .16, 0)), exit = approach.clone().scale((1 - contact) / contact);
             handR = sp < contact ? strokeCurve(start, this.worldLocal(.64 * side, 1.55, -.10), impact.clone().sub(approach), impact, pre) : strokeCurve(impact, impact.clone().add(exit), finish.clone().add(racketForward.clone().scale(.24)), finish, post);
         }
         if (humanServe) {
-            const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1), impactOffset = Vec3.add(new Vec3(0, .525, 0), racketForward.clone().scale(.125)), impact = Vec3.sub(this.contactTarget ?? this.worldLocal(.14, 3.04, .38), impactOffset), approach = racketForward.clone().scale(.18).add(new Vec3(0, .30, 0)), exit = approach.clone().scale((1 - contact) / contact);
+            const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1), impactOffset = Vec3.add(new Vec3(0, Math.sqrt(RACKET.gripDistance ** 2 - .125 ** 2), 0), racketForward.clone().scale(.125)), impact = Vec3.sub(this.contactTarget ?? this.worldLocal(.14, 3.04, .38), impactOffset), approach = racketForward.clone().scale(.18).add(new Vec3(0, .30, 0)), exit = approach.clone().scale((1 - contact) / contact);
             // Carry the wrist through the ball before the arm folds down across the body.
             handR = sp < contact ? strokeCurve(this.worldLocal(.34, 1.55, .24), this.worldLocal(.48, 2.20, -.28), impact.clone().sub(approach), impact, pre) : strokeCurve(impact, impact.clone().add(exit), this.worldLocal(.10, 1.80, .64), this.worldLocal(-.02, 1.50, .72), post);
             // The racket drops behind the wrist before accelerating up; the face turns through the release.
@@ -983,15 +985,17 @@ export class Character {
             racketRot = new Vec3(.04, torsoYaw, -.12);
         if (readyRotation)
             racketRot = readyRotation;
-        if (this.spec.appearance === 'human' && shot)
+        if (!readyRotation && (shot || this.holdsRacket()))
             racketRot = new Vec3(Math.atan2(Vec3.dot(headOffset, racketForward), headOffset.y), Math.atan2(racketForward.x, racketForward.z), Math.atan2(-Vec3.dot(headOffset, racketRight), Math.hypot(headOffset.y, Vec3.dot(headOffset, racketForward))));
+        const vib = this.racketVibration * Math.sin(this.animTime * 62) * .045;
+        if (vib) {
+            const frame = serveFrame ?? compose(new Vec3(), racketRot), normal = new Vec3(frame[8] * Math.cos(vib) + frame[0] * Math.sin(vib), frame[9] * Math.cos(vib) + frame[1] * Math.sin(vib), frame[10] * Math.cos(vib) + frame[2] * Math.sin(vib));
+            serveFrame = rigidFrame(new Vec3(), headOffset, normal);
+        }
         if (serveFrame) {
             const pole = Math.abs(serveFrame[9]) > .999999;
             racketRot = new Vec3(Math.asin(-clamp(serveFrame[9], -1, 1)), pole ? Math.atan2(-serveFrame[2], serveFrame[0]) : Math.atan2(serveFrame[8], serveFrame[10]), pole ? 0 : Math.atan2(serveFrame[1], serveFrame[5]));
         }
-        const vib = this.racketVibration * Math.sin(this.animTime * 62) * .045;
-        racketRot.z += vib;
-        racketRot.x += vib * .35;
         const racketHandleTop = Vec3.add(racketCenter, rotateEulerVector(new Vec3(0, RACKET.handleTopY, 0), racketRot));
         const hipHalf = this.spec.presentation === 'feminine' ? .175 : .165;
         const hipL = this.worldLocal(-hipHalf + pelvisShiftX, .76 + baseY - knee, pelvisShiftZ, hipYaw), hipR = this.worldLocal(hipHalf + pelvisShiftX, .76 + baseY - knee, pelvisShiftZ, hipYaw);
@@ -1082,11 +1086,11 @@ export class Character {
         const av = (k) => a[k], bv = (k) => b[k];
         const v = (k) => blendVec(av(k), bv(k), t);
         let racketGrip = v('racketGrip'), racketCenter = v('racketCenter'), racketHandleTop = v('racketHandleTop'), racketRot = v('racketRot');
-        if (this.spec.appearance === 'human' && (isShot(this.state) || isShot(this.previousState))) {
+        if (this.holdsRacket() || this.spec.appearance === 'human' && (isShot(this.state) || isShot(this.previousState))) {
             // A rigid racket turns into the stroke; blending its endpoints shortened the shaft and jerked the grip.
             const frame = interpolateRigidFrame(compose(new Vec3(), a.racketRot), compose(new Vec3(), b.racketRot), t), pole = Math.abs(frame[9]) > .999999;
             racketRot = new Vec3(Math.asin(-clamp(frame[9], -1, 1)), pole ? Math.atan2(-frame[2], frame[0]) : Math.atan2(frame[8], frame[10]), pole ? 0 : Math.atan2(frame[1], frame[5]));
-            const axis = new Vec3(frame[4], frame[5], frame[6]), length = Vec3.sub(a.racketCenter, a.racketGrip).len() * (1 - t) + Vec3.sub(b.racketCenter, b.racketGrip).len() * t;
+            const axis = new Vec3(frame[4], frame[5], frame[6]), length = this.holdsRacket() ? RACKET.gripDistance : Vec3.sub(a.racketCenter, a.racketGrip).len() * (1 - t) + Vec3.sub(b.racketCenter, b.racketGrip).len() * t;
             racketCenter = Vec3.add(racketGrip, axis.clone().scale(length));
             racketHandleTop = Vec3.add(racketCenter, axis.scale(RACKET.handleTopY));
         }
@@ -1431,37 +1435,7 @@ export class Character {
             }
         }
         if (holdsRacket) {
-            m.push(this.limb(racketGrip, racketHandleTop, .035, '#4b514e'));
-            // One readable frame, then an actual string bed. The old second torus read as a hollow ring.
-            m.push({ skin: RACKET_FRAME, boneMatrices: RACKET_BONES, position: racketCenter, rotation: racketRot, color: this.spec.accent ?? '#e0c474', material: 'metal' });
-            for (const side of [-1, 1])
-                m.push({ ...this.limb(racketHandleTop, Vec3.add(racketCenter, rotateEulerVector(new Vec3(side * .115, -.175, 0), racketRot)), .017, this.spec.accent ?? '#e0c474'), material: 'metal' });
-            // Fixed ends and a yielding middle make impact read as a string bed,
-            // rather than a solid paddle. Only a confirmed contact loads the strings.
-            const depth = this.racketStringOffset();
-            const stringColor = this.racketImpactAge < .10 ? '#fffbd6' : '#d8e9dc';
-            const worldPoint = (x, y, z) => Vec3.add(racketCenter, rotateEulerVector(new Vec3(x, y, z), racketRot));
-            const stringHalf = (a, b) => {
-                const segment = this.limb(a, b, .0045, stringColor);
-                segment.id = 'racket-string';
-                segment.unlit = true;
-                segment.noShadow = true;
-                m.push(segment);
-            };
-            for (const x of [-.12, -.08, -.04, 0, .04, .08, .12]) {
-                const halfHeight = RACKET.stringHalfHeight * Math.sqrt(1 - (x / RACKET.stringHalfWidth) ** 2);
-                const middle = worldPoint(x, 0, depth * (1 - (x / RACKET.stringHalfWidth) ** 2));
-                stringHalf(worldPoint(x, -halfHeight, 0), middle);
-                stringHalf(middle, worldPoint(x, halfHeight, 0));
-            }
-            for (const y of [-.18, -.12, -.06, 0, .06, .12, .18]) {
-                const halfWidth = RACKET.stringHalfWidth * Math.sqrt(1 - (y / RACKET.stringHalfHeight) ** 2);
-                const middle = worldPoint(0, y, depth * (1 - (y / RACKET.stringHalfHeight) ** 2));
-                stringHalf(worldPoint(-halfWidth, y, 0), middle);
-                stringHalf(middle, worldPoint(halfWidth, y, 0));
-            }
-            // A tiny butt cap makes the hand-to-racket constraint visually obvious at close zoom.
-            m.push({ kind: 'cylinder', position: racketGrip, rotation: new Vec3(Math.PI / 2, this.yaw, 0), scale: new Vec3(.045, .065, .045), color: '#44372f', material: 'fabric' });
+            m.push(...racketMeshes(racketCenter, racketRot, Vec3.sub(racketCenter, racketGrip).len(), this.racketStringOffset()));
         }
         const propHandR = this.propKind && this.propWanted && this.propAge < .4 && this.propAnchor ? this.propAnchor : handR, propHandL = this.propKind && this.propWanted && this.propAge < .4 && this.propAnchor ? this.propAnchor : handL;
         if (this.propKind === 'wateringCan') {

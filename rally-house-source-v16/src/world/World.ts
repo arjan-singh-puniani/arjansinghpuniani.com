@@ -1,3 +1,4 @@
+import {displayRacketMeshes} from '../animation/RacketGeometry.js';
 import {COURT,COURT_POST_MIN_X,COURT_POST_MAX_X} from '../tennis/CourtGeometry.js';
 import {Vec3, smoothstep} from '../rendering/Math3D.js';
 import type {Lighting,Mesh,MaterialKind} from '../rendering/Renderer.js';
@@ -162,10 +163,10 @@ export class World {
     this.addBonsai(10.2,3.9,1.05,'windswept',1.08,'#8f6657');
     this.add('cylinder',11.35,.36,4.35,.75,.20,.75,'#ac7f5f',0,1,false,undefined,'wood');this.objects.push({id:'bonsai',label:'Bonsai corner',kind:'bonsai',position:new Vec3(10.2,0,3.9),radius:1.6,description:'The quietest coach in the academy. Somehow Leo takes it seriously.'});
 
-    // Pro shop + stringing: rounded shelving, real torus racket heads and equipment boxes.
+    // Pro shop frames share the playing racket, including paint, strings and ARJAN lettering.
     this.rb(9.2,1.10,-7.6,4.45,2.05,.46,'#caa17d',0,1,false,undefined,'wood');this.shelf(9.2,2.18,-7.33,4.03,'#8a654d');this.shelf(9.2,1.16,-7.33,4.03,'#8a654d');
-    for(let i=0;i<5;i++){const x=7.7+i*.72;this.add('cylinder',x,1.82,-7.02,.07,.62,.07,i%2?palette.gold:palette.sage);this.add('torus',x,2.43,-7.02,.68,.82,.34,i%2?palette.gold:palette.sage,0,1,false,undefined,'metal');}
-    this.rb(9.2,.78,-3.4,2.25,1.52,1.28,'#9d765b',0,1,false,undefined,'wood');this.add('sphere',9.2,1.66,-3.4,.82,.12,.82,'#667a6c');this.add('torus',9.2,1.72,-3.25,.92,.92,.22,'#ddd5c4',0,1,false,undefined,'metal');
+    for(let i=0;i<5;i++)this.meshes.push(...displayRacketMeshes(new Vec3(7.7+i*.72,2.43,-7.02),new Vec3(),1.55));
+    this.rb(9.2,.78,-3.4,2.25,1.52,1.28,'#9d765b',0,1,false,undefined,'wood');this.add('sphere',9.2,1.66,-3.4,.82,.12,.82,'#667a6c');
     for(let i=0;i<3;i++){this.rb(7.4+i*.72,.34,-5.8,.54,.26,.90,[palette.peach,'#879e88',palette.gold][i]);this.add('sphere',7.4+i*.72,.57,-5.8,.36,.18,.48,'#eee7d9');}
     for(let i=0;i<4;i++){this.rb(11.3,1.0,-7.7+i*1.15,.92,2.0,.97,'#a9b4a1');this.add('sphere',10.82,1.0,-7.7+i*1.15,.08,.08,.08,'#6a756b',0,1,true)}
     this.objects.push({id:'proshop',label:'Pro shop & stringing',kind:'equipment',position:new Vec3(9.2,0,-4.5),radius:2.6,description:'Frames, grips, fresh strings, and a satisfyingly mechanical stringing bench.'});
@@ -197,7 +198,7 @@ export class World {
 
     // A court-side rack-and-towel vignette gives the clean court a human edge without intruding into play.
     this.rb(6.54,.24,2.85,1.62,.12,.48,'#a97b5b',0,1,false,undefined,'wood');
-    for(let i=0;i<3;i++){const x=6.05+i*.48;this.add('cylinder',x,.68,2.83,.055,.78,.055,'#6c5647',0,1,false,undefined,'wood');this.add('torus',x,.99,2.83,.54,.66,.25,[palette.sage,palette.gold,palette.peach][i],0,1,false,undefined,'metal');}
+    for(let i=0;i<3;i++)this.meshes.push(...displayRacketMeshes(new Vec3(6.05+i*.48,.99,2.83)));
     this.rb(7.35,.34,3.02,.55,.16,.62,palette.paper,.08,1,false,undefined,'fabric');
 
     // Club board with sticky-note rhythm.
@@ -291,7 +292,7 @@ export class World {
 
     this.rb(-1.4,.52,-8.3,2.3,.92,.78,palette.wood,0,1,false,undefined,'wood');
     this.rb(-1.4,1.02,-8.3,2.4,.10,.88,palette.woodDark,0,1,false,undefined,'wood');
-    for(let i=0;i<5;i++){this.rb(-2.2+i*.40,1.32,-8.3,.11,.52,.30,[bl,pe,t,mi,gd][i],(i-2)*.07,1,false,undefined,'metal');this.add('torus',-2.2+i*.40,1.72,-8.3,.44,.44,.20,'#e6dccb',(i-2)*.07,1,false,undefined,'metal');}
+    for(let i=0;i<5;i++)this.meshes.push(...displayRacketMeshes(new Vec3(-2.2+i*.40,1.72,-8.3),new Vec3(0,0,(i-2)*.07)));
     for(const wx of [-2.25,-.55])this.add('cylinder',wx,.09,-8.6,.20,.18,.20,'#4e5a52',Math.PI/2,1,false,undefined,'metal');
     for(let i=0;i<4;i++)this.add('cone',.35+i*.34,.16,-8.45,.30,.32,.30,[pe,gd,t,pe][i],0,1,false,undefined,'fabric');
     this.objects.push({id:'equipment',label:'Equipment trolley',kind:'training',position:new Vec3(-1.4,0,-7.5),radius:1.9,description:'Spare frames, a cone stack, and whatever the last session forgot to put back.'});
@@ -473,13 +474,8 @@ export class World {
     }else if(p.type==='racketRack'){
       add('roundBox',0,.10,0,1.48,.16,.50,palette.woodDark,0,false,'wood');
       add('roundBox',0,.72,0,1.35,.10,.16,palette.wood,0,false,'wood');
-      for(const [i,x] of [-.48,0,.48].entries()){
-        const color=[palette.sage,palette.gold,palette.peach][i];
-        add('cylinder',x,.70,0,.055,.72,.055,color,0,false,'metal');
-        add('torus',x,1.34,0,.38,.48,.19,color,0,false,'metal');
-        const fx=this.interactionFx.get('stringing'),selected=fx?.position&&Math.hypot(fx.position.x-p.x,fx.position.z-p.z)<.1;
-        const wave=selected&&!this.reducedObjectMotion?Math.sin(performance.now()/1000*42)*.015:0;
-        for(let j=-2;j<=2;j++){add('roundBox',x+j*.045,1.34,.04+wave,.008,.31,.008,'#e8ddc3');add('roundBox',x,1.34+j*.045,.04-wave,.26,.008,.008,'#e8ddc3');}
+      for(const x of [-.48,0,.48])for(const mesh of displayRacketMeshes(pos(x,1.34,0),new Vec3(0,rot,0))){
+        out.push({...mesh,color:override??mesh.color,alpha:alphaScale,noShadow:alphaScale<.99||mesh.noShadow});
       }
     }else if(p.type==='scoreboard'){
       add('cylinder',-.52,.64,0,.055,1.28,.055,'#5f695f',0,false,'metal');

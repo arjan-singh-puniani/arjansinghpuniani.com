@@ -411,10 +411,14 @@ export class Renderer {
         for (const m of meshes) {
             if (!this.casts(m))
                 continue;
-            const g = this.geos.get(m.kind);
+            const g = m.geometry ? this.skinGeometry(m.geometry) : this.geos.get(m.kind);
             gl.uniformMatrix4fv(this.du['u_model'], false, (this.staticData.get(m)?.model ?? compose(m.position, m.rotation ?? new Vec3(), m.scale)));
+            if (m.doubleSided)
+                gl.disable(gl.CULL_FACE);
             gl.bindVertexArray(g.vao);
             gl.drawArrays(gl.TRIANGLES, 0, g.count);
+            if (m.doubleSided)
+                gl.enable(gl.CULL_FACE);
             this.shadowCasters++;
         }
         gl.useProgram(this.depthSkinProgram);
@@ -500,7 +504,10 @@ export class Renderer {
             default: return { roughness: .82, specular: .028, softness: .04 };
         }
     }
-    drawMesh(m) { const gl = this.gl, g = this.geos.get(m.kind); gl.uniformMatrix4fv(this.u['u_model'], false, (this.staticData.get(m)?.model ?? compose(m.position, m.rotation ?? new Vec3(), m.scale))); const cached = this.staticData.get(m), c = cached?.color ?? hexToRgb(m.color), mp = cached?.material ?? this.materialParams(m.material); gl.uniform1i(this.u['u_material'], this.materialId(m.material)); gl.uniform3f(this.u['u_color'], c[0], c[1], c[2]); gl.uniform1f(this.u['u_alpha'], m.alpha ?? 1); gl.uniform1f(this.u['u_unlit'], m.unlit ? 1 : 0); gl.uniform1f(this.u['u_emission'], m.emission ?? 0); gl.uniform1f(this.u['u_roughness'], mp.roughness); gl.uniform1f(this.u['u_specular'], mp.specular); gl.uniform1f(this.u['u_softness'], mp.softness); gl.bindVertexArray(g.vao); gl.drawArrays(gl.TRIANGLES, 0, g.count); this.drawCalls++; this.triangles += g.count / 3; }
+    drawMesh(m) { const gl = this.gl, g = m.geometry ? this.skinGeometry(m.geometry) : this.geos.get(m.kind); gl.uniformMatrix4fv(this.u['u_model'], false, (this.staticData.get(m)?.model ?? compose(m.position, m.rotation ?? new Vec3(), m.scale))); const cached = this.staticData.get(m), c = cached?.color ?? hexToRgb(m.color), mp = cached?.material ?? this.materialParams(m.material); gl.uniform1i(this.u['u_material'], this.materialId(m.material)); gl.uniform3f(this.u['u_color'], c[0], c[1], c[2]); gl.uniform1f(this.u['u_alpha'], m.alpha ?? 1); gl.uniform1f(this.u['u_unlit'], m.unlit ? 1 : 0); gl.uniform1f(this.u['u_emission'], m.emission ?? 0); gl.uniform1f(this.u['u_roughness'], mp.roughness); gl.uniform1f(this.u['u_specular'], mp.specular); gl.uniform1f(this.u['u_softness'], mp.softness); if (m.doubleSided)
+        gl.disable(gl.CULL_FACE);
+    else
+        gl.enable(gl.CULL_FACE); gl.bindVertexArray(g.vao); gl.drawArrays(gl.TRIANGLES, 0, g.count); this.drawCalls++; this.triangles += g.count / 3; }
     drawSkin(m) { const gl = this.gl, g = this.skinGeometry(m.skin); gl.uniformMatrix4fv(this.su['u_model'], false, compose(m.position, m.rotation ?? new Vec3(), m.scale ?? new Vec3(1, 1, 1))); if (this.skinBones !== m.boneMatrices) {
         gl.uniformMatrix4fv(this.su['u_bones'], false, m.boneMatrices);
         this.skinBones = m.boneMatrices;

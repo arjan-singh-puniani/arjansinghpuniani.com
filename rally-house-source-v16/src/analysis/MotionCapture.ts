@@ -1,4 +1,4 @@
-import {secondRacketHand} from '../animation/RacketGeometry.js';
+import {secondRacketHand,RACKET,RACKET_FRAME,racketMeshes} from '../animation/RacketGeometry.js';
 import {Vec3,clamp,smoothstep,rigidFrame,interpolateRigidFrame,compose,transformPoint} from '../rendering/Math3D.js';
 import type {RenderItem} from '../rendering/Renderer.js';
 import type {Character,CharacterPose} from '../entities/Character.js';
@@ -77,6 +77,14 @@ export function interpolateFrame(a:MotionFrame,b:MotionFrame,time:number):Motion
   if(x instanceof Vec3&&y instanceof Vec3)(pose as unknown as Record<string,unknown>)[key]=key==='racketRot'?rotationLerp(x,y,t):Vec3.lerp(x,y,t);
   else if(typeof x==='number'&&typeof y==='number')(pose as unknown as Record<string,unknown>)[key]=key.endsWith('Yaw')?angleLerp(x,y,t):x+(y-x)*t;
  }
+ const racketObserved=[a,b].every(f=>f.body.some(m=>'skin' in m&&m.skin.id===RACKET_FRAME.id));
+ let racketParts:ReturnType<typeof racketMeshes>|undefined;
+ if(racketObserved){
+  // Interpolate the held frame rigidly; separate endpoint chords shrink the shaft in slow motion.
+  const frame=compose(new Vec3(),pose.racketRot),axis=new Vec3(frame[4],frame[5],frame[6]),length=Vec3.sub(a.pose.racketCenter,a.pose.racketGrip).len()*(1-t)+Vec3.sub(b.pose.racketCenter,b.pose.racketGrip).len()*t;
+  pose.racketCenter=pose.racketGrip.clone().add(axis.clone().scale(length));pose.racketHandleTop=pose.racketCenter.clone().add(axis.scale(RACKET.handleTopY));
+  racketParts=racketMeshes(pose.racketCenter,pose.racketRot,length);
+ }
  // Preserve an observed two-hand grip instead of shortening it along an interpolated chord.
  if(a.state==='swingBackhand'&&b.state==='swingBackhand'){
   const stacked=(p:CharacterPose)=>Vec3.sub(p.handL,secondRacketHand(p.handR,Vec3.sub(p.racketHandleTop,p.racketGrip))).len()<.001;
@@ -88,7 +96,7 @@ export function interpolateFrame(a:MotionFrame,b:MotionFrame,time:number):Motion
  let bones:Float32Array|undefined;
  const authored=new Map<RigPoseLocal,{bind:RigPoseLocal;pose:RigPoseLocal;matrices:Float32Array}>();
  const body=a.body.map((part,i):RenderItem=>{
-  const other=b.body[i],position=Vec3.lerp(part.position,other.position,t),rotation=rotationLerp(part.rotation,other.rotation,t);
+  const other=b.body[i],attachment='skin' in part?racketParts?.find(m=>m.skin.id===part.skin.id):undefined,position=attachment?.position??Vec3.lerp(part.position,other.position,t),rotation=attachment?.rotation??rotationLerp(part.rotation,other.rotation,t);
   if('skin' in part&&'skin' in other){
    let rig=part.rig,palette=part.boneMatrices;
    if(part.poseRig&&part.rig&&other.rig){
@@ -102,7 +110,7 @@ export function interpolateFrame(a:MotionFrame,b:MotionFrame,time:number):Motion
    }else if(part.poseRig){bones??=skinMatrices(rigFromPose(pose,root,rotation.y));palette=bones;}
    const expression=part.expression&&other.expression?part.expression.map((n,j)=>n+(other.expression![j]-n)*t) as [number,number,number,number]:part.expression;
    const handGrip=part.handGrip&&other.handGrip?part.handGrip.map((n,j)=>n+(other.handGrip![j]-n)*t) as [number,number]:part.handGrip;
-   return {...part,position,rotation,rig,expression,handGrip,eyeYaw:(part.eyeYaw??0)+((other.eyeYaw??0)-(part.eyeYaw??0))*t,scale:part.scale&&other.scale?Vec3.lerp(part.scale,other.scale,t):part.scale,boneMatrices:palette};
+   return {...part,position,rotation,rig,expression,handGrip,eyeYaw:(part.eyeYaw??0)+((other.eyeYaw??0)-(part.eyeYaw??0))*t,scale:attachment?.scale??(part.scale&&other.scale?Vec3.lerp(part.scale,other.scale,t):part.scale),boneMatrices:palette};
   }
   if('skin' in part||'skin' in other)throw Error('Replay topology changed');
   return {...part,position,rotation,scale:Vec3.lerp(part.scale,other.scale,t),alpha:(part.alpha??1)+((other.alpha??1)-(part.alpha??1))*t};

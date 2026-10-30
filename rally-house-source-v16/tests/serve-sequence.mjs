@@ -1,3 +1,4 @@
+import {RACKET} from '../dist/animation/RacketGeometry.js';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {Character} from '../dist/entities/Character.js';
@@ -23,7 +24,7 @@ for(const spec of [playerSpec('taylor'),playerSpec('arjan'),...memberData])for(c
  for(const time of [contact*.5,contact*.70,contact-.002,contact,contact+.002,contact+(duration-contact)*.45,duration*.99])poses.push(sample(time));
  const [load,drop,before,hit,after,release,finish]=poses,continuity=Vec3.dot(Vec3.sub(hit.handR,before.handR).normalize(),Vec3.sub(after.handR,hit.handR).normalize());minContinuity=Math.min(minContinuity,continuity);assert(continuity>.95,`${spec.id}/${hz}: serving wrist reverses at impact (${continuity})`);
  const dropAxis=Vec3.sub(drop.racketCenter,drop.racketGrip);assert(dropAxis.y<-.35&&Vec3.dot(dropAxis,forward)<-.25,'Racket drops behind the wrist before acceleration');
- for(const p of poses){const shaft=Vec3.sub(p.racketCenter,p.racketGrip),frame=compose(new Vec3(),p.racketRot);assert(Math.abs(shaft.len()-Math.hypot(.525,.125))<1e-6,'Racket rotation preserves shaft length');assert(Vec3.dot(shaft.normalize(),new Vec3(frame[4],frame[5],frame[6]))>.999999,'Rendered shaft follows the measured racket axis');}
+ for(const p of poses){const shaft=Vec3.sub(p.racketCenter,p.racketGrip),frame=compose(new Vec3(),p.racketRot);assert(Math.abs(shaft.len()-RACKET.gripDistance)<1e-6,'Racket rotation preserves shaft length');assert(Vec3.dot(shaft.normalize(),new Vec3(frame[4],frame[5],frame[6]))>.999999,'Rendered shaft follows the measured racket axis');}
  const dropFrame=compose(new Vec3(),drop.racketRot),hitFrame=compose(new Vec3(),hit.racketRot);assert(Math.abs(Vec3.dot(new Vec3(dropFrame[8],dropFrame[9],dropFrame[10]),new Vec3(hitFrame[8],hitFrame[9],hitFrame[10])))<.3,'Racket face rotates out of the edge-on preparation');
  assert(Vec3.sub(release.racketCenter,release.racketGrip).y<-.30,'Racket turns down through the follow-through');assert(Vec3.sub(finish.racketCenter,finish.racketGrip).y>.50,'Recovery returns the racket toward receiving orientation');
  const shoulderTilt=p=>{const d=Vec3.sub(p.shoulderR,p.shoulderL);return Math.atan2(d.y,Math.hypot(d.x,d.z));};

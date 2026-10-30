@@ -1,3 +1,4 @@
+import {supportRacketHand} from '../dist/animation/RacketGeometry.js';
 import assert from 'node:assert/strict';
 import {memberData} from '../dist/content/content.js';
 import {playerSpec} from '../dist/content/PlayerAvatars.js';
@@ -69,7 +70,7 @@ for(const spec of specs)for(const hz of [30,60,120])for(const yaw of [0,.7,Math.
   for(const side of ['L','R']){assert(Vec3.sub(p[`foot${side}`],first[`foot${side}`]).len()<1e-8,'Ready shoes stay planted while the body breathes');assert(Math.abs(p[`foot${side}`].y-.11)<1e-8,'Ready soles remain on the court');}
   assert(Vec3.dot(Vec3.sub(p.handR,c.position),right)>.05,'Racket wrist stays on its own side, without crossed forearms');
   assert(p.handL.y>p.handR.y+.08,'Free hand supports the throat above the grip');
-  assert(Vec3.sub(p.handL,Vec3.lerp(p.racketHandleTop,p.racketCenter,.20)).len()<.001,'Free palm follows the physical racket throat after retargeting');
+  assert(Vec3.sub(p.handL,supportRacketHand(p.racketGrip,p.racketCenter)).len()<.001,'Free palm follows the physical racket throat after retargeting');
   assert(p.shoulderR.y-p.shoulderL.y>.015,'Racket shoulder breaks the horizontal shoulder bar');
  }
  assert(high-low>.025&&high-low<.08,'Ready weight transfer is visible and restrained');

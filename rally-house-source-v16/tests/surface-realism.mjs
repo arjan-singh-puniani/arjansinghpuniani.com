@@ -7,7 +7,7 @@ import {Character} from '../dist/entities/Character.js';
 import {playerSpec} from '../dist/content/PlayerAvatars.js';
 import {Navigation} from '../dist/world/Navigation.js';
 import {World} from '../dist/world/World.js';
-import {RACKET_FRAME} from '../dist/animation/RacketGeometry.js';
+import {RACKET_FRAME,RACKET} from '../dist/animation/RacketGeometry.js';
 
 const pupil=HUMAN_TAYLOR_GEOMETRY.pupil.positions;
 for(const side of [-1,1]){const points=[];for(let i=0;i<pupil.length;i+=3)if(Math.sign(pupil[i])===side)points.push([pupil[i],pupil[i+1]]);const span=k=>Math.max(...points.map(p=>p[k]))-Math.min(...points.map(p=>p[k]));assert(Math.abs(span(0)/span(1)-1)<.01,'Human pupils have a circular emitted aperture');}
@@ -34,7 +34,8 @@ assert.equal(baseline.length,2);assert(Math.abs(length/width-23.77/10.97)<1e-6,'
 const service=w.meshes.filter(m=>m.id==='court-line'&&Math.abs(m.scale.z-.045)<1e-6&&m.scale.x>3&&Math.abs(m.position.z)>3);
 assert.equal(service.length,2);assert(Math.abs(service[0].scale.x/width-8.23/10.97)<1e-6,'Service boxes end at singles sidelines, preserving doubles alleys');
 assert(Math.abs(Math.abs(service[0].position.z)/length-6.40/23.77)<1e-6);
-const rp=RACKET_FRAME.positions,xs=[...rp.filter((_,i)=>i%3===0)],ys=[...rp.filter((_,i)=>i%3===1)],headWidth=Math.max(...xs)-Math.min(...xs),headHeight=Math.max(...ys)-Math.min(...ys);
+// The new frame includes its open throat; measure the hoop above the throat.
+const rp=RACKET_FRAME.positions.filter((_,i,a)=>a[Math.floor(i/3)*3+1]>=-RACKET.headHalfHeight-RACKET.beamRadius*1.2),xs=[...rp.filter((_,i)=>i%3===0)],ys=[...rp.filter((_,i)=>i%3===1)],headWidth=Math.max(...xs)-Math.min(...xs),headHeight=Math.max(...ys)-Math.min(...ys);
 assert(headWidth>.35&&headWidth<.40&&headHeight>.49&&headHeight<.53,'Actual adult racket head stays proportional to the 2.4-unit player');
 console.log(JSON.stringify({courtLength:length,courtDoublesWidth:width,racketHeadWidth:headWidth,racketHeadHeight:headHeight}));
 console.log('Surface realism PASS: round pupils, closed facial variant, continuous knees, registered trainers, regulation court ratios and proportional racket head.');

@@ -13,6 +13,7 @@ export type MaterialKind='matte'|'wood'|'fabric'|'ceramic'|'metal'|'glass'|'cour
 const MATERIAL_ID:Record<MaterialKind,number>={matte:0,wood:1,fabric:2,ceramic:3,metal:4,glass:5,court:6,skin:7,hair:8,leaf:9,stone:10,toon:11,humanSkin:12,groomedHair:13,lip:14,iris:15,performanceKnit:16};
 export interface Mesh {
   kind:GeometryKind;
+  geometry?:SkinGeometry;doubleSided?:boolean;
   position:Vec3;
   rotation?:Vec3;
   scale:Vec3;
@@ -407,9 +408,9 @@ export class Renderer {
     gl.useProgram(this.depthProgram);gl.uniform1f(this.du['u_textured'],0);gl.uniform1i(this.du['u_albedo'],2);gl.uniformMatrix4fv(this.du['u_lightVP'],false,lightVP);
     for(const m of meshes){
       if(!this.casts(m))continue;
-      const g=this.geos.get(m.kind)!;
+      const g=m.geometry?this.skinGeometry(m.geometry):this.geos.get(m.kind)!;
       gl.uniformMatrix4fv(this.du['u_model'],false,(this.staticData.get(m)?.model??compose(m.position,m.rotation??new Vec3(),m.scale)));
-      gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.shadowCasters++;
+      if(m.doubleSided)gl.disable(gl.CULL_FACE);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);if(m.doubleSided)gl.enable(gl.CULL_FACE);this.shadowCasters++;
     }
     gl.useProgram(this.depthSkinProgram);gl.uniformMatrix4fv(this.dsu['u_lightVP'],false,lightVP);
     for(const s of skins){
@@ -475,7 +476,7 @@ export class Renderer {
     }
   }
 
-  private drawMesh(m:Mesh){const gl=this.gl,g=this.geos.get(m.kind)!;gl.uniformMatrix4fv(this.u['u_model'],false,(this.staticData.get(m)?.model??compose(m.position,m.rotation??new Vec3(),m.scale)));const cached=this.staticData.get(m),c=cached?.color??hexToRgb(m.color),mp=cached?.material??this.materialParams(m.material);gl.uniform1i(this.u['u_material'],this.materialId(m.material));gl.uniform3f(this.u['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.u['u_alpha'],m.alpha??1);gl.uniform1f(this.u['u_unlit'],m.unlit?1:0);gl.uniform1f(this.u['u_emission'],m.emission??0);gl.uniform1f(this.u['u_roughness'],mp.roughness);gl.uniform1f(this.u['u_specular'],mp.specular);gl.uniform1f(this.u['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
+  private drawMesh(m:Mesh){const gl=this.gl,g=m.geometry?this.skinGeometry(m.geometry):this.geos.get(m.kind)!;gl.uniformMatrix4fv(this.u['u_model'],false,(this.staticData.get(m)?.model??compose(m.position,m.rotation??new Vec3(),m.scale)));const cached=this.staticData.get(m),c=cached?.color??hexToRgb(m.color),mp=cached?.material??this.materialParams(m.material);gl.uniform1i(this.u['u_material'],this.materialId(m.material));gl.uniform3f(this.u['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.u['u_alpha'],m.alpha??1);gl.uniform1f(this.u['u_unlit'],m.unlit?1:0);gl.uniform1f(this.u['u_emission'],m.emission??0);gl.uniform1f(this.u['u_roughness'],mp.roughness);gl.uniform1f(this.u['u_specular'],mp.specular);gl.uniform1f(this.u['u_softness'],mp.softness);if(m.doubleSided)gl.disable(gl.CULL_FACE);else gl.enable(gl.CULL_FACE);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
   private drawSkin(m:SkinnedMesh){const gl=this.gl,g=this.skinGeometry(m.skin);gl.uniformMatrix4fv(this.su['u_model'],false,compose(m.position,m.rotation??new Vec3(),m.scale??new Vec3(1,1,1)));if(this.skinBones!==m.boneMatrices){gl.uniformMatrix4fv(this.su['u_bones'],false,m.boneMatrices);this.skinBones=m.boneMatrices;}this.bindSurface(m,this.su);const c=hexToRgb(m.color),mp=this.materialParams(m.material);gl.uniform1i(this.su['u_material'],this.materialId(m.material));gl.uniform3f(this.su['u_color'],c[0],c[1],c[2]);gl.uniform1f(this.su['u_alpha'],m.alpha??1);gl.uniform1f(this.su['u_unlit'],m.unlit?1:0);gl.uniform1f(this.su['u_emission'],0);gl.uniform1f(this.su['u_roughness'],mp.roughness);gl.uniform1f(this.su['u_specular'],mp.specular);gl.uniform1f(this.su['u_softness'],mp.softness);gl.bindVertexArray(g.vao);gl.drawArrays(gl.TRIANGLES,0,g.count);this.drawCalls++;this.triangles+=g.count/3;}
   private bindSurface(m:SkinnedMesh,u:Record<string,WebGLUniformLocation>){
     // shortcut: bounds approximate cloth contact; use authored or simulated cloth when folds need independent motion.

@@ -1,0 +1,3 @@
+{"mains":16,"crosses":19,"draws":9,"triangles":9836,"staticRackets":13,"placedRackets":3,"gripSamples":1050,"maxGripError":1.5121831782783326e-7}
+Racket equipment PASS: shared frame/livery, anchored 16×19 bed, impact flex, both render passes, Build previews and live contact ownership.
+117 release artifacts match; compiled relative imports resolve in source and served trees.
