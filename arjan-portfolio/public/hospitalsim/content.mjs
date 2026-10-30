@@ -1,4 +1,4 @@
-export const VERSION='0.4.0-hospitalsim', STEP=1;
+export const VERSION='0.4.1-hospitalsim', STEP=1;
 export const GRID={w:9,h:8,entry:{x:4,y:5},exit:{x:4,y:7},step:1.65};
 export const TYPES={consult:{name:'Consultation',cost:900,duration:12,staff:1,skill:'consult',asset:'consult'},scan:{name:'Imaging',cost:1500,duration:17,staff:1,skill:'scan',asset:'scan'},care:{name:'Procedure & care',cost:1100,duration:15,staff:2,skill:'care',asset:'care'},rest:{name:'Team lounge',cost:600,duration:0,staff:0,asset:'rest'},plan:{name:'Specialist planning',cost:1400,duration:13,staff:1,skill:'plan',asset:'consult'}};
 export const TRAITS={steady:{name:'Steady hands',speed:1,fatigue:.12,line:'The trolley has a parking space. I drew it myself.'},brisk:{name:'Quick thinker',speed:1.12,fatigue:.19,line:'Efficient is good. Unhurried is better.'},listener:{name:'Careful listener',speed:.96,fatigue:.10,line:'One clear handoff saves two confused journeys.'}};

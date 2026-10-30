@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-30",
+  "model": "0.4.1-hospitalsim",
+  "hardware": "Apple M2 via ANGLE Metal; desktop browser, not physical iPhone",
+  "observedRenderer": {
+    "arrivals": "21",
+    "completed": "6",
+    "drawCalls": "83",
+    "engine": "three.js r186",
+    "frameMs": "16.71",
+    "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+    "loadMs": "141",
+    "mainTriangles": "199718",
+    "model": "0.4.1-hospitalsim",
+    "p95Ms": "18.00",
+    "peakDrawCalls": "140",
+    "peakMainTriangles": "201448",
+    "peakTriangles": "315282",
+    "reducedMotion": "false",
+    "restoreError": "",
+    "samples": "1800",
+    "simulationSecond": "323",
+    "triangles": "199718"
+  },
+  "measurementLimit": "1800-frame rolling collection spans paused review and active gameplay; warm localhost load, not a cold network or phone benchmark.",
+  "browserChecks": {
+    "fullRecordedVisit": "Eli arrival19 -> consultation -> imaging -> care -> discharged139; total120 seconds",
+    "escapeInspectorRestoresFocus": true,
+    "narrowViewportWidth": 390,
+    "embeddedGameWidth": 364,
+    "nonSpatialPlacement": "Consultation placed at7,3; one existing relief clinician assigned",
+    "applicationConsoleErrors": 0
+  },
+  "remaining": [
+    "Actual iPhone Safari",
+    "Independent playtests and fun evaluation",
+    "Assistive technology audit",
+    "Reference-level anatomy, clothing, material nuance and task contact",
+    "Manual staff assignment still changes post without commute"
+  ]
+}

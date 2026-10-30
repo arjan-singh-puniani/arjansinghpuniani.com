@@ -11,13 +11,15 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory dist
 node tests/diorama.mjs
 node tests/expansion.mjs
 node tests/release.mjs
+node tests/motion-release.mjs
+node tests/animation.mjs
 node tests/simulation.cjs
 /Applications/Blender.app/Contents/MacOS/Blender --factory-startup -b --python blender/hospital.py
 /Applications/Blender.app/Contents/MacOS/Blender --factory-startup -b --python blender/characters.py
 /Applications/Blender.app/Contents/MacOS/Blender --factory-startup -b --python blender/drape.py
 ```
 
-Open `http://127.0.0.1:8765`. Blender 4.0.2 was actually executed on macOS. The sandboxed launch could not access Metal device registration; approved execution outside that restriction worked. `rtk` was requested by local instructions but is not installed; shell calls used a pass-through function named rtk. Python 3.10, Node 22, Three.js 0.186.1, the browser SDK, and bundled FFmpeg were available. There is no asset-store dependency.
+Open `http://127.0.0.1:8765`. In the portfolio repository, serve `arjan-portfolio/public` from its repository root and open `/hospitalsim/index.html`; the retained REPLISOME is the sibling `/replisome/index.html` there. Serving only the symlinked hospital directory runs the hospital, but its optional science module needs that sibling route. Blender 4.0.2 was actually executed on macOS. The sandboxed launch could not access Metal device registration; approved execution outside that restriction worked. `rtk` was requested by local instructions but is not installed; shell calls used a pass-through function named rtk. Python 3.10, Node 22, Three.js 0.186.1, the browser SDK, and bundled FFmpeg were available. There is no asset-store dependency.
 
 ## Play
 
@@ -59,3 +61,9 @@ See `docs/MODEL.md`, `docs/ART_DIRECTION.md`, `docs/EVALUATION_DRAFT.md`, `CHANG
 Renamed hospitalSIM at the owner’s request. Fixed visit timing double-counting: each elapsed tick now belongs to exactly one of waiting, walking, handoff, equipment transfer or service. Prior saves retain an explicit elapsedOffset rather than silently rewriting historical observations. Old corridor positions/routes may shift to the nearest clear position for the new platform-clearance rule; migration is recorded. New patients spend three seconds entering and three seconds leaving each room. Quarter-grid navigation retains the same 1.65m/s nominal walking speed and provides passing space. Doorways remain reserved through service and exit. These changed model parameters make v0.3 outcome counts unsuitable as v0.4 benchmarks.
 
 Neighborhood guidance asks players to add consultation then inspect/upgrade care. The v0.4 goal permits eight departures, with an18-second baseline arrival interval. This is an explicit scenario adjustment for the added doorway time and body clearance, not evidence of real hospital economics.
+
+## v0.4.1 motion corrections
+
+Blender was executed again for a phase-correct walk: opposite arm at heel strike, less crouched midstance, and a small lateral weight shift. Nine clips and39bones remain; all non-Walk actions were numerically unchanged. Measured authored stance drift remains3.06mm maximum. This is an improvement to the existing procedural gait, not motion capture or a claim of reference-level animation.
+
+Manual bed-transfer sampling now bypasses clock-dependent fades. Staff take explicit three-second doorway transitions before/after protected breaks, and lounge entry/exit when built. Capacity returns only at the workstation. This adds modeled break travel time; prior v0.4 checkpoints retain visits and assignments. The care clinician steps aside rather than snapping, and Escape restores inspector trigger focus. Import rejects negative service durations. The portfolio mobile embed expands to the game's actual content height to reduce nested scrolling.

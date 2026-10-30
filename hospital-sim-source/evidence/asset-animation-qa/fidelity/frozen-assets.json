@@ -1,0 +1,37 @@
+{
+  "frozen_utc": "2026-10-29T21:59:47.605366+00:00",
+  "files": {
+    "blender/characters.py": {
+      "sha256": "e13648c542e15dca271ccf2cc73c268614f4bba8bb4483f65029ad47709a8677",
+      "bytes": 37798
+    },
+    "blender/characters.blend": {
+      "sha256": "eb582b99f9ac871fea6d76b31a94ab03c880187562f0703ebd5551a6ef70e79d",
+      "bytes": 1374986
+    },
+    "dist/assets/clinician.glb": {
+      "sha256": "500731ff41520e382b0c8602cf3a837807a10b0a4f89bf84cc4515e778d4d68b",
+      "bytes": 977924
+    },
+    "dist/assets/clinician-lod.glb": {
+      "sha256": "67b5a2d228fe9d69acb747fc60db89634ea76a0ba96fe6d04f9d6467e8a6cf8f",
+      "bytes": 620492
+    },
+    "dist/assets/coat.glb": {
+      "sha256": "07c8a3f0d0e3f5202f30f80d4f11cf2f31f29f7d72cb8fdfbdc8ec67f72bd68c",
+      "bytes": 1028876
+    },
+    "dist/assets/coat-lod.glb": {
+      "sha256": "24c03762b9ec8e3ea3e62dd79873b35a13fee9fb31d15eb8820160df85cd67d3",
+      "bytes": 638260
+    },
+    "dist/assets/patient.glb": {
+      "sha256": "7661cd33d05911cb61f7b542bd5b99990cdc9a865cd73b26ec18ef7ce1de72c5",
+      "bytes": 977916
+    },
+    "dist/assets/patient-lod.glb": {
+      "sha256": "81d8ef024d8f71fe7d275eb552dc8757a66b282063aff938257451867a9c2083",
+      "bytes": 620552
+    }
+  }
+}

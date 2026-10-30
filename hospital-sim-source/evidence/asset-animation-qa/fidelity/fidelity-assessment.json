@@ -1,0 +1,134 @@
+{
+  "frozen_utc": "2026-10-29T21:59:47.605366+00:00",
+  "blender_executed": "4.0.2",
+  "source_compressed_bytes": 1374986,
+  "source_file_limit_bytes": 33554432,
+  "assets": {
+    "dist/assets/clinician.glb": {
+      "bytes": 977924,
+      "triangles": 12346,
+      "primitives": 1,
+      "images": 1,
+      "bones": 39,
+      "clips": [
+        "Attend",
+        "Discuss",
+        "Idle",
+        "Rest",
+        "Sit",
+        "TransferIn",
+        "TransferOut",
+        "Walk",
+        "Work"
+      ]
+    },
+    "dist/assets/clinician-lod.glb": {
+      "bytes": 620492,
+      "triangles": 4194,
+      "primitives": 1,
+      "images": 1,
+      "bones": 39,
+      "clips": [
+        "Attend",
+        "Discuss",
+        "Idle",
+        "Rest",
+        "Sit",
+        "TransferIn",
+        "TransferOut",
+        "Walk",
+        "Work"
+      ]
+    },
+    "dist/assets/coat.glb": {
+      "bytes": 1028876,
+      "triangles": 13498,
+      "primitives": 1,
+      "images": 1,
+      "bones": 39,
+      "clips": [
+        "Attend",
+        "Discuss",
+        "Idle",
+        "Rest",
+        "Sit",
+        "TransferIn",
+        "TransferOut",
+        "Walk",
+        "Work"
+      ]
+    },
+    "dist/assets/coat-lod.glb": {
+      "bytes": 638260,
+      "triangles": 4586,
+      "primitives": 1,
+      "images": 1,
+      "bones": 39,
+      "clips": [
+        "Attend",
+        "Discuss",
+        "Idle",
+        "Rest",
+        "Sit",
+        "TransferIn",
+        "TransferOut",
+        "Walk",
+        "Work"
+      ]
+    },
+    "dist/assets/patient.glb": {
+      "bytes": 977916,
+      "triangles": 12346,
+      "primitives": 1,
+      "images": 1,
+      "bones": 39,
+      "clips": [
+        "Attend",
+        "Discuss",
+        "Idle",
+        "Rest",
+        "Sit",
+        "TransferIn",
+        "TransferOut",
+        "Walk",
+        "Work"
+      ]
+    },
+    "dist/assets/patient-lod.glb": {
+      "bytes": 620552,
+      "triangles": 4194,
+      "primitives": 1,
+      "images": 1,
+      "bones": 39,
+      "clips": [
+        "Attend",
+        "Discuss",
+        "Idle",
+        "Rest",
+        "Sit",
+        "TransferIn",
+        "TransferOut",
+        "Walk",
+        "Work"
+      ]
+    }
+  },
+  "improvements": [
+    "Integrated facial planes and fitted eyes/lips; no detached spherical nose",
+    "Fitted hairline and jaw/neck separation",
+    "Adult-proportioned palm and two-joint fingers",
+    "Open V-neck with2.5mm cloth thickness; shaped3.5mm coat/lapels",
+    "Fabric-conformed pockets and hems; buried sleeve roots and overlapping wrist surfaces",
+    "Missing trouser pelvis filled, tapered into thigh surfaces",
+    "One embedded roughness palette distinguishes skin/fabric/hair without extra draw calls"
+  ],
+  "remaining_gaps": [
+    "Faces and hair remain stylized and lack scan-level skin/hair detail",
+    "Upper-thigh and garment joins remain visible under close inspection",
+    "No fabric simulation or fine cloth displacement; folds are restrained procedural geometry",
+    "Three base variants share facial topology; crowd diversity remains limited",
+    "Static mattress contact allows measured8.25mm overlap",
+    "No claim of parity with the supplied reference or clinical/educational validation"
+  ],
+  "comparison": "Same camera, material color management, light positions and render settings for before/after. Normal-scale image shows approximate100px figures; actual browser framing is verified separately by parent."
+}

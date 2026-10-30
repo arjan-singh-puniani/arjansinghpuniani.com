@@ -1,0 +1,22 @@
+{
+  "license": "CC0-1.0",
+  "provenance": "Original procedural geometry; substantial OpenAI Codex assistance",
+  "triangles": 1744,
+  "primitives": 1,
+  "bounds_gltf_metres": {
+    "min": [
+      -0.6050000190734863,
+      0.7678917050361633,
+      -0.46905121207237244
+    ],
+    "max": [
+      0.6050000190734863,
+      1.218000054359436,
+      0.955727756023407
+    ]
+  },
+  "mattress_y": 0.88,
+  "bytes": 33012,
+  "sha256": "84a4697e89070a64c3cee7523e632a280f446b91a96db34c967afbad628e7c6d",
+  "frozen_characters_modified": false
+}

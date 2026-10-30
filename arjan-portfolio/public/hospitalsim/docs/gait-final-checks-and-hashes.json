@@ -1,0 +1,62 @@
+{
+  "frozen_utc": "2026-10-30T18:37:40.808848+00:00",
+  "changed_actions": [
+    "Walk__clinician",
+    "Walk__coat",
+    "Walk__patient"
+  ],
+  "unchanged_actions": 24,
+  "cycle_seconds": 0.9,
+  "root_speed_m_s": 1.65,
+  "before_hip_range_m": [
+    0.8461623191833496,
+    0.876959502696991
+  ],
+  "after_hip_range_m": [
+    0.8461622595787048,
+    0.9100000858306885
+  ],
+  "before_midstance_knee_degrees": 39.66660364260502,
+  "after_midstance_knee_degrees": 11.548554711870198,
+  "max_contact_drift_m": 0.003061838098383246,
+  "min_sole_height_m": -0.0018369416939094663,
+  "limitations": [
+    "Procedural gait, not motion-captured or biomechanically validated.",
+    "Brisk universal stride at1.65m/s; no character-specific gait.",
+    "Visible improvement is bounded to arm phase and stance posture, not a claim of reference equivalence."
+  ],
+  "files": {
+    "blender/characters.py": {
+      "bytes": 38109,
+      "sha256": "9e71fcb089517a85cb727a417ca3a7f6e190298f94f398ec73642066a8d8d947"
+    },
+    "blender/characters.blend": {
+      "bytes": 1370568,
+      "sha256": "df86fac875b8deb50c6bae09f0f77fdffc8373306778879a7bd3179b3bcf9650"
+    },
+    "dist/assets/clinician.glb": {
+      "bytes": 978764,
+      "sha256": "aca7b3e5fae07f9d5824c5b7efa3e56431f0141fe40ae3f48e5d8a1a1a36bd04"
+    },
+    "dist/assets/clinician-lod.glb": {
+      "bytes": 621332,
+      "sha256": "8d0354855bd8f3c4b56076283bfb2acdaf501bfb3c00dcd8e0f80123642ef0e3"
+    },
+    "dist/assets/coat.glb": {
+      "bytes": 1029716,
+      "sha256": "85f33666a01996c12ea174d25b600e0a480c67fd34996381c23524229329a112"
+    },
+    "dist/assets/coat-lod.glb": {
+      "bytes": 638892,
+      "sha256": "5b09b8cb5474f33b552b33936c52ec73503a6ccc4f94b0e6bb22a3d3d595a3c9"
+    },
+    "dist/assets/patient.glb": {
+      "bytes": 978752,
+      "sha256": "55d7756c1ff254cf72d433c0e5f65afb16935f4158ea6fdaf2d4f9f5dab69fe6"
+    },
+    "dist/assets/patient-lod.glb": {
+      "bytes": 621320,
+      "sha256": "48d3ba70fa3ea7e0c53d6ceccfc3e096d32336737875a9e4a03bc7448c81890e"
+    }
+  }
+}

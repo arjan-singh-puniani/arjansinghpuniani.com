@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { type CSSProperties, useEffect, useRef, useState } from "react";
 import styles from "./hospital.module.css";
 
 export default function HospitalPlayer() {
   const [playing, setPlaying] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [slow, setSlow] = useState(false);
+  const [frameHeight, setFrameHeight] = useState(1150);
   const [message, setMessage] = useState("");
   const player = useRef<HTMLDivElement>(null);
   const frame = useRef<HTMLIFrameElement>(null);
@@ -17,6 +18,16 @@ export default function HospitalPlayer() {
     if (!playing || loaded) return;
     const timeout = window.setTimeout(() => setSlow(true), 15000);
     return () => window.clearTimeout(timeout);
+  }, [playing, loaded]);
+
+  useEffect(() => {
+    const body = frame.current?.contentDocument?.body;
+    if (!playing || !loaded || !body) return;
+    const resize = () => setFrameHeight(Math.max(700, Math.ceil(body.getBoundingClientRect().height) + 2));
+    const observer = new ResizeObserver(resize);
+    observer.observe(body);
+    resize();
+    return () => observer.disconnect();
   }, [playing, loaded]);
 
   function launch() {
@@ -44,7 +55,7 @@ export default function HospitalPlayer() {
   }
 
   return <>
-    <div className={`${styles.frameShell} ${playing ? styles.active : ""}`} ref={player}>
+    <div className={`${styles.frameShell} ${playing ? styles.active : ""}`} ref={player} style={{ "--hospital-height": `${frameHeight}px` } as CSSProperties}>
       {playing ? <>
         <iframe
           ref={frame}

@@ -381,18 +381,21 @@ def set_bone_between(arm,name,head,tail):
 
 def apply_walk(arm,phase):
     targets={side:foot_target((phase+offset)%1) for side,offset in [('L',0),('R',.5)]}
-    # A small pelvis oscillation; reach limits keep the leg straight rather than stretching it.
-    hip_z=.865+.012*math.sin(phase*4*math.pi)**2
+    # Rise over the support leg instead of holding both knees in a crouch.
+    # Reach limits retain planted soles at the long-stride contact transitions.
+    hip_z=.910
+    lateral=.009*math.sin(phase*2*math.pi)
     length1=(arm.data.bones['thigh.L'].tail_local-arm.data.bones['thigh.L'].head_local).length
     length2=(arm.data.bones['shin.L'].tail_local-arm.data.bones['shin.L'].head_local).length
     for ankle,pitch,lift in targets.values():
         horizontal=ankle.y*ankle.y+.007**2
         hip_z=min(hip_z,ankle.z+math.sqrt(max(.01,(length1+length2-.002)**2-horizontal)))
     arm.pose.bones['hips'].location.y=hip_z-.925
+    arm.pose.bones['hips'].location.x=lateral
     bpy.context.view_layer.update()
     for side,sign in [('L',1),('R',-1)]:
         target,pitch,lift=targets[side]
-        hip=Vector((sign*.098,0,hip_z)); ankle=Vector((sign*.105,target.y,target.z))
+        hip=Vector((sign*.098+lateral,0,hip_z)); ankle=Vector((sign*.105,target.y,target.z))
         direction=ankle-hip; distance=direction.length; axis=direction.normalized()
         a=(length1**2-length2**2+distance**2)/(2*distance)
         bend=Vector((0,-1,0)); bend=(bend-axis*bend.dot(axis)).normalized()
@@ -404,9 +407,11 @@ def apply_walk(arm,phase):
         foot=arm.pose.bones['foot.'+side]
         q=Quaternion((1,0,0),pitch) @ foot.bone.matrix_local.to_quaternion()
         foot.matrix=Matrix.Translation(ankle) @ q.to_matrix().to_4x4()
-        swing=math.sin(phase*2*math.pi+(0 if side=='L' else math.pi))
-        arm.pose.bones['upper_arm.'+side].rotation_euler=(-.14*swing,0,.018*sign)
-        arm.pose.bones['forearm.'+side].rotation_euler=(-.13-.035*swing,0,0)
+        # Opposite arm is forward at heel strike, not at the passing pose.
+        swing=math.cos(phase*2*math.pi+(0 if side=='L' else math.pi))
+        arm.pose.bones['upper_arm.'+side].rotation_euler=(.24*swing,0,.018*sign)
+        arm.pose.bones['forearm.'+side].rotation_euler=(-.16+.06*swing,0,0)
+        arm.pose.bones['hand.'+side].rotation_euler.x=-.018*math.sin(phase*2*math.pi+(0 if side=='L' else math.pi))
     arm.pose.bones['spine'].rotation_euler=(-.025,0,.014*math.sin(phase*2*math.pi))
     arm.pose.bones['head'].rotation_euler=(.015,0,-.008*math.sin(phase*2*math.pi))
 
