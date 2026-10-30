@@ -26,6 +26,10 @@ for(const spec of [playerSpec('taylor'),playerSpec('arjan'),...memberData])for(c
  for(const p of poses){const shaft=Vec3.sub(p.racketCenter,p.racketGrip),frame=compose(new Vec3(),p.racketRot);assert(Math.abs(shaft.len()-Math.hypot(.525,.125))<1e-6,'Racket rotation preserves shaft length');assert(Vec3.dot(shaft.normalize(),new Vec3(frame[4],frame[5],frame[6]))>.999999,'Rendered shaft follows the measured racket axis');}
  const dropFrame=compose(new Vec3(),drop.racketRot),hitFrame=compose(new Vec3(),hit.racketRot);assert(Math.abs(Vec3.dot(new Vec3(dropFrame[8],dropFrame[9],dropFrame[10]),new Vec3(hitFrame[8],hitFrame[9],hitFrame[10])))<.3,'Racket face rotates out of the edge-on preparation');
  assert(Vec3.sub(release.racketCenter,release.racketGrip).y<-.30,'Racket turns down through the follow-through');assert(Vec3.sub(finish.racketCenter,finish.racketGrip).y>.50,'Recovery returns the racket toward receiving orientation');
+ const shoulderTilt=p=>{const d=Vec3.sub(p.shoulderR,p.shoulderL);return Math.atan2(d.y,Math.hypot(d.x,d.z));};
+ assert(shoulderTilt(load)<-.12&&shoulderTilt(hit)>.08,'Serve transfers from the elevated tossing shoulder to the elevated hitting shoulder');
+ const right=new Vec3(forward.z,0,-forward.x);assert(Vec3.dot(Vec3.sub(load.head,load.pelvisCenter),right)>Vec3.dot(Vec3.sub(hit.head,hit.pelvisCenter),right)+.10,'Upper trunk carries the shoulder transfer instead of only moving the collar');
+ assert(hit.handL.y<hit.shoulderL.y-.15,'The tossing arm tucks before impact instead of remaining overhead');
  const error=Vec3.sub(hit.racketCenter,c.debugKinematics().contactTarget).len();maxContactError=Math.max(maxContactError,error);assert(error<1e-6);
  const transfer=Vec3.dot(Vec3.sub(hit.pelvisCenter,load.pelvisCenter),forward),recovery=Vec3.dot(Vec3.sub(finish.footR,hit.footR),forward);minTransfer=Math.min(minTransfer,transfer);minRecovery=Math.min(minRecovery,recovery);assert(transfer>.16,'Hips drive toward contact before impact');assert(recovery>.20,'Trailing leg steps forward into recovery');
  assert(hit.pelvisCenter.y>load.pelvisCenter.y+.10,'Legs extend into impact instead of afterward');

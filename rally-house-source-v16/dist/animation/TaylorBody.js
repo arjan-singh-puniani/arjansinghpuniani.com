@@ -149,6 +149,15 @@ export function adultTaylorPose(source, root, yaw, constraints) {
         p.handL = Vec3.lerp(Vec3.lerp(p.shoulderL.clone().add(offsetL), source.handL, constraints.leftWorld), p.handL, groundstroke * (constraints.backhandWeight ?? 0));
         p.handR = Vec3.lerp(Vec3.lerp(p.shoulderR.clone().add(offsetR), source.handR, constraints.rightWorld), p.handR, groundstroke);
     }
+    // Carry the loading hand with the torso so the head cannot move into the fixed racket path.
+    if (constraints.human && constraints.serve?.roll) {
+        const angle = constraints.serve.roll, c = Math.cos(angle), s = Math.sin(angle), right = new Vec3(Math.cos(yaw), 0, -Math.sin(yaw));
+        for (const key of ['torsoCenter', 'shoulderL', 'shoulderR', 'head', 'handL', 'handR']) {
+            const v = p[key], d = Vec3.sub(v, p.pelvisCenter), x = Vec3.dot(d, right), weight = key === 'handL' ? 1 - constraints.leftWorld : key === 'handR' ? constraints.serve.load : 1;
+            v.add(right.clone().scale((x * (c - 1) - d.y * s) * weight));
+            v.y += (x * s + d.y * (c - 1)) * weight;
+        }
+    }
     const affection = constraints.affection;
     if (affection && affection.weight > 0) {
         const w = affection.weight, toward = Vec3.sub(affection.target, root);

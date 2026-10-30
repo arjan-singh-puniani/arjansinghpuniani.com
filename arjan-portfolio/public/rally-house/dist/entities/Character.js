@@ -330,6 +330,11 @@ export class Character {
             return this.serveTossPoint();
         return serveToss(this.serveReleasePoint, contact, (this.animTime / this.shotContactTime('serve') - .45) / .55);
     }
+    serveTorso(time) {
+        const contact = this.shotContactTime('serve'), pre = clamp(time / contact, 0, 1), post = clamp((time - contact) / (this.shotDuration('serve') - contact), 0, 1);
+        // shortcut: authored arcade shoulder transfer; calibrate against the serve reference.
+        return { roll: -.32 * smoothstep(.12, .55, pre) * (1 - smoothstep(.70, 1, pre)) + .20 * smoothstep(.70, 1, pre) * (1 - smoothstep(0, .85, post)), load: 1 - smoothstep(.70, 1, pre) };
+    }
     strokeStyle() {
         if (this.spec.id === 'coach')
             return { timing: 1.08, tempo: .92, coil: .88, follow: .92, reach: .96 };
@@ -808,8 +813,12 @@ export class Character {
         if (state === 'serve') {
             const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1), toss = smoothstep(0, .70, pre) * (1 - smoothstep(.78, 1.55, sp / contact)), reach = smoothstep(.35, 1, pre), finish = smoothstep(0, .80, post);
             handL = this.worldLocal(-.26 - .20 * Math.sin(post * Math.PI) + finish * .10, 1.25 + baseY + toss * .92 - finish * .10, .23 + finish * .08);
-            if (this.spec.appearance === 'human')
+            if (this.spec.appearance === 'human') {
+                // Late lowering held the adult arm at full reach, then collapsed it in one frame.
+                const tuck = smoothstep(.55, 1, pre);
+                handL = Vec3.lerp(handL, this.worldLocal(-.16, .98 + baseY, .30), tuck).add(this.localVector(0, 0, .20 * Math.sin(Math.PI * tuck)));
                 handL = Vec3.lerp(handL, neutralL, finish);
+            }
             handR = this.worldLocal(.31 + .28 * Math.sin(finish * Math.PI) - smoothstep(.55, 1, finish) * .62, 1.20 + baseY + reach * 1.02 - finish * 1.18, -.12 + reach * .14 + finish * .46, torsoYaw);
         }
         if (state === 'volley') {
@@ -1167,8 +1176,10 @@ export class Character {
             if (this.spec.appearance === 'human' && this.canRelaxClubIdle()) {
                 result.face = { ...result.face, smile: Math.max(this.spec.avatar === 'taylor' ? .55 : this.spec.presentation === 'masculine' ? .18 : .32, result.face.smile), squint: Math.max(.08, result.face.squint) };
             }
+            const serveNow = this.state === 'serve' ? this.serveTorso(this.animTime) : undefined, serveBefore = this.previousState === 'serve' ? this.serveTorso(this.previousAnimTime + this.transitionAge * .25) : undefined;
+            const serve = serveWeight ? { roll: (serveNow?.roll ?? 0) * t + (serveBefore?.roll ?? 0) * (1 - t), load: (serveNow?.load ?? 0) * t + (serveBefore?.load ?? 0) * (1 - t) } : undefined;
             const design = CAST_DESIGN[this.spec.avatar ?? this.spec.id] ?? CAST_DESIGN.taylor;
-            return adultTaylorPose(result, this.position, this.yaw, { armLengths: this.spec.presentation === 'feminine' && this.spec.appearance === 'human' ? authoredArmLengths() : undefined, sitting: this.state === 'sit', seatWeight: this.state === 'sit' ? t : this.previousState === 'sit' ? 1 - t : 0, folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', shoulderScale: design.shoulderScale, restWeight: this.clubIdleRelax, strokeWeight: (isShot(this.state) ? t : 0) + (isShot(this.previousState) ? 1 - t : 0), groundstrokeWeight: (this.state === 'swingForehand' || this.state === 'swingBackhand' ? t : 0) + (this.previousState === 'swingForehand' || this.previousState === 'swingBackhand' ? 1 - t : 0), backhandWeight: (this.state === 'swingBackhand' ? t : 0) + (this.previousState === 'swingBackhand' ? 1 - t : 0), readyWeight: (this.state === 'ready' || this.state === 'shuffle' ? t : 0) + (this.previousState === 'ready' || this.previousState === 'shuffle' ? 1 - t : 0), affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: [!!this.leftFootLock, !!this.rightFootLock], swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
+            return adultTaylorPose(result, this.position, this.yaw, { armLengths: this.spec.presentation === 'feminine' && this.spec.appearance === 'human' ? authoredArmLengths() : undefined, sitting: this.state === 'sit', seatWeight: this.state === 'sit' ? t : this.previousState === 'sit' ? 1 - t : 0, folded: this.canFoldReferenceIdle(), rightWorld: right, leftWorld: left, human: this.spec.appearance === 'human', serve, shoulderScale: design.shoulderScale, restWeight: this.clubIdleRelax, strokeWeight: (isShot(this.state) ? t : 0) + (isShot(this.previousState) ? 1 - t : 0), groundstrokeWeight: (this.state === 'swingForehand' || this.state === 'swingBackhand' ? t : 0) + (this.previousState === 'swingForehand' || this.previousState === 'swingBackhand' ? 1 - t : 0), backhandWeight: (this.state === 'swingBackhand' ? t : 0) + (this.previousState === 'swingBackhand' ? 1 - t : 0), readyWeight: (this.state === 'ready' || this.state === 'shuffle' ? t : 0) + (this.previousState === 'ready' || this.previousState === 'shuffle' ? 1 - t : 0), affection: this.affection ?? undefined, walk: result.walking && this.spec.appearance === 'human' && !this.propKind && this.interactionWeight < .001 && this.socialGesture === 'none' ? { phase: this.gaitPhase, weight: clamp(this.horizontalSpeed / 1.2, 0, 1), stance: this.walkingShape().stance, planted: [!!this.leftFootLock, !!this.rightFootLock], swing: locomotionStyleFor(this.spec.id).armSwing * .75 } : undefined, posture });
         }
         return result;
     }

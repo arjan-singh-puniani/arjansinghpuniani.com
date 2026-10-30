@@ -3,7 +3,7 @@ import {secondRacketHand} from './RacketGeometry.js';
 import type {CharacterPose} from '../entities/Character.js';
 
 export const TAYLOR_BODY={pelvisHeight:1.245,strokePelvisFloor:.86,torsoScale:1.20,headScale:.62,upperArm:.425,forearm:.415,thigh:.56,shin:.55} as const;
-interface Constraints {armLengths?:{upperArm:number;forearm:number;wristForearm?:number;wristOffsets?:{L:Vec3;R:Vec3}};sitting:boolean;seatWeight?:number;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;affection?:{kind:'hug'|'kiss';target:Vec3;weight:number;upper:boolean};shoulderScale?:number;restWeight?:number;readyWeight?:number;backhandWeight?:number;strokeWeight?:number;groundstrokeWeight?:number;walk?:{phase:number;weight:number;swing:number;stance:number;planted?:[boolean,boolean]};posture?:{weight:number;right:Vec3;left?:Vec3};}
+interface Constraints {armLengths?:{upperArm:number;forearm:number;wristForearm?:number;wristOffsets?:{L:Vec3;R:Vec3}};sitting:boolean;seatWeight?:number;folded:boolean;rightWorld:number;leftWorld:number;human?:boolean;serve?:{roll:number;load:number};affection?:{kind:'hug'|'kiss';target:Vec3;weight:number;upper:boolean};shoulderScale?:number;restWeight?:number;readyWeight?:number;backhandWeight?:number;strokeWeight?:number;groundstrokeWeight?:number;walk?:{phase:number;weight:number;swing:number;stance:number;planted?:[boolean,boolean]};posture?:{weight:number;right:Vec3;left?:Vec3};}
 const smooth=(t:number)=>{const u=clamp(t,0,1);return u*u*(3-2*u);};
 function joint(a:Vec3,b:Vec3,first:number,second:number,pole:Vec3,fallback:Vec3){
  const delta=Vec3.sub(b,a),d=Math.max(.0001,delta.len()),axis=delta.scale(1/d),stretch=Math.max(1,d/(first+second-.001));
@@ -93,6 +93,12 @@ export function adultTaylorPose(source:CharacterPose,root:Vec3,yaw:number,constr
   for(const key of ['shoulderL','shoulderR','head'] as const)p[key].add(lean.clone().scale(weight));p.torsoCenter.add(lean.clone().scale(weight*.6));
   p.handL=Vec3.lerp(Vec3.lerp(p.shoulderL.clone().add(offsetL),source.handL,constraints.leftWorld),p.handL,groundstroke*(constraints.backhandWeight??0));p.handR=Vec3.lerp(Vec3.lerp(p.shoulderR.clone().add(offsetR),source.handR,constraints.rightWorld),p.handR,groundstroke);
  }
+ // Carry the loading hand with the torso so the head cannot move into the fixed racket path.
+ if(constraints.human&&constraints.serve?.roll){
+  const angle=constraints.serve.roll,c=Math.cos(angle),s=Math.sin(angle),right=new Vec3(Math.cos(yaw),0,-Math.sin(yaw));
+  for(const key of ['torsoCenter','shoulderL','shoulderR','head','handL','handR'] as const){const v=p[key],d=Vec3.sub(v,p.pelvisCenter),x=Vec3.dot(d,right),weight=key==='handL'?1-constraints.leftWorld:key==='handR'?constraints.serve.load:1;v.add(right.clone().scale((x*(c-1)-d.y*s)*weight));v.y+=(x*s+d.y*(c-1))*weight;}
+ }
+
  const affection=constraints.affection;
  if(affection&&affection.weight>0){
   const w=affection.weight,toward=Vec3.sub(affection.target,root);toward.y=0;toward.normalize();
