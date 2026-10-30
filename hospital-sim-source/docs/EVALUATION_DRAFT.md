@@ -1,0 +1,13 @@
+# Proposed evaluation protocol — no participants recruited
+
+Focused objective: can an adult learner identify a service-capacity constraint and explain why adding unrelated capacity does not resolve it?
+
+First obtain dated model-assumption feedback from2–3 willing frontline clinicians or educators. Obtain permission before attribution; record the actual comments and resulting revisions. No such review has occurred.
+
+Then propose5–8 formative usability sessions with consenting adults, subject to the institution's appropriate oversight process. Record task completion, time to first successful build, misunderstood controls, bottleneck explanations and qualitative observations. Collect only data needed for the stated purpose; do not record identifiers/health information by default. Define purpose, consent, access, retention and deletion before enabling any feedback collection. This build has no collection endpoint or analytics.
+
+Draft pre-item: in a fictional layout, consultation takes20s with one server, imaging takes8s with two servers, arrivals occur every12s. Ask which service first accumulates a queue and what observation would test the answer. Draft post-item uses different labels/rates/order. A transfer task presents a new layout with longer walking links and asks the learner to distinguish travel from service waiting, choose one capacity change and explain an expected tradeoff. Do not use tutorial recall alone. A qualified educator must review the items before use; this review is pending.
+
+Revise controls/model/assessment after formative observations. A small usability pilot can find defects; it cannot demonstrate broad educational efficacy. For a systematic research or publication plan, obtain an institutional research-oversight determination before recruitment/data collection. Do not self-declare exemption. Determine sample size with a qualified mentor from the question and desired precision. Consider randomized allocation or suitable controls, attrition/missingness, transfer/retention, and effect sizes with uncertainty. Uncontrolled self-selected pre/post scores do not establish causal benefit.
+
+An eventual case study should document: identified need [pending evidence]; owner's specific explainable contributions [owner to verify]; actual collaborators [none claimed]; AI assistance [substantial, including implementation/modeling/testing]; sample/method [not conducted]; feedback-driven changes [pending external feedback]; findings/limitations [no learning findings]. The AAMC competency framework can organize reflection, not guarantee admissions outcomes. Building, usability testing, educational evaluation, research, clinical experience and community service must be labeled separately.

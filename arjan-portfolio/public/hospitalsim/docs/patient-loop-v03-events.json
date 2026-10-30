@@ -1,0 +1,88 @@
+{
+  "model": "0.3.0-neighborhood",
+  "seed": 431,
+  "tracked": 1001,
+  "events": [
+    "00:01 Waiting for a neighbor with the optional imaging pathway",
+    "00:18 Walking · Consultation",
+    "00:21 Receiving service · Consultation",
+    "00:34 Communicating next step · Imaging",
+    "00:39 Waiting · Imaging",
+    "00:40 Walking · Imaging",
+    "00:47 Getting onto equipment · Imaging",
+    "00:50 Receiving service · Imaging",
+    "01:08 Getting off equipment · Imaging",
+    "01:11 Communicating next step · Procedure & care",
+    "01:15 Waiting · Procedure & care",
+    "01:16 Walking · Procedure & care",
+    "01:21 Getting onto equipment · Procedure & care",
+    "01:24 Receiving service · Procedure & care",
+    "01:39 Getting off equipment · Procedure & care",
+    "01:42 Heading home · exit",
+    "01:49 Completed · discharged"
+  ],
+  "visit": {
+    "id": 1001,
+    "name": "Eli",
+    "x": 4,
+    "y": 7,
+    "stage": "care",
+    "target": null,
+    "room": null,
+    "urgent": false,
+    "barrier": false,
+    "imaging": true,
+    "returning": false,
+    "goal": "Have time to ask a question",
+    "wait": 4,
+    "walking": 22,
+    "service": 46,
+    "handoff": 9,
+    "transfer": 12,
+    "arrival": 18,
+    "progress": 0,
+    "navDelay": 0,
+    "history": [
+      {
+        "stage": "consult",
+        "at": 21,
+        "room": 1,
+        "duration": 12.587499999999999
+      },
+      {
+        "stage": "scan",
+        "at": 50,
+        "room": 2,
+        "duration": 17.043714285714287
+      },
+      {
+        "stage": "care",
+        "at": 84,
+        "room": 3,
+        "duration": 14.276280323450136
+      }
+    ],
+    "outside": false,
+    "stalled": 0,
+    "moved": false,
+    "motion": null,
+    "destination": {
+      "x": 4,
+      "y": 7
+    },
+    "previous": {
+      "x": 4,
+      "y": 6.5
+    },
+    "duration": 14.276280323450136,
+    "handoffReady": false,
+    "outcome": "completed",
+    "total": 91
+  },
+  "counts": {
+    "arrivals": 14,
+    "completed": 4,
+    "departed": 0,
+    "unfinished": 10
+  }
+}

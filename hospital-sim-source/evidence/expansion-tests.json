@@ -1,0 +1,1263 @@
+{
+  "pair": {
+    "model": "0.4.0-hospitalsim",
+    "seed": 431,
+    "checkpoint": 0,
+    "changed": [
+      "rooms",
+      "cash"
+    ],
+    "runs": [
+      {
+        "future": "Recorded exact arrival schedule",
+        "tape": "9de4994d",
+        "baseline": {
+          "arrivals": 27,
+          "completed": 10,
+          "departed": 9,
+          "unfinished": 8,
+          "wait": {
+            "n": 27,
+            "mean": 121.88888888888889,
+            "median": 144,
+            "p90": 172
+          },
+          "budget": 9660,
+          "energy": 92.85333333333331,
+          "experience": 47.500000000000014,
+          "access": [
+            {
+              "barrier": true,
+              "arrivals": 3,
+              "completed": {
+                "n": 0,
+                "mean": null,
+                "median": null,
+                "p90": null
+              }
+            },
+            {
+              "barrier": false,
+              "arrivals": 24,
+              "completed": {
+                "n": 10,
+                "mean": 88.6,
+                "median": 72.5,
+                "p90": 161
+              }
+            }
+          ]
+        },
+        "plan": {
+          "arrivals": 27,
+          "completed": 12,
+          "departed": 8,
+          "unfinished": 7,
+          "wait": {
+            "n": 27,
+            "mean": 93.92592592592592,
+            "median": 74,
+            "p90": 172
+          },
+          "budget": 8666,
+          "energy": 90.44166666666665,
+          "experience": 59.300000000000026,
+          "access": [
+            {
+              "barrier": true,
+              "arrivals": 3,
+              "completed": {
+                "n": 2,
+                "mean": 85.5,
+                "median": 85.5,
+                "p90": 105
+              }
+            },
+            {
+              "barrier": false,
+              "arrivals": 24,
+              "completed": {
+                "n": 10,
+                "mean": 44.5,
+                "median": 51,
+                "p90": 78
+              }
+            }
+          ]
+        }
+      },
+      {
+        "future": "Sensitivity future 1",
+        "tape": "697928bd",
+        "baseline": {
+          "arrivals": 27,
+          "completed": 12,
+          "departed": 4,
+          "unfinished": 11,
+          "wait": {
+            "n": 27,
+            "mean": 103.18518518518519,
+            "median": 125,
+            "p90": 172
+          },
+          "budget": 10440,
+          "energy": 87.68166666666664,
+          "experience": 68.60000000000002,
+          "access": [
+            {
+              "barrier": true,
+              "arrivals": 7,
+              "completed": {
+                "n": 3,
+                "mean": 23.333333333333332,
+                "median": 20,
+                "p90": 33
+              }
+            },
+            {
+              "barrier": false,
+              "arrivals": 20,
+              "completed": {
+                "n": 9,
+                "mean": 75.55555555555556,
+                "median": 68,
+                "p90": 152
+              }
+            }
+          ]
+        },
+        "plan": {
+          "arrivals": 27,
+          "completed": 13,
+          "departed": 3,
+          "unfinished": 11,
+          "wait": {
+            "n": 27,
+            "mean": 97,
+            "median": 103,
+            "p90": 171
+          },
+          "budget": 9056,
+          "energy": 88.65166666666664,
+          "experience": 72.40000000000002,
+          "access": [
+            {
+              "barrier": true,
+              "arrivals": 7,
+              "completed": {
+                "n": 3,
+                "mean": 49,
+                "median": 28,
+                "p90": 103
+              }
+            },
+            {
+              "barrier": false,
+              "arrivals": 20,
+              "completed": {
+                "n": 10,
+                "mean": 77.4,
+                "median": 72.5,
+                "p90": 139
+              }
+            }
+          ]
+        }
+      },
+      {
+        "future": "Sensitivity future 2",
+        "tape": "f069168c",
+        "baseline": {
+          "arrivals": 27,
+          "completed": 11,
+          "departed": 6,
+          "unfinished": 10,
+          "wait": {
+            "n": 27,
+            "mean": 112.18518518518519,
+            "median": 134,
+            "p90": 172
+          },
+          "budget": 10440,
+          "energy": 89.40333333333331,
+          "experience": 61.90000000000002,
+          "access": [
+            {
+              "barrier": true,
+              "arrivals": 7,
+              "completed": {
+                "n": 3,
+                "mean": 89,
+                "median": 74,
+                "p90": 134
+              }
+            },
+            {
+              "barrier": false,
+              "arrivals": 20,
+              "completed": {
+                "n": 8,
+                "mean": 63.875,
+                "median": 37,
+                "p90": 141
+              }
+            }
+          ]
+        },
+        "plan": {
+          "arrivals": 27,
+          "completed": 13,
+          "departed": 5,
+          "unfinished": 9,
+          "wait": {
+            "n": 27,
+            "mean": 100.77777777777777,
+            "median": 107,
+            "p90": 172
+          },
+          "budget": 9056,
+          "energy": 89.35166666666665,
+          "experience": 61.70000000000002,
+          "access": [
+            {
+              "barrier": true,
+              "arrivals": 7,
+              "completed": {
+                "n": 3,
+                "mean": 116.33333333333333,
+                "median": 115,
+                "p90": 127
+              }
+            },
+            {
+              "barrier": false,
+              "arrivals": 20,
+              "completed": {
+                "n": 10,
+                "mean": 72.8,
+                "median": 65,
+                "p90": 151
+              }
+            }
+          ]
+        }
+      },
+      {
+        "future": "Sensitivity future 3",
+        "tape": "f8b3ca47",
+        "baseline": {
+          "arrivals": 27,
+          "completed": 12,
+          "departed": 7,
+          "unfinished": 8,
+          "wait": {
+            "n": 27,
+            "mean": 107.85185185185185,
+            "median": 108,
+            "p90": 172
+          },
+          "budget": 10440,
+          "energy": 90.6133333333333,
+          "experience": 57.90000000000002,
+          "access": [
+            {
+              "barrier": true,
+              "arrivals": 7,
+              "completed": {
+                "n": 3,
+                "mean": 55,
+                "median": 52,
+                "p90": 92
+              }
+            },
+            {
+              "barrier": false,
+              "arrivals": 20,
+              "completed": {
+                "n": 9,
+                "mean": 79.77777777777777,
+                "median": 62,
+                "p90": 160
+              }
+            }
+          ]
+        },
+        "plan": {
+          "arrivals": 27,
+          "completed": 13,
+          "departed": 4,
+          "unfinished": 10,
+          "wait": {
+            "n": 27,
+            "mean": 90.25925925925925,
+            "median": 82,
+            "p90": 172
+          },
+          "budget": 9056,
+          "energy": 89.01499999999999,
+          "experience": 73.80000000000003,
+          "access": [
+            {
+              "barrier": true,
+              "arrivals": 7,
+              "completed": {
+                "n": 3,
+                "mean": 35.666666666666664,
+                "median": 38,
+                "p90": 57
+              }
+            },
+            {
+              "barrier": false,
+              "arrivals": 20,
+              "completed": {
+                "n": 10,
+                "mean": 67.5,
+                "median": 53.5,
+                "p90": 137
+              }
+            }
+          ]
+        }
+      },
+      {
+        "future": "Sensitivity future 4",
+        "tape": "fc074619",
+        "baseline": {
+          "arrivals": 27,
+          "completed": 11,
+          "departed": 5,
+          "unfinished": 11,
+          "wait": {
+            "n": 27,
+            "mean": 117.70370370370371,
+            "median": 143,
+            "p90": 172
+          },
+          "budget": 10050,
+          "energy": 91.00499999999997,
+          "experience": 62.000000000000014,
+          "access": [
+            {
+              "barrier": true,
+              "arrivals": 7,
+              "completed": {
+                "n": 4,
+                "mean": 55.5,
+                "median": 56.5,
+                "p90": 92
+              }
+            },
+            {
+              "barrier": false,
+              "arrivals": 20,
+              "completed": {
+                "n": 7,
+                "mean": 100.71428571428571,
+                "median": 117,
+                "p90": 167
+              }
+            }
+          ]
+        },
+        "plan": {
+          "arrivals": 27,
+          "completed": 13,
+          "departed": 5,
+          "unfinished": 9,
+          "wait": {
+            "n": 27,
+            "mean": 91.29629629629629,
+            "median": 92,
+            "p90": 172
+          },
+          "budget": 9056,
+          "energy": 90.42166666666664,
+          "experience": 64.40000000000002,
+          "access": [
+            {
+              "barrier": true,
+              "arrivals": 7,
+              "completed": {
+                "n": 4,
+                "mean": 33,
+                "median": 28.5,
+                "p90": 59
+              }
+            },
+            {
+              "barrier": false,
+              "arrivals": 20,
+              "completed": {
+                "n": 9,
+                "mean": 76.11111111111111,
+                "median": 91,
+                "p90": 124
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "sensitivity": {
+      "n": 5,
+      "completedDelta": [
+        1,
+        2
+      ]
+    },
+    "limits": "One exact replay plus four paired fictional future variants. This range is sensitivity, not a confidence interval or evidence about real hospitals. Recorded arrivals match within every pair; model parameters are held fixed."
+  },
+  "balances": [
+    {
+      "scenario": "neighborhood",
+      "seed": 431,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 10,
+        "departed": 9,
+        "unfinished": 8
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 12,
+        "departed": 8,
+        "unfinished": 7
+      },
+      "maxStall": 4
+    },
+    {
+      "scenario": "neighborhood",
+      "seed": 432,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 12,
+        "departed": 4,
+        "unfinished": 11
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 13,
+        "departed": 3,
+        "unfinished": 11
+      },
+      "maxStall": 4
+    },
+    {
+      "scenario": "neighborhood",
+      "seed": 433,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 11,
+        "departed": 6,
+        "unfinished": 10
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 13,
+        "departed": 5,
+        "unfinished": 9
+      },
+      "maxStall": 2
+    },
+    {
+      "scenario": "neighborhood",
+      "seed": 434,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 12,
+        "departed": 7,
+        "unfinished": 8
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 13,
+        "departed": 4,
+        "unfinished": 10
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "neighborhood",
+      "seed": 435,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 11,
+        "departed": 5,
+        "unfinished": 11
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 13,
+        "departed": 5,
+        "unfinished": 9
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "neighborhood",
+      "seed": 436,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 11,
+        "departed": 8,
+        "unfinished": 8
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 12,
+        "departed": 7,
+        "unfinished": 8
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "neighborhood",
+      "seed": 437,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 11,
+        "departed": 8,
+        "unfinished": 8
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 13,
+        "departed": 5,
+        "unfinished": 9
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "neighborhood",
+      "seed": 438,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 11,
+        "departed": 7,
+        "unfinished": 9
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 12,
+        "departed": 6,
+        "unfinished": 9
+      },
+      "maxStall": 4
+    },
+    {
+      "scenario": "neighborhood",
+      "seed": 439,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 11,
+        "departed": 6,
+        "unfinished": 10
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 13,
+        "departed": 6,
+        "unfinished": 8
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "neighborhood",
+      "seed": 440,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 11,
+        "departed": 7,
+        "unfinished": 9
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 12,
+        "departed": 6,
+        "unfinished": 9
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "surge",
+      "seed": 431,
+      "baseline": {
+        "arrivals": 36,
+        "completed": 10,
+        "departed": 14,
+        "unfinished": 12
+      },
+      "plan": {
+        "arrivals": 36,
+        "completed": 12,
+        "departed": 10,
+        "unfinished": 14
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "surge",
+      "seed": 432,
+      "baseline": {
+        "arrivals": 36,
+        "completed": 11,
+        "departed": 13,
+        "unfinished": 12
+      },
+      "plan": {
+        "arrivals": 36,
+        "completed": 13,
+        "departed": 12,
+        "unfinished": 11
+      },
+      "maxStall": 4
+    },
+    {
+      "scenario": "surge",
+      "seed": 433,
+      "baseline": {
+        "arrivals": 36,
+        "completed": 11,
+        "departed": 14,
+        "unfinished": 11
+      },
+      "plan": {
+        "arrivals": 36,
+        "completed": 13,
+        "departed": 12,
+        "unfinished": 11
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "surge",
+      "seed": 434,
+      "baseline": {
+        "arrivals": 36,
+        "completed": 10,
+        "departed": 14,
+        "unfinished": 12
+      },
+      "plan": {
+        "arrivals": 36,
+        "completed": 13,
+        "departed": 9,
+        "unfinished": 14
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "surge",
+      "seed": 435,
+      "baseline": {
+        "arrivals": 36,
+        "completed": 10,
+        "departed": 15,
+        "unfinished": 11
+      },
+      "plan": {
+        "arrivals": 36,
+        "completed": 13,
+        "departed": 10,
+        "unfinished": 13
+      },
+      "maxStall": 4
+    },
+    {
+      "scenario": "surge",
+      "seed": 436,
+      "baseline": {
+        "arrivals": 36,
+        "completed": 10,
+        "departed": 15,
+        "unfinished": 11
+      },
+      "plan": {
+        "arrivals": 36,
+        "completed": 12,
+        "departed": 11,
+        "unfinished": 13
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "surge",
+      "seed": 437,
+      "baseline": {
+        "arrivals": 36,
+        "completed": 10,
+        "departed": 14,
+        "unfinished": 12
+      },
+      "plan": {
+        "arrivals": 36,
+        "completed": 12,
+        "departed": 12,
+        "unfinished": 12
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "surge",
+      "seed": 438,
+      "baseline": {
+        "arrivals": 36,
+        "completed": 9,
+        "departed": 16,
+        "unfinished": 11
+      },
+      "plan": {
+        "arrivals": 36,
+        "completed": 12,
+        "departed": 12,
+        "unfinished": 12
+      },
+      "maxStall": 4
+    },
+    {
+      "scenario": "surge",
+      "seed": 439,
+      "baseline": {
+        "arrivals": 36,
+        "completed": 10,
+        "departed": 14,
+        "unfinished": 12
+      },
+      "plan": {
+        "arrivals": 36,
+        "completed": 13,
+        "departed": 11,
+        "unfinished": 12
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "surge",
+      "seed": 440,
+      "baseline": {
+        "arrivals": 36,
+        "completed": 10,
+        "departed": 16,
+        "unfinished": 10
+      },
+      "plan": {
+        "arrivals": 36,
+        "completed": 12,
+        "departed": 12,
+        "unfinished": 12
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "staffing",
+      "seed": 431,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 7,
+        "departed": 12,
+        "unfinished": 8
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 10,
+        "unfinished": 9
+      },
+      "maxStall": 2
+    },
+    {
+      "scenario": "staffing",
+      "seed": 432,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 9,
+        "unfinished": 10
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 9,
+        "departed": 8,
+        "unfinished": 10
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "staffing",
+      "seed": 433,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 11,
+        "unfinished": 8
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 10,
+        "unfinished": 9
+      },
+      "maxStall": 4
+    },
+    {
+      "scenario": "staffing",
+      "seed": 434,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 11,
+        "unfinished": 8
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 9,
+        "departed": 10,
+        "unfinished": 8
+      },
+      "maxStall": 2
+    },
+    {
+      "scenario": "staffing",
+      "seed": 435,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 7,
+        "departed": 11,
+        "unfinished": 9
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 9,
+        "unfinished": 10
+      },
+      "maxStall": 2
+    },
+    {
+      "scenario": "staffing",
+      "seed": 436,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 7,
+        "departed": 12,
+        "unfinished": 8
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 9,
+        "unfinished": 10
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "staffing",
+      "seed": 437,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 13,
+        "unfinished": 6
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 10,
+        "unfinished": 9
+      },
+      "maxStall": 4
+    },
+    {
+      "scenario": "staffing",
+      "seed": 438,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 7,
+        "departed": 13,
+        "unfinished": 7
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 10,
+        "unfinished": 9
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "staffing",
+      "seed": 439,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 11,
+        "unfinished": 8
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 11,
+        "unfinished": 8
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "staffing",
+      "seed": 440,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 7,
+        "departed": 11,
+        "unfinished": 9
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 7,
+        "departed": 11,
+        "unfinished": 9
+      },
+      "maxStall": 4
+    },
+    {
+      "scenario": "access",
+      "seed": 431,
+      "baseline": {
+        "arrivals": 29,
+        "completed": 10,
+        "departed": 9,
+        "unfinished": 10
+      },
+      "plan": {
+        "arrivals": 29,
+        "completed": 12,
+        "departed": 8,
+        "unfinished": 9
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "access",
+      "seed": 432,
+      "baseline": {
+        "arrivals": 29,
+        "completed": 12,
+        "departed": 9,
+        "unfinished": 8
+      },
+      "plan": {
+        "arrivals": 29,
+        "completed": 13,
+        "departed": 5,
+        "unfinished": 11
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "access",
+      "seed": 433,
+      "baseline": {
+        "arrivals": 29,
+        "completed": 11,
+        "departed": 8,
+        "unfinished": 10
+      },
+      "plan": {
+        "arrivals": 29,
+        "completed": 12,
+        "departed": 6,
+        "unfinished": 11
+      },
+      "maxStall": 4
+    },
+    {
+      "scenario": "access",
+      "seed": 434,
+      "baseline": {
+        "arrivals": 29,
+        "completed": 11,
+        "departed": 9,
+        "unfinished": 9
+      },
+      "plan": {
+        "arrivals": 29,
+        "completed": 13,
+        "departed": 8,
+        "unfinished": 8
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "access",
+      "seed": 435,
+      "baseline": {
+        "arrivals": 29,
+        "completed": 11,
+        "departed": 10,
+        "unfinished": 8
+      },
+      "plan": {
+        "arrivals": 29,
+        "completed": 12,
+        "departed": 6,
+        "unfinished": 11
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "access",
+      "seed": 436,
+      "baseline": {
+        "arrivals": 29,
+        "completed": 10,
+        "departed": 9,
+        "unfinished": 10
+      },
+      "plan": {
+        "arrivals": 29,
+        "completed": 12,
+        "departed": 7,
+        "unfinished": 10
+      },
+      "maxStall": 4
+    },
+    {
+      "scenario": "access",
+      "seed": 437,
+      "baseline": {
+        "arrivals": 29,
+        "completed": 11,
+        "departed": 10,
+        "unfinished": 8
+      },
+      "plan": {
+        "arrivals": 29,
+        "completed": 12,
+        "departed": 8,
+        "unfinished": 9
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "access",
+      "seed": 438,
+      "baseline": {
+        "arrivals": 29,
+        "completed": 10,
+        "departed": 9,
+        "unfinished": 10
+      },
+      "plan": {
+        "arrivals": 29,
+        "completed": 12,
+        "departed": 6,
+        "unfinished": 11
+      },
+      "maxStall": 4
+    },
+    {
+      "scenario": "access",
+      "seed": 439,
+      "baseline": {
+        "arrivals": 29,
+        "completed": 11,
+        "departed": 9,
+        "unfinished": 9
+      },
+      "plan": {
+        "arrivals": 29,
+        "completed": 13,
+        "departed": 7,
+        "unfinished": 9
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "access",
+      "seed": 440,
+      "baseline": {
+        "arrivals": 29,
+        "completed": 10,
+        "departed": 9,
+        "unfinished": 10
+      },
+      "plan": {
+        "arrivals": 29,
+        "completed": 11,
+        "departed": 8,
+        "unfinished": 10
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "community",
+      "seed": 431,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 9,
+        "departed": 9,
+        "unfinished": 9
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 9,
+        "departed": 7,
+        "unfinished": 11
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "community",
+      "seed": 432,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 8,
+        "unfinished": 11
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 10,
+        "departed": 7,
+        "unfinished": 10
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "community",
+      "seed": 433,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 6,
+        "departed": 12,
+        "unfinished": 9
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 9,
+        "departed": 8,
+        "unfinished": 10
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "community",
+      "seed": 434,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 6,
+        "departed": 13,
+        "unfinished": 8
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 6,
+        "departed": 12,
+        "unfinished": 9
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "community",
+      "seed": 435,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 7,
+        "departed": 9,
+        "unfinished": 11
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 7,
+        "unfinished": 12
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "community",
+      "seed": 436,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 5,
+        "departed": 14,
+        "unfinished": 8
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 9,
+        "unfinished": 10
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "community",
+      "seed": 437,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 6,
+        "departed": 13,
+        "unfinished": 8
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 7,
+        "departed": 9,
+        "unfinished": 11
+      },
+      "maxStall": 3
+    },
+    {
+      "scenario": "community",
+      "seed": 438,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 7,
+        "departed": 11,
+        "unfinished": 9
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 9,
+        "departed": 9,
+        "unfinished": 9
+      },
+      "maxStall": 5
+    },
+    {
+      "scenario": "community",
+      "seed": 439,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 12,
+        "unfinished": 7
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 9,
+        "departed": 8,
+        "unfinished": 10
+      },
+      "maxStall": 4
+    },
+    {
+      "scenario": "community",
+      "seed": 440,
+      "baseline": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 9,
+        "unfinished": 10
+      },
+      "plan": {
+        "arrivals": 27,
+        "completed": 8,
+        "departed": 8,
+        "unfinished": 11
+      },
+      "maxStall": 2
+    }
+  ]
+}

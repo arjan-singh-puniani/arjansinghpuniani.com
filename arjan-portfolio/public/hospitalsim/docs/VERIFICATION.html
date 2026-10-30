@@ -1,0 +1,30 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{max-width:850px;margin:40px auto;padding:0 24px;font:15px/1.7 system-ui;background:#fafaf6;color:#183b43}pre{white-space:pre-wrap;font:inherit}</style><a href="README.html">← Source and evidence</a><pre># hospitalSIM verification · v0.4 · October29–30,2026
+
+Working AI-assisted prototype. Production hosting is a deployment status, not a claim of commercial release quality. No studio interest, clinician/educator involvement, learner evaluation or learning effect is claimed.
+
+## Executed software checks
+
+The original Canvas checks pass. Diorama checks cover room capacity, reachability, blocked doors/routes, construction over people, occupied-room removal, explicit staffing, undo cutoff, finite budget, bounded fatigue, deterministic replay, save/load equivalence, end-of-shift termination and embedded GLB dependencies. Release regression checks classify every elapsed visit tick exactly once, verify interior route endpoints/platform clearance, and migrate actual v0.3 saves without lost IDs or counts.
+
+The expanded sweep runs100 full shifts: five scenarios, ten seeds, baseline/plan pairs. Every tick checks accounting, unique reservations and navigation positions; full import validation runs periodically and at termination. Maximum observed blocked-navigation stall:5ticks. The tested consultation-plus-care-upgrade plan increases completions in43pairs and ties in7, with no losses in this limited sweep. This does not establish a universally dominant strategy or real-world capacity effect. Default seed431:27arrivals; baseline10completed/9departed/8unfinished; guided plan12completed/8departed/7unfinished.
+
+The portfolio production build compiles and passes149tests in16files, including two new integration checks. The production dependency audit reports zero known vulnerabilities;16 findings remain in the existing development-tool tree (13high). No forced dependency upgrade was applied to unrelated tooling.
+
+## Browser and asset checks
+
+Wide1440×960 and narrow390×844 desktop viewports exercise construction, non-spatial placement, invalid keyboard placement, undo, room/patient lists, pause/speed/reset, reduced motion and the REPLISOME workstation. The workstation pauses hospital simulation and rendering; closing removes its iframe and leaves the hospital paused for deliberate resumption. Existing REPLISOME files are preserved byte-for-byte. Narrow controls remain in document flow and all scenario/policy controls remain available.
+
+Original equipment and revised humans were actually generated/exported with Blender4.0.2. Editable .blend files and Python sources are retained. Each character has39weighted bones and9clips, one primitive, and a tiny embedded roughness palette. High-detail scrub/patient12,346triangles; coat13,498. LOD4,194/4,586. A separate1,744-triangle occupied-care drape was modeled/exported with Blender and shown only after transfer; it is static cloth with a brief visibility blend, not a cloth simulation. Equipment uses bevels and differentiated PBR materials; runtime platforms now have beveled edges. The browser has no CDN dependency. Character shader/rig export and round-trip evidence is in the source evidence directory.
+
+## Visual assessment and limits
+
+The supplied reference remains stronger in human anatomy, facial variation, cloth folds, hand/equipment contact and studio-light nuance. hospitalSIM has more circulation floor, repeated procedural figures, approximate interior task poses and grid-based crowd behavior. Faces, garment seams, surface roughness, doorway motion and heading changes have improved; they do not establish parity with the reference or a commercial studio game. The side-by-side presents actual browser capture beside the user-supplied reference, for assessment only.
+
+Actual iPhone Safari, thermal/battery performance, long-session device behavior, VoiceOver user testing and a full accessibility audit remain pending. The in-app test browser keeps inspected pages visible, so an actual hidden-tab event is not verified here; background pause is implemented. A device-local iPhone check/export is provided. Clinical assumptions, usefulness, enjoyment, learning transfer and educational effectiveness require external review and consenting participant evidence. The assessment protocol remains an unvalidated draft.
+
+The final release JSON, recording log and performance file supply the measured publication/evidence details. Earlier v0.3 evidence is retained as history, not silently reused as a v0.4 benchmark.
+
+The revised characters passed exported-GLB round-trip checks: transfer/Rest endpoint difference below4.8e-7, authored walk stance drift3.06mm, maximum static mattress overlap8.25mm. These are source checks, not motion-capture validation or exact browser-contact guarantees.
+
+Measured desktop wide gameplay:1,800frames,16.7ms mean/17.6ms p95, up to207,996 visible triangles in the inspected session. Representative steady draw calls80–83; static shadow initialization/checkpoint restoration peaked166, exceeding the provisional150 target briefly. Renderer totals include additional shadow-pass triangles. Initial selected asset files total8,258,953bytes raw and2,240,523bytes under per-file gzip9 (compression estimate, not measured network transfer). A390×844 paused-hospital panel sample measured901frames,16.7ms mean/17.1ms p95. Browser-reported GPU: ANGLE Apple M2 Metal. Real iPhone results remain pending.
+</pre>

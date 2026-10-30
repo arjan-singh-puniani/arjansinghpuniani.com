@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/playground",
     "/playground/holoanatomy",
     "/playground/replisome",
+    "/playground/hospitalsim",
     "/playground/vector-tennis",
     "/playground/pit-stop",
     "/playground/rally-house",

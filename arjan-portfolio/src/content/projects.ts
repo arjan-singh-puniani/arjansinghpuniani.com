@@ -1,6 +1,23 @@
 import type { Project } from "@/types/content";
 export const projects: Project[] = [
   {
+    slug:"hospitalsim",
+    title:"hospitalSIM",
+    shortDescription:"An original browser hospital management game about layout, queues, workload and patient experience.",
+    category:["Software and Simulation","Education"],
+    status:"Prototype",
+    yearStart:2026,
+    yearEnd:"Present",
+    role:"Project owner; developed with substantial AI assistance",
+    problem:"Hospital capacity depends on linked services, travel and people. Adding an unrelated room may leave the actual constraint unchanged.",
+    approach:["Separated seeded fixed-step simulation, real-time Three.js rendering, input, local persistence and reporting.","Created reproducible original Blender equipment, rigged characters and browser GLBs.","Implemented room construction, explicit staffing, handoffs, protected breaks and checkpoint experiments using identical scheduled arrivals.","Integrated the existing REPLISOME experience as an optional science workstation without changing hospital capacity."],
+    results:["Delivered playable fictional consultation, optional imaging, care and discharge with inspectable visits and reports.","Retained source, automated simulation checks, visual comparison and a recorded full patient loop."],
+    limitations:["No clinician or educator review, learner study, clinical validation or demonstrated educational effectiveness.","Substantial AI assistance includes code, design, modeling, animation and testing. This record does not establish independent owner implementation of each component.","Procedural anatomy, clinician task contact and grid-based crowd behavior remain less realistic than the supplied visual reference.","Actual iPhone Safari and assistive-technology user results remain pending. No production-readiness or commercial-game superiority claim."],
+    featured:false,
+    media:[{src:"/hospitalsim/preview.webp",alt:"Actual hospitalSIM browser hospital with blue imaging, procedure and consultation platforms"}],
+    links:[{label:"Play hospitalSIM",href:"/playground/hospitalsim"},{label:"Model and verification record",href:"/hospitalsim/docs/README.html"}],
+    evidence:[{label:"Game source, Blender sources and verification",url:"https://github.com/arjan-singh-puniani/arjansinghpuniani.com/tree/main/hospital-sim-source",verified:true}]},
+  {
     slug: "body-atlas", title: "BODY//ATLAS",
     shortDescription: "A research prototype for exploring medical interventions through human anatomy, original FDA records, and linked studies.",
     category: ["Software and Simulation", "Neurotechnology"], status: "Prototype", yearStart: 2026, yearEnd: "Present",

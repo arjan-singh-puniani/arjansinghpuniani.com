@@ -1,0 +1,3357 @@
+{
+  "baseline": {
+    "game": "hospitalSIM",
+    "model": "0.4.0-hospitalsim",
+    "scenario": "neighborhood",
+    "mode": "sandbox",
+    "mastery": false,
+    "arrivalFingerprint": "9de4994d",
+    "seed": 431,
+    "randomState": 431,
+    "simulationSeconds": 480,
+    "definitions": {
+      "unit": "fictional game seconds",
+      "waiting": "ticks in waiting state, including modeled access delay; excludes walking, handoff, equipment transfer and service",
+      "handoff": "ticks communicating the next service",
+      "transfer": "ticks getting on/off equipment",
+      "walking": "route and doorway-navigation ticks; yielding is counted in waiting",
+      "timingMigration": "Prior-version visits retain an explicit elapsedOffset; categories sum to elapsed plus this offset",
+      "service": "ticks receiving a service",
+      "experience": "unvalidated game indicator",
+      "selectionBias": "Completed-only waits exclude people who departed or remain unfinished; consult all-outcome statistics too."
+    },
+    "counts": {
+      "arrivals": 27,
+      "completed": 10,
+      "departed": 9,
+      "unfinished": 8
+    },
+    "waits": {
+      "completed": {
+        "n": 10,
+        "mean": 88.6,
+        "median": 72.5,
+        "p90": 161
+      },
+      "allRecordedOutcomes": {
+        "n": 19,
+        "mean": 128,
+        "median": 169,
+        "p90": 173
+      },
+      "allArrivalsIncludingCurrent": {
+        "n": 27,
+        "mean": 121.88888888888889,
+        "median": 144,
+        "p90": 172
+      }
+    },
+    "accessCohorts": [
+      {
+        "barrier": true,
+        "arrivals": 3,
+        "completed": {
+          "n": 0,
+          "mean": null,
+          "median": null,
+          "p90": null
+        }
+      },
+      {
+        "barrier": false,
+        "arrivals": 24,
+        "completed": {
+          "n": 10,
+          "mean": 88.6,
+          "median": 72.5,
+          "p90": 161
+        }
+      }
+    ],
+    "budget": 9660,
+    "teamEnergy": 92.85333333333331,
+    "experience": 47.500000000000014,
+    "layout": [
+      {
+        "id": 1,
+        "x": 5,
+        "y": 2,
+        "type": "consult",
+        "level": 1,
+        "staff": [
+          1
+        ],
+        "decor": []
+      },
+      {
+        "id": 2,
+        "x": 1,
+        "y": 0,
+        "type": "scan",
+        "level": 1,
+        "staff": [
+          2
+        ],
+        "decor": []
+      },
+      {
+        "id": 3,
+        "x": 1,
+        "y": 3,
+        "type": "care",
+        "level": 1,
+        "staff": [
+          3,
+          4
+        ],
+        "decor": []
+      }
+    ],
+    "staff": [
+      {
+        "id": 1,
+        "name": "Mira",
+        "role": "clinician",
+        "skills": [
+          "consult",
+          "care"
+        ],
+        "trait": "listener",
+        "shiftEnd": 480,
+        "fatigue": 2.0200000000000014,
+        "breakUntil": 0
+      },
+      {
+        "id": 2,
+        "name": "Jules",
+        "role": "clinician",
+        "skills": [
+          "scan"
+        ],
+        "trait": "steady",
+        "shiftEnd": 480,
+        "fatigue": 9.679999999999943,
+        "breakUntil": 0
+      },
+      {
+        "id": 3,
+        "name": "Remy",
+        "role": "clinician",
+        "skills": [
+          "consult",
+          "care"
+        ],
+        "trait": "steady",
+        "shiftEnd": 480,
+        "fatigue": 8.759999999999948,
+        "breakUntil": 0
+      },
+      {
+        "id": 4,
+        "name": "Ash",
+        "role": "clinician",
+        "skills": [
+          "consult",
+          "care"
+        ],
+        "trait": "brisk",
+        "shiftEnd": 480,
+        "fatigue": 22.420000000000233,
+        "breakUntil": 0
+      },
+      {
+        "id": 5,
+        "name": "Sage",
+        "role": "clinician",
+        "skills": [
+          "consult",
+          "care",
+          "plan"
+        ],
+        "trait": "brisk",
+        "shiftEnd": 480,
+        "fatigue": 0,
+        "breakUntil": 0
+      },
+      {
+        "id": 6,
+        "name": "Kit",
+        "role": "clinician",
+        "skills": [
+          "scan",
+          "consult",
+          "plan"
+        ],
+        "trait": "listener",
+        "shiftEnd": 480,
+        "fatigue": 0,
+        "breakUntil": 0
+      }
+    ],
+    "policy": {
+      "urgency": true,
+      "access": false,
+      "breaks": false,
+      "autoHandoff": true,
+      "communication": false,
+      "prevention": false
+    },
+    "decisions": [],
+    "visits": [
+      {
+        "id": 1000,
+        "name": "Maya",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 3,
+        "walking": 28,
+        "service": 28,
+        "handoff": 4,
+        "transfer": 6,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 1,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 8,
+            "room": 1,
+            "duration": 12.5
+          },
+          {
+            "stage": "care",
+            "at": 41,
+            "room": 3,
+            "duration": 14.197944743935308
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.75
+        },
+        "duration": 14.197944743935308,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 69
+      },
+      {
+        "id": 1001,
+        "name": "Eli",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 12,
+        "walking": 42,
+        "service": 46,
+        "handoff": 8,
+        "transfer": 12,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 19,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 35,
+            "room": 1,
+            "duration": 12.51607142857143
+          },
+          {
+            "stage": "scan",
+            "at": 69,
+            "room": 2,
+            "duration": 17.043714285714287
+          },
+          {
+            "stage": "care",
+            "at": 110,
+            "room": 3,
+            "duration": 14.205525606469001
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.75
+        },
+        "duration": 14.205525606469001,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 120
+      },
+      {
+        "id": 1002,
+        "name": "Robin",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 35,
+        "walking": 45,
+        "service": 46,
+        "handoff": 8,
+        "transfer": 12,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 37,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 62,
+            "room": 1,
+            "duration": 12.532142857142858
+          },
+          {
+            "stage": "scan",
+            "at": 113,
+            "room": 2,
+            "duration": 17.19914285714286
+          },
+          {
+            "stage": "care",
+            "at": 154,
+            "room": 3,
+            "duration": 14.348551212938004
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.75
+        },
+        "duration": 14.348551212938004,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 146
+      },
+      {
+        "id": 1004,
+        "name": "Kai",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 43,
+        "walking": 45,
+        "service": 46,
+        "handoff": 8,
+        "transfer": 12,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 73,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 89,
+            "room": 1,
+            "duration": 12.548214285714284
+          },
+          {
+            "stage": "scan",
+            "at": 157,
+            "room": 2,
+            "duration": 17.35457142857143
+          },
+          {
+            "stage": "care",
+            "at": 198,
+            "room": 3,
+            "duration": 14.491576819407006
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.75
+        },
+        "duration": 14.491576819407006,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 154
+      },
+      {
+        "id": 1007,
+        "name": "Morgan",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": true,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 68,
+        "walking": 29,
+        "service": 28,
+        "handoff": 4,
+        "transfer": 6,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 127,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 200,
+            "room": 1,
+            "duration": 12.591071428571428
+          },
+          {
+            "stage": "care",
+            "at": 233,
+            "room": 3,
+            "duration": 14.70737870619946
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.75
+        },
+        "duration": 14.70737870619946,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 135
+      },
+      {
+        "id": 1006,
+        "name": "Rae",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Understand my next step",
+        "wait": 77,
+        "walking": 43,
+        "service": 46,
+        "handoff": 8,
+        "transfer": 12,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 109,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 116,
+            "room": 1,
+            "duration": 12.564285714285713
+          },
+          {
+            "stage": "scan",
+            "at": 198,
+            "room": 2,
+            "duration": 17.53914285714286
+          },
+          {
+            "stage": "care",
+            "at": 266,
+            "room": 3,
+            "duration": 14.939353099730457
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.75
+        },
+        "duration": 14.939353099730457,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 186
+      },
+      {
+        "id": 1003,
+        "name": "Avery",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": true,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Get home before the cat judges me",
+        "wait": 160,
+        "walking": 48,
+        "service": 47,
+        "handoff": 8,
+        "transfer": 12,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 55,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 146,
+            "room": 1,
+            "duration": 12.55892857142857
+          },
+          {
+            "stage": "scan",
+            "at": 243,
+            "room": 2,
+            "duration": 17.684857142857144
+          },
+          {
+            "stage": "care",
+            "at": 300,
+            "room": 3,
+            "duration": 15.163241239892184
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.75
+        },
+        "duration": 15.163241239892184,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 275
+      },
+      {
+        "id": 1008,
+        "name": "Alex",
+        "x": 4,
+        "y": 7,
+        "stage": "scan",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Get home before the cat judges me",
+        "wait": 171,
+        "walking": 23,
+        "service": 13,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 145,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 256,
+            "room": 1,
+            "duration": 12.60892857142857
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 5,
+          "y": 7
+        },
+        "duration": 12.60892857142857,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 211
+      },
+      {
+        "id": 1009,
+        "name": "Sam",
+        "x": 4,
+        "y": 7,
+        "stage": "scan",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 171,
+        "walking": 19,
+        "service": 13,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 151,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 285,
+            "room": 1,
+            "duration": 12.610714285714286
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 5,
+          "y": 7
+        },
+        "duration": 12.610714285714286,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 207
+      },
+      {
+        "id": 1005,
+        "name": "Imani",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": true,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Understand my next step",
+        "wait": 158,
+        "walking": 49,
+        "service": 47,
+        "handoff": 8,
+        "transfer": 12,
+        "yielding": 2,
+        "elapsedOffset": 0,
+        "arrival": 91,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 173,
+            "room": 1,
+            "duration": 12.575
+          },
+          {
+            "stage": "scan",
+            "at": 288,
+            "room": 2,
+            "duration": 17.83057142857143
+          },
+          {
+            "stage": "care",
+            "at": 334,
+            "room": 3,
+            "duration": 15.410882749326147
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.75
+        },
+        "duration": 15.410882749326147,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 274
+      },
+      {
+        "id": 1013,
+        "name": "Eli",
+        "x": 4,
+        "y": 7,
+        "stage": "consult",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 174,
+        "walking": 10,
+        "service": 0,
+        "handoff": 0,
+        "transfer": 0,
+        "yielding": 3,
+        "elapsedOffset": 0,
+        "arrival": 187,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.25
+        },
+        "outcome": "departed",
+        "total": 184
+      },
+      {
+        "id": 1010,
+        "name": "Noor",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 169,
+        "walking": 35,
+        "service": 29,
+        "handoff": 4,
+        "transfer": 6,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 157,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 314,
+            "room": 1,
+            "duration": 12.612499999999999
+          },
+          {
+            "stage": "care",
+            "at": 370,
+            "room": 3,
+            "duration": 15.642351752021565
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.75
+        },
+        "duration": 15.642351752021565,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 243
+      },
+      {
+        "id": 1011,
+        "name": "Jordan",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Understand my next step",
+        "wait": 172,
+        "walking": 39,
+        "service": 32,
+        "handoff": 8,
+        "transfer": 6,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 163,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 344,
+            "room": 1,
+            "duration": 12.607142857142858
+          },
+          {
+            "stage": "scan",
+            "at": 378,
+            "room": 2,
+            "duration": 18.121999999999996
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.75
+        },
+        "duration": 18.121999999999996,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 257
+      },
+      {
+        "id": 1016,
+        "name": "Kai",
+        "x": 4,
+        "y": 7,
+        "stage": "consult",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 171,
+        "walking": 9,
+        "service": 0,
+        "handoff": 0,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 241,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 5,
+          "y": 7
+        },
+        "outcome": "departed",
+        "total": 180
+      },
+      {
+        "id": 1012,
+        "name": "Maya",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": true,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 173,
+        "walking": 39,
+        "service": 31,
+        "handoff": 8,
+        "transfer": 6,
+        "yielding": 2,
+        "elapsedOffset": 0,
+        "arrival": 169,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 227,
+            "room": 1,
+            "duration": 12.607142857142858
+          },
+          {
+            "stage": "scan",
+            "at": 332,
+            "room": 2,
+            "duration": 17.986
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4.25,
+          "y": 6.5
+        },
+        "duration": 17.986,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 257
+      },
+      {
+        "id": 1015,
+        "name": "Avery",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": true,
+        "imaging": false,
+        "returning": false,
+        "goal": "Get home before the cat judges me",
+        "wait": 171,
+        "walking": 18,
+        "service": 13,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 223,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 398,
+            "room": 1,
+            "duration": 12.639285714285714
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 5,
+          "y": 7
+        },
+        "duration": 12.639285714285714,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 206
+      },
+      {
+        "id": 1014,
+        "name": "Robin",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 161,
+        "walking": 29,
+        "service": 29,
+        "handoff": 4,
+        "transfer": 6,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 205,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 371,
+            "room": 1,
+            "duration": 12.623214285714285
+          },
+          {
+            "stage": "care",
+            "at": 404,
+            "room": 3,
+            "duration": 15.889993261455528
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.75
+        },
+        "duration": 15.889993261455528,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 229
+      },
+      {
+        "id": 1017,
+        "name": "Imani",
+        "x": 4,
+        "y": 7,
+        "stage": "consult",
+        "target": null,
+        "room": null,
+        "urgent": true,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 172,
+        "walking": 7,
+        "service": 0,
+        "handoff": 0,
+        "transfer": 0,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 259,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4.25,
+          "y": 6.5
+        },
+        "outcome": "departed",
+        "total": 179
+      },
+      {
+        "id": 1018,
+        "name": "Rae",
+        "x": 4,
+        "y": 7,
+        "stage": "consult",
+        "target": null,
+        "room": null,
+        "urgent": true,
+        "barrier": true,
+        "imaging": false,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 171,
+        "walking": 4,
+        "service": 0,
+        "handoff": 0,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 277,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6
+        },
+        "outcome": "departed",
+        "total": 175
+      }
+    ],
+    "unfinished": [
+      {
+        "id": 1019,
+        "name": "Morgan",
+        "x": 1,
+        "y": 2,
+        "stage": "scan",
+        "state": "transfer-out",
+        "route": [],
+        "target": 2,
+        "room": 2,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 123,
+        "walking": 24,
+        "service": 31,
+        "handoff": 4,
+        "transfer": 3,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 295,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 428,
+            "room": 1,
+            "duration": 12.633928571428571
+          },
+          {
+            "stage": "scan",
+            "at": 462,
+            "room": 2,
+            "duration": 17.91314285714285
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 1,
+          "y": 2
+        },
+        "previous": {
+          "x": 1.75,
+          "y": 2.25
+        },
+        "duration": 17.91314285714285,
+        "handoffReady": false
+      },
+      {
+        "id": 1020,
+        "name": "Alex",
+        "x": 3.75,
+        "y": 4.75,
+        "stage": "care",
+        "state": "walking",
+        "route": [
+          {
+            "x": 3.5,
+            "y": 4.75
+          },
+          {
+            "x": 3.25,
+            "y": 4.75
+          },
+          {
+            "x": 3,
+            "y": 4.75
+          },
+          {
+            "x": 2.75,
+            "y": 4.75
+          },
+          {
+            "x": 2.5,
+            "y": 4.75
+          },
+          {
+            "x": 2.25,
+            "y": 4.75
+          },
+          {
+            "x": 2,
+            "y": 4.75
+          },
+          {
+            "x": 1.75,
+            "y": 4.75
+          },
+          {
+            "x": 1.75,
+            "y": 5
+          },
+          {
+            "x": 1.5,
+            "y": 5
+          },
+          {
+            "x": 1.25,
+            "y": 5
+          },
+          {
+            "x": 1,
+            "y": 5
+          }
+        ],
+        "target": 3,
+        "room": 3,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 135,
+        "walking": 15,
+        "service": 13,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 313,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 457,
+            "room": 1,
+            "duration": 12.635714285714286
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": true,
+        "motion": [
+          {
+            "x": 4.75,
+            "y": 4.75
+          },
+          {
+            "x": 4.5,
+            "y": 4.75
+          },
+          {
+            "x": 4.25,
+            "y": 4.75
+          },
+          {
+            "x": 4,
+            "y": 4.75
+          },
+          {
+            "x": 3.75,
+            "y": 4.75
+          }
+        ],
+        "destination": {
+          "x": 1,
+          "y": 5
+        },
+        "previous": {
+          "x": 4.75,
+          "y": 4.75
+        },
+        "duration": 12.635714285714286,
+        "handoffReady": false
+      },
+      {
+        "id": 1021,
+        "name": "Sam",
+        "x": 3,
+        "y": 5,
+        "stage": "consult",
+        "state": "walking",
+        "route": [
+          {
+            "x": 3.25,
+            "y": 5
+          },
+          {
+            "x": 3.5,
+            "y": 5
+          },
+          {
+            "x": 3.75,
+            "y": 5
+          },
+          {
+            "x": 4,
+            "y": 5
+          },
+          {
+            "x": 4.25,
+            "y": 5
+          },
+          {
+            "x": 4.5,
+            "y": 5
+          },
+          {
+            "x": 4.5,
+            "y": 4.75
+          },
+          {
+            "x": 4.5,
+            "y": 4.5
+          },
+          {
+            "x": 4.75,
+            "y": 4.5
+          },
+          {
+            "x": 5,
+            "y": 4.5
+          },
+          {
+            "x": 5,
+            "y": 4.25
+          },
+          {
+            "x": 5,
+            "y": 4
+          }
+        ],
+        "target": 1,
+        "room": 1,
+        "urgent": false,
+        "barrier": true,
+        "imaging": false,
+        "returning": false,
+        "goal": "Understand my next step",
+        "wait": 144,
+        "walking": 5,
+        "service": 0,
+        "handoff": 0,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 331,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [],
+        "outside": false,
+        "stalled": 0,
+        "moved": true,
+        "motion": [
+          {
+            "x": 2,
+            "y": 5
+          },
+          {
+            "x": 2.25,
+            "y": 5
+          },
+          {
+            "x": 2.5,
+            "y": 5
+          },
+          {
+            "x": 2.75,
+            "y": 5
+          },
+          {
+            "x": 3,
+            "y": 5
+          }
+        ],
+        "destination": {
+          "x": 5,
+          "y": 4
+        },
+        "previous": {
+          "x": 2,
+          "y": 5
+        }
+      },
+      {
+        "id": 1022,
+        "name": "Noor",
+        "x": 4,
+        "y": 2,
+        "stage": "consult",
+        "state": "waiting",
+        "route": [],
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 126,
+        "walking": 5,
+        "service": 0,
+        "handoff": 0,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 349,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 2
+        },
+        "previous": {
+          "x": 4,
+          "y": 2.5
+        }
+      },
+      {
+        "id": 1023,
+        "name": "Jordan",
+        "x": 5,
+        "y": 5,
+        "stage": "consult",
+        "state": "waiting",
+        "route": [],
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 111,
+        "walking": 2,
+        "service": 0,
+        "handoff": 0,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 367,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 5,
+          "y": 5
+        },
+        "previous": {
+          "x": 4,
+          "y": 5
+        }
+      },
+      {
+        "id": 1024,
+        "name": "Maya",
+        "x": 4,
+        "y": 3,
+        "stage": "consult",
+        "state": "waiting",
+        "route": [],
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 91,
+        "walking": 4,
+        "service": 0,
+        "handoff": 0,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 385,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 3
+        },
+        "previous": {
+          "x": 4,
+          "y": 3.5
+        }
+      },
+      {
+        "id": 1025,
+        "name": "Eli",
+        "x": 4,
+        "y": 4,
+        "stage": "consult",
+        "state": "waiting",
+        "route": [],
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 75,
+        "walking": 2,
+        "service": 0,
+        "handoff": 0,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 403,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 4
+        },
+        "previous": {
+          "x": 4,
+          "y": 5
+        }
+      },
+      {
+        "id": 1026,
+        "name": "Robin",
+        "x": 6,
+        "y": 5,
+        "stage": "consult",
+        "state": "waiting",
+        "route": [],
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 54,
+        "walking": 5,
+        "service": 0,
+        "handoff": 0,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 421,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 6,
+          "y": 5
+        },
+        "previous": {
+          "x": 5.75,
+          "y": 5.25
+        }
+      }
+    ],
+    "utilization": {
+      "1": {
+        "busy": 221,
+        "elapsed": 480
+      },
+      "2": {
+        "busy": 163,
+        "elapsed": 480
+      },
+      "3": {
+        "busy": 154,
+        "elapsed": 480
+      }
+    },
+    "disclaimer": "Fictional simulation. Substantial AI assistance. No clinical or educational effectiveness validation. Device-local records only."
+  },
+  "extraConsult": {
+    "game": "hospitalSIM",
+    "model": "0.4.0-hospitalsim",
+    "scenario": "neighborhood",
+    "mode": "sandbox",
+    "mastery": false,
+    "arrivalFingerprint": "9de4994d",
+    "seed": 431,
+    "randomState": 431,
+    "simulationSeconds": 480,
+    "definitions": {
+      "unit": "fictional game seconds",
+      "waiting": "ticks in waiting state, including modeled access delay; excludes walking, handoff, equipment transfer and service",
+      "handoff": "ticks communicating the next service",
+      "transfer": "ticks getting on/off equipment",
+      "walking": "route and doorway-navigation ticks; yielding is counted in waiting",
+      "timingMigration": "Prior-version visits retain an explicit elapsedOffset; categories sum to elapsed plus this offset",
+      "service": "ticks receiving a service",
+      "experience": "unvalidated game indicator",
+      "selectionBias": "Completed-only waits exclude people who departed or remain unfinished; consult all-outcome statistics too."
+    },
+    "counts": {
+      "arrivals": 27,
+      "completed": 11,
+      "departed": 7,
+      "unfinished": 9
+    },
+    "waits": {
+      "completed": {
+        "n": 11,
+        "mean": 69.36363636363636,
+        "median": 58,
+        "p90": 138
+      },
+      "allRecordedOutcomes": {
+        "n": 18,
+        "mean": 109.16666666666667,
+        "median": 131,
+        "p90": 172
+      },
+      "allArrivalsIncludingCurrent": {
+        "n": 27,
+        "mean": 102.14814814814815,
+        "median": 118,
+        "p90": 172
+      }
+    },
+    "accessCohorts": [
+      {
+        "barrier": true,
+        "arrivals": 3,
+        "completed": {
+          "n": 1,
+          "mean": 159,
+          "median": 159,
+          "p90": 159
+        }
+      },
+      {
+        "barrier": false,
+        "arrivals": 24,
+        "completed": {
+          "n": 10,
+          "mean": 60.4,
+          "median": 56.5,
+          "p90": 124
+        }
+      }
+    ],
+    "budget": 8926,
+    "teamEnergy": 88.45333333333332,
+    "experience": 59.40000000000002,
+    "layout": [
+      {
+        "id": 1,
+        "x": 5,
+        "y": 2,
+        "type": "consult",
+        "level": 1,
+        "staff": [
+          1
+        ],
+        "decor": []
+      },
+      {
+        "id": 2,
+        "x": 1,
+        "y": 0,
+        "type": "scan",
+        "level": 1,
+        "staff": [
+          2
+        ],
+        "decor": []
+      },
+      {
+        "id": 3,
+        "x": 1,
+        "y": 3,
+        "type": "care",
+        "level": 1,
+        "staff": [
+          3,
+          4
+        ],
+        "decor": []
+      },
+      {
+        "id": 10,
+        "type": "consult",
+        "x": 7,
+        "y": 3,
+        "level": 1,
+        "staff": [
+          5
+        ],
+        "decor": []
+      }
+    ],
+    "staff": [
+      {
+        "id": 1,
+        "name": "Mira",
+        "role": "clinician",
+        "skills": [
+          "consult",
+          "care"
+        ],
+        "trait": "listener",
+        "shiftEnd": 480,
+        "fatigue": 0,
+        "breakUntil": 0
+      },
+      {
+        "id": 2,
+        "name": "Jules",
+        "role": "clinician",
+        "skills": [
+          "scan"
+        ],
+        "trait": "steady",
+        "shiftEnd": 480,
+        "fatigue": 13.119999999999918,
+        "breakUntil": 0
+      },
+      {
+        "id": 3,
+        "name": "Remy",
+        "role": "clinician",
+        "skills": [
+          "consult",
+          "care"
+        ],
+        "trait": "steady",
+        "shiftEnd": 480,
+        "fatigue": 17.599999999999927,
+        "breakUntil": 0
+      },
+      {
+        "id": 4,
+        "name": "Ash",
+        "role": "clinician",
+        "skills": [
+          "consult",
+          "care"
+        ],
+        "trait": "brisk",
+        "shiftEnd": 480,
+        "fatigue": 35.11000000000019,
+        "breakUntil": 0
+      },
+      {
+        "id": 5,
+        "name": "Sage",
+        "role": "clinician",
+        "skills": [
+          "consult",
+          "care",
+          "plan"
+        ],
+        "trait": "brisk",
+        "shiftEnd": 480,
+        "fatigue": 3.4500000000000037,
+        "breakUntil": 0
+      },
+      {
+        "id": 6,
+        "name": "Kit",
+        "role": "clinician",
+        "skills": [
+          "scan",
+          "consult",
+          "plan"
+        ],
+        "trait": "listener",
+        "shiftEnd": 480,
+        "fatigue": 0,
+        "breakUntil": 0
+      }
+    ],
+    "policy": {
+      "urgency": true,
+      "access": false,
+      "breaks": false,
+      "autoHandoff": true,
+      "communication": false,
+      "prevention": false
+    },
+    "decisions": [
+      {
+        "at": 0,
+        "type": "build",
+        "room": {
+          "id": 10,
+          "type": "consult",
+          "x": 7,
+          "y": 3,
+          "level": 1,
+          "staff": [
+            5
+          ],
+          "decor": []
+        }
+      }
+    ],
+    "visits": [
+      {
+        "id": 1000,
+        "name": "Maya",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 2,
+        "walking": 27,
+        "service": 28,
+        "handoff": 4,
+        "transfer": 6,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 1,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 8,
+            "room": 1,
+            "duration": 12.5
+          },
+          {
+            "stage": "care",
+            "at": 41,
+            "room": 3,
+            "duration": 14.197944743935308
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6
+        },
+        "duration": 14.197944743935308,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 67
+      },
+      {
+        "id": 1001,
+        "name": "Eli",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 3,
+        "walking": 44,
+        "service": 44,
+        "handoff": 8,
+        "transfer": 12,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 19,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 27,
+            "room": 10,
+            "duration": 10.714285714285714
+          },
+          {
+            "stage": "scan",
+            "at": 62,
+            "room": 2,
+            "duration": 17.043714285714287
+          },
+          {
+            "stage": "care",
+            "at": 103,
+            "room": 3,
+            "duration": 14.233827493261455
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6
+        },
+        "duration": 14.233827493261455,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 111
+      },
+      {
+        "id": 1002,
+        "name": "Robin",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 30,
+        "walking": 43,
+        "service": 46,
+        "handoff": 8,
+        "transfer": 12,
+        "yielding": 2,
+        "elapsedOffset": 0,
+        "arrival": 37,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 44,
+            "room": 1,
+            "duration": 12.5
+          },
+          {
+            "stage": "scan",
+            "at": 104,
+            "room": 2,
+            "duration": 17.21857142857143
+          },
+          {
+            "stage": "care",
+            "at": 145,
+            "room": 3,
+            "duration": 14.393025606469001
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4.25,
+          "y": 6.25
+        },
+        "duration": 14.393025606469001,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 139
+      },
+      {
+        "id": 1007,
+        "name": "Morgan",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": true,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 14,
+        "walking": 34,
+        "service": 26,
+        "handoff": 4,
+        "transfer": 6,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 127,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 137,
+            "room": 10,
+            "duration": 10.722704081632651
+          },
+          {
+            "stage": "care",
+            "at": 182,
+            "room": 3,
+            "duration": 14.59265498652291
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4.25,
+          "y": 6.5
+        },
+        "duration": 14.59265498652291,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 84
+      },
+      {
+        "id": 1004,
+        "name": "Kai",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 62,
+        "walking": 43,
+        "service": 46,
+        "handoff": 8,
+        "transfer": 12,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 73,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 80,
+            "room": 1,
+            "duration": 12.5
+          },
+          {
+            "stage": "scan",
+            "at": 146,
+            "room": 2,
+            "duration": 17.393428571428572
+          },
+          {
+            "stage": "care",
+            "at": 215,
+            "room": 3,
+            "duration": 14.82462938005391
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.75
+        },
+        "duration": 14.82462938005391,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 171
+      },
+      {
+        "id": 1003,
+        "name": "Avery",
+        "x": 4,
+        "y": 7,
+        "stage": "scan",
+        "target": null,
+        "room": null,
+        "urgent": true,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Get home before the cat judges me",
+        "wait": 172,
+        "walking": 18,
+        "service": 11,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 55,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 63,
+            "room": 10,
+            "duration": 10.721173469387754
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4.25,
+          "y": 7
+        },
+        "duration": 10.721173469387754,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 205
+      },
+      {
+        "id": 1006,
+        "name": "Rae",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Understand my next step",
+        "wait": 58,
+        "walking": 43,
+        "service": 47,
+        "handoff": 8,
+        "transfer": 12,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 109,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 116,
+            "room": 1,
+            "duration": 12.5
+          },
+          {
+            "stage": "scan",
+            "at": 188,
+            "room": 2,
+            "duration": 17.568285714285715
+          },
+          {
+            "stage": "care",
+            "at": 248,
+            "room": 3,
+            "duration": 15.056603773584907
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.75
+        },
+        "duration": 15.056603773584907,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 168
+      },
+      {
+        "id": 1005,
+        "name": "Imani",
+        "x": 4,
+        "y": 7,
+        "stage": "scan",
+        "target": null,
+        "room": null,
+        "urgent": true,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Understand my next step",
+        "wait": 171,
+        "walking": 20,
+        "service": 11,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 91,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 100,
+            "room": 10,
+            "duration": 10.721938775510203
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 5,
+          "y": 7
+        },
+        "duration": 10.721938775510203,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 206
+      },
+      {
+        "id": 1008,
+        "name": "Alex",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Get home before the cat judges me",
+        "wait": 55,
+        "walking": 44,
+        "service": 47,
+        "handoff": 8,
+        "transfer": 12,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 145,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 152,
+            "room": 1,
+            "duration": 12.5
+          },
+          {
+            "stage": "scan",
+            "at": 232,
+            "room": 2,
+            "duration": 17.723714285714287
+          },
+          {
+            "stage": "care",
+            "at": 282,
+            "room": 3,
+            "duration": 15.304245283018867
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6
+        },
+        "duration": 15.304245283018867,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 166
+      },
+      {
+        "id": 1010,
+        "name": "Noor",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 118,
+        "walking": 33,
+        "service": 29,
+        "handoff": 4,
+        "transfer": 6,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 157,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 181,
+            "room": 1,
+            "duration": 12.501785714285715
+          },
+          {
+            "stage": "care",
+            "at": 317,
+            "room": 3,
+            "duration": 15.54380053908356
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.75
+        },
+        "duration": 15.54380053908356,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 190
+      },
+      {
+        "id": 1013,
+        "name": "Eli",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 124,
+        "walking": 29,
+        "service": 29,
+        "handoff": 4,
+        "transfer": 6,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 187,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 208,
+            "room": 1,
+            "duration": 12.517857142857142
+          },
+          {
+            "stage": "care",
+            "at": 351,
+            "room": 3,
+            "duration": 15.791442048517522
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6
+        },
+        "duration": 15.791442048517522,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 192
+      },
+      {
+        "id": 1012,
+        "name": "Maya",
+        "x": 4,
+        "y": 7,
+        "stage": "scan",
+        "target": null,
+        "room": null,
+        "urgent": true,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 172,
+        "walking": 23,
+        "service": 13,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 2,
+        "elapsedOffset": 0,
+        "arrival": 169,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 238,
+            "room": 1,
+            "duration": 12.512500000000001
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4.25,
+          "y": 7
+        },
+        "duration": 12.512500000000001,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 212
+      },
+      {
+        "id": 1009,
+        "name": "Sam",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 172,
+        "walking": 46,
+        "service": 29,
+        "handoff": 8,
+        "transfer": 6,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 151,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 166,
+            "room": 10,
+            "duration": 10.772448979591834
+          },
+          {
+            "stage": "scan",
+            "at": 279,
+            "room": 2,
+            "duration": 17.85
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.5
+        },
+        "duration": 17.85,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 261
+      },
+      {
+        "id": 1014,
+        "name": "Robin",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 138,
+        "walking": 36,
+        "service": 28,
+        "handoff": 4,
+        "transfer": 6,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 205,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 221,
+            "room": 10,
+            "duration": 10.89030612244898
+          },
+          {
+            "stage": "care",
+            "at": 388,
+            "room": 3,
+            "duration": 16.014824797843673
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6
+        },
+        "duration": 16.014824797843673,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 212
+      },
+      {
+        "id": 1011,
+        "name": "Jordan",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Understand my next step",
+        "wait": 172,
+        "walking": 43,
+        "service": 29,
+        "handoff": 8,
+        "transfer": 6,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 163,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 193,
+            "room": 10,
+            "duration": 10.834438775510202
+          },
+          {
+            "stage": "scan",
+            "at": 325,
+            "room": 2,
+            "duration": 17.985999999999997
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.75
+        },
+        "duration": 17.985999999999997,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 258
+      },
+      {
+        "id": 1015,
+        "name": "Avery",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": true,
+        "imaging": false,
+        "returning": false,
+        "goal": "Get home before the cat judges me",
+        "wait": 159,
+        "walking": 35,
+        "service": 28,
+        "handoff": 4,
+        "transfer": 6,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 223,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 250,
+            "room": 10,
+            "duration": 10.940051020408161
+          },
+          {
+            "stage": "care",
+            "at": 426,
+            "room": 3,
+            "duration": 16.253874663072782
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6
+        },
+        "duration": 16.253874663072782,
+        "handoffReady": false,
+        "outcome": "completed",
+        "total": 232
+      },
+      {
+        "id": 1017,
+        "name": "Imani",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": true,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 172,
+        "walking": 19,
+        "service": 13,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 259,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 266,
+            "room": 1,
+            "duration": 12.521428571428572
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 4,
+          "y": 6.75
+        },
+        "duration": 12.521428571428572,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 208
+      },
+      {
+        "id": 1018,
+        "name": "Rae",
+        "x": 4,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": true,
+        "barrier": true,
+        "imaging": false,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 171,
+        "walking": 15,
+        "service": 13,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 277,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 293,
+            "room": 1,
+            "duration": 12.537499999999998
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 7
+        },
+        "previous": {
+          "x": 5,
+          "y": 7
+        },
+        "duration": 12.537499999999998,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 203
+      }
+    ],
+    "unfinished": [
+      {
+        "id": 1016,
+        "name": "Kai",
+        "x": 1,
+        "y": 5,
+        "stage": "care",
+        "state": "transfer-out",
+        "route": [],
+        "target": 3,
+        "room": 3,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 129,
+        "walking": 44,
+        "service": 47,
+        "handoff": 8,
+        "transfer": 11,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 241,
+        "progress": 2,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 279,
+            "room": 10,
+            "duration": 10.989795918367344
+          },
+          {
+            "stage": "scan",
+            "at": 372,
+            "room": 2,
+            "duration": 18.11228571428571
+          },
+          {
+            "stage": "care",
+            "at": 461,
+            "room": 3,
+            "duration": 16.51718328840971
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 1,
+          "y": 5
+        },
+        "previous": {
+          "x": 0.25,
+          "y": 4.75
+        },
+        "duration": 16.51718328840971,
+        "handoffReady": false
+      },
+      {
+        "id": 1019,
+        "name": "Morgan",
+        "x": 0,
+        "y": 2,
+        "stage": "care",
+        "state": "waiting",
+        "route": [],
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 104,
+        "walking": 36,
+        "service": 31,
+        "handoff": 8,
+        "transfer": 6,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 295,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 308,
+            "room": 10,
+            "duration": 11.039540816326529
+          },
+          {
+            "stage": "scan",
+            "at": 422,
+            "room": 2,
+            "duration": 18.23371428571428
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 0,
+          "y": 2
+        },
+        "previous": {
+          "x": 1,
+          "y": 2
+        },
+        "duration": 18.23371428571428,
+        "handoffReady": false
+      },
+      {
+        "id": 1020,
+        "name": "Alex",
+        "x": 4,
+        "y": 4,
+        "stage": "care",
+        "state": "waiting",
+        "route": [],
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 139,
+        "walking": 11,
+        "service": 13,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 313,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 320,
+            "room": 1,
+            "duration": 12.553571428571427
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 4
+        },
+        "previous": {
+          "x": 5,
+          "y": 4
+        },
+        "duration": 12.553571428571427,
+        "handoffReady": false
+      },
+      {
+        "id": 1021,
+        "name": "Sam",
+        "x": 8,
+        "y": 5,
+        "stage": "care",
+        "state": "waiting",
+        "route": [],
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": true,
+        "imaging": false,
+        "returning": false,
+        "goal": "Understand my next step",
+        "wait": 120,
+        "walking": 13,
+        "service": 12,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 331,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 349,
+            "room": 10,
+            "duration": 11.036479591836734
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 8,
+          "y": 5
+        },
+        "previous": {
+          "x": 7,
+          "y": 5
+        },
+        "duration": 11.036479591836734,
+        "handoffReady": false
+      },
+      {
+        "id": 1022,
+        "name": "Noor",
+        "x": 1,
+        "y": 2,
+        "stage": "scan",
+        "state": "service",
+        "route": [],
+        "target": 2,
+        "room": 2,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 76,
+        "walking": 22,
+        "service": 26,
+        "handoff": 4,
+        "transfer": 3,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 349,
+        "progress": 13,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 356,
+            "room": 1,
+            "duration": 12.505357142857143
+          },
+          {
+            "stage": "scan",
+            "at": 467,
+            "room": 2,
+            "duration": 18.403714285714276
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 1,
+          "y": 2
+        },
+        "previous": {
+          "x": 1.75,
+          "y": 2.25
+        },
+        "duration": 18.403714285714276,
+        "handoffReady": false
+      },
+      {
+        "id": 1023,
+        "name": "Jordan",
+        "x": 6,
+        "y": 6,
+        "stage": "care",
+        "state": "waiting",
+        "route": [],
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 81,
+        "walking": 16,
+        "service": 12,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 367,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 378,
+            "room": 10,
+            "duration": 11.10688775510204
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 6,
+          "y": 6
+        },
+        "previous": {
+          "x": 6.75,
+          "y": 5.75
+        },
+        "duration": 11.10688775510204,
+        "handoffReady": false
+      },
+      {
+        "id": 1024,
+        "name": "Maya",
+        "x": 6,
+        "y": 5,
+        "stage": "care",
+        "state": "waiting",
+        "route": [],
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Find a quieter waiting spot",
+        "wait": 66,
+        "walking": 12,
+        "service": 13,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 385,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 392,
+            "room": 1,
+            "duration": 12.5
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 6,
+          "y": 5
+        },
+        "previous": {
+          "x": 5.75,
+          "y": 4.25
+        },
+        "duration": 12.5,
+        "handoffReady": false
+      },
+      {
+        "id": 1025,
+        "name": "Eli",
+        "x": 7,
+        "y": 6,
+        "stage": "care",
+        "state": "waiting",
+        "route": [],
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 48,
+        "walking": 13,
+        "service": 12,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 403,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 412,
+            "room": 10,
+            "duration": 11.146683673469388
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 7,
+          "y": 6
+        },
+        "previous": {
+          "x": 7,
+          "y": 5
+        },
+        "duration": 11.146683673469388,
+        "handoffReady": false
+      },
+      {
+        "id": 1026,
+        "name": "Robin",
+        "x": 4,
+        "y": 3,
+        "stage": "scan",
+        "state": "waiting",
+        "route": [],
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Have time to ask a question",
+        "wait": 30,
+        "walking": 12,
+        "service": 13,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 0,
+        "elapsedOffset": 0,
+        "arrival": 421,
+        "progress": 0,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 428,
+            "room": 1,
+            "duration": 12.5
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "destination": {
+          "x": 4,
+          "y": 3
+        },
+        "previous": {
+          "x": 4.25,
+          "y": 3.75
+        },
+        "duration": 12.5,
+        "handoffReady": false
+      }
+    ],
+    "utilization": {
+      "1": {
+        "busy": 182,
+        "elapsed": 480
+      },
+      "2": {
+        "busy": 177,
+        "elapsed": 480
+      },
+      "3": {
+        "busy": 190,
+        "elapsed": 480
+      },
+      "10": {
+        "busy": 147,
+        "elapsed": 480
+      }
+    },
+    "disclaimer": "Fictional simulation. Substantial AI assistance. No clinical or educational effectiveness validation. Device-local records only."
+  }
+}
