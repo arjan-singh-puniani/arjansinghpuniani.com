@@ -1,4 +1,4 @@
-# hospitalSIM verification · v0.4 · October29,2026
+# hospitalSIM verification · v0.4 · October29–30,2026
 
 Working AI-assisted prototype. Production hosting is a deployment status, not a claim of commercial release quality. No studio interest, clinician/educator involvement, learner evaluation or learning effect is claimed.
 
@@ -25,3 +25,5 @@ Actual iPhone Safari, thermal/battery performance, long-session device behavior,
 The final release JSON, recording log and performance file supply the measured publication/evidence details. Earlier v0.3 evidence is retained as history, not silently reused as a v0.4 benchmark.
 
 The revised characters passed exported-GLB round-trip checks: transfer/Rest endpoint difference below4.8e-7, authored walk stance drift3.06mm, maximum static mattress overlap8.25mm. These are source checks, not motion-capture validation or exact browser-contact guarantees.
+
+Measured desktop wide gameplay:1,800frames,16.7ms mean/17.6ms p95, up to207,996 visible triangles in the inspected session. Representative steady draw calls80–83; static shadow initialization/checkpoint restoration peaked166, exceeding the provisional150 target briefly. Renderer totals include additional shadow-pass triangles. Initial selected asset files total8,258,953bytes raw and2,240,523bytes under per-file gzip9 (compression estimate, not measured network transfer). A390×844 paused-hospital panel sample measured901frames,16.7ms mean/17.1ms p95. Browser-reported GPU: ANGLE Apple M2 Metal. Real iPhone results remain pending.

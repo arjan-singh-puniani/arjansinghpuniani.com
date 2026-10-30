@@ -1,5 +1,5 @@
 {
-  "project": "Common Good",
+  "project": "hospitalSIM",
   "created": "2026-10-28",
   "assets": [
     {
@@ -15,9 +15,9 @@
     },
     {
       "file": "dist/assets/clinician-lod.glb",
-      "bytes": 244628,
-      "sha256": "f7990e4ce5e54fb2c784f4810ff96f893f3e25da9793a988289541e731ca2bcd",
-      "triangles": 3296,
+      "bytes": 620492,
+      "sha256": "67b5a2d228fe9d69acb747fc60db89634ea76a0ba96fe6d04f9d6467e8a6cf8f",
+      "triangles": 4194,
       "primitives": 1,
       "animations": [
         "Attend",
@@ -25,18 +25,21 @@
         "Idle",
         "Rest",
         "Sit",
+        "TransferIn",
+        "TransferOut",
         "Walk",
         "Work"
       ],
       "source": "blender/characters.py and characters.blend",
       "provenance": "Original procedural geometry and original rig/animation, created with substantial AI assistance; no downloaded human model or ripped game asset.",
-      "license": "CC0-1.0"
+      "license": "CC0-1.0",
+      "joints": 39
     },
     {
       "file": "dist/assets/clinician.glb",
-      "bytes": 451080,
-      "sha256": "23e2b684d24252571f0a2eeb775e684d169caaf8b00e9b62ec0002190ca28127",
-      "triangles": 8244,
+      "bytes": 977924,
+      "sha256": "500731ff41520e382b0c8602cf3a837807a10b0a4f89bf84cc4515e778d4d68b",
+      "triangles": 12346,
       "primitives": 1,
       "animations": [
         "Attend",
@@ -44,18 +47,21 @@
         "Idle",
         "Rest",
         "Sit",
+        "TransferIn",
+        "TransferOut",
         "Walk",
         "Work"
       ],
       "source": "blender/characters.py and characters.blend",
       "provenance": "Original procedural geometry and original rig/animation, created with substantial AI assistance; no downloaded human model or ripped game asset.",
-      "license": "CC0-1.0"
+      "license": "CC0-1.0",
+      "joints": 39
     },
     {
       "file": "dist/assets/coat-lod.glb",
-      "bytes": 254612,
-      "sha256": "9ff2674bbb242242bd5903997b926b999cde0a7444d5afd8cb19c6aa2d43f8b0",
-      "triangles": 3432,
+      "bytes": 638260,
+      "sha256": "24c03762b9ec8e3ea3e62dd79873b35a13fee9fb31d15eb8820160df85cd67d3",
+      "triangles": 4586,
       "primitives": 1,
       "animations": [
         "Attend",
@@ -63,18 +69,21 @@
         "Idle",
         "Rest",
         "Sit",
+        "TransferIn",
+        "TransferOut",
         "Walk",
         "Work"
       ],
       "source": "blender/characters.py and characters.blend",
       "provenance": "Original procedural geometry and original rig/animation, created with substantial AI assistance; no downloaded human model or ripped game asset.",
-      "license": "CC0-1.0"
+      "license": "CC0-1.0",
+      "joints": 39
     },
     {
       "file": "dist/assets/coat.glb",
-      "bytes": 471564,
-      "sha256": "0b9210723cf76af350e15ff8660a2f57338b3f8ade7a3ec9565f2c0e941d324e",
-      "triangles": 8580,
+      "bytes": 1028876,
+      "sha256": "07c8a3f0d0e3f5202f30f80d4f11cf2f31f29f7d72cb8fdfbdc8ec67f72bd68c",
+      "triangles": 13498,
       "primitives": 1,
       "animations": [
         "Attend",
@@ -82,12 +91,15 @@
         "Idle",
         "Rest",
         "Sit",
+        "TransferIn",
+        "TransferOut",
         "Walk",
         "Work"
       ],
       "source": "blender/characters.py and characters.blend",
       "provenance": "Original procedural geometry and original rig/animation, created with substantial AI assistance; no downloaded human model or ripped game asset.",
-      "license": "CC0-1.0"
+      "license": "CC0-1.0",
+      "joints": 39
     },
     {
       "file": "dist/assets/consult.glb",
@@ -102,9 +114,9 @@
     },
     {
       "file": "dist/assets/patient-lod.glb",
-      "bytes": 244500,
-      "sha256": "19c9d53941656b3f21d770347c79def28797527b1d52e7b8ca7df26af0b10fd6",
-      "triangles": 3296,
+      "bytes": 620552,
+      "sha256": "81d8ef024d8f71fe7d275eb552dc8757a66b282063aff938257451867a9c2083",
+      "triangles": 4194,
       "primitives": 1,
       "animations": [
         "Attend",
@@ -112,18 +124,21 @@
         "Idle",
         "Rest",
         "Sit",
+        "TransferIn",
+        "TransferOut",
         "Walk",
         "Work"
       ],
       "source": "blender/characters.py and characters.blend",
       "provenance": "Original procedural geometry and original rig/animation, created with substantial AI assistance; no downloaded human model or ripped game asset.",
-      "license": "CC0-1.0"
+      "license": "CC0-1.0",
+      "joints": 39
     },
     {
       "file": "dist/assets/patient.glb",
-      "bytes": 451076,
-      "sha256": "30c744597dbf57180319fd4c391feb54cbb67c369603cca4961797b8050800bc",
-      "triangles": 8244,
+      "bytes": 977916,
+      "sha256": "7661cd33d05911cb61f7b542bd5b99990cdc9a865cd73b26ec18ef7ce1de72c5",
+      "triangles": 12346,
       "primitives": 1,
       "animations": [
         "Attend",
@@ -131,12 +146,15 @@
         "Idle",
         "Rest",
         "Sit",
+        "TransferIn",
+        "TransferOut",
         "Walk",
         "Work"
       ],
       "source": "blender/characters.py and characters.blend",
       "provenance": "Original procedural geometry and original rig/animation, created with substantial AI assistance; no downloaded human model or ripped game asset.",
-      "license": "CC0-1.0"
+      "license": "CC0-1.0",
+      "joints": 39
     },
     {
       "file": "dist/assets/rest.glb",
@@ -158,6 +176,17 @@
       "animations": [],
       "source": "blender/hospital.py and hospital.blend",
       "provenance": "Original procedural geometry and original rig/animation, created with substantial AI assistance; no downloaded human model or ripped game asset.",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "dist/assets/drape.glb",
+      "bytes": 33012,
+      "sha256": "84a4697e89070a64c3cee7523e632a280f446b91a96db34c967afbad628e7c6d",
+      "triangles": 1744,
+      "primitives": 1,
+      "animations": [],
+      "source": "blender/drape.py and drape.blend",
+      "provenance": "Original occupied-procedure drape, created with substantial AI assistance; static cloth shown after transfer.",
       "license": "CC0-1.0"
     }
   ],
@@ -182,5 +211,19 @@
     "redistribution": "Not licensed as part of the game"
   },
   "fonts": "Georgia and platform sans-serif; system fonts, no font files redistributed",
-  "authorship": "Substantial AI assistance in geometry, rigging, animation, code, design, tests and documentation. Owner contributions must be individually verified before portfolio claims."
+  "authorship": "Substantial AI assistance in geometry, rigging, animation, code, design, tests and documentation. Owner contributions must be individually verified before portfolio claims.",
+  "updated": "2026-10-29",
+  "runtimeDecoration": {
+    "source": "dist/renderer.mjs decorateRoom",
+    "provenance": "Original procedural plant, geometric print and palette stripe; fixed clear sockets",
+    "license": "CC0-1.0"
+  },
+  "optionalModule": {
+    "name": "REPLISOME",
+    "source": "Existing portfolio public/replisome, origin/main 0a8981a; build-manifest retained",
+    "use": "Lazy same-origin science workstation; no modeled clinical service",
+    "license": "Existing project terms and original dependency/font licenses; excluded from hospital original-assets CC0 dedication",
+    "provenance": "Existing owner project, not newly authored hospital geometry. Structural source CIFs and original model notes retained.",
+    "files": "dist/replisome/build-manifest.json"
+  }
 }
