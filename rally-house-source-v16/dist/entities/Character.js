@@ -569,13 +569,20 @@ export class Character {
             this.rightFootLock = null;
         }
     }
+    serveContactHeight() {
+        if (this.spec.avatar !== 'taylor' && this.spec.appearance !== 'human')
+            return 2.36;
+        const arm = this.spec.presentation === 'feminine' && this.spec.appearance === 'human' ? authoredArmLengths() : undefined;
+        // Reach from the adult shoulder with a soft elbow, accounting for the full racket shaft.
+        return TAYLOR_BODY.pelvisHeight + .55 * TAYLOR_BODY.torsoScale + (arm?.upperArm ?? TAYLOR_BODY.upperArm) + (arm?.wristForearm ?? TAYLOR_BODY.forearm) + Math.sqrt(RACKET.gripDistance ** 2 - .125 ** 2) - .04;
+    }
     solveContactTarget(state, incoming) {
         // Intercept toward the opponent, even while the body is still turning
         // out of lateral movement. The previous yaw could put this behind us.
         const aim = this.outgoingTarget;
         const shotYaw = aim ? Math.atan2(aim.x - this.position.x, aim.z - this.position.z) : this.yaw;
         if (state === 'serve')
-            return this.worldLocal(.14, this.spec.avatar === 'taylor' || this.spec.appearance === 'human' ? 3.04 : 2.36, .38, shotYaw);
+            return this.worldLocal(.14, this.serveContactHeight(), .38, shotYaw);
         const local = incoming ? this.localFromWorld(incoming, shotYaw) : new Vec3(state === 'swingForehand' ? .54 : state === 'swingBackhand' ? -.42 : .30, 1.02, .48);
         local.y = clamp(local.y, state === 'volley' ? .90 : .66, state === 'volley' ? 1.58 : 1.38);
         local.z = clamp(local.z, .55, .90);
@@ -948,7 +955,7 @@ export class Character {
             handR = sp < contact ? strokeCurve(start, this.worldLocal(.64 * side, 1.55, -.10), impact.clone().sub(approach), impact, pre) : strokeCurve(impact, impact.clone().add(exit), finish.clone().add(racketForward.clone().scale(.24)), finish, post);
         }
         if (humanServe) {
-            const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1), impactOffset = Vec3.add(new Vec3(0, Math.sqrt(RACKET.gripDistance ** 2 - .125 ** 2), 0), racketForward.clone().scale(.125)), impact = Vec3.sub(this.contactTarget ?? this.worldLocal(.14, 3.04, .38), impactOffset), approach = racketForward.clone().scale(.18).add(new Vec3(0, .30, 0)), exit = approach.clone().scale((1 - contact) / contact);
+            const pre = clamp(sp / contact, 0, 1), post = clamp((sp - contact) / (1 - contact), 0, 1), impactOffset = Vec3.add(new Vec3(0, Math.sqrt(RACKET.gripDistance ** 2 - .125 ** 2), 0), racketForward.clone().scale(.125)), impact = Vec3.sub(this.contactTarget ?? this.worldLocal(.14, this.serveContactHeight(), .38), impactOffset), approach = racketForward.clone().scale(.18).add(new Vec3(0, .30, 0)), exit = approach.clone().scale((1 - contact) / contact);
             // Carry the wrist through the ball before the arm folds down across the body.
             handR = sp < contact ? strokeCurve(this.worldLocal(.34, 1.55, .24), this.worldLocal(.48, 2.20, -.28), impact.clone().sub(approach), impact, pre) : strokeCurve(impact, impact.clone().add(exit), this.worldLocal(.10, 1.80, .64), this.worldLocal(-.02, 1.50, .72), post);
             // The racket drops behind the wrist before accelerating up; the face turns through the release.

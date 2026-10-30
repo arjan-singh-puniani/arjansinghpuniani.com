@@ -1,0 +1,182 @@
+[
+  {
+    "character": "Taylor",
+    "rate": 30,
+    "beforeElbowBend": 74.63356947168786,
+    "afterElbowBend": 16.13793574456713,
+    "beforeUpperArm": 0.3501770577919652,
+    "afterUpperArm": 0.3501770577919649,
+    "beforeForearm": 0.3167691045191727,
+    "afterForearm": 0.3167691045191728
+  },
+  {
+    "character": "Taylor",
+    "rate": 60,
+    "beforeElbowBend": 74.4907609910771,
+    "afterElbowBend": 14.834278522075948,
+    "beforeUpperArm": 0.3501770577919651,
+    "afterUpperArm": 0.3501770577919651,
+    "beforeForearm": 0.3167691045191727,
+    "afterForearm": 0.3167691045191726
+  },
+  {
+    "character": "Taylor",
+    "rate": 120,
+    "beforeElbowBend": 74.40142637363847,
+    "afterElbowBend": 13.86057081221449,
+    "beforeUpperArm": 0.350177057791965,
+    "afterUpperArm": 0.35017705779196545,
+    "beforeForearm": 0.3167691045191728,
+    "afterForearm": 0.31676910451917223
+  },
+  {
+    "character": "Arjan",
+    "rate": 30,
+    "beforeElbowBend": 112.03274420149769,
+    "afterElbowBend": 43.00065233834218,
+    "beforeUpperArm": 0.4250000000000001,
+    "afterUpperArm": 0.4249999999999997,
+    "beforeForearm": 0.41500000000000004,
+    "afterForearm": 0.41500000000000026
+  },
+  {
+    "character": "Arjan",
+    "rate": 60,
+    "beforeElbowBend": 112.03274420149769,
+    "afterElbowBend": 43.00065233834218,
+    "beforeUpperArm": 0.4250000000000001,
+    "afterUpperArm": 0.4249999999999997,
+    "beforeForearm": 0.41500000000000004,
+    "afterForearm": 0.41500000000000026
+  },
+  {
+    "character": "Arjan",
+    "rate": 120,
+    "beforeElbowBend": 112.03274420149769,
+    "afterElbowBend": 43.00065233834218,
+    "beforeUpperArm": 0.4250000000000001,
+    "afterUpperArm": 0.4249999999999997,
+    "beforeForearm": 0.41500000000000004,
+    "afterForearm": 0.41500000000000026
+  },
+  {
+    "character": "Coach Contessa",
+    "rate": 30,
+    "beforeElbowBend": 76.17084479508914,
+    "afterElbowBend": 18.68699555243043,
+    "beforeUpperArm": 0.35017705779196506,
+    "afterUpperArm": 0.3501770577919655,
+    "beforeForearm": 0.3167691045191727,
+    "afterForearm": 0.31676910451917223
+  },
+  {
+    "character": "Coach Contessa",
+    "rate": 60,
+    "beforeElbowBend": 76.3215956046998,
+    "afterElbowBend": 18.85284795945421,
+    "beforeUpperArm": 0.3501770577919653,
+    "afterUpperArm": 0.35017705779196506,
+    "beforeForearm": 0.3167691045191724,
+    "afterForearm": 0.31676910451917273
+  },
+  {
+    "character": "Coach Contessa",
+    "rate": 120,
+    "beforeElbowBend": 76.48210282717221,
+    "afterElbowBend": 19.041053970784873,
+    "beforeUpperArm": 0.35017705779196523,
+    "afterUpperArm": 0.3501770577919652,
+    "beforeForearm": 0.31676910451917245,
+    "afterForearm": 0.31676910451917245
+  },
+  {
+    "character": "Lucresia",
+    "rate": 30,
+    "beforeElbowBend": 66.30257428830701,
+    "afterElbowBend": 20.86742829243454,
+    "beforeUpperArm": 0.3501770577919652,
+    "afterUpperArm": 0.3501770577919653,
+    "beforeForearm": 0.3167691045191725,
+    "afterForearm": 0.3167691045191724
+  },
+  {
+    "character": "Lucresia",
+    "rate": 60,
+    "beforeElbowBend": 66.04354545842673,
+    "afterElbowBend": 20.867428292434624,
+    "beforeUpperArm": 0.35017705779196506,
+    "afterUpperArm": 0.350177057791965,
+    "beforeForearm": 0.3167691045191727,
+    "afterForearm": 0.31676910451917273
+  },
+  {
+    "character": "Lucresia",
+    "rate": 120,
+    "beforeElbowBend": 65.8587832350067,
+    "afterElbowBend": 20.867428292434482,
+    "beforeUpperArm": 0.3501770577919652,
+    "afterUpperArm": 0.3501770577919653,
+    "beforeForearm": 0.3167691045191725,
+    "afterForearm": 0.31676910451917245
+  },
+  {
+    "character": "Leo",
+    "rate": 30,
+    "beforeElbowBend": 107.34923191495078,
+    "afterElbowBend": 30.833155678165014,
+    "beforeUpperArm": 0.425,
+    "afterUpperArm": 0.42500000000000016,
+    "beforeForearm": 0.41500000000000015,
+    "afterForearm": 0.41499999999999987
+  },
+  {
+    "character": "Leo",
+    "rate": 60,
+    "beforeElbowBend": 107.34923191495078,
+    "afterElbowBend": 30.833155678165014,
+    "beforeUpperArm": 0.425,
+    "afterUpperArm": 0.42500000000000016,
+    "beforeForearm": 0.41500000000000015,
+    "afterForearm": 0.41499999999999987
+  },
+  {
+    "character": "Leo",
+    "rate": 120,
+    "beforeElbowBend": 107.34923191495078,
+    "afterElbowBend": 30.833155678165014,
+    "beforeUpperArm": 0.425,
+    "afterUpperArm": 0.42500000000000016,
+    "beforeForearm": 0.41500000000000015,
+    "afterForearm": 0.41499999999999987
+  },
+  {
+    "character": "Barbara",
+    "rate": 30,
+    "beforeElbowBend": 67.59169108061067,
+    "afterElbowBend": 20.867428292434425,
+    "beforeUpperArm": 0.3501770577919651,
+    "afterUpperArm": 0.35017705779196556,
+    "beforeForearm": 0.3167691045191725,
+    "afterForearm": 0.3167691045191721
+  },
+  {
+    "character": "Barbara",
+    "rate": 60,
+    "beforeElbowBend": 67.23904952637682,
+    "afterElbowBend": 20.867428292434425,
+    "beforeUpperArm": 0.35017705779196495,
+    "afterUpperArm": 0.35017705779196495,
+    "beforeForearm": 0.316769104519173,
+    "afterForearm": 0.31676910451917256
+  },
+  {
+    "character": "Barbara",
+    "rate": 120,
+    "beforeElbowBend": 67.00167033895553,
+    "afterElbowBend": 20.867428292434454,
+    "beforeUpperArm": 0.3501770577919653,
+    "afterUpperArm": 0.3501770577919653,
+    "beforeForearm": 0.3167691045191723,
+    "afterForearm": 0.3167691045191724
+  }
+]
