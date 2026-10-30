@@ -8,7 +8,7 @@ The portfolio identifies Arjan Singh Puniani as founder and device lead, with th
 
 The [University of Pittsburgh's 2023 Randall winners record, page 2](https://www.bigidea.pitt.edu/wp-content/uploads/2023/04/Meet-the-Randall-2023-Winners-PDF.pdf) names Arjan Singh Puniani, Alex Ezerins, Wendi Yin, and Jack Ketchum for Cyberpunk Reality. The portfolio records a third-place $5,000 Randall award and a $7,500 Kuzneski Innovation Cup award. These are team competition recognitions, not technical validation. The [Pitt Research 2022–23 annual report, printed page 61](https://www.research.pitt.edu/sites/default/files/pitt-research-annual-report-2022-23.pdf) independently lists CyberPunk Reality among winners of both competitions; its extracted text does not allocate the Kuzneski prize amount to individual teams. The existing winner graphic is the amount-specific project source. The supplied record does not establish a detailed allocation of engineering contributions among collaborators.
 
-Patent and regulatory progress are not asserted here. Prior source audits reported conflicting IP wording; no current authoritative filing or grant record was verified. Absence of a record in this review is not proof of absence. No regulatory-clearance claim is supported by the inspected record.
+The founder reports a provisional patent filing. The filing date, application number and current legal status have not been independently verified; the header labels the filing as reported. Prior source audits contained conflicting IP wording. No granted-patent or regulatory-clearance claim is made.
 
 ## Claim-to-source map
 

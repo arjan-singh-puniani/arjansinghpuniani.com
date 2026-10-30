@@ -5,3 +5,5 @@
 .scene-head button[aria-pressed=true]{color:#11282e}.scene-tools button:disabled{cursor:default}
 body.embedded .masthead{display:none}body.embedded .introduction{padding-top:24px;padding-bottom:24px}body.embedded .introduction h1{font-size:clamp(34px,3.4vw,48px);margin-bottom:16px}body.embedded .intro-copy{font-size:13px}body.embedded .intro-note{font-size:11px}body.embedded .intro-note strong{font-size:12px}@media(max-width:760px){body.embedded .intro-note{margin-top:17px}body.embedded .introduction h1{font-size:34px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+
+.introduction{display:block}.patent-status{font-size:12px;color:var(--muted);margin:12px 0 0}
