@@ -1,0 +1,73 @@
+{
+  "origin": "http://127.0.0.1:3214",
+  "browserClosed": true,
+  "visualStatus": "pass",
+  "reports": [
+    {
+      "width": 1440,
+      "errors": [],
+      "snapshot": {
+        "view": "system",
+        "selected": "package",
+        "installed": [
+          "interface",
+          "coldplate",
+          "tec",
+          "heatpath",
+          "sensing",
+          "electronics",
+          "package"
+        ],
+        "offsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "overflow": false
+      }
+    },
+    {
+      "width": 390,
+      "errors": [],
+      "snapshot": {
+        "view": "system",
+        "selected": "package",
+        "installed": [
+          "interface",
+          "coldplate",
+          "tec",
+          "heatpath",
+          "sensing",
+          "electronics",
+          "package"
+        ],
+        "offsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "overflow": false
+      }
+    }
+  ],
+  "review": {
+    "result": "The dominant skull-window rim and lifted covering flaps are absent from system/device inspection views. Real cortical anatomy, pia/contact locator and the complete device remain visible.",
+    "framesReviewed": [
+      "anatomy-refined-assembly-1440.png",
+      "anatomy-refined-assembly-390.png",
+      "anatomy-clean-assembly-components-1440.png",
+      "anatomy-clean-assembly-components-390.png"
+    ],
+    "framing": "Exploded contact, thermoelectric and package selections, and the fully seated system remain inside the scene at both tested widths.",
+    "picking": "Current source filters every ray-hit ancestor for visibility and ignores low-opacity surrounding materials. Hidden anatomical groups cannot intercept accepted picks. Direct mesh clicking was not repeated in this narrow final recapture.",
+    "limitations": "Chromium software-rendered desktop viewport emulation; native GPU and physical phone testing are separate."
+  }
+}

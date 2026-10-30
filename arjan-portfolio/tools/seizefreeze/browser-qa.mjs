@@ -10,7 +10,7 @@ await mkdir(output, { recursive: true });
 const results = [];
 const engines = process.argv.includes('--smoke') ? [['chromium', chromium]] : [['chromium', chromium], ['firefox', firefox], ['webkit', webkit]];
 for (const [name, type] of engines) {
-  const options = { headless: true };
+  const options = name === 'chromium' ? { headless: true, channel: 'chromium', args: ['--use-angle=metal'] } : { headless: true };
   if (name === 'firefox') {
     try { await access(type.executablePath()); }
     catch { options.executablePath = `${homedir()}/Library/Caches/ms-playwright/firefox-1538/firefox/Nightly.app/Contents/MacOS/firefox`; }
@@ -31,6 +31,7 @@ for (const [name, type] of engines) {
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'assembly overflow');
     await page.screenshot({path:fileURLToPath(new URL(`pass3-${name}-${width}-opening.png`,output))});
     await page.locator('#scene').screenshot({path:fileURLToPath(new URL(`pass3-${name}-${width}-device.png`,output))});
+    await page.locator('#assembly-tab').click();
     const first=await page.evaluate(()=>window.seizefreeze.snapshot());
     assert.ok(first.stats,'WebGL should work in standard browser path');
     for(let j=0;j<7;j++) {

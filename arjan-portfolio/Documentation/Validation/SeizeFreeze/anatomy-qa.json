@@ -1,0 +1,521 @@
+{
+  "base": "http://127.0.0.1:3214",
+  "browserVersion": "153.0.8010.12",
+  "rendererRequested": "native Chromium --use-angle=metal; inspect actual adapter in each result",
+  "results": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "interactiveMs": 2464,
+      "viewportEmulation": true,
+      "physicalDeviceTest": false,
+      "layout": {
+        ".scene": {
+          "x": 72,
+          "y": 278.796875,
+          "width": 988,
+          "height": 600
+        },
+        ".scene-tools": {
+          "x": 72,
+          "y": 232.796875,
+          "width": 988,
+          "height": 36
+        },
+        ".peel-control": {
+          "x": 72,
+          "y": 888.796875,
+          "width": 988,
+          "height": 93.046875
+        },
+        ".inspector": {
+          "x": 1088,
+          "y": 200.296875,
+          "width": 280,
+          "height": 863.734375
+        }
+      },
+      "peels": [
+        {
+          "value": 0,
+          "output": "Scalp",
+          "geometryCount": 66
+        },
+        {
+          "value": 1,
+          "output": "Pial interface",
+          "geometryCount": 66
+        }
+      ],
+      "cameraPositions": [
+        {
+          "camera": "head",
+          "position": [
+            -360,
+            115,
+            265
+          ]
+        },
+        {
+          "camera": "region",
+          "position": [
+            -349.44289985656735,
+            68.88006078720097,
+            191.49830156326294
+          ]
+        },
+        {
+          "camera": "interface",
+          "position": [
+            -98.76072892850465,
+            10.557203423126573,
+            33.66389256307142
+          ]
+        }
+      ],
+      "actualMeshPicking": "Clicking the complete device lid selects packaging through hidden covering flaps",
+      "keyboard": "Native range Home/End/ArrowLeft and layer/camera/mode Enter/Space passed",
+      "reducedMotion": {
+        "idleFramesBefore": 23,
+        "idleFramesAfter": 23
+      },
+      "accessibility": [
+        {
+          "mode": "assembly",
+          "violations": [],
+          "incompleteCount": 1
+        },
+        {
+          "mode": "signal",
+          "violations": [],
+          "incompleteCount": 1
+        },
+        {
+          "mode": "placement",
+          "violations": [],
+          "incompleteCount": 1
+        }
+      ],
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 23,
+        "calls": 69,
+        "triangles": 454137,
+        "geometries": 66,
+        "textures": 4,
+        "pixelRatio": 1,
+        "renderCpuMsMean": 6.134782607788625,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "selected": null,
+        "exploded": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -349.44289985656735,
+          68.88006078720097,
+          191.49830156326294
+        ],
+        "view": "region",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -64.24088201981604,
+          -1.8697317292685716,
+          10.654274028986205
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "region"
+        }
+      },
+      "errors": [],
+      "requests": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "interactiveMs": 2478,
+      "viewportEmulation": true,
+      "physicalDeviceTest": false,
+      "layout": {
+        ".scene": {
+          "x": 38.390625,
+          "y": 278.796875,
+          "width": 421.21875,
+          "height": 620
+        },
+        ".scene-tools": {
+          "x": 38.390625,
+          "y": 232.796875,
+          "width": 421.21875,
+          "height": 36
+        },
+        ".peel-control": {
+          "x": 38.390625,
+          "y": 908.796875,
+          "width": 421.21875,
+          "height": 93.046875
+        },
+        ".inspector": {
+          "x": 479.609375,
+          "y": 200.296875,
+          "width": 250,
+          "height": 920.421875
+        }
+      },
+      "peels": [
+        {
+          "value": 0,
+          "output": "Scalp",
+          "geometryCount": 66
+        },
+        {
+          "value": 1,
+          "output": "Pial interface",
+          "geometryCount": 66
+        }
+      ],
+      "cameraPositions": [
+        {
+          "camera": "head",
+          "position": [
+            -486.00000000000006,
+            155.25,
+            357.74999999999994
+          ]
+        },
+        {
+          "camera": "region",
+          "position": [
+            -426.94289985656735,
+            86.38006078720097,
+            237.74830156326294
+          ]
+        },
+        {
+          "camera": "interface",
+          "position": [
+            -104.91388906256421,
+            12.800194556857672,
+            37.78884239775108
+          ]
+        }
+      ],
+      "actualMeshPicking": "Clicking the complete device lid selects packaging through hidden covering flaps",
+      "keyboard": "Native range Home/End/ArrowLeft and layer/camera/mode Enter/Space passed",
+      "reducedMotion": {
+        "idleFramesBefore": 21,
+        "idleFramesAfter": 21
+      },
+      "accessibility": [
+        {
+          "mode": "assembly",
+          "violations": [],
+          "incompleteCount": 1
+        },
+        {
+          "mode": "signal",
+          "violations": [],
+          "incompleteCount": 1
+        },
+        {
+          "mode": "placement",
+          "violations": [],
+          "incompleteCount": 1
+        }
+      ],
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 21,
+        "calls": 69,
+        "triangles": 454137,
+        "geometries": 66,
+        "textures": 4,
+        "pixelRatio": 1,
+        "renderCpuMsMean": 6.966666665815172,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "selected": null,
+        "exploded": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -426.94289985656735,
+          86.38006078720097,
+          237.74830156326294
+        ],
+        "view": "region",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -64.24088201981604,
+          -1.8697317292685716,
+          10.654274028986205
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "region"
+        }
+      },
+      "errors": [],
+      "requests": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "interactiveMs": 2419,
+      "viewportEmulation": true,
+      "physicalDeviceTest": false,
+      "layout": {
+        ".scene": {
+          "x": 19.5,
+          "y": 290.578125,
+          "width": 351,
+          "height": 337.59375
+        },
+        ".scene-tools": {
+          "x": 19.5,
+          "y": 248.578125,
+          "width": 351,
+          "height": 34
+        },
+        ".peel-control": {
+          "x": 19.5,
+          "y": 636.171875,
+          "width": 351,
+          "height": 91.5
+        },
+        ".inspector": {
+          "x": 19.5,
+          "y": 844.921875,
+          "width": 351,
+          "height": 552.890625
+        }
+      },
+      "peels": [
+        {
+          "value": 0,
+          "output": "Scalp",
+          "geometryCount": 66
+        },
+        {
+          "value": 1,
+          "output": "Pial interface",
+          "geometryCount": 66
+        }
+      ],
+      "cameraPositions": [
+        {
+          "camera": "head",
+          "position": [
+            -486.00000000000006,
+            155.25,
+            357.74999999999994
+          ]
+        },
+        {
+          "camera": "region",
+          "position": [
+            -426.94289985656735,
+            86.38006078720097,
+            237.74830156326294
+          ]
+        },
+        {
+          "camera": "interface",
+          "position": [
+            -104.91388906256421,
+            12.800194556857672,
+            37.78884239775108
+          ]
+        }
+      ],
+      "actualMeshPicking": "Clicking the complete device lid selects packaging through hidden covering flaps",
+      "keyboard": "Native range Home/End/ArrowLeft and layer/camera/mode Enter/Space passed",
+      "reducedMotion": {
+        "idleFramesBefore": 22,
+        "idleFramesAfter": 22
+      },
+      "accessibility": [
+        {
+          "mode": "assembly",
+          "violations": [],
+          "incompleteCount": 1
+        },
+        {
+          "mode": "signal",
+          "violations": [],
+          "incompleteCount": 1
+        },
+        {
+          "mode": "placement",
+          "violations": [],
+          "incompleteCount": 1
+        }
+      ],
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 22,
+        "calls": 69,
+        "triangles": 454137,
+        "geometries": 66,
+        "textures": 4,
+        "pixelRatio": 1,
+        "renderCpuMsMean": 6.54545454477722,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "selected": null,
+        "exploded": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -426.94289985656735,
+          86.38006078720097,
+          237.74830156326294
+        ],
+        "view": "region",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -64.24088201981604,
+          -1.8697317292685716,
+          10.654274028986205
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "region"
+        }
+      },
+      "errors": [],
+      "requests": []
+    },
+    {
+      "fallback": "WebGL contexts intentionally unavailable",
+      "staticDiagramVisible": true,
+      "keyboardPeelDescriptionWorks": true,
+      "numericalModelWorks": true
+    }
+  ],
+  "defects": []
+}

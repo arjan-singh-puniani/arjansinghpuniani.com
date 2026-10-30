@@ -1,23 +1,24 @@
 {
-  "base": "http://127.0.0.1:3212",
+  "base": "http://127.0.0.1:3214",
   "results": [
     {
       "engine": "chromium",
       "version": "153.0.8010.12",
       "width": 390,
       "height": 844,
-      "interactiveMs": 577,
+      "interactiveMs": 2566,
       "stats": {
-        "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
-        "softwareRenderer": true,
-        "frames": 17,
-        "calls": 59,
-        "triangles": 16530,
-        "geometries": 62,
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 22,
+        "calls": 55,
+        "triangles": 397277,
+        "geometries": 66,
         "textures": 4,
         "pixelRatio": 1,
-        "renderCpuMsMean": 47.63529411396559,
+        "renderCpuMsMean": 8.318181818859143,
         "rendering": "on demand; no idle animation",
+        "active": true,
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -29,7 +30,55 @@
           "electronics": 0,
           "package": 0
         },
-        "view": "interface"
+        "cameraPosition": [
+          -104.91388906256421,
+          12.800194556857672,
+          37.78884239775108
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -64.24088201981604,
+          -1.8697317292685716,
+          10.654274028986205
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        }
       },
       "errors": [],
       "requests": [],
@@ -40,18 +89,19 @@
       "version": "153.0.8010.12",
       "width": 768,
       "height": 1024,
-      "interactiveMs": 608,
+      "interactiveMs": 2373,
       "stats": {
-        "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
-        "softwareRenderer": true,
-        "frames": 24,
-        "calls": 59,
-        "triangles": 16530,
-        "geometries": 62,
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 22,
+        "calls": 55,
+        "triangles": 397277,
+        "geometries": 66,
         "textures": 4,
         "pixelRatio": 1,
-        "renderCpuMsMean": 30.625000001241762,
+        "renderCpuMsMean": 7.554545454003594,
         "rendering": "on demand; no idle animation",
+        "active": true,
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -63,7 +113,55 @@
           "electronics": 0,
           "package": 0
         },
-        "view": "interface"
+        "cameraPosition": [
+          -104.91388906256421,
+          12.800194556857672,
+          37.78884239775108
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -64.24088201981604,
+          -1.8697317292685716,
+          10.654274028986205
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        }
       },
       "errors": [],
       "requests": [],
@@ -74,18 +172,19 @@
       "version": "153.0.8010.12",
       "width": 1440,
       "height": 1000,
-      "interactiveMs": 579,
+      "interactiveMs": 2492,
       "stats": {
-        "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
-        "softwareRenderer": true,
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
         "frames": 24,
-        "calls": 59,
-        "triangles": 16530,
-        "geometries": 62,
+        "calls": 55,
+        "triangles": 397277,
+        "geometries": 66,
         "textures": 4,
         "pixelRatio": 1,
-        "renderCpuMsMean": 30.13333333407839,
+        "renderCpuMsMean": 6.683333333581686,
         "rendering": "on demand; no idle animation",
+        "active": true,
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -97,7 +196,55 @@
           "electronics": 0,
           "package": 0
         },
-        "view": "interface"
+        "cameraPosition": [
+          -98.76072892850465,
+          10.557203423126573,
+          33.66389256307142
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -64.24088201981604,
+          -1.8697317292685716,
+          10.654274028986205
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        }
       },
       "errors": [],
       "requests": [],
@@ -108,18 +255,19 @@
       "version": "153.0.8010.12",
       "width": 1920,
       "height": 1080,
-      "interactiveMs": 532,
+      "interactiveMs": 2518,
       "stats": {
-        "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
-        "softwareRenderer": true,
-        "frames": 24,
-        "calls": 59,
-        "triangles": 16530,
-        "geometries": 62,
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 22,
+        "calls": 55,
+        "triangles": 397277,
+        "geometries": 66,
         "textures": 4,
         "pixelRatio": 1,
-        "renderCpuMsMean": 26.341666666790843,
+        "renderCpuMsMean": 7.5090909099036995,
         "rendering": "on demand; no idle animation",
+        "active": true,
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -131,7 +279,55 @@
           "electronics": 0,
           "package": 0
         },
-        "view": "interface"
+        "cameraPosition": [
+          -98.76072892850465,
+          10.557203423126573,
+          33.66389256307142
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -64.24088201981604,
+          -1.8697317292685716,
+          10.654274028986205
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        }
       },
       "errors": [],
       "requests": [],
@@ -142,18 +338,19 @@
       "version": "153.0",
       "width": 390,
       "height": 844,
-      "interactiveMs": 3101,
+      "interactiveMs": 3751,
       "stats": {
         "adapter": "Apple M1, or similar",
         "softwareRenderer": false,
-        "frames": 13,
-        "calls": 59,
-        "triangles": 26210,
-        "geometries": 62,
+        "frames": 17,
+        "calls": 55,
+        "triangles": 397277,
+        "geometries": 66,
         "textures": 4,
         "pixelRatio": 1,
-        "renderCpuMsMean": 111.23076923076923,
+        "renderCpuMsMean": 17.294117647058822,
         "rendering": "on demand; no idle animation",
+        "active": true,
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -165,7 +362,55 @@
           "electronics": 0,
           "package": 0
         },
-        "view": "interface"
+        "cameraPosition": [
+          -104.91388906256421,
+          12.800194556857672,
+          37.78884239775108
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -64.24088201981604,
+          -1.8697317292685716,
+          10.654274028986205
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        }
       },
       "errors": [],
       "requests": [],
@@ -176,18 +421,19 @@
       "version": "153.0",
       "width": 1440,
       "height": 1000,
-      "interactiveMs": 1400,
+      "interactiveMs": 3828,
       "stats": {
         "adapter": "Apple M1, or similar",
         "softwareRenderer": false,
-        "frames": 25,
-        "calls": 59,
-        "triangles": 26210,
-        "geometries": 62,
+        "frames": 26,
+        "calls": 55,
+        "triangles": 397277,
+        "geometries": 66,
         "textures": 4,
         "pixelRatio": 1,
-        "renderCpuMsMean": 28.6,
+        "renderCpuMsMean": 12.576923076923077,
         "rendering": "on demand; no idle animation",
+        "active": true,
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -199,7 +445,55 @@
           "electronics": 0,
           "package": 0
         },
-        "view": "interface"
+        "cameraPosition": [
+          -98.76072892850465,
+          10.557203423126573,
+          33.66389256307142
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -64.24088201981604,
+          -1.8697317292685716,
+          10.654274028986205
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        }
       },
       "errors": [],
       "requests": [],
@@ -210,18 +504,19 @@
       "version": "26.6",
       "width": 390,
       "height": 844,
-      "interactiveMs": 1216,
+      "interactiveMs": 3174,
       "stats": {
         "adapter": "Apple GPU",
         "softwareRenderer": false,
-        "frames": 11,
-        "calls": 59,
-        "triangles": 26210,
-        "geometries": 62,
+        "frames": 14,
+        "calls": 55,
+        "triangles": 397277,
+        "geometries": 66,
         "textures": 4,
         "pixelRatio": 1,
-        "renderCpuMsMean": 484.90909090909093,
+        "renderCpuMsMean": 11.571428571428571,
         "rendering": "on demand; no idle animation",
+        "active": true,
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -233,7 +528,55 @@
           "electronics": 0,
           "package": 0
         },
-        "view": "interface"
+        "cameraPosition": [
+          -104.91388906256421,
+          12.800194556857672,
+          37.78884239775108
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -64.24088201981604,
+          -1.8697317292685716,
+          10.654274028986205
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        }
       },
       "errors": [],
       "requests": [],
@@ -244,18 +587,19 @@
       "version": "26.6",
       "width": 1440,
       "height": 1000,
-      "interactiveMs": 815,
+      "interactiveMs": 3182,
       "stats": {
         "adapter": "Apple GPU",
         "softwareRenderer": false,
-        "frames": 25,
-        "calls": 59,
-        "triangles": 26210,
-        "geometries": 62,
+        "frames": 23,
+        "calls": 55,
+        "triangles": 397277,
+        "geometries": 66,
         "textures": 4,
         "pixelRatio": 1,
-        "renderCpuMsMean": 20,
+        "renderCpuMsMean": 7.869565217391305,
         "rendering": "on demand; no idle animation",
+        "active": true,
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -267,7 +611,55 @@
           "electronics": 0,
           "package": 0
         },
-        "view": "interface"
+        "cameraPosition": [
+          -98.76072892850465,
+          10.557203423126573,
+          33.66389256307142
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -64.24088201981604,
+          -1.8697317292685716,
+          10.654274028986205
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        }
       },
       "errors": [],
       "requests": [],
