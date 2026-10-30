@@ -6,24 +6,25 @@ import styles from "./playground.module.css";
 
 export const metadata: Metadata = {
   title: "Playground",
-  description: "Small interactive experiments by Arjan Singh Puniani in anatomy, DNA replication, tennis, cozy games, motorsport, and cardiovascular flow.",
+  description: "Small interactive experiments by Arjan Singh Puniani in hospital systems, anatomy, DNA replication, tennis, cozy games, motorsport, and cardiovascular flow.",
   alternates: { canonical: "/playground" },
   openGraph: {
     type: "website",
     url: `${siteUrl}/playground`,
     title: "Playground | Arjan Singh Puniani",
-    description: "Small interactive experiments in anatomy, DNA replication, tennis, cozy games, motorsport, and cardiovascular flow.",
+    description: "Small interactive experiments in hospital systems, anatomy, DNA replication, tennis, cozy games, motorsport, and cardiovascular flow.",
     images: ["/images/playground/anatomy-learner.webp"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Playground | Arjan Singh Puniani",
-    description: "Small interactive experiments in anatomy, DNA replication, tennis, cozy games, motorsport, and cardiovascular flow.",
+    description: "Small interactive experiments in hospital systems, anatomy, DNA replication, tennis, cozy games, motorsport, and cardiovascular flow.",
     images: ["/images/playground/anatomy-learner.webp"],
   },
 };
 
 const cards = [
+  {status:"HOSPITAL MANAGEMENT GAME",eyebrow:"People · Queues · Care",title:"hospitalSIM",description:"Build a miniature hospital and discover where the bottleneck moves. Includes a REPLISOME science workstation.",href:"/playground/hospitalsim",button:"Play hospitalSIM",image:"/hospitalsim/preview.webp",alt:"Actual hospitalSIM game with medical equipment, miniature clinicians and blue platforms",tone:"light"},
   {
     status: "INTERACTIVE ANATOMY",
     eyebrow: "HoloAnatomy",
@@ -33,17 +34,6 @@ const cards = [
     button: "Open Anatomy Learner",
     image: "/images/playground/anatomy-learner.webp",
     alt: "Detailed anatomical heart cutaway used as the Anatomy Learner project thumbnail",
-    tone: "dark",
-  },
-  {
-    status: "MOLECULAR EXPERIENCE",
-    eyebrow: "DNA replication",
-    title: "REPLISOME",
-    description: "Watch, explore, and build the molecular machinery that copies DNA.",
-    href: "/playground/replisome",
-    button: "Explore DNA replication",
-    image: "/replisome/preview.webp",
-    alt: "REPLISOME showing the colorful protein complexes and DNA strands at a replication fork",
     tone: "dark",
   },
   {
@@ -98,7 +88,7 @@ export default function Playground() {
       <div className="shell">
         <p className="eyebrow">Playground</p>
         <h1>Playground.</h1>
-        <p>I built these small browser experiments in anatomy, DNA replication, tennis, mechanical systems, and cardiovascular flow. They are prototypes and educational models.</p>
+        <p>I built these small browser experiments in hospital systems, anatomy, DNA replication, tennis, mechanical systems, and cardiovascular flow. They are prototypes and educational models.</p>
       </div>
     </header>
 
@@ -109,7 +99,7 @@ export default function Playground() {
             <div className={styles.copy}>
               <span className="status">{card.status}</span>
               <p className="eyebrow">{card.eyebrow}</p>
-              <h2 className={card.href === "/playground/replisome" ? styles.replisomeTitle : undefined}>{card.title}</h2>
+              <h2>{card.title}</h2>
               <p>{card.description}</p>
               <Link className="button" href={card.href}>{card.button}</Link>
             </div>

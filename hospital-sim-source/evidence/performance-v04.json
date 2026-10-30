@@ -1,0 +1,156 @@
+{
+  "model": "0.4.0-hospitalsim",
+  "hardware": "Browser-reported ANGLE Apple M2 Metal renderer on macOS; desktop only",
+  "wide": {
+    "viewport": [
+      1440,
+      960
+    ],
+    "samples": 1800,
+    "meanMs": 16.7,
+    "p95Ms": 17.5,
+    "normalSceneVisibleTriangles": 199714,
+    "normalSceneDrawCalls": 83,
+    "peakRenderTrianglesIncludingShadowPasses": 273308,
+    "peakDrawCalls": 166,
+    "localWarmAssetInitializationMs": 167,
+    "peakVisibleGeometryTriangles": 207996
+  },
+  "limits": "Desktop in-app Chromium. Not an iPhone, battery, thermal or cold-network benchmark. Render-pass triangle totals include static shadow work and differ from visible geometry. Peak166draw calls occurred during static shadow initialization/checkpoint restoration, above the provisional150 target; representative steady scene83. No actual phone benchmark.",
+  "initialAssetFiles": [
+    {
+      "name": "index.html",
+      "raw": 4432,
+      "gzip": 1932
+    },
+    {
+      "name": "style.css",
+      "raw": 13888,
+      "gzip": 3600
+    },
+    {
+      "name": "app.mjs",
+      "raw": 26185,
+      "gzip": 9767
+    },
+    {
+      "name": "renderer.mjs",
+      "raw": 28528,
+      "gzip": 9350
+    },
+    {
+      "name": "motion.mjs",
+      "raw": 1186,
+      "gzip": 511
+    },
+    {
+      "name": "simulation.mjs",
+      "raw": 30266,
+      "gzip": 9895
+    },
+    {
+      "name": "content.mjs",
+      "raw": 2177,
+      "gzip": 1061
+    },
+    {
+      "name": "extras.mjs",
+      "raw": 13069,
+      "gzip": 5404
+    },
+    {
+      "name": "experiments.mjs",
+      "raw": 2177,
+      "gzip": 1073
+    },
+    {
+      "name": "assets/scan.glb",
+      "raw": 1222920,
+      "gzip": 351889
+    },
+    {
+      "name": "assets/care.glb",
+      "raw": 952916,
+      "gzip": 349888
+    },
+    {
+      "name": "assets/consult.glb",
+      "raw": 1526196,
+      "gzip": 382444
+    },
+    {
+      "name": "assets/rest.glb",
+      "raw": 189280,
+      "gzip": 73678
+    },
+    {
+      "name": "assets/clinician-lod.glb",
+      "raw": 620492,
+      "gzip": 180894
+    },
+    {
+      "name": "assets/coat-lod.glb",
+      "raw": 638260,
+      "gzip": 187180
+    },
+    {
+      "name": "assets/patient-lod.glb",
+      "raw": 620552,
+      "gzip": 181092
+    },
+    {
+      "name": "assets/drape.glb",
+      "raw": 33012,
+      "gzip": 25686
+    },
+    {
+      "name": "vendor/build/three.core.js",
+      "raw": 1458113,
+      "gzip": 286503
+    },
+    {
+      "name": "vendor/build/three.module.js",
+      "raw": 662772,
+      "gzip": 130785
+    },
+    {
+      "name": "vendor/examples/jsm/controls/OrbitControls.js",
+      "raw": 40755,
+      "gzip": 8473
+    },
+    {
+      "name": "vendor/examples/jsm/environments/RoomEnvironment.js",
+      "raw": 4960,
+      "gzip": 1663
+    },
+    {
+      "name": "vendor/examples/jsm/loaders/GLTFLoader.js",
+      "raw": 117570,
+      "gzip": 25889
+    },
+    {
+      "name": "vendor/examples/jsm/utils/BufferGeometryUtils.js",
+      "raw": 37712,
+      "gzip": 8663
+    },
+    {
+      "name": "vendor/examples/jsm/utils/SkeletonUtils.js",
+      "raw": 11535,
+      "gzip": 3203
+    }
+  ],
+  "initialRawBytes": 8258953,
+  "estimatedPerFileGzipBytes": 2240523,
+  "optionalModule": "REPLISOME6.2MB is lazy-loaded; documentation/video and high character detail are also secondary",
+  "narrowDesktopEmulation": {
+    "viewport": [
+      390,
+      844
+    ],
+    "samples": 901,
+    "meanMs": 16.7,
+    "p95Ms": 17.1,
+    "pausedHospital": true,
+    "actualIPhone": false
+  }
+}
