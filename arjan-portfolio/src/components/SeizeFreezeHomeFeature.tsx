@@ -22,6 +22,7 @@ export function SeizeFreezeHomeFeature() {
         <div><dt>Output</dt><dd>Architecture diagrams + thermal models</dd></div>
       </dl>
       <Link href="/work/seizefreeze">Open case study <span>↗</span></Link>
+      <a className={styles.labLink} href="/seizefreeze-lab/index.html">Explore the device + thermal laboratory <span>↗</span></a>
     </div>
   </article>;
 }

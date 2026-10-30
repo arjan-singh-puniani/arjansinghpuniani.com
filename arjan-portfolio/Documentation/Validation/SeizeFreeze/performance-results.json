@@ -1,0 +1,346 @@
+{
+  "base": "http://127.0.0.1:3212",
+  "results": [
+    {
+      "mode": "software",
+      "width": 1440,
+      "height": 1000,
+      "interactiveMs": 6003,
+      "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+      "softwareRenderer": true,
+      "frames": 14,
+      "elapsedMs": 3249.7999999970198,
+      "renderedFps": 4.307957412767813,
+      "frameIntervalP95Ms": 450,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+        "softwareRenderer": true,
+        "frames": 19,
+        "calls": 59,
+        "triangles": 16530,
+        "geometries": 59,
+        "textures": 4,
+        "pixelRatio": 1,
+        "renderCpuMsMean": 204.53684210698856,
+        "rendering": "on demand; no idle animation",
+        "selected": null,
+        "exploded": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "view": "interface"
+      },
+      "measurement": "Unthrottled desktop Chromium; requested backend recorded separately from detected adapter; viewport emulation is not physical-device testing. Render CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "software",
+      "width": 390,
+      "height": 844,
+      "interactiveMs": 3502,
+      "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+      "softwareRenderer": true,
+      "frames": 29,
+      "elapsedMs": 3021.8999999910593,
+      "renderedFps": 9.596611403450082,
+      "frameIntervalP95Ms": 216.69999999999982,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+        "softwareRenderer": true,
+        "frames": 34,
+        "calls": 59,
+        "triangles": 16530,
+        "geometries": 59,
+        "textures": 4,
+        "pixelRatio": 1,
+        "renderCpuMsMean": 62.47647058832295,
+        "rendering": "on demand; no idle animation",
+        "selected": null,
+        "exploded": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "view": "interface"
+      },
+      "measurement": "Unthrottled desktop Chromium; requested backend recorded separately from detected adapter; viewport emulation is not physical-device testing. Render CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "native-requested",
+      "width": 1440,
+      "height": 1000,
+      "interactiveMs": 543,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "frames": 181,
+      "elapsedMs": 3010.2000000029802,
+      "renderedFps": 60.12889508996771,
+      "frameIntervalP95Ms": 16.799999999999727,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 186,
+        "calls": 59,
+        "triangles": 26210,
+        "geometries": 59,
+        "textures": 4,
+        "pixelRatio": 1,
+        "renderCpuMsMean": 0.7944444445272286,
+        "rendering": "on demand; no idle animation",
+        "selected": null,
+        "exploded": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "view": "interface"
+      },
+      "measurement": "Unthrottled desktop Chromium; requested backend recorded separately from detected adapter; viewport emulation is not physical-device testing. Render CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "native-requested",
+      "width": 390,
+      "height": 844,
+      "interactiveMs": 411,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "frames": 181,
+      "elapsedMs": 3011.7000000029802,
+      "renderedFps": 60.098947438264396,
+      "frameIntervalP95Ms": 16.799999999999727,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 186,
+        "calls": 59,
+        "triangles": 26210,
+        "geometries": 59,
+        "textures": 4,
+        "pixelRatio": 1,
+        "renderCpuMsMean": 0.7022222225864728,
+        "rendering": "on demand; no idle animation",
+        "selected": null,
+        "exploded": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "view": "interface"
+      },
+      "measurement": "Unthrottled desktop Chromium; requested backend recorded separately from detected adapter; viewport emulation is not physical-device testing. Render CPU submission timing is not GPU execution timing."
+    }
+  ],
+  "assets": [
+    {
+      "path": "public/seizefreeze-lab/EVIDENCE.md",
+      "bytes": 15555,
+      "gzipBytes": 6404
+    },
+    {
+      "path": "public/seizefreeze-lab/MODEL.md",
+      "bytes": 17952,
+      "gzipBytes": 7501
+    },
+    {
+      "path": "public/seizefreeze-lab/THIRD_PARTY_NOTICES.txt",
+      "bytes": 1237,
+      "gzipBytes": 725
+    },
+    {
+      "path": "public/seizefreeze-lab/app.js",
+      "bytes": 33545,
+      "gzipBytes": 12755
+    },
+    {
+      "path": "public/seizefreeze-lab/index.html",
+      "bytes": 13211,
+      "gzipBytes": 5077
+    },
+    {
+      "path": "public/seizefreeze-lab/model.js",
+      "bytes": 9448,
+      "gzipBytes": 3257
+    },
+    {
+      "path": "public/seizefreeze-lab/poster.svg",
+      "bytes": 4903,
+      "gzipBytes": 2003
+    },
+    {
+      "path": "public/seizefreeze-lab/scene.js",
+      "bytes": 28069,
+      "gzipBytes": 9516
+    },
+    {
+      "path": "public/seizefreeze-lab/style.css",
+      "bytes": 16771,
+      "gzipBytes": 4409
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/KaTeX-LICENSE.txt",
+      "bytes": 1107,
+      "gzipBytes": 672
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/Three-LICENSE.txt",
+      "bytes": 1081,
+      "gzipBytes": 662
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_AMS-Regular.woff2",
+      "bytes": 28076,
+      "gzipBytes": 28104
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Caligraphic-Bold.woff2",
+      "bytes": 6912,
+      "gzipBytes": 6935
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "bytes": 6908,
+      "gzipBytes": 6931
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Fraktur-Bold.woff2",
+      "bytes": 11348,
+      "gzipBytes": 11371
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Fraktur-Regular.woff2",
+      "bytes": 11316,
+      "gzipBytes": 11339
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Main-Bold.woff2",
+      "bytes": 25324,
+      "gzipBytes": 25352
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Main-BoldItalic.woff2",
+      "bytes": 16780,
+      "gzipBytes": 16808
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Main-Italic.woff2",
+      "bytes": 16988,
+      "gzipBytes": 17016
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Main-Regular.woff2",
+      "bytes": 26272,
+      "gzipBytes": 26300
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Math-BoldItalic.woff2",
+      "bytes": 16400,
+      "gzipBytes": 16423
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Math-Italic.woff2",
+      "bytes": 16440,
+      "gzipBytes": 16466
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_SansSerif-Bold.woff2",
+      "bytes": 12216,
+      "gzipBytes": 12239
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_SansSerif-Italic.woff2",
+      "bytes": 12028,
+      "gzipBytes": 12051
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_SansSerif-Regular.woff2",
+      "bytes": 10344,
+      "gzipBytes": 10367
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Script-Regular.woff2",
+      "bytes": 9644,
+      "gzipBytes": 9667
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Size1-Regular.woff2",
+      "bytes": 5468,
+      "gzipBytes": 5491
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Size2-Regular.woff2",
+      "bytes": 5208,
+      "gzipBytes": 5231
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Size3-Regular.woff2",
+      "bytes": 3624,
+      "gzipBytes": 3647
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Size4-Regular.woff2",
+      "bytes": 4928,
+      "gzipBytes": 4951
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Typewriter-Regular.woff2",
+      "bytes": 13568,
+      "gzipBytes": 13591
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/katex.min.css",
+      "bytes": 21218,
+      "gzipBytes": 3387
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/katex.min.js",
+      "bytes": 276701,
+      "gzipBytes": 76377
+    },
+    {
+      "path": "public/seizefreeze-lab/worker.js",
+      "bytes": 325,
+      "gzipBytes": 212
+    },
+    {
+      "path": "shared/three.module.js",
+      "bytes": 648961,
+      "gzipBytes": 129184
+    },
+    {
+      "path": "shared/three.core.js",
+      "bytes": 1427497,
+      "gzipBytes": 282739
+    },
+    {
+      "path": "shared/OrbitControls.js",
+      "bytes": 40516,
+      "gzipBytes": 8497
+    }
+  ],
+  "totalBytes": 2817889,
+  "totalGzipBytes": 813657
+}

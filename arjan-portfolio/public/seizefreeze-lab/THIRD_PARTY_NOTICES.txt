@@ -1,0 +1,22 @@
+SeizeFreeze educational laboratory — asset and library notices
+
+Original assets: procedural device, cortical and head geometry, studio lighting,
+machined-surface texture, SVG fallback diagram, plots and page design were authored
+for this portfolio experience. They are explanatory concept geometry, not patient
+scans, commercial device CAD or manufacturing drawings.
+
+Three.js and OrbitControls reuse the portfolio's local runtime at
+/pit-stop-lab/vendor/ (three.module.js, three.core.js, OrbitControls.js).
+Copyright 2010–2026 Three.js Authors. MIT license; full text is retained in
+vendor/Three-LICENSE.txt. No changes to the shared runtime are required.
+
+KaTeX and its bundled fonts are served locally from vendor/.
+MIT license; full notice is retained in vendor/KaTeX-LICENSE.txt.
+
+No downloaded texture, stock photo, patient imagery, audio, remote font or clinical
+dataset is introduced by this laboratory. Literature is linked, not redistributed.
+Historical case-study media remain separately attributed project artifacts; this
+notice does not establish ownership or music rights for the original concept film.
+
+Scientific attribution and claim contexts: EVIDENCE.md.
+Numerical coefficients and modeling limitations: MODEL.md.

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="880" viewBox="0 0 1000 880" fill="none">
+  <title>SeizeFreeze proposed component stack</title>
+  <desc>Diagrammatic exploded architecture. A package and control board sit above a candidate hot-side path, thermoelectric module, insulated cold plate and cortical contact. Sensors connect the interface to control. Layer spacing and dimensions are illustrative; chronic heat rejection and power delivery remain unresolved.</desc>
+  <style>.labels path{fill:none}</style>
+  <defs>
+    <linearGradient id="metal" x2="1" y2="1"><stop stop-color="#bdcbd3"/><stop offset=".4" stop-color="#6e8493"/><stop offset="1" stop-color="#334b5c"/></linearGradient>
+    <linearGradient id="ceramic" x2="0" y2="1"><stop stop-color="#e6ece6"/><stop offset="1" stop-color="#95a5ad"/></linearGradient>
+    <linearGradient id="cortex" x2="0" y2="1"><stop stop-color="#a08a91"/><stop offset="1" stop-color="#6a727e"/></linearGradient>
+    <linearGradient id="warm" x2="1" y2="1"><stop stop-color="#d1b58e"/><stop offset="1" stop-color="#826f54"/></linearGradient>
+    <pattern id="legs" width="26" height="28" patternUnits="userSpaceOnUse"><rect x="3" width="9" height="28" fill="#405663"/><rect x="15" width="8" height="28" fill="#4c7b9c"/></pattern>
+  </defs>
+  <g transform="translate(0 8)">
+    <path d="m244 627 345-57 221 111v82l-345 64-221-116Z" fill="#677782" stroke="#8b929e"/>
+    <path d="m244 627 345-57 221 111-345 65Z" fill="url(#cortex)" stroke="#b3a1a6"/>
+    <g stroke="#cfbdc0" opacity=".25"><path d="m244 647 221 119 345-65M244 669l221 117 345-64M244 690l221 116 345-64"/></g>
+    <g stroke="#655964" stroke-width="8" stroke-linecap="round" opacity=".55"><path d="M315 636c60 3 20 34 75 35s38-43 92-34 38 41 98 23 43-49 95-33"/><path d="M357 611c43 7 21 23 67 25s36-43 93-32 43 37 83 20"/><path d="M388 699c38-9 38-18 77-11s52 18 85 5 33-35 75-32 40 21 91 9"/></g>
+    <g stroke="#b8d3d9" stroke-width="1.5">
+      <path d="m367 579 217-35 132 66v14l-217 39-132-70Z" fill="#8cabb6"/><path d="m367 579 217-35 132 66-217 39Z" fill="#c7d6d5"/>
+      <path d="m359 521 226-38 139 71v22l-226 41-139-73Z" fill="#507886"/><path d="m359 521 226-38 139 71-226 41Z" fill="#7faebb"/>
+    </g>
+    <path d="m355 512 231-39 144 73-231 44Z" stroke="#263e4a" stroke-width="14"/>
+    <g stroke="#b4c0c2"><path d="m382 443 201-34 116 59v45l-201 36-116-61Z" fill="url(#legs)"/><path d="m375 439 210-35 121 61-210 38Z" fill="url(#ceramic)"/><path d="m375 486 121 62 210-38v9l-210 39-121-63Z" fill="#dae1dc"/></g>
+    <path d="m357 354 227-38 143 72v20l-227 42-143-74Z" fill="#887a63" stroke="#c5ac86"/><path d="m357 354 227-38 143 72-227 42Z" fill="url(#warm)"/>
+    <path d="M709 385c60-3 35 34 103 28" stroke="#c9a66d" stroke-width="9" stroke-linecap="round"/>
+    <path d="m361 278 225-37 138 69v12l-225 40-138-71Z" fill="#36565c" stroke="#64828a"/>
+    <path d="m434 284 72-12 46 22v17l-72 13-46-24Z" fill="#111f28" stroke="#71828c"/>
+    <g fill="#c9b17b"><path d="m389 278 28-5 3 3-27 5ZM395 286l28-5 3 3-27 5ZM401 294l28-5 3 3-27 5Z"/><path d="m568 280 65-10 37 17-65 12Z"/></g>
+    <path d="M697 312c49 1 20 89 43 108" stroke="#6ca3d9" stroke-width="4"/>
+    <path d="m344 169 241-40 160 79v49l-241 45-160-83Z" fill="#273e50" stroke="#708a9a"/>
+    <path d="m344 169 241-40 160 79-241 44Z" fill="url(#metal)" stroke="#d4dfe2" stroke-width="2"/>
+    <path d="m405 170 172-27 97 47-173 31Z" fill="#425b6d" stroke="#8ca5b4"/>
+    <g fill="#cad6d9" stroke="#384e60"><ellipse cx="369" cy="174" rx="5" ry="3"/><ellipse cx="585" cy="140" rx="5" ry="3"/><ellipse cx="510" cy="236" rx="5" ry="3"/><ellipse cx="720" cy="207" rx="5" ry="3"/></g>
+    <g stroke="#b299d0" stroke-width="3"><path d="M349 631c-43-44 9-112 13-154s-12-152 4-178"/><path d="M379 637c-30-38 2-88 7-112"/></g>
+    <g fill="#c5ac7b"><ellipse cx="349" cy="634" rx="13" ry="5"/><ellipse cx="379" cy="640" rx="10" ry="4"/></g>
+  </g>
+  <g class="labels" font-family="monospace" font-size="13" letter-spacing="1" fill="#c8d6dd" stroke-width="1">
+    <path d="M135 132h125l153 46" stroke="#9eafba"/><text x="42" y="121">PACKAGE CONCEPT</text>
+    <path d="M740 302h78" stroke="#88b3df"/><text x="759" y="283" fill="#9ac5ee">CONTROL</text>
+    <path d="M814 420h95" stroke="#d8b782"/><text x="765" y="445" fill="#d8b782">HEAT PATH</text>
+    <path d="M100 422h113l170 45" stroke="#a7c3cf"/><text x="42" y="408">THERMOELECTRIC</text>
+    <path d="M752 551h156" stroke="#92d2dd"/><text x="759" y="536" fill="#92d2dd">COLD PLATE</text>
+    <path d="M102 592h106l160 22" stroke="#a3c5cd"/><text x="42" y="578">CONTACT</text>
+    <path d="M101 714h106l141-70" stroke="#c3a8df"/><text x="42" y="737" fill="#c3a8df">SENSING</text>
+  </g>
+  <text x="42" y="855" fill="#8fa7b1" font-family="monospace" font-size="11" letter-spacing="1">STATIC SCHEMATIC · PROPOSED ARCHITECTURE · GAPS EXAGGERATED</text>
+</svg>

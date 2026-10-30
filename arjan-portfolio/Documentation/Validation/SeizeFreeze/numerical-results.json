@@ -1,0 +1,160 @@
+{
+  "passed": true,
+  "elapsedMs": 3843,
+  "maximumEnergyResidualJ": 1.5846490786231016e-12,
+  "temporalErrorC": {
+    "dt001": 0.006558104894189398,
+    "dt0005": 0.0013875759596544412,
+    "referenceDt": 0.0025
+  },
+  "spatialSurfaceErrorC": {
+    "dz0005": 0.057462338657224166,
+    "dz0004": 0.031821979241257736,
+    "referenceDz": 0.00025
+  },
+  "scenarios": {
+    "baseline": {
+      "minTissue": 37,
+      "maxHot": 37,
+      "maxCurrent": 0,
+      "electricalEnergy": 0,
+      "rejectedEnergy": 0,
+      "extractedEnergy": 0,
+      "maxResidual": 5.684341886080802e-14,
+      "steps": 12000,
+      "cells": 16,
+      "outputHz": 20,
+      "model": "1D finite-volume depth column; illustrative coefficients, no biological-effect model"
+    },
+    "disabled": {
+      "minTissue": 37,
+      "maxHot": 37,
+      "maxCurrent": 0,
+      "electricalEnergy": 0,
+      "rejectedEnergy": 0,
+      "extractedEnergy": 0,
+      "maxResidual": 5.684341886080802e-14,
+      "steps": 12000,
+      "cells": 16,
+      "outputHz": 20,
+      "model": "1D finite-volume depth column; illustrative coefficients, no biological-effect model"
+    },
+    "event": {
+      "minTissue": 34.83424844325069,
+      "maxHot": 37.664052086134454,
+      "maxCurrent": 0.32,
+      "electricalEnergy": 0.8730671022977371,
+      "rejectedEnergy": 4.353091447844159,
+      "extractedEnergy": 3.0977413495191155,
+      "maxResidual": 1.1373679775772416e-12,
+      "steps": 12000,
+      "cells": 16,
+      "outputHz": 20,
+      "model": "1D finite-volume depth column; illustrative coefficients, no biological-effect model"
+    },
+    "delay": {
+      "minTissue": 34.83424844325069,
+      "maxHot": 37.664052086134454,
+      "maxCurrent": 0.32,
+      "electricalEnergy": 0.8730671022977371,
+      "rejectedEnergy": 4.3135414263069976,
+      "extractedEnergy": 3.1221101269644387,
+      "maxResidual": 1.137034910669854e-12,
+      "steps": 12000,
+      "cells": 16,
+      "outputHz": 20,
+      "model": "1D finite-volume depth column; illustrative coefficients, no biological-effect model"
+    },
+    "false": {
+      "minTissue": 34.92408573623871,
+      "maxHot": 37.629573463864986,
+      "maxCurrent": 0.32,
+      "electricalEnergy": 0.6612451221046236,
+      "rejectedEnergy": 2.6251679785901625,
+      "extractedEnergy": 1.7588040670655416,
+      "maxResidual": 1.5846490786231016e-12,
+      "steps": 12000,
+      "cells": 16,
+      "outputHz": 20,
+      "model": "1D finite-volume depth column; illustrative coefficients, no biological-effect model"
+    },
+    "saturation": {
+      "minTissue": 35.06899292069242,
+      "maxHot": 37.55451347034171,
+      "maxCurrent": 0.06,
+      "electricalEnergy": 0.32351726485543847,
+      "rejectedEnergy": 2.951767180153467,
+      "extractedEnergy": 2.301946748261912,
+      "maxResidual": 9.670042544485113e-13,
+      "steps": 12000,
+      "cells": 16,
+      "outputHz": 20,
+      "model": "1D finite-volume depth column; illustrative coefficients, no biological-effect model"
+    },
+    "sensor": {
+      "minTissue": 33.64252113530256,
+      "maxHot": 38.06229798826784,
+      "maxCurrent": 0.32,
+      "electricalEnergy": 1.4115435667529352,
+      "rejectedEnergy": 4.714592899586977,
+      "extractedEnergy": 3.0035913845286797,
+      "maxResidual": 1.3920531394262525e-12,
+      "steps": 12000,
+      "cells": 16,
+      "outputHz": 20,
+      "model": "1D finite-volume depth column; illustrative coefficients, no biological-effect model"
+    },
+    "resistance": {
+      "minTissue": 34.90910425996849,
+      "maxHot": 37.79949539680519,
+      "maxCurrent": 0.32,
+      "electricalEnergy": 1.2447375434135781,
+      "rejectedEnergy": 5.157231244123619,
+      "extractedEnergy": 3.156847711697788,
+      "maxResidual": 1.3106737917212286e-12,
+      "steps": 12000,
+      "cells": 16,
+      "outputHz": 20,
+      "model": "1D finite-volume depth column; illustrative coefficients, no biological-effect model"
+    },
+    "rejection": {
+      "minTissue": 34.87299780268395,
+      "maxHot": 38.04500970603848,
+      "maxCurrent": 0.32,
+      "electricalEnergy": 0.8954054324238853,
+      "rejectedEnergy": 1.0934034242184993,
+      "extractedEnergy": 2.941153502664501,
+      "maxResidual": 1.106670310946356e-12,
+      "steps": 12000,
+      "cells": 16,
+      "outputHz": 20,
+      "model": "1D finite-volume depth column; illustrative coefficients, no biological-effect model"
+    },
+    "shutdown": {
+      "minTissue": 34.89066271726566,
+      "maxHot": 37.64286283095843,
+      "maxCurrent": 0.32,
+      "electricalEnergy": 0.709310384030852,
+      "rejectedEnergy": 3.02223648679874,
+      "extractedEnergy": 2.0507582548400856,
+      "maxResidual": 1.1704526237110713e-12,
+      "steps": 12000,
+      "cells": 16,
+      "outputHz": 20,
+      "model": "1D finite-volume depth column; illustrative coefficients, no biological-effect model"
+    },
+    "repeated": {
+      "minTissue": 34.8146839721683,
+      "maxHot": 37.67037213917394,
+      "maxCurrent": 0.32,
+      "electricalEnergy": 1.691308385470651,
+      "rejectedEnergy": 7.297008344845439,
+      "extractedEnergy": 6.373909867618746,
+      "maxResidual": 8.750777880095484e-13,
+      "steps": 12000,
+      "cells": 16,
+      "outputHz": 20,
+      "model": "1D finite-volume depth column; illustrative coefficients, no biological-effect model"
+    }
+  }
+}
