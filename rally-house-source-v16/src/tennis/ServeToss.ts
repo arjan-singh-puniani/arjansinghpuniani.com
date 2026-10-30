@@ -1,5 +1,8 @@
 import {Vec3,clamp} from '../rendering/Math3D.js';
 
+// Release during the lift, before the retargeted hand crests.
+export const SERVE_RELEASE=.35;
+
 /** Timed arcade toss: a fixed target, one apex, descending into contact. */
 export function serveToss(start:Vec3,contact:Vec3,progress:number){
   const t=clamp(progress,0,1),ball=Vec3.lerp(start,contact,t);

@@ -1,4 +1,4 @@
-import { serveToss } from '../tennis/ServeToss.js';
+import { SERVE_RELEASE, serveToss } from '../tennis/ServeToss.js';
 import { RACKET, racketMeshes, secondRacketHand } from '../animation/RacketGeometry.js';
 import { CHAMPIONSHIP_TUNING } from '../tennis/ChampionshipTuning.js';
 import { ActingState } from '../animation/ActingState.js';
@@ -328,7 +328,7 @@ export class Character {
     serveBallPoint(contact) {
         if (!this.serveReleasePoint)
             return this.serveTossPoint();
-        return serveToss(this.serveReleasePoint, contact, (this.animTime / this.shotContactTime('serve') - .45) / .55);
+        return serveToss(this.serveReleasePoint, contact, (this.animTime / this.shotContactTime('serve') - SERVE_RELEASE) / (1 - SERVE_RELEASE));
     }
     serveTorso(time) {
         const contact = this.shotContactTime('serve'), pre = clamp(time / contact, 0, 1), post = clamp((time - contact) / (this.shotDuration('serve') - contact), 0, 1);
@@ -519,8 +519,8 @@ export class Character {
         this.clubIdleRelax = expDamp(this.clubIdleRelax, this.canRelaxClubIdle() ? 1 : 0, 7, dt);
         if (this.spec.presentation === 'feminine' && this.spec.appearance === 'human')
             this.authoredHands = advanceAuthoredHands(this.pose(), this.position, this.yaw, this.authoredHands, dt);
-        if (tossHand && this.state === 'serve' && this.animTime >= this.shotContactTime('serve') * .45) {
-            const release = this.shotContactTime('serve') * .45;
+        if (tossHand && this.state === 'serve' && this.animTime >= this.shotContactTime('serve') * SERVE_RELEASE) {
+            const release = this.shotContactTime('serve') * SERVE_RELEASE;
             this.serveReleasePoint = Vec3.lerp(tossHand, this.serveTossPoint(), clamp((release - tossTime) / Math.max(.001, this.animTime - tossTime), 0, 1));
         }
         this.prevPosition = this.position.clone();

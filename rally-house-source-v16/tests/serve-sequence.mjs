@@ -7,7 +7,7 @@ import {memberData} from '../dist/content/content.js';
 import {Navigation} from '../dist/world/Navigation.js';
 import {Vec3,compose} from '../dist/rendering/Math3D.js';
 import {loadAuthoredAthlete} from '../dist/animation/AuthoredAthlete.js';
-import {serveToss} from '../dist/tennis/ServeToss.js';
+import {SERVE_RELEASE,serveToss} from '../dist/tennis/ServeToss.js';
 import {captureFrame,interpolateFrame} from '../dist/analysis/MotionCapture.js';
 import {demonstration} from '../dist/analysis/LabDemonstrations.js';
 globalThis.fetch=async u=>new Response(fs.readFileSync(new URL(u)));globalThis.Image=class{async decode(){}};await loadAuthoredAthlete();
@@ -19,11 +19,14 @@ assert.equal(peaks,1);assert(serveToss(start,end,.99).y>end.y,'The ball descends
 const compact=new Character({...playerSpec('arjan'),avatar:undefined,appearance:undefined},new Vec3(2,.4,3),new Navigation([]),{});
 compact.triggerShot('serve',new Vec3(2,.1,8));
 assert(Math.abs(compact.debugKinematics().contactTarget.y-2.36)<1e-9,'Compact serve keeps its original court-relative contact height');
-let cases=0,minContinuity=1,maxContactError=0,minTransfer=Infinity,minRecovery=Infinity,maxReplayError=0,minImpactBend=Infinity,maxImpactBend=0;
+let cases=0,minContinuity=1,maxContactError=0,minTransfer=Infinity,minRecovery=Infinity,maxReplayError=0,minImpactBend=Infinity,maxImpactBend=0,minTossRise=Infinity;
 for(const spec of [playerSpec('taylor'),playerSpec('arjan'),...memberData])for(const hz of [30,60,120])for(const yaw of [0,.7,Math.PI,4.9]){
  const c=new Character(spec,new Vec3(),new Navigation([]),{});c.yaw=c.targetYaw=yaw;const forward=new Vec3(Math.sin(yaw),0,Math.cos(yaw));c.matchCompetitor=true;c.setAnimation('ready');for(let i=0;i<hz;i++)c.update(1/hz);c.triggerShot('serve',forward.clone().scale(5).add(new Vec3(0,.1,0)));const contact=c.shotContactTime(),duration=c.shotDuration(),poses=[];
  const sample=time=>{while(c.animTime<time-1e-9)c.update(Math.min(1/hz,time-c.animTime));return c.analysisPose();};
- for(const u of [.20,.40]){const p=sample(contact*u);assert(Vec3.sub(c.serveBallPoint(c.debugKinematics().contactTarget),p.handL).len()<1e-8,'Ball stays in the tossing palm before release');}
+ for(const u of [.20,SERVE_RELEASE-.05]){const p=sample(contact*u);assert(Vec3.sub(c.serveBallPoint(c.debugKinematics().contactTarget),p.handL).len()<1e-8,'Ball stays in the tossing palm before release');}
+ const tossBefore=sample(contact*(SERVE_RELEASE-.02)).handL,releasedHand=sample(contact*SERVE_RELEASE).handL,rise=releasedHand.y-tossBefore.y;minTossRise=Math.min(minTossRise,rise);
+ assert(rise>.001,`${spec.id}/${hz}/${yaw}: toss must leave a rising hand, rise ${rise}`);
+ assert(Vec3.sub(c.serveBallPoint(c.debugKinematics().contactTarget),releasedHand).len()<1e-8,'Release remains attached to the actual tossing hand at the boundary');
  for(const time of [contact*.5,contact*.70,contact-.002,contact,contact+.002,contact+(duration-contact)*.45,duration*.99])poses.push(sample(time));
  const [load,drop,before,hit,after,release,finish]=poses,continuity=Vec3.dot(Vec3.sub(hit.handR,before.handR).normalize(),Vec3.sub(after.handR,hit.handR).normalize());minContinuity=Math.min(minContinuity,continuity);assert(continuity>.95,`${spec.id}/${hz}: serving wrist reverses at impact (${continuity})`);
  const dropAxis=Vec3.sub(drop.racketCenter,drop.racketGrip);assert(dropAxis.y<-.35&&Vec3.dot(dropAxis,forward)<-.25,'Racket drops behind the wrist before acceleration');
@@ -44,5 +47,5 @@ for(const spec of [playerSpec('taylor'),playerSpec('arjan'),...memberData])for(c
 }
 const demo=demonstration('serve',playerSpec('taylor')),toss=demo.frames.filter(f=>f.state==='serve'&&f.ball&&!f.contact&&f.pose.sp<.20);
 assert(toss.length>1);for(const f of toss)assert(Vec3.sub(f.ball,f.pose.handL).len()<1e-8,'Analyze Swing demo shares the held-ball serve path');
-console.log(JSON.stringify({cases,minContinuity,maxContactError,minTransfer,minRecovery,maxReplayError,minImpactBend,maxImpactBend}));
+console.log(JSON.stringify({cases,minContinuity,maxContactError,minTransfer,minRecovery,maxReplayError,minImpactBend,maxImpactBend,minTossRise}));
 console.log('Serve PASS: palm release, independent descending toss, leg drive into exact contact, continuous wrist, recovery step and faithful replay.');
