@@ -2,6 +2,13 @@
   overflow: hidden;
 }
 
+.feature .labLink {
+  display: block;
+  width: fit-content;
+  margin-top: 18px;
+  font-size: 13px;
+}
+
 .visual {
   min-height: 620px;
 }

@@ -1,0 +1,111 @@
+{
+  "base": "http://127.0.0.1:3213",
+  "results": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "errors": [],
+      "httpErrors": [],
+      "routes": [
+        {
+          "path": "/work",
+          "status": 200
+        },
+        {
+          "path": "/about",
+          "status": 200
+        },
+        {
+          "path": "/contact",
+          "status": 200
+        },
+        {
+          "path": "/playground/hospitalsim",
+          "status": 200
+        },
+        {
+          "path": "/hospitalsim/index.html",
+          "status": 200
+        },
+        {
+          "path": "/work/rigetti-quantum-operations",
+          "status": 200
+        },
+        {
+          "path": "/atlas/index.html",
+          "status": 200
+        },
+        {
+          "path": "/rally-house/index.html",
+          "status": 200
+        },
+        {
+          "path": "/seizefreeze-lab/EVIDENCE.md",
+          "status": 200
+        },
+        {
+          "path": "/seizefreeze-lab/MODEL.md",
+          "status": 200
+        },
+        {
+          "path": "/seizefreeze-lab/vendor/Three-LICENSE.txt",
+          "status": 200
+        }
+      ],
+      "axeViolations": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "errors": [],
+      "httpErrors": [],
+      "routes": [
+        {
+          "path": "/work",
+          "status": 200
+        },
+        {
+          "path": "/about",
+          "status": 200
+        },
+        {
+          "path": "/contact",
+          "status": 200
+        },
+        {
+          "path": "/playground/hospitalsim",
+          "status": 200
+        },
+        {
+          "path": "/hospitalsim/index.html",
+          "status": 200
+        },
+        {
+          "path": "/work/rigetti-quantum-operations",
+          "status": 200
+        },
+        {
+          "path": "/atlas/index.html",
+          "status": 200
+        },
+        {
+          "path": "/rally-house/index.html",
+          "status": 200
+        },
+        {
+          "path": "/seizefreeze-lab/EVIDENCE.md",
+          "status": 200
+        },
+        {
+          "path": "/seizefreeze-lab/MODEL.md",
+          "status": 200
+        },
+        {
+          "path": "/seizefreeze-lab/vendor/Three-LICENSE.txt",
+          "status": 200
+        }
+      ],
+      "axeViolations": []
+    }
+  ]
+}

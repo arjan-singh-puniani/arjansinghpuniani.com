@@ -1,0 +1,278 @@
+{
+  "timestamp": "2026-10-30T22:09:22.166Z",
+  "base": "http://127.0.0.1:3212/seizefreeze-lab/index.html",
+  "scope": "Chromium bounded accessibility and failure review; phone viewport emulation, not a physical phone; no claim of manual screen-reader certification",
+  "cases": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "reducedMotion": true,
+      "noAutoplay": true,
+      "idleRenderFrames": {
+        "start": 3,
+        "end": 3
+      },
+      "keyboardPartSelected": true,
+      "keyboardSeatWorked": true,
+      "keyboardChapterWorked": true,
+      "keyboardScrubWorked": true,
+      "timelineLabel": "Scrub the simulated timeline in seconds",
+      "repeatedLiveMutations": 0,
+      "staticKeyboardWorked": true,
+      "focusStyle": {
+        "outline": "solid",
+        "outlineWidth": "3px"
+      },
+      "overflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "smallTargets": [],
+      "assemblyAxe": {
+        "violations": [],
+        "incompleteRules": [
+          {
+            "id": "color-contrast",
+            "nodes": 4,
+            "sample": [
+              {
+                "target": [
+                  "text[x=\"18\"]"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  ".sf-scene-note"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#rotate-left"
+                ],
+                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+              },
+              {
+                "target": [
+                  "#rotate-right"
+                ],
+                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+              }
+            ]
+          }
+        ],
+        "passes": 42
+      },
+      "labAxe": {
+        "violations": [],
+        "incompleteRules": [
+          {
+            "id": "color-contrast",
+            "nodes": 92,
+            "sample": [
+              {
+                "target": [
+                  "text[y=\"123.04710041741234\"]"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "text[y=\"233.57542663740452\"]"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  ".sf-scene-note"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#rotate-left"
+                ],
+                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+              },
+              {
+                "target": [
+                  "#rotate-right"
+                ],
+                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+              },
+              {
+                "target": [
+                  "#signal-chart > text[y=\"153\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#signal-chart > text[y=\"109.66666666666666\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#signal-chart > text[y=\"66.33333333333333\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              }
+            ]
+          }
+        ],
+        "passes": 46
+      }
+    },
+    {
+      "name": "phone-emulation",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "reducedMotion": true,
+      "noAutoplay": true,
+      "idleRenderFrames": {
+        "start": 2,
+        "end": 2
+      },
+      "keyboardPartSelected": true,
+      "keyboardSeatWorked": true,
+      "keyboardChapterWorked": true,
+      "keyboardScrubWorked": true,
+      "timelineLabel": "Scrub the simulated timeline in seconds",
+      "repeatedLiveMutations": 0,
+      "staticKeyboardWorked": true,
+      "focusStyle": {
+        "outline": "solid",
+        "outlineWidth": "3px"
+      },
+      "overflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "smallTargets": [],
+      "assemblyAxe": {
+        "violations": [],
+        "incompleteRules": [
+          {
+            "id": "color-contrast",
+            "nodes": 4,
+            "sample": [
+              {
+                "target": [
+                  "text[x=\"18\"]"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  ".sf-scene-note"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#rotate-left"
+                ],
+                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+              },
+              {
+                "target": [
+                  "#rotate-right"
+                ],
+                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+              }
+            ]
+          }
+        ],
+        "passes": 42
+      },
+      "labAxe": {
+        "violations": [],
+        "incompleteRules": [
+          {
+            "id": "color-contrast",
+            "nodes": 73,
+            "sample": [
+              {
+                "target": [
+                  "text[y=\"40\"]"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "text[y=\"162.96\"]"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  ".sf-scene-note"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#rotate-left"
+                ],
+                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+              },
+              {
+                "target": [
+                  "#rotate-right"
+                ],
+                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+              },
+              {
+                "target": [
+                  "#signal-chart > text[y=\"153\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#signal-chart > text[y=\"109.66666666666666\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#signal-chart > text[y=\"66.33333333333333\"][x=\"24\"][text-anchor=\"end\"]"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              }
+            ]
+          }
+        ],
+        "passes": 46
+      }
+    },
+    {
+      "name": "WebGL-unavailable",
+      "staticView": true,
+      "posterVisible": true,
+      "componentSelection": "sensing",
+      "solverAvailable": true,
+      "scrubTime": 30.00000000000189,
+      "sceneError": "Error creating WebGL context.",
+      "caption": "Depth-only solution mapped onto schematic tissue. Surface tint is an illustrative extension; no lateral reach is predicted."
+    },
+    {
+      "name": "worker-load-failure",
+      "modelError": "Worker failed to load or execute.",
+      "status": "Model unavailable: Worker failed to load or execute.. Read the model notes for reproducible offline checks.",
+      "noResult": true,
+      "playDisabled": true,
+      "timelineDisabled": true,
+      "componentExplorerAvailable": true,
+      "teaching": "The solver could not complete. No simulated output is being presented."
+    }
+  ],
+  "issues": []
+}
