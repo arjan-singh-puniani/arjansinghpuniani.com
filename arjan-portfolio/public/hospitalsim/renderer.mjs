@@ -1,10 +1,11 @@
 import * as THREE from 'three';
-import {sampleRoute,interiorPath,sampleInterior} from './motion.mjs?v=042';
+import {samplePose} from './animation.mjs?v=043';
+import {sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath} from './motion.mjs?v=043';
 import {GLTFLoader} from './vendor/examples/jsm/loaders/GLTFLoader.js';
 import {clone} from './vendor/examples/jsm/utils/SkeletonUtils.js';
 import {OrbitControls} from './vendor/examples/jsm/controls/OrbitControls.js';
 import {RoomEnvironment} from './vendor/examples/jsm/environments/RoomEnvironment.js';
-import {GRID,TYPES,door,path,placement} from './simulation.mjs?v=042';
+import {GRID,TYPES,door,path,placement} from './simulation.mjs?v=043';
 
 export const roomHeight=type=>({scan:.63,care:.25,consult:.85,rest:.25,plan:.85}[type]);
 export function world(x,y,height=.25){return new THREE.Vector3((x-4)*GRID.step,height,(y-3.5)*GRID.step)}
@@ -72,7 +73,7 @@ export class Diorama {
  }
  async load(){
   const loader=new GLTFLoader();const names=['scan','care','consult','rest','clinician','coat','patient','drape'];let done=0;
-  for(const name of names){const file=['clinician','coat','patient'].includes(name)?name+'-lod':name;let gltf;for(let attempt=0;attempt<2;attempt++){try{gltf=await loader.loadAsync(`assets/${file}.glb?v=042`);break}catch(error){if(attempt)throw error;await new Promise(resolve=>setTimeout(resolve,200))}}this.assets[name]=gltf;done++;this.progress(Math.round(done/names.length*100))}this.lowAssets={...this.assets};this.syncRooms();
+  for(const name of names){const file=['clinician','coat','patient'].includes(name)?name+'-lod':name;let gltf;for(let attempt=0;attempt<2;attempt++){try{gltf=await loader.loadAsync(`assets/${file}.glb?v=043`);break}catch(error){if(attempt)throw error;await new Promise(resolve=>setTimeout(resolve,200))}}this.assets[name]=gltf;done++;this.progress(Math.round(done/names.length*100))}this.lowAssets={...this.assets};this.syncRooms();
  }
  soften(root){root.traverse(o=>{if(o.isMesh){o.castShadow=!o.isSkinnedMesh;o.receiveShadow=true;o.frustumCulled=!o.isSkinnedMesh}})}
  syncRooms(){
@@ -109,7 +110,7 @@ export class Diorama {
  removePerson(p){this.scene.remove(p.group);p.mixer.stopAllAction();p.mixer.uncacheRoot(p.model);p.model.traverse(o=>{if(o.isSkinnedMesh)o.skeleton.dispose()})}
  play(p,name){if(p.current===name)return;const next=p.actions.get(name)||p.actions.get('Idle')||[...p.actions.values()][0];if(!next)return;for(const a of p.actions.values())if(a.isRunning())a.fadeOut(.2);next.reset().setEffectiveTimeScale(1).fadeIn(.2).play();p.current=name}
  async detailLOD(){
-  const high=this.camera.zoom>1.5&&this.state().patients.length+this.state().staff.length<14;if(high&&!this.highAssets&&!this.loadingHigh){this.loadingHigh=true;try{const loader=new GLTFLoader(),items=await Promise.all(['clinician','coat','patient'].map(async name=>[name,await loader.loadAsync(`assets/${name}.glb?v=042`)]));this.highAssets=Object.fromEntries(items)}catch(error){console.warn('Close detail unavailable',error)}finally{this.loadingHigh=false}}
+  const high=this.camera.zoom>1.5&&this.state().patients.length+this.state().staff.length<14;if(high&&!this.highAssets&&!this.loadingHigh){this.loadingHigh=true;try{const loader=new GLTFLoader(),items=await Promise.all(['clinician','coat','patient'].map(async name=>[name,await loader.loadAsync(`assets/${name}.glb?v=043`)]));this.highAssets=Object.fromEntries(items)}catch(error){console.warn('Close detail unavailable',error)}finally{this.loadingHigh=false}}
   if(high&&!this.highAssets)return;if(this.highMode===high)return;this.highMode=high;for(const kind of ['clinician','coat','patient'])this.assets[kind]=high?this.highAssets[kind]:this.lowAssets[kind];for(const p of [...this.people.values(),...this.staffPeople.values(),this.ambient].filter(Boolean))this.removePerson(p);this.people.clear();this.staffPeople.clear();this.ambient=null;
  }
  tile(e){const rect=this.canvas.getBoundingClientRect();this.pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);this.ray.setFromCamera(this.pointer,this.camera);const hit=new THREE.Vector3();if(!this.ray.ray.intersectPlane(this.floor,hit))return null;const x=Math.round(hit.x/GRID.step+4),y=Math.round(hit.z/GRID.step+3.5);return x>=0&&x<GRID.w&&y>=0&&y<GRID.h?{x,y}:null}
@@ -145,22 +146,26 @@ export class Diorama {
     const r=s.rooms.find(r=>r.id===p.room),c=center(r),bedCenter=new THREE.Vector3(r.type==='scan'?-.55:0,r.type==='scan'?.94:.88,r.type==='scan'?.57:0),turn=new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,1,0),Math.PI/2),offset=new THREE.Vector3(-.45,.74,-.55).applyQuaternion(turn),anchor=c.clone().add(bedCenter).sub(offset);
     lying=true;target=anchor;visual.model.quaternion.copy(turn);
     if(p.state==='service'){target.add(new THREE.Vector3(-1.33,.84,-.55).applyQuaternion(turn));visual.model.quaternion.multiply(new THREE.Quaternion(-.5,-.5,-.5,.5));clip='Rest'}
-    else{clip=p.state==='transfer-in'?'TransferIn':'TransferOut';const progress=Math.min(3,p.progress+alpha);target.y-=anchor.y-c.y;target.y+=(anchor.y-c.y)*(p.state==='transfer-in'?progress/3:1-progress/3);this.play(visual,clip);const action=visual.actions.get(clip);action.setLoop(THREE.LoopOnce,1);action.clampWhenFinished=true;action.time=progress;visual.mixer.update(0)}
+    else{clip=p.state==='transfer-in'?'TransferIn':'TransferOut';const progress=Math.min(3,p.progress+alpha);target.y-=anchor.y-c.y;target.y+=(anchor.y-c.y)*(p.state==='transfer-in'?progress/3:1-progress/3);this.play(visual,clip);const action=visual.actions.get(clip);action.setLoop(THREE.LoopOnce,1);action.clampWhenFinished=true;samplePose(visual,clip,progress)}
    }else if(['entering-room','leaving-room'].includes(p.state)){const r=s.rooms.find(r=>r.id===p.room),leaving=p.state==='leaving-room',progress=Math.min(3,p.progress+alpha)/3,pose=sampleInterior(interiorPath(r.type,roomHeight(r.type)),leaving?1-progress:progress);target=center(r).add(new THREE.Vector3(...pose.position));rot=Math.atan2(pose.dx*(leaving?-1:1),pose.dz*(leaving?-1:1));clip='Walk';walkRate=pose.rate;
    }else if(p.state==='service'){const r=s.rooms.find(r=>r.id===p.room);target=center(r).add(new THREE.Vector3(.77,.03,.48));clip='Sit';rot=Math.PI}
    else if(p.state==='handoff'){clip='Discuss'}
    visual.group.position.copy(target);visual.initialized=true;
-   if(!bed){const previous=visual.heading??rot;visual.heading=previous+Math.atan2(Math.sin(rot-previous),Math.cos(rot-previous))*Math.min(1,dt*speedForTurn(paused,simDt,dt));visual.model.rotation.y=visual.heading;visual.model.rotation.x=0}
+   if(!bed){const previous=visual.heading??rot;visual.heading=previous+Math.atan2(Math.sin(rot-previous),Math.cos(rot-previous))*(paused?0:Math.min(1,dt*speedForTurn(paused,simDt,dt)));visual.model.rotation.y=visual.heading;visual.model.rotation.x=0}
    visual.shadow.visible=!lying&&!p.outside;this.play(visual,clip);
    if(!paused&&!reduced&&!clip.startsWith('Transfer')){visual.mixer.update(simDt*(clip==='Walk'?walkRate:1))}
   }
   const desired=new Set();for(const r of s.rooms){const g=this.roomObjects.get(r.id),busy=s.patients.some(p=>p.room===r.id&&p.state==='service');g.userData.badge.material.emissiveIntensity=busy?1.3:.15;g.userData.upgrade.visible=r.level>1;g.userData.upgrade.scale.x=r.level-1;const drape=g.userData.occupiedDrape;if(drape){const visit=s.patients.find(p=>p.room===r.id),opacity=visit?.state==='service'?Math.min(1,(visit.progress+alpha)*3):visit?.state==='transfer-out'?Math.max(0,1-(visit.progress+alpha)*3):0;drape.visible=opacity>0;drape.traverse(o=>{if(o.isMesh)o.material.opacity=opacity})}
-   r.staff.forEach((id,i)=>{desired.add(id);let p=this.staffPeople.get(id);if(!p){p=this.makePerson(r.type==='consult'&&i===0?'coat':'clinician',id);this.staffPeople.set(id,p)}const st=s.staff.find(a=>a.id===id),transit=s.patients.some(p=>p.room===r.id&&['entering-room','transfer-in','transfer-out','leaving-room'].includes(p.state));let local,clip='Idle',ry=0;
-    if(r.type==='scan'){local=[1,.0,-.20];clip=busy?'Work':'Idle';ry=Math.PI}
-    if(r.type==='care'){local=[i===0?-.78:transit?1.20:.79,0,i===0?-.06:transit?-.85:-.02];clip=busy?'Attend':'Idle';ry=i===0?Math.PI/2:-Math.PI/2}
-    if(['consult','plan'].includes(r.type)){local=[-.90,0,.25];clip=busy?'Discuss':'Idle';ry=Math.PI/2}
-    if(st.breakUntil>s.seconds){local=[.55,0,1.30];clip='Sit'}
-    p.group.position.copy(center(r)).add(new THREE.Vector3(...local));if(st.breakTrip){const trip=st.breakTrip,points=trip.motion?.length>1?trip.motion:[trip.position,trip.position],f=alpha*(points.length-1),i=Math.min(points.length-2,Math.floor(f)),a=points[i],b=points[i+1];p.group.position.copy(world(a.x,a.y).lerp(world(b.x,b.y),f-i));clip=trip.moved?'Walk':'Idle';if(trip.moved)ry=Math.atan2(b.x-a.x,b.y-a.y);else if(trip.phase==='resting'&&trip.lounge){const lounge=s.rooms.find(q=>q.id===trip.lounge);if(lounge){p.group.position.copy(center(lounge)).add(new THREE.Vector3((id%2?-.45:.45),.05,-.35));clip='Sit';ry=Math.PI}}}p.model.rotation.y=ry;this.play(p,clip);if(!paused&&!reduced)p.mixer.update(simDt*(clip==='Walk'&&st.breakTrip?Math.max(0,(st.breakTrip.motion?.length||1)-1)*.25:1));
+   r.staff.forEach((id,i)=>{desired.add(id);let p=this.staffPeople.get(id);if(!p){p=this.makePerson(r.type==='consult'&&i===0?'coat':'clinician',id);this.staffPeople.set(id,p)}const st=s.staff.find(a=>a.id===id),visit=s.patients.find(p=>p.room===r.id),post=staffPost(r.type,i);let local=post.position,clip=busy?(r.type==='scan'?'Work':r.type==='care'?'Attend':'Discuss'):'Idle',ry=post.heading,walkRate=1;
+    if(r.type==='care'&&i===1&&visit){const t=visit.progress+alpha,ease=t=>Math.max(0,Math.min(1,t)),clear=visit.state==='entering-room'?ease(t):visit.state==='transfer-in'?1:visit.state==='service'?1-ease(t):visit.state==='transfer-out'?ease(t):visit.state==='leaving-room'?1-ease(t-2):0,away=staffPost('care',1,true).position;
+     local=post.position.map((v,j)=>v+(away[j]-v)*clear);if((visit.state==='entering-room'||visit.state==='transfer-out'||visit.state==='service')&&t<1||visit.state==='leaving-room'&&t>2&&t<3){const returning=['service','leaving-room'].includes(visit.state);clip='Walk';ry=Math.atan2((away[0]-post.position[0])*(returning?-1:1),(away[2]-post.position[2])*(returning?-1:1));walkRate=Math.hypot(away[0]-post.position[0],away[2]-post.position[2])/GRID.step}
+    }
+    p.group.position.copy(center(r)).add(new THREE.Vector3(...local));
+    if(st.breakTrip){const trip=st.breakTrip,lounge=s.rooms.find(q=>q.id===trip.lounge),homeTransition=['home-exit','home-enter'].includes(trip.phase),loungeTransition=['lounge-enter','lounge-exit'].includes(trip.phase);
+     if(homeTransition||loungeTransition&&lounge){const room=homeTransition?r:lounge,leaving=['home-exit','lounge-exit'].includes(trip.phase),progress=Math.min(3,(trip.progress||0)+alpha)/3,pose=sampleInterior(staffInteriorPath(room.type,roomHeight(room.type),homeTransition?i:id,!homeTransition),leaving?1-progress:progress);p.group.position.copy(center(room)).add(new THREE.Vector3(...pose.position));clip='Walk';ry=Math.atan2(pose.dx*(leaving?-1:1),pose.dz*(leaving?-1:1));walkRate=pose.rate}
+     else{const pose=sampleRoute(trip.motion?.length>1?trip.motion:[trip.position,trip.position],alpha);p.group.position.copy(world(pose.x,pose.y));clip=trip.moved?'Walk':'Idle';walkRate=pose.rate;if(trip.moved)ry=Math.atan2(pose.dx,pose.dy);else if(trip.phase==='resting'&&lounge){p.group.position.copy(center(lounge)).add(new THREE.Vector3((id%2?-.45:.45),.05,-.35));clip='Sit';ry=Math.PI}}
+    }
+    const heading=p.heading??ry;p.heading=heading+Math.atan2(Math.sin(ry-heading),Math.cos(ry-heading))*(paused?0:Math.min(1,dt*speedForTurn(paused,simDt,dt)));p.model.rotation.y=p.heading;this.play(p,clip);if(!paused&&!reduced)p.mixer.update(simDt*(clip==='Walk'?walkRate:1));
    });
   }
   for(const st of s.staff.filter(st=>!desired.has(st.id))){desired.add(st.id);let p=this.staffPeople.get(st.id);if(!p){p=this.makePerson('clinician',st.id);this.staffPeople.set(st.id,p)}p.group.position.copy(world(4.6+(st.id%2)*.4,5.7));this.play(p,'Idle');if(!paused&&!reduced)p.mixer.update(simDt)}

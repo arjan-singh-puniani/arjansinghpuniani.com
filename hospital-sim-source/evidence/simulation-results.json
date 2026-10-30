@@ -1,7 +1,7 @@
 {
   "baseline": {
     "game": "hospitalSIM",
-    "model": "0.4.0-hospitalsim",
+    "model": "0.4.1-hospitalsim",
     "scenario": "neighborhood",
     "mode": "sandbox",
     "mastery": false,
@@ -1679,7 +1679,7 @@
   },
   "extraConsult": {
     "game": "hospitalSIM",
-    "model": "0.4.0-hospitalsim",
+    "model": "0.4.1-hospitalsim",
     "scenario": "neighborhood",
     "mode": "sandbox",
     "mastery": false,

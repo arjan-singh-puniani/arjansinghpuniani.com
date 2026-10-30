@@ -1,6 +1,6 @@
 {
   "pair": {
-    "model": "0.4.0-hospitalsim",
+    "model": "0.4.1-hospitalsim",
     "seed": 431,
     "checkpoint": 0,
     "changed": [

@@ -1,0 +1,354 @@
+{
+  "assets": {
+    "clinician": {
+      "bytes": 978764,
+      "triangles": 12346,
+      "primitives": 1,
+      "clips_seconds": {
+        "Attend": 2.4,
+        "Discuss": 2.4,
+        "Idle": 2.4,
+        "Rest": 2.4,
+        "Sit": 2.4,
+        "TransferIn": 3,
+        "TransferOut": 3,
+        "Walk": 0.9,
+        "Work": 2.4
+      },
+      "weighted_articulated_joints": {
+        "jaw": 469,
+        "mouth": 18,
+        "eyelid.L": 172,
+        "eyelid.R": 172,
+        "finger0.01.L": 36,
+        "finger0.02.L": 36,
+        "finger1.01.L": 36,
+        "finger1.02.L": 36,
+        "finger2.01.L": 36,
+        "finger2.02.L": 36,
+        "finger3.01.L": 36,
+        "finger3.02.L": 36,
+        "thumb.01.L": 36,
+        "thumb.02.L": 36,
+        "finger0.01.R": 36,
+        "finger0.02.R": 36,
+        "finger1.01.R": 36,
+        "finger1.02.R": 36,
+        "finger2.01.R": 36,
+        "finger2.02.R": 36,
+        "finger3.01.R": 36,
+        "finger3.02.R": 36,
+        "thumb.01.R": 36,
+        "thumb.02.R": 36
+      }
+    },
+    "clinician-lod": {
+      "bytes": 621332,
+      "triangles": 4194,
+      "primitives": 1,
+      "clips_seconds": {
+        "Attend": 2.4,
+        "Discuss": 2.4,
+        "Idle": 2.4,
+        "Rest": 2.4,
+        "Sit": 2.4,
+        "TransferIn": 3,
+        "TransferOut": 3,
+        "Walk": 0.9,
+        "Work": 2.4
+      },
+      "weighted_articulated_joints": {
+        "jaw": 86,
+        "mouth": 6,
+        "eyelid.L": 21,
+        "eyelid.R": 21,
+        "finger0.01.L": 10,
+        "finger0.02.L": 12,
+        "finger1.01.L": 10,
+        "finger1.02.L": 11,
+        "finger2.01.L": 10,
+        "finger2.02.L": 12,
+        "finger3.01.L": 10,
+        "finger3.02.L": 12,
+        "thumb.01.L": 12,
+        "thumb.02.L": 13,
+        "finger0.01.R": 11,
+        "finger0.02.R": 12,
+        "finger1.01.R": 11,
+        "finger1.02.R": 12,
+        "finger2.01.R": 11,
+        "finger2.02.R": 13,
+        "finger3.01.R": 11,
+        "finger3.02.R": 12,
+        "thumb.01.R": 13,
+        "thumb.02.R": 14
+      }
+    },
+    "coat": {
+      "bytes": 1029716,
+      "triangles": 13498,
+      "primitives": 1,
+      "clips_seconds": {
+        "Attend": 2.4,
+        "Discuss": 2.4,
+        "Idle": 2.4,
+        "Rest": 2.4,
+        "Sit": 2.4,
+        "TransferIn": 3,
+        "TransferOut": 3,
+        "Walk": 0.9,
+        "Work": 2.4
+      },
+      "weighted_articulated_joints": {
+        "jaw": 469,
+        "mouth": 18,
+        "eyelid.L": 172,
+        "eyelid.R": 172,
+        "finger0.01.L": 36,
+        "finger0.02.L": 36,
+        "finger1.01.L": 36,
+        "finger1.02.L": 36,
+        "finger2.01.L": 36,
+        "finger2.02.L": 36,
+        "finger3.01.L": 36,
+        "finger3.02.L": 36,
+        "thumb.01.L": 36,
+        "thumb.02.L": 36,
+        "finger0.01.R": 36,
+        "finger0.02.R": 36,
+        "finger1.01.R": 36,
+        "finger1.02.R": 36,
+        "finger2.01.R": 36,
+        "finger2.02.R": 36,
+        "finger3.01.R": 36,
+        "finger3.02.R": 36,
+        "thumb.01.R": 36,
+        "thumb.02.R": 36
+      }
+    },
+    "coat-lod": {
+      "bytes": 638892,
+      "triangles": 4586,
+      "primitives": 1,
+      "clips_seconds": {
+        "Attend": 2.4,
+        "Discuss": 2.4,
+        "Idle": 2.4,
+        "Rest": 2.4,
+        "Sit": 2.4,
+        "TransferIn": 3,
+        "TransferOut": 3,
+        "Walk": 0.9,
+        "Work": 2.4
+      },
+      "weighted_articulated_joints": {
+        "jaw": 85,
+        "mouth": 6,
+        "eyelid.L": 21,
+        "eyelid.R": 21,
+        "finger0.01.L": 10,
+        "finger0.02.L": 12,
+        "finger1.01.L": 10,
+        "finger1.02.L": 11,
+        "finger2.01.L": 10,
+        "finger2.02.L": 12,
+        "finger3.01.L": 10,
+        "finger3.02.L": 12,
+        "thumb.01.L": 12,
+        "thumb.02.L": 13,
+        "finger0.01.R": 11,
+        "finger0.02.R": 12,
+        "finger1.01.R": 11,
+        "finger1.02.R": 12,
+        "finger2.01.R": 10,
+        "finger2.02.R": 12,
+        "finger3.01.R": 11,
+        "finger3.02.R": 12,
+        "thumb.01.R": 13,
+        "thumb.02.R": 14
+      }
+    },
+    "patient": {
+      "bytes": 978752,
+      "triangles": 12346,
+      "primitives": 1,
+      "clips_seconds": {
+        "Attend": 2.4,
+        "Discuss": 2.4,
+        "Idle": 2.4,
+        "Rest": 2.4,
+        "Sit": 2.4,
+        "TransferIn": 3,
+        "TransferOut": 3,
+        "Walk": 0.9,
+        "Work": 2.4
+      },
+      "weighted_articulated_joints": {
+        "jaw": 469,
+        "mouth": 18,
+        "eyelid.L": 172,
+        "eyelid.R": 172,
+        "finger0.01.L": 36,
+        "finger0.02.L": 36,
+        "finger1.01.L": 36,
+        "finger1.02.L": 36,
+        "finger2.01.L": 36,
+        "finger2.02.L": 36,
+        "finger3.01.L": 36,
+        "finger3.02.L": 36,
+        "thumb.01.L": 36,
+        "thumb.02.L": 36,
+        "finger0.01.R": 36,
+        "finger0.02.R": 36,
+        "finger1.01.R": 36,
+        "finger1.02.R": 36,
+        "finger2.01.R": 36,
+        "finger2.02.R": 36,
+        "finger3.01.R": 36,
+        "finger3.02.R": 36,
+        "thumb.01.R": 36,
+        "thumb.02.R": 36
+      }
+    },
+    "patient-lod": {
+      "bytes": 621320,
+      "triangles": 4194,
+      "primitives": 1,
+      "clips_seconds": {
+        "Attend": 2.4,
+        "Discuss": 2.4,
+        "Idle": 2.4,
+        "Rest": 2.4,
+        "Sit": 2.4,
+        "TransferIn": 3,
+        "TransferOut": 3,
+        "Walk": 0.9,
+        "Work": 2.4
+      },
+      "weighted_articulated_joints": {
+        "jaw": 86,
+        "mouth": 6,
+        "eyelid.L": 21,
+        "eyelid.R": 21,
+        "finger0.01.L": 10,
+        "finger0.02.L": 12,
+        "finger1.01.L": 10,
+        "finger1.02.L": 11,
+        "finger2.01.L": 10,
+        "finger2.02.L": 12,
+        "finger3.01.L": 10,
+        "finger3.02.L": 12,
+        "thumb.01.L": 12,
+        "thumb.02.L": 13,
+        "finger0.01.R": 11,
+        "finger0.02.R": 12,
+        "finger1.01.R": 11,
+        "finger1.02.R": 12,
+        "finger2.01.R": 11,
+        "finger2.02.R": 13,
+        "finger3.01.R": 11,
+        "finger3.02.R": 12,
+        "thumb.01.R": 13,
+        "thumb.02.R": 14
+      }
+    }
+  },
+  "characters": {
+    "clinician": {
+      "bone_count": 39,
+      "transfer_to_rest_max_matrix_error": 3.40737528858881e-07,
+      "transfer_in_to_out_max_matrix_error": 0.0,
+      "transfer_out_to_idle_max_matrix_error": 1.1920928955078125e-07,
+      "eyelid_scale_range": [
+        1.0,
+        2.5
+      ],
+      "jaw_rotation_range_radians": [
+        0.0,
+        0.062483400106430054
+      ],
+      "mouth_scale_range": [
+        1.0,
+        3.499336004257202
+      ],
+      "finger_distal_rotation_range_radians": [
+        -0.4017600119113922,
+        -0.08370000123977661
+      ]
+    },
+    "coat": {
+      "bone_count": 39,
+      "transfer_to_rest_max_matrix_error": 3.40737528858881e-07,
+      "transfer_in_to_out_max_matrix_error": 0.0,
+      "transfer_out_to_idle_max_matrix_error": 1.1920928955078125e-07,
+      "eyelid_scale_range": [
+        1.0,
+        2.5
+      ],
+      "jaw_rotation_range_radians": [
+        0.0,
+        0.062483400106430054
+      ],
+      "mouth_scale_range": [
+        1.0,
+        3.499336004257202
+      ],
+      "finger_distal_rotation_range_radians": [
+        -0.4017600119113922,
+        -0.08370000123977661
+      ]
+    },
+    "patient": {
+      "bone_count": 39,
+      "transfer_to_rest_max_matrix_error": 4.721648281247326e-07,
+      "transfer_in_to_out_max_matrix_error": 0.0,
+      "transfer_out_to_idle_max_matrix_error": 1.1920928955078125e-07,
+      "eyelid_scale_range": [
+        1.0,
+        2.5
+      ],
+      "jaw_rotation_range_radians": [
+        0.0,
+        0.062483400106430054
+      ],
+      "mouth_scale_range": [
+        1.0,
+        3.499336004257202
+      ],
+      "finger_distal_rotation_range_radians": [
+        -0.4017600119113922,
+        -0.08370000123977661
+      ]
+    }
+  },
+  "licensing": "Original CC0-1.0 geometry, substantial OpenAI Codex assistance",
+  "walk": {
+    "duration_seconds": 0.9,
+    "root_speed_metres_per_second": 1.65
+  },
+  "transfer": {
+    "duration_seconds": 3,
+    "standing_anchor_gltf": [
+      0,
+      0,
+      0
+    ],
+    "rest_root_position_gltf": [
+      -1.33,
+      0.84,
+      -0.55
+    ],
+    "rest_root_quaternion_gltf": [
+      -0.5,
+      -0.5,
+      -0.5,
+      0.5
+    ],
+    "mattress_plane_gltf_y": 0.74,
+    "notes": "Play once with clampWhenFinished. Rebase root against original standing anchor before Rest; restore anchor when beginning TransferOut. Geometry remains procedural stylization; no mocap or clinical validation.",
+    "maximum_mattress_intrusion_metres": 0.008249869346618643,
+    "maximum_intrusion_frame": 91,
+    "soft_contact_tolerance_metres": 0.015,
+    "soft_contact_note": "Static mattress allows up to15mm of clothing/back overlap as a soft-contact approximation; no mattress deformation is simulated."
+  }
+}

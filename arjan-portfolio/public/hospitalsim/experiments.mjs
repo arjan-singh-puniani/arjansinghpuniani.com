@@ -1,4 +1,4 @@
-import {tick,validate,report,fingerprint,arrivalTape} from './simulation.mjs?v=042';
+import {tick,validate,report,fingerprint,arrivalTape} from './simulation.mjs?v=043';
 const copy=s=>JSON.parse(JSON.stringify({...s,lastAction:null}));
 export function changed(a,b){return ['rooms','staff','access','breaks','urgency','communication','autoHandoff','prevention','cash'].filter(k=>JSON.stringify(a[k])!==JSON.stringify(b[k]));}
 export function compare(base,plan){

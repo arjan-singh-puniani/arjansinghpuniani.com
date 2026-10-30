@@ -1,3 +1,12 @@
+## 0.4.1 ·2026-10-30
+
+- Corrected authored arm/leg phase and crouched support stance; executed Blender export and GLB roundtrip QA.
+- Fixed manually sampled transfer clips hidden by unadvanced animation fades.
+- Added explicit staff doorway/lounge transitions and return-to-work capacity gating; phase-by-phase checkpoint equivalence tests.
+- Replaced care clinician snapping with a visible step aside; pause freezes heading changes.
+- Restored keyboard focus on Escape; rejected negative service durations at checkpoint import.
+- Fitted the narrow portfolio embed to its same-origin game content. Preserved prior saves, original REPLISOME routes and access settings.
+
 # v0.4 · hospitalSIM · 2026-10-29
 
 - Renamed product and added authorized portfolio integration and optional REPLISOME workstation.

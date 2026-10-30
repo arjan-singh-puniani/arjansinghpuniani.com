@@ -1,0 +1,44 @@
+{
+  "clinician": {
+    "bones": 39,
+    "clips": 9,
+    "loaded_blink_max_scale": 2.5,
+    "loaded_jaw_max_delta_radians": 0.06248346343636513,
+    "loaded_finger_max_delta_radians": 0.31805872917175293
+  },
+  "clinician-lod": {
+    "bones": 39,
+    "clips": 9,
+    "loaded_blink_max_scale": 2.5,
+    "loaded_jaw_max_delta_radians": 0.06248346343636513,
+    "loaded_finger_max_delta_radians": 0.31805872917175293
+  },
+  "coat": {
+    "bones": 39,
+    "clips": 9,
+    "loaded_blink_max_scale": 2.5,
+    "loaded_jaw_max_delta_radians": 0.06248346343636513,
+    "loaded_finger_max_delta_radians": 0.31805872917175293
+  },
+  "coat-lod": {
+    "bones": 39,
+    "clips": 9,
+    "loaded_blink_max_scale": 2.5,
+    "loaded_jaw_max_delta_radians": 0.06248346343636513,
+    "loaded_finger_max_delta_radians": 0.31805872917175293
+  },
+  "patient": {
+    "bones": 39,
+    "clips": 9,
+    "loaded_blink_max_scale": 2.5,
+    "loaded_jaw_max_delta_radians": 0.06248346343636513,
+    "loaded_finger_max_delta_radians": 0.31805872917175293
+  },
+  "patient-lod": {
+    "bones": 39,
+    "clips": 9,
+    "loaded_blink_max_scale": 2.5,
+    "loaded_jaw_max_delta_radians": 0.06248346343636513,
+    "loaded_finger_max_delta_radians": 0.31805872917175293
+  }
+}
