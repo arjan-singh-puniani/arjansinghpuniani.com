@@ -4,11 +4,12 @@ import { createAudio } from './audio.js';
 import { createIntelligenceUI } from './intelligence-ui.js';
 import { createExperienceUI } from './experience-ui.js';
 import { watchShot } from './experience.js';
+import { createPitWall } from './pit-wall-ui.js';
 const $ = selector => document.querySelector(selector);
 const params = new URLSearchParams(location.search);
 let config = configuration({ scenario: Object.hasOwn(SCENARIOS, params.get('scenario')) ? params.get('scenario') : 'coordinated' });
 let sim = simulate(config), time = 0, playing = false, playback = 1, mode = 'world', corner = 'FL', world = null, pinned = null, batchRevision = 0;
-let experienceUI=null;
+let experienceUI=null, pitWall=null;
 let guideStep = 0, strategyPlans = [], selectedAsset = null;
 let watching = false, directing = false, watchCamera = null, watchWait = 0;
 let frame = 0, lastWall = 0, lastUI = 0, fpsStart = 0, frames = 0, visible = true, disposed = false;
@@ -574,8 +575,9 @@ function animate(now) {
     frame = requestAnimationFrame(animate);
     const elapsed = Math.max(0, (now - lastWall) / 1000);
     lastWall = now;
-    if (!visible || document.hidden)
-        return;
+    const wallActive=experienceUI?.mode==='pitwall';
+    if ((!visible&&!wallActive) || document.hidden) return;
+    if(wallActive){pitWall?.tick(now);return;}
     experienceUI?.tick();
     if (watching && !$('#intelligenceDialog').open) {
         if (time >= sim.duration) {
@@ -616,7 +618,7 @@ function animate(now) {
         fpsStart = now;
     }
 }
-function teardown() { disposed = true; cancelAnimationFrame(frame); intersection.disconnect(); listeners.forEach(remove => remove()); world?.dispose(); audio.dispose(); }
+function teardown() { disposed = true; cancelAnimationFrame(frame); intersection.disconnect(); listeners.forEach(remove => remove()); pitWall?.dispose(); world?.dispose(); audio.dispose(); }
 listen(window, 'pagehide', event => {
     if (event.persisted) {
         playing = false;
@@ -628,22 +630,34 @@ listen(window, 'pagehide', event => {
 listen(window, 'pageshow', () => lastWall = performance.now());
 $('#pipeline').innerHTML = Array.from({ length: 5 }, (_, i) => `<div data-pipeline="${i}" data-status="pending"><span><i></i></span><b></b></div>`).join('');
 rebuild(config);
-try {
-    const { createWorld } = await import('./world.js');
-    world = createWorld($('#viewport'), select, notice);
-    setOptions();
-    setMode('world');
-    experienceUI=createExperienceUI({world:()=>world,sim:()=>sim,listen,setMode,pause:()=>{stopWatch();playing=false;},audio});
-    window.__SIM_READY__ = true;
+let worldTask=null;
+async function ensureWorld(){
+    if(worldTask)return worldTask;
+    worldTask=(async()=>{
+        try{
+            const {createWorld}=await import('./world.js');
+            if(disposed)return;
+            world=createWorld($('#viewport'),select,notice);setOptions();
+            const active=experienceUI.mode;world.setExperience(active);
+            if(active==='explore'){world.setView('world');world.setCamera('carHero');}
+            else if(active==='challenge'){world.setView('world');world.setCamera('challenge');}
+            else if(active==='engineer')setMode(mode);
+        }catch(error){
+            $('#fallback').hidden=false;$('#viewport').hidden=true;
+            notice(`3D unavailable: ${error.message}. Timing and the pit wall remain usable.`);
+            if(experienceUI.mode!=='pitwall'){experienceUI.choose('engineer');setAnalysis(true);}
+        }
+        updateUI();
+    })();
+    return worldTask;
 }
-catch (error) {
-    $('#fallback').hidden = false;
-    $('#viewport').hidden = true;
-    notice(`3D unavailable: ${error.message}. Timing and analysis remain fully usable.`);
-    setAnalysis(true);
-    window.__SIM_READY__ = true;
-}
-if(!experienceUI){experienceUI=createExperienceUI({world:()=>world,sim:()=>sim,listen,setMode,pause:()=>{stopWatch();playing=false;},audio});experienceUI.choose('engineer');setAnalysis(true);}
+experienceUI=createExperienceUI({world:()=>world,sim:()=>sim,listen,setMode,pause:()=>{stopWatch();playing=false;},audio});
+pitWall=createPitWall({listen,getSimulation:()=>sim,chooseExperiment:scenario=>rebuild({...config,scenario}),chooseExperience:next=>{experienceUI.choose(next);if(next!=='pitwall')ensureWorld();},openAdvanced:()=>$('#intelligenceOpen').click()});
+const explicitExperience=params.get('experience'),initialExperience=params.has('camera')||params.has('shot')||params.has('play')?'engineer':['pitwall','explore','challenge','engineer'].includes(explicitExperience)?explicitExperience:'pitwall';
+experienceUI.choose(initialExperience);
+for(const button of document.querySelectorAll('button[data-experience]'))listen(button,'click',()=>{if(button.dataset.experience!=='pitwall')ensureWorld().then(()=>{if(!world&&experienceUI.mode!=='pitwall'){experienceUI.choose('engineer');setAnalysis(true);}});});
+if(initialExperience!=='pitwall')await ensureWorld();
+window.__SIM_READY__=true;
 if (params.get('ui') === '0')
     document.body.classList.add('hide-ui');
 if (params.has('shot'))

@@ -1,0 +1,50 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {chromium} from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+const base=process.env.PIT_STOP_URL||'http://127.0.0.1:4188',out=process.env.PIT_WALL_EVIDENCE||'/tmp/pit-wall-evidence';await fs.mkdir(out,{recursive:true});
+const browser=await chromium.launch({channel:'chrome',headless:true,args:['--use-angle=metal','--enable-gpu']}),report={checks:[],errors:[],accessibility:[]};
+const check=(name,value)=>{assert.ok(value,name);report.checks.push(name);console.log('PASS',name);};
+const ready=p=>p.waitForFunction(()=>window.__PIT_WALL__?.result&&!window.__PIT_WALL__.busy,null,{timeout:60000});
+try{
+ const context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));
+ await page.goto(`${base}/pit-stop-lab/index.html`);await ready(page);await page.waitForTimeout(500);
+ check('Opening the pit wall avoids loading the 3D car or Three.js',await page.evaluate(()=>!performance.getEntriesByType('resource').some(r=>r.name.endsWith('.glb')||r.name.endsWith('three.module.js'))));
+ check('Pit wall is the default production experience',await page.locator('body').getAttribute('data-experience')==='pitwall');
+ check('Both recorded telemetry traces and location-derived circuit load',await page.locator('#pwSpeedPaths path').count()===2&&await page.locator('#pwMapRoad path').count()>30);
+ check('Nine actions compare the same seeded futures',await page.locator('.pw-plan').count()===9);
+ await page.screenshot({path:out+'/01-pit-wall-desktop.png'});
+ const time=await page.evaluate(()=>window.__PIT_WALL__.time);await page.waitForTimeout(500);check('Historical telemetry plays fluidly',await page.evaluate(t=>window.__PIT_WALL__.time>t,time));
+ await page.locator('#pwPlay').click();const frozen=await page.evaluate(()=>window.__PIT_WALL__.time);await page.waitForTimeout(300);check('Replay pauses precisely',await page.evaluate(t=>window.__PIT_WALL__.time===t,frozen));
+ await page.locator('#pwSeek').evaluate(el=>{el.value=400;el.dispatchEvent(new Event('input',{bubbles:true}));});
+ check('Keyboard-compatible timeline seeks recorded channels',await page.evaluate(()=>Math.abs(window.__PIT_WALL__.time-38.7764)<.01));
+ const speed=await page.locator('#pwSpeed0').innerText();await page.locator('#pwBrakeZones button').nth(2).click();check('Braking-event controls seek actual source timestamps',await page.locator('#pwSpeed0').innerText()!==speed&&!await page.evaluate(()=>window.__PIT_WALL__.playing));
+ await page.locator('#pwDecisionLap').selectOption('24');await ready(page);check('Changing the decision time refits an earlier evidence prefix',await page.evaluate(()=>window.__PIT_WALL__.evidence.lap===24&&window.__PIT_WALL__.evidence.counts.laps<500));
+ await page.locator('#pwDecisionLap').selectOption('32');await ready(page);
+ const before=await page.evaluate(()=>window.__PIT_WALL__.result.service.median);await page.locator('#pwService').selectOption('gun');await ready(page);check('An actual gun-delay intervention changes service samples',await page.evaluate(b=>window.__PIT_WALL__.result.service.median>b+.5,before));
+ await page.locator('#pwService').selectOption('unsecured');await page.waitForFunction(()=>document.querySelector('#pwCall').textContent==='No defensible call');check('Unsafe retention clears the recommendation and blocks export',await page.locator('#pwBrief').isDisabled()&&await page.evaluate(()=>window.__PIT_WALL__.result===null));
+ await page.locator('#pwReset').click();await ready(page);
+ await page.locator('#pwGap').fill('');await page.waitForFunction(()=>document.querySelector('#pwCall').textContent==='No defensible call');check('Empty numeric input cannot silently become an assumed zero gap',await page.locator('#pwBrief').isDisabled());
+ await page.locator('#pwReset').click();await ready(page);
+ const downloadPromise=page.waitForEvent('download');await page.locator('#pwBrief').click();const download=await downloadPromise;await download.saveAs(out+'/decision-brief.md');const brief=await fs.readFile(out+'/decision-brief.md','utf8');check('Engineering brief contains cutoff, assumptions, baseline and machine-readable result',brief.includes('2024-03-02T15:54:22.697Z')&&brief.includes('constant-pace')&&brief.includes('"transitLoss": 20')&&brief.includes('Machine-readable result'));
+ await page.locator('#pwSweep').scrollIntoViewIfNeeded();await page.locator('#pwSweep').click();await page.waitForFunction(()=>window.__PIT_WALL_SWEEP__?.cells.length===36,null,{timeout:60000});
+ check('Robustness sweep compares 36 paired assumption combinations',await page.locator('#pwSweepGrid button').count()===36);
+ await page.locator('#pwSweepGrid button').first().click();await ready(page);check('Selecting a sweep cell applies its assumptions at full resolution',await page.locator('#pwTransit').inputValue()==='5'&&await page.locator('#pwSC').inputValue()==='75'&&await page.evaluate(()=>window.__PIT_WALL__.result.runs===1200));
+ await page.locator('#pwReset').click();await ready(page);
+ await page.locator('#pwMethods').click();await page.waitForTimeout(700);await page.locator('.pw-flow [data-pw-source=model]').click();check('Provenance controls explain the real fitting and validation split',(await page.locator('#pwSourceDetail').innerText()).includes('Ridge λ = 0.1'));await page.screenshot({path:out+'/02-evidence-validation.png'});
+ for(const width of [390,320]){
+  await page.setViewportSize({width,height:844});await page.locator('#pitWall').evaluate(el=>el.scrollTo(0,0));await page.waitForTimeout(300);
+  check(`No page or workspace horizontal overflow at ${width}px`,await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth&&document.querySelector('#pitWall').scrollWidth<=innerWidth));
+  await page.screenshot({path:`${out}/03-mobile-${width}.png`});
+ }
+ await page.setViewportSize({width:1440,height:1000});await page.locator('#pitWall').evaluate(el=>el.scrollTo(0,0));
+ const accessibility=await new AxeBuilder({page}).include('#pitWall').withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();report.accessibility=accessibility.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}));
+ check('Initial pit wall passes inspected automated WCAG A/AA checks',accessibility.violations.length===0);
+ await page.locator('button[data-experience=explore]').click();await page.waitForFunction(()=>window.__PIT_LAB_STATE__?.render?.heroLoaded);check('Original car/garage remains available',await page.locator('body').getAttribute('data-experience')==='explore');
+ await page.locator('button[data-experience=pitwall]').click();await ready(page);check('Returning to the pit wall preserves its evidence and inputs',await page.locator('#pwDecisionLap').inputValue()==='32');
+ await context.close();
+ const reduced=await browser.newContext({reducedMotion:'reduce'}),rp=await reduced.newPage();await rp.goto(`${base}/pit-stop-lab/index.html`);await ready(rp);check('Reduced motion starts telemetry paused',!await rp.evaluate(()=>window.__PIT_WALL__.playing));await reduced.close();
+ const fallback=await browser.newContext(),fp=await fallback.newPage();await fp.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){return type==='webgl'||type==='webgl2'?null:original.call(this,type,...args);};});await fp.goto(`${base}/pit-stop-lab/index.html`);await ready(fp);check('Telemetry and ML still operate without WebGL',await fp.evaluate(()=>window.__PIT_WALL__.ready&&window.__PIT_WALL__.result.plans.length===9));await fallback.close();
+ const failed=await browser.newContext(),ep=await failed.newPage();await ep.route('**/telemetry-bahrain-2024.json',r=>r.fulfill({status:503,body:'Unavailable'}));await ep.goto(`${base}/pit-stop-lab/index.html`);await ep.locator('#pwRetry').waitFor({state:'visible'});check('Archive failure provides a visible recovery action',(await ep.locator('#pwStatus').innerText()).includes('503'));await ep.unroute('**/telemetry-bahrain-2024.json');await ep.locator('#pwRetry').click();await ready(ep);check('Retry recovers a failed archive without reloading the page',await ep.evaluate(()=>window.__PIT_WALL__.ready));await failed.close();
+ check('No application exceptions on the complete main journey',report.errors.length===0);
+}finally{await fs.writeFile(out+'/report.json',JSON.stringify(report,null,2));await browser.close();console.log(JSON.stringify(report,null,2));}

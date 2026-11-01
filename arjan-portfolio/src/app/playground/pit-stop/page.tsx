@@ -6,20 +6,20 @@ import styles from "./pit-stop.module.css";
 export const metadata: Metadata = {
   title: "Pit Stop Lab — Formula Racing Engineering Laboratory",
   description:
-    "Interactive Formula-style pit-stop laboratory by Arjan Singh Puniani: run a four-corner pit stop, inspect center-lock mechanics, and explore timing, safe release, uncertainty, and historical-data ML race strategy.",
+    "Historical racing telemetry, time-causal pace models, paired strategy simulations, a 36-scenario robustness map, and a manual pit-stop challenge by Arjan Singh Puniani.",
   alternates: { canonical: "/playground/pit-stop" },
   openGraph: {
     type: "website",
     url: `${siteUrl}/playground/pit-stop`,
     title: "Pit Stop Lab | Arjan Singh Puniani",
     description:
-      "Explore an original SF-26 launch-reference recreation, perform a manual wheel change, and investigate race strategy.",
+      "Replay recorded Formula racing telemetry, audit what the pace model knew, and stress-test pit decisions.",
     images: [
       {
-        url: "/pit-stop-lab/preview-hero.webp",
+        url: "/pit-stop-lab/pit-wall-preview.webp",
         width: 1280,
         height: 800,
-        alt: "Original red-and-white Formula car recreation in an interactive engineering garage",
+        alt: "Historical pit wall showing recorded Bahrain telemetry, circuit replay and conditional strategy comparisons",
       },
     ],
   },
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Pit Stop Lab | Arjan Singh Puniani",
     description:
-      "Inspect a Formula car, perform a safe wheel change and explore historical-data race strategy.",
-    images: ["/pit-stop-lab/preview-hero.webp"],
+      "Recorded telemetry, traceable pace learning and pit-strategy stress tests.",
+    images: ["/pit-stop-lab/pit-wall-preview.webp"],
   },
 };
 
@@ -41,7 +41,7 @@ export default function PitStopLabPage() {
     operatingSystem: "Web",
     url: `${siteUrl}/playground/pit-stop`,
     description:
-      "Deterministic four-corner pit-stop simulation with a reference-driven garage, manual wheel challenge, mechanical inspection, timing analysis, historical pace-model training, and uncertain race-strategy comparisons.",
+      "Historical telemetry and location replay with timestamp-gated pace learning, paired Monte Carlo action comparison, a 36-scenario assumption sweep, reproducible engineering briefs, and a deterministic pit-stop simulation.",
     author: {
       "@type": "Person",
       "@id": `${siteUrl}/#arjan-singh-puniani`,

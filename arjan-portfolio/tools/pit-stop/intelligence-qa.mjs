@@ -18,7 +18,7 @@ async function run(page) { await page.locator('#intelRun').click(); await page.w
 try {
  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
  page.on('pageerror', e => report.errors.push(e.message));
- await page.goto(`${base}/pit-stop-lab/index.html`); await page.waitForFunction(() => window.__SIM_READY__); await open(page);
+ await page.goto(`${base}/pit-stop-lab/index.html?experience=explore`); await page.waitForFunction(() => window.__SIM_READY__); await open(page);
  check('Historical model trains locally with real held-out results', (await page.locator('#intelValidation').innerText()).includes('0.410 s'));
  check('Unsupported medium tires are excluded', await page.locator('#intelCurrent option').count() === 2);
  check('A native accessible modal is open', await page.locator('#intelligenceDialog').evaluate(el => el.open && el.getAttribute('aria-labelledby') === 'intelligenceTitle'));
@@ -68,7 +68,7 @@ try {
  await shot(embedded, '06-production-embedded');
  const fallback = await browser.newPage({ viewport: { width: 1000, height: 800 }, reducedMotion: 'reduce' });
  await fallback.addInitScript(() => { const original = HTMLCanvasElement.prototype.getContext; HTMLCanvasElement.prototype.getContext = function(type, ...args) { return type.startsWith('webgl') ? null : original.call(this, type, ...args); }; });
- await fallback.goto(`${base}/pit-stop-lab/index.html`); await fallback.waitForFunction(() => window.__SIM_READY__); await open(fallback); await run(fallback);
+ await fallback.goto(`${base}/pit-stop-lab/index.html?experience=explore`); await fallback.waitForFunction(() => window.__SIM_READY__); await open(fallback); await run(fallback);
  check('ML and recommendations work without WebGL and with reduced motion', await fallback.locator('.intel-plan').count() === 9);
  check('No application runtime errors', report.errors.length === 0);
  await fs.writeFile(`${output}/report.json`, JSON.stringify(report, null, 2)); console.log(JSON.stringify({ checks: report.checks.length, errors: report.errors, screenshots: report.screenshots }, null, 2));

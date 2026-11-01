@@ -1,4 +1,3 @@
-import * as THREE from './vendor/three.module.js';
 export function createAudio() {
     let ctx = null;
     let master = null;
@@ -31,7 +30,7 @@ export function createAudio() {
             return null;
         if (typeof ctx.createStereoPanner === 'function') {
             const node = ctx.createStereoPanner();
-            node.pan.value = THREE.MathUtils.clamp(pan, -1, 1);
+            node.pan.value = Math.max(-1, Math.min(1, pan));
             node.connect(master);
             return node;
         }

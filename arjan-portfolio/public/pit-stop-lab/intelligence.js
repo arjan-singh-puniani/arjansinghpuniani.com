@@ -153,7 +153,7 @@ function validateScenario(model, s) {
     for (const r of s.rivals)
         requireValue(model.drivers.includes(r.driver) && finite(r.gap, -60, 120) && Number.isInteger(r.age) && finite(r.age, 0, 60) && Number.isInteger(r.pit) && finite(r.pit, -1, s.laps - 1), 'Invalid rival: pit -1 means stay out; otherwise 0 through laps remaining minus 1.');
 }
-const wilson = (wins, n) => { const p = wins / n, z = 1.96, d = 1 + z * z / n, center = (p + z * z / (2 * n)) / d, width = z * Math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d; return [Math.max(0, center - width), Math.min(1, center + width)]; };
+const wilson = (wins, n) => { const p = wins / n, z = 1.96, d = 1 + z * z / n, center = (p + z * z / (2 * n)) / d, width = z * Math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d; return [Math.max(0, Math.min(p, center - width)), Math.min(1, Math.max(p, center + width))]; };
 // A nominal model trace is distinct from the uncertain Monte Carlo outcomes.
 export function raceProfile(model, scenario, driver, age, wait, compound, service) {
     validateScenario(model, scenario);
@@ -184,7 +184,7 @@ export async function evaluateStrategies(model, scenario, { runs = 1500, seed = 
         const stopped = r.pit >= 0 && lap >= r.pit, tire = stopped ? s.next : s.current, age = stopped ? lap - r.pit + 1 : r.age + lap + 1;
         return age < model.support[tire].minAge || age > model.support[tire].maxAge;
     }).some(Boolean));
-    const plans = [{ wait: -1, compound: s.current, label: 'Stay out' }, ...model.compounds.flatMap(compound => waits.map(wait => ({ wait, compound, label: `${wait ? `Box +${wait}` : 'Box now'} · ${compound.toLowerCase()}` })))].map(plan => ({ ...plan, wins: 0, margins: [], times: [], outside: false }));
+    const plans = [{ wait: -1, compound: s.current, label: 'Stay out' }, ...model.compounds.flatMap(compound => waits.map(wait => ({ wait, compound, label: `${wait ? `Box +${wait}` : 'Box now'} · ${compound.toLowerCase()}` })))].map(plan => ({ ...plan, wins: 0, margins: [], times: [], deltas: [], outside: false }));
     const drawResidual = () => model.residuals[Math.floor(random() * model.residuals.length)];
     for (let run = 0; run < runs; run++) {
         const weights = model.draws[Math.floor(random() * model.draws.length)], neutral = random() < s.scProbability ? Math.floor(random() * s.laps) : -99;
@@ -206,8 +206,11 @@ export async function evaluateStrategies(model, scenario, { runs = 1500, seed = 
         };
         const rivals = s.rivals.map((r, i) => r.gap + elapsed(r.driver, r.age, r.pit, s.next, i + 1));
         const fastest = Math.min(...rivals);
+        let stayTotal = 0;
         for (const plan of plans) {
             const total = elapsed(s.driver, s.age, plan.wait, plan.compound, 0, plan), margin = fastest - total;
+            if (plan.wait === -1) stayTotal = total;
+            plan.deltas.push(total - stayTotal);
             plan.times.push(total);
             plan.margins.push(margin);
             if (margin > 0)
@@ -222,6 +225,9 @@ export async function evaluateStrategies(model, scenario, { runs = 1500, seed = 
         p.medianTime = percentile(p.times.sort((a, b) => a - b), .5);
         p.margins.sort((a, b) => a - b);
         p.margin = [percentile(p.margins, .1), percentile(p.margins, .5), percentile(p.margins, .9)];
+        p.deltas.sort((a, b) => a - b);
+        p.relativeTime = [percentile(p.deltas, .1), percentile(p.deltas, .5), percentile(p.deltas, .9)];
+        delete p.deltas;
         delete p.times;
         delete p.margins;
     }
