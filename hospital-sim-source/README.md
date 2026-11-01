@@ -15,10 +15,12 @@ node tests/motion-release.mjs
 node tests/animation.mjs
 node tests/patient-release.mjs
 node tests/interaction.mjs
+node tests/touch-roles.mjs
 node tests/simulation.cjs
 /Applications/Blender.app/Contents/MacOS/Blender --factory-startup -b --python blender/hospital.py
 /Applications/Blender.app/Contents/MacOS/Blender --factory-startup -b --python blender/characters.py
 /Applications/Blender.app/Contents/MacOS/Blender --factory-startup -b --python blender/drape.py
+/Applications/Blender.app/Contents/MacOS/Blender --factory-startup -b --python blender/staff_roles.py
 ```
 
 Open `http://127.0.0.1:8765`. In the portfolio repository, serve `arjan-portfolio/public` from its repository root and open `/hospitalsim/index.html`; the retained REPLISOME is the sibling `/replisome/index.html` there. Serving only the symlinked hospital directory runs the hospital, but its optional science module needs that sibling route. Blender 4.0.2 was actually executed on macOS. The sandboxed launch could not access Metal device registration; approved execution outside that restriction worked. `rtk` was requested by local instructions but is not installed; shell calls used a pass-through function named rtk. Python 3.10, Node 22, Three.js 0.186.1, the browser SDK, and bundled FFmpeg were available. There is no asset-store dependency.
@@ -83,3 +85,11 @@ Entrance doors and Exit doors place the respective portal on a clear outside edg
 ## iPhone feedback correction ·0.6.1
 
 The owner reported lag on an actual iPhone and requested cursor-attached transparent pickup and a finer grid. The mobile profile now lowers render resolution/shadow cost, retains LOD characters and renders at30fps independently of simulation. Floor topology is cached between layout changes. Held figures attach at the collar to the pointer/fingertip and become65%opaque; placement uses quarter cells, with half-cell room/door construction. A new actual-phone result is pending.
+
+## Touch pickup and staff roles · 0.7
+
+Tap a person or their role label once to lift. Tap a clear path to put down; dragging and releasing also works. Invalid placement keeps the person held. The fixed Put down/Cancel controls and keyboard support alternatives. Patients on equipment finish their transfer/service before pickup. Protected-break and returning staff complete that trip before another pickup.
+
+Doctor, surgeon, RN, NP, PA, imaging technologist and front desk have original clothing/badges and named labels; full titles and fictional assignments are in Team & policy. Roles/skills do not describe real professional scope. The front-desk colleague adds no clinical capacity, earns the same fictional wage rate and currently has no reception queue or conversation mechanic. Assigned staff relocation pauses that patient's service until return. Other people can continue once placement is finished.
+
+Seven editable wardrobes are in `blender/staff_roles.blend`; `blender/staff_roles.py` reproduces their fourteen GLBs. These meshes share the existing clinician/coat clips rather than embedding copies. Original patient geometry remains separate. iPhone owner feedback drove these changes; desktop narrow-window checks do not establish actual Safari/iPhone success.
