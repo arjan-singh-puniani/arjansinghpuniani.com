@@ -1,41 +1,45 @@
 import * as T from "/pit-stop-lab/vendor/three.module.js";
 import { OrbitControls } from "/pit-stop-lab/vendor/OrbitControls.js";
+import { createAnatomy } from "./anatomy.js";
 
-// Original procedural explanatory geometry. Dimensions and layer gaps are schematic.
-export function createScene(host, onSelect = () => {}) {
+// Original concept device on attributed reference anatomy; device dimensions and layer gaps are schematic.
+export async function createScene(host, onSelect = () => {}, onLayer = () => {}) {
   const renderer = new T.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "low-power" });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.6));
   renderer.setClearColor(0x0b1117, 0);
   renderer.toneMapping = T.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.25;
+  renderer.toneMappingExposure = 0.93;
   const canvas = renderer.domElement;
   canvas.setAttribute("role", "img");
-  canvas.setAttribute("aria-label", "Interactive schematic of a proposed cortical cooling device. Choose components using the adjacent buttons. Drag horizontally to rotate the view.");
+  canvas.setAttribute("aria-label", "Human Reference Atlas brain and head with an illustrative left superior temporal target, compact proposed device and peelable access layers. Use the layer slider and camera buttons for keyboard alternatives.");
   Object.assign(canvas.style, { width: "100%", height: "100%", display: "block", touchAction: "pan-y", cursor: "grab" });
   host.append(canvas);
   const gl = renderer.getContext(), ext = gl.getExtension("WEBGL_debug_renderer_info");
   const adapter = ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : "unavailable";
   const softwareRenderer = /SwiftShader|llvmpipe|Software Rasterizer/i.test(adapter);
   if (softwareRenderer) renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1));
-  const scene = new T.Scene(), camera = new T.PerspectiveCamera(35, 1, 0.05, 200);
+  const scene = new T.Scene(), camera = new T.PerspectiveCamera(34, 1, 0.2, 3000);
   const controls = new OrbitControls(camera, canvas);
-  controls.enableZoom = false;
+  controls.enableZoom = true;
+  controls.minDistance = 16;
+  controls.maxDistance = 650;
+  controls.zoomSpeed = 0.55;
   controls.enablePan = false;
   controls.enableDamping = false;
-  controls.minPolarAngle = 0.45;
-  controls.maxPolarAngle = 1.45;
+  controls.minPolarAngle = 0.15;
+  controls.maxPolarAngle = 2.8;
   controls.touches.ONE = T.TOUCH.ROTATE;
   controls.touches.TWO = T.TOUCH.ROTATE;
   // OrbitControls normally disables document touch scrolling. Restore vertical pan.
   canvas.style.touchAction = "pan-y";
-  scene.add(new T.HemisphereLight(0xd5e9ff, 0x17202a, 2));
-  const key = new T.DirectionalLight(0xf2f3ee, 3.4);
-  key.position.set(-4, 7, 6);
+  scene.add(new T.HemisphereLight(0xd5e9ff, 0x17202a, 0.9));
+  const key = new T.DirectionalLight(0xf2f3ee, 2.3);
+  key.position.set(-70, 130, -35);
   scene.add(key);
-  const rim = new T.DirectionalLight(0x86c8ea, 2.5);
-  rim.position.set(4, 3, -4);
+  const rim = new T.DirectionalLight(0x86c8ea, 1.5);
+  rim.position.set(90, 35, 90);
   scene.add(rim);
-  const warm = new T.DirectionalLight(0xf0d1a6, 0.8);
+  const warm = new T.DirectionalLight(0xf0d1a6, 0.55);
   warm.position.set(-5, 1, -3);
   scene.add(warm);
   const studio = new T.Scene();
@@ -49,6 +53,7 @@ export function createScene(host, onSelect = () => {}) {
   }
   const pmrem = new T.PMREMGenerator(renderer), environment = pmrem.fromScene(studio, 0.04);
   scene.environment = environment.texture;
+  scene.environmentIntensity = 0.65;
   studio.traverse(o => { o.geometry?.dispose(); o.material?.dispose(); }); pmrem.dispose();
   const grainCanvas = document.createElement("canvas");
   grainCanvas.width = grainCanvas.height = 128;
@@ -165,49 +170,18 @@ export function createScene(host, onSelect = () => {}) {
   const emblem = add(groups.package, new T.PlaneGeometry(1.86, 0.46), new T.MeshBasicMaterial({ map: markTexture }), [0, 2.031, 0]); emblem.rotation.x = -Math.PI / 2;
   lidInset.userData.component = "package";
 
-  const tissueGroup = new T.Group(); root.add(tissueGroup);
-  const cortexGeo = new T.PlaneGeometry(6.5, 4.8, softwareRenderer ? 60 : 100, softwareRenderer ? 46 : 76);
-  cortexGeo.rotateX(-Math.PI / 2);
-  const positions = cortexGeo.attributes.position, colors = new Float32Array(positions.count * 3), initialHeights = [];
-  for (let i = 0; i < positions.count; i++) {
-    const x = positions.getX(i), z = positions.getZ(i), edge = Math.max(0, 1 - Math.pow(Math.abs(x) / 3.25, 8)) * Math.max(0, 1 - Math.pow(Math.abs(z) / 2.4, 8));
-    const fold = Math.pow(Math.abs(Math.sin(x * 3.2 + 0.85 * Math.sin(z * 2.1) + 0.28 * Math.sin(x * 1.7 + z))), 0.65);
-    const y = -0.43 + edge * (0.23 * fold + 0.025 * Math.sin(z * 3 + x * 0.4));
-    positions.setY(i, y); initialHeights.push(y);
-  }
-  cortexGeo.setAttribute("color", new T.BufferAttribute(colors, 3)); cortexGeo.computeVertexNormals();
-  add(tissueGroup, cortexGeo, mats.tissue);
-  const depthMaterials = [];
-  for (let i = 0; i < 8; i++) {
-    const mat = material(0x8c777e, 0, 0.87); depthMaterials.push(mat);
-    plate(tissueGroup, 6.48 - i * 0.018, 4.78 - i * 0.018, 0.19, -0.69 - i * 0.19, mat, 0.45);
-  }
-  // Close the slab edges without letting the volume obscure cortical sulci.
-  const rimPositions = [], rimIndices = [];
-  for (const [axis, fixed, length] of [["x", -3.25, 4.8], ["x", 3.25, 4.8], ["z", -2.4, 6.5], ["z", 2.4, 6.5]]) {
-    const start = rimPositions.length / 3;
-    for (let i = 0; i <= 32; i++) {
-      const free = (i / 32 - 0.5) * length;
-      const x = axis === "x" ? fixed : free, z = axis === "z" ? fixed : free;
-      rimPositions.push(x, -0.43, z, x * 0.997, -0.51, z * 0.997);
-      if (i < 32) { const j = start + i * 2; rimIndices.push(j, j + 1, j + 2, j + 1, j + 3, j + 2); }
-    }
-  }
-  const tissueRim = new T.BufferGeometry(); tissueRim.setAttribute("position", new T.Float32BufferAttribute(rimPositions, 3)); tissueRim.setIndex(rimIndices); tissueRim.computeVertexNormals();
-  add(tissueGroup, tissueRim, material(0x987b84, 0, 0.87, { side: T.DoubleSide }));
-  const contourMat = new T.LineBasicMaterial({ color: 0x8092a1, transparent: true, opacity: 0.23 });
-  for (const z of [-2.5, 2.5]) {
-    const geometry = new T.BufferGeometry().setFromPoints([new T.Vector3(-3.3, -2.12, z), new T.Vector3(3.3, -2.12, z)]);
-    root.add(new T.Line(geometry, contourMat));
-  }
-  // Optional head scale context: a schematic ellipsoid, not patient anatomy.
-  const headGroup = new T.Group(); scene.add(headGroup); headGroup.visible = false;
-  const headMat = material(0x71818c, 0, 0.85, { transparent: true, opacity: 0.12, side: T.DoubleSide, depthWrite: false });
-  // Relative to the model's 10 mm contact span, use an assumed 147 mm head width.
-  const head = add(headGroup, new T.SphereGeometry(1, 40, 28), headMat, [0, -28.8, 0]); head.scale.set(23.4, 28.2, 24.9);
-  const headEdges = new T.LineSegments(new T.WireframeGeometry(new T.SphereGeometry(1, 16, 12)), new T.LineBasicMaterial({ color: 0x688393, transparent: true, opacity: 0.16 })); headEdges.scale.copy(head.scale); headEdges.position.copy(head.position); headGroup.add(headEdges);
-  const nose = add(headGroup, new T.ConeGeometry(2.3, 6.8, 16), headMat, [0, -29, 23]); nose.rotation.x = Math.PI / 2;
-
+  const anatomy = await createAnatomy(T, { onProgress: fraction => {
+    const loading = host.querySelector('#scene-loading');
+    if (loading) loading.textContent = `Loading reference anatomy… ${Math.round(fraction * 100)}%`;
+  }});
+  scene.add(anatomy.group);
+  const mount = anatomy.target.clone().addScaledVector(anatomy.normal, 0.65);
+  root.position.copy(mount);
+  root.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), anatomy.normal);
+  root.scale.set(10 / 3.18, 1.1, 10 / 2.48);
+  let peelValue = 0.86;
+  anatomy.peel(peelValue);
+  anatomy.setContext?.("region");
   const labelLayer = document.createElement("div");
   labelLayer.dataset.sfLabel = "true";
   labelLayer.dataset.sfOverlay = "true";
@@ -229,7 +203,7 @@ export function createScene(host, onSelect = () => {}) {
     package: { label: "ENCAPSULATION CONCEPT", point: [-1.45, 2.06, -0.4], color: "#c9d4dd", side: -1 },
   };
   const connections = new T.Group(); root.add(connections);
-  let selected = null, exploded = true, currentView = "system", disposed = false, visible = true, frames = 0, raf = 0, renderMilliseconds = [];
+  let selected = null, exploded = false, currentView = "region", disposed = false, visible = true, active = true, frames = 0, raf = 0, renderMilliseconds = [];
   function rebuildConnections() {
     connections.children.slice().forEach(line => { line.geometry.dispose(); line.material.dispose(); connections.remove(line); });
     if (!selected) return;
@@ -245,14 +219,24 @@ export function createScene(host, onSelect = () => {}) {
   function labels() {
     const w = host.clientWidth, h = host.clientHeight;
     labelSvg.setAttribute("viewBox", `0 0 ${w} ${h}`);
-    const shown = currentView === "head" ? ["package"] : selected ? [selected] : exploded ? ["package", "heatpath", "sensing"] : ["package", "sensing"];
-    const entries = shown.map(id => {
-      const info = labelInfo[id], v = new T.Vector3(...info.point); groups[id].localToWorld(v); v.project(camera);
-      return { id, ...info, x: (v.x * 0.5 + 0.5) * w, y: (-v.y * 0.5 + 0.5) * h, z: v.z };
+    const placement = currentView === "head" || currentView === "region";
+    const shown = selected ? [selected] : exploded ? ["package", "tec"] : ["package"];
+    const entries = (placement ? [
+      { label: "LEFT SUPERIOR TEMPORAL GYRUS", point: anatomy.target.clone(), color: "#c7b1e8", side: -1 },
+      { label: "SEIZEFREEZE · 10 MM CONTACT", point: mount.clone().addScaledVector(anatomy.normal, 3), color: "#ade0e0", side: 1 },
+    ] : shown.map(id => {
+      const info = labelInfo[id], point = new T.Vector3(...info.point);
+      groups[id].localToWorld(point);
+      return { ...info, point };
+    })).map(info => {
+      const v = info.point.clone().project(camera);
+      return { ...info, x: (v.x * 0.5 + 0.5) * w, y: (-v.y * 0.5 + 0.5) * h, z: v.z };
     }).filter(p => p.z > -1 && p.z < 1 && p.x > -20 && p.x < w + 20 && p.y > -20 && p.y < h + 20);
     labelSvg.replaceChildren();
     entries.forEach((p, i) => {
-      const mobile = w < 560, textWidth = mobile ? 126 : 166;
+      const mobile = w < 560;
+      const label = mobile && p.label === "LEFT SUPERIOR TEMPORAL GYRUS" ? "LEFT STG · EXAMPLE TARGET" : mobile && p.label.startsWith("SEIZEFREEZE") ? "10 MM CONTACT" : p.label;
+      const textWidth = Math.max(100, label.length * (mobile ? 5.5 : 6.2));
       const tx = p.side < 0 ? 18 : w - textWidth - 16;
       let ty = Math.max(33, Math.min(h - 53, p.y - 28));
       if (entries.length > 1 && mobile) ty = [40, h * 0.42, h - 72][i];
@@ -261,31 +245,32 @@ export function createScene(host, onSelect = () => {}) {
       path.setAttribute("fill", "none"); path.setAttribute("stroke", p.color); path.setAttribute("stroke-width", ".7"); path.setAttribute("opacity", ".6");
       const dot = document.createElementNS(ns, "circle"); dot.setAttribute("cx", p.x); dot.setAttribute("cy", p.y); dot.setAttribute("r", "2.2"); dot.setAttribute("fill", p.color);
       const text = document.createElementNS(ns, "text"); text.setAttribute("x", tx); text.setAttribute("y", ty); text.setAttribute("fill", p.color); text.setAttribute("font-family", "monospace"); text.setAttribute("font-size", mobile ? "8" : "9"); text.setAttribute("letter-spacing", ".6");
-      text.setAttribute("stroke", "#0b1117"); text.setAttribute("stroke-width", "3"); text.setAttribute("paint-order", "stroke"); text.textContent = p.label;
+      text.setAttribute("stroke", "#0b1117"); text.setAttribute("stroke-width", "3"); text.setAttribute("paint-order", "stroke"); text.textContent = label;
       labelSvg.append(path, dot, text);
     });
   }
   function renderNow() {
-    raf = 0; if (disposed || !visible || document.hidden || !host.clientWidth || !host.clientHeight) return;
+    raf = 0; if (disposed || !visible || !active || document.hidden || !host.clientWidth || !host.clientHeight) return;
     const start = performance.now(); camera.updateMatrixWorld(); renderer.render(scene, camera); labels(); frames++;
     renderMilliseconds.push(performance.now() - start); if (renderMilliseconds.length > 180) renderMilliseconds.shift();
   }
-  function render() { if (!raf && !disposed && visible) raf = requestAnimationFrame(renderNow); }
+  function render() { if (!raf && !disposed && visible && active) raf = requestAnimationFrame(renderNow); }
   function frameCamera() {
-    const aspect = Math.max(0.5, host.clientWidth / Math.max(1, host.clientHeight));
+    const aspect = Math.max(0.45, host.clientWidth / Math.max(1, host.clientHeight));
     const narrow = aspect < 1.1;
-    if (currentView === "head") { controls.target.set(0, -25, 0); camera.position.set(60, 22, 78); }
-    else if (currentView === "interface") { controls.target.set(0, 0.15, 0); camera.position.set(6.8, 4.5, 8); }
-    else {
-      controls.target.set(0, exploded ? 1.15 : -0.1, 0);
-      const scale = narrow ? 1.2 : 1; camera.position.set(8.8 * scale, (exploded ? 7.1 : 6.1) * scale, 10.8 * scale);
+    const target = anatomy.target;
+    if (currentView === "head") {
+      controls.target.set(-5, 2, 2);
+      camera.position.set(-360, 115, 265);
+      if (narrow) camera.position.multiplyScalar(1.35);
+    } else if (currentView === "region") {
+      controls.target.copy(target).lerp(new T.Vector3(0, 0, 0), 0.38);
+      camera.position.copy(controls.target).add(new T.Vector3(-310, 70, 185).multiplyScalar(narrow ? 1.25 : 1));
+    } else {
+      controls.target.copy(target).addScaledVector(anatomy.normal, exploded ? 4 : 1);
+      const direction = anatomy.normal.clone().multiplyScalar(currentView === "system" ? 0.5 : 0.85).add(new T.Vector3(0, currentView === "system" ? 0.68 : 0.38, 0.32)).normalize();
+      camera.position.copy(controls.target).addScaledVector(direction, (exploded ? 72 : 43) * (narrow ? 1.18 : 1));
     }
-    // Fit the complete lifted stack even on narrow screens and close-up presets.
-    const bounds = new T.Box3().setFromObject(currentView === "head" ? scene : root), sphere = bounds.getBoundingSphere(new T.Sphere());
-    const halfFov = Math.atan(Math.tan(T.MathUtils.degToRad(camera.fov / 2)) * Math.min(1, aspect));
-    const required = sphere.radius / Math.sin(halfFov) * 1.04;
-    const direction = camera.position.clone().sub(controls.target);
-    if (direction.length() < required) camera.position.copy(controls.target).add(direction.setLength(required));
     camera.lookAt(controls.target); controls.update(); render();
   }
   function resize() {
@@ -293,7 +278,7 @@ export function createScene(host, onSelect = () => {}) {
     renderer.setSize(host.clientWidth, Math.max(1, host.clientHeight), false); frameCamera();
   }
   function explode(value) {
-    exploded = Boolean(value); ids.forEach(id => { groups[id].position.y = exploded ? offsets[id] : seated[id]; });
+    exploded = Boolean(value); ids.forEach(id => { groups[id].position.y = exploded ? offsets[id] * 3 : seated[id]; });
     rebuildConnections(); frameCamera();
   }
   function select(id) {
@@ -309,31 +294,13 @@ export function createScene(host, onSelect = () => {}) {
     }
     rebuildConnections(); render();
   }
-  const baseTissue = new T.Color(0x987b84), cooledTissue = new T.Color(0x559aaf), hotColor = new T.Color(0xb19570), amber = new T.Color(0xd39c63), color = new T.Color();
-  function tissueColor(target, value) {
-    return target.copy(baseTissue).lerp(value <= 37 ? cooledTissue : amber, T.MathUtils.clamp(Math.abs(37 - value) / (value <= 37 ? 12 : 8), 0, 1));
-  }
+  const hotColor = new T.Color(0xb19570), amber = new T.Color(0xd39c63);
   function update(frame = {}) {
-    const source = frame.tissue ?? frame.temperatures ?? frame.T ?? 37;
-    const profile = Array.isArray(source) || ArrayBuffer.isView(source) ? Array.from(source) : [Number(source)];
-    const valid = profile.filter(Number.isFinite);
-    const temperature = valid.length ? valid : [37];
-    for (let i = 0; i < positions.count; i++) {
-      // The surface tint is an illustrative extension of the solver's top cell.
-      tissueColor(color, temperature[0]);
-      const foldShade = 0.86 + (initialHeights[i] + 0.46) * 0.55; color.multiplyScalar(foldShade);
-      cortexGeo.attributes.color.setXYZ(i, color.r, color.g, color.b);
-    }
-    cortexGeo.attributes.color.needsUpdate = true;
-    depthMaterials.forEach((m, i) => {
-      const index = Math.min(temperature.length - 1, Math.floor(i / depthMaterials.length * temperature.length));
-      tissueColor(m.color, temperature[index]).multiplyScalar(0.86);
-    });
-    const Tc = Number(frame.Tc ?? frame.cold ?? 37), Th = Number(frame.Th ?? frame.hot ?? 37);
+    const temperature = Array.isArray(frame.tissue) ? frame.tissue[0] : 37;
+    anatomy.setTemperature?.(Number.isFinite(temperature) ? temperature : 37);
+    const Tc = Number(frame.Tc ?? 37), Th = Number(frame.Th ?? 37);
     mats.cold.color.set(0x76b2c0).lerp(new T.Color(0x54c6df), Number.isFinite(Tc) ? T.MathUtils.clamp((37 - Tc) / 16, 0, 1) : 0);
     mats.hot.color.copy(hotColor).lerp(amber, Number.isFinite(Th) ? T.MathUtils.clamp((Th - 37) / 12, 0, 1) : 0);
-    const current = Number(frame.current ?? frame.I ?? 0);
-    mats.blue.emissive.set(0x196398); mats.blue.emissiveIntensity = Number.isFinite(current) ? Math.min(Math.abs(current) * 0.08, 0.15) : 0;
     render();
   }
   const raycaster = new T.Raycaster(), pointer = new T.Vector2(); let press = null;
@@ -341,28 +308,64 @@ export function createScene(host, onSelect = () => {}) {
   const pointerUp = e => {
     if (!press || Math.hypot(press.x - e.clientX, press.y - e.clientY) > 7) { press = null; return; } press = null;
     const rect = canvas.getBoundingClientRect(); pointer.set((e.clientX - rect.left) / rect.width * 2 - 1, -(e.clientY - rect.top) / rect.height * 2 + 1); raycaster.setFromCamera(pointer, camera);
-    const hit = raycaster.intersectObjects(allPickable, false)[0]; if (hit) { select(hit.object.userData.component); onSelect(hit.object.userData.component); }
+    const hits = raycaster.intersectObjects([...allPickable, ...anatomy.group.children], true);
+    const hit = hits.find(h => {
+      if (!(h.object.material?.opacity > 0.15)) return false;
+      for (let object = h.object; object; object = object.parent) if (!object.visible) return false;
+      return true;
+    });
+    if (!hit) return;
+    const component = hit.object.userData.component;
+    if (component) { select(component); onSelect(component); return; }
+    const id = hit.object.userData.anatomyLayer;
+    if (id) {
+      const stops = { scalp: 0.24, skull: 0.44, dura: 0.64, arachnoid: 0.84, pia: 1 };
+      peelValue = Math.max(peelValue, stops[id] ?? 1);
+      anatomy.peel(peelValue); onLayer(peelValue); render();
+    }
   };
   const pointerCancel = () => { press = null; };
+  canvas.tabIndex = 0;
+  const keyboardView = event => {
+    if (["ArrowLeft", "ArrowRight", "+", "=", "-", "_"].includes(event.key)) {
+      event.preventDefault();
+      const offset = camera.position.clone().sub(controls.target);
+      if (event.key.startsWith("Arrow")) offset.applyAxisAngle(new T.Vector3(0, 1, 0), event.key === "ArrowLeft" ? -0.16 : 0.16);
+      else offset.multiplyScalar(event.key === "+" || event.key === "=" ? 0.9 : 1.1);
+      offset.clampLength(16, 650); camera.position.copy(controls.target).add(offset); controls.update(); render();
+    }
+  };
+  canvas.addEventListener("keydown", keyboardView);
   canvas.addEventListener("pointerdown", pointerDown); canvas.addEventListener("pointerup", pointerUp); canvas.addEventListener("pointercancel", pointerCancel);
   const contextLost = event => { event.preventDefault(); host.dispatchEvent(new CustomEvent("seizefreeze-context-lost", { bubbles: true })); };
   canvas.addEventListener("webglcontextlost", contextLost);
   controls.addEventListener("change", render);
   const resizeObserver = new ResizeObserver(resize); resizeObserver.observe(host);
   const intersectionObserver = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; if (visible) render(); }, { threshold: 0.01 }); intersectionObserver.observe(host);
-  update(); explode(true); resize();
+  update(); explode(false); resize();
   return {
     select, explode, render,
+    setActive(value) { active = Boolean(value); if (active) render(); else { cancelAnimationFrame(raf); raf = 0; } },
     seat(id) { if (!ids.includes(id)) return; groups[id].position.y = 0; rebuildConnections(); render(); },
     rotate(delta) { const offset = camera.position.clone().sub(controls.target); offset.applyAxisAngle(new T.Vector3(0, 1, 0), delta); camera.position.copy(controls.target).add(offset); camera.lookAt(controls.target); controls.update(); render(); },
-    reset() { currentView = "system"; headGroup.visible = false; select(null); explode(true); },
-    overview() { currentView = "system"; headGroup.visible = false; select(null); title.textContent = "PROPOSED STACK · LAYER GAPS EXAGGERATED · ILLUSTRATIVE ANATOMY"; frameCamera(); },
-    view(name) { currentView = ["system", "interface", "head"].includes(name) ? name : "system"; if (currentView === "interface") select(null); headGroup.visible = currentView === "head"; title.textContent = currentView === "head" ? "HEAD SCALE CONTEXT · ASSUMED HEAD WIDTH ≈147 MM · CONTACT SPAN 10 MM" : "PROPOSED STACK · LAYER GAPS EXAGGERATED · ILLUSTRATIVE ANATOMY"; frameCamera(); },
+    peel(value) { peelValue = T.MathUtils.clamp(value, 0, 1); anatomy.peel(peelValue); render(); },
+    reset() { currentView = "region"; anatomy.setContext?.("region"); select(null); explode(false); peelValue = 0.86; anatomy.peel(peelValue); frameCamera(); },
+    overview() { currentView = "region"; anatomy.setContext?.("region"); select(null); explode(false); frameCamera(); },
+    view(name) {
+      currentView = ["head", "region", "interface", "system"].includes(name) ? name : "region";
+      select(null);
+      anatomy.setContext?.(currentView);
+      title.textContent = currentView === "head" || currentView === "region"
+        ? "REFERENCE ANATOMY · ILLUSTRATIVE TARGET · NOT PATIENT LOCALIZATION"
+        : "PROPOSED DEVICE · ASSUMED 10 × 10 MM CONTACT · LAYERS EXAGGERATED";
+      frameCamera();
+    },
     update,
-    stats() { return { adapter, softwareRenderer, frames, calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, geometries: renderer.info.memory.geometries, textures: renderer.info.memory.textures, pixelRatio: renderer.getPixelRatio(), renderCpuMsMean: renderMilliseconds.length ? renderMilliseconds.reduce((a, b) => a + b, 0) / renderMilliseconds.length : 0, rendering: "on demand; no idle animation", selected, exploded, componentOffsets: Object.fromEntries(ids.map(id => [id, groups[id].position.y])), view: currentView }; },
+    stats() { return { adapter, softwareRenderer, frames, calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, geometries: renderer.info.memory.geometries, textures: renderer.info.memory.textures, pixelRatio: renderer.getPixelRatio(), renderCpuMsMean: renderMilliseconds.length ? renderMilliseconds.reduce((a, b) => a + b, 0) / renderMilliseconds.length : 0, rendering: "on demand; no idle animation", active, selected, exploded, componentOffsets: Object.fromEntries(ids.map(id => [id, groups[id].position.y])), cameraPosition: camera.position.toArray(), view: currentView, peel: peelValue, target: anatomy.target.toArray(), mountPoint: root.position.toArray(), contactSpanMm: [10, 10], normal: anatomy.normal.toArray(), anatomy: anatomy.info }; },
     dispose() {
       disposed = true; cancelAnimationFrame(raf); resizeObserver.disconnect(); intersectionObserver.disconnect(); controls.dispose();
-      canvas.removeEventListener("pointerdown", pointerDown); canvas.removeEventListener("pointerup", pointerUp); canvas.removeEventListener("pointercancel", pointerCancel); canvas.removeEventListener("webglcontextlost", contextLost);
+      canvas.removeEventListener("keydown", keyboardView); canvas.removeEventListener("pointerdown", pointerDown); canvas.removeEventListener("pointerup", pointerUp); canvas.removeEventListener("pointercancel", pointerCancel); canvas.removeEventListener("webglcontextlost", contextLost);
+      anatomy.dispose();
       const geometries = new Set(), materials = new Set(); scene.traverse(o => { if (o.geometry) geometries.add(o.geometry); if (o.material) materials.add(o.material); });
       geometries.forEach(g => g.dispose()); materials.forEach(m => m.dispose()); grain.dispose(); markTexture.dispose(); environment.dispose(); renderer.dispose(); canvas.remove(); labelLayer.remove(); title.remove();
     },

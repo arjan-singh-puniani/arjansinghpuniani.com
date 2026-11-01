@@ -1,29 +1,32 @@
 {
-  "base": "http://127.0.0.1:3212",
+  "base": "http://127.0.0.1:3214",
   "results": [
     {
       "mode": "software",
       "width": 1440,
       "height": 1000,
-      "interactiveMs": 6003,
+      "interactiveMs": 4545,
+      "staticByDefault": true,
+      "software3DExplicitlyRequested": true,
       "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
       "softwareRenderer": true,
-      "frames": 14,
-      "elapsedMs": 3249.7999999970198,
-      "renderedFps": 4.307957412767813,
-      "frameIntervalP95Ms": 450,
-      "idleFrames": 1,
+      "frames": 4,
+      "elapsedMs": 3807.5999999940395,
+      "renderedFps": 1.0505305179131899,
+      "frameIntervalP95Ms": 1300,
+      "idleFrames": 0,
       "stats": {
         "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
         "softwareRenderer": true,
-        "frames": 19,
-        "calls": 59,
-        "triangles": 16530,
-        "geometries": 59,
+        "frames": 7,
+        "calls": 55,
+        "triangles": 397277,
+        "geometries": 66,
         "textures": 4,
         "pixelRatio": 1,
-        "renderCpuMsMean": 204.53684210698856,
+        "renderCpuMsMean": 204.2285714319774,
         "rendering": "on demand; no idle animation",
+        "active": true,
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -35,7 +38,55 @@
           "electronics": 0,
           "package": 0
         },
-        "view": "interface"
+        "cameraPosition": [
+          -98.76072892850465,
+          10.557203423126573,
+          33.66389256307142
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -64.24088201981604,
+          -1.8697317292685716,
+          10.654274028986205
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        }
       },
       "measurement": "Unthrottled desktop Chromium; requested backend recorded separately from detected adapter; viewport emulation is not physical-device testing. Render CPU submission timing is not GPU execution timing."
     },
@@ -43,25 +94,28 @@
       "mode": "software",
       "width": 390,
       "height": 844,
-      "interactiveMs": 3502,
+      "interactiveMs": 4626,
+      "staticByDefault": true,
+      "software3DExplicitlyRequested": true,
       "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
       "softwareRenderer": true,
-      "frames": 29,
-      "elapsedMs": 3021.8999999910593,
-      "renderedFps": 9.596611403450082,
-      "frameIntervalP95Ms": 216.69999999999982,
+      "frames": 5,
+      "elapsedMs": 3450.7999999970198,
+      "renderedFps": 1.4489393763777438,
+      "frameIntervalP95Ms": 1377.3999999970201,
       "idleFrames": 1,
       "stats": {
         "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
         "softwareRenderer": true,
-        "frames": 34,
-        "calls": 59,
-        "triangles": 16530,
-        "geometries": 59,
+        "frames": 7,
+        "calls": 55,
+        "triangles": 397277,
+        "geometries": 66,
         "textures": 4,
         "pixelRatio": 1,
-        "renderCpuMsMean": 62.47647058832295,
+        "renderCpuMsMean": 169.52857143112593,
         "rendering": "on demand; no idle animation",
+        "active": true,
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -73,7 +127,55 @@
           "electronics": 0,
           "package": 0
         },
-        "view": "interface"
+        "cameraPosition": [
+          -104.91388906256421,
+          12.800194556857672,
+          37.78884239775108
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -64.24088201981604,
+          -1.8697317292685716,
+          10.654274028986205
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        }
       },
       "measurement": "Unthrottled desktop Chromium; requested backend recorded separately from detected adapter; viewport emulation is not physical-device testing. Render CPU submission timing is not GPU execution timing."
     },
@@ -81,25 +183,28 @@
       "mode": "native-requested",
       "width": 1440,
       "height": 1000,
-      "interactiveMs": 543,
+      "interactiveMs": 2312,
+      "staticByDefault": false,
+      "software3DExplicitlyRequested": false,
       "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
       "softwareRenderer": false,
       "frames": 181,
-      "elapsedMs": 3010.2000000029802,
-      "renderedFps": 60.12889508996771,
-      "frameIntervalP95Ms": 16.799999999999727,
+      "elapsedMs": 3009.6000000089407,
+      "renderedFps": 60.1408825091249,
+      "frameIntervalP95Ms": 16.700000000000728,
       "idleFrames": 1,
       "stats": {
         "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
         "softwareRenderer": false,
         "frames": 186,
-        "calls": 59,
-        "triangles": 26210,
-        "geometries": 59,
+        "calls": 55,
+        "triangles": 397277,
+        "geometries": 66,
         "textures": 4,
         "pixelRatio": 1,
-        "renderCpuMsMean": 0.7944444445272286,
+        "renderCpuMsMean": 0.756111110912429,
         "rendering": "on demand; no idle animation",
+        "active": true,
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -111,7 +216,55 @@
           "electronics": 0,
           "package": 0
         },
-        "view": "interface"
+        "cameraPosition": [
+          -98.76072892850465,
+          10.557203423126573,
+          33.66389256307142
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -64.24088201981604,
+          -1.8697317292685716,
+          10.654274028986205
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        }
       },
       "measurement": "Unthrottled desktop Chromium; requested backend recorded separately from detected adapter; viewport emulation is not physical-device testing. Render CPU submission timing is not GPU execution timing."
     },
@@ -119,25 +272,28 @@
       "mode": "native-requested",
       "width": 390,
       "height": 844,
-      "interactiveMs": 411,
+      "interactiveMs": 2215,
+      "staticByDefault": false,
+      "software3DExplicitlyRequested": false,
       "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
       "softwareRenderer": false,
       "frames": 181,
-      "elapsedMs": 3011.7000000029802,
-      "renderedFps": 60.098947438264396,
-      "frameIntervalP95Ms": 16.799999999999727,
+      "elapsedMs": 3014.0999999940395,
+      "renderedFps": 60.051093195434106,
+      "frameIntervalP95Ms": 16.700000000000728,
       "idleFrames": 1,
       "stats": {
         "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
         "softwareRenderer": false,
         "frames": 186,
-        "calls": 59,
-        "triangles": 26210,
-        "geometries": 59,
+        "calls": 55,
+        "triangles": 397277,
+        "geometries": 66,
         "textures": 4,
         "pixelRatio": 1,
-        "renderCpuMsMean": 0.7022222225864728,
+        "renderCpuMsMean": 0.7616666667163372,
         "rendering": "on demand; no idle animation",
+        "active": true,
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -149,16 +305,69 @@
           "electronics": 0,
           "package": 0
         },
-        "view": "interface"
+        "cameraPosition": [
+          -104.91388906256421,
+          12.800194556857672,
+          37.78884239775108
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -64.24088201981604,
+          -1.8697317292685716,
+          10.654274028986205
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        }
       },
       "measurement": "Unthrottled desktop Chromium; requested backend recorded separately from detected adapter; viewport emulation is not physical-device testing. Render CPU submission timing is not GPU execution timing."
     }
   ],
   "assets": [
     {
+      "path": "public/seizefreeze-lab/ANATOMY.md",
+      "bytes": 8740,
+      "gzipBytes": 3885
+    },
+    {
       "path": "public/seizefreeze-lab/EVIDENCE.md",
-      "bytes": 15555,
-      "gzipBytes": 6404
+      "bytes": 15999,
+      "gzipBytes": 6601
     },
     {
       "path": "public/seizefreeze-lab/MODEL.md",
@@ -167,18 +376,28 @@
     },
     {
       "path": "public/seizefreeze-lab/THIRD_PARTY_NOTICES.txt",
-      "bytes": 1237,
-      "gzipBytes": 725
+      "bytes": 2175,
+      "gzipBytes": 1199
+    },
+    {
+      "path": "public/seizefreeze-lab/anatomy.js",
+      "bytes": 18317,
+      "gzipBytes": 5980
     },
     {
       "path": "public/seizefreeze-lab/app.js",
-      "bytes": 33545,
-      "gzipBytes": 12755
+      "bytes": 36112,
+      "gzipBytes": 13446
+    },
+    {
+      "path": "public/seizefreeze-lab/assets/brain-cortex.glb",
+      "bytes": 6573512,
+      "gzipBytes": 3991772
     },
     {
       "path": "public/seizefreeze-lab/index.html",
-      "bytes": 13211,
-      "gzipBytes": 5077
+      "bytes": 15395,
+      "gzipBytes": 5513
     },
     {
       "path": "public/seizefreeze-lab/model.js",
@@ -187,18 +406,18 @@
     },
     {
       "path": "public/seizefreeze-lab/poster.svg",
-      "bytes": 4903,
-      "gzipBytes": 2003
+      "bytes": 30938,
+      "gzipBytes": 23461
     },
     {
       "path": "public/seizefreeze-lab/scene.js",
-      "bytes": 28069,
-      "gzipBytes": 9516
+      "bytes": 26669,
+      "gzipBytes": 9002
     },
     {
       "path": "public/seizefreeze-lab/style.css",
-      "bytes": 16771,
-      "gzipBytes": 4409
+      "bytes": 23787,
+      "gzipBytes": 5691
     },
     {
       "path": "public/seizefreeze-lab/vendor/KaTeX-LICENSE.txt",
@@ -339,8 +558,13 @@
       "path": "shared/OrbitControls.js",
       "bytes": 40516,
       "gzipBytes": 8497
+    },
+    {
+      "path": "shared/GLTFLoader.js",
+      "bytes": 114744,
+      "gzipBytes": 24755
     }
   ],
-  "totalBytes": 2817889,
-  "totalGzipBytes": 813657
+  "totalBytes": 9570986,
+  "totalGzipBytes": 4864073
 }

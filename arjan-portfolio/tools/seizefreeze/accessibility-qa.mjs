@@ -21,6 +21,8 @@ try {
     const start = await snapshot(page);
     await page.waitForTimeout(700);
     const idle = await snapshot(page);
+    const placementAxe = await axe(page);
+    await page.locator('#assembly-tab').click();
     const assemblyAxe = await axe(page);
     await page.locator('#parts button').nth(2).focus(); await page.keyboard.press('Enter');
     const keyboardPartSelected = (await snapshot(page)).selected === 'tec';
@@ -38,12 +40,17 @@ try {
     const labAxe = await axe(page);
     await page.locator('#static-view').focus(); await page.keyboard.press('Enter');
     const staticKeyboardWorked = (await snapshot(page)).staticView && await page.locator('#poster').isVisible();
+    await page.waitForTimeout(150);
+    const staticFramesBefore=(await snapshot(page)).stats.frames;
+    await page.evaluate(()=>window.seizefreeze.goTo(45));await page.waitForTimeout(250);
+    const staticFramesAfter=(await snapshot(page)).stats.frames;
+    if(staticFramesBefore!==staticFramesAfter)throw new Error('Static mode must suspend hidden WebGL rendering.');
     const overflow = await page.evaluate(() => ({ scrollWidth: document.documentElement.scrollWidth, clientWidth: document.documentElement.clientWidth }));
     const focusStyle = await page.locator('#static-view').evaluate(el => ({ outline: getComputedStyle(el).outlineStyle, outlineWidth: getComputedStyle(el).outlineWidth }));
     const controls = await page.locator('button:visible,summary:visible,select:visible,input:visible').evaluateAll(elements => elements.map(el => { const r=el.getBoundingClientRect(); return { id: el.id, label: (el.getAttribute('aria-label') || el.textContent || el.id).trim().slice(0,70), width:r.width, height:r.height }; }));
-    report.cases.push({ name, viewport, reducedMotion: true, noAutoplay: !start.playing && !idle.playing, idleRenderFrames: { start:start.stats?.frames, end:idle.stats?.frames }, keyboardPartSelected, keyboardSeatWorked, keyboardChapterWorked, keyboardScrubWorked, timelineLabel, repeatedLiveMutations, staticKeyboardWorked, focusStyle, overflow, smallTargets:controls.filter(c=>c.width<24 || c.height<24), assemblyAxe, labAxe });
+    report.cases.push({ name, viewport, reducedMotion: true, noAutoplay: !start.playing && !idle.playing, idleRenderFrames: { start:start.stats?.frames, end:idle.stats?.frames }, keyboardPartSelected, keyboardSeatWorked, keyboardChapterWorked, keyboardScrubWorked, timelineLabel, repeatedLiveMutations, staticKeyboardWorked, staticFramesBefore, staticFramesAfter, focusStyle, overflow, smallTargets:controls.filter(c=>c.width<24 || c.height<24), placementAxe, assemblyAxe, labAxe });
     if(repeatedLiveMutations>2)report.issues.push({case:name,issue:'Repeated mutations of an unchanged aria-live teaching message during early playback',observedMutations:repeatedLiveMutations});
-    for(const [view,scan] of [['assembly',assemblyAxe],['lab',labAxe]])for(const rule of scan.incompleteRules)if(rule.id==='aria-prohibited-attr')report.issues.push({case:name,view,issue:'Labeled generic container requires semantic role',targets:rule.sample.map(n=>n.target)});
+    for(const [view,scan] of [['placement',placementAxe],['assembly',assemblyAxe],['lab',labAxe]])for(const rule of scan.incompleteRules)if(rule.id==='aria-prohibited-attr')report.issues.push({case:name,view,issue:'Labeled generic container requires semantic role',targets:rule.sample.map(n=>n.target)});
     await context.close();
   }
   const fallbackContext = await browser.newContext({ viewport:{width:1280,height:900} });
@@ -51,6 +58,7 @@ try {
   const fallbackPage = await fallbackContext.newPage();
   await fallbackPage.goto(base); await ready(fallbackPage);
   await fallbackPage.waitForFunction(()=>Boolean(window.seizefreeze.snapshot().summary));
+  await fallbackPage.locator('#assembly-tab').click();
   await fallbackPage.locator('#parts button').nth(4).click();
   await fallbackPage.locator('#lab-tab').click();
   await fallbackPage.locator('#timeline').fill('30');
@@ -61,7 +69,7 @@ try {
   await workerPage.route('**/worker.js', route=>route.abort('failed'));
   await workerPage.goto(base);await ready(workerPage);await workerPage.waitForFunction(()=>Boolean(window.seizefreeze.snapshot().modelError));
   const failure=await snapshot(workerPage);
-  report.cases.push({name:'worker-load-failure',modelError:failure.modelError,status:await workerPage.locator('#model-status').textContent(),noResult:!failure.frame,playDisabled:await workerPage.locator('#play').isDisabled(),timelineDisabled:await workerPage.locator('#timeline').isDisabled(),componentExplorerAvailable:await workerPage.locator('#component-detail').isVisible(),teaching:await workerPage.locator('#teaching').textContent()});
+  report.cases.push({name:'worker-load-failure',modelError:failure.modelError,status:await workerPage.locator('#model-status').textContent(),noResult:!failure.frame,playDisabled:await workerPage.locator('#play').isDisabled(),timelineDisabled:await workerPage.locator('#timeline').isDisabled(),componentExplorerAvailable:await workerPage.locator('#anatomy-panel').isVisible(),teaching:await workerPage.locator('#teaching').textContent()});
   await workerContext.close();
 } catch(error) {report.error=error.stack;}
 finally {await browser.close();await mkdir(new URL('.',output),{recursive:true});await writeFile(output,JSON.stringify(report,null,2)+'\n');}
@@ -69,3 +77,5 @@ for(const c of report.cases){
   console.log(JSON.stringify({name:c.name,assemblyViolations:c.assemblyAxe?.violations.length,labViolations:c.labAxe?.violations.length,keyboard:c.keyboardScrubWorked,static:c.staticView??c.staticKeyboardWorked,failure:c.modelError,smallTargets:c.smallTargets?.length}));
 }
 if(report.error){console.error(report.error);process.exitCode=1;}
+
+if(report.cases.some(c=>[c.placementAxe,c.assemblyAxe,c.labAxe].some(scan=>scan?.violations.length)))process.exitCode=1;

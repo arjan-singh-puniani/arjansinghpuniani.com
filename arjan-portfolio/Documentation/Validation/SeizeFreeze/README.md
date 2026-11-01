@@ -1,108 +1,88 @@
-# SeizeFreeze release verification — October 30, 2026
+# SeizeFreeze anatomical interface — release verification, 30 October 2026
 
-This record distinguishes numerical verification, rendered browser inspection, internal agent review and experimental validation. No physical SeizeFreeze hardware, patient, clinical outcome or independent clinical expert review is represented.
+This revision replaces the procedural head and cortical slab with attributed Human Reference Atlas brain and registered head skin. The compact proposed device is anchored to an actual vertex of the named left superior temporal gyrus. This is an illustrative reference target, not a clinically localized epileptogenic zone.
 
-## Implemented scope
+## What works
 
-- Full-screen educational application: `/seizefreeze-lab/index.html`.
-- Integrated, titled iframe and launch link at `/work/seizefreeze`; direct homepage launch link.
-- Original procedural titanium-like/ceramic device stack, cortical illustration, schematic head scale, anchored labels, actual mesh selection, individual component seating, exploded/complete views and keyboard rotation alternatives.
-- Worker-based coupled thermal solver, synthetic detector and controller, 11 illustrative scenarios, deterministic scrubbing/replay, four linked plots, finite heat rejection and live energy ledger.
-- Three explanation depths, accessible local KaTeX equations and symbol disclosures, claim map, uncertainty and development experiments.
-- Original SVG fallback, explicit static mode, reduced-motion no-autoplay, sensor failure and solver-failure states.
-
-Authorship and project stage remain concept/prototype planning. Competition awards remain team-attributed. Patent/regulatory progress is not asserted. Historical concept media are preserved; ownership/music contracts for that existing film were not newly verified. No private project documents or patient data are copied into this release.
+- Placement, Assembly and Signal + control share the same scene and simulation. Region, Interface and Head views preserve the target; Reset restores a useful camera.
+- A continuous peel slider, named layer buttons, click picking and keyboard alternatives open a local scalp, bone, dura and arachnoid window. Pia follows the atlas folds and stays attached. CSF is represented as a compartment marker.
+- Skull and dura are explicitly schematic inward offsets of registered skin, not segmented patient bone or meninges. Window size, flap hinges, thicknesses and exploded spacing are explanatory. The model does not establish an implantation method or chronic packaging solution.
+- The assembled contact remains 10 × 10 mm (assumed). Exploded components, selection connections and individual seating remain spatially registered to the cortex. Device dimensions are concept assumptions.
+- The existing worker solver, synthetic signals, 11 illustrative scenarios, local accessible equations, energy ledger and three explanation depths remain functional. No seizure suppression is inferred from the signal animation or anatomical tint.
+- Static reference render, keyboard controls, paused reduced-motion opening and solver/graphics failure states remain usable. Static imagery is labeled as a reference render; numerical readouts remain interactive.
+- Case-study iframe and full-screen launch continue through the existing portfolio routes and hosting project.
 
 ## Reproduce
 
-Use the portfolio's committed lockfile, with Node 20+:
+From the repository's `arjan-portfolio` directory, Node 20+:
 
 ```sh
 npm ci
+node tools/seizefreeze/anatomy-asset.mjs
 node tools/seizefreeze/model-check.mjs
+npm run lint -- --ignore-pattern 'public/hospitalsim/vendor/**'
 npm run typecheck
 npm run test:coverage
 npm run build
-npm run start -- --port 3212 --hostname 127.0.0.1
+npm run start -- --port 3214 --hostname 127.0.0.1
 ```
 
-With the production server running, and Playwright browser binaries installed:
+The asset builder reads the repository's already attributed `public/atlas/anatomy/brain.glb` and `body.glb`. It embeds source hashes, retained parcel names, units, license and modifications. Derived GLB SHA-256: `a8a3383d5ac5122e13e1d8372eb662211abcb73ecb3722ce70edf5c1f83ff60e` (6,573,512 bytes). Regeneration on the clean production-base checkout reproduces that hash.
+
+With locally installed Playwright Chromium, Firefox and WebKit:
 
 ```sh
-node tools/seizefreeze/browser-qa.mjs
-node tools/seizefreeze/accessibility-qa.mjs
-node tools/seizefreeze/regression-qa.mjs
-node tools/seizefreeze/performance-qa.mjs
+SEIZEFREEZE_BASE_URL=http://127.0.0.1:3214 node tools/seizefreeze/browser-qa.mjs
+SEIZEFREEZE_BASE_URL=http://127.0.0.1:3214 node tools/seizefreeze/anatomy-qa.mjs
+SF_QA_URL=http://127.0.0.1:3214/seizefreeze-lab/index.html node tools/seizefreeze/accessibility-qa.mjs
+SEIZEFREEZE_BASE_URL=http://127.0.0.1:3214 node tools/seizefreeze/integration-qa.mjs
+SEIZEFREEZE_BASE_URL=http://127.0.0.1:3214 node tools/seizefreeze/regression-qa.mjs
+SEIZEFREEZE_BASE_URL=http://127.0.0.1:3214 node tools/seizefreeze/performance-qa.mjs
 ```
 
-Run performance separately from other browser workloads. `SEIZEFREEZE_BASE_URL` selects the target for the browser, performance and regression scripts. The accessibility script's own environment variable is documented in that script. Recorded browser paths are this Mac's installed Playwright revisions; a different machine needs matching local binaries. The regression/performance native checks request Chromium Metal and must report the detected backend rather than assuming that request succeeded.
+Run performance alone, after other browser jobs close. Native Chromium requests Metal; recorded adapter strings establish whether native graphics was actually used. Firefox's executable fallback is specific to this host's installed revision. Phone and tablet checks are desktop-host viewport emulation, not physical-device testing.
 
-The production branch uses Next 15.5.28. It contains unrelated legacy HospitalSIM third-party Three.js files that fail repository-wide ESLint rules (including React-hook false positives inside renderer internals). No HospitalSIM source or lint rule was changed. New KaTeX vendor code is narrowly excluded in ESLint, consistent with the repository's existing vendor exclusions. The release lint command is:
+## Build and numerical results
 
-```sh
-npm run lint -- --ignore-pattern 'public/hospitalsim/vendor/**'
-```
+Next 15.5.28 production build, TypeScript, all 150 existing tests and the scoped lint command pass. Lint retains 21 existing unused-variable warnings in unrelated projects. Unmodified `npm run verify` still fails on inherited HospitalSIM third-party renderer lint errors; it is not reported as passing, and no unrelated source or lint setting was changed.
 
-On the clean production-base checkout, TypeScript, all 150 existing coverage tests and the Next 15.5.28 production build passed. The new solver checks pass separately. The scoped lint run has zero errors and 21 existing unused-variable warnings.
+The unchanged solver passes its limiting cases, parameter sensitivity, sensor loss, finite rejection, determinism and convergence checks. Across all scenarios, maximum energy residual is **1.59 × 10⁻¹² J**, below the **10⁻⁸ J** numerical tolerance. Default 0.01 s time steps differ from the 0.0025 s reference by approximately **0.00656 °C**; reconstructed surface temperature with 0.5 mm cells differs from the 0.25 mm reference by approximately **0.0575 °C**. These are discretization comparisons, not physiological accuracy or uncertainty bounds.
 
-The unmodified `npm run verify` command initially fails at those inherited vendor lint errors; it must not be described as passing. The explicit lint exception, TypeScript, coverage tests and production build are checked separately. Existing non-blocking unused-variable warnings remain visible.
+`MODEL.md` defines equations, parameters, units, assumptions, boundaries and omitted physics. The depth-only solver predicts no lateral cooling field or therapeutic volume. It does not solve the displayed cranial layers individually. `EVIDENCE.md` maps scientific and project claims; `ANATOMY.md` records geometry and localization limits; `THIRD_PARTY_NOTICES.txt` retains asset and runtime attribution.
 
-## Three rendered review passes
+## Three rendered review passes for this revision
 
-### Pass 1 — scientific coherence and teaching
+1. **Scientific coherence and teaching:** `anatomy-pass1-desktop.png` and `anatomy-pass1-intact.png` exposed an opaque oversized head obscuring the brain. Registered the device to an actual atlas parcel, changed the region context to translucent surroundings, retained an opaque Head view, distinguished arachnoid from pia, and kept the thermal result restricted to the assumed contact. Source/terminology review was performed by internal agents, not independent clinical reviewers.
+2. **Geometry, materials and camera:** `anatomy-pass2-desktop.png`, `anatomy-pass2-interface.png` and `anatomy-pass2-assembly.png` exposed overly bright surfaces, dark overlapping flap undersides and insufficient assembly separation. Reduced exposure, separated flap angles, closed the bone edge, improved underside lighting, increased exploded spacing and tilted the Assembly camera. That oblique view initially exposed an occluding lifted flap; close-ups now hide the cranial coverings, including the oversized window rim, and picking ignores hidden ancestors. Placement and Head retain all covering flaps. Seated dimensions remain unchanged. Updated evidence: `anatomy-refined-assembly-1440.png` and phone equivalent.
+3. **Mobile, accessibility and failure behavior:** `anatomy-pass2-phone.png` exposed clipped long annotations and camera controls below the peel panel. Shortened anchored mobile labels, moved camera controls above the canvas, compacted the heading, and removed the duplicate heading inside the case-study embed. Updated actual renders: `anatomy-pass3-desktop.png`, `anatomy-pass3-phone.png`, the anatomy QA camera/layer series and cross-browser results. Static fallback now uses an actual attributed anatomy render rather than the old slab. Repeated surface samples are cached to reduce loading work without changing geometry.
 
-Inspected actual desktop assembly and 45-second lab renders (`pass1-assembly.png`, `pass1-lab.png`), including the displayed equations. Numerical accounting and the evidence boundary were reviewed by bounded internal agents. Found and corrected:
+## Browser, accessibility and integration evidence
 
-1. The cortical tint could imply a solved lateral field. Added a note directly beside the tissue view explaining that it extends a one-dimensional depth solution illustratively, with no lateral reach prediction.
-2. Original historical physics imagery mislabeled P-type semiconductor. The case-study caption now explicitly corrects the original; new equations use the implemented balance.
-3. Playback accumulated rounded frame indices, which could change playback speed with refresh rate. It now advances from elapsed time and explicitly labels 4× playback.
-4. Recalculation cleared curves but could leave old numeric readouts visible. Readouts are now cleared until the new result arrives.
+`browser-results.json` records Chromium at 390/768/1440/1920 widths and Firefox/WebKit at 390/1440. All eight cases pass: no page overflow, script errors or missing assets; assembly seating, anchored camera views, 11 model scenarios, changed initial conditions, equations and static restoration work. Native Chromium reports ANGLE Metal / Apple M2. Firefox reports its privacy-limited renderer string; it must not be interpreted as a hardware identification.
 
-### Pass 2 — geometry, materials, framing and interaction
+`anatomy-qa.json` adds continuous peel endpoints, layer buttons, native range Home/End/Arrow keys, camera target invariance, mount offset, contact scale, actual lid picking through hidden coverings, reduced-motion idle behavior, sensor-failure actuation off, and WebGL-unavailable operation at phone, tablet and desktop widths. Nine automated axe scans across all modes and three sizes find zero violations. Manual/incomplete checks remain recorded and are not accessibility certification.
 
-Inspected desktop, 390px, selected thermoelectric, seated, static and head-scale renders. Representative updated evidence: `pass2-native-opening.png`, `pass2-native-thermoelectric.png`, `pass2-native-phone.png`. Found and corrected:
+`accessibility-results.json` adds keyboard assembly, playback/scrubbing, static mode, focus indication, small targets, non-repeating live announcements and worker failure behavior. `integration-results.json` checks homepage launch, embedded model, full-screen route, canonical URL and unrelated portfolio routes. `regression-qa.mjs` confirms restored 3D agrees with the currently scrubbed frame rather than a stale cooling state.
 
-1. A tissue surface intersected its depth slab. Separated the cortical surface and depth bands; replaced isolated bumps with curved gyri.
-2. The opening pushed most of the device below the viewport. Tightened the masthead/intro and embedded introduction.
-3. Camera presets could clip lifted parts on narrow viewports. Fit the complete stack's bounds, keeping seated and lifted layers in view.
-4. Static view retained projected overlays and a low-contrast pressed control. Hide overlays with the canvas and correct pressed foreground color.
-5. A head-scale illustration initially made the device too large. Set the scale to the model's assumed 10mm contact against an explicitly assumed approximately 147mm head width; no patient-specific scale claim.
-6. Leader SVG paths needed explicit `fill="none"`; otherwise leaders could produce filled triangles. Corrected.
+## Performance and asset budget
 
-Actual mesh raycasting, per-component seating, reset, keyboard rotation and anchored label projection were exercised. Dragging rotates the view; drag-to-seat was deliberately omitted, with direct click/keyboard seating providing the assembly action.
+Final isolated results on this desktop host at DPR 1:
 
-### Pass 3 — accessibility, responsiveness, performance and failures
+| Backend | Viewport | Startup | Rendered update rate | 95th percentile interval |
+| --- | --- | --- | --- | --- |
+| Native ANGLE Metal / Apple M2 | 1440 × 1000 | 2.31 s | 60.14 fps | 16.7 ms |
+| Native ANGLE Metal / Apple M2 | 390 × 844 | 2.22 s | 60.05 fps | 16.7 ms |
+| Explicit SwiftShader 3D | 1440 × 1000 | 4.55 s | 1.05 fps | 1300 ms |
+| Explicit SwiftShader 3D | 390 × 844 | 4.63 s | 1.45 fps | 1377 ms |
 
-Inspected Chromium, Firefox and WebKit renders with reduced motion at phone and desktop sizes; Chromium also at 768px and 1920px. `browser-results.json` contains versions, viewports, errors and adapters. All eight viewport/engine runs completed without page exceptions, failing requests or horizontal overflow. All scenario selectors executed on each desktop engine. Numeric readouts were compared with the shared frame, and all six equations rendered with local KaTeX/MathML.
+The complete public laboratory, all local math fonts/docs/licenses and shared Three.js/GLTFLoader inventory total **9,570,986 bytes raw / 4,864,073 bytes per-file gzip**. This is an inventory, not initial transfer or a measured internet load time. The atlas asset is 6.57 MB raw. The interface scene submits 55 calls and 397,277 triangles; the full context view uses approximately 454K triangles. There are four textures, 66 geometries and a DPR cap of 1.6 (1.0 on software). One queued frame can settle after active measurements stop; paused reduced-motion and static-mode checks verify no continuing render loop.
 
-Found and corrected:
+`performance-results.json` contains exact measurements and the per-file inventory. CPU submission time is not GPU execution time; local results do not guarantee physical-phone performance. Rendering occurs on demand; no decorative idle animation runs. Software rendering is a separate, slower path: the application opens the static reference view automatically on a detected software backend and lets visitors explicitly request 3D. Static mode suspends hidden GPU renders while numerical readouts and plots remain interactive. The performance script explicitly re-enables 3D before measuring that backend.
 
-1. Labeled generic containers needed group/image roles. Added the roles.
-2. Playback rewrote unchanged live teaching text dozens of times. Announcements now change only when the explanation changes; repeated unchanged mutations dropped to zero.
-3. Restoring 3D after scrubbing in static mode retained the old thermal field. Restoring 3D now updates from the current frame. The regression script compares actual canvas hashes at 45 seconds, restored zero seconds and explicitly redrawn zero seconds.
-4. Integrated iframe review found duplicate unnamed landmarks across the portfolio and laboratory. Named the laboratory’s main, banner and footer landmarks distinctly.
-5. Preserved a suspended page's resources for browser back/forward cache; real page exits dispose the worker, renderer and observers.
+## Release boundary and remaining limits
 
-`accessibility-results.json` records zero confirmed axe violations in assembly and lab/model views at 1440px and 390px, keyboard selection/seating/chapter/scrubbing, visible focus, reduced-motion idle/no-autoplay, static fallback when WebGL creation fails, and a disabled/honest state when the worker fails. Some SVG/canvas contrast checks remain automated incompletes. No physical-phone, screen-reader, vestibular-sensitivity or human usability testing is claimed. Browser viewport emulation is explicitly not physical-device testing.
+Release branch: `codex/seizefreeze-anatomical-interface-20261030`, based on production main `788c70b1313bbe2fd021f40d20d6ad1f0309d4d4` (user-squashed PR #61). Only SeizeFreeze application assets, source notices, checks and validation evidence are included. Domain, dependencies, unrelated pages and integrations retain production state.
 
-## Numerical results
+Target: existing Vercel **arjan3 / arjansinghpuniani-com**, **arjansinghpuniani.com**, through its existing GitHub integration. Inspect the branch preview before production promotion. Deployment URLs and actual hosted checks are recorded separately; local success does not establish deployment.
 
-`numerical-results.json` records all scenarios and asserts the full ledger. Maximum residual approximately **1.59×10⁻¹² J**, against a **1×10⁻⁸ J** tolerance. Refining the default 0.01s step against 0.0025s changes the first-cell trajectory by at most approximately **0.00656°C**; refining 0.5mm cells against 0.25mm changes the reconstructed surface by approximately **0.0575°C**. These are implementation/refinement differences, not physiological confidence intervals.
-
-Checks cover equilibrium, zero-current passive conduction/relaxation, symmetric passive perturbations, independent neural waveform, deterministic replay, finite rejection, parameter sensitivity, current limits, sensor failure, latched thermal interlocks, shutdown, invalid input and time/space refinement. See `public/seizefreeze-lab/MODEL.md` for all parameters, units, signs, boundary/initial conditions and omissions; `EVIDENCE.md` maps claims to primary sources.
-
-## Performance and budget
-
-Recorded unthrottled Chromium on this desktop host; device scale factor 1. Native backend was **ANGLE Metal / Apple M2**. The final uncontended 3-second update workload rendered approximately **60.1 fps** at both 1440×1000 and 390×844; 95th percentile animation interval approximately **16.8ms**. Native startup to model availability was approximately **0.54s / 0.41s**, respectively. These are local results, not a cross-device performance guarantee.
-
-Explicit SwiftShader software rendering measured approximately **4.3 fps desktop / 9.6 fps phone-width emulation**, with startup approximately **6.0s / 3.5s**. It is slower and should use the static mode for comfortable exploration. Rendering occurs on demand and stops after pending work settles; no decorative idle loop runs. A single queued render may complete after the test stops requesting updates.
-
-The scene uses about **59 base draw calls**, **26.2K native / 16.5K software triangles**, four textures, and a DPR cap of 1.6 (1.0 software). CPU render-submission time is not GPU execution time. The frame interval workload includes model-to-visual updates and compositor scheduling; no hardware GPU timer query is claimed.
-
-The public laboratory, all local KaTeX fonts/licenses/docs and the reused Three.js runtime total about **2.82MB raw / 0.814MB per-file gzip** in the measured inventory. This is a conservative complete inventory, not initial network transfer: fonts load only when used and documentation is linked. No video, downloaded texture, patient mesh, external font or remote script is required by the laboratory. `performance-results.json` contains the per-asset inventory and exact measurement configuration. Hosting compression may differ.
-
-## Release boundary
-
-Release source is prepared on `codex/seizefreeze-experience-20261030`, based on production `main` at `63d29b1646fc83a84ac3c9f34fa0092b067390e4`, rather than the older working branch. Only the laboratory, its checks/evidence, SeizeFreeze case/home integration and the narrow vendor lint exclusion belong in the release. Other projects, package versions, routing, domain, contact delivery and analytics retain production's current state.
-
-The hosting target is the existing Vercel project **arjan3 / arjansinghpuniani-com**, domain **arjansinghpuniani.com**, reached through its existing GitHub integration. Push the scoped release branch, inspect the resulting Vercel preview, then merge/promote only after deployed checks. Do not substitute another hosting provider, project or domain. Deployment-specific URLs, commit IDs and final smoke results are recorded separately in the release handoff.
+No physical phone, SeizeFreeze hardware, patient localization, clinical effect, independent expert review, chronic interface, safety threshold, current patent legal status or media-rights contract was validated. The provisional filing remains explicitly founder-reported. These limits do not change through visual refinement.

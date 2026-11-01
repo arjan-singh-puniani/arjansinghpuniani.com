@@ -11,7 +11,7 @@ const parts = [
   {id:'electronics',name:'Control + power',title:'Controller and power delivery',flow:'Information, controlled electrical current and electrical energy.',why:'The illustrative controller compares the lagged temperature reading with an assumed target; a current limit and latched faults constrain actuation.',constraint:'Energy storage versus delivered power is an unresolved architecture choice. No implant battery life is inferred.',failure:'Saturation, stale measurements, unintended commands and electronics heat need bench tests.',evidence:'Proposed electronics. This model includes TEC electrical input; sensing/control overhead power is not quantified.',source:'./MODEL.md'},
   {id:'package',name:'Packaging',title:'Encapsulation and fixation',flow:'Mechanical loads, unwanted heat leakage and possible fluid ingress.',why:'A candidate housing would need fixation, insulation and electrical isolation while retaining the intended thermal paths.',constraint:'Hermeticity, corrosion, biocompatibility, surgical access, sterilization and chronic durability.',failure:'Moisture ingress, broken leads, fixation loss and insulation damage.',evidence:'Titanium-like surfaces and ceramic layers are visual candidates, not qualified implant materials or manufacturing drawings.',source:'./EVIDENCE.md'},
 ];
-let scene, sceneError='', selected=0, exploded=true, head=false, staticView=false, chapter='assembly', result, index=0, playing=false, animation=0, lastTime=0, simulationId=0, worker, modelError='', disposed=false;
+let scene, sceneError='', selected=0, exploded=true, staticView=false, chapter='placement', result, index=0, playing=false, animation=0, lastTime=0, simulationId=0, worker, modelError='', disposed=false;
 const installed = new Set();
 const options = {...defaults};
 const descriptions = {
@@ -41,15 +41,77 @@ parts.forEach((p,j)=>{ const button=document.createElement('button');button.inne
 $('seat').addEventListener('click',()=>{installed.add(parts[selected].id);scene?.seat?.(parts[selected].id);if(!scene?.seat){scene?.explode(false);}$('assembly-progress').textContent=`${installed.size} of 7 proposed components seated. ${installed.size===7?'The physical assembly is only the beginning: power, rejection and chronic packaging remain open.':''}`;selectPart(selected);});
 $('next-component').addEventListener('click',()=>selectPart((selected+1)%parts.length));
 $('explode').addEventListener('click',()=>{exploded=!exploded;scene?.explode(exploded);if(exploded)installed.clear();else parts.forEach(p=>installed.add(p.id));$('explode').textContent=exploded?'Seat the layers':'Explode the layers';$('explode').setAttribute('aria-pressed',String(exploded));$('assembly-progress').textContent=exploded?'Seven proposed components.':'7 of 7 components seated. Explore the thermal laboratory next.';selectPart(selected);});
-$('overview').addEventListener('click',()=>{head=false;scene?.overview();$('head-view').setAttribute('aria-pressed','false');});
-$('head-view').addEventListener('click',()=>{head=!head;scene?.view(head?'head':'system');$('head-view').setAttribute('aria-pressed',String(head));$('scene-caption').textContent=head?'Scale illustration: assumed 10 × 10 mm modeled contact on a schematic head. Anatomy and package dimensions are not patient-specific.':'Drag to orbit · Select a layer to inspect · Gaps and thicknesses exaggerated; dimensions illustrative.';});
+let peelProgress=0.86;
+const peelNotes=[
+ [0.18,'Scalp','Scalp covers the reference cranial window. Move the slider to lift the scalp flap.'],
+ [0.4,'Bone flap','Scalp lifted. The bone flap covers the meninges.'],
+ [0.6,'Dura mater','Bone flap lifted. Dura mater remains over the cortical surface.'],
+ [0.8,'Arachnoid + CSF','Dura lifted. Arachnoid spans the subarachnoid space; pia follows the cortical folds.'],
+ [0.98,'Cortical window','Cortical window open. The compact device is aligned with the marked reference region.'],
+ [1.01,'Pial interface','Pial-contact illustration. This interface choice and clinical target remain unvalidated.'],
+];
+function setPeel(value,notifyScene=true){
+ peelProgress=Math.max(0,Math.min(1,Number(value)));
+ $('peel').value=peelProgress;
+ const note=peelNotes.find(([limit])=>peelProgress<limit);
+ $('peel-value').textContent=note[1];
+ $('peel').setAttribute('aria-valuetext',`${Math.round(peelProgress*100)}% open: ${note[1]}`);
+ if($('peel-description').textContent!==note[2])$('peel-description').textContent=note[2];
+ document.querySelectorAll('[data-layer]').forEach(button=>{
+   const lifted=peelProgress>=Number(button.dataset.peel);
+   button.setAttribute('aria-pressed',String(lifted));
+   button.querySelector('.layer-state').textContent=button.dataset.layer==='pia'?(lifted?'Attached':'Inspect'):(lifted?'Lifted':'Lift');
+ });
+ if(notifyScene)scene?.peel(peelProgress);
+}
+$('peel').addEventListener('input',()=>setPeel($('peel').value));
+for(const b of document.querySelectorAll('[data-peel]'))b.addEventListener('click',()=>setPeel(b.dataset.peel));
+function cameraView(name){
+ scene?.view(name);
+ for(const [id,view] of [['head-view','head'],['region-view','region'],['interface-view','interface']])$(id).setAttribute('aria-pressed',String(name===view));
+ sceneCaption();
+}
+$('overview').addEventListener('click',()=>{cameraView(chapter==='placement'?'region':chapter==='assembly'?'system':'interface');});
+$('head-view').addEventListener('click',()=>cameraView('head'));
+$('region-view').addEventListener('click',()=>cameraView('region'));
+$('interface-view').addEventListener('click',()=>cameraView('interface'));
 $('rotate-left').addEventListener('click',()=>scene?.rotate?.(-0.25));$('rotate-right').addEventListener('click',()=>scene?.rotate?.(0.25));
-function showStatic(value){staticView=value;$('poster').hidden=!value;const c=$('scene').querySelector('canvas');if(c)c.hidden=value;$('scene').querySelectorAll('[data-sf-overlay]').forEach(el=>el.hidden=value);for(const id of ['overview','head-view','rotate-left','rotate-right'])$(id).disabled=value;$('static-view').setAttribute('aria-pressed',String(value));$('static-view').textContent=value?'Use 3D view':'Use static view';if(!value){if(chapter==='lab'&&result)scene?.update(result.frames[index]);else scene?.render();}}
+function sceneCaption(){
+ const closeup=['system','interface'].includes(scene?.stats().view);
+ $('scene-caption').textContent=staticView?'Static reference render. Layer controls update descriptions; numerical readouts remain interactive.':chapter==='lab'?'Depth-only temperature model at the assumed contact; no lateral field or patient-specific prediction.':closeup?'Cranial coverings hidden for inspection. Exploded spacing exaggerated; device dimensions assumed.':'Reference brain and skin. Surrounding tissues translucent; skull and meninges simplified.';
+}
+function showStatic(value){staticView=value;scene?.setActive(!value);sceneCaption();$('poster').hidden=!value;const c=$('scene').querySelector('canvas');if(c)c.hidden=value;$('scene').querySelectorAll('[data-sf-overlay]').forEach(el=>el.hidden=value);for(const id of ['overview','head-view','region-view','interface-view','rotate-left','rotate-right'])$(id).disabled=value;$('static-view').setAttribute('aria-pressed',String(value));$('static-view').textContent=value?'Use 3D view':'Use static view';if(!value){if(chapter==='lab'&&result)scene?.update(result.frames[index]);else scene?.render();}}
 $('static-view').addEventListener('click',()=>{if(scene)showStatic(!staticView);else $('scene-caption').textContent=`3D is unavailable. The static diagram, component controls and numerical model remain usable. ${sceneError}`;});
 $('scene').addEventListener('seizefreeze-context-lost',()=>{pause();showStatic(true);$('scene-caption').textContent='Graphics context lost. Static assembly and numerical results remain available.';});
 
-function setChapter(value){chapter=value;pause();const lab=value==='lab';$('assembly-panel').hidden=lab;$('lab-panel').hidden=!lab;$('laboratory').hidden=!lab;$('thermal-strip').hidden=!lab;$('assembly-tab').setAttribute('aria-pressed',String(!lab));$('lab-tab').setAttribute('aria-pressed',String(lab));$('view-label').textContent=lab?'TISSUE + DEVICE / SIMULATED':'PROPOSED ASSEMBLY';$('scene-caption').textContent=lab?'Depth-only solution mapped onto schematic tissue. Surface tint is an illustrative extension; no lateral reach is predicted.':'Drag to orbit · Select a layer to inspect · Gaps and thicknesses exaggerated; dimensions illustrative.';if(lab){head=false;scene?.select(null);scene?.view('interface');scene?.explode(false);$('head-view').setAttribute('aria-pressed','false');if(result)drawFrame();}else{scene?.view('system');scene?.explode(exploded);for(const id of installed)scene?.seat?.(id);scene?.select(parts[selected].id);}}
-$('assembly-tab').addEventListener('click',()=>setChapter('assembly'));$('lab-tab').addEventListener('click',()=>setChapter('lab'));$('enter-lab').addEventListener('click',()=>{setChapter('lab');$('workspace').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});});
+function setChapter(value){
+ chapter=value;pause();
+ const lab=value==='lab',assembly=value==='assembly',placement=value==='placement';
+ document.body.classList.toggle('placement-mode',placement);
+ document.body.dataset.mode=value;
+ $('anatomy-panel').hidden=!placement;$('assembly-panel').hidden=!assembly;$('lab-panel').hidden=!lab;
+ $('laboratory').hidden=!lab;$('thermal-strip').hidden=!lab;
+ $('explode').hidden=!assembly;
+ document.querySelector('.peel-control').hidden=!placement;
+ for(const mode of ['placement','assembly','lab'])$(mode+'-tab').setAttribute('aria-pressed',String(mode===value));
+ $('view-label').textContent=placement?'ANATOMICAL PLACEMENT':assembly?'PROPOSED DEVICE ASSEMBLY':'CORTICAL INTERFACE / SIMULATED';
+ sceneCaption();
+ if(placement){
+  scene?.select(null);scene?.explode(false);scene?.peel(peelProgress);scene?.update();cameraView('region');
+ }else if(assembly){
+  scene?.peel(1);cameraView('system');scene?.explode(exploded);
+  for(const id of installed)scene?.seat?.(id);
+  scene?.select(parts[selected].id);
+ }else{
+  scene?.peel(1);scene?.select(null);scene?.explode(false);cameraView('interface');if(result)drawFrame();
+ }
+}
+$('placement-tab').addEventListener('click',()=>setChapter('placement'));
+$('assembly-tab').addEventListener('click',()=>setChapter('assembly'));
+$('lab-tab').addEventListener('click',()=>setChapter('lab'));
+$('inspect-device').addEventListener('click',()=>setChapter('assembly'));
+$('enter-lab').addEventListener('click',()=>{setChapter('lab');$('workspace').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});});
+setPeel(peelProgress,false);
 for(const [key,label] of Object.entries(scenarios)){const el=document.createElement('option');el.value=key;el.textContent=label;$('scenario').append(el);}$('scenario').value=options.scenario;
 $('scenario').addEventListener('change',()=>{options.scenario=$('scenario').value;compute();});
 const controls=[['currentLimit','Actuator current limit',0,0.8,0.02,'A'],['contactResistance','Contact resistance',0.5,20,0.5,'K/W'],['rejectionResistance','Rejection resistance',1,40,1,'K/W'],['initialTemperature','Initial tissue + device',32,39,0.5,'°C']];
@@ -78,7 +140,7 @@ function renderMath(){if(!window.katex)return;document.querySelectorAll('[data-l
 document.querySelectorAll('[data-depth]').forEach(b=>b.addEventListener('click',()=>showDepth(b.dataset.depth)));
 selectPart(0,false);showDepth('idea');
 try{worker=new Worker('./worker.js',{type:'module'});worker.addEventListener('message',e=>receive(e.data));worker.addEventListener('error',()=>solverFailure('Worker failed to load or execute.'));compute();}catch(e){solverFailure(e.message);}
-try{const {createScene}=await import('./scene.js');scene=createScene($('scene'),id=>{const j=parts.findIndex(p=>p.id===id);if(j>=0&&chapter==='assembly')selectPart(j);});$('scene-loading').remove();scene.select(parts[selected].id);}catch(e){sceneError=e.message;$('scene-loading').remove();showStatic(true);$('scene-caption').textContent='3D is unavailable in this browser. The static assembly, labeled component explorer and numerical model remain available.';}
-window.seizefreeze={snapshot:()=>({chapter,selected:parts[selected].id,installed:[...installed],index,playing,staticView,sceneError,modelError,scenario:options.scenario,frame:result?.frames[index],params:result?.params,summary:result?.summary,stats:scene?.stats()}),goTo:t=>{pause();if(result){index=Math.max(0,Math.min(result.frames.length-1,Math.round(t*20)));drawFrame();}}};
+try{const {createScene}=await import('./scene.js');scene=await createScene($('scene'),id=>{const j=parts.findIndex(p=>p.id===id);if(j>=0){if(chapter!=='assembly')setChapter('assembly');selectPart(j);}},value=>setPeel(value,false));$('scene-loading').remove();setChapter(chapter);if(scene.stats().softwareRenderer)showStatic(true);}catch(e){sceneError=e.message;$('scene-loading').remove();showStatic(true);$('scene-caption').textContent='3D is unavailable in this browser. The static assembly, labeled component explorer and numerical model remain available.';}
+window.seizefreeze={snapshot:()=>({chapter,selected:parts[selected].id,installed:[...installed],index,playing,staticView,sceneError,modelError,scenario:options.scenario,frame:result?.frames[index],params:result?.params,summary:result?.summary,peel:peelProgress,stats:scene?.stats()}),goTo:t=>{pause();if(result){index=Math.max(0,Math.min(result.frames.length-1,Math.round(t*20)));drawFrame();}}};
 window.addEventListener('pagehide',event=>{pause();if(event.persisted)return;disposed=true;worker?.terminate();scene?.dispose();});
 window.addEventListener('pageshow',event=>{if(event.persisted)scene?.render();});

@@ -27,7 +27,7 @@ Animal study temperatures are experimental conditions, not recommended operating
 
 ## Assembly evidence and unresolved choices
 
-All components below derive from the existing architecture/packaging illustrations. The experience's physical proportions, fasteners, board traces, cortical folds and exploded spacing are explanatory geometry. They do not define a final implant. “Titanium-like” describes a rendered surface, not a completed materials qualification.
+All components below derive from the existing architecture/packaging illustrations. The experience's device proportions, fasteners, board traces and exploded spacing are explanatory geometry; the cortical folds come from the attributed Human Reference Atlas. They do not define a final implant. “Titanium-like” describes a rendered surface, not a completed materials qualification.
 
 | Component | What passes through it; purpose | Constraint and possible failure | Evidence and open choice |
 | --- | --- | --- | --- |
@@ -47,7 +47,7 @@ The original concept physics illustration contains an incorrect “P = n-type”
 
 The solver implements an educational coupled thermal model. Every numerical material property, contact area, conductance, thermal mass, sensor lag, detector setting, current limit, shutdown bound and controller target must be read with the model documentation. Unless a source and measurement context explicitly say otherwise, these values are **exploratory assumptions**. A displayed interlock is an illustrative software behavior, not a clinically established protection limit.
 
-The tissue field is a simplified computational domain. The visual cortical surface is anatomical illustration, not a patient scan. A reduced field displayed on it cannot establish patient-specific cooling reach. Model temperatures and energy are simulated; the electrophysiological signal and any sensor noise are synthetic. A spatial threshold or cooled-region metric describes a chosen numerical threshold only, never a therapeutic volume.
+The tissue field is a simplified computational domain. The visual cortical surface is Human Reference Atlas anatomy, not a patient scan. Skull and meningeal coverings are schematic; the named left superior temporal reference target does not establish an epileptogenic zone. See [anatomical provenance and limitations](ANATOMY.md). A reduced field displayed on it cannot establish patient-specific cooling reach. Model temperatures and energy are simulated; the electrophysiological signal and any sensor noise are synthetic. A spatial threshold or cooled-region metric describes a chosen numerical threshold only, never a therapeutic volume.
 
 Neural event generation remains independent of cooling. Neither current activation nor a colder field causes the synthetic waveform to recover automatically. Detection, control action, heat transfer and hypothesized biological benefit are separate propositions. There is no validated temperature-to-seizure-suppression relationship in this experience.
 
@@ -65,7 +65,7 @@ These are proposed milestones, not completed studies, scheduled trials, commerci
 
 ## Asset provenance and publication boundaries
 
-- The new interactive device, cortex illustration, diagrams and data plots are procedurally authored explanatory assets. No patient imaging, commercial implant CAD, private experiment, or identifiable health record is needed to generate them.
+- The interactive device, diagrams and plots are original explanatory assets. Brain and registered head skin derive from CC BY 4.0 Human Reference Atlas assets; [ANATOMY.md](ANATOMY.md) and [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt) identify attribution, modifications and limits. Skull and meninges are schematic overlays. No patient imaging, commercial implant CAD, private experiment or identifiable health record is used.
 - Existing SeizeFreeze images and concept film remain portfolio-supplied project artifacts. Their presence establishes prior project use, not a transferable license or independent proof of scientific claims. This release does not claim to have cleared ownership or third-party music rights for historical media; no new third-party media is acquired for the laboratory.
 - Primary literature is linked, not copied as figures or redistributed as full text. Named external authors retain credit for their experiments.
 - Local rendering/math libraries and fonts retain their accompanying license files. Source code is the reproducible original; rendered machined materials are procedural and do not use downloaded texture libraries.

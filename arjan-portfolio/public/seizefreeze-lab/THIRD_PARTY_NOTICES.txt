@@ -1,22 +1,37 @@
 SeizeFreeze educational laboratory — asset and library notices
 
-Original assets: procedural device, cortical and head geometry, studio lighting,
-machined-surface texture, SVG fallback diagram, plots and page design were authored
-for this portfolio experience. They are explanatory concept geometry, not patient
-scans, commercial device CAD or manufacturing drawings.
+Original assets: procedural device, schematic cranial coverings, studio lighting,
+machined-surface texture, plots and page design were authored for this experience.
+These are explanatory concept assets, not manufacturing drawings or a surgical plan.
+The static fallback embeds a render of the attributed reference anatomy below.
 
-Three.js and OrbitControls reuse the portfolio's local runtime at
-/pit-stop-lab/vendor/ (three.module.js, three.core.js, OrbitControls.js).
+Reference brain: Kristen Browne and Heidi Schlehlein (2023), 3D Reference Organ for
+Brain, Male v1.3, Human Reference Atlas / HuBMAP.
+https://doi.org/10.48539/HBM929.XKCL.339
+Reference head skin: HRA united male v1.5, Human Reference Atlas / HuBMAP.
+https://doi.org/10.48539/HBM646.RKKC.257
+Both are Creative Commons Attribution 4.0 International:
+https://creativecommons.org/licenses/by/4.0/
+Modifications: selected cortical structures and cropped registered head skin,
+coordinates converted to millimeters and centered, source materials replaced,
+explanatory flaps, coverings and contact added. Source structure identities are
+retained; atlas mirroring does not represent a particular person's symmetry.
+The derived brain-cortex.glb includes source hashes, attribution and modifications.
+Source records: /atlas/anatomy/HRA-BRAIN-SOURCE.md and HRA-BODY-SOURCE.md.
+Anatomical limitations and further attribution: ANATOMY.md.
+
+Three.js, OrbitControls and GLTFLoader reuse the portfolio's local runtime at
+/pit-stop-lab/vendor/ (three.module.js, three.core.js, OrbitControls.js, GLTFLoader.js).
 Copyright 2010–2026 Three.js Authors. MIT license; full text is retained in
 vendor/Three-LICENSE.txt. No changes to the shared runtime are required.
 
 KaTeX and its bundled fonts are served locally from vendor/.
 MIT license; full notice is retained in vendor/KaTeX-LICENSE.txt.
 
-No downloaded texture, stock photo, patient imagery, audio, remote font or clinical
-dataset is introduced by this laboratory. Literature is linked, not redistributed.
-Historical case-study media remain separately attributed project artifacts; this
-notice does not establish ownership or music rights for the original concept film.
+No patient scan, health record, audio, remote font or private dataset is introduced.
+Literature is linked, not redistributed. Historical case-study media remain
+separately attributed project artifacts; this notice does not establish ownership
+or music rights for the original concept film.
 
 Scientific attribution and claim contexts: EVIDENCE.md.
 Numerical coefficients and modeling limitations: MODEL.md.
