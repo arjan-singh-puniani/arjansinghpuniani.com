@@ -1,0 +1,104 @@
+[
+  {
+    "suite": "diorama",
+    "exitCode": 0,
+    "elapsedSeconds": 0.93,
+    "output": "PASS: accounting, occupancy, reachable doors, obstruction, live-route placement, reservations, removal, explicit staffing, undo, upgrades, finite budget, fatigue, nonnegative timings, deterministic replay, save/load equivalence, termination, scenario runs, GLB dependencies, rig and clips, import boundary.\nCapacity comparison, seed431: {\n  baseline: 8,\n  extraConsult: 8,\n  baselineArrivals: 27,\n  expandedArrivals: 27\n}\n"
+  },
+  {
+    "suite": "release",
+    "exitCode": 0,
+    "elapsedSeconds": 0.39,
+    "output": "PASS: every-tick visit timing conservation, interpolated-path platform clearance, interior endpoints, v0.3 save migration\n"
+  },
+  {
+    "suite": "animation",
+    "exitCode": 0,
+    "elapsedSeconds": 0.11,
+    "output": "PASS: actual Three.js mixer regression for frozen transfer fades and deterministic clip endpoints\nPASS: dangling joints stay bounded, reduced motion stays still, original pose restores\n(node:44267) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/arjan/Documents/Codex/2026-10-28/rebuild-common-good-s-visual-experience/work/common-good-publish/dist/vendor/build/three.module.js is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to /Users/arjan/package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+  },
+  {
+    "suite": "motion-release",
+    "exitCode": 0,
+    "elapsedSeconds": 0.25,
+    "output": "PASS: staff doorway paths, complete break phases with/without lounge, reserved capacity, phase-by-phase save/load, v0.4 migration and negative-duration import rejection\n"
+  },
+  {
+    "suite": "patient-release",
+    "exitCode": 0,
+    "elapsedSeconds": 0.25,
+    "output": "PASS: cloth clears before movement, uncovering reserves capacity and survives checkpoints, state-derived guidance,11 unique proportional rigged patient variants\n"
+  },
+  {
+    "suite": "interaction",
+    "exitCode": 0,
+    "elapsedSeconds": 0.27,
+    "output": "PASS: placed connected doors, visible entering/exiting states, reserved entry rejection, door checkpoint equivalence, blocked drops, preserved visit/queue/accounting, undo, clinician return-to-work capacity, full-shift mastery, embedded sliding-door GLB\nPASS: half-cell construction and doors, fractional doorway routes and save migration\n"
+  },
+  {
+    "suite": "touch-roles",
+    "exitCode": 0,
+    "elapsedSeconds": 0.12,
+    "output": "PASS: nine actual roles, six clinical staff, front desk adds no capacity, legacy migration without duplication, unknown current role rejected, busy pickup preserves reservation, service waits for return, exact timing conservation, return completes, save/load replay, role recruiting\nPASS: 18 embedded skin GLBs, matching base rig mapping, no duplicate animation payload, nine LODs below2MB\nPASS: historical0.7recording remains identified by its original model; it is not presented as evidence for the new model\n"
+  },
+  {
+    "suite": "first-shift",
+    "exitCode": 0,
+    "elapsedSeconds": 0.14,
+    "output": "PASS: real reception capacity, pickup/opening availability, return travel, first-minute completed visit, exact check-in/recovery timing, meaningful event costs/resolution/reward, mid-event save replay, prior-visit preservation, corrupt-ops rejection and new-room staff travel\nPASS: earned lounge voucher has real construction benefit and no refund arbitrage\n"
+  },
+  {
+    "suite": "roles-operations",
+    "exitCode": 0,
+    "elapsedSeconds": 0.36,
+    "output": "PASS: nine real roles, surgeon+nurse procedure team, imaging-only technologist, new room travel capacity, intake assistant task, coffee readiness/physical cleanup/resumption, separate reception capacity, exact timing, job save/load replay and0.9active-visit migration\nPASS: PA workflow requests an actual physician review; scenario setting is explicit and recorded\n"
+  },
+  {
+    "suite": "navigation",
+    "exitCode": 0,
+    "elapsedSeconds": 0.67,
+    "output": "{\"checked\":2700,\"queries\":300,\"originalMs\":39.62,\"currentMs\":2.09,\"device\":\"Apple M2 host; Node22; not iPhone\"}\n"
+  },
+  {
+    "suite": "landing",
+    "exitCode": 0,
+    "elapsedSeconds": 0.38,
+    "output": "PASS: cached green cells match authoritative drop checks, including doorway articulation and occupied points {\"hardware\":\"AppleM2 / Node22; pure navigation checks, not an iPhone result\",\"checkedCells\":9570,\"samples\":20,\"previous\":{\"medianMs\":2.2724999999999795,\"p95Ms\":3.5987499999999955},\"cached\":{\"medianMs\":0.9539170000000468,\"p95Ms\":1.8686250000000086}}\n"
+  },
+  {
+    "suite": "construction",
+    "exitCode": 0,
+    "elapsedSeconds": 0.19,
+    "output": "PASS: four doorway orientations, connected construction, physical exit/walk/re-entry, reserved origin, no reassignment during travel, capacity waits for arrival and mid-route save validation\n"
+  },
+  {
+    "suite": "waiting",
+    "exitCode": 0,
+    "elapsedSeconds": 0.49,
+    "output": "PASS: waiting garden has two reserved seats, patients walk/sit/rise, furniture and removal respect occupancy, rotated doors stay connected, exact timing and save/load\n"
+  },
+  {
+    "suite": "continuing",
+    "exitCode": 0,
+    "elapsedSeconds": 0.37,
+    "output": "PASS: continuing sandbox carries all unfinished visits, routes, roles, fatigue, money and exact lifetime accounting across four shifts; bounded period history, active save/replay, scored campaigns remain finite\n"
+  },
+  {
+    "suite": "browser-replay",
+    "exitCode": 0,
+    "elapsedSeconds": 0.23,
+    "output": "PASS: the actual full-shift browser action log replays the same13completed/5departed/9unfinished counts and identical consultation/imaging/care visit; current renderer optimizations do not alter the model\n"
+  },
+  {
+    "suite": "expansion",
+    "exitCode": 0,
+    "elapsedSeconds": 4.65,
+    "output": "PASS: roles, assignment, protected capacity, decoration undo, handoffs, bed transfers, migration, checkpoint comparison, exact paired arrivals, campaign mastery, limited hiring, community continuity and100 whole-shift runs.\nMeasured plan wins/ties/losses: { wins: 40, ties: 10, losses: 0 }\n"
+  },
+  {
+    "suite": "staffing-flow",
+    "exitCode": 0,
+    "elapsedSeconds": 0.13,
+    "output": "PASS: build first, visible unmet roles, explicit price, actual recruitment/assignment, no free staff, delayed capacity, atomic undo, mid-travel save replay, limited recruitment and insufficient budget preserve state\n"
+  }
+]

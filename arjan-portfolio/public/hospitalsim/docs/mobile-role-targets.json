@@ -1,0 +1,74 @@
+[
+  {
+    "h": 44,
+    "id": "1",
+    "name": "Pick up Mira, Doctor",
+    "w": 122,
+    "x": 134,
+    "y": 284.5
+  },
+  {
+    "h": 44,
+    "id": "2",
+    "name": "Pick up Jules, Imaging technologist",
+    "w": 122,
+    "x": 134,
+    "y": 238.5
+  },
+  {
+    "h": 44,
+    "id": "3",
+    "name": "Pick up Remy, Surgeon",
+    "w": 122,
+    "x": 4,
+    "y": 284.5
+  },
+  {
+    "h": 44,
+    "id": "4",
+    "name": "Pick up Ash, Registered nurse",
+    "w": 122,
+    "x": 134,
+    "y": 330.5
+  },
+  {
+    "h": 44,
+    "id": "5",
+    "name": "Pick up Sage, Nurse practitioner",
+    "w": 122,
+    "x": 134,
+    "y": 376.5
+  },
+  {
+    "h": 44,
+    "id": "6",
+    "name": "Pick up Kit, Physician assistant",
+    "w": 122,
+    "x": 134,
+    "y": 422.5
+  },
+  {
+    "h": 44,
+    "id": "7",
+    "name": "Pick up Quinn, Front desk",
+    "w": 122,
+    "x": 4,
+    "y": 376.5
+  },
+  {
+    "h": 44,
+    "id": "8",
+    "name": "Pick up Tess, Medical assistant",
+    "w": 122,
+    "x": 4,
+    "y": 330.5
+  },
+  {
+    "h": 44,
+    "id": "9",
+    "name": "Pick up Ellis, Facilities",
+    "w": 122,
+    "x": 4,
+    "y": 238.5
+  }
+]

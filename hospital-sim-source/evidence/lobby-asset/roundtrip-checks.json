@@ -1,0 +1,44 @@
+{
+  "blender_version": "4.0.2",
+  "raw_bytes": 165152,
+  "nodes": {
+    "IntakeTray": {
+      "reimport_dimensions_blender": [
+        0.2199999988079071,
+        0.2800000011920929,
+        0.05999999865889549
+      ],
+      "floor_origin_confirmed": true,
+      "finite_vertices": true
+    },
+    "PaperAccordion": {
+      "reimport_dimensions_blender": [
+        0.2800000011920929,
+        0.10000000149011612,
+        0.11999999731779099
+      ],
+      "floor_origin_confirmed": true,
+      "finite_vertices": true
+    },
+    "ReceptionCounter": {
+      "reimport_dimensions_blender": [
+        1.0,
+        0.47999998927116394,
+        0.9649999737739563
+      ],
+      "floor_origin_confirmed": true,
+      "finite_vertices": true
+    },
+    "WaitingBench": {
+      "reimport_dimensions_blender": [
+        2.0,
+        0.6499999761581421,
+        0.9194514155387878
+      ],
+      "floor_origin_confirmed": true,
+      "finite_vertices": true
+    }
+  },
+  "embedded_materials": true,
+  "single_correct_pbr_uv": true
+}

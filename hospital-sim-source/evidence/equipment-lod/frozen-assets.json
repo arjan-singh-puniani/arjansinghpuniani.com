@@ -1,0 +1,25 @@
+{
+  "frozen_utc": "2026-11-01T11:05:48.679445+00:00",
+  "files": {
+    "blender/equipment_lod.py": {
+      "bytes": 11797,
+      "sha256": "e596f44be0c1f24a26b1f0beb2131f7fa47c3692cf4c1452e3fb6e8368ab991b"
+    },
+    "blender/equipment_lod.blend": {
+      "bytes": 4422534,
+      "sha256": "2a02941f7cccf37471ee795935e03d4bffdc24f5775a424b1a79df50917d139f"
+    },
+    "dist/assets/scan-lod.glb": {
+      "bytes": 572428,
+      "sha256": "c04f58abcd2f43b631de0c84417797ab95456dffb32a96ae8baf8990987c9ad1"
+    },
+    "dist/assets/care-lod.glb": {
+      "bytes": 492392,
+      "sha256": "4c0d3c6198e92b3ebd54552b84df3f9eaa8c80cea82e506da13b5f3939a1c842"
+    },
+    "dist/assets/consult-lod.glb": {
+      "bytes": 1171116,
+      "sha256": "bbbc69a3dc29bf9abe6871ce38dd1a0cf257cd3ae58a24c20ac9e139ca343375"
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "blender_version": "4.0.2",
+  "camera": {
+    "gameplay_direction_three": [
+      16,
+      16.35,
+      23
+    ],
+    "blender_direction": [
+      16,
+      -23,
+      16.35
+    ],
+    "orthographic_scale": 4.6,
+    "resolution": [
+      480,
+      400
+    ]
+  },
+  "zones": {
+    "scan": {
+      "node_transforms_exact": true,
+      "material_definitions_exact": true,
+      "embedded_texture_sha256": [
+        "825ffc88aa26846fea17d92236831ec72306e0707bed314e6b7ec3f47260d280",
+        "5938fa61a02b28d034b894267cc447a65b8ab15176445dddfc254a12a0c0cd0f"
+      ],
+      "triangle_count": 20360,
+      "bounds": {
+        "original": {
+          "min_blender": [
+            -1.5399999618530273,
+            -1.5699999332427979,
+            0.0
+          ],
+          "max_blender": [
+            1.4600000381469727,
+            1.385932445526123,
+            2.0799999237060547
+          ]
+        },
+        "lod": {
+          "min_blender": [
+            -1.5384987592697144,
+            -1.569178819656372,
+            0.005664248485118151
+          ],
+          "max_blender": [
+            1.4591413736343384,
+            1.3863770961761475,
+            2.0784988403320312
+          ]
+        }
+      },
+      "maximum_bounds_drift_metres": 0.005664248485118151,
+      "actual_glbs_reimported": true
+    },
+    "care": {
+      "node_transforms_exact": true,
+      "material_definitions_exact": true,
+      "embedded_texture_sha256": [
+        "825ffc88aa26846fea17d92236831ec72306e0707bed314e6b7ec3f47260d280",
+        "5938fa61a02b28d034b894267cc447a65b8ab15176445dddfc254a12a0c0cd0f"
+      ],
+      "triangle_count": 16408,
+      "bounds": {
+        "original": {
+          "min_blender": [
+            -1.6720809936523438,
+            -1.2349998950958252,
+            -0.0941772609949112
+          ],
+          "max_blender": [
+            1.2899999618530273,
+            1.0148708820343018,
+            2.103830337524414
+          ]
+        },
+        "lod": {
+          "min_blender": [
+            -1.6720809936523438,
+            -1.234634518623352,
+            -0.09446951001882553
+          ],
+          "max_blender": [
+            1.288939356803894,
+            1.0139307975769043,
+            2.103830337524414
+          ]
+        }
+      },
+      "maximum_bounds_drift_metres": 0.0010606050491333008,
+      "actual_glbs_reimported": true
+    },
+    "consult": {
+      "node_transforms_exact": true,
+      "material_definitions_exact": true,
+      "embedded_texture_sha256": [
+        "5938fa61a02b28d034b894267cc447a65b8ab15176445dddfc254a12a0c0cd0f",
+        "825ffc88aa26846fea17d92236831ec72306e0707bed314e6b7ec3f47260d280"
+      ],
+      "triangle_count": 23162,
+      "bounds": {
+        "original": {
+          "min_blender": [
+            -0.9850000143051147,
+            -1.5289262533187866,
+            0.009999990463256836
+          ],
+          "max_blender": [
+            1.6699999570846558,
+            1.4149999618530273,
+            1.5550000667572021
+          ]
+        },
+        "lod": {
+          "min_blender": [
+            -0.983823835849762,
+            -1.5310585498809814,
+            0.009966828860342503
+          ],
+          "max_blender": [
+            1.6698856353759766,
+            1.4139803647994995,
+            1.5535839796066284
+          ]
+        }
+      },
+      "maximum_bounds_drift_metres": 0.0021322965621948242,
+      "actual_glbs_reimported": true
+    }
+  },
+  "original_files_unchanged": true
+}

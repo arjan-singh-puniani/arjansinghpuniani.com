@@ -1,3 +1,22 @@
+# 1.0.0-rc2 · 2026-11-01
+
+- Removed mandatory pickup onboarding. The first action builds a consultation room from a world-space site; Sage physically walks over. Placement restores the previous running/paused state.
+- Removed default floating names and queue annotations after owner feedback. Tap selects one context card; body drag lifts. Full lists remain available, with optional all-name pickup targets in settings.
+- Kept the hospital and essential controls within a 390×844 phone viewport. Advanced room options, placement coordinates and report details are collapsed.
+- Rooms can be built before recruitment, with zero service capacity until a compatible team arrives. The selected room offers the actual recruitment cost. Added atomic staffing/undo/replay regression checks.
+- Next shift retains the hospital and unfinished visits. Debrief leads with actual people home and the recorded closing constraint.
+- Enjoyment, iPhone responsiveness and external educational review remain unvalidated. This is a release candidate.
+
+# 1.0.0-rc1 ·2026-11-01
+
+- Replaced per-move route work with cached green landing regions; preserved authoritative drop validation and fine spacing.
+- Fixed narrow-screen role-target overlap and recruit-role selections resetting during panel refresh. Added explicit startup-disabled controls.
+- Added staffed intake, nine distinct role responsibilities, physician review setting, medical-assistant support, physical facilities work and two modeled incidents with actual consequences.
+- Added physical reassignment, rotated doors/equipment previews, two-seat waiting gardens and safe bench rearrangement. Kept occupied routes/modules protected.
+- Added continuing sandbox periods with carried visits and explicit lifetime accounting; protected legacy saves and displaced-tab recovery.
+- Executed Blender lobby, two additional wardrobes/props and40.6%equipment LOD work. Retained original sources, all11adult appearances and high-detail assets. Instanced static contact shadows.
+- Recorded a complete0–480shift through actual controls and verified the action replay against source. Added current browser, asset and model evidence. Real iPhone retest, external review and comparative enjoyment/learning remain pending.
+
 ## 0.7.0 · 2026-11-01 · Touch pickup and readable staff roles
 
 - Replaced tiny-target long-press pickup with immediate tap-to-lift/tap-to-place and drag release. A short first tap keeps the person held. Invalid floor drops keep holding; visible fixed controls offer put-down and cancel.
