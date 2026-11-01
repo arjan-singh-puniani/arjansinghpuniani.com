@@ -112,7 +112,7 @@ export default function Home() {
             <dl>
               <div><dt>Role</dt><dd>Independent designer + developer</dd></div>
               <div><dt>State</dt><dd>Working research prototype</dd></div>
-              <div><dt>Snapshot</dt><dd>October 19, 2026</dd></div>
+              <div><dt>Coverage</dt><dd>92 explained entries · dated original sources</dd></div>
             </dl>
             <a href="/atlas">Launch BODY//ATLAS <span aria-hidden="true">↗</span></a>
           </div>
