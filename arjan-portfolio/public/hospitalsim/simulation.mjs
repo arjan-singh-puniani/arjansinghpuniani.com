@@ -1,7 +1,7 @@
 // The original LCG, BFS, pathway and queue policy are retained from Hospital Works v0.1.
 // No DOM, clock or renderer dependencies. One tick is one fictional game second.
-import {VERSION,STEP,GRID,TYPES,TRAITS,SCENARIOS,DECOR,GOALS} from './content.mjs?v=066';
-export {VERSION,STEP,GRID,TYPES,TRAITS,SCENARIOS,DECOR} from './content.mjs?v=066';
+import {VERSION,STEP,GRID,TYPES,TRAITS,SCENARIOS,DECOR,GOALS} from './content.mjs?v=067';
+export {VERSION,STEP,GRID,TYPES,TRAITS,SCENARIOS,DECOR} from './content.mjs?v=067';
 const names=['Alex','Sam','Noor','Jordan','Maya','Eli','Robin','Avery','Kai','Imani','Rae','Morgan'];
 export function initial(scenario='neighborhood',seed=431,mode='sandbox',continuity={}){
  const s={version:VERSION,scenario,mode,entrance:{...GRID.entry},exit:{...GRID.exit},autoHandoff:true,communication:false,prevention:!!continuity.prevention,arrivalIndex:0,arrivalTape:arrivalTape(scenario,seed,continuity.prevention),initialSeed:seed,seed,seconds:0,cash:8000,served:0,left:0,arrivals:0,trust:85,energy:100,breaks:false,access:false,urgency:true,rooms:[{id:1,x:5,y:2,type:'consult',level:1,staff:[1]},{id:2,x:1,y:0,type:'scan',level:1,staff:[2]},{id:3,x:1,y:3,type:'care',level:1,staff:[3,4]}],staff:['Mira','Jules','Remy','Ash','Sage','Kit'].map((name,i)=>({id:i+1,name,role:'clinician',skills:i===1?['scan']:i===5?['scan','consult','plan']:['consult','care',...(i===4?['plan']:[])],trait:['listener','steady','steady','brisk','brisk','listener'][i],shiftEnd:scenario==='staffing'&&i===3?300:480,fatigue:0,breakUntil:0,...(i>=4?{position:{x:4.5+(i%2)*.5,y:5.75}}:{})})),patients:[],nextId:10,nextArrival:1,surge:0,eventDone:false,ended:false,records:[],actions:[],log:['Doors open. A little space. A lot of care.'],utilization:{},lastAction:null};

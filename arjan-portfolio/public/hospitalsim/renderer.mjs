@@ -1,11 +1,11 @@
 import * as THREE from 'three';
-import {samplePose,dangle,restoreBones} from './animation.mjs?v=066';
-import {sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath,drapePose} from './motion.mjs?v=066';
+import {samplePose,dangle,restoreBones} from './animation.mjs?v=067';
+import {sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath,drapePose} from './motion.mjs?v=067';
 import {GLTFLoader} from './vendor/examples/jsm/loaders/GLTFLoader.js';
 import {clone} from './vendor/examples/jsm/utils/SkeletonUtils.js';
 import {OrbitControls} from './vendor/examples/jsm/controls/OrbitControls.js';
 import {RoomEnvironment} from './vendor/examples/jsm/environments/RoomEnvironment.js';
-import {GRID,TYPES,door,path,placement,entrance,exit,gateDirection,gatePlacement,dropPlacement} from './simulation.mjs?v=066';
+import {GRID,TYPES,door,path,placement,entrance,exit,gateDirection,gatePlacement,dropPlacement} from './simulation.mjs?v=067';
 
 export const roomHeight=type=>({scan:.63,care:.25,consult:.85,rest:.25,plan:.85}[type]);
 export function world(x,y,height=.25){return new THREE.Vector3((x-4)*GRID.step,height,(y-3.5)*GRID.step)}
@@ -26,7 +26,7 @@ export class Diorama {
   this.renderer=new THREE.WebGLRenderer({canvas,antialias:!this.mobile,alpha:false,preserveDrawingBuffer:true,powerPreference:'high-performance'});
   const gl=this.renderer.getContext(),debug=gl.getExtension('WEBGL_debug_renderer_info');canvas.dataset.gpu=debug?gl.getParameter(debug.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER);
   this.renderer.setPixelRatio(Math.min(devicePixelRatio,this.mobile?1.15:1.6));canvas.dataset.renderScale=this.renderer.getPixelRatio();canvas.dataset.shadowSize=this.mobile?1024:2048;this.renderer.outputColorSpace=THREE.SRGBColorSpace;this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.13;
-  this.renderer.shadowMap.enabled=true;this.renderer.shadowMap.autoUpdate=false;this.renderer.shadowMap.type=this.mobile?THREE.PCFSoftShadowMap:THREE.VSMShadowMap;
+  this.renderer.shadowMap.enabled=true;this.renderer.shadowMap.autoUpdate=false;this.renderer.shadowMap.type=this.mobile?THREE.PCFShadowMap:THREE.VSMShadowMap;
   this.camera=new THREE.OrthographicCamera(-10,10,8,-8,.1,120);this.camera.position.set(16,19,23);this.camera.lookAt(0,.3,0);
   this.controls=new OrbitControls(this.camera,canvas);this.controls.enableRotate=false;this.controls.enableDamping=true;this.controls.dampingFactor=.12;this.controls.minZoom=.65;this.controls.maxZoom=2.8;this.controls.target.set(0,.3,0);this.controls.screenSpacePanning=true;this.controls.mouseButtons={LEFT:THREE.MOUSE.PAN,MIDDLE:THREE.MOUSE.DOLLY,RIGHT:THREE.MOUSE.PAN};this.controls.touches={ONE:THREE.TOUCH.PAN,TWO:THREE.TOUCH.DOLLY_PAN};
   const env=new RoomEnvironment();const pmrem=new THREE.PMREMGenerator(this.renderer);this.scene.environment=pmrem.fromScene(env,.04).texture;env.dispose();pmrem.dispose();this.scene.environmentIntensity=.3;
@@ -103,11 +103,11 @@ export class Diorama {
  }
 
  async load(){
-  const response=await fetch('assets/patient-appearances.json?v=066');if(!response.ok)throw Error('Patient appearances could not load');const manifest=await response.json();
+  const response=await fetch('assets/patient-appearances.json?v=067');if(!response.ok)throw Error('Patient appearances could not load');const manifest=await response.json();
   if(manifest.appearances?.length!==11||new Set(manifest.appearances.map(a=>a.id)).size!==11||manifest.appearances.some(a=>!/^patient-\d{2}-lod\.glb$/.test(a.lod)||!/^patient-\d{2}\.glb$/.test(a.high)))throw Error('Invalid patient appearance manifest');
   this.patientAppearances=manifest.appearances;this.lowPatients=new Map();this.highPatients=new Map();
   const loader=new GLTFLoader(),names=['scan','care','consult','rest','clinician','coat','drape','doors'],jobs=[...names.map(name=>({name,file:['clinician','coat'].includes(name)?name+'-lod.glb':name+'.glb'})),...this.patientAppearances.map(appearance=>({appearance,file:appearance.lod}))];let done=0;
-  for(let i=0;i<jobs.length;i+=4)await Promise.all(jobs.slice(i,i+4).map(async job=>{let gltf;for(let attempt=0;attempt<2;attempt++){try{gltf=await loader.loadAsync(`assets/${job.file}?v=066`);break}catch(error){if(attempt)throw error;await new Promise(resolve=>setTimeout(resolve,200))}}if(job.appearance)this.lowPatients.set(job.appearance.id,gltf);else this.assets[job.name]=gltf;this.progress(Math.round(++done/jobs.length*100))}));
+  for(let i=0;i<jobs.length;i+=4)await Promise.all(jobs.slice(i,i+4).map(async job=>{let gltf;for(let attempt=0;attempt<2;attempt++){try{gltf=await loader.loadAsync(`assets/${job.file}?v=067`);break}catch(error){if(attempt)throw error;await new Promise(resolve=>setTimeout(resolve,200))}}if(job.appearance)this.lowPatients.set(job.appearance.id,gltf);else this.assets[job.name]=gltf;this.progress(Math.round(++done/jobs.length*100))}));
   this.assets.patient=this.lowPatients.get(this.patientAppearances[0].id);this.lowAssets={...this.assets};this.canvas.dataset.appearances=this.patientAppearances.length;this.syncRooms();
  }
 
@@ -146,7 +146,7 @@ export class Diorama {
  removePerson(p){this.scene.remove(p.group);p.mixer.stopAllAction();p.mixer.uncacheRoot(p.model);p.model.traverse(o=>{if(o.isSkinnedMesh)o.skeleton.dispose()})}
  play(p,name){if(p.current===name)return;const next=p.actions.get(name)||p.actions.get('Idle')||[...p.actions.values()][0];if(!next)return;for(const a of p.actions.values())if(a.isRunning())a.fadeOut(.2);next.reset().setEffectiveTimeScale(1).fadeIn(.2).play();p.current=name}
  async detailLOD(){
-  const high=!this.mobile&&this.camera.zoom>1.5&&this.state().patients.length+this.state().staff.length<14;if(high&&!this.highAssets&&!this.loadingHigh){this.loadingHigh=true;try{const loader=new GLTFLoader(),items=await Promise.all(['clinician','coat'].map(async name=>[name,await loader.loadAsync(`assets/${name}.glb?v=066`)]));const jobs=this.patientAppearances;for(let i=0;i<jobs.length;i+=4)await Promise.all(jobs.slice(i,i+4).map(async a=>this.highPatients.set(a.id,await loader.loadAsync(`assets/${a.high}?v=066`))));this.highAssets=Object.fromEntries(items)}catch(error){console.warn('Close detail unavailable',error)}finally{this.loadingHigh=false}}
+  const high=!this.mobile&&this.camera.zoom>1.5&&this.state().patients.length+this.state().staff.length<14;if(high&&!this.highAssets&&!this.loadingHigh){this.loadingHigh=true;try{const loader=new GLTFLoader(),items=await Promise.all(['clinician','coat'].map(async name=>[name,await loader.loadAsync(`assets/${name}.glb?v=067`)]));const jobs=this.patientAppearances;for(let i=0;i<jobs.length;i+=4)await Promise.all(jobs.slice(i,i+4).map(async a=>this.highPatients.set(a.id,await loader.loadAsync(`assets/${a.high}?v=067`))));this.highAssets=Object.fromEntries(items)}catch(error){console.warn('Close detail unavailable',error)}finally{this.loadingHigh=false}}
 
   if(high&&!this.highAssets)return;if(this.highMode===high)return;this.highMode=high;for(const kind of ['clinician','coat'])this.assets[kind]=high?this.highAssets[kind]:this.lowAssets[kind];for(const p of [...this.people.values(),...this.staffPeople.values(),this.ambient].filter(Boolean))this.removePerson(p);this.people.clear();this.staffPeople.clear();this.ambient=null;
  }

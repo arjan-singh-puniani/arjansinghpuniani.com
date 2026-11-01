@@ -1,4 +1,4 @@
-import {TYPES,queueFor} from './simulation.mjs?v=066';
+import {TYPES,queueFor} from './simulation.mjs?v=067';
 export function nextStep(s){
  const expansion=s.actions.find(a=>a.type==='build'&&s.rooms.some(r=>r.id===a.room.id));
  if(!expansion)return {kind:'build',type:'consult',label:'Place consultation',title:'A second consultation. A shorter first queue.',text:'Add a staffed room, then watch its first neighbor arrive.'};

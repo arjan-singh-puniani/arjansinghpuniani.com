@@ -1,7 +1,7 @@
-import {initial,tick,build,upgrade,remove,undo,policy,placement,door,queueFor,TYPES,GRID,VERSION,validate,report,TRAITS,SCENARIOS,DECOR,assignStaff,decorate,acknowledge,causes,mastery,entrance,exit,gatePlacement,moveGate,canLift,dropPlacement,relocate} from './simulation.mjs?v=066';
-import {installExtras} from './extras.mjs?v=066';
-import {nextStep} from './guidance.mjs?v=066';
-import {Diorama} from './renderer.mjs?v=066';
+import {initial,tick,build,upgrade,remove,undo,policy,placement,door,queueFor,TYPES,GRID,VERSION,validate,report,TRAITS,SCENARIOS,DECOR,assignStaff,decorate,acknowledge,causes,mastery,entrance,exit,gatePlacement,moveGate,canLift,dropPlacement,relocate} from './simulation.mjs?v=067';
+import {installExtras} from './extras.mjs?v=067';
+import {nextStep} from './guidance.mjs?v=067';
+import {Diorama} from './renderer.mjs?v=067';
 const $=id=>document.getElementById(id),money=n=>'$'+Math.floor(n).toLocaleString(),icons={consult:'✚',scan:'◎',care:'▱',rest:'⌑',plan:'◇'},STORE='common-good-diorama-v2';
 let s,restoreError='';try{const raw=localStorage.getItem(STORE);s=raw?validate(JSON.parse(raw)):initial()}catch(error){restoreError=error.message;try{localStorage.setItem('common-good-recovery',localStorage.getItem(STORE))}catch{}s=initial()}
 let held=null;
