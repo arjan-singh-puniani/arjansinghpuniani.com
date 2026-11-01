@@ -1,0 +1,20 @@
+{
+  "model": "0.6.1-hospitalsim",
+  "ownerIPhoneFeedback": "Laggy; held character should attach to cursor, be translucent, and use finer spacing.",
+  "implemented": [
+    "Grip projects exactly to pointer during direct drag; measured205,430px for both",
+    "65percent opacity with per-character cloned/restored materials",
+    "Quarter-cell drops and visual grid; half-cell rooms/doors",
+    "Mobile30fps rendering independent of simulation",
+    "DPR capped1.15;1024px PCF shadows; automatic high-detail loading disabled",
+    "All-pairs floor topology cached between layout changes"
+  ],
+  "browser": "390x844 desktop Chromium on AppleM2, not an iPhone benchmark",
+  "tests": [
+    "interaction including fractional placement and checkpoint migration",
+    "diorama invariants and seeded capacity comparison",
+    "patient/drape/appearance checks",
+    "real Three.js pose sampling and bounded dangle"
+  ],
+  "pending": "Owner iPhone retest required; no claimed measured phone speedup"
+}
