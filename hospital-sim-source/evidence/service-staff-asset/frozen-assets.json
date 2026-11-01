@@ -1,0 +1,33 @@
+{
+  "frozen_utc": "2026-11-01T09:50:57.651256+00:00",
+  "files": {
+    "blender/service_staff.py": {
+      "bytes": 14579,
+      "sha256": "c44e88f372cccd07a91c329c674ff24103d240462537af0babaeccf88c636368"
+    },
+    "blender/service_staff.blend": {
+      "bytes": 753994,
+      "sha256": "ce1a511493d08a45803c03aa84669149843961eda97148ccd4ec6fb3e3002f12"
+    },
+    "dist/assets/staff-assistant.glb": {
+      "bytes": 483384,
+      "sha256": "eecd563fc7d9cc5d5abb325a1305c27d1f38453991991df96f89408507466c23"
+    },
+    "dist/assets/staff-assistant-lod.glb": {
+      "bytes": 156380,
+      "sha256": "ab1f61606a43967a90a5f45bb925fb5a4a85a54acbe9eb602aa4d091a3025b49"
+    },
+    "dist/assets/staff-facilities.glb": {
+      "bytes": 505852,
+      "sha256": "9a3922fadd8cf5710bb31742f561aa9cbbd757867c02abd7756f27e9c39711b4"
+    },
+    "dist/assets/staff-facilities-lod.glb": {
+      "bytes": 163932,
+      "sha256": "c5474de3cdb50b101542f4696943779450f24df6e1a26ff18296b944a80b6e97"
+    },
+    "dist/assets/service-props.glb": {
+      "bytes": 44712,
+      "sha256": "2582f229a9def66665b0d4a81f9b1491f6dcc9d6b62e899cc6e844677e588d81"
+    }
+  }
+}

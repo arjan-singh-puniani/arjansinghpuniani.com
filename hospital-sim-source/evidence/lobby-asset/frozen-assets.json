@@ -1,0 +1,17 @@
+{
+  "frozen_utc": "2026-11-01T09:06:18.769439+00:00",
+  "files": {
+    "blender/lobby.py": {
+      "bytes": 15901,
+      "sha256": "34a6c5006f8a48043448a205252067c5277534a210710081f10a21deeaaef058"
+    },
+    "blender/lobby.blend": {
+      "bytes": 159699,
+      "sha256": "2d8a84c703cc82726a8e285c2f397c7532ed283b483a91ab6ed516ffe269e3f0"
+    },
+    "dist/assets/lobby.glb": {
+      "bytes": 165152,
+      "sha256": "167131297da7acf8e73ba9cd815b6ff85fded4fa4463ffc0df856bb353a7d0e5"
+    }
+  }
+}

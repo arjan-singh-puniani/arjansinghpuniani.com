@@ -38,3 +38,9 @@ export function drapePose(state,progress){
  const spread=state==='service'?Math.min(1,Math.max(0,progress)):state==='uncovering'?1-Math.min(1,Math.max(0,progress)):0;
  return {visible:spread>0,scaleY:.2+.8*spread,scaleZ:.12+.88*spread,opacity:Math.min(1,spread*10)};
 }
+
+// A clear front/right lane keeps support work away from gantry, bed and clinician posts.
+export function supportInteriorPath(type,height){return [[-.825,.25-height,2.475],[.35,0,1.72],[1.2,0,1.15]]}
+
+export function waitingSeat(index,layout=0){const x=index? .5:-.5;return layout?[.55,0,x]:[x,0,-.55]}
+export function waitingInteriorPath(height,index,layout=0){const seat=waitingSeat(index,layout);return [[-.825,.25-height,2.475],[-.825,0,1.62],[seat[0],0,1.15],seat]}

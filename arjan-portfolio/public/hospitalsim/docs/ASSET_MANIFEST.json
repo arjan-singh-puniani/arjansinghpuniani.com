@@ -3,6 +3,18 @@
   "created": "2026-10-28",
   "assets": [
     {
+      "file": "dist/assets/care-lod.glb",
+      "bytes": 492392,
+      "gzipBytes": 252557,
+      "sha256": "4c0d3c6198e92b3ebd54552b84df3f9eaa8c80cea82e506da13b5f3939a1c842",
+      "triangles": 16408,
+      "primitives": 8,
+      "animations": [],
+      "source": "blender/equipment_lod.py and equipment_lod.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0"
+    },
+    {
       "file": "dist/assets/care.glb",
       "bytes": 839080,
       "gzipBytes": 298971,
@@ -107,6 +119,18 @@
       "joints": 39
     },
     {
+      "file": "dist/assets/consult-lod.glb",
+      "bytes": 1171116,
+      "gzipBytes": 317384,
+      "sha256": "bbbc69a3dc29bf9abe6871ce38dd1a0cf257cd3ae58a24c20ac9e139ca343375",
+      "triangles": 23162,
+      "primitives": 10,
+      "animations": [],
+      "source": "blender/equipment_lod.py and equipment_lod.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0"
+    },
+    {
       "file": "dist/assets/consult.glb",
       "bytes": 1526196,
       "gzipBytes": 382488,
@@ -139,6 +163,18 @@
       "primitives": 1,
       "animations": [],
       "source": "blender/drape.py and drape.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "dist/assets/lobby.glb",
+      "bytes": 165152,
+      "gzipBytes": 33620,
+      "sha256": "167131297da7acf8e73ba9cd815b6ff85fded4fa4463ffc0df856bb353a7d0e5",
+      "triangles": 3420,
+      "primitives": 4,
+      "animations": [],
+      "source": "blender/lobby.py and lobby.blend",
       "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
       "license": "CC0-1.0"
     },
@@ -707,6 +743,18 @@
       "license": "CC0-1.0"
     },
     {
+      "file": "dist/assets/scan-lod.glb",
+      "bytes": 572428,
+      "gzipBytes": 236023,
+      "sha256": "c04f58abcd2f43b631de0c84417797ab95456dffb32a96ae8baf8990987c9ad1",
+      "triangles": 20360,
+      "primitives": 8,
+      "animations": [],
+      "source": "blender/equipment_lod.py and equipment_lod.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0"
+    },
+    {
       "file": "dist/assets/scan.glb",
       "bytes": 1222920,
       "gzipBytes": 351876,
@@ -717,6 +765,44 @@
       "source": "blender/hospital.py and hospital.blend",
       "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
       "license": "CC0-1.0"
+    },
+    {
+      "file": "dist/assets/service-props.glb",
+      "bytes": 44712,
+      "gzipBytes": 9824,
+      "sha256": "2582f229a9def66665b0d4a81f9b1491f6dcc9d6b62e899cc6e844677e588d81",
+      "triangles": 760,
+      "primitives": 3,
+      "animations": [],
+      "source": "blender/service_staff.py and service_staff.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "dist/assets/staff-assistant-lod.glb",
+      "bytes": 156380,
+      "gzipBytes": 61192,
+      "sha256": "ab1f61606a43967a90a5f45bb925fb5a4a85a54acbe9eb602aa4d091a3025b49",
+      "triangles": 3664,
+      "primitives": 1,
+      "animations": [],
+      "source": "blender/service_staff.py and service_staff.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
+    },
+    {
+      "file": "dist/assets/staff-assistant.glb",
+      "bytes": 483384,
+      "gzipBytes": 135346,
+      "sha256": "eecd563fc7d9cc5d5abb325a1305c27d1f38453991991df96f89408507466c23",
+      "triangles": 12644,
+      "primitives": 1,
+      "animations": [],
+      "source": "blender/service_staff.py and service_staff.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
     },
     {
       "file": "dist/assets/staff-doctor-lod.glb",
@@ -740,6 +826,32 @@
       "primitives": 1,
       "animations": [],
       "source": "blender/staff_roles.py and staff_roles.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
+    },
+    {
+      "file": "dist/assets/staff-facilities-lod.glb",
+      "bytes": 163932,
+      "gzipBytes": 63152,
+      "sha256": "c5474de3cdb50b101542f4696943779450f24df6e1a26ff18296b944a80b6e97",
+      "triangles": 3832,
+      "primitives": 1,
+      "animations": [],
+      "source": "blender/service_staff.py and service_staff.blend",
+      "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
+      "license": "CC0-1.0",
+      "joints": 39
+    },
+    {
+      "file": "dist/assets/staff-facilities.glb",
+      "bytes": 505852,
+      "gzipBytes": 139980,
+      "sha256": "9a3922fadd8cf5710bb31742f561aa9cbbd757867c02abd7756f27e9c39711b4",
+      "triangles": 13228,
+      "primitives": 1,
+      "animations": [],
+      "source": "blender/service_staff.py and service_staff.blend",
       "provenance": "Original geometry, materials and, where present, rig/animation; substantial AI assistance. No downloaded or ripped human/game assets.",
       "license": "CC0-1.0",
       "joints": 39

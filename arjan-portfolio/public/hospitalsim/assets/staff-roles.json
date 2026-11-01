@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "license": "CC0-1.0",
   "provenance": "Original procedural wardrobes; substantial OpenAI Codex assistance",
   "boneCount": 39,
@@ -65,6 +65,20 @@
       "base": "clinician",
       "high": "staff-reception.glb",
       "lod": "staff-reception-lod.glb"
+    },
+    {
+      "key": "assistant",
+      "label": "Medical assistant",
+      "base": "clinician",
+      "high": "staff-assistant.glb",
+      "lod": "staff-assistant-lod.glb"
+    },
+    {
+      "key": "facilities",
+      "label": "Facilities",
+      "base": "clinician",
+      "high": "staff-facilities.glb",
+      "lod": "staff-facilities-lod.glb"
     }
   ]
 }

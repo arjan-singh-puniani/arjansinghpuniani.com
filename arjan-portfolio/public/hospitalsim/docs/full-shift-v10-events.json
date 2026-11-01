@@ -1,0 +1,234 @@
+{
+  "model": "1.0.0-rc1",
+  "seed": 431,
+  "recordStart": 0,
+  "recordEnd": 480,
+  "actions": [
+    {
+      "at": 0,
+      "type": "pickup",
+      "kind": "staff",
+      "id": 7
+    },
+    {
+      "at": 0,
+      "type": "relocate",
+      "kind": "staff",
+      "id": 7,
+      "x": 4.75,
+      "y": 6.25
+    },
+    {
+      "at": 2,
+      "type": "build",
+      "room": {
+        "id": 10,
+        "type": "consult",
+        "x": 7,
+        "y": 3,
+        "rotation": 0,
+        "level": 1,
+        "staff": [
+          5
+        ],
+        "decor": [],
+        "paid": 900,
+        "builtAt": 2,
+        "readyAt": 0,
+        "spill": false
+      }
+    },
+    {
+      "at": 2,
+      "type": "policy",
+      "key": "hire",
+      "value": "surgeon"
+    },
+    {
+      "at": 2,
+      "type": "policy",
+      "key": "hire",
+      "value": "nurse"
+    },
+    {
+      "at": 2,
+      "type": "build",
+      "room": {
+        "id": 11,
+        "type": "care",
+        "x": 3,
+        "y": 0,
+        "rotation": 0,
+        "level": 1,
+        "staff": [
+          10,
+          11
+        ],
+        "decor": [],
+        "paid": 1100,
+        "builtAt": 2,
+        "readyAt": 0,
+        "spill": false
+      }
+    },
+    {
+      "at": 195,
+      "type": "event-choice",
+      "event": "paperwork",
+      "choice": "tray",
+      "cost": 200
+    },
+    {
+      "at": 198,
+      "type": "event-resolved",
+      "event": "paperwork",
+      "choice": "tray"
+    },
+    {
+      "at": 214,
+      "type": "dispatch-facilities",
+      "staffId": 9,
+      "roomId": 2
+    },
+    {
+      "at": 224,
+      "type": "build",
+      "room": {
+        "id": 12,
+        "type": "rest",
+        "x": 2,
+        "y": 5,
+        "rotation": 0,
+        "level": 1,
+        "staff": [],
+        "decor": [],
+        "paid": 0,
+        "builtAt": 224,
+        "readyAt": 0,
+        "spill": false
+      }
+    },
+    {
+      "at": 230,
+      "type": "equipment-restored",
+      "roomId": 2,
+      "staffId": 9
+    },
+    {
+      "at": 364,
+      "type": "upgrade",
+      "id": 2,
+      "level": 2
+    }
+  ],
+  "tracked": 1001,
+  "events": [
+    "00:00 Waiting for a neighbor with the optional imaging pathway",
+    "00:19 Arriving · Consultation",
+    "00:20 Walking through the entrance · Consultation",
+    "00:22 Waiting · Consultation",
+    "00:23 Walking to reception · Consultation",
+    "00:25 Checking in at reception · Consultation",
+    "00:32 Waiting · Consultation",
+    "00:33 Walking · Consultation",
+    "00:39 Entering service room · Consultation",
+    "00:42 Receiving service · Consultation",
+    "00:53 Leaving service room · Consultation",
+    "00:56 Communicating next step · Imaging",
+    "01:00 Waiting · Imaging",
+    "01:01 Walking · Imaging",
+    "01:11 Entering service room · Imaging",
+    "01:14 Getting onto equipment · Imaging",
+    "01:17 Receiving service · Imaging",
+    "01:35 Getting off equipment · Imaging",
+    "01:38 Leaving service room · Imaging",
+    "01:41 Communicating next step · Procedure & care",
+    "01:45 Waiting · Procedure & care",
+    "01:46 Walking · Procedure & care",
+    "01:49 Entering service room · Procedure & care",
+    "01:52 Getting onto equipment · Procedure & care",
+    "01:55 Receiving service · Procedure & care",
+    "02:10 Clinician clearing the drape · Procedure & care",
+    "02:11 Getting off equipment · Procedure & care",
+    "02:14 Leaving service room · Procedure & care",
+    "02:17 A moment to recover before going home · Procedure & care",
+    "02:20 Heading home · exit",
+    "02:30 Walking through the exit · Procedure & care",
+    "02:32 Completed · discharged"
+  ],
+  "visit": {
+    "id": 1001,
+    "name": "Eli",
+    "x": 7,
+    "y": 7,
+    "stage": "care",
+    "target": null,
+    "room": null,
+    "urgent": false,
+    "barrier": false,
+    "imaging": true,
+    "returning": false,
+    "goal": "Find the answer without opening the appendix to the appendix",
+    "caseId": "binder",
+    "intakeDone": true,
+    "checkin": 7,
+    "recovery": 3,
+    "wait": 5,
+    "walking": 53,
+    "service": 44,
+    "handoff": 8,
+    "transfer": 13,
+    "yielding": 0,
+    "elapsedOffset": 0,
+    "arrival": 19,
+    "progress": 2,
+    "navDelay": 0,
+    "history": [
+      {
+        "stage": "consult",
+        "at": 42,
+        "room": 10,
+        "duration": 10.714285714285714
+      },
+      {
+        "stage": "scan",
+        "at": 77,
+        "room": 2,
+        "duration": 17.043714285714287
+      },
+      {
+        "stage": "care",
+        "at": 115,
+        "room": 11,
+        "duration": 14.467891483516482
+      }
+    ],
+    "outside": false,
+    "stalled": 0,
+    "moved": false,
+    "motion": null,
+    "teamWaiting": false,
+    "equipmentWaiting": false,
+    "destination": {
+      "x": 7,
+      "y": 7
+    },
+    "previous": {
+      "x": 7,
+      "y": 6
+    },
+    "intakeWaiting": false,
+    "intakeHelper": 8,
+    "duration": 14.467891483516482,
+    "handoffReady": false,
+    "recovered": true,
+    "outcome": "completed",
+    "total": 133
+  },
+  "counts": {
+    "arrivals": 27,
+    "completed": 13,
+    "departed": 5,
+    "unfinished": 9
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "blender_version": "4.0.2",
+  "license": "CC0-1.0",
+  "provenance": "Original procedural geometry; substantial OpenAI Codex assistance",
+  "bytes": 165152,
+  "sha256": "167131297da7acf8e73ba9cd815b6ff85fded4fa4463ffc0df856bb353a7d0e5",
+  "front_browser": "+Z",
+  "nodes": {
+    "WaitingBench": {
+      "min_browser": [
+        -1,
+        0,
+        -0.32499998807907104
+      ],
+      "max_browser": [
+        1,
+        0.9194514155387878,
+        0.32499998807907104
+      ],
+      "triangles": 1744,
+      "primitives": 1
+    },
+    "PaperAccordion": {
+      "min_browser": [
+        -0.14000000059604645,
+        0,
+        -0.05000000074505806
+      ],
+      "max_browser": [
+        0.14000000059604645,
+        0.11999999731779099,
+        0.05000000074505806
+      ],
+      "triangles": 172,
+      "primitives": 1
+    },
+    "IntakeTray": {
+      "min_browser": [
+        -0.10999999940395355,
+        0,
+        -0.14000000059604645
+      ],
+      "max_browser": [
+        0.10999999940395355,
+        0.05999999865889549,
+        0.14000000059604645
+      ],
+      "triangles": 444,
+      "primitives": 1
+    },
+    "ReceptionCounter": {
+      "min_browser": [
+        -0.5,
+        0,
+        -0.23999999463558197
+      ],
+      "max_browser": [
+        0.5,
+        0.9649999737739563,
+        0.23999999463558197
+      ],
+      "triangles": 1060,
+      "primitives": 1
+    }
+  },
+  "triangles": 3420,
+  "bench_seat_height_metres": 0.45,
+  "counter_writing_top_height_metres": 0.75,
+  "bench_seat_centers_browser": [
+    [
+      -0.64,
+      0.45,
+      0.055
+    ],
+    [
+      0,
+      0.45,
+      0.055
+    ],
+    [
+      0.64,
+      0.45,
+      0.055
+    ]
+  ]
+}
