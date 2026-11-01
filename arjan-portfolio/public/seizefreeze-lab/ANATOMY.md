@@ -53,3 +53,8 @@ The enlarged device inset uses a second camera on the same component state and e
 Materials, neutral surface colors, studio lights and device contact shadows are illustrative rendering choices. They do not depict measured tissue temperature, a diagnostic finding or a medical image. Only the assumed contact tint in the thermal laboratory follows the simulated temperature; no lateral field is calculated. Camera transitions are initiated by visitors and become immediate with reduced motion.
 
 On a detected software renderer, the application starts with the static reference image. Explicitly requested software 3D uses a 0.75 pixel-ratio cap and omits translucent full-head envelopes once opened; the intact Head view and local peel flaps remain available. This is a graphics adaptation, not a change to the thermal solver or reference target.
+
+
+## Inspection presentation update
+
+Device inspection uses a separate lighting/camera frame. Contact and sensing close-ups retain the exact local reference cortical triangles; other component close-ups isolate the device component against a neutral display background. The source GLB, vertices, triangle indices, anatomical labels and chosen target pose are retained. Coincident cortical display normals are averaged in compatible 60-degree clusters to reduce lighting seams. This is a shading treatment, not an anatomical reconstruction, new segmented tissue or a change to the thermal domain. Head coverings, cranial window and pial proxy remain explanatory geometry with the same limitations described above.

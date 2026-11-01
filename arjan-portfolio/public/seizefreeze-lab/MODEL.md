@@ -151,3 +151,20 @@ See [DEVICE.md](DEVICE.md) for construction evidence and assumptions. Reproduce 
     SEIZEFREEZE_BASE_URL=http://127.0.0.1:3217 node tools/seizefreeze/device-qa.mjs
 
 The geometry check clips every intersecting source triangle to the rigid footprint rather than sampling only triangle vertices. An independent edge/rectangle intersection implementation verifies the reference maximum. A 0.3 mm raw-cortex display clearance and an expanded footprint margin accommodate the illustrated pia proxy; this is not an acceptable implant gap or clinical pressure specification.
+
+
+## Interactive resistance comparison
+
+The Inspect the model disclosure runs three complete deterministic simulations with one user-input resistance multiplied by 0.25, 1 or 4. Available axes are the contact resistance and hot-side rejection resistance. Inputs remain within the existing solver bounds (contact 0.1–100 K/W; rejection 0.5–200 K/W); range-limited comparisons show the actual effective value. Scenario multipliers are then applied once by the existing solver. The central run reproduces the active input trajectory exactly.
+
+All three runs retain the same synthetic electrical signal, event detector, controller gain, current limit, initial condition and remaining physical assumptions. Their currents can differ because each closed loop responds to its own temperature trajectory. This is an assumption sensitivity study, not a probability distribution, experimental uncertainty band, validated operating envelope or prediction of clinical effect.
+
+The plots use the same 20 Hz output frames as the exported CSV. Table temperature extrema are calculated from those output frames: the hot-side node and specifically the first tissue cell center (0.25 mm depth at the default resolution). They are not labeled with the minimum across all tissue depths. Cumulative TEC energy is integrated at the solver time step and excludes electronics overhead. Temperature extrema between displayed samples can differ slightly; numerical refinement and physical validation are separate questions.
+
+CSV columns identify status, selected axis, effective resistance in K/W, time in seconds, superficial cell/cold plate/hot-side temperatures in °C, current in A, TEC input in W, cumulative TEC energy in J, and whole-system residual in J. Rows also include scenario, actual current limit, initial temperature, duration, integration step, cell size and both pre-scenario resistance inputs, so the varying runs can be reproduced without guessing active controls. All rows are labeled simulated assumptions. The fixed physical coefficients remain defined above. The download is generated locally and contains no patient information.
+
+Reproduce:
+
+    node tools/seizefreeze/sensitivity-check.mjs
+
+At the default 120 s event scenario, varying rejection resistance from 2 to 8 to 32 K/W gives hot-node peaks near 37.471, 37.664 and 37.977 °C. Varying contact resistance from 1 to 4 to 16 K/W raises TEC electrical energy from approximately 0.774 to 0.873 to 1.245 J, while the superficial-cell minima remain near 34.8–34.9 °C. These are outputs of these assumptions and this controller; they do not establish cooling performance or tissue tolerability. The interface geometry does not supply a calibrated value of either resistance.

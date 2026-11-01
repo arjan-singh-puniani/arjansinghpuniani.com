@@ -28,21 +28,9 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
   renderer.shadowMap.type = T.PCFSoftShadowMap;
   renderer.shadowMap.autoUpdate = false;
   renderer.shadowMap.needsUpdate = true;
-  const controls = new OrbitControls(camera, canvas);
-  controls.enableZoom = true;
-  controls.minDistance = 16;
-  controls.maxDistance = 650;
-  controls.zoomSpeed = 0.55;
-  controls.enablePan = false;
-  controls.enableDamping = false;
-  controls.minPolarAngle = 0.15;
-  controls.maxPolarAngle = 2.8;
-  controls.touches.ONE = T.TOUCH.ROTATE;
-  controls.touches.TWO = T.TOUCH.DOLLY_ROTATE;
-  // OrbitControls normally disables document touch scrolling. Restore vertical pan.
-  canvas.style.touchAction = "pan-y";
+  let controls;
   scene.add(new T.HemisphereLight(0xb9cfde, 0x111820, 0.64));
-  const key = new T.DirectionalLight(0xffeddb, 2.55);
+  const key = new T.DirectionalLight(0xffeddb, 2.05);
   key.position.set(-190, 240, 150);
   key.castShadow = !softwareRenderer;
   key.shadow.mapSize.set(2048, 2048);
@@ -103,10 +91,21 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
   const device = createDevice(T, mats, fit), { root, groups } = device;
   scene.add(root);
   const ids = componentIds, allPickable = device.pickable, highlights = [];
+  const inspectionStage = new T.Group(); scene.add(inspectionStage);
+  const stageFloor = new T.Mesh(new T.PlaneGeometry(180, 180), material(0x040d13, .22, .78));
+  stageFloor.rotation.x = -Math.PI / 2; stageFloor.position.y = -9.5; stageFloor.receiveShadow = true; inspectionStage.add(stageFloor);
+  inspectionStage.visible = false;
+  const inspectionKey = new T.DirectionalLight(0xe4edf3, 1.8), inspectionFill = new T.DirectionalLight(0x8cbdcf, .8);
+  inspectionKey.castShadow=!softwareRenderer;inspectionKey.shadow.mapSize.set(1024,1024);inspectionKey.shadow.normalBias=.025;inspectionKey.shadow.radius=3;
+  Object.assign(inspectionKey.shadow.camera,{left:-30,right:30,top:30,bottom:-30,near:.1,far:140});
+  scene.add(inspectionKey, inspectionKey.target, inspectionFill, inspectionFill.target);
   const seated = Object.fromEntries(ids.map(id => [id, 0])), offsets = explodedOffsets;
   const mount = anatomy.target.clone().addScaledVector(anatomy.normal, fit.datum);
   root.position.copy(mount);
   root.quaternion.setFromRotationMatrix(new T.Matrix4().makeBasis(anatomy.u, anatomy.normal, anatomy.v.clone().negate()));
+  inspectionStage.position.copy(root.position); inspectionStage.quaternion.copy(root.quaternion);
+  inspectionKey.position.copy(mount).addScaledVector(anatomy.normal, 40).addScaledVector(anatomy.u, -30).addScaledVector(anatomy.v, 25); inspectionKey.target.position.copy(mount);
+  inspectionFill.position.copy(mount).addScaledVector(anatomy.normal, 15).addScaledVector(anatomy.u, 35).addScaledVector(anatomy.v, -20); inspectionFill.target.position.copy(mount);
   let peelValue = 0.86;
   anatomy.peel(peelValue);
   anatomy.setContext?.("region");
@@ -124,7 +123,26 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
   const labelInfo = { ...anchors, ...device.anchors };
   const connections = new T.Group(); root.add(connections);
   let selected = null, exploded = false, currentView = "region", disposed = false, visible = true, active = true, frames = 0, raf = 0, renderMilliseconds = [];
-  let transition = null, lensRect = null, lensOuterRect = null, showDimensions = false, lastRenderTime = 0, slowFrames = 0;
+  let transition = null, lensRect = null, lensOuterRect = null, showDimensions = false, focusId = null, lastRenderTime = 0, slowFrames = 0;
+  function configureControls(){
+    const previousTarget=controls?.target.clone();controls?.dispose();
+    controls = new OrbitControls(camera, canvas);
+    controls.enableZoom = true;
+    controls.minDistance = 16;
+    controls.maxDistance = 650;
+    controls.zoomSpeed = 0.55;
+    controls.enablePan = false;
+    controls.enableDamping = false;
+    controls.minPolarAngle = 0.15;
+    controls.maxPolarAngle = 2.8;
+    controls.touches.ONE = T.TOUCH.ROTATE;
+    controls.touches.TWO = T.TOUCH.DOLLY_ROTATE;
+    // OrbitControls normally disables document touch scrolling. Restore vertical pan.
+    canvas.style.touchAction = "pan-y";
+    if(previousTarget)controls.target.copy(previousTarget);
+    controls.addEventListener("change",render);controls.addEventListener("start",()=>{transition=null;});
+  }
+  configureControls();
   const projectionOffset = new T.Vector2(), reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const clearColor = new T.Color(), lensCoverings = ["scalp", "skull", "dura", "arachnoid", "csf"];
   function lensElement() { return host.querySelector("#device-lens"); }
@@ -180,6 +198,8 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
   }
   function labels() {
     const w = host.clientWidth, h = host.clientHeight;
+    const inspector = document.querySelector('.inspector')?.getBoundingClientRect(), hostBounds = host.getBoundingClientRect();
+    const fieldRight = w > 760 && inspector ? inspector.left - hostBounds.left - 24 : w;
     labelSvg.setAttribute("viewBox", `0 0 ${w} ${h}`);
     const placement = currentView === "head" || currentView === "region";
     const shown = selected ? [selected] : exploded ? ["package", "tec"] : ["package"];
@@ -205,23 +225,32 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
     entries.forEach((p, i) => {
       const mobile = w < 560;
       const label = mobile && p.label === "LEFT SUPERIOR TEMPORAL GYRUS" ? "LEFT STG · EXAMPLE TARGET" : mobile && p.label.startsWith("SEIZEFREEZE") ? "10 MM CONTACT" : p.label;
-      const textWidth = Math.max(110, label.length * 6.8);
-      const tx = p.side < 0 ? (mobile ? 18 : 32) : w - textWidth - (mobile ? 18 : 32);
-      let ty = Math.max(mobile ? 250 : 180, Math.min(h - (mobile ? 190 : 145), p.y - 32));
+      const textWidth = Math.max(110, label.length * 6.2);
+      const tx = p.side < 0 ? (mobile ? 18 : 28) : Math.max(18, fieldRight - textWidth - 20);
+      let ty = Math.max(mobile ? 285 : 235, Math.min(h - (mobile ? 190 : 145), p.y - 32));
       if (entries.length > 1 && mobile) ty = [Math.max(270, p.y - 30), h * .57][i];
       const edgeX = p.side < 0 ? tx + textWidth : tx;
       const path = document.createElementNS(ns, "path"); path.setAttribute("d", `M ${p.x.toFixed(1)} ${p.y.toFixed(1)} L ${edgeX} ${ty + 8} L ${tx} ${ty + 8}`);
       path.setAttribute("fill", "none"); path.setAttribute("stroke", p.color); path.setAttribute("stroke-width", ".7"); path.setAttribute("opacity", ".6");
       const dot = document.createElementNS(ns, "circle"); dot.setAttribute("cx", p.x); dot.setAttribute("cy", p.y); dot.setAttribute("r", "2.2"); dot.setAttribute("fill", p.color);
       const text = document.createElementNS(ns, "text"); text.setAttribute("x", tx); text.setAttribute("y", ty); text.setAttribute("fill", p.color); text.setAttribute("font-family", "monospace"); text.setAttribute("font-size", "11"); text.setAttribute("letter-spacing", ".6");
-      text.setAttribute("stroke", "#0b1117"); text.setAttribute("stroke-width", "3"); text.setAttribute("paint-order", "stroke"); text.textContent = label;
-      labelSvg.append(path, dot, text);
+      text.setAttribute("font-size", "10.5"); text.setAttribute("letter-spacing", ".3"); text.textContent = label;
+      const backing = document.createElementNS(ns, "rect"); backing.setAttribute("x", tx-8); backing.setAttribute("y", ty-15); backing.setAttribute("width", textWidth+16); backing.setAttribute("height", 23); backing.setAttribute("rx", "3"); backing.setAttribute("fill", "#09151f"); backing.setAttribute("fill-opacity", ".92"); backing.setAttribute("stroke", "#304955"); backing.setAttribute("stroke-width", ".6");
+      labelSvg.append(path, dot, backing, text);
     });
   }
   function dimensions() {
     if (!showDimensions || !["system", "interface"].includes(currentView)) return;
     const w = host.clientWidth, h = host.clientHeight;
-    const guides = [
+    const componentWidths={interface:10,coldplate:10.4,tec:8.8,heatpath:10.4,electronics:10.6,package:12};
+    let guides;
+    if(focusId==='sensing'){
+      const [a,b]=device.info.sampledPads,span=new T.Vector3(...a).distanceTo(new T.Vector3(...b));
+      guides=[{id:'sensing',a,b,text:`${span.toFixed(1)} mm pad-centre span · assumed`}];
+    }else if(focusId){
+      const width=componentWidths[focusId],heights={interface:0,coldplate:.25,tec:1.29,heatpath:1.57,electronics:2.34,package:2.95};
+      guides=[{id:focusId,a:[-width/2,heights[focusId]+.2,-width/2-.5],b:[width/2,heights[focusId]+.2,-width/2-.5],text:`${width} mm ${ {interface:'projection',coldplate:'spreader',tec:'ceramic face',heatpath:'spreader',electronics:'PCB',package:'housing'}[focusId] } · assumed`}];
+    }else guides=[
       { id: "interface", a: [-5, 0, 5.4], b: [5, 0, 5.4], text: "10 mm contact · assumed" },
       { id: "package", a: [-6, 3.25, -6.4], b: [6, 3.25, -6.4], text: "12 mm housing · assumed" },
     ];
@@ -233,8 +262,9 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
       line.setAttribute("d", `M ${a.x} ${a.y} L ${b.x} ${b.y} M ${a.x} ${a.y-4} v 8 M ${b.x} ${b.y-4} v 8`);
       line.setAttribute("fill", "none"); line.setAttribute("stroke", "#c4d1d8"); line.setAttribute("stroke-width", ".8");
       const text = document.createElementNS(ns, "text"); text.setAttribute("x", Math.max(100, Math.min(w-100,(a.x+b.x)/2))); text.setAttribute("y", Math.max(20,Math.min(h-20,(a.y+b.y)/2-10)));
-      text.setAttribute("text-anchor", "middle"); text.setAttribute("font-family", "monospace"); text.setAttribute("font-size", "10"); text.setAttribute("fill", "#d0dbe1"); text.setAttribute("stroke", "#0b1117"); text.setAttribute("stroke-width", "3"); text.setAttribute("paint-order", "stroke"); text.textContent=guide.text;
-      labelSvg.append(line,text);
+      text.setAttribute("text-anchor", "middle"); text.setAttribute("font-family", "monospace"); text.setAttribute("font-size", "10"); text.setAttribute("fill", "#d0dbe1"); text.textContent=guide.text;
+      const backing=document.createElementNS(ns,"rect"), width=guide.text.length*6+14;backing.setAttribute("x",Number(text.getAttribute("x"))-width/2);backing.setAttribute("y",Number(text.getAttribute("y"))-12);backing.setAttribute("width",width);backing.setAttribute("height",18);backing.setAttribute("rx",3);backing.setAttribute("fill","#09151f");backing.setAttribute("fill-opacity",".92");
+      labelSvg.append(line,backing,text);
     }
   }
   function applyProjection() {
@@ -256,10 +286,17 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
       applyProjection(); camera.lookAt(controls.target); controls.update();
       if (progress >= 1) transition = null;
     }
-    highlights.forEach(edge => { edge.visible = edge.userData.source.visible; });
+    highlights.forEach(edge => { edge.visible = edge.userData.source.visible && !focusId; });
     updateLens();
     renderer.info.reset(); renderer.setScissorTest(false); renderer.setViewport(0, 0, host.clientWidth, host.clientHeight);
     renderer.autoClear = true; camera.updateMatrixWorld();
+    const inspection = currentView === "system", showContact = inspection && ["interface", "sensing"].includes(focusId);
+    anatomy.group.visible = !inspection || showContact;
+    anatomy.layers.cortex.visible = !inspection;
+    anatomy.detail.visible = showContact;
+    inspectionStage.visible = inspection && !showContact && !focusId;
+    if(inspection)scene.environmentRotation.setFromQuaternion(root.quaternion);else scene.environmentRotation.set(0,0,0);
+    inspectionKey.visible = inspectionFill.visible = inspection; key.visible=!inspection;
     const coverVisibility = lensCoverings.map(id => anatomy.layers[id].visible);
     if (openingOverview()) lensCoverings.forEach(id => anatomy.layers[id].visible = false);
     try { renderer.render(scene, camera); } finally { lensCoverings.forEach((id, i) => anatomy.layers[id].visible = coverVisibility[i]); }
@@ -295,12 +332,38 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
       goalTarget.set(-8, 0, 0);
       goalPosition.copy(goalTarget).add(new T.Vector3(-.87, .19, .46).normalize().multiplyScalar(narrow ? 585 : 325));
       goalOffset.set(narrow ? .12 : .15, narrow ? -.03 : .05);
+    } else if (currentView === "system") {
+      scene.updateMatrixWorld(true);
+      const points=[];
+      (focusId?groups[focusId]:root).traverse(object=>{
+        if(!object.isMesh)return;
+        for(let parent=object;parent&&parent!==root.parent;parent=parent.parent)if(!parent.visible)return;
+        if(!object.geometry.boundingBox)object.geometry.computeBoundingBox();const b=object.geometry.boundingBox;
+        for(const x of [b.min.x,b.max.x])for(const y of [b.min.y,b.max.y])for(const z of [b.min.z,b.max.z])points.push(new T.Vector3(x,y,z).applyMatrix4(object.matrixWorld));
+      });
+      const bounds = new T.Box3().setFromPoints(points);
+      goalTarget.copy(bounds.getCenter(new T.Vector3()));
+      const direction = new T.Vector3(.65, .82, -1).normalize().applyQuaternion(root.quaternion);
+      const up = new T.Vector3(0, 1, 0).applyQuaternion(root.quaternion), right = new T.Vector3().crossVectors(up,direction).normalize(), vertical = new T.Vector3().crossVectors(direction,right).normalize();
+      const inspector = document.querySelector('.inspector')?.getBoundingClientRect(), stage = host.getBoundingClientRect();
+      const fieldWidth = host.clientWidth > 760 && inspector ? inspector.left-stage.left-28 : host.clientWidth;
+      const top = host.clientWidth > 760 ? 235 : 285, bottom = Math.max(top+180,host.clientHeight-(host.clientWidth>760?260:225));
+      const usableWidth = fieldWidth-(host.clientWidth>760?140:40), usableHeight=bottom-top, tangent=Math.tan(T.MathUtils.degToRad(camera.fov/2));
+      let distance=12;
+      for(const point of points){
+        const p=point.clone().sub(goalTarget),depth=p.dot(direction);
+        distance=Math.max(distance,depth+Math.abs(p.dot(vertical))/(tangent*usableHeight/host.clientHeight),depth+Math.abs(p.dot(right))/(tangent*aspect*usableWidth/host.clientWidth));
+      }
+      goalPosition.copy(goalTarget).addScaledVector(direction,distance*1.06);
+      goalOffset.set((host.clientWidth/2-fieldWidth*.52)/host.clientWidth,(host.clientHeight/2-(top+bottom)/2)/host.clientHeight);
     } else {
       goalTarget.copy(mount).addScaledVector(anatomy.normal, exploded ? 8 : 1);
-      const direction = anatomy.normal.clone().multiplyScalar(currentView === "system" ? .52 : .85).addScaledVector(anatomy.v, currentView === "system" ? .82 : .45).addScaledVector(anatomy.u, .36).normalize();
-      goalPosition.copy(goalTarget).addScaledVector(direction, (exploded ? 76 : 43) * (narrow ? 1.45 : 1));
-      goalOffset.set(narrow ? .02 : .12, narrow ? .05 : .09);
+      const direction = anatomy.normal.clone().multiplyScalar(.85).addScaledVector(anatomy.v,.45).addScaledVector(anatomy.u,.36).normalize();
+      goalPosition.copy(goalTarget).addScaledVector(direction,(exploded?76:43)*(narrow?1.45:1));
+      goalOffset.set(narrow?.02:.12,narrow?.05:.09);
     }
+    const desiredUp=currentView === "system" ? anatomy.normal : new T.Vector3(0,1,0);
+    if(!camera.up.equals(desiredUp)){camera.up.copy(desiredUp);configureControls();}
     if (animate && !reducedMotion.matches && active) transition = { start: performance.now(), fromPosition: camera.position.clone(), fromTarget: controls.target.clone(), fromOffset: projectionOffset.clone(), toPosition: goalPosition, toTarget: goalTarget, toOffset: goalOffset };
     else { transition = null; camera.position.copy(goalPosition); controls.target.copy(goalTarget); projectionOffset.copy(goalOffset); applyProjection(); camera.lookAt(controls.target); controls.update(); }
     render();
@@ -319,13 +382,14 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
     if (selected) {
       groups[selected].traverse(o => {
         if (!o.isMesh || o.isInstancedMesh || !o.visible || o.parent !== groups[selected]) return;
-        const edge = new T.LineSegments(new T.EdgesGeometry(o.geometry, 35), new T.LineBasicMaterial({ color: labelInfo[selected].color, transparent: true, opacity: 0.6 }));
+        const edge = new T.LineSegments(new T.EdgesGeometry(o.geometry, 35), new T.LineBasicMaterial({ color: labelInfo[selected].color, transparent: true, opacity: 0.18 }));
         edge.position.copy(o.position); edge.rotation.copy(o.rotation); edge.scale.copy(o.scale); edge.userData.source=o; highlights.push(edge);
       });
       highlights.forEach(h => groups[selected].add(h));
     }
-    rebuildConnections(); render();
+    rebuildConnections(); if(focusId)frameCamera(); else render();
   }
+  function focus(id) { focusId=ids.includes(id)?id:null;ids.forEach(key=>groups[key].visible=!focusId||key===focusId);connections.visible=!focusId;renderer.shadowMap.needsUpdate=true;frameCamera(); }
   const hotColor = new T.Color(0xc1a075), amber = new T.Color(0xd39c63);
   function update(frame = {}) {
     const temperature = Array.isArray(frame.tissue) ? frame.tissue[0] : 37;
@@ -354,7 +418,7 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
     raycaster.setFromCamera(pointer, isLens ? lensCamera : camera);
     const hits = raycaster.intersectObjects(isLens ? allPickable : [...allPickable, ...anatomy.group.children], true);
     const hit = hits.find(h => {
-      if (!(h.object.material?.opacity > 0.15)) return false;
+      if (!(h.object.material?.opacity > 0.15) && h.object.userData.component !== "interface") return false;
       if (!isLens && openingOverview() && lensCoverings.includes(h.object.userData.anatomyLayer)) return false;
       for (let object = h.object; object; object = object.parent) if (!object.visible) return false;
       return true;
@@ -376,7 +440,7 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
       event.preventDefault();
       transition = null;
       const offset = camera.position.clone().sub(controls.target);
-      if (event.key.startsWith("Arrow")) offset.applyAxisAngle(new T.Vector3(0, 1, 0), event.key === "ArrowLeft" ? -0.16 : 0.16);
+      if (event.key.startsWith("Arrow")) offset.applyAxisAngle(currentView === "system" ? anatomy.normal : new T.Vector3(0, 1, 0), event.key === "ArrowLeft" ? -0.16 : 0.16);
       else offset.multiplyScalar(event.key === "+" || event.key === "=" ? 0.9 : 1.1);
       offset.clampLength(16, 650); camera.position.copy(controls.target).add(offset); controls.update(); render();
     }
@@ -385,24 +449,22 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
   canvas.addEventListener("pointerdown", pointerDown, true); canvas.addEventListener("pointerup", pointerUp); canvas.addEventListener("pointercancel", pointerCancel);
   const contextLost = event => { event.preventDefault(); host.dispatchEvent(new CustomEvent("seizefreeze-context-lost", { bubbles: true })); };
   canvas.addEventListener("webglcontextlost", contextLost);
-  controls.addEventListener("change", render);
-  const cancelTransition = () => { transition = null; };
-  controls.addEventListener("start", cancelTransition);
   const resizeObserver = new ResizeObserver(resize); resizeObserver.observe(host);
   const intersectionObserver = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; if (visible) render(); }, { threshold: 0.01 }); intersectionObserver.observe(host);
   update(); explode(false); resize();
   return {
-    select, explode, render,
+    select, explode, render, focus,
     cutaway(value) { device.cutaway(value); renderer.shadowMap.needsUpdate = true; render(); },
     circuit(value) { device.circuit(value); render(); },
     dimensions(value) { showDimensions = Boolean(value); render(); },
     setActive(value) { active = Boolean(value); if (active) render(); else { transition = null; cancelAnimationFrame(raf); raf = 0; if (lensElement()) lensElement().hidden = true; } },
     seat(id) { if (!ids.includes(id)) return; groups[id].position.y = 0; renderer.shadowMap.needsUpdate = true; rebuildConnections(); render(); },
-    rotate(delta) { transition = null; const offset = camera.position.clone().sub(controls.target); offset.applyAxisAngle(new T.Vector3(0, 1, 0), delta); camera.position.copy(controls.target).add(offset); camera.lookAt(controls.target); controls.update(); render(); },
+    rotate(delta) { transition = null; const offset = camera.position.clone().sub(controls.target); offset.applyAxisAngle(currentView === "system" ? anatomy.normal : new T.Vector3(0, 1, 0), delta); camera.position.copy(controls.target).add(offset); camera.lookAt(controls.target); controls.update(); render(); },
     peel(value) { peelValue = T.MathUtils.clamp(value, 0, 1); anatomy.peel(peelValue); renderer.shadowMap.needsUpdate = true; render(); },
     reset() { currentView = "region"; anatomy.setContext?.("region"); select(null); explode(false); peelValue = 0.86; anatomy.peel(peelValue); frameCamera(); },
     overview() { currentView = "region"; anatomy.setContext?.("region"); select(null); explode(false); frameCamera(); },
     view(name) {
+      focusId=null;ids.forEach(id=>groups[id].visible=true);connections.visible=true;
       currentView = ["head", "region", "interface", "system"].includes(name) ? name : "region";
       select(null);
       anatomy.setContext?.(currentView);
@@ -412,13 +474,13 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
       frameCamera();
     },
     update,
-    stats() { return { adapter, softwareRenderer, frames, calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, geometries: renderer.info.memory.geometries, textures: renderer.info.memory.textures, pixelRatio: renderer.getPixelRatio(), quality: "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75", renderCpuMsMean: renderMilliseconds.length ? renderMilliseconds.reduce((a, b) => a + b, 0) / renderMilliseconds.length : 0, rendering: "on demand; no idle animation", active, openingOverview: openingOverview(), cameraTransition: Boolean(transition), shadowMap: renderer.shadowMap.enabled ? "2048px cached directional PCF" : "disabled on software renderer", selected, exploded, componentOffsets: Object.fromEntries(ids.map(id => [id, groups[id].position.y])), cameraPosition: camera.position.toArray(), view: currentView, peel: peelValue, target: anatomy.target.toArray(), mountPoint: root.position.toArray(), contactSpanMm: [10, 10], device: { units: "mm", scale: root.scale.toArray(), datum: fit.datum, rigidClearanceMm: fit.minimumRigidClearance, contactThicknessRangeMm: fit.contactThicknessRange, geometry: device.info, status: deviceSpec.status, reservoir: "Finite resistance to assumed 37 °C reservoir; chronic route unresolved" }, normal: anatomy.normal.toArray(), anatomy: anatomy.info, lens: { visible: Boolean(lensRect && active), rect: lensRect, outerRect: lensOuterRect, cameraPosition: lensCamera.position.toArray(), packagePixel: lensPackagePixel(), coordinates: "host-local CSS pixels; viewport = host bounding rect + these coordinates", geometry: "same device state; exact local atlas triangles; no screen capture or enlarged physical implant" } }; },
+    stats() { return { adapter, softwareRenderer, frames, calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, geometries: renderer.info.memory.geometries, textures: renderer.info.memory.textures, pixelRatio: renderer.getPixelRatio(), quality: "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75", renderCpuMsMean: renderMilliseconds.length ? renderMilliseconds.reduce((a, b) => a + b, 0) / renderMilliseconds.length : 0, rendering: "on demand; no idle animation", active, openingOverview: openingOverview(), cameraTransition: Boolean(transition), shadowMap: renderer.shadowMap.enabled ? (currentView==="system"?"1024px cached device-frame PCF":"2048px cached anatomy-frame PCF") : "disabled on software renderer", selected, exploded, focus: focusId, inspectionStage: currentView === "system", componentOffsets: Object.fromEntries(ids.map(id => [id, groups[id].position.y])), cameraPosition: camera.position.toArray(), cameraTarget: controls.target.toArray(), cameraUp: camera.up.toArray(), view: currentView, peel: peelValue, target: anatomy.target.toArray(), mountPoint: root.position.toArray(), contactSpanMm: [10, 10], device: { units: "mm", scale: root.scale.toArray(), datum: fit.datum, rigidClearanceMm: fit.minimumRigidClearance, contactThicknessRangeMm: fit.contactThicknessRange, geometry: device.info, status: deviceSpec.status, reservoir: "Finite resistance to assumed 37 °C reservoir; chronic route unresolved" }, normal: anatomy.normal.toArray(), anatomy: anatomy.info, lens: { visible: Boolean(lensRect && active), rect: lensRect, outerRect: lensOuterRect, cameraPosition: lensCamera.position.toArray(), packagePixel: lensPackagePixel(), coordinates: "host-local CSS pixels; viewport = host bounding rect + these coordinates", geometry: "same device state; exact local atlas triangles; no screen capture or enlarged physical implant" } }; },
     dispose() {
       disposed = true; cancelAnimationFrame(raf); resizeObserver.disconnect(); intersectionObserver.disconnect(); controls.dispose();
       canvas.removeEventListener("keydown", keyboardView); canvas.removeEventListener("pointerdown", pointerDown, true); canvas.removeEventListener("pointerup", pointerUp); canvas.removeEventListener("pointercancel", pointerCancel); canvas.removeEventListener("webglcontextlost", contextLost);
       anatomy.dispose();
       const geometries = new Set(), materials = new Set(); scene.traverse(o => { if (o.geometry) geometries.add(o.geometry); if (o.material) materials.add(o.material); });
-      geometries.forEach(g => g.dispose()); materials.forEach(m => m.dispose()); grain.dispose(); device.dispose?.(); environment?.dispose(); key.shadow.map?.dispose(); renderer.dispose(); canvas.remove(); labelLayer.remove(); title.remove();
+      geometries.forEach(g => g.dispose()); materials.forEach(m => m.dispose()); grain.dispose(); device.dispose?.(); environment?.dispose(); key.shadow.map?.dispose(); inspectionKey.shadow.map?.dispose(); renderer.dispose(); canvas.remove(); labelLayer.remove(); title.remove();
     },
   };
 }

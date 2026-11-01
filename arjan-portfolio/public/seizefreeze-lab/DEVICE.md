@@ -58,3 +58,12 @@ The revised rigid footprint is checked against all 315,514 source cortical trian
 At 0.5 mm sampling, the unresolved datum-to-cortex gap spans approximately 1.11–8.03 mm between reference cortex and flat spreader. The displayed contact envelope uses a separate 24 × 24 grid and a 0.20 mm display offset above the raw source cortex; its displayed thickness range is therefore different. Neither range is a tissue measurement. This exposes a substantial unresolved contact problem. It does not specify a conformable filler, establish tissue loading or imply the solver's assumed 4 K/W contact resistance follows from that shape. The cortex has not been flattened to fit the device. Dimensions and thermal parameters are deliberately not calibrated to one another.
 
 Reproduce with `node tools/seizefreeze/device-check.mjs` from the portfolio root. Browser section/circuit/dimension controls and final visual evidence are checked separately by `tools/seizefreeze/device-qa.mjs`.
+
+
+## Inspection views
+
+The Device chapter uses a separate display-lighting frame and neutral inspection surface. Anatomy remains in the Anatomy and Signal + control chapters. Focus selected component hides the other components for inspection and fits the actual selected geometry; Show complete assembly and Reset view restore the overview. Camera framing, lighting, floor, shadow and exploded spacing are presentation choices, not implant architecture or experimental results.
+
+Contact and sensing close-ups retain the exact local reference atlas triangles, so the unresolved spacing and proposed surface locations remain inspectable. The contact envelope is a faint surface with restrained edges, not a selected gel or demonstrated conformal pad. All source dimensions, cortical vertex positions, atlas labels and the registered target remain the same. Coincident cortical display normals are averaged within a 60-degree cluster to soften shading seams; this changes lighting, not the reference geometry or the solver.
+
+A new computed comparison in Inspect the model tests assumed contact or rejection resistances. It exposes controller compensation and hot-side accumulation without claiming a tissue-response mechanism or measured SeizeFreeze performance. See [MODEL.md](MODEL.md) and the reproducible sensitivity script.

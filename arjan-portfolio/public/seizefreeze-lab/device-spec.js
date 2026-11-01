@@ -11,12 +11,12 @@ export const deviceSpec = Object.freeze({
 });
 export const componentIds=['interface','coldplate','tec','heatpath','sensing','electronics','package'];
 export const anchors={
-  interface:{label:'CONTACT ENVELOPE · ASSUMED',point:[0,-.12,4.8],color:'#a7c1c6',side:-1},
+  interface:{label:'UNRESOLVED CONTACT',point:[0,-.12,4.8],color:'#a7c1c6',side:-1},
   coldplate:{label:'COLD SPREADER',point:[-4.9,.125,3],color:'#8bd4e3',side:-1},
-  tec:{label:'N / P SERIES ARRAY',point:[-3.125,.77,-3.125],color:'#b8c7d4',side:-1},
-  heatpath:{label:'HOT SPREADER → SHELL',point:[5.4,1.43,3],color:'#dbb37d',side:1},
+  tec:{label:'THERMOELECTRIC ARRAY',point:[-3.125,.77,-3.125],color:'#b8c7d4',side:-1},
+  heatpath:{label:'HOT SPREADER',point:[5.4,1.43,3],color:'#dbb37d',side:1},
   sensing:{label:'SURFACE SENSOR + ECoG',point:[6.7,-.3,2.7],color:'#c4ace4',side:1},
-  electronics:{label:'CONTROL / DRIVER ENVELOPES',point:[-1.6,2.34,-1.5],color:'#92b9e6',side:1},
+  electronics:{label:'CONTROL / DRIVER',point:[-1.6,2.34,-1.5],color:'#92b9e6',side:1},
   package:{label:'CANDIDATE ENCLOSURE',point:[0,2.98,0],color:'#c9d4dd',side:1},
 };
 export const explodedOffsets={interface:0,coldplate:2,tec:4.5,heatpath:8,sensing:0,electronics:11,package:15};
