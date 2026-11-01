@@ -1,24 +1,27 @@
 {
-  "base": "http://127.0.0.1:3214",
+  "base": "http://127.0.0.1:3215",
   "results": [
     {
       "engine": "chromium",
       "version": "153.0.8010.12",
       "width": 390,
       "height": 844,
-      "interactiveMs": 2566,
+      "interactiveMs": 4369,
       "stats": {
         "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
         "softwareRenderer": false,
         "frames": 22,
-        "calls": 55,
-        "triangles": 397277,
-        "geometries": 66,
-        "textures": 4,
+        "calls": 102,
+        "triangles": 405375,
+        "geometries": 67,
+        "textures": 6,
         "pixelRatio": 1,
-        "renderCpuMsMean": 8.318181818859143,
+        "renderCpuMsMean": 165.52727272564715,
         "rendering": "on demand; no idle animation",
         "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached directional PCF",
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -31,9 +34,9 @@
           "package": 0
         },
         "cameraPosition": [
-          -104.91388906256421,
-          12.800194556857672,
-          37.78884239775108
+          -111.03563605238801,
+          20.834525024861975,
+          45.56183567934854
         ],
         "view": "interface",
         "peel": 1,
@@ -78,6 +81,19 @@
           ],
           "peel": 1,
           "context": "interface"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -79.97468797534188,
+            -0.5961350374347585,
+            31.355977205452184
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
         }
       },
       "errors": [],
@@ -89,19 +105,22 @@
       "version": "153.0.8010.12",
       "width": 768,
       "height": 1024,
-      "interactiveMs": 2373,
+      "interactiveMs": 2642,
       "stats": {
         "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
         "softwareRenderer": false,
         "frames": 22,
-        "calls": 55,
-        "triangles": 397277,
-        "geometries": 66,
-        "textures": 4,
+        "calls": 102,
+        "triangles": 405375,
+        "geometries": 67,
+        "textures": 6,
         "pixelRatio": 1,
-        "renderCpuMsMean": 7.554545454003594,
+        "renderCpuMsMean": 26.522727274081923,
         "rendering": "on demand; no idle animation",
         "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached directional PCF",
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -114,9 +133,9 @@
           "package": 0
         },
         "cameraPosition": [
-          -104.91388906256421,
-          12.800194556857672,
-          37.78884239775108
+          -111.03563605238801,
+          20.834525024861975,
+          45.56183567934854
         ],
         "view": "interface",
         "peel": 1,
@@ -161,6 +180,19 @@
           ],
           "peel": 1,
           "context": "interface"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -79.97468797534188,
+            -0.5961350374347585,
+            31.355977205452184
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
         }
       },
       "errors": [],
@@ -172,19 +204,22 @@
       "version": "153.0.8010.12",
       "width": 1440,
       "height": 1000,
-      "interactiveMs": 2492,
+      "interactiveMs": 3711,
       "stats": {
         "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
         "softwareRenderer": false,
         "frames": 24,
         "calls": 55,
         "triangles": 397277,
-        "geometries": 66,
-        "textures": 4,
+        "geometries": 67,
+        "textures": 6,
         "pixelRatio": 1,
-        "renderCpuMsMean": 6.683333333581686,
+        "renderCpuMsMean": 8.912499998385707,
         "rendering": "on demand; no idle animation",
         "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached directional PCF",
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -197,9 +232,9 @@
           "package": 0
         },
         "cameraPosition": [
-          -98.76072892850465,
-          10.557203423126573,
-          33.66389256307142
+          -96.61728533452842,
+          13.777785331683575,
+          34.757388100711374
         ],
         "view": "interface",
         "peel": 1,
@@ -244,6 +279,19 @@
           ],
           "peel": 1,
           "context": "interface"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -79.97468797534188,
+            -0.5961350374347585,
+            31.355977205452184
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
         }
       },
       "errors": [],
@@ -255,19 +303,22 @@
       "version": "153.0.8010.12",
       "width": 1920,
       "height": 1080,
-      "interactiveMs": 2518,
+      "interactiveMs": 2779,
       "stats": {
         "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
         "softwareRenderer": false,
         "frames": 22,
-        "calls": 55,
-        "triangles": 397277,
-        "geometries": 66,
-        "textures": 4,
+        "calls": 102,
+        "triangles": 405375,
+        "geometries": 67,
+        "textures": 6,
         "pixelRatio": 1,
-        "renderCpuMsMean": 7.5090909099036995,
+        "renderCpuMsMean": 8.604545453732664,
         "rendering": "on demand; no idle animation",
         "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached directional PCF",
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -280,9 +331,9 @@
           "package": 0
         },
         "cameraPosition": [
-          -98.76072892850465,
-          10.557203423126573,
-          33.66389256307142
+          -96.61728533452842,
+          13.777785331683575,
+          34.757388100711374
         ],
         "view": "interface",
         "peel": 1,
@@ -327,6 +378,19 @@
           ],
           "peel": 1,
           "context": "interface"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -79.97468797534188,
+            -0.5961350374347585,
+            31.355977205452184
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
         }
       },
       "errors": [],
@@ -338,19 +402,22 @@
       "version": "153.0",
       "width": 390,
       "height": 844,
-      "interactiveMs": 3751,
+      "interactiveMs": 6030,
       "stats": {
         "adapter": "Apple M1, or similar",
         "softwareRenderer": false,
         "frames": 17,
         "calls": 55,
         "triangles": 397277,
-        "geometries": 66,
-        "textures": 4,
+        "geometries": 67,
+        "textures": 6,
         "pixelRatio": 1,
-        "renderCpuMsMean": 17.294117647058822,
+        "renderCpuMsMean": 73.17647058823529,
         "rendering": "on demand; no idle animation",
         "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached directional PCF",
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -363,9 +430,9 @@
           "package": 0
         },
         "cameraPosition": [
-          -104.91388906256421,
-          12.800194556857672,
-          37.78884239775108
+          -111.03563605238801,
+          20.834525024861975,
+          45.56183567934853
         ],
         "view": "interface",
         "peel": 1,
@@ -410,6 +477,19 @@
           ],
           "peel": 1,
           "context": "interface"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -79.97468797534188,
+            -0.5961350374347585,
+            31.355977205452184
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
         }
       },
       "errors": [],
@@ -421,19 +501,22 @@
       "version": "153.0",
       "width": 1440,
       "height": 1000,
-      "interactiveMs": 3828,
+      "interactiveMs": 5769,
       "stats": {
         "adapter": "Apple M1, or similar",
         "softwareRenderer": false,
-        "frames": 26,
+        "frames": 25,
         "calls": 55,
         "triangles": 397277,
-        "geometries": 66,
-        "textures": 4,
+        "geometries": 67,
+        "textures": 6,
         "pixelRatio": 1,
-        "renderCpuMsMean": 12.576923076923077,
+        "renderCpuMsMean": 17.12,
         "rendering": "on demand; no idle animation",
         "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached directional PCF",
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -446,9 +529,9 @@
           "package": 0
         },
         "cameraPosition": [
-          -98.76072892850465,
-          10.557203423126573,
-          33.66389256307142
+          -96.61728533452842,
+          13.777785331683575,
+          34.75738810071138
         ],
         "view": "interface",
         "peel": 1,
@@ -493,6 +576,19 @@
           ],
           "peel": 1,
           "context": "interface"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -79.97468797534188,
+            -0.5961350374347585,
+            31.355977205452184
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
         }
       },
       "errors": [],
@@ -504,19 +600,22 @@
       "version": "26.6",
       "width": 390,
       "height": 844,
-      "interactiveMs": 3174,
+      "interactiveMs": 3311,
       "stats": {
         "adapter": "Apple GPU",
         "softwareRenderer": false,
         "frames": 14,
-        "calls": 55,
-        "triangles": 397277,
-        "geometries": 66,
-        "textures": 4,
+        "calls": 102,
+        "triangles": 405375,
+        "geometries": 67,
+        "textures": 6,
         "pixelRatio": 1,
-        "renderCpuMsMean": 11.571428571428571,
+        "renderCpuMsMean": 83.35714285714286,
         "rendering": "on demand; no idle animation",
         "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached directional PCF",
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -529,9 +628,9 @@
           "package": 0
         },
         "cameraPosition": [
-          -104.91388906256421,
-          12.800194556857672,
-          37.78884239775108
+          -111.03563605238801,
+          20.834525024861975,
+          45.56183567934854
         ],
         "view": "interface",
         "peel": 1,
@@ -576,6 +675,19 @@
           ],
           "peel": 1,
           "context": "interface"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -79.97468797534188,
+            -0.5961350374347585,
+            31.355977205452184
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
         }
       },
       "errors": [],
@@ -587,19 +699,22 @@
       "version": "26.6",
       "width": 1440,
       "height": 1000,
-      "interactiveMs": 3182,
+      "interactiveMs": 2906,
       "stats": {
         "adapter": "Apple GPU",
         "softwareRenderer": false,
         "frames": 23,
         "calls": 55,
         "triangles": 397277,
-        "geometries": 66,
-        "textures": 4,
+        "geometries": 67,
+        "textures": 6,
         "pixelRatio": 1,
-        "renderCpuMsMean": 7.869565217391305,
+        "renderCpuMsMean": 8.130434782608695,
         "rendering": "on demand; no idle animation",
         "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached directional PCF",
         "selected": null,
         "exploded": false,
         "componentOffsets": {
@@ -612,9 +727,9 @@
           "package": 0
         },
         "cameraPosition": [
-          -98.76072892850465,
-          10.557203423126573,
-          33.66389256307142
+          -96.61728533452842,
+          13.777785331683585,
+          34.757388100711374
         ],
         "view": "interface",
         "peel": 1,
@@ -659,6 +774,19 @@
           ],
           "peel": 1,
           "context": "interface"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -79.97468797534188,
+            -0.5961350374347585,
+            31.355977205452184
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
         }
       },
       "errors": [],

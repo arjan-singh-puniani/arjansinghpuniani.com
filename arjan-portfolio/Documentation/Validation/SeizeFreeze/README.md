@@ -1,3 +1,5 @@
+> Updated studio revision, 31 October 2026: see [STUDIO-REVIEW.md](STUDIO-REVIEW.md) for the current composition, three rendered review passes, dual-camera behavior, browser checks and measured graphics budget. The historical performance table below describes the preceding anatomical revision; current measurements are in `performance-results.json`. Production was observed serving the older pre-atlas release while PR #62 remained open.
+
 # SeizeFreeze anatomical interface — release verification, 30 October 2026
 
 This revision replaces the procedural head and cortical slab with attributed Human Reference Atlas brain and registered head skin. The compact proposed device is anchored to an actual vertex of the named left superior temporal gyrus. This is an illustrative reference target, not a clinically localized epileptogenic zone.

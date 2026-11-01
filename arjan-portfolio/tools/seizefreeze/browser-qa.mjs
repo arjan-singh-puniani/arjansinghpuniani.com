@@ -39,6 +39,7 @@ for (const [name, type] of engines) {
       await page.locator('#seat').click();
     }
     assert.equal((await page.evaluate(()=>window.seizefreeze.snapshot())).installed.length,7);
+    assert.equal((await page.evaluate(()=>window.seizefreeze.snapshot())).stats.exploded,false,'Completed assembly restores the compact overview.');
     const offset=await page.evaluate(()=>window.seizefreeze.snapshot().stats.componentOffsets);
     assert.ok(Object.values(offset).every(v=>v===0),'seated part stays seated');
     await page.locator('#explode').click();
