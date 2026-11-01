@@ -79,3 +79,7 @@ Executed Blender again for eleven proportional adult gown appearances and staged
 Drag a floor patient or idle clinician to pick them up; a short touch hold works too. Release over a clear path, or cancel with Escape. People & rooms provides a Pick up button for the selected patient; Team & policy provides one per clinician. A held person dangles with bounded original joint motion. The location selector and arrow keys/Enter provide a non-spatial drop alternative. The simulation pauses during the hold; existing visits and priority survive. An assigned clinician walks back to their workstation before capacity returns.
 
 Entrance doors and Exit doors place the respective portal on a clear outside edge for $150. New arrivals walk out through the sliding entrance and discharged neighbors leave through the exit. The source retains editable doors.blend and the reproducible doors.py script. These mechanics are implemented, but their fun, usability and accessibility have not been established by external testing.
+
+## iPhone feedback correction ·0.6.1
+
+The owner reported lag on an actual iPhone and requested cursor-attached transparent pickup and a finer grid. The mobile profile now lowers render resolution/shadow cost, retains LOD characters and renders at30fps independently of simulation. Floor topology is cached between layout changes. Held figures attach at the collar to the pointer/fingertip and become65%opaque; placement uses quarter cells, with half-cell room/door construction. A new actual-phone result is pending.

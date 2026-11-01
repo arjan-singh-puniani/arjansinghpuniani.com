@@ -1,3 +1,11 @@
+## 0.6.1 · 2026-10-31 · iPhone feedback
+
+- Anchored pickup at the collar under the pointer/fingertip; held characters are65%opaque and pivot around the grip. Restore original materials on drop/cancel.
+- Added quarter-cell grid/drop positions and half-cell room/door construction, with reachable fractional doorways and checkpoint validation.
+- Added a mobile profile:30fps rendering independent of simulation, lower pixel ratio,1024px PCF shadows and no automatic high-detail character download.
+- Cached circulation topology; changing patient state no longer repeats all-pairs BFS and enclosed-floor fill every second.
+- Owner reported lag on an iPhone. These are concrete reductions in work; improved real-phone responsiveness requires a retest, not an invented benchmark.
+
 ## 0.6.0 · 2026-10-31
 
 - Added player-positioned boundary entrances/exits and actual two-second door-crossing states. Executed Blender for original sliding portals and compressed editable sources.

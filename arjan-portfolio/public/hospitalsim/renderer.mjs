@@ -1,11 +1,11 @@
 import * as THREE from 'three';
-import {samplePose,dangle,restoreBones} from './animation.mjs?v=062';
-import {sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath,drapePose} from './motion.mjs?v=062';
+import {samplePose,dangle,restoreBones} from './animation.mjs?v=066';
+import {sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath,drapePose} from './motion.mjs?v=066';
 import {GLTFLoader} from './vendor/examples/jsm/loaders/GLTFLoader.js';
 import {clone} from './vendor/examples/jsm/utils/SkeletonUtils.js';
 import {OrbitControls} from './vendor/examples/jsm/controls/OrbitControls.js';
 import {RoomEnvironment} from './vendor/examples/jsm/environments/RoomEnvironment.js';
-import {GRID,TYPES,door,path,placement,entrance,exit,gateDirection,gatePlacement,dropPlacement} from './simulation.mjs?v=062';
+import {GRID,TYPES,door,path,placement,entrance,exit,gateDirection,gatePlacement,dropPlacement} from './simulation.mjs?v=066';
 
 export const roomHeight=type=>({scan:.63,care:.25,consult:.85,rest:.25,plan:.85}[type]);
 export function world(x,y,height=.25){return new THREE.Vector3((x-4)*GRID.step,height,(y-3.5)*GRID.step)}
@@ -21,30 +21,30 @@ function beveledBox(w,h,d,r=.035){
 
 export class Diorama {
  constructor(canvas,getState,onPick,onHover,onProgress,onLift,onDrop){
-  this.canvas=canvas;this.state=getState;this.onPick=onPick;this.onHover=onHover;this.progress=onProgress;this.onLift=onLift;this.onDrop=onDrop;this.gates=new Map();
+  this.canvas=canvas;this.state=getState;this.onPick=onPick;this.onHover=onHover;this.progress=onProgress;this.onLift=onLift;this.onDrop=onDrop;this.gates=new Map();this.mobile=matchMedia('(pointer:coarse)').matches||canvas.clientWidth<700;canvas.dataset.renderProfile=this.mobile?'mobile30':'desktop';
   this.scene=new THREE.Scene();this.scene.background=new THREE.Color('#fafaf6');
-  this.renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,preserveDrawingBuffer:true,powerPreference:'high-performance'});
+  this.renderer=new THREE.WebGLRenderer({canvas,antialias:!this.mobile,alpha:false,preserveDrawingBuffer:true,powerPreference:'high-performance'});
   const gl=this.renderer.getContext(),debug=gl.getExtension('WEBGL_debug_renderer_info');canvas.dataset.gpu=debug?gl.getParameter(debug.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER);
-  this.renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));this.renderer.outputColorSpace=THREE.SRGBColorSpace;this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.13;
-  this.renderer.shadowMap.enabled=true;this.renderer.shadowMap.autoUpdate=false;this.renderer.shadowMap.type=THREE.VSMShadowMap;
+  this.renderer.setPixelRatio(Math.min(devicePixelRatio,this.mobile?1.15:1.6));canvas.dataset.renderScale=this.renderer.getPixelRatio();canvas.dataset.shadowSize=this.mobile?1024:2048;this.renderer.outputColorSpace=THREE.SRGBColorSpace;this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.13;
+  this.renderer.shadowMap.enabled=true;this.renderer.shadowMap.autoUpdate=false;this.renderer.shadowMap.type=this.mobile?THREE.PCFSoftShadowMap:THREE.VSMShadowMap;
   this.camera=new THREE.OrthographicCamera(-10,10,8,-8,.1,120);this.camera.position.set(16,19,23);this.camera.lookAt(0,.3,0);
   this.controls=new OrbitControls(this.camera,canvas);this.controls.enableRotate=false;this.controls.enableDamping=true;this.controls.dampingFactor=.12;this.controls.minZoom=.65;this.controls.maxZoom=2.8;this.controls.target.set(0,.3,0);this.controls.screenSpacePanning=true;this.controls.mouseButtons={LEFT:THREE.MOUSE.PAN,MIDDLE:THREE.MOUSE.DOLLY,RIGHT:THREE.MOUSE.PAN};this.controls.touches={ONE:THREE.TOUCH.PAN,TWO:THREE.TOUCH.DOLLY_PAN};
   const env=new RoomEnvironment();const pmrem=new THREE.PMREMGenerator(this.renderer);this.scene.environment=pmrem.fromScene(env,.04).texture;env.dispose();pmrem.dispose();this.scene.environmentIntensity=.3;
   this.scene.add(new THREE.HemisphereLight(0xe9f6ff,0xb3b8b3,1.05));
-  const key=new THREE.DirectionalLight(0xfff3dc,2.0);key.position.set(-8,18,9);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-13;key.shadow.camera.right=13;key.shadow.camera.top=13;key.shadow.camera.bottom=-13;key.shadow.normalBias=.025;key.shadow.bias=-.0002;key.shadow.radius=5;key.shadow.blurSamples=12;this.scene.add(key);
+  const key=new THREE.DirectionalLight(0xfff3dc,2.0);key.position.set(-8,18,9);key.castShadow=true;key.shadow.mapSize.set(this.mobile?1024:2048,this.mobile?1024:2048);key.shadow.camera.left=-13;key.shadow.camera.right=13;key.shadow.camera.top=13;key.shadow.camera.bottom=-13;key.shadow.normalBias=.025;key.shadow.bias=-.0002;key.shadow.radius=5;key.shadow.blurSamples=12;this.scene.add(key);
   const fill=new THREE.DirectionalLight(0xe4f5ff,.65);fill.position.set(8,5,-8);this.scene.add(fill);
   const ground=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.MeshStandardMaterial({color:0xfafaf6,roughness:1,toneMapped:false}));ground.rotation.x=-Math.PI/2;ground.position.y=-.23;ground.receiveShadow=true;this.scene.add(ground);
   this.static=new THREE.Group();this.scene.add(this.static);this.roomObjects=new Map();this.people=new Map();this.staffPeople=new Map();this.templates={};this.assets={};this.pickables=[];
   this.ray=new THREE.Raycaster();this.pointer=new THREE.Vector2();this.floor=new THREE.Plane(new THREE.Vector3(0,1,0),-.25);
   this.selection=new THREE.Box3Helper(new THREE.Box3(),0x136b88);this.selection.visible=false;this.scene.add(this.selection);this.routeLine=new THREE.Line(new THREE.BufferGeometry(),new THREE.LineBasicMaterial({color:0x166d83,depthTest:false,transparent:true,opacity:.7}));this.routeLine.renderOrder=10;this.routeLine.visible=false;this.scene.add(this.routeLine);
   this.ghost=new THREE.Group();const gm=new THREE.MeshStandardMaterial({color:0x309a88,transparent:true,opacity:.35,depthWrite:false});const plate=new THREE.Mesh(new THREE.BoxGeometry(3.22,.08,3.22),gm);plate.position.y=.03;this.ghost.add(plate);this.ghost.visible=false;this.scene.add(this.ghost);this.ghostMat=gm;
-  this.grid=new THREE.GridHelper(GRID.w*GRID.step,GRID.w,0x4f99b4,0xb6d1d7);this.grid.position.copy(world(4,3.5,.27));this.grid.visible=false;this.scene.add(this.grid);
+  this.grid=new THREE.GridHelper((GRID.w-1)*GRID.step,(GRID.w-1)*4,0x4f99b4,0xb6d1d7);this.grid.position.copy(world(4,3.5,.27));this.grid.visible=false;this.scene.add(this.grid);
   this.makeContacts();this.makeWalkways();
   this.characterContacts=new THREE.InstancedMesh(new THREE.PlaneGeometry(.65,.55),new THREE.MeshBasicMaterial({map:this.contactTexture,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1}),220);this.characterContacts.frustumCulled=false;this.characterContacts.count=0;this.scene.add(this.characterContacts);
   let down,holdTimer;const clear=()=>{clearTimeout(holdTimer);holdTimer=null};
   const begin=()=>{if(!down?.person||this.carry)return;if(this.onLift(down.person.kind,down.person.id)){down.dragging=true;this.controls.enabled=false;canvas.style.cursor='grabbing'}};
   canvas.addEventListener('pointerdown',e=>{if(e.button!==0)return;down={x:e.clientX,y:e.clientY,person:this.tool?null:this.personAt(e)};if(down.person||this.carry){e.stopImmediatePropagation();e.preventDefault();canvas.setPointerCapture(e.pointerId);if(down.person)holdTimer=setTimeout(begin,280)}},{capture:true});
-  canvas.addEventListener('pointermove',e=>{if(down?.person&&Math.hypot(down.x-e.clientX,down.y-e.clientY)>9){clear();begin()}const p=this.tile(e);if(p)this.onHover(p);if(this.carry){e.stopImmediatePropagation();e.preventDefault()}},{capture:true});
+  canvas.addEventListener('pointermove',e=>{if(down?.person&&Math.hypot(down.x-e.clientX,down.y-e.clientY)>9){clear();begin()}const p=this.tile(e);if(p)this.onHover(p);if(this.carry){this.canvas.dataset.pointerX=e.clientX;this.canvas.dataset.pointerY=e.clientY;this.pointerCarry();e.stopImmediatePropagation();e.preventDefault()}},{capture:true});
   canvas.addEventListener('pointerup',e=>{clear();if(this.carry){e.stopImmediatePropagation();const p=this.tile(e);this.onDrop(p);down=null;return}if(down&&Math.hypot(down.x-e.clientX,down.y-e.clientY)<7)this.pick(e);down=null},{capture:true});
   canvas.addEventListener('pointercancel',()=>{clear();down=null;this.onDrop(null)});
 
@@ -67,14 +67,16 @@ export class Diorama {
   const screen=new THREE.Mesh(new THREE.BoxGeometry(.29,.19,.025),new THREE.MeshStandardMaterial({color:0x23596b,roughness:.32}));screen.position.set(.38,.90,.35);screen.castShadow=true;arrival.add(screen);this.contact(arrival,1.6,1.2);
  }
  updateWalkways(){
-  const s=this.state(),nodes=[entrance(s),exit(s),...s.rooms.map(door),...s.staff.filter(st=>st.position).map(st=>st.position)],cells=new Map(),put=p=>{p={x:Math.round(p.x*2)/2,y:Math.round(p.y*2)/2};cells.set(`${p.x},${p.y}`,p)};
-  for(const a of nodes)for(const b of nodes){put(a);for(const p of path(a,b,s.rooms)||[])put(p)}
+  const s=this.state(),nodes=[entrance(s),exit(s),...s.rooms.map(door),...s.staff.filter(st=>st.position).map(st=>st.position)],layoutKey=JSON.stringify([s.rooms.map(r=>[r.x,r.y,r.type]),nodes]),layoutChanged=this.walkwayKey!==layoutKey,cells=layoutChanged?new Map():this.walkwayCells,beforeCount=cells.size,put=p=>{p={x:Math.round(p.x*2)/2,y:Math.round(p.y*2)/2};cells.set(`${p.x},${p.y}`,p)};
+  if(layoutChanged){this.canvas.dataset.floorTopologyBuilds=Number(this.canvas.dataset.floorTopologyBuilds||0)+1;this.walkwayKey=layoutKey;this.walkwayCells=cells;for(const a of nodes)for(const b of nodes){put(a);for(const p of path(a,b,s.rooms)||[])put(p)}}
   for(const p of s.patients){if(!['service','transfer-in','transfer-out','uncovering','entering-room','leaving-room','handoff'].includes(p.state)&&!p.outside)put(p);for(const point of [...(p.motion||[]),...(p.route||[])])put(point)}
+  if(layoutChanged){
   // Fill enclosed circulation holes so moving routes do not leave a patchwork floor.
   const exterior=new Set(),queue=[];const key=(x,y)=>`${x/2},${y/2}`,open=(x,y)=>x>=0&&x<GRID.w*2-1&&y>=0&&y<GRID.h*2-1&&!cells.has(key(x,y))&&!s.rooms.some(r=>x/2>=r.x&&x/2<r.x+2&&y/2>=r.y&&y/2<r.y+2);
   for(let y=0;y<GRID.h*2-1;y++)for(let x=0;x<GRID.w*2-1;x++)if((x===0||y===0||x===GRID.w*2-2||y===GRID.h*2-2)&&open(x,y)){queue.push({x,y});exterior.add(key(x,y))}
   for(let j=0;j<queue.length;j++){const p=queue[j];for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1]]){const x=p.x+dx,y=p.y+dy,k=key(x,y);if(open(x,y)&&!exterior.has(k)){exterior.add(k);queue.push({x,y})}}}
-  for(let y=0;y<GRID.h*2-1;y++)for(let x=0;x<GRID.w*2-1;x++)if(open(x,y)&&!exterior.has(key(x,y)))put({x:x/2,y:y/2});
+  for(let y=0;y<GRID.h*2-1;y++)for(let x=0;x<GRID.w*2-1;x++)if(open(x,y)&&!exterior.has(key(x,y)))put({x:x/2,y:y/2});}
+  if(!layoutChanged&&beforeCount===cells.size)return;this.canvas.dataset.floorUpdates=Number(this.canvas.dataset.floorUpdates||0)+1;
   const matrix=new THREE.Matrix4();let i=0;for(const p of cells.values()){matrix.makeTranslation(...world(p.x,p.y,.15));this.corridor.setMatrixAt(i++,matrix)}this.corridor.count=i;this.corridor.instanceMatrix.needsUpdate=true;this.corridor.computeBoundingBox();this.corridor.computeBoundingSphere();
  }
  syncGates(){
@@ -88,23 +90,24 @@ export class Diorama {
  personAt(e){
   this.tile(e);const hits=this.ray.intersectObjects([...this.people.values(),...this.staffPeople.values()].map(p=>p.group),true);if(!hits.length)return null;let o=hits[0].object;while(o&&!o.userData.patientId&&!o.userData.staffId)o=o.parent;return o?{kind:o.userData.patientId?'patient':'staff',id:o.userData.patientId||o.userData.staffId}:null;
  }
- hold(kind,id,tile){const person=(kind==='patient'?this.people:this.staffPeople).get(id),pose=[];person?.model.traverse(b=>{if(b.isBone)pose.push({bone:b,position:b.position.clone(),quaternion:b.quaternion.clone(),scale:b.scale.clone()})});this.carry={kind,id,tile,time:0,pose};this.controls.enabled=false;this.canvas.style.cursor='grabbing';this.canvas.dataset.held=`${kind}:${id}`}
- release(){if(this.carry){const p=(this.carry.kind==='patient'?this.people:this.staffPeople).get(this.carry.id);if(p){restoreBones(this.carry.pose);p.model.quaternion.identity();p.current=null}}this.carry=null;this.controls.enabled=true;this.canvas.style.cursor='';this.canvas.dataset.held='';if(this.carryRing)this.carryRing.visible=false}
- carryTo(tile){if(this.carry){this.carry.tile=tile;this.carry.target=world(tile.x,tile.y);const check=dropPlacement(this.state(),this.carry.kind,this.carry.id,tile.x,tile.y);this.canvas.dataset.dropValid=String(check.ok)}}
+ hold(kind,id,tile){const person=(kind==='patient'?this.people:this.staffPeople).get(id),pose=[];person?.model.traverse(b=>{if(b.isBone)pose.push({bone:b,position:b.position.clone(),quaternion:b.quaternion.clone(),scale:b.scale.clone()})});const materials=[];person?.model.traverse(o=>{if(o.isMesh){materials.push({mesh:o,material:o.material});o.material=o.material.clone();o.material.transparent=true;o.material.opacity=.65;o.material.depthWrite=false}});this.carry={kind,id,tile,time:0,pose,materials,gripHeight:person?.gripHeight||1.43};this.grid.visible=true;this.controls.enabled=false;this.canvas.style.cursor='grabbing';this.canvas.dataset.held=`${kind}:${id}`}
+ release(){if(this.carry){const p=(this.carry.kind==='patient'?this.people:this.staffPeople).get(this.carry.id);if(p){restoreBones(this.carry.pose);for(const m of this.carry.materials){m.mesh.material.dispose();m.mesh.material=m.material}p.model.position.set(0,0,0);p.model.quaternion.identity();p.current=null}}this.carry=null;this.grid.visible=false;this.controls.enabled=true;this.canvas.style.cursor='';this.canvas.dataset.held='';if(this.carryRing)this.carryRing.visible=false}
+ carryTo(tile){if(this.carry){this.carry.tile=tile;this.carry.target=world(tile.x,tile.y);this.carry.pin=null;const check=dropPlacement(this.state(),this.carry.kind,this.carry.id,tile.x,tile.y);this.canvas.dataset.dropValid=String(check.ok)}}
+ pointerCarry(){if(!this.carry)return;const hit=new THREE.Vector3();if(this.ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0,1,0),-(1.13+this.carry.gripHeight)),hit))this.carry.pin=hit}
  updateCarry(dt,reduced){
   if(!this.carry)return;const c=this.carry,p=(c.kind==='patient'?this.people:this.staffPeople).get(c.id);if(!p)return;c.time+=dt;
-  if(!c.target)c.target=p.group.position.clone();const target=c.target.clone();target.y=.25+.88+(reduced?0:Math.sin(c.time*3)*.018);c.position??=target.clone();c.position.lerp(target,1-Math.exp(-22*dt));p.group.position.copy(c.position);p.shadow.visible=false;
+  if(!c.target)c.target=p.group.position.clone();const target=c.pin?c.pin.clone().sub(new THREE.Vector3(0,c.gripHeight,0)):c.target.clone().setY(1.13);c.position??=target.clone();if(c.pin)c.position.copy(target);else c.position.lerp(target,1-Math.exp(-22*dt));p.group.position.copy(c.position);p.shadow.visible=false;
   // shortcut: damped authored joint sway, not a ragdoll solver; add physics only if collisions become gameplay.
-  dangle(p,c.time,reduced);
+  dangle(p,c.time,reduced);const collar=new THREE.Vector3(0,c.gripHeight,0);p.model.position.copy(collar).sub(collar.clone().applyQuaternion(p.model.quaternion));this.canvas.dataset.heldOpacity='.65';if(c.pin){const projected=p.group.position.clone().add(collar).project(this.camera),rect=this.canvas.getBoundingClientRect();this.canvas.dataset.gripX=(rect.left+(projected.x+1)*rect.width/2).toFixed(1);this.canvas.dataset.gripY=(rect.top+(1-projected.y)*rect.height/2).toFixed(1)}
   if(!this.carryRing){this.carryRing=new THREE.Mesh(new THREE.RingGeometry(.30,.38,32),new THREE.MeshBasicMaterial({color:0x258d7c,side:THREE.DoubleSide,depthTest:false}));this.carryRing.rotation.x=-Math.PI/2;this.carryRing.renderOrder=20;this.scene.add(this.carryRing)}this.carryRing.visible=true;this.carryRing.position.copy(c.target);this.carryRing.position.y=.29;this.carryRing.material.color.set(this.canvas.dataset.dropValid==='false'?0xc15e43:0x258d7c);
  }
 
  async load(){
-  const response=await fetch('assets/patient-appearances.json?v=062');if(!response.ok)throw Error('Patient appearances could not load');const manifest=await response.json();
+  const response=await fetch('assets/patient-appearances.json?v=066');if(!response.ok)throw Error('Patient appearances could not load');const manifest=await response.json();
   if(manifest.appearances?.length!==11||new Set(manifest.appearances.map(a=>a.id)).size!==11||manifest.appearances.some(a=>!/^patient-\d{2}-lod\.glb$/.test(a.lod)||!/^patient-\d{2}\.glb$/.test(a.high)))throw Error('Invalid patient appearance manifest');
   this.patientAppearances=manifest.appearances;this.lowPatients=new Map();this.highPatients=new Map();
   const loader=new GLTFLoader(),names=['scan','care','consult','rest','clinician','coat','drape','doors'],jobs=[...names.map(name=>({name,file:['clinician','coat'].includes(name)?name+'-lod.glb':name+'.glb'})),...this.patientAppearances.map(appearance=>({appearance,file:appearance.lod}))];let done=0;
-  for(let i=0;i<jobs.length;i+=4)await Promise.all(jobs.slice(i,i+4).map(async job=>{let gltf;for(let attempt=0;attempt<2;attempt++){try{gltf=await loader.loadAsync(`assets/${job.file}?v=062`);break}catch(error){if(attempt)throw error;await new Promise(resolve=>setTimeout(resolve,200))}}if(job.appearance)this.lowPatients.set(job.appearance.id,gltf);else this.assets[job.name]=gltf;this.progress(Math.round(++done/jobs.length*100))}));
+  for(let i=0;i<jobs.length;i+=4)await Promise.all(jobs.slice(i,i+4).map(async job=>{let gltf;for(let attempt=0;attempt<2;attempt++){try{gltf=await loader.loadAsync(`assets/${job.file}?v=066`);break}catch(error){if(attempt)throw error;await new Promise(resolve=>setTimeout(resolve,200))}}if(job.appearance)this.lowPatients.set(job.appearance.id,gltf);else this.assets[job.name]=gltf;this.progress(Math.round(++done/jobs.length*100))}));
   this.assets.patient=this.lowPatients.get(this.patientAppearances[0].id);this.lowAssets={...this.assets};this.canvas.dataset.appearances=this.patientAppearances.length;this.syncRooms();
  }
 
@@ -138,16 +141,16 @@ export class Diorama {
  makePerson(kind,id){
   const appearance=kind==='patient'?this.patientAppearances[id%this.patientAppearances.length]:null,gltf=appearance?(this.highMode?this.highPatients.get(appearance.id):null)||this.lowPatients.get(appearance.id):this.assets[kind],model=clone(gltf.scene),group=new THREE.Group();if(appearance)group.userData.appearanceId=appearance.id;group.add(model);this.soften(model);this.scene.add(group);
   const mixer=new THREE.AnimationMixer(model),actions=new Map(gltf.animations.map(c=>[c.name,mixer.clipAction(c)]));const person={group,model,mixer,actions,current:null,id,initialized:false};this.play(person,'Idle');
-  person.restBones=[];model.traverse(b=>{if(b.isBone)person.restBones.push({bone:b,position:b.position.clone(),quaternion:b.quaternion.clone(),scale:b.scale.clone()})});person.shadow={visible:true};return person;
+  model.updateWorldMatrix(true,true);person.gripHeight=model.getObjectByName('head')?.getWorldPosition(new THREE.Vector3()).y||1.43;person.restBones=[];model.traverse(b=>{if(b.isBone)person.restBones.push({bone:b,position:b.position.clone(),quaternion:b.quaternion.clone(),scale:b.scale.clone()})});person.shadow={visible:true};return person;
  }
  removePerson(p){this.scene.remove(p.group);p.mixer.stopAllAction();p.mixer.uncacheRoot(p.model);p.model.traverse(o=>{if(o.isSkinnedMesh)o.skeleton.dispose()})}
  play(p,name){if(p.current===name)return;const next=p.actions.get(name)||p.actions.get('Idle')||[...p.actions.values()][0];if(!next)return;for(const a of p.actions.values())if(a.isRunning())a.fadeOut(.2);next.reset().setEffectiveTimeScale(1).fadeIn(.2).play();p.current=name}
  async detailLOD(){
-  const high=this.camera.zoom>1.5&&this.state().patients.length+this.state().staff.length<14;if(high&&!this.highAssets&&!this.loadingHigh){this.loadingHigh=true;try{const loader=new GLTFLoader(),items=await Promise.all(['clinician','coat'].map(async name=>[name,await loader.loadAsync(`assets/${name}.glb?v=062`)]));const jobs=this.patientAppearances;for(let i=0;i<jobs.length;i+=4)await Promise.all(jobs.slice(i,i+4).map(async a=>this.highPatients.set(a.id,await loader.loadAsync(`assets/${a.high}?v=062`))));this.highAssets=Object.fromEntries(items)}catch(error){console.warn('Close detail unavailable',error)}finally{this.loadingHigh=false}}
+  const high=!this.mobile&&this.camera.zoom>1.5&&this.state().patients.length+this.state().staff.length<14;if(high&&!this.highAssets&&!this.loadingHigh){this.loadingHigh=true;try{const loader=new GLTFLoader(),items=await Promise.all(['clinician','coat'].map(async name=>[name,await loader.loadAsync(`assets/${name}.glb?v=066`)]));const jobs=this.patientAppearances;for(let i=0;i<jobs.length;i+=4)await Promise.all(jobs.slice(i,i+4).map(async a=>this.highPatients.set(a.id,await loader.loadAsync(`assets/${a.high}?v=066`))));this.highAssets=Object.fromEntries(items)}catch(error){console.warn('Close detail unavailable',error)}finally{this.loadingHigh=false}}
 
   if(high&&!this.highAssets)return;if(this.highMode===high)return;this.highMode=high;for(const kind of ['clinician','coat'])this.assets[kind]=high?this.highAssets[kind]:this.lowAssets[kind];for(const p of [...this.people.values(),...this.staffPeople.values(),this.ambient].filter(Boolean))this.removePerson(p);this.people.clear();this.staffPeople.clear();this.ambient=null;
  }
- tile(e){const rect=this.canvas.getBoundingClientRect();this.pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);this.ray.setFromCamera(this.pointer,this.camera);const hit=new THREE.Vector3();if(!this.ray.ray.intersectPlane(this.floor,hit))return null;this.pointerWorld=hit.clone();const x=Math.round(hit.x/GRID.step+4),y=Math.round(hit.z/GRID.step+3.5);return x>=0&&x<GRID.w&&y>=0&&y<GRID.h?{x,y}:null}
+ tile(e){const rect=this.canvas.getBoundingClientRect();this.pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);this.ray.setFromCamera(this.pointer,this.camera);const hit=new THREE.Vector3();if(!this.ray.ray.intersectPlane(this.floor,hit))return null;this.pointerWorld=hit.clone();const spacing=this.carry?.25:.5,x=Math.round((hit.x/GRID.step+4)/spacing)*spacing,y=Math.round((hit.z/GRID.step+3.5)/spacing)*spacing;return x>=0&&x<=GRID.w-1&&y>=0&&y<=GRID.h-1?{x,y}:null}
  pick(e){this.tile(e);if(!this.tool){const hits=this.ray.intersectObjects([...this.people.values(),...this.staffPeople.values()].map(p=>p.group).concat([...this.roomObjects.values()]),true);if(hits.length){let o=hits[0].object;while(o&&!o.userData.patientId&&!o.userData.roomId&&!o.userData.staffId)o=o.parent;if(o){this.onPick(o.userData.patientId?{patient:o.userData.patientId}:o.userData.staffId?{staff:o.userData.staffId}:{room:o.userData.roomId});return}}}
   const t=this.tile(e);if(t)this.onPick(t);
  }
