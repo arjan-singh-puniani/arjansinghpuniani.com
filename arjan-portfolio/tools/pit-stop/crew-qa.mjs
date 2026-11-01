@@ -16,7 +16,7 @@ try{
  const context=await browser.newContext({viewport:{width:1440,height:1000},recordVideo:{dir:out+'/raw-video',size:{width:1440,height:1000}}});
  const page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));
  await page.route('**/world.js',r=>r.fulfill({body:source,contentType:'text/javascript'}));
- await page.goto(`${base}/pit-stop-lab/index.html`);await page.waitForFunction(()=>window.__PIT_LAB_STATE__?.render?.heroLoaded);
+ await page.goto(`${base}/pit-stop-lab/index.html?experience=explore`);await page.waitForFunction(()=>window.__PIT_LAB_STATE__?.render?.heroLoaded);
  await page.locator('button[data-experience=engineer]').click();await page.locator('[data-car-camera=carHero]').evaluate(el=>el.click());
  report.contacts=await page.evaluate(()=>{
   const timeline=document.querySelector('#timeline');

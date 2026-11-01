@@ -59,14 +59,14 @@ const cards = [
     tone: "light",
   },
   {
-    status: "MECHANICAL MODEL",
+    status: "RACE SYSTEMS",
     eyebrow: "Pit Stop Lab",
     title: "Pit Stop Lab",
-    description: "An interactive model of a Formula-style center-lock wheel-change sequence.",
+    description: "Recorded telemetry, timestamp-gated pace learning and a pit-strategy robustness laboratory.",
     href: "/playground/pit-stop",
     button: "Open Pit Stop Lab",
     image: "/images/playground/pit-stop-simulator.webp",
-    alt: "Race car wheel being changed during a pit stop",
+    alt: "Historical Bahrain pit wall with circuit replay, telemetry and strategy comparison",
     tone: "dark",
   },
   {
