@@ -187,7 +187,24 @@
       ],
       "sponsor": "Northwestern University",
       "summary": "Electrocortical stimulation (ECS) mapping is a procedure used during brain surgeries, for example when treating diseases like epilepsy or when removing brain tumors. ECS mapping helps surgeons locate areas of the cerebral cortex (the outer part of the brain) that are important for everyday tasks like movement and speech. ECS mapping has been used for decades, and is considered the \"gold-standard\" tool for locating important areas of cortex. Despite this long history, there is still no clear understanding of exactly how ECS works.\n\nThe goal of this study is to learn details about the effects ECS has on the brain. The main questions the study aims to answer are: 1) how ECS affects the neurons of the cortex at the stimulation site; and 2) how ECS impacts brain regions that are critically important for human speech and language. These so-called \"critical sites\" can be physically distant from one another on the brain's surface, requiring extensive ECS mapping and long surgeries. Critical sites are thought to be part of a speech/language network of brain areas, and so the study's goal is to learn about how they are connected. In some participants, the brain's surface will also be slightly cooled. This is a painless procedure that does not harm the brain's function, but could provide insight as to which parts of the brain (the surface, or deeper parts) are responsible for the effects of ECS.\n\nBy improving the understanding of how ECS affects the brain and improving the ability to identify critical sites, this study could potentially lead to shorter surgeries and better outcomes for future individuals who need this care.\n\nParticipants will be recruited from among individuals who are undergoing brain surgery for epilepsy treatment or tumor removal. Participants will complete simple tasks like reading words or naming pictures, similar to standard testing that is already performed during their hospital stay.",
-      "url": "https://clinicaltrials.gov/study/NCT06391294"
+      "url": "https://clinicaltrials.gov/study/NCT06391294",
+      "lastUpdatePosted": "2026-08-07",
+      "studyStart": {
+        "date": "2024-05-17",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 65,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "Accuracy at decoding critical nodes from network connectivity metrics using machine learning algorithms.",
+          "measure": "Critical node decoding performance",
+          "timeFrame": "Up to 1 week during ECoG recording"
+        }
+      ]
     },
     {
       "id": "PMID:25902001",

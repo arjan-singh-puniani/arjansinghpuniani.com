@@ -53,7 +53,7 @@ export function SourceRecord({ record: r }: { record: AtlasRecord }) {
       </h4>
       <p>{r.status || r.publicationDate || r.definition || r.projectNumber}</p>
       {(r.decisionDate || r.firstPosted) && (
-        <p>Event date: {r.decisionDate || r.firstPosted}</p>
+        <p>{r.kind==='trial'?'Study first posted':'Decision date'}: {r.decisionDate || r.firstPosted}</p>
       )}
       {r.applicant && <p>Applicant in snapshot: {r.applicant}</p>}
       {r.productCode && (
@@ -80,6 +80,12 @@ export function SourceRecord({ record: r }: { record: AtlasRecord }) {
         </p>
       )}
       {r.sponsor && <p>Registry sponsor: {r.sponsor}</p>}
+      {r.kind==='trial' && <>
+        {r.studyStart?.date&&<p>Study start: {r.studyStart.date} ({r.studyStart.type==='ACTUAL'?'actual':'estimated in registry'})</p>}
+        {r.lastUpdatePosted&&<p>Registry last updated: {r.lastUpdatePosted}</p>}
+        {r.enrollment?.count!==undefined&&<p>Enrollment: {r.enrollment.count} ({r.enrollment.type==='ACTUAL'?'actual':'estimated in registry'})</p>}
+        {typeof r.hasResults==='boolean'&&<p>{r.hasResults?'Results are posted in this registry record; inspect the original results.':'No results posted in this retrieved registry record.'}</p>}
+      </>}
       {r.organization && <p>Funded organization: {r.organization}</p>}
       {!!r.investigators?.length && (
         <p>Investigators: {r.investigators.join("; ")}</p>

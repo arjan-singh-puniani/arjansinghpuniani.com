@@ -96,8 +96,8 @@ export default function Home() {
         <article className="v2-feature" aria-labelledby="body-atlas-home-title">
           <div className={`v2-feature-image ${styles.projectPreviewFrame} ${styles.darkPreviewFrame}`}>
             <Image
-              src="/images/home/body-atlas-preview.webp"
-              alt="BODY//ATLAS prototype: anatomical intervention map and original-source evidence panel"
+              src="/images/home/body-atlas-neuralink-preview.webp"
+              alt="BODY//ATLAS research preview: Neuralink recording mechanism and source-linked anatomy"
               fill
               className={styles.projectPreviewImage}
               sizes="(max-width: 800px) 100vw, 56vw"

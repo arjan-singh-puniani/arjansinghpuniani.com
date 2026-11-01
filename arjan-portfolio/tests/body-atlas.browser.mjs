@@ -21,7 +21,7 @@ try {
     await page.goto(base);
     const card=page.getByRole('article',{name:'BODY//ATLAS',exact:true});
     await card.scrollIntoViewIfNeeded();
-    assert.equal(await card.getByRole('img').getAttribute('alt'),'BODY//ATLAS prototype: anatomical intervention map and original-source evidence panel');
+    assert.equal(await card.getByRole('img').getAttribute('alt'),'BODY//ATLAS research preview: Neuralink recording mechanism and source-linked anatomy');
     await card.screenshot({path:`${out}/home-${name}.png`});
     assert.equal(await card.getByRole('link',{name:'Launch BODY//ATLAS'}).getAttribute('href'),'/atlas');
     await card.getByRole('link',{name:'BODY//ATLAS',exact:true}).click();

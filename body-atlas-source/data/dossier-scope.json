@@ -84,7 +84,33 @@
         ],
         "sponsor": "NeuroPace",
         "summary": "The RNS® System Pivotal study is designed to assess safety and demonstrate that the RNS® System is effective as an adjunctive (add-on) therapy in reducing the frequency of seizures in individuals 18 years of age or older with partial onset seizures from no more than two foci (two areas of the brain) that are refractory (drug-resistant or hard-to-treat) to two or more antiepileptic medications. Patients continue to receive their epilepsy medications while participating in the study.",
-        "url": "https://clinicaltrials.gov/study/NCT00264810"
+        "url": "https://clinicaltrials.gov/study/NCT00264810",
+        "lastUpdatePosted": "2013-08-28",
+        "studyStart": {
+          "date": "2005-12"
+        },
+        "enrollment": {
+          "count": 240,
+          "type": "ACTUAL"
+        },
+        "hasResults": true,
+        "primaryOutcomes": [
+          {
+            "description": "RNS® System Acute SAE Rate = the percentage of implanted subject having a serious adverse event (SAE) for the surgical implant procedure and the following month (28 days), whether reported as device-related or not.\n\nThis outcome measure is met when the upper limit of one-sided 95% confidence interval of the observed RNS® System Acute SAE Rate does not exceed the upper limit of the one-sided 95% confidence interval of the literature-based acute SAE rate associated with the implantation of intracranial electrodes for localization procedures and epilepsy surgery combined as documented in the literature (rate = 15%; upper CI = 20%). The comparator was calculated based upon the literature, therefore the number of participants analyzed is unknown/not applicable. Referenced literature are listed within the citation section (Tanriverdi et al., 2009; Wong et al., 2009; Fountas and Smith, 2007; Hamer et al., 2002; Behrens et al., 1997).\n\nPrimary Safety Outcome Measure was met.",
+            "measure": "Acute SAE Rate",
+            "timeFrame": "Initial implant through 1 month post-implant"
+          },
+          {
+            "description": "RNS® System Short-term Chronic SAE rate = the percentage of implanted subject having a serious adverse event (SAE) for the surgical implant procedure and the following 3 months (84 days), whether reported as device-related or not.\n\nThis outcome measure is met when the upper limit of one-sided 95% confidence interval of the observed RNS® System Short-term Chronic SAE Rate does not exceed the upper limit of the one-sided 95% confidence interval of the historical short-term chronic SAE rate for deep brain stimulation for movement disorders from the published literature (rate = 36%; upper CI = 42%). The comparator was calculated based upon the literature, therefore the number of participants analyzed is unknown/not applicable. Referenced literature are listed within the citation section (Oh et al., 2002; SSED, Activa Tremor Control System P960009; Beric et al., 2001; Behrens et al., 1997; Hariz, 2002; Joint et al., 2002; Koller et al., 2001).\n\nPrimary Safety Outcome Measure was met.",
+            "measure": "Short-term Chronic SAE Rate",
+            "timeFrame": "Initial implant through 5 months post-implant"
+          },
+          {
+            "description": "The outcome measure is met when a significantly greater reduction in the frequency of total disabling seizures in seen in the Treatment group when compared to the Sham group, during the Blinded Evaluation Period (BEP) relative to the Pre-Implant Period (Baseline).\n\nThe outcome measure is the group-by-time interaction term in a generalized estimating equation (GEE), longitudinal regression model, where group refers to therapy allocation (Treatment or Sham), time refers to study period (Baseline or BEP), and the dependent variable is seizure frequency. The outcome measure was a statistically significant group-by-time interaction term, which would demonstrate a significantly greater reduction in seizure frequency in the Treatment group than the Sham group during BEP compared to Baseline Period.\n\nPrimary Effectiveness Outcome Measure was met.\n\n(Note: Disabling seizures = motor simple partial seizures or complex partial seizures with or without secondarily generalized seizures.)",
+            "measure": "Change in Frequency of Disabling Seizures",
+            "timeFrame": "3 months pre-implant (Baseline Period) compared to months 3, 4 and 5 post-implant (Blinded Evaluation Period)"
+          }
+        ]
       },
       {
         "id": "NCT04839601",
@@ -108,7 +134,29 @@
         ],
         "sponsor": "NeuroPace",
         "summary": "To demonstrate that the RNS System is safe and effective as an adjunctive therapy in individuals age 12 through 17 years with medically refractory partial onset epilepsy.",
-        "url": "https://clinicaltrials.gov/study/NCT04839601"
+        "url": "https://clinicaltrials.gov/study/NCT04839601",
+        "lastUpdatePosted": "2025-05-22",
+        "studyStart": {
+          "date": "2021-10-27",
+          "type": "ACTUAL"
+        },
+        "enrollment": {
+          "count": 9,
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "primaryOutcomes": [
+          {
+            "description": "The primary safety endpoint is the percent of subjects with serious device-related adverse events at 84 days (12 weeks) post-implant.",
+            "measure": "Short-term chronic serious adverse device effect (SADE) rate",
+            "timeFrame": "84-days post-implant"
+          },
+          {
+            "description": "12 months post-implant",
+            "measure": "Responder rate at 12 months post implant",
+            "timeFrame": "The primary effectiveness endpoint is the percent of subjects with a ≥ 50% reduction in seizures at 12 months post-implant compared to the pre-implant baseline."
+          }
+        ]
       }
     ],
     "publications": [
@@ -370,7 +418,24 @@
         ],
         "sponsor": "Leigh R. Hochberg, MD, PhD.",
         "summary": "The purpose of this study is to obtain preliminary device safety information and demonstrate proof of principle (feasibility) of the ability of people with tetraplegia to control a computer cursor and other assistive devices with their thoughts.",
-        "url": "https://clinicaltrials.gov/study/NCT05724173"
+        "url": "https://clinicaltrials.gov/study/NCT05724173",
+        "lastUpdatePosted": "2026-06-02",
+        "studyStart": {
+          "date": "2023-10-18",
+          "type": "ACTUAL"
+        },
+        "enrollment": {
+          "count": 3,
+          "type": "ESTIMATED"
+        },
+        "hasResults": false,
+        "primaryOutcomes": [
+          {
+            "description": "To determine the safety of the Sensor and overall safety of the System. Participants will be considered a success for this safety measure if they are successfully implanted with the Sensor(s) and:\n\n1. the sensors are not explanted for safety reasons during the one-year post-implant evaluation period.\n2. there are no device-related Serious Adverse Events that result in death or permanently increased disability during the one-year post-implant evaluation period.",
+            "measure": "Device Safety",
+            "timeFrame": "1 year"
+          }
+        ]
       }
     ],
     "publications": [
@@ -469,7 +534,24 @@
         ],
         "sponsor": "Northwestern University",
         "summary": "Electrocortical stimulation (ECS) mapping is a procedure used during brain surgeries, for example when treating diseases like epilepsy or when removing brain tumors. ECS mapping helps surgeons locate areas of the cerebral cortex (the outer part of the brain) that are important for everyday tasks like movement and speech. ECS mapping has been used for decades, and is considered the \"gold-standard\" tool for locating important areas of cortex. Despite this long history, there is still no clear understanding of exactly how ECS works.\n\nThe goal of this study is to learn details about the effects ECS has on the brain. The main questions the study aims to answer are: 1) how ECS affects the neurons of the cortex at the stimulation site; and 2) how ECS impacts brain regions that are critically important for human speech and language. These so-called \"critical sites\" can be physically distant from one another on the brain's surface, requiring extensive ECS mapping and long surgeries. Critical sites are thought to be part of a speech/language network of brain areas, and so the study's goal is to learn about how they are connected. In some participants, the brain's surface will also be slightly cooled. This is a painless procedure that does not harm the brain's function, but could provide insight as to which parts of the brain (the surface, or deeper parts) are responsible for the effects of ECS.\n\nBy improving the understanding of how ECS affects the brain and improving the ability to identify critical sites, this study could potentially lead to shorter surgeries and better outcomes for future individuals who need this care.\n\nParticipants will be recruited from among individuals who are undergoing brain surgery for epilepsy treatment or tumor removal. Participants will complete simple tasks like reading words or naming pictures, similar to standard testing that is already performed during their hospital stay.",
-        "url": "https://clinicaltrials.gov/study/NCT06391294"
+        "url": "https://clinicaltrials.gov/study/NCT06391294",
+        "lastUpdatePosted": "2026-08-07",
+        "studyStart": {
+          "date": "2024-05-17",
+          "type": "ACTUAL"
+        },
+        "enrollment": {
+          "count": 65,
+          "type": "ESTIMATED"
+        },
+        "hasResults": false,
+        "primaryOutcomes": [
+          {
+            "description": "Accuracy at decoding critical nodes from network connectivity metrics using machine learning algorithms.",
+            "measure": "Critical node decoding performance",
+            "timeFrame": "Up to 1 week during ECoG recording"
+          }
+        ]
       }
     ],
     "publications": [
@@ -603,6 +685,375 @@
             "idtype": "pii",
             "idtypen": 4,
             "value": "S0006-8993(24)00249-X"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "neuralink",
+    "name": "Neuralink N1 Implant / R1 research system",
+    "regulatory": [],
+    "studies": [
+      {
+        "id": "NCT06429735",
+        "kind": "trial",
+        "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+        "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+        "providerUpdatedAt": null,
+        "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+        "title": "Precise Robotically IMplanted Brain-Computer InterfacE",
+        "status": "RECRUITING",
+        "firstPosted": "2024-05-28",
+        "interventions": [
+          {
+            "armGroupLabels": [
+              "Neuralink N1 Implant and R1 Robot"
+            ],
+            "description": "The N1 Implant is a type of implantable brain-computer interface",
+            "name": "N1 Implant",
+            "otherNames": [
+              "Neuralink N1 Implant, N1, Telepathy, Link"
+            ],
+            "type": "DEVICE"
+          },
+          {
+            "armGroupLabels": [
+              "Neuralink N1 Implant and R1 Robot"
+            ],
+            "description": "The R1 Robot is a robotic electrode thread inserter that implants the N1 Implant.",
+            "name": "R1 Robot",
+            "otherNames": [
+              "R1, Neuralink R1 Robot"
+            ],
+            "type": "DEVICE"
+          }
+        ],
+        "sponsor": "Neuralink Corp",
+        "summary": "The PRIME Study is a first-in-human early feasibility study to evaluate the initial clinical safety and device functionality of the Neuralink N1 Implant and R1 Robot device designs in participants with tetraparesis or tetraplegia. The N1 Implant is a skull-mounted, wireless, rechargeable implant connected to electrode threads that are implanted in the brain by the R1 Robot, a robotic electrode thread inserter.",
+        "url": "https://clinicaltrials.gov/study/NCT06429735",
+        "lastUpdatePosted": "2026-01-09",
+        "studyStart": {
+          "date": "2024-01-09",
+          "type": "ACTUAL"
+        },
+        "enrollment": {
+          "count": 15,
+          "type": "ESTIMATED"
+        },
+        "hasResults": false,
+        "primaryOutcomes": [
+          {
+            "measure": "Device-Related Adverse Events (AE)",
+            "timeFrame": "12 months post-implant"
+          },
+          {
+            "measure": "Procedure-Related Adverse Events (AE)",
+            "timeFrame": "12 months post-implant"
+          }
+        ]
+      },
+      {
+        "id": "NCT06710626",
+        "kind": "trial",
+        "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+        "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+        "providerUpdatedAt": null,
+        "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+        "title": "Control of Assistive Devices Via Brain-Computer Interface Technology",
+        "status": "ENROLLING_BY_INVITATION",
+        "firstPosted": "2024-11-29",
+        "interventions": [
+          {
+            "armGroupLabels": [
+              "Single"
+            ],
+            "description": "The intervention involves using the N1 Implant, a wireless brain-computer interface (BCI), to enable participants to control the Assistive Robotic Arm through neural signals.",
+            "name": "Assistive Robotic Arm",
+            "otherNames": [
+              "BCI controlled robotic arm"
+            ],
+            "type": "DEVICE"
+          }
+        ],
+        "sponsor": "Neuralink Corp",
+        "summary": "The CONVOY Study is a clinical trial designed to explore the feasibility of participants from the PRIME Study (NCT06429735) using the N1 Implant to control various assistive devices. The main goal is to determine whether participants can successfully modulate their brain activity to control devices, such as an Assistive Robotic Arm (ARA). This study will assess the effectiveness, consistency, and safety of neural control using the ARA and other assistive devices.",
+        "url": "https://clinicaltrials.gov/study/NCT06710626",
+        "lastUpdatePosted": "2025-06-05",
+        "studyStart": {
+          "date": "2024-11-25",
+          "type": "ACTUAL"
+        },
+        "enrollment": {
+          "count": 3,
+          "type": "ESTIMATED"
+        },
+        "hasResults": false,
+        "primaryOutcomes": [
+          {
+            "measure": "Ability of participants to modulate brain activity for controlling an assistive device via the N1 Implant.",
+            "timeFrame": "3-months following first use of the assistive device"
+          }
+        ]
+      },
+      {
+        "id": "NCT06700304",
+        "kind": "trial",
+        "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+        "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+        "providerUpdatedAt": null,
+        "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+        "title": "CAN-PRIME: Precise Robotically Implanted Brain-Computer Interface for the Control of External Devices",
+        "status": "RECRUITING",
+        "firstPosted": "2024-11-21",
+        "interventions": [
+          {
+            "armGroupLabels": [
+              "CAN-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+            ],
+            "description": "The N1 Implant is a type of implantable brain-computer interface.",
+            "name": "N1 Implant",
+            "type": "DEVICE"
+          },
+          {
+            "armGroupLabels": [
+              "CAN-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+            ],
+            "description": "The R1 Robot is a robotic electrode thread inserter that implants the N1 Implant.",
+            "name": "R1 Robot",
+            "type": "DEVICE"
+          }
+        ],
+        "sponsor": "Neuralink Corp",
+        "summary": "The CAN-PRIME Study is to test the safety and functionality of Neuralink's N1 Implant and R1 Robot in people who have difficulty moving their arms and legs (tetraparesis or tetraplegia). The N1 Implant is a small, wireless device placed in the skull. It connects to tiny threads inserted into the brain by the R1 Robot, which is a machine designed to carefully place these threads. This study will help researchers learn how well the implant and robot work and if they are safe for use.",
+        "url": "https://clinicaltrials.gov/study/NCT06700304",
+        "lastUpdatePosted": "2025-05-31",
+        "studyStart": {
+          "date": "2024-11-20",
+          "type": "ACTUAL"
+        },
+        "enrollment": {
+          "count": 6,
+          "type": "ESTIMATED"
+        },
+        "hasResults": false,
+        "primaryOutcomes": [
+          {
+            "measure": "The Rate of Device-Related Adverse Events (AE)",
+            "timeFrame": "12 months post-implant"
+          },
+          {
+            "measure": "The Rate of Procedure-Related Adverse Events (AE)",
+            "timeFrame": "12 months post-implant"
+          }
+        ]
+      },
+      {
+        "id": "NCT06992596",
+        "kind": "trial",
+        "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+        "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+        "providerUpdatedAt": null,
+        "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+        "title": "UAE-PRIME: A Feasibility Study of a Precise Robotically Implanted Brain-Computer Interface for the Control of External Devices",
+        "status": "RECRUITING",
+        "firstPosted": "2025-05-28",
+        "interventions": [
+          {
+            "armGroupLabels": [
+              "UAE-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+            ],
+            "description": "The N1 Implant is a type of implantable brain-computer interface.",
+            "name": "N1 Implant",
+            "type": "DEVICE"
+          },
+          {
+            "armGroupLabels": [
+              "UAE-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+            ],
+            "description": "The R1 Robot is a robotic electrode thread inserter that implants the N1 Implant.",
+            "name": "R1 Robot",
+            "type": "DEVICE"
+          }
+        ],
+        "sponsor": "Neuralink Corp",
+        "summary": "The UAE-PRIME Study is a feasibility study designed to assess the initial clinical safety and functionality of the Neuralink N1 Implant and R1 Robot. This study involves participants who have tetraparesis, tetraplegia, or a diagnosis that may lead to these conditions.\n\nThe N1 Implant is a wireless, rechargeable device mounted on the skull, connected to electrode threads that are inserted into the brain by the R1 Robot, which is a robotic device specifically designed for this procedure.",
+        "url": "https://clinicaltrials.gov/study/NCT06992596",
+        "lastUpdatePosted": "2025-06-05",
+        "studyStart": {
+          "date": "2025-05-09",
+          "type": "ACTUAL"
+        },
+        "enrollment": {
+          "count": 10,
+          "type": "ESTIMATED"
+        },
+        "hasResults": false,
+        "primaryOutcomes": [
+          {
+            "measure": "The Rate of Device-Related Adverse Events (AE)",
+            "timeFrame": "12 months post-implant"
+          },
+          {
+            "measure": "The Rate of Procedure-Related Adverse Events (AE)",
+            "timeFrame": "12 months post-implant"
+          }
+        ]
+      },
+      {
+        "id": "NCT07127172",
+        "kind": "trial",
+        "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+        "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+        "providerUpdatedAt": null,
+        "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+        "title": "GB-PRIME: An Early Feasibility Study of a Precise Robotically Implanted Brain-Computer Interface for the Control of External Devices",
+        "status": "RECRUITING",
+        "firstPosted": "2025-08-17",
+        "interventions": [
+          {
+            "armGroupLabels": [
+              "GB-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+            ],
+            "description": "The N1 Implant is a type of implantable brain-computer interface.",
+            "name": "N1 Implant",
+            "type": "DEVICE"
+          },
+          {
+            "armGroupLabels": [
+              "GB-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+            ],
+            "description": "The R1 Robot is a robotic electrode thread inserter that implants the N1 Implant.",
+            "name": "R1 Robot",
+            "type": "DEVICE"
+          }
+        ],
+        "sponsor": "Neuralink Corp",
+        "summary": "The GB-PRIME Study is an early feasibility study designed to assess the clinical safety and functionality of the Neuralink N1 Implant and R1 Robot. This study involves participants who have tetraparesis, tetraplegia, or a diagnosis that may lead to these conditions.\n\nThe N1 Implant is a wireless, rechargeable device mounted on the skull, connected to electrode threads that are inserted into the brain by the R1 Robot, which is a robotic device specifically designed for this procedure.",
+        "url": "https://clinicaltrials.gov/study/NCT07127172",
+        "lastUpdatePosted": "2025-08-17",
+        "studyStart": {
+          "date": "2025-07-31",
+          "type": "ACTUAL"
+        },
+        "enrollment": {
+          "count": 7,
+          "type": "ESTIMATED"
+        },
+        "hasResults": false,
+        "primaryOutcomes": [
+          {
+            "measure": "The Rate of Device-Related Adverse Events (AE)",
+            "timeFrame": "12 months post-implant"
+          },
+          {
+            "measure": "The Rate of Procedure-Related Adverse Events (AE)",
+            "timeFrame": "12 months post-implant"
+          }
+        ]
+      },
+      {
+        "id": "NCT07224256",
+        "kind": "trial",
+        "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+        "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+        "providerUpdatedAt": null,
+        "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+        "title": "VOICE: An Early Feasibility Study of a Precise Robotically Implanted Brain-Computer Interface for Communication Restoration",
+        "status": "RECRUITING",
+        "firstPosted": "2025-11-04",
+        "interventions": [
+          {
+            "armGroupLabels": [
+              "Neuralink N1 Implant and R1 Robot"
+            ],
+            "description": "The N1 Implant is a type of implantable brain-computer interface",
+            "name": "N1 Implant",
+            "otherNames": [
+              "Neuralink N1 Implant, N1, Telepathy, Link"
+            ],
+            "type": "DEVICE"
+          },
+          {
+            "armGroupLabels": [
+              "Neuralink N1 Implant and R1 Robot"
+            ],
+            "description": "The R1 Robot is a robotic electrode thread inserter that implants the N1 Implant.",
+            "name": "R1 Robot",
+            "otherNames": [
+              "R1, Neuralink R1 Robot"
+            ],
+            "type": "DEVICE"
+          }
+        ],
+        "sponsor": "Neuralink Corp",
+        "summary": "The VOICE Study is an early feasibility study to evaluate the initial clinical safety and efficacy of the N1 and R1 Systems device design concept in providing an ability to communicate. The Neuralink N1 Implant is intended to provide the ability to communicate to individuals with severe and irreversible speech production impairment. It is indicated for adults with neurological conditions of the central speech pathways who have impaired upper limb function. The N1 Implant is a skull-mounted, wireless, rechargeable implant connected to electrode threads that are implanted in the brain by the R1 Robot, a robotic electrode thread inserter.",
+        "url": "https://clinicaltrials.gov/study/NCT07224256",
+        "lastUpdatePosted": "2025-11-04",
+        "studyStart": {
+          "date": "2025-10-03",
+          "type": "ACTUAL"
+        },
+        "enrollment": {
+          "count": 6,
+          "type": "ESTIMATED"
+        },
+        "hasResults": false,
+        "primaryOutcomes": [
+          {
+            "description": "The proportion of subjects with device-related adverse events (AEs) at the 12-month follow-up visit.",
+            "measure": "Device-Related Adverse Events (AE)",
+            "timeFrame": "12 months post-implant"
+          },
+          {
+            "description": "The proportion of subjects with procedure-related adverse events (AEs) at the 12-month follow-up visit.",
+            "measure": "Procedure-Related Adverse Events (AE)",
+            "timeFrame": "12 months post-implant"
+          }
+        ]
+      }
+    ],
+    "publications": [
+      {
+        "id": "PMID:31642810",
+        "kind": "publication",
+        "sourceSha": "63879abe83688c470991c48a739f26dfdda3102f6ef6112020717f348904efd4",
+        "retrievedAt": "2026-11-01T04:51:05.034069+00:00",
+        "providerUpdatedAt": null,
+        "sourceUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=31642810&retmode=json&tool=BodyAtlas",
+        "title": "An Integrated Brain-Machine Interface Platform With Thousands of Channels.",
+        "publicationDate": "2019 Oct 31",
+        "authors": [
+          "Musk E",
+          "Neuralink"
+        ],
+        "journal": "Journal of medical Internet research",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31642810/",
+        "identifiers": [
+          {
+            "idtype": "pubmed",
+            "idtypen": 1,
+            "value": "31642810"
+          },
+          {
+            "idtype": "pmc",
+            "idtypen": 8,
+            "value": "PMC6914248"
+          },
+          {
+            "idtype": "pmcid",
+            "idtypen": 5,
+            "value": "pmc-id: PMC6914248;"
+          },
+          {
+            "idtype": "doi",
+            "idtypen": 3,
+            "value": "10.2196/16194"
+          },
+          {
+            "idtype": "pii",
+            "idtypen": 4,
+            "value": "v21i10e16194"
           }
         ]
       }

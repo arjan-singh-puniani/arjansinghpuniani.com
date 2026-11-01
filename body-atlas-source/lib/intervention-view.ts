@@ -9,6 +9,7 @@ export const hasExplanation = (f: Family) => f.collection !== "catalogue" || !!i
 export const inCollection = (f: Family, collection: string) => collection === "all" || (collection === "explained" ? hasExplanation(f) : collection === "reviewed" ? f.collection !== "catalogue" : f.collection === "catalogue");
 export const productName = (f: Family) => interventionSummaries[f.id]?.product || (f.name.length > 120 ? f.name.slice(0, 117).trimEnd() + "…" : f.name);
 export const interventionNames: Record<string, string> = {
+  neuralink:'Intracortical brain–computer interface',
   ...Object.fromEntries(catalogue.families.map(f=>[f.id,interventionSummaries[f.id]?.title || recordById(f.regulatoryIds[0])?.genericName || productName(f as Family)])),
   tms: "Transcranial magnetic stimulation",
   rns: "Responsive neurostimulation",
@@ -59,6 +60,7 @@ export function regionRoles(f: Family, region: string): string[] {
 }
 
 export const interventionActions: Record<string, string> = {
+  neuralink:'Implanted threads record brain activity. A skull-mounted implant transmits signals wirelessly; software decodes intended actions into computer or assistive-device control. The system remains investigational.',
   ...Object.fromEntries(catalogue.families.map(f=>[f.id,interventionSummaries[f.id]?.purpose || "Purpose not established in the indexed evidence. Open the original FDA record; the product name alone is insufficient."])),
   tms: "An external coil uses magnetic pulses to induce electrical currents in cerebral cortex.",
   rns: "Records brain electrical activity and delivers responsive electrical stimulation near epileptic foci.",

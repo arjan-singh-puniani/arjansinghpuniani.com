@@ -8,9 +8,9 @@ import {families,brief} from '../lib/atlas';
 import {hasExplanation} from '../lib/intervention-view';
 
 const read=(id:string)=>JSON.parse(readFileSync(`public/dossiers/${id}.json`,'utf8'));
-test('all 91 explained entries have a matching dossier and explicit review gaps',()=>{
+test('all 92 explained entries have a matching dossier and explicit review gaps',()=>{
  assert.deepEqual(Object.keys(dossiers).sort(),families.filter(hasExplanation).map(f=>f.id).sort());
- assert.equal(dossierCoverage.entries,91);assert.equal(dossierCoverage.regulatory,89);assert.equal(dossierCoverage.recalls,89);
+ assert.equal(dossierCoverage.entries,92);assert.equal(dossierCoverage.regulatory,89);assert.equal(dossierCoverage.recalls,89);
  for(const [id,s] of Object.entries(dossiers)){
   const d=read(id);assert.equal(d.familyId,id);assert.equal(d.name,s.name);assert.equal(d.regulatory.rows.length,s.regulatory.records);assert.equal(d.safety.rows.length,s.safety.recalls);
   assert.equal(d.labeling.rows.filter((r:any)=>r.url&&r.state!=='summary-only').length,s.labeling.documents);
@@ -20,7 +20,7 @@ test('all 91 explained entries have a matching dossier and explicit review gaps'
  }
 });
 test('investigational entries never inherit commercial labeling or empty recall certification',()=>{
- for(const id of ['cooling','braingate']){const d=read(id);assert.deepEqual(d.applications,[]);assert.equal(d.regulatory.state,'not-established');assert.equal(d.safety.state,'not-established');assert.equal(d.labeling.state,'not-applicable');assert.deepEqual(d.safety.rows,[]);}
+ for(const id of ['cooling','braingate','neuralink']){const d=read(id);assert.deepEqual(d.applications,[]);assert.equal(d.regulatory.state,'not-established');assert.equal(d.safety.state,'not-established');assert.equal(d.labeling.state,'not-applicable');assert.deepEqual(d.safety.rows,[]);}
 });
 test('positive safety dossier preserves affected model, lot, dates, action and original reference',()=>{
  const d=read('source-fda-p040033');assert.ok(d.safety.rows.length>=29);
@@ -48,7 +48,7 @@ test('model-specific MRI differences and historical amendments remain explicit',
  assert.match(read('rns').labelReview.findings.map((f:any)=>f.text).join(' '),/RNS-300M is MR Unsafe.*RNS-320 is MR Conditional/);
  assert.match(read('source-fda-p130008').labelReview.findings[0].text,/3024 must not undergo MRI.*3028 and 3150/);
  assert.match(read('source-fda-p950035').labelReview.limitations.join(' '),/replaced.*S005.*2000-01-13/);
- assert.equal(dossierCoverage.assessed,91);assert.equal(dossierCoverage.labelGaps,3);
+ assert.equal(dossierCoverage.assessed,92);assert.equal(dossierCoverage.labelGaps,3);
 });
 test('recall text search covers long lists without interpreting ranges or certifying units',()=>{
  const r=read('activa').safety.rows.find((r:any)=>r.code_info.length>100000);assert.ok(r);

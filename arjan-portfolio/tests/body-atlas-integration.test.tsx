@@ -29,10 +29,15 @@ describe("BODY//ATLAS portfolio integration", () => {
   it("preserves the authentic scope, unreviewed status and anatomical attribution", () => {
     const project = getProject("body-atlas")!;
     const report = JSON.parse(readFileSync("public/documents/body-atlas-validation.json", "utf8"));
-    expect(Object.values(report.recordCounts).reduce((sum: number, count) => sum + Number(count), 0)).toBe(2490);
+    expect(Object.values(report.recordCounts).reduce((sum: number, count) => sum + Number(count), 0)).toBe(2497);
     expect(report.sourceContextEntries).toBe(652);
     expect(report.independentlyAdjudicatedMappings).toBe(0);
     expect(report.precision).toBeNull();
+    expect(report.currentRelease.explainedEntries).toBe(92);
+    expect(report.currentRelease.dossiers).toBe(92);
+    expect(report.currentRelease.neuralink.marketingAuthorizationEstablished).toBe(false);
+    expect(report.currentRelease.neuralink.studyIds).toContain('NCT06429735');
+    expect(report.currentRelease.neuralink.postedRegistryResults).toBe(0);
     expect(report.explanationExpansion.explainedEntries).toBe(91);
     expect(report.dossierMilestone.explainedEntriesWithDossiers).toBe(91);
     expect(report.dossierMilestone.marketingApplicationsChecked).toBe(89);

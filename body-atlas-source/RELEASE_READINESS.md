@@ -1,13 +1,20 @@
 # Release readiness
 
+## Current release — 2026-10-31
+
+The current export has **2,497 authentic records, 92 explained entries and dossiers, and 12 schematic mechanisms**. Neuralink now has six exact sponsor-verified trial records, the earlier 2019 platform publication, separate skull/cortical relationships, a recording → decoding → control schematic, and an evidence comparison with BrainGate. It remains **investigational**; no FDA marketing authorization is inferred. The six retrieved registry records have no posted results; this is not a claim about all research worldwide. Conflicting source-specific thread counts and the manufacturer-reported thread-retention limitation are visible, source linked, and retained in exported briefs.
+
+See [NEURALINK.md](NEURALINK.md) for sources, reproduction and review boundaries. Later sections dated before October 31 describe historical milestones and their then-current counts. The three unrelated complete manufacturer-IFU gaps, incomplete historical safety coverage, and lack of independently adjudicated anatomical precision remain open. Current verification outcomes are recorded in [DEMO_VERIFICATION.md](DEMO_VERIFICATION.md).
+
+
 **Disposition: public read-only research preview; scientific and clinical production certification withheld.** The website launch serves the cached app under `/atlas`. DNS and credentials are unchanged.
 
 | Local gate | Evidence / scope |
 | --- | --- |
-| Authentic source data | 2,490 cached records: 1,564 clearances, 37 De Novo authorizations, 836 original PMAs, 10 classifications, 17 trials, 21 PubMed metadata records, 5 grants. Source hashes and identities checked. |
+| Authentic source data | 2,497 cached records: 1,564 clearances, 37 De Novo authorizations, 836 original PMAs, 10 classifications, 23 trials, 22 PubMed metadata records, 5 grants. Source hashes and identities checked. |
 | Anatomical exploration | Licensed HRA surface, registered brain/spinal and organ/skeletal meshes; body/region selection, orbit, focus, keyboard/touch text alternatives and asset failure recovery. Male reference; incomplete organ coverage. |
-| Dense intervention discovery | 650 source-indexed application entries across 39 regions, separately filtered from ten curated neurotechnology entries. Record glyphs diagram membership, not implant coordinates. |
-| Scientific roles and uncertainty | 21 curated assertions (20 localized, one Unknown); 721 new Provisional source contexts. No new accepted physical-placement mappings or automatic clinical links. |
+| Dense intervention discovery | 650 source-indexed application entries across 39 regions, separately filtered from eleven curated neurotechnology entries. Record glyphs diagram membership, not implant coordinates. |
+| Scientific roles and uncertainty | 24 curated assertions (23 localized, one Unknown); 711 Provisional source contexts. No new accepted physical-placement mappings or automatic clinical links. |
 | Sources, history, comparison, export | Actual original links, exact source excerpts/spans, dated FDA decisions, curated device comparison and cited Markdown briefs. Historical decisions do not establish current labeling or invention dates. |
 | Local verification | Commands and current outcomes in DEMO_VERIFICATION.md and validation artifacts. Browser runs cover desktop and Chrome touch emulation; physical devices and other browsers remain unverified. |
 | Reproduction | Fresh temporary npm install/build and offline SQLite restore on this host recovered 2,490 records and three historical failed jobs. Not a clean OS/container test. |

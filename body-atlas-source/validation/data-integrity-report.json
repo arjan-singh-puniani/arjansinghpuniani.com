@@ -1,28 +1,28 @@
 {
-  "generatedAt": "2026-10-19T11:45:25.292Z",
-  "snapshotExportedAt": "2026-10-19T11:12:05.379339+00:00",
+  "generatedAt": "2026-11-01T05:13:44.537Z",
+  "snapshotExportedAt": "2026-11-01T04:51:06.187445+00:00",
   "recordCounts": {
     "de_novo": 37,
     "classification": 10,
     "510k": 1564,
     "pma": 836,
-    "trial": 17,
+    "trial": 23,
     "grant": 5,
-    "publication": 21
+    "publication": 22
   },
-  "curatedEntries": 10,
-  "curatedAssertions": 21,
-  "localizedAssertions": 20,
+  "curatedEntries": 11,
+  "curatedAssertions": 24,
+  "localizedAssertions": 23,
   "explicitAbstentions": 1,
-  "sourceContextEntries": 650,
-  "sourceContextAssertions": 721,
+  "sourceContextEntries": 652,
+  "sourceContextAssertions": 711,
   "automaticallyAcceptedMappings": 0,
   "independentlyAdjudicatedMappings": 0,
   "precision": null,
   "confidenceInterval": null,
   "reason": "No independent ground truth adjudication. Curator assertions and regression checks are not a precision estimate.",
   "jobStates": {
-    "complete": 52,
+    "complete": 54,
     "failed": 3
   },
   "thalamusTopography": {

@@ -2656,3 +2656,25 @@
 .fda-original a{color:#a0dce3;text-decoration:underline;text-underline-offset:3px}
 .mechanism-caption{position:absolute;z-index:12;bottom:90px;left:14px;max-width:calc(100% - 28px);padding:7px 9px;background:#081d29;color:#b8e5e9;pointer-events:none;font:10px/1.5 ui-monospace,monospace}
 .mechanism-caption strong,.mechanism-caption span{display:block}
+@media(max-width:650px){.mechanism-caption{bottom:62px;padding:4px 6px;font-size:8px}.mechanism-caption span:first-of-type{display:none}}
+.mechanism-stages{list-style:decimal}
+.mechanism-stages button{text-align:left;width:100%;padding:8px 10px;border:1px solid #294552;background:transparent;color:#b8cbd3;font:inherit;line-height:1.5;cursor:pointer}
+.mechanism-stages button[aria-pressed="true"]{color:#f2ca9a;border-color:#ad8154;background:#1b303c}
+.mechanism-stages button:focus-visible{outline:2px solid #c6f2f4;outline-offset:2px}
+.neuralink-evidence{border-top:1px solid #304a57;margin:16px 0;padding:14px 0;font-size:12px;line-height:1.7}
+.research-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.research-facts span{color:#a7bdc9;font-size:10px}
+.research-facts strong{display:block;color:#efd0a8;font-size:13px}
+.neuralink-actions{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.neuralink-actions button{background:#162d3a;color:#dcebf1;padding:8px;border:1px solid #3b5966;cursor:pointer;font:inherit}
+.neuralink-evidence details{border-top:1px solid #29414e;padding:11px 0}
+.neuralink-evidence summary{cursor:pointer;color:#bcdae1}
+.hardware-scope dt{color:#efd0a8;margin-top:10px}
+.hardware-scope dd{margin:4px 0 12px;color:#b8cad2}
+.research-limit{font-size:11px!important;color:#9fb5c0!important;line-height:1.6!important}
+.time-top button.time-event-count{color:#afc5d0;border:1px solid #355261;background:transparent;padding:5px 8px;cursor:pointer}
+.milestone-list ol{list-style:none;padding:0;margin:20px 0}
+.milestone-list li{display:grid;grid-template-columns:100px minmax(0,1fr);gap:16px;padding:14px 0;border-top:1px solid #294552}
+.milestone-list time{color:#e9bc8a;font:12px/1.7 ui-monospace,monospace}
+.milestone-list small{display:block;color:#9fb5c0;font-size:11px;margin-top:5px}
+@media(max-width:600px){.milestone-list li{grid-template-columns:1fr;gap:5px}}

@@ -113,7 +113,7 @@ def build(root=ROOT):
         dossier['review']={'method':label_reviews['method'],'next':assessed['limitations']+['Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe.']}
         atomic(root/'public/dossiers'/(f['id']+'.json'),(json.dumps(dossier,ensure_ascii=False,indent=2)+'\n').encode())
         summaries[f['id']]=summary
-    if len(summaries)!=91:raise ValueError('Expected all 91 explained entries')
+    if len(summaries)!=92:raise ValueError('Expected all 92 explained entries')
     atomic(root/'data/dossier-summary.json',(json.dumps(summaries,indent=2)+'\n').encode())
     print(json.dumps({'dossiers':len(summaries),'regulatoryChecked':sum(s['regulatory']['state']=='checked' for s in summaries.values()),'recallSearchChecked':sum(s['safety']['state']=='checked' for s in summaries.values()),'labelLinks':sum(s['labeling']['documents'] for s in summaries.values()),'historyRecords':len(history['rows']),'recallRecords':len(recalls['rows']),'noticeIndexRows':len(all_notices)},indent=2))
 

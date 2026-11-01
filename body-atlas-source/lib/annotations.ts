@@ -19,6 +19,7 @@ const brain = [
   "UBERON:0001906",
 ];
 const titles: Record<string, string> = {
+  neuralink:'Neuralink · brain–computer interface',
   tms: "Magnetic stimulation",
   rns: "Responsive stimulation",
   activa: "DBS · Activa",

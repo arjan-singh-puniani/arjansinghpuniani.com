@@ -34,7 +34,7 @@ try{
    assert.equal(await page.getByRole('link',{name:'Download dossier with source references (JSON)'}).getAttribute('href'),'/atlas'+s.path);
    loadTimes.push(Date.now()-start);checked++;
   }
-  assert.equal(checked,91);
+  assert.equal(checked,Object.keys(summaries).length);
   await page.getByRole('combobox',{name:'Choose another intervention in this region',exact:true}).selectOption('source-fda-p040033');
   await page.getByRole('article',{name:'Birmingham Hip Resurfacing regulatory, labeling and safety dossier',exact:true}).waitFor();
   await page.getByRole('searchbox',{name:'Find a model, lot, serial or recall number'}).fill('64803');
@@ -56,7 +56,7 @@ try{
   await page.waitForSelector('[data-organs-status="loaded"]',{timeout:90000});
   await page.screenshot({path:`${out}/review-${name}.png`});
   if(name==='mobile'){await page.locator('.dossier-essentials').scrollIntoViewIfNeeded();await page.screenshot({path:`${out}/review-detail-mobile.png`});}
-  assert.deepEqual(errors,[]);loadTimes.sort((a,b)=>a-b);results.push({viewport:name,dossiers:checked,initialDossierRequests:0,sourceAndModelLot:true,labelScope:true,reviewFindingsAndOriginalLinks:91,reviewBoundariesAndVisibleLimits:91,modelLotFullTextSearch:true,permanentEntryLink:true,briefCitations:true,keyboardTabs:true,retryRecovery:true,axeViolations:0,pageErrors:errors,p95SelectionToDossierMs:loadTimes[Math.floor(loadTimes.length*.95)]});await context.close();
+  assert.deepEqual(errors,[]);loadTimes.sort((a,b)=>a-b);results.push({viewport:name,dossiers:checked,initialDossierRequests:0,sourceAndModelLot:true,labelScope:true,reviewFindingsAndOriginalLinks:checked,reviewBoundariesAndVisibleLimits:checked,modelLotFullTextSearch:true,permanentEntryLink:true,briefCitations:true,keyboardTabs:true,retryRecovery:true,axeViolations:0,pageErrors:errors,p95SelectionToDossierMs:loadTimes[Math.floor(loadTimes.length*.95)]});await context.close();
  }
  await writeFile(`${out}/results.json`,JSON.stringify({site:base,results,environment:'Installed Chrome; mobile is touch/viewport emulation, not a physical phone.'},null,2)+'\n');console.log(JSON.stringify(results,null,2));
 }finally{await browser.close();}
