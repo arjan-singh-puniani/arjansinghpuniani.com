@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "exportedAt": "2026-10-19T11:12:05.379339+00:00",
+  "exportedAt": "2026-11-01T04:51:06.187445+00:00",
   "mode": "Cached authentic snapshot",
   "records": [
     {
@@ -48904,7 +48904,33 @@
       ],
       "sponsor": "NeuroPace",
       "summary": "The RNS\u00ae System Pivotal study is designed to assess safety and demonstrate that the RNS\u00ae System is effective as an adjunctive (add-on) therapy in reducing the frequency of seizures in individuals 18 years of age or older with partial onset seizures from no more than two foci (two areas of the brain) that are refractory (drug-resistant or hard-to-treat) to two or more antiepileptic medications. Patients continue to receive their epilepsy medications while participating in the study.",
-      "url": "https://clinicaltrials.gov/study/NCT00264810"
+      "url": "https://clinicaltrials.gov/study/NCT00264810",
+      "lastUpdatePosted": "2013-08-28",
+      "studyStart": {
+        "date": "2005-12"
+      },
+      "enrollment": {
+        "count": 240,
+        "type": "ACTUAL"
+      },
+      "hasResults": true,
+      "primaryOutcomes": [
+        {
+          "description": "RNS\u00ae System Acute SAE Rate = the percentage of implanted subject having a serious adverse event (SAE) for the surgical implant procedure and the following month (28 days), whether reported as device-related or not.\n\nThis outcome measure is met when the upper limit of one-sided 95% confidence interval of the observed RNS\u00ae System Acute SAE Rate does not exceed the upper limit of the one-sided 95% confidence interval of the literature-based acute SAE rate associated with the implantation of intracranial electrodes for localization procedures and epilepsy surgery combined as documented in the literature (rate = 15%; upper CI = 20%). The comparator was calculated based upon the literature, therefore the number of participants analyzed is unknown/not applicable. Referenced literature are listed within the citation section (Tanriverdi et al., 2009; Wong et al., 2009; Fountas and Smith, 2007; Hamer et al., 2002; Behrens et al., 1997).\n\nPrimary Safety Outcome Measure was met.",
+          "measure": "Acute SAE Rate",
+          "timeFrame": "Initial implant through 1 month post-implant"
+        },
+        {
+          "description": "RNS\u00ae System Short-term Chronic SAE rate = the percentage of implanted subject having a serious adverse event (SAE) for the surgical implant procedure and the following 3 months (84 days), whether reported as device-related or not.\n\nThis outcome measure is met when the upper limit of one-sided 95% confidence interval of the observed RNS\u00ae System Short-term Chronic SAE Rate does not exceed the upper limit of the one-sided 95% confidence interval of the historical short-term chronic SAE rate for deep brain stimulation for movement disorders from the published literature (rate = 36%; upper CI = 42%). The comparator was calculated based upon the literature, therefore the number of participants analyzed is unknown/not applicable. Referenced literature are listed within the citation section (Oh et al., 2002; SSED, Activa Tremor Control System P960009; Beric et al., 2001; Behrens et al., 1997; Hariz, 2002; Joint et al., 2002; Koller et al., 2001).\n\nPrimary Safety Outcome Measure was met.",
+          "measure": "Short-term Chronic SAE Rate",
+          "timeFrame": "Initial implant through 5 months post-implant"
+        },
+        {
+          "description": "The outcome measure is met when a significantly greater reduction in the frequency of total disabling seizures in seen in the Treatment group when compared to the Sham group, during the Blinded Evaluation Period (BEP) relative to the Pre-Implant Period (Baseline).\n\nThe outcome measure is the group-by-time interaction term in a generalized estimating equation (GEE), longitudinal regression model, where group refers to therapy allocation (Treatment or Sham), time refers to study period (Baseline or BEP), and the dependent variable is seizure frequency. The outcome measure was a statistically significant group-by-time interaction term, which would demonstrate a significantly greater reduction in seizure frequency in the Treatment group than the Sham group during BEP compared to Baseline Period.\n\nPrimary Effectiveness Outcome Measure was met.\n\n(Note: Disabling seizures = motor simple partial seizures or complex partial seizures with or without secondarily generalized seizures.)",
+          "measure": "Change in Frequency of Disabling Seizures",
+          "timeFrame": "3 months pre-implant (Baseline Period) compared to months 3, 4 and 5 post-implant (Blinded Evaluation Period)"
+        }
+      ]
     },
     {
       "id": "NCT02263430",
@@ -48931,7 +48957,22 @@
       ],
       "sponsor": "Beijing Pins Medical Co., Ltd",
       "summary": "Deep Brain Stimulation (DBS) of the Globus pallidus internus(GPi) is useful in the treatment of different forms of chorea, including Huntington's disease (HD).",
-      "url": "https://clinicaltrials.gov/study/NCT02263430"
+      "url": "https://clinicaltrials.gov/study/NCT02263430",
+      "lastUpdatePosted": "2016-10-14",
+      "studyStart": {
+        "date": "2016-12"
+      },
+      "enrollment": {
+        "count": 8,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "measure": "Unified Huntington's Disease Rating Scale(UHDRS)",
+          "timeFrame": "12 month"
+        }
+      ]
     },
     {
       "id": "NCT02747589",
@@ -48955,7 +48996,34 @@
       ],
       "sponsor": "University of California, Los Angeles",
       "summary": "In this study, the investigators intend to evaluate the use of a commercially available neurostimulator system, NeuroPace RNS System to stimulate the visual cortex. The NeuroPace RNS System has a proven record of safety and reliability was approved by the FDA in November 2013. The RNS System is indicated for use in patients with epilepsy and includes a skull implanted neurostimulator. No modification to the RNS System is required for this study. This study will use this device to better understand the effect of stimulation on the visual parts of the brain.\n\nThe main purposes of this study are to confirm the desired location to implant a device in the visual cortex, determine the amount of energy needed to elicit vision, and assess the nature of the vision that is produced. This information is important to have early in the process of designing a visual cortical prosthesis that could eventually be used for commercial use.",
-      "url": "https://clinicaltrials.gov/study/NCT02747589"
+      "url": "https://clinicaltrials.gov/study/NCT02747589",
+      "lastUpdatePosted": "2026-01-08",
+      "studyStart": {
+        "date": "2016-08",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 5,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "Quantitative outcome. Direct brain stimulation to reproduce visual phenomena has not been done. There are no predesigned outcome measures. For this outcome measure, we will determine how much stimulation (in amps) is required to induce a perception of vision.",
+          "measure": "Stimulation level required to elicit visual phosphene",
+          "timeFrame": "6 months"
+        },
+        {
+          "description": "Descriptive outcome. Subjects will be asked to describe the type of visual perception that is induced by direct brain stimulation.",
+          "measure": "Characterization of stimulation-induced visions",
+          "timeFrame": "6 months"
+        },
+        {
+          "description": "Anatomic outcome. No predetermined outcome scale exists. We will assess patients and the sites of brain stimulation to determine which areas of the brain produce reliable visual phenomena when stimulated.",
+          "measure": "Spatial localization of stimulation to produce visual phenomena with direct cortical stimulation.",
+          "timeFrame": "6 months"
+        }
+      ]
     },
     {
       "id": "NCT02781129",
@@ -48979,7 +49047,24 @@
       ],
       "sponsor": "Barbara Jobst",
       "summary": "This study is designed to identify brain activity associated with good memory in subjects with a chronically implanted RNS\u00ae device and to study the effects of therapeutic stimulation for epilepsy on memory. This will be accomplished through analysis of ECoG data collected during memory encoding for short and long-term free recall as well as during navigation tasks.",
-      "url": "https://clinicaltrials.gov/study/NCT02781129"
+      "url": "https://clinicaltrials.gov/study/NCT02781129",
+      "lastUpdatePosted": "2025-07-30",
+      "studyStart": {
+        "date": "2016-05",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 9,
+        "type": "ACTUAL"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "This study is designed to study the effects of therapeutic stimulation for epilepsy on memory. This outcome will be assessed by free recall language and memory tasks.",
+          "measure": "Proportion of words recalled with and without stimulation.",
+          "timeFrame": "30 days"
+        }
+      ]
     },
     {
       "id": "NCT03270657",
@@ -49003,7 +49088,24 @@
       ],
       "sponsor": "Dennis Turner, M.D.",
       "summary": "The purpose of this study is to measure neural activity during deep brain stimulation (DBS). There are two types of neural activity that we will record from DBS electrodes during this study: DBS local evoked potentials (DLEPs) and spontaneous, local field potentials (LFPs). We will measure the effects of varying stimulation parameters on both the neural activity and changes in motor symptoms -- bradykinesia and tremor -- in subjects with Parkinson's disease (PD). Correlating neural activity characteristics with changes in symptoms will improve our understanding of the mechanisms of action of DBS. This intraoperative study will specifically compare our ability to record neural activity using circuitry developed at Duke for this purpose \\[Kent et al, 2015\\] to a new, implanted pulse generator (IPG; RC+S) developed by Medtronic. These intraoperative studies will specifically test a preliminary version of the RC+S (that is not designed for implantation), and will lead to a clinical trial assessing the efficacy of the implantable RC+S IPG in PD patients once this device is available and approved for this trial.",
-      "url": "https://clinicaltrials.gov/study/NCT03270657"
+      "url": "https://clinicaltrials.gov/study/NCT03270657",
+      "lastUpdatePosted": "2020-03-23",
+      "studyStart": {
+        "date": "2018-04-05",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 5,
+        "type": "ACTUAL"
+      },
+      "hasResults": true,
+      "primaryOutcomes": [
+        {
+          "description": "Measured by the ability to record neural activity through DBS electrodes using circuitry developed at Duke for this purpose and/or a new implantable pulse generator (IPG; RC+S) developed by Medtronic. These intraoperative studies will specifically test a preliminary version of the RC+S that is not designed for implantation.",
+          "measure": "Number of Participants With Recorded Evoked Neural Signals From Deep Brain Stimulation (DBS) Electrodes During DBS for Parkinson's Disease.",
+          "timeFrame": "End of procedure, approximately 45 minutes"
+        }
+      ]
     },
     {
       "id": "NCT03417271",
@@ -49028,7 +49130,24 @@
       ],
       "sponsor": "University College, London",
       "summary": "The aim of this investigation is to explore the effect of reducing conventional pulse width of stimulation on known adverse effects of Subthalamic nucleus Deep Brain Stimulation (STN DBS) treatment such as; slurring of speech, gait impairment, and unsteadiness. This investigation is designed such that each of 16 patients (who have all had chronically implanted DBS systems), will be assessed using conventional (DBS-60\u00b5s) and short (DBS-30\u00b5s) pulse width DBS, in a randomised order.",
-      "url": "https://clinicaltrials.gov/study/NCT03417271"
+      "url": "https://clinicaltrials.gov/study/NCT03417271",
+      "lastUpdatePosted": "2019-04-17",
+      "studyStart": {
+        "date": "2018-05-02",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 16,
+        "type": "ACTUAL"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "Percentage of intelligible words spoken during formal speech assessment",
+          "measure": "Speech Intelligibility test",
+          "timeFrame": "4 weeks"
+        }
+      ]
     },
     {
       "id": "NCT03482310",
@@ -49052,7 +49171,24 @@
       ],
       "sponsor": "VA Office of Research and Development",
       "summary": "This study is for people who have a paralyzed arm and hand from a spinal cord injury, who have also received a recording electrode array in the brain as part of the BrainGate study. The study will look at the ability of these participants to control different grasping patterns of the hand, both in virtual reality and in his/her actual hand. Movement of the participant's hand is controlled by a functional electrical stimulation (FES) system, which involves small electrodes implanted in the arm, shoulder and hand that use small electrical currents to activate the appropriate muscles.",
-      "url": "https://clinicaltrials.gov/study/NCT03482310"
+      "url": "https://clinicaltrials.gov/study/NCT03482310",
+      "lastUpdatePosted": "2026-02-20",
+      "studyStart": {
+        "date": "2018-06-01",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 1,
+        "type": "ACTUAL"
+      },
+      "hasResults": true,
+      "primaryOutcomes": [
+        {
+          "description": "The success rate for achieving a series of specified grasp patterns will be calculated. This will be a percentage of the target grasp patterns successfully achieved. The reported outcome is an average of the outcomes (mean +/- standard deviation) over the full assessment period",
+          "measure": "Ability to Form Appropriate Grasp Patterns",
+          "timeFrame": "Outcomes were assessed on average every 3 months for the full time (4 years) that the participant was enrolled in the study."
+        }
+      ]
     },
     {
       "id": "NCT03528460",
@@ -49067,7 +49203,24 @@
       "interventions": [],
       "sponsor": "University Hospital, Grenoble",
       "summary": "The purpose and main objective of this study is the research of pre-operative and operative predictive factors of short-term (1-year) and long-term (15-years) improvement of quality of life, motor and non-motor symptoms in Parkinson's disease patients who have undergone to bilateral Subthalamic Nucleus Deep Brain Stimulation.\n\nThe hypothesis of the study is that the definition of pre-operative and operative predictive factors could be able to improve the pre-operative prognostic accuracy of outcome and complications after surgery, allowing also a better selection of the most suitable candidates for bilateral Subthalamic Nucleus Deep Brain Stimulation.\n\nFor example, we can suppose that an older age at surgery, elevated axial score, a less preoperative dopa-responsiveness, the presence of mild executive dysfunction at surgery or an unfavourable social status, could negatively influence the short and long term surgery outcome",
-      "url": "https://clinicaltrials.gov/study/NCT03528460"
+      "url": "https://clinicaltrials.gov/study/NCT03528460",
+      "lastUpdatePosted": "2019-01-29",
+      "studyStart": {
+        "date": "2017-09-11",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 420,
+        "type": "ACTUAL"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "The Unified Parkinson's Disease Rating Scale (UPDRS) has been developed for the clinical evaluation of Parkinson's disease (PD) patients. It allows the assessment of both motor and non-motor symptoms associated with PD",
+          "measure": "Changes in the Unified Parkinson's Disease Rating Scale (UPDRS) section I, II, III, IV, V, VI scores",
+          "timeFrame": "pre-operative evaluation, 1-year and 15-years after Subthalamic Nucleus Deep Brain Stimulation"
+        }
+      ]
     },
     {
       "id": "NCT04255719",
@@ -49092,7 +49245,24 @@
       ],
       "sponsor": "Ruijin Hospital",
       "summary": "The subthalamic nucleus (STN) and globus pallidus interna (GPi) are two main targets in the deep brain stimulation (DBS) treatment for Parkinson's disease (PD). Large randomized controlled trials, in which patients of comparable clinical and demographics were randomized to either GPi DBS or STN DBS, have demonstrated equal effects of both targets in motor symptom improvement, the superiority of STN DBS in the medication reduction and the potential advantage of GPi DBS for cognitive, psychiatric and axial aspects. Unfortunately, in such a highly heterogeneous disease of PD, many of these randomized controlled trials didn't include sufficient subjects and thereby yielded inconsistent results. Moreover, most studies are investigating the difference between GPi and STN in different patients.\n\nIn order to address the problem, an intra-patient comparison will be made by investigating the acute turning-on effects of unilateral STN stimulation versus unilateral GPi stimulation on axial symptoms, cognition and also cardinal symptoms within each individual patient who received the treatment of combined unilateral STN and contralateral GPi DBS. Axial symptoms including gait, balance and posture, motor symptoms and cognition are comprehensively assessed under two treatment conditions.",
-      "url": "https://clinicaltrials.gov/study/NCT04255719"
+      "url": "https://clinicaltrials.gov/study/NCT04255719",
+      "lastUpdatePosted": "2021-03-04",
+      "studyStart": {
+        "date": "2020-03-01",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 9,
+        "type": "ACTUAL"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "Timed Up-and-Go task is a well-defined objective gait measurement. The task requires an individual to stand up, walk 5 m, turn, walk back, and sit down. The time taken to complete the test is strongly correlated with the level of functional mobility. This test will be videotaped and scored by two blinded neurologists.",
+          "measure": "Difference in Timed Up-and-Go (TUG) task scores between treatment conditions in the on- and off- medication states",
+          "timeFrame": "6 months"
+        }
+      ]
     },
     {
       "id": "NCT04839601",
@@ -49116,7 +49286,29 @@
       ],
       "sponsor": "NeuroPace",
       "summary": "To demonstrate that the RNS System is safe and effective as an adjunctive therapy in individuals age 12 through 17 years with medically refractory partial onset epilepsy.",
-      "url": "https://clinicaltrials.gov/study/NCT04839601"
+      "url": "https://clinicaltrials.gov/study/NCT04839601",
+      "lastUpdatePosted": "2025-05-22",
+      "studyStart": {
+        "date": "2021-10-27",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 9,
+        "type": "ACTUAL"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "The primary safety endpoint is the percent of subjects with serious device-related adverse events at 84 days (12 weeks) post-implant.",
+          "measure": "Short-term chronic serious adverse device effect (SADE) rate",
+          "timeFrame": "84-days post-implant"
+        },
+        {
+          "description": "12 months post-implant",
+          "measure": "Responder rate at 12 months post implant",
+          "timeFrame": "The primary effectiveness endpoint is the percent of subjects with a \u2265 50% reduction in seizures at 12 months post-implant compared to the pre-implant baseline."
+        }
+      ]
     },
     {
       "id": "NCT05470478",
@@ -49140,7 +49332,24 @@
       ],
       "sponsor": "VA Office of Research and Development",
       "summary": "VA research has been advancing a high-performance brain-computer interface (BCI) to improve independence for Veterans and others living with tetraplegia or the inability to speak resulting from amyotrophic lateral sclerosis, spinal cord injury or stoke. In this project, the investigators enhance deep learning neural network decoders and multi-state gesture decoding for increased accuracy and reliability and deploy them on a battery-powered mobile BCI device for independent use of computers and touch-enabled mobile devices at home. The accuracy and usability of the mobile iBCI will be evaluated with participants already enrolled separately in the investigational clinical trial of the BrainGate neural interface.",
-      "url": "https://clinicaltrials.gov/study/NCT05470478"
+      "url": "https://clinicaltrials.gov/study/NCT05470478",
+      "lastUpdatePosted": "2026-07-27",
+      "studyStart": {
+        "date": "2026-10-02",
+        "type": "ESTIMATED"
+      },
+      "enrollment": {
+        "count": 2,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "Rate of successful closed-loop acquisition of on-screen targets using imagined gestures to move a computer cursor or to select icons on a computer screen.",
+          "measure": "Closed-loop performance in an iBCI cursor task",
+          "timeFrame": "through study completion, average of 1 month"
+        }
+      ]
     },
     {
       "id": "NCT05724173",
@@ -49164,7 +49373,24 @@
       ],
       "sponsor": "Leigh R. Hochberg, MD, PhD.",
       "summary": "The purpose of this study is to obtain preliminary device safety information and demonstrate proof of principle (feasibility) of the ability of people with tetraplegia to control a computer cursor and other assistive devices with their thoughts.",
-      "url": "https://clinicaltrials.gov/study/NCT05724173"
+      "url": "https://clinicaltrials.gov/study/NCT05724173",
+      "lastUpdatePosted": "2026-06-02",
+      "studyStart": {
+        "date": "2023-10-18",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 3,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "To determine the safety of the Sensor and overall safety of the System. Participants will be considered a success for this safety measure if they are successfully implanted with the Sensor(s) and:\n\n1. the sensors are not explanted for safety reasons during the one-year post-implant evaluation period.\n2. there are no device-related Serious Adverse Events that result in death or permanently increased disability during the one-year post-implant evaluation period.",
+          "measure": "Device Safety",
+          "timeFrame": "1 year"
+        }
+      ]
     },
     {
       "id": "NCT06391294",
@@ -49188,7 +49414,82 @@
       ],
       "sponsor": "Northwestern University",
       "summary": "Electrocortical stimulation (ECS) mapping is a procedure used during brain surgeries, for example when treating diseases like epilepsy or when removing brain tumors. ECS mapping helps surgeons locate areas of the cerebral cortex (the outer part of the brain) that are important for everyday tasks like movement and speech. ECS mapping has been used for decades, and is considered the \"gold-standard\" tool for locating important areas of cortex. Despite this long history, there is still no clear understanding of exactly how ECS works.\n\nThe goal of this study is to learn details about the effects ECS has on the brain. The main questions the study aims to answer are: 1) how ECS affects the neurons of the cortex at the stimulation site; and 2) how ECS impacts brain regions that are critically important for human speech and language. These so-called \"critical sites\" can be physically distant from one another on the brain's surface, requiring extensive ECS mapping and long surgeries. Critical sites are thought to be part of a speech/language network of brain areas, and so the study's goal is to learn about how they are connected. In some participants, the brain's surface will also be slightly cooled. This is a painless procedure that does not harm the brain's function, but could provide insight as to which parts of the brain (the surface, or deeper parts) are responsible for the effects of ECS.\n\nBy improving the understanding of how ECS affects the brain and improving the ability to identify critical sites, this study could potentially lead to shorter surgeries and better outcomes for future individuals who need this care.\n\nParticipants will be recruited from among individuals who are undergoing brain surgery for epilepsy treatment or tumor removal. Participants will complete simple tasks like reading words or naming pictures, similar to standard testing that is already performed during their hospital stay.",
-      "url": "https://clinicaltrials.gov/study/NCT06391294"
+      "url": "https://clinicaltrials.gov/study/NCT06391294",
+      "lastUpdatePosted": "2026-08-07",
+      "studyStart": {
+        "date": "2024-05-17",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 65,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "Accuracy at decoding critical nodes from network connectivity metrics using machine learning algorithms.",
+          "measure": "Critical node decoding performance",
+          "timeFrame": "Up to 1 week during ECoG recording"
+        }
+      ]
+    },
+    {
+      "id": "NCT06429735",
+      "kind": "trial",
+      "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+      "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+      "title": "Precise Robotically IMplanted Brain-Computer InterfacE",
+      "status": "RECRUITING",
+      "firstPosted": "2024-05-28",
+      "interventions": [
+        {
+          "armGroupLabels": [
+            "Neuralink N1 Implant and R1 Robot"
+          ],
+          "description": "The N1 Implant is a type of implantable brain-computer interface",
+          "name": "N1 Implant",
+          "otherNames": [
+            "Neuralink N1 Implant, N1, Telepathy, Link"
+          ],
+          "type": "DEVICE"
+        },
+        {
+          "armGroupLabels": [
+            "Neuralink N1 Implant and R1 Robot"
+          ],
+          "description": "The R1 Robot is a robotic electrode thread inserter that implants the N1 Implant.",
+          "name": "R1 Robot",
+          "otherNames": [
+            "R1, Neuralink R1 Robot"
+          ],
+          "type": "DEVICE"
+        }
+      ],
+      "sponsor": "Neuralink Corp",
+      "summary": "The PRIME Study is a first-in-human early feasibility study to evaluate the initial clinical safety and device functionality of the Neuralink N1 Implant and R1 Robot device designs in participants with tetraparesis or tetraplegia. The N1 Implant is a skull-mounted, wireless, rechargeable implant connected to electrode threads that are implanted in the brain by the R1 Robot, a robotic electrode thread inserter.",
+      "url": "https://clinicaltrials.gov/study/NCT06429735",
+      "lastUpdatePosted": "2026-01-09",
+      "studyStart": {
+        "date": "2024-01-09",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 15,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "measure": "Device-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        },
+        {
+          "measure": "Procedure-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        }
+      ]
     },
     {
       "id": "NCT06511934",
@@ -49212,7 +49513,119 @@
       ],
       "sponsor": "Leigh R. Hochberg, MD, PhD.",
       "summary": "People with brainstem stroke, advanced amyotrophic lateral sclerosis (ALS, also known as Lou Gehrig's disease), or other disorders can become unable to move or speak despite being awake and alert. In this project, the investigators seek to further translate knowledge about interpreting brain signals related to movement, and to further develop an intracortical brain-computer interface (iBCI) that could restore rapid and intuitive use of communication apps on tablet computers by people with paralysis.",
-      "url": "https://clinicaltrials.gov/study/NCT06511934"
+      "url": "https://clinicaltrials.gov/study/NCT06511934",
+      "lastUpdatePosted": "2026-06-25",
+      "studyStart": {
+        "date": "2024-07-22",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 6,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "To determine the safety of the Sensor and overall safety of the System. Participants will be considered a success for this safety measure if they are successfully implanted with the Sensor(s) and:\n\n1. the sensors are not explanted for safety reasons during the one-year post-implant evaluation period.\n2. there are no device-related Serious Adverse Events that result in death or permanently increased disability during the one-year post-implant evaluation period.",
+          "measure": "Sensor implant duration for at least one-year without any device-related Serious Adverse Events or explant",
+          "timeFrame": "1 year"
+        }
+      ]
+    },
+    {
+      "id": "NCT06700304",
+      "kind": "trial",
+      "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+      "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+      "title": "CAN-PRIME: Precise Robotically Implanted Brain-Computer Interface for the Control of External Devices",
+      "status": "RECRUITING",
+      "firstPosted": "2024-11-21",
+      "interventions": [
+        {
+          "armGroupLabels": [
+            "CAN-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+          ],
+          "description": "The N1 Implant is a type of implantable brain-computer interface.",
+          "name": "N1 Implant",
+          "type": "DEVICE"
+        },
+        {
+          "armGroupLabels": [
+            "CAN-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+          ],
+          "description": "The R1 Robot is a robotic electrode thread inserter that implants the N1 Implant.",
+          "name": "R1 Robot",
+          "type": "DEVICE"
+        }
+      ],
+      "sponsor": "Neuralink Corp",
+      "summary": "The CAN-PRIME Study is to test the safety and functionality of Neuralink's N1 Implant and R1 Robot in people who have difficulty moving their arms and legs (tetraparesis or tetraplegia). The N1 Implant is a small, wireless device placed in the skull. It connects to tiny threads inserted into the brain by the R1 Robot, which is a machine designed to carefully place these threads. This study will help researchers learn how well the implant and robot work and if they are safe for use.",
+      "url": "https://clinicaltrials.gov/study/NCT06700304",
+      "lastUpdatePosted": "2025-05-31",
+      "studyStart": {
+        "date": "2024-11-20",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 6,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "measure": "The Rate of Device-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        },
+        {
+          "measure": "The Rate of Procedure-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        }
+      ]
+    },
+    {
+      "id": "NCT06710626",
+      "kind": "trial",
+      "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+      "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+      "title": "Control of Assistive Devices Via Brain-Computer Interface Technology",
+      "status": "ENROLLING_BY_INVITATION",
+      "firstPosted": "2024-11-29",
+      "interventions": [
+        {
+          "armGroupLabels": [
+            "Single"
+          ],
+          "description": "The intervention involves using the N1 Implant, a wireless brain-computer interface (BCI), to enable participants to control the Assistive Robotic Arm through neural signals.",
+          "name": "Assistive Robotic Arm",
+          "otherNames": [
+            "BCI controlled robotic arm"
+          ],
+          "type": "DEVICE"
+        }
+      ],
+      "sponsor": "Neuralink Corp",
+      "summary": "The CONVOY Study is a clinical trial designed to explore the feasibility of participants from the PRIME Study (NCT06429735) using the N1 Implant to control various assistive devices. The main goal is to determine whether participants can successfully modulate their brain activity to control devices, such as an Assistive Robotic Arm (ARA). This study will assess the effectiveness, consistency, and safety of neural control using the ARA and other assistive devices.",
+      "url": "https://clinicaltrials.gov/study/NCT06710626",
+      "lastUpdatePosted": "2025-06-05",
+      "studyStart": {
+        "date": "2024-11-25",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 3,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "measure": "Ability of participants to modulate brain activity for controlling an assistive device via the N1 Implant.",
+          "timeFrame": "3-months following first use of the assistive device"
+        }
+      ]
     },
     {
       "id": "NCT06883981",
@@ -49236,7 +49649,138 @@
       ],
       "sponsor": "University of Utah",
       "summary": "The goal of this observational study is to develop novel methods for integrating multimodal data streams with invasive neural recordings to study autobiographical memory (AM) formation in individuals with implanted neurostimulation devices (e.g., NeuroPace RNS) for epilepsy treatment. The main questions it aims to answer are:\n\nHow does the brain encode and retrieve real-world autobiographical memories? Can multimodal data integration enhance our understanding of memory-related cognitive and neural mechanisms?\n\nParticipants will:\n\n* Use a smartphone-based recording application (CAPTURE app) to collect real-world data.\n* Have their wearable sensor data (e.g., audio-visual, accelerometry, GPS, autonomic physiology, eye tracking) synchronized with invasive neural recordings.\n\nResearchers will analyze these multimodal data streams to develop new analytic approaches for studying memory formation in naturalistic settings, with the long-term goal of informing neuromodulation-based memory enhancement treatments for individuals with memory disorders.",
-      "url": "https://clinicaltrials.gov/study/NCT06883981"
+      "url": "https://clinicaltrials.gov/study/NCT06883981",
+      "lastUpdatePosted": "2025-04-08",
+      "studyStart": {
+        "date": "2025-01-30",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 50,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "iEEG power in the theta band between 4-8 Hz, will be assessed to identify the real-world experience features that contribute to changes in this important neural power band for memory encoding.",
+          "measure": "Intracranial EEG power in Theta Band",
+          "timeFrame": "4 days"
+        },
+        {
+          "description": "iEEG power in the gamma band between 30-100 Hz, will be assessed to identify the real-world experience features that contribute to changes in this important neural power band for memory encoding.",
+          "measure": "Intracranial EEG power in Gamma Band",
+          "timeFrame": "4 days"
+        },
+        {
+          "description": "This feature of intracranial EEG will be assessed as a broadband state-level change in brain activity during the participant's real-world experiences.",
+          "measure": "Intracranial EEG normalized aperiodic exponent",
+          "timeFrame": "4 days"
+        }
+      ]
+    },
+    {
+      "id": "NCT06992596",
+      "kind": "trial",
+      "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+      "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+      "title": "UAE-PRIME: A Feasibility Study of a Precise Robotically Implanted Brain-Computer Interface for the Control of External Devices",
+      "status": "RECRUITING",
+      "firstPosted": "2025-05-28",
+      "interventions": [
+        {
+          "armGroupLabels": [
+            "UAE-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+          ],
+          "description": "The N1 Implant is a type of implantable brain-computer interface.",
+          "name": "N1 Implant",
+          "type": "DEVICE"
+        },
+        {
+          "armGroupLabels": [
+            "UAE-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+          ],
+          "description": "The R1 Robot is a robotic electrode thread inserter that implants the N1 Implant.",
+          "name": "R1 Robot",
+          "type": "DEVICE"
+        }
+      ],
+      "sponsor": "Neuralink Corp",
+      "summary": "The UAE-PRIME Study is a feasibility study designed to assess the initial clinical safety and functionality of the Neuralink N1 Implant and R1 Robot. This study involves participants who have tetraparesis, tetraplegia, or a diagnosis that may lead to these conditions.\n\nThe N1 Implant is a wireless, rechargeable device mounted on the skull, connected to electrode threads that are inserted into the brain by the R1 Robot, which is a robotic device specifically designed for this procedure.",
+      "url": "https://clinicaltrials.gov/study/NCT06992596",
+      "lastUpdatePosted": "2025-06-05",
+      "studyStart": {
+        "date": "2025-05-09",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 10,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "measure": "The Rate of Device-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        },
+        {
+          "measure": "The Rate of Procedure-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        }
+      ]
+    },
+    {
+      "id": "NCT07127172",
+      "kind": "trial",
+      "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+      "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+      "title": "GB-PRIME: An Early Feasibility Study of a Precise Robotically Implanted Brain-Computer Interface for the Control of External Devices",
+      "status": "RECRUITING",
+      "firstPosted": "2025-08-17",
+      "interventions": [
+        {
+          "armGroupLabels": [
+            "GB-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+          ],
+          "description": "The N1 Implant is a type of implantable brain-computer interface.",
+          "name": "N1 Implant",
+          "type": "DEVICE"
+        },
+        {
+          "armGroupLabels": [
+            "GB-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+          ],
+          "description": "The R1 Robot is a robotic electrode thread inserter that implants the N1 Implant.",
+          "name": "R1 Robot",
+          "type": "DEVICE"
+        }
+      ],
+      "sponsor": "Neuralink Corp",
+      "summary": "The GB-PRIME Study is an early feasibility study designed to assess the clinical safety and functionality of the Neuralink N1 Implant and R1 Robot. This study involves participants who have tetraparesis, tetraplegia, or a diagnosis that may lead to these conditions.\n\nThe N1 Implant is a wireless, rechargeable device mounted on the skull, connected to electrode threads that are inserted into the brain by the R1 Robot, which is a robotic device specifically designed for this procedure.",
+      "url": "https://clinicaltrials.gov/study/NCT07127172",
+      "lastUpdatePosted": "2025-08-17",
+      "studyStart": {
+        "date": "2025-07-31",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 7,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "measure": "The Rate of Device-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        },
+        {
+          "measure": "The Rate of Procedure-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        }
+      ]
     },
     {
       "id": "NCT07127913",
@@ -49276,7 +49820,84 @@
       ],
       "sponsor": "Andrew Krystal",
       "summary": "Neurons are specialized types of cells that are responsible for carrying out the functions of the brain. Neurons communicate with electrical signals. In diseases such as major depression this electrical communication can go awry. One way to change brain function is using electrical stimulation to help alter the communication between groups of neurons in the brain.\n\nThe purpose of this study is to test a personalized approach to brain stimulation as an intervention for bipolar depression The study researchers will use a surgically implanted device to measure each individual's brain activity related to his/her depression. The researchers will then use small electrical impulses to alter that brain activity and measure whether these changes help reduce depression symptoms. This study is intended for patients with major depression whose symptoms have not been adequately treated with currently available therapies.\n\nThe device used in this study is called the NeuroPace Responsive Neurostimulation (RNS) System. It is currently FDA approved to treat patients with epilepsy. The study will test whether personalized responsive neurostimulation can safely and effectively treat bipolar depression.",
-      "url": "https://clinicaltrials.gov/study/NCT07127913"
+      "url": "https://clinicaltrials.gov/study/NCT07127913",
+      "lastUpdatePosted": "2025-08-17",
+      "studyStart": {
+        "date": "2025-07-16",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 10,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "Effect size comparing closed-loop stimulation, open-loop (fixed intermittent) stimulation, and sham stimulation (MADRS score before and after each treatment period of the crossover). Higher MADRS score indicates more severe depression; the overall score ranges from 0 to 60.",
+          "measure": "Change in Montgomery-Asberg Depression Rating Scale (MADRS) score",
+          "timeFrame": "Administered twice at baseline and every 2 weeks for the 36-40 weeks of Stage 3"
+        }
+      ]
+    },
+    {
+      "id": "NCT07224256",
+      "kind": "trial",
+      "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+      "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+      "title": "VOICE: An Early Feasibility Study of a Precise Robotically Implanted Brain-Computer Interface for Communication Restoration",
+      "status": "RECRUITING",
+      "firstPosted": "2025-11-04",
+      "interventions": [
+        {
+          "armGroupLabels": [
+            "Neuralink N1 Implant and R1 Robot"
+          ],
+          "description": "The N1 Implant is a type of implantable brain-computer interface",
+          "name": "N1 Implant",
+          "otherNames": [
+            "Neuralink N1 Implant, N1, Telepathy, Link"
+          ],
+          "type": "DEVICE"
+        },
+        {
+          "armGroupLabels": [
+            "Neuralink N1 Implant and R1 Robot"
+          ],
+          "description": "The R1 Robot is a robotic electrode thread inserter that implants the N1 Implant.",
+          "name": "R1 Robot",
+          "otherNames": [
+            "R1, Neuralink R1 Robot"
+          ],
+          "type": "DEVICE"
+        }
+      ],
+      "sponsor": "Neuralink Corp",
+      "summary": "The VOICE Study is an early feasibility study to evaluate the initial clinical safety and efficacy of the N1 and R1 Systems device design concept in providing an ability to communicate. The Neuralink N1 Implant is intended to provide the ability to communicate to individuals with severe and irreversible speech production impairment. It is indicated for adults with neurological conditions of the central speech pathways who have impaired upper limb function. The N1 Implant is a skull-mounted, wireless, rechargeable implant connected to electrode threads that are implanted in the brain by the R1 Robot, a robotic electrode thread inserter.",
+      "url": "https://clinicaltrials.gov/study/NCT07224256",
+      "lastUpdatePosted": "2025-11-04",
+      "studyStart": {
+        "date": "2025-10-03",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 6,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "The proportion of subjects with device-related adverse events (AEs) at the 12-month follow-up visit.",
+          "measure": "Device-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        },
+        {
+          "description": "The proportion of subjects with procedure-related adverse events (AEs) at the 12-month follow-up visit.",
+          "measure": "Procedure-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        }
+      ]
     },
     {
       "id": "NCT07791459",
@@ -49309,7 +49930,24 @@
       ],
       "sponsor": "Leigh R. Hochberg, MD, PhD.",
       "summary": "The purpose of this study is to obtain preliminary device safety information and demonstrate proof of principle (feasibility) of the ability of people with aphasia to generate text on a computer screen and audible, computer-generated speech by attempting to speak.",
-      "url": "https://clinicaltrials.gov/study/NCT07791459"
+      "url": "https://clinicaltrials.gov/study/NCT07791459",
+      "lastUpdatePosted": "2026-08-31",
+      "studyStart": {
+        "date": "2026-08",
+        "type": "ESTIMATED"
+      },
+      "enrollment": {
+        "count": 5,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "The primary endpoint of this Study is to determine the safety of the BrainGate2 Neural Interface System",
+          "measure": "Safety of the BrainGate2 Neural Interface System",
+          "timeFrame": "One year post-implant evaluation period"
+        }
+      ]
     },
     {
       "id": "NIH:11239813",
@@ -49538,6 +50176,49 @@
           "idtype": "doi",
           "idtypen": 3,
           "value": "10.1089/ther.2014.0025"
+        }
+      ]
+    },
+    {
+      "id": "PMID:31642810",
+      "kind": "publication",
+      "sourceSha": "63879abe83688c470991c48a739f26dfdda3102f6ef6112020717f348904efd4",
+      "retrievedAt": "2026-11-01T04:51:05.034069+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=31642810&retmode=json&tool=BodyAtlas",
+      "title": "An Integrated Brain-Machine Interface Platform With Thousands of Channels.",
+      "publicationDate": "2019 Oct 31",
+      "authors": [
+        "Musk E",
+        "Neuralink"
+      ],
+      "journal": "Journal of medical Internet research",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31642810/",
+      "identifiers": [
+        {
+          "idtype": "pubmed",
+          "idtypen": 1,
+          "value": "31642810"
+        },
+        {
+          "idtype": "pmc",
+          "idtypen": 8,
+          "value": "PMC6914248"
+        },
+        {
+          "idtype": "pmcid",
+          "idtypen": 5,
+          "value": "pmc-id: PMC6914248;"
+        },
+        {
+          "idtype": "doi",
+          "idtypen": 3,
+          "value": "10.2196/16194"
+        },
+        {
+          "idtype": "pii",
+          "idtypen": 4,
+          "value": "v21i10e16194"
         }
       ]
     },
@@ -50666,6 +51347,22 @@
       "retrieved": "2026-10-19T11:12:04.854373+00:00",
       "provider_updated": "2026-10-05",
       "job_id": "whole-body-pma-canonical-500"
+    },
+    {
+      "sha": "63879abe83688c470991c48a739f26dfdda3102f6ef6112020717f348904efd4",
+      "path": "data/sources/63879abe83688c470991c48a739f26dfdda3102f6ef6112020717f348904efd4.json",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=31642810&retmode=json&tool=BodyAtlas",
+      "retrieved": "2026-11-01T04:51:05.034069+00:00",
+      "provider_updated": null,
+      "job_id": "neuralink-platform-paper"
+    },
+    {
+      "sha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+      "path": "data/sources/1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763.json",
+      "url": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+      "retrieved": "2026-11-01T04:51:05.780680+00:00",
+      "provider_updated": null,
+      "job_id": "neuralink-trials"
     }
   ],
   "jobs": [
@@ -50778,6 +51475,26 @@
       "updated": "2026-10-19T07:07:35.847228+00:00",
       "error": null,
       "checkpoint": "5679463ce7fbb5314a2a4c53b82ba794d1e3addd04bfeb61edc3c0098d9f5cbc"
+    },
+    {
+      "id": "neuralink-platform-paper",
+      "kind": "publication",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=31642810&retmode=json&tool=BodyAtlas",
+      "state": "complete",
+      "attempts": 1,
+      "updated": "2026-11-01T04:51:05.034069+00:00",
+      "error": null,
+      "checkpoint": "63879abe83688c470991c48a739f26dfdda3102f6ef6112020717f348904efd4"
+    },
+    {
+      "id": "neuralink-trials",
+      "kind": "trial",
+      "url": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+      "state": "complete",
+      "attempts": 1,
+      "updated": "2026-11-01T04:51:05.780680+00:00",
+      "error": null,
+      "checkpoint": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763"
     },
     {
       "id": "nih-neuro",

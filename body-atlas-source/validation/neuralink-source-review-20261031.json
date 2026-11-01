@@ -1,0 +1,40 @@
+{
+  "reviewedAt": "2026-10-31",
+  "sources": [
+    {
+      "url": "https://neuralink.com/pdfs/PRIME-Study-Brochure.pdf",
+      "sha256": "d86bef5481f100ce4e6187c49c1cb6a7905d9dc4482b8f8fb248522024567149",
+      "bytes": 278567,
+      "downloadCompletedAt": "2026-11-01T04:50:20.737708+00:00",
+      "sourceType": "manufacturer brochure; revision not established",
+      "publicRedistribution": "Original linked; full manufacturer content not redistributed in the public export"
+    },
+    {
+      "url": "https://neuralink.com/updates/prime-study-progress-update-user-experience/",
+      "sha256": "e6aa50f53eaa7472d8fdd08e50f0b4dab035352a3bc452b1bbcf75b07d79a2b0",
+      "bytes": 22282,
+      "downloadCompletedAt": "2026-11-01T04:50:20.388354+00:00",
+      "sourceType": "manufacturer report; publication date 2024-05-08",
+      "publicRedistribution": "Original linked; full manufacturer content not redistributed in the public export"
+    },
+    {
+      "url": "https://neuralink.com/updates/first-clinical-trial-open-for-recruitment/",
+      "sha256": "9a8867ed99c92a6d1a4a1ff1c209c53e8c6141171622834789bb7eaa02200e86",
+      "bytes": 14054,
+      "downloadCompletedAt": "2026-11-01T04:50:20.168055+00:00",
+      "sourceType": "manufacturer announcement; publication date 2023-09-19",
+      "publicRedistribution": "Original linked; full manufacturer content not redistributed in the public export"
+    },
+    {
+      "url": "https://neuralink.com/trials/",
+      "sha256": "5594ad64abe284410b00e7c402a9eb295a39822dc1bc9f978e2af6def71752f0",
+      "bytes": 8929,
+      "downloadCompletedAt": "2026-11-01T04:50:19.937367+00:00",
+      "sourceType": "manufacturer investigational-status notice",
+      "publicRedistribution": "Original linked; full manufacturer content not redistributed in the public export"
+    }
+  ],
+  "reviewMethod": "Original source inspection and explicit attribution; no language-model confidence, outcome inference or precise anatomical coordinates.",
+  "excludedTrial": "NCT07407725 was returned by a broad sponsor/collaborator search, but is not merged into this Neuralink-sponsored study set.",
+  "specificationBoundary": "The sponsor brochure has no established revision date here. UCLH description is dated 2025-07-31. Source differences do not establish a universal device configuration or revision chronology."
+}

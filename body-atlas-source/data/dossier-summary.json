@@ -773,6 +773,175 @@
     ],
     "path": "/dossiers/cooling.json"
   },
+  "neuralink": {
+    "familyId": "neuralink",
+    "name": "Neuralink N1 Implant / R1 research system",
+    "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+    "regulatory": {
+      "state": "not-established",
+      "detail": "No public FDA marketing application established in this collection. Trial registration/publication is not authorization.",
+      "records": 0
+    },
+    "labeling": {
+      "state": "not-applicable",
+      "detail": "No commercial labeling assigned to this investigational entry; protocol/publication evidence is separate.",
+      "documents": 0,
+      "changes": 0
+    },
+    "safety": {
+      "state": "not-established",
+      "detail": "No reliable application-based recall join is available; no safety clearance is inferred.",
+      "recalls": 0
+    },
+    "labelReview": {
+      "reviewedAt": "2026-10-31",
+      "status": "investigational",
+      "scope": "Neuralink N1/R1 research program: skull-mounted electronics, intracortical recording threads and software-mediated external device control. Public study and sponsor sources; not a commercial IFU.",
+      "revision": null,
+      "models": [
+        "PRIME sponsor brochure (revision not established): 64 threads / 1,024 electrodes",
+        "UCLH GB-PRIME description (31 July 2025): 128 threads / 1,024 electrodes",
+        "R1 surgical insertion robot (not implanted)",
+        "2019 platform prototype (not equivalent to current clinical N1)"
+      ],
+      "findings": [
+        {
+          "text": "Neuralink describes its devices as investigational and not FDA approved. Study permission and an IDE are not marketing authorization.",
+          "sourceUrl": "https://neuralink.com/trials/",
+          "locator": "Investigational-device notice"
+        },
+        {
+          "text": "The PRIME registry describes a skull-mounted N1 connected to implanted brain threads. R1 inserts those threads and is not the chronic implant.",
+          "sourceUrl": "https://clinicaltrials.gov/study/NCT06429735",
+          "locator": "Brief summary; interventions; study status and outcomes"
+        },
+        {
+          "text": "The undated sponsor brochure describes 64 threads and 1,024 electrodes. The PDF revision and configuration used in every participant are not established.",
+          "sourceUrl": "https://neuralink.com/pdfs/PRIME-Study-Brochure.pdf",
+          "locator": "PDF p. 1; devices and study purpose"
+        },
+        {
+          "text": "UCLH reports 128 threads with eight electrodes each in its 2025 GB-PRIME description. The thread count differs from the sponsor brochure, despite the same total electrode count.",
+          "sourceUrl": "https://www.uclh.nhs.uk/news/uclh-evaluate-safety-and-functionality-neuralinks-brain-computer-interface-bci-technology",
+          "locator": "31 July 2025; device-description Q&A"
+        },
+        {
+          "text": "The sponsor reported thread retraction and fewer effective electrodes in an early participant. This is a manufacturer report, not an FDA recall determination or a cohort-wide event rate.",
+          "sourceUrl": "https://neuralink.com/updates/prime-study-progress-update-user-experience/",
+          "locator": "8 May 2024; paragraph on retracted threads"
+        },
+        {
+          "text": "The 2019 platform paper predates PRIME and describes an earlier preclinical platform. It is not evidence of the current N1 human studies\u2019 results.",
+          "sourceUrl": "https://www.jmir.org/2019/10/e16194/",
+          "locator": "Device description and animal experiments; distinct from N1 human study results"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://neuralink.com/trials/",
+          "title": "Neuralink clinical-trials page",
+          "locator": "Investigational-device notice",
+          "accessedAt": "2026-10-31",
+          "method": "Original source inspection; API metadata acquired with immutable response hashes. Manufacturer and clinical-site reports are attributed; no clinical certification."
+        },
+        {
+          "url": "https://clinicaltrials.gov/study/NCT06429735",
+          "title": "PRIME registry",
+          "locator": "Brief summary; interventions; study status and outcomes",
+          "accessedAt": "2026-10-31",
+          "method": "Original source inspection; API metadata acquired with immutable response hashes. Manufacturer and clinical-site reports are attributed; no clinical certification."
+        },
+        {
+          "url": "https://neuralink.com/pdfs/PRIME-Study-Brochure.pdf",
+          "title": "Earlier PRIME study brochure",
+          "locator": "PDF p. 1; devices and study purpose",
+          "accessedAt": "2026-10-31",
+          "method": "Original source inspection; API metadata acquired with immutable response hashes. Manufacturer and clinical-site reports are attributed; no clinical certification."
+        },
+        {
+          "url": "https://www.uclh.nhs.uk/news/uclh-evaluate-safety-and-functionality-neuralinks-brain-computer-interface-bci-technology",
+          "title": "UCLH GB-PRIME study description",
+          "locator": "31 July 2025; device-description Q&A",
+          "accessedAt": "2026-10-31",
+          "method": "Original source inspection; API metadata acquired with immutable response hashes. Manufacturer and clinical-site reports are attributed; no clinical certification."
+        },
+        {
+          "url": "https://neuralink.com/updates/prime-study-progress-update-user-experience/",
+          "title": "Neuralink participant progress report",
+          "locator": "8 May 2024; paragraph on retracted threads",
+          "accessedAt": "2026-10-31",
+          "method": "Original source inspection; API metadata acquired with immutable response hashes. Manufacturer and clinical-site reports are attributed; no clinical certification."
+        },
+        {
+          "url": "https://www.jmir.org/2019/10/e16194/",
+          "title": "2019 Neuralink platform white paper",
+          "locator": "Device description and animal experiments; distinct from N1 human study results",
+          "accessedAt": "2026-10-31",
+          "method": "Original source inspection; API metadata acquired with immutable response hashes. Manufacturer and clinical-site reports are attributed; no clinical certification."
+        }
+      ],
+      "limitations": [
+        "The six indexed Neuralink-sponsored trial records have no posted results in the retrieved snapshot; this does not establish the absence of other research or publications.",
+        "No complete consent/risk packet, commercial labeling, patient-specific thread layout, hemisphere or dose/field model is established here.",
+        "Thread-count descriptions differ across sources; no universal patient configuration or revision crosswalk is established.",
+        "Sponsor reports are separate from adjudicated clinical outcomes and FDA safety/recall findings."
+      ]
+    },
+    "currentLabelReview": "investigational",
+    "noticeReview": "screened-candidates-reviewed",
+    "modelLotReview": "not-established",
+    "sourceLinks": [
+      {
+        "title": "Research evidence: PMID:31642810",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31642810/"
+      },
+      {
+        "title": "Research evidence: NCT07224256",
+        "url": "https://clinicaltrials.gov/study/NCT07224256"
+      },
+      {
+        "title": "Research evidence: NCT07127172",
+        "url": "https://clinicaltrials.gov/study/NCT07127172"
+      },
+      {
+        "title": "Research evidence: NCT06992596",
+        "url": "https://clinicaltrials.gov/study/NCT06992596"
+      },
+      {
+        "title": "Research evidence: NCT06700304",
+        "url": "https://clinicaltrials.gov/study/NCT06700304"
+      },
+      {
+        "title": "Research evidence: NCT06710626",
+        "url": "https://clinicaltrials.gov/study/NCT06710626"
+      },
+      {
+        "title": "PRIME registry",
+        "url": "https://clinicaltrials.gov/study/NCT06429735"
+      },
+      {
+        "title": "2019 Neuralink platform white paper",
+        "url": "https://www.jmir.org/2019/10/e16194/"
+      },
+      {
+        "title": "Neuralink participant progress report",
+        "url": "https://neuralink.com/updates/prime-study-progress-update-user-experience/"
+      },
+      {
+        "title": "UCLH GB-PRIME study description",
+        "url": "https://www.uclh.nhs.uk/news/uclh-evaluate-safety-and-functionality-neuralinks-brain-computer-interface-bci-technology"
+      },
+      {
+        "title": "Earlier PRIME study brochure",
+        "url": "https://neuralink.com/pdfs/PRIME-Study-Brochure.pdf"
+      },
+      {
+        "title": "Neuralink clinical-trials page",
+        "url": "https://neuralink.com/trials/"
+      }
+    ],
+    "path": "/dossiers/neuralink.json"
+  },
   "source-fda-k250173": {
     "familyId": "source-fda-k250173",
     "name": "Shiley oral / nasal RAE tracheal tubes",

@@ -1,5 +1,12 @@
 # Architecture
 
+## Current release — 2026-10-31
+
+The current export has **2,497 authentic records, 92 explained entries and dossiers, and 12 schematic mechanisms**. Neuralink now has six exact sponsor-verified trial records, the earlier 2019 platform publication, separate skull/cortical relationships, a recording → decoding → control schematic, and an evidence comparison with BrainGate. It remains **investigational**; no FDA marketing authorization is inferred. The six retrieved registry records have no posted results; this is not a claim about all research worldwide. Conflicting source-specific thread counts and the manufacturer-reported thread-retention limitation are visible, source linked, and retained in exported briefs.
+
+See [NEURALINK.md](NEURALINK.md) for sources, reproduction and review boundaries. Later sections dated before October 31 describe historical milestones and their then-current counts. The three unrelated complete manufacturer-IFU gaps, incomplete historical safety coverage, and lack of independently adjudicated anatomical precision remain open. Current verification outcomes are recorded in [DEMO_VERIFICATION.md](DEMO_VERIFICATION.md).
+
+
 ## Implemented slice
 
 Next.js 16 / TypeScript / React serve the observatory. React Three Fiber and Three.js render licensed HRA body-surface and brain GLBs. Python standard-library adapters acquire bounded authoritative records into local SQLite and content-addressed JSON storage. A versioned export (`data/atlas.json`) feeds deterministic search and application views. Refresh requires export and rebuild; runtime UI is deliberately labelled cached.

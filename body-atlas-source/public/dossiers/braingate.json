@@ -179,7 +179,24 @@
       ],
       "sponsor": "Leigh R. Hochberg, MD, PhD.",
       "summary": "The purpose of this study is to obtain preliminary device safety information and demonstrate proof of principle (feasibility) of the ability of people with tetraplegia to control a computer cursor and other assistive devices with their thoughts.",
-      "url": "https://clinicaltrials.gov/study/NCT05724173"
+      "url": "https://clinicaltrials.gov/study/NCT05724173",
+      "lastUpdatePosted": "2026-06-02",
+      "studyStart": {
+        "date": "2023-10-18",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 3,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "To determine the safety of the Sensor and overall safety of the System. Participants will be considered a success for this safety measure if they are successfully implanted with the Sensor(s) and:\n\n1. the sensors are not explanted for safety reasons during the one-year post-implant evaluation period.\n2. there are no device-related Serious Adverse Events that result in death or permanently increased disability during the one-year post-implant evaluation period.",
+          "measure": "Device Safety",
+          "timeFrame": "1 year"
+        }
+      ]
     },
     {
       "id": "PMID:36639237",

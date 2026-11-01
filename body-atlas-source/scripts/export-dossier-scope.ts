@@ -2,7 +2,7 @@ import {writeFileSync} from 'node:fs';
 import {families,recordById,familyMappings} from '../lib/atlas';
 import {hasExplanation,productName,interventionSummaries} from '../lib/intervention-view';
 const scope=families.filter(hasExplanation).map(f=>({id:f.id,name:productName(f),regulatory:f.regulatoryIds.map(recordById),studies:f.studyIds.map(recordById),publications:f.publicationIds.map(recordById)}));
-if(scope.length!==91||scope.some(f=>f.regulatory.some(r=>!r)))throw new Error('Dossier scope must resolve all 91 entries');
+if(scope.length!==92||scope.some(f=>f.regulatory.some(r=>!r)))throw new Error('Dossier scope must resolve all 92 entries');
 writeFileSync('data/dossier-scope.json',JSON.stringify(scope,null,2)+'\n');
 writeFileSync('data/fda-applications.json',JSON.stringify([...new Set(scope.flatMap(f=>f.regulatory.map(r=>r!.application!)))].sort(),null,2)+'\n');
 console.log(`Exported ${scope.length} dossier identities`);

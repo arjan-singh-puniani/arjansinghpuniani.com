@@ -330,7 +330,7 @@ test("intervention summaries keep original evidence and anatomical roles inspect
 
 test("model annotations require accepted localized evidence and preserve typed relationships", () => {
   const annotations = interventionAnnotations(families.filter(f=>f.collection!=="catalogue"), "all");
-  assert.equal(annotations.length, 9);
+  assert.equal(annotations.length, 10);
   assert.ok(!annotations.some((a) => a.familyId === "cochlear"));
   for (const a of annotations) {
     assert.ok(a.mapping.structureId);
@@ -413,7 +413,7 @@ test("portable brief downloads preserve citations, source roles and Unicode", ()
 
 test("explained interventions are explicitly sourced and region-specific", async () => {
  const {interventionSummaries,hasExplanation,inCollection,productName}=await import('../lib/intervention-view');
- assert.equal(families.filter(hasExplanation).length,91);
+ assert.equal(families.filter(hasExplanation).length,92);
  for(const [id,s] of Object.entries(interventionSummaries)){
   const f=familyById(id)!;assert.ok(f);assert.ok(f.regulatoryIds.includes(s.recordId));
   assert.ok(recordById(s.recordId));assert.ok(s.locator);assert.ok(s.purpose.length<500);

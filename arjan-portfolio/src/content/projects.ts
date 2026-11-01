@@ -30,25 +30,25 @@ export const projects: Project[] = [
       "Kept automatically indexed anatomical mentions Provisional, with exact source excerpts and an explicit review queue. Record dots indicate regional membership rather than implant coordinates."
     ],
     results: [
-      "The cached October 19 source collection contains 2,490 authentic records. October 22 curation provides 91 explained entries across 44 anatomical structures/regions and a 652-application source-context index.",
-      "All 91 entries have a sourced regulatory, labeling and safety dossier. The October 22 inventory includes 6,505 PMA decision records, 100 original label links across 71 entries, and application-based recall checks for 89 marketing applications."
+      "The October 31 export contains 2,497 authentic records, 92 explained entries and 12 source-linked mechanism schematics. Neuralink is represented as an investigational recording/decoding system, with six registered studies and separately attributed manufacturer reports.",
+      "Every explained entry has a sourced dossier. The historical FDA inventory includes 6,505 PMA decisions, 105 original label links across 76 entries, and application-based recall checks for 89 marketing applications. Live checks retrieve recent public decisions for the exact selected FDA application."
     ],
     limitations: [
-      "Public research preview at /atlas. The interactive application serves a bounded cached snapshot, not a live data service or a clinically validated reference.",
-      "The 712 indexed anatomical relationships are Provisional source-text contexts, not verified device placements. No independently adjudicated anatomical precision estimate is available.",
+      "Public research preview at /atlas. The reviewed collection is a bounded cached snapshot; live FDA lookups are separate and do not automatically change reviewed claims. No clinical validation is claimed.",
+      "The 711 indexed anatomical relationships are Provisional source-text contexts, not verified device placements. No independently adjudicated anatomical precision estimate is available.",
       "An FDA application is not necessarily a distinct device family. Historical clearance, approval, and De Novo decisions do not establish current labeling, clinical effectiveness, or FDA endorsement of this project.",
-      "Current labeling and affected model/lot review remain pending. The anatomical reference is male; female-only regions remain text-only."
+      "All entries have individual source assessments; three complete product-specific label gaps remain. Exact current IFU and individual model/lot applicability are not certified. Neuralink is investigational; no FDA marketing authorization is inferred. Female-only regions remain text-only in this male reference."
     ],
     featured: true,
     media: [{
-      src: "/images/home/body-atlas-preview.webp",
-      alt: "Actual BODY//ATLAS prototype showing regional intervention records on a human anatomical reference with an evidence panel",
-      caption: "Actual local prototype, October 19, 2026. Dots represent indexed records, not implant sites. Anatomy adapted from Kristen Browne and Heidi Schlehlein, Human Reference Atlas united male v1.5 (2023), CC BY 4.0; display color, transparency, and overlays modified."
+      src: "/images/home/body-atlas-neuralink-preview.webp",
+      alt: "BODY//ATLAS showing the investigational Neuralink entry, reference brain and recording-to-control schematic",
+      caption: "Actual research preview, October 31, 2026. Neuralink remains investigational. The enlarged mechanism is illustrative, not device CAD or surgical placement. Anatomy adapted from Kristen Browne and Heidi Schlehlein, Human Reference Atlas united male v1.5 (2023), CC BY 4.0; display color, transparency, and overlays modified."
     }],
     links: [{ label: "Launch interactive atlas", href: "/atlas" }, { label: "Read the recorded scope and validation", href: "/documents/body-atlas-validation.json" }],
     evidence: [
       { label: "Application source, mapping rules, tests and reproducible export", url: "https://github.com/arjan-singh-puniani/arjansinghpuniani.com/tree/main/body-atlas-source", verified: true },
-      { label: "Dataset scope, source checks and recorded verification — October 22, 2026", url: "/documents/body-atlas-validation.json", verified: true },
+      { label: "Dataset scope, source checks and recorded review — October 31, 2026", url: "/documents/body-atlas-validation.json", verified: true },
       { label: "FDA openFDA device data and limitations", url: "https://open.fda.gov/apis/device/", verified: true },
       { label: "Original Activa FDA evidence used in the neurotechnology workflow", url: "https://www.accessdata.fda.gov/cdrh_docs/pdf/P960009B.pdf", verified: true },
       { label: "ClinicalTrials.gov data API", url: "https://clinicaltrials.gov/data-api/api", verified: true },

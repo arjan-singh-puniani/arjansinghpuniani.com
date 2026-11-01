@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from urllib.request import Request, build_opener, HTTPRedirectHandler, HTTPSHandler
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urlparse
-from acquire import plan, whole_body_plan
+from acquire import plan, whole_body_plan, neuralink_plan, NEURALINK_TRIALS
 
 ROOT = Path(__file__).resolve().parent.parent
 ALLOWED = {'api.fda.gov', 'clinicaltrials.gov', 'eutils.ncbi.nlm.nih.gov', 'api.reporter.nih.gov'}
@@ -131,6 +131,10 @@ def fetch(url, kind, allowed_hosts=ALLOWED):
 def persist(db, job, raw, root=ROOT):
     data = json.loads(raw)
     rows = validate(job['kind'],data)  # validate entire batch before any state change
+    if job['id']=='neuralink-trials' and (len(rows)!=len(NEURALINK_TRIALS) or {rid for rid,_ in rows}!=set(NEURALINK_TRIALS) or any(r['protocolSection'].get('sponsorCollaboratorsModule',{}).get('leadSponsor',{}).get('name')!='Neuralink Corp' or not isinstance(r.get('hasResults'),bool) for _,r in rows)):
+        raise ValueError('Neuralink study identities/sponsor/results metadata changed; review before replacing source')
+    if job['id']=='neuralink-platform-paper' and [rid for rid,_ in rows]!=['PMID:31642810']:
+        raise ValueError('Neuralink platform publication identity mismatch')
     sha = hashlib.sha256(raw).hexdigest()
     relative = 'data/sources/'+sha+'.json'
     path = root / relative
@@ -157,7 +161,7 @@ def persist(db, job, raw, root=ROOT):
     return len(rows)
 
 def enqueue(db, force=False, scope="neuro"):
-    selected_plan = whole_body_plan() if scope == "whole-body" else plan()
+    selected_plan = {'neuro':plan,'whole-body':whole_body_plan,'neuralink':neuralink_plan}[scope]()
     with db:
         for jid,kind,url in selected_plan:
             db.execute('INSERT OR IGNORE INTO jobs (id,kind,url) VALUES (?,?,?)',(jid,kind,url))
@@ -212,6 +216,7 @@ def export(db):
         elif kind=='trial':
             p = raw['protocolSection']; ident = p['identificationModule']; stat = p['statusModule']
             common.update({'title':ident.get('briefTitle',''),'status':stat.get('overallStatus',''),'firstPosted':stat.get('studyFirstPostDateStruct',{}).get('date'),'interventions':p.get('armsInterventionsModule',{}).get('interventions',[]),'sponsor':p.get('sponsorCollaboratorsModule',{}).get('leadSponsor',{}).get('name',''),'summary':p.get('descriptionModule',{}).get('briefSummary',''),'url':'https://clinicaltrials.gov/study/'+row['id']})
+            common.update({'lastUpdatePosted':stat.get('lastUpdatePostDateStruct',{}).get('date'),'studyStart':stat.get('startDateStruct',{}),'enrollment':p.get('designModule',{}).get('enrollmentInfo',{}),'hasResults':raw.get('hasResults'),'primaryOutcomes':p.get('outcomesModule',{}).get('primaryOutcomes',[])})
         elif kind=='publication':
             common.update({'title':raw['title'],'publicationDate':raw.get('pubdate',''),'authors':[a['name'] for a in raw.get('authors',[])],'journal':raw.get('fulljournalname',''),'url':'https://pubmed.ncbi.nlm.nih.gov/'+raw['uid']+'/','identifiers':raw.get('articleids',[])})
         elif kind=='grant':
@@ -246,7 +251,7 @@ def restore(db):
     print('Restored source snapshots; no network requests')
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(); parser.add_argument('command',choices=['refresh','export','restore','status']); parser.add_argument('--force',action='store_true'); parser.add_argument('--scope',choices=['neuro','whole-body'],default='neuro'); args=parser.parse_args()
+    parser=argparse.ArgumentParser(); parser.add_argument('command',choices=['refresh','export','restore','status']); parser.add_argument('--force',action='store_true'); parser.add_argument('--scope',choices=['neuro','whole-body','neuralink'],default='neuro'); args=parser.parse_args()
     (ROOT/'data').mkdir(exist_ok=True)
     db=connect()
     if args.command=='refresh': enqueue(db,args.force,args.scope); worker(db); export(db)

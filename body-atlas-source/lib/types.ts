@@ -41,6 +41,11 @@ export interface AtlasRecord {
   genericName?: string;
   medicalSpecialty?: string;
   firstPosted?: string;
+  lastUpdatePosted?: string;
+  studyStart?: {date?:string;type?:string};
+  enrollment?: {count?:number;type?:string};
+  hasResults?: boolean;
+  primaryOutcomes?: {measure:string;description?:string;timeFrame?:string}[];
   publicationDate?: string;
   authors?: string[];
   journal?: string;

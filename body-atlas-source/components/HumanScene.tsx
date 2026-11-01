@@ -313,6 +313,7 @@ export default function HumanScene({
   focusKey,
   action,
   actionPlaying = false,
+  actionStep = 0,
   portrait = false,
   adapted = true,
   onProjection,
@@ -331,6 +332,7 @@ export default function HumanScene({
   focusKey?: string;
   action?: DeviceAction;
   actionPlaying?: boolean;
+  actionStep?: number;
   portrait?: boolean;
   adapted?: boolean;
   onProjection?: (projection: LabelProjection) => void;
@@ -376,6 +378,7 @@ export default function HumanScene({
       data-exterior={exterior}
       data-focus-region={focusRegion || region}
       data-action-kind={action?.kind || 'none'}
+      data-action-step={actionStep}
       data-avatar-status={avatarFailed?'unavailable':loadedExterior===exterior?'loaded':'loading'}
       data-organs-status={!showOrgans?'hidden':organsFailed?'unavailable':organsReady?'loaded':'loading'}
       data-internal-status={
@@ -389,7 +392,7 @@ export default function HumanScene({
           Brain / spinal geometry unavailable
         </span>
       )}
-      {!portrait && action && <div className="mechanism-caption"><strong>Mechanism · schematic inset</strong><span>Enlarged drawing, not implant placement</span></div>}
+      {!portrait && action && <div className="mechanism-caption"><strong>Mechanism · schematic inset</strong><span>{action.steps[actionStep]}</span><span>Enlarged drawing, not implant placement</span></div>}
       <Boundary fail={() => setFailed(true)}>
         <Canvas
           camera={{ position: [0, 0.1, 10.8], fov: 34 }}
@@ -408,7 +411,7 @@ export default function HumanScene({
         >
           {showOrgans&&<Boundary fail={()=>setOrgansFailed(true)}><Suspense fallback={null}><WholeBodyOrgans region={focusRegion || region} activeRegions={activeRegions} onSelect={onSelect} onHover={onHover} onReady={organsLoaded}/></Suspense></Boundary>}
           <FocusRegion region={focusRegion || region} portrait={portrait} focusKey={focusKey}/>
-          {!portrait && action && focusRegion && <DeviceActionOverlay action={action} focusRegion={focusRegion} playing={actionPlaying}/>}
+          {!portrait && action && focusRegion && <DeviceActionOverlay action={action} focusRegion={focusRegion} playing={actionPlaying} step={actionStep}/>}
           <ambientLight intensity={1.7} />
           <directionalLight position={[3, 5, 6]} intensity={2.5} />
           <group visible={showOrgans}><Boundary fail={() => setInternalFailed(true)}>

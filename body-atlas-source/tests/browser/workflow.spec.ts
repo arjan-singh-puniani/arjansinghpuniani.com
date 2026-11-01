@@ -387,6 +387,8 @@ test("on-model innovation labels select facts and original sources without leavi
     name: "Interventions on anatomy",
   });
   await expect(annotations).toBeVisible();
+  // Body readiness precedes the compact canvas's final ResizeObserver projection.
+  await page.waitForFunction(()=>{const el=document.querySelector<HTMLElement>('.intervention-annotations');return !!el&&Math.abs(parseFloat(el.style.height)-el.getBoundingClientRect().height)<1;});
   const activa = annotations.getByRole("button", {
     name: "Select Activa Tremor Control System on anatomy",
   });
@@ -533,7 +535,7 @@ test("dense whole-body catalogue opens authentic evidence, region filtering and 
  expect(await map.getByRole('button',{name:/Explore Uterus/}).count()).toBe(0);
  await page.getByRole('combobox',{name:'Explore anatomical region'}).selectOption('all');
  await page.getByRole('combobox',{name:testInfo.project.name==='mobile'?'Map evidence layer':'Evidence layer',exact:true}).selectOption('reviewed');
- await expect(page.locator('.catalogue-badge')).toHaveCount(0);expect(await map.locator('.record-node').count()).toBe(9);
+ await expect(page.locator('.catalogue-badge')).toHaveCount(0);expect(await map.locator('.record-node').count()).toBe(10);
  expect(errors).toEqual([]);
 });
 
@@ -684,6 +686,46 @@ test('selected intervention focuses reference anatomy with source-grounded mecha
  await expect(panel.getByRole('button',{name:'Play mechanism',exact:true})).toBeDisabled();
  await panel.getByRole('button',{name:'Mechanism overlay',exact:true}).click();
  await expect(scene).toHaveAttribute('data-action-kind','none');
+ const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations).toEqual([]);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect(errors).toEqual([]);
+});
+
+test('Neuralink connects regional recording, six authentic trials, hardware uncertainty and sourced history',async({page},testInfo)=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('/?entry=neuralink&panel=mechanism');
+ const scene=page.getByTestId('human-reference'),facts=page.getByRole('region',{name:'Neuralink evidence at a glance'});
+ await expect(scene).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
+ await expect(scene).toHaveAttribute('data-action-kind','bci');
+ await expect(scene).toHaveAttribute('data-focus-region','UBERON:0000955');
+ await expect(facts).toContainText('Not FDA marketing approved');
+ await expect(facts).toContainText('6 studies');await expect(facts).toContainText('0/6');
+ await expect(page.getByRole('button',{name:'Check FDA updates',exact:true})).toHaveCount(0);
+ await page.screenshot({path:`test-results/${testInfo.project.name}-neuralink-overview.png`});
+ const stages=page.getByRole('list',{name:'Mechanism stages'}).getByRole('button');
+ await stages.nth(1).click();await expect(scene).toHaveAttribute('data-action-step','1');
+ await stages.nth(2).click();await expect(scene).toHaveAttribute('data-action-step','2');
+ await facts.getByText('Hardware specifications differ across sources',{exact:true}).click();
+ await expect(facts).toContainText('64 threads');await expect(facts).toContainText('128 threads');
+ await expect(facts.getByRole('link',{name:'Original brochure',exact:true})).toHaveAttribute('href','https://neuralink.com/pdfs/PRIME-Study-Brochure.pdf');
+ await facts.getByText('Reported limitation: thread retention',{exact:true}).click();
+ await expect(facts).toContainText('does not establish a cohort-wide risk rate or an FDA recall');
+ await page.screenshot({path:`test-results/${testInfo.project.name}-neuralink.png`,fullPage:true});
+ await facts.getByRole('button',{name:'Inspect all 6 studies'}).click();
+ await expect(page.getByRole('tab',{name:'Studies',exact:true})).toHaveAttribute('aria-selected','true');
+ const studies=page.getByRole('tabpanel');
+ await expect(studies.locator('.source-record')).toHaveCount(7);
+ await expect(studies).toContainText('NCT06429735');await expect(studies).toContainText('NCT07224256');
+ await expect(studies).toContainText('estimated in registry');
+ await expect(studies).toContainText('No results posted in this retrieved registry record');
+ await page.getByRole('button',{name:'Open documented milestones'}).click();
+ const history=page.getByRole('dialog');await expect(history).toContainText('not a complete technological history');
+ await expect(history.getByRole('link').filter({hasText:/PRIME/}).first()).toHaveAttribute('href',/clinicaltrials.gov\/study\//);
+ await page.getByRole('button',{name:'Close dialog'}).click();
+ await facts.getByRole('button',{name:'Compare recording interfaces'}).click();
+ await expect(page.getByRole('table')).toContainText('Neuralink');await expect(page.getByRole('table')).toContainText('BrainGate');
+ await page.getByRole('button',{name:'Close dialog'}).click();
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await expect(page.getByRole('button',{name:'Play mechanism',exact:true})).toBeDisabled();
  const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations).toEqual([]);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect(errors).toEqual([]);
 });

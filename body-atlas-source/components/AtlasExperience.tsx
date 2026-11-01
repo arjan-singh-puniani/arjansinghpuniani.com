@@ -63,13 +63,14 @@ import BriefPreview from "./BriefPreview";
 import { dossiers, dossierCoverage, reviewLabels } from "@/lib/dossiers";
 import { anatomyFocus, deviceActions } from '@/lib/device-action';
 import FDAUpdates from './FDAUpdates';
+import NeuralinkEvidence from './NeuralinkEvidence';
 const Dossier = dynamic(() => import("./Dossier"));
 import type { AtlasRecord, Family, Mapping } from "@/lib/types";
 import "./atlas.css";
 
 const Human = dynamic(() => import("./HumanScene"), { ssr: false });
 const Brain = dynamic(() => import("./AnatomyScene"), { ssr: false });
-type Dialog = "records" | "compare" | "brief" | "questions" | "about" | null;
+type Dialog = "records" | "compare" | "brief" | "questions" | "about" | "history" | null;
 const brainIds = [
   "UBERON:0000955",
   "UBERON:0000956",
@@ -181,6 +182,7 @@ export default function AtlasExperience() {
   const [showOrgans,setShowOrgans]=useState(true);
   const [adaptedContour,setAdaptedContour]=useState(true);
   const [showMechanism,setShowMechanism]=useState(true),[actionPlaying,setActionPlaying]=useState(false),[reducedMotion,setReducedMotion]=useState(false);
+  const [actionStep,setActionStep]=useState(0);
   useEffect(()=>{const media=window.matchMedia('(prefers-reduced-motion: reduce)');const change=()=>{setReducedMotion(media.matches);setActionPlaying(false);};change();media.addEventListener('change',change);return()=>media.removeEventListener('change',change);},[]);
   const [anatomyExpanded, setAnatomyExpanded] = useState(false);
   const resultsRef = useRef<HTMLElement>(null);
@@ -235,7 +237,8 @@ export default function AtlasExperience() {
       ? [familyById("cochlear")!] : hits;
   }, [allAvailable, region, collection, query, modality, authorization, year]);
   const f = selected ? familyById(selected) : undefined;
-  useEffect(()=>setActionPlaying(false),[selected]);
+  useEffect(()=>{setActionPlaying(false);setActionStep(0);},[selected]);
+  useEffect(()=>{if(!actionPlaying)return;const timer=setInterval(()=>setActionStep(s=>(s+1)%3),1800);return()=>clearInterval(timer);},[actionPlaying]);
   const explanation = f ? interventionSummaries[f.id] : undefined;
   const explanationRecord = explanation ? recordById(explanation.recordId) : undefined;
   const focus = f ? anatomyFocus(f.id) : null;
@@ -578,6 +581,7 @@ export default function AtlasExperience() {
                   focusKey={selected || undefined}
                   action={showMechanism ? action : undefined}
                   actionPlaying={actionPlaying && !reducedMotion}
+                  actionStep={actionStep}
                   onProjection={projectHuman}
                   showLabels={!!portrait || showInterventions}
                   showOrgans={showOrgans}
@@ -776,9 +780,9 @@ export default function AtlasExperience() {
               </button>
               <span>History</span>
               <output htmlFor="atlas-year">{year}</output>
-              <span className="time-event-count">
+              <button className="time-event-count" aria-label="Open documented milestones" onClick={()=>setDialog('history')}>
                 {events.length} dated {events.length===1?"event":"events"}
-              </span>
+              </button>
             </div>
             <label className="sr-only" htmlFor="atlas-year">
               Documented history through year
@@ -860,7 +864,7 @@ export default function AtlasExperience() {
           )}
           {!f ? (
             <>
-              <div className="region-filter-row"><div className="mobile-collection-filter"><select aria-label="Map evidence layer" value={collection} onChange={e=>{setCollection(e.target.value);setSelected(null);}}><option value="explained">Explained interventions</option><option value="all">All {families.length} indexed entries</option><option value="reviewed">10 reviewed entries</option><option value="catalogue">{catalogueCoverage.catalogueEntries} FDA context entries</option></select></div>
+              <div className="region-filter-row"><div className="mobile-collection-filter"><select aria-label="Map evidence layer" value={collection} onChange={e=>{setCollection(e.target.value);setSelected(null);}}><option value="explained">Explained interventions</option><option value="all">All {families.length} indexed entries</option><option value="reviewed">{families.filter(f=>f.collection!=='catalogue').length} reviewed entries</option><option value="catalogue">{catalogueCoverage.catalogueEntries} FDA context entries</option></select></div>
               <label className="regional-jump"><span>Region</span><select aria-label="Explore anatomical region" value={region} onChange={e=>chooseRegion(e.target.value)}><option value="all">Whole body · {allAvailable.length} entries</option>{structures.filter(s=>s.id!=='BODY:human'&&s.id!=='BODY:nervous-system').map(s=><option key={s.id} value={s.id}>{s.name} · {counts[s.id]||0}</option>)}</select></label></div>
               <div className="results-kicker">
                 {year < 2026
@@ -1012,17 +1016,18 @@ export default function AtlasExperience() {
                 <section className="mechanism-panel" aria-label="Anatomy and mechanism">
                   <div className="mechanism-controls">
                     {focus && <button onClick={()=>{setMode('human');setShowOrgans(true);setSurface(false);setSceneKey(k=>k+1);}}>Locate on anatomy</button>}
-                    {focus && brainIds.includes(focus.intendedRegion) && <button onClick={()=>chooseRegion(focus.intendedRegion,true)}>Inspect brain target</button>}
+                    {focus && brainIds.includes(focus.intendedRegion) && <button onClick={()=>chooseRegion(focus.intendedRegion,true)}>{f.id==='neuralink'?'Inspect cortical recording region':'Inspect brain target'}</button>}
                     {action && <button aria-pressed={showMechanism && mode==='human'} onClick={()=>{setShowMechanism(mode==='human'?!showMechanism:true);setMode('human');setShowOrgans(true);setSurface(false);setActionPlaying(false);}}>Mechanism overlay</button>}
                     {action && showMechanism && mode==='human' && <button disabled={reducedMotion} aria-pressed={actionPlaying} onClick={()=>setActionPlaying(p=>!p)}>{actionPlaying?'Pause mechanism':'Play mechanism'}</button>}
                   </div>
                   <p className="focus-precision">{focus ? `${titleFor(focus.intendedRegion)} · ${focus.geometry ? focus.broaderReference ? 'broader reference organ highlighted' : 'reference anatomy highlighted' : 'regional locator; detailed geometry unavailable'}` : 'Location not established; no placement drawn.'}</p>
                   {action ? <>
-                    <ol>{action.steps.map(step=><li key={step}>{step}</li>)}</ol>
+                    <ol className="mechanism-stages" aria-label="Mechanism stages">{action.steps.map((step,i)=><li key={step}><button aria-pressed={actionStep===i} onClick={()=>{setActionPlaying(false);setActionStep(i);}}>{step}</button></li>)}</ol>
                     <External href={action.sourceUrl}>Mechanism source</External><small>{action.locator}</small>
                     <p className="mechanism-limit">Enlarged schematic inset, not device shape or implant placement. {action.limit}{reducedMotion?' Animation disabled by reduced-motion preference.':''}</p>
                   </> : <p className="mechanism-limit">A device action overlay has not been reviewed for this entry. The explanation and original evidence remain available.</p>}
                 </section>
+                {f.id==='neuralink'&&<NeuralinkEvidence onStudies={()=>{setTab('studies');requestAnimationFrame(()=>document.getElementById('device-studies')?.focus());}} onCompare={()=>{setComparison(['neuralink','braingate']);setDialog('compare');}}/>}
                 {explanation && <section className="intervention-relevance" aria-label="Why this region">
                   <h3>Why this region</h3><p>{explanation.relevance}</p>
                   <External href={explanation.sourceUrl || primaryRecords(f)[0].url}>Read the supporting FDA source</External>
@@ -1066,8 +1071,8 @@ export default function AtlasExperience() {
                     ))}
                 </div>
                 {dossiers[f.id] && <button className="dossier-entry" onClick={() => { setTab("dossier");document.getElementById("device-dossier")?.focus(); }}>
-                  <strong>Regulatory, labeling & safety dossier <ArrowUpRight size={13} /></strong>
-                  <span>{dossiers[f.id].regulatory.state === "checked" ? "Regulatory checked" : "Marketing authorization not established"} · {dossiers[f.id].safety.state === "checked" ? `${dossiers[f.id].safety.recalls} application-linked recalls` : "Safety applicability unreviewed"}</span>
+                  <strong>{f.regulatoryIds.length ? 'Regulatory, labeling & safety dossier' : 'Research status, hardware & reported limitations'} <ArrowUpRight size={13} /></strong>
+                  <span>{dossiers[f.id].regulatory.state === "checked" ? "Regulatory checked" : "Marketing authorization not established"} · {dossiers[f.id].safety.state === "checked" ? `${dossiers[f.id].safety.recalls} application-linked recalls` : f.id==='neuralink' ? 'Sponsor reports distinguished from FDA recalls' : "Safety applicability unreviewed"}</span>
                   <small>{reviewLabels[dossiers[f.id].currentLabelReview]} · assessed {dossiers[f.id].labelReview.reviewedAt}</small>
                 </button>}
                 {f.regulatoryIds.length>0 && <FDAUpdates key={f.id} application={recordById(f.regulatoryIds[0])?.application || ''}/>}
@@ -1227,9 +1232,11 @@ export default function AtlasExperience() {
               brief: "Research brief",
               questions: "Research questions",
               about: "Sources & model",
+              history: "Documented milestones",
             }[dialog]
           }
         >
+          {dialog==='history'&&<div className="milestone-list"><p>{f?f.name:titleFor(region)} · through {year}. These are indexed source events, not a complete technological history or invention dates. Registry posting dates are separate from study start and retrieval dates.</p><ol>{events.map(e=><li key={e.id}><time dateTime={e.date}>{e.date}</time><div><External href={e.sourceUrl}>{e.label}</External><small>{e.kind} · {e.state}</small>{recordById(e.recordId)?.retrievedAt&&<small>Source retrieved {recordById(e.recordId)!.retrievedAt.slice(0,10)}</small>}</div></li>)}</ol>{!events.length&&<p>No indexed milestones within this filter.</p>}</div>}
           {dialog === "records" &&
             (recordSelection && recordById(recordSelection) ? (
               <>
@@ -1549,7 +1556,7 @@ export default function AtlasExperience() {
               </p>
               <h3>Live FDA checks and mechanism diagrams</h3>
               <p>Check FDA updates retrieves up to ten public decisions for the selected application, with retrieval time, FDA dataset date and original response hashes. These results are separate from the reviewed snapshot and may be cached for one hour. Public decisions do not include every pending filing or certify current labeling and safety.</p>
-              <p>Eleven entries have source-linked mechanism schematics. Their enlarged device drawings explain qualitative operation; they are not manufacturer CAD, implant coordinates, dose fields or clinical simulations. Available reference organs are highlighted; missing substructures use explicitly broader anatomy or abstain.</p>
+              <p>{Object.keys(deviceActions).length} entries have source-linked mechanism schematics with selectable stages. Their enlarged device drawings explain qualitative operation; they are not manufacturer CAD, implant coordinates, dose fields or clinical simulations. Available reference organs are highlighted; missing substructures use explicitly broader anatomy or abstain.</p>
               <p>
                 Historical FDA decisions do not establish current labeling.
                 Trial registration is not a successful clinical outcome. PubMed

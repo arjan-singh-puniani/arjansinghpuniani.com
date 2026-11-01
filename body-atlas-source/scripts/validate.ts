@@ -1,6 +1,10 @@
-import { writeFileSync, mkdirSync } from "node:fs";
+import { writeFileSync, mkdirSync, readFileSync } from "node:fs";
+import path from 'node:path';
 import { families, mappings, records, coverage } from "../lib/atlas";
 import { regionalMetric } from "../components/Topography";
+import {hasExplanation} from '../lib/intervention-view';
+import {dossierCoverage} from '../lib/dossiers';
+import {deviceActions} from '../lib/device-action';
 const rows = mappings.filter(m=>m.type!=="indication_context").map((m) => ({
   ...m,
   independentReviewer: "",
@@ -49,6 +53,21 @@ writeFileSync(
   JSON.stringify(report, null, 2) + "\n",
 );
 console.log(JSON.stringify(report, null, 2));
+
+if(process.argv[2]){
+ const destination=path.resolve(process.argv[2]);
+ if(path.basename(destination)!=='body-atlas-validation.json'||path.basename(path.dirname(destination))!=='documents'||path.basename(path.dirname(path.dirname(destination)))!=='public')throw new Error('Use the portfolio public/documents/body-atlas-validation.json report');
+ const previous=JSON.parse(readFileSync(destination,'utf8'));
+ const neuralink= families.find(f=>f.id==='neuralink')!;
+ const studies=neuralink.studyIds.map(id=>records.find(r=>r.id===id)!);
+ writeFileSync(destination,JSON.stringify({...previous,...report,
+   historicalMilestoneNote:'Dated explanationExpansion, dossierMilestone and labelSafetyReview sections record earlier milestones. currentRelease and top-level source counts describe the current export.',
+   interactivePreview:{path:'/atlas',delivery:'Cached reviewed index plus bounded live exact-application FDA decision checks. No unattended hosted document-ingestion worker or private workspace.'},
+   currentRelease:{recordedDate:'2026-10-31',explainedEntries:families.filter(hasExplanation).length,dossiers:dossierCoverage.entries,mechanisms:Object.keys(deviceActions).length,independentAnatomicalValidation:false,
+     neuralink:{studyIds:neuralink.studyIds,postedRegistryResults:studies.filter(s=>s.hasResults===true).length,marketingAuthorizationEstablished:false,sourceReviewDate:'2026-10-31',hardwareRevisionCrosswalkEstablished:false},
+     latestIfuGaps:dossierCoverage.labelGaps,scope:'Source-grounded research preview. New Neuralink registry/publication records do not refresh older FDA records. Manufacturer reports, registry facts and historical publications remain distinct.'}
+ },null,2)+'\n');
+}
 
 // Deterministic, region-balanced review queue, not adjudicated ground truth.
 const queue = mappings.filter(m=>m.type==='indication_context');

@@ -8,6 +8,13 @@ def fda(endpoint, **params):
 
 PMAS = ['P960009', 'P100026', 'P970003', 'P030017', 'P150038', 'P840024', 'P140009']
 
+NEURALINK_TRIALS = ['NCT06429735','NCT06700304','NCT06710626','NCT06992596','NCT07127172','NCT07224256']
+def neuralink_plan():
+    return [
+        ('neuralink-trials', 'trial', 'https://clinicaltrials.gov/api/v2/studies?'+urlencode({'filter.ids':','.join(NEURALINK_TRIALS),'pageSize':20,'format':'json'})),
+        ('neuralink-platform-paper', 'publication', 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?'+urlencode({'db':'pubmed','id':'31642810','retmode':'json','tool':'BodyAtlas'})),
+    ]
+
 def plan():
     jobs = [('fda-510k-neurology', '510k', fda('510k', search='advisory_committee:NE', limit=100, sort='decision_date:desc'))]
     jobs.append(('tms-original', '510k', fda('510k', search='k_number:K061053', limit=1)))

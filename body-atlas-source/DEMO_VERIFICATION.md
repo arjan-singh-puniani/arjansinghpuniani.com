@@ -1,5 +1,29 @@
 # Demonstration verification
 
+## Neuralink iteration — 2026-10-31
+
+The current export contains 2,497 authentic records, 92 explained entries/dossiers and 12 schematic mechanisms. See [NEURALINK.md](NEURALINK.md) for original sources, interpretation and reproduction. Earlier dated sections retain historical counts.
+
+Verified commands in the isolated website checkout:
+
+| Command | Actual outcome |
+| --- | --- |
+| `npm run typecheck`, `npm test` (atlas) | TypeScript passes; 63 domain tests pass. |
+| `npm run test:ingestion` | 41 tests pass, including exact Neuralink study/sponsor checks and last-good batch preservation. |
+| `npm run build -- --webpack` | Source production build passes. |
+| `npm run test:browser` | 28/28 desktop/mobile Chrome workflows pass on the final source build, including the measured-layout pagination check. |
+| `node scripts/export-static.mjs ../arjan-portfolio/public/atlas` | Static export passes; all 53 original-source hashes checked before output replacement. |
+| `npm test`, `npm run build` (portfolio) | 150 tests and complete website production build pass. |
+| `npm audit --omit=dev --json` (portfolio) | Zero reported runtime vulnerabilities at this check; not a penetration test or unknown-vulnerability guarantee. |
+| `node tests/body-atlas.browser.mjs http://127.0.0.1:3211` | All 75 expanded explanation/region cases per viewport, source/citation export, twelve existing routes and sitemap pass. |
+| `node tests/body-atlas-dossiers.browser.mjs http://127.0.0.1:3211` | All 92 dossiers per viewport, source-linked review findings/limitations, model/lot search, keyboard tabs, lazy loading and outage/retry pass. Local p95 selection-to-dossier: 74 ms desktop / 62 ms mobile. |
+| `node tests/body-atlas-neuralink.browser.mjs http://127.0.0.1:3211 /tmp/atlas-neuralink-qa/local-final` | Desktop/mobile regional focus, actual canvas animation, six trials and earlier paper, original cached-source SHA, source-specific hardware descriptions, dossier, milestone viewer, BrainGate comparison, cited Markdown export and reduced motion pass. Zero Axe violations, page errors or horizontal overflow. |
+
+A compact-list ordering regression was corrected. Mobile callout test selection initially raced the canvas ResizeObserver: the DOM briefly retained a label from the previous page capacity. The regression test now waits for measured projection dimensions before choosing a page; three consecutive isolated mobile runs pass. These are browser workflow checks, not independent anatomical adjudication. Mobile is Chrome viewport/touch emulation; physical devices and Safari remain unverified for this iteration.
+
+The reviewed index is cached. Its new Neuralink records do not refresh the old FDA corpus. Live exact-application FDA decisions remain separate. No hosted unattended ingestion worker, clinical validation, universal hardware configuration or complete historical safety review is claimed.
+
+
 Verified locally on 2026-10-19 against the actual production build. No external deployment performed.
 
 | Command | Result / artifact |

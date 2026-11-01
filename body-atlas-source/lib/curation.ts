@@ -83,6 +83,7 @@ export const structures: Structure[] = [
 ];
 
 export const families: Family[] = [
+
   {
     id: "tms",
     name: "NeuroStar TMS Therapy System",
@@ -256,6 +257,15 @@ export const families: Family[] = [
     limitations:
       "The registered investigation concerns intraoperative functional mapping. It does not validate chronic seizure treatment, a commercial cooling product, or the owner’s SeizeFreeze concept. One indexed publication is a rat study.",
   },
+  {
+    id:'neuralink', name:'Neuralink N1 Implant / R1 research system',
+    description:'An investigational, skull-mounted wireless brain-computer interface. Implanted threads record brain activity; software decodes intended actions to control external devices.',
+    modalities:['Electrophysiological recording','Computational analysis'], regulatoryIds:[],
+    studyIds:['NCT06429735','NCT06710626','NCT06700304','NCT06992596','NCT07127172','NCT07224256'],
+    publicationIds:['PMID:31642810'],
+    topics:['Neuralink','N1','R1','Telepathy','BCI','brain computer interface','intracortical recording','neural decoding','PRIME','CONVOY','VOICE','paralysis','assistive communication'],
+    limitations:'Investigational, not FDA marketing approved. A sponsor-reported IDE permits research, not commercial sale. The 2019 platform paper predates human N1 studies and is not their clinical results. Trial goals, estimated enrollment and registration do not establish benefit. Hardware descriptions differ between sources; no universal thread layout, hemisphere, patient-specific placement or clinical performance is assigned.',
+  },
 ];
 
 const urls = {
@@ -293,10 +303,24 @@ function m(
     precision: structureId ? "region" : "unlocalized",
     method:
       "Source inspection and explicit curator assertion; no coordinate inference",
-    reviewedAt: "2026-10-19",
+    reviewedAt: familyId === "neuralink" ? "2026-10-31" : "2026-10-19",
   };
 }
 export const mappings: Mapping[] = [
+  m('neuralink-housing','neuralink','N1 skull-mounted electronics','UBERON:0003129','implantation_site',
+    'The PRIME registry describes the N1 as a skull-mounted, wireless, rechargeable implant.',
+    'https://clinicaltrials.gov/study/NCT06429735','protocolSection.descriptionModule.briefSummary',
+    'Skull region only; the source does not establish patient-specific cranial coordinates or an exact enclosure position.','unspecified','Supported'),
+  m('neuralink-threads','neuralink','Implanted recording threads','UBERON:0000956','tissue_interface',
+    'The clinical site describes the N1 as an intracortical BCI whose electrode threads are placed into the brain.',
+    'https://www.uclh.nhs.uk/news/uclh-evaluate-safety-and-functionality-neuralinks-brain-computer-interface-bci-technology',
+    '31 July 2025 study description; Q&A: How is the device intended to work?',
+    'Cortex at regional resolution. No particular gyrus, layer, hemisphere, insertion depth or vessel avoidance path is assigned.','unspecified','Supported'),
+  m('neuralink-recording','neuralink','N1 recording electrodes','UBERON:0000956','measurement_site',
+    'Electrodes record brain electrical activity, which is transmitted wirelessly and decoded into external device actions.',
+    'https://www.uclh.nhs.uk/news/uclh-evaluate-safety-and-functionality-neuralinks-brain-computer-interface-bci-technology',
+    'Q&A: How is the device intended to work?',
+    'Recording and decoding are not electrical stimulation or demonstrated restoration of limb function.','unspecified','Supported'),
   m(
     "tms-placement",
     "tms",
@@ -546,6 +570,15 @@ export const mappings: Mapping[] = [
 ];
 
 export const frontier = [
+  {
+    id:'intracortical-stability',title:'From recorded channels to durable control',families:['neuralink','braingate'],
+    known:'Neuralink trial records study safety and device functionality. Its May 2024 manufacturer report describes thread retraction and reduced effective electrode availability in an early participant.',
+    uncertain:'The indexed registry records have no posted results in the retrieved snapshot. Sponsor reports and an earlier platform paper do not establish comparative long-term clinical performance.',
+    question:'How do stable recording-channel availability and decoder adaptation independently contribute to sustained, useful at-home device control?',
+    challenges:'Separate hardware changes from decoder retraining, use predefined functional outcomes, track missing data and follow-up, and distinguish cohort-specific interfaces.',
+    sources:['https://clinicaltrials.gov/study/NCT06429735','https://neuralink.com/updates/prime-study-progress-update-user-experience/','https://clinicaltrials.gov/study/NCT05724173'],
+    group:'Neuralink sponsors PRIME. BrainGate is a separate research program; no collaboration or head-to-head trial is inferred.',
+  },
   {
     id: "thalamus",
     title: "One region. Different physical interventions.",

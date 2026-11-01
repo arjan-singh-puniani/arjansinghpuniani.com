@@ -4,7 +4,7 @@ import { humanRegionLocators } from './annotations';
 import organs from '../public/anatomy/organ-regions.json';
 
 export interface DeviceAction {
-  kind: 'recording' | 'electrode' | 'coil' | 'ultrasound' | 'valve' | 'pump' | 'joint';
+  kind: 'recording' | 'bci' | 'electrode' | 'coil' | 'ultrasound' | 'valve' | 'pump' | 'joint';
   region: string;
   steps: [string, string, string];
   sourceUrl: string;
@@ -17,6 +17,7 @@ const neuro = (id: string, kind: DeviceAction['kind'], region: string, steps: De
 });
 // Schematic mechanisms, never CAD models, electrical/thermal fields or implant coordinates.
 export const deviceActions: Record<string, DeviceAction> = {
+  neuralink:{kind:'bci',region:'UBERON:0000956',steps:['Record brain activity through implanted threads','Transmit signals wirelessly and decode intended actions','Use decoded commands to control an external device'],sourceUrl:'https://www.uclh.nhs.uk/news/uclh-evaluate-safety-and-functionality-neuralinks-brain-computer-interface-bci-technology',locator:'31 July 2025; Q&A: How is the device intended to work?',limit:'Illustrative recording threads, electronics and external computer, not Neuralink CAD or a surgical plan. The R1 robot inserts threads and is not implanted. No therapeutic stimulation, universal thread count or restored limb movement is depicted.'},
   rns: neuro('rns', 'recording', 'UBERON:0000955', ['Sense brain electrical activity', 'Detect configured activity patterns', 'Deliver responsive stimulation'], 'Historical RNS configuration. Foci and lead paths are patient-specific; the diagram does not predict seizure control.'),
   tms: neuro('tms', 'coil', 'UBERON:0000956', ['Coil contacts the external head', 'Brief magnetic pulses are delivered', 'Electrical currents are induced in cortex'], 'No hemisphere, gyrus, field distribution or treatment dose is modeled.'),
   activa: neuro('activa', 'electrode', 'UBERON:0001897', ['Implanted generator supplies pulses', 'Extension connects to the DBS lead', 'Electrodes stimulate thalamic VIM'], 'Original unilateral tremor indication. Whole-body view marks the brain region; VIM requires the dedicated brain view.'),

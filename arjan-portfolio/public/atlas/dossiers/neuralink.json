@@ -1,0 +1,634 @@
+{
+  "familyId": "neuralink",
+  "name": "Neuralink N1 Implant / R1 research system",
+  "reviewedAt": "2026-10-22T19:13:47.432467+00:00",
+  "regulatory": {
+    "state": "not-established",
+    "detail": "No public FDA marketing application established in this collection. Trial registration/publication is not authorization.",
+    "records": 0,
+    "identityChecked": false,
+    "rows": [],
+    "sources": []
+  },
+  "labeling": {
+    "state": "not-applicable",
+    "detail": "No commercial labeling assigned to this investigational entry; protocol/publication evidence is separate.",
+    "documents": 0,
+    "changes": 0,
+    "rows": [],
+    "pages": [],
+    "changeIds": [],
+    "inventory": {
+      "file": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093.json",
+      "sha": "afa9ab96849a411c2930d5ab3cf342ca2b06b4c2e2d2706f9854d9d6343fb093",
+      "retrievedAt": "2026-10-22",
+      "method": "FDA original PMA page link inventory using public web retrieval; discovery may be cached. Direct FDA document downloads were blocked by the provider. No assertion of current revision or complete labeling review."
+    }
+  },
+  "safety": {
+    "state": "not-established",
+    "detail": "No reliable application-based recall join is available; no safety clearance is inferred.",
+    "recalls": 0,
+    "rows": [],
+    "sources": [],
+    "noticeCandidates": [],
+    "noticeReviews": [],
+    "unresolvedReferences": [],
+    "screenedTerms": [],
+    "indexes": [
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/safety-communications",
+          "sha": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468",
+          "file": "224ece5e9e28b0887e075d6eb6940f063469d3e4b94b37d220506c281c7e8468.txt",
+          "retrievedAt": "2026-10-22T19:05:32.641731+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 11
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts",
+          "sha": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b",
+          "file": "cc6de77dfc2752a7204072e12db31fb1a129f8d5e5b7aa57b40c18adefabaf3b.txt",
+          "retrievedAt": "2026-10-22T19:05:33.362602+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 217
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2024-safety-communications",
+          "sha": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b",
+          "file": "2d9826ce24e7be42f3fc01a8332e2d4fa5e0e0c6d522c0bf91451dbf8a12ef9b.txt",
+          "retrievedAt": "2026-10-22T19:05:34.424204+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 12
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/safety-communications/2023-safety-communications",
+          "sha": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47",
+          "file": "166984678b5c0f985278dd7683e7b492cc7c9988ebb0e4efc5792c7f8ea4bb47.txt",
+          "retrievedAt": "2026-10-22T19:05:35.099369+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 14
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2024-medical-device-recalls",
+          "sha": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489",
+          "file": "bd0e473c5834a79703aedf95e37b72391087dcfc80807cf94c37c04fb1877489.txt",
+          "retrievedAt": "2026-10-22T19:05:35.955790+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 108
+      },
+      {
+        "source": {
+          "url": "https://www.fda.gov/medical-devices/medical-device-recalls-and-early-alerts/2023-medical-device-recalls",
+          "sha": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41",
+          "file": "e4dbca67293020b9fe92699b5d01512585256065602f0b67ee9b0463508e0e41.txt",
+          "retrievedAt": "2026-10-22T19:10:49.206344+00:00",
+          "providerUpdatedAt": null
+        },
+        "state": "checked",
+        "rows": 62
+      }
+    ],
+    "limits": [
+      "Recall API coverage begins in 2002; earlier recalls are not exhaustively covered. Malformed direct identifiers are excluded from accepted joins and shown separately for review.",
+      "Only root pma_numbers/k_numbers used for joins; recognized PMA supplements normalize to their parent application. Harmonized manufacturer identifiers and name similarity are excluded.",
+      "FDA notice index pages for 2023–2026 screened by explicit product/class terms; pre-2023 web archives and manufacturer notices not exhaustively reviewed.",
+      "Source-field audits and notice-scope decisions are distinct from clinical signoff or patient/unit matching. FDA recall status is as reported in the dated snapshot. MAUDE and enforcement reconciliation are outside this review."
+    ]
+  },
+  "labelReview": {
+    "reviewedAt": "2026-10-31",
+    "status": "investigational",
+    "scope": "Neuralink N1/R1 research program: skull-mounted electronics, intracortical recording threads and software-mediated external device control. Public study and sponsor sources; not a commercial IFU.",
+    "revision": null,
+    "models": [
+      "PRIME sponsor brochure (revision not established): 64 threads / 1,024 electrodes",
+      "UCLH GB-PRIME description (31 July 2025): 128 threads / 1,024 electrodes",
+      "R1 surgical insertion robot (not implanted)",
+      "2019 platform prototype (not equivalent to current clinical N1)"
+    ],
+    "findings": [
+      {
+        "text": "Neuralink describes its devices as investigational and not FDA approved. Study permission and an IDE are not marketing authorization.",
+        "sourceUrl": "https://neuralink.com/trials/",
+        "locator": "Investigational-device notice"
+      },
+      {
+        "text": "The PRIME registry describes a skull-mounted N1 connected to implanted brain threads. R1 inserts those threads and is not the chronic implant.",
+        "sourceUrl": "https://clinicaltrials.gov/study/NCT06429735",
+        "locator": "Brief summary; interventions; study status and outcomes"
+      },
+      {
+        "text": "The undated sponsor brochure describes 64 threads and 1,024 electrodes. The PDF revision and configuration used in every participant are not established.",
+        "sourceUrl": "https://neuralink.com/pdfs/PRIME-Study-Brochure.pdf",
+        "locator": "PDF p. 1; devices and study purpose"
+      },
+      {
+        "text": "UCLH reports 128 threads with eight electrodes each in its 2025 GB-PRIME description. The thread count differs from the sponsor brochure, despite the same total electrode count.",
+        "sourceUrl": "https://www.uclh.nhs.uk/news/uclh-evaluate-safety-and-functionality-neuralinks-brain-computer-interface-bci-technology",
+        "locator": "31 July 2025; device-description Q&A"
+      },
+      {
+        "text": "The sponsor reported thread retraction and fewer effective electrodes in an early participant. This is a manufacturer report, not an FDA recall determination or a cohort-wide event rate.",
+        "sourceUrl": "https://neuralink.com/updates/prime-study-progress-update-user-experience/",
+        "locator": "8 May 2024; paragraph on retracted threads"
+      },
+      {
+        "text": "The 2019 platform paper predates PRIME and describes an earlier preclinical platform. It is not evidence of the current N1 human studies’ results.",
+        "sourceUrl": "https://www.jmir.org/2019/10/e16194/",
+        "locator": "Device description and animal experiments; distinct from N1 human study results"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://neuralink.com/trials/",
+        "title": "Neuralink clinical-trials page",
+        "locator": "Investigational-device notice",
+        "accessedAt": "2026-10-31",
+        "method": "Original source inspection; API metadata acquired with immutable response hashes. Manufacturer and clinical-site reports are attributed; no clinical certification."
+      },
+      {
+        "url": "https://clinicaltrials.gov/study/NCT06429735",
+        "title": "PRIME registry",
+        "locator": "Brief summary; interventions; study status and outcomes",
+        "accessedAt": "2026-10-31",
+        "method": "Original source inspection; API metadata acquired with immutable response hashes. Manufacturer and clinical-site reports are attributed; no clinical certification."
+      },
+      {
+        "url": "https://neuralink.com/pdfs/PRIME-Study-Brochure.pdf",
+        "title": "Earlier PRIME study brochure",
+        "locator": "PDF p. 1; devices and study purpose",
+        "accessedAt": "2026-10-31",
+        "method": "Original source inspection; API metadata acquired with immutable response hashes. Manufacturer and clinical-site reports are attributed; no clinical certification."
+      },
+      {
+        "url": "https://www.uclh.nhs.uk/news/uclh-evaluate-safety-and-functionality-neuralinks-brain-computer-interface-bci-technology",
+        "title": "UCLH GB-PRIME study description",
+        "locator": "31 July 2025; device-description Q&A",
+        "accessedAt": "2026-10-31",
+        "method": "Original source inspection; API metadata acquired with immutable response hashes. Manufacturer and clinical-site reports are attributed; no clinical certification."
+      },
+      {
+        "url": "https://neuralink.com/updates/prime-study-progress-update-user-experience/",
+        "title": "Neuralink participant progress report",
+        "locator": "8 May 2024; paragraph on retracted threads",
+        "accessedAt": "2026-10-31",
+        "method": "Original source inspection; API metadata acquired with immutable response hashes. Manufacturer and clinical-site reports are attributed; no clinical certification."
+      },
+      {
+        "url": "https://www.jmir.org/2019/10/e16194/",
+        "title": "2019 Neuralink platform white paper",
+        "locator": "Device description and animal experiments; distinct from N1 human study results",
+        "accessedAt": "2026-10-31",
+        "method": "Original source inspection; API metadata acquired with immutable response hashes. Manufacturer and clinical-site reports are attributed; no clinical certification."
+      }
+    ],
+    "limitations": [
+      "The six indexed Neuralink-sponsored trial records have no posted results in the retrieved snapshot; this does not establish the absence of other research or publications.",
+      "No complete consent/risk packet, commercial labeling, patient-specific thread layout, hemisphere or dose/field model is established here.",
+      "Thread-count descriptions differ across sources; no universal patient configuration or revision crosswalk is established.",
+      "Sponsor reports are separate from adjudicated clinical outcomes and FDA safety/recall findings."
+    ]
+  },
+  "currentLabelReview": "investigational",
+  "noticeReview": "screened-candidates-reviewed",
+  "modelLotReview": "not-established",
+  "sourceLinks": [
+    {
+      "title": "Research evidence: PMID:31642810",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31642810/"
+    },
+    {
+      "title": "Research evidence: NCT07224256",
+      "url": "https://clinicaltrials.gov/study/NCT07224256"
+    },
+    {
+      "title": "Research evidence: NCT07127172",
+      "url": "https://clinicaltrials.gov/study/NCT07127172"
+    },
+    {
+      "title": "Research evidence: NCT06992596",
+      "url": "https://clinicaltrials.gov/study/NCT06992596"
+    },
+    {
+      "title": "Research evidence: NCT06700304",
+      "url": "https://clinicaltrials.gov/study/NCT06700304"
+    },
+    {
+      "title": "Research evidence: NCT06710626",
+      "url": "https://clinicaltrials.gov/study/NCT06710626"
+    },
+    {
+      "title": "PRIME registry",
+      "url": "https://clinicaltrials.gov/study/NCT06429735"
+    },
+    {
+      "title": "2019 Neuralink platform white paper",
+      "url": "https://www.jmir.org/2019/10/e16194/"
+    },
+    {
+      "title": "Neuralink participant progress report",
+      "url": "https://neuralink.com/updates/prime-study-progress-update-user-experience/"
+    },
+    {
+      "title": "UCLH GB-PRIME study description",
+      "url": "https://www.uclh.nhs.uk/news/uclh-evaluate-safety-and-functionality-neuralinks-brain-computer-interface-bci-technology"
+    },
+    {
+      "title": "Earlier PRIME study brochure",
+      "url": "https://neuralink.com/pdfs/PRIME-Study-Brochure.pdf"
+    },
+    {
+      "title": "Neuralink clinical-trials page",
+      "url": "https://neuralink.com/trials/"
+    }
+  ],
+  "path": "/dossiers/neuralink.json",
+  "applications": [],
+  "researchEvidence": [
+    {
+      "id": "NCT06429735",
+      "kind": "trial",
+      "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+      "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+      "title": "Precise Robotically IMplanted Brain-Computer InterfacE",
+      "status": "RECRUITING",
+      "firstPosted": "2024-05-28",
+      "interventions": [
+        {
+          "armGroupLabels": [
+            "Neuralink N1 Implant and R1 Robot"
+          ],
+          "description": "The N1 Implant is a type of implantable brain-computer interface",
+          "name": "N1 Implant",
+          "otherNames": [
+            "Neuralink N1 Implant, N1, Telepathy, Link"
+          ],
+          "type": "DEVICE"
+        },
+        {
+          "armGroupLabels": [
+            "Neuralink N1 Implant and R1 Robot"
+          ],
+          "description": "The R1 Robot is a robotic electrode thread inserter that implants the N1 Implant.",
+          "name": "R1 Robot",
+          "otherNames": [
+            "R1, Neuralink R1 Robot"
+          ],
+          "type": "DEVICE"
+        }
+      ],
+      "sponsor": "Neuralink Corp",
+      "summary": "The PRIME Study is a first-in-human early feasibility study to evaluate the initial clinical safety and device functionality of the Neuralink N1 Implant and R1 Robot device designs in participants with tetraparesis or tetraplegia. The N1 Implant is a skull-mounted, wireless, rechargeable implant connected to electrode threads that are implanted in the brain by the R1 Robot, a robotic electrode thread inserter.",
+      "url": "https://clinicaltrials.gov/study/NCT06429735",
+      "lastUpdatePosted": "2026-01-09",
+      "studyStart": {
+        "date": "2024-01-09",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 15,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "measure": "Device-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        },
+        {
+          "measure": "Procedure-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        }
+      ]
+    },
+    {
+      "id": "NCT06710626",
+      "kind": "trial",
+      "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+      "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+      "title": "Control of Assistive Devices Via Brain-Computer Interface Technology",
+      "status": "ENROLLING_BY_INVITATION",
+      "firstPosted": "2024-11-29",
+      "interventions": [
+        {
+          "armGroupLabels": [
+            "Single"
+          ],
+          "description": "The intervention involves using the N1 Implant, a wireless brain-computer interface (BCI), to enable participants to control the Assistive Robotic Arm through neural signals.",
+          "name": "Assistive Robotic Arm",
+          "otherNames": [
+            "BCI controlled robotic arm"
+          ],
+          "type": "DEVICE"
+        }
+      ],
+      "sponsor": "Neuralink Corp",
+      "summary": "The CONVOY Study is a clinical trial designed to explore the feasibility of participants from the PRIME Study (NCT06429735) using the N1 Implant to control various assistive devices. The main goal is to determine whether participants can successfully modulate their brain activity to control devices, such as an Assistive Robotic Arm (ARA). This study will assess the effectiveness, consistency, and safety of neural control using the ARA and other assistive devices.",
+      "url": "https://clinicaltrials.gov/study/NCT06710626",
+      "lastUpdatePosted": "2025-06-05",
+      "studyStart": {
+        "date": "2024-11-25",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 3,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "measure": "Ability of participants to modulate brain activity for controlling an assistive device via the N1 Implant.",
+          "timeFrame": "3-months following first use of the assistive device"
+        }
+      ]
+    },
+    {
+      "id": "NCT06700304",
+      "kind": "trial",
+      "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+      "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+      "title": "CAN-PRIME: Precise Robotically Implanted Brain-Computer Interface for the Control of External Devices",
+      "status": "RECRUITING",
+      "firstPosted": "2024-11-21",
+      "interventions": [
+        {
+          "armGroupLabels": [
+            "CAN-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+          ],
+          "description": "The N1 Implant is a type of implantable brain-computer interface.",
+          "name": "N1 Implant",
+          "type": "DEVICE"
+        },
+        {
+          "armGroupLabels": [
+            "CAN-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+          ],
+          "description": "The R1 Robot is a robotic electrode thread inserter that implants the N1 Implant.",
+          "name": "R1 Robot",
+          "type": "DEVICE"
+        }
+      ],
+      "sponsor": "Neuralink Corp",
+      "summary": "The CAN-PRIME Study is to test the safety and functionality of Neuralink's N1 Implant and R1 Robot in people who have difficulty moving their arms and legs (tetraparesis or tetraplegia). The N1 Implant is a small, wireless device placed in the skull. It connects to tiny threads inserted into the brain by the R1 Robot, which is a machine designed to carefully place these threads. This study will help researchers learn how well the implant and robot work and if they are safe for use.",
+      "url": "https://clinicaltrials.gov/study/NCT06700304",
+      "lastUpdatePosted": "2025-05-31",
+      "studyStart": {
+        "date": "2024-11-20",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 6,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "measure": "The Rate of Device-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        },
+        {
+          "measure": "The Rate of Procedure-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        }
+      ]
+    },
+    {
+      "id": "NCT06992596",
+      "kind": "trial",
+      "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+      "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+      "title": "UAE-PRIME: A Feasibility Study of a Precise Robotically Implanted Brain-Computer Interface for the Control of External Devices",
+      "status": "RECRUITING",
+      "firstPosted": "2025-05-28",
+      "interventions": [
+        {
+          "armGroupLabels": [
+            "UAE-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+          ],
+          "description": "The N1 Implant is a type of implantable brain-computer interface.",
+          "name": "N1 Implant",
+          "type": "DEVICE"
+        },
+        {
+          "armGroupLabels": [
+            "UAE-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+          ],
+          "description": "The R1 Robot is a robotic electrode thread inserter that implants the N1 Implant.",
+          "name": "R1 Robot",
+          "type": "DEVICE"
+        }
+      ],
+      "sponsor": "Neuralink Corp",
+      "summary": "The UAE-PRIME Study is a feasibility study designed to assess the initial clinical safety and functionality of the Neuralink N1 Implant and R1 Robot. This study involves participants who have tetraparesis, tetraplegia, or a diagnosis that may lead to these conditions.\n\nThe N1 Implant is a wireless, rechargeable device mounted on the skull, connected to electrode threads that are inserted into the brain by the R1 Robot, which is a robotic device specifically designed for this procedure.",
+      "url": "https://clinicaltrials.gov/study/NCT06992596",
+      "lastUpdatePosted": "2025-06-05",
+      "studyStart": {
+        "date": "2025-05-09",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 10,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "measure": "The Rate of Device-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        },
+        {
+          "measure": "The Rate of Procedure-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        }
+      ]
+    },
+    {
+      "id": "NCT07127172",
+      "kind": "trial",
+      "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+      "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+      "title": "GB-PRIME: An Early Feasibility Study of a Precise Robotically Implanted Brain-Computer Interface for the Control of External Devices",
+      "status": "RECRUITING",
+      "firstPosted": "2025-08-17",
+      "interventions": [
+        {
+          "armGroupLabels": [
+            "GB-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+          ],
+          "description": "The N1 Implant is a type of implantable brain-computer interface.",
+          "name": "N1 Implant",
+          "type": "DEVICE"
+        },
+        {
+          "armGroupLabels": [
+            "GB-PRIME: Precise Robotically Implanted Brain-Computer Interface"
+          ],
+          "description": "The R1 Robot is a robotic electrode thread inserter that implants the N1 Implant.",
+          "name": "R1 Robot",
+          "type": "DEVICE"
+        }
+      ],
+      "sponsor": "Neuralink Corp",
+      "summary": "The GB-PRIME Study is an early feasibility study designed to assess the clinical safety and functionality of the Neuralink N1 Implant and R1 Robot. This study involves participants who have tetraparesis, tetraplegia, or a diagnosis that may lead to these conditions.\n\nThe N1 Implant is a wireless, rechargeable device mounted on the skull, connected to electrode threads that are inserted into the brain by the R1 Robot, which is a robotic device specifically designed for this procedure.",
+      "url": "https://clinicaltrials.gov/study/NCT07127172",
+      "lastUpdatePosted": "2025-08-17",
+      "studyStart": {
+        "date": "2025-07-31",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 7,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "measure": "The Rate of Device-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        },
+        {
+          "measure": "The Rate of Procedure-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        }
+      ]
+    },
+    {
+      "id": "NCT07224256",
+      "kind": "trial",
+      "sourceSha": "1840649a6e1a18455bb343b2dae364809460cfb055428bdc62f078750916c763",
+      "retrievedAt": "2026-11-01T04:51:05.780680+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT06429735%2CNCT06700304%2CNCT06710626%2CNCT06992596%2CNCT07127172%2CNCT07224256&pageSize=20&format=json",
+      "title": "VOICE: An Early Feasibility Study of a Precise Robotically Implanted Brain-Computer Interface for Communication Restoration",
+      "status": "RECRUITING",
+      "firstPosted": "2025-11-04",
+      "interventions": [
+        {
+          "armGroupLabels": [
+            "Neuralink N1 Implant and R1 Robot"
+          ],
+          "description": "The N1 Implant is a type of implantable brain-computer interface",
+          "name": "N1 Implant",
+          "otherNames": [
+            "Neuralink N1 Implant, N1, Telepathy, Link"
+          ],
+          "type": "DEVICE"
+        },
+        {
+          "armGroupLabels": [
+            "Neuralink N1 Implant and R1 Robot"
+          ],
+          "description": "The R1 Robot is a robotic electrode thread inserter that implants the N1 Implant.",
+          "name": "R1 Robot",
+          "otherNames": [
+            "R1, Neuralink R1 Robot"
+          ],
+          "type": "DEVICE"
+        }
+      ],
+      "sponsor": "Neuralink Corp",
+      "summary": "The VOICE Study is an early feasibility study to evaluate the initial clinical safety and efficacy of the N1 and R1 Systems device design concept in providing an ability to communicate. The Neuralink N1 Implant is intended to provide the ability to communicate to individuals with severe and irreversible speech production impairment. It is indicated for adults with neurological conditions of the central speech pathways who have impaired upper limb function. The N1 Implant is a skull-mounted, wireless, rechargeable implant connected to electrode threads that are implanted in the brain by the R1 Robot, a robotic electrode thread inserter.",
+      "url": "https://clinicaltrials.gov/study/NCT07224256",
+      "lastUpdatePosted": "2025-11-04",
+      "studyStart": {
+        "date": "2025-10-03",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 6,
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "The proportion of subjects with device-related adverse events (AEs) at the 12-month follow-up visit.",
+          "measure": "Device-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        },
+        {
+          "description": "The proportion of subjects with procedure-related adverse events (AEs) at the 12-month follow-up visit.",
+          "measure": "Procedure-Related Adverse Events (AE)",
+          "timeFrame": "12 months post-implant"
+        }
+      ]
+    },
+    {
+      "id": "PMID:31642810",
+      "kind": "publication",
+      "sourceSha": "63879abe83688c470991c48a739f26dfdda3102f6ef6112020717f348904efd4",
+      "retrievedAt": "2026-11-01T04:51:05.034069+00:00",
+      "providerUpdatedAt": null,
+      "sourceUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=31642810&retmode=json&tool=BodyAtlas",
+      "title": "An Integrated Brain-Machine Interface Platform With Thousands of Channels.",
+      "publicationDate": "2019 Oct 31",
+      "authors": [
+        "Musk E",
+        "Neuralink"
+      ],
+      "journal": "Journal of medical Internet research",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31642810/",
+      "identifiers": [
+        {
+          "idtype": "pubmed",
+          "idtypen": 1,
+          "value": "31642810"
+        },
+        {
+          "idtype": "pmc",
+          "idtypen": 8,
+          "value": "PMC6914248"
+        },
+        {
+          "idtype": "pmcid",
+          "idtypen": 5,
+          "value": "pmc-id: PMC6914248;"
+        },
+        {
+          "idtype": "doi",
+          "idtypen": 3,
+          "value": "10.2196/16194"
+        },
+        {
+          "idtype": "pii",
+          "idtypen": 4,
+          "value": "v21i10e16194"
+        }
+      ]
+    }
+  ],
+  "review": {
+    "method": "Primary-source, model-scoped editorial review. Current public safety statements are distinguished from historical labels and full IFUs. No clinical certification or patient-specific applicability determination.",
+    "next": [
+      "The six indexed Neuralink-sponsored trial records have no posted results in the retrieved snapshot; this does not establish the absence of other research or publications.",
+      "No complete consent/risk packet, commercial labeling, patient-specific thread layout, hemisphere or dose/field model is established here.",
+      "Thread-count descriptions differ across sources; no universal patient configuration or revision crosswalk is established.",
+      "Sponsor reports are separate from adjudicated clinical outcomes and FDA safety/recall findings.",
+      "Reconcile the exact package/model IFU and any newer manufacturer actions before clinical use. Historical recall termination does not certify every implanted unit as safe."
+    ]
+  }
+}

@@ -7,7 +7,7 @@ import { interventionSummaries } from '../lib/intervention-summaries';
 import { humanRegionLocators } from '../lib/annotations';
 
 test('mechanisms resolve named entries, original evidence and contextual reference anatomy',()=>{
-  assert.equal(Object.keys(deviceActions).length,11);
+  assert.equal(Object.keys(deviceActions).length,12);
   for(const [id,action] of Object.entries(deviceActions)){
     const family=familyById(id)!;assert.ok(family&&hasExplanation(family));
     const sources=[...familyMappings(id).map(m=>m.sourceUrl),...family.regulatoryIds.map(r=>recordById(r)!.url)];

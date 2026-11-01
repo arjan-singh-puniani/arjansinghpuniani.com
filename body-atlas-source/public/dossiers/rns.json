@@ -1601,7 +1601,33 @@
       ],
       "sponsor": "NeuroPace",
       "summary": "The RNS® System Pivotal study is designed to assess safety and demonstrate that the RNS® System is effective as an adjunctive (add-on) therapy in reducing the frequency of seizures in individuals 18 years of age or older with partial onset seizures from no more than two foci (two areas of the brain) that are refractory (drug-resistant or hard-to-treat) to two or more antiepileptic medications. Patients continue to receive their epilepsy medications while participating in the study.",
-      "url": "https://clinicaltrials.gov/study/NCT00264810"
+      "url": "https://clinicaltrials.gov/study/NCT00264810",
+      "lastUpdatePosted": "2013-08-28",
+      "studyStart": {
+        "date": "2005-12"
+      },
+      "enrollment": {
+        "count": 240,
+        "type": "ACTUAL"
+      },
+      "hasResults": true,
+      "primaryOutcomes": [
+        {
+          "description": "RNS® System Acute SAE Rate = the percentage of implanted subject having a serious adverse event (SAE) for the surgical implant procedure and the following month (28 days), whether reported as device-related or not.\n\nThis outcome measure is met when the upper limit of one-sided 95% confidence interval of the observed RNS® System Acute SAE Rate does not exceed the upper limit of the one-sided 95% confidence interval of the literature-based acute SAE rate associated with the implantation of intracranial electrodes for localization procedures and epilepsy surgery combined as documented in the literature (rate = 15%; upper CI = 20%). The comparator was calculated based upon the literature, therefore the number of participants analyzed is unknown/not applicable. Referenced literature are listed within the citation section (Tanriverdi et al., 2009; Wong et al., 2009; Fountas and Smith, 2007; Hamer et al., 2002; Behrens et al., 1997).\n\nPrimary Safety Outcome Measure was met.",
+          "measure": "Acute SAE Rate",
+          "timeFrame": "Initial implant through 1 month post-implant"
+        },
+        {
+          "description": "RNS® System Short-term Chronic SAE rate = the percentage of implanted subject having a serious adverse event (SAE) for the surgical implant procedure and the following 3 months (84 days), whether reported as device-related or not.\n\nThis outcome measure is met when the upper limit of one-sided 95% confidence interval of the observed RNS® System Short-term Chronic SAE Rate does not exceed the upper limit of the one-sided 95% confidence interval of the historical short-term chronic SAE rate for deep brain stimulation for movement disorders from the published literature (rate = 36%; upper CI = 42%). The comparator was calculated based upon the literature, therefore the number of participants analyzed is unknown/not applicable. Referenced literature are listed within the citation section (Oh et al., 2002; SSED, Activa Tremor Control System P960009; Beric et al., 2001; Behrens et al., 1997; Hariz, 2002; Joint et al., 2002; Koller et al., 2001).\n\nPrimary Safety Outcome Measure was met.",
+          "measure": "Short-term Chronic SAE Rate",
+          "timeFrame": "Initial implant through 5 months post-implant"
+        },
+        {
+          "description": "The outcome measure is met when a significantly greater reduction in the frequency of total disabling seizures in seen in the Treatment group when compared to the Sham group, during the Blinded Evaluation Period (BEP) relative to the Pre-Implant Period (Baseline).\n\nThe outcome measure is the group-by-time interaction term in a generalized estimating equation (GEE), longitudinal regression model, where group refers to therapy allocation (Treatment or Sham), time refers to study period (Baseline or BEP), and the dependent variable is seizure frequency. The outcome measure was a statistically significant group-by-time interaction term, which would demonstrate a significantly greater reduction in seizure frequency in the Treatment group than the Sham group during BEP compared to Baseline Period.\n\nPrimary Effectiveness Outcome Measure was met.\n\n(Note: Disabling seizures = motor simple partial seizures or complex partial seizures with or without secondarily generalized seizures.)",
+          "measure": "Change in Frequency of Disabling Seizures",
+          "timeFrame": "3 months pre-implant (Baseline Period) compared to months 3, 4 and 5 post-implant (Blinded Evaluation Period)"
+        }
+      ]
     },
     {
       "id": "NCT04839601",
@@ -1625,7 +1651,29 @@
       ],
       "sponsor": "NeuroPace",
       "summary": "To demonstrate that the RNS System is safe and effective as an adjunctive therapy in individuals age 12 through 17 years with medically refractory partial onset epilepsy.",
-      "url": "https://clinicaltrials.gov/study/NCT04839601"
+      "url": "https://clinicaltrials.gov/study/NCT04839601",
+      "lastUpdatePosted": "2025-05-22",
+      "studyStart": {
+        "date": "2021-10-27",
+        "type": "ACTUAL"
+      },
+      "enrollment": {
+        "count": 9,
+        "type": "ACTUAL"
+      },
+      "hasResults": false,
+      "primaryOutcomes": [
+        {
+          "description": "The primary safety endpoint is the percent of subjects with serious device-related adverse events at 84 days (12 weeks) post-implant.",
+          "measure": "Short-term chronic serious adverse device effect (SADE) rate",
+          "timeFrame": "84-days post-implant"
+        },
+        {
+          "description": "12 months post-implant",
+          "measure": "Responder rate at 12 months post implant",
+          "timeFrame": "The primary effectiveness endpoint is the percent of subjects with a ≥ 50% reduction in seizures at 12 months post-implant compared to the pre-implant baseline."
+        }
+      ]
     },
     {
       "id": "PMID:21917777",

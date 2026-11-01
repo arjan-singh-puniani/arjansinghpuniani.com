@@ -1,28 +1,28 @@
 {
-  "generatedAt": "2026-10-23T04:39:45.379595+00:00",
-  "snapshotExportedAt": "2026-10-19T11:12:05.379339+00:00",
+  "generatedAt": "2026-11-01T05:13:44.537Z",
+  "snapshotExportedAt": "2026-11-01T04:51:06.187445+00:00",
   "recordCounts": {
     "de_novo": 37,
     "classification": 10,
     "510k": 1564,
     "pma": 836,
-    "trial": 17,
+    "trial": 23,
     "grant": 5,
-    "publication": 21
+    "publication": 22
   },
-  "curatedEntries": 10,
-  "curatedAssertions": 21,
-  "localizedAssertions": 20,
+  "curatedEntries": 11,
+  "curatedAssertions": 24,
+  "localizedAssertions": 23,
   "explicitAbstentions": 1,
   "sourceContextEntries": 652,
-  "sourceContextAssertions": 712,
+  "sourceContextAssertions": 711,
   "automaticallyAcceptedMappings": 0,
   "independentlyAdjudicatedMappings": 0,
   "precision": null,
   "confidenceInterval": null,
   "reason": "No independent ground truth adjudication. Curator assertions and regression checks are not a precision estimate.",
   "jobStates": {
-    "complete": 52,
+    "complete": 54,
     "failed": 3
   },
   "thalamusTopography": {
@@ -42,7 +42,7 @@
   "releaseDisposition": "Public research preview. Provisional anatomical contexts and incomplete historical coverage are not clinical validation.",
   "interactivePreview": {
     "path": "/atlas",
-    "delivery": "Self-contained static snapshot; no live ingestion or private workspace."
+    "delivery": "Cached reviewed index plus bounded live exact-application FDA decision checks. No unattended hosted document-ingestion worker or private workspace."
   },
   "explanationExpansion": {
     "recordedDate": "2026-10-22",
@@ -127,5 +127,29 @@
       "outreach": "Document requests retained as drafts; not sent",
       "warningClarity": "Review meanings, compared models, revision limits and first entry-specific limitation visible; same context preserved in briefs."
     }
+  },
+  "historicalMilestoneNote": "Dated explanationExpansion, dossierMilestone and labelSafetyReview sections record earlier milestones. currentRelease and top-level source counts describe the current export.",
+  "currentRelease": {
+    "recordedDate": "2026-10-31",
+    "explainedEntries": 92,
+    "dossiers": 92,
+    "mechanisms": 12,
+    "independentAnatomicalValidation": false,
+    "neuralink": {
+      "studyIds": [
+        "NCT06429735",
+        "NCT06710626",
+        "NCT06700304",
+        "NCT06992596",
+        "NCT07127172",
+        "NCT07224256"
+      ],
+      "postedRegistryResults": 0,
+      "marketingAuthorizationEstablished": false,
+      "sourceReviewDate": "2026-10-31",
+      "hardwareRevisionCrosswalkEstablished": false
+    },
+    "latestIfuGaps": 3,
+    "scope": "Source-grounded research preview. New Neuralink registry/publication records do not refresh older FDA records. Manufacturer reports, registry facts and historical publications remain distinct."
   }
 }

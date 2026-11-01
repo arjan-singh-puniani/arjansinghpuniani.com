@@ -102,6 +102,6 @@ export default function Dossier({ familyId }: { familyId: string }) {
       <details><summary>Label discovery provenance</summary><p>{data.labeling.inventory.method}</p><SourceLinks source={data.labeling.inventory} /></details>
     </section></details>
     <details><summary>Remaining review</summary><p>{data.review.method}</p><ul>{data.review.next.map(n => <li key={n}>{n}</li>)}</ul></details>
-    <footer className="dossier-footer"><a href={atlasPath(summary.path)} download={`${familyId}-dossier.json`}>Download dossier with source references (JSON)</a><a href={`${atlasPath("/")}?entry=${encodeURIComponent(familyId)}`}>Link to this entry</a><small>FDA snapshot {data.reviewedAt.slice(0, 10)}. Research preview; source review does not certify a device or authorize treatment.</small></footer>
+    <footer className="dossier-footer"><a href={atlasPath(summary.path)} download={`${familyId}-dossier.json`}>Download dossier with source references (JSON)</a><a href={`${atlasPath("/")}?entry=${encodeURIComponent(familyId)}`}>Link to this entry</a><small>{data.applications.length?'FDA snapshot':'Research sources reviewed'} {data.applications.length?data.reviewedAt.slice(0,10):data.labelReview.reviewedAt}. Research preview; source review does not certify a device or authorize treatment.</small></footer>
   </article>;
 }
