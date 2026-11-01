@@ -137,3 +137,17 @@ Key omissions: lateral heat spreading, vessels and directional flow, CSF/meninge
 ## Experiments that reduce the uncertainty
 
 Start with a calibrated thermoelectric module between measured thermal masses: log electrical current/voltage, both face temperatures and a known heat load; identify α, Re, K and contact resistance. Next compare depth-resolved temperatures in a tissue-mimicking phantom against an appropriately extended 2D/3D model while varying contact, cooling pulse and heat-rejection boundary. Account for all heat and electrical energy, including driver loss. Challenge the complete hardware feedback loop with sensor disconnection, lag, saturation, restart and repeated demand. Only after appropriate biological and device-development work can a controlled preclinical protocol address tissue response and electrophysiological outcomes. Packaging, long-term operation, clinical translation and manufacturing require their own evidence.
+
+
+## Device geometry and model boundary (1 November 2026)
+
+The explanatory construction is authored in millimeters with a rigid atlas registration; no axis is stretched to fit anatomy. A 12 × 12 × 3.15 mm candidate housing contains an illustrative 18-couple series-connected TEC. Those dimensions, leg count, materials and the unvalidated contact envelope do not determine this solver's assumed coefficients, thermal capacities or contact resistance. The envelope is a display of unresolved space between a flat spreader and folded reference cortex, not evidence of a suitable material filling sulci.
+
+The hot spreader meets the candidate shell. Their thermal storage is represented together by Ch; rejection remains a finite resistance to an ideal fixed-temperature 37 °C reservoir, whose external capacity is not modeled. The scene does not establish a chronic implant rejection route. The surface temperature sensor is a proposed physical location; the synthetic sensor observes reconstructed surface temperature through a lag, without a calibrated sensor heat path. Independent hot/cold cutoff access remains an illustrative simulator assumption.
+
+See [DEVICE.md](DEVICE.md) for construction evidence and assumptions. Reproduce geometry/topology checks from the portfolio root:
+
+    node tools/seizefreeze/device-check.mjs
+    SEIZEFREEZE_BASE_URL=http://127.0.0.1:3217 node tools/seizefreeze/device-qa.mjs
+
+The geometry check clips every intersecting source triangle to the rigid footprint rather than sampling only triangle vertices. An independent edge/rectangle intersection implementation verifies the reference maximum. A 0.3 mm raw-cortex display clearance and an expanded footprint margin accommodate the illustrated pia proxy; this is not an acceptable implant gap or clinical pressure specification.

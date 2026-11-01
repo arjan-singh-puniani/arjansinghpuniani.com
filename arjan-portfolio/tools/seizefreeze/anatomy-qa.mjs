@@ -40,7 +40,9 @@ try {
     const originalTarget = initial.stats.target;
     assert.ok(originalTarget.every(Number.isFinite));
     const mountDistance = Math.hypot(...originalTarget.map((v, i) => v - initial.stats.mountPoint[i]));
-    assert.ok(Math.abs(mountDistance - .65) < 1e-6, 'Device mount must remain offset along the reference target normal.');
+    assert.ok(Math.abs(mountDistance - initial.stats.device.datum) < 1e-6, 'Device mount follows the full-footprint atlas fit.');
+    assert.deepEqual(initial.stats.device.scale,[1,1,1]);
+    assert.ok(initial.stats.device.rigidClearanceMm >= .1 - 1e-8, 'Rigid construction clears the complete projected reference footprint.');
     const layout = await page.evaluate(() => Object.fromEntries(['.scene', '.scene-tools', '.peel-control', '.inspector'].map(selector => {
       const r = document.querySelector(selector).getBoundingClientRect();
       return [selector, { x: r.x, y: r.y, width: r.width, height: r.height }];

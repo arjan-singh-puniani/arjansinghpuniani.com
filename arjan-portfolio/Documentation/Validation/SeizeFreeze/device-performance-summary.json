@@ -1,0 +1,26 @@
+{
+  "nativeFpsRange": [
+    38.46153846153846,
+    60.1388842741206
+  ],
+  "softwareExplicit3DFpsRange": [
+    0,
+    0.5507113354749885
+  ],
+  "nativeProfiles": 8,
+  "softwareProfiles": 4,
+  "totalBytes": 9686087,
+  "gzipInventoryBytes": 4907664,
+  "rawBrainGLBBytes": 6573512,
+  "nativeDpr": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1.0240000000000002,
+    1.0240000000000002
+  ],
+  "physicalPhoneTest": false
+}

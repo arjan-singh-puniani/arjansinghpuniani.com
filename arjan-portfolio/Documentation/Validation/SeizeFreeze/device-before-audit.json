@@ -1,0 +1,1106 @@
+{
+  "url": "https://arjansinghpuniani.com/seizefreeze-lab/index.html?release=d2e6746",
+  "errors": [],
+  "states": [
+    {
+      "name": "exploded",
+      "snapshot": {
+        "chapter": "assembly",
+        "selected": "interface",
+        "installed": [],
+        "index": 0,
+        "playing": false,
+        "staticView": false,
+        "sceneError": "",
+        "modelError": "",
+        "scenario": "event",
+        "frame": {
+          "t": 0,
+          "tissue": [
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37
+          ],
+          "Tc": 37,
+          "Th": 37,
+          "sensor": 37,
+          "signal": 0,
+          "feature": 0,
+          "detected": false,
+          "current": 0,
+          "command": 0,
+          "qContact": 0,
+          "qc": 0,
+          "power": 0,
+          "qh": 0,
+          "rejected": 0,
+          "energy": 0,
+          "residual": 5.684341886080802e-14,
+          "state": "Monitoring",
+          "parasitic": 0,
+          "insulation": 0,
+          "surface": 37,
+          "ledger": {
+            "storedChange": 5.684341886080802e-14,
+            "externalEnergy": 0,
+            "rejectedEnergy": 0,
+            "extractedEnergy": 0
+          },
+          "surfaceCell": 37
+        },
+        "params": {
+          "scenario": "event",
+          "duration": 120,
+          "dt": 0.01,
+          "dz": 0.0005,
+          "currentLimit": 0.32,
+          "contactResistance": 4,
+          "rejectionResistance": 8,
+          "initialTemperature": 37,
+          "area": 0.0001,
+          "depth": 0.008,
+          "conductivity": 0.5,
+          "density": 1060,
+          "specificHeat": 3600,
+          "perfusionCoefficient": 40000,
+          "metabolicHeat": 6000,
+          "arterialTemperature": 36.85,
+          "reservoirTemperature": 37,
+          "coldCapacity": 0.8,
+          "hotCapacity": 6,
+          "alpha": 0.012,
+          "electricalResistance": 2,
+          "tecConductance": 0.035,
+          "insulationResistance": 80,
+          "hotTissueResistance": 120,
+          "target": 34,
+          "hotCutoff": 42,
+          "coldCutoff": 28,
+          "sensorLag": 0.8,
+          "detectorThreshold": 35,
+          "detectorTau": 0.7,
+          "controllerGain": 0.12,
+          "maximumStableDt": 0.505430463576159
+        },
+        "summary": {
+          "minTissue": 34.83424844325069,
+          "maxHot": 37.664052086134454,
+          "maxCurrent": 0.32,
+          "electricalEnergy": 0.8730671022977371,
+          "rejectedEnergy": 4.353091447844159,
+          "extractedEnergy": 3.0977413495191155,
+          "maxResidual": 1.1373679775772416e-12,
+          "steps": 12000,
+          "cells": 16,
+          "outputHz": 20,
+          "model": "1D finite-volume depth column; illustrative coefficients, no biological-effect model"
+        },
+        "peel": 0.86,
+        "stats": {
+          "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+          "softwareRenderer": false,
+          "frames": 4,
+          "calls": 105,
+          "triangles": 405375,
+          "geometries": 57,
+          "textures": 6,
+          "pixelRatio": 1,
+          "renderCpuMsMean": 36.95000000298023,
+          "rendering": "on demand; no idle animation",
+          "active": true,
+          "openingOverview": false,
+          "cameraTransition": false,
+          "shadowMap": "2048px cached directional PCF",
+          "selected": "interface",
+          "exploded": true,
+          "componentOffsets": {
+            "interface": 0.6,
+            "coldplate": 3.25,
+            "tec": 6.4,
+            "heatpath": 9.8,
+            "sensing": 0.8999999999999999,
+            "electronics": 13.25,
+            "package": 16.25
+          },
+          "cameraPosition": [
+            -107.92924871628685,
+            54.17784135341013,
+            48.50972192027662
+          ],
+          "view": "system",
+          "peel": 1,
+          "target": [
+            -63.61758041381836,
+            -1.8063535690307617,
+            10.481131553649902
+          ],
+          "mountPoint": [
+            -64.24088201981604,
+            -1.8697317292685716,
+            10.654274028986205
+          ],
+          "contactSpanMm": [
+            10,
+            10
+          ],
+          "normal": [
+            -0.9589255476887405,
+            -0.09750486190432274,
+            0.2663730389789252
+          ],
+          "anatomy": {
+            "targetName": "Left superior temporal gyrus",
+            "targetMesh": "Allen_superior_temporal_gyrus_L",
+            "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+            "simplifiedSurroundings": false,
+            "units": "mm",
+            "axes": "+X right; +Y superior; +Z anterior",
+            "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+            "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+            "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+            "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+            "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+            "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+            "stages": [
+              "scalp",
+              "skull",
+              "dura",
+              "arachnoid",
+              "subarachnoid CSF space",
+              "pia on cortex"
+            ],
+            "peel": 1,
+            "context": "system"
+          },
+          "lens": {
+            "visible": false,
+            "rect": null,
+            "outerRect": null,
+            "cameraPosition": [
+              -79.97468797534188,
+              -0.5961350374347585,
+              31.355977205452184
+            ],
+            "packagePixel": null,
+            "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+            "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+          }
+        }
+      }
+    },
+    {
+      "name": "seated",
+      "snapshot": {
+        "chapter": "assembly",
+        "selected": "sensing",
+        "installed": [
+          "interface",
+          "coldplate",
+          "tec",
+          "heatpath",
+          "sensing",
+          "electronics",
+          "package"
+        ],
+        "index": 0,
+        "playing": false,
+        "staticView": false,
+        "sceneError": "",
+        "modelError": "",
+        "scenario": "event",
+        "frame": {
+          "t": 0,
+          "tissue": [
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37,
+            37
+          ],
+          "Tc": 37,
+          "Th": 37,
+          "sensor": 37,
+          "signal": 0,
+          "feature": 0,
+          "detected": false,
+          "current": 0,
+          "command": 0,
+          "qContact": 0,
+          "qc": 0,
+          "power": 0,
+          "qh": 0,
+          "rejected": 0,
+          "energy": 0,
+          "residual": 5.684341886080802e-14,
+          "state": "Monitoring",
+          "parasitic": 0,
+          "insulation": 0,
+          "surface": 37,
+          "ledger": {
+            "storedChange": 5.684341886080802e-14,
+            "externalEnergy": 0,
+            "rejectedEnergy": 0,
+            "extractedEnergy": 0
+          },
+          "surfaceCell": 37
+        },
+        "params": {
+          "scenario": "event",
+          "duration": 120,
+          "dt": 0.01,
+          "dz": 0.0005,
+          "currentLimit": 0.32,
+          "contactResistance": 4,
+          "rejectionResistance": 8,
+          "initialTemperature": 37,
+          "area": 0.0001,
+          "depth": 0.008,
+          "conductivity": 0.5,
+          "density": 1060,
+          "specificHeat": 3600,
+          "perfusionCoefficient": 40000,
+          "metabolicHeat": 6000,
+          "arterialTemperature": 36.85,
+          "reservoirTemperature": 37,
+          "coldCapacity": 0.8,
+          "hotCapacity": 6,
+          "alpha": 0.012,
+          "electricalResistance": 2,
+          "tecConductance": 0.035,
+          "insulationResistance": 80,
+          "hotTissueResistance": 120,
+          "target": 34,
+          "hotCutoff": 42,
+          "coldCutoff": 28,
+          "sensorLag": 0.8,
+          "detectorThreshold": 35,
+          "detectorTau": 0.7,
+          "controllerGain": 0.12,
+          "maximumStableDt": 0.505430463576159
+        },
+        "summary": {
+          "minTissue": 34.83424844325069,
+          "maxHot": 37.664052086134454,
+          "maxCurrent": 0.32,
+          "electricalEnergy": 0.8730671022977371,
+          "rejectedEnergy": 4.353091447844159,
+          "extractedEnergy": 3.0977413495191155,
+          "maxResidual": 1.1373679775772416e-12,
+          "steps": 12000,
+          "cells": 16,
+          "outputHz": 20,
+          "model": "1D finite-volume depth column; illustrative coefficients, no biological-effect model"
+        },
+        "peel": 0.86,
+        "stats": {
+          "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+          "softwareRenderer": false,
+          "frames": 6,
+          "calls": 112,
+          "triangles": 405375,
+          "geometries": 64,
+          "textures": 6,
+          "pixelRatio": 1,
+          "renderCpuMsMean": 25.83333333830039,
+          "rendering": "on demand; no idle animation",
+          "active": true,
+          "openingOverview": false,
+          "cameraTransition": false,
+          "shadowMap": "2048px cached directional PCF",
+          "selected": "sensing",
+          "exploded": false,
+          "componentOffsets": {
+            "interface": 0,
+            "coldplate": 0,
+            "tec": 0,
+            "heatpath": 0,
+            "sensing": 0,
+            "electronics": 0,
+            "package": 0
+          },
+          "cameraPosition": [
+            -84.76463162006765,
+            30.267914769353485,
+            30.90728116736703
+          ],
+          "view": "system",
+          "peel": 1,
+          "target": [
+            -63.61758041381836,
+            -1.8063535690307617,
+            10.481131553649902
+          ],
+          "mountPoint": [
+            -64.24088201981604,
+            -1.8697317292685716,
+            10.654274028986205
+          ],
+          "contactSpanMm": [
+            10,
+            10
+          ],
+          "normal": [
+            -0.9589255476887405,
+            -0.09750486190432274,
+            0.2663730389789252
+          ],
+          "anatomy": {
+            "targetName": "Left superior temporal gyrus",
+            "targetMesh": "Allen_superior_temporal_gyrus_L",
+            "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+            "simplifiedSurroundings": false,
+            "units": "mm",
+            "axes": "+X right; +Y superior; +Z anterior",
+            "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+            "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+            "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+            "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+            "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+            "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+            "stages": [
+              "scalp",
+              "skull",
+              "dura",
+              "arachnoid",
+              "subarachnoid CSF space",
+              "pia on cortex"
+            ],
+            "peel": 1,
+            "context": "system"
+          },
+          "lens": {
+            "visible": false,
+            "rect": null,
+            "outerRect": null,
+            "cameraPosition": [
+              -79.97468797534188,
+              -0.5961350374347585,
+              31.355977205452184
+            ],
+            "packagePixel": null,
+            "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+            "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+          }
+        }
+      }
+    }
+  ],
+  "registration": {
+    "method": "Independent ray intersection of current flat interface bottom against the same HRA cortex geometry, along the device normal; source coordinates and scene scale reproduced without modifying the application.",
+    "interpretation": "Positive gap means the rendered plane is outside the atlas surface; negative means the rendered plane lies inside the first cortical surface. These are rendering-registration checks, not patient measurements, contact-pressure estimates or tissue tolerances.",
+    "rootScale": [
+      3.144654088050314,
+      1.1,
+      4.032258064516129
+    ],
+    "sampledFootprintSpanMm": [
+      9.433962264150942,
+      9.274193548387096
+    ],
+    "grid": [
+      {
+        "local": [
+          -1.5,
+          0,
+          -1.15
+        ],
+        "world": [
+          -65.46423560935614,
+          -5.157767885000192,
+          5.046707557944314
+        ],
+        "gapMm": 2.346607341192882,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          -1.5,
+          0,
+          -0.575
+        ],
+        "world": [
+          -64.8080201647963,
+          -5.775366664890845,
+          7.182970570943363
+        ],
+        "gapMm": 0.10509339049013908,
+        "atlasParcel": "HRA_cerebral_cortex_display"
+      },
+      {
+        "local": [
+          -1.5,
+          0,
+          0
+        ],
+        "world": [
+          -64.15180472023647,
+          -6.392965444781498,
+          9.31923358394241
+        ],
+        "gapMm": -0.9082159855312679,
+        "atlasParcel": "HRA_cerebral_cortex_display"
+      },
+      {
+        "local": [
+          -1.5,
+          0,
+          0.575
+        ],
+        "world": [
+          -63.495589275676636,
+          -7.010564224672152,
+          11.455496596941458
+        ],
+        "gapMm": -1.2044617546007301,
+        "atlasParcel": "HRA_cerebral_cortex_display"
+      },
+      {
+        "local": [
+          -1.5,
+          0,
+          1.15
+        ],
+        "world": [
+          -62.83937383111681,
+          -7.628163004562805,
+          13.591759609940507
+        ],
+        "gapMm": -1.2778504682124145,
+        "atlasParcel": "HRA_cerebral_cortex_display"
+      },
+      {
+        "local": [
+          -0.75,
+          0,
+          -1.15
+        ],
+        "world": [
+          -65.50877425914592,
+          -2.8961510272437283,
+          5.714227780466212
+        ],
+        "gapMm": 1.0486065455761253,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          -0.75,
+          0,
+          -0.575
+        ],
+        "world": [
+          -64.85255881458609,
+          -3.5137498071343813,
+          7.8504907934652595
+        ],
+        "gapMm": 1.1005768438605879,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          -0.75,
+          0,
+          0
+        ],
+        "world": [
+          -64.19634337002626,
+          -4.131348587025035,
+          9.986753806464307
+        ],
+        "gapMm": 1.4949291406847252,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          -0.75,
+          0,
+          0.575
+        ],
+        "world": [
+          -63.54012792546642,
+          -4.748947366915688,
+          12.123016819463356
+        ],
+        "gapMm": 2.5557043066456044,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          -0.75,
+          0,
+          1.15
+        ],
+        "world": [
+          -62.88391248090659,
+          -5.366546146806342,
+          14.259279832462402
+        ],
+        "gapMm": 0.9180654650331359,
+        "atlasParcel": "HRA_cerebral_cortex_display"
+      },
+      {
+        "local": [
+          0,
+          0,
+          -1.15
+        ],
+        "world": [
+          -65.55331290893571,
+          -0.6345341694872648,
+          6.381748002988109
+        ],
+        "gapMm": 0.7958260551362555,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          0,
+          0,
+          -0.575
+        ],
+        "world": [
+          -64.89709746437588,
+          -1.252132949377918,
+          8.518011015987156
+        ],
+        "gapMm": 0.6874761311151338,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          0,
+          0,
+          0
+        ],
+        "world": [
+          -64.24088201981604,
+          -1.8697317292685716,
+          10.654274028986205
+        ],
+        "gapMm": 0.6499999999999871,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          0,
+          0,
+          0.575
+        ],
+        "world": [
+          -63.58466657525621,
+          -2.487330509159225,
+          12.790537041985253
+        ],
+        "gapMm": 1.0991660344866938,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          0,
+          0,
+          1.15
+        ],
+        "world": [
+          -62.928451130696374,
+          -3.1049292890498785,
+          14.9268000549843
+        ],
+        "gapMm": 2.176311043574333,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          0.75,
+          0,
+          -1.15
+        ],
+        "world": [
+          -65.5978515587255,
+          1.6270826882691987,
+          7.049268225510007
+        ],
+        "gapMm": 0.905027130522455,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          0.75,
+          0,
+          -0.575
+        ],
+        "world": [
+          -64.94163611416566,
+          1.0094839083785452,
+          9.185531238509054
+        ],
+        "gapMm": 0.8597549114131546,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          0.75,
+          0,
+          0
+        ],
+        "world": [
+          -64.28542066960583,
+          0.3918851284878917,
+          11.321794251508102
+        ],
+        "gapMm": 0.856414537160733,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          0.75,
+          0,
+          0.575
+        ],
+        "world": [
+          -63.62920522504599,
+          -0.22571365140276156,
+          13.45805726450715
+        ],
+        "gapMm": 1.2207632132684845,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          0.75,
+          0,
+          1.15
+        ],
+        "world": [
+          -62.97298978048616,
+          -0.8433124312934148,
+          15.594320277506197
+        ],
+        "gapMm": 2.2842883013640507,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          1.5,
+          0,
+          -1.15
+        ],
+        "world": [
+          -65.64239020851528,
+          3.888699546025662,
+          7.716788448031903
+        ],
+        "gapMm": 1.4339135250118933,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          1.5,
+          0,
+          -0.575
+        ],
+        "world": [
+          -64.98617476395545,
+          3.2711007661350084,
+          9.853051461030951
+        ],
+        "gapMm": 1.4322462622355312,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          1.5,
+          0,
+          0
+        ],
+        "world": [
+          -64.32995931939561,
+          2.653501986244355,
+          11.98931447403
+        ],
+        "gapMm": 1.4308592037017727,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          1.5,
+          0,
+          0.575
+        ],
+        "world": [
+          -63.67374387483578,
+          2.0359032063537015,
+          14.125577487029046
+        ],
+        "gapMm": 1.7602022605390486,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      },
+      {
+        "local": [
+          1.5,
+          0,
+          1.15
+        ],
+        "world": [
+          -63.017528430275945,
+          1.4183044264630484,
+          16.261840500028093
+        ],
+        "gapMm": 2.793908932443696,
+        "atlasParcel": "Allen_superior_temporal_gyrus_L"
+      }
+    ],
+    "minGapMm": -1.2778504682124145,
+    "maxGapMm": 2.793908932443696,
+    "penetratingSamples": 3,
+    "gapSamplesAbovePointOneMm": 22,
+    "electrodes": [
+      {
+        "local": [
+          -2.08,
+          -0.12,
+          -0.77
+        ],
+        "world": [
+          -64.86954139902193,
+          -7.302033183705613,
+          5.907121886639504
+        ],
+        "gapMm": -1.3514922250669337,
+        "atlasParcel": "HRA_cerebral_cortex_display"
+      },
+      {
+        "local": [
+          -2.08,
+          -0.12,
+          0.77
+        ],
+        "world": [
+          -63.112025251852984,
+          -8.956123828977972,
+          11.628591521454346
+        ],
+        "gapMm": -1.8415256414890804,
+        "atlasParcel": "HRA_cerebral_cortex_display"
+      }
+    ]
+  },
+  "initial": {
+    "chapter": "placement",
+    "selected": "interface",
+    "installed": [],
+    "index": 0,
+    "playing": false,
+    "staticView": false,
+    "sceneError": "",
+    "modelError": "",
+    "scenario": "event",
+    "frame": {
+      "t": 0,
+      "tissue": [
+        37,
+        37,
+        37,
+        37,
+        37,
+        37,
+        37,
+        37,
+        37,
+        37,
+        37,
+        37,
+        37,
+        37,
+        37,
+        37
+      ],
+      "Tc": 37,
+      "Th": 37,
+      "sensor": 37,
+      "signal": 0,
+      "feature": 0,
+      "detected": false,
+      "current": 0,
+      "command": 0,
+      "qContact": 0,
+      "qc": 0,
+      "power": 0,
+      "qh": 0,
+      "rejected": 0,
+      "energy": 0,
+      "residual": 5.684341886080802e-14,
+      "state": "Monitoring",
+      "parasitic": 0,
+      "insulation": 0,
+      "surface": 37,
+      "ledger": {
+        "storedChange": 5.684341886080802e-14,
+        "externalEnergy": 0,
+        "rejectedEnergy": 0,
+        "extractedEnergy": 0
+      },
+      "surfaceCell": 37
+    },
+    "params": {
+      "scenario": "event",
+      "duration": 120,
+      "dt": 0.01,
+      "dz": 0.0005,
+      "currentLimit": 0.32,
+      "contactResistance": 4,
+      "rejectionResistance": 8,
+      "initialTemperature": 37,
+      "area": 0.0001,
+      "depth": 0.008,
+      "conductivity": 0.5,
+      "density": 1060,
+      "specificHeat": 3600,
+      "perfusionCoefficient": 40000,
+      "metabolicHeat": 6000,
+      "arterialTemperature": 36.85,
+      "reservoirTemperature": 37,
+      "coldCapacity": 0.8,
+      "hotCapacity": 6,
+      "alpha": 0.012,
+      "electricalResistance": 2,
+      "tecConductance": 0.035,
+      "insulationResistance": 80,
+      "hotTissueResistance": 120,
+      "target": 34,
+      "hotCutoff": 42,
+      "coldCutoff": 28,
+      "sensorLag": 0.8,
+      "detectorThreshold": 35,
+      "detectorTau": 0.7,
+      "controllerGain": 0.12,
+      "maximumStableDt": 0.505430463576159
+    },
+    "summary": {
+      "minTissue": 34.83424844325069,
+      "maxHot": 37.664052086134454,
+      "maxCurrent": 0.32,
+      "electricalEnergy": 0.8730671022977371,
+      "rejectedEnergy": 4.353091447844159,
+      "extractedEnergy": 3.0977413495191155,
+      "maxResidual": 1.1373679775772416e-12,
+      "steps": 12000,
+      "cells": 16,
+      "outputHz": 20,
+      "model": "1D finite-volume depth column; illustrative coefficients, no biological-effect model"
+    },
+    "peel": 0.86,
+    "stats": {
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "frames": 3,
+      "calls": 108,
+      "triangles": 460158,
+      "geometries": 54,
+      "textures": 6,
+      "pixelRatio": 1,
+      "renderCpuMsMean": 36.833333338300385,
+      "rendering": "on demand; no idle animation",
+      "active": true,
+      "openingOverview": true,
+      "cameraTransition": false,
+      "shadowMap": "2048px cached directional PCF",
+      "selected": null,
+      "exploded": false,
+      "componentOffsets": {
+        "interface": 0,
+        "coldplate": 0,
+        "tec": 0,
+        "heatpath": 0,
+        "sensing": 0,
+        "electronics": 0,
+        "package": 0
+      },
+      "cameraPosition": [
+        -290.1019100551764,
+        61.60846311549832,
+        149.1573317533117
+      ],
+      "view": "region",
+      "peel": 0.86,
+      "target": [
+        -63.61758041381836,
+        -1.8063535690307617,
+        10.481131553649902
+      ],
+      "mountPoint": [
+        -64.24088201981604,
+        -1.8697317292685716,
+        10.654274028986205
+      ],
+      "contactSpanMm": [
+        10,
+        10
+      ],
+      "normal": [
+        -0.9589255476887405,
+        -0.09750486190432274,
+        0.2663730389789252
+      ],
+      "anatomy": {
+        "targetName": "Left superior temporal gyrus",
+        "targetMesh": "Allen_superior_temporal_gyrus_L",
+        "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+        "simplifiedSurroundings": false,
+        "units": "mm",
+        "axes": "+X right; +Y superior; +Z anterior",
+        "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+        "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+        "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+        "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+        "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+        "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+        "stages": [
+          "scalp",
+          "skull",
+          "dura",
+          "arachnoid",
+          "subarachnoid CSF space",
+          "pia on cortex"
+        ],
+        "peel": 0.86,
+        "context": "region"
+      },
+      "lens": {
+        "visible": true,
+        "rect": {
+          "x": 1045,
+          "y": 162,
+          "width": 358,
+          "height": 219
+        },
+        "outerRect": {
+          "x": 1044,
+          "y": 130,
+          "width": 360,
+          "height": 280
+        },
+        "cameraPosition": [
+          -79.97468797534188,
+          -0.5961350374347585,
+          31.355977205452184
+        ],
+        "packagePixel": {
+          "x": 1209.1275863304186,
+          "y": 264.14930079803946,
+          "coordinates": "host-local CSS pixels"
+        },
+        "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+        "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+      }
+    }
+  },
+  "liveSceneSha256": "96f4f92b7e9222d2ca515562dec4dc855c6b121c52099a08ecebf8f1bb5be5fa",
+  "browserClosed": true,
+  "referenceImages": {
+    "files": [
+      "/Users/arjan/Downloads/IMG_5133.PNG",
+      "/Users/arjan/Downloads/IMG_5146.PNG"
+    ],
+    "interpretation": "Visual references for coherent cutaway boundaries, discrete structures and anchored labels. Neither image documents SeizeFreeze geometry, materials, dimensions or manufacturing constraints. Images were inspected only and are not copied into public assets."
+  },
+  "geometryFindings": [
+    {
+      "priority": "high",
+      "issue": "Planar interface is registered to one atlas vertex, not to the full footprint.",
+      "evidence": "Source mounts the root at target + 0.65 mm normal. Independent 25-point surface-ray check gives -1.278 to +2.794 mm signed outer-envelope gaps. Both illustrated electrode bottom centres are behind the first visible cortex by 1.35 and 1.84 mm.",
+      "recommendation": "Separate anatomical illustration from physical contact claims. Make the chosen rigid-stack plane, surface-following contact patch and unresolved interface gap explicit; test rendering registration over the full footprint. Do not present an interpolated compliant interface as a validated implant solution."
+    },
+    {
+      "priority": "high",
+      "issue": "Non-uniform global scaling destroys unit-authoritative geometry.",
+      "evidence": "Root scale [10/3.18, 1.1, 10/2.48] = [3.14465, 1.1, 4.03226]. Circular screws, sensor markers, wires and corner radii become anisotropic; thickness is compressed independently of footprint.",
+      "recommendation": "Build directly in millimetres with a rigid rotation/translation root. Use an explicit dimensions table and local exploded offsets, without scaling the finished mechanical assembly."
+    },
+    {
+      "priority": "medium",
+      "issue": "Encapsulation is visually incomplete and fasteners do not attach to supports.",
+      "evidence": "Only two side rails are modelled; front/back walls, a base, closure lands, feedthroughs and fixing bosses are absent. Screw centres at \u00b14.654 mm are inward of the rail inner faces at \u00b15.110 mm.",
+      "recommendation": "Show a clearly hypothetical shell and an actual labelled section, or call the current view an architecture stack. A section must retain the cut faces and distinguish chosen illustrative closure features from unresolved hermetic packaging."
+    },
+    {
+      "priority": "medium",
+      "issue": "Small graphics offsets masquerade as physical manufacturing features.",
+      "evidence": "The decorative lid inset is 0.0165 mm thick and stands 0.0044 mm above the main lid; screw heads are 0.0605 mm tall; raised black cross-slot boxes float approximately 0.0105 mm above the heads.",
+      "recommendation": "Treat branding as a surface graphic, and model representative fasteners with coherent recesses/bores/supports. Do not imply that these currently arbitrary micrometre dimensions come from project drawings."
+    },
+    {
+      "priority": "medium",
+      "issue": "Unfilled interfaces and unsupported electronics obscure the physical heat path.",
+      "evidence": "Nominal source gaps are 0.033 mm contact-to-spreader, 0.033 mm spreader-to-lower-ceramic, and 0.0495 mm upper-ceramic-to-hot-spreader. The controller board has no standoffs, mounting features or explicit bond layer.",
+      "recommendation": "Use contiguous intended thermal interfaces or explicitly identified illustrative contact/bond layers. A real section should show where heat crosses each interface and which resistances are assumptions."
+    },
+    {
+      "priority": "medium",
+      "issue": "The shown TEC and leads do not form a complete interpretable electrical route.",
+      "evidence": "The leg grid has only lower pair bridges; upper alternating interconnects are absent. The blue actuator lead terminates outside the leg grid by roughly 0.68 mm. The external power lead, sensing leads and hot-side stub have bare or hidden endpoints without labelled terminals/feedthroughs.",
+      "recommendation": "Represent a standard illustrative P/N series path and labelled electrical interfaces, or deliberately abstract it as a module with explicit terminals. Mark unresolved power and heat rejection routes as unresolved endpoints rather than finished implant architecture."
+    },
+    {
+      "priority": "medium",
+      "issue": "The sensing label points through a closed lid, and camera changes lose selected-part coherence.",
+      "evidence": "In seated sensing view the label endpoint is occluded by the housing. Choosing Interface resets scene selection to default encapsulation while the selected Sensing UI panel remains active. TEC couples are also hidden by intact ceramic caps in the global exploded view.",
+      "recommendation": "Preserve selected component across camera views and provide an actual cutaway/section with visible component faces. Distinguish occluded leader lines from visible feature callouts; separate ECoG contacts from temperature sensor markers in the explanation."
+    }
+  ],
+  "derivedDimensionsMm": {
+    "rootScale": [
+      3.144654088050314,
+      1.1,
+      4.032258064516129
+    ],
+    "mainLidNominal": [
+      11.320754716981131,
+      0.18700000000000003,
+      11.774193548387096
+    ],
+    "sideRailNominal": [
+      0.34591194968553457,
+      0.8580000000000001,
+      9.274193548387096
+    ],
+    "decorativeInsetThickness": 0.0165,
+    "decorativeInsetLowerGap": 0.004399999999999515,
+    "screwHeadDiameters": [
+      0.44025157232704404,
+      0.5645161290322581
+    ],
+    "screwHeadHeight": 0.060500000000000005,
+    "raisedSlotLowerGap": 0.01045000000000056,
+    "screwCentreX": 4.654088050314465,
+    "railInnerX": 5.110062893081761,
+    "contactToColdGap": 0.033,
+    "coldToTecGap": 0.032999999999999974,
+    "tecToHotGap": 0.04950000000000005
+  },
+  "visualConclusion": "The studio lighting and material palette can be retained. The credibility gap is geometric and explanatory: physical dimensions, complete routes, surface registration and a genuine section. Current numerical thermal capacities and TEC coefficients remain explicitly uncalibrated assumptions, not quantities derived from these rendered part volumes or leg count.",
+  "scope": "Read-only audit. Public production inspected with native Apple M2 Metal Chromium; no source code modified and browser closed. Rendering-registration distances are not clinical measurements, tissue tolerances or surgical placement advice."
+}
