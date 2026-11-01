@@ -1,0 +1,20 @@
+{
+  "base": "e28be96b59dad6c8023635a42273b1360ae195e6",
+  "typecheck": "passed",
+  "build": "passed, 35 generated pages",
+  "scopedLint": {
+    "errors": 0,
+    "inheritedWarnings": 23,
+    "vendorExclusion": "public/hospitalsim/vendor/**"
+  },
+  "ordinaryTests": {
+    "passed": 149,
+    "failed": 1,
+    "reason": "Inherited hospitalSIM JSDOM matchMedia API absence after upstream PR68. Component and fixture unchanged by this release."
+  },
+  "testsWithBrowserApiShim": {
+    "passed": 150,
+    "failed": 0,
+    "command": "npx vitest run tests --config Documentation/Validation/SeizeFreeze/unit-browser-api.config.mjs"
+  }
+}

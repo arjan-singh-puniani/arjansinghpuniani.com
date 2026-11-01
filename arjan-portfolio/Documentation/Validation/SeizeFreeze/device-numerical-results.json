@@ -1,0 +1,89 @@
+{
+  "passed": true,
+  "topology": {
+    "legs": 36,
+    "couples": 18,
+    "nodes": 74,
+    "traversedEdges": 73,
+    "bridges": 35,
+    "terminals": [
+      "plus",
+      "minus"
+    ]
+  },
+  "fitCases": [
+    "plane",
+    "sloped plane",
+    "all vertices outside but footprint crossed",
+    "multiple surfaces and reversed order",
+    "empty",
+    "incomplete coverage",
+    "vertical projection"
+  ],
+  "sensorSeparations": [
+    {
+      "a": "ECoG A",
+      "b": "ECoG B",
+      "minimumCenterDistanceMm": 0.257190934975403,
+      "conductorGapMm": 0.20719093497540303,
+      "jacketGapMm": 0.13719093497540302
+    },
+    {
+      "a": "ECoG A",
+      "b": "RTD +",
+      "minimumCenterDistanceMm": 0.5999999999999996,
+      "conductorGapMm": 0.5499999999999996,
+      "jacketGapMm": 0.4799999999999996
+    },
+    {
+      "a": "ECoG A",
+      "b": "RTD \u2212",
+      "minimumCenterDistanceMm": 0.2000000000000002,
+      "conductorGapMm": 0.15000000000000022,
+      "jacketGapMm": 0.08000000000000021
+    },
+    {
+      "a": "ECoG B",
+      "b": "RTD +",
+      "minimumCenterDistanceMm": 0.2999999999999998,
+      "conductorGapMm": 0.2499999999999998,
+      "jacketGapMm": 0.17999999999999983
+    },
+    {
+      "a": "ECoG B",
+      "b": "RTD \u2212",
+      "minimumCenterDistanceMm": 0.6000000000000005,
+      "conductorGapMm": 0.5500000000000005,
+      "jacketGapMm": 0.4800000000000005
+    },
+    {
+      "a": "RTD +",
+      "b": "RTD \u2212",
+      "minimumCenterDistanceMm": 0.17645033937507837,
+      "conductorGapMm": 0.12645033937507838,
+      "jacketGapMm": 0.05645033937507837
+    }
+  ],
+  "atlas": {
+    "target": [
+      -63.61758041381836,
+      -1.8063535690307617,
+      10.481131553649902
+    ],
+    "normal": [
+      -0.9589255476887405,
+      -0.09750486190432274,
+      0.2663730389789252
+    ],
+    "datumMm": 2.999132402622782,
+    "independentMaximumMm": 2.499132402622782,
+    "actualMinimumRigidClearanceMm": 0.2999999999999998,
+    "contactThicknessRangeMm": [
+      1.1067225518281274,
+      8.031924413280677
+    ],
+    "sourceTriangles": 315514,
+    "candidateTriangles": 5134,
+    "evidenceBoundary": "Clearance against displayed reference triangles; no tissue-contact mechanics or clinical validation"
+  }
+}

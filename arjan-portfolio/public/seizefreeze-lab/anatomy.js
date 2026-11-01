@@ -219,7 +219,7 @@ export async function createAnatomy(T, options = {}) {
     geometries.forEach(g => g.dispose()); materials.forEach(m => m.dispose()); headForSampling.material.dispose(); localGeometry.dispose(); sourceHead.geometry.dispose();
     sourceMeshes.forEach(m => m.material?.dispose()); headSamples.clear(); brainSamples.clear(); group.removeFromParent();
   }
-  return { group, target, normal, u, v, focusPoint, fullBounds, layers, peel, setContext, info, contact, detail,
+  return { group, target, normal, u, v, focusPoint, fullBounds, layers, peel, setContext, info, contact, detail, cortexMeshes: cortical,
     setTemperature(value) { const t = Number(value); contactMaterial.color.set(0x9698b7); if (Number.isFinite(t)) contactMaterial.color.lerp(new T.Color(t <= 37 ? 0x76d5de : 0xd7ac7d), Math.min(Math.abs(t - 37) / 9, .85)); },
     dispose,
   };
