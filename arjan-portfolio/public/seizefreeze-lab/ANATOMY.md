@@ -43,3 +43,13 @@ The repository preserves the asset record at [HRA-BRAIN-SOURCE.md](/atlas/anatom
 ## Review limits
 
 This record verifies anatomical terminology, interpretation boundaries and the cited asset's public provenance. It does not certify spatial accuracy of a rendered marker, registration between independently authored shells, clinical suitability, thermal performance or surgical feasibility. Those depend on the final geometry and further validation.
+
+## Studio presentation and enlarged camera
+
+The opening overview hides the schematic cranial coverings to make the reference cortex and compact device readable. “Explore layers” restores the intact reference head and advances through the same scalp, bone, dura and arachnoid controls. The explicit Head view retains the coverings. This is a teaching sequence, not a surgical sequence.
+
+The enlarged device inset uses a second camera on the same component state and exact local atlas triangles. The device is not enlarged relative to the brain in the main scene; its assumed 10 × 10 mm contact is labeled. The neutral dashed connector identifies the enlarged view, not a heat-flow prediction. Clicking actual device geometry in the inset opens the component explorer.
+
+Materials, neutral surface colors, studio lights and device contact shadows are illustrative rendering choices. They do not depict measured tissue temperature, a diagnostic finding or a medical image. Only the assumed contact tint in the thermal laboratory follows the simulated temperature; no lateral field is calculated. Camera transitions are initiated by visitors and become immediate with reduced motion.
+
+On a detected software renderer, the application starts with the static reference image. Explicitly requested software 3D uses a 0.75 pixel-ratio cap and omits translucent full-head envelopes once opened; the intact Head view and local peel flaps remain available. This is a graphics adaptation, not a change to the thermal solver or reference target.

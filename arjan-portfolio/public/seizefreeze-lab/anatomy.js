@@ -10,13 +10,15 @@ export async function createAnatomy(T, options = {}) {
   const sourceTarget = sourceMeshes.find(m => m.name === "Allen_superior_temporal_gyrus_L");
   if (!sourceHead || !sourceTarget) throw new Error("The attributed head or left superior temporal parcel is missing.");
   const material = (color, extra = {}) => new T.MeshStandardMaterial({ color, roughness: .68, metalness: 0, side: T.DoubleSide, ...extra });
-  const brainMaterial = material(0xb9a0a0, { roughness: .64 });
-  const hindbrainMaterial = material(0xa9949a);
+  const brainMaterial = material(0xb8beb5, { roughness: .62, envMapIntensity: .28 });
+  const hindbrainMaterial = material(0x979f9b, { envMapIntensity: .24 });
   const brain = new T.Group(); brain.name = "Atlas cerebral cortex, cerebellum and brainstem";
   const cortical = [];
   for (const source of sourceMeshes.filter(m => m !== sourceHead)) {
     const mesh = new T.Mesh(source.geometry, source.name.includes("cerebellum") ? hindbrainMaterial : brainMaterial);
     mesh.name = source.name; mesh.userData.anatomyLayer = "cortex"; mesh.userData.sourceNodes = source.userData.sourceNodes;
+    // Closed atlas parcels overlap at boundaries; device-only shadows avoid self-shadow speckle.
+    mesh.receiveShadow = true;
     brain.add(mesh); if (!source.name.includes("cerebellum")) cortical.push(mesh);
   }
   group.add(brain); group.updateMatrixWorld(true);
@@ -50,6 +52,8 @@ export async function createAnatomy(T, options = {}) {
   }
   const localGeometry = new T.BufferGeometry(); localGeometry.setAttribute("position", new T.Float32BufferAttribute(localPositions, 3)); localGeometry.setAttribute("normal", new T.Float32BufferAttribute(localNormals, 3)); localGeometry.computeBoundingBox(); localGeometry.computeBoundingSphere();
   const localSampler = new T.Mesh(localGeometry, brainMaterial); localSampler.updateMatrixWorld(true);
+  const detail = new T.Mesh(localGeometry, brainMaterial); detail.name = "Exact local atlas triangles for magnified camera";
+  detail.visible = false; detail.receiveShadow = true; detail.userData.anatomyLayer = "cortex"; group.add(detail);
   const windowRadius = { u: 25, v: 23 };
   const layers = Object.fromEntries(["scalp", "skull", "dura", "arachnoid", "csf", "pia", "cortex"].map(id => {
     const layer = id === "cortex" ? brain : new T.Group(); layer.name = id; layer.userData.anatomyLayer = id;
@@ -119,19 +123,21 @@ export async function createAnatomy(T, options = {}) {
     const geo = new T.BufferGeometry(); geo.setAttribute("position", new T.Float32BufferAttribute(points, 3)); geo.setIndex(indices); geo.computeVertexNormals();
     return add(layer, geo, mat, "Diagrammatic window edge");
   }
-  const scalpMat = material(0xc4b8a5, { roughness: .86, emissive: 0x8c806a, emissiveIntensity: .22 });
-  const boneMat = material(0xd4cfb7, { roughness: .9, emissive: 0x9a9479, emissiveIntensity: .22 });
-  const duraMat = material(0xb5b4ba, { roughness: .8, emissive: 0x747a8b, emissiveIntensity: .20 });
+  const scalpMat = material(0xaeb7af, { roughness: .86, emissive: 0x626d67, emissiveIntensity: .16 });
+  const boneMat = material(0xc7c7ae, { roughness: .9, emissive: 0x858570, emissiveIntensity: .17 });
+  const duraMat = material(0x8c9ba1, { roughness: .8, emissive: 0x566875, emissiveIntensity: .14 });
   const arachnoidMat = material(0xc6d9d7, { transparent: true, opacity: .29, depthWrite: false, roughness: .3 });
-  const piaMat = material(0xc6aab8, { transparent: true, opacity: .08, depthWrite: false, roughness: .45 });
+  const piaMat = material(0xa4b9bc, { transparent: true, opacity: .05, depthWrite: false, roughness: .45 });
   const surroundings = [
-    [layers.scalp, 0, holeMaterial(0xc4b8a5, { roughness: .86 }), "Registered HRA skin with explanatory window"],
+    [layers.scalp, 0, holeMaterial(0x9eaaa8, { roughness: .86 }), "Registered HRA skin with explanatory window"],
     [layers.skull, -4, holeMaterial(0xd4cfb7, { roughness: .9 }), "Illustrative outer skull envelope"],
     [layers.skull, -9, holeMaterial(0xb5ad94, { roughness: .9 }), "Illustrative inner skull envelope"],
     [layers.dura, -10.3, holeMaterial(0xb5b4ba, { roughness: .8 }), "Illustrative dura envelope"],
   ];
+  const envelopes=[];
   for (const [layer, offset, mat, name] of surroundings) {
     const mesh = add(layer, offsetGeometry(sourceHead.geometry, offset), mat, name);
+    envelopes.push(mesh);
     mesh.raycast = function(ray, intersections) {
       const raw = []; T.Mesh.prototype.raycast.call(this, ray, raw);
       raw.forEach(h => { if (!inWindow(this.worldToLocal(h.point.clone()))) intersections.push(h); });
@@ -181,7 +187,7 @@ export async function createAnatomy(T, options = {}) {
   csf.userData.anatomyLayer = "csf"; csf.name = "Subarachnoid CSF space marker; exaggerated"; layers.csf.add(csf);
   const info = {
     targetName: "Left superior temporal gyrus", targetMesh: sourceTarget.name, targetDescription: "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
-    units: "mm", axes: "+X right; +Y superior; +Z anterior", attribution: "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+    simplifiedSurroundings: Boolean(options.simplifySurroundings), units: "mm", axes: "+X right; +Y superior; +Z anterior", attribution: "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
     sourceBrain: "https://doi.org/10.48539/HBM929.XKCL.339", sourceHead: "https://doi.org/10.48539/HBM646.RKKC.257",
     sourceRecord: "/atlas/anatomy/HRA-BRAIN-SOURCE.md", headSourceRecord: "/atlas/anatomy/HRA-BODY-SOURCE.md",
     limitations: "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
@@ -191,10 +197,11 @@ export async function createAnatomy(T, options = {}) {
     const showCoverings = info.context === "region" || info.context === "head";
     for (const id of ["scalp", "skull", "dura", "arachnoid", "csf"]) layers[id].visible = showCoverings;
     const reveal = info.context === "head" ? 0 : T.MathUtils.smoothstep(info.peel, .12, .72);
-    surroundings.forEach(([layer, , mat]) => {
-      const endpoint = layer === layers.scalp ? .10 : layer === layers.skull ? .025 : .02;
+    surroundings.forEach(([layer, , mat], index) => {
+      const endpoint = layer === layers.scalp ? .045 : layer === layers.skull ? .018 : .012;
       const opacity = 1 - (1 - endpoint) * reveal, transparent = opacity < .999;
       if (mat.transparent !== transparent) { mat.transparent = transparent; mat.needsUpdate = true; }
+      envelopes[index].visible = !options.simplifySurroundings || !transparent;
       mat.opacity = opacity; mat.depthWrite = !transparent; mat.forceSinglePass = true;
     });
   }
@@ -212,7 +219,7 @@ export async function createAnatomy(T, options = {}) {
     geometries.forEach(g => g.dispose()); materials.forEach(m => m.dispose()); headForSampling.material.dispose(); localGeometry.dispose(); sourceHead.geometry.dispose();
     sourceMeshes.forEach(m => m.material?.dispose()); headSamples.clear(); brainSamples.clear(); group.removeFromParent();
   }
-  return { group, target, normal, u, v, focusPoint, fullBounds, layers, peel, setContext, info, contact,
+  return { group, target, normal, u, v, focusPoint, fullBounds, layers, peel, setContext, info, contact, detail,
     setTemperature(value) { const t = Number(value); contactMaterial.color.set(0x9698b7); if (Number.isFinite(t)) contactMaterial.color.lerp(new T.Color(t <= 37 ? 0x76d5de : 0xd7ac7d), Math.min(Math.abs(t - 37) / 9, .85)); },
     dispose,
   };

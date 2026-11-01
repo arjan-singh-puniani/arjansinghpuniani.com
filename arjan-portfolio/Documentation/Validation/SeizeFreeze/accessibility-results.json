@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-10-30T23:03:06.408Z",
-  "base": "http://127.0.0.1:3214/seizefreeze-lab/index.html",
+  "timestamp": "2026-11-01T05:16:05.796Z",
+  "base": "http://127.0.0.1:3216/seizefreeze-lab/index.html",
   "scope": "Chromium bounded accessibility and failure review; phone viewport emulation, not a physical phone; no claim of manual screen-reader certification",
   "cases": [
     {
@@ -12,7 +12,7 @@
       "reducedMotion": true,
       "noAutoplay": true,
       "idleRenderFrames": {
-        "start": 3,
+        "start": 2,
         "end": 3
       },
       "keyboardPartSelected": true,
@@ -22,8 +22,8 @@
       "timelineLabel": "Scrub the simulated timeline in seconds",
       "repeatedLiveMutations": 0,
       "staticKeyboardWorked": true,
-      "staticFramesBefore": 45,
-      "staticFramesAfter": 45,
+      "staticFramesBefore": 46,
+      "staticFramesAfter": 46,
       "focusStyle": {
         "outline": "solid",
         "outlineWidth": "3px"
@@ -38,144 +38,180 @@
         "incompleteRules": [
           {
             "id": "color-contrast",
-            "nodes": 6,
+            "nodes": 52,
             "sample": [
               {
                 "target": [
-                  "#rotate-left"
+                  "#title"
                 ],
-                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
               },
               {
                 "target": [
-                  "#rotate-right"
+                  ".intro-copy"
                 ],
-                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
               },
               {
                 "target": [
-                  "text[x=\"18\"]"
+                  ".patent-status"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  "#assembly-tab"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               },
               {
                 "target": [
-                  "text[x=\"802.6\"]"
+                  "#assembly-tab > span"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               },
               {
                 "target": [
-                  ".sf-scene-note"
+                  "#lab-tab"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               },
               {
                 "target": [
-                  ".target-key > span[aria-hidden=\"true\"]"
+                  "#lab-tab > span"
                 ],
-                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#view-label"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               }
             ]
           }
         ],
-        "passes": 45
+        "passes": 44
       },
       "assemblyAxe": {
         "violations": [],
         "incompleteRules": [
           {
             "id": "color-contrast",
-            "nodes": 4,
+            "nodes": 50,
             "sample": [
               {
                 "target": [
-                  "#rotate-left"
+                  "#title"
                 ],
-                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
               },
               {
                 "target": [
-                  "#rotate-right"
+                  ".intro-copy"
                 ],
-                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
               },
               {
                 "target": [
-                  "text[x=\"18\"]"
+                  ".patent-status"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  "#placement-tab"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               },
               {
                 "target": [
-                  ".sf-scene-note"
+                  "#placement-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#lab-tab"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#lab-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#view-label"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               }
             ]
           }
         ],
-        "passes": 42
+        "passes": 43
       },
       "labAxe": {
         "violations": [],
         "incompleteRules": [
           {
             "id": "color-contrast",
-            "nodes": 82,
+            "nodes": 124,
             "sample": [
               {
                 "target": [
-                  "#rotate-left"
+                  "#title"
                 ],
-                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
               },
               {
                 "target": [
-                  "#rotate-right"
+                  ".intro-copy"
                 ],
-                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
               },
               {
                 "target": [
-                  "text[x=\"18\"]"
+                  ".patent-status"
                 ],
-                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
               },
               {
                 "target": [
-                  ".sf-scene-note"
-                ],
-                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
-              },
-              {
-                "target": [
-                  "#signal-chart > text[y=\"153\"][x=\"24\"][text-anchor=\"end\"]"
+                  "#placement-tab"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               },
               {
                 "target": [
-                  "#signal-chart > text[y=\"109.66666666666666\"][x=\"24\"][text-anchor=\"end\"]"
+                  "#placement-tab > span"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               },
               {
                 "target": [
-                  "#signal-chart > text[y=\"66.33333333333333\"][x=\"24\"][text-anchor=\"end\"]"
+                  "#assembly-tab"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               },
               {
                 "target": [
-                  "#signal-chart > text[y=\"23\"][x=\"24\"][text-anchor=\"end\"]"
+                  "#assembly-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#view-label"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               }
             ]
           }
         ],
-        "passes": 46
+        "passes": 49
       }
     },
     {
@@ -187,7 +223,7 @@
       "reducedMotion": true,
       "noAutoplay": true,
       "idleRenderFrames": {
-        "start": 3,
+        "start": 2,
         "end": 3
       },
       "keyboardPartSelected": true,
@@ -197,8 +233,8 @@
       "timelineLabel": "Scrub the simulated timeline in seconds",
       "repeatedLiveMutations": 0,
       "staticKeyboardWorked": true,
-      "staticFramesBefore": 7,
-      "staticFramesAfter": 7,
+      "staticFramesBefore": 46,
+      "staticFramesAfter": 46,
       "focusStyle": {
         "outline": "solid",
         "outlineWidth": "3px"
@@ -213,77 +249,113 @@
         "incompleteRules": [
           {
             "id": "color-contrast",
-            "nodes": 6,
+            "nodes": 28,
             "sample": [
               {
                 "target": [
-                  "#rotate-left"
+                  "#title"
                 ],
-                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
               },
               {
                 "target": [
-                  "#rotate-right"
+                  ".intro-copy"
                 ],
-                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
               },
               {
                 "target": [
-                  "text[x=\"18\"]"
+                  ".patent-status"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  "#assembly-tab"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               },
               {
                 "target": [
-                  "text[x=\"233\"]"
+                  "#assembly-tab > span"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               },
               {
                 "target": [
-                  ".sf-scene-note"
+                  "#lab-tab"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               },
               {
                 "target": [
-                  ".target-key > span[aria-hidden=\"true\"]"
+                  "#lab-tab > span"
                 ],
-                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#view-label"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               }
             ]
           }
         ],
-        "passes": 45
+        "passes": 43
       },
       "assemblyAxe": {
         "violations": [],
         "incompleteRules": [
           {
             "id": "color-contrast",
-            "nodes": 4,
+            "nodes": 19,
             "sample": [
               {
                 "target": [
-                  "#rotate-left"
+                  "#title"
                 ],
-                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
               },
               {
                 "target": [
-                  "#rotate-right"
+                  ".intro-copy"
                 ],
-                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
               },
               {
                 "target": [
-                  "text[x=\"18\"]"
+                  ".patent-status"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  "#placement-tab"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               },
               {
                 "target": [
-                  ".sf-scene-note"
+                  "#placement-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#lab-tab"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#lab-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#view-label"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               }
@@ -297,60 +369,60 @@
         "incompleteRules": [
           {
             "id": "color-contrast",
-            "nodes": 80,
+            "nodes": 94,
             "sample": [
               {
                 "target": [
-                  "#rotate-left"
+                  "#title"
                 ],
-                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
               },
               {
                 "target": [
-                  "#rotate-right"
+                  ".intro-copy"
                 ],
-                "reason": "Fix any of the following:\n  Element content contains only non-text characters"
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
               },
               {
                 "target": [
-                  "text[x=\"18\"]"
+                  ".patent-status"
                 ],
-                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
               },
               {
                 "target": [
-                  ".sf-scene-note"
-                ],
-                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
-              },
-              {
-                "target": [
-                  "#signal-chart > text[y=\"153\"][x=\"24\"][text-anchor=\"end\"]"
+                  "#placement-tab"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               },
               {
                 "target": [
-                  "#signal-chart > text[y=\"109.66666666666666\"][x=\"24\"][text-anchor=\"end\"]"
+                  "#placement-tab > span"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               },
               {
                 "target": [
-                  "#signal-chart > text[y=\"66.33333333333333\"][x=\"24\"][text-anchor=\"end\"]"
+                  "#assembly-tab"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               },
               {
                 "target": [
-                  "#signal-chart > text[y=\"23\"][x=\"24\"][text-anchor=\"end\"]"
+                  "#assembly-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#view-label"
                 ],
                 "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
               }
             ]
           }
         ],
-        "passes": 46
+        "passes": 48
       }
     },
     {

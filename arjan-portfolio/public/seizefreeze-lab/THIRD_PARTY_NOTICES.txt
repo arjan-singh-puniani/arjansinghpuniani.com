@@ -21,7 +21,7 @@ Source records: /atlas/anatomy/HRA-BRAIN-SOURCE.md and HRA-BODY-SOURCE.md.
 Anatomical limitations and further attribution: ANATOMY.md.
 
 Three.js, OrbitControls and GLTFLoader reuse the portfolio's local runtime at
-/pit-stop-lab/vendor/ (three.module.js, three.core.js, OrbitControls.js, GLTFLoader.js).
+/pit-stop-lab/vendor/ (three.module.js, three.core.js, OrbitControls.js, GLTFLoader.js, BufferGeometryUtils.js).
 Copyright 2010–2026 Three.js Authors. MIT license; full text is retained in
 vendor/Three-LICENSE.txt. No changes to the shared runtime are required.
 
