@@ -1,0 +1,5566 @@
+{
+  "base": "http://127.0.0.1:3219",
+  "results": [
+    {
+      "mode": "software",
+      "workload": "placement-peel",
+      "width": 1440,
+      "height": 1000,
+      "deviceScaleFactor": 1,
+      "modelReadyMs": 5292,
+      "first3DReadyMs": 5687,
+      "staticByDefault": true,
+      "software3DExplicitlyRequested": true,
+      "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+      "softwareRenderer": true,
+      "frames": 9,
+      "elapsedMs": 3509.300000011921,
+      "renderedFps": 2.564614025580437,
+      "frameIntervalP95Ms": 633.3000000000011,
+      "idleFrames": 0,
+      "stats": {
+        "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+        "softwareRenderer": true,
+        "frames": 11,
+        "calls": 130,
+        "triangles": 526526,
+        "geometries": 68,
+        "textures": 3,
+        "pixelRatio": 0.75,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 235.71818181872368,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "disabled on software renderer",
+        "selected": null,
+        "exploded": false,
+        "focus": null,
+        "inspectionStage": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -290.1019100551764,
+          61.60846311549832,
+          149.1573317533117
+        ],
+        "cameraTarget": [
+          -8,
+          0,
+          0
+        ],
+        "cameraUp": [
+          0,
+          1,
+          0
+        ],
+        "view": "region",
+        "peel": 0.91,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": false,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": true,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 0.91,
+          "context": "region"
+        },
+        "lens": {
+          "visible": true,
+          "rect": {
+            "x": 1045,
+            "y": 162,
+            "width": 358,
+            "height": 219
+          },
+          "outerRect": {
+            "x": 1044,
+            "y": 130,
+            "width": 360,
+            "height": 280
+          },
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": {
+            "x": 1199.0756242021803,
+            "y": 228.1782963068419,
+            "coordinates": "host-local CSS pixels"
+          },
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "software",
+      "workload": "lab-scrub",
+      "width": 1440,
+      "height": 1000,
+      "deviceScaleFactor": 1,
+      "modelReadyMs": 5292,
+      "first3DReadyMs": 5687,
+      "staticByDefault": true,
+      "software3DExplicitlyRequested": true,
+      "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+      "softwareRenderer": true,
+      "frames": 6,
+      "elapsedMs": 3533.4000000059605,
+      "renderedFps": 1.6980811682769792,
+      "frameIntervalP95Ms": 1000,
+      "idleFrames": 0,
+      "stats": {
+        "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+        "softwareRenderer": true,
+        "frames": 19,
+        "calls": 61,
+        "triangles": 426781,
+        "geometries": 68,
+        "textures": 3,
+        "pixelRatio": 0.75,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 136.77894736904847,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "disabled on software renderer",
+        "selected": null,
+        "exploded": false,
+        "focus": null,
+        "inspectionStage": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -99.49323001630452,
+          13.485355340933062,
+          35.55627611309818
+        ],
+        "cameraTarget": [
+          -67.4524506432832,
+          -2.1962884216855985,
+          11.546392605015624
+        ],
+        "cameraUp": [
+          0,
+          1,
+          0
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": false,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": true,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "software",
+      "workload": "device-rotate",
+      "width": 1440,
+      "height": 1000,
+      "deviceScaleFactor": 1,
+      "modelReadyMs": 5292,
+      "first3DReadyMs": 5687,
+      "staticByDefault": true,
+      "software3DExplicitlyRequested": true,
+      "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+      "softwareRenderer": true,
+      "frames": 53,
+      "elapsedMs": 3013.7999999821186,
+      "renderedFps": 17.585772115042293,
+      "frameIntervalP95Ms": 66.70000000000073,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+        "softwareRenderer": true,
+        "frames": 76,
+        "calls": 5,
+        "triangles": 1380,
+        "geometries": 81,
+        "textures": 3,
+        "pixelRatio": 0.75,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 73.43157894634886,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "disabled on software renderer",
+        "selected": "tec",
+        "exploded": true,
+        "focus": "tec",
+        "inspectionStage": true,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 2,
+          "tec": 4.5,
+          "heatpath": 8,
+          "sensing": 0,
+          "electronics": 11,
+          "package": 15
+        },
+        "cameraPosition": [
+          -96.20261737295024,
+          -10.901782478344929,
+          -8.371124109468305
+        ],
+        "cameraTarget": [
+          -71.44204088088416,
+          -2.6126341801572983,
+          12.587295299071645
+        ],
+        "cameraUp": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "view": "system",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": true,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": true,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "system"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "software",
+      "workload": "placement-peel",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 1,
+      "modelReadyMs": 2516,
+      "first3DReadyMs": 2763,
+      "staticByDefault": true,
+      "software3DExplicitlyRequested": true,
+      "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+      "softwareRenderer": true,
+      "frames": 10,
+      "elapsedMs": 3159.4000000059605,
+      "renderedFps": 3.1651579413753037,
+      "frameIntervalP95Ms": 616.6000000000004,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+        "softwareRenderer": true,
+        "frames": 12,
+        "calls": 130,
+        "triangles": 526526,
+        "geometries": 68,
+        "textures": 3,
+        "pixelRatio": 0.75,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 115.06666666517656,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "disabled on software renderer",
+        "selected": null,
+        "exploded": false,
+        "focus": null,
+        "inspectionStage": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -515.7834380993176,
+          110.89523360789697,
+          268.4831971559609
+        ],
+        "cameraTarget": [
+          -8,
+          0,
+          0
+        ],
+        "cameraUp": [
+          0,
+          1,
+          0
+        ],
+        "view": "region",
+        "peel": 0.91,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": false,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": true,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 0.91,
+          "context": "region"
+        },
+        "lens": {
+          "visible": true,
+          "rect": {
+            "x": 231,
+            "y": 280,
+            "width": 140,
+            "height": 103
+          },
+          "outerRect": {
+            "x": 230,
+            "y": 248,
+            "width": 142,
+            "height": 164
+          },
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": {
+            "x": 289.2775766795643,
+            "y": 311.12495214431374,
+            "coordinates": "host-local CSS pixels"
+          },
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "software",
+      "workload": "lab-scrub",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 1,
+      "modelReadyMs": 2516,
+      "first3DReadyMs": 2763,
+      "staticByDefault": true,
+      "software3DExplicitlyRequested": true,
+      "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+      "softwareRenderer": true,
+      "frames": 11,
+      "elapsedMs": 3446.7999999821186,
+      "renderedFps": 3.191365904623728,
+      "frameIntervalP95Ms": 683.3000000000011,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+        "softwareRenderer": true,
+        "frames": 25,
+        "calls": 61,
+        "triangles": 426781,
+        "geometries": 68,
+        "textures": 3,
+        "pixelRatio": 0.75,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 55.66399999856949,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "disabled on software renderer",
+        "selected": null,
+        "exploded": false,
+        "focus": null,
+        "inspectionStage": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -113.91158073416412,
+          20.54209503411146,
+          46.36072369173533
+        ],
+        "cameraTarget": [
+          -67.4524506432832,
+          -2.1962884216855985,
+          11.546392605015624
+        ],
+        "cameraUp": [
+          0,
+          1,
+          0
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": false,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": true,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "software",
+      "workload": "device-rotate",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 1,
+      "modelReadyMs": 2516,
+      "first3DReadyMs": 2763,
+      "staticByDefault": true,
+      "software3DExplicitlyRequested": true,
+      "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+      "softwareRenderer": true,
+      "frames": 71,
+      "elapsedMs": 3032.0999999940395,
+      "renderedFps": 23.416114244299187,
+      "frameIntervalP95Ms": 83.30000000000291,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+        "softwareRenderer": true,
+        "frames": 100,
+        "calls": 5,
+        "triangles": 1380,
+        "geometries": 81,
+        "textures": 3,
+        "pixelRatio": 0.75,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 33.04599999845028,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "disabled on software renderer",
+        "selected": "tec",
+        "exploded": true,
+        "focus": "tec",
+        "inspectionStage": true,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 2,
+          "tec": 4.5,
+          "heatpath": 8,
+          "sensing": 0,
+          "electronics": 11,
+          "package": 15
+        },
+        "cameraPosition": [
+          -86.67899187735999,
+          -6.204352225772868,
+          57.42008291320461
+        ],
+        "cameraTarget": [
+          -71.44204088088416,
+          -2.6126341801572983,
+          12.587295299071645
+        ],
+        "cameraUp": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "view": "system",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": true,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": true,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "system"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "native-requested",
+      "workload": "placement-peel",
+      "width": 1440,
+      "height": 1000,
+      "deviceScaleFactor": 1,
+      "modelReadyMs": 3289,
+      "first3DReadyMs": 3401,
+      "staticByDefault": false,
+      "software3DExplicitlyRequested": false,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "frames": 181,
+      "elapsedMs": 3014.300000011921,
+      "renderedFps": 60.0471087812375,
+      "frameIntervalP95Ms": 16.700000000000728,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 185,
+        "calls": 183,
+        "triangles": 608634,
+        "geometries": 72,
+        "textures": 6,
+        "pixelRatio": 1,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 1.323333333267106,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached anatomy-frame PCF",
+        "selected": null,
+        "exploded": false,
+        "focus": null,
+        "inspectionStage": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -290.1019100551764,
+          61.60846311549832,
+          149.1573317533117
+        ],
+        "cameraTarget": [
+          -8,
+          0,
+          0
+        ],
+        "cameraUp": [
+          0,
+          1,
+          0
+        ],
+        "view": "region",
+        "peel": 0.9,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": false,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": false,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 0.9,
+          "context": "region"
+        },
+        "lens": {
+          "visible": true,
+          "rect": {
+            "x": 1045,
+            "y": 162,
+            "width": 358,
+            "height": 219
+          },
+          "outerRect": {
+            "x": 1044,
+            "y": 130,
+            "width": 360,
+            "height": 280
+          },
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": {
+            "x": 1199.0756242021803,
+            "y": 228.1782963068419,
+            "coordinates": "host-local CSS pixels"
+          },
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "native-requested",
+      "workload": "lab-scrub",
+      "width": 1440,
+      "height": 1000,
+      "deviceScaleFactor": 1,
+      "modelReadyMs": 3289,
+      "first3DReadyMs": 3401,
+      "staticByDefault": false,
+      "software3DExplicitlyRequested": false,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "frames": 181,
+      "elapsedMs": 3013.5999999940395,
+      "renderedFps": 60.061056543787494,
+      "frameIntervalP95Ms": 16.700000000000728,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 368,
+        "calls": 61,
+        "triangles": 426781,
+        "geometries": 72,
+        "textures": 6,
+        "pixelRatio": 1,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 0.717222220202287,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached anatomy-frame PCF",
+        "selected": null,
+        "exploded": false,
+        "focus": null,
+        "inspectionStage": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -99.49323001630452,
+          13.485355340933062,
+          35.55627611309818
+        ],
+        "cameraTarget": [
+          -67.4524506432832,
+          -2.1962884216855985,
+          11.546392605015624
+        ],
+        "cameraUp": [
+          0,
+          1,
+          0
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": false,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": false,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "native-requested",
+      "workload": "device-rotate",
+      "width": 1440,
+      "height": 1000,
+      "deviceScaleFactor": 1,
+      "modelReadyMs": 3289,
+      "first3DReadyMs": 3401,
+      "staticByDefault": false,
+      "software3DExplicitlyRequested": false,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "frames": 181,
+      "elapsedMs": 3008.4000000059605,
+      "renderedFps": 60.16487169247487,
+      "frameIntervalP95Ms": 16.799999999999272,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 553,
+        "calls": 5,
+        "triangles": 1380,
+        "geometries": 85,
+        "textures": 8,
+        "pixelRatio": 1,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 0.3638888877299097,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "1024px cached device-frame PCF",
+        "selected": "tec",
+        "exploded": true,
+        "focus": "tec",
+        "inspectionStage": true,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 2,
+          "tec": 4.5,
+          "heatpath": 8,
+          "sensing": 0,
+          "electronics": 11,
+          "package": 15
+        },
+        "cameraPosition": [
+          -84.99623511035142,
+          -30.723970492104602,
+          24.715281998420156
+        ],
+        "cameraTarget": [
+          -71.44204088088416,
+          -2.6126341801572983,
+          12.587295299071645
+        ],
+        "cameraUp": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "view": "system",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": true,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": false,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "system"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "native-requested",
+      "workload": "placement-peel",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 1,
+      "modelReadyMs": 5216,
+      "first3DReadyMs": 5470,
+      "staticByDefault": false,
+      "software3DExplicitlyRequested": false,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "frames": 181,
+      "elapsedMs": 3010.5999999940395,
+      "renderedFps": 60.12090613178714,
+      "frameIntervalP95Ms": 16.700000000000728,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 185,
+        "calls": 183,
+        "triangles": 608634,
+        "geometries": 72,
+        "textures": 6,
+        "pixelRatio": 1,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 3.0205555556548966,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached anatomy-frame PCF",
+        "selected": null,
+        "exploded": false,
+        "focus": null,
+        "inspectionStage": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -515.7834380993176,
+          110.89523360789697,
+          268.4831971559609
+        ],
+        "cameraTarget": [
+          -8,
+          0,
+          0
+        ],
+        "cameraUp": [
+          0,
+          1,
+          0
+        ],
+        "view": "region",
+        "peel": 0.9,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": false,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": false,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 0.9,
+          "context": "region"
+        },
+        "lens": {
+          "visible": true,
+          "rect": {
+            "x": 231,
+            "y": 280,
+            "width": 140,
+            "height": 103
+          },
+          "outerRect": {
+            "x": 230,
+            "y": 248,
+            "width": 142,
+            "height": 164
+          },
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": {
+            "x": 289.2775766795643,
+            "y": 311.12495214431374,
+            "coordinates": "host-local CSS pixels"
+          },
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "native-requested",
+      "workload": "lab-scrub",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 1,
+      "modelReadyMs": 5216,
+      "first3DReadyMs": 5470,
+      "staticByDefault": false,
+      "software3DExplicitlyRequested": false,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "frames": 177,
+      "elapsedMs": 3015.800000011921,
+      "renderedFps": 58.69089462142727,
+      "frameIntervalP95Ms": 16.799999999999272,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 365,
+        "calls": 61,
+        "triangles": 426781,
+        "geometries": 72,
+        "textures": 6,
+        "pixelRatio": 1,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 1.6366666646467314,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached anatomy-frame PCF",
+        "selected": null,
+        "exploded": false,
+        "focus": null,
+        "inspectionStage": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -113.91158073416412,
+          20.54209503411146,
+          46.36072369173533
+        ],
+        "cameraTarget": [
+          -67.4524506432832,
+          -2.1962884216855985,
+          11.546392605015624
+        ],
+        "cameraUp": [
+          0,
+          1,
+          0
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": false,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": false,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "native-requested",
+      "workload": "device-rotate",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 1,
+      "modelReadyMs": 5216,
+      "first3DReadyMs": 5470,
+      "staticByDefault": false,
+      "software3DExplicitlyRequested": false,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "frames": 181,
+      "elapsedMs": 3012,
+      "renderedFps": 60.092961487383796,
+      "frameIntervalP95Ms": 16.799999999999272,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 550,
+        "calls": 5,
+        "triangles": 1380,
+        "geometries": 85,
+        "textures": 8,
+        "pixelRatio": 1,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 0.7338888900147544,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "1024px cached device-frame PCF",
+        "selected": "tec",
+        "exploded": true,
+        "focus": "tec",
+        "inspectionStage": true,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 2,
+          "tec": 4.5,
+          "heatpath": 8,
+          "sensing": 0,
+          "electronics": 11,
+          "package": 15
+        },
+        "cameraPosition": [
+          -90.66580523828905,
+          -42.482632786033044,
+          29.78828522816286
+        ],
+        "cameraTarget": [
+          -71.44204088088416,
+          -2.6126341801572983,
+          12.587295299071645
+        ],
+        "cameraUp": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "view": "system",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": true,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": false,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "system"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "native-requested",
+      "workload": "placement-peel",
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 2,
+      "modelReadyMs": 7348,
+      "first3DReadyMs": 7826,
+      "staticByDefault": false,
+      "software3DExplicitlyRequested": false,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "frames": 97,
+      "elapsedMs": 3130.699999988079,
+      "renderedFps": 30.983486121432698,
+      "frameIntervalP95Ms": 100,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 101,
+        "calls": 183,
+        "triangles": 608634,
+        "geometries": 72,
+        "textures": 6,
+        "pixelRatio": 1,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 13.193069307225766,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached anatomy-frame PCF",
+        "selected": null,
+        "exploded": false,
+        "focus": null,
+        "inspectionStage": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -290.1019100551764,
+          61.60846311549832,
+          149.1573317533117
+        ],
+        "cameraTarget": [
+          -8,
+          0,
+          0
+        ],
+        "cameraUp": [
+          0,
+          1,
+          0
+        ],
+        "view": "region",
+        "peel": 0.75,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": false,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": false,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 0.75,
+          "context": "region"
+        },
+        "lens": {
+          "visible": true,
+          "rect": {
+            "x": 1045,
+            "y": 154,
+            "width": 358,
+            "height": 159
+          },
+          "outerRect": {
+            "x": 1044,
+            "y": 122,
+            "width": 360,
+            "height": 220
+          },
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": {
+            "x": 1205.9042203111721,
+            "y": 202.04725622277562,
+            "coordinates": "host-local CSS pixels"
+          },
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "native-requested",
+      "workload": "lab-scrub",
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 2,
+      "modelReadyMs": 7348,
+      "first3DReadyMs": 7826,
+      "staticByDefault": false,
+      "software3DExplicitlyRequested": false,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "frames": 157,
+      "elapsedMs": 3020.399999976158,
+      "renderedFps": 51.979870216275756,
+      "frameIntervalP95Ms": 33.399999999999636,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 261,
+        "calls": 61,
+        "triangles": 426781,
+        "geometries": 72,
+        "textures": 6,
+        "pixelRatio": 1,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 3.2616666667991216,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached anatomy-frame PCF",
+        "selected": null,
+        "exploded": false,
+        "focus": null,
+        "inspectionStage": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -99.49323001630452,
+          13.485355340933062,
+          35.55627611309818
+        ],
+        "cameraTarget": [
+          -67.4524506432832,
+          -2.1962884216855985,
+          11.546392605015624
+        ],
+        "cameraUp": [
+          0,
+          1,
+          0
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": false,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": false,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "native-requested",
+      "workload": "device-rotate",
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 2,
+      "modelReadyMs": 7348,
+      "first3DReadyMs": 7826,
+      "staticByDefault": false,
+      "software3DExplicitlyRequested": false,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "frames": 180,
+      "elapsedMs": 3011.0999999940395,
+      "renderedFps": 59.77881837214184,
+      "frameIntervalP95Ms": 16.700000000000728,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 445,
+        "calls": 5,
+        "triangles": 1380,
+        "geometries": 85,
+        "textures": 8,
+        "pixelRatio": 1,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 0.9038888896505038,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "1024px cached device-frame PCF",
+        "selected": "tec",
+        "exploded": true,
+        "focus": "tec",
+        "inspectionStage": true,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 2,
+          "tec": 4.5,
+          "heatpath": 8,
+          "sensing": 0,
+          "electronics": 11,
+          "package": 15
+        },
+        "cameraPosition": [
+          -88.07636071946195,
+          -35.673648016331754,
+          21.637837033387882
+        ],
+        "cameraTarget": [
+          -71.44204088088416,
+          -2.6126341801572983,
+          12.587295299071645
+        ],
+        "cameraUp": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "view": "system",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": true,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": false,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "system"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "native-requested",
+      "workload": "placement-peel",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 3,
+      "modelReadyMs": 6225,
+      "first3DReadyMs": 6554,
+      "staticByDefault": false,
+      "software3DExplicitlyRequested": false,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "frames": 181,
+      "elapsedMs": 3007.600000023842,
+      "renderedFps": 60.18087511589479,
+      "frameIntervalP95Ms": 16.799999999999272,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 185,
+        "calls": 183,
+        "triangles": 608634,
+        "geometries": 72,
+        "textures": 6,
+        "pixelRatio": 1.6,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 3.02111111101177,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached anatomy-frame PCF",
+        "selected": null,
+        "exploded": false,
+        "focus": null,
+        "inspectionStage": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -515.7834380993176,
+          110.89523360789697,
+          268.4831971559609
+        ],
+        "cameraTarget": [
+          -8,
+          0,
+          0
+        ],
+        "cameraUp": [
+          0,
+          1,
+          0
+        ],
+        "view": "region",
+        "peel": 0.9,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": false,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": false,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 0.9,
+          "context": "region"
+        },
+        "lens": {
+          "visible": true,
+          "rect": {
+            "x": 231,
+            "y": 280,
+            "width": 140,
+            "height": 103
+          },
+          "outerRect": {
+            "x": 230,
+            "y": 248,
+            "width": 142,
+            "height": 164
+          },
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": {
+            "x": 289.2775766795643,
+            "y": 311.12495214431374,
+            "coordinates": "host-local CSS pixels"
+          },
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "native-requested",
+      "workload": "lab-scrub",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 3,
+      "modelReadyMs": 6225,
+      "first3DReadyMs": 6554,
+      "staticByDefault": false,
+      "software3DExplicitlyRequested": false,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "frames": 180,
+      "elapsedMs": 3005.100000023842,
+      "renderedFps": 59.89817310524506,
+      "frameIntervalP95Ms": 16.799999999999272,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 368,
+        "calls": 61,
+        "triangles": 426781,
+        "geometries": 72,
+        "textures": 6,
+        "pixelRatio": 1.6,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 1.4066666677594184,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "2048px cached anatomy-frame PCF",
+        "selected": null,
+        "exploded": false,
+        "focus": null,
+        "inspectionStage": false,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 0,
+          "tec": 0,
+          "heatpath": 0,
+          "sensing": 0,
+          "electronics": 0,
+          "package": 0
+        },
+        "cameraPosition": [
+          -113.91158073416412,
+          20.54209503411146,
+          46.36072369173533
+        ],
+        "cameraTarget": [
+          -67.4524506432832,
+          -2.1962884216855985,
+          11.546392605015624
+        ],
+        "cameraUp": [
+          0,
+          1,
+          0
+        ],
+        "view": "interface",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": false,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": false,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "interface"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    },
+    {
+      "mode": "native-requested",
+      "workload": "device-rotate",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 3,
+      "modelReadyMs": 6225,
+      "first3DReadyMs": 6554,
+      "staticByDefault": false,
+      "software3DExplicitlyRequested": false,
+      "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+      "softwareRenderer": false,
+      "frames": 181,
+      "elapsedMs": 3009.800000011921,
+      "renderedFps": 60.13688617160047,
+      "frameIntervalP95Ms": 16.799999999999272,
+      "idleFrames": 1,
+      "stats": {
+        "adapter": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2, Unspecified Version)",
+        "softwareRenderer": false,
+        "frames": 553,
+        "calls": 5,
+        "triangles": 1380,
+        "geometries": 85,
+        "textures": 8,
+        "pixelRatio": 1.6,
+        "quality": "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75",
+        "renderCpuMsMean": 0.6622222223215632,
+        "rendering": "on demand; no idle animation",
+        "active": true,
+        "openingOverview": false,
+        "cameraTransition": false,
+        "shadowMap": "1024px cached device-frame PCF",
+        "selected": "tec",
+        "exploded": true,
+        "focus": "tec",
+        "inspectionStage": true,
+        "componentOffsets": {
+          "interface": 0,
+          "coldplate": 2,
+          "tec": 4.5,
+          "heatpath": 8,
+          "sensing": 0,
+          "electronics": 11,
+          "package": 15
+        },
+        "cameraPosition": [
+          -90.66580523828905,
+          -42.482632786033044,
+          29.78828522816286
+        ],
+        "cameraTarget": [
+          -71.44204088088416,
+          -2.6126341801572983,
+          12.587295299071645
+        ],
+        "cameraUp": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "view": "system",
+        "peel": 1,
+        "target": [
+          -63.61758041381836,
+          -1.8063535690307617,
+          10.481131553649902
+        ],
+        "mountPoint": [
+          -66.49352509559446,
+          -2.0987835597812756,
+          11.280019566036698
+        ],
+        "contactSpanMm": [
+          10,
+          10
+        ],
+        "device": {
+          "units": "mm",
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "datum": 2.999132402622782,
+          "rigidClearanceMm": 0.2999999999999998,
+          "contactThicknessRangeMm": [
+            1.1067225518281274,
+            8.031924413280677
+          ],
+          "geometry": {
+            "units": "mm",
+            "status": "Assumed explanatory construction, not validated implant CAD",
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "couples": 18,
+            "legs": 36,
+            "bridges": 35,
+            "enclosure": {
+              "width": 12,
+              "depth": 12,
+              "bottom": -0.2,
+              "wallTop": 2.65,
+              "lidTop": 2.95,
+              "wall": 0.35,
+              "closure": "Illustrative continuous seam; no selected fastening or hermetic joining process",
+              "feedthroughPins": 6
+            },
+            "contactEnvelope": {
+              "gridCells": [
+                24,
+                24
+              ],
+              "clearanceMm": 0.2,
+              "thicknessRangeMm": [
+                0.8970455787222857,
+                7.3686231313213755
+              ],
+              "status": "Hypothetical envelope, not a selected or validated compliant tissue interface"
+            },
+            "sampledPads": [
+              [
+                -6.7,
+                -3.048671021336091,
+                -2.7
+              ],
+              [
+                6.7,
+                -7.614881909000904,
+                2.7
+              ]
+            ],
+            "referenceSurfaceOffsetMm": 0.2,
+            "rtdSurfaceOffsetMm": 0.22,
+            "sensorRoutes": [
+              {
+                "name": "ECoG A",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.5,
+                "surfaceClearance": 0.3,
+                "pointCount": 152,
+                "endpoints": [
+                  [
+                    -6.7,
+                    -3.048671021336091,
+                    -2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    -0.2
+                  ]
+                ]
+              },
+              {
+                "name": "ECoG B",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 6.8,
+                "surfaceClearance": 0.5,
+                "pointCount": 18,
+                "endpoints": [
+                  [
+                    6.7,
+                    -7.614881909000904,
+                    2.7
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.2
+                  ]
+                ]
+              },
+              {
+                "name": "RTD +",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.1,
+                "surfaceClearance": 0.7,
+                "pointCount": 35,
+                "endpoints": [
+                  [
+                    4.35,
+                    -4.000835016509349,
+                    -2.5
+                  ],
+                  [
+                    6,
+                    2.25,
+                    0.6
+                  ]
+                ]
+              },
+              {
+                "name": "RTD \u2212",
+                "conductorRadius": 0.025,
+                "outerRadius": 0.06,
+                "laneX": 7.4,
+                "surfaceClearance": 0.9000000000000001,
+                "pointCount": 25,
+                "endpoints": [
+                  [
+                    4.9,
+                    -4.28978161237668,
+                    -0.40000000000000036
+                  ],
+                  [
+                    6,
+                    2.25,
+                    1
+                  ]
+                ]
+              }
+            ],
+            "layerBounds": {
+              "coldplate": [
+                0,
+                0.25
+              ],
+              "tec": [
+                0.25,
+                1.29
+              ],
+              "heatpath": [
+                1.29,
+                1.57
+              ],
+              "electronics": [
+                1.82,
+                2.34
+              ]
+            },
+            "route": "36 alternating N/P legs, 35 alternating cold/hot copper bridges and two hot-face terminals. Geometry does not calibrate model coefficients.",
+            "section": "Authored front-half sections through lid, PCB, hot spreader and hot ceramic, plus removed front wall. Schematic IC/passive envelopes and front board supports are removed for inspection. Retained solids have actual cut faces; no opacity x-ray. Circuit guide is a labelled through-solid explanatory path, not visible measured current.",
+            "cutaway": true,
+            "circuit": false
+          },
+          "status": "Assumed explanatory construction, not validated implant CAD",
+          "reservoir": "Finite resistance to assumed 37 \u00b0C reservoir; chronic route unresolved"
+        },
+        "normal": [
+          -0.9589255476887405,
+          -0.09750486190432274,
+          0.2663730389789252
+        ],
+        "anatomy": {
+          "targetName": "Left superior temporal gyrus",
+          "targetMesh": "Allen_superior_temporal_gyrus_L",
+          "targetDescription": "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
+          "surfaceShading": "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged",
+          "simplifiedSurroundings": false,
+          "units": "mm",
+          "axes": "+X right; +Y superior; +Z anterior",
+          "attribution": "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+          "sourceBrain": "https://doi.org/10.48539/HBM929.XKCL.339",
+          "sourceHead": "https://doi.org/10.48539/HBM646.RKKC.257",
+          "sourceRecord": "/atlas/anatomy/HRA-BRAIN-SOURCE.md",
+          "headSourceRecord": "/atlas/anatomy/HRA-BODY-SOURCE.md",
+          "limitations": "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
+          "stages": [
+            "scalp",
+            "skull",
+            "dura",
+            "arachnoid",
+            "subarachnoid CSF space",
+            "pia on cortex"
+          ],
+          "peel": 1,
+          "context": "system"
+        },
+        "lens": {
+          "visible": false,
+          "rect": null,
+          "outerRect": null,
+          "cameraPosition": [
+            -90.09592532925697,
+            -31.564358777736945,
+            31.644712337567185
+          ],
+          "packagePixel": null,
+          "coordinates": "host-local CSS pixels; viewport = host bounding rect + these coordinates",
+          "geometry": "same device state; exact local atlas triangles; no screen capture or enlarged physical implant"
+        }
+      },
+      "measurement": "Unthrottled desktop Chromium, reduced motion for steady-state camera; actual adapter and capped pixelRatio recorded. Viewport/DPR emulation is not physical-device testing. CPU submission timing is not GPU execution timing."
+    }
+  ],
+  "assets": [
+    {
+      "path": "public/seizefreeze-lab/ANATOMY.md",
+      "bytes": 10991,
+      "gzipBytes": 4749
+    },
+    {
+      "path": "public/seizefreeze-lab/DEVICE.md",
+      "bytes": 14262,
+      "gzipBytes": 5868
+    },
+    {
+      "path": "public/seizefreeze-lab/EVIDENCE.md",
+      "bytes": 17368,
+      "gzipBytes": 7072
+    },
+    {
+      "path": "public/seizefreeze-lab/MODEL.md",
+      "bytes": 22226,
+      "gzipBytes": 9047
+    },
+    {
+      "path": "public/seizefreeze-lab/THIRD_PARTY_NOTICES.txt",
+      "bytes": 2199,
+      "gzipBytes": 1212
+    },
+    {
+      "path": "public/seizefreeze-lab/anatomy.js",
+      "bytes": 20087,
+      "gzipBytes": 6586
+    },
+    {
+      "path": "public/seizefreeze-lab/app.js",
+      "bytes": 47195,
+      "gzipBytes": 16699
+    },
+    {
+      "path": "public/seizefreeze-lab/assets/brain-cortex.glb",
+      "bytes": 6573512,
+      "gzipBytes": 3991772
+    },
+    {
+      "path": "public/seizefreeze-lab/device-fit.js",
+      "bytes": 2856,
+      "gzipBytes": 1252
+    },
+    {
+      "path": "public/seizefreeze-lab/device-spec.js",
+      "bytes": 2526,
+      "gzipBytes": 1247
+    },
+    {
+      "path": "public/seizefreeze-lab/device.js",
+      "bytes": 24995,
+      "gzipBytes": 7652
+    },
+    {
+      "path": "public/seizefreeze-lab/index.html",
+      "bytes": 19940,
+      "gzipBytes": 6817
+    },
+    {
+      "path": "public/seizefreeze-lab/model.js",
+      "bytes": 9448,
+      "gzipBytes": 3257
+    },
+    {
+      "path": "public/seizefreeze-lab/poster.svg",
+      "bytes": 50351,
+      "gzipBytes": 37947
+    },
+    {
+      "path": "public/seizefreeze-lab/scene.js",
+      "bytes": 38837,
+      "gzipBytes": 11800
+    },
+    {
+      "path": "public/seizefreeze-lab/sensitivity.js",
+      "bytes": 1705,
+      "gzipBytes": 805
+    },
+    {
+      "path": "public/seizefreeze-lab/style.css",
+      "bytes": 26311,
+      "gzipBytes": 6454
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/KaTeX-LICENSE.txt",
+      "bytes": 1107,
+      "gzipBytes": 672
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/Three-LICENSE.txt",
+      "bytes": 1081,
+      "gzipBytes": 662
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_AMS-Regular.woff2",
+      "bytes": 28076,
+      "gzipBytes": 28104
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Caligraphic-Bold.woff2",
+      "bytes": 6912,
+      "gzipBytes": 6935
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "bytes": 6908,
+      "gzipBytes": 6931
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Fraktur-Bold.woff2",
+      "bytes": 11348,
+      "gzipBytes": 11371
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Fraktur-Regular.woff2",
+      "bytes": 11316,
+      "gzipBytes": 11339
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Main-Bold.woff2",
+      "bytes": 25324,
+      "gzipBytes": 25352
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Main-BoldItalic.woff2",
+      "bytes": 16780,
+      "gzipBytes": 16808
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Main-Italic.woff2",
+      "bytes": 16988,
+      "gzipBytes": 17016
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Main-Regular.woff2",
+      "bytes": 26272,
+      "gzipBytes": 26300
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Math-BoldItalic.woff2",
+      "bytes": 16400,
+      "gzipBytes": 16423
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Math-Italic.woff2",
+      "bytes": 16440,
+      "gzipBytes": 16466
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_SansSerif-Bold.woff2",
+      "bytes": 12216,
+      "gzipBytes": 12239
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_SansSerif-Italic.woff2",
+      "bytes": 12028,
+      "gzipBytes": 12051
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_SansSerif-Regular.woff2",
+      "bytes": 10344,
+      "gzipBytes": 10367
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Script-Regular.woff2",
+      "bytes": 9644,
+      "gzipBytes": 9667
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Size1-Regular.woff2",
+      "bytes": 5468,
+      "gzipBytes": 5491
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Size2-Regular.woff2",
+      "bytes": 5208,
+      "gzipBytes": 5231
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Size3-Regular.woff2",
+      "bytes": 3624,
+      "gzipBytes": 3647
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Size4-Regular.woff2",
+      "bytes": 4928,
+      "gzipBytes": 4951
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/fonts/KaTeX_Typewriter-Regular.woff2",
+      "bytes": 13568,
+      "gzipBytes": 13591
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/katex.min.css",
+      "bytes": 21218,
+      "gzipBytes": 3387
+    },
+    {
+      "path": "public/seizefreeze-lab/vendor/katex.min.js",
+      "bytes": 276701,
+      "gzipBytes": 76377
+    },
+    {
+      "path": "public/seizefreeze-lab/worker.js",
+      "bytes": 500,
+      "gzipBytes": 266
+    },
+    {
+      "path": "shared/three.module.js",
+      "bytes": 648961,
+      "gzipBytes": 129184
+    },
+    {
+      "path": "shared/three.core.js",
+      "bytes": 1427497,
+      "gzipBytes": 282739
+    },
+    {
+      "path": "shared/OrbitControls.js",
+      "bytes": 40516,
+      "gzipBytes": 8497
+    },
+    {
+      "path": "shared/GLTFLoader.js",
+      "bytes": 114744,
+      "gzipBytes": 24755
+    },
+    {
+      "path": "shared/BufferGeometryUtils.js",
+      "bytes": 35551,
+      "gzipBytes": 8020
+    }
+  ],
+  "totalBytes": 9712477,
+  "totalGzipBytes": 4915075
+}

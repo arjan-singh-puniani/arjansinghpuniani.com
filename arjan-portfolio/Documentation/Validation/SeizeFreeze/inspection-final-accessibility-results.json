@@ -1,0 +1,450 @@
+{
+  "timestamp": "2026-11-01T19:09:55.599Z",
+  "base": "http://127.0.0.1:3219/seizefreeze-lab/index.html",
+  "scope": "Chromium bounded accessibility and failure review; phone viewport emulation, not a physical phone; no claim of manual screen-reader certification",
+  "cases": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "reducedMotion": true,
+      "noAutoplay": true,
+      "idleRenderFrames": {
+        "start": 3,
+        "end": 3
+      },
+      "keyboardPartSelected": true,
+      "keyboardSeatWorked": true,
+      "keyboardChapterWorked": true,
+      "keyboardScrubWorked": true,
+      "timelineLabel": "Scrub the simulated timeline in seconds",
+      "repeatedLiveMutations": 0,
+      "staticKeyboardWorked": true,
+      "staticFramesBefore": 46,
+      "staticFramesAfter": 46,
+      "focusStyle": {
+        "outline": "solid",
+        "outlineWidth": "3px"
+      },
+      "overflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "smallTargets": [],
+      "placementAxe": {
+        "violations": [],
+        "incompleteRules": [
+          {
+            "id": "color-contrast",
+            "nodes": 52,
+            "sample": [
+              {
+                "target": [
+                  "#title"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  ".intro-copy"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  ".patent-status"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  "#assembly-tab"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#assembly-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#lab-tab"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#lab-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#view-label"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              }
+            ]
+          }
+        ],
+        "passes": 44
+      },
+      "assemblyAxe": {
+        "violations": [],
+        "incompleteRules": [
+          {
+            "id": "color-contrast",
+            "nodes": 55,
+            "sample": [
+              {
+                "target": [
+                  "#title"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  ".intro-copy"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  ".patent-status"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  "#placement-tab"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#placement-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#lab-tab"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#lab-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#view-label"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              }
+            ]
+          }
+        ],
+        "passes": 43
+      },
+      "labAxe": {
+        "violations": [],
+        "incompleteRules": [
+          {
+            "id": "color-contrast",
+            "nodes": 124,
+            "sample": [
+              {
+                "target": [
+                  "#title"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  ".intro-copy"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  ".patent-status"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  "#placement-tab"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#placement-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#assembly-tab"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#assembly-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#view-label"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              }
+            ]
+          }
+        ],
+        "passes": 49
+      }
+    },
+    {
+      "name": "phone-emulation",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "reducedMotion": true,
+      "noAutoplay": true,
+      "idleRenderFrames": {
+        "start": 3,
+        "end": 3
+      },
+      "keyboardPartSelected": true,
+      "keyboardSeatWorked": true,
+      "keyboardChapterWorked": true,
+      "keyboardScrubWorked": true,
+      "timelineLabel": "Scrub the simulated timeline in seconds",
+      "repeatedLiveMutations": 0,
+      "staticKeyboardWorked": true,
+      "staticFramesBefore": 45,
+      "staticFramesAfter": 45,
+      "focusStyle": {
+        "outline": "solid",
+        "outlineWidth": "3px"
+      },
+      "overflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390
+      },
+      "smallTargets": [],
+      "placementAxe": {
+        "violations": [],
+        "incompleteRules": [
+          {
+            "id": "color-contrast",
+            "nodes": 26,
+            "sample": [
+              {
+                "target": [
+                  "#title"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  ".intro-copy"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  ".patent-status"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  "#assembly-tab"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#assembly-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#lab-tab"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#lab-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#view-label"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              }
+            ]
+          }
+        ],
+        "passes": 43
+      },
+      "assemblyAxe": {
+        "violations": [],
+        "incompleteRules": [
+          {
+            "id": "color-contrast",
+            "nodes": 17,
+            "sample": [
+              {
+                "target": [
+                  "#title"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  ".intro-copy"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  ".patent-status"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  "#placement-tab"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#placement-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#lab-tab"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#lab-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#view-label"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              }
+            ]
+          }
+        ],
+        "passes": 42
+      },
+      "labAxe": {
+        "violations": [],
+        "incompleteRules": [
+          {
+            "id": "color-contrast",
+            "nodes": 92,
+            "sample": [
+              {
+                "target": [
+                  "#title"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  ".intro-copy"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  ".patent-status"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+              },
+              {
+                "target": [
+                  "#placement-tab"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#placement-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#assembly-tab"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#assembly-tab > span"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              },
+              {
+                "target": [
+                  "#view-label"
+                ],
+                "reason": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+              }
+            ]
+          }
+        ],
+        "passes": 48
+      }
+    },
+    {
+      "name": "WebGL-unavailable",
+      "staticView": true,
+      "posterVisible": true,
+      "componentSelection": "sensing",
+      "solverAvailable": true,
+      "scrubTime": 30.00000000000189,
+      "sceneError": "Error creating WebGL context.",
+      "caption": "Static reference render. Layer controls update descriptions; numerical readouts remain interactive."
+    },
+    {
+      "name": "worker-load-failure",
+      "modelError": "Worker failed to load or execute.",
+      "status": "Model unavailable: Worker failed to load or execute.. Read the model notes for reproducible offline checks.",
+      "noResult": true,
+      "playDisabled": true,
+      "timelineDisabled": true,
+      "componentExplorerAvailable": true,
+      "teaching": "The solver could not complete. No simulated output is being presented."
+    }
+  ],
+  "issues": []
+}

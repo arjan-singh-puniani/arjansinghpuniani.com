@@ -79,3 +79,8 @@ This is a bounded review of the active portfolio's SeizeFreeze content, concept 
 ### Revised explanatory construction
 
 [DEVICE.md](DEVICE.md) maps the revised enclosure, series electrical circuit, thermal interfaces, sensor placements and atlas registration to their evidence. These are project-specific display assumptions informed by manufacturer descriptions of physical principles. They are not manufactured dimensions, bench measurements, material qualifications, selected supplier components or completed implant architecture. Numerical contact resistance, TEC coefficients and thermal capacities remain independent assumptions. The exposed contact-envelope depth describes reference geometry only; it is not a measured tissue interface or proof of a viable cortical contact.
+
+
+### Computed resistance sensitivity
+
+The interactive comparison is a project-specific calculation using the existing documented educational solver, not bench data. It varies one resistance input over three assumed values, preserves the synthetic signal and controller settings, and recomputes feedback and temperatures separately. The central run reproduces the active model. The graphs, sampled temperature endpoints, integrated TEC energy and CSV all derive from those computed trajectories. Source: [sensitivity.js](sensitivity.js), [model.js](model.js) and the [numerical/model record](MODEL.md). No external biological result is inferred from the comparison.

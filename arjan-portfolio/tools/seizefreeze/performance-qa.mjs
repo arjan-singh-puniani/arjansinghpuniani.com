@@ -19,8 +19,9 @@ for(const mode of nativeOnly?['native-requested']:['software','native-requested'
     if(staticByDefault){await page.waitForFunction(()=>document.getElementById('poster').complete);await page.locator('#static-view').click();}
     await page.waitForFunction(()=>window.seizefreeze.snapshot().stats.frames>0,null,{timeout:120000});
     const first3DReadyMs=Date.now()-start;
-    for(const workload of ['placement-peel','lab-scrub']) {
+    for(const workload of ['placement-peel','lab-scrub','device-rotate']) {
       if(workload==='lab-scrub'){await page.locator('#lab-tab').click();await page.evaluate(()=>window.seizefreeze.goTo(30));}
+      else if(workload==='device-rotate'){await page.locator('#assembly-tab').click();await page.locator('#parts button').nth(2).click();await page.locator('#focus-component').click();}
       else await page.evaluate(()=>{const range=document.getElementById('peel');range.value=.86;range.dispatchEvent(new Event('input'));});
       await page.locator('#scene').scrollIntoViewIfNeeded();await page.waitForTimeout(500);
       const metrics=await page.evaluate(async workload=>{
@@ -28,6 +29,7 @@ for(const mode of nativeOnly?['native-requested']:['software','native-requested'
         await new Promise(resolve=>{const tick=t=>{
           intervals.push(t-last);last=t;
           if(workload==='lab-scrub')window.seizefreeze.goTo(20+(n++%100)*.5);
+          else if(workload==='device-rotate'){document.querySelector('#scene canvas').dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));}
           else{const range=document.getElementById('peel');range.value=.86+.11*Math.sin(n++*.05);range.dispatchEvent(new Event('input'));}
           if(t-start<3000)requestAnimationFrame(tick);else resolve();
         };requestAnimationFrame(tick);});

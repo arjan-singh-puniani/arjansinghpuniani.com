@@ -1,0 +1,16 @@
+{
+  "baseCommit": "5265c8b164449d8646a6f45508fce2007198e6cd",
+  "unitTests": {
+    "command": "npm test",
+    "passed": 166,
+    "failed": 0,
+    "files": 17
+  },
+  "typecheck": "passed",
+  "productionBuild": {
+    "status": "passed",
+    "generatedPages": 35
+  },
+  "scopedLint": "0errors;0warnings",
+  "sharedVendorChangedByUpstream": false
+}

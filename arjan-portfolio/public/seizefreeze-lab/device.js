@@ -12,7 +12,7 @@ export function createDevice(T, mats, fit) {
   const platinum = cloneMaterial(mats.darkmetal, { color: new T.Color(0xb8c5c7), metalness: .78, roughness: .38 });
   const nMaterial = cloneMaterial(mats.darkmetal, { color: new T.Color(0x627f8e), metalness: .2, roughness: .55 });
   const pMaterial = cloneMaterial(mats.darkmetal, { color: new T.Color(0x76818c), metalness: .2, roughness: .55 });
-  const envelopeMaterial = cloneMaterial(mats.contact, { color: new T.Color(0xadc2c5), opacity: .18, transparent: true, depthWrite: false, side: T.DoubleSide });
+  const envelopeMaterial = cloneMaterial(mats.contact, { color: new T.Color(0xadc2c5), opacity: .07, transparent: true, depthWrite: false, side: T.DoubleSide });
   const insulationMaterial = cloneMaterial(mats.insulation, { color: new T.Color(0x334651), roughness: .8 });
   function add(group, geometry, material, name) {
     const mesh = new T.Mesh(geometry, material); mesh.name = name; mesh.userData.component = group.userData.component;
@@ -99,6 +99,7 @@ export function createDevice(T, mats, fit) {
   for (let i = 0; i < contactIndices.length; i += 3) [contactIndices[i + 1], contactIndices[i + 2]] = [contactIndices[i + 2], contactIndices[i + 1]];
   const contactGeometry = new T.BufferGeometry(); contactGeometry.setAttribute("position", new T.Float32BufferAttribute(contactPositions, 3)); contactGeometry.setIndex(contactIndices); contactGeometry.computeVertexNormals();
   add(groups.interface, contactGeometry, envelopeMaterial, "Unresolved contact envelope; sampled underside, flat top; not validated compliant material");
+  const envelopeEdges=new T.LineSegments(new T.EdgesGeometry(contactGeometry,30),new T.LineBasicMaterial({color:0x77909b,transparent:true,opacity:.45}));groups.interface.add(envelopeEdges);ownedMaterials.add(envelopeEdges.material);
 
   plate(groups.coldplate, spec.coldplate.width, spec.coldplate.depth, spec.coldplate.bottom, spec.coldplate.top, mats.cold, "Assumed cold spreader");
   annulus(groups.coldplate, 11.3, 10.4, 0, .24, insulationMaterial, "Side insulation only; outside axial heat path", .45);
