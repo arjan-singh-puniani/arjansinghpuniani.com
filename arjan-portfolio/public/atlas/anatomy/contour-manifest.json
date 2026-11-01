@@ -7,7 +7,12 @@
     "Kristen Browne",
     "Heidi Schlehlein"
   ],
-  "adaptations": "Authored shoulder, chest, arm and waist contours with paired abdominal and oblique relief. Tapered chin and cheeks, angular jaw, shaped eyelids, nose, brows and lips, and a swept scalp silhouette. Existing external pelvic contour preserved. Internal reference anatomy unchanged. Artistic approximation from visual references, not measured dimensions.",
+  "surfaceFitApplied": true,
+  "fittingInputIncluded": false,
+  "surfaceDetailWeights": true,
+  "facialTopologyLicense": "Apache-2.0",
+  "facialTopologySource": "https://github.com/google-ai-edge/mediapipe/blob/master/mediapipe/modules/face_geometry/data/canonical_face_model.obj",
+  "adaptations": "Reference-derived facial surface when a private fit is supplied, stitched and smoothed into the head. Estimated facial depth is damped; shape is not measured anthropometry. Authored shoulders, chest, upper arms, waist, abdominal/oblique relief and swept scalp. Procedural eye/brow/scalp detail weights contain no image colors. Approved lower exterior and internal reference anatomy preserved.",
   "contourOnly": true,
   "personalAnatomicalScan": false,
   "photographsIncluded": false,
@@ -18,7 +23,7 @@
   "subjectIdentified": false,
   "glansToShaftRadiusRatio": 1.2834,
   "externalContourMethod": "closed parametric surface with local Boolean union",
-  "sha256": "ad917adf0f6fa2ab60a4314581ae521be85f80f6f0038c77eb9f7ccc3d31ceff",
-  "bytes": 4602524,
-  "triangles": 191726
+  "sha256": "924ef8aecf6c222832ad1d93fe71c2acc04862a55d7b734e2fa3e8d15c5d2354",
+  "bytes": 5667796,
+  "triangles": 188882
 }

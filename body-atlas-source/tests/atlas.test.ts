@@ -491,7 +491,7 @@ test("body contour is a bounded 3D derivative without photograph payloads", asyn
  assert.deepEqual(gltf.nodes.map((n:{name:string})=>n.name).sort(),['Body_Contour']);
  assert.equal(gltf.meshes.reduce((sum:number,m:{primitives:{indices:number}[]})=>sum+m.primitives.reduce((n,p)=>n+gltf.accessors[p.indices].count/3,0),0),manifest.triangles);
  const {GLTFLoader}=await import('three/examples/jsm/loaders/GLTFLoader.js');
- const {Box3,Mesh}=await import('three');
+ const {Box3,Mesh,Raycaster,Vector3}=await import('three');
  const parse=(bytes:Buffer)=>new GLTFLoader().parseAsync(new Uint8Array(bytes).buffer,'');
  const scene=(await parse(raw)).scene;
  const reference=(await parse(readFileSync('public/anatomy/body.glb'))).scene;
@@ -518,7 +518,26 @@ test("body contour is a bounded 3D derivative without photograph payloads", asyn
  assert.ok(front(contour,0,.697)>front(original,0,.697)+.003,'Chin projects forward');
  assert.ok(front(contour,0,.791)>front(original,0,.791)+.003,'Nose bridge has a defined profile');
  const chinHalfWidth=Math.max(...contour.filter(p=>p[1]>.697&&p[1]<.710&&p[2]>.09).map(p=>Math.abs(p[0])));
- assert.ok(chinHalfWidth<.0365,'Lower chin tapers inward instead of widening');
+ const jawHalfWidth=Math.max(...contour.filter(p=>p[1]>.735&&p[1]<.755&&p[2]>.04).map(p=>Math.abs(p[0])));
+ assert.ok(chinHalfWidth>0&&chinHalfWidth<jawHalfWidth,'Chin remains narrower than the mandibular contour');
+ assert.equal(manifest.surfaceFitApplied,true);assert.equal(manifest.fittingInputIncluded,false);
+ assert.equal(manifest.facialTopologyLicense,'Apache-2.0');
+ scene.traverse(o=>{if(o instanceof Mesh){
+  const weights=o.geometry.getAttribute('_surface_detail');assert.ok(weights);assert.equal(weights.itemSize,3);
+  const counts=[0,0,0];
+  for(let i=0;i<weights.count;i++)for(let axis=0;axis<3;axis++){const value=weights.getComponent(i,axis);assert.ok(Number.isFinite(value)&&value>=0&&value<=1,'Semantic weights are bounded');counts[axis]+=value;}
+  assert.ok(counts.every(n=>n>0),'Iris, pupil and brow/scalp detail are present');
+  o.updateWorldMatrix(true,false);
+  const vertices=o.geometry.getAttribute('position');
+  for(const side of [-1,1]){
+   const center=new Vector3();let count=0;
+   for(let i=0;i<weights.count;i++)if(weights.getY(i)===1&&vertices.getX(i)*side>0){center.add(new Vector3().fromBufferAttribute(vertices,i));count++;}
+   assert.ok(count>0);center.divideScalar(count).applyMatrix4(o.matrixWorld);
+   const hit=new Raycaster(center.clone().add(new Vector3(0,0,1)),new Vector3(0,0,-1)).intersectObject(o)[0];
+   assert.ok(hit?.face,'Eye is visible from the front');
+   assert.ok([hit.face.a,hit.face.b,hit.face.c].some(i=>weights.getX(i)>0||weights.getY(i)>0),'No old surface covers the iris');
+  }
+ }});
  assert.ok(Math.max(...contour.map(p=>p[1]))>.925,'Swept scalp geometry changes the head silhouette');
  const tip=(points:number[][])=>Math.min(...points.filter(p=>Math.abs(p[0])<.025&&p[2]>.105&&p[1]<-.05).map(p=>p[1]));
  assert.ok(tip(contour)<tip(original)-.015,'External pelvic contour is elongated locally');

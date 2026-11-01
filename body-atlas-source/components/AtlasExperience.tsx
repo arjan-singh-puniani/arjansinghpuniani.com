@@ -177,6 +177,7 @@ export default function AtlasExperience() {
   const [showInterventions, setShowInterventions] = useState(true);
   const [densityMap,setDensityMap]=useState(true),[collection,setCollection]=useState('explained'),[resultsLimit,setResultsLimit]=useState(60),[libraryLimit,setLibraryLimit]=useState(100);
   const [portrait,setPortrait]=useState<boolean|null>(null);
+  const [portraitFrame,setPortraitFrame]=useState<"upper"|"face">("upper");
   const [copyState,setCopyState]=useState<"idle"|"copied"|"manual">("idle");
   const [shareUrl,setShareUrl]=useState("");
   const [showOrgans,setShowOrgans]=useState(true);
@@ -208,7 +209,7 @@ export default function AtlasExperience() {
   useEffect(() => {
     const params=new URLSearchParams(window.location.search);
     const isPortrait=params.get("view")==="portrait";setPortrait(isPortrait);
-    if(isPortrait){setShowOrgans(false);setSurface(true);setShowInterventions(false);}
+    if(isPortrait){setShowOrgans(false);setSurface(true);setShowInterventions(false);setPortraitFrame(params.get("frame")==="face"?"face":"upper");}
     const entry = params.get("entry");
     if (!isPortrait && entry && dossiers[entry] && familyById(entry)) {
       setSelected(entry);setRegion("all");setTab(params.get('panel')==='mechanism'?'components':'dossier');
@@ -357,7 +358,7 @@ export default function AtlasExperience() {
   const selectedAnnotation = annotations.find((a) => a.familyId === selected);
   const showDetail = !!f;
   async function copyPortraitLink(){
-    const url=new URL(window.location.href);url.search="";url.hash="";url.searchParams.set("view","portrait");
+    const url=new URL(window.location.href);url.search="";url.hash="";url.searchParams.set("view","portrait");if(portraitFrame==="face")url.searchParams.set("frame","face");
     setShareUrl(url.href);
     try{await navigator.clipboard.writeText(url.href);setCopyState("copied");}
     catch{setCopyState("manual");}
@@ -576,6 +577,7 @@ export default function AtlasExperience() {
                 <Human
                   key={`human-${sceneKey}`}
                   portrait={!!portrait}
+                  portraitFrame={portraitFrame}
                   adapted={adaptedContour}
                   focusRegion={focus?.region}
                   focusKey={selected || undefined}
@@ -765,7 +767,7 @@ export default function AtlasExperience() {
               </button>
             </div>
           </div>
-          {portrait&&<div className="portrait-caption"><h1>Holographic contour</h1><p>Drag to rotate · Scroll or pinch to zoom</p><button onClick={()=>setSceneKey(k=>k+1)}>Reset view</button><span role="status">{copyState==="copied"?"Share link copied":""}</span>{copyState==="manual"&&<label>Copy this link<input aria-label="Share link" readOnly value={shareUrl} onFocus={e=>e.currentTarget.select()}/></label>}</div>}
+          {portrait&&<div className="portrait-caption"><h1>Holographic contour</h1><p>Drag to rotate · Scroll or pinch to zoom</p><div className="portrait-framing" role="group" aria-label="Contour framing"><button aria-pressed={portraitFrame==="upper"} onClick={()=>{setPortraitFrame("upper");setCopyState("idle");}}>Upper body</button><button aria-pressed={portraitFrame==="face"} onClick={()=>{setPortraitFrame("face");setCopyState("idle");}}>Face</button></div><button onClick={()=>setSceneKey(k=>k+1)}>Reset view</button><span role="status">{copyState==="copied"?"Share link copied":""}</span>{copyState==="manual"&&<label>Copy this link<input aria-label="Share link" readOnly value={shareUrl} onFocus={e=>e.currentTarget.select()}/></label>}</div>}
           <section className="atlas-time" aria-label="Intervention history">
             <div className="time-top">
               <button

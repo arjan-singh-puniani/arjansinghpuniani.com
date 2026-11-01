@@ -2678,3 +2678,5 @@
 .milestone-list time{color:#e9bc8a;font:12px/1.7 ui-monospace,monospace}
 .milestone-list small{display:block;color:#9fb5c0;font-size:11px;margin-top:5px}
 @media(max-width:600px){.milestone-list li{grid-template-columns:1fr;gap:5px}}
+
+.portrait-framing{display:flex;gap:4px}.portrait-framing button[aria-pressed="true"]{border-color:var(--gold);color:var(--gold);background:#203543}.portrait-framing button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}

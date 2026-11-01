@@ -163,3 +163,19 @@ These are engineering and source-traceability checks, not independent anatomical
 - Live website verification compared animated canvas frames, checked organ focus, original mechanism links and SHA-256 against original API response text on desktop and mobile; P100026, P140031 and K130233 returned 200 with the FDA dataset update date 2026-10-19. Invalid application/query injection returned 400. Zero Axe violations or browser errors.
 
 Physical iOS/Safari, low-memory GPU testing, slow-network measurements, distributed ingestion/recovery and expert review of schematic mechanisms remain unverified. FDA decisions are publicly available decisions, not exhaustive private/pending filings. The static collection, labeling gaps and source review states are unchanged.
+
+
+## Reference-derived exterior — 2026-11-01
+
+The final baked contour is 5,667,796 bytes and 188,882 triangles (SHA-256 `924ef8aecf6c222832ad1d93fe71c2acc04862a55d7b734e2fa3e8d15c5d2354`). The face outline/feature layout uses a private local estimate, joined to the reference head and refined to reduce faceting. Upper-body sculpting is illustrative. No clinical or biometric accuracy metric is claimed. The entire approved lower-body coordinate fingerprint and original internal anatomy remain unchanged.
+
+- `npm test`: 63 passed on the final refined asset, including hash/size, original reference/lower-body preservation, bounded procedural detail weights, absence of appearance/identity payloads and front-facing iris visibility.
+- `npm run typecheck` and `npm run build -- --webpack`: passed.
+- `npm run test:browser`: 28 desktop/mobile Chrome tests passed before the last face-only refinement. After refinement, `npm run test:browser -- --grep 'body contour|shareable contour|API boundaries'`: all 8 affected desktop/mobile tests passed. These cover rotation, exterior switching, failed-asset fallback, face/upper framing, clipboard/share reload, narrow-screen layout, accessibility and production CSP without plain unsafe-eval.
+- `scripts/prepare-contour-surface.py --self-test`: passed translation/scale normalization, finite-output and malformed-input rejection. This is not a likeness evaluation. Python authoring scripts compile.
+
+Actual web-rendered front, rotated and upper-body screenshots were inspected; an occluding canonical eye cap and excessive scalp shading were corrected. Raw reference images and intermediate fitting files stay private. Source ingestion was not rerun because records/pipelines are unchanged. Personal recognizability, unseen profiles, physical iOS/Safari, low-end GPU performance and measured anthropometry remain unverified.
+
+Portfolio integration preparation: static atlas export passed; portfolio `npm run typecheck`, `npm run build` and all 150 `npm test` tests passed. Final face-only material adjustments were rechecked in the 8 affected source browser tests. No new likeness has been published or certified as an exact match.
+
+The exported portfolio was also run at a local production-mode URL: desktop 1440×1000 and mobile 390×844 both passed face loading, upper-body switching, atlas return navigation, horizontal-overflow checks, exact final GLB-manifest hash and zero page errors.

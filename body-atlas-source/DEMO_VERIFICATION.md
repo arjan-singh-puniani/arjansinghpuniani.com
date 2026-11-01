@@ -131,3 +131,7 @@ A deeper trace added Hudi’s exact condom restriction, Advanced Glenoid cemente
 - Live website verification compared animated canvas frames, checked organ focus, original mechanism links and SHA-256 against original API response text on desktop and mobile; P100026, P140031 and K130233 returned 200 with the FDA dataset update date 2026-10-19. Invalid application/query injection returned 400. Zero Axe violations or browser errors.
 
 Physical iOS/Safari, low-memory GPU testing, slow-network measurements, distributed ingestion/recovery and expert review of schematic mechanisms remain unverified. FDA decisions are publicly available decisions, not exhaustive private/pending filings. The static collection, labeling gaps and source review states are unchanged.
+
+## Contour review workflow — 2026-11-01
+
+`/?view=portrait&frame=face` opens a rotatable close-up; **Upper body** restores the torso crop and **Explore atlas** restores intervention exploration. Copy link preserves selected framing without unrelated query state; clipboard denial exposes a selectable link. The new face surface is prepared locally, then baked into the public GLB. No photograph is displayed. Recognizability remains a human judgment, not a passed automated acceptance criterion. Internal anatomy and intervention assertions are unchanged.
