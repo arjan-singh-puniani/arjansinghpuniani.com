@@ -1,0 +1,57 @@
+{
+  "model": "0.6.0-hospitalsim",
+  "date": "2026-10-31",
+  "browser": {
+    "desktop": true,
+    "narrow390": true,
+    "pickupViaInspector": true,
+    "directPointerGrabDrop": true,
+    "keyboardDrop": true,
+    "escapeCancel": true,
+    "doorPlacement": true,
+    "reducedMotion": true,
+    "fullPatientLoop": {
+      "patient": "Eli",
+      "arrival": 19,
+      "exit": 144,
+      "elapsed": 125,
+      "wait": 5,
+      "walk": 55,
+      "service": 44,
+      "handoff": 8,
+      "transfer": 13
+    },
+    "resolvedDuringQA": [
+      "Held-pose rotations accumulated; now restore captured bone transforms each frame.",
+      "Stale development animation module; release cache keys bumped.",
+      "Narrow build grid width; corrected full-width mobile tools."
+    ]
+  },
+  "automated": [
+    "Original Canvas simulation checks",
+    "Diorama invariants and seeded replay",
+    "Patient/drape/11appearance checks",
+    "Doorway and relocation invariants",
+    "Real Three.js pose sampling and bounded dangle regression",
+    "Save/load at transfer and staff break phases",
+    "100 shifts across five scenarios and10seeds"
+  ],
+  "unvalidated": [
+    "Actual iPhone hardware/touch calibration",
+    "Assistive technology conformance",
+    "External clinician/educator review",
+    "Player enjoyment, retention or educational benefit"
+  ],
+  "remainingVisualGaps": [
+    "Stylized faces and clothing",
+    "Approximate clinician hand contact",
+    "Authored transfers and procedural dangle, no physics ragdoll or cloth solver",
+    "Grid-based crowd turns",
+    "Shadow refresh exceeds provisional draw-call target"
+  ],
+  "portfolio": {
+    "typecheck": "passed",
+    "build": "passed",
+    "tests": "150/150 passed with maxWorkers2; initial parallel run had two unrelated timeouts under concurrent CPU load, then passed without source changes"
+  }
+}

@@ -4,3 +4,9 @@ export function samplePose(person,name,time){
  for(const other of person.actions.values()){other.stopFading();other.enabled=other===action;other.setEffectiveWeight(other===action?1:0)}
  action.enabled=true;action.time=time;person.mixer.update(0);
 }
+
+export function restoreBones(pose){for(const b of pose){b.bone.position.copy(b.position);b.bone.quaternion.copy(b.quaternion);b.bone.scale.copy(b.scale)}}
+export function dangle(person,time,reduced=false){
+ restoreBones(person.restBones);person.model.rotation.set(0,.2,reduced?0:Math.sin(time*2.8)*.065);
+ person.model.traverse(b=>{if(!b.isBone)return;const side=b.name.endsWith('L')?1:-1;if(b.name.startsWith('upper_arm'))b.rotateZ(side*.12);if(b.name.startsWith('forearm'))b.rotateX(-.22);if(b.name.startsWith('thigh'))b.rotateX(.10+(reduced?0:Math.sin(time*3+side)*.12));if(b.name.startsWith('shin'))b.rotateX(.21);if(b.name==='head')b.rotateZ(reduced?0:Math.sin(time*2)*.05)});
+}

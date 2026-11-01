@@ -1,8 +1,9 @@
 """Common Good original human assets. CC0-1.0; substantial OpenAI Codex assistance.
 Blender 4.0: blender -b --python blender/characters.py
+Isolated export: append -- --patient patient-01; combined editable source only: -- --source-only.
 Metres; feet at z=0; forward -Y; glTF forward +Z. No third-party assets.
 """
-import bpy, math, os, sys
+import bpy, math, os, sys, json, shutil
 from mathutils import Vector, Matrix, Quaternion
 from pathlib import Path
 
@@ -14,6 +15,21 @@ WALK_SPEED=1.65
 WALK_FRAMES=27
 TRANSFER_DURATION=3.0
 CLIPS=('Idle','Walk','Sit','Work','Discuss','Attend','Rest','TransferIn','TransferOut')
+PROFILE={}
+# Original visual appearances only. No appearance changes any simulation parameter.
+PATIENT_PROFILES=[
+ dict(id='patient-01',height=1.74,width=1.00,face=.98,jaw=1.03,depth=1.00,nose=1.00,hair='crop',skin=(.72,.49,.36),hair_color=(.035,.028,.024),gown=(.34,.62,.64)),
+ dict(id='patient-02',height=1.65,width=.94,face=.95,jaw=.96,depth=.96,nose=.85,hair='bob',skin=(.40,.23,.15),hair_color=(.025,.020,.018),gown=(.53,.68,.73)),
+ dict(id='patient-03',height=1.82,width=1.10,face=1.06,jaw=1.10,depth=1.04,nose=1.12,hair='recede',skin=(.79,.59,.47),hair_color=(.28,.26,.23),gown=(.40,.64,.63)),
+ dict(id='patient-04',height=1.70,width=1.12,face=1.05,jaw=.98,depth=1.05,nose=.94,hair='bun',skin=(.58,.36,.23),hair_color=(.045,.032,.022),gown=(.48,.66,.73)),
+ dict(id='patient-05',height=1.78,width=.94,face=.97,jaw=1.10,depth=.98,nose=1.15,hair='buzz',skin=(.29,.16,.10),hair_color=(.020,.018,.017),gown=(.32,.58,.64)),
+ dict(id='patient-06',height=1.67,width=1.03,face=1.04,jaw=.94,depth=.96,nose=.90,hair='wavy',skin=(.87,.70,.58),hair_color=(.32,.15,.07),gown=(.57,.72,.70)),
+ dict(id='patient-07',height=1.80,width=1.05,face=1.00,jaw=1.07,depth=1.08,nose=1.05,hair='sidepart',skin=(.64,.43,.28),hair_color=(.09,.06,.035),gown=(.43,.65,.72)),
+ dict(id='patient-08',height=1.72,width=.91,face=.93,jaw=.96,depth=1.02,nose=.92,hair='curly',skin=(.48,.29,.19),hair_color=(.035,.025,.018),gown=(.38,.65,.61)),
+ dict(id='patient-09',height=1.76,width=1.14,face=1.08,jaw=1.05,depth=1.04,nose=1.08,hair='bald',skin=(.76,.52,.39),hair_color=(.16,.14,.12),gown=(.52,.68,.73)),
+ dict(id='patient-10',height=1.64,width=.98,face=.98,jaw=.94,depth=.98,nose=.87,hair='pixie',skin=(.91,.75,.63),hair_color=(.52,.49,.43),gown=(.41,.63,.66)),
+ dict(id='patient-11',height=1.84,width=1.01,face=1.03,jaw=1.10,depth=1.06,nose=1.16,hair='closecurls',skin=(.34,.20,.13),hair_color=(.026,.022,.018),gown=(.50,.70,.68)),
+]
 
 def material(name,color,roughness=.55,metal=0):
     m=bpy.data.materials.new(name); m.diffuse_color=(*color,1); m.use_nodes=True
@@ -113,6 +129,44 @@ def garment(name,mat,bone,coat=False):
     return mesh_object(name,vertices,faces,mat,bone,.0035 if coat else .0025)
 
 
+def patient_gown(cloth,trim,skin):
+    """Overlapping wrap panels; small plain rear skin edge, no explicit anatomy."""
+    rings=[(.60,.224,.159),(.66,.223,.157),(.75,.218,.148),(.81,.207,.136),(.86,.199,.125),
+           (.94,.187,.118),(1.04,.173,.114),(1.16,.175,.116),(1.28,.193,.122),
+           (1.36,.202,.113),(1.405,.185,.093),(1.444,.068,.055)]
+    vertices=[];faces=[];n=40
+    for z,rx,ry in rings:
+        # Negative gap overlaps the panels. The lower slit exposes only a tiny edge.
+        gap=.035*math.exp(-((z-.81)/.045)**2)-.055
+        if .75<z<.87:gap=.027
+        if z>1.16:gap=.045
+        for i in range(n):
+            a=math.pi/2+gap+(2*math.pi-2*gap)*i/(n-1)
+            x=rx*math.cos(a);front=max(0,-math.sin(a))
+            fold=.003*math.sin(a*7+z*21)*math.sin(math.pi*min(1,max(0,(1.44-z)/.84)))
+            zz=z-.018*front*max(0,min(1,(z-1.35)/.094))
+            radius=min(ry,.080) if math.sin(a)>0 else ry
+            vertices.append((x,(radius+fold)*math.sin(a),zz))
+    for j in range(len(rings)-1):
+        for i in range(n-1):
+            k=j*n+i;faces.append((k,k+1,k+1+n,k+n))
+    gown=mesh_object('Original overlapping hospital gown',vertices,faces,cloth,'hips',.0025)
+    gown.vertex_groups.new(name='gown_shell').add(list(range(len(gown.data.vertices))),1,'REPLACE')
+    for v in gown.data.vertices:
+        z=v.co.z;hip=smooth_between(.78,.86,z);spine=max(0,min(1,(z-.96)/.10))
+        left=max(0,min(1,.5+v.co.x/.07))
+        for name,weight in [('hips',hip*(1-spine)),('spine',spine),('thigh.L',(1-hip)*left),('thigh.R',(1-hip)*(1-left))]:
+            if name not in gown.vertex_groups:gown.vertex_groups.new(name=name)
+            gown.vertex_groups[name].add([v.index],weight,'REPLACE')
+    for z,ry in [(1.365,.080),(1.19,.080)]:
+        curve('Gown back tie',[(-.014,ry+.005,z),(-.035,ry+.013,z+.005),(-.030,ry+.018,z-.009),(0,ry+.012,z),(.035,ry+.018,z+.004),(.029,ry+.020,z-.010),(0,ry+.012,z)],.002,trim,'spine')
+        curve('Tie end',[(0,ry+.014,z),(.016,ry+.018,z-.048)],.0018,trim,'spine')
+    # A neutral skin surface behind the tiny slit, fully covered elsewhere by overlap.
+    mesh_object('Tiny unfeatured rear skin edge',[(-.022,.075,.845),(.022,.075,.845),(.022,.075,.875),(-.022,.075,.875)],[(0,1,2,3)],skin,'hips')
+    surface('Covered patient trunk',[(.96,.145,.075,0),(1.10,.143,.075,0),(1.28,.163,.075,0),(1.36,.164,.070,0),(1.42,.057,.045,0)],skin,'spine',20)
+    return gown
+
+
 HEAD_PROFILE=[(1.492,.030,.042,.041,.004),(1.507,.045,.050,.050,.001),(1.528,.061,.063,.061,.001),
  (1.548,.069,.070,.068,.002),(1.567,.075,.073,.075,.003),(1.584,.079,.075,.079,.004),
  (1.600,.080,.076,.080,.004),(1.615,.078,.075,.080,.005),(1.630,.077,.075,.080,.006),
@@ -174,14 +228,28 @@ def head_mesh(skin):
 
 
 def hair_mesh(mat,detail):
+    style=PROFILE.get('hair','crop')
+    if style=='bald':return
     vertices=[];faces=[];n=48;rows=12
     for j in range(rows):
         u=j/(rows-1)
         for i in range(n):
             a=i/n*2*math.pi;front=max(0,-math.sin(a));back=max(0,math.sin(a))
-            base=1.616+.055*front-.022*back;z=base+(1.737-base)*u
+            base=1.616+.055*front-.022*back
+            if style=='bob':base=1.515+.150*front
+            elif style=='bun':base=1.60+.075*front-.025*back
+            elif style=='recede':base=1.634+.067*front-.020*back
+            elif style=='pixie':base=1.620+.046*front-.024*back
+            z=base+(1.737-base)*u
             rx,rf,rb,cy=head_section(z);ripple=.0007*math.sin(a*19+u*7)*math.sin(math.pi*u)
             margin=.003+.004*smooth_between(.70,1,u)
+            if style in ['curly','closecurls','wavy']:
+                ripple=(.0035 if style=='curly' else .002)*math.sin(a*15+u*23)*math.sin(u*24-a*3)
+                margin+=.008 if style=='curly' else .003
+            if style=='bob' and z<1.63:
+                rx=max(rx,.081);rb=max(rb,.079);margin+=.004
+            if style=='buzz':margin=.0012;ripple*=.25
+            if style=='sidepart':margin+=.006*max(0,math.cos(a))*(u**.5)
             x=(rx+margin+ripple)*math.cos(a);sn=math.sin(a)
             y=cy+(rb+margin+ripple)*sn if sn>=0 else cy-(rf+margin+ripple)*(-sn)**.42
             vertices.append((x,y,z))
@@ -190,11 +258,44 @@ def hair_mesh(mat,detail):
             k=j*n+i;q=j*n+(i+1)%n;faces.append((k,q,q+n,k+n))
     faces.append(tuple((rows-1)*n+i for i in range(n)))
     mesh_object('Fitted short hair',vertices,faces,mat,'head')
+    if style=='bun':ellipsoid('Coiled crown knot',(0,.070,1.715),(.042,.030,.038),mat,'head',16,10)
+    if style in ['buzz','closecurls']:return
     for offset in [-6,-3,0,3,6]:
         points=[]
         for j in [2,4,6,8,10]:
             p=Vector(vertices[j*n+(36+offset)%n]);p.y-=.0007;points.append(tuple(p))
         curve('Combed hair ridge',points,.0003,detail,'head')
+
+
+def morph_patient(arm,mesh,profile):
+    """Retain feet/leg anchors; vary adult torso stature, breadth and facial planes."""
+    torso=(profile['height']-.925-.31)/.505
+    def point(p,limb=False):
+        q=p.copy();z=q.z
+        if z>.925:q.z=.925+(min(z,1.43)-.925)*torso+max(0,z-1.43)
+        if limb:q.x*=profile['width']
+        elif z>=1.49:
+            jaw=1+(profile['jaw']-1)*math.exp(-((z-1.54)/.045)**2)
+            q.x*=profile['face']*jaw;q.y=(q.y-.005)*profile['depth']+.005
+            front=max(0,min(1,-q.y/.065))
+            q.y-=.015*(profile['nose']-1)*math.exp(-(q.x/.020)**2-((z-1.590)/.035)**2)*front
+        elif z>.925:q.x*=1+(profile['width']-1)*smooth_between(.925,1.10,z)
+        return q
+    names={g.index:g.name for g in mesh.vertex_groups}
+    for v in mesh.data.vertices:
+        groups={names[g.group] for g in v.groups if g.weight>.01}
+        original=v.co.copy();v.co=point(v.co,any(n.startswith(('upper_arm.','forearm.','hand.','finger','thumb'))for n in groups))
+        if 'gown_shell' in groups and original.z<=.925:v.co.x*=profile['width']
+        elif original.z<.925 and any(n.startswith(('thigh.','shin.'))for n in groups):
+            center=.105*(1 if original.x>0 else -1)
+            v.co.x=center+(v.co.x-center)*math.sqrt(profile['width'])
+    bpy.context.view_layer.objects.active=arm
+    bpy.ops.object.mode_set(mode='EDIT')
+    for bone in arm.data.edit_bones:
+        limb=bone.name.startswith(('upper_arm.','forearm.','hand.','finger','thumb'))
+        bone.head=point(bone.head,limb);bone.tail=point(bone.tail,limb)
+    bpy.ops.object.mode_set(mode='OBJECT')
+    arm['appearance_id']=profile['id'];arm['visual_only']=True;arm['height_metres']=profile['height']
 
 
 def finger_points(sign,index):
@@ -232,28 +333,32 @@ def rig():
     bpy.ops.object.mode_set(mode='OBJECT'); arm.show_in_front=True
     return arm
 
-def character(kind):
-    global PARTS; PARTS=[]
-    skin=material(kind+' · skin',{'clinician':(.59,.37,.25),'coat':(.83,.64,.49),'patient':(.72,.49,.36)}[kind],.62)
-    cloth=material(kind+' · fabric',{'clinician':(.055,.39,.43),'coat':(.88,.91,.89),'patient':(.40,.12,.07)}[kind],.88)
+def character(kind,profile=None):
+    global PARTS,PROFILE; PARTS=[];PROFILE=profile or {}
+    skin=material(kind+' · skin',PROFILE.get('skin',{'clinician':(.59,.37,.25),'coat':(.83,.64,.49),'patient':(.72,.49,.36)}[kind]),.62)
+    cloth=material(kind+' · fabric',PROFILE.get('gown',{'clinician':(.055,.39,.43),'coat':(.88,.91,.89),'patient':(.40,.12,.07)}[kind]),.88)
     trim=material(kind+' · fabric trim',{'clinician':(.035,.24,.29),'coat':(.14,.31,.39),'patient':(.025,.075,.13)}[kind],.8)
-    dark=material(kind+' · hair / rubber',(.19,.20,.19) if kind=='coat' else (.038,.045,.049),.66)
+    dark=material(kind+' · hair / rubber',PROFILE.get('hair_color',(.19,.20,.19) if kind=='coat' else (.038,.045,.049)),.66)
     white=material(kind+' · eyes / badge / sole',(.88,.91,.89),.48)
-    arm=rig(); arm.name=kind
+    arm=rig(); arm.name=profile['id'] if profile and profile['id']!='patient-01' else kind
+    arm['is_patient']=kind=='patient'
     shade=material(kind+' · seam',tuple(c*.83 for c in cloth.diffuse_color[:3]),.92)
     shoe=material(kind+' · footwear',(.026,.031,.034),.82)
     lip=material(kind+' · lip',tuple(c*f for c,f in zip(skin.diffuse_color[:3],[.83,.68,.66])),.62)
     mouth_dark=material(kind+' · mouth shadow',(.018,.007,.008),.70)
     iris=material(kind+' · iris',(.075,.052,.035),.48)
     hair_detail=material(kind+' · hair detail',tuple(min(1,c*1.25) for c in dark.diffuse_color[:3]),.72)
-    pants_mat=trim if kind in ['coat','patient'] else cloth
-    surface('Trouser pelvis',[(.845,.028,.047,0),(.88,.150,.080,0),(.93,.182,.090,0),(.975,.158,.098,0),(.99,.152,.095,0)],pants_mat,'hips',24)
-    torso=garment('Scrub top',trim if kind=='coat' else cloth,'spine')
+    pants_mat=skin if kind=='patient' else (trim if kind=='coat' else cloth)
+    pelvis=surface('Trouser pelvis',[(.845,.028,.047,0),(.88,.150,.080,0),(.93,.182,.090,0),(.975,.158,.098,0),(.99,.152,.095,0)],pants_mat,'hips',24)
+    if kind=='patient':
+        # Omit occluded anatomy rather than let separate skin shells poke through cloth.
+        PARTS.remove(pelvis);bpy.data.objects.remove(pelvis,do_unlink=True)
+    torso=patient_gown(cloth,trim,skin) if kind=='patient' else garment('Scrub top',trim if kind=='coat' else cloth,'spine')
     surface('Clavicle',[(1.35,.063,.050,0),(1.40,.078,.058,0),(1.445,.055,.048,.006),(1.460,.044,.038,.014)],skin,'spine')
     surface('Neck',[(1.425,.052,.047,.007),(1.47,.046,.043,.011),(1.514,.040,.039,.015)],skin,'head')
     for sign in [-1,1]:
-        curve('Bound V neckline',[(sign*.063,-.048,1.44),(sign*.038,-.060,1.401),(0,-.054,1.364)],.003,shade if kind!='coat' else trim,'spine')
-    curve('Hem seam',[(-.13,-.058,.961),(-.075,-.09,.958),(0,-.10,.957),(.075,-.09,.958),(.13,-.058,.961)],.0012,shade,'spine')
+        curve('Bound neckline',[(sign*.063,-.048,1.44),(sign*.038,-.060,1.426),(0,-.054,1.424)] if kind=='patient' else [(sign*.063,-.048,1.44),(sign*.038,-.060,1.401),(0,-.054,1.364)],.003,shade if kind!='coat' else trim,'spine')
+    if kind!='patient':curve('Hem seam',[(-.13,-.058,.961),(-.075,-.09,.958),(0,-.10,.957),(.075,-.09,.958),(.13,-.058,.961)],.0012,shade,'spine')
     face=head_mesh(skin)
     jaw=face.vertex_groups.new(name='jaw')
     for vertex in face.data.vertices:
@@ -289,12 +394,13 @@ def character(kind):
             welt=pocket('Stitched coat pocket',sign*.063,sign*.137,.982,1.054,cloth,coat=True)
             curve('Pocket welt',welt,.0011,white,'spine')
         for z in [.91,1.01,1.11]:ellipsoid('Coat button',(.045,cloth_front_y(.045,z,True)-.002,z),(.003,.0018,.003),trim,'spine',8,4)
-    else:
+    elif kind!='patient':
         welt=pocket('Stitched chest pocket',.054,.114,1.251,1.314,cloth)
         curve('Pocket hem',welt,.001,shade,'spine')
-    badge_y=cloth_front_y(-.078,1.329,kind=='coat')-.005
-    box('Name badge',(-.078,badge_y,1.329),(.047,.008,.029),white,'spine',.003)
-    box('Badge stripe',(-.078,badge_y-.005,1.33),(.029,.002,.006),trim,'spine',.001)
+    if kind!='patient':
+        badge_y=cloth_front_y(-.078,1.329,kind=='coat')-.005
+        box('Name badge',(-.078,badge_y,1.329),(.047,.008,.029),white,'spine',.003)
+        box('Badge stripe',(-.078,badge_y-.005,1.33),(.029,.002,.006),trim,'spine',.001)
     for side,sign in [('L',1),('R',-1)]:
         sh=(sign*.135,0,1.385); el=(sign*.238,0,1.17); wr=(sign*.255,-.012,.956)
         sleeveEnd=(sign*.221,0,1.265) if kind!='coat' else (sign*.238,0,1.16)
@@ -323,9 +429,12 @@ def character(kind):
             weight=max(0,min(1,(start.z-vertex.co.z)/(start.z-tip.z)))
             digit.vertex_groups[f'thumb.01.{side}'].add([vertex.index],1-weight,'REPLACE');distal.add([vertex.index],weight,'REPLACE')
         hip=(sign*.098,0,.93); knee=(sign*.105,-.005,.525); ankle=(sign*.105,0,.105)
-        leg=tube('Continuous trouser',hip,ankle,[(0,.082,.086),(.12,.080,.081),(.32,.073,.074),(.42,.065,.067),(.48,.063,.065),(.54,.064,.066),(.64,.061,.061),(.78,.055,.053),(.88,.047,.047),(.94,.046,.047),(.97,.044,.045),(1,.046,.045)],trim if kind in ['coat','patient'] else cloth,f'thigh.{side}',20)
+        leg_rings=[(0,.082,.086),(.12,.080,.081),(.32,.073,.074),(.42,.065,.067),(.48,.063,.065),(.54,.064,.066),(.64,.061,.061),(.78,.055,.053),(.88,.047,.047),(.94,.046,.047),(.97,.044,.045),(1,.046,.045)]
+        if kind=='patient':leg_rings=[(.28,.075,.075)]+[r for r in leg_rings if r[0]>=.32]
+        leg=tube('Patient leg' if kind=='patient' else 'Continuous trouser',hip,ankle,leg_rings,skin if kind=='patient' else trim if kind=='coat' else cloth,f'thigh.{side}',20)
         lower=leg.vertex_groups.new(name=f'shin.{side}')
         for v in leg.data.vertices:
+            if kind=='patient'and v.co.z>.54 and v.co.y>0:v.co.y*=.68
             if v.co.z<.525:
                 leg.vertex_groups[f'thigh.{side}'].remove([v.index]); lower.add([v.index],1,'REPLACE')
         ellipsoid('Shoe',(sign*.105,-.065,.057),(.055,.122,.05),shoe,f'foot.{side}')
@@ -334,7 +443,7 @@ def character(kind):
     # Keep five editable material sources; browser export consolidates them into one primitive.
     bpy.ops.object.select_all(action='DESELECT')
     for ob in PARTS: ob.select_set(True)
-    bpy.context.view_layer.objects.active=PARTS[0]; bpy.ops.object.join(); mesh=bpy.context.object; mesh.name=kind+'_skin'
+    bpy.context.view_layer.objects.active=PARTS[0]; bpy.ops.object.join(); mesh=bpy.context.object; mesh.name=arm.name+'_skin'
     bpy.ops.object.transform_apply(location=False,rotation=False,scale=True)
     mesh.parent=arm; mod=mesh.modifiers.new('Human skeleton','ARMATURE'); mod.object=arm
     # Soften transitions across bones while retaining segmented clothing edges.
@@ -350,6 +459,7 @@ def character(kind):
                 groups={mesh.vertex_groups[g.group].name for g in v.groups}
                 if a in groups or b in groups:
                     mesh.vertex_groups[a].add([v.index],1-t,'REPLACE'); mesh.vertex_groups[b].add([v.index],t,'REPLACE')
+    if profile:morph_patient(arm,mesh,profile)
     animate(arm,kind)
     return arm,mesh
 
@@ -373,10 +483,11 @@ def foot_target(phase):
     return ankle,pitch,lift
 
 
-def set_bone_between(arm,name,head,tail):
+def set_bone_between(arm,name,head,tail,frame_rotation=None):
     bone=arm.pose.bones[name]; rest=bone.bone.matrix_local.to_quaternion()
-    delta=(bone.bone.tail_local-bone.bone.head_local).rotation_difference(tail-head)
-    bone.matrix=Matrix.Translation(head) @ (delta@rest).to_matrix().to_4x4()
+    reference=frame_rotation or Quaternion((1,0,0,0))
+    delta=(reference@(bone.bone.tail_local-bone.bone.head_local)).rotation_difference(tail-head)
+    bone.matrix=Matrix.Translation(head) @ (delta@reference@rest).to_matrix().to_4x4()
 
 
 def apply_walk(arm,phase):
@@ -423,19 +534,46 @@ def smooth_between(a,b,value):
 
 def apply_transfer(arm,u):
     """Bedside feet anchor at0; endpoint head+X, face+Z, mattress z=.74m."""
-    sit=smooth_between(0,.33,u); turn=smooth_between(.32,.68,u); lie=smooth_between(.53,1,u)
+    sit=smooth_between(0,.27,u); turn=smooth_between(.32,.68,u)
+    lie=smooth_between(.64,1,u); chest_lie=smooth_between(.77,1,u)
     root=arm.pose.bones['hips']
     rotation=Quaternion((0,0,1),-math.pi/2*turn) @ Quaternion((1,0,0),-math.pi/2*lie)
-    location=Vector((-.45*turn,.20*sit+.35*turn,.88-.10*sit+.06*lie+.045*math.sin(math.pi*turn)))
+    # Perch at the near mattress edge; slide back only after the calves clear it.
+    location=Vector((-.45*turn,.075*sit+.475*smooth_between(.44,.78,u),.88-.10*sit+.06*lie+.045*math.sin(math.pi*turn)))
     root.matrix=Matrix.Translation(location) @ (rotation@root.bone.matrix_local.to_quaternion()).to_matrix().to_4x4()
     for side,sign in [('L',1),('R',-1)]:
-        lift=smooth_between(.30,.47,u)
-        arm.pose.bones['thigh.'+side].rotation_euler.x=-(1.43*sit+(math.pi/2-1.43)*lift)*(1-lie)+(.055*lie if arm.name=='patient' else 0)
-        arm.pose.bones['shin.'+side].rotation_euler.x=1.45*sit*(1-smooth_between(.30,.47,u))
-        arm.pose.bones['upper_arm.'+side].rotation_euler=(-.18*math.sin(math.pi*u),0,-sign*.035*lie)
-        arm.pose.bones['forearm.'+side].rotation_euler.x=-.04*(1-u)-.35*math.sin(math.pi*u)
-    arm.pose.bones['spine'].rotation_euler.x=-.10*math.sin(math.pi*u)*(1-lie)
-    arm.pose.bones['head'].rotation_euler.x=.08*math.sin(math.pi*u)
+        # Stagger the leg swing, keeping knees flexed through the turn.
+        lift=smooth_between(.31+(.04 if side=='R' else 0),.54+(.04 if side=='R' else 0),u)
+        arm.pose.bones['thigh.'+side].rotation_euler.x=-(1.43*sit+(math.pi/2-1.43)*lift)*(1-lie)+(.055*lie if arm.get('is_patient',False) else 0)
+        arm.pose.bones['shin.'+side].rotation_euler.x=1.45*sit*(1-lift)
+        support=math.sin(math.pi*u)**2
+        braced=smooth_between(.10,.25,u)*(1-smooth_between(.84,1,u))
+        arm.pose.bones['upper_arm.'+side].rotation_euler=(.14*support,0,-sign*.035*lie)
+        arm.pose.bones['forearm.'+side].rotation_euler.x=-.04*(1-u)-.28*braced
+        arm.pose.bones['hand.'+side].rotation_euler.x=-.95*braced
+    # Thorax curls upright before the pelvis rolls; reverse gives a supported recline.
+    lean=-.19*math.sin(math.pi*sit)*(1-turn)-.06*math.sin(math.pi*turn)
+    arm.pose.bones['spine'].rotation_euler.x=math.pi/2*(lie-chest_lie)+lean
+    arm.pose.bones['head'].rotation_euler.x=.12*math.sin(math.pi*chest_lie)
+    # Feet take weight before standing and leave the floor only as legs swing onto bed.
+    if 0<u<.68:
+        bpy.context.view_layer.update()
+        raise_foot=smooth_between(.28,.44,u);sweep=smooth_between(.44,.68,u)
+        blend=smooth_between(.28,.68,u)
+        for side,sign in [('L',1),('R',-1)]:
+            thigh=arm.pose.bones['thigh.'+side];shin=arm.pose.bones['shin.'+side];foot=arm.pose.bones['foot.'+side]
+            # Lift outside the mattress edge before sweeping across its surface.
+            outside=Vector((sign*.105,-.34*raise_foot,.105+.755*raise_foot))
+            hip=thigh.head.copy();ankle=outside.lerp(shin.tail.copy(),sweep)
+            l1=thigh.length;l2=shin.length;delta=ankle-hip;distance=delta.length;axis=delta.normalized()
+            a=(l1*l1-l2*l2+distance*distance)/(2*distance)
+            bend=(rotation@Vector((0,-1,0))).lerp(Vector((0,0,1)),raise_foot)
+            bend=(bend-axis*bend.dot(axis)).normalized()
+            knee=hip+axis*a+bend*math.sqrt(max(0,l1*l1-a*a))
+            footq=foot.bone.matrix_local.to_quaternion().slerp(foot.matrix.to_quaternion(),blend)
+            set_bone_between(arm,'thigh.'+side,hip,knee,rotation);bpy.context.view_layer.update()
+            set_bone_between(arm,'shin.'+side,knee,ankle,rotation);bpy.context.view_layer.update()
+            foot.matrix=Matrix.Translation(ankle)@footq.to_matrix().to_4x4()
     return lie
 
 
@@ -581,25 +719,33 @@ def main():
     bpy.ops.object.select_all(action='SELECT'); bpy.ops.object.delete(use_global=False)
     scene=bpy.context.scene; scene.unit_settings.system='METRIC'; scene.render.fps=30
     characters=[]
-    for kind in ['clinician','coat','patient']:
-        arm,mesh=character(kind); characters.append((arm,mesh))
+    only_profile=sys.argv[sys.argv.index('--patient')+1]if '--patient'in sys.argv else None
+    source_only='--source-only'in sys.argv
+    configurations=[('patient',next(p for p in PATIENT_PROFILES if p['id']==only_profile))]if only_profile else [('clinician',None),('coat',None)]+[('patient',p)for p in PATIENT_PROFILES]
+    manifest={'version':1,'defaultId':'patient-01','visualOnly':True,'license':'CC0-1.0','provenance':'Original procedural geometry; substantial OpenAI Codex assistance','placementOffset':[0,0,0],'appearances':[]}
+    for kind,profile in configurations:
+        arm,mesh=character(kind,profile); characters.append((arm,mesh))
         arm['provenance']='Original procedural geometry; substantial OpenAI Codex assistance; CC0-1.0'
         arm['transfer_contract']={'duration_seconds':3.0,'rest_root_position_gltf':[-1.33,.84,-.55],'rest_root_quaternion_gltf':[-.5,-.5,-.5,.5],'mattress_plane_gltf_y':.74,'bed_center_gltf':[-.45,.74,-.55],'start':'standing feet at0,forward+Z glTF','end':'head+X,face+Y; rebase Rest root against original standing anchor; reverse Out from same anchor'}
-        arm['animation_notes']='Walk: contact-aware two-bone solve, 0.90s cycle at 1.65m/s forward -Y; Work/Attend align at deployment; bone-driven blink, jaw, mouth and two-joint digits; reversible3s bed transfers.'
-        for suffix,ratio in [('',1),('-lod',.34)]:
+        arm['animation_notes']='Walk: contact-aware two-bone solve, 0.90s cycle at 1.65m/s forward -Y; Work/Attend align at deployment; bone-driven blink, jaw, mouth and two-joint digits; staged reversible3s sit/turn/leg-swing/recline transfers.'
+        for suffix,ratio in ([]if source_only else [('',1),('-lod',.34)]):
             browser_mesh=export_mesh(mesh,ratio)
             bpy.ops.object.select_all(action='DESELECT'); arm.select_set(True); browser_mesh.select_set(True); bpy.context.view_layer.objects.active=arm
             for track in arm.animation_data.nla_tracks: track.mute=False
-            bpy.ops.export_scene.gltf(filepath=str(ASSETS/(kind+suffix+'.glb')),export_format='GLB',use_selection=True,
+            output_name=arm.name
+            bpy.ops.export_scene.gltf(filepath=str(ASSETS/(output_name+suffix+'.glb')),export_format='GLB',use_selection=True,
                 export_animations=True,export_nla_strips=True,export_anim_slide_to_zero=True,export_anim_single_armature=False,export_force_sampling=True,
                 export_skins=True,export_yup=True,export_extras=True,export_colors=True)
             triangles=sum(len(p.vertices)-2 for p in browser_mesh.data.polygons)
             assert len(browser_mesh.data.materials)==1 and browser_mesh.data.color_attributes.get('Color')
             assert triangles<(5000 if ratio<1 else 14000)
-            print('EXPORT_MESH',kind+suffix,'triangles',triangles)
+            print('EXPORT_MESH',output_name+suffix,'triangles',triangles)
+            if profile and profile['id']=='patient-01':shutil.copyfile(ASSETS/('patient'+suffix+'.glb'),ASSETS/('patient-01'+suffix+'.glb'))
             export_data=browser_mesh.data
             bpy.data.objects.remove(browser_mesh,do_unlink=True); bpy.data.meshes.remove(export_data)
             for track in arm.animation_data.nla_tracks: track.mute=track.name!='Idle'
+        if profile:
+            manifest['appearances'].append({'id':profile['id'],'high':profile['id']+'.glb','lod':profile['id']+'-lod.glb','heightMetres':round(max(v.co.z for v in mesh.data.vertices),3),'label':'Adult appearance '+profile['id'][-2:],'visualOnly':True,'placementOffset':[0,0,0],'hair':profile['hair'],'bodyBreadth':profile['width']})
     # All three retained editable at the origin in separate collections.
     for arm,mesh in characters:
         col=bpy.data.collections.new(arm.name.title()); scene.collection.children.link(col)
@@ -628,6 +774,8 @@ def main():
     assert all(set(t.name for t in a.animation_data.nla_tracks)==set(CLIPS) for a,m in characters)
     for a,m in characters:
         print('CHARACTER',a.name,'vertices',len(m.data.vertices),'triangles',sum(len(p.vertices)-2 for p in m.data.polygons),'materials',len(m.data.materials),'clips',[t.name for t in a.animation_data.nla_tracks])
-    bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'blender'/'characters.blend'),compress=True)
+    if not only_profile:
+        bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'blender'/'characters.blend'),compress=True)
+        (ASSETS/'patient-appearances.json').write_text(json.dumps(manifest,indent=2)+'\n')
 
 if __name__=='__main__': main()

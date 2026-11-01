@@ -1,0 +1,30 @@
+{
+  "model": "0.6.0-hospitalsim",
+  "hardware": "Desktop Apple M2, ANGLE Metal renderer; Codex in-app Chromium browser",
+  "viewport": "1280px wide desktop and confirmed390px narrow desktop viewport; not an actual iPhone",
+  "normalScene": {
+    "mainTriangles": 230524,
+    "peakMainTriangles": 232270,
+    "drawCalls": 119,
+    "peakCallsIncludingShadowRefresh": 185,
+    "peakRenderTrianglesIncludingShadowPasses": 358138,
+    "meanFrameMs": 16.77,
+    "p95FrameMs": 17.5,
+    "samples": 1800,
+    "loadMsLocal": 186
+  },
+  "assets": {
+    "model": "0.6.0-hospitalsim",
+    "initialGlbCount": 19,
+    "initialGlbBytes": 12214156,
+    "initialGlbGzipBytes": 3672782,
+    "note": "gzip values measured locally; server transfer encoding and cache behavior may differ. Runtime JS/CSS/vendor are listed separately.",
+    "runtimeRawBytes": 2501167,
+    "assetCount": 34
+  },
+  "limits": [
+    "Desktop frame pacing is not GPU-only timing or a mobile benchmark.",
+    "Shadow refresh peaks exceed the provisional150draw-call target. Cached normal frames remain lower.",
+    "Real iPhone Safari, thermal behavior, memory and touch-drag calibration remain untested."
+  ]
+}

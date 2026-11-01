@@ -33,3 +33,8 @@ export function staffInteriorPath(type,height,index=0,lounge=false){
  if(type==='scan')return [door,ramp,[1.35,0,1.15],[1.35,0,-.20],post];
  return [door,ramp,[-1.35,0,1.15],[-1.35,0,.25],post];
 }
+
+export function drapePose(state,progress){
+ const spread=state==='service'?Math.min(1,Math.max(0,progress)):state==='uncovering'?1-Math.min(1,Math.max(0,progress)):0;
+ return {visible:spread>0,scaleY:.2+.8*spread,scaleZ:.12+.88*spread,opacity:Math.min(1,spread*10)};
+}

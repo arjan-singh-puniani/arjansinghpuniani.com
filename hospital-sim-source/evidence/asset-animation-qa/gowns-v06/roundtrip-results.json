@@ -1,0 +1,210 @@
+{
+  "clinician": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.5,
+    "jaw_delta_radians": 0.06248346343636513,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "clinician-lod": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.5,
+    "jaw_delta_radians": 0.06248346343636513,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "coat": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.5,
+    "jaw_delta_radians": 0.06248346343636513,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "coat-lod": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.5,
+    "jaw_delta_radians": 0.06248346343636513,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "patient-01": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.5,
+    "jaw_delta_radians": 0.06248346343636513,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "patient-01-lod": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.5,
+    "jaw_delta_radians": 0.06248346343636513,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "patient-02": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.5,
+    "jaw_delta_radians": 0.0624796487390995,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "patient-02-lod": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.5,
+    "jaw_delta_radians": 0.0624796487390995,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "patient-03": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.5,
+    "jaw_delta_radians": 0.0624796487390995,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "patient-03-lod": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.5,
+    "jaw_delta_radians": 0.0624796487390995,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "patient-04": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.500000238418579,
+    "jaw_delta_radians": 0.0624796487390995,
+    "distal_finger_delta_radians": 0.3180594742298126,
+    "TransferOut_frames_played": 31
+  },
+  "patient-04-lod": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.500000238418579,
+    "jaw_delta_radians": 0.0624796487390995,
+    "distal_finger_delta_radians": 0.3180594742298126,
+    "TransferOut_frames_played": 31
+  },
+  "patient-05": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.5,
+    "jaw_delta_radians": 0.0624796487390995,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "patient-05-lod": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.5,
+    "jaw_delta_radians": 0.0624796487390995,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "patient-06": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.499999761581421,
+    "jaw_delta_radians": 0.0624796487390995,
+    "distal_finger_delta_radians": 0.3180594742298126,
+    "TransferOut_frames_played": 31
+  },
+  "patient-06-lod": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.499999761581421,
+    "jaw_delta_radians": 0.0624796487390995,
+    "distal_finger_delta_radians": 0.3180594742298126,
+    "TransferOut_frames_played": 31
+  },
+  "patient-07": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.499999523162842,
+    "jaw_delta_radians": 0.06248346343636513,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "patient-07-lod": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.499999523162842,
+    "jaw_delta_radians": 0.06248346343636513,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "patient-08": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.500000476837158,
+    "jaw_delta_radians": 0.0624796487390995,
+    "distal_finger_delta_radians": 0.3180594742298126,
+    "TransferOut_frames_played": 31
+  },
+  "patient-08-lod": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.500000476837158,
+    "jaw_delta_radians": 0.0624796487390995,
+    "distal_finger_delta_radians": 0.3180594742298126,
+    "TransferOut_frames_played": 31
+  },
+  "patient-09": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.5,
+    "jaw_delta_radians": 0.06248346343636513,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "patient-09-lod": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.5,
+    "jaw_delta_radians": 0.06248346343636513,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "patient-10": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.499999761581421,
+    "jaw_delta_radians": 0.0624796487390995,
+    "distal_finger_delta_radians": 0.3180594742298126,
+    "TransferOut_frames_played": 31
+  },
+  "patient-10-lod": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.499999761581421,
+    "jaw_delta_radians": 0.0624796487390995,
+    "distal_finger_delta_radians": 0.3180594742298126,
+    "TransferOut_frames_played": 31
+  },
+  "patient-11": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.4999985694885254,
+    "jaw_delta_radians": 0.06248346343636513,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  },
+  "patient-11-lod": {
+    "bones": 39,
+    "clips": 9,
+    "blink_max_scale": 2.4999985694885254,
+    "jaw_delta_radians": 0.06248346343636513,
+    "distal_finger_delta_radians": 0.31805872917175293,
+    "TransferOut_frames_played": 31
+  }
+}

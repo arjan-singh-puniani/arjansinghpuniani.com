@@ -13,6 +13,8 @@ node tests/expansion.mjs
 node tests/release.mjs
 node tests/motion-release.mjs
 node tests/animation.mjs
+node tests/patient-release.mjs
+node tests/interaction.mjs
 node tests/simulation.cjs
 /Applications/Blender.app/Contents/MacOS/Blender --factory-startup -b --python blender/hospital.py
 /Applications/Blender.app/Contents/MacOS/Blender --factory-startup -b --python blender/characters.py
@@ -49,7 +51,7 @@ Implemented: three original medical zones, rigged scrub/coat/patient figures, ni
 
 Implemented since v0.2: campaign/unlocks; compatible staff skills and manual assignments; handoffs and local personality tradeoffs; procedural plants/prints/palette decoration; checkpoint branching and paired future experiments; opt-in sound; smaller traffic nodes, occupied-route yielding and detours; original eyelid/jaw/finger rigging; three-second bed entry/exit clips; community follow-up specialist planning and a future access workshop; broader automated balance checks. The lab and device/assessment tools are in `dist/extras.mjs`; shared definitions are in `dist/content.mjs`. `dist/experiments.mjs` is pure and runs through a module worker.
 
-Remaining visual/model limits: original procedural humans still have coarse anatomy, simple clothes and repeated appearances; heading transitions are softened and patients walk through doorways, but interior turns and clinician hand contact remain approximate; the mattress is rigid with up to 12 mm authored soft overlap. Crowd routing is conservative grid traffic, not a continuous human dynamics solver. The specialist zone reuses the planning equipment. The community workshop is a narrow fictional access-delay mechanism, not a full longitudinal care or prevention model. These are disclosed limits of implemented features, not claims of commercial-studio polish.
+Remaining visual/model limits: original procedural humans still have coarse anatomy, simple skinned clothing and eleven deliberately limited adult appearances; heading transitions are softened and patients walk through doorways, but interior turns and clinician hand contact remain approximate; the mattress is rigid with a small measured soft overlap (see the current asset QA). Crowd routing is conservative grid traffic, not a continuous human dynamics solver. The specialist zone reuses the planning equipment. The community workshop is a narrow fictional access-delay mechanism, not a full longitudinal care or prevention model. These are disclosed limits of implemented features, not claims of commercial-studio polish.
 
 Real evidence still pending: actual iPhone Safari results, assistive-technology user testing, qualified clinician/educator review, learner sessions and any learning-effectiveness study. A local assessment form and evaluation protocol are drafts; producing them does not complete an evaluation.
 Unvalidated: accessibility conformance, real midrange mobile performance, clinical assumptions, learning transfer, educational effectiveness and professional reception. A desktop narrow viewport is not a phone benchmark. This build is a working vertical slice with remaining visual and interaction gaps; the supplied reference remains more realistic.
@@ -60,10 +62,20 @@ See `docs/MODEL.md`, `docs/ART_DIRECTION.md`, `docs/EVALUATION_DRAFT.md`, `CHANG
 
 Renamed hospitalSIM at the owner’s request. Fixed visit timing double-counting: each elapsed tick now belongs to exactly one of waiting, walking, handoff, equipment transfer or service. Prior saves retain an explicit elapsedOffset rather than silently rewriting historical observations. Old corridor positions/routes may shift to the nearest clear position for the new platform-clearance rule; migration is recorded. New patients spend three seconds entering and three seconds leaving each room. Quarter-grid navigation retains the same 1.65m/s nominal walking speed and provides passing space. Doorways remain reserved through service and exit. These changed model parameters make v0.3 outcome counts unsuitable as v0.4 benchmarks.
 
-Neighborhood guidance asks players to add consultation then inspect/upgrade care. The v0.4 goal permits eight departures, with an18-second baseline arrival interval. This is an explicit scenario adjustment for the added doorway time and body clearance, not evidence of real hospital economics.
+Neighborhood guidance asks players to add consultation then inspect/upgrade care toward level 3. The v0.4 goal permits eight departures, with an18-second baseline arrival interval. This is an explicit scenario adjustment for the added doorway time and body clearance, not evidence of real hospital economics.
 
 ## v0.4.1 motion corrections
 
 Blender was executed again for a phase-correct walk: opposite arm at heel strike, less crouched midstance, and a small lateral weight shift. Nine clips and39bones remain; all non-Walk actions were numerically unchanged. Measured authored stance drift remains3.06mm maximum. This is an improvement to the existing procedural gait, not motion capture or a claim of reference-level animation.
 
 Manual bed-transfer sampling now bypasses clock-dependent fades. Staff take explicit three-second doorway transitions before/after protected breaks, and lounge entry/exit when built. Capacity returns only at the workstation. This adds modeled break travel time; prior v0.4 checkpoints retain visits and assignments. The care clinician steps aside rather than snapping, and Escape restores inspector trigger focus. Import rejects negative service durations. The portfolio mobile embed expands to the game's actual content height to reduce nested scrolling.
+
+## v0.5 patient and drape corrections
+
+Executed Blender again for eleven proportional adult gown appearances and staged bed transfers. Removed the legacy fixed drape from the procedure equipment, added one explicit reserved drape-clearance tick before bed exit, and kept the separate cloth hidden throughout getting on/off equipment. This changes the model version; v0.4 and v0.4.1 checkpoints retain visits and reservations. Appearance is visual only. The contextual action now follows a built module’s actual first use and a real current queue; completed visits receive a short state-derived confirmation. The portfolio bare-folder entry routes now redirect to explicit index files so relative assets resolve reliably.
+
+## v0.6 interaction release
+
+Drag a floor patient or idle clinician to pick them up; a short touch hold works too. Release over a clear path, or cancel with Escape. People & rooms provides a Pick up button for the selected patient; Team & policy provides one per clinician. A held person dangles with bounded original joint motion. The location selector and arrow keys/Enter provide a non-spatial drop alternative. The simulation pauses during the hold; existing visits and priority survive. An assigned clinician walks back to their workstation before capacity returns.
+
+Entrance doors and Exit doors place the respective portal on a clear outside edge for $150. New arrivals walk out through the sliding entrance and discharged neighbors leave through the exit. The source retains editable doors.blend and the reproducible doors.py script. These mechanics are implemented, but their fun, usability and accessibility have not been established by external testing.

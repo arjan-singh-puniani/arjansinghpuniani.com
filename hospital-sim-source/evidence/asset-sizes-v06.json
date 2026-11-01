@@ -1,0 +1,9 @@
+{
+  "model": "0.6.0-hospitalsim",
+  "initialGlbCount": 19,
+  "initialGlbBytes": 12214156,
+  "initialGlbGzipBytes": 3672782,
+  "note": "gzip values measured locally; server transfer encoding and cache behavior may differ. Runtime JS/CSS/vendor are listed separately.",
+  "runtimeRawBytes": 2501167,
+  "assetCount": 34
+}

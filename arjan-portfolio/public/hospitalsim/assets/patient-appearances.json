@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "defaultId": "patient-01",
+  "visualOnly": true,
+  "license": "CC0-1.0",
+  "provenance": "Original procedural geometry; substantial OpenAI Codex assistance",
+  "placementOffset": [
+    0,
+    0,
+    0
+  ],
+  "appearances": [
+    {
+      "id": "patient-01",
+      "high": "patient-01.glb",
+      "lod": "patient-01-lod.glb",
+      "heightMetres": 1.737,
+      "label": "Adult appearance 01",
+      "visualOnly": true,
+      "placementOffset": [
+        0,
+        0,
+        0
+      ],
+      "hair": "crop",
+      "bodyBreadth": 1.0
+    },
+    {
+      "id": "patient-02",
+      "high": "patient-02.glb",
+      "lod": "patient-02-lod.glb",
+      "heightMetres": 1.647,
+      "label": "Adult appearance 02",
+      "visualOnly": true,
+      "placementOffset": [
+        0,
+        0,
+        0
+      ],
+      "hair": "bob",
+      "bodyBreadth": 0.94
+    },
+    {
+      "id": "patient-03",
+      "high": "patient-03.glb",
+      "lod": "patient-03-lod.glb",
+      "heightMetres": 1.817,
+      "label": "Adult appearance 03",
+      "visualOnly": true,
+      "placementOffset": [
+        0,
+        0,
+        0
+      ],
+      "hair": "recede",
+      "bodyBreadth": 1.1
+    },
+    {
+      "id": "patient-04",
+      "high": "patient-04.glb",
+      "lod": "patient-04-lod.glb",
+      "heightMetres": 1.713,
+      "label": "Adult appearance 04",
+      "visualOnly": true,
+      "placementOffset": [
+        0,
+        0,
+        0
+      ],
+      "hair": "bun",
+      "bodyBreadth": 1.12
+    },
+    {
+      "id": "patient-05",
+      "high": "patient-05.glb",
+      "lod": "patient-05-lod.glb",
+      "heightMetres": 1.777,
+      "label": "Adult appearance 05",
+      "visualOnly": true,
+      "placementOffset": [
+        0,
+        0,
+        0
+      ],
+      "hair": "buzz",
+      "bodyBreadth": 0.94
+    },
+    {
+      "id": "patient-06",
+      "high": "patient-06.glb",
+      "lod": "patient-06-lod.glb",
+      "heightMetres": 1.667,
+      "label": "Adult appearance 06",
+      "visualOnly": true,
+      "placementOffset": [
+        0,
+        0,
+        0
+      ],
+      "hair": "wavy",
+      "bodyBreadth": 1.03
+    },
+    {
+      "id": "patient-07",
+      "high": "patient-07.glb",
+      "lod": "patient-07-lod.glb",
+      "heightMetres": 1.797,
+      "label": "Adult appearance 07",
+      "visualOnly": true,
+      "placementOffset": [
+        0,
+        0,
+        0
+      ],
+      "hair": "sidepart",
+      "bodyBreadth": 1.05
+    },
+    {
+      "id": "patient-08",
+      "high": "patient-08.glb",
+      "lod": "patient-08-lod.glb",
+      "heightMetres": 1.717,
+      "label": "Adult appearance 08",
+      "visualOnly": true,
+      "placementOffset": [
+        0,
+        0,
+        0
+      ],
+      "hair": "curly",
+      "bodyBreadth": 0.91
+    },
+    {
+      "id": "patient-09",
+      "high": "patient-09.glb",
+      "lod": "patient-09-lod.glb",
+      "heightMetres": 1.748,
+      "label": "Adult appearance 09",
+      "visualOnly": true,
+      "placementOffset": [
+        0,
+        0,
+        0
+      ],
+      "hair": "bald",
+      "bodyBreadth": 1.14
+    },
+    {
+      "id": "patient-10",
+      "high": "patient-10.glb",
+      "lod": "patient-10-lod.glb",
+      "heightMetres": 1.637,
+      "label": "Adult appearance 10",
+      "visualOnly": true,
+      "placementOffset": [
+        0,
+        0,
+        0
+      ],
+      "hair": "pixie",
+      "bodyBreadth": 0.98
+    },
+    {
+      "id": "patient-11",
+      "high": "patient-11.glb",
+      "lod": "patient-11-lod.glb",
+      "heightMetres": 1.837,
+      "label": "Adult appearance 11",
+      "visualOnly": true,
+      "placementOffset": [
+        0,
+        0,
+        0
+      ],
+      "hair": "closecurls",
+      "bodyBreadth": 1.01
+    }
+  ]
+}

@@ -1,3 +1,20 @@
+## 0.6.0 · 2026-10-31
+
+- Added player-positioned boundary entrances/exits and actual two-second door-crossing states. Executed Blender for original sliding portals and compressed editable sources.
+- Added direct mouse/touch pickup, procedural dangling, route-safe drop/cancel and inspector/keyboard alternatives. Kept visits and priority; staffed capacity resumes only after the clinician returns.
+- Paused time during pickup; restored original poses on cancel; added bounded-pose regression coverage. Protected occupied equipment and doorway traffic.
+- Recorded door/relocation actions in local reports and paired layout comparisons. Migrated unfinished exits to explicit boundary doors.
+- Adjusted the stated default mastery plan to consultation plus care level 3 for the added journey time. Added initialization failure feedback.
+
+## 0.5.0 · 2026-10-30
+
+- Executed Blender to author eleven original adult appearances with hospital gowns and staged sit/turn/stand bed transfers; retained 39 joints and nine clips.
+- Removed the raised drape baked into the procedure table. Retract the separate cloth during a reserved one-second phase before any bed-exit motion.
+- Load eleven LOD appearances with bounded parallelism; lazy-load close detail. Visual variety leaves simulation randomness and abilities unchanged.
+- Derive next-action guidance from real module use, patient state and queue counts; add factual completion feedback.
+- Preserve v0.4/v0.4.1 checkpoints, transfer timing conservation and occupancy through uncovering. Added regression checks for cloth visibility, checkpoints, guidance and all appearance GLBs.
+- Corrected production folder-entry redirects while preserving REPLISOME and unrelated portfolio content.
+
 ## 0.4.1 ·2026-10-30
 
 - Corrected authored arm/leg phase and crouched support stance; executed Blender export and GLB roundtrip QA.

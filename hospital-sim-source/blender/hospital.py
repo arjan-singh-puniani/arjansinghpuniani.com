@@ -171,25 +171,7 @@ def care():
     for x in [-.41,.41]:
       rod('Side accessory rail',(x,-.75,.75),(x,.68,.75),.017)
       box('Rail support',(x,.0,.70),(.07,.12,.12),'metal',.01)
-    # Drape is a continuous folded mesh with a human-sized raised silhouette.
-    vs=[];fs=[];nx=24;ny=36
-    for j in range(ny+1):
-      y=-.92+j*1.49/ny
-      for i in range(nx+1):
-        x=-.50+i/ nx
-        center=.91+.16*math.exp(-(x/.23)**2)*(.85+.15*math.sin(y*3))
-        edge=max(0,abs(x)-.30)*1.1
-        z=center-edge+.012*math.sin(x*39+y*17)+.008*math.cos(y*31)
-        vs.append((x,y,z))
-    for j in range(ny):
-      for i in range(nx):a=j*(nx+1)+i;fs.append((a,a+1,a+nx+2,a+nx+1))
-    mesh=bpy.data.meshes.new('Drape folds');mesh.from_pydata(vs,[],fs);mesh.update();o=bpy.data.objects.new('Patient drape',mesh);bpy.context.collection.objects.link(o);finish(o,'Patient drape','teal')
-    uv_layer=mesh.uv_layers.new(name='Drape weave UV')
-    for poly in mesh.polygons:
-      for loop in poly.loop_indices:
-        v=mesh.vertices[mesh.loops[loop].vertex_index].co;uv_layer.data[loop].uv=(v.x+.5,(v.y+.92)/1.49)
-    for p in o.data.polygons:p.use_smooth=True
-    sol=o.modifiers.new('Fabric thickness','SOLIDIFY');sol.thickness=.006
+    # Occupied cloth is a separate runtime asset, cleared before the patient moves.
     trolley(.99,-.98)
     # Articulated diagnostic monitor stand.
     wheels(-1.22,.29,.45,.43);box('Monitor stand foot',(-1.22,.29,.14),(.58,.53,.08),'housing')
