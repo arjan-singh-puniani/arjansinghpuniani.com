@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import {initial,tick,validate,report,assignStaff,policy,acknowledge,decorate,undo,build,upgrade,mastery,SCENARIOS,floorPerson,fingerprint} from '../dist/simulation.mjs';
 import {compare} from '../dist/experiments.mjs';
 const copy=x=>structuredClone(x),run=s=>{while(!s.ended)tick(s);return s};
-let s=initial();assert(assignStaff(s,5,1).ok===false,'full team rejects another clinician');assert(assignStaff(s,1,null).ok);assert(assignStaff(s,2,1).ok===false,'incompatible skill');assert(assignStaff(s,5,1).ok);assert.equal(s.rooms[0].staff[0],5);assert.equal(s.staff.length,6);
+let s=initial();assert(assignStaff(s,5,1).ok===false,'full team rejects another clinician');assert(assignStaff(s,1,null).ok);assert(assignStaff(s,2,1).ok===false,'incompatible skill');assert(assignStaff(s,5,1).ok);assert.equal(s.rooms[0].staff[0],5);assert.equal(s.staff.length,7);
 s=initial();assert(decorate(s,1,'plant'));assert.equal(undo(s).cash,8000);assert(!decorate(s,1,'plant'));assert(!decorate(s,1,'__proto__'));
 s=initial();policy(s,'autoHandoff');for(let i=0;i<100;i++)tick(s);const hand=s.patients.find(p=>p.state==='handoff');assert(hand);const count=hand.handoff;tick(s);assert(hand.handoff>count);assert(acknowledge(s,hand.id));tick(s);assert.equal(hand.state,'waiting');
 s=initial();const states=new Set();for(let i=0;i<160;i++){tick(s);for(const p of s.patients)states.add(p.state)}for(const state of ['transfer-in','service','transfer-out','handoff','exiting'])assert(states.has(state));assert(s.records.some(p=>p.transfer>=6));

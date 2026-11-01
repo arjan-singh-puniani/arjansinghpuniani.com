@@ -1,6 +1,6 @@
 {
   "pair": {
-    "model": "0.6.0-hospitalsim",
+    "model": "0.7.0-hospitalsim",
     "seed": 431,
     "checkpoint": 0,
     "changed": [
@@ -23,8 +23,8 @@
             "median": 114,
             "p90": 172
           },
-          "budget": 9660,
-          "energy": 90.08333333333333,
+          "budget": 9532,
+          "energy": 91.5,
           "experience": 51.500000000000014,
           "access": [
             {
@@ -60,8 +60,8 @@
             "median": 113,
             "p90": 172
           },
-          "budget": 8666,
-          "energy": 89.75333333333332,
+          "budget": 8538,
+          "energy": 91.21714285714285,
           "experience": 61.90000000000002,
           "access": [
             {
@@ -101,8 +101,8 @@
             "median": 127,
             "p90": 172
           },
-          "budget": 10440,
-          "energy": 88.5783333333333,
+          "budget": 10312,
+          "energy": 90.20999999999998,
           "experience": 72.60000000000002,
           "access": [
             {
@@ -138,8 +138,8 @@
             "median": 106,
             "p90": 171
           },
-          "budget": 9056,
-          "energy": 88.50499999999997,
+          "budget": 8928,
+          "energy": 90.14714285714282,
           "experience": 72.40000000000002,
           "access": [
             {
@@ -179,8 +179,8 @@
             "median": 133,
             "p90": 172
           },
-          "budget": 10050,
-          "energy": 89.33666666666664,
+          "budget": 9922,
+          "energy": 90.85999999999997,
           "experience": 56.70000000000002,
           "access": [
             {
@@ -216,8 +216,8 @@
             "median": 108,
             "p90": 172
           },
-          "budget": 8666,
-          "energy": 89.28833333333331,
+          "budget": 8538,
+          "energy": 90.8185714285714,
           "experience": 63.20000000000002,
           "access": [
             {
@@ -253,12 +253,12 @@
           "unfinished": 9,
           "wait": {
             "n": 27,
-            "mean": 112.25925925925925,
+            "mean": 112.33333333333333,
             "median": 108,
             "p90": 172
           },
-          "budget": 10050,
-          "energy": 89.58499999999998,
+          "budget": 9922,
+          "energy": 91.07857142857141,
           "experience": 56.70000000000002,
           "access": [
             {
@@ -276,9 +276,9 @@
               "arrivals": 20,
               "completed": {
                 "n": 8,
-                "mean": 77.5,
+                "mean": 77.625,
                 "median": 75,
-                "p90": 169
+                "p90": 170
               }
             }
           ]
@@ -294,8 +294,8 @@
             "median": 85,
             "p90": 172
           },
-          "budget": 8666,
-          "energy": 88.30833333333332,
+          "budget": 8538,
+          "energy": 89.97857142857141,
           "experience": 68.60000000000002,
           "access": [
             {
@@ -335,8 +335,8 @@
             "median": 140,
             "p90": 172
           },
-          "budget": 9660,
-          "energy": 93.3833333333333,
+          "budget": 9532,
+          "energy": 94.3285714285714,
           "experience": 48.80000000000001,
           "access": [
             {
@@ -372,8 +372,8 @@
             "median": 98,
             "p90": 172
           },
-          "budget": 8666,
-          "energy": 89.24999999999997,
+          "budget": 8538,
+          "energy": 90.78571428571426,
           "experience": 65.90000000000002,
           "access": [
             {
@@ -935,16 +935,16 @@
         "departed": 8,
         "unfinished": 9
       },
-      "maxStall": 5
+      "maxStall": 6
     },
     {
       "scenario": "access",
       "seed": 432,
       "baseline": {
         "arrivals": 29,
-        "completed": 10,
+        "completed": 11,
         "departed": 9,
-        "unfinished": 10
+        "unfinished": 9
       },
       "plan": {
         "arrivals": 29,
@@ -969,7 +969,7 @@
         "departed": 5,
         "unfinished": 11
       },
-      "maxStall": 5
+      "maxStall": 6
     },
     {
       "scenario": "access",
@@ -1062,8 +1062,8 @@
       "baseline": {
         "arrivals": 29,
         "completed": 11,
-        "departed": 10,
-        "unfinished": 8
+        "departed": 9,
+        "unfinished": 9
       },
       "plan": {
         "arrivals": 29,

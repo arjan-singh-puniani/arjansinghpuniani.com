@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "license": "CC0-1.0",
+  "provenance": "Original procedural wardrobes; substantial OpenAI Codex assistance",
+  "boneCount": 39,
+  "embeddedClips": 0,
+  "sharedClipNames": [
+    "Idle",
+    "Walk",
+    "Sit",
+    "Work",
+    "Discuss",
+    "Attend",
+    "Rest",
+    "TransferIn",
+    "TransferOut"
+  ],
+  "wardrobeNote": "Original game role conventions; real clinical uniforms vary.",
+  "roles": [
+    {
+      "key": "doctor",
+      "label": "Doctor",
+      "base": "coat",
+      "high": "staff-doctor.glb",
+      "lod": "staff-doctor-lod.glb"
+    },
+    {
+      "key": "surgeon",
+      "label": "Surgeon",
+      "base": "clinician",
+      "high": "staff-surgeon.glb",
+      "lod": "staff-surgeon-lod.glb"
+    },
+    {
+      "key": "nurse",
+      "label": "Nurse",
+      "base": "clinician",
+      "high": "staff-nurse.glb",
+      "lod": "staff-nurse-lod.glb"
+    },
+    {
+      "key": "np",
+      "label": "Nurse practitioner",
+      "base": "coat",
+      "high": "staff-np.glb",
+      "lod": "staff-np-lod.glb"
+    },
+    {
+      "key": "pa",
+      "label": "Physician assistant",
+      "base": "coat",
+      "high": "staff-pa.glb",
+      "lod": "staff-pa-lod.glb"
+    },
+    {
+      "key": "imaging",
+      "label": "Imaging technologist",
+      "base": "clinician",
+      "high": "staff-imaging.glb",
+      "lod": "staff-imaging-lod.glb"
+    },
+    {
+      "key": "reception",
+      "label": "Reception",
+      "base": "clinician",
+      "high": "staff-reception.glb",
+      "lod": "staff-reception-lod.glb"
+    }
+  ]
+}

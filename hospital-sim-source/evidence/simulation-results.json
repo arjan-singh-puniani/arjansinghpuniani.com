@@ -1,7 +1,7 @@
 {
   "baseline": {
     "game": "hospitalSIM",
-    "model": "0.6.1-hospitalsim",
+    "model": "0.7.0-hospitalsim",
     "scenario": "neighborhood",
     "mode": "sandbox",
     "mastery": false,
@@ -11,7 +11,7 @@
     "simulationSeconds": 480,
     "definitions": {
       "unit": "fictional game seconds",
-      "waiting": "ticks in waiting state, including modeled access delay; excludes walking, handoff, equipment transfer and service",
+      "waiting": "ticks waiting for service/access or an assigned team member to return; excludes walking, handoff, equipment transfer and active service",
       "handoff": "ticks communicating the next service",
       "transfer": "ticks clearing the care drape and getting on/off equipment",
       "walking": "route, visible hospital entry/exit and room doorway ticks; yielding is counted in waiting",
@@ -68,8 +68,8 @@
         }
       }
     ],
-    "budget": 9660,
-    "teamEnergy": 90.08333333333333,
+    "budget": 9532,
+    "teamEnergy": 91.5,
     "experience": 51.500000000000014,
     "layout": [
       {
@@ -119,7 +119,7 @@
       {
         "id": 1,
         "name": "Mira",
-        "role": "clinician",
+        "role": "doctor",
         "skills": [
           "consult",
           "care"
@@ -132,7 +132,7 @@
       {
         "id": 2,
         "name": "Jules",
-        "role": "clinician",
+        "role": "imaging",
         "skills": [
           "scan"
         ],
@@ -144,7 +144,7 @@
       {
         "id": 3,
         "name": "Remy",
-        "role": "clinician",
+        "role": "surgeon",
         "skills": [
           "consult",
           "care"
@@ -157,7 +157,7 @@
       {
         "id": 4,
         "name": "Ash",
-        "role": "clinician",
+        "role": "nurse",
         "skills": [
           "consult",
           "care"
@@ -170,7 +170,7 @@
       {
         "id": 5,
         "name": "Sage",
-        "role": "clinician",
+        "role": "np",
         "skills": [
           "consult",
           "care",
@@ -188,7 +188,7 @@
       {
         "id": 6,
         "name": "Kit",
-        "role": "clinician",
+        "role": "pa",
         "skills": [
           "scan",
           "consult",
@@ -201,6 +201,20 @@
         "position": {
           "x": 5,
           "y": 5.75
+        }
+      },
+      {
+        "id": 7,
+        "name": "Quinn",
+        "role": "reception",
+        "skills": [],
+        "trait": "steady",
+        "shiftEnd": 480,
+        "fatigue": 0,
+        "breakUntil": 0,
+        "position": {
+          "x": 4.75,
+          "y": 6.25
         }
       }
     ],
@@ -255,6 +269,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -315,6 +330,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -375,6 +391,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -435,6 +452,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -476,6 +494,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -515,13 +534,14 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
         },
         "previous": {
-          "x": 7,
-          "y": 6.75
+          "x": 6.75,
+          "y": 6.5
         },
         "outcome": "departed",
         "total": 184
@@ -573,6 +593,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -614,6 +635,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -666,6 +688,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -720,6 +743,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -761,6 +785,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -813,6 +838,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -867,6 +893,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -921,6 +948,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -975,6 +1003,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -1016,6 +1045,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -1074,6 +1104,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -1115,6 +1146,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -1177,6 +1209,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 1,
           "y": 5
@@ -1231,6 +1264,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 0,
           "y": 2
@@ -1279,6 +1313,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 4,
           "y": 4
@@ -1327,6 +1362,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 6,
           "y": 4
@@ -1406,6 +1442,7 @@
             "y": 5
           }
         ],
+        "teamWaiting": false,
         "destination": {
           "x": 5,
           "y": 4
@@ -1445,6 +1482,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 5,
           "y": 6
@@ -1484,6 +1522,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 4,
           "y": 5
@@ -1523,6 +1562,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 2,
           "y": 7
@@ -1562,6 +1602,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 5,
           "y": 7
@@ -1590,7 +1631,7 @@
   },
   "extraConsult": {
     "game": "hospitalSIM",
-    "model": "0.6.1-hospitalsim",
+    "model": "0.7.0-hospitalsim",
     "scenario": "neighborhood",
     "mode": "sandbox",
     "mastery": false,
@@ -1600,7 +1641,7 @@
     "simulationSeconds": 480,
     "definitions": {
       "unit": "fictional game seconds",
-      "waiting": "ticks in waiting state, including modeled access delay; excludes walking, handoff, equipment transfer and service",
+      "waiting": "ticks waiting for service/access or an assigned team member to return; excludes walking, handoff, equipment transfer and active service",
       "handoff": "ticks communicating the next service",
       "transfer": "ticks clearing the care drape and getting on/off equipment",
       "walking": "route, visible hospital entry/exit and room doorway ticks; yielding is counted in waiting",
@@ -1657,8 +1698,8 @@
         }
       }
     ],
-    "budget": 8926,
-    "teamEnergy": 87.95166666666665,
+    "budget": 8798,
+    "teamEnergy": 89.67285714285713,
     "experience": 63.40000000000002,
     "layout": [
       {
@@ -1719,7 +1760,7 @@
       {
         "id": 1,
         "name": "Mira",
-        "role": "clinician",
+        "role": "doctor",
         "skills": [
           "consult",
           "care"
@@ -1732,7 +1773,7 @@
       {
         "id": 2,
         "name": "Jules",
-        "role": "clinician",
+        "role": "imaging",
         "skills": [
           "scan"
         ],
@@ -1744,7 +1785,7 @@
       {
         "id": 3,
         "name": "Remy",
-        "role": "clinician",
+        "role": "surgeon",
         "skills": [
           "consult",
           "care"
@@ -1757,7 +1798,7 @@
       {
         "id": 4,
         "name": "Ash",
-        "role": "clinician",
+        "role": "nurse",
         "skills": [
           "consult",
           "care"
@@ -1770,7 +1811,7 @@
       {
         "id": 5,
         "name": "Sage",
-        "role": "clinician",
+        "role": "np",
         "skills": [
           "consult",
           "care",
@@ -1784,7 +1825,7 @@
       {
         "id": 6,
         "name": "Kit",
-        "role": "clinician",
+        "role": "pa",
         "skills": [
           "scan",
           "consult",
@@ -1797,6 +1838,20 @@
         "position": {
           "x": 5,
           "y": 5.75
+        }
+      },
+      {
+        "id": 7,
+        "name": "Quinn",
+        "role": "reception",
+        "skills": [],
+        "trait": "steady",
+        "shiftEnd": 480,
+        "fatigue": 0,
+        "breakUntil": 0,
+        "position": {
+          "x": 4.75,
+          "y": 6.25
         }
       }
     ],
@@ -1867,6 +1922,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -1927,6 +1983,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -1987,6 +2044,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -2041,6 +2099,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -2101,6 +2160,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -2149,6 +2209,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -2209,6 +2270,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -2257,6 +2319,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -2317,6 +2380,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -2377,6 +2441,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -2425,6 +2490,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -2479,6 +2545,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -2527,6 +2594,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -2575,6 +2643,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -2635,6 +2704,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -2683,6 +2753,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -2737,6 +2808,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 7
@@ -2801,6 +2873,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 1,
           "y": 5
@@ -2849,6 +2922,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 5,
           "y": 5
@@ -2903,6 +2977,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 2,
           "y": 2
@@ -2951,6 +3026,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 4,
           "y": 4
@@ -2999,6 +3075,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 6,
           "y": 5
@@ -3053,6 +3130,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 1,
           "y": 2
@@ -3101,6 +3179,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 6,
           "y": 4
@@ -3149,6 +3228,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 4,
           "y": 5
@@ -3197,6 +3277,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 7,
           "y": 6
@@ -3245,6 +3326,7 @@
         "stalled": 0,
         "moved": false,
         "motion": null,
+        "teamWaiting": false,
         "destination": {
           "x": 4,
           "y": 3

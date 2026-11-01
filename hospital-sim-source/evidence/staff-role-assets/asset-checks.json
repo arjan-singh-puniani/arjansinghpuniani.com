@@ -1,0 +1,193 @@
+{
+  "blender_version": "4.0.2",
+  "license": "CC0-1.0",
+  "provenance": "Original procedural wardrobes; substantial OpenAI Codex assistance",
+  "roles": {
+    "doctor": {
+      "base": "coat",
+      "code": "MD",
+      "assets": [
+        {
+          "file": "staff-doctor.glb",
+          "triangles": 14034,
+          "bytes": 649836,
+          "primitives": 1,
+          "clips": 0,
+          "sha256": "6eb125f08c8f810cb8a88c9108a88af19e3532557a98aba73ac385be21e8b57b"
+        },
+        {
+          "file": "staff-doctor-lod.glb",
+          "triangles": 4488,
+          "bytes": 229028,
+          "primitives": 1,
+          "clips": 0,
+          "sha256": "85255ae53627fc0537e66746609bb6a2467ab9e29fe7db8deec8c1d7ce735bec"
+        }
+      ]
+    },
+    "surgeon": {
+      "base": "clinician",
+      "code": "SUR",
+      "assets": [
+        {
+          "file": "staff-surgeon.glb",
+          "triangles": 13308,
+          "bytes": 617132,
+          "primitives": 1,
+          "clips": 0,
+          "sha256": "773332664302344baca077a39d995b5d585afa209f1c9a5af261819bedefc193"
+        },
+        {
+          "file": "staff-surgeon-lod.glb",
+          "triangles": 4256,
+          "bytes": 220168,
+          "primitives": 1,
+          "clips": 0,
+          "sha256": "c8dd1cb83712c27b3b3c24d978364fa1e0cc390fe35a0b61565d9084bef62bf8"
+        }
+      ]
+    },
+    "nurse": {
+      "base": "clinician",
+      "code": "RN",
+      "assets": [
+        {
+          "file": "staff-nurse.glb",
+          "triangles": 12582,
+          "bytes": 583052,
+          "primitives": 1,
+          "clips": 0,
+          "sha256": "16b4a0c8182b16370cb28904bb49e35a29359c5a56271837b56afc6a057604c2"
+        },
+        {
+          "file": "staff-nurse-lod.glb",
+          "triangles": 4024,
+          "bytes": 206796,
+          "primitives": 1,
+          "clips": 0,
+          "sha256": "8887d3c1fe7b78c20bf80fbc0c389cabe0e0c0a06fb910beca34a69e85268daf"
+        }
+      ]
+    },
+    "np": {
+      "base": "coat",
+      "code": "NP",
+      "assets": [
+        {
+          "file": "staff-np.glb",
+          "triangles": 13744,
+          "bytes": 634064,
+          "primitives": 1,
+          "clips": 0,
+          "sha256": "dbb454ee68d81c8ba752e47e3f1f6359f884dded54cbd93d65daf1062e55b003"
+        },
+        {
+          "file": "staff-np-lod.glb",
+          "triangles": 4394,
+          "bytes": 222868,
+          "primitives": 1,
+          "clips": 0,
+          "sha256": "312c24ba8f0b8b711f67f7fbe7276e0eb6e463acf458f6678edc4d2f82f484a8"
+        }
+      ]
+    },
+    "pa": {
+      "base": "coat",
+      "code": "PA",
+      "assets": [
+        {
+          "file": "staff-pa.glb",
+          "triangles": 13744,
+          "bytes": 634064,
+          "primitives": 1,
+          "clips": 0,
+          "sha256": "4b8d189378e38dab560711f2e2207794a42a1b68d2f44265ec4178b7588b5d41"
+        },
+        {
+          "file": "staff-pa-lod.glb",
+          "triangles": 4394,
+          "bytes": 223072,
+          "primitives": 1,
+          "clips": 0,
+          "sha256": "af0c0e213ea7d2f3f94ee100af0249147e1ba44b6472556a528516fafc184932"
+        }
+      ]
+    },
+    "imaging": {
+      "base": "clinician",
+      "code": "XR",
+      "assets": [
+        {
+          "file": "staff-imaging.glb",
+          "triangles": 12820,
+          "bytes": 595916,
+          "primitives": 1,
+          "clips": 0,
+          "sha256": "8373caaca6cc450a3731ccdf3b125ef6649cf8f29b8f3ceeef616ab95122810e"
+        },
+        {
+          "file": "staff-imaging-lod.glb",
+          "triangles": 4100,
+          "bytes": 212092,
+          "primitives": 1,
+          "clips": 0,
+          "sha256": "854ce24bdf54d15400cbbeb8492b503ee546b1256d2dc87dd44e93e6ba7483ec"
+        }
+      ]
+    },
+    "reception": {
+      "base": "clinician",
+      "code": "DESK",
+      "assets": [
+        {
+          "file": "staff-reception.glb",
+          "triangles": 12870,
+          "bytes": 603844,
+          "primitives": 1,
+          "clips": 0,
+          "sha256": "27a09f3edb2d59a79e09923da2ed2cdd86fbf3da3c025f2610944435fdac865c"
+        },
+        {
+          "file": "staff-reception-lod.glb",
+          "triangles": 4114,
+          "bytes": 218172,
+          "primitives": 1,
+          "clips": 0,
+          "sha256": "e010bc0859d880091727227299e99f7b7439a601260e10a02911232d1ffdf766"
+        }
+      ]
+    }
+  },
+  "original_sources_and_assets_unchanged": {
+    "blender/characters.py": "c8680dbecd8b2f989a778f09230fa329de69192922fe07c2360ed5bbc792cdd5",
+    "blender/characters.blend": "50390bba791756baad80ff041250f2e356f0dbd7172ce0378347439b93fd1628",
+    "dist/assets/patient-02-lod.glb": "41f23cb734940c11d503b7e8298a09018d55b85eb4f9234917de3979a45d762d",
+    "dist/assets/patient-03-lod.glb": "7223e506d96276a3a78dd4488a840ac6d82f8ee899eaa7a0208f914d993865c7",
+    "dist/assets/patient-01-lod.glb": "fe5cd80d4f331ffebc03f0407b937a7223641d88dc711121d612e71c85ad3a89",
+    "dist/assets/patient-11-lod.glb": "87ea071ec618019bd8b1e29020d736197173a1adb6ca4590d5bd090685c15cbc",
+    "dist/assets/patient-03.glb": "c75f587e0b5b107f587d95aa822eb0cafc0e0d70c47e9abcabbd0311ea7c9547",
+    "dist/assets/patient.glb": "95bbefaa4d26dc880d99172da34dd1814c4500ac29776cd509005ac2dec7540c",
+    "dist/assets/patient-02.glb": "23ba4e66d4e31e9d810864f627351537d759ff744751b001d738493755d5bddf",
+    "dist/assets/patient-08-lod.glb": "d4f6863e139042a5f4577d078ef93ce14e8d5d06eb3d51b7ef839cc7cf42af81",
+    "dist/assets/patient-01.glb": "95bbefaa4d26dc880d99172da34dd1814c4500ac29776cd509005ac2dec7540c",
+    "dist/assets/patient-09-lod.glb": "9359947374932c4673827710fb3aaa4e76c00ed70e8d6b231c8e62903385342d",
+    "dist/assets/patient-05.glb": "c2d732cc40dd878f46363abf8049e505b5596e1ae6cdfaad99f28a1998be8dc3",
+    "dist/assets/patient-11.glb": "1dd60888cba8a385cc32b15c9467cdb3aa07e576c5e8121df0e12857e9c020e4",
+    "dist/assets/patient-10.glb": "70ad9f88ecc136a90fe4894c8430e6b84ae5c32b8036a3b74d31123c4493015e",
+    "dist/assets/patient-04.glb": "4a568bc6c85c0447969edcbd9a111d8d972283518dd927b96705bf7954fd236a",
+    "dist/assets/patient-10-lod.glb": "d19064e1895e1567d0864cad8bdcfef8f96df92d652c6780f5226caf491939e2",
+    "dist/assets/patient-06.glb": "bc803380af059bf5fc250a17c040bbf95f47744dbfcab89570812d5c7974adbd",
+    "dist/assets/patient-07.glb": "0a1524f451ad7aa7ad22eca9cde68bb5f3d789ea459a1cc3fd9a36e36ee825c0",
+    "dist/assets/patient-05-lod.glb": "b63bcc086389fccb05604c6efb1d06aef56f601952c3e0089a2c3f6aa4ab8c09",
+    "dist/assets/patient-09.glb": "5e8891eb0af01cc668de38b5e7baab8110d826cf0ee2492be070f33ebe37059a",
+    "dist/assets/patient-08.glb": "b9d399ff2d74c86859a56a88a5c5865e891d34fccfdd762eefbb321d19594ac4",
+    "dist/assets/patient-04-lod.glb": "3f8180e32d93270b3a9de76aa78d5a8aff1c25ce96c28ff29f7bfd0a3432906f",
+    "dist/assets/patient-lod.glb": "fe5cd80d4f331ffebc03f0407b937a7223641d88dc711121d612e71c85ad3a89",
+    "dist/assets/patient-06-lod.glb": "e2d24cfd271e64b2fa764ab0091552fde3a46e4e23e710aae7fdc525cfe3f09b",
+    "dist/assets/patient-07-lod.glb": "159e01aaccef2f42a43c6e97f0568c3007dc75c99bcc4068ec2a73ad034a661a",
+    "dist/assets/clinician.glb": "8052b17b9fee5dfeb6dbc43ad253ba32af69aa559ee8715c52e77a6dc8fd760c",
+    "dist/assets/clinician-lod.glb": "21490f1187fb57c7c9b123e85a5cd4c1741311c0c9323c0400b1f305e4aab15d",
+    "dist/assets/coat.glb": "95fb70e3900f538245596b0fc065eba701646478404182f1340499ce43aa7b46",
+    "dist/assets/coat-lod.glb": "6acf1a055dd3760cf2e226d43683394af4dee8b1dada57939ce68dced1a93e68"
+  }
+}

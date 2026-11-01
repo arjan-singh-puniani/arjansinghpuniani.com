@@ -1,3 +1,12 @@
+## 0.7.0 · 2026-11-01 · Touch pickup and readable staff roles
+
+- Replaced tiny-target long-press pickup with immediate tap-to-lift/tap-to-place and drag release. A short first tap keeps the person held. Invalid floor drops keep holding; visible fixed controls offer put-down and cancel.
+- Added a 44px minimum projected body hit area, seven named role labels, clothing/badges, label leader lines and a labels toggle. Front desk is actual modeled staff with no clinical capacity; removed the unpickable ambient discussion partner.
+- Executed Blender for seven original role wardrobes, two detail levels each. Reuse the existing nine clips on the unchanged 39-joint rigs; no duplicated animation download in these GLBs.
+- Assigned staff can be moved during work. Their reserved visit waits until the colleague returns, preserves queue priority and classifies each elapsed second once. No free service capacity while away.
+- Migrates prior saves without dropping visits; adds front desk once when below the staff cap. Their future wages enter the existing staff cost. Same-seed comparisons must identify this model-version change.
+- Added an explicit next-shift action for ended saves. Tested browser taps/body targets, safe drops, roles and narrow layout; actual iPhone Safari responsiveness and pickup require the owner's retest.
+
 ## 0.6.1 · 2026-10-31 · iPhone feedback
 
 - Anchored pickup at the collar under the pointer/fingertip; held characters are65%opaque and pivot around the grip. Restore original materials on drop/cancel.

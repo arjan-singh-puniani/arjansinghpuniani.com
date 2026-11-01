@@ -31,6 +31,11 @@ export default function HospitalPlayer() {
   }, [playing, loaded]);
 
   function launch() {
+    // Keep touch pickup and placement controls inside the phone viewport.
+    if (window.matchMedia("(max-width: 700px)").matches) {
+      window.location.assign("/hospitalsim/index.html");
+      return;
+    }
     setLoaded(false);
     setSlow(false);
     setMessage("");

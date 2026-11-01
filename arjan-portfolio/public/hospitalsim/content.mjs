@@ -1,4 +1,4 @@
-export const VERSION='0.6.1-hospitalsim', STEP=1;
+export const VERSION='0.7.0-hospitalsim', STEP=1;
 export const GRID={w:9,h:8,entry:{x:4,y:7},exit:{x:7,y:7},step:1.65};
 export const TYPES={consult:{name:'Consultation',cost:900,duration:12,staff:1,skill:'consult',asset:'consult'},scan:{name:'Imaging',cost:1500,duration:17,staff:1,skill:'scan',asset:'scan'},care:{name:'Procedure & care',cost:1100,duration:15,staff:2,skill:'care',asset:'care'},rest:{name:'Team lounge',cost:600,duration:0,staff:0,asset:'rest'},plan:{name:'Specialist planning',cost:1400,duration:13,staff:1,skill:'plan',asset:'consult'}};
 export const TRAITS={steady:{name:'Steady hands',speed:1,fatigue:.12,line:'The trolley has a parking space. I drew it myself.'},brisk:{name:'Quick thinker',speed:1.12,fatigue:.19,line:'Efficient is good. Unhurried is better.'},listener:{name:'Careful listener',speed:.96,fatigue:.10,line:'One clear handoff saves two confused journeys.'}};
@@ -6,3 +6,14 @@ export const SCENARIOS={neighborhood:{name:'Neighborhood clinic',interval:18,bar
 export const DECOR={plant:{name:'Pocket garden',cost:90},art:{name:'Quiet geometry print',cost:65},palette:{name:'Lagoon upholstery',cost:75}};
 export const CAMPAIGN=Object.keys(SCENARIOS);
 export const GOALS=['Understand my next step','Get home before the cat judges me','Have time to ask a question','Find a quieter waiting spot'];
+
+export const STAFF_ROLES={
+ doctor:{label:'Doctor',short:'Doctor',badge:'MD',base:'coat',color:'#2f526e',work:'Consultation and care'},
+ surgeon:{label:'Surgeon',short:'Surgeon',badge:'SUR',base:'clinician',color:'#344c77',work:'Procedure team'},
+ nurse:{label:'Registered nurse',short:'Nurse',badge:'RN',base:'clinician',color:'#087d79',work:'Bedside care and consultation'},
+ np:{label:'Nurse practitioner',short:'NP',badge:'NP',base:'coat',color:'#8a4779',work:'Consultation, care and planning'},
+ pa:{label:'Physician assistant',short:'PA',badge:'PA',base:'coat',color:'#397ca1',work:'Imaging, consultation and planning'},
+ imaging:{label:'Imaging technologist',short:'Imaging',badge:'XR',base:'clinician',color:'#465f91',work:'Imaging'},
+ reception:{label:'Front desk',short:'Front desk',badge:'DESK',base:'clinician',color:'#9a593d',work:'Arrivals and directions; no clinical module capacity'}
+};
+export const initialRole=id=>['doctor','imaging','surgeon','nurse','np','pa'][id-1]||'reception';
