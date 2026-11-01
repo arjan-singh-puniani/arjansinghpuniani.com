@@ -1,0 +1,101 @@
+{
+  "model": "0.6.0-hospitalsim",
+  "seed": 431,
+  "tracked": 1001,
+  "events": [
+    "00:00 Waiting for a neighbor with the optional imaging pathway",
+    "00:19 Arriving · Consultation",
+    "00:20 Walking through the entrance · Consultation",
+    "00:22 Waiting · Consultation",
+    "00:23 Walking · Consultation",
+    "00:30 Entering service room · Consultation",
+    "00:33 Receiving service · Consultation",
+    "00:44 Leaving service room · Consultation",
+    "00:47 Communicating next step · Imaging",
+    "00:51 Waiting · Imaging",
+    "00:52 Walking · Imaging",
+    "01:02 Entering service room · Imaging",
+    "01:05 Getting onto equipment · Imaging",
+    "01:08 Receiving service · Imaging",
+    "01:26 Getting off equipment · Imaging",
+    "01:29 Leaving service room · Imaging",
+    "01:32 Communicating next step · Procedure & care",
+    "01:36 Waiting · Procedure & care",
+    "01:37 Walking · Procedure & care",
+    "01:43 Entering service room · Procedure & care",
+    "01:46 Getting onto equipment · Procedure & care",
+    "01:49 Receiving service · Procedure & care",
+    "02:04 Clinician clearing the drape · Procedure & care",
+    "02:05 Getting off equipment · Procedure & care",
+    "02:08 Leaving service room · Procedure & care",
+    "02:11 Heading home · exit",
+    "02:22 Walking through the exit · Procedure & care",
+    "02:24 Completed · discharged"
+  ],
+  "visit": {
+    "id": 1001,
+    "name": "Eli",
+    "x": 7,
+    "y": 7,
+    "stage": "care",
+    "target": null,
+    "room": null,
+    "urgent": false,
+    "barrier": false,
+    "imaging": true,
+    "returning": false,
+    "goal": "Have time to ask a question",
+    "wait": 5,
+    "walking": 55,
+    "service": 44,
+    "handoff": 8,
+    "transfer": 13,
+    "yielding": 1,
+    "elapsedOffset": 0,
+    "arrival": 19,
+    "progress": 2,
+    "navDelay": 0,
+    "history": [
+      {
+        "stage": "consult",
+        "at": 33,
+        "room": 10,
+        "duration": 10.714285714285714
+      },
+      {
+        "stage": "scan",
+        "at": 68,
+        "room": 2,
+        "duration": 17.043714285714287
+      },
+      {
+        "stage": "care",
+        "at": 109,
+        "room": 3,
+        "duration": 14.247473045822101
+      }
+    ],
+    "outside": false,
+    "stalled": 0,
+    "moved": false,
+    "motion": null,
+    "destination": {
+      "x": 7,
+      "y": 7
+    },
+    "previous": {
+      "x": 7,
+      "y": 6.75
+    },
+    "duration": 14.247473045822101,
+    "handoffReady": false,
+    "outcome": "completed",
+    "total": 125
+  },
+  "counts": {
+    "arrivals": 13,
+    "completed": 2,
+    "departed": 0,
+    "unfinished": 11
+  }
+}

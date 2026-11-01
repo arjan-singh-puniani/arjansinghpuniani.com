@@ -20,7 +20,7 @@ for name in ['blender','tests','tools','docs']:
  shutil.copytree(root/name,source_target/name,dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__','*.blend1'))
 for name in ['README.md','CHANGELOG.md','ASSET_MANIFEST.json','LICENSE','ASSET_LICENSE.md']:
  if (root/name).exists():shutil.copy2(root/name,source_target/name)
-for name in ['simulation-results.json','expansion-tests.json','performance-v04.json','release-v04.json','patient-loop-v04-events.json']:
+for name in ['simulation-results.json','expansion-tests.json','performance-v04.json','release-v04.json','patient-loop-v04-events.json','asset-sizes-v06.json','performance-v06.json','verification-v06.json','patient-loop-v06-events.json']:
  if (root/'evidence'/name).exists():
   (source_target/'evidence').mkdir(exist_ok=True);shutil.copy2(root/'evidence'/name,source_target/'evidence'/name)
 assert module_before==hashes(app/'public/replisome'), 'Existing module changed'

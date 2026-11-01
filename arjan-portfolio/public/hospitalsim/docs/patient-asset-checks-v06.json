@@ -1,0 +1,291 @@
+{
+  "appearance_count": 11,
+  "variants": {
+    "patient-01": {
+      "height_metres": 1.7369999885559082,
+      "endpoint_max_error": 4.721805453300476e-07,
+      "covered_top_above_mattress": 0.2435047721862793,
+      "covered_lowest_world_z": 0.7380119562149048,
+      "maximum_transfer_mattress_overlap_m": 0.008424451351165763,
+      "overlap_frame": 73,
+      "independent_torso_curl_radians": 0.5890876054763794,
+      "transfer_weight_bearing_foot_error_m": 1.4224866250876127e-07,
+      "assets": [
+        {
+          "file": "patient-01.glb",
+          "bytes": 1002308,
+          "triangles": 12684,
+          "sha256": "95bbefaa4d26dc880d99172da34dd1814c4500ac29776cd509005ac2dec7540c"
+        },
+        {
+          "file": "patient-01-lod.glb",
+          "bytes": 637160,
+          "triangles": 4311,
+          "sha256": "fe5cd80d4f331ffebc03f0407b937a7223641d88dc711121d612e71c85ad3a89"
+        }
+      ]
+    },
+    "patient-02": {
+      "height_metres": 1.6469999551773071,
+      "endpoint_max_error": 4.7497451305389404e-07,
+      "covered_top_above_mattress": 0.24350530862808228,
+      "covered_lowest_world_z": 0.7380119562149048,
+      "maximum_transfer_mattress_overlap_m": 0.008424451351165763,
+      "overlap_frame": 73,
+      "independent_torso_curl_radians": 0.5890876054763794,
+      "transfer_weight_bearing_foot_error_m": 1.4224866250876127e-07,
+      "assets": [
+        {
+          "file": "patient-02.glb",
+          "bytes": 1002312,
+          "triangles": 12684,
+          "sha256": "23ba4e66d4e31e9d810864f627351537d759ff744751b001d738493755d5bddf"
+        },
+        {
+          "file": "patient-02-lod.glb",
+          "bytes": 637504,
+          "triangles": 4312,
+          "sha256": "41f23cb734940c11d503b7e8298a09018d55b85eb4f9234917de3979a45d762d"
+        }
+      ]
+    },
+    "patient-03": {
+      "height_metres": 1.8170000314712524,
+      "endpoint_max_error": 6.882473826408386e-07,
+      "covered_top_above_mattress": 0.24350387811660767,
+      "covered_lowest_world_z": 0.7380120158195496,
+      "maximum_transfer_mattress_overlap_m": 0.008424570560455313,
+      "overlap_frame": 73,
+      "independent_torso_curl_radians": 0.5890876054763794,
+      "transfer_weight_bearing_foot_error_m": 1.1840622928226603e-07,
+      "assets": [
+        {
+          "file": "patient-03.glb",
+          "bytes": 1002324,
+          "triangles": 12684,
+          "sha256": "c75f587e0b5b107f587d95aa822eb0cafc0e0d70c47e9abcabbd0311ea7c9547"
+        },
+        {
+          "file": "patient-03-lod.glb",
+          "bytes": 637172,
+          "triangles": 4311,
+          "sha256": "7223e506d96276a3a78dd4488a840ac6d82f8ee899eaa7a0208f914d993865c7"
+        }
+      ]
+    },
+    "patient-04": {
+      "height_metres": 1.7130000591278076,
+      "endpoint_max_error": 6.845220923423767e-07,
+      "covered_top_above_mattress": 0.24350369930267335,
+      "covered_lowest_world_z": 0.7352500557899475,
+      "maximum_transfer_mattress_overlap_m": 0.008424570560455313,
+      "overlap_frame": 73,
+      "independent_torso_curl_radians": 0.5890876054763794,
+      "transfer_weight_bearing_foot_error_m": 1.1840622928226603e-07,
+      "assets": [
+        {
+          "file": "patient-04.glb",
+          "bytes": 1016720,
+          "triangles": 12972,
+          "sha256": "4a568bc6c85c0447969edcbd9a111d8d972283518dd927b96705bf7954fd236a"
+        },
+        {
+          "file": "patient-04-lod.glb",
+          "bytes": 642480,
+          "triangles": 4410,
+          "sha256": "3f8180e32d93270b3a9de76aa78d5a8aff1c25ce96c28ff29f7bfd0a3432906f"
+        }
+      ]
+    },
+    "patient-05": {
+      "height_metres": 1.7769999504089355,
+      "endpoint_max_error": 4.7124922275543213e-07,
+      "covered_top_above_mattress": 0.24350530862808228,
+      "covered_lowest_world_z": 0.7380120158195496,
+      "maximum_transfer_mattress_overlap_m": 0.008424451351165763,
+      "overlap_frame": 73,
+      "independent_torso_curl_radians": 0.5890876054763794,
+      "transfer_weight_bearing_foot_error_m": 1.4224866250876127e-07,
+      "assets": [
+        {
+          "file": "patient-05.glb",
+          "bytes": 989328,
+          "triangles": 12444,
+          "sha256": "c2d732cc40dd878f46363abf8049e505b5596e1ae6cdfaad99f28a1998be8dc3"
+        },
+        {
+          "file": "patient-05-lod.glb",
+          "bytes": 631928,
+          "triangles": 4229,
+          "sha256": "b63bcc086389fccb05604c6efb1d06aef56f601952c3e0089a2c3f6aa4ab8c09"
+        }
+      ]
+    },
+    "patient-06": {
+      "height_metres": 1.6669999361038208,
+      "endpoint_max_error": 4.731118679046631e-07,
+      "covered_top_above_mattress": 0.2435045337677002,
+      "covered_lowest_world_z": 0.7380119562149048,
+      "maximum_transfer_mattress_overlap_m": 0.008424451351165763,
+      "overlap_frame": 73,
+      "independent_torso_curl_radians": 0.5890876054763794,
+      "transfer_weight_bearing_foot_error_m": 1.4224866250876127e-07,
+      "assets": [
+        {
+          "file": "patient-06.glb",
+          "bytes": 1002572,
+          "triangles": 12684,
+          "sha256": "bc803380af059bf5fc250a17c040bbf95f47744dbfcab89570812d5c7974adbd"
+        },
+        {
+          "file": "patient-06-lod.glb",
+          "bytes": 637968,
+          "triangles": 4311,
+          "sha256": "e2d24cfd271e64b2fa764ab0091552fde3a46e4e23e710aae7fdc525cfe3f09b"
+        }
+      ]
+    },
+    "patient-07": {
+      "height_metres": 1.7969999313354492,
+      "endpoint_max_error": 4.731118679046631e-07,
+      "covered_top_above_mattress": 0.2435042953491211,
+      "covered_lowest_world_z": 0.7380120158195496,
+      "maximum_transfer_mattress_overlap_m": 0.008424451351165763,
+      "overlap_frame": 73,
+      "independent_torso_curl_radians": 0.5890876054763794,
+      "transfer_weight_bearing_foot_error_m": 1.4224866250876127e-07,
+      "assets": [
+        {
+          "file": "patient-07.glb",
+          "bytes": 1002612,
+          "triangles": 12684,
+          "sha256": "0a1524f451ad7aa7ad22eca9cde68bb5f3d789ea459a1cc3fd9a36e36ee825c0"
+        },
+        {
+          "file": "patient-07-lod.glb",
+          "bytes": 637252,
+          "triangles": 4309,
+          "sha256": "159e01aaccef2f42a43c6e97f0568c3007dc75c99bcc4068ec2a73ad034a661a"
+        }
+      ]
+    },
+    "patient-08": {
+      "height_metres": 1.7170000076293945,
+      "endpoint_max_error": 4.7404319047927856e-07,
+      "covered_top_above_mattress": 0.24350560665130616,
+      "covered_lowest_world_z": 0.7380119562149048,
+      "maximum_transfer_mattress_overlap_m": 0.008424451351165763,
+      "overlap_frame": 73,
+      "independent_torso_curl_radians": 0.5890876054763794,
+      "transfer_weight_bearing_foot_error_m": 1.4224866250876127e-07,
+      "assets": [
+        {
+          "file": "patient-08.glb",
+          "bytes": 1002572,
+          "triangles": 12684,
+          "sha256": "b9d399ff2d74c86859a56a88a5c5865e891d34fccfdd762eefbb321d19594ac4"
+        },
+        {
+          "file": "patient-08-lod.glb",
+          "bytes": 637416,
+          "triangles": 4310,
+          "sha256": "d4f6863e139042a5f4577d078ef93ce14e8d5d06eb3d51b7ef839cc7cf42af81"
+        }
+      ]
+    },
+    "patient-09": {
+      "height_metres": 1.7480000257492065,
+      "endpoint_max_error": 4.721805453300476e-07,
+      "covered_top_above_mattress": 0.24350352048873902,
+      "covered_lowest_world_z": 0.7380120158195496,
+      "maximum_transfer_mattress_overlap_m": 0.008424451351165763,
+      "overlap_frame": 73,
+      "independent_torso_curl_radians": 0.5890876054763794,
+      "transfer_weight_bearing_foot_error_m": 1.4224866250876127e-07,
+      "assets": [
+        {
+          "file": "patient-09.glb",
+          "bytes": 943544,
+          "triangles": 11342,
+          "sha256": "5e8891eb0af01cc668de38b5e7baab8110d826cf0ee2492be070f33ebe37059a"
+        },
+        {
+          "file": "patient-09-lod.glb",
+          "bytes": 615744,
+          "triangles": 3856,
+          "sha256": "9359947374932c4673827710fb3aaa4e76c00ed70e8d6b231c8e62903385342d"
+        }
+      ]
+    },
+    "patient-10": {
+      "height_metres": 1.6369999647140503,
+      "endpoint_max_error": 4.7404319047927856e-07,
+      "covered_top_above_mattress": 0.24350495100021363,
+      "covered_lowest_world_z": 0.7380119562149048,
+      "maximum_transfer_mattress_overlap_m": 0.008424451351165763,
+      "overlap_frame": 73,
+      "independent_torso_curl_radians": 0.5890876054763794,
+      "transfer_weight_bearing_foot_error_m": 1.4224866250876127e-07,
+      "assets": [
+        {
+          "file": "patient-10.glb",
+          "bytes": 1002536,
+          "triangles": 12684,
+          "sha256": "70ad9f88ecc136a90fe4894c8430e6b84ae5c32b8036a3b74d31123c4493015e"
+        },
+        {
+          "file": "patient-10-lod.glb",
+          "bytes": 637460,
+          "triangles": 4312,
+          "sha256": "d19064e1895e1567d0864cad8bdcfef8f96df92d652c6780f5226caf491939e2"
+        }
+      ]
+    },
+    "patient-11": {
+      "height_metres": 1.8370000123977661,
+      "endpoint_max_error": 4.7124922275543213e-07,
+      "covered_top_above_mattress": 0.24350471258163453,
+      "covered_lowest_world_z": 0.7380120158195496,
+      "maximum_transfer_mattress_overlap_m": 0.008424451351165763,
+      "overlap_frame": 73,
+      "independent_torso_curl_radians": 0.5890876054763794,
+      "transfer_weight_bearing_foot_error_m": 1.4224866250876127e-07,
+      "assets": [
+        {
+          "file": "patient-11.glb",
+          "bytes": 989244,
+          "triangles": 12444,
+          "sha256": "1dd60888cba8a385cc32b15c9467cdb3aa07e576c5e8121df0e12857e9c020e4"
+        },
+        {
+          "file": "patient-11-lod.glb",
+          "bytes": 632184,
+          "triangles": 4229,
+          "sha256": "87ea071ec618019bd8b1e29020d736197173a1adb6ca4590d5bd090685c15cbc"
+        }
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "simulation_modifiers": false,
+  "notes": [
+    "Original procedural adults; stylized, not scanned or biomechanically validated.",
+    "Gowns are skinned cloth geometry; no cloth simulation."
+  ],
+  "unchanged_staff_actions": [
+    "Attend__clinician",
+    "Attend__coat",
+    "Discuss__clinician",
+    "Discuss__coat",
+    "Idle__clinician",
+    "Idle__coat",
+    "Rest__clinician",
+    "Rest__coat",
+    "Sit__clinician",
+    "Sit__coat",
+    "Walk__clinician",
+    "Walk__coat",
+    "Work__clinician",
+    "Work__coat"
+  ]
+}
