@@ -1,0 +1,220 @@
+{
+  "base": "http://127.0.0.1:3219",
+  "engine": "firefox",
+  "passed": true,
+  "results": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "poses": [
+        {
+          "camera": [
+            -290.1019100551764,
+            61.60846311549832,
+            149.1573317533117
+          ],
+          "target": [
+            -8,
+            0,
+            0
+          ],
+          "targetFacingCamera": true,
+          "labeled": true
+        },
+        {
+          "camera": [
+            149.33097253460724,
+            61.60846311549835,
+            277.62629982381185
+          ],
+          "target": [
+            -8,
+            0,
+            0
+          ],
+          "targetFacingCamera": false,
+          "labeled": false
+        },
+        {
+          "camera": [
+            264.913931572761,
+            61.60846311549835,
+            -165.37044241957128
+          ],
+          "target": [
+            -8,
+            0,
+            0
+          ],
+          "targetFacingCamera": false,
+          "labeled": false
+        },
+        {
+          "camera": [
+            -181.26888539718993,
+            61.60846311549834,
+            -267.9688239810032
+          ],
+          "target": [
+            -8,
+            0,
+            0
+          ],
+          "targetFacingCamera": true,
+          "labeled": true
+        }
+      ],
+      "corticalParcels": 104,
+      "targetUnchanged": true,
+      "sourceTriangleClearanceMm": 0.2999999999999998,
+      "axeViolations": 0,
+      "reducedMotionIdleFrames": 0,
+      "errors": [],
+      "failed": [],
+      "adapter": "Apple M1, or similar",
+      "physicalPhoneTest": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "poses": [
+        {
+          "camera": [
+            -572.2038201103527,
+            123.2169262309966,
+            298.3146635066234
+          ],
+          "target": [
+            -8,
+            0,
+            0
+          ],
+          "targetFacingCamera": true,
+          "labeled": true
+        },
+        {
+          "camera": [
+            306.6619450692143,
+            123.2169262309966,
+            555.2525996476234
+          ],
+          "target": [
+            -8,
+            0,
+            0
+          ],
+          "targetFacingCamera": false,
+          "labeled": false
+        },
+        {
+          "camera": [
+            537.8278631455217,
+            123.2169262309966,
+            -330.7408848391424
+          ],
+          "target": [
+            -8,
+            0,
+            0
+          ],
+          "targetFacingCamera": false,
+          "labeled": false
+        },
+        {
+          "camera": [
+            -354.5377707943801,
+            123.21692623099659,
+            -535.9376479620057
+          ],
+          "target": [
+            -8,
+            0,
+            0
+          ],
+          "targetFacingCamera": true,
+          "labeled": true
+        }
+      ],
+      "corticalParcels": 104,
+      "targetUnchanged": true,
+      "sourceTriangleClearanceMm": 0.2999999999999998,
+      "axeViolations": 0,
+      "reducedMotionIdleFrames": 0,
+      "errors": [],
+      "failed": [],
+      "adapter": "Apple M1, or similar",
+      "physicalPhoneTest": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "poses": [
+        {
+          "camera": [
+            -572.2038201103527,
+            123.2169262309966,
+            298.3146635066234
+          ],
+          "target": [
+            -8,
+            0,
+            0
+          ],
+          "targetFacingCamera": true,
+          "labeled": true
+        },
+        {
+          "camera": [
+            306.6619450692143,
+            123.2169262309966,
+            555.2525996476234
+          ],
+          "target": [
+            -8,
+            0,
+            0
+          ],
+          "targetFacingCamera": false,
+          "labeled": false
+        },
+        {
+          "camera": [
+            537.8278631455217,
+            123.2169262309966,
+            -330.7408848391424
+          ],
+          "target": [
+            -8,
+            0,
+            0
+          ],
+          "targetFacingCamera": false,
+          "labeled": false
+        },
+        {
+          "camera": [
+            -354.5377707943801,
+            123.21692623099659,
+            -535.9376479620057
+          ],
+          "target": [
+            -8,
+            0,
+            0
+          ],
+          "targetFacingCamera": true,
+          "labeled": true
+        }
+      ],
+      "corticalParcels": 104,
+      "targetUnchanged": true,
+      "sourceTriangleClearanceMm": 0.2999999999999998,
+      "axeViolations": 0,
+      "reducedMotionIdleFrames": 0,
+      "errors": [],
+      "failed": [],
+      "adapter": "Apple M1, or similar",
+      "physicalPhoneTest": false
+    }
+  ]
+}

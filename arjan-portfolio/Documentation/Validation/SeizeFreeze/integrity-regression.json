@@ -1,0 +1,11 @@
+{
+  "incompleteProductionAssetRejected": true,
+  "previousAssetBytes": 6573512,
+  "correctedAssetBytes": 8187608,
+  "targetBuffersIdenticalToPreviousProduction": true,
+  "targetHashes": [
+    "4295b91bfb04a97e0d168f35c1dba757e2ef1c05e7474f67acdb926a95dc9865",
+    "ecfcd282216e57824723459e938f2611d1fc9c4f10d8518b3490517b1cb78fb0"
+  ],
+  "registrationCenterUnchanged": true
+}

@@ -147,6 +147,7 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
   const clearColor = new T.Color(), lensCoverings = ["scalp", "skull", "dura", "arachnoid", "csf"];
   function lensElement() { return host.querySelector("#device-lens"); }
   function openingOverview() { return currentView === "region" && document.body.dataset.anatomyGuide === "false"; }
+  function targetFacingCamera() { return camera.position.clone().sub(anatomy.target).dot(anatomy.normal) > 0; }
   function updateLens() {
     const element = lensElement();
     const placementTab = document.querySelector("#placement-tab");
@@ -203,9 +204,9 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
     labelSvg.setAttribute("viewBox", `0 0 ${w} ${h}`);
     const placement = currentView === "head" || currentView === "region";
     const shown = selected ? [selected] : exploded ? ["package", "tec"] : ["package"];
-    const entries = (placement ? [
+    const entries = (placement ? (targetFacingCamera() ? [
       { label: "LEFT SUPERIOR TEMPORAL GYRUS", point: anatomy.target.clone(), color: "#c7b1e8", side: -1 },
-    ] : shown.map(id => {
+    ] : []) : shown.map(id => {
       const info = labelInfo[id], point = new T.Vector3(...info.point);
       groups[id].localToWorld(point);
       return { ...info, point };
@@ -214,7 +215,7 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
       return { ...info, x: (v.x * 0.5 + 0.5) * w, y: (-v.y * 0.5 + 0.5) * h, z: v.z };
     }).filter(p => p.z > -1 && p.z < 1 && p.x > -20 && p.x < w + 20 && p.y > -20 && p.y < h + 20);
     labelSvg.replaceChildren();
-    if (lensRect) {
+    if (lensRect && targetFacingCamera()) {
       const p = mount.clone().addScaledVector(anatomy.normal, 2).project(camera);
       const x = (p.x * .5 + .5) * w, y = (-p.y * .5 + .5) * h;
       const connector = document.createElementNS(ns, "path");
@@ -330,8 +331,8 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
       goalOffset.set(narrow ? .12 : .15, narrow ? -.03 : .04);
     } else if (currentView === "region") {
       goalTarget.set(-8, 0, 0);
-      goalPosition.copy(goalTarget).add(new T.Vector3(-.87, .19, .46).normalize().multiplyScalar(narrow ? 585 : 325));
-      goalOffset.set(narrow ? .12 : .15, narrow ? -.03 : .05);
+      goalPosition.copy(goalTarget).add(new T.Vector3(-.87, .19, .46).normalize().multiplyScalar(narrow ? 650 : 325));
+      goalOffset.set(narrow ? .02 : .15, narrow ? -.03 : .05);
     } else if (currentView === "system") {
       scene.updateMatrixWorld(true);
       const points=[];
@@ -474,7 +475,7 @@ export async function createScene(host, onSelect = () => {}, onLayer = () => {})
       frameCamera();
     },
     update,
-    stats() { return { adapter, softwareRenderer, frames, calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, geometries: renderer.info.memory.geometries, textures: renderer.info.memory.textures, pixelRatio: renderer.getPixelRatio(), quality: "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75", renderCpuMsMean: renderMilliseconds.length ? renderMilliseconds.reduce((a, b) => a + b, 0) / renderMilliseconds.length : 0, rendering: "on demand; no idle animation", active, openingOverview: openingOverview(), cameraTransition: Boolean(transition), shadowMap: renderer.shadowMap.enabled ? (currentView==="system"?"1024px cached device-frame PCF":"2048px cached anatomy-frame PCF") : "disabled on software renderer", selected, exploded, focus: focusId, inspectionStage: currentView === "system", componentOffsets: Object.fromEntries(ids.map(id => [id, groups[id].position.y])), cameraPosition: camera.position.toArray(), cameraTarget: controls.target.toArray(), cameraUp: camera.up.toArray(), view: currentView, peel: peelValue, target: anatomy.target.toArray(), mountPoint: root.position.toArray(), contactSpanMm: [10, 10], device: { units: "mm", scale: root.scale.toArray(), datum: fit.datum, rigidClearanceMm: fit.minimumRigidClearance, contactThicknessRangeMm: fit.contactThicknessRange, geometry: device.info, status: deviceSpec.status, reservoir: "Finite resistance to assumed 37 °C reservoir; chronic route unresolved" }, normal: anatomy.normal.toArray(), anatomy: anatomy.info, lens: { visible: Boolean(lensRect && active), rect: lensRect, outerRect: lensOuterRect, cameraPosition: lensCamera.position.toArray(), packagePixel: lensPackagePixel(), coordinates: "host-local CSS pixels; viewport = host bounding rect + these coordinates", geometry: "same device state; exact local atlas triangles; no screen capture or enlarged physical implant" } }; },
+    stats() { return { adapter, softwareRenderer, frames, calls: renderer.info.render.calls, triangles: renderer.info.render.triangles, geometries: renderer.info.memory.geometries, textures: renderer.info.memory.textures, pixelRatio: renderer.getPixelRatio(), quality: "Native DPR adapts from capped 1.6 toward 1 during sustained slow frame scheduling; software capped .75", renderCpuMsMean: renderMilliseconds.length ? renderMilliseconds.reduce((a, b) => a + b, 0) / renderMilliseconds.length : 0, rendering: "on demand; no idle animation", active, openingOverview: openingOverview(), cameraTransition: Boolean(transition), shadowMap: renderer.shadowMap.enabled ? (currentView==="system"?"1024px cached device-frame PCF":"2048px cached anatomy-frame PCF") : "disabled on software renderer", selected, exploded, focus: focusId, inspectionStage: currentView === "system", componentOffsets: Object.fromEntries(ids.map(id => [id, groups[id].position.y])), cameraPosition: camera.position.toArray(), cameraTarget: controls.target.toArray(), cameraUp: camera.up.toArray(), view: currentView, targetFacingCamera: targetFacingCamera(), peel: peelValue, target: anatomy.target.toArray(), mountPoint: root.position.toArray(), contactSpanMm: [10, 10], device: { units: "mm", scale: root.scale.toArray(), datum: fit.datum, rigidClearanceMm: fit.minimumRigidClearance, contactThicknessRangeMm: fit.contactThicknessRange, geometry: device.info, status: deviceSpec.status, reservoir: "Finite resistance to assumed 37 °C reservoir; chronic route unresolved" }, normal: anatomy.normal.toArray(), anatomy: anatomy.info, lens: { visible: Boolean(lensRect && active), rect: lensRect, outerRect: lensOuterRect, cameraPosition: lensCamera.position.toArray(), packagePixel: lensPackagePixel(), coordinates: "host-local CSS pixels; viewport = host bounding rect + these coordinates", geometry: "same device state; exact local atlas triangles; no screen capture or enlarged physical implant" } }; },
     dispose() {
       disposed = true; cancelAnimationFrame(raf); resizeObserver.disconnect(); intersectionObserver.disconnect(); controls.dispose();
       canvas.removeEventListener("keydown", keyboardView); canvas.removeEventListener("pointerdown", pointerDown, true); canvas.removeEventListener("pointerup", pointerUp); canvas.removeEventListener("pointercancel", pointerCancel); canvas.removeEventListener("webglcontextlost", contextLost);

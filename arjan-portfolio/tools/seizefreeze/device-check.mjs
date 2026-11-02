@@ -118,7 +118,7 @@ function accessor(index) {
   assert.ok(Type && size && !view.byteStride && !a.sparse);
   return new Type(bin.buffer, bin.byteOffset + (view.byteOffset || 0) + (a.byteOffset || 0), a.count * size);
 }
-const cortex = json.nodes.filter(n => n.mesh !== undefined && !/skin|cerebellum/.test(n.name)).flatMap(node =>
+const cortex = json.nodes.filter(n => n.mesh !== undefined && !/skin|cerebellum|white_matter/.test(n.name)).flatMap(node =>
   json.meshes[node.mesh].primitives.map(p => ({ name: node.name, positions: accessor(p.attributes.POSITION), indices: accessor(p.indices) })));
 const parcel = cortex.find(m => m.name === 'Allen_superior_temporal_gyrus_L');
 assert.ok(parcel, 'The source target parcel must be present.');
