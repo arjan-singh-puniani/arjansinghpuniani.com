@@ -18,20 +18,22 @@ export function createGarage(renderer,parent,{box,cylinder,mat,wheel,batchStatic
  for(const x of [-5.6,5.6]){const s=Math.sign(x),w=box(room,x,1.8,2.8,.16,3.6,15,wall);cameraWalls.push({object:w,axis:'x',sign:s,threshold:4.8});box(room,x-s*.09,.18,2.8,.018,.30,15,trim);box(room,x-s*.09,1.35,2.8,.025,.055,15,red);for(let z=-4;z<10;z+=1.4)box(room,x-s*.095,2.5,z,.02,1.6,.014,steel);}
  const back=box(room,0,1.8,7.8,11.2,3.6,.14,wall);cameraWalls.push({object:back,axis:'z',sign:1,threshold:6.8});box(room,0,3.15,7.63,11.1,.58,.12,dark);
  // The open bay connects to a pit-lane corridor, visible from the rear inspection camera.
- for(const x of [-5.5,5.5])box(room,x,1.9,-4.6,.22,3.8,.30,trim);
+ for(const x of [-5.5,5.5]){const post=box(room,x,1.9,-4.6,.22,3.8,.30,trim);cameraWalls.push({object:post,axis:'x',sign:Math.sign(x),threshold:4.8});}
  box(room,0,3.75,-4.6,11.2,.22,.40,steel);
  box(room,0,-.025,-9,70,.035,8,mat('#565c63',.08,.74));
+ box(room,4.8,-.025,-26,18,.035,30,mat('#565c63',.08,.74));
  for(const z of [-5.2,-11.7])box(room,0,.002,z,70,.004,.07,white);
  // Leave a passage around the modeled exit at x=4.8, including its turning envelope.
  for(const [left,right] of [[-35,2],[7.5,35]]){
   const x=(left+right)/2,w=right-left;box(room,x,.44,-13.2,w,.88,.42,mat('#abb1b8',.1,.67));box(room,x,.92,-13.2,w,.07,.5,steel);
   for(const y of [1.1,1.3,1.5,1.7,1.9])box(room,x,y,-13.2,w,.008,.008,steel);
  }
+ const exterior=new THREE.Group();room.add(exterior);
  for(let x=-30;x<=30;x+=2.5){
   if(x<=2||x>=7.5)box(room,x,1.52,-13.2,.035,1.2,.035,steel);
-  if(x!==5){box(room,x,2.15,-20,2.35,3.1,.25,dark);box(room,x,2.15,-19.85,2.15,2.5,.02,mat('#4c6271',.65,.25));}
+  if(x!==5){box(exterior,x,2.15,-20,2.35,3.1,.25,dark);box(exterior,x,2.15,-19.85,2.15,2.5,.02,mat('#4c6271',.65,.25));}
  }
- box(room,0,3.9,-20,70,.16,4,trim);
+ const exteriorRoof=box(exterior,0,3.9,-20,70,.16,4,trim);batchStatic(exterior);cameraWalls.push({object:exterior,axis:'z',sign:-1,threshold:12},{object:exteriorRoof,axis:'z',sign:-1,threshold:12});
  const fascia=graphic(1536,128,(c,w,h)=>{c.fillStyle='#15181c';c.fillRect(0,0,w,h);c.fillStyle='#c12637';c.fillRect(32,25,9,78);c.fillStyle='#e3e6e9';c.font='600 61px Arial';c.fillText('01',70,86);c.font='500 24px Arial';c.fillStyle='#a7adb6';c.fillText('VEHICLE OPERATIONS',210,78);c.fillText('PIT STOP LAB',1180,78);});sign(0,3.15,7.55,10.6,.883,fascia);
  for(let x=-5;x<=5;x+=1.25){box(room,x,.58,7.32,1.16,1.10,.72,dark);box(room,x,1.15,7.27,1.21,.06,.88,steel);for(let y=.19;y<1.1;y+=.18){box(room,x,y,6.945,1.07,.013,.016,trim);box(room,x,y+.065,6.92,.70,.018,.032,steel);}box(room,x,.055,7.32,1.02,.08,.64,trim);}
  const peg=graphic(256,256,(c,w,h)=>{c.fillStyle='#373e46';c.fillRect(0,0,w,h);c.fillStyle='#1a2027';for(let x=12;x<w;x+=16)for(let y=12;y<h;y+=16){c.beginPath();c.arc(x,y,1.7,0,Math.PI*2);c.fill();}});sign(-3.7,2.03,7.68,2.25,1.43,peg);

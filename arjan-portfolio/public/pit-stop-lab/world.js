@@ -267,6 +267,7 @@ export function createWorld(canvas, onSelect, onStatus) {
     const trimSole=mat('#72777c',.05,.8);
     const crewTorsoGeometry=new THREE.LatheGeometry([new THREE.Vector2(.11,0),new THREE.Vector2(.14,.04),new THREE.Vector2(.145,.15),new THREE.Vector2(.19,.30),new THREE.Vector2(.17,.36),new THREE.Vector2(.065,.40)],24);
     const crewLimbGeometry=new THREE.CapsuleGeometry(.055,.89,4,12);
+    const crewVisorGeometry=new THREE.SphereGeometry(1,32,12,Math.PI+.07,Math.PI-.14,Math.PI*.36,Math.PI*.27);
     const jointPose=new THREE.Object3D();
     const footPlans=new WeakMap();
     function contactPlan(key,id,poseAt,start,end,heading){
@@ -284,8 +285,8 @@ export function createWorld(canvas, onSelect, onStatus) {
         sphere(upper,0,.48,.01,.145,.11,.10,fabric);
         sphere(upper,0,.87,-.015,.063,.065,.060,crewBlack);
         sphere(upper,0,.99,-.04,.108,.132,.125,color);
-        sphere(upper,0,1.005,-.143,.096,.041,.036,visor);
-        sphere(upper,0,.947,-.141,.090,.025,.033,color);
+        const shield=make(crewVisorGeometry,visor);shield.position.set(0,.99,-.04);shield.scale.set(.111,.135,.129);upper.add(shield);
+        sphere(upper,0,.904,-.053,.085,.045,.088,color);
         box(upper,0,1.112,-.048,.022,.006,.13,M.white);
         for(const side of [-1,1]){
             sphere(upper,side*.107,.988,-.018,.015,.042,.042,crewBlack);
@@ -744,6 +745,7 @@ export function createWorld(canvas, onSelect, onStatus) {
     };
     controls.addEventListener('start', cancelTween);
     return { update, render, setView, setCamera, resize,
+        setFilmCamera(shot){cameraMode='film';tween=null;controls.enabled=false;camera.position.fromArray(shot.position);controls.target.fromArray(shot.target);if(canvas.clientWidth<700){camera.position.sub(controls.target).multiplyScalar(1.7).add(controls.target);camera.position.y=Math.min(camera.position.y,3.15);controls.target.y-=.3;}camera.fov=shot.fov;camera.updateProjectionMatrix();dirty=true;},
         setExperience(next){experience=next;optionsRevision++;dirty=true;controls.enabled=true;},
         inspectBody(hide,isolate){hiddenBody=hide;isolation=isolate;optionsRevision++;dirty=true;},
         projectContact(){const p=stations.FL.group.localToWorld(new THREE.Vector3(.22,.355+(lastSnapshot?.cars[0].frontLift||0),0)).project(camera);return {x:(p.x*.5+.5)*canvas.clientWidth,y:(-p.y*.5+.5)*canvas.clientHeight};},

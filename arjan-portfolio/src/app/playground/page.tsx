@@ -62,11 +62,11 @@ const cards = [
     status: "RACE SYSTEMS",
     eyebrow: "Pit Stop Lab",
     title: "Pit Stop Lab",
-    description: "Recorded telemetry, timestamp-gated pace learning and a pit-strategy robustness laboratory.",
+    description: "A cinematic telemetry-driven lap, slow-motion pit crew and traceable race-strategy experiments.",
     href: "/playground/pit-stop",
     button: "Open Pit Stop Lab",
     image: "/images/playground/pit-stop-simulator.webp",
-    alt: "Historical Bahrain pit wall with circuit replay, telemetry and strategy comparison",
+    alt: "Original racing car and circuit with synchronized historical telemetry",
     tone: "dark",
   },
   {
