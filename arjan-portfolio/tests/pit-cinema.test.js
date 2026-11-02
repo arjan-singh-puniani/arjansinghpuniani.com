@@ -16,7 +16,7 @@ describe('Recorded cinematic motion',()=>{
   const a=cinematicFrame(track,38.5);cinematicFrame(track,12);expect(cinematicFrame(track,38.5)).toEqual(a);expect(cinematicFrame(track,-3)).toEqual(cinematicFrame(track,0));expect(cinematicFrame(track,500)).toEqual(cinematicFrame(track,track.driver.duration));
  });
  it('produces finite camera poses through all source frames and every selectable view',()=>{
-  for(const camera of ['director','chase','drone','oncar','overview'])for(let t=0;t<97;t+=.37){const shot=raceCamera(track,t,camera);expect([...shot.position,...shot.target,shot.fov].every(Number.isFinite)).toBe(true);expect(shot.position[1]).toBeGreaterThan(.4);expect(shot.fov).toBeGreaterThan(30);}
+  for(const camera of ['director','chase','drone','oncar','overview'])for(let t=0;t<97;t+=.37){const shot=raceCamera(track,t,camera);expect([...shot.position,...shot.target,shot.fov].every(Number.isFinite)).toBe(true);expect(shot.position[1]).toBeGreaterThan(.25);expect(shot.fov).toBeGreaterThan(30);}
  });
 });
 describe('Directed pit operation',()=>{

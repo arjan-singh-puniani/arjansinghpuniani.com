@@ -85,10 +85,11 @@ export function createRaceShow({listen,getSimulation,getWorld,ensureWorld,choose
         if(!loading&&!failed)state=advanceReel(state,dt,tracks[0]?.driver.duration??96.941,pitFilmDuration(getSimulation()));
         if(before.playing!==state.playing)setPlaying(state.playing);
         if(state.chapter!==before.chapter){if(state.chapter==='pit')state.time=pitFilmStart(getSimulation());enterChapter();return;}
+        if(state.chapter==='lap'&&state.playing&&state.time>duration()-8&&!getWorld())void ensureWorld();
         if(state.chapter==='lap'&&race){race.render(state.time,now);if(state.playing&&audio.enabled)audio.engineFrame?.(telemetryAt(tracks[0].driver,state.time));else audio.engineFrame?.(null);}
         if(state.chapter==='pit'&&getWorld()&&!loading){
             const sim=getSimulation(),snap=snapshot(sim,state.time),car=snap.cars[snap.activeCar-1],world=getWorld(),shot=pitFilmShot(sim,state.time,car),choice=$('showCamera').value;
-            if(needsPaint||state.time!==before.time){world.update(snap,sim);world.setFilmCamera(choice==='wide'?{position:[4.8,3,-5.6],target:[0,.4,0],fov:43}:choice==='wheel'?{position:[1.8,.75,-3.9],target:[.8,.44,-1.65],fov:40}:shot);}
+            if(needsPaint||state.time!==before.time){world.update(snap,sim);world.setFilmCamera(choice==='wide'?{position:[4.8,3,-5.6],target:[0,.4,0],fov:43}:choice==='wheel'?{position:[1.4,1.65,-3.15],target:[.85,.46,-1.65],fov:44}:shot);}
             world.render(now);audio.engineFrame?.(null);
             if(state.playing&&audio.enabled)for(const event of sim.events)if(event.start>before.time&&event.start<=state.time)audio.triggerEvent(event,.35);
             lastShot=choice==='director'?shot.shot:choice;
