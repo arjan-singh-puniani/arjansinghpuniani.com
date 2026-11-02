@@ -1,6 +1,6 @@
 import {simulate,configuration} from './simulation.js';
 import {newChallenge,challengeAction,challengeFrame,replayChallenge,CHALLENGE_STEPS} from './challenge.js';
-export function createExperienceUI({world,sim,listen,setMode,pause,audio}){
+export function createExperienceUI({world,sim,listen,setMode,pause,audio,onChoose=()=>{}}){
  const $=s=>document.querySelector(s);let mode='explore',session=null,clock=0,replaying=false,saved=null,drag=null,lastPhase='',frameSim=null,started=false;
  let trainingSim=null,lastClock=performance.now(),lastPulse=-Infinity;
  const gunPulse=()=>{audio.triggerEvent({state:session.phase==='loosen'?'LOOSENING':'TIGHTENING',track:'FL',duration:.10},1);lastPulse=clock;};
@@ -9,7 +9,7 @@ export function createExperienceUI({world,sim,listen,setMode,pause,audio}){
  const options=()=>({arrival:trainingSim.stops[0].stopAt,teamReady:Math.max(...['FR','RL','RR'].map(c=>trainingSim.stops[0].corners[c].events.at(-1).end))});
  function reset(){trainingSim=simulate(configuration({seed:sim().config.seed}));session=newChallenge(options());clock=0;lastClock=performance.now();replaying=false;started=false;lastPhase='';frameSim=null;$('#challengeReplay').disabled=!saved;render();}
  function choose(next,invoke=true){
-  if(next===mode&&session)return;mode=next;document.body.dataset.experience=next;pause();world()?.setExperience(next);world()?.inspectBody(next==='explore'&&$('#bodyworkToggle').checked,next==='explore'&&$('#isolateToggle').checked);$('#challengeSound').checked=audio.enabled;
+  if(next===mode&&session)return;mode=next;document.body.dataset.experience=next;onChoose(next);pause();world()?.setExperience(next);world()?.inspectBody(next==='explore'&&$('#bodyworkToggle').checked,next==='explore'&&$('#isolateToggle').checked);$('#challengeSound').checked=audio.enabled;
   for(const b of document.querySelectorAll('button[data-experience]'))b.setAttribute('aria-pressed',String(b.dataset.experience===next));
   if(next==='challenge'){reset();world()?.setView('world');world()?.setCamera('challenge');}
   if(next==='explore'){world()?.setView('world');world()?.setCamera('carHero');$('#inspector').hidden=true;$('#controls').hidden=true;$('#analysis').hidden=true;}

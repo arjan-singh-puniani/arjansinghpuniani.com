@@ -6,20 +6,20 @@ import styles from "./pit-stop.module.css";
 export const metadata: Metadata = {
   title: "Pit Stop Lab — Formula Racing Engineering Laboratory",
   description:
-    "Historical racing telemetry, time-causal pace models, paired strategy simulations, a 36-scenario robustness map, and a manual pit-stop challenge by Arjan Singh Puniani.",
+    "Watch recorded racing telemetry drive a cinematic 3D lap and event-driven pit operation, then inspect the pace model, strategy simulations and evidence.",
   alternates: { canonical: "/playground/pit-stop" },
   openGraph: {
     type: "website",
     url: `${siteUrl}/playground/pit-stop`,
     title: "Pit Stop Lab | Arjan Singh Puniani",
     description:
-      "Replay recorded Formula racing telemetry, audit what the pace model knew, and stress-test pit decisions.",
+      "A directed 3D lap, slow-motion pit service and recorded telemetry, connected to traceable machine learning and strategy experiments.",
     images: [
       {
-        url: "/pit-stop-lab/pit-wall-preview.webp",
-        width: 1280,
-        height: 800,
-        alt: "Historical pit wall showing recorded Bahrain telemetry, circuit replay and conditional strategy comparisons",
+        url: "/pit-stop-lab/show-preview.webp",
+        width: 1440,
+        height: 1000,
+        alt: "Original illustrative racing car on a source-derived circuit, with recorded speed, pedals and a synchronized track map",
       },
     ],
   },
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Pit Stop Lab | Arjan Singh Puniani",
     description:
-      "Recorded telemetry, traceable pace learning and pit-strategy stress tests.",
-    images: ["/pit-stop-lab/pit-wall-preview.webp"],
+      "Watch the lap, slow down the pit operation, and inspect the evidence behind each strategy.",
+    images: ["/pit-stop-lab/show-preview.webp"],
   },
 };
 
@@ -41,7 +41,7 @@ export default function PitStopLabPage() {
     operatingSystem: "Web",
     url: `${siteUrl}/playground/pit-stop`,
     description:
-      "Historical telemetry and location replay with timestamp-gated pace learning, paired Monte Carlo action comparison, a 36-scenario assumption sweep, reproducible engineering briefs, and a deterministic pit-stop simulation.",
+      "Directed 3D historical telemetry replay and modeled pit service with timestamp-gated pace learning, paired Monte Carlo action comparison, a 36-scenario assumption sweep, reproducible engineering briefs, and a deterministic pit-stop simulation.",
     author: {
       "@type": "Person",
       "@id": `${siteUrl}/#arjan-singh-puniani`,

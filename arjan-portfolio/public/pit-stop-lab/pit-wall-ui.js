@@ -93,7 +93,7 @@ export function createPitWall({ listen, getSimulation, chooseExperiment, chooseE
         if(busy||disposed)return;busy=true;status('Loading the archived timing and telemetry…');$('pwRetry').hidden=true;controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),20000);
         try{
             const read=async name=>{const r=await fetch(new URL(`./data/${name}`,import.meta.url),{signal:controller.signal});if(!r.ok)throw new Error(`Archive unavailable (HTTP ${r.status}).`);return r.json();};
-            [bundle,archive]=await Promise.all([read('bahrain-2024.json'),read('telemetry-bahrain-2024.json')]);drivers=prepareTelemetry(archive);buildReplay();status('');busy=false;await forecast();
+            [bundle,archive]=await Promise.all([read('bahrain-2024.json'),read('telemetry-bahrain-2024.json')]);drivers=prepareTelemetry(archive);buildReplay();if(pendingSeek!==null){seek(pendingSeek);pendingSeek=null;}status('');busy=false;await forecast();
         }catch(error){if(disposed)return;busy=false;status(`Archive could not load. ${error.message}`);$('pwRetry').hidden=false;state();}
         finally{clearTimeout(timeout);}
     }
@@ -136,8 +136,8 @@ export function createPitWall({ listen, getSimulation, chooseExperiment, chooseE
         const url=URL.createObjectURL(new Blob([brief],{type:'text/markdown'})),a=document.createElement('a');a.href=url;a.download=`pit-wall-lap-${evidence.lap}-seed-${r.seed}.md`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
     });
     const compact=matchMedia('(max-width: 640px)'),fitMap=()=>{ $('pwTrack').setAttribute('viewBox',compact.matches?'210 15 540 550':'0 0 960 570'); };listen(compact,'change',fitMap);fitMap();
-    let started=false;
-    return {tick(now){
+    let pendingSeek=null,started=false;
+    return {seekTo(time){if(drivers.length)seek(time);else pendingSeek=time;},tick(now){
         if(!started){started=true;load();}
         const next=JSON.stringify(getSimulation().config);if(signature&&signature!==next&&!busy)changed();signature=next;
         let advanced=false;
