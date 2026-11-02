@@ -1,3 +1,10 @@
+# RC3 pickup animation ·2026-11-02
+
+- Added intermittent shoulder twists, wrist curls and alternating bent-knee kicks to the held pose. Reuses the original rig; no new assets or simulation parameters.
+- Preserved the cursor collar pin, translucent materials, safe landing checks and exact pose restoration. Reduced motion disables the squirm and sway.
+- Hid the speech bubble while carrying and rendered the translucent held figure above equipment so the squirm stays visible. Original materials and drawing order return on release.
+- The owner replied “wow much better” to the RC3 iPhone walking/grabbing retest prompt. Device model, iOS version and measured timings were not supplied; this is qualitative owner feedback, not a device benchmark or usability study.
+
 # 1.0.0-rc3 ·2026-11-02
 
 - Executed Blender for13shorter indoor gait clips and retained editable sources. Phase follows actual distance; turns round only within clear routes.
