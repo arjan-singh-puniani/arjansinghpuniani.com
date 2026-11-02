@@ -2,7 +2,7 @@ import { GLTFLoader } from "/pit-stop-lab/vendor/GLTFLoader.js";
 
 /** Registered HRA brain and head skin; all returned coordinates are millimeters. */
 export async function createAnatomy(T, options = {}) {
-  const loaded = await new GLTFLoader().loadAsync(new URL("./assets/brain-cortex.glb", import.meta.url).href, event => options.onProgress?.(event.total ? event.loaded / event.total : 0));
+  const loaded = await new GLTFLoader().loadAsync(new URL("./assets/brain-cortex.glb?revision=complete-cortex-20261102", import.meta.url).href, event => options.onProgress?.(event.total ? event.loaded / event.total : 0));
   const group = new T.Group(); group.name = "HRA reference anatomy with illustrative coverings";
   const sourceMeshes = [];
   loaded.scene.traverse(mesh => { if (mesh.isMesh) { mesh.geometry.computeVertexNormals(); sourceMeshes.push(mesh); } });
@@ -12,14 +12,15 @@ export async function createAnatomy(T, options = {}) {
   const material = (color, extra = {}) => new T.MeshStandardMaterial({ color, roughness: .68, metalness: 0, side: T.DoubleSide, ...extra });
   const brainMaterial = material(0xaeb1a7, { roughness: .74, envMapIntensity: .2 });
   const hindbrainMaterial = material(0x979f9b, { envMapIntensity: .24 });
-  const brain = new T.Group(); brain.name = "Atlas cerebral cortex, cerebellum and brainstem";
+  const whiteMatterMaterial = material(0xb6b8ac, { roughness: .8, envMapIntensity: .15 });
+  const brain = new T.Group(); brain.name = "Atlas cerebral cortex, cerebellum, brainstem and white matter";
   const cortical = [];
   for (const source of sourceMeshes.filter(m => m !== sourceHead)) {
-    const mesh = new T.Mesh(source.geometry, source.name.includes("cerebellum") ? hindbrainMaterial : brainMaterial);
+    const mesh = new T.Mesh(source.geometry, source.name.includes("white_matter") ? whiteMatterMaterial : source.name.includes("cerebellum") ? hindbrainMaterial : brainMaterial);
     mesh.name = source.name; mesh.userData.anatomyLayer = "cortex"; mesh.userData.sourceNodes = source.userData.sourceNodes;
     // Closed atlas parcels overlap at boundaries; device-only shadows avoid self-shadow speckle.
     mesh.receiveShadow = true;
-    brain.add(mesh); if (!source.name.includes("cerebellum")) cortical.push(mesh);
+    brain.add(mesh); if (!/cerebellum|white_matter/.test(source.name)) cortical.push(mesh);
   }
   group.add(brain); group.updateMatrixWorld(true);
   const targetMesh = cortical.find(m => m.name === sourceTarget.name), raycaster = new T.Raycaster();
@@ -202,6 +203,8 @@ export async function createAnatomy(T, options = {}) {
   const info = {
     targetName: "Left superior temporal gyrus", targetMesh: sourceTarget.name, targetDescription: "Illustrative lateral neocortical target on a reference atlas. Not a diagnosed seizure focus or proposed surgical location.",
     surfaceShading: "Coincident cortical display normals averaged within 60 degrees; source vertices, triangles and target unchanged", simplifiedSurroundings: Boolean(options.simplifySurroundings), units: "mm", axes: "+X right; +Y superior; +Z anterior", attribution: "Kristen Browne; Heidi Schlehlein / HuBMAP, CC BY 4.0. HRA Brain Male v1.3 and United Male v1.5, derived display geometry.",
+    sourceCorticalParcels: cortical.reduce((count, mesh) => count + (mesh.userData.sourceNodes?.length || 0), 0),
+    corticalIntegrity: "Named bilateral frontal poles, frontomarginal/rostral/paracingulate gyri, insula and opercula retained; registered forebrain white matter is separate interior context",
     sourceBrain: "https://doi.org/10.48539/HBM929.XKCL.339", sourceHead: "https://doi.org/10.48539/HBM646.RKKC.257",
     sourceRecord: "/atlas/anatomy/HRA-BRAIN-SOURCE.md", headSourceRecord: "/atlas/anatomy/HRA-BODY-SOURCE.md",
     limitations: "Reference atlas, mirrored cerebral structures; no patient anatomy. Skin is registered HRA geometry. Skull/dura are explanatory inward offsets from skin, not segmented bone or meninges. Arachnoid bridges; pia retains local atlas folds. Covering thicknesses, gaps, flaps, window and CSF marker are exaggerated schematic choices. Surrounding head transparency reveals context; this is not medical imaging. Placement above or below dura remains unresolved. Peeling is an educational reveal, not a surgical sequence. The 1D thermal model predicts no lateral field or affected volume.",
