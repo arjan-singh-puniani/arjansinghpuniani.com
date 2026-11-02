@@ -1,0 +1,223 @@
+{
+  "model": "1.0.0-rc3",
+  "seed": 431,
+  "recordStart": 0,
+  "recordEnd": 60,
+  "actions": [
+    {
+      "at": 0,
+      "type": "build",
+      "room": {
+        "id": 10,
+        "type": "consult",
+        "x": 7,
+        "y": 3,
+        "rotation": 0,
+        "level": 1,
+        "staff": [
+          5
+        ],
+        "decor": [],
+        "paid": 900,
+        "builtAt": 0,
+        "readyAt": 0,
+        "spill": false
+      }
+    }
+  ],
+  "tracked": 1001,
+  "events": [
+    "00:00 Waiting for a neighbor with the optional imaging pathway",
+    "00:05 Arriving · Consultation",
+    "00:06 Walking through the entrance · Consultation",
+    "00:08 Waiting · Consultation",
+    "00:09 Walking to waiting space · Consultation",
+    "00:12 Waiting · Consultation",
+    "00:13 Walking to reception · Consultation",
+    "00:19 Checking in at reception · Consultation",
+    "00:26 Waiting · Consultation",
+    "00:27 Walking · Consultation",
+    "00:34 Entering service room · Consultation",
+    "00:37 Receiving service · Consultation",
+    "00:48 Leaving service room · Consultation",
+    "00:51 Communicating next step · Imaging",
+    "00:55 Waiting · Imaging",
+    "00:56 Walking · Imaging"
+  ],
+  "visit": {
+    "id": 1001,
+    "name": "Eli",
+    "x": 4,
+    "y": 5,
+    "stage": "scan",
+    "state": "walking",
+    "route": [
+      {
+        "x": 3.75,
+        "y": 5
+      },
+      {
+        "x": 3.5,
+        "y": 5
+      },
+      {
+        "x": 3.25,
+        "y": 5
+      },
+      {
+        "x": 3,
+        "y": 5
+      },
+      {
+        "x": 2.75,
+        "y": 5
+      },
+      {
+        "x": 2.75,
+        "y": 4.75
+      },
+      {
+        "x": 2.75,
+        "y": 4.5
+      },
+      {
+        "x": 2.75,
+        "y": 4.25
+      },
+      {
+        "x": 2.75,
+        "y": 4
+      },
+      {
+        "x": 2.75,
+        "y": 3.75
+      },
+      {
+        "x": 2.75,
+        "y": 3.5
+      },
+      {
+        "x": 2.75,
+        "y": 3.25
+      },
+      {
+        "x": 2.75,
+        "y": 3
+      },
+      {
+        "x": 2.75,
+        "y": 2.75
+      },
+      {
+        "x": 2.75,
+        "y": 2.5
+      },
+      {
+        "x": 2.75,
+        "y": 2.25
+      },
+      {
+        "x": 2.5,
+        "y": 2.25
+      },
+      {
+        "x": 2.25,
+        "y": 2.25
+      },
+      {
+        "x": 2,
+        "y": 2.25
+      },
+      {
+        "x": 1.75,
+        "y": 2.25
+      },
+      {
+        "x": 1.5,
+        "y": 2.25
+      },
+      {
+        "x": 1.25,
+        "y": 2.25
+      },
+      {
+        "x": 1,
+        "y": 2.25
+      },
+      {
+        "x": 1,
+        "y": 2
+      }
+    ],
+    "target": 2,
+    "room": 2,
+    "urgent": false,
+    "barrier": false,
+    "imaging": true,
+    "returning": false,
+    "goal": "Find the answer without opening the appendix to the appendix",
+    "caseId": "binder",
+    "intakeDone": true,
+    "checkin": 7,
+    "recovery": 0,
+    "wait": 7,
+    "walking": 26,
+    "service": 11,
+    "handoff": 4,
+    "transfer": 0,
+    "yielding": 2,
+    "elapsedOffset": 0,
+    "arrival": 5,
+    "progress": 0,
+    "navDelay": 0,
+    "history": [
+      {
+        "stage": "consult",
+        "at": 37,
+        "room": 10,
+        "duration": 10.714285714285714
+      }
+    ],
+    "outside": false,
+    "stalled": 0,
+    "moved": true,
+    "motion": [
+      {
+        "x": 4.75,
+        "y": 5
+      },
+      {
+        "x": 4.5,
+        "y": 5
+      },
+      {
+        "x": 4.25,
+        "y": 5
+      },
+      {
+        "x": 4,
+        "y": 5
+      }
+    ],
+    "teamWaiting": false,
+    "equipmentWaiting": false,
+    "destination": {
+      "x": 1,
+      "y": 2
+    },
+    "previous": {
+      "x": 4.75,
+      "y": 5
+    },
+    "intakeWaiting": false,
+    "intakeHelper": 8,
+    "duration": 10.714285714285714,
+    "handoffReady": false
+  },
+  "counts": {
+    "arrivals": 4,
+    "completed": 1,
+    "departed": 0,
+    "unfinished": 3
+  }
+}

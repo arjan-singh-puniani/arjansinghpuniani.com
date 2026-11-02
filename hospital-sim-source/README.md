@@ -1,8 +1,10 @@
-# hospitalSIM — playable1.0.0-rc2
+# hospitalSIM — playable1.0.0-rc3
 
 An original, substantially AI-assisted browser hospital management release candidate for Arjan Singh Puniani. Real-time Three.js dioramas use reproducible Blender equipment and rigged characters. It is not certified production-ready, clinically validated or demonstrated superior to a commercial game.
 
 Play: https://arjansinghpuniani.com/playground/hospitalsim (check the in-game model label for the deployed version). Direct game: `/hospitalsim/index.html`. The preserved2D game is `dist/legacy/`; existing portfolio REPLISOME remains independent and accessible as an optional science workstation.
+
+Current walking and first-minute changes, model observations and limits: [RC3 notes](docs/LOCOMOTION_RC3.md). HistoricalRC1recording outcomes are not presented asRC3results.
 
 ## Run
 
@@ -28,6 +30,8 @@ node tests/waiting.mjs
 node tests/continuing.mjs
 node tests/browser-replay.mjs
 node tests/expansion.mjs
+node tests/locomotion.mjs
+node tests/browser-opening.mjs
 node tests/staffing-flow.mjs
 python3 tools/audit-assets.py
 ```

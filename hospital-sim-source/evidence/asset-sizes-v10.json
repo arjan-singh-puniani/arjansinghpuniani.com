@@ -1,9 +1,9 @@
 {
-  "model": "1.0.0-rc2",
-  "initialGlbCount": 30,
-  "initialGlbBytes": 12924268,
-  "initialGlbGzipBytes": 4138526,
+  "model": "1.0.0-rc3",
+  "initialGlbCount": 43,
+  "initialGlbBytes": 13534496,
+  "initialGlbGzipBytes": 4302529,
   "note": "gzip values measured locally; server transfer encoding and cache behavior may differ. Runtime JS/CSS/vendor are listed separately.",
-  "runtimeRawBytes": 2595625,
-  "assetCount": 57
+  "runtimeRawBytes": 2599288,
+  "assetCount": 70
 }

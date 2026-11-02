@@ -1,4 +1,4 @@
-import {GRID} from './content.mjs?v=118';
+import {GRID} from './content.mjs?v=121';
 export const entrance=s=>s.entrance||GRID.entry,exit=s=>s.exit||GRID.exit;
 export const gateDirection=p=>p.y===GRID.h-1?{x:0,y:1}:p.y===0?{x:0,y:-1}:p.x===0?{x:-1,y:0}:{x:1,y:0};
 export const roomAngle=r=>(r.rotation||0)*Math.PI/2;

@@ -1,3 +1,11 @@
+# 1.0.0-rc3 ·2026-11-02
+
+- Executed Blender for13shorter indoor gait clips and retained editable sources. Phase follows actual distance; turns round only within clear routes.
+- Fixed task/rest clips retaining zero animation weight after manually posed transfers. Pauses and reduced motion preserve movement contracts.
+- Reduced route advance to3quarter-cells per second. Preserved save visits and reservations; explicitly separated historical recording outcomes from the changed model.
+- Added a three-arrival opening, a first-neighbor goal and direct Follow action with actual service progress. Seed431first-three wait58s→27s with a consultation; completions stay1in both first-minute runs.
+- Added a bounded next-minute recording option and MP4 preference when supported. Real-device responsiveness and enjoyment remain unvalidated.
+
 # 1.0.0-rc2 · 2026-11-01
 
 - Removed mandatory pickup onboarding. The first action builds a consultation room from a world-space site; Sage physically walks over. Placement restores the previous running/paused state.
