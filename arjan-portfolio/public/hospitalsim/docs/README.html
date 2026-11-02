@@ -1,6 +1,7 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>hospitalSIM · README</title><style>body{max-width:880px;margin:40px auto;padding:0 22px;font:16px/1.7 system-ui;color:#183b43;background:#fafaf6}pre{overflow:auto;background:#e8f0ed;padding:16px}a{color:#176a76}img{max-width:100%}table{border-collapse:collapse}td,th{padding:8px;border:1px solid #cadbd8}</style><nav><a href="../index.html">Play</a> · <a href="interaction-review.html">Actual gameplay &amp; comparison</a></nav><h1>hospitalSIM — playable1.0.0-rc2</h1>
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>hospitalSIM · README</title><style>body{max-width:880px;margin:40px auto;padding:0 22px;font:16px/1.7 system-ui;color:#183b43;background:#fafaf6}pre{overflow:auto;background:#e8f0ed;padding:16px}a{color:#176a76}img{max-width:100%}</style><nav><a href="../index.html">Play</a> · <a href="interaction-review.html">Actual gameplay</a></nav><h1>hospitalSIM — playable1.0.0-rc3</h1>
 <p>An original, substantially AI-assisted browser hospital management release candidate for Arjan Singh Puniani. Real-time Three.js dioramas use reproducible Blender equipment and rigged characters. It is not certified production-ready, clinically validated or demonstrated superior to a commercial game.</p>
 <p>Play: <a href="https://arjansinghpuniani.com/playground/hospitalsim">https://arjansinghpuniani.com/playground/hospitalsim</a> (check the in-game model label for the deployed version). Direct game: <code>/hospitalsim/index.html</code>. The preserved2D game is <code>dist/legacy/</code>; existing portfolio REPLISOME remains independent and accessible as an optional science workstation.</p>
+<p>Current walking and first-minute changes, model observations and limits: <a href="docs/LOCOMOTION_RC3.md">RC3 notes</a>. HistoricalRC1recording outcomes are not presented asRC3results.</p>
 <h2>Run</h2>
 <p>Node22 for checks. The game itself is buildless:</p>
 <pre><code class="language-sh">python3 -m http.server 8766 --directory dist
@@ -22,6 +23,8 @@ node tests/waiting.mjs
 node tests/continuing.mjs
 node tests/browser-replay.mjs
 node tests/expansion.mjs
+node tests/locomotion.mjs
+node tests/browser-opening.mjs
 node tests/staffing-flow.mjs
 python3 tools/audit-assets.py
 </code></pre>

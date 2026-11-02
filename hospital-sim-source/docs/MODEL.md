@@ -1,4 +1,4 @@
-# hospitalSIM model1.0.0-rc2
+# hospitalSIM model1.0.0-rc3
 
 One tick is one fictional game second. A seeded arrival tape is independent of frame rate, appearance and layout. Initial seed431 uses an original consultation → optional imaging → care pathway; the opening map-collector visit is consultation-only. This is not a real clinical pathway or triage algorithm. Cases, priority/access flags, timings, wages and budgets are gameplay parameters. No diagnostic, dosing or treatment advice is supplied.
 
@@ -15,3 +15,7 @@ Two seats per waiting garden reserve independently of services. Sitting does not
 Saves are device-local, versioned and validated at import. Legacy v2 remains untouched when migrating to v3. A single active writer protects against background-tab overwrites; a displaced-tab snapshot can be recovered in Shift settings. Continuing sandbox periods retain unfinished visits/routes/assignments, budget and fatigue; reports identify carried visits, exact session accounting and the latest12period summaries. Export individual reports before continuing if older detail is needed.
 
 Counterfactuals replay identical exogenous arrivals within each pair. The exact schedule plus four paired variants show sensitivity, not statistical confidence or clinical validity. Policy/model changes must be disclosed. Nothing sends gameplay or assessment records to a server. Assessment items remain an unvalidated draft requiring educator review before evaluation.
+
+## RC3 travel and opening
+
+Route advance is3quarter-cells per tick (approximately1.2375m/s), shared by patients and staff. Neighborhood arrivals1,5and9form an opening queue; later arrivals are unchanged. This changes model timing/outcomes. Existing saves retain current visits and schedules. See [locomotion and opening verification](LOCOMOTION_RC3.md).

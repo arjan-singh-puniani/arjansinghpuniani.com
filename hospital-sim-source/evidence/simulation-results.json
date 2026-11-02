@@ -1,11 +1,11 @@
 {
   "baseline": {
     "game": "hospitalSIM",
-    "model": "1.0.0-rc2",
+    "model": "1.0.0-rc3",
     "scenario": "neighborhood",
     "mode": "sandbox",
     "mastery": false,
-    "arrivalFingerprint": "9de4994d",
+    "arrivalFingerprint": "b0295b99",
     "seed": 431,
     "randomState": 431,
     "simulationSeconds": 480,
@@ -24,8 +24,8 @@
     },
     "counts": {
       "arrivals": 27,
-      "completed": 8,
-      "departed": 10,
+      "completed": 7,
+      "departed": 11,
       "unfinished": 9
     },
     "period": {
@@ -35,29 +35,29 @@
     },
     "sessionCounts": {
       "arrivals": 27,
-      "completed": 8,
-      "departed": 10,
+      "completed": 7,
+      "departed": 11,
       "unfinished": 9
     },
     "previousPeriods": [],
     "waits": {
       "completed": {
-        "n": 8,
-        "mean": 80.375,
-        "median": 86.5,
-        "p90": 172
+        "n": 7,
+        "mean": 75.42857142857143,
+        "median": 65,
+        "p90": 153
       },
       "allRecordedOutcomes": {
         "n": 18,
-        "mean": 131.22222222222223,
+        "mean": 134.44444444444446,
         "median": 171,
-        "p90": 172
+        "p90": 173
       },
       "allArrivalsIncludingCurrent": {
         "n": 27,
-        "mean": 124.14814814814815,
-        "median": 135,
-        "p90": 172
+        "mean": 127.74074074074075,
+        "median": 147,
+        "p90": 173
       }
     },
     "accessCohorts": [
@@ -75,16 +75,16 @@
         "barrier": false,
         "arrivals": 24,
         "completed": {
-          "n": 8,
-          "mean": 80.375,
-          "median": 86.5,
-          "p90": 172
+          "n": 7,
+          "mean": 75.42857142857143,
+          "median": 65,
+          "p90": 153
         }
       }
     ],
     "budget": 8396,
-    "teamEnergy": 96.20999999999998,
-    "experience": 43.80000000000001,
+    "teamEnergy": 96.94333333333333,
+    "experience": 39.80000000000001,
     "layout": [
       {
         "id": 1,
@@ -98,7 +98,7 @@
         "decor": [
           "plant"
         ],
-        "readyAt": 459,
+        "readyAt": 473,
         "spill": false
       },
       {
@@ -111,7 +111,7 @@
           2
         ],
         "decor": [],
-        "readyAt": 472,
+        "readyAt": 376,
         "spill": false
       },
       {
@@ -125,7 +125,7 @@
           4
         ],
         "decor": [],
-        "readyAt": 455,
+        "readyAt": 489,
         "spill": false
       }
     ],
@@ -148,7 +148,7 @@
         ],
         "trait": "listener",
         "shiftEnd": 480,
-        "fatigue": 1.3,
+        "fatigue": 0.020000000000000046,
         "breakUntil": 0
       },
       {
@@ -160,7 +160,7 @@
         ],
         "trait": "steady",
         "shiftEnd": 480,
-        "fatigue": 5.9200000000000035,
+        "fatigue": 0,
         "breakUntil": 0
       },
       {
@@ -172,7 +172,7 @@
         ],
         "trait": "steady",
         "shiftEnd": 480,
-        "fatigue": 6.999999999999995,
+        "fatigue": 6.600000000000005,
         "breakUntil": 0
       },
       {
@@ -184,7 +184,7 @@
         ],
         "trait": "brisk",
         "shiftEnd": 480,
-        "fatigue": 19.670000000000122,
+        "fatigue": 18.990000000000077,
         "breakUntil": 0
       },
       {
@@ -228,7 +228,7 @@
         "skills": [],
         "trait": "steady",
         "shiftEnd": 480,
-        "fatigue": 0.20000000000000018,
+        "fatigue": 1.4800000000000004,
         "breakUntil": 0,
         "position": {
           "x": 4.75,
@@ -242,7 +242,7 @@
         "skills": [],
         "trait": "listener",
         "shiftEnd": 480,
-        "fatigue": 0.020000000000000046,
+        "fatigue": 0.42,
         "breakUntil": 4,
         "position": {
           "x": 4.25,
@@ -259,7 +259,7 @@
         "trait": "steady",
         "shiftEnd": 480,
         "fatigue": 0,
-        "breakUntil": 223,
+        "breakUntil": 239,
         "position": {
           "x": 0.5,
           "y": 6.5
@@ -271,8 +271,8 @@
     "operations": {
       "deskStaff": 7,
       "deskLevel": 2,
-      "intakePatient": null,
-      "checkedIn": 17,
+      "intakePatient": 1021,
+      "checkedIn": 18,
       "event": {
         "kind": "coffee",
         "status": "resolved",
@@ -281,7 +281,7 @@
         "choice": "dispatch",
         "remaining": 3,
         "workerId": 9,
-        "resolvedAt": 216
+        "resolvedAt": 218
       },
       "eventDone": true,
       "unlocks": [
@@ -295,15 +295,15 @@
       "banter": {
         "id": 7,
         "name": "Quinn",
-        "line": "Keep the question on the back of the page. We have time.",
-        "until": 476
+        "line": "Your step counter gets a break now.",
+        "until": 456
       },
       "decisions": [],
       "recoveryCount": 7,
       "loungeVoucher": true,
       "supervision": "paired",
       "coffeeDone": true,
-      "intakeAssists": 17,
+      "intakeAssists": 18,
       "roomResets": 0,
       "incidents": [
         {
@@ -345,7 +345,7 @@
         "roomId": 2
       },
       {
-        "at": 216,
+        "at": 218,
         "type": "equipment-restored",
         "roomId": 2,
         "staffId": 9
@@ -370,7 +370,7 @@
         "checkin": 2,
         "recovery": 0,
         "wait": 3,
-        "walking": 23,
+        "walking": 26,
         "service": 8,
         "handoff": 0,
         "transfer": 0,
@@ -382,7 +382,7 @@
         "history": [
           {
             "stage": "consult",
-            "at": 18,
+            "at": 19,
             "room": 1,
             "duration": 7.291666666666667
           }
@@ -399,13 +399,13 @@
         },
         "previous": {
           "x": 7,
-          "y": 6
+          "y": 6.5
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
         "duration": 7.291666666666667,
         "outcome": "completed",
-        "total": 36
+        "total": 39
       },
       {
         "id": 1001,
@@ -424,32 +424,32 @@
         "intakeDone": true,
         "checkin": 7,
         "recovery": 3,
-        "wait": 7,
-        "walking": 51,
+        "wait": 17,
+        "walking": 63,
         "service": 46,
         "handoff": 8,
         "transfer": 13,
-        "yielding": 0,
+        "yielding": 2,
         "elapsedOffset": 0,
-        "arrival": 19,
+        "arrival": 5,
         "progress": 2,
         "navDelay": 0,
         "history": [
           {
             "stage": "consult",
-            "at": 43,
+            "at": 45,
             "room": 1,
             "duration": 12.5
           },
           {
             "stage": "scan",
-            "at": 77,
+            "at": 81,
             "room": 2,
             "duration": 17.043714285714287
           },
           {
             "stage": "care",
-            "at": 118,
+            "at": 123,
             "room": 3,
             "duration": 14.197944743935308
           }
@@ -466,7 +466,7 @@
         },
         "previous": {
           "x": 7,
-          "y": 6
+          "y": 6.5
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
@@ -474,7 +474,7 @@
         "handoffReady": false,
         "recovered": true,
         "outcome": "completed",
-        "total": 135
+        "total": 157
       },
       {
         "id": 1002,
@@ -493,32 +493,32 @@
         "intakeDone": true,
         "checkin": 2,
         "recovery": 3,
-        "wait": 41,
-        "walking": 54,
+        "wait": 65,
+        "walking": 66,
         "service": 46,
         "handoff": 8,
         "transfer": 13,
         "yielding": 1,
         "elapsedOffset": 0,
-        "arrival": 37,
+        "arrival": 9,
         "progress": 2,
         "navDelay": 0,
         "history": [
           {
             "stage": "consult",
-            "at": 73,
+            "at": 76,
             "room": 1,
             "duration": 12.5
           },
           {
             "stage": "scan",
-            "at": 123,
+            "at": 129,
             "room": 2,
-            "duration": 17.179714285714287
+            "duration": 17.160285714285713
           },
           {
             "stage": "care",
-            "at": 166,
+            "at": 171,
             "room": 3,
             "duration": 14.40363881401617
           }
@@ -543,7 +543,70 @@
         "handoffReady": false,
         "recovered": true,
         "outcome": "completed",
-        "total": 167
+        "total": 203
+      },
+      {
+        "id": 1007,
+        "name": "Morgan",
+        "x": 7,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": true,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Find the answer without opening the appendix to the appendix",
+        "caseId": "binder",
+        "intakeDone": true,
+        "checkin": 4,
+        "recovery": 3,
+        "wait": 42,
+        "walking": 47,
+        "service": 28,
+        "handoff": 4,
+        "transfer": 7,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 127,
+        "progress": 2,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 170,
+            "room": 1,
+            "duration": 12.5
+          },
+          {
+            "stage": "care",
+            "at": 221,
+            "room": 3,
+            "duration": 14.59316037735849
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "teamWaiting": false,
+        "equipmentWaiting": false,
+        "destination": {
+          "x": 7,
+          "y": 7
+        },
+        "previous": {
+          "x": 7,
+          "y": 6.75
+        },
+        "intakeWaiting": false,
+        "intakeHelper": 8,
+        "duration": 14.59316037735849,
+        "handoffReady": false,
+        "recovered": true,
+        "outcome": "completed",
+        "total": 135
       },
       {
         "id": 1003,
@@ -562,12 +625,12 @@
         "intakeDone": true,
         "checkin": 2,
         "recovery": 3,
-        "wait": 67,
-        "walking": 58,
+        "wait": 116,
+        "walking": 69,
         "service": 46,
         "handoff": 8,
         "transfer": 13,
-        "yielding": 2,
+        "yielding": 3,
         "elapsedOffset": 0,
         "arrival": 55,
         "progress": 2,
@@ -575,21 +638,21 @@
         "history": [
           {
             "stage": "consult",
-            "at": 104,
+            "at": 108,
             "room": 1,
             "duration": 12.5
           },
           {
             "stage": "scan",
-            "at": 169,
+            "at": 177,
             "room": 2,
-            "duration": 17.315714285714286
+            "duration": 17.276857142857143
           },
           {
             "stage": "care",
-            "at": 214,
+            "at": 271,
             "room": 3,
-            "duration": 14.609332884097034
+            "duration": 14.78268194070081
           }
         ],
         "outside": false,
@@ -608,147 +671,45 @@
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 14.609332884097034,
+        "duration": 14.78268194070081,
         "handoffReady": false,
         "recovered": true,
         "outcome": "completed",
-        "total": 197
+        "total": 257
       },
       {
-        "id": 1005,
-        "name": "Imani",
+        "id": 1006,
+        "name": "Rae",
         "x": 7,
         "y": 7,
-        "stage": "consult",
-        "target": null,
-        "room": null,
-        "urgent": true,
-        "barrier": false,
-        "imaging": true,
-        "returning": false,
-        "goal": "A little assessment, then a proper sit-down",
-        "caseId": "fitness",
-        "intakeDone": false,
-        "checkin": 0,
-        "recovery": 0,
-        "wait": 172,
-        "walking": 12,
-        "service": 0,
-        "handoff": 0,
-        "transfer": 0,
-        "yielding": 1,
-        "elapsedOffset": 0,
-        "arrival": 91,
-        "progress": 2,
-        "navDelay": 0,
-        "history": [],
-        "outside": false,
-        "stalled": 0,
-        "moved": false,
-        "motion": null,
-        "teamWaiting": false,
-        "equipmentWaiting": false,
-        "destination": {
-          "x": 7,
-          "y": 7
-        },
-        "previous": {
-          "x": 6.25,
-          "y": 6.75
-        },
-        "outcome": "departed",
-        "total": 184
-      },
-      {
-        "id": 1007,
-        "name": "Morgan",
-        "x": 7,
-        "y": 7,
-        "stage": "consult",
-        "target": null,
-        "room": null,
-        "urgent": true,
-        "barrier": false,
-        "imaging": false,
-        "returning": false,
-        "goal": "Find the answer without opening the appendix to the appendix",
-        "caseId": "binder",
-        "intakeDone": false,
-        "checkin": 0,
-        "recovery": 0,
-        "wait": 171,
-        "walking": 11,
-        "service": 0,
-        "handoff": 0,
-        "transfer": 0,
-        "yielding": 0,
-        "elapsedOffset": 0,
-        "arrival": 127,
-        "progress": 2,
-        "navDelay": 0,
-        "history": [],
-        "outside": false,
-        "stalled": 0,
-        "moved": false,
-        "motion": null,
-        "teamWaiting": false,
-        "equipmentWaiting": false,
-        "destination": {
-          "x": 7,
-          "y": 7
-        },
-        "previous": {
-          "x": 7,
-          "y": 6
-        },
-        "outcome": "departed",
-        "total": 182
-      },
-      {
-        "id": 1004,
-        "name": "Kai",
-        "x": 7,
-        "y": 7,
-        "stage": "care",
+        "stage": "scan",
         "target": null,
         "room": null,
         "urgent": false,
         "barrier": false,
         "imaging": true,
         "returning": false,
-        "goal": "Find the answer without opening the appendix to the appendix",
-        "caseId": "binder",
+        "goal": "Understand the next step before heading home",
+        "caseId": "questions",
         "intakeDone": true,
-        "checkin": 4,
-        "recovery": 3,
-        "wait": 106,
-        "walking": 59,
-        "service": 46,
-        "handoff": 8,
-        "transfer": 13,
-        "yielding": 4,
+        "checkin": 2,
+        "recovery": 0,
+        "wait": 171,
+        "walking": 35,
+        "service": 13,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 1,
         "elapsedOffset": 0,
-        "arrival": 73,
+        "arrival": 109,
         "progress": 2,
         "navDelay": 0,
         "history": [
           {
             "stage": "consult",
-            "at": 134,
+            "at": 232,
             "room": 1,
             "duration": 12.5
-          },
-          {
-            "stage": "scan",
-            "at": 231,
-            "room": 2,
-            "duration": 17.296285714285712
-          },
-          {
-            "stage": "care",
-            "at": 272,
-            "room": 3,
-            "duration": 14.734164420485174
           }
         ],
         "outside": false,
@@ -767,11 +728,10 @@
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 14.734164420485174,
+        "duration": 12.5,
         "handoffReady": false,
-        "recovered": true,
-        "outcome": "completed",
-        "total": 239
+        "outcome": "departed",
+        "total": 225
       },
       {
         "id": 1012,
@@ -791,7 +751,7 @@
         "checkin": 0,
         "recovery": 0,
         "wait": 171,
-        "walking": 10,
+        "walking": 12,
         "service": 0,
         "handoff": 0,
         "transfer": 0,
@@ -812,15 +772,62 @@
           "y": 7
         },
         "previous": {
-          "x": 6,
+          "x": 6.75,
           "y": 7
         },
         "outcome": "departed",
-        "total": 181
+        "total": 183
       },
       {
-        "id": 1006,
-        "name": "Rae",
+        "id": 1011,
+        "name": "Jordan",
+        "x": 7,
+        "y": 7,
+        "stage": "consult",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "A little assessment, then a proper sit-down",
+        "caseId": "fitness",
+        "intakeDone": true,
+        "checkin": 2,
+        "recovery": 0,
+        "wait": 173,
+        "walking": 17,
+        "service": 0,
+        "handoff": 0,
+        "transfer": 0,
+        "yielding": 4,
+        "elapsedOffset": 0,
+        "arrival": 163,
+        "progress": 2,
+        "navDelay": 0,
+        "history": [],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "teamWaiting": false,
+        "equipmentWaiting": false,
+        "destination": {
+          "x": 7,
+          "y": 7
+        },
+        "previous": {
+          "x": 7,
+          "y": 6.75
+        },
+        "intakeWaiting": false,
+        "intakeHelper": 8,
+        "outcome": "departed",
+        "total": 192
+      },
+      {
+        "id": 1004,
+        "name": "Kai",
         "x": 7,
         "y": 7,
         "stage": "care",
@@ -830,39 +837,33 @@
         "barrier": false,
         "imaging": true,
         "returning": false,
-        "goal": "Understand the next step before heading home",
-        "caseId": "questions",
+        "goal": "Find the answer without opening the appendix to the appendix",
+        "caseId": "binder",
         "intakeDone": true,
-        "checkin": 2,
-        "recovery": 3,
-        "wait": 121,
-        "walking": 58,
-        "service": 46,
+        "checkin": 4,
+        "recovery": 0,
+        "wait": 175,
+        "walking": 62,
+        "service": 31,
         "handoff": 8,
-        "transfer": 13,
-        "yielding": 4,
+        "transfer": 6,
+        "yielding": 6,
         "elapsedOffset": 0,
-        "arrival": 109,
+        "arrival": 73,
         "progress": 2,
         "navDelay": 0,
         "history": [
           {
             "stage": "consult",
-            "at": 164,
+            "at": 201,
             "room": 1,
             "duration": 12.5
           },
           {
             "stage": "scan",
-            "at": 277,
+            "at": 294,
             "room": 2,
-            "duration": 17.43228571428571
-          },
-          {
-            "stage": "care",
-            "at": 320,
-            "room": 3,
-            "duration": 14.939858490566037
+            "duration": 17.306
           }
         ],
         "outside": false,
@@ -881,11 +882,182 @@
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 14.939858490566037,
+        "duration": 17.306,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 286
+      },
+      {
+        "id": 1005,
+        "name": "Imani",
+        "x": 7,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": true,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "A little assessment, then a proper sit-down",
+        "caseId": "fitness",
+        "intakeDone": true,
+        "checkin": 2,
+        "recovery": 3,
+        "wait": 132,
+        "walking": 71,
+        "service": 46,
+        "handoff": 8,
+        "transfer": 13,
+        "yielding": 6,
+        "elapsedOffset": 0,
+        "arrival": 91,
+        "progress": 2,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 139,
+            "room": 1,
+            "duration": 12.5
+          },
+          {
+            "stage": "scan",
+            "at": 246,
+            "room": 2,
+            "duration": 17.18942857142857
+          },
+          {
+            "stage": "care",
+            "at": 321,
+            "room": 3,
+            "duration": 14.972203504043126
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "teamWaiting": false,
+        "equipmentWaiting": false,
+        "destination": {
+          "x": 7,
+          "y": 7
+        },
+        "previous": {
+          "x": 6.75,
+          "y": 6.5
+        },
+        "intakeWaiting": false,
+        "intakeHelper": 8,
+        "duration": 14.972203504043126,
         "handoffReady": false,
         "recovered": true,
         "outcome": "completed",
-        "total": 251
+        "total": 275
+      },
+      {
+        "id": 1009,
+        "name": "Sam",
+        "x": 7,
+        "y": 7,
+        "stage": "scan",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Understand the next step before heading home",
+        "caseId": "questions",
+        "intakeDone": true,
+        "checkin": 2,
+        "recovery": 0,
+        "wait": 171,
+        "walking": 41,
+        "service": 13,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 151,
+        "progress": 2,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 294,
+            "room": 1,
+            "duration": 12.5
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "teamWaiting": false,
+        "equipmentWaiting": false,
+        "destination": {
+          "x": 7,
+          "y": 7
+        },
+        "previous": {
+          "x": 7,
+          "y": 6.75
+        },
+        "intakeWaiting": false,
+        "intakeHelper": 8,
+        "duration": 12.5,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 231
+      },
+      {
+        "id": 1014,
+        "name": "Robin",
+        "x": 7,
+        "y": 7,
+        "stage": "consult",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "A little assessment, then a proper sit-down",
+        "caseId": "fitness",
+        "intakeDone": true,
+        "checkin": 2,
+        "recovery": 0,
+        "wait": 172,
+        "walking": 17,
+        "service": 0,
+        "handoff": 0,
+        "transfer": 0,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 205,
+        "progress": 2,
+        "navDelay": 0,
+        "history": [],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "teamWaiting": false,
+        "equipmentWaiting": false,
+        "destination": {
+          "x": 7,
+          "y": 7
+        },
+        "previous": {
+          "x": 7,
+          "y": 6.75
+        },
+        "intakeWaiting": false,
+        "intakeHelper": 8,
+        "outcome": "departed",
+        "total": 191
       },
       {
         "id": 1010,
@@ -903,13 +1075,13 @@
         "caseId": "binder",
         "intakeDone": true,
         "checkin": 4,
-        "recovery": 0,
-        "wait": 172,
-        "walking": 34,
-        "service": 13,
+        "recovery": 3,
+        "wait": 153,
+        "walking": 55,
+        "service": 29,
         "handoff": 4,
-        "transfer": 0,
-        "yielding": 2,
+        "transfer": 7,
+        "yielding": 3,
         "elapsedOffset": 0,
         "arrival": 157,
         "progress": 2,
@@ -917,133 +1089,15 @@
         "history": [
           {
             "stage": "consult",
-            "at": 254,
-            "room": 1,
-            "duration": 12.5
-          }
-        ],
-        "outside": false,
-        "stalled": 0,
-        "moved": false,
-        "motion": null,
-        "teamWaiting": false,
-        "equipmentWaiting": false,
-        "destination": {
-          "x": 7,
-          "y": 7
-        },
-        "previous": {
-          "x": 7,
-          "y": 6.75
-        },
-        "intakeWaiting": false,
-        "intakeHelper": 8,
-        "duration": 12.5,
-        "handoffReady": false,
-        "outcome": "departed",
-        "total": 227
-      },
-      {
-        "id": 1011,
-        "name": "Jordan",
-        "x": 7,
-        "y": 7,
-        "stage": "scan",
-        "target": null,
-        "room": null,
-        "urgent": false,
-        "barrier": false,
-        "imaging": true,
-        "returning": false,
-        "goal": "A little assessment, then a proper sit-down",
-        "caseId": "fitness",
-        "intakeDone": true,
-        "checkin": 2,
-        "recovery": 0,
-        "wait": 171,
-        "walking": 35,
-        "service": 13,
-        "handoff": 4,
-        "transfer": 0,
-        "yielding": 0,
-        "elapsedOffset": 0,
-        "arrival": 163,
-        "progress": 2,
-        "navDelay": 0,
-        "history": [
-          {
-            "stage": "consult",
-            "at": 284,
-            "room": 1,
-            "duration": 12.5
-          }
-        ],
-        "outside": false,
-        "stalled": 0,
-        "moved": false,
-        "motion": null,
-        "teamWaiting": false,
-        "equipmentWaiting": false,
-        "destination": {
-          "x": 7,
-          "y": 7
-        },
-        "previous": {
-          "x": 7,
-          "y": 6
-        },
-        "intakeWaiting": false,
-        "intakeHelper": 8,
-        "duration": 12.5,
-        "handoffReady": false,
-        "outcome": "departed",
-        "total": 225
-      },
-      {
-        "id": 1008,
-        "name": "Alex",
-        "x": 7,
-        "y": 7,
-        "stage": "care",
-        "target": null,
-        "room": null,
-        "urgent": false,
-        "barrier": false,
-        "imaging": true,
-        "returning": false,
-        "goal": "A little assessment, then a proper sit-down",
-        "caseId": "fitness",
-        "intakeDone": true,
-        "checkin": 2,
-        "recovery": 3,
-        "wait": 126,
-        "walking": 63,
-        "service": 47,
-        "handoff": 8,
-        "transfer": 13,
-        "yielding": 2,
-        "elapsedOffset": 0,
-        "arrival": 145,
-        "progress": 2,
-        "navDelay": 0,
-        "history": [
-          {
-            "stage": "consult",
-            "at": 194,
-            "room": 1,
-            "duration": 12.5
-          },
-          {
-            "stage": "scan",
             "at": 325,
-            "room": 2,
-            "duration": 17.54885714285714
+            "room": 1,
+            "duration": 12.5
           },
           {
             "stage": "care",
-            "at": 368,
+            "at": 371,
             "room": 3,
-            "duration": 15.1455525606469
+            "duration": 15.161725067385444
           }
         ],
         "outside": false,
@@ -1062,11 +1116,11 @@
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 15.1455525606469,
+        "duration": 15.161725067385444,
         "handoffReady": false,
         "recovered": true,
         "outcome": "completed",
-        "total": 262
+        "total": 255
       },
       {
         "id": 1013,
@@ -1085,12 +1139,12 @@
         "intakeDone": true,
         "checkin": 4,
         "recovery": 0,
-        "wait": 172,
-        "walking": 30,
+        "wait": 171,
+        "walking": 40,
         "service": 13,
         "handoff": 4,
         "transfer": 0,
-        "yielding": 2,
+        "yielding": 1,
         "elapsedOffset": 0,
         "arrival": 187,
         "progress": 2,
@@ -1098,11 +1152,122 @@
         "history": [
           {
             "stage": "consult",
-            "at": 314,
+            "at": 368,
             "room": 1,
             "duration": 12.5
           }
         ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "teamWaiting": false,
+        "equipmentWaiting": false,
+        "destination": {
+          "x": 7,
+          "y": 7
+        },
+        "previous": {
+          "x": 7,
+          "y": 6.25
+        },
+        "intakeWaiting": false,
+        "intakeHelper": 8,
+        "duration": 12.5,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 232
+      },
+      {
+        "id": 1008,
+        "name": "Alex",
+        "x": 7,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "A little assessment, then a proper sit-down",
+        "caseId": "fitness",
+        "intakeDone": true,
+        "checkin": 2,
+        "recovery": 0,
+        "wait": 171,
+        "walking": 64,
+        "service": 31,
+        "handoff": 8,
+        "transfer": 6,
+        "yielding": 2,
+        "elapsedOffset": 0,
+        "arrival": 145,
+        "progress": 2,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 263,
+            "room": 1,
+            "duration": 12.5
+          },
+          {
+            "stage": "scan",
+            "at": 342,
+            "room": 2,
+            "duration": 17.42257142857143
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "teamWaiting": false,
+        "equipmentWaiting": false,
+        "destination": {
+          "x": 7,
+          "y": 7
+        },
+        "previous": {
+          "x": 7,
+          "y": 6.25
+        },
+        "intakeWaiting": false,
+        "intakeHelper": 8,
+        "duration": 17.42257142857143,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 282
+      },
+      {
+        "id": 1016,
+        "name": "Kai",
+        "x": 7,
+        "y": 7,
+        "stage": "consult",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "Find the answer without opening the appendix to the appendix",
+        "caseId": "binder",
+        "intakeDone": true,
+        "checkin": 4,
+        "recovery": 0,
+        "wait": 172,
+        "walking": 20,
+        "service": 0,
+        "handoff": 0,
+        "transfer": 0,
+        "yielding": 2,
+        "elapsedOffset": 0,
+        "arrival": 241,
+        "progress": 2,
+        "navDelay": 0,
+        "history": [],
         "outside": false,
         "stalled": 0,
         "moved": false,
@@ -1119,66 +1284,8 @@
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 12.5,
-        "handoffReady": false,
         "outcome": "departed",
-        "total": 223
-      },
-      {
-        "id": 1014,
-        "name": "Robin",
-        "x": 7,
-        "y": 7,
-        "stage": "care",
-        "target": null,
-        "room": null,
-        "urgent": false,
-        "barrier": false,
-        "imaging": false,
-        "returning": false,
-        "goal": "A little assessment, then a proper sit-down",
-        "caseId": "fitness",
-        "intakeDone": true,
-        "checkin": 2,
-        "recovery": 0,
-        "wait": 171,
-        "walking": 32,
-        "service": 13,
-        "handoff": 4,
-        "transfer": 0,
-        "yielding": 1,
-        "elapsedOffset": 0,
-        "arrival": 205,
-        "progress": 2,
-        "navDelay": 0,
-        "history": [
-          {
-            "stage": "consult",
-            "at": 344,
-            "room": 1,
-            "duration": 12.5
-          }
-        ],
-        "outside": false,
-        "stalled": 0,
-        "moved": false,
-        "motion": null,
-        "teamWaiting": false,
-        "equipmentWaiting": false,
-        "destination": {
-          "x": 7,
-          "y": 7
-        },
-        "previous": {
-          "x": 7,
-          "y": 6
-        },
-        "intakeWaiting": false,
-        "intakeHelper": 8,
-        "duration": 12.5,
-        "handoffReady": false,
-        "outcome": "departed",
-        "total": 222
+        "total": 196
       },
       {
         "id": 1017,
@@ -1197,12 +1304,12 @@
         "intakeDone": false,
         "checkin": 0,
         "recovery": 0,
-        "wait": 172,
+        "wait": 173,
         "walking": 16,
         "service": 0,
         "handoff": 0,
         "transfer": 0,
-        "yielding": 1,
+        "yielding": 2,
         "elapsedOffset": 0,
         "arrival": 259,
         "progress": 2,
@@ -1220,135 +1327,10 @@
         },
         "previous": {
           "x": 7,
-          "y": 6.75
+          "y": 6.5
         },
         "outcome": "departed",
-        "total": 188
-      },
-      {
-        "id": 1015,
-        "name": "Avery",
-        "x": 7,
-        "y": 7,
-        "stage": "care",
-        "target": null,
-        "room": null,
-        "urgent": false,
-        "barrier": true,
-        "imaging": false,
-        "returning": false,
-        "goal": "Understand the next step before heading home",
-        "caseId": "questions",
-        "intakeDone": true,
-        "checkin": 2,
-        "recovery": 0,
-        "wait": 172,
-        "walking": 36,
-        "service": 13,
-        "handoff": 4,
-        "transfer": 0,
-        "yielding": 2,
-        "elapsedOffset": 0,
-        "arrival": 223,
-        "progress": 2,
-        "navDelay": 0,
-        "history": [
-          {
-            "stage": "consult",
-            "at": 374,
-            "room": 1,
-            "duration": 12.5
-          }
-        ],
-        "outside": false,
-        "stalled": 0,
-        "moved": false,
-        "motion": null,
-        "teamWaiting": false,
-        "equipmentWaiting": false,
-        "destination": {
-          "x": 7,
-          "y": 7
-        },
-        "previous": {
-          "x": 7,
-          "y": 6.75
-        },
-        "intakeWaiting": false,
-        "intakeHelper": 8,
-        "duration": 12.5,
-        "handoffReady": false,
-        "outcome": "departed",
-        "total": 227
-      },
-      {
-        "id": 1009,
-        "name": "Sam",
-        "x": 7,
-        "y": 7,
-        "stage": "care",
-        "target": null,
-        "room": null,
-        "urgent": false,
-        "barrier": false,
-        "imaging": true,
-        "returning": false,
-        "goal": "Understand the next step before heading home",
-        "caseId": "questions",
-        "intakeDone": true,
-        "checkin": 2,
-        "recovery": 3,
-        "wait": 172,
-        "walking": 61,
-        "service": 47,
-        "handoff": 8,
-        "transfer": 13,
-        "yielding": 3,
-        "elapsedOffset": 0,
-        "arrival": 151,
-        "progress": 2,
-        "navDelay": 0,
-        "history": [
-          {
-            "stage": "consult",
-            "at": 224,
-            "room": 1,
-            "duration": 12.5
-          },
-          {
-            "stage": "scan",
-            "at": 373,
-            "room": 2,
-            "duration": 17.66542857142857
-          },
-          {
-            "stage": "care",
-            "at": 417,
-            "room": 3,
-            "duration": 15.366913746630729
-          }
-        ],
-        "outside": false,
-        "stalled": 0,
-        "moved": false,
-        "motion": null,
-        "teamWaiting": false,
-        "equipmentWaiting": false,
-        "destination": {
-          "x": 7,
-          "y": 7
-        },
-        "previous": {
-          "x": 6.75,
-          "y": 7
-        },
-        "intakeWaiting": false,
-        "intakeHelper": 8,
-        "duration": 15.366913746630729,
-        "handoffReady": false,
-        "recovered": true,
-        "outcome": "completed",
-        "total": 306
+        "total": 189
       },
       {
         "id": 1018,
@@ -1367,12 +1349,12 @@
         "intakeDone": false,
         "checkin": 0,
         "recovery": 0,
-        "wait": 175,
-        "walking": 12,
+        "wait": 172,
+        "walking": 19,
         "service": 0,
         "handoff": 0,
         "transfer": 0,
-        "yielding": 4,
+        "yielding": 1,
         "elapsedOffset": 0,
         "arrival": 277,
         "progress": 2,
@@ -1389,81 +1371,187 @@
           "y": 7
         },
         "previous": {
-          "x": 6.25,
-          "y": 6.75
+          "x": 7,
+          "y": 6.5
         },
         "outcome": "departed",
-        "total": 187
+        "total": 191
       }
     ],
     "unfinished": [
       {
-        "id": 1016,
-        "name": "Kai",
-        "x": 1,
+        "id": 1015,
+        "name": "Avery",
+        "x": 2.75,
         "y": 5,
         "stage": "care",
-        "state": "service",
-        "route": [],
-        "target": 3,
-        "room": 3,
+        "state": "exiting",
+        "route": [
+          {
+            "x": 3,
+            "y": 5
+          },
+          {
+            "x": 3.25,
+            "y": 5
+          },
+          {
+            "x": 3.5,
+            "y": 5
+          },
+          {
+            "x": 3.75,
+            "y": 5
+          },
+          {
+            "x": 4,
+            "y": 5
+          },
+          {
+            "x": 4.25,
+            "y": 5
+          },
+          {
+            "x": 4.5,
+            "y": 5
+          },
+          {
+            "x": 4.75,
+            "y": 5
+          },
+          {
+            "x": 5,
+            "y": 5
+          },
+          {
+            "x": 5.25,
+            "y": 5
+          },
+          {
+            "x": 5.5,
+            "y": 5
+          },
+          {
+            "x": 5.75,
+            "y": 5
+          },
+          {
+            "x": 6,
+            "y": 5
+          },
+          {
+            "x": 6.25,
+            "y": 5
+          },
+          {
+            "x": 6.5,
+            "y": 5
+          },
+          {
+            "x": 6.75,
+            "y": 5
+          },
+          {
+            "x": 7,
+            "y": 5
+          },
+          {
+            "x": 7,
+            "y": 5.25
+          },
+          {
+            "x": 7,
+            "y": 5.5
+          },
+          {
+            "x": 7,
+            "y": 5.75
+          },
+          {
+            "x": 7,
+            "y": 6
+          },
+          {
+            "x": 7,
+            "y": 6.25
+          },
+          {
+            "x": 7,
+            "y": 6.5
+          },
+          {
+            "x": 7,
+            "y": 6.75
+          },
+          {
+            "x": 7,
+            "y": 7
+          }
+        ],
+        "target": null,
+        "room": null,
         "urgent": false,
-        "barrier": false,
-        "imaging": true,
+        "barrier": true,
+        "imaging": false,
         "returning": false,
-        "goal": "Find the answer without opening the appendix to the appendix",
-        "caseId": "binder",
+        "goal": "Understand the next step before heading home",
+        "caseId": "questions",
         "intakeDone": true,
-        "checkin": 4,
-        "recovery": 0,
-        "wait": 142,
-        "walking": 44,
-        "service": 32,
-        "handoff": 8,
-        "transfer": 9,
+        "checkin": 2,
+        "recovery": 3,
+        "wait": 170,
+        "walking": 42,
+        "service": 29,
+        "handoff": 4,
+        "transfer": 7,
         "yielding": 1,
         "elapsedOffset": 0,
-        "arrival": 241,
-        "progress": 1,
+        "arrival": 223,
+        "progress": 0,
         "navDelay": 0,
         "history": [
           {
             "stage": "consult",
-            "at": 404,
+            "at": 416,
             "room": 1,
             "duration": 12.5
           },
           {
-            "stage": "scan",
-            "at": 438,
-            "room": 2,
-            "duration": 17.616857142857143
-          },
-          {
             "stage": "care",
-            "at": 479,
+            "at": 451,
             "room": 3,
-            "duration": 15.483153638814022
+            "duration": 15.132412398921836
           }
         ],
         "outside": false,
-        "stalled": 0,
-        "moved": false,
-        "motion": null,
+        "stalled": 1,
+        "moved": true,
+        "motion": [
+          {
+            "x": 2.5,
+            "y": 5
+          },
+          {
+            "x": 2.75,
+            "y": 5
+          }
+        ],
         "teamWaiting": false,
         "equipmentWaiting": false,
         "destination": {
-          "x": 1,
-          "y": 5
+          "x": 7,
+          "y": 7
         },
         "previous": {
-          "x": 0.75,
-          "y": 4.75
+          "x": 2.5,
+          "y": 5
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 15.483153638814022,
-        "handoffReady": false
+        "duration": 15.132412398921836,
+        "handoffReady": false,
+        "recovered": true,
+        "outcome": "completed"
       },
       {
         "id": 1019,
@@ -1471,7 +1559,7 @@
         "x": 1,
         "y": 2,
         "stage": "scan",
-        "state": "entering-room",
+        "state": "walking",
         "route": [],
         "target": 2,
         "room": 2,
@@ -1484,12 +1572,12 @@
         "intakeDone": true,
         "checkin": 4,
         "recovery": 0,
-        "wait": 133,
-        "walking": 31,
+        "wait": 131,
+        "walking": 33,
         "service": 13,
         "handoff": 4,
         "transfer": 0,
-        "yielding": 3,
+        "yielding": 2,
         "elapsedOffset": 0,
         "arrival": 295,
         "progress": 0,
@@ -1497,15 +1585,32 @@
         "history": [
           {
             "stage": "consult",
-            "at": 437,
+            "at": 451,
             "room": 1,
             "duration": 12.5
           }
         ],
         "outside": false,
         "stalled": 0,
-        "moved": false,
-        "motion": null,
+        "moved": true,
+        "motion": [
+          {
+            "x": 1.5,
+            "y": 2.25
+          },
+          {
+            "x": 1.25,
+            "y": 2.25
+          },
+          {
+            "x": 1,
+            "y": 2.25
+          },
+          {
+            "x": 1,
+            "y": 2
+          }
+        ],
         "teamWaiting": false,
         "equipmentWaiting": false,
         "destination": {
@@ -1513,7 +1618,7 @@
           "y": 2
         },
         "previous": {
-          "x": 1.75,
+          "x": 1.5,
           "y": 2.25
         },
         "intakeWaiting": false,
@@ -1527,7 +1632,7 @@
         "x": 5,
         "y": 4,
         "stage": "consult",
-        "state": "leaving-room",
+        "state": "entering-room",
         "route": [],
         "target": 1,
         "room": 1,
@@ -1540,24 +1645,17 @@
         "intakeDone": true,
         "checkin": 2,
         "recovery": 0,
-        "wait": 135,
-        "walking": 17,
-        "service": 13,
+        "wait": 147,
+        "walking": 18,
+        "service": 0,
         "handoff": 0,
         "transfer": 0,
-        "yielding": 1,
+        "yielding": 0,
         "elapsedOffset": 0,
         "arrival": 313,
-        "progress": 0,
+        "progress": 1,
         "navDelay": 0,
-        "history": [
-          {
-            "stage": "consult",
-            "at": 467,
-            "room": 1,
-            "duration": 12.5
-          }
-        ],
+        "history": [],
         "outside": false,
         "stalled": 0,
         "moved": false,
@@ -1573,8 +1671,7 @@
           "y": 4.75
         },
         "intakeWaiting": false,
-        "intakeHelper": 8,
-        "duration": 12.5
+        "intakeHelper": 8
       },
       {
         "id": 1021,
@@ -1582,7 +1679,7 @@
         "x": 4.75,
         "y": 7,
         "stage": "consult",
-        "state": "waiting",
+        "state": "checking-in",
         "route": [],
         "target": null,
         "room": null,
@@ -1592,19 +1689,19 @@
         "returning": false,
         "goal": "Understand the next step before heading home",
         "caseId": "questions",
-        "intakeDone": true,
-        "checkin": 2,
+        "intakeDone": false,
+        "checkin": 0,
         "recovery": 0,
-        "wait": 135,
-        "walking": 12,
+        "wait": 140,
+        "walking": 9,
         "service": 0,
         "handoff": 0,
         "transfer": 0,
-        "yielding": 1,
+        "yielding": 2,
         "elapsedOffset": 0,
         "arrival": 331,
         "progress": 0,
-        "navDelay": 0,
+        "navDelay": 9,
         "history": [],
         "outside": false,
         "stalled": 0,
@@ -1618,16 +1715,14 @@
         },
         "previous": {
           "x": 5,
-          "y": 6.75
-        },
-        "intakeWaiting": false,
-        "intakeHelper": 8
+          "y": 6.5
+        }
       },
       {
         "id": 1022,
         "name": "Noor",
-        "x": 4,
-        "y": 5,
+        "x": 6,
+        "y": 7,
         "stage": "consult",
         "state": "waiting",
         "route": [],
@@ -1642,8 +1737,8 @@
         "intakeDone": false,
         "checkin": 0,
         "recovery": 0,
-        "wait": 125,
-        "walking": 6,
+        "wait": 124,
+        "walking": 7,
         "service": 0,
         "handoff": 0,
         "transfer": 0,
@@ -1660,18 +1755,18 @@
         "teamWaiting": false,
         "equipmentWaiting": false,
         "destination": {
-          "x": 4,
-          "y": 5
+          "x": 6,
+          "y": 7
         },
         "previous": {
-          "x": 4,
-          "y": 5.5
+          "x": 6,
+          "y": 6.75
         }
       },
       {
         "id": 1023,
         "name": "Jordan",
-        "x": 6,
+        "x": 3,
         "y": 7,
         "stage": "consult",
         "state": "waiting",
@@ -1687,12 +1782,12 @@
         "intakeDone": false,
         "checkin": 0,
         "recovery": 0,
-        "wait": 107,
-        "walking": 6,
+        "wait": 108,
+        "walking": 5,
         "service": 0,
         "handoff": 0,
         "transfer": 0,
-        "yielding": 1,
+        "yielding": 0,
         "elapsedOffset": 0,
         "arrival": 367,
         "progress": 0,
@@ -1705,19 +1800,19 @@
         "teamWaiting": false,
         "equipmentWaiting": false,
         "destination": {
-          "x": 6,
+          "x": 3,
           "y": 7
         },
         "previous": {
-          "x": 5.25,
-          "y": 6.75
+          "x": 3.25,
+          "y": 7
         }
       },
       {
         "id": 1024,
         "name": "Maya",
         "x": 4,
-        "y": 4,
+        "y": 5,
         "stage": "consult",
         "state": "waiting",
         "route": [],
@@ -1751,18 +1846,18 @@
         "equipmentWaiting": false,
         "destination": {
           "x": 4,
-          "y": 4
+          "y": 5
         },
         "previous": {
           "x": 4,
-          "y": 4.5
+          "y": 5.25
         }
       },
       {
         "id": 1025,
         "name": "Eli",
         "x": 3,
-        "y": 6,
+        "y": 5,
         "stage": "consult",
         "state": "waiting",
         "route": [],
@@ -1777,8 +1872,8 @@
         "intakeDone": false,
         "checkin": 0,
         "recovery": 0,
-        "wait": 72,
-        "walking": 5,
+        "wait": 70,
+        "walking": 7,
         "service": 0,
         "handoff": 0,
         "transfer": 0,
@@ -1796,18 +1891,18 @@
         "equipmentWaiting": false,
         "destination": {
           "x": 3,
-          "y": 6
+          "y": 5
         },
         "previous": {
-          "x": 3.25,
-          "y": 6.75
+          "x": 3,
+          "y": 5.75
         }
       },
       {
         "id": 1026,
         "name": "Robin",
-        "x": 5,
-        "y": 5,
+        "x": 4,
+        "y": 4,
         "stage": "consult",
         "state": "waiting",
         "route": [],
@@ -1822,8 +1917,8 @@
         "intakeDone": false,
         "checkin": 0,
         "recovery": 0,
-        "wait": 53,
-        "walking": 6,
+        "wait": 51,
+        "walking": 8,
         "service": 0,
         "handoff": 0,
         "transfer": 0,
@@ -1840,26 +1935,26 @@
         "teamWaiting": false,
         "equipmentWaiting": false,
         "destination": {
-          "x": 5,
-          "y": 5
+          "x": 4,
+          "y": 4
         },
         "previous": {
-          "x": 4.75,
-          "y": 5.75
+          "x": 4,
+          "y": 4.5
         }
       }
     ],
     "utilization": {
       "1": {
-        "busy": 203,
+        "busy": 177,
         "elapsed": 480
       },
       "2": {
-        "busy": 144,
+        "busy": 108,
         "elapsed": 480
       },
       "3": {
-        "busy": 108,
+        "busy": 107,
         "elapsed": 480
       }
     },
@@ -1867,11 +1962,11 @@
   },
   "extraConsult": {
     "game": "hospitalSIM",
-    "model": "1.0.0-rc2",
+    "model": "1.0.0-rc3",
     "scenario": "neighborhood",
     "mode": "sandbox",
     "mastery": false,
-    "arrivalFingerprint": "9de4994d",
+    "arrivalFingerprint": "b0295b99",
     "seed": 431,
     "randomState": 431,
     "simulationSeconds": 480,
@@ -1909,21 +2004,21 @@
     "waits": {
       "completed": {
         "n": 8,
-        "mean": 58.5,
-        "median": 44.5,
-        "p90": 149
+        "mean": 63.5,
+        "median": 62.5,
+        "p90": 143
       },
       "allRecordedOutcomes": {
         "n": 17,
-        "mean": 118.76470588235294,
+        "mean": 121.47058823529412,
         "median": 171,
         "p90": 174
       },
       "allArrivalsIncludingCurrent": {
         "n": 27,
-        "mean": 109.25925925925925,
-        "median": 127,
-        "p90": 172
+        "mean": 108.4074074074074,
+        "median": 107,
+        "p90": 174
       }
     },
     "accessCohorts": [
@@ -1942,15 +2037,15 @@
         "arrivals": 24,
         "completed": {
           "n": 8,
-          "mean": 58.5,
-          "median": 44.5,
-          "p90": 149
+          "mean": 63.5,
+          "median": 62.5,
+          "p90": 143
         }
       }
     ],
     "budget": 7272,
-    "teamEnergy": 94.96,
-    "experience": 50.500000000000014,
+    "teamEnergy": 94.94666666666666,
+    "experience": 47.80000000000001,
     "layout": [
       {
         "id": 1,
@@ -1964,7 +2059,7 @@
         "decor": [
           "plant"
         ],
-        "readyAt": 462,
+        "readyAt": 470,
         "spill": false
       },
       {
@@ -1977,7 +2072,7 @@
           2
         ],
         "decor": [],
-        "readyAt": 464,
+        "readyAt": 485,
         "spill": false
       },
       {
@@ -1991,7 +2086,7 @@
           4
         ],
         "decor": [],
-        "readyAt": 450,
+        "readyAt": 460,
         "spill": false
       },
       {
@@ -2007,7 +2102,7 @@
         "decor": [],
         "paid": 900,
         "builtAt": 0,
-        "readyAt": 448,
+        "readyAt": 456,
         "spill": false
       }
     ],
@@ -2042,7 +2137,7 @@
         ],
         "trait": "steady",
         "shiftEnd": 480,
-        "fatigue": 6.120000000000002,
+        "fatigue": 9.359999999999975,
         "breakUntil": 0
       },
       {
@@ -2054,7 +2149,7 @@
         ],
         "trait": "steady",
         "shiftEnd": 480,
-        "fatigue": 10.599999999999971,
+        "fatigue": 7.919999999999999,
         "breakUntil": 0
       },
       {
@@ -2066,7 +2161,7 @@
         ],
         "trait": "brisk",
         "shiftEnd": 480,
-        "fatigue": 24.53000000000013,
+        "fatigue": 20.940000000000115,
         "breakUntil": 0
       },
       {
@@ -2079,8 +2174,8 @@
         ],
         "trait": "brisk",
         "shiftEnd": 480,
-        "fatigue": 4.109999999999998,
-        "breakUntil": 8,
+        "fatigue": 3.439999999999988,
+        "breakUntil": 9,
         "breakTrip": null
       },
       {
@@ -2107,7 +2202,7 @@
         "skills": [],
         "trait": "steady",
         "shiftEnd": 480,
-        "fatigue": 0,
+        "fatigue": 3.320000000000002,
         "breakUntil": 0,
         "position": {
           "x": 4.75,
@@ -2121,7 +2216,7 @@
         "skills": [],
         "trait": "listener",
         "shiftEnd": 480,
-        "fatigue": 0,
+        "fatigue": 0.5000000000000012,
         "breakUntil": 4,
         "position": {
           "x": 4.25,
@@ -2138,7 +2233,7 @@
         "trait": "steady",
         "shiftEnd": 480,
         "fatigue": 0,
-        "breakUntil": 231,
+        "breakUntil": 243,
         "position": {
           "x": 0.5,
           "y": 6.5
@@ -2160,7 +2255,7 @@
         "choice": "dispatch",
         "remaining": 3,
         "workerId": 9,
-        "resolvedAt": 224
+        "resolvedAt": 218
       },
       "eventDone": true,
       "unlocks": [
@@ -2175,7 +2270,7 @@
         "id": 7,
         "name": "Quinn",
         "line": "Your step counter gets a break now.",
-        "until": 436
+        "until": 444
       },
       "decisions": [],
       "recoveryCount": 7,
@@ -2238,13 +2333,13 @@
         "choice": "tray"
       },
       {
-        "at": 205,
+        "at": 200,
         "type": "dispatch-facilities",
         "staffId": 9,
         "roomId": 2
       },
       {
-        "at": 224,
+        "at": 218,
         "type": "equipment-restored",
         "roomId": 2,
         "staffId": 9
@@ -2268,12 +2363,12 @@
         "intakeDone": true,
         "checkin": 2,
         "recovery": 0,
-        "wait": 3,
-        "walking": 23,
+        "wait": 4,
+        "walking": 27,
         "service": 8,
         "handoff": 0,
         "transfer": 0,
-        "yielding": 0,
+        "yielding": 1,
         "elapsedOffset": 0,
         "arrival": 1,
         "progress": 2,
@@ -2281,7 +2376,7 @@
         "history": [
           {
             "stage": "consult",
-            "at": 18,
+            "at": 19,
             "room": 1,
             "duration": 7.291666666666667
           }
@@ -2297,14 +2392,14 @@
           "y": 7
         },
         "previous": {
-          "x": 7,
-          "y": 6
+          "x": 7.25,
+          "y": 6.75
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
         "duration": 7.291666666666667,
         "outcome": "completed",
-        "total": 36
+        "total": 41
       },
       {
         "id": 1001,
@@ -2323,32 +2418,32 @@
         "intakeDone": true,
         "checkin": 7,
         "recovery": 3,
-        "wait": 6,
-        "walking": 56,
+        "wait": 9,
+        "walking": 69,
         "service": 44,
         "handoff": 8,
         "transfer": 13,
-        "yielding": 1,
+        "yielding": 3,
         "elapsedOffset": 0,
-        "arrival": 19,
+        "arrival": 5,
         "progress": 2,
         "navDelay": 0,
         "history": [
           {
             "stage": "consult",
-            "at": 42,
+            "at": 37,
             "room": 10,
             "duration": 10.714285714285714
           },
           {
             "stage": "scan",
-            "at": 77,
+            "at": 75,
             "room": 2,
             "duration": 17.043714285714287
           },
           {
             "stage": "care",
-            "at": 118,
+            "at": 117,
             "room": 3,
             "duration": 14.197944743935308
           }
@@ -2373,7 +2468,7 @@
         "handoffReady": false,
         "recovered": true,
         "outcome": "completed",
-        "total": 137
+        "total": 153
       },
       {
         "id": 1003,
@@ -2392,12 +2487,12 @@
         "intakeDone": true,
         "checkin": 2,
         "recovery": 3,
-        "wait": 26,
-        "walking": 57,
+        "wait": 21,
+        "walking": 65,
         "service": 44,
         "handoff": 8,
         "transfer": 13,
-        "yielding": 4,
+        "yielding": 3,
         "elapsedOffset": 0,
         "arrival": 55,
         "progress": 2,
@@ -2405,21 +2500,21 @@
         "history": [
           {
             "stage": "consult",
-            "at": 73,
+            "at": 74,
             "room": 10,
-            "duration": 10.751785714285715
+            "duration": 10.715051020408161
           },
           {
             "stage": "scan",
-            "at": 126,
+            "at": 127,
             "room": 2,
-            "duration": 17.15057142857143
+            "duration": 17.12142857142857
           },
           {
             "stage": "care",
-            "at": 167,
+            "at": 169,
             "room": 3,
-            "duration": 14.395552560646902
+            "duration": 14.371293800539084
           }
         ],
         "outside": false,
@@ -2434,91 +2529,22 @@
         },
         "previous": {
           "x": 7,
-          "y": 6.75
+          "y": 6.5
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 14.395552560646902,
+        "duration": 14.371293800539084,
         "handoffReady": false,
         "recovered": true,
         "outcome": "completed",
-        "total": 153
-      },
-      {
-        "id": 1005,
-        "name": "Imani",
-        "x": 7,
-        "y": 7,
-        "stage": "care",
-        "target": null,
-        "room": null,
-        "urgent": true,
-        "barrier": false,
-        "imaging": true,
-        "returning": false,
-        "goal": "A little assessment, then a proper sit-down",
-        "caseId": "fitness",
-        "intakeDone": true,
-        "checkin": 2,
-        "recovery": 3,
-        "wait": 36,
-        "walking": 57,
-        "service": 44,
-        "handoff": 8,
-        "transfer": 13,
-        "yielding": 1,
-        "elapsedOffset": 0,
-        "arrival": 91,
-        "progress": 2,
-        "navDelay": 0,
-        "history": [
-          {
-            "stage": "consult",
-            "at": 109,
-            "room": 10,
-            "duration": 10.758673469387755
-          },
-          {
-            "stage": "scan",
-            "at": 175,
-            "room": 2,
-            "duration": 17.25742857142857
-          },
-          {
-            "stage": "care",
-            "at": 216,
-            "room": 3,
-            "duration": 14.59316037735849
-          }
-        ],
-        "outside": false,
-        "stalled": 0,
-        "moved": false,
-        "motion": null,
-        "teamWaiting": false,
-        "equipmentWaiting": false,
-        "destination": {
-          "x": 7,
-          "y": 7
-        },
-        "previous": {
-          "x": 7,
-          "y": 6.75
-        },
-        "intakeWaiting": false,
-        "intakeHelper": 8,
-        "duration": 14.59316037735849,
-        "handoffReady": false,
-        "recovered": true,
-        "outcome": "completed",
-        "total": 163
+        "total": 156
       },
       {
         "id": 1002,
         "name": "Robin",
         "x": 7,
         "y": 7,
-        "stage": "care",
+        "stage": "scan",
         "target": null,
         "room": null,
         "urgent": false,
@@ -2530,28 +2556,22 @@
         "intakeDone": true,
         "checkin": 2,
         "recovery": 0,
-        "wait": 172,
-        "walking": 47,
-        "service": 31,
-        "handoff": 8,
-        "transfer": 6,
-        "yielding": 1,
+        "wait": 176,
+        "walking": 35,
+        "service": 13,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 5,
         "elapsedOffset": 0,
-        "arrival": 37,
+        "arrival": 9,
         "progress": 2,
         "navDelay": 0,
         "history": [
           {
             "stage": "consult",
-            "at": 54,
+            "at": 45,
             "room": 1,
             "duration": 12.5
-          },
-          {
-            "stage": "scan",
-            "at": 237,
-            "room": 2,
-            "duration": 17.238
           }
         ],
         "outside": false,
@@ -2566,14 +2586,14 @@
         },
         "previous": {
           "x": 7,
-          "y": 6.75
+          "y": 6.25
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 17.238,
+        "duration": 12.5,
         "handoffReady": false,
         "outcome": "departed",
-        "total": 266
+        "total": 230
       },
       {
         "id": 1007,
@@ -2592,12 +2612,12 @@
         "intakeDone": true,
         "checkin": 4,
         "recovery": 3,
-        "wait": 92,
-        "walking": 44,
+        "wait": 42,
+        "walking": 49,
         "service": 26,
         "handoff": 4,
         "transfer": 7,
-        "yielding": 3,
+        "yielding": 2,
         "elapsedOffset": 0,
         "arrival": 127,
         "progress": 2,
@@ -2605,15 +2625,15 @@
         "history": [
           {
             "stage": "consult",
-            "at": 147,
+            "at": 148,
             "room": 10,
-            "duration": 10.75331632653061
+            "duration": 10.71658163265306
           },
           {
             "stage": "care",
-            "at": 266,
+            "at": 221,
             "room": 3,
-            "duration": 14.78268194070081
+            "duration": 14.544642857142858
           }
         ],
         "outside": false,
@@ -2628,15 +2648,84 @@
         },
         "previous": {
           "x": 7,
-          "y": 6.75
+          "y": 6.5
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 14.78268194070081,
+        "duration": 14.544642857142858,
         "handoffReady": false,
         "recovered": true,
         "outcome": "completed",
-        "total": 180
+        "total": 135
+      },
+      {
+        "id": 1005,
+        "name": "Imani",
+        "x": 7,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": true,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "A little assessment, then a proper sit-down",
+        "caseId": "fitness",
+        "intakeDone": true,
+        "checkin": 2,
+        "recovery": 3,
+        "wait": 83,
+        "walking": 68,
+        "service": 44,
+        "handoff": 8,
+        "transfer": 13,
+        "yielding": 2,
+        "elapsedOffset": 0,
+        "arrival": 91,
+        "progress": 2,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 110,
+            "room": 10,
+            "duration": 10.721938775510203
+          },
+          {
+            "stage": "scan",
+            "at": 179,
+            "room": 2,
+            "duration": 17.19914285714286
+          },
+          {
+            "stage": "care",
+            "at": 271,
+            "room": 3,
+            "duration": 14.734164420485174
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "teamWaiting": false,
+        "equipmentWaiting": false,
+        "destination": {
+          "x": 7,
+          "y": 7
+        },
+        "previous": {
+          "x": 7,
+          "y": 6.5
+        },
+        "intakeWaiting": false,
+        "intakeHelper": 8,
+        "duration": 14.734164420485174,
+        "handoffReady": false,
+        "recovered": true,
+        "outcome": "completed",
+        "total": 221
       },
       {
         "id": 1006,
@@ -2655,12 +2744,12 @@
         "intakeDone": true,
         "checkin": 2,
         "recovery": 0,
-        "wait": 172,
-        "walking": 25,
+        "wait": 174,
+        "walking": 28,
         "service": 13,
         "handoff": 4,
         "transfer": 0,
-        "yielding": 1,
+        "yielding": 3,
         "elapsedOffset": 0,
         "arrival": 109,
         "progress": 2,
@@ -2668,7 +2757,7 @@
         "history": [
           {
             "stage": "consult",
-            "at": 128,
+            "at": 132,
             "room": 1,
             "duration": 12.5
           }
@@ -2692,7 +2781,7 @@
         "duration": 12.5,
         "handoffReady": false,
         "outcome": "departed",
-        "total": 216
+        "total": 221
       },
       {
         "id": 1004,
@@ -2710,13 +2799,13 @@
         "caseId": "binder",
         "intakeDone": true,
         "checkin": 4,
-        "recovery": 0,
-        "wait": 172,
-        "walking": 53,
-        "service": 31,
+        "recovery": 3,
+        "wait": 143,
+        "walking": 71,
+        "service": 46,
         "handoff": 8,
-        "transfer": 6,
-        "yielding": 2,
+        "transfer": 13,
+        "yielding": 3,
         "elapsedOffset": 0,
         "arrival": 73,
         "progress": 2,
@@ -2724,77 +2813,21 @@
         "history": [
           {
             "stage": "consult",
-            "at": 98,
+            "at": 101,
             "room": 1,
             "duration": 12.5
           },
           {
             "stage": "scan",
-            "at": 285,
+            "at": 248,
             "room": 2,
-            "duration": 17.35457142857143
-          }
-        ],
-        "outside": false,
-        "stalled": 0,
-        "moved": false,
-        "motion": null,
-        "teamWaiting": false,
-        "equipmentWaiting": false,
-        "destination": {
-          "x": 7,
-          "y": 7
-        },
-        "previous": {
-          "x": 7,
-          "y": 6.75
-        },
-        "intakeWaiting": false,
-        "intakeHelper": 8,
-        "duration": 17.35457142857143,
-        "handoffReady": false,
-        "outcome": "departed",
-        "total": 274
-      },
-      {
-        "id": 1010,
-        "name": "Noor",
-        "x": 7,
-        "y": 7,
-        "stage": "care",
-        "target": null,
-        "room": null,
-        "urgent": false,
-        "barrier": false,
-        "imaging": false,
-        "returning": false,
-        "goal": "Find the answer without opening the appendix to the appendix",
-        "caseId": "binder",
-        "intakeDone": true,
-        "checkin": 4,
-        "recovery": 3,
-        "wait": 103,
-        "walking": 45,
-        "service": 28,
-        "handoff": 4,
-        "transfer": 7,
-        "yielding": 2,
-        "elapsedOffset": 0,
-        "arrival": 157,
-        "progress": 2,
-        "navDelay": 0,
-        "history": [
-          {
-            "stage": "consult",
-            "at": 192,
-            "room": 1,
-            "duration": 12.5
+            "duration": 17.54885714285714
           },
           {
             "stage": "care",
-            "at": 313,
+            "at": 321,
             "room": 3,
-            "duration": 14.996462264150942
+            "duration": 14.923685983827493
           }
         ],
         "outside": false,
@@ -2808,16 +2841,16 @@
           "y": 7
         },
         "previous": {
-          "x": 6.75,
-          "y": 7
+          "x": 7,
+          "y": 6.25
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 14.996462264150942,
+        "duration": 14.923685983827493,
         "handoffReady": false,
         "recovered": true,
         "outcome": "completed",
-        "total": 194
+        "total": 288
       },
       {
         "id": 1009,
@@ -2836,12 +2869,12 @@
         "intakeDone": true,
         "checkin": 2,
         "recovery": 0,
-        "wait": 172,
-        "walking": 25,
+        "wait": 171,
+        "walking": 27,
         "service": 11,
         "handoff": 4,
         "transfer": 0,
-        "yielding": 1,
+        "yielding": 0,
         "elapsedOffset": 0,
         "arrival": 151,
         "progress": 2,
@@ -2849,9 +2882,9 @@
         "history": [
           {
             "stage": "consult",
-            "at": 176,
+            "at": 178,
             "room": 10,
-            "duration": 10.803061224489795
+            "duration": 10.760204081632653
           }
         ],
         "outside": false,
@@ -2865,19 +2898,19 @@
           "y": 7
         },
         "previous": {
-          "x": 7.25,
+          "x": 7.75,
           "y": 7
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 10.803061224489795,
+        "duration": 10.760204081632653,
         "handoffReady": false,
         "outcome": "departed",
-        "total": 214
+        "total": 215
       },
       {
-        "id": 1008,
-        "name": "Alex",
+        "id": 1011,
+        "name": "Jordan",
         "x": 7,
         "y": 7,
         "stage": "scan",
@@ -2892,22 +2925,22 @@
         "intakeDone": true,
         "checkin": 2,
         "recovery": 0,
-        "wait": 174,
-        "walking": 31,
-        "service": 13,
+        "wait": 173,
+        "walking": 32,
+        "service": 11,
         "handoff": 4,
         "transfer": 0,
-        "yielding": 3,
+        "yielding": 2,
         "elapsedOffset": 0,
-        "arrival": 145,
+        "arrival": 163,
         "progress": 2,
         "navDelay": 0,
         "history": [
           {
             "stage": "consult",
-            "at": 162,
-            "room": 1,
-            "duration": 12.5
+            "at": 208,
+            "room": 10,
+            "duration": 10.803826530612243
           }
         ],
         "outside": false,
@@ -2921,82 +2954,19 @@
           "y": 7
         },
         "previous": {
-          "x": 7.25,
-          "y": 7
+          "x": 7,
+          "y": 6.25
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 12.5,
+        "duration": 10.803826530612243,
         "handoffReady": false,
         "outcome": "departed",
-        "total": 224
+        "total": 222
       },
       {
-        "id": 1017,
-        "name": "Imani",
-        "x": 7,
-        "y": 7,
-        "stage": "care",
-        "target": null,
-        "room": null,
-        "urgent": true,
-        "barrier": false,
-        "imaging": false,
-        "returning": false,
-        "goal": "A little assessment, then a proper sit-down",
-        "caseId": "fitness",
-        "intakeDone": true,
-        "checkin": 2,
-        "recovery": 3,
-        "wait": 53,
-        "walking": 47,
-        "service": 27,
-        "handoff": 4,
-        "transfer": 7,
-        "yielding": 1,
-        "elapsedOffset": 0,
-        "arrival": 259,
-        "progress": 2,
-        "navDelay": 0,
-        "history": [
-          {
-            "stage": "consult",
-            "at": 302,
-            "room": 10,
-            "duration": 10.940816326530612
-          },
-          {
-            "stage": "care",
-            "at": 363,
-            "room": 3,
-            "duration": 15.185983827493258
-          }
-        ],
-        "outside": false,
-        "stalled": 0,
-        "moved": false,
-        "motion": null,
-        "teamWaiting": false,
-        "equipmentWaiting": false,
-        "destination": {
-          "x": 7,
-          "y": 7
-        },
-        "previous": {
-          "x": 7,
-          "y": 6.75
-        },
-        "intakeWaiting": false,
-        "intakeHelper": 8,
-        "duration": 15.185983827493258,
-        "handoffReady": false,
-        "recovered": true,
-        "outcome": "completed",
-        "total": 143
-      },
-      {
-        "id": 1013,
-        "name": "Eli",
+        "id": 1010,
+        "name": "Noor",
         "x": 7,
         "y": 7,
         "stage": "care",
@@ -3012,19 +2982,19 @@
         "checkin": 4,
         "recovery": 0,
         "wait": 174,
-        "walking": 30,
+        "walking": 41,
         "service": 13,
         "handoff": 4,
         "transfer": 0,
-        "yielding": 3,
+        "yielding": 5,
         "elapsedOffset": 0,
-        "arrival": 187,
+        "arrival": 157,
         "progress": 2,
         "navDelay": 0,
         "history": [
           {
             "stage": "consult",
-            "at": 222,
+            "at": 194,
             "room": 1,
             "duration": 12.5
           }
@@ -3048,181 +3018,7 @@
         "duration": 12.5,
         "handoffReady": false,
         "outcome": "departed",
-        "total": 225
-      },
-      {
-        "id": 1014,
-        "name": "Robin",
-        "x": 7,
-        "y": 7,
-        "stage": "care",
-        "target": null,
-        "room": null,
-        "urgent": false,
-        "barrier": false,
-        "imaging": false,
-        "returning": false,
-        "goal": "A little assessment, then a proper sit-down",
-        "caseId": "fitness",
-        "intakeDone": true,
-        "checkin": 2,
-        "recovery": 0,
-        "wait": 172,
-        "walking": 28,
-        "service": 11,
-        "handoff": 4,
-        "transfer": 0,
-        "yielding": 1,
-        "elapsedOffset": 0,
-        "arrival": 205,
-        "progress": 2,
-        "navDelay": 0,
-        "history": [
-          {
-            "stage": "consult",
-            "at": 236,
-            "room": 10,
-            "duration": 10.89030612244898
-          }
-        ],
-        "outside": false,
-        "stalled": 0,
-        "moved": false,
-        "motion": null,
-        "teamWaiting": false,
-        "equipmentWaiting": false,
-        "destination": {
-          "x": 7,
-          "y": 7
-        },
-        "previous": {
-          "x": 7,
-          "y": 6.75
-        },
-        "intakeWaiting": false,
-        "intakeHelper": 8,
-        "duration": 10.89030612244898,
-        "handoffReady": false,
-        "outcome": "departed",
-        "total": 217
-      },
-      {
-        "id": 1011,
-        "name": "Jordan",
-        "x": 7,
-        "y": 7,
-        "stage": "care",
-        "target": null,
-        "room": null,
-        "urgent": false,
-        "barrier": false,
-        "imaging": true,
-        "returning": false,
-        "goal": "A little assessment, then a proper sit-down",
-        "caseId": "fitness",
-        "intakeDone": true,
-        "checkin": 2,
-        "recovery": 0,
-        "wait": 172,
-        "walking": 57,
-        "service": 29,
-        "handoff": 8,
-        "transfer": 6,
-        "yielding": 2,
-        "elapsedOffset": 0,
-        "arrival": 163,
-        "progress": 2,
-        "navDelay": 0,
-        "history": [
-          {
-            "stage": "consult",
-            "at": 207,
-            "room": 10,
-            "duration": 10.840561224489795
-          },
-          {
-            "stage": "scan",
-            "at": 384,
-            "room": 2,
-            "duration": 17.55857142857143
-          }
-        ],
-        "outside": false,
-        "stalled": 0,
-        "moved": false,
-        "motion": null,
-        "teamWaiting": false,
-        "equipmentWaiting": false,
-        "destination": {
-          "x": 7,
-          "y": 7
-        },
-        "previous": {
-          "x": 7.25,
-          "y": 6.5
-        },
-        "intakeWaiting": false,
-        "intakeHelper": 8,
-        "duration": 17.55857142857143,
-        "handoffReady": false,
-        "outcome": "departed",
-        "total": 274
-      },
-      {
-        "id": 1015,
-        "name": "Avery",
-        "x": 7,
-        "y": 7,
-        "stage": "care",
-        "target": null,
-        "room": null,
-        "urgent": false,
-        "barrier": true,
-        "imaging": false,
-        "returning": false,
-        "goal": "Understand the next step before heading home",
-        "caseId": "questions",
-        "intakeDone": true,
-        "checkin": 2,
-        "recovery": 0,
-        "wait": 171,
-        "walking": 29,
-        "service": 11,
-        "handoff": 4,
-        "transfer": 0,
-        "yielding": 1,
-        "elapsedOffset": 0,
-        "arrival": 223,
-        "progress": 2,
-        "navDelay": 0,
-        "history": [
-          {
-            "stage": "consult",
-            "at": 272,
-            "room": 10,
-            "duration": 10.897193877551018
-          }
-        ],
-        "outside": false,
-        "stalled": 0,
-        "moved": false,
-        "motion": null,
-        "teamWaiting": false,
-        "equipmentWaiting": false,
-        "destination": {
-          "x": 7,
-          "y": 7
-        },
-        "previous": {
-          "x": 7,
-          "y": 6.75
-        },
-        "intakeWaiting": false,
-        "intakeHelper": 8,
-        "duration": 10.897193877551018,
-        "handoffReady": false,
-        "outcome": "departed",
-        "total": 217
+        "total": 236
       },
       {
         "id": 1012,
@@ -3241,12 +3037,12 @@
         "intakeDone": true,
         "checkin": 2,
         "recovery": 3,
-        "wait": 149,
-        "walking": 60,
+        "wait": 100,
+        "walking": 71,
         "service": 47,
         "handoff": 8,
         "transfer": 13,
-        "yielding": 2,
+        "yielding": 4,
         "elapsedOffset": 0,
         "arrival": 169,
         "progress": 2,
@@ -3254,21 +3050,196 @@
         "history": [
           {
             "stage": "consult",
-            "at": 253,
+            "at": 257,
             "room": 1,
             "duration": 12.5
           },
           {
             "stage": "scan",
-            "at": 333,
+            "at": 299,
             "room": 2,
-            "duration": 17.47114285714286
+            "duration": 17.636285714285712
           },
           {
             "stage": "care",
-            "at": 412,
+            "at": 371,
             "room": 3,
-            "duration": 15.40734501347709
+            "duration": 15.113207547169809
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "teamWaiting": false,
+        "equipmentWaiting": false,
+        "destination": {
+          "x": 7,
+          "y": 7
+        },
+        "previous": {
+          "x": 7,
+          "y": 6.5
+        },
+        "intakeWaiting": false,
+        "intakeHelper": 8,
+        "duration": 15.113207547169809,
+        "handoffReady": false,
+        "recovered": true,
+        "outcome": "completed",
+        "total": 244
+      },
+      {
+        "id": 1013,
+        "name": "Eli",
+        "x": 7,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "Find the answer without opening the appendix to the appendix",
+        "caseId": "binder",
+        "intakeDone": true,
+        "checkin": 4,
+        "recovery": 0,
+        "wait": 173,
+        "walking": 35,
+        "service": 13,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 2,
+        "elapsedOffset": 0,
+        "arrival": 187,
+        "progress": 2,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 225,
+            "room": 1,
+            "duration": 12.5
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "teamWaiting": false,
+        "equipmentWaiting": false,
+        "destination": {
+          "x": 7,
+          "y": 7
+        },
+        "previous": {
+          "x": 7,
+          "y": 6.25
+        },
+        "intakeWaiting": false,
+        "intakeHelper": 8,
+        "duration": 12.5,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 229
+      },
+      {
+        "id": 1008,
+        "name": "Alex",
+        "x": 7,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": true,
+        "returning": false,
+        "goal": "A little assessment, then a proper sit-down",
+        "caseId": "fitness",
+        "intakeDone": true,
+        "checkin": 2,
+        "recovery": 0,
+        "wait": 173,
+        "walking": 55,
+        "service": 31,
+        "handoff": 8,
+        "transfer": 6,
+        "yielding": 2,
+        "elapsedOffset": 0,
+        "arrival": 145,
+        "progress": 2,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 163,
+            "room": 1,
+            "duration": 12.5
+          },
+          {
+            "stage": "scan",
+            "at": 346,
+            "room": 2,
+            "duration": 17.76257142857143
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "teamWaiting": false,
+        "equipmentWaiting": false,
+        "destination": {
+          "x": 7,
+          "y": 7
+        },
+        "previous": {
+          "x": 7,
+          "y": 6.25
+        },
+        "intakeWaiting": false,
+        "intakeHelper": 8,
+        "duration": 17.76257142857143,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 275
+      },
+      {
+        "id": 1014,
+        "name": "Robin",
+        "x": 7,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "A little assessment, then a proper sit-down",
+        "caseId": "fitness",
+        "intakeDone": true,
+        "checkin": 2,
+        "recovery": 0,
+        "wait": 171,
+        "walking": 31,
+        "service": 11,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 205,
+        "progress": 2,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 240,
+            "room": 10,
+            "duration": 10.83520408163265
           }
         ],
         "outside": false,
@@ -3287,11 +3258,129 @@
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 15.40734501347709,
+        "duration": 10.83520408163265,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 219
+      },
+      {
+        "id": 1015,
+        "name": "Avery",
+        "x": 7,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": false,
+        "barrier": true,
+        "imaging": false,
+        "returning": false,
+        "goal": "Understand the next step before heading home",
+        "caseId": "questions",
+        "intakeDone": true,
+        "checkin": 2,
+        "recovery": 0,
+        "wait": 172,
+        "walking": 36,
+        "service": 11,
+        "handoff": 4,
+        "transfer": 0,
+        "yielding": 1,
+        "elapsedOffset": 0,
+        "arrival": 223,
+        "progress": 2,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 275,
+            "room": 10,
+            "duration": 10.848214285714285
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "teamWaiting": false,
+        "equipmentWaiting": false,
+        "destination": {
+          "x": 7,
+          "y": 7
+        },
+        "previous": {
+          "x": 7.25,
+          "y": 6.75
+        },
+        "intakeWaiting": false,
+        "intakeHelper": 8,
+        "duration": 10.848214285714285,
+        "handoffReady": false,
+        "outcome": "departed",
+        "total": 225
+      },
+      {
+        "id": 1017,
+        "name": "Imani",
+        "x": 7,
+        "y": 7,
+        "stage": "care",
+        "target": null,
+        "room": null,
+        "urgent": true,
+        "barrier": false,
+        "imaging": false,
+        "returning": false,
+        "goal": "A little assessment, then a proper sit-down",
+        "caseId": "fitness",
+        "intakeDone": true,
+        "checkin": 2,
+        "recovery": 3,
+        "wait": 106,
+        "walking": 58,
+        "service": 27,
+        "handoff": 4,
+        "transfer": 7,
+        "yielding": 3,
+        "elapsedOffset": 0,
+        "arrival": 259,
+        "progress": 2,
+        "navDelay": 0,
+        "history": [
+          {
+            "stage": "consult",
+            "at": 306,
+            "room": 10,
+            "duration": 10.885714285714284
+          },
+          {
+            "stage": "care",
+            "at": 422,
+            "room": 3,
+            "duration": 15.318396226415095
+          }
+        ],
+        "outside": false,
+        "stalled": 0,
+        "moved": false,
+        "motion": null,
+        "teamWaiting": false,
+        "equipmentWaiting": false,
+        "destination": {
+          "x": 7,
+          "y": 7
+        },
+        "previous": {
+          "x": 7.25,
+          "y": 7
+        },
+        "intakeWaiting": false,
+        "intakeHelper": 8,
+        "duration": 15.318396226415095,
         "handoffReady": false,
         "recovered": true,
         "outcome": "completed",
-        "total": 282
+        "total": 207
       }
     ],
     "unfinished": [
@@ -3314,12 +3403,12 @@
         "intakeDone": true,
         "checkin": 4,
         "recovery": 0,
-        "wait": 153,
-        "walking": 37,
+        "wait": 146,
+        "walking": 44,
         "service": 31,
         "handoff": 8,
         "transfer": 6,
-        "yielding": 1,
+        "yielding": 2,
         "elapsedOffset": 0,
         "arrival": 241,
         "progress": 0,
@@ -3327,15 +3416,15 @@
         "history": [
           {
             "stage": "consult",
-            "at": 283,
+            "at": 289,
             "room": 1,
             "duration": 12.5
           },
           {
             "stage": "scan",
-            "at": 430,
+            "at": 395,
             "room": 2,
-            "duration": 17.69457142857143
+            "duration": 17.86942857142857
           }
         ],
         "outside": false,
@@ -3349,12 +3438,12 @@
           "y": 2
         },
         "previous": {
-          "x": 1,
+          "x": 0.25,
           "y": 2
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 17.69457142857143,
+        "duration": 17.86942857142857,
         "handoffReady": false
       },
       {
@@ -3363,7 +3452,7 @@
         "x": 1,
         "y": 5,
         "stage": "care",
-        "state": "transfer-out",
+        "state": "service",
         "route": [],
         "target": 3,
         "room": 3,
@@ -3376,28 +3465,28 @@
         "intakeDone": true,
         "checkin": 2,
         "recovery": 0,
-        "wait": 133,
-        "walking": 29,
-        "service": 29,
+        "wait": 139,
+        "walking": 36,
+        "service": 19,
         "handoff": 4,
-        "transfer": 6,
-        "yielding": 1,
+        "transfer": 3,
+        "yielding": 2,
         "elapsedOffset": 0,
         "arrival": 277,
-        "progress": 2,
+        "progress": 6,
         "navDelay": 0,
         "history": [
           {
             "stage": "consult",
-            "at": 319,
+            "at": 324,
             "room": 1,
             "duration": 12.5
           },
           {
             "stage": "care",
-            "at": 461,
+            "at": 474,
             "room": 3,
-            "duration": 15.628706199460922
+            "duration": 15.51549865229111
           }
         ],
         "outside": false,
@@ -3411,12 +3500,12 @@
           "y": 5
         },
         "previous": {
-          "x": 2,
+          "x": 1.5,
           "y": 5
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 15.628706199460922,
+        "duration": 15.51549865229111,
         "handoffReady": false
       },
       {
@@ -3424,11 +3513,28 @@
         "name": "Morgan",
         "x": 1,
         "y": 2,
-        "stage": "scan",
-        "state": "transfer-in",
-        "route": [],
-        "target": 2,
-        "room": 2,
+        "stage": "care",
+        "state": "queue-walking",
+        "route": [
+          {
+            "x": 1.25,
+            "y": 2
+          },
+          {
+            "x": 1.5,
+            "y": 2
+          },
+          {
+            "x": 1.75,
+            "y": 2
+          },
+          {
+            "x": 2,
+            "y": 2
+          }
+        ],
+        "target": null,
+        "room": null,
         "urgent": false,
         "barrier": false,
         "imaging": true,
@@ -3438,22 +3544,28 @@
         "intakeDone": true,
         "checkin": 4,
         "recovery": 0,
-        "wait": 127,
-        "walking": 38,
-        "service": 11,
-        "handoff": 4,
-        "transfer": 1,
-        "yielding": 1,
+        "wait": 91,
+        "walking": 47,
+        "service": 29,
+        "handoff": 8,
+        "transfer": 6,
+        "yielding": 3,
         "elapsedOffset": 0,
         "arrival": 295,
-        "progress": 1,
+        "progress": 0,
         "navDelay": 0,
         "history": [
           {
             "stage": "consult",
-            "at": 331,
+            "at": 337,
             "room": 10,
-            "duration": 10.990561224489795
+            "duration": 10.923214285714284
+          },
+          {
+            "stage": "scan",
+            "at": 451,
+            "room": 2,
+            "duration": 17.908285714285714
           }
         ],
         "outside": false,
@@ -3463,22 +3575,22 @@
         "teamWaiting": false,
         "equipmentWaiting": false,
         "destination": {
-          "x": 1,
+          "x": 2,
           "y": 2
         },
         "previous": {
-          "x": 1.75,
+          "x": 1,
           "y": 2.25
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 10.990561224489795,
+        "duration": 17.908285714285714,
         "handoffReady": false
       },
       {
         "id": 1020,
         "name": "Alex",
-        "x": 6,
+        "x": 3,
         "y": 4,
         "stage": "care",
         "state": "waiting",
@@ -3494,8 +3606,8 @@
         "intakeDone": true,
         "checkin": 2,
         "recovery": 0,
-        "wait": 127,
-        "walking": 21,
+        "wait": 122,
+        "walking": 26,
         "service": 13,
         "handoff": 4,
         "transfer": 0,
@@ -3507,7 +3619,7 @@
         "history": [
           {
             "stage": "consult",
-            "at": 350,
+            "at": 355,
             "room": 1,
             "duration": 12.5
           }
@@ -3519,12 +3631,12 @@
         "teamWaiting": false,
         "equipmentWaiting": false,
         "destination": {
-          "x": 6,
+          "x": 3,
           "y": 4
         },
         "previous": {
-          "x": 5,
-          "y": 4
+          "x": 3,
+          "y": 4.25
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
@@ -3534,7 +3646,7 @@
       {
         "id": 1021,
         "name": "Sam",
-        "x": 8,
+        "x": 6,
         "y": 5,
         "stage": "care",
         "state": "waiting",
@@ -3550,12 +3662,12 @@
         "intakeDone": true,
         "checkin": 2,
         "recovery": 0,
-        "wait": 110,
-        "walking": 22,
+        "wait": 107,
+        "walking": 25,
         "service": 11,
         "handoff": 4,
         "transfer": 0,
-        "yielding": 1,
+        "yielding": 2,
         "elapsedOffset": 0,
         "arrival": 331,
         "progress": 0,
@@ -3563,9 +3675,9 @@
         "history": [
           {
             "stage": "consult",
-            "at": 368,
+            "at": 375,
             "room": 10,
-            "duration": 10.991326530612243
+            "duration": 10.917857142857141
           }
         ],
         "outside": false,
@@ -3575,16 +3687,16 @@
         "teamWaiting": false,
         "equipmentWaiting": false,
         "destination": {
-          "x": 8,
+          "x": 6,
           "y": 5
         },
         "previous": {
-          "x": 7,
+          "x": 6.25,
           "y": 5
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 10.991326530612243,
+        "duration": 10.917857142857141,
         "handoffReady": false
       },
       {
@@ -3606,12 +3718,12 @@
         "intakeDone": true,
         "checkin": 4,
         "recovery": 0,
-        "wait": 88,
-        "walking": 22,
+        "wait": 86,
+        "walking": 24,
         "service": 13,
         "handoff": 4,
         "transfer": 0,
-        "yielding": 1,
+        "yielding": 2,
         "elapsedOffset": 0,
         "arrival": 349,
         "progress": 0,
@@ -3619,7 +3731,7 @@
         "history": [
           {
             "stage": "consult",
-            "at": 380,
+            "at": 386,
             "room": 1,
             "duration": 12.5
           }
@@ -3636,7 +3748,7 @@
         },
         "previous": {
           "x": 4.25,
-          "y": 4.25
+          "y": 4
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
@@ -3646,7 +3758,7 @@
       {
         "id": 1023,
         "name": "Jordan",
-        "x": 6,
+        "x": 8,
         "y": 5,
         "stage": "care",
         "state": "waiting",
@@ -3662,12 +3774,12 @@
         "intakeDone": true,
         "checkin": 2,
         "recovery": 0,
-        "wait": 73,
-        "walking": 22,
-        "service": 12,
+        "wait": 71,
+        "walking": 25,
+        "service": 11,
         "handoff": 4,
         "transfer": 0,
-        "yielding": 1,
+        "yielding": 2,
         "elapsedOffset": 0,
         "arrival": 367,
         "progress": 0,
@@ -3675,9 +3787,9 @@
         "history": [
           {
             "stage": "consult",
-            "at": 397,
+            "at": 405,
             "room": 10,
-            "duration": 11.041071428571428
+            "duration": 10.961479591836731
           }
         ],
         "outside": false,
@@ -3687,23 +3799,23 @@
         "teamWaiting": false,
         "equipmentWaiting": false,
         "destination": {
-          "x": 6,
+          "x": 8,
           "y": 5
         },
         "previous": {
-          "x": 7,
+          "x": 7.75,
           "y": 5
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 11.041071428571428,
+        "duration": 10.961479591836731,
         "handoffReady": false
       },
       {
         "id": 1024,
         "name": "Maya",
-        "x": 4,
-        "y": 3,
+        "x": 6,
+        "y": 4,
         "stage": "care",
         "state": "waiting",
         "route": [],
@@ -3718,12 +3830,12 @@
         "intakeDone": true,
         "checkin": 2,
         "recovery": 0,
-        "wait": 58,
-        "walking": 18,
+        "wait": 52,
+        "walking": 24,
         "service": 13,
         "handoff": 4,
         "transfer": 0,
-        "yielding": 0,
+        "yielding": 2,
         "elapsedOffset": 0,
         "arrival": 385,
         "progress": 0,
@@ -3731,7 +3843,7 @@
         "history": [
           {
             "stage": "consult",
-            "at": 410,
+            "at": 417,
             "room": 1,
             "duration": 12.5
           }
@@ -3743,12 +3855,12 @@
         "teamWaiting": false,
         "equipmentWaiting": false,
         "destination": {
-          "x": 4,
-          "y": 3
+          "x": 6,
+          "y": 4
         },
         "previous": {
-          "x": 4.25,
-          "y": 3.75
+          "x": 5.75,
+          "y": 4
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
@@ -3774,12 +3886,12 @@
         "intakeDone": true,
         "checkin": 4,
         "recovery": 0,
-        "wait": 39,
-        "walking": 18,
+        "wait": 32,
+        "walking": 25,
         "service": 12,
         "handoff": 4,
         "transfer": 0,
-        "yielding": 0,
+        "yielding": 2,
         "elapsedOffset": 0,
         "arrival": 403,
         "progress": 0,
@@ -3787,9 +3899,9 @@
         "history": [
           {
             "stage": "consult",
-            "at": 427,
+            "at": 435,
             "room": 10,
-            "duration": 11.105357142857143
+            "duration": 11.005102040816325
           }
         ],
         "outside": false,
@@ -3804,11 +3916,11 @@
         },
         "previous": {
           "x": 7,
-          "y": 5
+          "y": 5.75
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
-        "duration": 11.105357142857143,
+        "duration": 11.005102040816325,
         "handoffReady": false
       },
       {
@@ -3830,12 +3942,12 @@
         "intakeDone": true,
         "checkin": 2,
         "recovery": 0,
-        "wait": 23,
-        "walking": 17,
+        "wait": 16,
+        "walking": 24,
         "service": 13,
         "handoff": 4,
         "transfer": 0,
-        "yielding": 0,
+        "yielding": 2,
         "elapsedOffset": 0,
         "arrival": 421,
         "progress": 0,
@@ -3843,7 +3955,7 @@
         "history": [
           {
             "stage": "consult",
-            "at": 440,
+            "at": 448,
             "room": 1,
             "duration": 12.5
           }
@@ -3860,7 +3972,7 @@
         },
         "previous": {
           "x": 5,
-          "y": 4
+          "y": 4.75
         },
         "intakeWaiting": false,
         "intakeHelper": 8,
@@ -3878,11 +3990,11 @@
         "elapsed": 480
       },
       "3": {
-        "busy": 123,
+        "busy": 113,
         "elapsed": 480
       },
       "10": {
-        "busy": 145,
+        "busy": 144,
         "elapsed": 480
       }
     },

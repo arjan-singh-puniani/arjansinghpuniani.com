@@ -1,0 +1,102 @@
+[
+  {
+    "suite": "simulation.cjs",
+    "exitCode": 0,
+    "output": "PASS: routing, placement, obstruction, full shift, deterministic replay, access cohort, missing-service constraint\nBaseline shift: 14 helped; 26 left.\n"
+  },
+  {
+    "suite": "animation.mjs",
+    "exitCode": 0,
+    "output": "PASS: actual Three.js mixer regression for frozen transfer fades and deterministic clip endpoints\nPASS: dangling joints stay bounded, reduced motion stays still, original pose restores\n"
+  },
+  {
+    "suite": "browser-opening.mjs",
+    "exitCode": 0,
+    "output": "PASS: actual RC3 first-minute browser actions, counts and tracked visit replay exactly\n"
+  },
+  {
+    "suite": "browser-replay.mjs",
+    "exitCode": 0,
+    "output": "PASS: historical actions remain legal and capacity/arrival accounting holds; RC3 outcomes are explicitly separated from the recorded RC1 model\n"
+  },
+  {
+    "suite": "construction.mjs",
+    "exitCode": 0,
+    "output": "PASS: four doorway orientations, connected construction, physical exit/walk/re-entry, reserved origin, no reassignment during travel, capacity waits for arrival and mid-route save validation\n"
+  },
+  {
+    "suite": "continuing.mjs",
+    "exitCode": 0,
+    "output": "PASS: continuing sandbox carries all unfinished visits, routes, roles, fatigue, money and exact lifetime accounting across four shifts; bounded period history, active save/replay, scored campaigns remain finite\n"
+  },
+  {
+    "suite": "diorama.mjs",
+    "exitCode": 0,
+    "output": "PASS: accounting, occupancy, reachable doors, obstruction, live-route placement, reservations, removal, explicit staffing, undo, upgrades, finite budget, fatigue, nonnegative timings, deterministic replay, save/load equivalence, termination, scenario runs, GLB dependencies, rig and clips, import boundary.\nCapacity comparison, seed431: {\n  baseline: 7,\n  extraConsult: 8,\n  baselineArrivals: 27,\n  expandedArrivals: 27\n}\n"
+  },
+  {
+    "suite": "expansion.mjs",
+    "exitCode": 0,
+    "output": "PASS: roles, assignment, protected capacity, decoration undo, handoffs, bed transfers, migration, checkpoint comparison, exact paired arrivals, campaign mastery, limited hiring, community continuity and100 whole-shift runs.\nMeasured plan wins/ties/losses: { wins: 41, ties: 9, losses: 0 }\n"
+  },
+  {
+    "suite": "first-shift.mjs",
+    "exitCode": 0,
+    "output": "PASS: real reception capacity, pickup/opening availability, return travel, first-minute completed visit, exact check-in/recovery timing, meaningful event costs/resolution/reward, mid-event save replay, prior-visit preservation, corrupt-ops rejection and new-room staff travel\nPASS: earned lounge voucher has real construction benefit and no refund arbitrage\n"
+  },
+  {
+    "suite": "interaction.mjs",
+    "exitCode": 0,
+    "output": "PASS: placed connected doors, visible entering/exiting states, reserved entry rejection, door checkpoint equivalence, blocked drops, preserved visit/queue/accounting, undo, clinician return-to-work capacity, full-shift mastery, embedded sliding-door GLB\nPASS: half-cell construction and doors, fractional doorway routes and save migration\n"
+  },
+  {
+    "suite": "landing.mjs",
+    "exitCode": 0,
+    "output": "PASS: cached green cells match authoritative drop checks, including doorway articulation and occupied points {\"hardware\":\"AppleM2 / Node22; pure navigation checks, not an iPhone result\",\"checkedCells\":9570,\"samples\":20,\"previous\":{\"medianMs\":2.1861659999999574,\"p95Ms\":2.40949999999998},\"cached\":{\"medianMs\":0.848165999999992,\"p95Ms\":0.9809999999999945}}\n"
+  },
+  {
+    "suite": "locomotion.mjs",
+    "exitCode": 0,
+    "output": "PASS: clip-weight restoration, distance-locked gait, stationary feet, safe corner, all13originalrigclips, meaningful first-minute expansion and exact active save replay\n"
+  },
+  {
+    "suite": "motion-release.mjs",
+    "exitCode": 0,
+    "output": "PASS: staff doorway paths, complete break phases with/without lounge, reserved capacity, phase-by-phase save/load, v0.4 migration and negative-duration import rejection\n"
+  },
+  {
+    "suite": "navigation.mjs",
+    "exitCode": 0,
+    "output": "{\"checked\":2700,\"queries\":300,\"originalMs\":36.07,\"currentMs\":1.95,\"device\":\"Apple M2 host; Node22; not iPhone\"}\n"
+  },
+  {
+    "suite": "patient-release.mjs",
+    "exitCode": 0,
+    "output": "PASS: cloth clears before movement, uncovering reserves capacity and survives checkpoints, state-derived guidance,11 unique proportional rigged patient variants\n"
+  },
+  {
+    "suite": "release.mjs",
+    "exitCode": 0,
+    "output": "PASS: every-tick visit timing conservation, interpolated-path platform clearance, interior endpoints, v0.3 save migration\n"
+  },
+  {
+    "suite": "roles-operations.mjs",
+    "exitCode": 0,
+    "output": "PASS: nine real roles, surgeon+nurse procedure team, imaging-only technologist, new room travel capacity, intake assistant task, coffee readiness/physical cleanup/resumption, separate reception capacity, exact timing, job save/load replay and0.9active-visit migration\nPASS: PA workflow requests an actual physician review; scenario setting is explicit and recorded\n"
+  },
+  {
+    "suite": "staffing-flow.mjs",
+    "exitCode": 0,
+    "output": "PASS: build first, visible unmet roles, explicit price, actual recruitment/assignment, no free staff, delayed capacity, atomic undo, mid-travel save replay, limited recruitment and insufficient budget preserve state\n"
+  },
+  {
+    "suite": "touch-roles.mjs",
+    "exitCode": 0,
+    "output": "PASS: nine actual roles, six clinical staff, front desk adds no capacity, legacy migration without duplication, unknown current role rejected, busy pickup preserves reservation, service waits for return, exact timing conservation, return completes, save/load replay, role recruiting\nPASS: 18 embedded skin GLBs, matching base rig mapping, no duplicate animation payload, nine LODs below2MB\nPASS: historical0.7recording remains identified by its original model; it is not presented as evidence for the new model\n"
+  },
+  {
+    "suite": "waiting.mjs",
+    "exitCode": 0,
+    "output": "PASS: waiting garden has two reserved seats, patients walk/sit/rise, furniture and removal respect occupancy, rotated doors stay connected, exact timing and save/load\n"
+  }
+]
