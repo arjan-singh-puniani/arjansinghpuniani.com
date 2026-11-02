@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "Outgoing tires remain in the handler grips through retreat",
+    "Rendered soles match requested world contacts",
+    "Planted support feet stay fixed across the full stop and supply-cart movement",
+    "Backward seeking restores identical body and foot poses",
+    "Approach, service and retreat render without application errors"
+  ],
+  "errors": [],
+  "contacts": {
+    "maxRenderError": 8.881784197001252e-16,
+    "maxPlantedDrift": 8.881784197001252e-16,
+    "samples": 13865,
+    "seekExact": true
+  },
+  "carry": {
+    "maxGripDistance": 0.38807215823864516,
+    "samples": 2592
+  }
+}

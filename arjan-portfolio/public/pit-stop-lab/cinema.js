@@ -48,7 +48,7 @@ export function raceCamera(track,time,choice='director'){
     }
     const local=(side,height,ahead)=>[p.x+right[0]*side+forward[0]*ahead,height,p.z+right[1]*side+forward[1]*ahead];
     const phase=time*.12;
-    const definitions={chase:[local(2.6,1.4,-4.4),local(0,.28,.8),38],front:[local(-2.5,.95,4.8),local(0,.23,0),36],drone:[local(9+Math.sin(phase)*1.4,11,-8),local(0,0,1.8),42],oncar:[local(0,.52,.2),local(0,.24,13),65],overview:[[95,125,110],[0,0,0],46]};
+    const definitions={chase:[local(2.6,1.4,-4.4),local(0,.28,.8),38],front:[local(-2.5,.95,4.8),local(0,.23,0),36],drone:[local(9+Math.sin(phase)*1.4,11,-8),local(0,0,1.8),42],oncar:[local(0,.30,.08),local(0,.18,10),65],overview:[[95,125,110],[0,0,0],46]};
     const [position,target,fov]=definitions[shot]??definitions.chase;
     return {shot,position,target,fov};
 }
@@ -57,7 +57,7 @@ export function pitFilmShot(sim,time,car=null){
     const stop=sim.stops[car.number-1],arrival=stop.stopAt,z=car.position,x=4.8*smooth(clamp((-z-7)/8,0,1));
     if(time<arrival-.15)return {shot:'arrival',position:[x+4.3,1.9,z-5],target:[x,.5,z],fov:40};
     if(time<arrival+.65)return {shot:'coordination',position:[3.7,2.65,-4.1],target:[0,.3,-.1],fov:44};
-    if(time<stop.mechanicalEnd-.2){const u=smooth(clamp((time-arrival-.65)/Math.max(.01,stop.mechanicalEnd-arrival-.85),0,1));return {shot:'wheel',position:[1.7+u*.15,.72,-3.9+u*.15],target:[.8,.44,-1.6],fov:40};}
+    if(time<stop.mechanicalEnd-.2){const u=smooth(clamp((time-arrival-.65)/Math.max(.01,stop.mechanicalEnd-arrival-.85),0,1));return {shot:'wheel',position:[1.35+u*.1,1.6+u*.1,-3.1-u*.05],target:[.85,.46,-1.65],fov:44};}
     if(stop.held)return {shot:'hold',position:[3.8,2.6,-4.7],target:[0,.5,0],fov:42};
     if(time<stop.releaseAt+.35)return {shot:'release',position:[4.2,2.35,-4.5],target:[0,.4,0],fov:42};
     return {shot:'departure',position:[x+4.4,2.2,z+6.8],target:[x,.4,z-1],fov:40};

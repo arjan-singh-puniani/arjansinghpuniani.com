@@ -40,7 +40,7 @@ export function createRaceScene(canvas,tracks,{onReady,onError,onOrbit}){
     ribbon(-1.98,-1.65,.04,'#ffffff',true);ribbon(1.65,1.98,.04,'#ffffff',true);ribbon(-1.62,-1.59,.045,'#ddd9c8');ribbon(1.59,1.62,.045,'#ddd9c8');
     // Original asphalt microtexture stays local and repeatable.
     const noiseCanvas=document.createElement('canvas');noiseCanvas.width=noiseCanvas.height=256;const nc=noiseCanvas.getContext('2d'),pixels=nc.createImageData(256,256),random=seededRandom(91);
-    for(let i=0;i<pixels.data.length;i+=4){const n=112+Math.floor(random()*26);pixels.data.set([n,n,n,255],i);}nc.putImageData(pixels,0,0);const asphalt=new THREE.CanvasTexture(noiseCanvas);asphalt.wrapS=asphalt.wrapT=THREE.RepeatWrapping;asphalt.repeat.set(1,1);textures.add(asphalt);road.material.roughnessMap=asphalt;
+    for(let i=0;i<pixels.data.length;i+=4){const n=225+Math.floor(random()*30);pixels.data.set([n,n,n,255],i);}nc.putImageData(pixels,0,0);const asphalt=new THREE.CanvasTexture(noiseCanvas);asphalt.wrapS=asphalt.wrapT=THREE.RepeatWrapping;asphalt.repeat.set(1,1);textures.add(asphalt);road.material.roughnessMap=asphalt;
     function trackPoint(index,offset=0){const i=(index+roadPoints.length-1)%(roadPoints.length-1),p=roadPoints[i],n=normals[i],next=roadPoints[(i+1)%(roadPoints.length-1)];return {x:p.x+n.x*offset,z:p.z+n.z*offset,yaw:Math.atan2(next.x-p.x,next.z-p.z),n};}
     const clearance=p=>Math.min(...tracks[0].points.map(r=>Math.hypot(r.x-p.x,r.z-p.z)));
     function relative(origin,x,y,z){return [origin.x+Math.cos(origin.yaw)*x+Math.sin(origin.yaw)*z,y,origin.z-Math.sin(origin.yaw)*x+Math.cos(origin.yaw)*z];}
@@ -86,9 +86,10 @@ export function createRaceScene(canvas,tracks,{onReady,onError,onOrbit}){
     localBox(start,M.dark,0,4.4,-1,5.5,.5,.25);localBox(start,M.red,0,4.67,-1,5.5,.035,.3);
     const bulb=new THREE.MeshBasicMaterial({color:'#fff1cc'});materials.add(bulb);
     for(let i=0;i<roadPoints.length-1;i+=65){let p=trackPoint(i,4.7);if(clearance(p)<3.6)continue;cylinder(M.steel,p.x,2.5,p.z,.045,5);box(M.dark,p.x,5,p.z,.9,.12,.45,p.yaw);box(bulb,p.x,4.92,p.z,.7,.035,.3,p.yaw);}
+    const occluders=[],masked=[],unitBounds=new THREE.Box3(new THREE.Vector3(-.5,-.5,-.5),new THREE.Vector3(.5,.5,.5)),cylinderBounds=new THREE.Box3(new THREE.Vector3(-1,-.5,-1),new THREE.Vector3(1,.5,1));
     for(const batch of instances.values()){
         const object=new THREE.InstancedMesh(batch.g,batch.m,batch.rows.length),matrix=new THREE.Matrix4(),q=new THREE.Quaternion();
-        batch.rows.forEach((r,i)=>{q.setFromEuler(new THREE.Euler(...r.rotation));matrix.compose(new THREE.Vector3(...r.position),q,new THREE.Vector3(...r.scale));object.setMatrixAt(i,matrix);});object.receiveShadow=true;object.castShadow=true;object.computeBoundingSphere();scene.add(object);
+        batch.rows.forEach((r,i)=>{q.setFromEuler(new THREE.Euler(...r.rotation));matrix.compose(new THREE.Vector3(...r.position),q,new THREE.Vector3(...r.scale));object.setMatrixAt(i,matrix);if((batch.g===unitBox&&(r.scale[1]>1.3||r.scale[0]>5))||(batch.g===unitCylinder&&r.scale[1]>1.3))occluders.push({object,index:i,matrix:matrix.clone(),inverse:matrix.clone().invert(),bounds:batch.g===unitBox?unitBounds:cylinderBounds});});object.receiveShadow=true;object.castShadow=true;object.computeBoundingSphere();scene.add(object);
     }
     const envScene=new THREE.Scene();envScene.background=new THREE.Color('#6d7c87');const panelGeometry=new THREE.PlaneGeometry(1,1),panelMat=new THREE.MeshBasicMaterial({color:'#fff1dc'});materials.add(panelMat);geometries.add(panelGeometry);
     for(const [position,scale] of [[[0,7,0],[8,4]],[[5,3,0],[4,7]],[[-5,2,0],[4,7]],[[0,3,-7],[9,2]]]){const panel=new THREE.Mesh(panelGeometry,panelMat);panel.position.set(...position);panel.scale.set(...scale,1);panel.lookAt(0,.5,0);envScene.add(panel);}
@@ -117,7 +118,18 @@ export function createRaceScene(canvas,tracks,{onReady,onError,onOrbit}){
     const resize=()=>{const width=canvas.clientWidth,height=canvas.clientHeight;if(!width||!height)return;renderer.setSize(width,height,false);camera.aspect=width/height;camera.updateProjectionMatrix();dirty=true;};
     const observer=new ResizeObserver(resize);observer.observe(canvas);resize();
     const lostContext=e=>{e.preventDefault();lost=true;pendingFrame=null;onError('3D context interrupted. Telemetry remains available.');},restore=()=>{lost=false;dirty=true;};canvas.addEventListener('webglcontextlost',lostContext);canvas.addEventListener('webglcontextrestored',restore);
-    const target=new THREE.Vector3(),desired=new THREE.Vector3();
+    const target=new THREE.Vector3(),desired=new THREE.Vector3(),localRay=new THREE.Ray(),hit=new THREE.Vector3(),zeroMatrix=new THREE.Matrix4().makeScale(0,0,0);
+    const focusPoints=[[0,.45,0],[0,.45,-2.1],[0,.45,2.1],[-.9,.45,0],[.9,.45,0]].map(p=>new THREE.Vector3(...p)),focusRays=focusPoints.map(()=>new THREE.Ray()),focusDistances=new Float64Array(focusPoints.length);
+    function cameraCutaway(){
+        const changed=new Set();for(const row of masked){row.object.setMatrixAt(row.index,row.matrix);changed.add(row.object);}masked.length=0;
+        if(cars[0]&&mode!=='orbit'&&lastShot!=='overview'){
+            cars[0].updateWorldMatrix(true,false);
+            focusRays.forEach((ray,i)=>{ray.origin.copy(focusPoints[i]).applyMatrix4(cars[0].matrixWorld);ray.direction.subVectors(camera.position,ray.origin);focusDistances[i]=ray.direction.length();ray.direction.normalize();});
+            for(const row of occluders)for(let i=0;i<focusRays.length;i++){const ray=focusRays[i];localRay.copy(ray).applyMatrix4(row.inverse);if(!localRay.intersectBox(row.bounds,hit))continue;const d=hit.applyMatrix4(row.matrix).distanceTo(ray.origin);if(d>.25&&d<focusDistances[i]+.2){row.object.setMatrixAt(row.index,zeroMatrix);masked.push(row);changed.add(row.object);break;}}
+        }
+        for(const object of changed)object.instanceMatrix.needsUpdate=true;
+    }
+
     function render(time,now){
         if(!alive||lost||(software&&now-lastDraw<50))return;
         if(pendingFrame){const status=gl.clientWaitSync(pendingFrame,0,0);if(status===gl.TIMEOUT_EXPIRED)return;gl.deleteSync(pendingFrame);pendingFrame=null;}
@@ -134,13 +146,13 @@ export function createRaceScene(canvas,tracks,{onReady,onError,onOrbit}){
         }
         let cameraMoving=false;
         if(mode!=='orbit'){
-            const shot=raceCamera(tracks[0],time,mode),cut=shot.shot!==lastShot;desired.fromArray(shot.position);target.fromArray(shot.target);
+            const shot=raceCamera(tracks[0],time,mode),cut=shot.shot!==lastShot;controls.maxPolarAngle=shot.shot==='oncar'?Math.PI*.5:Math.PI*.47;desired.fromArray(shot.position);target.fromArray(shot.target);
             const mobile=canvas.clientWidth<700;if(mobile&&shot.shot!=='overview'&&shot.shot!=='oncar'){desired.sub(target).multiplyScalar(1.28).add(target);target.y-=.55;}
             if(mobile&&shot.shot==='overview')desired.sub(target).multiplyScalar(1.8).add(target);scene.fog.near=shot.shot==='overview'?400:160;scene.fog.far=shot.shot==='overview'?900:600;
-            if(cut){camera.position.copy(desired);controls.target.copy(target);}else{camera.position.lerp(desired,.22);controls.target.lerp(target,.28);}
-            cameraMoving=camera.position.distanceToSquared(desired)>.000001||controls.target.distanceToSquared(target)>.000001;camera.fov=shot.fov;camera.near=shot.shot==='overview'?.5:shot.shot==='oncar'?.02:.08;camera.updateProjectionMatrix();controls.enabled=false;lastShot=shot.shot;
+            if(cut||shot.shot==='oncar'){camera.position.copy(desired);controls.target.copy(target);}else{camera.position.lerp(desired,.22);controls.target.lerp(target,.28);}
+            cameraMoving=camera.position.distanceToSquared(desired)>.000001||controls.target.distanceToSquared(target)>.000001;camera.fov=mobile&&shot.shot==='oncar'?100:shot.fov;camera.near=shot.shot==='overview'?.5:shot.shot==='oncar'?.02:.08;camera.updateProjectionMatrix();controls.enabled=false;lastShot=shot.shot;
         }
-        const changed=controls.update();if(!dirty&&!moved&&!changed&&!cameraMoving)return;camera.lookAt(controls.target);renderer.render(scene,camera);draws++;lastDraw=now;lastTime=time;dirty=false;pendingFrame=gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE,0);gl.flush();
+        const changed=controls.update();if(!dirty&&!moved&&!changed&&!cameraMoving)return;camera.lookAt(controls.target);cameraCutaway();renderer.render(scene,camera);draws++;lastDraw=now;lastTime=time;dirty=false;pendingFrame=gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE,0);gl.flush();
     }
-    return {render,setGhost(value){ghost=!!value;dirty=true;cars.forEach((c,i)=>{c.visible=i===0||ghost;c.userData.marker.visible=i===0||ghost;trails[i].o.visible=i===0||ghost;});},setCamera(value){mode=value;lastShot='';dirty=true;controls.enabled=value==='orbit';},get ready(){return ready;},get stats(){return {ready,camera:mode,shot:lastShot,draws,calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures,software,gpu};},dispose(){alive=false;clearTimeout(assetTimeout);if(pendingFrame)gl.deleteSync(pendingFrame);observer.disconnect();controls.removeEventListener('start',onOrbit);controls.dispose();canvas.removeEventListener('webglcontextlost',lostContext);canvas.removeEventListener('webglcontextrestored',restore);geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());environment.dispose();renderer.dispose();}};
+    return {render,setGhost(value){ghost=!!value;dirty=true;cars.forEach((c,i)=>{c.visible=i===0||ghost;c.userData.marker.visible=i===0||ghost;trails[i].o.visible=i===0||ghost;});},setCamera(value){mode=value;lastShot='';dirty=true;controls.enabled=value==='orbit';},get ready(){return ready;},get stats(){return {ready,camera:mode,shot:lastShot,cutaways:masked.length,draws,calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures,software,gpu};},dispose(){alive=false;clearTimeout(assetTimeout);if(pendingFrame)gl.deleteSync(pendingFrame);observer.disconnect();controls.removeEventListener('start',onOrbit);controls.dispose();canvas.removeEventListener('webglcontextlost',lostContext);canvas.removeEventListener('webglcontextrestored',restore);geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());environment.dispose();renderer.dispose();}};
 }
