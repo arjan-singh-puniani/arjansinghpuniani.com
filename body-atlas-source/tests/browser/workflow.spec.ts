@@ -633,7 +633,8 @@ test('overview names interventions on the body and opens their original evidence
  await expect(map.locator('.constellation-intervention').first()).toBeVisible({timeout:45000});
  const labels=map.locator('.constellation-intervention');expect(await labels.count()).toBeGreaterThanOrEqual(testInfo.project.name==='desktop'?10:4);
  await expect(map.getByRole('button',{name:'Select NeuroPace RNS System from body map',exact:true})).toBeVisible();
- expect(await map.locator('.record-node').count()).toBeGreaterThan(50);
+ expect(await map.locator('.record-node').count()).toBeGreaterThanOrEqual(10);
+ await expect(map.locator('.region-orbit')).toHaveCount(0);
  const first=labels.first(),id=await first.getAttribute('data-family');
  await expect(first.getByRole('link',{name:/Original source for/})).toHaveAttribute('href',/^https:\/\//);
  await first.getByRole('button',{name:/Select .* from body map/}).click();
@@ -649,7 +650,9 @@ test('overview names interventions on the body and opens their original evidence
   await more.first().click();await expect(page.locator('.map-breadcrumb')).not.toHaveText('Human');
   await expect(map.locator('.constellation-intervention').first()).toBeVisible();
  }
- await page.getByRole('combobox',{name:'Explore anatomical region',exact:true}).selectOption('BODY:heart');
+ const regionSelect=page.getByRole('combobox',{name:'Explore anatomical region',exact:true});
+ if(!await regionSelect.count())await page.getByRole('button',{name:'Interventions',exact:true}).click();
+ await regionSelect.selectOption('BODY:heart');
  await expect(map.locator('.constellation-intervention').first()).toBeVisible();
  const seen=new Set<string>();let next=map.getByRole('button',{name:'Next mapped interventions',exact:true});
  for(let i=0;i<20;i++){
@@ -740,3 +743,29 @@ test('Neuralink connects regional recording, six authentic trials, hardware unce
  const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations).toEqual([]);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect(errors).toEqual([]);
 });
+
+ test('indexed labels meet specific reference anatomy instead of parent-organ or decorative offsets',async({page},testInfo)=>{
+  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+  for(const [entry,id,node] of [['activa','UBERON:0001897','Allen_thalamus'],['brio','UBERON:0001906','Allen_subthalamic_nucleus'],['source-fda-p140031','BODY:heart-valves','VH_M_heart_valve']]){
+   await page.goto('/?entry='+entry);
+   const scene=page.getByTestId('human-reference');await expect(scene).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
+   await expect(scene).toHaveAttribute('data-internal-status','loaded',{timeout:45000});
+   await expect(scene).toHaveAttribute('data-organs-status','loaded',{timeout:45000});
+   await expect(scene).toHaveAttribute('data-focus-region',id);await expect(scene).toHaveAttribute('data-focus-nodes',new RegExp(node));
+   if(id.startsWith('UBERON'))await expect(scene).toHaveAttribute('data-internal-focus',id);
+   const map=page.getByRole('group',{name:'Whole-body intervention map'}),label=map.locator(`.constellation-intervention[data-family="${entry}"]`);
+   await expect(label).toHaveAttribute('data-structure',id);await expect(label).toHaveAttribute('data-anchor','Representative reference surface');
+   const leader=map.locator(`.constellation-svg g[data-family="${entry}"]`);await expect(leader).toHaveAttribute('data-structure',id);
+   const pin=leader.locator('.reference-anchor'),path=leader.locator('path');
+   await expect.poll(()=>path.getAttribute('d')).toMatch(/^M /);
+   expect(await path.getAttribute('d')).toContain(`M ${await pin.getAttribute('cx')} ${await pin.getAttribute('cy')} L`);
+   await expect(map.locator('.region-orbit')).toHaveCount(0);
+   await page.screenshot({path:`test-results/${testInfo.project.name}-${entry}-reference-anchor.png`});
+  }
+  await page.goto('/?entry=activa&panel=mechanism');
+  await page.getByRole('button',{name:/Explore Chest implants for Model 7424/}).click();
+  await expect(page.getByTestId('human-reference')).toHaveAttribute('data-focus-region','BODY:chest-wall');
+  await expect(page.getByTestId('human-reference')).toHaveAttribute('data-focus-anchor',/Approximate region/);
+  await page.goto('/?entry=vns');await expect(page.getByTestId('human-reference')).toHaveAttribute('data-focus-anchor',/Approximate region/);
+  expect(errors).toEqual([]);
+ });

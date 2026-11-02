@@ -27,7 +27,7 @@ import {
 
 import WholeBodyOrgans from "./WholeBodyOrgans";
 import AnnotationProjection from "./AnnotationProjection";
-import { humanRegionLocators, type LabelProjection } from "@/lib/annotations";
+import { humanRegionLocators, referenceSurfaceAnchors, referenceRegionsForNode, anchorDescription, type LabelProjection } from "@/lib/annotations";
 import DeviceActionOverlay from './DeviceActionOverlay';
 import type { DeviceAction } from '@/lib/device-action';
 
@@ -237,7 +237,7 @@ function RegisteredAnatomy({
   activeRegions: string[];
   onSelect: (id: string) => void;
   onHover: (label: string) => void;
-  onReady: () => void;
+  onReady: (region:string) => void;
 }) {
   const gltf = useGLTF(atlasPath("/anatomy/nervous.glb"));
   const body = useGLTF(atlasPath("/anatomy/body.glb"));
@@ -262,8 +262,9 @@ function RegisteredAnatomy({
   useEffect(() => {
     model.traverse((o) => {
       if (o instanceof Mesh) {
+        const parts=referenceRegionsForNode(o),specific=region==='UBERON:0001897'||region==='UBERON:0001906';
         const spinal = /spinal_cord/.test(o.name);
-        const active = spinal
+        const active = specific ? parts.includes(region) : spinal
           ? [region, ...activeRegions].some((id) =>
               ["UBERON:0002240", "BODY:spinal-epidural"].includes(id),
             )
@@ -278,10 +279,13 @@ function RegisteredAnatomy({
         (o.material as MeshStandardMaterial).color = new Color(
           active ? "#e5b17c" : "#76bac5",
         );
+        const material=o.material as MeshStandardMaterial;
+        material.transparent=specific&&!active;material.opacity=material.transparent?.06:1;material.depthWrite=!material.transparent;material.needsUpdate=true;
+        o.raycast=specific&&!active?()=>{}:Mesh.prototype.raycast;
       }
     });
     invalidate();
-    onReady();
+    onReady(region);
   }, [model, region, activeRegions, onReady, invalidate]);
   useEffect(
     () => () =>
@@ -297,9 +301,9 @@ function RegisteredAnatomy({
         if (e.delta > 4) return;
         e.stopPropagation();
         onSelect(
-          /spinal_cord/.test(e.object.name)
+          referenceRegionsForNode(e.object)[0] || (/spinal_cord/.test(e.object.name)
             ? "UBERON:0002240"
-            : "UBERON:0000955",
+            : "UBERON:0000955"),
         );
       }}
       onPointerMove={(e: ThreeEvent<PointerEvent>) => {
@@ -365,7 +369,8 @@ export default function HumanScene({
   const organsLoaded=useCallback(()=>setOrgansReady(true),[]);
   const [internalReady, setInternalReady] = useState(false),
     [internalFailed, setInternalFailed] = useState(false);
-  const internalLoaded = useCallback(() => setInternalReady(true), []);
+  const [internalFocus,setInternalFocus]=useState('');
+  const internalLoaded = useCallback((id:string) => {setInternalFocus(id);setInternalReady(true);}, []);
   useEffect(() => {
     if (failed) onUnavailable();
   }, [failed, onUnavailable]);
@@ -387,6 +392,9 @@ export default function HumanScene({
       data-presentation={portrait?"portrait":"atlas"}
       data-exterior={exterior}
       data-focus-region={focusRegion || region}
+      data-focus-anchor={anchorDescription(focusRegion || region)}
+      data-focus-nodes={referenceSurfaceAnchors[focusRegion || region]?.nodes.join(',')||''}
+      data-internal-focus={internalFocus}
       data-action-kind={action?.kind || 'none'}
       data-action-step={actionStep}
       data-contour-frame={portrait?portraitFrame:"atlas"}
@@ -428,7 +436,7 @@ export default function HumanScene({
           <group visible={showOrgans}><Boundary fail={() => setInternalFailed(true)}>
             <Suspense fallback={null}>
               <RegisteredAnatomy
-                region={region}
+                region={focusRegion || region}
                 activeRegions={activeRegions}
                 onSelect={onSelect}
                 onHover={onHover}

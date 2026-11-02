@@ -16,10 +16,10 @@ test('mechanisms resolve named entries, original evidence and contextual referen
     assert.ok(!('coordinates' in action));
   }
 });
-test('whole-body context edges remain provisional; valve focus explicitly uses broader heart mesh',()=>{
+test('whole-body context stays provisional while valve focus uses the available valve geometry',()=>{
   const focus=anatomyFocus('source-fda-p140031')!;
-  assert.equal(focus.intendedRegion,'BODY:heart-valves');assert.equal(focus.region,'BODY:heart');
-  assert.equal(focus.broaderReference,true);
+  assert.equal(focus.intendedRegion,'BODY:heart-valves');assert.equal(focus.region,'BODY:heart-valves');
+  assert.equal(focus.broaderReference,false);
   assert.ok(familyMappings('source-fda-p140031').every(m=>m.state==='Provisional'));
 });
 test('unlocalized, unsupported and female-only anatomy abstain from organ focus',()=>{

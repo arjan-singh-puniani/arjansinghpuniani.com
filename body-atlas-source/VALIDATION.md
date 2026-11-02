@@ -179,3 +179,15 @@ Actual web-rendered front, rotated and upper-body screenshots were inspected; an
 Portfolio integration preparation: static atlas export passed; portfolio `npm run typecheck`, `npm run build` and all 150 `npm test` tests passed. Final face-only material adjustments were rechecked in the 8 affected source browser tests. No new likeness has been published or certified as an exact match.
 
 The exported portfolio was also run at a local production-mode URL: desktop 1440×1000 and mobile 390×844 both passed face loading, upper-body switching, atlas return navigation, horizontal-overflow checks, exact final GLB-manifest hash and zero page errors.
+
+## Reference-surface entry links — 2026-11-02
+
+`npm run typecheck`, `npm test` (**65 passed**) and `npm run build -- --webpack` pass. `npm run test:browser` passes **30 desktop/mobile Chrome workflows**, including the new selected thalamus/STN/valve endpoints, actual nervous-renderer focus, explicit chest component context, source links, original medical evidence/retrieval, outage recovery, narrow-screen layout, keyboard/accessibility, sharing and portrait regressions.
+
+The new generator derives **23 representative reference-surface anchors**. For every anchor, a test verifies the source asset SHA-256, source-node ancestry, finite coordinates, original-body display transform and membership on its recorded mesh triangle (source-space tolerance 1e-7). Specific target endpoints remain distinct from parent-organ endpoints. Missing vagus geometry remains approximate; unlocalized and female-only anatomy still abstain. These are geometry/engineering checks, not a clinical localization accuracy study or a review-state upgrade.
+
+Visual review of actual loaded-model screenshots caught a parent-region/rendering mismatch; passing the selected focus through to the nervous renderer fixed it. Selected deep targets now show through faded context, and ghost geometry does not intercept their clicks. An older navigation regression assumed the first overview entry could not have a mechanism; the test now returns from the selected entry to the region selector when needed and still verifies access to all twelve heart interventions.
+
+No source records, scientific mappings, review states, regulatory statuses, body/face mesh or internal reference mesh files changed. Clinical placement, laterality, VIM-specific targeting, expert anatomical precision and physical iOS/Safari remain unverified. Record-count clusters in the wider FDA layer remain diagrammatic, while selected entries use their available regional endpoint.
+
+Integration verification: `node scripts/export-static.mjs ../arjan-portfolio/public/atlas`, portfolio `npm run typecheck`, `npm run build` and all 150 `npm test` tests pass. The exported atlas was run inside the portfolio at a local production-mode URL: desktop 1440×1000 and mobile 390×844 each passed all three selected reference targets, actual nervous-renderer focus, original-source links, anchor metadata delivery, horizontal-overflow checks and zero page errors. This revision is a local preview; no production deployment was performed.

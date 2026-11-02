@@ -135,3 +135,7 @@ Physical iOS/Safari, low-memory GPU testing, slow-network measurements, distribu
 ## Contour review workflow — 2026-11-01
 
 `/?view=portrait&frame=face` opens a rotatable close-up; **Upper body** restores the torso crop and **Explore atlas** restores intervention exploration. Copy link preserves selected framing without unrelated query state; clipboard denial exposes a selectable link. The new face surface is prepared locally, then baked into the public GLB. No photograph is displayed. Recognizability remains a human judgment, not a passed automated acceptance criterion. Internal anatomy and intervention assertions are unchanged.
+
+## Mesh-linked entries — 2026-11-02
+
+Open `/?entry=activa`: the Thalamus label meets the actual reference thalamic surface, with the surrounding brain faded. `/?entry=brio` focuses the reference subthalamic nucleus. `/?entry=source-fda-p140031` focuses the available heart-valve group, explicitly described as representative valve surfaces rather than a prosthesis reconstruction. Original source links and existing provisional/reviewed states remain visible. The Activa chest-generator relationship changes focus to chest context instead of being overridden by its brain target. Vagus remains **≈ approximate** because its mesh is absent. The full desktop/mobile browser suite passes all 30 workflows; these views do not establish surgical coordinates or device laterality.

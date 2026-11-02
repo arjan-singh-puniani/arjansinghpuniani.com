@@ -1,0 +1,381 @@
+{
+  "frame": "HRA united male v1.5; original skin centered and uniformly scaled to height 6",
+  "assets": {
+    "body.glb": "7260cde916540b160c28bdc552f34706f5de70b1e27a6b6689f9428abf2e64e3",
+    "organs.glb": "c570bbde1d3a6252abc2fb8e09d65dbaba7f74e2effdca74394e20d61965601a",
+    "nervous.glb": "5bc97cb9bdc0c9b7b5a381e0b08c474ad8f3159b516eb255f54cae529cb7df89"
+  },
+  "anchors": {
+    "BODY:heart": {
+      "position": [
+        0.062541666,
+        1.560916267,
+        0.266287237
+      ],
+      "nodes": [
+        "VH_M_heart"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_heart_right_ventricle",
+      "triangle": 19263,
+      "method": "front surface intersection",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:lung": {
+      "position": [
+        -0.02978397,
+        1.637779501,
+        -0.055859568
+      ],
+      "nodes": [
+        "VH_M_lungs"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_right_superior_bronchopulmonary_segment",
+      "triangle": 393,
+      "method": "nearest surface to region bounds center",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:liver": {
+      "position": [
+        -0.122137399,
+        1.203976977,
+        0.334665318
+      ],
+      "nodes": [
+        "VH_M_liver"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_liver_capsule",
+      "triangle": 7341,
+      "method": "front surface intersection",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:kidney": {
+      "position": [
+        0.129406681,
+        1.043099812,
+        -0.060798914
+      ],
+      "nodes": [
+        "VH_M_kidney"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_kidney_capsule_L",
+      "triangle": 9067,
+      "method": "nearest surface to region bounds center",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:pancreas": {
+      "position": [
+        0.085328603,
+        1.1209799,
+        0.046100463
+      ],
+      "nodes": [
+        "VH_M_pancreas"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_body_of_pancreas",
+      "triangle": 4830,
+      "method": "nearest surface to region bounds center",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:intestine": {
+      "position": [
+        0.106866052,
+        0.762106147,
+        0.389381223
+      ],
+      "nodes": [
+        "VH_M_small_intestine"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_jejunum",
+      "triangle": 5295,
+      "method": "front surface intersection",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:colon": {
+      "position": [
+        -0.082145658,
+        0.544770723,
+        0.171294174
+      ],
+      "nodes": [
+        "VH_M_colon"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_caecum",
+      "triangle": 2107,
+      "method": "nearest surface to region bounds center",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:bladder": {
+      "position": [
+        -0.015201482,
+        0.099164917,
+        0.172586678
+      ],
+      "nodes": [
+        "VH_M_urinary_bladder"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_fundus_of_urinary_bladder_base1",
+      "triangle": 2117,
+      "method": "front surface intersection",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:prostate": {
+      "position": [
+        0.002493004,
+        0.031150531,
+        0.006104837
+      ],
+      "nodes": [
+        "VH_M_prostate_gland"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_anterior_fibromuscular_stroma_R",
+      "triangle": 87,
+      "method": "front surface intersection",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:eye": {
+      "position": [
+        -0.072481529,
+        2.657301549,
+        0.282310212
+      ],
+      "nodes": [
+        "VH_M_eyes"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_sclera_R",
+      "triangle": 6510,
+      "method": "nearest surface to region bounds center",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:hip": {
+      "position": [
+        0.018660686,
+        0.244079706,
+        -0.302251582
+      ],
+      "nodes": [
+        "VH_M_pelvis"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_sacrum",
+      "triangle": 1513,
+      "method": "front surface intersection",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:knee": {
+      "position": [
+        0.498495531,
+        -1.260858796,
+        0.171815894
+      ],
+      "nodes": [
+        "VH_M_patella_L"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_patella_L",
+      "triangle": 758,
+      "method": "front surface intersection",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:vertebral": {
+      "position": [
+        0.018533275,
+        1.490059155,
+        -0.137003372
+      ],
+      "nodes": [
+        "VH_M_vertebrae"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_thoracic_vertebra_8",
+      "triangle": 10095,
+      "method": "front surface intersection",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:aorta": {
+      "position": [
+        0.039316692,
+        1.415921398,
+        -0.059856008
+      ],
+      "nodes": [
+        "VH_M_aorta"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_descending_aorta_a",
+      "triangle": 4558,
+      "method": "nearest surface to region bounds center",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:urethra": {
+      "position": [
+        0.010222622,
+        -0.12674753,
+        0.167790542
+      ],
+      "nodes": [
+        "VH_M_urethra"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_other_urethra",
+      "triangle": 354,
+      "method": "nearest surface to region bounds center",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:airway": {
+      "position": [
+        -0.004026686,
+        2.176775978,
+        0.205130761
+      ],
+      "nodes": [
+        "VH_M_larynx"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_thyroid_cartilage",
+      "triangle": 7175,
+      "method": "front surface intersection",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:heart-valves": {
+      "position": [
+        0.028367104,
+        1.56956558,
+        0.090982006
+      ],
+      "nodes": [
+        "VH_M_heart_valve"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_mitral_valve",
+      "triangle": 1209,
+      "method": "front surface intersection",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:coronary": {
+      "position": [
+        0.039316692,
+        1.415921398,
+        -0.059856008
+      ],
+      "nodes": [
+        "VH_M_arteries_of_heart"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_descending_aorta_a",
+      "triangle": 4558,
+      "method": "nearest surface to region bounds center",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "BODY:cornea": {
+      "position": [
+        -0.094805488,
+        2.660091915,
+        0.31588631
+      ],
+      "nodes": [
+        "VH_M_cornea_L",
+        "VH_M_cornea_R"
+      ],
+      "asset": "organs.glb",
+      "mesh": "VH_M_cornea_R",
+      "triangle": 9409,
+      "method": "nearest surface to region bounds center",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "UBERON:0000955": {
+      "position": [
+        0.000829111,
+        2.720166249,
+        0.267479734
+      ],
+      "nodes": [
+        "Allen_brain"
+      ],
+      "asset": "nervous.glb",
+      "mesh": "Allen_rostral_gyrus_L",
+      "triangle": 1092,
+      "method": "front surface intersection",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "UBERON:0001897": {
+      "position": [
+        -0.00116071,
+        2.732936417,
+        -0.010191546
+      ],
+      "nodes": [
+        "Allen_thalamus_L",
+        "Allen_thalamus_R"
+      ],
+      "asset": "nervous.glb",
+      "mesh": "Allen_thalamus_L",
+      "triangle": 3965,
+      "method": "nearest surface to region bounds center",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "UBERON:0001906": {
+      "position": [
+        -0.01290406,
+        2.696292594,
+        0.033088819
+      ],
+      "nodes": [
+        "Allen_subthalamic_nucleus_L",
+        "Allen_subthalamic_nucleus_R"
+      ],
+      "asset": "nervous.glb",
+      "mesh": "Allen_subthalamic_nucleus_L",
+      "triangle": 4,
+      "method": "nearest surface to region bounds center",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    },
+    "UBERON:0002240": {
+      "position": [
+        -0.022834077,
+        1.723004505,
+        -0.213498103
+      ],
+      "nodes": [
+        "VH_M_spinal_cord"
+      ],
+      "asset": "nervous.glb",
+      "mesh": "VH_M_sixth_thoracic_spinal_cord_segment",
+      "triangle": 567,
+      "method": "nearest surface to region bounds center",
+      "precision": "representative reference surface",
+      "laterality": "display representative; device laterality is not inferred"
+    }
+  }
+}

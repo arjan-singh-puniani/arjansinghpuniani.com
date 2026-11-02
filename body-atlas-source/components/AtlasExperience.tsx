@@ -55,6 +55,7 @@ import InterventionConstellation from "./InterventionConstellation";
 import InterventionLabels from "./InterventionLabels";
 import {
   interventionAnnotations,
+  anchorDescription,
   type LabelProjection,
 } from "@/lib/annotations";
 import { frontier } from "@/lib/curation";
@@ -356,6 +357,7 @@ export default function AtlasExperience() {
     setTab("components");
   }, []);
   const selectedAnnotation = annotations.find((a) => a.familyId === selected);
+  const focusedRegion = selectedAnnotation && selectedAnnotation.mapping.structureId!==focus?.intendedRegion ? selectedAnnotation.mapping.structureId : focus?.region;
   const showDetail = !!f;
   async function copyPortraitLink(){
     const url=new URL(window.location.href);url.search="";url.hash="";url.searchParams.set("view","portrait");if(portraitFrame==="face")url.searchParams.set("frame","face");
@@ -579,7 +581,7 @@ export default function AtlasExperience() {
                   portrait={!!portrait}
                   portraitFrame={portraitFrame}
                   adapted={adaptedContour}
-                  focusRegion={focus?.region}
+                  focusRegion={focusedRegion || undefined}
                   focusKey={selected || undefined}
                   action={showMechanism ? action : undefined}
                   actionPlaying={actionPlaying && !reducedMotion}
@@ -1022,7 +1024,7 @@ export default function AtlasExperience() {
                     {action && <button aria-pressed={showMechanism && mode==='human'} onClick={()=>{setShowMechanism(mode==='human'?!showMechanism:true);setMode('human');setShowOrgans(true);setSurface(false);setActionPlaying(false);}}>Mechanism overlay</button>}
                     {action && showMechanism && mode==='human' && <button disabled={reducedMotion} aria-pressed={actionPlaying} onClick={()=>setActionPlaying(p=>!p)}>{actionPlaying?'Pause mechanism':'Play mechanism'}</button>}
                   </div>
-                  <p className="focus-precision">{focus ? `${titleFor(focus.intendedRegion)} · ${focus.geometry ? focus.broaderReference ? 'broader reference organ highlighted' : 'reference anatomy highlighted' : 'regional locator; detailed geometry unavailable'}` : 'Location not established; no placement drawn.'}</p>
+                  <p className="focus-precision">{focus ? `${titleFor(selectedAnnotation?.mapping.structureId || focus.intendedRegion)} · ${focusedRegion===focus.region&&focus.broaderReference ? 'broader reference anatomy' : anchorDescription(focusedRegion || focus.region).toLowerCase()}` : 'Location not established; no placement drawn.'}</p>
                   {action ? <>
                     <ol className="mechanism-stages" aria-label="Mechanism stages">{action.steps.map((step,i)=><li key={step}><button aria-pressed={actionStep===i} onClick={()=>{setActionPlaying(false);setActionStep(i);}}>{step}</button></li>)}</ol>
                     <External href={action.sourceUrl}>Mechanism source</External><small>{action.locator}</small>

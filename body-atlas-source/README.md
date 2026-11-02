@@ -25,7 +25,7 @@ Open <http://127.0.0.1:3100>. For editing, use `npm run dev`. Local servers bind
 
 ## Explore the map
 
-1. Start with the dense **Map**. Each dot represents an indexed entry, arranged around a broad regional anchor. Dots are diagram glyphs, not implant coordinates. Hover/click a dot with a mouse, or choose a named region and an intervention from its list on touch/keyboard.
+1. Start with the **Map**. Explained-entry labels connect to representative reference surfaces where mesh geometry is available; shared marks group entries at the same structure. **≈** means an approximate region. The broader FDA-record layer retains diagram clusters for record counts; selecting a record moves its mark to the available regional anchor. These are reference links, not implant coordinates. Choose a named intervention, or a region and its intervention list on touch/keyboard.
 2. Select **Heart**, **Eyes**, **Knee**, or another region. The native **Region** selector reaches every indexed region, including labels hidden to avoid overlap. Selecting a region focuses the reference; drag to rotate and scroll/pinch to zoom. **Human** in the breadcrumb restores the whole body.
 3. Choose an entry. Its source excerpt/device name, historical decision type/date and original FDA hyperlink open immediately. **Sources** exposes the cached original response and hash. An application is not necessarily a distinct product family or a currently marketed model.
 4. Switch **Evidence layer** to **Reviewed relationships**, then **Labels** for named on-model neurotechnology callouts. Choose **Brain → Thalamus → Activa** to inspect separate thalamic interface/target and chest generator assertions. **Evidence** opens the original document and locator.
