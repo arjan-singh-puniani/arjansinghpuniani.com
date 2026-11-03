@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-02",
+  "runtime": "123",
+  "model": "1.0.0-rc3, unchanged",
+  "automated": [
+    "reactions",
+    "animation",
+    "locomotion",
+    "interaction",
+    "landing",
+    "original Canvas simulation"
+  ],
+  "portfolio": {
+    "tests": 177,
+    "typecheck": "pass",
+    "productionBuild": "pass"
+  },
+  "browser": {
+    "engine": "desktop in-app Chromium; 1280\u00d7720 and 390\u00d7844 viewport override",
+    "checks": [
+      "Ellis rotating pickup and clear landing lines",
+      "explicit cancel has separate line",
+      "internal settings cancellation stays silent",
+      "Kai binder patient pickup and landing lines",
+      "keyboard attempted landing inside care rejected; staff remains held",
+      "reduced-motion character crop identical across 250ms",
+      "speech bubble hidden while holding",
+      "390px page has no horizontal overflow",
+      "fresh second tab loads successfully with no console errors"
+    ],
+    "observedIssue": "First local initialization had a dynamic-import fetch failure. Manual Retry loading succeeded; a subsequent fresh-tab load succeeded without errors. Cause not established."
+  },
+  "limits": [
+    "No physical iPhone retest for reactions",
+    "No new recorded voices or Blender execution",
+    "No comparative enjoyment or accessibility audit"
+  ],
+  "preservedReplisomeFiles": 24
+}

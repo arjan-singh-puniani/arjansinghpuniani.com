@@ -7,6 +7,12 @@ export function samplePose(person,name,time){
 }
 
 export function restoreBones(pose){for(const b of pose){b.bone.position.copy(b.position);b.bone.quaternion.copy(b.quaternion);b.bone.scale.copy(b.scale)}}
+export function landingGesture(person,time,reduced=false,cancelled=false){
+ if(reduced||time<0||time>=.9)return [];
+ const pulse=Math.sin(Math.PI*time/.9)**2*(cancelled ? .6 : 1),pose=person.restBones.filter(b=>['head','forearm.R','hand.R'].includes(b.bone.name)).map(({bone})=>({bone,position:bone.position.clone(),quaternion:bone.quaternion.clone(),scale:bone.scale.clone()}));
+ for(const {bone}of pose){if(bone.name==='head')bone.rotateX(.14*pulse);if(bone.name==='forearm.R')bone.rotateX(-.28*pulse);if(bone.name==='hand.R')bone.rotateZ(.10*pulse)}
+ return pose;
+}
 export function dangle(person,time,reduced=false,sway={x:0,z:0}){
  const phase=(time+(person.id||0)*.173)%3.6,squirm=reduced?0:Math.sin(Math.PI*Math.min(1,phase/1.25))**2;
  const twist=Math.sin(time*7.3)*squirm,roll=reduced?0:sway.x+Math.sin(time*2.8)*.025+twist*.035,pitch=reduced?0:sway.z+Math.sin(time*6.1)*squirm*.025;
