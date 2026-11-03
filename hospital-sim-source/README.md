@@ -1,3 +1,13 @@
+# Juniper Clinic — current default (RC5)
+
+Reception and an administrator first, then a GP. Patients arrive in everyday clothes, check in, spin into gowns, queue for their booked service, and change back before leaving. Completed services earn individual fees. Pharmacy, neurology, gait assessment, video EEG and sleep labs open as booked visits need them. Existing hospitals remain device-local and can be archived/restored.
+
+See [current model, executed Blender work and limitations](docs/CLINIC_FLOW_RC5.md). Play: https://arjansinghpuniani.com/hospitalsim/index.html . The current evidence page is /hospitalsim/docs/clinic-flow.html. Run with `python3 tools/qa-server.py --port 8769`; run `node tests/clinic-flow.mjs` plus the regression checks below.
+
+---
+
+## Historical RC4 opening
+
 # Little Juniper: the default opening (RC4)
 
 The game now begins with an empty clinic. Build the first consultation ($900), then hire/assign Mira ($800). This opens the doors and starts the eight-minute clock. Before opening, time and operating expenses stay still. The first default visit completes at game second 40.

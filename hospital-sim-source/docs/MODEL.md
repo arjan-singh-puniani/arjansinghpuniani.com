@@ -1,3 +1,7 @@
+# Current default: RC5 clinic
+
+The following older full-hospital model remains available in advanced scenarios. The current empty-start clinic and its different reception/wardrobe/billing/booking rules are documented in [CLINIC_FLOW_RC5.md](CLINIC_FLOW_RC5.md).
+
 # hospitalSIM model1.0.0-rc3
 
 One tick is one fictional game second. A seeded arrival tape is independent of frame rate, appearance and layout. Initial seed431 uses an original consultation → optional imaging → care pathway; the opening map-collector visit is consultation-only. This is not a real clinical pathway or triage algorithm. Cases, priority/access flags, timings, wages and budgets are gameplay parameters. No diagnostic, dosing or treatment advice is supplied.
