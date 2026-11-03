@@ -14,7 +14,7 @@ function fixture(){
  return{v,calls,send};
 }
 for(const type of ['mouse','touch','pen']){
- const{v,calls,send}=fixture();assert(send('pointerdown',10,10,type).defaultPrevented);assert.equal(v.carry.id,9,'one press immediately lifts, without a timer or minimum drag');assert.equal(v.followId,null);
+ const{v,calls,send}=fixture();assert(send('pointerdown',10,10,type).defaultPrevented);assert.equal(v.carry.id,9,'one press immediately lifts, without a timer or minimum drag');assert.equal(v.followId,null);assert(!calls.some(c=>c[0]==='select'),'pickup must not open an inspector over the body');
  send('pointerup',10,10,type);assert(v.carry,'the pickup click/tap must not immediately drop');assert.equal(calls.filter(c=>c[0]==='lift').length,1);assert(!calls.some(c=>c[0]==='drop'));
  v.hit=null;send('pointermove',40,45,type);assert.equal(v.canvas.dataset.pointerX,40);send('pointerdown',40,45,type);send('pointerup',40,45,type);assert.equal(v.carry,null,'the next floor click/tap puts down');assert.equal(calls.filter(c=>c[0]==='drop').length,1);
 }

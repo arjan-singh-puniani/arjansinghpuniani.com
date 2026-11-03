@@ -23,7 +23,8 @@
       "blocked keyboard drop retains staff9 and explains clear walking space",
       "cancel clears held state and opacity marker",
       "screenshots show floor grid through held figure",
-      "no browser console errors"
+      "no browser console errors",
+      "Final direct body pickup/drop leaves inspector hidden so it cannot cover the person"
     ]
   },
   "limits": [

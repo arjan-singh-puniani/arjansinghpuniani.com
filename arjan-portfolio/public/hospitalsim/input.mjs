@@ -8,7 +8,7 @@ export function installPointerInput(view){
   down={x:e.clientX,y:e.clientY,wasHeld:!!view.carry,person};
   if(!person&&!view.carry)return;
   e.stopImmediatePropagation();e.preventDefault();canvas.setPointerCapture(e.pointerId);
-  if(person){view.onPick(person.kind==='patient'?{patient:person.id}:{staff:person.id});if(view.onLift(person.kind,person.id)){view.tile(e);view.pointerCarry()}}
+  if(person&&view.onLift(person.kind,person.id)){view.tile(e);view.pointerCarry()}
  },{capture:true});
  canvas.addEventListener('pointermove',e=>{
   if(!e.isPrimary)return;
