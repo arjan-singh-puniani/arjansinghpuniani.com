@@ -1,5 +1,19 @@
 # Release checklist
 
+## Current engineering check — 2026-11-02
+
+- [x] Source-first evidence, explicit comparison gaps, searchable chooser and working research starts.
+- [x] Full 108-assertion/92-entry independent-review export with blank adjudication fields and spreadsheet-safe source text.
+- [x] 68 domain tests, 32 Chrome workflows, source build/typecheck, 222 portfolio tests and portfolio build/typecheck.
+- [x] Bounded Firefox/WebKit mobile-viewport smoke checks and zero runtime dependency audit findings.
+- [x] Private one-page application draft rendered and checked; no application or feedback request sent.
+- [ ] Actual independent anatomical adjudication and external researcher impact evaluation.
+- [ ] Complete current IFU/history/unit-specific safety coverage.
+- [ ] Physical iOS/Safari and low-resource GPU/network verification.
+
+Existing owner authorization covers routine updates to the established portfolio; no DNS or new hosting change is needed. Earlier first-hosting checklists below are historical and do not certify clinical readiness. The release disposition remains a read-only research preview.
+
+
 ## Current release — 2026-10-31
 
 The current export has **2,497 authentic records, 92 explained entries and dossiers, and 12 schematic mechanisms**. Neuralink now has six exact sponsor-verified trial records, the earlier 2019 platform publication, separate skull/cortical relationships, a recording → decoding → control schematic, and an evidence comparison with BrainGate. It remains **investigational**; no FDA marketing authorization is inferred. The six retrieved registry records have no posted results; this is not a claim about all research worldwide. Conflicting source-specific thread counts and the manufacturer-reported thread-retention limitation are visible, source linked, and retained in exported briefs.
@@ -23,7 +37,7 @@ See [NEURALINK.md](NEURALINK.md) for sources, reproduction and review boundaries
 
 Final build/browser/security outcomes and their scope are in RELEASE_READINESS.md. A checked item describes this local feature, not clinical or production certification.
 
-## Before public hosting
+## Original first-hosting checklist (historical)
 
 - [ ] Owner approval of the concrete preview and hosting plan.
 - [ ] Legal/rights review for all redistributed third-party fields, notices, and intended commercial use.

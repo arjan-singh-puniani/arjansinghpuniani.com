@@ -88,3 +88,7 @@ A deeper trace added Hudi’s exact condom restriction, Advanced Glenoid cemente
 ## Body contour — 2026-10-23
 
 `public/anatomy/contour.glb` is a photo-guided body-contour derivative of the attributed CC BY 4.0 HRA male v1.5 skin. Modifications concern shoulder, chest, upper-arm, waist and localized external pelvic shape. Neutral head and source topology remain. No personal facial appearance, photo files, textures or vertex colors are included. This contributes no biomedical evidence or measured personal anatomy. See [BODY_CONTOUR.md](BODY_CONTOUR.md).
+
+## Optional exterior face preparation — 2026-11-01
+
+The baked artistic exterior now uses a locally prepared estimated face surface and Google MediaPipe canonical topology (Apache-2.0). The full Apache license accompanies `public/anatomy/contour.glb`; HRA skin attribution remains CC BY 4.0. No reference photographs or fitting inputs are redistributed. MediaPipe/Pillow/NumPy are optional local authoring tools, not website dependencies. Monocular depth is estimated and does not establish personal internal anatomy. See [BODY_CONTOUR.md](BODY_CONTOUR.md) for exact sources, limitations and regeneration.

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T05:13:44.537Z",
+  "generatedAt": "2026-11-03T03:29:28.155142+00:00",
   "snapshotExportedAt": "2026-11-01T04:51:06.187445+00:00",
   "recordCounts": {
     "de_novo": 37,
@@ -130,7 +130,7 @@
   },
   "historicalMilestoneNote": "Dated explanationExpansion, dossierMilestone and labelSafetyReview sections record earlier milestones. currentRelease and top-level source counts describe the current export.",
   "currentRelease": {
-    "recordedDate": "2026-10-31",
+    "recordedDate": "2026-11-02",
     "explainedEntries": 92,
     "dossiers": 92,
     "mechanisms": 12,
@@ -150,6 +150,53 @@
       "hardwareRevisionCrosswalkEstablished": false
     },
     "latestIfuGaps": 3,
-    "scope": "Source-grounded research preview. New Neuralink registry/publication records do not refresh older FDA records. Manufacturer reports, registry facts and historical publications remain distinct."
+    "scope": "Public read-only research preview. Original sources are adjacent to explanations; comparisons preserve placement, recording, target/action and provisional context separately. Reference-surface links are not clinical placement coordinates. Independent anatomical precision, real-user impact and complete current IFU certification remain unestablished.",
+    "representativeReferenceSurfaceAnchors": 23,
+    "anatomyReviewPacket": {
+      "entries": 92,
+      "assertions": 108,
+      "independentAdjudicationCompleted": false
+    },
+    "functionalVerification": {
+      "atlasDomainTests": 68,
+      "chromeDesktopMobileWorkflows": 32,
+      "portfolioTests": 222,
+      "atlasProductionBuild": "passed",
+      "portfolioProductionBuild": "passed",
+      "staticExport": "passed",
+      "additionalMobileViewportSmoke": [
+        {
+          "engine": "firefox",
+          "browserVersion": "153.0",
+          "viewport": "390x844",
+          "webgl": "loaded",
+          "internalAnatomy": "loaded",
+          "originalSource": true,
+          "comparisonSearch": true,
+          "pageErrors": [],
+          "status": "passed"
+        },
+        {
+          "engine": "webkit",
+          "browserVersion": "26.6",
+          "viewport": "390x844",
+          "webgl": "loaded",
+          "internalAnatomy": "loaded",
+          "originalSource": true,
+          "comparisonSearch": true,
+          "pageErrors": [],
+          "status": "passed"
+        }
+      ],
+      "productionDependencyAudit": {
+        "atlas": 0,
+        "portfolio": 0
+      },
+      "physicalIosSafari": "not verified",
+      "pythonIngestionTests": 41,
+      "staticExportSourceDigest": "matched",
+      "exportDigestSelfCheck": "passed"
+    },
+    "sourceSnapshotRefreshed": false
   }
 }

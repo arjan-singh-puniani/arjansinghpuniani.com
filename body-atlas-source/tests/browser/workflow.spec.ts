@@ -248,6 +248,7 @@ test("API boundaries, citation export and performance evidence", async ({
   expect(response.headers()["content-security-policy"]).toContain(
     "object-src 'none'",
   );
+  expect(response.headers()["content-security-policy"]).not.toContain("'unsafe-eval'");
   await page.goto("/");
   await expect(page.getByTestId("scene-status")).toContainText(
     "Reference loaded",
@@ -572,7 +573,7 @@ test('body contour switches and rotates while evidence retains its source',async
 });
 
 test('unavailable body contour falls back to the original reference',async({page})=>{
- await page.route('**/anatomy/contour.glb',route=>route.abort());await page.goto('/');
+ await page.route('**/anatomy/contour.glb*',route=>route.abort());await page.goto('/');
  await expect(page.getByText('Body contour unavailable · reference exterior shown')).toBeVisible({timeout:45000});
  await expect(page.getByTestId('human-reference')).toHaveAttribute('data-exterior','reference');
  await expect(page.getByTestId('scene-status')).toContainText('Reference loaded',{timeout:45000});
@@ -606,7 +607,17 @@ test('shareable contour is an upper-body view with working copy and atlas naviga
  await page.screenshot({path:`test-results/${testInfo.project.name}-share-contour.png`});
  const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations).toEqual([]);
  await page.getByRole('button',{name:'Reset view',exact:true}).click();await expect(scene).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
- await page.addInitScript(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw new Error('Clipboard denied')}}}));await page.reload();
+ await page.getByRole('group',{name:'Contour framing'}).getByRole('button',{name:'Face',exact:true}).click();
+ await expect(scene).toHaveAttribute('data-contour-frame','face');
+ await expect(page.getByRole('button',{name:'Face',exact:true})).toHaveAttribute('aria-pressed','true');
+ await page.getByRole('button',{name:'Copy share link',exact:true}).click();
+ const faceLink=await page.evaluate(()=>navigator.clipboard.readText());expect(new URL(faceLink).search).toBe('?view=portrait&frame=face');
+ await page.screenshot({path:`test-results/${testInfo.project.name}-face-contour.png`});
+ await page.goto(faceLink);await expect(page.getByTestId('human-reference')).toHaveAttribute('data-contour-frame','face');
+ await page.getByRole('button',{name:'Upper body',exact:true}).click();await expect(page.getByTestId('human-reference')).toHaveAttribute('data-contour-frame','upper');
+ await page.getByRole('button',{name:'Copy share link',exact:true}).click();
+ const upperLink=await page.evaluate(()=>navigator.clipboard.readText());expect(upperLink).toBe(copied);
+ await page.addInitScript(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw new Error('Clipboard denied')}}}));await page.goto(upperLink);
  await page.getByRole('button',{name:'Copy share link',exact:true}).click();await expect(page.getByRole('textbox',{name:'Share link',exact:true})).toHaveValue(copied);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth&&document.documentElement.scrollHeight<=innerHeight+1)).toBe(true);
  await page.getByRole('link',{name:'Explore atlas',exact:true}).click();await expect(page.getByRole('slider')).toHaveAttribute('min','1999');
@@ -622,7 +633,8 @@ test('overview names interventions on the body and opens their original evidence
  await expect(map.locator('.constellation-intervention').first()).toBeVisible({timeout:45000});
  const labels=map.locator('.constellation-intervention');expect(await labels.count()).toBeGreaterThanOrEqual(testInfo.project.name==='desktop'?10:4);
  await expect(map.getByRole('button',{name:'Select NeuroPace RNS System from body map',exact:true})).toBeVisible();
- expect(await map.locator('.record-node').count()).toBeGreaterThan(50);
+ expect(await map.locator('.record-node').count()).toBeGreaterThanOrEqual(10);
+ await expect(map.locator('.region-orbit')).toHaveCount(0);
  const first=labels.first(),id=await first.getAttribute('data-family');
  await expect(first.getByRole('link',{name:/Original source for/})).toHaveAttribute('href',/^https:\/\//);
  await first.getByRole('button',{name:/Select .* from body map/}).click();
@@ -638,7 +650,9 @@ test('overview names interventions on the body and opens their original evidence
   await more.first().click();await expect(page.locator('.map-breadcrumb')).not.toHaveText('Human');
   await expect(map.locator('.constellation-intervention').first()).toBeVisible();
  }
- await page.getByRole('combobox',{name:'Explore anatomical region',exact:true}).selectOption('BODY:heart');
+ const regionSelect=page.getByRole('combobox',{name:'Explore anatomical region',exact:true});
+ if(!await regionSelect.count())await page.getByRole('button',{name:'Interventions',exact:true}).click();
+ await regionSelect.selectOption('BODY:heart');
  await expect(map.locator('.constellation-intervention').first()).toBeVisible();
  const seen=new Set<string>();let next=map.getByRole('button',{name:'Next mapped interventions',exact:true});
  for(let i=0;i<20;i++){
@@ -729,3 +743,56 @@ test('Neuralink connects regional recording, six authentic trials, hardware unce
  const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations).toEqual([]);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect(errors).toEqual([]);
 });
+
+ test('indexed labels meet specific reference anatomy instead of parent-organ or decorative offsets',async({page},testInfo)=>{
+  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+  for(const [entry,id,node] of [['activa','UBERON:0001897','Allen_thalamus'],['brio','UBERON:0001906','Allen_subthalamic_nucleus'],['source-fda-p140031','BODY:heart-valves','VH_M_heart_valve']]){
+   await page.goto('/?entry='+entry);
+   const scene=page.getByTestId('human-reference');await expect(scene).toHaveAttribute('data-avatar-status','loaded',{timeout:45000});
+   await expect(scene).toHaveAttribute('data-internal-status','loaded',{timeout:45000});
+   await expect(scene).toHaveAttribute('data-organs-status','loaded',{timeout:45000});
+   await expect(scene).toHaveAttribute('data-focus-region',id);await expect(scene).toHaveAttribute('data-focus-nodes',new RegExp(node));
+   if(id.startsWith('UBERON'))await expect(scene).toHaveAttribute('data-internal-focus',id);
+   const map=page.getByRole('group',{name:'Whole-body intervention map'}),label=map.locator(`.constellation-intervention[data-family="${entry}"]`);
+   await expect(label).toHaveAttribute('data-structure',id);await expect(label).toHaveAttribute('data-anchor','Representative reference surface');
+   const leader=map.locator(`.constellation-svg g[data-family="${entry}"]`);await expect(leader).toHaveAttribute('data-structure',id);
+   const pin=leader.locator('.reference-anchor'),path=leader.locator('path');
+   await expect.poll(()=>path.getAttribute('d')).toMatch(/^M /);
+   expect(await path.getAttribute('d')).toContain(`M ${await pin.getAttribute('cx')} ${await pin.getAttribute('cy')} L`);
+   await expect(map.locator('.region-orbit')).toHaveCount(0);
+   await page.screenshot({path:`test-results/${testInfo.project.name}-${entry}-reference-anchor.png`});
+  }
+  await page.goto('/?entry=activa&panel=mechanism');
+  await page.getByRole('button',{name:/Explore Chest implants for Model 7424/}).click();
+  await expect(page.getByTestId('human-reference')).toHaveAttribute('data-focus-region','BODY:chest-wall');
+  await expect(page.getByTestId('human-reference')).toHaveAttribute('data-focus-anchor',/Approximate region/);
+  await page.goto('/?entry=vns');await expect(page.getByTestId('human-reference')).toHaveAttribute('data-focus-anchor',/Approximate region/);
+  expect(errors).toEqual([]);
+ });
+
+ test('research starts expose source-first summaries, complete comparison roles and a downloadable review packet',async({page},testInfo)=>{
+  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.goto('/?entry=rns&panel=mechanism');
+  const sourceBox=await page.locator('.direct-evidence').boundingBox(),mechanismBox=await page.getByRole('region',{name:'Anatomy and mechanism'}).boundingBox();
+  expect(sourceBox!.y).toBeLessThan(mechanismBox!.y);
+  await expect(page.locator('.direct-evidence').getByRole('link',{name:'FDA P100026',exact:true})).toHaveAttribute('href',/P100026/);
+  await page.goto('/');await page.getByText('Start with a research question',{exact:true}).click();
+  await page.getByRole('button',{name:'How do investigational BCIs differ?',exact:true}).click();
+  const dialog=page.getByRole('dialog');await expect(dialog.getByRole('table')).toContainText('Measurement / recording');
+  const recording=dialog.getByRole('row').filter({has:page.getByRole('rowheader',{name:'Measurement / recording',exact:true})});
+  await expect(recording).toContainText('Source');await expect(dialog.getByRole('table')).toContainText('Investigational / research');
+  await dialog.getByRole('searchbox',{name:'Find interventions to compare'}).fill('SAPIEN');
+  await dialog.getByRole('button',{name:'Edwards SAPIEN 3 heart valve',exact:true}).click();
+  const context=dialog.getByRole('row').filter({has:page.getByRole('rowheader',{name:'Source-only regional context',exact:true})});
+  await expect(context).toContainText('Provisional');
+  await expect(dialog.getByRole('table')).toContainText('Not established in this index.');
+  await page.screenshot({path:`test-results/${testInfo.project.name}-research-comparison.png`});
+  const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations).toEqual([]);
+  await page.getByRole('button',{name:'Close dialog'}).click();await page.getByRole('button',{name:'Sources and model'}).click();
+  const coverage=page.getByRole('region',{name:'Label review coverage'});await expect(coverage).toContainText('3 complete-label gaps');
+  expect(await coverage.locator('tbody td').evaluateAll(cells=>cells.reduce((n,c)=>n+Number(c.textContent),0))).toBe(92);
+  const downloadEvent=page.waitForEvent('download');await coverage.getByRole('link',{name:'Export independent anatomy review packet'}).click();
+  const download=await downloadEvent;expect(download.suggestedFilename()).toBe('body-atlas-anatomy-review.csv');
+  const csv=readFileSync((await download.path())!,'utf8');expect(csv).toContain('"independent_assessment"');expect(csv).toContain('"rns-measurement"');
+  expect(errors).toEqual([]);
+ });

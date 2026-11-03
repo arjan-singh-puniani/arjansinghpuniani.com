@@ -1,6 +1,7 @@
 import { familyMappings, structures, descendants } from "./atlas";
 import regionDefinitions from "@/data/body-regions.json";
 import organRegions from "@/public/anatomy/organ-regions.json";
+import displayAnchors from "@/public/anatomy/display-anchors.json";
 import { interventionNames } from "./intervention-view";
 import type { Family, Mapping } from "./types";
 
@@ -85,7 +86,17 @@ export function interventionAnnotations(
     ];
   });
 }
-// Coarse display locators in the centered/scaled human viewer; not device coordinates.
+export const referenceSurfaceAnchors:Record<string,(typeof displayAnchors.anchors)['BODY:heart']> = displayAnchors.anchors;
+const regionByNode = new Map(Object.entries(referenceSurfaceAnchors).flatMap(([id,a])=>a.nodes.map(name=>[name,id] as const)));
+export function referenceRegionsForNode(node:{name:string;parent:unknown}):string[]{
+  const regions:string[]=[];
+  for(let current:typeof node|null=node;current;current=current.parent as typeof node|null){const id=regionByNode.get(current.name);if(id)regions.push(id);}
+  return regions;
+}
+export function anchorDescription(id:string){
+  return Object.hasOwn(referenceSurfaceAnchors,id)?'Representative reference surface':'Approximate region · detailed geometry unavailable';
+}
+// Display locators share the original reference frame; none are device placement coordinates.
 export const humanRegionLocators: Record<string, [number, number, number]> = {
   "UBERON:0000955": [0.12, 2.58, 0.25],
   "UBERON:0000956": [0.12, 2.58, 0.25],
@@ -99,7 +110,11 @@ export const humanRegionLocators: Record<string, [number, number, number]> = {
   "BODY:spinal-epidural": [-0.1, 0.45, -0.2],
   ...Object.fromEntries(regionDefinitions.filter(r=>r.locator).map(r=>[r.id,r.locator as [number,number,number]])),
   ...Object.fromEntries(Object.entries(organRegions).map(([id,region])=>[id,region.center as [number,number,number]])),
+  ...Object.fromEntries(Object.entries(referenceSurfaceAnchors).map(([id,a])=>[id,a.position as [number,number,number]])),
 };
+for(const [child,parent] of [['UBERON:0000956','UBERON:0000955'],['BODY:retina','BODY:eye'],['BODY:lens','BODY:eye']]){
+  humanRegionLocators[child]=humanRegionLocators[parent];
+}
 
 export interface LabelProjection {
   width: number;

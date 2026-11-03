@@ -1,0 +1,44 @@
+name: BODY ATLAS research preview
+on:
+  pull_request:
+    paths: ['body-atlas-source/**', 'arjan-portfolio/public/atlas/**', 'arjan-portfolio/public/documents/body-atlas-validation.json', 'arjan-portfolio/src/content/projects.ts', '.github/workflows/body-atlas.yml']
+  push:
+    branches: [main]
+    paths: ['body-atlas-source/**', 'arjan-portfolio/public/atlas/**', 'arjan-portfolio/public/documents/body-atlas-validation.json', 'arjan-portfolio/src/content/projects.ts', '.github/workflows/body-atlas.yml']
+permissions:
+  contents: read
+concurrency:
+  group: atlas-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install atlas dependencies
+        working-directory: body-atlas-source
+        run: npm ci --ignore-scripts
+      - name: Check atlas source, ingestion and production build
+        working-directory: body-atlas-source
+        run: npm run verify
+      - name: Reject a stale checked-in atlas export
+        working-directory: body-atlas-source
+        run: |
+          node scripts/check-export.mjs --self-test
+          node scripts/check-export.mjs
+      - name: Install portfolio dependencies
+        working-directory: arjan-portfolio
+        run: npm ci --ignore-scripts
+      - name: Check portfolio integration
+        working-directory: arjan-portfolio
+        run: |
+          npm run typecheck
+          npm test
+          npm run build
