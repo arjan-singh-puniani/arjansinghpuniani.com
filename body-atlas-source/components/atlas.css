@@ -2683,3 +2683,14 @@
 @media(max-width:600px){.milestone-list li{grid-template-columns:1fr;gap:5px}}
 
 .portrait-framing{display:flex;gap:4px}.portrait-framing button[aria-pressed="true"]{border-color:var(--gold);color:var(--gold);background:#203543}.portrait-framing button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.research-starts{margin:0 20px 16px;padding:12px 0;border-block:1px solid var(--rule)}
+.research-starts summary{font-size:13px;color:var(--ink);cursor:pointer;margin-bottom:8px}
+.research-starts>button{display:block;width:100%;text-align:left;padding:10px 4px;min-height:44px;font-size:12px;color:var(--blue);border:0;background:transparent}
+.research-starts>button:hover,.research-starts>button:focus-visible{background:#19313f}
+.comparison-search{display:block;font-size:13px;margin-bottom:12px}
+.comparison-search input{display:block;width:100%;margin-top:8px;padding:12px;background:#10232f;color:var(--ink);border:1px solid var(--rule);font:inherit}
+.comparison-empty{color:var(--quiet);font-size:12px}
+.review-coverage table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px}
+.review-coverage caption{text-align:left;margin-bottom:10px;color:var(--quiet)}
+.review-coverage th,.review-coverage td{border-bottom:1px solid var(--rule);padding:10px 6px;text-align:left}
+.review-coverage small{display:block;color:var(--quiet);margin:12px 0;font-size:12px}

@@ -59,6 +59,7 @@ import {
   type LabelProjection,
 } from "@/lib/annotations";
 import { frontier } from "@/lib/curation";
+import {comparisonRelationships,reviewCsv} from "@/lib/research-workflow";
 import { External, SourceRecord, State } from "./Evidence";
 import BriefPreview from "./BriefPreview";
 import { dossiers, dossierCoverage, reviewLabels } from "@/lib/dossiers";
@@ -179,6 +180,7 @@ export default function AtlasExperience() {
   const [densityMap,setDensityMap]=useState(true),[collection,setCollection]=useState('explained'),[resultsLimit,setResultsLimit]=useState(60),[libraryLimit,setLibraryLimit]=useState(100);
   const [portrait,setPortrait]=useState<boolean|null>(null);
   const [portraitFrame,setPortraitFrame]=useState<"upper"|"face">("upper");
+  const [comparisonQuery,setComparisonQuery]=useState("");
   const [copyState,setCopyState]=useState<"idle"|"copied"|"manual">("idle");
   const [shareUrl,setShareUrl]=useState("");
   const [showOrgans,setShowOrgans]=useState(true);
@@ -877,6 +879,11 @@ export default function AtlasExperience() {
                     ? "Choose a region or an intervention"
                     : "Choose an intervention. Sources open directly."}
               </div>
+              {region==='all'&&!query&&collection==='explained'&&<details className="research-starts"><summary>Start with a research question</summary>
+                <button onClick={()=>{setComparison(['activa','exablate']);setComparisonQuery('');setYear(2026);setPlaying(false);setDialog('compare');}}>Same target: stimulation or ablation?</button>
+                <button onClick={()=>{setComparison(['neuralink','braingate']);setComparisonQuery('');setYear(2026);setPlaying(false);setDialog('compare');}}>How do investigational BCIs differ?</button>
+                <button onClick={()=>{chooseFamily('activa');setMode('human');setShowOrgans(true);setSurface(false);setYear(2026);setPlaying(false);}}>Where is an implant versus its target?</button>
+              </details>}
               <label className="atlas-search mobile-search">
                 <Search size={15} />
                 <input
@@ -1017,27 +1024,6 @@ export default function AtlasExperience() {
                 <p className="device-action" aria-label="What this intervention does">
                   {interventionActions[f.id] || f.description}
                 </p>
-                <section className="mechanism-panel" aria-label="Anatomy and mechanism">
-                  <div className="mechanism-controls">
-                    {focus && <button onClick={()=>{setMode('human');setShowOrgans(true);setSurface(false);setSceneKey(k=>k+1);}}>Locate on anatomy</button>}
-                    {focus && brainIds.includes(focus.intendedRegion) && <button onClick={()=>chooseRegion(focus.intendedRegion,true)}>{f.id==='neuralink'?'Inspect cortical recording region':'Inspect brain target'}</button>}
-                    {action && <button aria-pressed={showMechanism && mode==='human'} onClick={()=>{setShowMechanism(mode==='human'?!showMechanism:true);setMode('human');setShowOrgans(true);setSurface(false);setActionPlaying(false);}}>Mechanism overlay</button>}
-                    {action && showMechanism && mode==='human' && <button disabled={reducedMotion} aria-pressed={actionPlaying} onClick={()=>setActionPlaying(p=>!p)}>{actionPlaying?'Pause mechanism':'Play mechanism'}</button>}
-                  </div>
-                  <p className="focus-precision">{focus ? `${titleFor(selectedAnnotation?.mapping.structureId || focus.intendedRegion)} · ${focusedRegion===focus.region&&focus.broaderReference ? 'broader reference anatomy' : anchorDescription(focusedRegion || focus.region).toLowerCase()}` : 'Location not established; no placement drawn.'}</p>
-                  {action ? <>
-                    <ol className="mechanism-stages" aria-label="Mechanism stages">{action.steps.map((step,i)=><li key={step}><button aria-pressed={actionStep===i} onClick={()=>{setActionPlaying(false);setActionStep(i);}}>{step}</button></li>)}</ol>
-                    <External href={action.sourceUrl}>Mechanism source</External><small>{action.locator}</small>
-                    <p className="mechanism-limit">Enlarged schematic inset, not device shape or implant placement. {action.limit}{reducedMotion?' Animation disabled by reduced-motion preference.':''}</p>
-                  </> : <p className="mechanism-limit">A device action overlay has not been reviewed for this entry. The explanation and original evidence remain available.</p>}
-                </section>
-                {f.id==='neuralink'&&<NeuralinkEvidence onStudies={()=>{setTab('studies');requestAnimationFrame(()=>document.getElementById('device-studies')?.focus());}} onCompare={()=>{setComparison(['neuralink','braingate']);setDialog('compare');}}/>}
-                {explanation && <section className="intervention-relevance" aria-label="Why this region">
-                  <h3>Why this region</h3><p>{explanation.relevance}</p>
-                  <External href={explanation.sourceUrl || primaryRecords(f)[0].url}>Read the supporting FDA source</External>
-                  <small>{explanation.locator}</small>
-                  {explanationRecord?.kind === "pma" && explanationRecord.statement && <details><summary>Original FDA passage</summary><blockquote>{explanationRecord.statement}</blockquote></details>}
-                </section>}
                 <div className="device-status">
                   {statusOf(f)}{f.regulatoryIds.length > 0 && " · Historical decision"}
                   {f.regulatoryIds.map((id) => {
@@ -1074,6 +1060,27 @@ export default function AtlasExperience() {
                       </External>
                     ))}
                 </div>
+                <section className="mechanism-panel" aria-label="Anatomy and mechanism">
+                  <div className="mechanism-controls">
+                    {focus && <button onClick={()=>{setMode('human');setShowOrgans(true);setSurface(false);setSceneKey(k=>k+1);}}>Locate on anatomy</button>}
+                    {focus && brainIds.includes(focus.intendedRegion) && <button onClick={()=>chooseRegion(focus.intendedRegion,true)}>{f.id==='neuralink'?'Inspect cortical recording region':'Inspect brain target'}</button>}
+                    {action && <button aria-pressed={showMechanism && mode==='human'} onClick={()=>{setShowMechanism(mode==='human'?!showMechanism:true);setMode('human');setShowOrgans(true);setSurface(false);setActionPlaying(false);}}>Mechanism overlay</button>}
+                    {action && showMechanism && mode==='human' && <button disabled={reducedMotion} aria-pressed={actionPlaying} onClick={()=>setActionPlaying(p=>!p)}>{actionPlaying?'Pause mechanism':'Play mechanism'}</button>}
+                  </div>
+                  <p className="focus-precision">{focus ? `${titleFor(selectedAnnotation?.mapping.structureId || focus.intendedRegion)} · ${focusedRegion===focus.region&&focus.broaderReference ? 'broader reference anatomy' : anchorDescription(focusedRegion || focus.region).toLowerCase()}` : 'Location not established; no placement drawn.'}</p>
+                  {action ? <>
+                    <ol className="mechanism-stages" aria-label="Mechanism stages">{action.steps.map((step,i)=><li key={step}><button aria-pressed={actionStep===i} onClick={()=>{setActionPlaying(false);setActionStep(i);}}>{step}</button></li>)}</ol>
+                    <External href={action.sourceUrl}>Mechanism source</External><small>{action.locator}</small>
+                    <p className="mechanism-limit">Enlarged schematic inset, not device shape or implant placement. {action.limit}{reducedMotion?' Animation disabled by reduced-motion preference.':''}</p>
+                  </> : <p className="mechanism-limit">A device action overlay has not been reviewed for this entry. The explanation and original evidence remain available.</p>}
+                </section>
+                {f.id==='neuralink'&&<NeuralinkEvidence onStudies={()=>{setTab('studies');requestAnimationFrame(()=>document.getElementById('device-studies')?.focus());}} onCompare={()=>{setComparison(['neuralink','braingate']);setDialog('compare');}}/>}
+                {explanation && <section className="intervention-relevance" aria-label="Why this region">
+                  <h3>Why this region</h3><p>{explanation.relevance}</p>
+                  <External href={explanation.sourceUrl || primaryRecords(f)[0].url}>Read the supporting FDA source</External>
+                  <small>{explanation.locator}</small>
+                  {explanationRecord?.kind === "pma" && explanationRecord.statement && <details><summary>Original FDA passage</summary><blockquote>{explanationRecord.statement}</blockquote></details>}
+                </section>}
                 {dossiers[f.id] && <button className="dossier-entry" onClick={() => { setTab("dossier");document.getElementById("device-dossier")?.focus(); }}>
                   <strong>{f.regulatoryIds.length ? 'Regulatory, labeling & safety dossier' : 'Research status, hardware & reported limitations'} <ArrowUpRight size={13} /></strong>
                   <span>{dossiers[f.id].regulatory.state === "checked" ? "Regulatory checked" : "Marketing authorization not established"} · {dossiers[f.id].safety.state === "checked" ? `${dossiers[f.id].safety.recalls} application-linked recalls` : f.id==='neuralink' ? 'Sponsor reports distinguished from FDA recalls' : "Safety applicability unreviewed"}</span>
@@ -1313,8 +1320,9 @@ export default function AtlasExperience() {
             ))}
           {dialog === "compare" && (
             <>
+              <label className="comparison-search">Find an intervention to compare<input type="search" aria-label="Find interventions to compare" value={comparisonQuery} maxLength={500} onChange={e=>setComparisonQuery(e.target.value)} placeholder="Device, intervention or modality"/></label>
               <div className="compare-options">
-                {families.filter(item=>hasExplanation(item)||comparison.includes(item.id)).map((item) => (
+                {[...comparison.map(id=>familyById(id)!),...families.filter(item=>hasExplanation(item)&&!comparison.includes(item.id)&&[productName(item),interventionNames[item.id],item.name,...item.modalities].join(' ').toLowerCase().includes(comparisonQuery.toLowerCase()))].slice(0,20).map((item) => (
                   <button
                     key={item.id}
                     aria-pressed={comparison.includes(item.id)}
@@ -1329,8 +1337,7 @@ export default function AtlasExperience() {
                 ))}
               </div>
               <p className="dialog-note">
-                Up to four entries. Shared anatomy does not establish comparable
-                effectiveness.
+                Up to four entries; search accesses the whole explained collection. Shared anatomy does not establish comparable effectiveness.
               </p>
               {comparison.length > 0 ? (
                 <>
@@ -1348,69 +1355,21 @@ export default function AtlasExperience() {
                         </tr>
                       </thead>
                       <tbody>
-                        {[
-                          "Modality",
-                          "Physical interface / placement",
-                          "Physiological target / action",
-                          "Regulatory evidence",
-                          "Limits",
-                        ].map((label, i) => (
-                          <tr key={label}>
-                            <th scope="row">{label}</th>
-                            {comparison.map((id) => {
-                              const item = familyById(id)!;
-                              return (
-                                <td key={id}>
-                                  {i === 0 ? (
-                                    item.modalities.join("; ")
-                                  ) : i === 1 || i === 2 ? (
-                                    familyMappings(id)
-                                      .filter((m) =>
-                                        i === 1
-                                          ? [
-                                              "implantation_site",
-                                              "tissue_interface",
-                                              "external_placement",
-                                              "unlocalized",
-                                            ].includes(m.type)
-                                          : [
-                                              "physiological_target",
-                                              "therapeutic_action_site",
-                                            ].includes(m.type),
-                                      )
-                                      .map((m) => (
-                                        <p key={m.id}>
-                                          {m.assertion}{" "}
-                                          <External href={m.sourceUrl}>
-                                            Source
-                                          </External>
-                                        </p>
-                                      ))
-                                  ) : i === 3 ? (
-                                    <>
-                                      {statusOf(item)}
-                                      {item.regulatoryIds.map((rid) => {
-                                        const r = recordById(rid);
-                                        return (
-                                          r && (
-                                            <p key={rid}>
-                                              <External href={r.url}>
-                                                {r.application} ·{" "}
-                                                {r.decisionDate}
-                                              </External>
-                                            </p>
-                                          )
-                                        );
-                                      })}
-                                    </>
-                                  ) : (
-                                    item.limitations
-                                  )}
-                                </td>
-                              );
-                            })}
-                          </tr>
-                        ))}
+                        {([
+                          ['purpose','What it does'],['modality','Modality'],['placement','Physical interface / placement'],
+                          ['measurement','Measurement / recording'],['target','Physiological target / action'],
+                          ['context','Source-only regional context'],['regulatory','Regulatory evidence'],['limits','Limits'],
+                        ] as const).map(([key,label])=><tr key={key}><th scope="row">{label}</th>{comparison.map(id=>{
+                          const item=familyById(id)!;let content;
+                          if(key==='purpose')content=<>{interventionActions[id]||item.description}</>;
+                          else if(key==='modality')content=item.modalities.join('; ');
+                          else if(key==='placement'||key==='measurement'||key==='target'||key==='context'){
+                            const mappings=comparisonRelationships(id,key);
+                            content=mappings.length?mappings.map(m=><p key={m.id}>{m.assertion} <State value={m.state}/> <External href={m.sourceUrl}>Source</External></p>):<span className="comparison-empty">Not established in this index.</span>;
+                          }else if(key==='regulatory')content=<>{statusOf(item)}{item.regulatoryIds.map(rid=>{const r=recordById(rid);return r&&<p key={rid}><External href={r.url}>{r.application} · {r.decisionDate}</External></p>;})}</>;
+                          else content=item.limitations;
+                          return <td key={id}>{content}</td>;
+                        })}</tr>)}
                       </tbody>
                     </table>
                   </div>
@@ -1538,8 +1497,7 @@ export default function AtlasExperience() {
               </p>
               <h3>What the diagram means</h3>
               <p>
-                Intervention leader lines end at regional navigation locators,
-                not device coordinates. Labels show the supported relationship
+                Intervention leader lines use representative reference surfaces where available; ≈ marks approximate regions. They are not device coordinates. Labels show the supported relationship
                 type. Multiple innovations may share a region. The detailed
                 brain uses source-mesh regional centers; these do not establish
                 precise device placement. Unknown locations are omitted. Body
@@ -1552,7 +1510,8 @@ export default function AtlasExperience() {
                 select its available regional group. Unmapped structures do not
                 acquire inferred device relationships.
               </p>
-              <h3>Dossier coverage</h3><p>{dossierCoverage.entries} explained entries have dossiers. {dossierCoverage.regulatory} original marketing decisions and {dossierCoverage.recalls} application-based recall searches checked; {dossierCoverage.labels} entries have original labeling links. All {dossierCoverage.assessed} have individual source assessments; {dossierCoverage.labelGaps} still lack an adequate product-specific label. Published IFUs, public safety summaries and historical sources are distinguished. Recall fields are audited; individual unit applicability is not determined. The two investigational entries have no established public marketing application.</p>
+              <section className="review-coverage" aria-label="Label review coverage"><h3>Review coverage</h3><p>{dossierCoverage.entries} explained entries · {dossierCoverage.labelGaps} complete-label gaps. Counts describe source review, not clinical completeness.</p><table><caption>Recorded labeling and safety review states</caption><thead><tr><th>Source review state</th><th>Entries</th></tr></thead><tbody>{Object.entries(reviewLabels).map(([status,label])=>{const count=Object.values(dossiers).filter(d=>d.currentLabelReview===status).length;return count>0&&<tr key={status}><th scope="row">{label}</th><td>{count}</td></tr>;})}</tbody></table><a className="atlas-primary" download="body-atlas-anatomy-review.csv" href={'data:text/csv;charset=utf-8,'+encodeURIComponent(reviewCsv())}>Export independent anatomy review packet</a><small>Public assertions and original sources, with blank adjudication fields. Downloading or completing this packet does not change accepted mappings.</small></section>
+              <h3>Dossier coverage</h3><p>{dossierCoverage.entries} explained entries have dossiers. {dossierCoverage.regulatory} original marketing decisions and {dossierCoverage.recalls} application-based recall searches checked; {dossierCoverage.labels} entries have original labeling links. All {dossierCoverage.assessed} have individual source assessments; {dossierCoverage.labelGaps} still lack an adequate product-specific label. Published IFUs, public safety summaries and historical sources are distinguished. Recall fields are audited; individual unit applicability is not determined. {families.filter(item=>hasExplanation(item)&&!item.regulatoryIds.length).length} research-only entries have no established public marketing application in this index.</p>
               <h3>Source coverage</h3>
               <p>
                 {records.length} authentic API records; {families.filter(f=>f.collection!=='catalogue').length} reviewed entries and {catalogueCoverage.catalogueEntries} source-indexed applications. Anatomical text matches are Provisional, not reviewed physical placements. Snapshot exported {coverage.exportedAt} UTC.

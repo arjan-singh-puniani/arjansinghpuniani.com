@@ -769,3 +769,30 @@ test('Neuralink connects regional recording, six authentic trials, hardware unce
   await page.goto('/?entry=vns');await expect(page.getByTestId('human-reference')).toHaveAttribute('data-focus-anchor',/Approximate region/);
   expect(errors).toEqual([]);
  });
+
+ test('research starts expose source-first summaries, complete comparison roles and a downloadable review packet',async({page},testInfo)=>{
+  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.goto('/?entry=rns&panel=mechanism');
+  const sourceBox=await page.locator('.direct-evidence').boundingBox(),mechanismBox=await page.getByRole('region',{name:'Anatomy and mechanism'}).boundingBox();
+  expect(sourceBox!.y).toBeLessThan(mechanismBox!.y);
+  await expect(page.locator('.direct-evidence').getByRole('link',{name:'FDA P100026',exact:true})).toHaveAttribute('href',/P100026/);
+  await page.goto('/');await page.getByText('Start with a research question',{exact:true}).click();
+  await page.getByRole('button',{name:'How do investigational BCIs differ?',exact:true}).click();
+  const dialog=page.getByRole('dialog');await expect(dialog.getByRole('table')).toContainText('Measurement / recording');
+  const recording=dialog.getByRole('row').filter({has:page.getByRole('rowheader',{name:'Measurement / recording',exact:true})});
+  await expect(recording).toContainText('Source');await expect(dialog.getByRole('table')).toContainText('Investigational / research');
+  await dialog.getByRole('searchbox',{name:'Find interventions to compare'}).fill('SAPIEN');
+  await dialog.getByRole('button',{name:'Edwards SAPIEN 3 heart valve',exact:true}).click();
+  const context=dialog.getByRole('row').filter({has:page.getByRole('rowheader',{name:'Source-only regional context',exact:true})});
+  await expect(context).toContainText('Provisional');
+  await expect(dialog.getByRole('table')).toContainText('Not established in this index.');
+  await page.screenshot({path:`test-results/${testInfo.project.name}-research-comparison.png`});
+  const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(axe.violations).toEqual([]);
+  await page.getByRole('button',{name:'Close dialog'}).click();await page.getByRole('button',{name:'Sources and model'}).click();
+  const coverage=page.getByRole('region',{name:'Label review coverage'});await expect(coverage).toContainText('3 complete-label gaps');
+  expect(await coverage.locator('tbody td').evaluateAll(cells=>cells.reduce((n,c)=>n+Number(c.textContent),0))).toBe(92);
+  const downloadEvent=page.waitForEvent('download');await coverage.getByRole('link',{name:'Export independent anatomy review packet'}).click();
+  const download=await downloadEvent;expect(download.suggestedFilename()).toBe('body-atlas-anatomy-review.csv');
+  const csv=readFileSync((await download.path())!,'utf8');expect(csv).toContain('"independent_assessment"');expect(csv).toContain('"rns-measurement"');
+  expect(errors).toEqual([]);
+ });
