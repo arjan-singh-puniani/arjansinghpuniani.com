@@ -52,10 +52,10 @@ export function policy(s,key,value){
  else if(['breaks','urgency','autoHandoff'].includes(key))s[key]=!s[key];else return false;
  s.lastAction={at:s.seconds,snapshot};recordAction(s,'policy',{key,value:key==='hire'?s.staff.at(-1).role:key==='supervision'?s.operations.supervision:s[key]??s.staff.length});return true;
 }
-export const queueFor=(s,type)=>s.patients.filter(p=>p.intakeDone&&p.stage===type&&!['changing','dressing-out','service','transfer-in','transfer-out','uncovering','entering-room','leaving-room','exiting'].includes(p.state)).length;
+export const queueFor=(s,type)=>s.patients.filter(p=>(p.intakeDone||s.clinic&&p.stage==='intake')&&p.stage===type&&!['changing','dressing-out','service','transfer-in','transfer-out','uncovering','entering-room','leaving-room','exiting'].includes(p.state)).length;
 export function spawn(s,event){
  const e=event||s.arrivalTape[s.arrivalIndex++];if(!e)return;const caseId=caseFor(e);
- s.arrivals++;s.patients.push({id:e.id,name:names[e.id%names.length],...entrance(s),stage:s.clinic?'intake':'consult',state:'arrival',route:[],target:null,room:null,urgent:e.urgent,barrier:e.barrier,imaging:e.imaging,returning:e.returning,goal:CASES[caseId].goal,caseId,intakeDone:!!(s.first||s.clinic),checkin:0,recovery:0,wait:0,walking:0,service:0,handoff:0,transfer:0,yielding:0,elapsedOffset:0,arrival:s.seconds,progress:0,navDelay:e.navDelay,history:[],outside:true,stalled:0,...(s.clinic?{clinicalCase:e.clinicalCase,plan:['intake',...CLINIC_CASES[e.clinicalCase].path],routeIndex:0,wardrobe:'casual',changing:0}: {})});
+ s.arrivals++;s.patients.push({id:e.id,name:names[e.id%names.length],...entrance(s),stage:s.clinic?'intake':'consult',state:'arrival',route:[],target:null,room:null,urgent:e.urgent,barrier:e.barrier,imaging:e.imaging,returning:e.returning,goal:CASES[caseId].goal,caseId,intakeDone:!!s.first,checkin:0,recovery:0,wait:0,walking:0,service:0,handoff:0,transfer:0,yielding:0,elapsedOffset:0,arrival:s.seconds,progress:0,navDelay:e.navDelay,history:[],outside:true,stalled:0,...(s.clinic?{clinicalCase:e.clinicalCase,plan:['intake',...CLINIC_CASES[e.clinicalCase].path],routeIndex:0,wardrobe:'casual',changing:0}: {})});
 }
 export function tick(s){
  if(s.ended||s.first&&!s.first.opened||s.clinic&&!s.clinic.opened)return;s.seconds++;s.lastAction=null;
@@ -92,20 +92,20 @@ export function tick(s){
   if(p.state==='seat-entering'){if(++p.progress>=3){p.state='seated';p.progress=0}continue}
   if(p.state==='seat-leaving'){if(++p.progress>=3){const at=door(s.rooms.find(r=>r.id===p.seat.roomId));if(s.patients.some(q=>q!==p&&floorPerson(q)&&!q.outside&&Math.hypot(q.x-at.x,q.y-at.y)<.3)){p.progress=3;continue}p.x=at.x;p.y=at.y;p.state=p.seat.exiting?'exiting':'walking';delete p.seat;p.progress=0}continue}
   if(p.state==='signoff'){if(p.signoffDone||s.operations.supervision!=='paired'){p.signoffDone=true;p.state='leaving-room';p.progress=3}continue}if(p.state==='checking-in'){checkIn(s,p);continue}if(p.state==='recovering'){p.progress++;if(p.progress>=3){p.recovered=true;s.operations.recoveryCount++;finishService(s,p)}continue}
-  if(p.state==='changing'){p.progress++;if(p.progress===3)p.wardrobe='gown';if(p.progress>=6){s.clinic.checkedIn++;p.state='leaving-room';p.progress=0}continue}
+  if(p.state==='changing'){p.progress++;if(p.progress===3)p.wardrobe='gown';if(p.progress>=6){p.state='leaving-room';p.progress=0}continue}
   if(p.state==='dressing-out'){p.progress++;if(p.progress>=1)p.wardrobe='casual';if(p.progress>=2){p.state='exiting';p.progress=0;p.destination={...exit(s)};p.route=path(p,exit(s),s.rooms)||[]}continue}
   if(p.state==='entering-hospital'){p.progress++;if(p.progress>=2){p.state='waiting';p.progress=0}continue}
   if(p.state==='leaving-hospital'){p.progress++;if(p.progress>=2){p.state='done';if(p.outcome==='completed'){s.served++;if(s.first){const n=openingCount(s),grant=n===1?250:n===3?350:n===6?500:0;if(grant){s.cash+=grant;recordAction(s,'opening-reward',{neighbors:n,grant});if(n===3){const r=s.rooms.find(r=>r.type==='consult');if(r&&!r.decor.includes('plant'))r.decor.push('plant')}}}}else s.left++;{const{route,state,...record}=p;s.records.push({...record,total:s.seconds-p.arrival})};note(s,`${p.name} heads home through the exit. ${s.served} neighbors helped.`)}continue}
   if(p.state==='queue-walking'){
-   const r=p.intakeDone&&s.rooms.find(r=>r.type===p.stage&&roomReady(s,r)&&!reservedAtStart.has(r.id)&&!s.patients.some(q=>q.target===r.id));
+   const r=(p.intakeDone||s.clinic&&p.stage==='intake')&&s.rooms.find(r=>r.type===p.stage&&roomReady(s,r)&&!reservedAtStart.has(r.id)&&!s.patients.some(q=>q.target===r.id));
    if(r){const route=path(p,door(r),s.rooms,traffic(s,p));if(route){p.room=r.id;p.target=r.id;p.destination=door(r);p.route=route;p.state='walking'}}
   }
   if(p.state==='waiting'){
-   if(!p.intakeDone&&claimDesk(s,p))continue;
-   if(p.intakeDone&&p.navDelay>0&&!s.access){p.navDelay--;continue}
-   const available=p.intakeDone?s.rooms.filter(r=>r.type===p.stage&&roomReady(s,r)&&!reservedAtStart.has(r.id)&&!s.patients.some(q=>q.id!==p.id&&q.target===r.id)):[];
+   if(!(p.intakeDone||s.clinic&&p.stage==='intake')&&claimDesk(s,p))continue;
+   if((p.intakeDone||s.clinic&&p.stage==='intake')&&p.navDelay>0&&!s.access){p.navDelay--;continue}
+   const available=(p.intakeDone||s.clinic&&p.stage==='intake')?s.rooms.filter(r=>r.type===p.stage&&roomReady(s,r)&&!reservedAtStart.has(r.id)&&!s.patients.some(q=>q.id!==p.id&&q.target===r.id)):[];
    let best;for(const r of available){const route=path(p,door(r),s.rooms,traffic(s,p));if(route&&(!best||route.length<best.route.length))best={r,route}}
-   if(best){p.target=best.r.id;p.room=best.r.id;p.route=best.route;p.state='walking';p.destination=door(best.r)}else if(p.intakeDone&&claimSeat(s,p))continue;else if((p.x===entrance(s).x&&p.y===entrance(s).y)||s.rooms.some(r=>door(r).x===p.x&&door(r).y===p.y)){
+   if(best){p.target=best.r.id;p.room=best.r.id;p.route=best.route;p.state='walking';p.destination=door(best.r)}else if((p.intakeDone||s.clinic&&p.stage==='intake')&&claimSeat(s,p))continue;else if((p.x===entrance(s).x&&p.y===entrance(s).y)||s.rooms.some(r=>door(r).x===p.x&&door(r).y===p.y)){
     const occupied=t=>s.staff.some(st=>st.position&&Math.hypot(st.position.x-t.x,st.position.y-t.y)<.55||st.breakTrip&&Math.hypot(st.breakTrip.position.x-t.x,st.breakTrip.position.y-t.y)<.55)||s.patients.some(q=>q!==p&&floorPerson(q)&&!q.outside&&(Math.hypot(q.x-t.x,q.y-t.y)<.55||q.destination&&Math.hypot(q.destination.x-t.x,q.destination.y-t.y)<.55||(q.route||[]).slice(0,4).some(v=>Math.hypot(v.x-t.x,v.y-t.y)<.4)));
     const candidates=[];for(let y=0;y<GRID.h;y++)for(let x=0;x<GRID.w;x++){const d=Math.abs(x-p.x)+Math.abs(y-p.y);if(d>=1&&!blocked(x,y,s.rooms)&&!occupied({x,y})&&!s.rooms.some(r=>door(r).x===x&&door(r).y===y)&&!(x===entrance(s).x&&y===entrance(s).y)&&!(x===exit(s).x&&y===exit(s).y))candidates.push({x,y,d})}
     for(const bay of candidates.sort((a,b)=>a.d-b.d||a.y-b.y||a.x-b.x)){if([exit(s),...s.rooms.map(door)].some(dest=>!path(entrance(s),dest,s.rooms,[bay])))continue;const route=path(p,bay,s.rooms,traffic(s,p));if(route){p.route=route;p.destination={x:bay.x,y:bay.y};p.state='queue-walking';break}}
@@ -122,7 +122,7 @@ export function tick(s){
   }else if(p.state==='handoff'){
    p.progress++;if(((s.autoHandoff&&p.progress>=(s.communication?1:4))||p.handoffReady)&&!s.patients.some(q=>q!==p&&!q.outside&&floorPerson(q)&&q.x===p.x&&q.y===p.y)){p.state='waiting';p.progress=0}
   }else if(p.state==='service'){
-   p.progress++;if(p.progress>=p.duration){if(s.clinic)creditService(s,p);if(p.stage==='intake'){p.state='changing';p.progress=0}else if((['scan','care'].includes(p.stage)||CLINIC_DEPARTMENTS[p.stage]?.bed)){p.state=p.stage==='care'?'uncovering':'transfer-out';p.progress=0}else{p.state='leaving-room';p.progress=0}}
+   p.progress++;if(p.progress>=p.duration){if(s.clinic)creditService(s,p);if(p.stage==='intake'){p.intakeDone=true;s.clinic.checkedIn++;p.state='changing';p.progress=0}else if((['scan','care'].includes(p.stage)||CLINIC_DEPARTMENTS[p.stage]?.bed)){p.state=p.stage==='care'?'uncovering':'transfer-out';p.progress=0}else{p.state='leaving-room';p.progress=0}}
   }
   if(p.wait>170&&p.state==='waiting'){p.state='exiting';p.outcome='departed';p.target=null;p.room=null;p.route=path(p,exit(s),s.rooms)||[];p.destination={...exit(s)};s.trust=Math.max(0,s.trust-4);note(s,`${p.name} is leaving after a long wait. The constraint needs attention.`)}
  }
@@ -189,7 +189,7 @@ export function assignStaff(s,staffId,roomId){
 }
 export function decorate(s,id,kind){const r=s.rooms.find(r=>r.id===id);if(!r||!Object.hasOwn(DECOR,kind)||r.decor.includes(kind)||s.cash<DECOR[kind].cost||s.ended)return false;const before=JSON.stringify({...s,lastAction:null});r.decor.push(kind);s.cash-=DECOR[kind].cost;recordAction(s,'decorate',{id,kind});s.lastAction={at:s.seconds,snapshot:before};return true}
 export function causes(s,type){
- const rooms=s.rooms.filter(r=>r.type===type),waiting=s.patients.filter(p=>p.intakeDone&&p.stage===type&&!['changing','dressing-out','service','transfer-in','transfer-out','uncovering','entering-room','leaving-room','exiting'].includes(p.state)),reserved=rooms.filter(r=>s.patients.some(p=>p.target===r.id));
+ const rooms=s.rooms.filter(r=>r.type===type),waiting=s.patients.filter(p=>(p.intakeDone||s.clinic&&p.stage==='intake')&&p.stage===type&&!['changing','dressing-out','service','transfer-in','transfer-out','uncovering','entering-room','leaving-room','exiting'].includes(p.state)),reserved=rooms.filter(r=>s.patients.some(p=>p.target===r.id));
  const explanation=!rooms.length?'No module provides this service.':rooms.some(r=>r.spill)?'A coffee spill has paused equipment. Dispatch facilities to restore it.':rooms.some(r=>!validTeam(s,r))?'A required role is missing. Equipment alone does not provide capacity.':rooms.some(r=>r.staff.some(id=>{const st=s.staff.find(q=>q.id===id);return st.breakTrip||st.job||st.shiftEnd<=s.seconds}))?'Assigned colleagues are travelling, reviewing a handoff, taking a break or off shift.':rooms.every(r=>r.readyAt>s.seconds)?'The rooms are being reset. Facilities or a preparation assistant may shorten a long reset.':reserved.length===rooms.length?'Every module has a reserved visit. Added unrelated capacity cannot serve this queue.':waiting.some(p=>p.state==='handoff')?'A next-service handoff is still being communicated.':waiting.some(p=>p.navDelay>0&&!s.access)?'The modeled communication and transport delay remains.':'A module is ready; travel and arrival order govern the next reservation.';
  return{waiting:waiting.length,modules:rooms.length,reserved:reserved.length,understaffed:rooms.filter(r=>!roomReady(s,r)).length,handoffs:waiting.filter(p=>p.state==='handoff'||p.state==='signoff').length,accessDelay:waiting.filter(p=>p.navDelay>0&&!s.access).length,explanation};
 }

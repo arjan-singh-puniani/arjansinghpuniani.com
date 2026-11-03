@@ -62,7 +62,7 @@
   {
     "file": "landing.mjs",
     "exit": 0,
-    "output": "PASS: cached green cells match authoritative drop checks, including doorway articulation and occupied points {\"hardware\":\"AppleM2 / Node22; pure navigation checks, not an iPhone result\",\"checkedCells\":9570,\"samples\":20,\"previous\":{\"medianMs\":2.320415999999909,\"p95Ms\":2.509625000000028},\"cached\":{\"medianMs\":0.917041999999924,\"p95Ms\":1.3117910000000848}}"
+    "output": "PASS: cached green cells match authoritative drop checks, including doorway articulation and occupied points {\"hardware\":\"AppleM2 / Node22; pure navigation checks, not an iPhone result\",\"checkedCells\":9570,\"samples\":20,\"previous\":{\"medianMs\":2.3247499999999945,\"p95Ms\":3.2741250000000264},\"cached\":{\"medianMs\":0.8752499999999941,\"p95Ms\":1.7235410000000115}}"
   },
   {
     "file": "locomotion.mjs",
@@ -77,7 +77,7 @@
   {
     "file": "navigation.mjs",
     "exit": 0,
-    "output": "{\"checked\":2700,\"queries\":300,\"originalMs\":37.88,\"currentMs\":2.09,\"device\":\"Apple M2 host; Node22; not iPhone\"}"
+    "output": "{\"checked\":2700,\"queries\":300,\"originalMs\":38.78,\"currentMs\":2.08,\"device\":\"Apple M2 host; Node22; not iPhone\"}"
   },
   {
     "file": "opening.mjs",

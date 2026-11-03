@@ -4,6 +4,6 @@
   "initialGlbBytes": 19005840,
   "initialGlbGzipBytes": 6235383,
   "note": "gzip values measured locally; server transfer encoding and cache behavior may differ. Runtime JS/CSS/vendor are listed separately.",
-  "runtimeRawBytes": 2641560,
+  "runtimeRawBytes": 2641854,
   "assetCount": 134
 }
