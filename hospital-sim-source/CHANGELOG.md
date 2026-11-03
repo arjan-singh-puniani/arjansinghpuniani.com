@@ -1,3 +1,10 @@
+# RC3 character reactions · 2026-11-02
+
+- Added original rotating pickup, safe landing and cancellation lines for nine named staff and four fictional patient personalities. New recruits inherit their role’s voice.
+- Reused the existing status strip and polite live region; held figures stay unobscured. Session-only rotation and a short per-cue cooldown avoid immediate repetition without changing simulation randomness or saves.
+- Added a brief head nod and right cuff check after idle landings. Feet stay planted; walking and service clips take priority. Reduced motion disables the gesture and retains the text.
+- Verified staff and patient pickups, clear and rejected drops, explicit cancellation, keyboard placement and 390×844 layout in the desktop browser. No new Blender work or recorded voices. New reactions have not been tested on a physical iPhone.
+
 # RC3 pickup animation ·2026-11-02
 
 - Added intermittent shoulder twists, wrist curls and alternating bent-knee kicks to the held pose. Reuses the original rig; no new assets or simulation parameters.
