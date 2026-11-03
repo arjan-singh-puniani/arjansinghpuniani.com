@@ -1,5 +1,5 @@
-import {GRID,WALK_SUBSTEPS,CASES,VOICES,STAFF_ROLES,ROLE_SKILLS,ROOM_ROLES,TYPES} from './content.mjs?v=121';
-import {entrance,exit,gateDirection,door,blocked,path} from './navigation.mjs?v=121';
+import {GRID,WALK_SUBSTEPS,CASES,VOICES,STAFF_ROLES,ROLE_SKILLS,ROOM_ROLES,TYPES} from './content.mjs?v=125';
+import {entrance,exit,gateDirection,door,blocked,path} from './navigation.mjs?v=125';
 export function deskStation(s){const g=entrance(s),o=gateDirection(g),t={x:o.y,y:-o.x};for(const side of [1,-1]){const bay={x:g.x+t.x*.75*side,y:g.y+t.y*.75*side},post={x:bay.x-o.x*.75,y:bay.y-o.y*.75},assistant={x:post.x-t.x*.5*side+o.x*.5,y:post.y-t.y*.5*side+o.y*.5};if([bay,post,assistant].every(p=>p.x>=0&&p.x<=GRID.w-1&&p.y>=0&&p.y<=GRID.h-1&&!blocked(p.x,p.y,s.rooms)))return{bay,post,assistant,side}}return null}
 export const deskPost=s=>deskStation(s)?.post||entrance(s);
 export const deskBay=s=>deskStation(s)?.bay||entrance(s);
@@ -46,7 +46,7 @@ function bodyCells(people){return people.flatMap(p=>[{x:p.x,y:p.y},{x:p.x-.25,y:
 export const assistantPost=s=>deskStation(s)?.assistant||entrance(s);
 export function upgradeOperations(s){
  const op=s.operations;op.supervision??='paired';op.coffeeDone??=false;op.intakeAssists??=0;op.roomResets??=0;op.incidents??=[];
- for(const [role,name,position]of[['assistant','Tess',{x:3.5,y:6.25}],['facilities','Ellis',{x:.5,y:6.5}]])if(!s.staff.some(st=>st.role===role)&&s.staff.length<16)s.staff.push({id:Math.max(...s.staff.map(st=>st.id))+1,name,role,skills:[],trait:role==='assistant'?'listener':'steady',shiftEnd:480,fatigue:0,breakUntil:0,position,...(role==='assistant'?{support:'intake'}:{})});
+ for(const [role,name,position]of(s.first?[]:[['assistant','Tess',{x:3.5,y:6.25}],['facilities','Ellis',{x:.5,y:6.5}]]))if(!s.staff.some(st=>st.role===role)&&s.staff.length<16)s.staff.push({id:Math.max(...s.staff.map(st=>st.id))+1,name,role,skills:[],trait:role==='assistant'?'listener':'steady',shiftEnd:480,fatigue:0,breakUntil:0,position,...(role==='assistant'?{support:'intake'}:{})});
  for(const st of s.staff)st.skills=[...ROLE_SKILLS[st.role]];
  for(const r of s.rooms){r.readyAt??=0;r.spill??=false;if(!validTeam(s,r))r.legacyTeam=true}
 }
@@ -63,7 +63,7 @@ export function dispatchFacilities(s){const e=s.operations.event,r=s.rooms.find(
 export function startTurnover(s,r){r.readyAt=s.seconds+(r.type==='care'?12:r.type==='scan'?10:6)}
 export function tickOperations(s){
  tickBasicOperations(s);const op=s.operations;
- if(s.seconds===12&&!op.banter)say(s,s.staff.find(st=>st.role==='np')?.id||op.deskStaff,'Let’s leave room for one more question.');
+ if(s.seconds===12&&!op.banter&&s.staff.length)say(s,s.staff.find(st=>st.role==='np')?.id||op.deskStaff||s.staff[0].id,'Let’s leave room for one more question.');
  if(!op.coffeeDone&&s.seconds>=(s.shiftStart||0)+200&&(!op.event||op.event.status==='resolved')){const r=s.rooms.find(r=>r.type==='scan');if(r){if(op.event)op.incidents.push({...op.event});op.coffeeDone=true;r.spill=true;op.event={kind:'coffee',status:'open',at:s.seconds,roomId:r.id,choice:null,remaining:3};say(s,s.staff.find(st=>st.role==='imaging')?.id||op.deskStaff,'Coffee is not a scanner accessory. Calling facilities.');}}
  for(const st of s.staff){
   const job=st.job;

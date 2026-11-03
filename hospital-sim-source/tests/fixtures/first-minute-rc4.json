@@ -1,0 +1,125 @@
+{
+  "model": "1.0.0-rc4",
+  "seed": 431,
+  "recordStart": 0,
+  "recordEnd": 60,
+  "actions": [
+    {
+      "at": 0,
+      "type": "build",
+      "room": {
+        "id": 10,
+        "type": "consult",
+        "x": 3,
+        "y": 3,
+        "rotation": 0,
+        "level": 1,
+        "staff": [
+          1
+        ],
+        "decor": [],
+        "paid": 900,
+        "builtAt": 0,
+        "readyAt": 0,
+        "spill": false
+      }
+    },
+    {
+      "at": 0,
+      "type": "policy",
+      "key": "hire",
+      "value": "doctor"
+    },
+    {
+      "at": 0,
+      "type": "assign",
+      "staffId": 1,
+      "roomId": 10
+    },
+    {
+      "at": 0,
+      "type": "open-clinic"
+    },
+    {
+      "at": 40,
+      "type": "opening-reward",
+      "neighbors": 1,
+      "grant": 250
+    }
+  ],
+  "tracked": 1000,
+  "events": [
+    "00:00 Build your room and welcome your first neighbor",
+    "00:01 Arriving · Consultation",
+    "00:03 Walking through the entrance · Consultation",
+    "00:05 Waiting · Consultation",
+    "00:06 Walking to waiting space · Consultation",
+    "00:09 Waiting · Consultation",
+    "00:11 Walking · Consultation",
+    "00:15 Entering service room · Consultation",
+    "00:18 Receiving service · Consultation",
+    "00:26 Leaving service room · Consultation",
+    "00:29 Heading home · exit",
+    "00:38 Walking through the exit · Consultation",
+    "00:40 Completed · discharged"
+  ],
+  "visit": {
+    "id": 1000,
+    "name": "Maya",
+    "x": 7,
+    "y": 7,
+    "stage": "consult",
+    "target": null,
+    "room": null,
+    "urgent": false,
+    "barrier": false,
+    "imaging": false,
+    "returning": false,
+    "goal": "One clear plan, preferably on one sheet of paper",
+    "caseId": "welcome",
+    "intakeDone": true,
+    "checkin": 0,
+    "recovery": 0,
+    "wait": 5,
+    "walking": 26,
+    "service": 8,
+    "handoff": 0,
+    "transfer": 0,
+    "yielding": 0,
+    "elapsedOffset": 0,
+    "arrival": 1,
+    "progress": 2,
+    "navDelay": 0,
+    "history": [
+      {
+        "stage": "consult",
+        "at": 18,
+        "room": 10,
+        "duration": 7.291666666666667
+      }
+    ],
+    "outside": false,
+    "stalled": 0,
+    "moved": false,
+    "motion": null,
+    "teamWaiting": false,
+    "equipmentWaiting": false,
+    "destination": {
+      "x": 7,
+      "y": 7
+    },
+    "previous": {
+      "x": 7,
+      "y": 6.25
+    },
+    "duration": 7.291666666666667,
+    "outcome": "completed",
+    "total": 39
+  },
+  "counts": {
+    "arrivals": 3,
+    "completed": 1,
+    "departed": 0,
+    "unfinished": 2
+  }
+}

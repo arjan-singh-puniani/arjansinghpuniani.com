@@ -1,15 +1,15 @@
-import {installPointerInput} from './input.mjs?v=124';
-import {deskAvailable,deskPost,deskBay,staffTask,idlePartner} from './operations.mjs?v=121';
-import {roomAngle} from './navigation.mjs?v=121';
-import {landingCheck} from './landing.mjs?v=121';
+import {installPointerInput} from './input.mjs?v=125';
+import {deskAvailable,deskPost,deskBay,staffTask,idlePartner} from './operations.mjs?v=125';
+import {roomAngle} from './navigation.mjs?v=125';
+import {landingCheck} from './landing.mjs?v=125';
 import * as THREE from 'three';
-import {landingGesture,advanceLocomotion,playClip,samplePose,dangle,restoreBones} from './animation.mjs?v=123';
-import {WALK_SPEED,sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath,supportInteriorPath,drapePose,waitingSeat,waitingInteriorPath} from './motion.mjs?v=121';
+import {landingGesture,advanceLocomotion,playClip,samplePose,dangle,restoreBones} from './animation.mjs?v=125';
+import {WALK_SPEED,sampleRoute,interiorPath,sampleInterior,staffPost,staffInteriorPath,supportInteriorPath,drapePose,waitingSeat,waitingInteriorPath} from './motion.mjs?v=125';
 import {GLTFLoader} from './vendor/examples/jsm/loaders/GLTFLoader.js';
 import {clone} from './vendor/examples/jsm/utils/SkeletonUtils.js';
 import {OrbitControls} from './vendor/examples/jsm/controls/OrbitControls.js';
 import {RoomEnvironment} from './vendor/examples/jsm/environments/RoomEnvironment.js';
-import {GRID,TYPES,door,path,placement,entrance,exit,gateDirection,gatePlacement,dropPlacement,STAFF_ROLES,queueFor} from './simulation.mjs?v=121';
+import {GRID,TYPES,door,path,placement,entrance,exit,gateDirection,gatePlacement,dropPlacement,STAFF_ROLES,queueFor} from './simulation.mjs?v=125';
 
 export const roomHeight=type=>({scan:.63,care:.25,consult:.85,rest:.25,plan:.85,waiting:.25}[type]);
 export function world(x,y,height=.25){return new THREE.Vector3((x-4)*GRID.step,height,(y-3.5)*GRID.step)}
@@ -47,6 +47,7 @@ export class Diorama {
   this.ghost=new THREE.Group();const gm=new THREE.MeshStandardMaterial({color:0x309a88,transparent:true,opacity:.35,depthWrite:false});const plate=new THREE.Mesh(new THREE.BoxGeometry(3.22,.08,3.22),gm);plate.position.y=.03;this.ghost.add(plate);this.ghost.visible=false;this.scene.add(this.ghost);this.ghostMat=gm;
   this.grid=new THREE.GridHelper((GRID.w-1)*GRID.step,(GRID.w-1)*4,0x4f99b4,0xb6d1d7);this.grid.position.copy(world(4,3.5,.27));this.grid.visible=false;this.scene.add(this.grid);
   this.makeContacts();this.makeWalkways();
+  this.starterPlot=new THREE.Group();const lot=new THREE.Mesh(beveledBox(14.7,.18,13.05,.08),blue),surface=new THREE.Mesh(beveledBox(14.7,.035,13.05,.04),pale);lot.castShadow=true;lot.receiveShadow=true;surface.receiveShadow=true;surface.position.y=.10;this.starterPlot.add(lot,surface);this.starterPlot.position.copy(world(4,3.5,.04));this.scene.add(this.starterPlot);this.starterPlot.visible=!!this.state().first;
   this.characterContacts=new THREE.InstancedMesh(new THREE.PlaneGeometry(.65,.55),new THREE.MeshBasicMaterial({map:this.contactTexture,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1}),220);this.characterContacts.frustumCulled=false;this.characterContacts.count=0;this.scene.add(this.characterContacts);
   this.roleLayer=document.createElement('div');this.roleLayer.className='staff-tags';this.roleLayer.hidden=true;this.roleLayer.setAttribute('aria-label','Staff roles. Tap to pick up.');canvas.after(this.roleLayer);this.roleTags=new Map();this.planLayer=document.createElement('div');this.planLayer.className='world-plans';canvas.after(this.planLayer);this.roleLines=document.createElementNS('http://www.w3.org/2000/svg','svg');this.roleLines.setAttribute('aria-hidden','true');this.roleLayer.append(this.roleLines);
   installPointerInput(this);
@@ -155,7 +156,7 @@ export class Diorama {
   if(group.userData.equipment){group.remove(group.userData.equipment);this.disposeOwned(group.userData.equipment)}const source=this.assets[TYPES[r.type].asset];group.userData.equipmentSource=source;const equipment=(r.type==='waiting'?source.scene.getObjectByName('WaitingBench'):source.scene).clone(true);group.userData.equipment=equipment;if(r.type==='waiting')equipment.position.z=-.55;group.add(equipment);this.soften(equipment);group.userData.monitors=[];equipment.traverse(o=>{if(o.isMesh&&o.material.name.includes('Diagnostic glass')){o.material=o.material.clone();o.material.emissive.set(0xffffff);o.material.emissiveMap=o.material.map;group.userData.monitors.push(o.material)}});this.renderer.shadowMap.needsUpdate=true;
  }
  syncRooms(){
-  const s=this.state();this.syncGates();for(const [id,g] of this.roomObjects){if(!s.rooms.some(r=>r.id===id)){this.scene.remove(g);this.disposeOwned(g);this.roomObjects.delete(id)}}
+  const s=this.state();this.starterPlot.visible=!!s.first;this.reception.visible=!s.first;this.syncGates();for(const [id,g] of this.roomObjects){if(!s.rooms.some(r=>r.id===id)){this.scene.remove(g);this.disposeOwned(g);this.roomObjects.delete(id)}}
   for(const r of s.rooms){if(this.roomObjects.has(r.id)){const g=this.roomObjects.get(r.id);g.position.copy(center(r));g.rotation.y=roomAngle(r);if(g.userData.equipmentSource!==this.assets[TYPES[r.type].asset])this.replaceEquipment(g,r);if(r.type==='waiting'){const equipment=g.userData.equipment;equipment.rotation.y=r.furniture?-Math.PI/2:0;equipment.position.set(r.furniture?.55:0,0,r.furniture?0:-.55)}this.decorateRoom(g,r);continue}const group=new THREE.Group();group.position.copy(center(r));group.rotation.y=roomAngle(r);group.userData.roomId=r.id;this.scene.add(group);this.roomObjects.set(r.id,group);
    this.replaceEquipment(group,r);if(this.assets['service-props']){const spill=this.assets['service-props'].scene.getObjectByName('FloorSpill').clone(true);spill.position.set(1.2,.008,1.3);spill.visible=!!r.spill;group.add(spill);group.userData.spill=spill}
    if(r.type==='care'){const drape=this.assets.drape.scene.clone(true);drape.traverse(o=>{if(o.isMesh){o.material=o.material.clone();o.material.transparent=true;o.material.opacity=0;o.material.depthWrite=false;o.castShadow=false}});drape.visible=false;group.add(drape);group.userData.occupiedDrape=drape}
@@ -214,10 +215,11 @@ export class Diorama {
  pick(e){this.tile(e);if(!this.tool){const person=this.personAt(e);if(person){this.onPick(person.kind==='patient'?{patient:person.id}:{staff:person.id});return}const hits=this.ray.intersectObjects([...this.roomObjects.values()],true);if(hits.length){let o=hits[0].object;while(o&&!o.userData.patientId&&!o.userData.roomId&&!o.userData.staffId)o=o.parent;if(o){this.onPick(o.userData.patientId?{patient:o.userData.patientId}:o.userData.staffId?{staff:o.userData.staffId}:{room:o.userData.roomId});return}}}
   const t=this.tile(e);if(t)this.onPick(t);
  }
- preview(type,tile,rotation=0){
+ preview(type,tile,rotation=0,footprintOnly=false){
   this.tool=type;this.grid.visible=!!type;this.ghost.visible=!!type&&!!tile;if(!this.ghost.visible)return;const gate=['entrance','exit'].includes(type),check=gate?gatePlacement(this.state(),type,tile.x,tile.y):placement(this.state(),type,tile.x,tile.y,rotation);
   this.ghost.position.copy(world(tile.x+(gate?0:.5),tile.y+(gate?0:.5),gate?.31:roomHeight(type)));this.ghost.rotation.y=gate?0:rotation*Math.PI/2;this.ghost.children[0].visible=!gate;
   const key=gate?'doors':TYPES[type].asset;if(this.ghostKey!==key){if(this.equipmentGhost){this.ghost.remove(this.equipmentGhost);this.equipmentGhost.traverse(o=>{if(o.isMesh)o.material.dispose()})}this.equipmentGhost=(type==='waiting'?this.assets.lobby.scene.getObjectByName('WaitingBench'):this.assets[key].scene).clone(true);if(type==='waiting')this.equipmentGhost.position.z=-.55;this.equipmentGhost.traverse(o=>{if(o.isMesh){o.material=o.material.clone();o.material.transparent=true;o.material.opacity=.38;o.material.depthWrite=false;o.castShadow=false}});this.ghost.add(this.equipmentGhost);this.ghostKey=key}
+  if(this.equipmentGhost)this.equipmentGhost.visible=!footprintOnly;
   if(gate){const out=gateDirection(tile);this.equipmentGhost.rotation.y=Math.atan2(out.x,out.y)}else this.equipmentGhost.rotation.y=0;
   this.equipmentGhost.traverse(o=>{if(o.isMesh)o.material.color.set(check.ok?0x54ba91:0xcf735b)});this.ghostMat.color.set(check.ok?0x258d7c:0xc15e43);
   if(!this.ghostDoor){this.ghostDoor=new THREE.Mesh(new THREE.BoxGeometry(.92,.05,.28),this.ghostMat);this.ghostDoor.position.set(-.825,.04,1.72);this.ghost.add(this.ghostDoor)}this.ghostDoor.visible=!gate;this.onHoverResult=check;this.canvas.dataset.buildRotation=rotation;
@@ -230,6 +232,7 @@ export class Diorama {
   const rect=this.canvas.getBoundingClientRect(),aspect=rect.width/rect.height;
   this.controls.target.set(0,.65,0);this.camera.position.set(16,17,23);this.camera.lookAt(this.controls.target);this.camera.updateMatrixWorld();
   const boxes=[...this.roomObjects.values(),...this.gates.values()].map(g=>{const b=new THREE.Box3().setFromObject(g);b.max.y=Math.max(b.max.y,g.position.y+2);return b});
+  if(this.state().first&&this.starterPlot)boxes.push(new THREE.Box3().setFromObject(this.starterPlot));
   for(let i=0;i<this.corridor.count;i++){const m=new THREE.Matrix4();this.corridor.getMatrixAt(i,m);boxes.push(new THREE.Box3(new THREE.Vector3(-.83,-.1,-.83),new THREE.Vector3(.83,.1,.83)).applyMatrix4(m))}
   for(const p of this.buildSites||[]){const c=world(p.x+.5,p.y+.5);boxes.push(new THREE.Box3(c.clone().add(new THREE.Vector3(-1.8,-.2,-1.8)),c.clone().add(new THREE.Vector3(1.8,2,1.8))))}
   if(!boxes.length)boxes.push(new THREE.Box3(new THREE.Vector3(-7,0,-7),new THREE.Vector3(7,3,7)));

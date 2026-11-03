@@ -1248,5 +1248,18 @@
     "manifest": "dist/assets/patient-appearances.json",
     "count": 11,
     "effects": "Visual only; no simulation RNG, ability or care modifiers."
+  },
+  "rc4Opening": {
+    "foundation": {
+      "source": "dist/renderer.mjs, existing beveledBox helper",
+      "provenance": "Original browser geometry, substantial AI assistance; no Blender execution for this addition",
+      "license": "CC0-1.0"
+    },
+    "evidence": {
+      "video": "dist/docs/first-minute-rc4.mp4",
+      "events": "dist/docs/first-minute-rc4-events.json",
+      "comparison": "dist/docs/opening-before-after.webp",
+      "provenance": "Actual original-game browser capture; comparison uses the owner-supplied hospitalSIM screenshot dated2026-11-02 and the new browser screenshot. No Materialise artwork is included."
+    }
   }
 }

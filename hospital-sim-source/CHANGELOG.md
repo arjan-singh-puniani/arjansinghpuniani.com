@@ -1,3 +1,14 @@
+# 1.0.0-rc4 · 2026-11-02 · Start small
+
+- Rebuilt the default opening as Little Juniper: zero rooms, zero staff and a $4,000 opening fund. The clock, expenses and arrivals wait until the first room is built and its doctor is explicitly hired.
+- Two initial actions build a consultation and hire/assign Mira. She walks through the entrance; the first fictional neighbor follows, receives a consultation and leaves through the exit. The default first full visit completes at 40 game seconds.
+- The first chapter uses a consultation-only pathway with direct arrival. It introduces no reception job, imaging, surgery, access flags or surprise paperwork/equipment events. Full hospital scenarios are still available separately.
+- After the first neighbor is home, choose a faster room, a second room with its own $800 doctor, or two waiting seats. Costs and modeled consequences are stated before purchase. Opening grants and a small plant reward occur once at recorded milestones.
+- Existing hospitals are offered a fresh start without silently replacing their save. Previous hospitals can be restored from a device-local archive. Quota/read errors stop replacement. Existing campaign mastery and REPLISOME are retained.
+- Retained direct pickup, 50% held opacity, squirming reactions, safe construction, fixed-step movement, pauses/speeds, save/replay, the eight-minute shift and continuing sandbox.
+- Added actual first-minute footage and an exact replay of its build/hire decisions, visit timing and arrival accounting. No new Blender work: original Blender assets are reused; the empty foundation is browser geometry.
+- Comparative enjoyment, external educational usefulness and physical iPhone responsiveness remain unvalidated. This remains a release candidate.
+
 # RC3 direct pickup fix · 2026-11-02
 
 - A primary press directly on a person now lifts immediately for mouse, touch and pen. The first stationary release keeps them held; a second floor tap puts down. Press-drag-release still works, with authoritative landing checks.
